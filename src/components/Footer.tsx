@@ -2,11 +2,10 @@ import { Link } from "react-router-dom";
 
 export function Footer() {
   const footerLinks = [
-    { name: "About", path: "/about" },
-    { name: "Terms", path: "/terms" },
-    { name: "Privacy", path: "/privacy" },
-    { name: "Cookies", path: "/cookies" },
-    { name: "Cookie Settings", path: "/cookie-settings" },
+    { name: "About Us", path: "/about" },
+    { name: "Contact", path: "/contact" },
+    { name: "Privacy Policy", path: "/privacy" },
+    { name: "Terms of Use", path: "/terms" },
   ];
 
   return (
