@@ -26,9 +26,84 @@ import {
 } from "lucide-react";
 
 const Index = () => {
-  // Calculator Categories Data
+  // Categories with detailed automotive structure
+  const categories = {
+    automotivo: {
+      name: "Automotive Calculators",
+      icon: Car,
+      color: "text-blue-600",
+      description: "We have automotive calculators and resources for engine performance tuning, day to day mechanics, and other vehicle applications. From estimating horsepower to estimating your monthly payment, we have the resources for you.",
+      subCategories: [
+        {
+          title: "Engine & Horsepower Calculators",
+          icon: "fa-solid fa-car-battery",
+          calculators: [
+            { key: "carburetor-cfm", name: "Carburetor CFM Calculator" },
+            { key: "lb-cc-converter", name: "Convert lb/hr to cc/min & cc/min to lb/hr" },
+            { key: "engine-compression", name: "Engine Compression Ratio Calculator" },
+            { key: "engine-displacement", name: "Engine Displacement Calculator" },
+            { key: "horsepower", name: "Engine Horsepower Calculator" },
+            { key: "engine-torque", name: "Engine Torque Calculator" }
+          ]
+        },
+        {
+          title: "Fuel & Fuel Economy Calculators",
+          icon: "fa-solid fa-gas-pump",
+          calculators: [
+            { key: "ev-charging-cost", name: "Electric Vehicle Charging Cost Calculator" },
+            { key: "ev-charging-time", name: "Electric Vehicle Charging Time Calculator" },
+            { key: "ev-fuel-savings", name: "Electric Vehicle Fuel Savings Calculator" },
+            { key: "fuel-cost", name: "Fuel Cost Calculator" },
+            { key: "fuel-injector-flow", name: "Fuel Injector Flow Rate Calculator" },
+            { key: "fuel-savings", name: "Fuel Savings Calculator" },
+            { key: "gas-mileage", name: "Gas Mileage Calculator" },
+            { key: "km-per-liter", name: "Kilometers Per Liter Fuel Economy Calculator" },
+            { key: "liters-per-100km", name: "Liters Per 100 Kilometers Fuel Consumption Calculator" }
+          ]
+        },
+        {
+          title: "Unit Conversion Calculators",
+          icon: "fa-solid fa-arrows-left-right-to-line",
+          calculators: [
+            { key: "ev-efficiency", name: "Electric Car Efficiency Unit Conversions" },
+            { key: "fuel-economy-unit", name: "Fuel Economy Unit Conversions" },
+            { key: "sae-metric", name: "SAE to Metric Calculator & Metric to Standard" },
+            { key: "speed-unit", name: "Speed Unit Conversions" },
+            { key: "torque-unit", name: "Torque Unit Conversions" }
+          ]
+        },
+        {
+          title: "Vehicle Loan Calculators",
+          icon: "fa-solid fa-sack-dollar",
+          calculators: [
+            { key: "atv-loan", name: "ATV Loan Calculator" },
+            { key: "auto-loan", name: "Auto Loan Calculator" },
+            { key: "boat-loan", name: "Boat Loan Calculator" },
+            { key: "car-lease", name: "Car Lease Calculator" },
+            { key: "lease-vs-buy", name: "Lease vs. Buy Car Calculator" },
+            { key: "motorcycle-loan", name: "Motorcycle Loan Calculator" },
+            { key: "rv-loan", name: "RV Loan Calculator" }
+          ]
+        },
+        {
+          title: "Wheels & Tires Calculators",
+          icon: "fa-solid fa-fan",
+          calculators: [
+            { key: "speedometer-error", name: "Speedometer Error Calculator" },
+            { key: "speedometer-gear", name: "Speedometer Gear Calculator" },
+            { key: "tire-size", name: "Tire Size Calculator" },
+            { key: "tire-size-comparison", name: "Tire Size Comparison Calculator" },
+            { key: "tire-size-conversion", name: "Tire Size Conversion Calculator" },
+            { key: "wheel-offset", name: "Wheel Offset Calculator" }
+          ]
+        }
+      ]
+    }
+  };
+
+  // Calculator Categories Data (preserving other categories)
   const calculatorCategories = [
-    { name: "Automotive Calculators", icon: Car, color: "text-blue-600" },
+    categories.automotivo,
     { name: "Construction Calculators", icon: HardHat, color: "text-orange-600" },
     { name: "Conversion Calculators", icon: RotateCcw, color: "text-green-600" },
     { name: "Cooking Calculators", icon: ChefHat, color: "text-red-600" },
