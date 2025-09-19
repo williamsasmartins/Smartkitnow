@@ -134,7 +134,7 @@ const Index = () => {
     { name: "Grade Calculator", description: "Calculate your GPA", icon: Star }
   ];
 
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   return (
     <div className="min-h-screen bg-gradient-soft">
