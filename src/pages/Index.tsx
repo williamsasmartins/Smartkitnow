@@ -616,7 +616,12 @@ const Index = () => {
       color: "text-cyan-600",
       description: "Chemistry, physics, and density calculations for scientific applications."
     },
-    { name: "Time & Date Calculators", icon: Clock, color: "text-indigo-600" },
+    {
+      name: "Time & Date Calculators",
+      icon: Clock,
+      color: "text-indigo-600",
+      description: "Age calculations, countdowns, date arithmetic, and time conversions."
+    },
     { name: "Video Calculators", icon: Video, color: "text-violet-600" },
     { name: "Recipes", icon: BookOpen, color: "text-teal-600" },
     { name: "Smart Tips", icon: Lightbulb, color: "text-yellow-500" },
@@ -669,6 +674,7 @@ const Index = () => {
               const isMath = category.name === "Math & Algebra Calculators";
               const isPets = category.name === "Pet Care Calculators";
               const isScience = category.name === "Science Calculators";
+              const isTime = category.name === "Time & Date Calculators";
               
               const handleClick = () => {
                 console.log("Category clicked:", category.name);
@@ -682,6 +688,7 @@ const Index = () => {
                 if (isMath) navigate('/math');
                 if (isPets) navigate('/pets');
                 if (isScience) navigate('/science');
+                if (isTime) navigate('/time');
               };
               
               return (

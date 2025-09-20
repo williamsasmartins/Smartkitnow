@@ -93,7 +93,17 @@ export function Header() {
     { key: "force", name: "Force Calculator", category: "science" },
     { key: "velocity", name: "Velocity Calculator", category: "science" },
     { key: "acceleration", name: "Acceleration Calculator", category: "science" },
-    { key: "momentum", name: "Momentum Calculator", category: "science" }
+    { key: "momentum", name: "Momentum Calculator", category: "science" },
+    
+    // Time & Date calculators
+    { key: "age", name: "Age Calculator", category: "time" },
+    { key: "countdown-timer", name: "Countdown Timer", category: "time" },
+    { key: "days-until", name: "Days Until Calculator", category: "time" },
+    { key: "christmas-countdown", name: "Christmas Countdown", category: "time" },
+    { key: "new-year-countdown", name: "New Year Countdown", category: "time" },
+    { key: "date-calculator", name: "Date Calculator", category: "time" },
+    { key: "time-duration", name: "Time Duration Calculator", category: "time" },
+    { key: "24-to-12-hour", name: "Time Format Converter", category: "time" }
   ], []);
 
   // Filter calculators based on search term
@@ -145,6 +155,8 @@ export function Header() {
       navigate(`/pets/calculator/${calculator.key}`);
     } else if (calculator.category === "science") {
       navigate(`/science/calculator/${calculator.key}`);
+    } else if (calculator.category === "time") {
+      navigate(`/time/calculator/${calculator.key}`);
     }
   };
 

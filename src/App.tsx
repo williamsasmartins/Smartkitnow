@@ -41,6 +41,9 @@ import PetsCalculatorPage from "./pages/PetsCalculatorPage";
 import ScienceCalculators from "./pages/ScienceCalculators";
 import ScienceSubCategory from "./pages/ScienceSubCategory";
 import ScienceCalculatorPage from "./pages/ScienceCalculatorPage";
+import TimeCalculators from "./pages/TimeCalculators";
+import TimeSubCategory from "./pages/TimeSubCategory";
+import TimeCalculatorPage from "./pages/TimeCalculatorPage";
 
 const queryClient = new QueryClient();
 
@@ -95,6 +98,9 @@ const App = () => (
             <Route path="/science" element={<ScienceCalculators />} />
             <Route path="/science/:subcategory" element={<ScienceSubCategory />} />
             <Route path="/science/calculator/:calculator" element={<ScienceCalculatorPage />} />
+            <Route path="/time" element={<TimeCalculators />} />
+            <Route path="/time/:subcategory" element={<TimeSubCategory />} />
+            <Route path="/time/calculator/:calculator" element={<TimeCalculatorPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
