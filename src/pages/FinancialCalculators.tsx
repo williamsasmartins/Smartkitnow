@@ -145,6 +145,37 @@ const FinancialCalculators = () => {
       name: "Time Value of Money Calculator"
     }]
   }, {
+    title: "Mortgage and Home Loan Calculators",
+    icon: "fa-solid fa-home",
+    calculators: [{
+      key: "mortgage",
+      name: "Mortgage Calculator"
+    }, {
+      key: "mortgage-refinance",
+      name: "Mortgage Refinance Calculator"
+    }, {
+      key: "home-equity-loan",
+      name: "Home Equity Loan Calculator"
+    }, {
+      key: "home-equity-line-of-credit",
+      name: "HELOC Calculator"
+    }, {
+      key: "fha-loan",
+      name: "FHA Loan Calculator"
+    }, {
+      key: "va-loan",
+      name: "VA Loan Calculator"
+    }, {
+      key: "usda-loan",
+      name: "USDA Loan Calculator"
+    }, {
+      key: "jumbo-loan",
+      name: "Jumbo Loan Calculator"
+    }, {
+      key: "reverse-mortgage",
+      name: "Reverse Mortgage Calculator"
+    }]
+  }, {
     title: "Property and Real Estate Calculators",
     icon: "fa-solid fa-house",
     calculators: [{
@@ -226,6 +257,15 @@ const FinancialCalculators = () => {
     }, {
       key: "yield-to-maturity",
       name: "Yield to Maturity Calculator"
+    }, {
+      key: "401k",
+      name: "401k Calculator"
+    }, {
+      key: "ira",
+      name: "IRA Calculator"
+    }, {
+      key: "roth-ira",
+      name: "Roth IRA Calculator"
     }]
   }, {
     title: "Vehicle Loan Calculators",
@@ -251,6 +291,196 @@ const FinancialCalculators = () => {
     }, {
       key: "rv-loan",
       name: "RV Loan Calculator"
+    }]
+  }, {
+    title: "Retirement Planning Calculators",
+    icon: "fa-solid fa-user-clock",
+    calculators: [{
+      key: "retirement",
+      name: "Retirement Calculator"
+    }, {
+      key: "retirement-savings",
+      name: "Retirement Savings Calculator"
+    }, {
+      key: "social-security",
+      name: "Social Security Calculator"
+    }, {
+      key: "pension",
+      name: "Pension Calculator"
+    }, {
+      key: "early-retirement",
+      name: "Early Retirement Calculator"
+    }, {
+      key: "required-minimum-distribution",
+      name: "RMD Calculator"
+    }]
+  }, {
+    title: "Tax Calculators",
+    icon: "fa-solid fa-receipt",
+    calculators: [{
+      key: "tax",
+      name: "Tax Calculator"
+    }, {
+      key: "tax-refund",
+      name: "Tax Refund Calculator"
+    }, {
+      key: "payroll-tax",
+      name: "Payroll Tax Calculator"
+    }, {
+      key: "self-employment-tax",
+      name: "Self-Employment Tax Calculator"
+    }, {
+      key: "capital-gains-tax",
+      name: "Capital Gains Tax Calculator"
+    }, {
+      key: "property-tax",
+      name: "Property Tax Calculator"
+    }, {
+      key: "sales-tax",
+      name: "Sales Tax Calculator"
+    }]
+  }, {
+    title: "Savings and Budget Calculators",
+    icon: "fa-solid fa-piggy-bank",
+    calculators: [{
+      key: "savings",
+      name: "Savings Calculator"
+    }, {
+      key: "emergency-fund",
+      name: "Emergency Fund Calculator"
+    }, {
+      key: "budget",
+      name: "Budget Calculator"
+    }, {
+      key: "cost-of-living",
+      name: "Cost of Living Calculator"
+    }, {
+      key: "vacation-savings",
+      name: "Vacation Savings Calculator"
+    }, {
+      key: "college-savings",
+      name: "College Savings Calculator"
+    }]
+  }, {
+    title: "Credit and Debt Calculators",
+    icon: "fa-solid fa-credit-card",
+    calculators: [{
+      key: "credit-score",
+      name: "Credit Score Calculator"
+    }, {
+      key: "debt-consolidation",
+      name: "Debt Consolidation Calculator"
+    }, {
+      key: "debt-snowball",
+      name: "Debt Snowball Calculator"
+    }, {
+      key: "debt-avalanche",
+      name: "Debt Avalanche Calculator"
+    }, {
+      key: "minimum-payment",
+      name: "Minimum Payment Calculator"
+    }]
+  }, {
+    title: "Insurance Calculators",
+    icon: "fa-solid fa-shield-alt",
+    calculators: [{
+      key: "life-insurance",
+      name: "Life Insurance Calculator"
+    }, {
+      key: "health-insurance",
+      name: "Health Insurance Calculator"
+    }, {
+      key: "auto-insurance",
+      name: "Auto Insurance Calculator"
+    }, {
+      key: "home-insurance",
+      name: "Home Insurance Calculator"
+    }, {
+      key: "disability-insurance",
+      name: "Disability Insurance Calculator"
+    }]
+  }, {
+    title: "Currency and Exchange Calculators",
+    icon: "fa-solid fa-exchange-alt",
+    calculators: [{
+      key: "currency-converter",
+      name: "Currency Converter"
+    }, {
+      key: "exchange-rate",
+      name: "Exchange Rate Calculator"
+    }, {
+      key: "inflation",
+      name: "Inflation Calculator"
+    }, {
+      key: "purchasing-power",
+      name: "Purchasing Power Calculator"
+    }]
+  }, {
+    title: "Small Business Calculators",
+    icon: "fa-solid fa-store",
+    calculators: [{
+      key: "business-loan",
+      name: "Business Loan Calculator"
+    }, {
+      key: "startup-cost",
+      name: "Startup Cost Calculator"
+    }, {
+      key: "break-even",
+      name: "Break-Even Calculator"
+    }, {
+      key: "cash-flow",
+      name: "Cash Flow Calculator"
+    }, {
+      key: "equipment-loan",
+      name: "Equipment Loan Calculator"
+    }]
+  }, {
+    title: "Education Finance Calculators",
+    icon: "fa-solid fa-graduation-cap",
+    calculators: [{
+      key: "college-cost",
+      name: "College Cost Calculator"
+    }, {
+      key: "student-budget",
+      name: "Student Budget Calculator"
+    }, {
+      key: "education-loan",
+      name: "Education Loan Calculator"
+    }, {
+      key: "529-plan",
+      name: "529 Plan Calculator"
+    }]
+  }, {
+    title: "Cryptocurrency Calculators",
+    icon: "fa-solid fa-bitcoin-sign",
+    calculators: [{
+      key: "crypto-profit",
+      name: "Crypto Profit Calculator"
+    }, {
+      key: "crypto-tax",
+      name: "Crypto Tax Calculator"
+    }, {
+      key: "mining-profit",
+      name: "Mining Profit Calculator"
+    }, {
+      key: "dca",
+      name: "Dollar Cost Averaging Calculator"
+    }]
+  }, {
+    title: "Banking and Financial Services",
+    icon: "fa-solid fa-university",
+    calculators: [{
+      key: "checking-account",
+      name: "Checking Account Calculator"
+    }, {
+      key: "savings-account",
+      name: "Savings Account Calculator"
+    }, {
+      key: "money-market",
+      name: "Money Market Calculator"
+    }, {
+      key: "bank-fees",
+      name: "Bank Fees Calculator"
     }]
   }, {
     title: "Business Finance Calculators",
