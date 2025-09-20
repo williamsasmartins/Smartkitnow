@@ -336,9 +336,7 @@ const FinancialCalculators = () => {
               </div>
               <div>
                 <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">Financial Calculators – Plan, Invest & Save Smarter</h1>
-                <p className="text-muted-foreground mt-2 text-lg">
-                  Use one of our financial calculators to plan investments, calculate interest, or estimate savings on a purchase. Each calculator includes a wealth of financial information about the topic, along with the process and formulas to do the calculation.
-                </p>
+                <p className="text-muted-foreground mt-2 text-lg">Explore our full range of financial calculators to manage money wisely. Calculate loan payments, investment growth, interest rates, and savings goals with clear formulas and step-by-step guidance.</p>
               </div>
             </div>
           </div>
