@@ -604,7 +604,12 @@ const Index = () => {
       color: "text-purple-600",
       description: "Mathematical calculations from basic arithmetic to advanced algebra, geometry, statistics, and trigonometry."
     },
-    { name: "Pets Calculators", icon: Dog, color: "text-amber-600" },
+    {
+      name: "Pet Care Calculators",
+      icon: Dog,
+      color: "text-amber-600",
+      description: "Pet health, nutrition, and care calculators for dogs, cats, and aquariums."
+    },
     { name: "Science Calculators", icon: Atom, color: "text-cyan-600" },
     { name: "Time & Date Calculators", icon: Clock, color: "text-indigo-600" },
     { name: "Video Calculators", icon: Video, color: "text-violet-600" },
@@ -657,6 +662,7 @@ const Index = () => {
               const isFinancial = category.name === "Financial Calculators";
               const isHealth = category.name === "Health & Fitness Calculators";
               const isMath = category.name === "Math & Algebra Calculators";
+              const isPets = category.name === "Pet Care Calculators";
               
               const handleClick = () => {
                 console.log("Category clicked:", category.name);
@@ -668,6 +674,7 @@ const Index = () => {
                 if (isFinancial) navigate('/financial');
                 if (isHealth) navigate('/health');
                 if (isMath) navigate('/math');
+                if (isPets) navigate('/pets');
               };
               
               return (

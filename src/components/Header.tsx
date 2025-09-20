@@ -74,7 +74,16 @@ export function Header() {
     { key: "slope", name: "Slope Calculator", category: "math" },
     { key: "standard-deviation", name: "Standard Deviation Calculator", category: "math" },
     { key: "pythagorean", name: "Pythagorean Theorem Calculator", category: "math" },
-    { key: "scientific", name: "Scientific Calculator", category: "math" }
+    { key: "scientific", name: "Scientific Calculator", category: "math" },
+    
+    // Pet calculators
+    { key: "dog-age", name: "Dog Age Calculator", category: "pets" },
+    { key: "cat-age", name: "Cat Age Calculator", category: "pets" },
+    { key: "dog-calorie", name: "Dog Calorie Calculator", category: "pets" },
+    { key: "aquarium-volume", name: "Aquarium Volume Calculator", category: "pets" },
+    { key: "aquarium-weight", name: "Aquarium Weight Calculator", category: "pets" },
+    { key: "dog-chocolate-toxicity", name: "Dog Chocolate Toxicity Calculator", category: "pets" },
+    { key: "pet-age", name: "Pet Age Calculator", category: "pets" }
   ], []);
 
   // Filter calculators based on search term
@@ -122,6 +131,8 @@ export function Header() {
       navigate(`/health/calculator/${calculator.key}`);
     } else if (calculator.category === "math") {
       navigate(`/math/calculator/${calculator.key}`);
+    } else if (calculator.category === "pets") {
+      navigate(`/pets/calculator/${calculator.key}`);
     }
   };
 
