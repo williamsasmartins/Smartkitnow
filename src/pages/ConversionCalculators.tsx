@@ -2,10 +2,157 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronRight, Ruler, Map, ChefHat, Zap, Battery, Fuel, Move, Gauge, Thermometer, Clock, Volume2, Weight } from "lucide-react";
 
 const ConversionCalculators = () => {
   const navigate = useNavigate();
+
+  const popularConverters = [
+    {
+      title: "Angle",
+      icon: <Ruler className="h-5 w-5" />,
+      color: "text-red-500",
+      bgColor: "bg-red-50 dark:bg-red-900/20",
+      conversions: [
+        { from: "deg", to: "rad", key: "deg-to-rad" },
+        { from: "rad", to: "deg", key: "rad-to-deg" },
+        { from: "deg", to: "mrad", key: "deg-to-mrad" },
+        { from: "mrad", to: "deg", key: "mrad-to-deg" }
+      ]
+    },
+    {
+      title: "Area",
+      icon: <Map className="h-5 w-5" />,
+      color: "text-red-500",
+      bgColor: "bg-red-50 dark:bg-red-900/20",
+      conversions: [
+        { from: "sq ft", to: "sq m", key: "sq-ft-to-sq-m" },
+        { from: "sq m", to: "sq ft", key: "sq-m-to-sq-ft" },
+        { from: "sq mi", to: "sq km", key: "sq-mi-to-sq-km" },
+        { from: "sq km", to: "sq mi", key: "sq-km-to-sq-mi" }
+      ]
+    },
+    {
+      title: "Cooking",
+      icon: <ChefHat className="h-5 w-5" />,
+      color: "text-red-500",
+      bgColor: "bg-red-50 dark:bg-red-900/20",
+      conversions: [
+        { from: "g", to: "mL", key: "g-to-ml" },
+        { from: "mL", to: "g", key: "ml-to-g" },
+        { from: "mg", to: "mL", key: "mg-to-ml" },
+        { from: "mL", to: "mg", key: "ml-to-mg" }
+      ]
+    },
+    {
+      title: "Electrical",
+      icon: <Zap className="h-5 w-5" />,
+      color: "text-red-500",
+      bgColor: "bg-red-50 dark:bg-red-900/20",
+      conversions: [
+        { from: "kΩ", to: "Ω", key: "kohm-to-ohm" },
+        { from: "MΩ", to: "Ω", key: "mohm-to-ohm" },
+        { from: "Ω", to: "kΩ", key: "ohm-to-kohm" },
+        { from: "mΩ", to: "Ω", key: "mohm-to-ohm-small" }
+      ]
+    },
+    {
+      title: "Energy",
+      icon: <Battery className="h-5 w-5" />,
+      color: "text-red-500",
+      bgColor: "bg-red-50 dark:bg-red-900/20",
+      conversions: [
+        { from: "kcal", to: "cal", key: "kcal-to-cal" },
+        { from: "MJ", to: "kWh", key: "mj-to-kwh" },
+        { from: "MWh", to: "kWh", key: "mwh-to-kwh" },
+        { from: "MMBTU", to: "MWh", key: "mmbtu-to-mwh" }
+      ]
+    },
+    {
+      title: "Fuel Economy",
+      icon: <Fuel className="h-5 w-5" />,
+      color: "text-red-500",
+      bgColor: "bg-red-50 dark:bg-red-900/20",
+      conversions: [
+        { from: "mpg", to: "km/L", key: "mpg-to-kml" },
+        { from: "km/L", to: "mpg", key: "kml-to-mpg" },
+        { from: "mpg", to: "L/100km", key: "mpg-to-l100km" },
+        { from: "L/100km", to: "mpg", key: "l100km-to-mpg" }
+      ]
+    },
+    {
+      title: "Length",
+      icon: <Move className="h-5 w-5" />,
+      color: "text-red-500",
+      bgColor: "bg-red-50 dark:bg-red-900/20",
+      conversions: [
+        { from: "in", to: "cm", key: "in-to-cm" },
+        { from: "cm", to: "in", key: "cm-to-in" },
+        { from: "ft", to: "m", key: "ft-to-m" },
+        { from: "m", to: "ft", key: "m-to-ft" }
+      ]
+    },
+    {
+      title: "Speed",
+      icon: <Gauge className="h-5 w-5" />,
+      color: "text-red-500",
+      bgColor: "bg-red-900/20",
+      conversions: [
+        { from: "mph", to: "km/h", key: "mph-to-kmh" },
+        { from: "km/h", to: "mph", key: "kmh-to-mph" },
+        { from: "ft/s", to: "mph", key: "fts-to-mph" },
+        { from: "mph", to: "m/s", key: "mph-to-ms" }
+      ]
+    },
+    {
+      title: "Temperature",
+      icon: <Thermometer className="h-5 w-5" />,
+      color: "text-red-500",
+      bgColor: "bg-red-50 dark:bg-red-900/20",
+      conversions: [
+        { from: "°F", to: "°C", key: "f-to-c" },
+        { from: "°C", to: "°F", key: "c-to-f" },
+        { from: "°F", to: "K", key: "f-to-k" },
+        { from: "°C", to: "K", key: "c-to-k" }
+      ]
+    },
+    {
+      title: "Time",
+      icon: <Clock className="h-5 w-5" />,
+      color: "text-red-500",
+      bgColor: "bg-red-50 dark:bg-red-900/20",
+      conversions: [
+        { from: "sec", to: "min", key: "sec-to-min" },
+        { from: "min", to: "sec", key: "min-to-sec" },
+        { from: "sec", to: "hr", key: "sec-to-hr" },
+        { from: "hr", to: "sec", key: "hr-to-sec" }
+      ]
+    },
+    {
+      title: "Volume",
+      icon: <Volume2 className="h-5 w-5" />,
+      color: "text-red-500",
+      bgColor: "bg-red-50 dark:bg-red-900/20",
+      conversions: [
+        { from: "tbsp", to: "cups", key: "tbsp-to-cups" },
+        { from: "cm³", to: "m³", key: "cm3-to-m3" },
+        { from: "gal", to: "L", key: "gal-to-l" },
+        { from: "tsp", to: "mL", key: "tsp-to-ml" }
+      ]
+    },
+    {
+      title: "Weight",
+      icon: <Weight className="h-5 w-5" />,
+      color: "text-red-500",
+      bgColor: "bg-red-50 dark:bg-red-900/20",
+      conversions: [
+        { from: "lbs", to: "kg", key: "lbs-to-kg" },
+        { from: "kg", to: "lbs", key: "kg-to-lbs" },
+        { from: "oz", to: "g", key: "oz-to-g" },
+        { from: "g", to: "oz", key: "g-to-oz" }
+      ]
+    }
+  ];
 
   const subCategories = [
     {
@@ -98,6 +245,43 @@ const ConversionCalculators = () => {
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
               Unit conversion is the process of converting a measurement from one unit to another, for instance, converting your height from inches to centimeters. Convert nearly any measurement using one of the conversion calculators below.
             </p>
+          </div>
+
+          {/* Popular Converters Section */}
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold text-center mb-8 text-foreground">Popular Converters</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {popularConverters.map((category, index) => (
+                <Card key={index} className="border border-border/50 hover:shadow-soft transition-shadow">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center space-x-2 text-lg">
+                      <div className={`p-2 rounded-lg ${category.bgColor}`}>
+                        <div className={category.color}>
+                          {category.icon}
+                        </div>
+                      </div>
+                      <span className="text-foreground">{category.title}</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="space-y-2">
+                      {category.conversions.map((conversion, idx) => (
+                        <div 
+                          key={idx}
+                          className="flex items-center justify-between py-1 px-2 rounded hover:bg-muted/50 cursor-pointer group transition-colors"
+                          onClick={() => navigate(`/calculator/${conversion.key}`)}
+                        >
+                          <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                            {conversion.from} to {conversion.to}
+                          </span>
+                          <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
 
           {/* Sub Categories Grid */}
