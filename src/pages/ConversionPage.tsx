@@ -170,6 +170,111 @@ const conversionData: Record<string, ConversionData> = {
       { input: "112.65 km/h", output: "70 mph" }
     ],
     educationalText: "Speed limits and vehicle speedometers in metric countries display kilometers per hour. This unit is part of the metric system's consistency, where distances are measured in kilometers and time in hours, making calculations straightforward."
+  },
+  "deg-to-mrad": {
+    title: "Degrees to Milliradians",
+    fromUnit: "degrees",
+    toUnit: "milliradians",
+    formula: "milliradians = degrees × π/180 × 1000",
+    factor: (Math.PI / 180) * 1000,
+    description: "Convert angle measurements from degrees to milliradians.",
+    howToConvert: "To convert degrees to milliradians, multiply the degree value by π/180, then multiply by 1000.",
+    examples: [
+      { input: "1°", output: "17.4533 mrad" },
+      { input: "90°", output: "1570.8 mrad" },
+      { input: "180°", output: "3141.6 mrad" }
+    ],
+    educationalText: "Milliradians (mrad) are commonly used in military and engineering applications for precise angular measurements. One milliradian is approximately 3.6 inches at 100 yards, making it useful for ballistic calculations and surveying."
+  },
+  "mrad-to-deg": {
+    title: "Milliradians to Degrees",
+    fromUnit: "milliradians",
+    toUnit: "degrees",
+    formula: "degrees = milliradians ÷ (π/180 × 1000)",
+    factor: 1 / ((Math.PI / 180) * 1000),
+    description: "Convert angle measurements from milliradians to degrees.",
+    howToConvert: "To convert milliradians to degrees, divide the milliradian value by (π/180 × 1000).",
+    examples: [
+      { input: "17.4533 mrad", output: "1°" },
+      { input: "1570.8 mrad", output: "90°" },
+      { input: "3141.6 mrad", output: "180°" }
+    ],
+    educationalText: "Converting milliradians to degrees is essential in precision shooting and artillery applications. Military personnel often work with milliradians for range finding and target acquisition due to their practical measurement properties."
+  },
+  "sq-ft-to-sq-m": {
+    title: "Square Feet to Square Meters",
+    fromUnit: "sq ft",
+    toUnit: "sq m",
+    formula: "sq m = sq ft × 0.092903",
+    factor: 0.092903,
+    description: "Convert area measurements from square feet to square meters.",
+    howToConvert: "To convert square feet to square meters, multiply the square feet value by 0.092903.",
+    examples: [
+      { input: "100 sq ft", output: "9.29 sq m" },
+      { input: "1000 sq ft", output: "92.9 sq m" },
+      { input: "2500 sq ft", output: "232.26 sq m" }
+    ],
+    educationalText: "Square meters are the standard unit of area measurement in the metric system and real estate worldwide. This conversion is essential for international property transactions, architectural plans, and construction projects involving both imperial and metric specifications."
+  },
+  "sq-m-to-sq-ft": {
+    title: "Square Meters to Square Feet",
+    fromUnit: "sq m",
+    toUnit: "sq ft",
+    formula: "sq ft = sq m × 10.7639",
+    factor: 10.7639,
+    description: "Convert area measurements from square meters to square feet.",
+    howToConvert: "To convert square meters to square feet, multiply the square meters value by 10.7639.",
+    examples: [
+      { input: "10 sq m", output: "107.64 sq ft" },
+      { input: "100 sq m", output: "1076.39 sq ft" },
+      { input: "200 sq m", output: "2152.78 sq ft" }
+    ],
+    educationalText: "Square feet remain the primary area measurement in US real estate and construction. Understanding this conversion helps in comparing property sizes internationally and working with building materials sized in different measurement systems."
+  },
+  "g-to-ml": {
+    title: "Grams to Milliliters",
+    fromUnit: "grams",
+    toUnit: "milliliters",
+    formula: "mL = g ÷ density (for water: mL = g ÷ 1)",
+    factor: 1, // For water density = 1 g/mL
+    description: "Convert mass to volume for water and water-based solutions.",
+    howToConvert: "For water, 1 gram equals 1 milliliter. For other substances, divide grams by the substance's density in g/mL.",
+    examples: [
+      { input: "250 g (water)", output: "250 mL" },
+      { input: "500 g (water)", output: "500 mL" },
+      { input: "1000 g (water)", output: "1000 mL" }
+    ],
+    educationalText: "This conversion assumes water density (1 g/mL at standard conditions). For other liquids, density varies: honey ≈1.4 g/mL, olive oil ≈0.92 g/mL, alcohol ≈0.79 g/mL. Always consider the specific substance when converting between mass and volume."
+  },
+  "ml-to-g": {
+    title: "Milliliters to Grams",
+    fromUnit: "milliliters",
+    toUnit: "grams",
+    formula: "g = mL × density (for water: g = mL × 1)",
+    factor: 1, // For water density = 1 g/mL
+    description: "Convert volume to mass for water and water-based solutions.",
+    howToConvert: "For water, 1 milliliter equals 1 gram. For other substances, multiply milliliters by the substance's density in g/mL.",
+    examples: [
+      { input: "250 mL (water)", output: "250 g" },
+      { input: "500 mL (water)", output: "500 g" },
+      { input: "1000 mL (water)", output: "1000 g" }
+    ],
+    educationalText: "This conversion is fundamental in cooking and chemistry. Water's unique property of having a density of 1 g/mL makes it the reference standard. Other common cooking ingredients have different densities: flour ≈0.6 g/mL, sugar ≈0.8 g/mL, butter ≈0.9 g/mL."
+  },
+  "ko-to-o": {
+    title: "Kiloohms to Ohms",
+    fromUnit: "kΩ",
+    toUnit: "Ω",
+    formula: "Ω = kΩ × 1000",
+    factor: 1000,
+    description: "Convert electrical resistance from kiloohms to ohms.",
+    howToConvert: "To convert kiloohms to ohms, multiply the kiloohm value by 1000.",
+    examples: [
+      { input: "1 kΩ", output: "1000 Ω" },
+      { input: "4.7 kΩ", output: "4700 Ω" },
+      { input: "10 kΩ", output: "10000 Ω" }
+    ],
+    educationalText: "Kiloohms are commonly used in electronics for resistor values in circuits. Standard resistor values like 1kΩ, 4.7kΩ, and 10kΩ are frequently found in electronic circuits for current limiting, voltage division, and signal conditioning applications."
   }
 };
 
