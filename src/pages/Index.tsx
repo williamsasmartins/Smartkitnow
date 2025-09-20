@@ -159,59 +159,68 @@ const Index = () => {
             {calculatorCategories.map((category, index) => {
               const IconComponent = category.icon;
               const isAutomotive = category.name === "Automotive Calculators";
+              const isExpanded = selectedCategory === 'automotive' && isAutomotive;
               
               return (
                 <Card 
                   key={index} 
-                  className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer"
+                  className={`group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer ${
+                    isExpanded ? 'col-span-full' : ''
+                  }`}
                   onClick={() => isAutomotive ? setSelectedCategory(selectedCategory === 'automotive' ? null : 'automotive') : null}
                 >
-                  <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
-                    <div className="p-3 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors">
-                      <IconComponent className={`h-6 w-6 ${category.color} group-hover:text-primary transition-colors`} />
+                  {isExpanded ? (
+                    // Expanded Automotive Card Content
+                    <div className="p-6">
+                      <div className="flex items-center space-x-3 mb-6">
+                        <div className="p-3 rounded-lg bg-primary/10">
+                          <IconComponent className={`h-8 w-8 text-primary`} />
+                        </div>
+                        <div>
+                          <h3 className="text-2xl font-bold text-foreground">{category.name}</h3>
+                          <p className="text-muted-foreground mt-2">{categories.automotivo.description}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {categories.automotivo.subCategories.map((subCategory, subIndex) => (
+                          <Card key={subIndex} className="bg-muted/30 border-border/30">
+                            <CardHeader>
+                              <div className="flex items-center space-x-3">
+                                <div className="p-2 rounded-lg bg-primary/10">
+                                  <i className={`${subCategory.icon} text-primary text-lg`}></i>
+                                </div>
+                                <CardTitle className="text-lg">{subCategory.title}</CardTitle>
+                              </div>
+                            </CardHeader>
+                            <CardContent>
+                              <div className="space-y-2">
+                                {subCategory.calculators.map((calc, calcIndex) => (
+                                  <div key={calcIndex} className="p-2 bg-background/50 rounded hover:bg-primary/5 cursor-pointer transition-colors">
+                                    <p className="text-sm text-foreground hover:text-primary">{calc.name}</p>
+                                  </div>
+                                ))}
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
                     </div>
-                    <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                      {category.name}
-                    </h3>
-                  </CardContent>
+                  ) : (
+                    // Normal Card Content
+                    <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
+                      <div className="p-3 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors">
+                        <IconComponent className={`h-6 w-6 ${category.color} group-hover:text-primary transition-colors`} />
+                      </div>
+                      <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                        {category.name}
+                      </h3>
+                    </CardContent>
+                  )}
                 </Card>
               );
             })}
           </div>
-
-          {/* Automotive Subcategories - Show when automotive is selected */}
-          {selectedCategory === 'automotive' && (
-            <div className="mb-8 p-6 bg-card rounded-lg border border-border/50">
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold text-foreground mb-3">Automotive Calculators</h3>
-                <p className="text-muted-foreground">{categories.automotivo.description}</p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categories.automotivo.subCategories.map((subCategory, subIndex) => (
-                  <Card key={subIndex} className="bg-muted/30 border-border/30">
-                    <CardHeader>
-                      <div className="flex items-center space-x-3">
-                        <div className="p-2 rounded-lg bg-primary/10">
-                          <i className={`${subCategory.icon} text-primary text-lg`}></i>
-                        </div>
-                        <CardTitle className="text-lg">{subCategory.title}</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-2">
-                        {subCategory.calculators.map((calc, calcIndex) => (
-                          <div key={calcIndex} className="p-2 bg-background/50 rounded hover:bg-primary/5 cursor-pointer transition-colors">
-                            <p className="text-sm text-foreground hover:text-primary">{calc.name}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Discover More Button */}
           <div className="text-center">
