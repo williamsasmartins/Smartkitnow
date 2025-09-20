@@ -18,15 +18,18 @@ const CalculatorPage = () => {
   }
 
   const handleGoBack = () => {
-    const subCategorySlug = subCategory?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    navigate(`/automotive/${subCategorySlug}`, { 
-      state: { 
-        subCategory: { 
-          title: subCategory, 
-          calculators: [] // Will be handled by the actual page
+    // If we have subCategory data, navigate to the subcategory page
+    if (subCategory && typeof subCategory === 'object' && subCategory.title) {
+      const subCategorySlug = subCategory.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      navigate(`/automotive/${subCategorySlug}`, { 
+        state: { 
+          subCategory: subCategory
         } 
-      } 
-    });
+      });
+    } else {
+      // Fallback: go back to automotive main page
+      navigate('/automotive');
+    }
   };
 
   return (
