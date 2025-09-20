@@ -589,15 +589,12 @@ const Index = () => {
     }
   };
 
-  // Calculator Categories Data (preserving other categories)
+  // Calculator Categories Data (ordered by popularity - most popular first)
   const calculatorCategories = [
-    categories.automotivo,
-    categories.construction,
-    categories.conversion,
-    categories.cooking,
-    categories.electrical,
     categories.financial,
     categories.health,
+    categories.cooking,
+    categories.conversion,
     {
       name: "Math & Algebra Calculators",
       icon: Calculator,
