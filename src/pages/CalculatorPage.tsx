@@ -60,7 +60,7 @@ const CalculatorPage = () => {
                   {calculator.name}
                 </h1>
                 <p className="text-muted-foreground mt-2 text-lg">
-                  Category: {subCategory}
+                  Category: {subCategory?.title || calculator.category}
                 </p>
               </div>
             </div>
