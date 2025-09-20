@@ -272,6 +272,72 @@ const Index = () => {
           ]
         }
       ]
+    },
+    conversion: {
+      name: "Conversion Calculators",
+      icon: RotateCcw,
+      color: "text-green-600",
+      description: "Unit conversion is the process of converting a measurement from one unit to another, for instance, converting your height from inches to centimeters. Convert nearly any measurement using one of the conversion calculators below.",
+      subCategories: [
+        {
+          title: "Commonly Used Converters",
+          icon: "fa-solid fa-arrows-rotate",
+          calculators: [
+            { key: "conversion-calculator", name: "Conversion Calculator" },
+            { key: "angle-conversion", name: "Angle Conversion" },
+            { key: "area-conversion", name: "Area Conversion" },
+            { key: "length-conversion", name: "Length Conversion" },
+            { key: "pressure-conversion", name: "Pressure Conversion" },
+            { key: "speed-conversion", name: "Speed Conversion" },
+            { key: "temperature-conversion", name: "Temperature Conversion" },
+            { key: "time-conversion", name: "Time Conversion" },
+            { key: "volume-conversion", name: "Volume Conversion" },
+            { key: "weight-conversion", name: "Weight Conversion" }
+          ]
+        },
+        {
+          title: "Cooking & Baking Converters",
+          icon: "fa-solid fa-utensils",
+          calculators: [
+            { key: "cooking-ingredient-conversion", name: "Cooking Ingredient Conversion" },
+            { key: "beer-conversion", name: "Beer Conversion" },
+            { key: "butter-conversion", name: "Butter Conversion" },
+            { key: "flour-conversion", name: "Flour Conversion" },
+            { key: "salt-conversion", name: "Salt Conversion" },
+            { key: "sugar-conversion", name: "Sugar Conversion" }
+          ]
+        },
+        {
+          title: "Electrical Converters",
+          icon: "fa-solid fa-bolt",
+          calculators: [
+            { key: "capacitance-conversion", name: "Capacitance Conversion" },
+            { key: "electric-charge-conversion", name: "Electric Charge Conversion" },
+            { key: "electric-current-conversion", name: "Electric Current Conversion" },
+            { key: "electrical-conductance-conversion", name: "Electrical Conductance Conversion" },
+            { key: "electrical-inductance-conversion", name: "Electrical Inductance Conversion" },
+            { key: "electrical-resistance-conversion", name: "Electrical Resistance Conversion" },
+            { key: "energy-conversion", name: "Energy Conversion" },
+            { key: "mixed-electrical-unit-conversion", name: "Mixed Electrical Unit Conversion" },
+            { key: "power-conversion", name: "Power Conversion" },
+            { key: "voltage-conversion", name: "Voltage Conversion" }
+          ]
+        },
+        {
+          title: "More Converters",
+          icon: "fa-solid fa-plus",
+          calculators: [
+            { key: "data-storage-conversion", name: "Data Storage Conversion" },
+            { key: "data-transfer-conversion", name: "Data Transfer Conversion" },
+            { key: "electric-car-efficiency-conversion", name: "Electric Car Efficiency Conversion" },
+            { key: "force-conversion", name: "Force Conversion" },
+            { key: "frequency-conversion", name: "Frequency Conversion" },
+            { key: "fuel-economy-conversion", name: "Fuel Economy Conversion" },
+            { key: "number-system-conversion", name: "Number System Conversion" },
+            { key: "torque-conversion", name: "Torque Conversion" }
+          ]
+        }
+      ]
     }
   };
 
@@ -279,7 +345,8 @@ const Index = () => {
   const calculatorCategories = [
     categories.automotivo,
     categories.construction,
-    { name: "Conversion Calculators", icon: RotateCcw, color: "text-green-600" },
+    categories.conversion,
+    
     { name: "Cooking Calculators", icon: ChefHat, color: "text-red-600" },
     { name: "Electrical Calculators", icon: Zap, color: "text-yellow-600" },
     { name: "Financial Calculators", icon: DollarSign, color: "text-emerald-600" },
@@ -332,10 +399,12 @@ const Index = () => {
               const IconComponent = category.icon;
               const isAutomotive = category.name === "Automotive Calculators";
               const isConstruction = category.name === "Construction Calculators";
+              const isConversion = category.name === "Conversion Calculators";
               
               const handleClick = () => {
                 if (isAutomotive) navigate('/automotive');
                 if (isConstruction) navigate('/construction');
+                if (isConversion) navigate('/conversion');
               };
               
               return (

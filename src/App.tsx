@@ -17,6 +17,8 @@ import AutomotiveSubCategory from "./pages/AutomotiveSubCategory";
 import CalculatorPage from "./pages/CalculatorPage";
 import ConstructionCalculators from "./pages/ConstructionCalculators";
 import ConstructionSubCategory from "./pages/ConstructionSubCategory";
+import ConversionCalculators from "./pages/ConversionCalculators";
+import ConversionSubCategory from "./pages/ConversionSubCategory";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +48,9 @@ const App = () => (
             <Route path="/construction" element={<ConstructionCalculators />} />
             <Route path="/construction/:subcategory" element={<ConstructionSubCategory />} />
             <Route path="/construction/:subcategory/:calculator" element={<CalculatorPage />} />
+            <Route path="/conversion" element={<ConversionCalculators />} />
+            <Route path="/conversion/:subcategory" element={<ConversionSubCategory />} />
+            <Route path="/conversion/:subcategory/:calculator" element={<CalculatorPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
