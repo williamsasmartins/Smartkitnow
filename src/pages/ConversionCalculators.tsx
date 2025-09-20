@@ -9,6 +9,72 @@ const ConversionCalculators = () => {
 
   const subCategories = [
     {
+      title: "Popular Converters",
+      icon: "fa-solid fa-star",
+      calculators: [
+        // Angle
+        { key: "deg-to-rad", name: "deg to rad" },
+        { key: "rad-to-deg", name: "rad to deg" },
+        { key: "deg-to-mrad", name: "deg to mrad" },
+        { key: "mrad-to-deg", name: "mrad to deg" },
+        // Area
+        { key: "sq-ft-to-sq-m", name: "sq ft to sq m" },
+        { key: "sq-m-to-sq-ft", name: "sq m to sq ft" },
+        { key: "sq-mi-to-sq-km", name: "sq mi to sq km" },
+        { key: "sq-km-to-sq-mi", name: "sq km to sq mi" },
+        // Cooking
+        { key: "g-to-ml", name: "g to mL" },
+        { key: "ml-to-g", name: "mL to g" },
+        { key: "mg-to-ml", name: "mg to mL" },
+        { key: "ml-to-mg", name: "mL to mg" },
+        // Electrical
+        { key: "kohm-to-ohm", name: "kΩ to Ω" },
+        { key: "mohm-to-ohm", name: "MΩ to Ω" },
+        { key: "ohm-to-kohm", name: "Ω to kΩ" },
+        { key: "mohm-to-ohm-small", name: "mΩ to Ω" },
+        // Energy
+        { key: "kcal-to-cal", name: "kcal to cal" },
+        { key: "mj-to-kwh", name: "MJ to kWh" },
+        { key: "mwh-to-kwh", name: "MWh to kWh" },
+        { key: "mmbtu-to-mwh", name: "MMBTU to MWh" },
+        // Fuel Economy
+        { key: "mpg-to-km-l", name: "mpg to km/L" },
+        { key: "km-l-to-mpg", name: "km/L to mpg" },
+        { key: "mpg-to-l-100km", name: "mpg to L/100km" },
+        { key: "l-100km-to-mpg", name: "L/100km to mpg" },
+        // Length
+        { key: "in-to-cm", name: "in to cm" },
+        { key: "cm-to-in", name: "cm to in" },
+        { key: "ft-to-m", name: "ft to m" },
+        { key: "m-to-ft", name: "m to ft" },
+        // Speed
+        { key: "mph-to-km-h", name: "mph to km/h" },
+        { key: "km-h-to-mph", name: "km/h to mph" },
+        { key: "ft-s-to-mph", name: "ft/s to mph" },
+        { key: "mph-to-m-s", name: "mph to m/s" },
+        // Temperature
+        { key: "f-to-c", name: "°F to °C" },
+        { key: "c-to-f", name: "°C to °F" },
+        { key: "f-to-k", name: "°F to K" },
+        { key: "c-to-k", name: "°C to K" },
+        // Time
+        { key: "sec-to-min", name: "sec to min" },
+        { key: "min-to-sec", name: "min to sec" },
+        { key: "sec-to-hr", name: "sec to hr" },
+        { key: "hr-to-sec", name: "hr to sec" },
+        // Volume
+        { key: "tbsp-to-cups", name: "tbsp to cups" },
+        { key: "cm3-to-m3", name: "cm³ to m³" },
+        { key: "gal-to-l", name: "gal to L" },
+        { key: "tsp-to-ml", name: "tsp to mL" },
+        // Weight
+        { key: "lbs-to-kg", name: "lbs to kg" },
+        { key: "kg-to-lbs", name: "kg to lbs" },
+        { key: "oz-to-g", name: "oz to g" },
+        { key: "g-to-oz", name: "g to oz" }
+      ]
+    },
+    {
       title: "Commonly Used Converters",
       icon: "fa-solid fa-arrows-rotate",
       calculators: [
