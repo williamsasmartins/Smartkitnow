@@ -11,27 +11,29 @@ const FinancialCalculators = () => {
 
   const subCategories = [
     {
-      title: "Business Finance Calculators",
-      icon: "fa-solid fa-briefcase",
+      title: "Personal Finance Calculators",
+      icon: "fa-solid fa-wallet",
       calculators: [
-        { key: "appreciation", name: "Appreciation Calculator" },
-        { key: "cagr", name: "CAGR Calculator" },
-        { key: "commission", name: "Commission Calculator" },
-        { key: "cross-price-elasticity", name: "Cross-Price Elasticity Calculator" },
-        { key: "debt-to-equity-ratio", name: "Debt-to-Equity Ratio Calculator" },
-        { key: "depreciation", name: "Depreciation Calculator" },
-        { key: "discounted-cash-flow", name: "Discounted Cash Flow Calculator" },
-        { key: "irr", name: "IRR Calculator" },
-        { key: "margin", name: "Margin Calculator" },
-        { key: "markup", name: "Markup Calculator" },
-        { key: "net-present-value", name: "Net Present Value Calculator" },
-        { key: "payback-period", name: "Payback Period Calculator" },
-        { key: "price-elasticity-demand", name: "Price Elasticity of Demand Calculator" },
-        { key: "price-elasticity-supply", name: "Price Elasticity of Supply Calculator" },
-        { key: "rate-of-return", name: "Rate of Return Calculator" },
-        { key: "return-on-equity", name: "Return on Equity Calculator" },
-        { key: "roi", name: "ROI Calculator" },
-        { key: "wacc", name: "WACC Calculator" }
+        { key: "adjusted-gross-income", name: "Adjusted Gross Income Calculator" },
+        { key: "annual-income", name: "Annual Income Calculator" },
+        { key: "biweekly-pay", name: "Biweekly Pay Calculator" },
+        { key: "debt-to-income", name: "Debt-to-Income Ratio Calculator" },
+        { key: "discount", name: "Discount Calculator" },
+        { key: "hourly-to-salary", name: "Hourly to Salary Calculator" },
+        { key: "modified-adjusted-gross-income", name: "Modified Adjusted Gross Income Calculator" },
+        { key: "money-weight", name: "Money Weight Calculator" },
+        { key: "monthly-income", name: "Monthly Income Calculator" },
+        { key: "net-worth", name: "Net Worth Calculator" },
+        { key: "overtime", name: "Overtime Calculator" },
+        { key: "pay-raise", name: "Pay Raise Calculator" },
+        { key: "paypal-fee", name: "PayPal Fee Calculator" },
+        { key: "pennies-to-dollars", name: "Pennies to Dollars Calculator" },
+        { key: "percent-off", name: "Percent Off Calculator" },
+        { key: "pto", name: "PTO Calculator" },
+        { key: "salary-to-hourly", name: "Salary to Hourly Calculator" },
+        { key: "time-and-half", name: "Time and a Half Calculator" },
+        { key: "tip", name: "Tip Calculator" },
+        { key: "unit-price", name: "Unit Price Calculator" }
       ]
     },
     {
@@ -64,49 +66,6 @@ const FinancialCalculators = () => {
       ]
     },
     {
-      title: "Investment and Annuity Calculators",
-      icon: "fa-solid fa-chart-line",
-      calculators: [
-        { key: "annuity", name: "Annuity Calculator" },
-        { key: "annuity-payout", name: "Annuity Payout Calculator" },
-        { key: "basis-point", name: "Basis Point Calculator" },
-        { key: "bond-price", name: "Bond Price Calculator" },
-        { key: "bond-yield", name: "Bond Yield Calculator" },
-        { key: "future-value-annuity", name: "Future Value of an Annuity Calculator" },
-        { key: "present-value-annuity", name: "Present Value of an Annuity Calculator" },
-        { key: "pvifa", name: "PVIFA Calculator" },
-        { key: "stock-average", name: "Stock Average Calculator" },
-        { key: "stock-profit", name: "Stock Profit Calculator" },
-        { key: "yield-to-maturity", name: "Yield to Maturity Calculator" }
-      ]
-    },
-    {
-      title: "Personal Finance Calculators",
-      icon: "fa-solid fa-wallet",
-      calculators: [
-        { key: "adjusted-gross-income", name: "Adjusted Gross Income Calculator" },
-        { key: "annual-income", name: "Annual Income Calculator" },
-        { key: "biweekly-pay", name: "Biweekly Pay Calculator" },
-        { key: "debt-to-income", name: "Debt-to-Income Ratio Calculator" },
-        { key: "discount", name: "Discount Calculator" },
-        { key: "hourly-to-salary", name: "Hourly to Salary Calculator" },
-        { key: "modified-adjusted-gross-income", name: "Modified Adjusted Gross Income Calculator" },
-        { key: "money-weight", name: "Money Weight Calculator" },
-        { key: "monthly-income", name: "Monthly Income Calculator" },
-        { key: "net-worth", name: "Net Worth Calculator" },
-        { key: "overtime", name: "Overtime Calculator" },
-        { key: "pay-raise", name: "Pay Raise Calculator" },
-        { key: "paypal-fee", name: "PayPal Fee Calculator" },
-        { key: "pennies-to-dollars", name: "Pennies to Dollars Calculator" },
-        { key: "percent-off", name: "Percent Off Calculator" },
-        { key: "pto", name: "PTO Calculator" },
-        { key: "salary-to-hourly", name: "Salary to Hourly Calculator" },
-        { key: "time-and-half", name: "Time and a Half Calculator" },
-        { key: "tip", name: "Tip Calculator" },
-        { key: "unit-price", name: "Unit Price Calculator" }
-      ]
-    },
-    {
       title: "Property and Real Estate Calculators",
       icon: "fa-solid fa-house",
       calculators: [
@@ -127,6 +86,23 @@ const FinancialCalculators = () => {
       ]
     },
     {
+      title: "Investment and Annuity Calculators",
+      icon: "fa-solid fa-chart-line",
+      calculators: [
+        { key: "annuity", name: "Annuity Calculator" },
+        { key: "annuity-payout", name: "Annuity Payout Calculator" },
+        { key: "basis-point", name: "Basis Point Calculator" },
+        { key: "bond-price", name: "Bond Price Calculator" },
+        { key: "bond-yield", name: "Bond Yield Calculator" },
+        { key: "future-value-annuity", name: "Future Value of an Annuity Calculator" },
+        { key: "present-value-annuity", name: "Present Value of an Annuity Calculator" },
+        { key: "pvifa", name: "PVIFA Calculator" },
+        { key: "stock-average", name: "Stock Average Calculator" },
+        { key: "stock-profit", name: "Stock Profit Calculator" },
+        { key: "yield-to-maturity", name: "Yield to Maturity Calculator" }
+      ]
+    },
+    {
       title: "Vehicle Loan Calculators",
       icon: "fa-solid fa-car",
       calculators: [
@@ -137,6 +113,30 @@ const FinancialCalculators = () => {
         { key: "lease-vs-buy", name: "Lease vs. Buy Car Calculator" },
         { key: "motorcycle-loan", name: "Motorcycle Loan Calculator" },
         { key: "rv-loan", name: "RV Loan Calculator" }
+      ]
+    },
+    {
+      title: "Business Finance Calculators",
+      icon: "fa-solid fa-briefcase",
+      calculators: [
+        { key: "appreciation", name: "Appreciation Calculator" },
+        { key: "cagr", name: "CAGR Calculator" },
+        { key: "commission", name: "Commission Calculator" },
+        { key: "cross-price-elasticity", name: "Cross-Price Elasticity Calculator" },
+        { key: "debt-to-equity-ratio", name: "Debt-to-Equity Ratio Calculator" },
+        { key: "depreciation", name: "Depreciation Calculator" },
+        { key: "discounted-cash-flow", name: "Discounted Cash Flow Calculator" },
+        { key: "irr", name: "IRR Calculator" },
+        { key: "margin", name: "Margin Calculator" },
+        { key: "markup", name: "Markup Calculator" },
+        { key: "net-present-value", name: "Net Present Value Calculator" },
+        { key: "payback-period", name: "Payback Period Calculator" },
+        { key: "price-elasticity-demand", name: "Price Elasticity of Demand Calculator" },
+        { key: "price-elasticity-supply", name: "Price Elasticity of Supply Calculator" },
+        { key: "rate-of-return", name: "Rate of Return Calculator" },
+        { key: "return-on-equity", name: "Return on Equity Calculator" },
+        { key: "roi", name: "ROI Calculator" },
+        { key: "wacc", name: "WACC Calculator" }
       ]
     }
   ];
