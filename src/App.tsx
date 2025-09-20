@@ -15,6 +15,8 @@ import NotFound from "./pages/NotFound";
 import AutomotiveCalculators from "./pages/AutomotiveCalculators";
 import AutomotiveSubCategory from "./pages/AutomotiveSubCategory";
 import CalculatorPage from "./pages/CalculatorPage";
+import ConstructionCalculators from "./pages/ConstructionCalculators";
+import ConstructionSubCategory from "./pages/ConstructionSubCategory";
 
 const queryClient = new QueryClient();
 
@@ -40,7 +42,10 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/automotive" element={<AutomotiveCalculators />} />
             <Route path="/automotive/:subcategory" element={<AutomotiveSubCategory />} />
-            <Route path="/automotive/calculator/:calculator" element={<CalculatorPage />} />
+            <Route path="/automotive/:subcategory/:calculator" element={<CalculatorPage />} />
+            <Route path="/construction" element={<ConstructionCalculators />} />
+            <Route path="/construction/:subcategory" element={<ConstructionSubCategory />} />
+            <Route path="/construction/:subcategory/:calculator" element={<CalculatorPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

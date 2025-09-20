@@ -21,14 +21,16 @@ const CalculatorPage = () => {
     // If we have subCategory data, navigate to the subcategory page
     if (subCategory && typeof subCategory === 'object' && subCategory.title) {
       const subCategorySlug = subCategory.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-      navigate(`/automotive/${subCategorySlug}`, { 
+      const category = calculator?.category?.toLowerCase() || 'automotive';
+      navigate(`/${category}/${subCategorySlug}`, { 
         state: { 
           subCategory: subCategory
         } 
       });
     } else {
-      // Fallback: go back to automotive main page
-      navigate('/automotive');
+      // Fallback: go back to category main page
+      const category = calculator?.category?.toLowerCase() || 'automotive';
+      navigate(`/${category}`);
     }
   };
 

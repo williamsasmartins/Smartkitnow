@@ -30,7 +30,7 @@ import {
 const Index = () => {
   const navigate = useNavigate();
   
-  // Categories with detailed automotive structure
+  // Categories with detailed automotive and construction structures
   const categories = {
     automotivo: {
       name: "Automotive Calculators",
@@ -102,13 +102,183 @@ const Index = () => {
           ]
         }
       ]
+    },
+    construction: {
+      name: "Construction Calculators",
+      icon: HardHat,
+      color: "text-orange-600",
+      description: "Comprehensive construction calculators for building materials, measurements, costs, and project planning. From concrete and lumber to roofing and flooring calculations.",
+      subCategories: [
+        {
+          title: "Carpentry & Trim Calculators",
+          icon: "fa-solid fa-hammer",
+          calculators: [
+            { key: "board-batten-layout", name: "Board and Batten Layout Calculator" },
+            { key: "board-foot", name: "Board Foot Calculator" },
+            { key: "framing", name: "Framing Calculator" },
+            { key: "lumber-hardwood-weight", name: "Lumber and Hardwood Weight Calculator" },
+            { key: "plywood", name: "Plywood Calculator" },
+            { key: "rafter-length", name: "Rafter Length Calculator" },
+            { key: "raised-panel-cabinet", name: "Raised Panel Cabinet Door Calculator" },
+            { key: "trim-molding", name: "Trim and Molding Calculator" },
+            { key: "wainscoting-layout", name: "Wainscoting Layout Calculator" }
+          ]
+        },
+        {
+          title: "Concrete & Masonry Calculators",
+          icon: "fa-solid fa-cubes",
+          calculators: [
+            { key: "block-mortar", name: "Block Mortar Calculator" },
+            { key: "concrete-block", name: "Concrete Block Calculator" },
+            { key: "concrete-block-fill", name: "Concrete Block Fill Calculator" },
+            { key: "concrete", name: "Concrete Calculator" },
+            { key: "concrete-footing", name: "Concrete Footing Calculator" },
+            { key: "concrete-mix", name: "Concrete Mix Calculator" },
+            { key: "concrete-reinforcing-mesh", name: "Concrete Reinforcing Mesh Calculator" },
+            { key: "concrete-steps", name: "Concrete Steps Calculator" },
+            { key: "concrete-weight", name: "Concrete Weight Calculator" },
+            { key: "rebar-material", name: "Rebar Material Calculator" },
+            { key: "rebar-weight-size", name: "Rebar Weight and Size Calculator" }
+          ]
+        },
+        {
+          title: "Deck & Patio Calculators",
+          icon: "fa-solid fa-square",
+          calculators: [
+            { key: "baluster", name: "Baluster Calculator" },
+            { key: "deck-board-material", name: "Deck Board Material Calculator" },
+            { key: "deck-stain", name: "Deck Stain Calculator" },
+            { key: "paver-base", name: "Paver Base Calculator" },
+            { key: "paver", name: "Paver Calculator and Price Estimator" },
+            { key: "polymeric-sand", name: "Polymeric Sand Calculator" }
+          ]
+        },
+        {
+          title: "Driveway Calculators",
+          icon: "fa-solid fa-road",
+          calculators: [
+            { key: "asphalt", name: "Asphalt Calculator" },
+            { key: "asphalt-sealer", name: "Asphalt Sealer Calculator" },
+            { key: "concrete-driveway", name: "Concrete Driveway Calculator" },
+            { key: "gravel-driveway", name: "Gravel Driveway Calculator" }
+          ]
+        },
+        {
+          title: "Fence Calculators",
+          icon: "fa-solid fa-fence",
+          calculators: [
+            { key: "fence", name: "Fence Calculator" },
+            { key: "fence-stain", name: "Fence Stain Calculator" },
+            { key: "post-hole-concrete", name: "Post Hole Concrete Calculator" },
+            { key: "vinyl-fence", name: "Vinyl Fence Calculator" }
+          ]
+        },
+        {
+          title: "Flooring Calculators",
+          icon: "fa-solid fa-layer-group",
+          calculators: [
+            { key: "carpet", name: "Carpet Calculator and Price Estimator" },
+            { key: "flooring", name: "Flooring Calculator" },
+            { key: "linear-feet-square-feet", name: "Linear Feet to Square Feet Calculator" },
+            { key: "tile", name: "Tile Calculator and Cost Estimator" }
+          ]
+        },
+        {
+          title: "Lawn & Landscaping Calculators",
+          icon: "fa-solid fa-seedling",
+          calculators: [
+            { key: "acreage", name: "Acreage Calculator" },
+            { key: "elevation-grade", name: "Elevation Grade Calculator" },
+            { key: "grass-seed", name: "Grass Seed Calculator" },
+            { key: "gravel", name: "Gravel Calculator" },
+            { key: "lawn-mowing", name: "Lawn Mowing Calculator" },
+            { key: "mulch", name: "Mulch Calculator" },
+            { key: "plant-flower", name: "Plant and Flower Calculator" },
+            { key: "pool-volume", name: "Pool Volume Calculator" },
+            { key: "retaining-wall", name: "Retaining Wall Calculator" },
+            { key: "sand", name: "Sand Calculator" },
+            { key: "sod", name: "Sod Calculator" },
+            { key: "sod-weight", name: "Sod Weight Calculator" },
+            { key: "soil", name: "Soil Calculator" },
+            { key: "stone", name: "Stone Calculator" }
+          ]
+        },
+        {
+          title: "Measurement Calculators",
+          icon: "fa-solid fa-ruler",
+          calculators: [
+            { key: "cubic-feet", name: "Cubic Feet Calculator" },
+            { key: "cubic-inches", name: "Cubic Inches Calculator" },
+            { key: "cubic-meters", name: "Cubic Meters Calculator" },
+            { key: "cubic-yards", name: "Cubic Yards Calculator" },
+            { key: "cylinder-cubic-footage", name: "Cylinder Cubic Footage Calculator" },
+            { key: "cylinder-cubic-yardage", name: "Cylinder Cubic Yardage Calculator" },
+            { key: "feet-inches-length", name: "Feet and Inches Length Calculator" },
+            { key: "inch-fraction", name: "Inch Fraction Calculator" },
+            { key: "scale-conversion", name: "Scale Conversion Calculator" },
+            { key: "square-feet-cubic-feet", name: "Square Feet to Cubic Feet Calculator" },
+            { key: "square-feet-cubic-yards", name: "Square Feet to Cubic Yards Calculator" },
+            { key: "square-footage", name: "Square Footage Calculator" },
+            { key: "square-inches", name: "Square Inches Calculator" },
+            { key: "square-meters", name: "Square Meters Calculator" },
+            { key: "square-yards", name: "Square Yards Calculator" },
+            { key: "tank-volume", name: "Tank Volume Calculator" },
+            { key: "inch-unit", name: "Inch – Unit of Measurement Definition" }
+          ]
+        },
+        {
+          title: "Plumbing & HVAC Calculators",
+          icon: "fa-solid fa-wrench",
+          calculators: [
+            { key: "cfm", name: "CFM Calculator" },
+            { key: "flow-rate", name: "Flow Rate Calculator" },
+            { key: "furnace-btu", name: "Furnace BTU Calculator" },
+            { key: "pipe-volume", name: "Pipe Volume Calculator" },
+            { key: "refrigerant-line-charge", name: "Refrigerant Line Charge Calculator" },
+            { key: "water-velocity", name: "Water Velocity Calculator" },
+            { key: "window-ac-size", name: "Window Air Conditioner Size Calculator" }
+          ]
+        },
+        {
+          title: "Roofing Calculators",
+          icon: "fa-solid fa-roof",
+          calculators: [
+            { key: "ice-water-shield", name: "Ice & Water Shield Calculator" },
+            { key: "metal-roofing", name: "Metal Roofing Calculator" },
+            { key: "plywood-sheathing", name: "Plywood Sheathing Calculator" },
+            { key: "roof-pitch", name: "Roof Pitch Calculator" },
+            { key: "roof-snow-load", name: "Roof Snow Load Calculator" },
+            { key: "roofing-material", name: "Roofing Material Calculator" }
+          ]
+        },
+        {
+          title: "Siding Calculators",
+          icon: "fa-solid fa-building",
+          calculators: [
+            { key: "board-batten-siding", name: "Board and Batten Siding Calculator" },
+            { key: "brick", name: "Brick Calculator" },
+            { key: "clapboard-lap-board", name: "Clapboard and Lap Board Siding Calculator" },
+            { key: "siding-material", name: "Siding Material Calculator" },
+            { key: "vinyl-siding", name: "Vinyl Siding Calculator" }
+          ]
+        },
+        {
+          title: "Wall & Ceiling Calculators",
+          icon: "fa-solid fa-paint-roller",
+          calculators: [
+            { key: "drywall", name: "Drywall Calculator" },
+            { key: "paint", name: "Paint Calculator" },
+            { key: "wallpaper", name: "Wallpaper Calculator" }
+          ]
+        }
+      ]
     }
   };
 
   // Calculator Categories Data (preserving other categories)
   const calculatorCategories = [
     categories.automotivo,
-    { name: "Construction Calculators", icon: HardHat, color: "text-orange-600" },
+    categories.construction,
     { name: "Conversion Calculators", icon: RotateCcw, color: "text-green-600" },
     { name: "Cooking Calculators", icon: ChefHat, color: "text-red-600" },
     { name: "Electrical Calculators", icon: Zap, color: "text-yellow-600" },
@@ -161,12 +331,18 @@ const Index = () => {
             {calculatorCategories.map((category, index) => {
               const IconComponent = category.icon;
               const isAutomotive = category.name === "Automotive Calculators";
+              const isConstruction = category.name === "Construction Calculators";
+              
+              const handleClick = () => {
+                if (isAutomotive) navigate('/automotive');
+                if (isConstruction) navigate('/construction');
+              };
               
               return (
                 <Card 
                   key={index} 
                   className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer"
-                  onClick={() => isAutomotive ? navigate('/automotive') : null}
+                  onClick={handleClick}
                 >
                   <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
                     <div className="p-3 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors">
