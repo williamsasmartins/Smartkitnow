@@ -54,7 +54,17 @@ export function Header() {
     { key: "mortgage-payoff", name: "Mortgage Calculator", category: "financial" },
     { key: "simple-interest", name: "Simple Interest Calculator", category: "financial" },
     { key: "discount", name: "Discount Calculator", category: "financial" },
-    { key: "auto-loan", name: "Auto Loan Calculator", category: "financial" }
+    { key: "auto-loan", name: "Auto Loan Calculator", category: "financial" },
+    
+    // Health calculators
+    { key: "bmi", name: "BMI Calculator", category: "health" },
+    { key: "bmr", name: "BMR Calculator", category: "health" },
+    { key: "tdee", name: "TDEE Calculator", category: "health" },
+    { key: "body-fat", name: "Body Fat Calculator", category: "health" },
+    { key: "calories-burned", name: "Calories Burned Calculator", category: "health" },
+    { key: "calorie-intake", name: "Calorie Intake Calculator", category: "health" },
+    { key: "target-heart-rate", name: "Target Heart Rate Calculator", category: "health" },
+    { key: "one-rep-max", name: "One-Rep Max Calculator", category: "health" }
   ], []);
 
   // Filter calculators based on search term
@@ -98,6 +108,8 @@ export function Header() {
       navigate(`/cooking/${calculator.key}`);
     } else if (calculator.category === "financial") {
       navigate(`/financial/calculator/${calculator.key}`);
+    } else if (calculator.category === "health") {
+      navigate(`/health/calculator/${calculator.key}`);
     }
   };
 

@@ -542,6 +542,50 @@ const Index = () => {
           ]
         }
       ]
+    },
+    health: {
+      name: "Health & Fitness Calculators",
+      icon: Heart,
+      color: "text-pink-600",
+      description: "Use our health and fitness calculators for measurements and conversions for various exercise, fitness, nutritional, dietary, and body measurement applications.",
+      subCategories: [
+        {
+          title: "Body Measurement Calculators",
+          icon: "fa-solid fa-user",
+          calculators: [
+            { key: "bmi", name: "BMI Calculator" },
+            { key: "body-fat", name: "Body Fat Calculator" },
+            { key: "ideal-body-weight", name: "Ideal Body Weight Calculator" },
+            { key: "lean-body-mass", name: "Lean Body Mass Calculator" },
+            { key: "waist-to-hip-ratio", name: "Waist-to-Hip Ratio Calculator" },
+            { key: "height-converter", name: "Height Converter" }
+          ]
+        },
+        {
+          title: "Dietary and Nutrition Calculators",
+          icon: "fa-solid fa-apple-whole",
+          calculators: [
+            { key: "bmr", name: "BMR Calculator" },
+            { key: "tdee", name: "TDEE Calculator" },
+            { key: "calorie-intake", name: "Calorie Intake Calculator" },
+            { key: "macro", name: "Macro Calculator" },
+            { key: "water-intake", name: "Water Intake Calculator" },
+            { key: "protein-intake", name: "Protein Intake Calculator" }
+          ]
+        },
+        {
+          title: "Fitness Calculators",
+          icon: "fa-solid fa-dumbbell",
+          calculators: [
+            { key: "calories-burned", name: "Calories Burned Calculator" },
+            { key: "one-rep-max", name: "One-Rep Max Calculator" },
+            { key: "target-heart-rate", name: "Target Heart Rate Calculator" },
+            { key: "steps-to-calories", name: "Steps to Calories Calculator" },
+            { key: "pace-distance", name: "Pace and Distance Calculator" },
+            { key: "bench-press", name: "Bench Press Calculator" }
+          ]
+        }
+      ]
     }
   };
 
@@ -553,6 +597,7 @@ const Index = () => {
     categories.cooking,
     categories.electrical,
     categories.financial,
+    categories.health,
     { name: "Health Calculators", icon: Heart, color: "text-pink-600" },
     { name: "Math Calculators", icon: Calculator, color: "text-purple-600" },
     { name: "Pets Calculators", icon: Dog, color: "text-amber-600" },
@@ -606,6 +651,7 @@ const Index = () => {
               const isCooking = category.name === "Cooking Calculators";
               const isElectrical = category.name === "Electrical Calculators";
               const isFinancial = category.name === "Financial Calculators";
+              const isHealth = category.name === "Health & Fitness Calculators";
               
               const handleClick = () => {
                 console.log("Category clicked:", category.name);
@@ -615,6 +661,7 @@ const Index = () => {
                 if (isCooking) navigate('/cooking');
                 if (isElectrical) navigate('/electrical');
                 if (isFinancial) navigate('/financial');
+                if (isHealth) navigate('/health');
               };
               
               return (
