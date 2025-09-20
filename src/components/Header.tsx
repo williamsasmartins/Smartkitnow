@@ -103,7 +103,16 @@ export function Header() {
     { key: "new-year-countdown", name: "New Year Countdown", category: "time" },
     { key: "date-calculator", name: "Date Calculator", category: "time" },
     { key: "time-duration", name: "Time Duration Calculator", category: "time" },
-    { key: "24-to-12-hour", name: "Time Format Converter", category: "time" }
+    { key: "24-to-12-hour", name: "Time Format Converter", category: "time" },
+    
+    // TV & Video calculators
+    { key: "aspect-ratio", name: "Aspect Ratio Calculator", category: "tv" },
+    { key: "ppi-dpi", name: "PPI Calculator / DPI Calculator", category: "tv" },
+    { key: "projector", name: "Projector Calculator", category: "tv" },
+    { key: "screen-size", name: "Screen Size Calculator", category: "tv" },
+    { key: "tv-height", name: "TV Height Calculator", category: "tv" },
+    { key: "tv-viewing-distance", name: "TV Size and Viewing Distance Calculator", category: "tv" },
+    { key: "tv-mounting-cost", name: "TV Mounting and Installation Cost Guide", category: "tv" }
   ], []);
 
   // Filter calculators based on search term
@@ -157,6 +166,8 @@ export function Header() {
       navigate(`/science/calculator/${calculator.key}`);
     } else if (calculator.category === "time") {
       navigate(`/time/calculator/${calculator.key}`);
+    } else if (calculator.category === "tv") {
+      navigate(`/tv/calculator/${calculator.key}`);
     }
   };
 

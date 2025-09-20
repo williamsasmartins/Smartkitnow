@@ -41,6 +41,9 @@ import PetsCalculatorPage from "./pages/PetsCalculatorPage";
 import ScienceCalculators from "./pages/ScienceCalculators";
 import ScienceSubCategory from "./pages/ScienceSubCategory";
 import ScienceCalculatorPage from "./pages/ScienceCalculatorPage";
+import TVCalculators from "./pages/TVCalculators";
+import TVSubCategory from "./pages/TVSubCategory";
+import TVCalculatorPage from "./pages/TVCalculatorPage";
 import TimeCalculators from "./pages/TimeCalculators";
 import TimeSubCategory from "./pages/TimeSubCategory";
 import TimeCalculatorPage from "./pages/TimeCalculatorPage";
@@ -101,6 +104,11 @@ const App = () => (
             <Route path="/time" element={<TimeCalculators />} />
             <Route path="/time/:subcategory" element={<TimeSubCategory />} />
             <Route path="/time/calculator/:calculator" element={<TimeCalculatorPage />} />
+
+            {/* TV & Video Calculator routes */}
+            <Route path="/tv" element={<TVCalculators />} />
+            <Route path="/tv/:subcategory" element={<TVSubCategory />} />
+            <Route path="/tv/calculator/:calculator" element={<TVCalculatorPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
