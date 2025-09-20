@@ -48,7 +48,7 @@ const FinancialSubCategory = () => {
               </div>
               <div>
                 <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                  {subCategory.title}
+                  Personal Finance Calculators – Budget, Debt & Savings Tools
                 </h1>
                 <p className="text-muted-foreground mt-2 text-lg">
                   Choose from {subCategory.calculators.length} specialized calculators in this category
