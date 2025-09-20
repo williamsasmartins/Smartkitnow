@@ -51,7 +51,7 @@ const FinancialSubCategory = () => {
                   Personal Finance Calculators – Budget, Debt & Savings Tools
                 </h1>
                 <p className="text-muted-foreground mt-2 text-lg">
-                  Choose from {subCategory.calculators.length} specialized calculators in this category
+                  Access 20 personal finance calculators designed to help you budget better, manage debt, track expenses, and plan your financial future with confidence.
                 </p>
               </div>
             </div>
