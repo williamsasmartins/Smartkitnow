@@ -395,6 +395,126 @@ const conversionData: Record<string, ConversionData> = {
       { input: "10 kcal", output: "10000 cal" }
     ],
     educationalText: "Kilocalories (often called 'calories' on food labels) are the standard unit for measuring food energy. One kilocalorie is the energy needed to raise 1 kilogram of water by 1°C. This distinction is important in nutrition science and metabolic calculations."
+  },
+  "mj-to-kwh": {
+    title: "Megajoules to Kilowatt-hours",
+    fromUnit: "MJ",
+    toUnit: "kWh",
+    formula: "kWh = MJ ÷ 3.6",
+    factor: 1 / 3.6,
+    description: "Convert energy measurements from megajoules to kilowatt-hours.",
+    howToConvert: "To convert megajoules to kilowatt-hours, divide the megajoule value by 3.6.",
+    examples: [
+      { input: "3.6 MJ", output: "1 kWh" },
+      { input: "36 MJ", output: "10 kWh" },
+      { input: "72 MJ", output: "20 kWh" }
+    ],
+    educationalText: "This conversion is essential in energy industry calculations, particularly for comparing energy storage systems, fuel energy content, and electrical consumption. Megajoules are often used in scientific contexts while kilowatt-hours are standard for electrical billing."
+  },
+  "mwh-to-kwh": {
+    title: "Megawatt-hours to Kilowatt-hours",
+    fromUnit: "MWh",
+    toUnit: "kWh",
+    formula: "kWh = MWh × 1000",
+    factor: 1000,
+    description: "Convert energy measurements from megawatt-hours to kilowatt-hours.",
+    howToConvert: "To convert megawatt-hours to kilowatt-hours, multiply the megawatt-hour value by 1000.",
+    examples: [
+      { input: "1 MWh", output: "1000 kWh" },
+      { input: "2.5 MWh", output: "2500 kWh" },
+      { input: "10 MWh", output: "10000 kWh" }
+    ],
+    educationalText: "Megawatt-hours are used for large-scale energy measurements in power plants, industrial facilities, and grid operations. This conversion is crucial for utility companies, energy traders, and industrial energy managers working with both residential and commercial scale measurements."
+  },
+  "mmbtu-to-mwh": {
+    title: "MMBTU to Megawatt-hours",
+    fromUnit: "MMBTU",
+    toUnit: "MWh",
+    formula: "MWh = MMBTU × 0.293071",
+    factor: 0.293071,
+    description: "Convert energy measurements from million BTU to megawatt-hours.",
+    howToConvert: "To convert MMBTU to MWh, multiply the MMBTU value by 0.293071.",
+    examples: [
+      { input: "1 MMBTU", output: "0.293 MWh" },
+      { input: "10 MMBTU", output: "2.931 MWh" },
+      { input: "100 MMBTU", output: "29.307 MWh" }
+    ],
+    educationalText: "MMBTU (Million British Thermal Units) is commonly used in natural gas trading and industrial heating applications. This conversion is vital for energy procurement, comparing heating fuels to electrical alternatives, and carbon footprint calculations in industrial processes."
+  },
+  "mpg-to-kml": {
+    title: "Miles per Gallon to Kilometers per Liter",
+    fromUnit: "mpg",
+    toUnit: "km/L",
+    formula: "km/L = mpg × 0.425144",
+    factor: 0.425144,
+    description: "Convert fuel economy from miles per gallon to kilometers per liter.",
+    howToConvert: "To convert mpg to km/L, multiply the mpg value by 0.425144.",
+    examples: [
+      { input: "25 mpg", output: "10.63 km/L" },
+      { input: "30 mpg", output: "12.75 km/L" },
+      { input: "40 mpg", output: "17.01 km/L" }
+    ],
+    educationalText: "Miles per gallon is the standard fuel economy measurement in the United States, while kilometers per liter is used in many other countries. This conversion is essential for international vehicle comparisons and fleet management across different regions."
+  },
+  "kml-to-mpg": {
+    title: "Kilometers per Liter to Miles per Gallon",
+    fromUnit: "km/L",
+    toUnit: "mpg",
+    formula: "mpg = km/L ÷ 0.425144",
+    factor: 1 / 0.425144,
+    description: "Convert fuel economy from kilometers per liter to miles per gallon.",
+    howToConvert: "To convert km/L to mpg, divide the km/L value by 0.425144.",
+    examples: [
+      { input: "10 km/L", output: "23.52 mpg" },
+      { input: "15 km/L", output: "35.28 mpg" },
+      { input: "20 km/L", output: "47.04 mpg" }
+    ],
+    educationalText: "This conversion helps international consumers understand vehicle efficiency ratings when comparing cars from different markets. Many fuel-efficient vehicles are rated in km/L in Asian and European markets but need mpg conversion for US consumers."
+  },
+  "mpg-to-l100km": {
+    title: "Miles per Gallon to Liters per 100km",
+    fromUnit: "mpg",
+    toUnit: "L/100km",
+    formula: "L/100km = 235.214 ÷ mpg",
+    factor: 0, // Special calculation needed
+    description: "Convert fuel economy from miles per gallon to liters per 100 kilometers.",
+    howToConvert: "To convert mpg to L/100km, divide 235.214 by the mpg value. Note: lower L/100km values indicate better fuel economy.",
+    examples: [
+      { input: "25 mpg", output: "9.41 L/100km" },
+      { input: "30 mpg", output: "7.84 L/100km" },
+      { input: "40 mpg", output: "5.88 L/100km" }
+    ],
+    educationalText: "Liters per 100 kilometers is the standard fuel consumption measurement in Europe and many other countries. Unlike mpg where higher numbers are better, lower L/100km values indicate better fuel efficiency, making this conversion conceptually important."
+  },
+  "l100km-to-mpg": {
+    title: "Liters per 100km to Miles per Gallon",
+    fromUnit: "L/100km",
+    toUnit: "mpg",
+    formula: "mpg = 235.214 ÷ L/100km",
+    factor: 0, // Special calculation needed
+    description: "Convert fuel economy from liters per 100 kilometers to miles per gallon.",
+    howToConvert: "To convert L/100km to mpg, divide 235.214 by the L/100km value. Remember: lower L/100km equals higher mpg.",
+    examples: [
+      { input: "8 L/100km", output: "29.40 mpg" },
+      { input: "6 L/100km", output: "39.20 mpg" },
+      { input: "5 L/100km", output: "47.04 mpg" }
+    ],
+    educationalText: "This conversion is essential for comparing European and North American fuel economy standards. European fuel economy labels use L/100km, while US EPA ratings use mpg, requiring this conversion for international vehicle comparisons and purchasing decisions."
+  },
+  "ft-to-m": {
+    title: "Feet to Meters",
+    fromUnit: "feet",
+    toUnit: "meters",
+    formula: "meters = feet × 0.3048",
+    factor: 0.3048,
+    description: "Convert length measurements from feet to meters.",
+    howToConvert: "To convert feet to meters, multiply the feet value by 0.3048.",
+    examples: [
+      { input: "1 ft", output: "0.305 m" },
+      { input: "10 ft", output: "3.048 m" },
+      { input: "100 ft", output: "30.48 m" }
+    ],
+    educationalText: "The foot is a fundamental unit in the imperial system, commonly used in construction, real estate, and aviation in the United States. The meter is the base unit of length in the metric system, used worldwide for scientific and most commercial applications."
   }
 };
 
