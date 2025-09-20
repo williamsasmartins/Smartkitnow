@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -28,6 +28,8 @@ import {
 } from "lucide-react";
 
 const Index = () => {
+  const navigate = useNavigate();
+  
   // Categories with detailed automotive structure
   const categories = {
     automotivo: {
@@ -135,8 +137,6 @@ const Index = () => {
     { name: "Grade Calculator", description: "Calculate your GPA", icon: Star }
   ];
 
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedCalculator, setSelectedCalculator] = useState<{name: string, subCategory: string} | null>(null);
 
   return (
     <div className="min-h-screen bg-gradient-soft">
@@ -161,108 +161,21 @@ const Index = () => {
             {calculatorCategories.map((category, index) => {
               const IconComponent = category.icon;
               const isAutomotive = category.name === "Automotive Calculators";
-              const isExpanded = selectedCategory === 'automotive' && isAutomotive;
               
               return (
                 <Card 
                   key={index} 
-                  className={`group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer ${
-                    isExpanded ? 'col-span-full' : ''
-                  }`}
-                  onClick={() => isAutomotive ? setSelectedCategory(selectedCategory === 'automotive' ? null : 'automotive') : null}
+                  className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer"
+                  onClick={() => isAutomotive ? navigate('/automotive') : null}
                 >
-                  {isExpanded ? (
-                    // Expanded Automotive Card Content
-                    <div className="p-6">
-                      {selectedCalculator ? (
-                        // Individual Calculator View
-                        <div>
-                          <div className="flex items-center space-x-3 mb-6">
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              onClick={() => setSelectedCalculator(null)}
-                              className="flex items-center space-x-2"
-                            >
-                              <ArrowLeft className="h-4 w-4" />
-                              <span>Voltar</span>
-                            </Button>
-                          </div>
-                          
-                          <div className="bg-muted/30 rounded-lg p-6">
-                            <h3 className="text-2xl font-bold text-foreground mb-2">{selectedCalculator.name}</h3>
-                            <p className="text-muted-foreground mb-4">Categoria: {selectedCalculator.subCategory}</p>
-                            <div className="bg-background/50 rounded-lg p-8 text-center">
-                              <Calculator className="h-16 w-16 text-primary mx-auto mb-4" />
-                              <p className="text-foreground">Interface da calculadora será implementada aqui</p>
-                            </div>
-                          </div>
-                        </div>
-                      ) : (
-                        // Subcategories View
-                        <div>
-                          <div className="flex items-center justify-between mb-6">
-                            <div className="flex items-center space-x-3">
-                              <div className="p-3 rounded-lg bg-primary/10">
-                                <IconComponent className={`h-8 w-8 text-primary`} />
-                              </div>
-                              <div>
-                                <h3 className="text-2xl font-bold text-foreground">{category.name}</h3>
-                                <p className="text-muted-foreground mt-2">{categories.automotivo.description}</p>
-                              </div>
-                            </div>
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              onClick={() => setSelectedCategory(null)}
-                              className="flex items-center space-x-2"
-                            >
-                              <ArrowLeft className="h-4 w-4" />
-                              <span>Voltar</span>
-                            </Button>
-                          </div>
-                          
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {categories.automotivo.subCategories.map((subCategory, subIndex) => (
-                              <Card key={subIndex} className="bg-muted/30 border-border/30">
-                                <CardHeader>
-                                  <div className="flex items-center space-x-3">
-                                    <div className="p-2 rounded-lg bg-primary/10">
-                                      <i className={`${subCategory.icon} text-primary text-lg`}></i>
-                                    </div>
-                                    <CardTitle className="text-lg">{subCategory.title}</CardTitle>
-                                  </div>
-                                </CardHeader>
-                                <CardContent>
-                                  <div className="space-y-2">
-                                    {subCategory.calculators.map((calc, calcIndex) => (
-                                      <div 
-                                        key={calcIndex} 
-                                        className="p-2 bg-background/50 rounded hover:bg-primary/5 cursor-pointer transition-colors"
-                                        onClick={() => setSelectedCalculator({name: calc.name, subCategory: subCategory.title})}
-                                      >
-                                        <p className="text-sm text-foreground hover:text-primary">{calc.name}</p>
-                                      </div>
-                                    ))}
-                                  </div>
-                                </CardContent>
-                              </Card>
-                            ))}
-                          </div>
-                        </div>
-                      )}
+                  <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
+                    <div className="p-3 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors">
+                      <IconComponent className={`h-6 w-6 ${category.color} group-hover:text-primary transition-colors`} />
                     </div>
-                  ) : (
-                    // Normal Card Content
-                    <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
-                      <div className="p-3 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors">
-                        <IconComponent className={`h-6 w-6 ${category.color} group-hover:text-primary transition-colors`} />
-                      </div>
-                      <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                        {category.name}
-                      </h3>
-                    </CardContent>
-                  )}
+                    <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                      {category.name}
+                    </h3>
+                  </CardContent>
                 </Card>
               );
             })}

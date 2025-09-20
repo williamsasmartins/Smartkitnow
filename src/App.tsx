@@ -12,6 +12,9 @@ import Cookies from "./pages/Cookies";
 import CookieSettings from "./pages/CookieSettings";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import AutomotiveCalculators from "./pages/AutomotiveCalculators";
+import AutomotiveSubCategory from "./pages/AutomotiveSubCategory";
+import CalculatorPage from "./pages/CalculatorPage";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +38,9 @@ const App = () => (
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/cookie-settings" element={<CookieSettings />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/automotive" element={<AutomotiveCalculators />} />
+            <Route path="/automotive/:subcategory" element={<AutomotiveSubCategory />} />
+            <Route path="/automotive/calculator/:calculator" element={<CalculatorPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
