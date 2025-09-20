@@ -173,45 +173,35 @@ const Index = () => {
                     <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                       {category.name}
                     </h3>
+
+                    {isAutomotive && selectedCategory === 'automotive' && (
+                      <div className="mt-3 w-full text-left">
+                        <p className="text-sm text-muted-foreground mb-3">{categories.automotivo.description}</p>
+                        <div className="space-y-4 max-h-80 overflow-y-auto pr-1">
+                          {categories.automotivo.subCategories.map((subCategory, subIndex) => (
+                            <div key={subIndex} className="rounded-md border border-border/40 p-3 bg-background/50">
+                              <div className="flex items-center gap-2 mb-2">
+                                <i className={`${subCategory.icon} text-primary`}></i>
+                                <p className="font-medium text-sm">{subCategory.title}</p>
+                              </div>
+                              <ul className="space-y-1">
+                                {subCategory.calculators.map((calc, calcIndex) => (
+                                  <li key={calcIndex} className="text-xs text-foreground/80 hover:text-primary transition-colors cursor-pointer">
+                                    {calc.name}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               );
             })}
           </div>
 
-          {/* Automotive Subcategories - Show when automotive is selected */}
-          {selectedCategory === 'automotive' && (
-            <div className="mb-8 p-6 bg-card rounded-lg border border-border/50">
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold text-foreground mb-3">Automotive Calculators</h3>
-                <p className="text-muted-foreground">{categories.automotivo.description}</p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categories.automotivo.subCategories.map((subCategory, subIndex) => (
-                  <Card key={subIndex} className="bg-muted/30 border-border/30">
-                    <CardHeader>
-                      <div className="flex items-center space-x-3">
-                        <div className="p-2 rounded-lg bg-primary/10">
-                          <i className={`${subCategory.icon} text-primary text-lg`}></i>
-                        </div>
-                        <CardTitle className="text-lg">{subCategory.title}</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-2">
-                        {subCategory.calculators.map((calc, calcIndex) => (
-                          <div key={calcIndex} className="p-2 bg-background/50 rounded hover:bg-primary/5 cursor-pointer transition-colors">
-                            <p className="text-sm text-foreground hover:text-primary">{calc.name}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Discover More Button */}
           <div className="text-center">
