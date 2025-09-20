@@ -635,6 +635,126 @@ const conversionData: Record<string, ConversionData> = {
       { input: "18000 sec", output: "5 hr" }
     ],
     educationalText: "Converting seconds to hours is important for calculating hourly rates, energy consumption, and long-duration processes. This conversion helps in project planning, billing calculations, and understanding time scales in industrial and scientific applications."
+  },
+  "hr-to-sec": {
+    title: "Hours to Seconds",
+    fromUnit: "hours",
+    toUnit: "seconds",
+    formula: "seconds = hours × 3600",
+    factor: 3600,
+    description: "Convert time from hours to seconds.",
+    howToConvert: "To convert hours to seconds, multiply the hours value by 3600.",
+    examples: [
+      { input: "1 hr", output: "3600 sec" },
+      { input: "2 hr", output: "7200 sec" },
+      { input: "5 hr", output: "18000 sec" }
+    ],
+    educationalText: "This conversion is fundamental in scientific calculations, computer programming, and industrial processes where precise time measurements are required. One hour contains exactly 3600 seconds (60 minutes × 60 seconds), making this a key conversion in time-based calculations."
+  },
+  "tbsp-to-cups": {
+    title: "Tablespoons to Cups",
+    fromUnit: "tablespoons",
+    toUnit: "cups",
+    formula: "cups = tablespoons ÷ 16",
+    factor: 1 / 16,
+    description: "Convert cooking volume from tablespoons to cups.",
+    howToConvert: "To convert tablespoons to cups, divide the tablespoons value by 16.",
+    examples: [
+      { input: "16 tbsp", output: "1 cup" },
+      { input: "8 tbsp", output: "0.5 cup" },
+      { input: "32 tbsp", output: "2 cups" }
+    ],
+    educationalText: "This conversion is essential in cooking and baking where recipes may use different volume measurements. Understanding tablespoon to cup conversions helps in recipe scaling, ingredient substitution, and precise measurement when kitchen tools are limited."
+  },
+  "cm3-to-m3": {
+    title: "Cubic Centimeters to Cubic Meters",
+    fromUnit: "cm³",
+    toUnit: "m³",
+    formula: "m³ = cm³ ÷ 1,000,000",
+    factor: 1 / 1000000,
+    description: "Convert volume from cubic centimeters to cubic meters.",
+    howToConvert: "To convert cm³ to m³, divide the cm³ value by 1,000,000.",
+    examples: [
+      { input: "1,000,000 cm³", output: "1 m³" },
+      { input: "500,000 cm³", output: "0.5 m³" },
+      { input: "250,000 cm³", output: "0.25 m³" }
+    ],
+    educationalText: "Cubic meters are the standard SI unit for volume measurements in construction, engineering, and scientific applications. This conversion is crucial when working with small laboratory measurements that need to be scaled to architectural or industrial volumes."
+  },
+  "gal-to-l": {
+    title: "Gallons to Liters",
+    fromUnit: "gallons",
+    toUnit: "liters",
+    formula: "liters = gallons × 3.78541",
+    factor: 3.78541,
+    description: "Convert volume from US gallons to liters.",
+    howToConvert: "To convert US gallons to liters, multiply the gallon value by 3.78541.",
+    examples: [
+      { input: "1 gal", output: "3.785 L" },
+      { input: "5 gal", output: "18.927 L" },
+      { input: "10 gal", output: "37.854 L" }
+    ],
+    educationalText: "The US gallon differs from the imperial gallon (4.546 L). This conversion is essential for fuel consumption calculations, chemical mixing, and international trade where metric measurements are standard but US measurements are still commonly used."
+  },
+  "tsp-to-ml": {
+    title: "Teaspoons to Milliliters",
+    fromUnit: "teaspoons",
+    toUnit: "milliliters",
+    formula: "mL = teaspoons × 4.92892",
+    factor: 4.92892,
+    description: "Convert cooking volume from teaspoons to milliliters.",
+    howToConvert: "To convert teaspoons to milliliters, multiply the teaspoon value by 4.92892.",
+    examples: [
+      { input: "1 tsp", output: "4.929 mL" },
+      { input: "3 tsp", output: "14.787 mL" },
+      { input: "6 tsp", output: "29.574 mL" }
+    ],
+    educationalText: "Teaspoons are a fundamental cooking measurement, especially for spices, extracts, and small ingredient quantities. This conversion to milliliters is crucial for precision cooking, pharmaceutical dosing, and international recipe adaptation."
+  },
+  "oz-to-g": {
+    title: "Ounces to Grams",
+    fromUnit: "ounces",
+    toUnit: "grams",
+    formula: "grams = ounces × 28.3495",
+    factor: 28.3495,
+    description: "Convert weight from ounces to grams.",
+    howToConvert: "To convert ounces to grams, multiply the ounce value by 28.3495.",
+    examples: [
+      { input: "1 oz", output: "28.35 g" },
+      { input: "4 oz", output: "113.40 g" },
+      { input: "16 oz", output: "453.59 g" }
+    ],
+    educationalText: "Ounces are commonly used in cooking, postal services, and precious metal trading in the US. Converting to grams is essential for international shipping, scientific measurements, and following metric-based recipes or nutritional information."
+  },
+  "g-to-oz": {
+    title: "Grams to Ounces",
+    fromUnit: "grams",
+    toUnit: "ounces",
+    formula: "ounces = grams ÷ 28.3495",
+    factor: 1 / 28.3495,
+    description: "Convert weight from grams to ounces.",
+    howToConvert: "To convert grams to ounces, divide the gram value by 28.3495.",
+    examples: [
+      { input: "28.35 g", output: "1 oz" },
+      { input: "100 g", output: "3.53 oz" },
+      { input: "500 g", output: "17.64 oz" }
+    ],
+    educationalText: "This conversion is vital in cooking when adapting international recipes, shipping calculations for lightweight items, and precious metal investments where troy ounces are standard. Understanding this conversion helps in portion control and international trade."
+  },
+  "cups-to-tbsp": {
+    title: "Cups to Tablespoons",
+    fromUnit: "cups",
+    toUnit: "tablespoons",
+    formula: "tablespoons = cups × 16",
+    factor: 16,
+    description: "Convert cooking volume from cups to tablespoons.",
+    howToConvert: "To convert cups to tablespoons, multiply the cups value by 16.",
+    examples: [
+      { input: "1 cup", output: "16 tbsp" },
+      { input: "0.5 cup", output: "8 tbsp" },
+      { input: "2 cups", output: "32 tbsp" }
+    ],
+    educationalText: "This reverse conversion from tablespoons to cups is useful when recipes call for large amounts of ingredients typically measured in tablespoons, or when scaling recipes up or down. It's particularly helpful in professional baking where precision is critical."
   }
 };
 
