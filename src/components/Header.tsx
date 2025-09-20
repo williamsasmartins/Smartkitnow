@@ -34,7 +34,17 @@ export function Header() {
     { key: "temperature-conversion", name: "Temperature Conversion", category: "conversion" },
     { key: "length-conversion", name: "Length Conversion", category: "conversion" },
     { key: "weight-conversion", name: "Weight Conversion", category: "conversion" },
-    { key: "volume-conversion", name: "Volume Conversion", category: "conversion" }
+    { key: "volume-conversion", name: "Volume Conversion", category: "conversion" },
+    
+    // Cooking calculators
+    { key: "cake", name: "Cake Calculator", category: "cooking" },
+    { key: "pizza", name: "Pizza Calculator", category: "cooking" },
+    { key: "recipe-scale-conversion", name: "Recipe Scale Conversion Calculator", category: "cooking" },
+    { key: "oven-temperature-conversion", name: "Oven Temperature Conversion Calculator", category: "cooking" },
+    { key: "turkey-cooking-time", name: "Turkey Cooking Time Calculator", category: "cooking" },
+    { key: "cups-to-grams", name: "Cups to Grams Converter", category: "cooking" },
+    { key: "grams-to-cups", name: "Grams to Cups Converter", category: "cooking" },
+    { key: "tablespoons-cup", name: "How Many Tablespoons In 1 Cup?", category: "cooking" }
   ], []);
 
   // Filter calculators based on search term
@@ -74,6 +84,8 @@ export function Header() {
       navigate(`/construction/${calculator.key}`);
     } else if (calculator.category === "conversion") {
       navigate(`/conversion/${calculator.key}`);
+    } else if (calculator.category === "cooking") {
+      navigate(`/cooking/${calculator.key}`);
     }
   };
 

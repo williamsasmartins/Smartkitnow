@@ -338,6 +338,83 @@ const Index = () => {
           ]
         }
       ]
+    },
+    cooking: {
+      name: "Cooking Calculators",
+      icon: ChefHat,
+      color: "text-red-600",
+      description: "Our cooking and baking calculators and resources help you prepare the perfect dish by simplifying recipes and converting ingredients from one measurement to another.",
+      subCategories: [
+        {
+          title: "Cooking & Baking Calculators",
+          icon: "fa-solid fa-utensils",
+          calculators: [
+            { key: "cake", name: "Cake Calculator" },
+            { key: "cooking-conversion", name: "Cooking Conversion Calculator" },
+            { key: "ham-cooking-time", name: "Ham Cooking Time Calculator" },
+            { key: "ham-size", name: "Ham Size Calculator" },
+            { key: "milk-weight", name: "Milk Weight Calculator" },
+            { key: "oven-temperature-conversion", name: "Oven Temperature Conversion Calculator & Chart" },
+            { key: "oven-air-fryer-conversion", name: "Oven to Air Fryer Conversion Calculator" },
+            { key: "pizza", name: "Pizza Calculator" },
+            { key: "recipe-scale-conversion", name: "Recipe Scale Conversion Calculator" },
+            { key: "timer", name: "Timer" },
+            { key: "turkey-cooking-time", name: "Turkey Cooking Time Calculator" },
+            { key: "turkey-size", name: "Turkey Size Calculator" },
+            { key: "turkey-thawing-time", name: "Turkey Thawing Time Calculator" }
+          ]
+        },
+        {
+          title: "Cooking Measurements",
+          icon: "fa-solid fa-measuring-cup",
+          calculators: [
+            { key: "ounces-half-cup", name: "How Many Ounces In 1/2 Cup?" },
+            { key: "ounces-third-cup", name: "How Many Ounces In 1/3 Cup?" },
+            { key: "ounces-quarter-cup", name: "How Many Ounces In 1/4 Cup?" },
+            { key: "ounces-cup", name: "How Many Ounces In a Cup?" },
+            { key: "tablespoons-cup", name: "How Many Tablespoons In 1 Cup?" },
+            { key: "tablespoons-half-cup", name: "How Many Tablespoons In 1/2 Cup?" },
+            { key: "tablespoons-third-cup", name: "How Many Tablespoons In 1/3 Cup?" },
+            { key: "tablespoons-quarter-cup", name: "How Many Tablespoons In 1/4 Cup?" },
+            { key: "tablespoons-eighth-cup", name: "How Many Tablespoons In 1/8 Cup?" },
+            { key: "tablespoons-two-thirds-cup", name: "How Many Tablespoons In 2/3 Cup?" },
+            { key: "tablespoons-three-quarters-cup", name: "How Many Tablespoons In 3/4 Cup?" },
+            { key: "teaspoons-third-cup", name: "How Many Teaspoons In 1/3 Cup?" },
+            { key: "teaspoons-quarter-cup", name: "How Many Teaspoons In 1/4 Cup?" },
+            { key: "teaspoons-eighth-cup", name: "How Many Teaspoons In 1/8 Cup?" },
+            { key: "teaspoons-tablespoon", name: "How Many Teaspoons In a Tablespoon?" },
+            { key: "teaspoons-half-tablespoon", name: "How Many Teaspoons In Half a Tablespoon?" }
+          ]
+        },
+        {
+          title: "Unit Conversion Calculators",
+          icon: "fa-solid fa-arrows-rotate",
+          calculators: [
+            { key: "beer-volume-conversions", name: "Beer Volume Conversions" },
+            { key: "butter-unit-conversions", name: "Butter Unit Conversions" },
+            { key: "cups-to-grams", name: "Cups to Grams Converter" },
+            { key: "cups-to-ml", name: "Cups to mL Converter" },
+            { key: "cups-to-tablespoons", name: "Cups to Tablespoons Converter" },
+            { key: "flour-volume-weight", name: "Flour Volume & Weight Conversions" },
+            { key: "grams-to-cups", name: "Grams to Cups Converter" },
+            { key: "grams-to-ml", name: "Grams to mL Converter" },
+            { key: "grams-to-ounces", name: "Grams to Ounces Converter" },
+            { key: "grams-to-tablespoons", name: "Grams to Tablespoons Converter" },
+            { key: "grams-to-teaspoons", name: "Grams to Teaspoons Converter" },
+            { key: "mg-to-ml", name: "mg to mL Converter" },
+            { key: "ml-to-grams", name: "mL to Grams Converter" },
+            { key: "ml-to-mg", name: "mL to mg Converter" },
+            { key: "ounces-to-grams", name: "Ounces to Grams Converter" },
+            { key: "salt-volume-weight", name: "Salt Volume & Weight Conversions" },
+            { key: "sugar-volume-weight", name: "Sugar Volume & Weight Conversions" },
+            { key: "tablespoons-to-cups", name: "Tablespoons to Cups Converter" },
+            { key: "tablespoons-to-grams", name: "Tablespoons to Grams Converter" },
+            { key: "teaspoons-to-grams", name: "Teaspoons to Grams Converter" },
+            { key: "volume-unit-conversions", name: "Volume Unit Conversions" },
+            { key: "weight-unit-conversions", name: "Weight Unit Conversions" }
+          ]
+        }
+      ]
     }
   };
 
@@ -346,8 +423,8 @@ const Index = () => {
     categories.automotivo,
     categories.construction,
     categories.conversion,
+    categories.cooking,
     
-    { name: "Cooking Calculators", icon: ChefHat, color: "text-red-600" },
     { name: "Electrical Calculators", icon: Zap, color: "text-yellow-600" },
     { name: "Financial Calculators", icon: DollarSign, color: "text-emerald-600" },
     { name: "Health Calculators", icon: Heart, color: "text-pink-600" },
@@ -400,11 +477,13 @@ const Index = () => {
               const isAutomotive = category.name === "Automotive Calculators";
               const isConstruction = category.name === "Construction Calculators";
               const isConversion = category.name === "Conversion Calculators";
+              const isCooking = category.name === "Cooking Calculators";
               
               const handleClick = () => {
                 if (isAutomotive) navigate('/automotive');
                 if (isConstruction) navigate('/construction');
                 if (isConversion) navigate('/conversion');
+                if (isCooking) navigate('/cooking');
               };
               
               return (
