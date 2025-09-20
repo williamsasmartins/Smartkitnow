@@ -44,7 +44,17 @@ export function Header() {
     { key: "turkey-cooking-time", name: "Turkey Cooking Time Calculator", category: "cooking" },
     { key: "cups-to-grams", name: "Cups to Grams Converter", category: "cooking" },
     { key: "grams-to-cups", name: "Grams to Cups Converter", category: "cooking" },
-    { key: "tablespoons-cup", name: "How Many Tablespoons In 1 Cup?", category: "cooking" }
+    { key: "tablespoons-cup", name: "How Many Tablespoons In 1 Cup?", category: "cooking" },
+    
+    // Financial calculators
+    { key: "loan-payment", name: "Loan Payment Calculator", category: "financial" },
+    { key: "compound-interest", name: "Compound Interest Calculator", category: "financial" },
+    { key: "roi", name: "ROI Calculator", category: "financial" },
+    { key: "tip", name: "Tip Calculator", category: "financial" },
+    { key: "mortgage-payoff", name: "Mortgage Calculator", category: "financial" },
+    { key: "simple-interest", name: "Simple Interest Calculator", category: "financial" },
+    { key: "discount", name: "Discount Calculator", category: "financial" },
+    { key: "auto-loan", name: "Auto Loan Calculator", category: "financial" }
   ], []);
 
   // Filter calculators based on search term
@@ -86,6 +96,8 @@ export function Header() {
       navigate(`/conversion/${calculator.key}`);
     } else if (calculator.category === "cooking") {
       navigate(`/cooking/${calculator.key}`);
+    } else if (calculator.category === "financial") {
+      navigate(`/financial/calculator/${calculator.key}`);
     }
   };
 

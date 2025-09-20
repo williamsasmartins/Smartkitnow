@@ -26,6 +26,9 @@ import CookingCalculatorPage from "./pages/CookingCalculatorPage";
 import ElectricalCalculators from "./pages/ElectricalCalculators";
 import ElectricalSubCategory from "./pages/ElectricalSubCategory";
 import ElectricalCalculatorPage from "./pages/ElectricalCalculatorPage";
+import FinancialCalculators from "./pages/FinancialCalculators";
+import FinancialSubCategory from "./pages/FinancialSubCategory";
+import FinancialCalculatorPage from "./pages/FinancialCalculatorPage";
 
 const queryClient = new QueryClient();
 
@@ -65,6 +68,9 @@ const App = () => (
             <Route path="/electrical" element={<ElectricalCalculators />} />
             <Route path="/electrical/:subcategory" element={<ElectricalSubCategory />} />
             <Route path="/electrical/:subcategory/:calculator" element={<ElectricalCalculatorPage />} />
+            <Route path="/financial" element={<FinancialCalculators />} />
+            <Route path="/financial/:subcategory" element={<FinancialSubCategory />} />
+            <Route path="/financial/calculator/:calculator" element={<FinancialCalculatorPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

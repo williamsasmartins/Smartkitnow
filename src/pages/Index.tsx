@@ -447,6 +447,50 @@ const Index = () => {
           ]
         }
       ]
+    },
+    financial: {
+      name: "Financial Calculators",
+      icon: DollarSign,
+      color: "text-emerald-600",
+      description: "Use one of our financial calculators to plan investments, calculate interest, or estimate savings on a purchase. Each calculator includes a wealth of financial information about the topic, along with the process and formulas to do the calculation.",
+      subCategories: [
+        {
+          title: "Business Finance Calculators",
+          icon: "fa-solid fa-briefcase",
+          calculators: [
+            { key: "appreciation", name: "Appreciation Calculator" },
+            { key: "cagr", name: "CAGR Calculator" },
+            { key: "commission", name: "Commission Calculator" },
+            { key: "roi", name: "ROI Calculator" },
+            { key: "margin", name: "Margin Calculator" },
+            { key: "markup", name: "Markup Calculator" }
+          ]
+        },
+        {
+          title: "Interest and Loan Calculators",
+          icon: "fa-solid fa-percent",
+          calculators: [
+            { key: "compound-interest", name: "Compound Interest Calculator" },
+            { key: "loan-payment", name: "Loan Payment Calculator" },
+            { key: "mortgage-payoff", name: "Mortgage Calculator" },
+            { key: "simple-interest", name: "Simple Interest Calculator" },
+            { key: "future-value", name: "Future Value Calculator" },
+            { key: "present-value", name: "Present Value Calculator" }
+          ]
+        },
+        {
+          title: "Personal Finance Calculators",
+          icon: "fa-solid fa-wallet",
+          calculators: [
+            { key: "tip", name: "Tip Calculator" },
+            { key: "discount", name: "Discount Calculator" },
+            { key: "salary-to-hourly", name: "Salary to Hourly Calculator" },
+            { key: "hourly-to-salary", name: "Hourly to Salary Calculator" },
+            { key: "overtime", name: "Overtime Calculator" },
+            { key: "net-worth", name: "Net Worth Calculator" }
+          ]
+        }
+      ]
     }
   };
 
@@ -457,7 +501,7 @@ const Index = () => {
     categories.conversion,
     categories.cooking,
     categories.electrical,
-    { name: "Financial Calculators", icon: DollarSign, color: "text-emerald-600" },
+    categories.financial,
     { name: "Health Calculators", icon: Heart, color: "text-pink-600" },
     { name: "Math Calculators", icon: Calculator, color: "text-purple-600" },
     { name: "Pets Calculators", icon: Dog, color: "text-amber-600" },
@@ -510,6 +554,7 @@ const Index = () => {
               const isConversion = category.name === "Conversion Calculators";
               const isCooking = category.name === "Cooking Calculators";
               const isElectrical = category.name === "Electrical Calculators";
+              const isFinancial = category.name === "Financial Calculators";
               
               const handleClick = () => {
                 console.log("Category clicked:", category.name);
@@ -518,6 +563,7 @@ const Index = () => {
                 if (isConversion) navigate('/conversion');
                 if (isCooking) navigate('/cooking');
                 if (isElectrical) navigate('/electrical');
+                if (isFinancial) navigate('/financial');
               };
               
               return (
