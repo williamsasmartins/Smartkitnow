@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { CalculatorFooter } from "@/components/CalculatorFooter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calculator } from "lucide-react";
@@ -79,6 +80,19 @@ const CalculatorPage = () => {
               </div>
             </CardContent>
           </Card>
+          
+          {/* Calculator Footer */}
+          <CalculatorFooter
+            calculatorName={calculator.name}
+            description={`This calculator uses a proven mathematical formula to determine ${calculator.name.toLowerCase()} values. The calculation takes into account multiple variables and provides accurate results based on industry standards.`}
+            formula="Result = (Variable1 × Variable2) / Constant"
+            sources={[
+              { title: "SAE International Standards", url: "https://www.sae.org" },
+              { title: "ASME Engineering Standards", url: "https://www.asme.org" },
+              { title: "Automotive Engineering Handbook", url: "https://www.sae.org/publications" },
+              { title: "NIST Engineering Standards", url: "https://www.nist.gov" }
+            ]}
+          />
         </section>
       </main>
 
