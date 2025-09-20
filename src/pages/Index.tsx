@@ -625,7 +625,11 @@ const Index = () => {
     { name: "Daily Quotes", icon: Quote, color: "text-slate-600" },
     { name: "Every day Life Calculators", icon: Home, color: "text-blue-500" },
     { name: "Sports", icon: Dumbbell, color: "text-orange-500" },
-    { name: "Funny Calculators", icon: Smile, color: "text-pink-500" }
+    { name: "Funny Calculators", icon: Smile, color: "text-pink-500" },
+    // Restored categories
+    categories.automotivo,
+    categories.construction,
+    categories.electrical
   ];
 
   // Featured Calculators Data
