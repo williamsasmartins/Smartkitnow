@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useMemo } from "react";
+import logoImage from "@/assets/logo.png";
 
 export function Header() {
   const navigate = useNavigate();
@@ -181,13 +182,14 @@ export function Header() {
         <div className="flex items-center justify-between gap-4">
           {/* Project Title */}
           <div 
-            className="flex items-center space-x-2 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+            className="flex items-center space-x-3 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
             onClick={handleHomeClick}
           >
-            <div className="h-8 w-8 rounded-lg bg-gradient-primary animate-glow"></div>
-            <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              Smart Kit Now
-            </h1>
+            <img 
+              src={logoImage} 
+              alt="Smart Kit Now Logo" 
+              className="h-10 w-auto"
+            />
           </div>
 
           {/* Search Bar */}
