@@ -83,7 +83,17 @@ export function Header() {
     { key: "aquarium-volume", name: "Aquarium Volume Calculator", category: "pets" },
     { key: "aquarium-weight", name: "Aquarium Weight Calculator", category: "pets" },
     { key: "dog-chocolate-toxicity", name: "Dog Chocolate Toxicity Calculator", category: "pets" },
-    { key: "pet-age", name: "Pet Age Calculator", category: "pets" }
+    { key: "pet-age", name: "Pet Age Calculator", category: "pets" },
+    
+    // Science calculators
+    { key: "molar-mass", name: "Molar Mass Calculator", category: "science" },
+    { key: "molarity", name: "Molarity Calculator", category: "science" },
+    { key: "ph", name: "pH Calculator", category: "science" },
+    { key: "density", name: "Density Calculator", category: "science" },
+    { key: "force", name: "Force Calculator", category: "science" },
+    { key: "velocity", name: "Velocity Calculator", category: "science" },
+    { key: "acceleration", name: "Acceleration Calculator", category: "science" },
+    { key: "momentum", name: "Momentum Calculator", category: "science" }
   ], []);
 
   // Filter calculators based on search term
@@ -133,6 +143,8 @@ export function Header() {
       navigate(`/math/calculator/${calculator.key}`);
     } else if (calculator.category === "pets") {
       navigate(`/pets/calculator/${calculator.key}`);
+    } else if (calculator.category === "science") {
+      navigate(`/science/calculator/${calculator.key}`);
     }
   };
 

@@ -610,7 +610,12 @@ const Index = () => {
       color: "text-amber-600",
       description: "Pet health, nutrition, and care calculators for dogs, cats, and aquariums."
     },
-    { name: "Science Calculators", icon: Atom, color: "text-cyan-600" },
+    {
+      name: "Science Calculators",
+      icon: Atom,
+      color: "text-cyan-600",
+      description: "Chemistry, physics, and density calculations for scientific applications."
+    },
     { name: "Time & Date Calculators", icon: Clock, color: "text-indigo-600" },
     { name: "Video Calculators", icon: Video, color: "text-violet-600" },
     { name: "Recipes", icon: BookOpen, color: "text-teal-600" },
@@ -663,6 +668,7 @@ const Index = () => {
               const isHealth = category.name === "Health & Fitness Calculators";
               const isMath = category.name === "Math & Algebra Calculators";
               const isPets = category.name === "Pet Care Calculators";
+              const isScience = category.name === "Science Calculators";
               
               const handleClick = () => {
                 console.log("Category clicked:", category.name);
@@ -675,6 +681,7 @@ const Index = () => {
                 if (isHealth) navigate('/health');
                 if (isMath) navigate('/math');
                 if (isPets) navigate('/pets');
+                if (isScience) navigate('/science');
               };
               
               return (
