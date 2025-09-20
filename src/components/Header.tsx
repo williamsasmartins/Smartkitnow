@@ -2,28 +2,83 @@ import { ThemeToggle } from "./ThemeToggle";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 export function Header() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  // Calculator database for search
+  const calculators = useMemo(() => [
+    // Automotive calculators
+    { key: "carburetor-cfm", name: "Carburetor CFM Calculator", category: "automotive" },
+    { key: "engine-compression", name: "Engine Compression Ratio Calculator", category: "automotive" },
+    { key: "horsepower", name: "Engine Horsepower Calculator", category: "automotive" },
+    { key: "fuel-cost", name: "Fuel Cost Calculator", category: "automotive" },
+    { key: "gas-mileage", name: "Gas Mileage Calculator", category: "automotive" },
+    { key: "auto-loan", name: "Auto Loan Calculator", category: "automotive" },
+    
+    // Construction calculators
+    { key: "concrete", name: "Concrete Calculator", category: "construction" },
+    { key: "block-mortar", name: "Block Mortar Calculator", category: "construction" },
+    { key: "rebar-material", name: "Rebar Material Calculator", category: "construction" },
+    { key: "tile", name: "Tile Calculator", category: "construction" },
+    { key: "flooring", name: "Flooring Calculator", category: "construction" },
+    { key: "paint", name: "Paint Calculator", category: "construction" },
+    { key: "mulch", name: "Mulch Calculator", category: "construction" },
+    { key: "gravel", name: "Gravel Calculator", category: "construction" },
+    
+    // Conversion calculators
+    { key: "conversion-calculator", name: "Conversion Calculator", category: "conversion" },
+    { key: "temperature-conversion", name: "Temperature Conversion", category: "conversion" },
+    { key: "length-conversion", name: "Length Conversion", category: "conversion" },
+    { key: "weight-conversion", name: "Weight Conversion", category: "conversion" },
+    { key: "volume-conversion", name: "Volume Conversion", category: "conversion" }
+  ], []);
+
+  // Filter calculators based on search term
+  const filteredCalculators = useMemo(() => {
+    if (!searchTerm.trim()) return [];
+    return calculators.filter(calc => 
+      calc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      calc.category.toLowerCase().includes(searchTerm.toLowerCase())
+    ).slice(0, 5); // Limit to 5 suggestions
+  }, [searchTerm, calculators]);
 
   const handleHomeClick = () => {
     navigate("/");
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-    // Here you can add search logic or debounced search
-    console.log("Searching for:", e.target.value);
+    const value = e.target.value;
+    setSearchTerm(value);
+    setShowSuggestions(value.trim().length > 0);
   };
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchTerm.trim()) {
-      // Navigate to search results or filter current page
-      console.log("Search submitted:", searchTerm);
+    if (searchTerm.trim() && filteredCalculators.length > 0) {
+      navigateToCalculator(filteredCalculators[0]);
     }
+  };
+
+  const navigateToCalculator = (calculator: any) => {
+    setSearchTerm("");
+    setShowSuggestions(false);
+    
+    // Navigate based on category
+    if (calculator.category === "automotive") {
+      navigate(`/automotive/${calculator.key}`);
+    } else if (calculator.category === "construction") {
+      navigate(`/construction/${calculator.key}`);
+    } else if (calculator.category === "conversion") {
+      navigate(`/conversion/${calculator.key}`);
+    }
+  };
+
+  const handleSuggestionClick = (calculator: any) => {
+    navigateToCalculator(calculator);
   };
 
   return (
@@ -49,8 +104,26 @@ export function Header() {
               placeholder="Search for a calculator"
               value={searchTerm}
               onChange={handleSearchChange}
+              onFocus={() => setShowSuggestions(searchTerm.trim().length > 0)}
+              onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
               className="pl-10 bg-muted/50 border-border/60 focus:border-primary/40 transition-all duration-300"
             />
+            
+            {/* Search Suggestions */}
+            {showSuggestions && filteredCalculators.length > 0 && (
+              <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+                {filteredCalculators.map((calc) => (
+                  <div
+                    key={calc.key}
+                    onClick={() => handleSuggestionClick(calc)}
+                    className="px-4 py-2 hover:bg-muted cursor-pointer border-b border-border/50 last:border-b-0"
+                  >
+                    <div className="font-medium text-sm">{calc.name}</div>
+                    <div className="text-xs text-muted-foreground capitalize">{calc.category}</div>
+                  </div>
+                ))}
+              </div>
+            )}
           </form>
 
           {/* Dark Mode Toggle */}
