@@ -515,6 +515,126 @@ const conversionData: Record<string, ConversionData> = {
       { input: "100 ft", output: "30.48 m" }
     ],
     educationalText: "The foot is a fundamental unit in the imperial system, commonly used in construction, real estate, and aviation in the United States. The meter is the base unit of length in the metric system, used worldwide for scientific and most commercial applications."
+  },
+  "m-to-ft": {
+    title: "Meters to Feet",
+    fromUnit: "meters",
+    toUnit: "feet",
+    formula: "feet = meters ÷ 0.3048",
+    factor: 1 / 0.3048,
+    description: "Convert length measurements from meters to feet.",
+    howToConvert: "To convert meters to feet, divide the meter value by 0.3048 (or multiply by 3.28084).",
+    examples: [
+      { input: "1 m", output: "3.281 ft" },
+      { input: "5 m", output: "16.404 ft" },
+      { input: "10 m", output: "32.808 ft" }
+    ],
+    educationalText: "Meters are the fundamental unit of length in the International System of Units (SI). This conversion is essential in construction, engineering, and sports where international standards meet local building codes and regulations that may still use imperial measurements."
+  },
+  "fts-to-mph": {
+    title: "Feet per Second to Miles per Hour",
+    fromUnit: "ft/s",
+    toUnit: "mph",
+    formula: "mph = ft/s × 0.681818",
+    factor: 0.681818,
+    description: "Convert speed from feet per second to miles per hour.",
+    howToConvert: "To convert ft/s to mph, multiply the ft/s value by 0.681818.",
+    examples: [
+      { input: "10 ft/s", output: "6.82 mph" },
+      { input: "60 ft/s", output: "40.91 mph" },
+      { input: "88 ft/s", output: "60 mph" }
+    ],
+    educationalText: "Feet per second is commonly used in ballistics, sports science, and engineering applications. This conversion is particularly useful in automotive testing, projectile motion calculations, and comparing speeds across different measurement systems."
+  },
+  "mph-to-ms": {
+    title: "Miles per Hour to Meters per Second",
+    fromUnit: "mph",
+    toUnit: "m/s",
+    formula: "m/s = mph × 0.44704",
+    factor: 0.44704,
+    description: "Convert speed from miles per hour to meters per second.",
+    howToConvert: "To convert mph to m/s, multiply the mph value by 0.44704.",
+    examples: [
+      { input: "60 mph", output: "26.82 m/s" },
+      { input: "70 mph", output: "31.29 m/s" },
+      { input: "100 mph", output: "44.70 m/s" }
+    ],
+    educationalText: "Meters per second is the standard SI unit for velocity, used in physics calculations and scientific applications. This conversion is essential for automotive engineering, physics problems, and international speed comparisons in scientific contexts."
+  },
+  "f-to-k": {
+    title: "Fahrenheit to Kelvin",
+    fromUnit: "°F",
+    toUnit: "K",
+    formula: "K = (°F - 32) × 5/9 + 273.15",
+    factor: 0, // Special case - needs custom calculation
+    description: "Convert temperature from Fahrenheit to Kelvin.",
+    howToConvert: "To convert Fahrenheit to Kelvin, subtract 32, multiply by 5/9, then add 273.15.",
+    examples: [
+      { input: "32°F", output: "273.15 K" },
+      { input: "68°F", output: "293.15 K" },
+      { input: "212°F", output: "373.15 K" }
+    ],
+    educationalText: "Kelvin is the absolute temperature scale used in scientific calculations, starting at absolute zero (-273.15°C). This conversion is crucial in thermodynamics, chemistry, and physics where absolute temperature measurements are required for accurate calculations."
+  },
+  "c-to-k": {
+    title: "Celsius to Kelvin",
+    fromUnit: "°C",
+    toUnit: "K",
+    formula: "K = °C + 273.15",
+    factor: 0, // Special case - needs custom calculation
+    description: "Convert temperature from Celsius to Kelvin.",
+    howToConvert: "To convert Celsius to Kelvin, add 273.15 to the Celsius temperature.",
+    examples: [
+      { input: "0°C", output: "273.15 K" },
+      { input: "25°C", output: "298.15 K" },
+      { input: "100°C", output: "373.15 K" }
+    ],
+    educationalText: "The Kelvin scale is the primary temperature scale in science, defined by the triple point of water and absolute zero. Unlike Celsius and Fahrenheit, Kelvin uses no degree symbol and cannot have negative values, making it essential for gas law calculations and thermodynamic equations."
+  },
+  "sec-to-min": {
+    title: "Seconds to Minutes",
+    fromUnit: "seconds",
+    toUnit: "minutes",
+    formula: "minutes = seconds ÷ 60",
+    factor: 1 / 60,
+    description: "Convert time from seconds to minutes.",
+    howToConvert: "To convert seconds to minutes, divide the seconds value by 60.",
+    examples: [
+      { input: "60 sec", output: "1 min" },
+      { input: "300 sec", output: "5 min" },
+      { input: "3600 sec", output: "60 min" }
+    ],
+    educationalText: "Time conversions are fundamental in many applications including sports timing, process control, and project management. The base-60 system for time measurement dates back to ancient Babylonian mathematics and remains standard worldwide."
+  },
+  "min-to-sec": {
+    title: "Minutes to Seconds",
+    fromUnit: "minutes",
+    toUnit: "seconds",
+    formula: "seconds = minutes × 60",
+    factor: 60,
+    description: "Convert time from minutes to seconds.",
+    howToConvert: "To convert minutes to seconds, multiply the minutes value by 60.",
+    examples: [
+      { input: "1 min", output: "60 sec" },
+      { input: "5 min", output: "300 sec" },
+      { input: "60 min", output: "3600 sec" }
+    ],
+    educationalText: "This conversion is essential in timing applications, programming, scientific experiments, and everyday calculations. Understanding the relationship between minutes and seconds is crucial for precise time measurements in both digital and analog systems."
+  },
+  "sec-to-hr": {
+    title: "Seconds to Hours",
+    fromUnit: "seconds",
+    toUnit: "hours",
+    formula: "hours = seconds ÷ 3600",
+    factor: 1 / 3600,
+    description: "Convert time from seconds to hours.",
+    howToConvert: "To convert seconds to hours, divide the seconds value by 3600.",
+    examples: [
+      { input: "3600 sec", output: "1 hr" },
+      { input: "7200 sec", output: "2 hr" },
+      { input: "18000 sec", output: "5 hr" }
+    ],
+    educationalText: "Converting seconds to hours is important for calculating hourly rates, energy consumption, and long-duration processes. This conversion helps in project planning, billing calculations, and understanding time scales in industrial and scientific applications."
   }
 };
 
@@ -545,6 +665,14 @@ const ConversionPage = () => {
       convertedValue = (input - 32) * 5/9;
     } else if (conversionKey === "c-to-f") {
       convertedValue = (input * 9/5) + 32;
+    } else if (conversionKey === "f-to-k") {
+      convertedValue = (input - 32) * 5/9 + 273.15;
+    } else if (conversionKey === "c-to-k") {
+      convertedValue = input + 273.15;
+    } else if (conversionKey === "mpg-to-l100km") {
+      convertedValue = 235.214 / input;
+    } else if (conversionKey === "l100km-to-mpg") {
+      convertedValue = 235.214 / input;
     } else {
       convertedValue = input * data.factor;
     }
