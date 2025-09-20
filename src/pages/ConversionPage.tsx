@@ -275,6 +275,126 @@ const conversionData: Record<string, ConversionData> = {
       { input: "10 kΩ", output: "10000 Ω" }
     ],
     educationalText: "Kiloohms are commonly used in electronics for resistor values in circuits. Standard resistor values like 1kΩ, 4.7kΩ, and 10kΩ are frequently found in electronic circuits for current limiting, voltage division, and signal conditioning applications."
+  },
+  "mo-to-o": {
+    title: "Megaohms to Ohms",
+    fromUnit: "MΩ",
+    toUnit: "Ω",
+    formula: "Ω = MΩ × 1,000,000",
+    factor: 1000000,
+    description: "Convert electrical resistance from megaohms to ohms.",
+    howToConvert: "To convert megaohms to ohms, multiply the megaohm value by 1,000,000.",
+    examples: [
+      { input: "1 MΩ", output: "1,000,000 Ω" },
+      { input: "2.2 MΩ", output: "2,200,000 Ω" },
+      { input: "10 MΩ", output: "10,000,000 Ω" }
+    ],
+    educationalText: "Megaohms are used for very high resistance values in applications like insulation testing, high-voltage circuits, and precision measurement equipment. These values are common in input impedances of operational amplifiers and digital multimeters."
+  },
+  "o-to-ko": {
+    title: "Ohms to Kiloohms",
+    fromUnit: "Ω",
+    toUnit: "kΩ",
+    formula: "kΩ = Ω ÷ 1000",
+    factor: 1 / 1000,
+    description: "Convert electrical resistance from ohms to kiloohms.",
+    howToConvert: "To convert ohms to kiloohms, divide the ohm value by 1000.",
+    examples: [
+      { input: "1000 Ω", output: "1 kΩ" },
+      { input: "4700 Ω", output: "4.7 kΩ" },
+      { input: "22000 Ω", output: "22 kΩ" }
+    ],
+    educationalText: "Converting ohms to kiloohms simplifies reading resistor color codes and circuit schematics. Most resistors in electronic circuits fall within the kiloohm range, making this conversion essential for circuit analysis and component selection."
+  },
+  "mo-to-o-milli": {
+    title: "Milliohms to Ohms",
+    fromUnit: "mΩ",
+    toUnit: "Ω",
+    formula: "Ω = mΩ ÷ 1000",
+    factor: 1 / 1000,
+    description: "Convert electrical resistance from milliohms to ohms.",
+    howToConvert: "To convert milliohms to ohms, divide the milliohm value by 1000.",
+    examples: [
+      { input: "100 mΩ", output: "0.1 Ω" },
+      { input: "500 mΩ", output: "0.5 Ω" },
+      { input: "1000 mΩ", output: "1 Ω" }
+    ],
+    educationalText: "Milliohms are used for measuring very low resistances, such as contact resistance, wire resistance in power applications, and current sensing resistors. These measurements are critical in power electronics and automotive applications."
+  },
+  "mg-to-ml": {
+    title: "Milligrams to Milliliters",
+    fromUnit: "milligrams",
+    toUnit: "milliliters",
+    formula: "mL = mg ÷ density × 1000 (for water: mL = mg ÷ 1000)",
+    factor: 1 / 1000, // For water density = 1 g/mL
+    description: "Convert mass to volume for water and pharmaceutical solutions.",
+    howToConvert: "For water-based solutions, divide milligrams by 1000 to get milliliters. For other substances, divide by density in mg/mL.",
+    examples: [
+      { input: "1000 mg (water)", output: "1 mL" },
+      { input: "500 mg (water)", output: "0.5 mL" },
+      { input: "250 mg (water)", output: "0.25 mL" }
+    ],
+    educationalText: "This conversion is crucial in pharmaceutical and medical applications where precise dosing is required. Water-based medications often use this 1:1000 ratio, but active pharmaceutical ingredients may have different densities requiring specific calculations."
+  },
+  "ml-to-mg": {
+    title: "Milliliters to Milligrams",
+    fromUnit: "milliliters",
+    toUnit: "milligrams",
+    formula: "mg = mL × density × 1000 (for water: mg = mL × 1000)",
+    factor: 1000, // For water density = 1 g/mL
+    description: "Convert volume to mass for water and pharmaceutical solutions.",
+    howToConvert: "For water-based solutions, multiply milliliters by 1000 to get milligrams. For other substances, multiply by density in mg/mL.",
+    examples: [
+      { input: "1 mL (water)", output: "1000 mg" },
+      { input: "0.5 mL (water)", output: "500 mg" },
+      { input: "0.25 mL (water)", output: "250 mg" }
+    ],
+    educationalText: "Essential for medication preparation and laboratory work, this conversion helps calculate active ingredient concentrations. Pharmaceutical solutions often express concentrations in mg/mL, making this conversion vital for accurate dosing calculations."
+  },
+  "sq-mi-to-sq-km": {
+    title: "Square Miles to Square Kilometers",
+    fromUnit: "sq mi",
+    toUnit: "sq km",
+    formula: "sq km = sq mi × 2.58999",
+    factor: 2.58999,
+    description: "Convert area measurements from square miles to square kilometers.",
+    howToConvert: "To convert square miles to square kilometers, multiply the square miles value by 2.58999.",
+    examples: [
+      { input: "1 sq mi", output: "2.59 sq km" },
+      { input: "10 sq mi", output: "25.9 sq km" },
+      { input: "100 sq mi", output: "259 sq km" }
+    ],
+    educationalText: "Square miles are commonly used in the United States for measuring large areas such as cities, counties, and states. Square kilometers are the international standard for geographic and scientific measurements, used in mapping and land surveying worldwide."
+  },
+  "sq-km-to-sq-mi": {
+    title: "Square Kilometers to Square Miles",
+    fromUnit: "sq km",
+    toUnit: "sq mi",
+    formula: "sq mi = sq km ÷ 2.58999",
+    factor: 1 / 2.58999,
+    description: "Convert area measurements from square kilometers to square miles.",
+    howToConvert: "To convert square kilometers to square miles, divide the square kilometers value by 2.58999.",
+    examples: [
+      { input: "2.59 sq km", output: "1 sq mi" },
+      { input: "25.9 sq km", output: "10 sq mi" },
+      { input: "259 sq km", output: "100 sq mi" }
+    ],
+    educationalText: "This conversion is useful for comparing international geographic data with US measurements. National parks, city areas, and geographic features are often reported in square kilometers globally but may need conversion to square miles for US audiences."
+  },
+  "kcal-to-cal": {
+    title: "Kilocalories to Calories",
+    fromUnit: "kcal",
+    toUnit: "cal",
+    formula: "cal = kcal × 1000",
+    factor: 1000,
+    description: "Convert energy measurements from kilocalories to calories.",
+    howToConvert: "To convert kilocalories to calories, multiply the kilocalorie value by 1000.",
+    examples: [
+      { input: "1 kcal", output: "1000 cal" },
+      { input: "2.5 kcal", output: "2500 cal" },
+      { input: "10 kcal", output: "10000 cal" }
+    ],
+    educationalText: "Kilocalories (often called 'calories' on food labels) are the standard unit for measuring food energy. One kilocalorie is the energy needed to raise 1 kilogram of water by 1°C. This distinction is important in nutrition science and metabolic calculations."
   }
 };
 
