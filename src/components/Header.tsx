@@ -64,7 +64,17 @@ export function Header() {
     { key: "calories-burned", name: "Calories Burned Calculator", category: "health" },
     { key: "calorie-intake", name: "Calorie Intake Calculator", category: "health" },
     { key: "target-heart-rate", name: "Target Heart Rate Calculator", category: "health" },
-    { key: "one-rep-max", name: "One-Rep Max Calculator", category: "health" }
+    { key: "one-rep-max", name: "One-Rep Max Calculator", category: "health" },
+    
+    // Math calculators
+    { key: "percentage", name: "Percentage Calculator", category: "math" },
+    { key: "gpa", name: "GPA Calculator", category: "math" },
+    { key: "fraction-to-decimal", name: "Fraction to Decimal Calculator", category: "math" },
+    { key: "area", name: "Area Calculator", category: "math" },
+    { key: "slope", name: "Slope Calculator", category: "math" },
+    { key: "standard-deviation", name: "Standard Deviation Calculator", category: "math" },
+    { key: "pythagorean", name: "Pythagorean Theorem Calculator", category: "math" },
+    { key: "scientific", name: "Scientific Calculator", category: "math" }
   ], []);
 
   // Filter calculators based on search term
@@ -110,6 +120,8 @@ export function Header() {
       navigate(`/financial/calculator/${calculator.key}`);
     } else if (calculator.category === "health") {
       navigate(`/health/calculator/${calculator.key}`);
+    } else if (calculator.category === "math") {
+      navigate(`/math/calculator/${calculator.key}`);
     }
   };
 

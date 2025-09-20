@@ -598,8 +598,12 @@ const Index = () => {
     categories.electrical,
     categories.financial,
     categories.health,
-    { name: "Health Calculators", icon: Heart, color: "text-pink-600" },
-    { name: "Math Calculators", icon: Calculator, color: "text-purple-600" },
+    {
+      name: "Math & Algebra Calculators",
+      icon: Calculator,
+      color: "text-purple-600",
+      description: "Mathematical calculations from basic arithmetic to advanced algebra, geometry, statistics, and trigonometry."
+    },
     { name: "Pets Calculators", icon: Dog, color: "text-amber-600" },
     { name: "Science Calculators", icon: Atom, color: "text-cyan-600" },
     { name: "Time & Date Calculators", icon: Clock, color: "text-indigo-600" },
@@ -652,6 +656,7 @@ const Index = () => {
               const isElectrical = category.name === "Electrical Calculators";
               const isFinancial = category.name === "Financial Calculators";
               const isHealth = category.name === "Health & Fitness Calculators";
+              const isMath = category.name === "Math & Algebra Calculators";
               
               const handleClick = () => {
                 console.log("Category clicked:", category.name);
@@ -662,6 +667,7 @@ const Index = () => {
                 if (isElectrical) navigate('/electrical');
                 if (isFinancial) navigate('/financial');
                 if (isHealth) navigate('/health');
+                if (isMath) navigate('/math');
               };
               
               return (

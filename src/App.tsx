@@ -32,6 +32,9 @@ import FinancialCalculatorPage from "./pages/FinancialCalculatorPage";
 import HealthCalculators from "./pages/HealthCalculators";
 import HealthSubCategory from "./pages/HealthSubCategory";
 import HealthCalculatorPage from "./pages/HealthCalculatorPage";
+import MathCalculators from "./pages/MathCalculators";
+import MathSubCategory from "./pages/MathSubCategory";
+import MathCalculatorPage from "./pages/MathCalculatorPage";
 
 const queryClient = new QueryClient();
 
@@ -77,6 +80,9 @@ const App = () => (
             <Route path="/health" element={<HealthCalculators />} />
             <Route path="/health/:subcategory" element={<HealthSubCategory />} />
             <Route path="/health/calculator/:calculator" element={<HealthCalculatorPage />} />
+            <Route path="/math" element={<MathCalculators />} />
+            <Route path="/math/:subcategory" element={<MathSubCategory />} />
+            <Route path="/math/calculator/:calculator" element={<MathCalculatorPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
