@@ -415,6 +415,38 @@ const Index = () => {
           ]
         }
       ]
+    },
+    electrical: {
+      name: "Electrical Calculators", 
+      icon: Zap,
+      color: "text-yellow-600",
+      description: "Our electrical calculators convert between different electrical units of power, current, frequency, and more, help estimate the electrical usage and cost of lighting and household appliances, estimate wire sizes for electrical project work, estimate circuit components, and perform physics calculations.",
+      subCategories: [
+        {
+          title: "Electrical Conversion Calculators",
+          icon: "fa-solid fa-bolt",
+          calculators: [
+            { key: "amps-to-watts", name: "Amps to Watts Conversion Calculator" },
+            { key: "watts-to-amps", name: "Watts to Amps Conversion Calculator" },
+            { key: "volts-to-amps", name: "Volts to Amps Conversion Calculator" },
+            { key: "amps-to-volts", name: "Amps to Volts Conversion Calculator" },
+            { key: "volts-to-watts", name: "Volts to Watts Conversion Calculator" },
+            { key: "watts-to-volts", name: "Watts to Volts Conversion Calculator" }
+          ]
+        },
+        {
+          title: "Electrical Calculators",
+          icon: "fa-solid fa-calculator",
+          calculators: [
+            { key: "ohms-law", name: "Ohm's Law Calculator" },
+            { key: "wire-size", name: "Wire Size Calculator" },
+            { key: "voltage-drop", name: "Voltage Drop Calculator" },
+            { key: "power-factor", name: "Power Factor Calculator" },
+            { key: "led-resistor", name: "LED Resistor Calculator" },
+            { key: "voltage-divider", name: "Voltage Divider Calculator" }
+          ]
+        }
+      ]
     }
   };
 
@@ -424,8 +456,7 @@ const Index = () => {
     categories.construction,
     categories.conversion,
     categories.cooking,
-    
-    { name: "Electrical Calculators", icon: Zap, color: "text-yellow-600" },
+    categories.electrical,
     { name: "Financial Calculators", icon: DollarSign, color: "text-emerald-600" },
     { name: "Health Calculators", icon: Heart, color: "text-pink-600" },
     { name: "Math Calculators", icon: Calculator, color: "text-purple-600" },
@@ -478,12 +509,15 @@ const Index = () => {
               const isConstruction = category.name === "Construction Calculators";
               const isConversion = category.name === "Conversion Calculators";
               const isCooking = category.name === "Cooking Calculators";
+              const isElectrical = category.name === "Electrical Calculators";
               
               const handleClick = () => {
+                console.log("Category clicked:", category.name);
                 if (isAutomotive) navigate('/automotive');
                 if (isConstruction) navigate('/construction');
                 if (isConversion) navigate('/conversion');
                 if (isCooking) navigate('/cooking');
+                if (isElectrical) navigate('/electrical');
               };
               
               return (
