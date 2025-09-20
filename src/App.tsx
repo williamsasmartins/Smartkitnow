@@ -22,6 +22,7 @@ import ConversionSubCategory from "./pages/ConversionSubCategory";
 import ConversionPage from "./pages/ConversionPage";
 import CookingCalculators from "./pages/CookingCalculators";
 import CookingSubCategory from "./pages/CookingSubCategory";
+import CookingCalculatorPage from "./pages/CookingCalculatorPage";
 
 const queryClient = new QueryClient();
 
@@ -57,7 +58,7 @@ const App = () => (
             <Route path="/calculator/:conversionKey" element={<ConversionPage />} />
             <Route path="/cooking" element={<CookingCalculators />} />
             <Route path="/cooking/:subcategory" element={<CookingSubCategory />} />
-            <Route path="/cooking/:subcategory/:calculator" element={<CalculatorPage />} />
+            <Route path="/cooking/:subcategory/:calculator" element={<CookingCalculatorPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
