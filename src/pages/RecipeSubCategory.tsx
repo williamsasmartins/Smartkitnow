@@ -69,10 +69,6 @@ export default function RecipeSubCategory() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {recipes.map((recipe, index) => (
             <Card key={index} className="cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 bg-card">
-              <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-t-lg flex items-center justify-center">
-                <ChefHat className="h-16 w-16 text-primary/60" />
-              </div>
-              
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-start mb-2">
                   <CardTitle className="text-lg font-semibold line-clamp-2">

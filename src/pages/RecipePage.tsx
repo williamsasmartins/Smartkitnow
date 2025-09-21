@@ -78,12 +78,7 @@ export default function RecipePage() {
           </button>
         </div>
 
-        {/* Recipe Header */}
         <div className="mb-8">
-          <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center mb-6">
-            <ChefHat className="h-24 w-24 text-primary/60" />
-          </div>
-          
           <div className="flex justify-between items-start mb-4">
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
