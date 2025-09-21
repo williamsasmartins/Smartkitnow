@@ -1,5 +1,4 @@
-import { useMemo, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import { useEffect, useMemo, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -11,6 +10,54 @@ export default function ConcreteSlab() {
   const [width, setWidth] = useState<string>("12");   // ft or m
   const [thickness, setThickness] = useState<string>("4"); // in or cm
 
+  // --- SEO (sem Helmet): atualiza title/meta e injeta JSON-LD ---
+  useEffect(() => {
+    const title = "Concrete Slab Calculator — Volume & Bags";
+    const desc =
+      "Free online concrete slab calculator. Enter length, width, and thickness to estimate slab volume (yd³ / m³) and required number of 40, 60, or 80 lb premix bags.";
+
+    // <title>
+    document.title = title;
+
+    // <meta name="description">
+    let meta = document.querySelector('meta[name="description"]') as HTMLMetaElement | null;
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      document.head.appendChild(meta);
+    }
+    meta.content = desc;
+
+    // JSON-LD
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: title,
+      url: "https://smartkitnow.com/construction/calculator/concrete-slab",
+      applicationCategory: "Construction Calculator",
+      operatingSystem: "All",
+      description: desc,
+      creator: { "@type": "Organization", name: "Smart Kit Now" },
+    };
+
+    // remove anterior (se houver) e injeta um novo
+    const id = "jsonld-concrete-slab";
+    const existing = document.getElementById(id);
+    if (existing) existing.remove();
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = id;
+    script.text = JSON.stringify(schema);
+    document.head.appendChild(script);
+
+    // limpeza opcional ao desmontar
+    return () => {
+      const s = document.getElementById(id);
+      if (s) s.remove();
+    };
+  }, []);
+
   const calc = useMemo(() => {
     const L = Math.max(0, parseFloat(length) || 0);
     const W = Math.max(0, parseFloat(width) || 0);
@@ -19,16 +66,18 @@ export default function ConcreteSlab() {
     let vol_ft3 = 0, vol_m3 = 0;
 
     if (unit === "imperial") {
-      const T_ft = T / 12;
+      const T_ft = T / 12;         // in -> ft
       vol_ft3 = L * W * T_ft;
       vol_m3 = vol_ft3 * 0.0283168466;
     } else {
-      const T_m = T / 100;
+      const T_m = T / 100;         // cm -> m
       vol_m3 = L * W * T_m;
       vol_ft3 = vol_m3 / 0.0283168466;
     }
 
     const yd3 = vol_ft3 / 27;
+
+    // rendimentos típicos (ft³ por saco)
     const bags40 = Math.ceil(vol_ft3 / 0.30);
     const bags60 = Math.ceil(vol_ft3 / 0.45);
     const bags80 = Math.ceil(vol_ft3 / 0.60);
@@ -36,35 +85,13 @@ export default function ConcreteSlab() {
     return { vol_ft3, vol_m3, yd3, bags40, bags60, bags80 };
   }, [unit, length, width, thickness]);
 
-  // JSON-LD for SEO
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Concrete Slab Calculator — Volume & Bags",
-    "url": "https://smartkitnow.com/construction/calculator/concrete-slab",
-    "applicationCategory": "Construction Calculator",
-    "operatingSystem": "All",
-    "description": "Free online concrete slab calculator. Estimate slab volume in cubic yards and number of 40, 60, or 80 lb premix bags required.",
-    "creator": { "@type": "Organization", "name": "Smart Kit Now" }
-  };
-
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 space-y-8">
-      {/* SEO Meta */}
-      <Helmet>
-        <title>Concrete Slab Calculator — Volume & Bags</title>
-        <meta
-          name="description"
-          content="Free online concrete slab calculator. Enter length, width, and thickness to estimate slab volume (yd³ / m³) and required number of 40, 60, or 80 lb premix bags."
-        />
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
-      </Helmet>
-
       {/* Header */}
       <header className="space-y-1">
         <h1 className="text-3xl font-bold tracking-tight">Concrete Slab Calculator</h1>
         <p className="text-muted-foreground">
-          Estimate the concrete volume and number of premix bags required for a slab. 
+          Estimate the concrete volume and number of premix bags required for a slab.
           Supports both US (ft/in) and Metric (m/cm) units.
         </p>
       </header>
