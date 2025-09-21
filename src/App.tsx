@@ -80,9 +80,7 @@ const App = () => (
             <Route path="/construction" element={<ConstructionCalculators />} />
             <Route path="/construction/:subcategory" element={<ConstructionSubCategory />} />
             <Route path="/construction/:subcategory/:calculator" element={<CalculatorPage />} />
-            <Route
-            path="/construction/calculator/concrete-slab"
-            element={
+            <Route path="/construction/calculator/concrete-slab" element={
             <Suspense fallback={<div className="mx-auto max-w-3xl px-4 py-10">Loading…</div>}>
             <ConcreteSlab />
             </Suspense>
