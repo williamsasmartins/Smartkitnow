@@ -165,7 +165,7 @@ const ConstructionCalculators = () => {
       title: "Wall & Ceiling Calculators",
       icon: "fa-solid fa-paint-roller",
       calculators: [
-        { key: "drywall-area-sheets", name: "Drywall - Area & Sheets" },
+        { key: "drywall-area-sheets", name: "Drywall — Area & Sheets" },
         { key: "paint", name: "Paint Calculator" },
         { key: "wallpaper", name: "Wallpaper Calculator" }
       ]
