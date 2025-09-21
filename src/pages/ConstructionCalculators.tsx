@@ -27,6 +27,7 @@ const ConstructionCalculators = () => {
       title: "Concrete & Masonry Calculators",
       icon: "fa-solid fa-cubes",
       calculators: [
+        { key: "concrete-slab", name: "Concrete Slab — Volume & Bags" },
         { key: "block-mortar", name: "Block Mortar Calculator" },
         { key: "concrete-block", name: "Concrete Block Calculator" },
         { key: "concrete-block-fill", name: "Concrete Block Fill Calculator" },
