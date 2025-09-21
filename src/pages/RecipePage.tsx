@@ -48,7 +48,7 @@ export default function RecipePage() {
 
   const handleBackClick = () => {
     const categorySlug = category?.toLowerCase().replace(/\s+/g, '-');
-    navigate(`/recipes/${categorySlug}`);
+    navigate(categorySlug ? `/recipes/${categorySlug}` : '/recipes');
   };
 
   const getDifficultyColor = (difficulty: string) => {
