@@ -3,6 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
+const ConcreteSlab = lazy(() => import("@/components/calculators/ConcreteSlab"));
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
@@ -78,6 +80,14 @@ const App = () => (
             <Route path="/construction" element={<ConstructionCalculators />} />
             <Route path="/construction/:subcategory" element={<ConstructionSubCategory />} />
             <Route path="/construction/:subcategory/:calculator" element={<CalculatorPage />} />
+            <Route
+            path="/construction/calculator/concrete-slab"
+            element={
+            <Suspense fallback={<div className="mx-auto max-w-3xl px-4 py-10">Loading…</div>}>
+            <ConcreteSlab />
+            </Suspense>
+             }
+            />
             <Route path="/conversion" element={<ConversionCalculators />} />
             <Route path="/conversion/:subcategory" element={<ConversionSubCategory />} />
             <Route path="/conversion/:subcategory/:calculator" element={<CalculatorPage />} />
