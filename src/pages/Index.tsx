@@ -1222,6 +1222,7 @@ const Index = () => {
             const isPets = category.name === "Pet Care Calculators";
             const isScience = category.name === "Science Calculators";
             const isTime = category.name === "Time & Date Calculators";
+            const isRecipes = category.name === "Recipes";
             const handleClick = () => {
               console.log("Category clicked:", category.name);
               if (isAutomotive) navigate('/automotive');
@@ -1235,6 +1236,7 @@ const Index = () => {
               if (isPets) navigate('/pets');
               if (isScience) navigate('/science');
               if (isTime) navigate('/time');
+              if (isRecipes) navigate('/recipes');
             };
             return <Card key={index} className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer" onClick={handleClick}>
                   <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
