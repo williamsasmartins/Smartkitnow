@@ -28,14 +28,9 @@ export default function ConcreteSlab() {
     }
 
     const yd3 = vol_ft3 / 27;
-
-    const yield40 = 0.30;
-    const yield60 = 0.45;
-    const yield80 = 0.60;
-
-    const bags40 = Math.ceil(vol_ft3 / yield40);
-    const bags60 = Math.ceil(vol_ft3 / yield60);
-    const bags80 = Math.ceil(vol_ft3 / yield80);
+    const bags40 = Math.ceil(vol_ft3 / 0.30);
+    const bags60 = Math.ceil(vol_ft3 / 0.45);
+    const bags80 = Math.ceil(vol_ft3 / 0.60);
 
     return { vol_ft3, vol_m3, yd3, bags40, bags60, bags80 };
   }, [unit, length, width, thickness]);
@@ -45,7 +40,7 @@ export default function ConcreteSlab() {
       <header className="space-y-1">
         <h1 className="text-3xl font-bold tracking-tight">Concrete Slab — Volume & Bags</h1>
         <p className="text-muted-foreground">
-          Enter slab length, width, and thickness to estimate concrete volume and number of premix bags.
+          Enter slab length, width, and thickness to estimate volume and premix bags.
         </p>
       </header>
 
@@ -57,8 +52,8 @@ export default function ConcreteSlab() {
             <Select value={unit} onValueChange={(v) => setUnit(v as any)}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="imperial">US (ft / in)</SelectItem>
-                <SelectItem value="metric">Metric (m / cm)</SelectItem>
+                <SelectItem value="imperial">US (ft/in)</SelectItem>
+                <SelectItem value="metric">Metric (m/cm)</SelectItem>
               </SelectContent>
             </Select>
           </div>
