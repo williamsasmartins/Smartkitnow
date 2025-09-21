@@ -1,32 +1,61 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
-const Contact = () => {
+export default function Contact() {
   return (
-    <div className="min-h-screen bg-gradient-soft">
-      <Header />
-      
-      <main className="pt-20 container mx-auto px-4 py-16">
-        <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6">
-            Contact Us
-          </h1>
-          <p className="text-muted-foreground text-lg mb-8">
-            This page is under construction. Please check back soon for our contact information and support options.
-          </p>
-          <div className="bg-card border border-border/50 rounded-lg p-8">
-            <h2 className="text-xl font-semibold mb-4">Coming Soon</h2>
-            <p className="text-muted-foreground">
-              We're working on bringing you the best ways to get in touch with our team. 
-              Stay tuned for updates!
-            </p>
-          </div>
-        </div>
-      </main>
+    <div className="mx-auto max-w-3xl px-4 py-10 space-y-6">
+      <header className="space-y-2">
+        <h1 className="text-3xl font-bold tracking-tight">Contact Us</h1>
+        <p className="text-muted-foreground">
+          Questions, suggestions, or feedback? We’d love to hear from you.
+        </p>
+      </header>
 
-      <Footer />
+      <Card>
+        <CardHeader>
+          <CardTitle>How to Reach Us</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <p>
+            <strong>Email:</strong>{" "}
+            <a className="underline" href="mailto:contact@smartkitnow.com">
+              hello@smartkitnow.com
+            </a>
+          </p>
+          <p>
+            <strong>Business Hours:</strong> Monday–Friday, 9:00–17:00 (PST)
+          </p>
+          <p>
+            <strong>Location:</strong> Burnaby, British Columbia, Canada
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Send a Message</CardTitle>
+        </CardHeader>
+        <CardContent className="grid gap-4">
+          <div className="grid gap-2">
+            <Label htmlFor="name">Name</Label>
+            <Input id="name" placeholder="Your name" />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" type="email" placeholder="contact@smartkitnow.com" />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="message">Message</Label>
+            <Textarea id="message" placeholder="How can we help?" />
+          </div>
+          <Button type="button" disabled>
+            Submit (please email us directly for now)
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   );
-};
-
-export default Contact;
+}
