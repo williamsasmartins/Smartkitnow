@@ -95,10 +95,6 @@ export default function RecipePage() {
             </div>
             
             <div className="flex gap-2">
-              <Button variant="outline" size="sm" onClick={() => navigate('/recipes')}>
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Main
-              </Button>
               <Button variant="outline" size="sm">
                 <Heart className="h-4 w-4 mr-2" />
                 Save
