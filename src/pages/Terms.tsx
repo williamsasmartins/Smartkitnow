@@ -1,88 +1,16 @@
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-
 export default function Terms() {
-  const updated = "September 20, 2025";
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 space-y-6">
-      <header className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Terms of Use</h1>
-        <p className="text-muted-foreground">Last updated: {updated}</p>
-      </header>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Acceptance of Terms</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>
-            By using Smart Kit Now, you agree to these Terms. If you do not agree, please stop using
-            the site.
-          </p>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Use of Tools</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="list-disc pl-5 space-y-2">
-            <li>Calculators are for informational and educational purposes only.</li>
-            <li>
-              Results are not guaranteed. Always verify before financial, medical, or construction
-              decisions.
-            </li>
-          </ul>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Intellectual Property</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>
-            All content, design, and code on Smart Kit Now are the property of Smart Kit Now and
-            cannot be reused without permission.
-          </p>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Third-Party Links</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>
-            Our site may link to external resources. We are not responsible for their content or
-            practices.
-          </p>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Limitation of Liability</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>
-            Smart Kit Now is not liable for any losses or damages resulting from the use of our
-            site.
-          </p>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Changes</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>
-            We may update these Terms at any time. By continuing to use the site, you accept the
-            revised Terms.
-          </p>
-        </CardContent>
-      </Card>
+    <div className="min-h-screen bg-gradient-soft">
+      <div className="container mx-auto px-4 py-16">
+        <div className="mx-auto max-w-2xl text-center">
+          <h1 className="mb-6 text-4xl font-bold text-foreground">Terms of Service</h1>
+          <div className="rounded-lg bg-card p-8 shadow-soft">
+            <p className="text-lg text-muted-foreground">
+              This page is currently under construction. We're working hard to bring you amazing content soon!
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

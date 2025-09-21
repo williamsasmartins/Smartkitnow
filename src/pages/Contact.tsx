@@ -22,7 +22,7 @@ export default function Contact() {
           <p>
             <strong>Email:</strong>{" "}
             <a className="underline" href="mailto:contact@smartkitnow.com">
-              contact@smartkitnow.com
+              hello@smartkitnow.com
             </a>
           </p>
           <p>
