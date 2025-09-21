@@ -116,17 +116,17 @@ export default function RecipeCalculators() {
           {recipeCategories.map((category) => (
             <Card 
               key={category.title}
-              className={`cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 ${category.color}`}
+              className="cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 bg-card border-border"
               onClick={() => handleSubCategoryClick(category.title)}
             >
               <CardContent className="p-6">
                 <div className="flex flex-col items-center text-center space-y-4">
-                  <div className={`p-3 rounded-full bg-white/80 ${category.iconColor}`}>
-                    <category.icon className="h-8 w-8" />
+                  <div className="p-3 rounded-full bg-primary/10 border border-primary/20">
+                    <category.icon className={`h-8 w-8 ${category.iconColor}`} />
                   </div>
                   
                   <div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">
+                    <h3 className="text-xl font-semibold text-card-foreground mb-2">
                       {category.title}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
