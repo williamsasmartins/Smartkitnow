@@ -33,7 +33,6 @@ const REGISTRY: Record<
     category: "construction",
   },
   // adicione novas calculadoras aqui:
-  // "drywall-area-sheets": { Component: DrywallAreaSheets, name: "Drywall — Area & Sheets", category: "construction" },
 };
 
 /** Helper: transforma "concrete-masonry-calculators" -> "Concrete Masonry Calculators" */
