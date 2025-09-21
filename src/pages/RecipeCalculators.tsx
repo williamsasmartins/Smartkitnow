@@ -137,6 +137,15 @@ export default function RecipeCalculators() {
                   <div className="text-xs text-muted-foreground font-medium">
                     10 Recipes Available
                   </div>
+
+                  <button
+                    onClick={(e) => { e.stopPropagation(); navigate('/'); }}
+                    className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 hover:bg-muted rounded-md"
+                    aria-label="Back to Home"
+                  >
+                    <ArrowLeft className="h-3.5 w-3.5" />
+                    Back
+                  </button>
                 </div>
               </CardContent>
             </Card>
