@@ -12,6 +12,7 @@ import { ArrowLeft, Calculator } from "lucide-react";
  *    Ex.: /construction/concrete-masonry-calculators/concrete-slab  -> "concrete-slab"
  */
 const ConcreteSlab = lazy(() => import("@/components/calculators/ConcreteSlab"));
+const DrywallAreaSheets = lazy(() => import("@/components/calculators/DrywallAreaSheets"));
 
 const REGISTRY: Record<
   string,
@@ -24,6 +25,11 @@ const REGISTRY: Record<
   "concrete-slab": {
     Component: ConcreteSlab,
     name: "Concrete Slab — Volume & Bags",
+    category: "construction",
+  },
+"drywall-area-sheets": {
+    Component: DrywallAreaSheets,
+    name: "Drywall — Area & Sheets",
     category: "construction",
   },
   // adicione novas calculadoras aqui:
