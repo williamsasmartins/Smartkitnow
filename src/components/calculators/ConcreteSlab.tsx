@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -35,15 +36,40 @@ export default function ConcreteSlab() {
     return { vol_ft3, vol_m3, yd3, bags40, bags60, bags80 };
   }, [unit, length, width, thickness]);
 
+  // JSON-LD for SEO
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Concrete Slab Calculator — Volume & Bags",
+    "url": "https://smartkitnow.com/construction/calculator/concrete-slab",
+    "applicationCategory": "Construction Calculator",
+    "operatingSystem": "All",
+    "description": "Free online concrete slab calculator. Estimate slab volume in cubic yards and number of 40, 60, or 80 lb premix bags required.",
+    "creator": { "@type": "Organization", "name": "Smart Kit Now" }
+  };
+
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 space-y-6">
+    <div className="mx-auto max-w-3xl px-4 py-10 space-y-8">
+      {/* SEO Meta */}
+      <Helmet>
+        <title>Concrete Slab Calculator — Volume & Bags</title>
+        <meta
+          name="description"
+          content="Free online concrete slab calculator. Enter length, width, and thickness to estimate slab volume (yd³ / m³) and required number of 40, 60, or 80 lb premix bags."
+        />
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
+      </Helmet>
+
+      {/* Header */}
       <header className="space-y-1">
-        <h1 className="text-3xl font-bold tracking-tight">Concrete Slab — Volume & Bags</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Concrete Slab Calculator</h1>
         <p className="text-muted-foreground">
-          Enter slab length, width, and thickness to estimate volume and premix bags.
+          Estimate the concrete volume and number of premix bags required for a slab. 
+          Supports both US (ft/in) and Metric (m/cm) units.
         </p>
       </header>
 
+      {/* Inputs */}
       <Card>
         <CardHeader><CardTitle>Inputs</CardTitle></CardHeader>
         <CardContent className="grid gap-4 md:grid-cols-4">
@@ -52,8 +78,8 @@ export default function ConcreteSlab() {
             <Select value={unit} onValueChange={(v) => setUnit(v as any)}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="imperial">US (ft/in)</SelectItem>
-                <SelectItem value="metric">Metric (m/cm)</SelectItem>
+                <SelectItem value="imperial">US (ft / in)</SelectItem>
+                <SelectItem value="metric">Metric (m / cm)</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -72,11 +98,12 @@ export default function ConcreteSlab() {
         </CardContent>
       </Card>
 
+      {/* Results */}
       <Card>
         <CardHeader><CardTitle>Results</CardTitle></CardHeader>
-        <CardContent className="grid gap-2">
+        <CardContent className="space-y-2">
           <div><strong>Volume:</strong> {calc.yd3.toFixed(3)} yd³ · {calc.vol_m3.toFixed(3)} m³</div>
-          <div className="mt-1">
+          <div>
             <strong>Estimated bags:</strong>
             <ul className="list-disc pl-5">
               <li>40 lb: {calc.bags40}</li>
@@ -84,9 +111,46 @@ export default function ConcreteSlab() {
               <li>80 lb: {calc.bags80}</li>
             </ul>
           </div>
-          <p className="text-sm text-muted-foreground">Tip: add 5–10% for waste.</p>
+          <p className="text-sm text-muted-foreground">Tip: add 5–10% extra to account for waste.</p>
         </CardContent>
       </Card>
+
+      {/* Explanation */}
+      <section className="space-y-3">
+        <h2 className="text-2xl font-semibold">How it works</h2>
+        <p>
+          Concrete volume is calculated as <code>Length × Width × Thickness</code>.
+          Thickness is converted to feet (US) or meters (Metric).
+          The total volume is reported in cubic yards and cubic meters.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-2xl font-semibold">Example</h2>
+        <p>
+          A 20 ft × 12 ft slab with 4 in thickness:
+          <br />
+          Volume = 20 × 12 × (4 ÷ 12) = 80 ft³ = 2.96 yd³.
+          <br />
+          Requires about 99 bags of 40 lb premix, or 66 bags of 60 lb, or 50 bags of 80 lb.
+        </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-2xl font-semibold">FAQ</h2>
+        <div>
+          <p className="font-medium">How accurate is this calculator?</p>
+          <p className="text-muted-foreground">It provides a good estimate, but always round up and add 5–10% for waste.</p>
+        </div>
+        <div>
+          <p className="font-medium">What size concrete bags does it support?</p>
+          <p className="text-muted-foreground">40 lb, 60 lb, and 80 lb premix bags.</p>
+        </div>
+        <div>
+          <p className="font-medium">Does it work with metric units?</p>
+          <p className="text-muted-foreground">Yes, you can switch between US (ft/in) and Metric (m/cm) at the top.</p>
+        </div>
+      </section>
     </div>
   );
 }
