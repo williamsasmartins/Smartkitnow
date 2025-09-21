@@ -154,7 +154,7 @@ const CookingSubCategory = () => {
                   <div className="mx-auto mb-3 p-2 rounded-lg bg-gradient-primary/10 group-hover:bg-gradient-primary/20 transition-colors w-fit">
                     <Calculator className="h-5 w-5 text-primary" />
                   </div>
-                  <CardTitle className="text-lg font-bold group-hover:text-primary transition-colors leading-tight">
+                  <CardTitle className="text-lg font-bold group-hover:text-primary transition-colors">
                     {calculator.name}
                   </CardTitle>
                 </CardHeader>

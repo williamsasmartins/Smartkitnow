@@ -141,3 +141,14 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Utilities: typography fixes */
+@layer utilities {
+  /* Prevent descender clipping on gradient-clipped headings like "Dog Age" or "Mortgage" */
+  .heading-fix,
+  .bg-clip-text.text-transparent {
+    line-height: 1.25; /* give room for g, y, p, q */
+    padding-bottom: 0.1em; /* subtle breathing room to avoid visual crop */
+  }
+}
+
