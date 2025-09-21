@@ -1292,6 +1292,195 @@ const Index = () => {
           })}
           </div>
         </section>
+
+        {/* About Us Section */}
+        <section className="container mx-auto px-4 py-16">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-foreground mb-4">About Smart Kit Now</h2>
+              <p className="text-muted-foreground text-lg">
+                Your trusted companion for accurate calculations and conversions
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <Card className="border-border/50">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Calculator className="h-5 w-5 text-primary" />
+                    Precision & Reliability
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Every calculator on Smart Kit Now is built with precision in mind. Our formulas are extensively tested 
+                    and validated to ensure you get accurate results every time, whether you're planning a construction project, 
+                    managing finances, or converting units.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-border/50">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Lightbulb className="h-5 w-5 text-primary" />
+                    Easy to Use
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    We believe powerful tools should be simple to use. Our intuitive interface makes complex calculations 
+                    accessible to everyone, from professionals to DIY enthusiasts. No complicated software or downloads required.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="prose prose-slate max-w-none">
+              <h3 className="text-2xl font-semibold text-foreground mb-4">Why Choose Smart Kit Now?</h3>
+              <p className="text-muted-foreground mb-6">
+                Smart Kit Now has become the go-to platform for millions of users worldwide who need reliable calculation tools. 
+                Our comprehensive suite of calculators covers everything from basic math operations to specialized industry calculations, 
+                making us your one-stop solution for all computational needs.
+              </p>
+
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-primary-soft/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Star className="h-6 w-6 text-primary" />
+                  </div>
+                  <h4 className="font-semibold text-foreground mb-2">Trusted by Millions</h4>
+                  <p className="text-sm text-muted-foreground">Over 5 million calculations performed monthly</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-primary-soft/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Dumbbell className="h-6 w-6 text-primary" />
+                  </div>
+                  <h4 className="font-semibold text-foreground mb-2">Professional Grade</h4>
+                  <p className="text-sm text-muted-foreground">Used by engineers, contractors, and professionals</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-primary-soft/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Heart className="h-6 w-6 text-primary" />
+                  </div>
+                  <h4 className="font-semibold text-foreground mb-2">Always Free</h4>
+                  <p className="text-sm text-muted-foreground">No subscriptions, no hidden fees, completely free</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Our Calculators Matter Section */}
+        <section className="container mx-auto px-4 py-16 bg-muted/20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-foreground mb-12">
+              Empowering Better Decisions Through Accurate Calculations
+            </h2>
+
+            <div className="space-y-8">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-4">For Professionals & Contractors</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Construction professionals rely on Smart Kit Now for accurate material estimates, cost calculations, 
+                    and project planning. Our construction calculators help you minimize waste, stay within budget, and 
+                    deliver projects on time. From concrete volume to lumber calculations, we've got you covered.
+                  </p>
+                  <ul className="text-muted-foreground space-y-2">
+                    <li>• Reduce material waste by up to 15% with accurate estimates</li>
+                    <li>• Save time on complex calculations</li>
+                    <li>• Improve project profitability through better planning</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-4">For Health & Fitness Enthusiasts</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Take control of your health journey with our comprehensive health calculators. Whether you're tracking 
+                    your BMI, calculating daily calorie needs, or monitoring your fitness progress, our tools provide 
+                    the insights you need to make informed decisions about your health and wellness.
+                  </p>
+                  <ul className="text-muted-foreground space-y-2">
+                    <li>• Track your health metrics accurately</li>
+                    <li>• Set realistic fitness and nutrition goals</li>
+                    <li>• Monitor progress over time</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-4">For Financial Planning</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Make smarter financial decisions with our suite of financial calculators. From loan payments and 
+                    mortgage calculations to investment returns and retirement planning, we help you understand the 
+                    financial impact of your decisions before you make them.
+                  </p>
+                  <ul className="text-muted-foreground space-y-2">
+                    <li>• Compare loan options and payment schedules</li>
+                    <li>• Plan for major purchases and investments</li>
+                    <li>• Understand compound interest and growth</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-4">For Students & Educators</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Students and teachers use Smart Kit Now to verify homework answers, explore mathematical concepts, 
+                    and solve real-world problems. Our calculators serve as both learning tools and practical resources 
+                    for academic success across multiple subjects and grade levels.
+                  </p>
+                  <ul className="text-muted-foreground space-y-2">
+                    <li>• Verify calculations and check homework</li>
+                    <li>• Learn through interactive examples</li>
+                    <li>• Explore mathematical relationships</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Our Commitment Section */}
+        <section className="container mx-auto px-4 py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-6">Our Commitment to Excellence</h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              At Smart Kit Now, we're committed to providing you with the most accurate, reliable, and user-friendly 
+              calculators available online. We continuously update our tools based on user feedback and industry 
+              standards to ensure you always have access to the best calculation resources.
+            </p>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="p-6 rounded-lg bg-card border border-border/50">
+                <BookOpen className="h-8 w-8 text-primary mx-auto mb-3" />
+                <h4 className="font-semibold text-foreground mb-2">Continuous Learning</h4>
+                <p className="text-sm text-muted-foreground">
+                  We regularly add new calculators and improve existing ones based on user needs and industry developments.
+                </p>
+              </div>
+              
+              <div className="p-6 rounded-lg bg-card border border-border/50">
+                <Smile className="h-8 w-8 text-primary mx-auto mb-3" />
+                <h4 className="font-semibold text-foreground mb-2">User-Centric Design</h4>
+                <p className="text-sm text-muted-foreground">
+                  Every feature we build is designed with our users in mind, ensuring maximum usability and efficiency.
+                </p>
+              </div>
+              
+              <div className="p-6 rounded-lg bg-card border border-border/50">
+                <Quote className="h-8 w-8 text-primary mx-auto mb-3" />
+                <h4 className="font-semibold text-foreground mb-2">Transparency</h4>
+                <p className="text-sm text-muted-foreground">
+                  We provide clear explanations of our formulas and methodologies so you understand exactly how results are calculated.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Footer Section */}
