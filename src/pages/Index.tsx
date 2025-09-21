@@ -1137,7 +1137,9 @@ const Index = () => {
   }, {
     name: "Recipes",
     icon: BookOpen,
-    color: "text-teal-600"
+    color: "text-teal-600",
+    path: "/recipes",
+    description: "Delicious and healthy recipes with detailed nutrition information, cooking tips, and step-by-step instructions."
   }, {
     name: "Smart Tips",
     icon: Lightbulb,
