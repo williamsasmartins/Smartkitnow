@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CalculatorFooter } from "@/components/CalculatorFooter";
@@ -8,34 +8,32 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calculator } from "lucide-react";
 
 /**
- * 1) Registre aqui cada calculadora pelo SLUG (calculator param da URL)
- *    Ex.: /construction/concrete-masonry-calculators/concrete-slab  -> "concrete-slab"
+ * Registre aqui cada calculadora pelo SLUG (param :calculator da URL).
+ * Ex.: /construction/concrete-masonry-calculators/concrete-slab -> "concrete-slab"
  */
 const ConcreteSlab = lazy(() => import("@/components/calculators/ConcreteSlab"));
 const DrywallAreaSheets = lazy(() => import("@/components/calculators/DrywallAreaSheets"));
 
-const REGISTRY: Record<
-  string,
-  {
-    Component: React.LazyExoticComponent<() => JSX.Element>;
-    name: string;      // Título exibido na página
-    category: string;  // Category raiz (construction, etc.)
-  }
-> = {
+type CalcEntry = {
+  Component: React.LazyExoticComponent<React.ComponentType<any>>;
+  name: string;     // Título exibido
+  category: string; // Raiz da categoria (ex.: "construction")
+};
+
+const REGISTRY: Record<string, CalcEntry> = {
   "concrete-slab": {
     Component: ConcreteSlab,
     name: "Concrete Slab — Volume & Bags",
     category: "construction",
   },
-"drywall-area-sheets": {
+  "drywall-area-sheets": {
     Component: DrywallAreaSheets,
     name: "Drywall — Area & Sheets",
     category: "construction",
   },
-  // adicione novas calculadoras aqui:
 };
 
-/** Helper: transforma "concrete-masonry-calculators" -> "Concrete Masonry Calculators" */
+/** Helper: "concrete-masonry-calculators" -> "Concrete Masonry Calculators" */
 function titleCaseFromSlug(slug?: string) {
   if (!slug) return "";
   return slug
@@ -48,18 +46,28 @@ const CalculatorPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Agora usamos os PARAMS da rota em vez de depender de location.state
+  // Usamos os PARAMS da rota (não dependemos mais de location.state)
   const { subcategory, calculator } = useParams<{ subcategory: string; calculator: string }>();
 
-  // Entra no registro para achar o componente
+  // Busca o componente no registro
   const entry = calculator ? REGISTRY[calculator] : undefined;
   const subCategoryTitle = titleCaseFromSlug(subcategory);
 
-  // Descobre a "category" a partir do caminho atual (primeiro segmento após "/")
+  // Descobre a "category" a partir do path (primeiro segmento após "/")
   // Ex.: "/construction/..." -> "construction"
-  const categoryFromPath = location.pathname.split("/")[1] || entry?.category || "construction";
+  const categoryFromPath =
+    location.pathname.split("/")[1] || entry?.category || "construction";
 
-  // Se o slug não existir no registro, mostra "not found" amigável
+  // "Voltar": para a subcategoria, se houver; senão, para a raiz da categoria
+  const handleGoBack = () => {
+    if (subcategory) {
+      navigate(`/${categoryFromPath}/${subcategory}`);
+    } else {
+      navigate(`/${categoryFromPath}`);
+    }
+  };
+
+  // Estado para quando o slug não está registrado
   const NotFoundCalc = (
     <Card className="bg-card border-border/50">
       <CardContent className="p-8">
@@ -70,23 +78,22 @@ const CalculatorPage = () => {
             We couldn’t find this calculator. Please go back and choose another one.
           </p>
           <div className="mt-6">
-            <Button onClick={() => navigate(`/${categoryFromPath}/${subcategory ?? ""}`)}>
-              Back to {subCategoryTitle || "subcategory"}
+            <Button
+              onClick={() =>
+                navigate(
+                  subcategory
+                    ? `/${categoryFromPath}/${subcategory}`
+                    : `/${categoryFromPath}`
+                )
+              }
+            >
+              Back to {subCategoryTitle || titleCaseFromSlug(categoryFromPath)}
             </Button>
           </div>
         </div>
       </CardContent>
     </Card>
   );
-
-  const handleGoBack = () => {
-    // Volta para a subcategoria se existir, senão para a raiz da categoria
-    if (subcategory) {
-      navigate(`/${categoryFromPath}/${subcategory}`);
-    } else {
-      navigate(`/${categoryFromPath}`);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-soft">
@@ -116,7 +123,8 @@ const CalculatorPage = () => {
                   {entry?.name ?? "Calculator"}
                 </h1>
                 <p className="text-muted-foreground mt-2 text-lg">
-                  Category: {titleCaseFromSlug(categoryFromPath)}{subcategory ? ` · ${subCategoryTitle}` : ""}
+                  Category: {titleCaseFromSlug(categoryFromPath)}
+                  {subcategory ? ` · ${subCategoryTitle}` : ""}
                 </p>
               </div>
             </div>
@@ -124,9 +132,13 @@ const CalculatorPage = () => {
 
           {/* Conteúdo da calculadora */}
           {entry ? (
-            <Suspense fallback={
-              <div className="mx-auto max-w-3xl px-4 py-10 text-center">Loading…</div>
-            }>
+            <Suspense
+              fallback={
+                <div className="mx-auto max-w-3xl px-4 py-10 text-center">
+                  Loading…
+                </div>
+              }
+            >
               <entry.Component />
             </Suspense>
           ) : (
