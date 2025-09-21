@@ -124,11 +124,14 @@ export default function RecipeSubCategory() {
                   <Button 
                     variant="ghost"
                     size="sm"
-                    onClick={() => navigate('/recipes')}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate('/recipes');
+                    }}
                     className="inline-flex items-center justify-center gap-2 text-muted-foreground hover:text-foreground"
                   >
                     <ArrowLeft className="h-4 w-4" />
-                    Back
+                    Back to Main
                   </Button>
                 </div>
               </CardContent>
