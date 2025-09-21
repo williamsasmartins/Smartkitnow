@@ -1,9 +1,11 @@
 import { ThemeToggle } from "./ThemeToggle";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Search, ArrowLeft } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useMemo } from "react";
 import logoImage from "@/assets/logo-skn.png";
+import { recipeData } from "@/data/recipeData";
 
 export function Header() {
   const navigate = useNavigate();
@@ -176,6 +178,31 @@ export function Header() {
     navigateToCalculator(calculator);
   };
 
+  // Contextual Back Target for recipe pages
+  const location = useLocation();
+  const pathname = location.pathname;
+  const stateCategory = (location.state as any)?.category as string | undefined;
+
+  const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+  let backTarget: string | null = null;
+  if (pathname === '/recipes') {
+    backTarget = '/';
+  } else if (pathname.startsWith('/recipes/')) {
+    backTarget = '/recipes';
+  } else if (pathname.startsWith('/recipe/')) {
+    let cat = stateCategory;
+    if (!cat) {
+      const slug = pathname.split('/').pop();
+      outer: for (const [catName, list] of Object.entries(recipeData as Record<string, any[]>)) {
+        for (const r of list as any[]) {
+          if (slugify(r.name) === slug) { cat = catName; break outer; }
+        }
+      }
+    }
+    backTarget = cat ? `/recipes/${slugify(cat)}` : '/recipes';
+  }
+
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/90">
       <div className="container mx-auto px-4 py-3">
@@ -191,6 +218,14 @@ export function Header() {
               className="h-12 w-auto"
             />
           </div>
+
+          {/* Contextual Back */}
+          {backTarget && (
+            <Button variant="ghost" size="sm" onClick={() => navigate(backTarget)} className="flex-shrink-0">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              <span className="hidden sm:inline">Back</span>
+            </Button>
+          )}
 
           {/* Search Bar */}
           <form onSubmit={handleSearchSubmit} className="flex-1 max-w-2xl mx-4 relative">
