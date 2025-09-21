@@ -1261,7 +1261,7 @@ const Index = () => {
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-foreground mb-4">Featured Calculators</h3>
             <p className="text-muted-foreground text-lg">
-              Most popular calculators used by our community
+              Essential calculation tools trusted by millions of professionals, students, and DIY enthusiasts worldwide
             </p>
           </div>
 
