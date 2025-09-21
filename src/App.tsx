@@ -46,6 +46,9 @@ import ScienceSubCategory from "./pages/ScienceSubCategory";
 import ScienceCalculatorPage from "./pages/ScienceCalculatorPage";
 import TVCalculators from "./pages/TVCalculators";
 import TVSubCategory from "./pages/TVSubCategory";
+import RecipeCalculators from "./pages/RecipeCalculators";
+import RecipeSubCategory from "./pages/RecipeSubCategory";
+import RecipePage from "./pages/RecipePage";
 import TVCalculatorPage from "./pages/TVCalculatorPage";
 import TimeCalculators from "./pages/TimeCalculators";
 import TimeSubCategory from "./pages/TimeSubCategory";
@@ -119,6 +122,9 @@ const App = () => (
             <Route path="/tv" element={<TVCalculators />} />
             <Route path="/tv/:subcategory" element={<TVSubCategory />} />
             <Route path="/tv/calculator/:calculator" element={<TVCalculatorPage />} />
+            <Route path="/recipes" element={<RecipeCalculators />} />
+            <Route path="/recipes/:subcategory" element={<RecipeSubCategory />} />
+            <Route path="/recipe/:recipeSlug" element={<RecipePage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
