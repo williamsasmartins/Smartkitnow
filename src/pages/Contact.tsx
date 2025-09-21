@@ -3,10 +3,25 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Header } from "@/components/Header";
 
 export default function Contact() {
+  const navigate = useNavigate();
+
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 space-y-6">
+    <>
+      <Header />
+      <div className="mx-auto max-w-3xl px-4 py-10 space-y-6">
+        <Button
+          variant="ghost"
+          onClick={() => navigate("/")}
+          className="mb-4"
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Voltar para Home
+        </Button>
       <header className="space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">Contact Us</h1>
         <p className="text-muted-foreground">
@@ -56,6 +71,7 @@ export default function Contact() {
           </Button>
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </>
   );
 }
