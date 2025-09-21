@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -6,12 +6,27 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Clock, Users, ChefHat, Star, Heart, Bookmark } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { recipeData } from "@/data/recipeData";
 
 export default function RecipePage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { recipe, category } = location.state || {};
+  const { recipe: stateRecipe, category: stateCategory } = location.state || {};
+  const { recipeSlug } = useParams();
 
+  const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const findBySlug = (slug?: string) => {
+    if (!slug) return null as null | { recipe: any; category: string };
+    for (const [cat, list] of Object.entries(recipeData as Record<string, any[]>)) {
+      const found = (list as any[]).find((r: any) => slugify(r.name) === slug);
+      if (found) return { recipe: found, category: cat };
+    }
+    return null;
+  };
+
+  const derived = stateRecipe ? null : findBySlug(recipeSlug);
+  const recipe = stateRecipe ?? derived?.recipe;
+  const category = stateCategory ?? derived?.category;
   if (!recipe) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
