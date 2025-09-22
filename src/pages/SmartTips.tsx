@@ -54,12 +54,13 @@ const SmartTips: React.FC = () => {
         {/* Back Button */}
         <div className="mb-6">
           <Button 
-            variant="outline" 
+            variant="ghost"
+            size="sm"
             onClick={handleBackClick}
-            className="gap-2"
+            className="flex items-center space-x-2 mb-6"
           >
             <ArrowLeft className="h-4 w-4" />
-            ← Back
+            <span>Back</span>
           </Button>
         </div>
 

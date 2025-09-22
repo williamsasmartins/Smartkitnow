@@ -70,13 +70,14 @@ const SmartTipDetail: React.FC = () => {
         {/* Back Button */}
         <nav className="mb-6">
           <Button 
-            variant="outline" 
+            variant="ghost"
+            size="sm"
             onClick={handleBackClick}
-            className="gap-2"
-            aria-label="Go back to tips"
+            className="flex items-center space-x-2 mb-6"
+            aria-label="Back"
           >
             <ArrowLeft className="h-4 w-4" />
-            ← Back to Tips
+            <span>Back</span>
           </Button>
         </nav>
 
