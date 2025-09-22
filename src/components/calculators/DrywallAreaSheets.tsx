@@ -9,7 +9,7 @@ const SHEETS = {
   "4×12 ft": 48,
 };
 
-export { default } from "./DrywallEstimator";
+export default function DrywallAreaSheets() {
   const [areaPerRoom, setAreaPerRoom] = useState<string>("450"); // ft² por cômodo
   const [rooms, setRooms] = useState<string>("1");
   const [sheetKey, setSheetKey] = useState<keyof typeof SHEETS>("4×8 ft");
