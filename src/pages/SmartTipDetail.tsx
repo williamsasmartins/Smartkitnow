@@ -22,13 +22,29 @@ const SmartTipDetail: React.FC = () => {
   const locationState = location.state || {};
   const categorySlug = locationState.categorySlug || category?.slug;
   const categoryTitle = locationState.categoryTitle || category?.title;
+const handleBackClick = () => {
+  console.log('Back button clicked - Debug info:', {
+    windowHistoryLength: window.history.length,
+    locationState,
+    categorySlug,
+    currentPath: location.pathname
+  });
 
-  const handleBackClick = () => {
+  // 1. Tenta navegação nativa primeiro
+  try {
     if (window.history.length > 1) {
-      navigate(-1);
+      console.log('Using native back navigation');
+      window.history.back();
       return;
     }
+  } catch (error) {
+    console.error('Native back failed:', error);
+  }
+
+  // 2. Fallback para navegação programática
+  try {
     if (locationState.fromSubcategory && categorySlug) {
+      console.log('Navigating to category:', categorySlug);
       navigate(`/smart-tips/${categorySlug}`, {
         state: {
           categoryTitle,
@@ -38,11 +54,17 @@ const SmartTipDetail: React.FC = () => {
           categoryIcon: category?.icon
         }
       });
-    } else {
-      navigate('/smart-tips');
+      return;
     }
-  };
+  } catch (error) {
+    console.error('Category navigation failed:', error);
+  }
 
+  // 3. Último fallback - vai para página de tips principal
+  console.log('Fallback to main tips page');
+  navigate('/smart-tips', { replace: true });
+};
+ 
   if (!tip) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
