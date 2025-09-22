@@ -17,6 +17,8 @@ const SmartTipDetail: React.FC = () => {
   const tip = getSmartTipBySlug(slug || '');
   const category = tip ? getSmartTipsCategoryBySlug(tip.category.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '')) : null;
   
+  console.log('SmartTipDetail Debug:', { slug, tip, category });
+  
   const locationState = location.state || {};
   const categorySlug = locationState.categorySlug || category?.slug;
   const categoryTitle = locationState.categoryTitle || category?.title;
@@ -65,12 +67,14 @@ const SmartTipDetail: React.FC = () => {
       <Header />
       
       <main className="container mx-auto px-4 py-8">
-        {/* Back Button */}
-        <div className="mb-6">
+        {/* Back Button - Always Visible */}
+        <div className="mb-6 bg-red-500 p-4">
+          <p className="text-white mb-2">DEBUG: Back button should be visible here</p>
           <Button 
             variant="outline" 
             onClick={handleBackClick}
-            className="gap-2"
+            className="gap-2 bg-blue-500 text-white border-blue-500 hover:bg-blue-600"
+            size="lg"
           >
             <ArrowLeft className="h-4 w-4" />
             ← Back to Tips
