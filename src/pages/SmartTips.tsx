@@ -39,7 +39,11 @@ const SmartTips: React.FC = () => {
   };
 
   const handleBackClick = () => {
-    navigate('/');
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/');
+    }
   };
 
   return (
@@ -50,9 +54,9 @@ const SmartTips: React.FC = () => {
         {/* Back Button */}
         <div className="mb-6">
           <Button 
-            variant="ghost" 
+            variant="outline" 
             onClick={handleBackClick}
-            className="gap-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-200 px-2"
+            className="gap-2"
           >
             <ArrowLeft className="h-4 w-4" />
             ← Back
