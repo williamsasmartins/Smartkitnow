@@ -49,6 +49,9 @@ import TVSubCategory from "./pages/TVSubCategory";
 import RecipeCalculators from "./pages/RecipeCalculators";
 import RecipeSubCategory from "./pages/RecipeSubCategory";
 import RecipePage from "./pages/RecipePage";
+import SmartTips from "./pages/SmartTips";
+import SmartTipsSubCategory from "./pages/SmartTipsSubCategory";
+import SmartTipDetail from "./pages/SmartTipDetail";
 import TVCalculatorPage from "./pages/TVCalculatorPage";
 import TimeCalculators from "./pages/TimeCalculators";
 import TimeSubCategory from "./pages/TimeSubCategory";
@@ -125,6 +128,9 @@ const App = () => (
             <Route path="/recipes" element={<RecipeCalculators />} />
             <Route path="/recipes/:subcategory" element={<RecipeSubCategory />} />
             <Route path="/recipe/:recipeSlug" element={<RecipePage />} />
+            <Route path="/smart-tips" element={<SmartTips />} />
+            <Route path="/smart-tips/:subcategory" element={<SmartTipsSubCategory />} />
+            <Route path="/smart-tip/:slug" element={<SmartTipDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
