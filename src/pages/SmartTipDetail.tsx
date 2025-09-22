@@ -68,16 +68,17 @@ const SmartTipDetail: React.FC = () => {
       
       <main className="container mx-auto px-4 py-8">
         {/* Back Button */}
-        <div className="mb-6">
+        <nav className="mb-6">
           <Button 
             variant="outline" 
             onClick={handleBackClick}
             className="gap-2"
+            aria-label="Go back to tips"
           >
             <ArrowLeft className="h-4 w-4" />
             ← Back to Tips
           </Button>
-        </div>
+        </nav>
 
         {/* Article Header */}
         <article className="max-w-4xl mx-auto">
