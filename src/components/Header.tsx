@@ -24,7 +24,7 @@ export function Header() {
 
   const filteredCalculators = useMemo(() => {
     if (!searchTerm.trim()) return [];
-    return calculators.filter(calc => 
+    return calculators.filter(calc =>
       calc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       calc.category.toLowerCase().includes(searchTerm.toLowerCase())
     ).slice(0, 5);
@@ -83,7 +83,7 @@ export function Header() {
     <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95">
       <div className="container mx-auto px-4 py-3 max-w-7xl flex items-center justify-between">
         {/* Logo único, sem duplicação */}
-        <div 
+        <div
           className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
           onClick={handleHomeClick}
         >
@@ -121,7 +121,7 @@ export function Header() {
             </div>
           )}
         </form>
-        <div className="flex-shrink-0 ml-2">
+        <div className="flex items-center space-x-2 flex-shrink-0">
           <ThemeToggle />
         </div>
       </div>
