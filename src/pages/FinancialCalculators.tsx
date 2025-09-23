@@ -560,7 +560,7 @@ const FinancialCalculators = () => {
               <span>Back</span>
             </Button>
             
-            <div className="flex items-center space-x-3 mb-6">
+            <div className="flex flex-col items-center text-center space-y-3 mb-6">
               <div className="p-3 rounded-lg bg-primary/10">
                 <DollarSign className="h-8 w-8 text-primary" />
               </div>

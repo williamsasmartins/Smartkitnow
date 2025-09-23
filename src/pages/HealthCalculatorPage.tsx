@@ -84,7 +84,7 @@ const HealthCalculatorPage = () => {
               <span>Back</span>
             </Button>
             
-            <div className="mb-6">
+            <div className="mb-6 text-center">
               <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
                 {calculator.name}
               </h1>
