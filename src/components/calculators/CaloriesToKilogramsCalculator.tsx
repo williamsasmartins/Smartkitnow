@@ -77,17 +77,17 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   return (
     <div className="min-h-screen dark:bg-gray-900 bg-white dark:text-white text-gray-900 p-4">
       {/* Ad Space - Top Left Corner (Sticky) */}
-      <div className="fixed top-4 left-4 w-1/4 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-10 hidden md:block">
-        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Top Left (Google AdSense)</p>
+      <div className="fixed top-4 left-4 w-1/6 bg-gray-800 p-4 rounded-lg z-10 hidden md:block">
+        <p className="text-sm text-gray-300">Ad Space - Top Left (Google AdSense)</p>
       </div>
 
       {/* Ad Space - Top Right Corner (Sticky) */}
-      <div className="fixed top-4 right-4 w-1/4 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-10 hidden md:block">
-        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Top Right (Google AdSense)</p>
+      <div className="fixed top-4 right-4 w-1/6 bg-gray-800 p-4 rounded-lg z-10 hidden md:block">
+        <p className="text-sm text-gray-300">Ad Space - Top Right (Google AdSense)</p>
       </div>
 
       {/* Calculator Header */}
-      <section className="max-w-2xl mx-auto mt-8">
+      <section className="max-w-3xl mx-auto mt-8">
         <h1 className="text-3xl font-bold mb-2 dark:text-white text-gray-900">Convert Calories to Kilograms</h1>
         <p className="dark:text-gray-400 text-gray-600 mb-6">
           Use our free calories to kilograms converter to estimate body fat equivalent from caloric energy. Adjust for activity level and get accurate results.
@@ -95,7 +95,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </section>
 
       {/* Calculator Section */}
-      <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+      <Card className="max-w-3xl mx-auto dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
         <CardHeader className="flex flex-row items-center space-x-2">
           <Calculator className="h-6 w-6 dark:text-blue-400 text-blue-600" />
           <div>
@@ -168,7 +168,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </Card>
 
       {result && (
-        <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+        <Card className="max-w-3xl mx-auto dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
           <CardHeader className="flex flex-row items-center space-x-2">
             <CheckCircle className="h-5 w-5 dark:text-green-500 text-green-700" />
             <CardTitle className="text-xl dark:text-white text-gray-900">Conversion Result</CardTitle>
@@ -195,7 +195,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       )}
 
       {/* How to Use the Calculator */}
-      <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+      <Card className="max-w-3xl mx-auto dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
         <CardHeader>
           <CardTitle className="flex items-center space-x-2 dark:text-white text-gray-900">
             <Info className="h-5 w-5 dark:text-blue-400 text-blue-600" />
@@ -227,7 +227,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </div>
 
       {/* How to Convert Calories to Kilograms */}
-      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">How to Convert Calories to Kilograms</h2>
         <p>To convert calories to kilograms of body fat, divide the number of calories by 7,700 (the approximate calories in 1 kg of fat) and multiply by an activity factor. The formula is:</p>
         <code className="block dark:bg-gray-700 bg-gray-200 p-2 rounded mb-4 dark:text-gray-300 text-gray-900">kilograms = (calories ÷ 7700) × activity_factor</code>
@@ -243,12 +243,12 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </section>
 
       {/* Ad Space - Left Side (Sticky) */}
-      <div className="fixed top-1/2 transform -translate-y-1/2 left-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-10 hidden md:block">
+      <div className="fixed top-1/2 transform -translate-y-1/2 left-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-0 hidden md:block">
         <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Left Side (Google AdSense)</p>
       </div>
 
       {/* Ad Space - Right Side (Sticky) */}
-      <div className="fixed top-1/2 transform -translate-y-1/2 right-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-10 hidden md:block">
+      <div className="fixed top-1/2 transform -translate-y-1/2 right-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-0 hidden md:block">
         <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Right Side (Google AdSense)</p>
       </div>
 
@@ -258,7 +258,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </div>
 
       {/* What is a Calorie? */}
-      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">What is a Calorie?</h2>
         <p>A calorie is a unit of energy, specifically the amount needed to raise 1 gram of water by 1°C. In nutrition, we use kilocalories (kcal), often just called "calories."</p>
         <p>Calories come from food and are used for bodily functions, movement, and growth. Excess calories are stored as fat, while a deficit causes the body to burn stored energy. Understanding calories is key to weight management, fitness, and health.</p>
@@ -267,7 +267,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </section>
 
       {/* What is a Kilogram? */}
-      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">What is a Kilogram?</h2>
         <p>A kilogram (kg) is the base unit of mass in the metric system, equal to 1,000 grams or about 2.2 pounds. It's defined by the Planck constant since 2019.</p>
         <p>In fitness, a kilogram of body fat stores about 7,700 kcal due to fat's energy density (9 kcal/g). This conversion assumes 85-95% efficiency in metabolism. Kilograms measure body weight changes from caloric balance.</p>
@@ -275,7 +275,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </section>
 
       {/* Calorie to Kilogram Conversion Table */}
-      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">Calorie to Kilogram Conversion Table</h2>
         <p>Quick reference for common values (moderate activity level, factor 1.00).</p>
         <Table className="dark:bg-gray-700 bg-gray-100 dark:border-gray-600 border-gray-300">
@@ -309,7 +309,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </section>
 
       {/* Practical Examples */}
-      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">Practical Examples</h2>
         <div className="grid gap-4 md:grid-cols-3">
           {[
@@ -347,7 +347,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </section>
 
       {/* Share Buttons */}
-      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900 text-center">
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900 text-center">
         <h2 className="text-2xl font-semibold mb-4">Share This Calculator</h2>
         <div className="flex justify-center gap-4">
           <Button variant="outline" size="sm" asChild>
@@ -369,7 +369,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </section>
 
       {/* References */}
-      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">References</h2>
         <ul>
           <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4035446/" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">National Institutes of Health - Energy Balance <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
@@ -380,7 +380,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </section>
 
       {/* Affiliate Links */}
-      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">Recommended Fitness Tools</h2>
         <p>Enhance your calorie tracking with these tools. (Affiliate links - commission may be earned at no cost to you)</p>
         <div className="grid gap-4 md:grid-cols-2">
@@ -414,7 +414,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </section>
 
       {/* Feedback Form */}
-      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold mb-4">Send Us Your Feedback</h2>
         <form onSubmit={handleFeedbackSubmit} className="space-y-4">
           <div>
@@ -450,7 +450,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </section>
 
       {/* Professional Disclaimer and Review Note */}
-      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900 text-center">
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900 text-center">
         <p className="text-sm">
           <strong>Note:</strong> This calculator is reviewed by the Smart Kit Now Team for accuracy. For health-related decisions, consult a professional healthcare provider.
         </p>
