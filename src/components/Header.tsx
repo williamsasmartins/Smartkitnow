@@ -20,7 +20,6 @@ export function Header() {
     { key: "gas-mileage", name: "Gas Mileage Calculator", category: "automotive" },
     { key: "auto-loan", name: "Auto Loan Calculator", category: "automotive" },
     { key: "tv-mounting-cost", name: "TV Mounting and Installation Cost Guide", category: "tv" }
-    // (continua com as outras categorias se houver mais na lista original)
   ], []);
 
   const filteredCalculators = useMemo(() => {
@@ -82,13 +81,13 @@ export function Header() {
 
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/90">
-      <div className="container mx-auto px-4 py-3 max-w-7xl"> {/* Limitando a largura máxima */}
+      <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4">
           <div 
             className="flex items-center space-x-3 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
             onClick={handleHomeClick}
           >
-            <img src={logoImage} alt="Smart Kit Now Logo" className="h-12 w-auto z-10" /> {/* z-10 pra evitar sobreposição */}
+            <img src={logoImage} alt="Smart Kit Now Logo" className="h-8 w-auto" /> {/* Reduzi o tamanho pra h-8 pra evitar sobreposição */}
           </div>
           {backTarget && (
             <Button variant="ghost" size="sm" onClick={() => navigate(backTarget)} className="flex-shrink-0">
@@ -96,7 +95,7 @@ export function Header() {
               <span className="hidden sm:inline">Back</span>
             </Button>
           )}
-          <form onSubmit={handleSearchSubmit} className="flex-1 max-w-xl mx-4 relative"> {/* Reduzindo max-w */}
+          <form onSubmit={handleSearchSubmit} className="flex-1 max-w-2xl mx-4 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               type="text"
@@ -122,9 +121,7 @@ export function Header() {
               </div>
             )}
           </form>
-          <div className="flex-shrink-0"> {/* Garantindo que o ThemeToggle não suma */}
-            <ThemeToggle />
-          </div>
+          <ThemeToggle className="flex-shrink-0 ml-2" /> {/* Adicionei ml-2 pra dar espaço e flex-shrink-0 pra não sumir */}
         </div>
       </div>
     </header>
