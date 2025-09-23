@@ -80,12 +80,13 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   return (
     <div className={`min-h-screen ${isDarkMode ? 'dark:bg-gray-900 bg-white dark:text-white text-gray-900' : 'bg-white text-gray-900'} p-4`}>
       {/* Header Fixo com Logo e Toggle Tema */}
-      <Header className="fixed top-0 left-0 w-full bg-gray-800 dark:bg-gray-900 z-50 flex justify-between items-center p-4">
+      <Header />
+      <div className="fixed top-0 left-0 w-full bg-gray-800 dark:bg-gray-900 z-50 flex justify-between items-center p-4">
         <div className="text-white font-bold">Smart Kit Now Logo</div> {/* Simula um logo único */}
         <Button variant="ghost" size="sm" onClick={toggleTheme} className="text-white">
           {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
         </Button>
-      </Header>
+      </div>
 
       {/* Ad Space - Top Center (Below Header) */}
       <div className="max-w-3xl mx-auto mt-16 p-4 bg-gray-800 dark:bg-gray-700 rounded-lg">
@@ -149,7 +150,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
               <label htmlFor="activityLevel" className="text-sm font-medium dark:text-gray-300 text-gray-700">
                 Activity Level
               </label>
-              <Select value={activityLevel} onValueChange={setActivityLevel} className="w-full">
+              <Select value={activityLevel} onValueChange={setActivityLevel}>
                 <SelectTrigger className="w-full dark:bg-gray-700 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900">
                   <SelectValue placeholder="Select your activity level..." />
                 </SelectTrigger>
