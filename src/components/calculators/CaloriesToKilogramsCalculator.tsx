@@ -88,7 +88,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </Header>
 
       {/* Ad Space - Top Center (Below Header) */}
-      <div className="max-w-3xl mx-auto mt-16 p-4 bg-gray-800 dark:bg-gray-700 rounded-lg">
+      <div className="max-w-3xl mx-auto mt-16 p-4 bg-gray-800 dark:bg-gray-200 rounded-lg">
         <p className="text-sm text-gray-300 text-center">Ad Space - Top Center (Google AdSense)</p>
       </div>
 
