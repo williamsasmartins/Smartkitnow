@@ -5,12 +5,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2 } from "lucide-react";
+import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2, ArrowLeft } from "lucide-react";
+import { useNavigate } from 'react-router-dom'; // Importado para o botão de voltar
 import { Header } from "@/components/Header";
 
 interface CaloriesToKgProps {}
 
 const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
+  const navigate = useNavigate(); // Hook para navegar de volta
   const [calories, setCalories] = useState<number | "">("");
   const [activityLevel, setActivityLevel] = useState<string>("");
   const [result, setResult] = useState<{ kg: number; message: string } | null>(null);
@@ -78,6 +80,13 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   return (
     <div className="min-h-screen dark:bg-gray-900 bg-white dark:text-white text-gray-900 p-4">
       <Header />
+      {/* Botão de Voltar - Adicionado acima do conteúdo principal */}
+      <div className="max-w-3xl mx-auto mb-4">
+        <Button variant="outline" onClick={() => navigate(-1)} className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
+          <ArrowLeft className="h-4 w-4 mr-2" /> Back
+        </Button>
+      </div>
+
       {/* Ad Space - Top Center (Below Header) */}
       <div className="max-w-3xl mx-auto mt-16 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
         <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Top Center (Google AdSense)</p>
