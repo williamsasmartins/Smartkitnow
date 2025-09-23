@@ -85,14 +85,11 @@ export function Header() {
     <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/90">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center space-x-4">
-            <div 
-              className="flex items-center space-x-3 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={handleHomeClick}
-            >
-              <img src={logoImage} alt="Smart Kit Now Logo" className="h-12 w-auto" />
-            </div>
-            <ThemeToggle className="ml-4" /> {/* Movido pra perto do logo */}
+          <div 
+            className="flex items-center space-x-3 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+            onClick={handleHomeClick}
+          >
+            <img src={logoImage} alt="Smart Kit Now Logo" className="h-12 w-auto" />
           </div>
           {backTarget && (
             <Button variant="ghost" size="sm" onClick={() => navigate(backTarget)} className="flex-shrink-0">
@@ -126,6 +123,7 @@ export function Header() {
               </div>
             )}
           </form>
+          <ThemeToggle />
         </div>
       </div>
     </header>
