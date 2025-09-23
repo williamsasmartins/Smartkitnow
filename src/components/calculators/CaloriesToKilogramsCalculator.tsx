@@ -69,22 +69,40 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
     setError("");
   };
 
-  const handleFeedbackSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const templateParams = {
-      name: feedback.name || "Anônimo",
-      email: feedback.email || "No email",
-      suggestions: feedback.suggestions,
-    };
-    emailjs.send('SEU_SERVICE_ID', 'SEU_TEMPLATE_ID', templateParams, 'SEU_USER_ID')
-      .then((response) => {
-        alert("Thank you for your feedback! It has been sent successfully.");
-        setFeedback({ name: "", email: "", suggestions: "" });
-      }, (error) => {
-        alert("Failed to send feedback. Please try again later.");
-        console.error("EmailJS error:", error);
-      });
-  };
+  const handleFeedbackSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append("name", feedback.name || "Anônimo");
+  formData.append("email", feedback.email || "No email");
+  formData.append("suggestions", feedback.suggestions);
+
+  try {
+   const handleFeedbackSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append("name", feedback.name || "Anônimo");
+  formData.append("email", feedback.email || "No email");
+  formData.append("suggestions", feedback.suggestions);
+
+  try {
+    const response = await fetch('https://formspree.io/f/xanpypnb', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Accept: 'application/json',
+      },
+    });
+    if (response.ok) {
+      alert("Thank you for your feedback! It has been sent successfully.");
+      setFeedback({ name: "", email: "", suggestions: "" });
+    } else {
+      throw new Error('Failed to send');
+    }
+  } catch (error) {
+    alert("Failed to send feedback. Please try again later.");
+    console.error("Formspree error:", error);
+  }
+};
 
   const currentUrl = window.location.href;
 
