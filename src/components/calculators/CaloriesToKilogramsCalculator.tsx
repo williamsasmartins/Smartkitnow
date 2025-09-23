@@ -81,8 +81,8 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
     <div className={`min-h-screen ${isDarkMode ? 'dark:bg-gray-900 bg-white dark:text-white text-gray-900' : 'bg-white text-gray-900'} p-4`}>
       {/* Header Fixo com Logo e Toggle Tema */}
       <Header className="fixed top-0 left-0 w-full bg-gray-800 dark:bg-gray-900 z-50 flex items-center justify-between p-4">
-        <div className="text-white font-bold">Smart Kit Now</div>
-        <Button variant="ghost" size="sm" onClick={toggleTheme} className="text-white ml-auto">
+        <div className="text-white font-bold">Smart Kit Now</div> {/* Placeholder único pro logo */}
+        <Button variant="ghost" size="sm" onClick={toggleTheme} className="text-white mr-4">
           {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
         </Button>
       </Header>
@@ -90,6 +90,16 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       {/* Ad Space - Top Center (Below Header) */}
       <div className="max-w-3xl mx-auto mt-16 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
         <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Top Center (Google AdSense)</p>
+      </div>
+
+      {/* Ad Space - Top Left Corner (Sticky) */}
+      <div className="fixed top-24 left-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-10 hidden md:block">
+        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Top Left (Google AdSense)</p>
+      </div>
+
+      {/* Ad Space - Top Right Corner (Sticky) */}
+      <div className="fixed top-24 right-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-10 hidden md:block">
+        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Top Right (Google AdSense)</p>
       </div>
 
       {/* Calculator Header */}
@@ -235,6 +245,121 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         </CardContent>
       </Card>
 
+      {/* Ad Space - Mid Page 1 */}
+      <div className="max-w-3xl mx-auto mt-8 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
+        <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Mid Page 1 (Google AdSense)</p>
+      </div>
+
+      {/* How to Convert Calories to Kilograms */}
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+        <h2 className="text-2xl font-semibold">How to Convert Calories to Kilograms</h2>
+        <p>To convert calories to kilograms of body fat, divide the number of calories by 7,700 (the approximate calories in 1 kg of fat) and multiply by an activity factor. The formula is:</p>
+        <code className="block dark:bg-gray-700 bg-gray-200 p-2 rounded mb-4 dark:text-gray-300 text-gray-900">kilograms = (calories ÷ 7700) × activity_factor</code>
+        <p>The activity factor adjusts for metabolic efficiency:</p>
+        <ul className="list-disc pl-5 dark:text-gray-400 text-gray-700">
+          <li>Sedentary: 0.90</li>
+          <li>Lightly Active: 0.95</li>
+          <li>Moderately Active: 1.00</li>
+          <li>Active: 1.05</li>
+          <li>Very Active: 1.10</li>
+        </ul>
+        <p>This conversion helps estimate how caloric deficits translate to weight loss or surpluses to gain. Note: Actual results vary due to individual metabolism, muscle mass, and water weight.</p>
+      </section>
+
+      {/* Ad Space - Mid Page 2 */}
+      <div className="max-w-3xl mx-auto mt-8 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
+        <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Mid Page 2 (Google AdSense)</p>
+      </div>
+
+      {/* What is a Calorie? */}
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+        <h2 className="text-2xl font-semibold">What is a Calorie?</h2>
+        <p>A calorie is a unit of energy, specifically the amount needed to raise 1 gram of water by 1°C. In nutrition, we use kilocalories (kcal), often just called "calories."</p>
+        <p>Calories come from food and are used for bodily functions, movement, and growth. Excess calories are stored as fat, while a deficit causes the body to burn stored energy. Understanding calories is key to weight management, fitness, and health.</p>
+        <p>One large calorie (kcal) equals 1,000 small calories. Typical daily intake is 2,000-2,500 kcal for adults, varying by age, sex, and activity.</p>
+        <p>Learn more: <a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">Mayo Clinic Calories Guide <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></p>
+      </section>
+
+      {/* What is a Kilogram? */}
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+        <h2 className="text-2xl font-semibold">What is a Kilogram?</h2>
+        <p>A kilogram (kg) is the base unit of mass in the metric system, equal to 1,000 grams or about 2.2 pounds. It's defined by the Planck constant since 2019.</p>
+        <p>In fitness, a kilogram of body fat stores about 7,700 kcal due to fat's energy density (9 kcal/g). This conversion assumes 85-95% efficiency in metabolism. Kilograms measure body weight changes from caloric balance.</p>
+        <p>Learn more: <a href="https://www.nist.gov/si-redefinition/kilogram" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">NIST Kilogram Definition <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></p>
+      </section>
+
+      {/* Calorie to Kilogram Conversion Table */}
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+        <h2 className="text-2xl font-semibold">Calorie to Kilogram Conversion Table</h2>
+        <p>Quick reference for common values (moderate activity level, factor 1.00).</p>
+        <Table className="dark:bg-gray-700 bg-gray-100 dark:border-gray-600 border-gray-300">
+          <TableHeader>
+            <TableRow>
+              <TableHead className="dark:text-white text-gray-900">Calories (kcal)</TableHead>
+              <TableHead className="dark:text-white text-gray-900">Kilograms (kg)</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {[
+              { cal: 1, kg: 0.00013 },
+              { cal: 100, kg: 0.013 },
+              { cal: 500, kg: 0.065 },
+              { cal: 1000, kg: 0.130 },
+              { cal: 3500, kg: 0.454 },
+              { cal: 5000, kg: 0.649 },
+              { cal: 7700, kg: 1.000 },
+              { cal: 10000, kg: 1.299 },
+              { cal: 21000, kg: 2.727 },
+              { cal: 50000, kg: 6.494 },
+            ].map((item, index) => (
+              <TableRow key={index}>
+                <TableCell className="dark:text-gray-300 text-gray-700">{item.cal.toLocaleString()}</TableCell>
+                <TableCell className="dark:text-gray-300 text-gray-700">{item.kg.toFixed(3)}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <p className="text-xs dark:text-gray-500 text-gray-600 mt-2">Table assumes moderate activity; adjust for your level using the calculator.</p>
+      </section>
+
+      {/* Practical Examples */}
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+        <h2 className="text-2xl font-semibold">Practical Examples</h2>
+        <div className="grid gap-4 md:grid-cols-3">
+          {[
+            {
+              title: "Weekly Deficit",
+              input: "3,500 calories, moderately active",
+              result: "≈ 0.454 kg",
+              desc: "A 500 kcal daily deficit (3,500/week) can lead to 0.45 kg fat loss per week."
+            },
+            {
+              title: "Workout Session",
+              input: "500 calories, very active",
+              result: "≈ 0.071 kg",
+              desc: "Burning 500 calories in a workout equates to about 71g of fat loss."
+            },
+            {
+              title: "Monthly Goal",
+              input: "21,000 calories, sedentary",
+              result: "≈ 2.454 kg",
+              desc: "A 700 kcal daily deficit over 30 days can result in ~2.5 kg fat loss."
+            },
+          ].map((example, index) => (
+            <Card key={index} className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+              <CardHeader>
+                <CardTitle className="text-lg dark:text-white text-gray-900">{example.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm mb-2 dark:text-gray-300 text-gray-700"><strong>Input:</strong> {example.input}</p>
+                <p className="text-sm mb-2 dark:text-gray-300 text-gray-700"><strong>Result:</strong> {example.result}</p>
+                <p className="text-xs dark:text-gray-500 text-gray-600">{example.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
       {/* Ad Space - Horizontal Above Share */}
       <div className="max-w-3xl mx-auto mt-8 flex justify-between gap-4">
         <div className="w-1/3 p-2 dark:bg-gray-800 bg-gray-200 rounded-lg">
@@ -251,19 +376,19 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       {/* Share Buttons */}
       <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-4 rounded-lg shadow-soft dark:text-gray-300 text-gray-900 text-center">
         <h2 className="text-2xl font-semibold mb-4">Share This Calculator</h2>
-        <div className="flex justify-center gap-4 flex-wrap">
-          <Button variant="outline" size="sm" asChild className="mb-2">
-            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900">
+        <div className="flex justify-center gap-2 flex-wrap">
+          <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center">
               <Facebook className="h-4 w-4 mr-2 dark:text-blue-400 text-blue-600" /> Facebook
             </a>
           </Button>
-          <Button variant="outline" size="sm" asChild className="mb-2">
-            <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=Check out this Calories to Kilograms Calculator!`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900">
+          <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
+            <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=Check out this Calories to Kilograms Calculator!`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center">
               <Twitter className="h-4 w-4 mr-2 dark:text-blue-400 text-blue-600" /> Twitter/X
             </a>
           </Button>
-          <Button variant="outline" size="sm" asChild className="mb-2">
-            <a href={`whatsapp://send?text=Check out this Calories to Kilograms Calculator! ${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" data-action="share/whatsapp/share" className="dark:text-gray-300 text-gray-900">
+          <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
+            <a href={`whatsapp://send?text=Check out this Calories to Kilograms Calculator! ${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" data-action="share/whatsapp/share" className="dark:text-gray-300 text-gray-900 w-full text-center">
               <Share2 className="h-4 w-4 mr-2 dark:text-blue-400 text-blue-600" /> WhatsApp
             </a>
           </Button>
