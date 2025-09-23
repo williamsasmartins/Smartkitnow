@@ -8,7 +8,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2, ArrowLeft } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 import { Header } from "@/components/Header";
-import emailjs from 'emailjs-com'; // Biblioteca instalada
 
 interface CaloriesToKgProps {}
 
@@ -50,7 +49,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       const calValue = Number(calories);
       const factor = activityFactors[activityLevel as keyof typeof activityFactors].factor;
       const kgEquivalent = (calValue / 7700) * factor;
-      
+     
       setResult({
         kg: kgEquivalent,
         message: `${calValue.toLocaleString()} calories are equivalent to approximately ${kgEquivalent.toFixed(3)} kg of body fat, considering your activity level "${activityFactors[activityLevel as keyof typeof activityFactors].label}".`
@@ -70,49 +69,31 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   };
 
   const handleFeedbackSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  const formData = new FormData();
-  formData.append("name", feedback.name || "Anônimo");
-  formData.append("email", feedback.email || "No email");
-  formData.append("suggestions", feedback.suggestions);
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", feedback.name || "Anônimo");
+    formData.append("email", feedback.email || "No email");
+    formData.append("suggestions", feedback.suggestions);
 
-  try {
-   const handleFeedbackSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  const formData = new FormData();
-  formData.append("name", feedback.name || "Anônimo");
-  formData.append("email", feedback.email || "No email");
-  formData.append("suggestions", feedback.suggestions);
-
-  try {
-    
-    const handleFeedbackSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  const formData = new FormData();
-  formData.append("name", feedback.name || "Anônimo");
-  formData.append("email", feedback.email || "No email");
-  formData.append("suggestions", feedback.suggestions);
-
-  try {
-    
-    const response = await fetch('https://formspree.io/f/xanpypnb', {
-      method: 'POST',
-      body: formData,
-      headers: {
-        Accept: 'application/json',
-      },
-    });
-    if (response.ok) {
-      alert("Thank you for your feedback! It has been sent successfully.");
-      setFeedback({ name: "", email: "", suggestions: "" });
-    } else {
-      throw new Error('Failed to send');
+    try {
+      const response = await fetch('https://formspree.io/f/xanpypnb', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+      if (response.ok) {
+        alert("Thank you for your feedback! It has been sent successfully.");
+        setFeedback({ name: "", email: "", suggestions: "" });
+      } else {
+        throw new Error('Failed to send');
+      }
+    } catch (error) {
+      alert("Failed to send feedback. Please try again later.");
+      console.error("Formspree error:", error);
     }
-  } catch (error) {
-    alert("Failed to send feedback. Please try again later.");
-    console.error("Formspree error:", error);
-  }
-};
+  };
 
   const currentUrl = window.location.href;
 
@@ -186,8 +167,8 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
             </div>
           </div>
           <div className="flex gap-3">
-            <Button 
-              onClick={calculateCaloriesToKg} 
+            <Button
+              onClick={calculateCaloriesToKg}
               disabled={!calories || !activityLevel || loading}
               className="flex-1 dark:bg-blue-600 bg-blue-500 dark:text-white text-white dark:hover:bg-blue-700 hover:bg-blue-600"
             >
@@ -470,6 +451,5 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
     </div>
   );
 };
-
 export { CaloriesToKilogramsCalculator };
 export default CaloriesToKilogramsCalculator;
