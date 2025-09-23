@@ -196,4 +196,5 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   );
 };
 
+export { CaloriesToKilogramsCalculator };
 export default CaloriesToKilogramsCalculator;
