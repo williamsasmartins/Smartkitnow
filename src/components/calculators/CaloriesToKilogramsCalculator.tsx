@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2 } from "lucide-react";
-import { Header } from "@/components/Header";
+
 
 interface CaloriesToKgProps {}
 
@@ -77,7 +77,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
 
   return (
     <div className="min-h-screen dark:bg-gray-900 bg-white dark:text-white text-gray-900 p-4">
-      <Header />
+      
       {/* Ad Space - Top Center (Below Header) */}
       <div className="max-w-3xl mx-auto mt-16 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
         <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Top Center (Google AdSense)</p>
