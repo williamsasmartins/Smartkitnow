@@ -5,8 +5,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2 } from "lucide-react";
-import { Header } from "@/components/Header"; // Adicionei pra simular a barra fixa
+import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2, Moon, Sun } from "lucide-react";
+import { Header } from "@/components/Header"; // Simula a barra fixa com logo
 
 interface CaloriesToKgProps {}
 
@@ -17,6 +17,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [feedback, setFeedback] = useState({ name: "", email: "", suggestions: "" });
+  const [isDarkMode, setIsDarkMode] = useState(true); // Estado pra toggle tema
 
   const activityFactors = {
     sedentary: { factor: 0.90, label: "Sedentary" },
@@ -74,11 +75,17 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   };
 
   const currentUrl = window.location.href;
+  const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
   return (
-    <div className="min-h-screen dark:bg-gray-900 bg-white dark:text-white text-gray-900 p-4">
-      {/* Header Fixo (Simulado) */}
-      <Header className="fixed top-0 left-0 w-full bg-gray-800 dark:bg-gray-900 z-50" />
+    <div className={`min-h-screen ${isDarkMode ? 'dark:bg-gray-900 bg-white dark:text-white text-gray-900' : 'bg-white text-gray-900'} p-4`}>
+      {/* Header Fixo com Logo e Toggle Tema */}
+      <Header className="fixed top-0 left-0 w-full bg-gray-800 dark:bg-gray-900 z-50 flex justify-between items-center p-4">
+        <div className="text-white font-bold">Smart Kit Now Logo</div> {/* Simula um logo único */}
+        <Button variant="ghost" size="sm" onClick={toggleTheme} className="text-white">
+          {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+        </Button>
+      </Header>
 
       {/* Ad Space - Top Center (Below Header) */}
       <div className="max-w-3xl mx-auto mt-16 p-4 bg-gray-800 dark:bg-gray-700 rounded-lg">
@@ -91,14 +98,14 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         <p className="dark:text-gray-400 text-gray-600">Category: Calories Conversion</p>
       </section>
 
-      {/* Ad Space - Top Left Corner (Sticky) */}
-      <div className="fixed top-24 left-4 w-1/6 bg-gray-800 p-4 rounded-lg z-10 hidden md:block">
-        <p className="text-sm text-gray-300">Ad Space - Top Left (Google AdSense)</p>
+      {/* Ad Space - Left Side (Sticky) */}
+      <div className="fixed top-1/2 transform -translate-y-1/2 left-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-0 hidden md:block">
+        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Left Side (Google AdSense)</p>
       </div>
 
-      {/* Ad Space - Top Right Corner (Sticky) */}
-      <div className="fixed top-24 right-4 w-1/6 bg-gray-800 p-4 rounded-lg z-10 hidden md:block">
-        <p className="text-sm text-gray-300">Ad Space - Top Right (Google AdSense)</p>
+      {/* Ad Space - Right Side (Sticky) */}
+      <div className="fixed top-1/2 transform -translate-y-1/2 right-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-0 hidden md:block">
+        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Right Side (Google AdSense)</p>
       </div>
 
       {/* Calculator Section */}
@@ -248,16 +255,6 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         </ul>
         <p>This conversion helps estimate how caloric deficits translate to weight loss or surpluses to gain. Note: Actual results vary due to individual metabolism, muscle mass, and water weight.</p>
       </section>
-
-      {/* Ad Space - Left Side (Sticky) */}
-      <div className="fixed top-1/2 transform -translate-y-1/2 left-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-0 hidden md:block">
-        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Left Side (Google AdSense)</p>
-      </div>
-
-      {/* Ad Space - Right Side (Sticky) */}
-      <div className="fixed top-1/2 transform -translate-y-1/2 right-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-0 hidden md:block">
-        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Right Side (Google AdSense)</p>
-      </div>
 
       {/* Ad Space - Mid Page 2 */}
       <div className="dark:bg-gray-700 bg-gray-200 p-4 text-center rounded-lg mt-8">
