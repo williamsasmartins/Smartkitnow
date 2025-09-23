@@ -51,7 +51,7 @@ export function Header() {
       financial: `/financial/calculator/${calculator.key}`,
       health: `/health/calculator/${calculator.key}`,
       math: `/math/calculator/${calculator.key}`,
-      pets: `/pets/calculator/${calculator.key}`,
+      pets: `/pets/calculator/${pets.key}`,
       science: `/science/calculator/${calculator.key}`,
       time: `/time/calculator/${calculator.key}`,
       tv: `/tv/calculator/${calculator.key}`
