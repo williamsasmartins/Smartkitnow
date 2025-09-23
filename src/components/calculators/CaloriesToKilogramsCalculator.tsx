@@ -16,11 +16,11 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const activityFactors = {
-    sedentary: { factor: 0.90, label: "Sedentário" },
-    light: { factor: 0.95, label: "Levemente Ativo" },
-    moderate: { factor: 1.00, label: "Moderadamente Ativo" },
-    active: { factor: 1.05, label: "Ativo" },
-    veryActive: { factor: 1.10, label: "Muito Ativo" }
+    sedentary: { factor: 0.90, label: "Sedentary" },
+    light: { factor: 0.95, label: "Lightly Active" },
+    moderate: { factor: 1.00, label: "Moderately Active" },
+    active: { factor: 1.05, label: "Active" },
+    veryActive: { factor: 1.10, label: "Very Active" }
   };
 
   const calculateCaloriesToKg = () => {
@@ -29,13 +29,13 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
     setResult(null);
 
     if (!calories || Number(calories) <= 0) {
-      setError("Por favor, insira uma quantidade válida de calorias (maior que 0).");
+      setError("Please enter a valid amount of calories (greater than 0).");
       setLoading(false);
       return;
     }
 
     if (!activityLevel) {
-      setError("Por favor, selecione seu nível de atividade física.");
+      setError("Please select your activity level.");
       setLoading(false);
       return;
     }
@@ -47,10 +47,10 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       
       setResult({
         kg: kgEquivalent,
-        message: `${calValue.toLocaleString()} calorias equivalem a aproximadamente ${kgEquivalent.toFixed(3)} kg de gordura corporal, considerando seu nível de atividade "${activityFactors[activityLevel as keyof typeof activityFactors].label}".`
+        message: `${calValue.toLocaleString()} calories are equivalent to approximately ${kgEquivalent.toFixed(3)} kg of body fat, considering your activity level "${activityFactors[activityLevel as keyof typeof activityFactors].label}".`
       });
     } catch (err) {
-      setError("Erro ao calcular. Tente novamente.");
+      setError("Error calculating. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -71,7 +71,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
           <div>
             <CardTitle className="text-2xl">Convert Calories to Kilograms</CardTitle>
             <CardDescription>
-              Transforme calorias em peso corporal equivalente para entender melhor seu metabolismo e metas de fitness
+              Transform calories into body weight equivalent to better understand your metabolism and fitness goals
             </CardDescription>
           </div>
         </CardHeader>
@@ -89,7 +89,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
               <label htmlFor="calories" className="text-sm font-medium text-gray-700">
-                Quantidade de Calorias
+                Amount of Calories
               </label>
               <Input
                 id="calories"
@@ -101,23 +101,23 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
                 step="1"
                 className="w-full"
               />
-              <p className="text-xs text-gray-500">Unidade: kcal (quilocalorias)</p>
+              <p className="text-xs text-gray-500">Unit: kcal (kilocalories)</p>
             </div>
 
             <div className="space-y-2">
               <label htmlFor="activityLevel" className="text-sm font-medium text-gray-700">
-                Nível de Atividade Física
+                Activity Level
               </label>
               <Select value={activityLevel} onValueChange={setActivityLevel}>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Selecione seu nível de atividade..." />
+                  <SelectValue placeholder="Select your activity level..." />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="sedentary">Sedentário (pouco ou nenhum exercício)</SelectItem>
-                  <SelectItem value="light">Levemente ativo (exercício leve 1-3 dias/semana)</SelectItem>
-                  <SelectItem value="moderate">Moderadamente ativo (exercício moderado 3-5 dias/semana)</SelectItem>
-                  <SelectItem value="active">Ativo (exercício intenso 6-7 dias/semana)</SelectItem>
-                  <SelectItem value="veryActive">Muito ativo (exercício muito intenso e trabalho físico)</SelectItem>
+                  <SelectItem value="sedentary">Sedentary (little or no exercise)</SelectItem>
+                  <SelectItem value="light">Lightly active (light exercise 1-3 days/week)</SelectItem>
+                  <SelectItem value="moderate">Moderately active (moderate exercise 3-5 days/week)</SelectItem>
+                  <SelectItem value="active">Active (intense exercise 6-7 days/week)</SelectItem>
+                  <SelectItem value="veryActive">Very active (very intense exercise & physical job)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -129,11 +129,11 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
               disabled={!calories || !activityLevel || loading}
               className="flex-1"
             >
-              {loading ? <>Calculando...</> : (<><Calculator className="h-4 w-4 mr-2" />Calcular</>)}
+              {loading ? <>Calculating...</> : (<><Calculator className="h-4 w-4 mr-2" />Calculate</>)}
             </Button>
             {(calories || activityLevel) && (
               <Button variant="outline" onClick={resetCalculator} className="flex-0">
-                Limpar
+                Reset
               </Button>
             )}
           </div>
@@ -144,7 +144,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         <Card>
           <CardHeader className="flex flex-row items-center space-x-2">
             <CheckCircle className="h-5 w-5 text-green-600" />
-            <CardTitle className="text-xl">Resultado da Conversão</CardTitle>
+            <CardTitle className="text-xl">Conversion Result</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="text-center space-y-2">
@@ -160,7 +160,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
             <Alert className="border-blue-200 bg-blue-50">
               <Info className="h-4 w-4" />
               <AlertDescription className="text-sm">
-                <strong>💡 Dica:</strong> Para perder 1kg de gordura, você precisa criar um déficit de cerca de 7.700 calorias através de dieta e exercício.
+                <strong>💡 Tip:</strong> To lose 1kg of fat, you need to create a deficit of about 7,700 calories through diet and exercise.
               </AlertDescription>
             </Alert>
           </CardContent>
@@ -171,15 +171,15 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
             <Info className="h-5 w-5" />
-            <span>Como Usar a Calculadora</span>
+            <span>How to Use the Calculator</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid md:grid-cols-3 gap-4">
             {[
-              { step: 1, title: "Insira as Calorias", desc: "Digite a quantidade de calorias que você quer converter" },
-              { step: 2, title: "Selecione Atividade", desc: "Escolha seu nível de atividade física atual" },
-              { step: 3, title: "Obtenha o Resultado", desc: "Clique em 'Calcular' para ver o equivalente em kg" }
+              { step: 1, title: "Enter Calories", desc: "Input the amount of calories you want to convert" },
+              { step: 2, title: "Select Activity Level", desc: "Choose your current activity level" },
+              { step: 3, title: "Get the Result", desc: "Click 'Calculate' to see the kg equivalent" }
             ].map((item) => (
               <div key={item.step} className="text-center space-y-2 p-4 bg-gray-50 rounded-lg">
                 <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
