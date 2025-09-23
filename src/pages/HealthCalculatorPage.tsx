@@ -45,8 +45,8 @@ const HealthCalculatorPage = () => {
         return <BodyFatCalculator />;
       case 'tdee':
         return <TDEECalculator />;
-        case 'convert-calories-to-kilograms':
-         return <CaloriesToKilogramsCalculator />;
+        case 'calories-to-kg':
+        return <CaloriesToKilogramsCalculator />;
       default:
         return (
           <div className="bg-card rounded-lg p-8 text-center">
