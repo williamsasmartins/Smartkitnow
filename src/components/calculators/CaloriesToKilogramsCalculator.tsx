@@ -85,6 +85,16 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   formData.append("suggestions", feedback.suggestions);
 
   try {
+    
+    const handleFeedbackSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append("name", feedback.name || "Anônimo");
+  formData.append("email", feedback.email || "No email");
+  formData.append("suggestions", feedback.suggestions);
+
+  try {
+    
     const response = await fetch('https://formspree.io/f/xanpypnb', {
       method: 'POST',
       body: formData,
