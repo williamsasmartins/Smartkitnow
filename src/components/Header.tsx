@@ -80,48 +80,49 @@ export function Header() {
   }
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/90">
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex items-center justify-between gap-4">
-          <div 
-            className="flex items-center space-x-3 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
-            onClick={handleHomeClick}
-          >
-            <img src={logoImage} alt="Smart Kit Now Logo" className="h-8 w-auto" /> {/* Reduzi o tamanho pra h-8 pra evitar sobreposição */}
-          </div>
-          {backTarget && (
-            <Button variant="ghost" size="sm" onClick={() => navigate(backTarget)} className="flex-shrink-0">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              <span className="hidden sm:inline">Back</span>
-            </Button>
+    <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-md">
+      <div className="container mx-auto px-4 py-3 max-w-7xl flex items-center justify-between">
+        {/* Logo único, sem duplicação */}
+        <div 
+          className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
+          onClick={handleHomeClick}
+        >
+          <img src={logoImage} alt="Smart Kit Now Logo" className="h-8 w-auto" />
+        </div>
+        {backTarget && (
+          <Button variant="ghost" size="sm" onClick={() => navigate(backTarget)} className="ml-2">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            <span className="hidden sm:inline">Back</span>
+          </Button>
+        )}
+        <form onSubmit={handleSearchSubmit} className="flex-1 max-w-xl mx-4 relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            type="text"
+            placeholder="Search for a calculator"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            onFocus={() => setShowSuggestions(searchTerm.trim().length > 0)}
+            onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+            className="pl-10 bg-muted/50 border-border/60 focus:border-primary/40 transition-all duration-300"
+          />
+          {showSuggestions && filteredCalculators.length > 0 && (
+            <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+              {filteredCalculators.map((calc) => (
+                <div
+                  key={calc.key}
+                  onClick={() => handleSuggestionClick(calc)}
+                  className="px-4 py-2 hover:bg-muted cursor-pointer border-b border-border/50 last:border-b-0"
+                >
+                  <div className="font-medium text-sm">{calc.name}</div>
+                  <div className="text-xs text-muted-foreground capitalize">{calc.category}</div>
+                </div>
+              ))}
+            </div>
           )}
-          <form onSubmit={handleSearchSubmit} className="flex-1 max-w-2xl mx-4 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search for a calculator"
-              value={searchTerm}
-              onChange={handleSearchChange}
-              onFocus={() => setShowSuggestions(searchTerm.trim().length > 0)}
-              onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-              className="pl-10 bg-muted/50 border-border/60 focus:border-primary/40 transition-all duration-300"
-            />
-            {showSuggestions && filteredCalculators.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
-                {filteredCalculators.map((calc) => (
-                  <div
-                    key={calc.key}
-                    onClick={() => handleSuggestionClick(calc)}
-                    className="px-4 py-2 hover:bg-muted cursor-pointer border-b border-border/50 last:border-b-0"
-                  >
-                    <div className="font-medium text-sm">{calc.name}</div>
-                    <div className="text-xs text-muted-foreground capitalize">{calc.category}</div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </form>
-          <ThemeToggle className="flex-shrink-0 ml-2" /> {/* Adicionei ml-2 pra dar espaço e flex-shrink-0 pra não sumir */}
+        </form>
+        <div className="flex-shrink-0">
+          <ThemeToggle />
         </div>
       </div>
     </header>
