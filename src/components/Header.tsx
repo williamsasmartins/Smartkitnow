@@ -121,7 +121,7 @@ export function Header() {
             </div>
           )}
         </form>
-        <div className="flex-shrink-0 ml-2">
+        <div className="flex items-center space-x-2 flex-shrink-0">
           <ThemeToggle />
         </div>
       </div>
