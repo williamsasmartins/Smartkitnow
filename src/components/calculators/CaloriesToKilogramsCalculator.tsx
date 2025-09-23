@@ -15,6 +15,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   const [result, setResult] = useState<{ kg: number; message: string } | null>(null);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [feedback, setFeedback] = useState({ name: "", email: "", suggestions: "" });
 
   const activityFactors = {
     sedentary: { factor: 0.90, label: "Sedentary" },
@@ -64,45 +65,57 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
     setError("");
   };
 
+  const handleFeedbackSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Feedback submitted:", feedback);
+    alert("Thank you for your feedback! We'll review your suggestions.");
+    setFeedback({ name: "", email: "", suggestions: "" });
+  };
+
   const currentUrl = window.location.href;
 
   return (
-    <div className="space-y-8 max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gray-900 text-gray-100 p-4">
+      {/* Ad Space - Top Left Corner (Sticky) */}
+      <div className="fixed top-4 left-4 w-1/4 bg-gray-800 p-4 rounded-lg z-10 hidden md:block">
+        <p className="text-sm text-gray-300">Ad Space - Top Left (Google AdSense)</p>
+      </div>
+
       {/* Ad Space - Top Right Corner (Sticky) */}
-      <div className="fixed top-4 right-4 w-1/4 bg-muted p-4 rounded-lg z-10 hidden md:block">
-        <p className="text-sm text-muted-foreground">Ad Space - Top Right (Google AdSense)</p>
+      <div className="fixed top-4 right-4 w-1/4 bg-gray-800 p-4 rounded-lg z-10 hidden md:block">
+        <p className="text-sm text-gray-300">Ad Space - Top Right (Google AdSense)</p>
       </div>
 
       {/* Calculator Header */}
-      <section>
-        <h1 className="text-3xl font-bold mb-2">Convert Calories to Kilograms</h1>
-        <p className="text-muted-foreground mb-6">
+      <section className="max-w-2xl mx-auto mt-8">
+        <h1 className="text-3xl font-bold mb-2 text-white">Convert Calories to Kilograms</h1>
+        <p className="text-gray-400 mb-6">
           Use our free calories to kilograms converter to estimate body fat equivalent from caloric energy. Adjust for activity level and get accurate results.
         </p>
       </section>
 
       {/* Calculator Section */}
-      <Card>
+      <Card className="bg-gray-800 border-gray-700">
         <CardHeader className="flex flex-row items-center space-x-2">
-          <Calculator className="h-6 w-6 text-blue-600" />
+          <Calculator className="h-6 w-6 text-blue-400" />
           <div>
-            <CardTitle className="text-2xl">Calories to Kilograms Calculator</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-2xl text-white">Calories to Kilograms Calculator</CardTitle>
+            <CardDescription className="text-gray-400">
               Transform calories into body weight equivalent to better understand your metabolism and fitness goals
             </CardDescription>
           </div>
         </CardHeader>
         <CardContent className="p-6 space-y-6">
           {error && (
-            <Alert variant="destructive" className="border-red-200">
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>{error}</AlertDescription>
+            <Alert variant="destructive" className="border-red-800 bg-red-900/50">
+              <AlertCircle className="h-4 w-4 text-red-400" />
+              <AlertDescription className="text-gray-200">{error}</AlertDescription>
             </Alert>
           )}
 
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <label htmlFor="calories" className="text-sm font-medium text-gray-700">
+              <label htmlFor="calories" className="text-sm font-medium text-gray-300">
                 Amount of Calories
               </label>
               <Input
@@ -113,25 +126,25 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
                 onChange={(e) => setCalories(e.target.value === "" ? "" : Number(e.target.value))}
                 min="0"
                 step="1"
-                className="w-full"
+                className="w-full bg-gray-700 border-gray-600 text-white placeholder-gray-400"
               />
               <p className="text-xs text-gray-500">Unit: kcal (kilocalories)</p>
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="activityLevel" className="text-sm font-medium text-gray-700">
+              <label htmlFor="activityLevel" className="text-sm font-medium text-gray-300">
                 Activity Level
               </label>
-              <Select value={activityLevel} onValueChange={setActivityLevel}>
-                <SelectTrigger className="w-full">
+              <Select value={activityLevel} onValueChange={setActivityLevel} className="w-full">
+                <SelectTrigger className="w-full bg-gray-700 border-gray-600 text-white">
                   <SelectValue placeholder="Select your activity level..." />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="sedentary">Sedentary (little or no exercise)</SelectItem>
-                  <SelectItem value="light">Lightly active (light exercise 1-3 days/week)</SelectItem>
-                  <SelectItem value="moderate">Moderately active (moderate exercise 3-5 days/week)</SelectItem>
-                  <SelectItem value="active">Active (intense exercise 6-7 days/week)</SelectItem>
-                  <SelectItem value="veryActive">Very active (very intense exercise & physical job)</SelectItem>
+                <SelectContent className="bg-gray-800 border-gray-600 text-white">
+                  <SelectItem value="sedentary" className="hover:bg-gray-700">Sedentary (little or no exercise)</SelectItem>
+                  <SelectItem value="light" className="hover:bg-gray-700">Lightly active (light exercise 1-3 days/week)</SelectItem>
+                  <SelectItem value="moderate" className="hover:bg-gray-700">Moderately active (moderate exercise 3-5 days/week)</SelectItem>
+                  <SelectItem value="active" className="hover:bg-gray-700">Active (intense exercise 6-7 days/week)</SelectItem>
+                  <SelectItem value="veryActive" className="hover:bg-gray-700">Very active (very intense exercise & physical job)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -141,12 +154,12 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
             <Button 
               onClick={calculateCaloriesToKg} 
               disabled={!calories || !activityLevel || loading}
-              className="flex-1"
+              className="flex-1 bg-blue-600 text-white hover:bg-blue-700"
             >
               {loading ? <>Calculating...</> : (<><Calculator className="h-4 w-4 mr-2" />Calculate</>)}
             </Button>
             {(calories || activityLevel) && (
-              <Button variant="outline" onClick={resetCalculator} className="flex-0">
+              <Button variant="outline" onClick={resetCalculator} className="flex-0 text-white border-gray-600 hover:bg-gray-700">
                 Reset
               </Button>
             )}
@@ -155,25 +168,25 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </Card>
 
       {result && (
-        <Card>
+        <Card className="bg-gray-800 border-gray-700">
           <CardHeader className="flex flex-row items-center space-x-2">
-            <CheckCircle className="h-5 w-5 text-green-600" />
-            <CardTitle className="text-xl">Conversion Result</CardTitle>
+            <CheckCircle className="h-5 w-5 text-green-500" />
+            <CardTitle className="text-xl text-white">Conversion Result</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="text-center space-y-2">
-              <div className="flex items-center justify-center space-x-2 text-2xl font-bold text-blue-600">
-                <span className="text-gray-600">{Number(calories).toLocaleString()}</span>
-                <span className="text-gray-400">kcal</span>
-                <span className="text-gray-400">→</span>
+              <div className="flex items-center justify-center space-x-2 text-2xl font-bold text-blue-400">
+                <span className="text-gray-300">{Number(calories).toLocaleString()}</span>
+                <span className="text-gray-500">kcal</span>
+                <span className="text-gray-500">→</span>
                 <span>{result.kg.toFixed(3)}</span>
-                <span className="text-gray-400">kg</span>
+                <span className="text-gray-500">kg</span>
               </div>
             </div>
-            <p className="text-sm text-gray-600 leading-relaxed">{result.message}</p>
-            <Alert className="border-blue-200 bg-blue-50">
-              <Info className="h-4 w-4" />
-              <AlertDescription className="text-sm">
+            <p className="text-sm text-gray-300 leading-relaxed">{result.message}</p>
+            <Alert className="border-green-800 bg-green-900/50">
+              <Info className="h-4 w-4 text-green-400" />
+              <AlertDescription className="text-gray-200">
                 <strong>💡 Tip:</strong> To lose 1kg of fat, you need to create a deficit of about 7,700 calories through diet and exercise. This is an estimate based on average metabolic efficiency.
               </AlertDescription>
             </Alert>
@@ -182,10 +195,10 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       )}
 
       {/* How to Use the Calculator */}
-      <Card>
+      <Card className="bg-gray-800 border-gray-700">
         <CardHeader>
-          <CardTitle className="flex items-center space-x-2">
-            <Info className="h-5 w-5" />
+          <CardTitle className="flex items-center space-x-2 text-white">
+            <Info className="h-5 w-5 text-blue-400" />
             <span>How to Use the Calculator</span>
           </CardTitle>
         </CardHeader>
@@ -196,30 +209,30 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
               { step: 2, title: "Select Activity Level", desc: "Choose your current activity level" },
               { step: 3, title: "Get the Result", desc: "Click 'Calculate' to see the kg equivalent" }
             ].map((item) => (
-              <div key={item.step} className="text-center space-y-2 p-4 bg-gray-50 rounded-lg">
-                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-                  <span className="text-blue-600 font-bold">{item.step}</span>
+              <div key={item.step} className="text-center space-y-2 p-4 bg-gray-700 rounded-lg">
+                <div className="w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center mx-auto">
+                  <span className="text-blue-400 font-bold">{item.step}</span>
                 </div>
-                <h4 className="font-medium">{item.title}</h4>
-                <p className="text-sm text-gray-600">{item.desc}</p>
+                <h4 className="font-medium text-white">{item.title}</h4>
+                <p className="text-sm text-gray-400">{item.desc}</p>
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
 
-      {/* Ad Space - Mid Page (Between Sections) */}
-      <div className="bg-muted p-4 text-center rounded-lg mt-8">
-        <p className="text-sm text-muted-foreground">Ad Space - Mid Page (Google AdSense)</p>
+      {/* Ad Space - Mid Page 1 */}
+      <div className="bg-gray-800 p-4 text-center rounded-lg mt-8">
+        <p className="text-sm text-gray-300">Ad Space - Mid Page 1 (Google AdSense)</p>
       </div>
 
       {/* How to Convert Calories to Kilograms */}
       <section className="max-w-2xl mx-auto mt-8 bg-gray-100 p-6 rounded-lg shadow-soft text-gray-800">
         <h2 className="text-2xl font-semibold">How to Convert Calories to Kilograms</h2>
         <p>To convert calories to kilograms of body fat, divide the number of calories by 7,700 (the approximate calories in 1 kg of fat) and multiply by an activity factor. The formula is:</p>
-        <code className="block bg-muted p-2 rounded mb-4">kilograms = (calories ÷ 7700) × activity_factor</code>
+        <code className="block bg-gray-200 p-2 rounded mb-4 text-gray-900">kilograms = (calories ÷ 7700) × activity_factor</code>
         <p>The activity factor adjusts for metabolic efficiency:</p>
-        <ul className="list-disc pl-5">
+        <ul className="list-disc pl-5 text-gray-900">
           <li>Sedentary: 0.90</li>
           <li>Lightly Active: 0.95</li>
           <li>Moderately Active: 1.00</li>
@@ -229,32 +242,47 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         <p>This conversion helps estimate how caloric deficits translate to weight loss or surpluses to gain. Note: Actual results vary due to individual metabolism, muscle mass, and water weight.</p>
       </section>
 
+      {/* Ad Space - Left Side (Sticky) */}
+      <div className="fixed top-1/2 transform -translate-y-1/2 left-4 w-1/6 bg-gray-800 p-4 rounded-lg z-10 hidden md:block">
+        <p className="text-sm text-gray-300">Ad Space - Left Side (Google AdSense)</p>
+      </div>
+
+      {/* Ad Space - Right Side (Sticky) */}
+      <div className="fixed top-1/2 transform -translate-y-1/2 right-4 w-1/6 bg-gray-800 p-4 rounded-lg z-10 hidden md:block">
+        <p className="text-sm text-gray-300">Ad Space - Right Side (Google AdSense)</p>
+      </div>
+
       {/* What is a Calorie? */}
       <section className="max-w-2xl mx-auto mt-8 bg-gray-100 p-6 rounded-lg shadow-soft text-gray-800">
         <h2 className="text-2xl font-semibold">What is a Calorie?</h2>
         <p>A calorie is a unit of energy, specifically the amount needed to raise 1 gram of water by 1°C. In nutrition, we use kilocalories (kcal), often just called "calories."</p>
         <p>Calories come from food and are used for bodily functions, movement, and growth. Excess calories are stored as fat, while a deficit causes the body to burn stored energy. Understanding calories is key to weight management, fitness, and health.</p>
         <p>One large calorie (kcal) equals 1,000 small calories. Typical daily intake is 2,000-2,500 kcal for adults, varying by age, sex, and activity.</p>
-        <p>Learn more: <a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065" target="_blank" rel="nofollow noreferrer">Mayo Clinic Calories Guide <ExternalLink className="h-4 w-4 inline" /></a></p>
+        <p>Learn more: <a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065" target="_blank" rel="nofollow noreferrer" className="text-blue-400 hover:underline">Mayo Clinic Calories Guide <ExternalLink className="h-4 w-4 inline" /></a></p>
       </section>
+
+      {/* Ad Space - Mid Page 2 */}
+      <div className="bg-gray-800 p-4 text-center rounded-lg mt-8">
+        <p className="text-sm text-gray-300">Ad Space - Mid Page 2 (Google AdSense)</p>
+      </div>
 
       {/* What is a Kilogram? */}
       <section className="max-w-2xl mx-auto mt-8 bg-gray-100 p-6 rounded-lg shadow-soft text-gray-800">
         <h2 className="text-2xl font-semibold">What is a Kilogram?</h2>
         <p>A kilogram (kg) is the base unit of mass in the metric system, equal to 1,000 grams or about 2.2 pounds. It's defined by the Planck constant since 2019.</p>
         <p>In fitness, a kilogram of body fat stores about 7,700 kcal due to fat's energy density (9 kcal/g). This conversion assumes 85-95% efficiency in metabolism. Kilograms measure body weight changes from caloric balance.</p>
-        <p>Learn more: <a href="https://www.nist.gov/si-redefinition/kilogram" target="_blank" rel="nofollow noreferrer">NIST Kilogram Definition <ExternalLink className="h-4 w-4 inline" /></a></p>
+        <p>Learn more: <a href="https://www.nist.gov/si-redefinition/kilogram" target="_blank" rel="nofollow noreferrer" className="text-blue-400 hover:underline">NIST Kilogram Definition <ExternalLink className="h-4 w-4 inline" /></a></p>
       </section>
 
       {/* Calorie to Kilogram Conversion Table */}
       <section className="max-w-2xl mx-auto mt-8 bg-gray-100 p-6 rounded-lg shadow-soft text-gray-800">
         <h2 className="text-2xl font-semibold">Calorie to Kilogram Conversion Table</h2>
         <p>Quick reference for common values (moderate activity level, factor 1.00).</p>
-        <Table>
+        <Table className="bg-gray-700 border-gray-600">
           <TableHeader>
             <TableRow>
-              <TableHead>Calories (kcal)</TableHead>
-              <TableHead>Kilograms (kg)</TableHead>
+              <TableHead className="text-white">Calories (kcal)</TableHead>
+              <TableHead className="text-white">Kilograms (kg)</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -271,19 +299,14 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
               { cal: 50000, kg: 6.494 },
             ].map((item, index) => (
               <TableRow key={index}>
-                <TableCell>{item.cal.toLocaleString()}</TableCell>
-                <TableCell>{item.kg.toFixed(3)}</TableCell>
+                <TableCell className="text-gray-300">{item.cal.toLocaleString()}</TableCell>
+                <TableCell className="text-gray-300">{item.kg.toFixed(3)}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
         <p className="text-xs text-gray-600 mt-2">Table assumes moderate activity; adjust for your level using the calculator.</p>
       </section>
-
-      {/* Ad Space - Bottom Left Corner (Sticky) */}
-      <div className="fixed bottom-4 left-4 w-1/4 bg-muted p-4 rounded-lg z-10 hidden md:block">
-        <p className="text-sm text-muted-foreground">Ad Space - Bottom Left (Google AdSense)</p>
-      </div>
 
       {/* Practical Examples */}
       <section className="max-w-2xl mx-auto mt-8 bg-gray-100 p-6 rounded-lg shadow-soft text-gray-800">
@@ -309,14 +332,14 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
               desc: "A 700 kcal daily deficit over 30 days can result in ~2.5 kg fat loss."
             },
           ].map((example, index) => (
-            <Card key={index}>
+            <Card key={index} className="bg-gray-800 border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg">{example.title}</CardTitle>
+                <CardTitle className="text-lg text-white">{example.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm mb-2"><strong>Input:</strong> {example.input}</p>
-                <p className="text-sm mb-2"><strong>Result:</strong> {example.result}</p>
-                <p className="text-xs text-gray-600">{example.desc}</p>
+                <p className="text-sm mb-2 text-gray-300"><strong>Input:</strong> {example.input}</p>
+                <p className="text-sm mb-2 text-gray-300"><strong>Result:</strong> {example.result}</p>
+                <p className="text-xs text-gray-500">{example.desc}</p>
               </CardContent>
             </Card>
           ))}
@@ -328,17 +351,17 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         <h2 className="text-2xl font-semibold mb-4">Share This Calculator</h2>
         <div className="flex justify-center gap-4">
           <Button variant="outline" size="sm" asChild>
-            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer">
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" className="text-gray-900">
               <Facebook className="h-4 w-4 mr-2" /> Facebook
             </a>
           </Button>
           <Button variant="outline" size="sm" asChild>
-            <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=Check out this Calories to Kilograms Calculator!`} target="_blank" rel="noopener noreferrer">
-              <Twitter className="h-4 w-4 mr-2" /> Twitter
+            <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=Check out this Calories to Kilograms Calculator!`} target="_blank" rel="noopener noreferrer" className="text-gray-900">
+              <Twitter className="h-4 w-4 mr-2" /> Twitter/X
             </a>
           </Button>
           <Button variant="outline" size="sm" asChild>
-            <a href={`whatsapp://send?text=Check out this Calories to Kilograms Calculator! ${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" data-action="share/whatsapp/share">
+            <a href={`whatsapp://send?text=Check out this Calories to Kilograms Calculator! ${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" data-action="share/whatsapp/share" className="text-gray-900">
               <Share2 className="h-4 w-4 mr-2" /> WhatsApp
             </a>
           </Button>
@@ -349,10 +372,10 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       <section className="max-w-2xl mx-auto mt-8 bg-gray-100 p-6 rounded-lg shadow-soft text-gray-800">
         <h2 className="text-2xl font-semibold">References</h2>
         <ul>
-          <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4035446/" target="_blank" rel="nofollow noreferrer">National Institutes of Health - Energy Balance <ExternalLink className="h-4 w-4 inline" /></a></li>
-          <li><a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065" target="_blank" rel="nofollow noreferrer">Mayo Clinic - Calories and Weight Loss <ExternalLink className="h-4 w-4 inline" /></a></li>
-          <li><a href="https://www.acsm.org/" target="_blank" rel="nofollow noreferrer">American College of Sports Medicine - Nutrition Guidelines <ExternalLink className="h-4 w-4 inline" /></a></li>
-          <li><a href="https://jamanetwork.com/journals/jama/fullarticle/2800195" target="_blank" rel="nofollow noreferrer">JAMA - Calorie Deficit and Weight Loss <ExternalLink className="h-4 w-4 inline" /></a></li>
+          <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4035446/" target="_blank" rel="nofollow noreferrer" className="text-blue-400 hover:underline">National Institutes of Health - Energy Balance <ExternalLink className="h-4 w-4 inline" /></a></li>
+          <li><a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065" target="_blank" rel="nofollow noreferrer" className="text-blue-400 hover:underline">Mayo Clinic - Calories and Weight Loss <ExternalLink className="h-4 w-4 inline" /></a></li>
+          <li><a href="https://www.acsm.org/" target="_blank" rel="nofollow noreferrer" className="text-blue-400 hover:underline">American College of Sports Medicine - Nutrition Guidelines <ExternalLink className="h-4 w-4 inline" /></a></li>
+          <li><a href="https://jamanetwork.com/journals/jama/fullarticle/2800195" target="_blank" rel="nofollow noreferrer" className="text-blue-400 hover:underline">JAMA - Calorie Deficit and Weight Loss <ExternalLink className="h-4 w-4 inline" /></a></li>
         </ul>
       </section>
 
@@ -361,26 +384,26 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         <h2 className="text-2xl font-semibold">Recommended Fitness Tools</h2>
         <p>Enhance your calorie tracking with these tools. (Affiliate links - commission may be earned at no cost to you)</p>
         <div className="grid gap-4 md:grid-cols-2">
-          <Card>
+          <Card className="bg-gray-800 border-gray-700">
             <CardHeader>
-              <CardTitle>Fitness Trackers on Amazon</CardTitle>
+              <CardTitle className="text-lg text-white">Fitness Trackers on Amazon</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm mb-2">Track your daily activity with Fitbit or Garmin devices.</p>
-              <Button variant="outline" asChild>
+              <p className="text-sm mb-2 text-gray-300">Track your daily activity with Fitbit or Garmin devices.</p>
+              <Button variant="outline" asChild className="text-white border-gray-600 hover:bg-gray-700">
                 <a href="https://www.amazon.com/s?k=fitness+tracker&tag=youraffiliateid-20" target="_blank" rel="nofollow noreferrer">
                   Shop Now <ExternalLink className="h-4 w-4 ml-2" />
                 </a>
               </Button>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="bg-gray-800 border-gray-700">
             <CardHeader>
-              <CardTitle>MyFitnessPal Premium</CardTitle>
+              <CardTitle className="text-lg text-white">MyFitnessPal Premium</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm mb-2">Log meals and track calories with advanced features.</p>
-              <Button variant="outline" asChild>
+              <p className="text-sm mb-2 text-gray-300">Log meals and track calories with advanced features.</p>
+              <Button variant="outline" asChild className="text-white border-gray-600 hover:bg-gray-700">
                 <a href="https://www.myfitnesspal.com/premium?affiliate=yourid" target="_blank" rel="nofollow noreferrer">
                   Get Premium <ExternalLink className="h-4 w-4 ml-2" />
                 </a>
@@ -390,10 +413,46 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         </div>
       </section>
 
+      {/* Feedback Form */}
+      <section className="max-w-2xl mx-auto mt-8 bg-gray-100 p-6 rounded-lg shadow-soft text-gray-800">
+        <h2 className="text-2xl font-semibold mb-4">Send Us Your Feedback</h2>
+        <form onSubmit={handleFeedbackSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="name" className="text-sm font-medium">Name (Optional)</label>
+            <Input
+              id="name"
+              value={feedback.name}
+              onChange={(e) => setFeedback({ ...feedback, name: e.target.value })}
+              className="mt-1 bg-white text-gray-900"
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="text-sm font-medium">Email (Optional)</label>
+            <Input
+              id="email"
+              type="email"
+              value={feedback.email}
+              onChange={(e) => setFeedback({ ...feedback, email: e.target.value })}
+              className="mt-1 bg-white text-gray-900"
+            />
+          </div>
+          <div>
+            <label htmlFor="suggestions" className="text-sm font-medium">Suggestions</label>
+            <Input
+              id="suggestions"
+              value={feedback.suggestions}
+              onChange={(e) => setFeedback({ ...feedback, suggestions: e.target.value })}
+              className="mt-1 bg-white text-gray-900"
+            />
+          </div>
+          <Button type="submit" className="bg-blue-600 text-white hover:bg-blue-700">Submit Feedback</Button>
+        </form>
+      </section>
+
       {/* Professional Disclaimer and Review Note */}
       <section className="max-w-2xl mx-auto mt-8 bg-gray-100 p-6 rounded-lg shadow-soft text-gray-800 text-center">
         <p className="text-sm">
-          <strong>Note:</strong> This calculator is reviewed by the Smart Kit Now Team for accuracy. However, for health-related decisions, consult a professional healthcare provider or nutritionist.
+          <strong>Note:</strong> This calculator is reviewed by the Smart Kit Now Team for accuracy. For health-related decisions, consult a professional healthcare provider.
         </p>
       </section>
     </div>
