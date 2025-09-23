@@ -10,6 +10,7 @@ import { BMRCalculator } from "@/components/calculators/BMRCalculator";
 import { CalorieCalculator } from "@/components/calculators/CalorieCalculator";
 import { BodyFatCalculator } from "@/components/calculators/BodyFatCalculator";
 import { TDEECalculator } from "@/components/calculators/TDEECalculator";
+import { CaloriesToKilogramsCalculator } from "@/components/calculators/CaloriesToKilogramsCalculator";
 
 const HealthCalculatorPage = () => {
   const navigate = useNavigate();
@@ -44,6 +45,8 @@ const HealthCalculatorPage = () => {
         return <BodyFatCalculator />;
       case 'tdee':
         return <TDEECalculator />;
+        case 'convert-calories-to-kilograms':
+         return <CaloriesToKilogramsCalculator />;
       default:
         return (
           <div className="bg-card rounded-lg p-8 text-center">
