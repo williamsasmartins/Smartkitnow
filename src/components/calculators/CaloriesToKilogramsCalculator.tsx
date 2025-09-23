@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2 } from "lucide-react";
+import { Header } from "@/components/Header"; // Adicionei pra simular a barra fixa
 
 interface CaloriesToKgProps {}
 
@@ -76,23 +77,29 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
 
   return (
     <div className="min-h-screen dark:bg-gray-900 bg-white dark:text-white text-gray-900 p-4">
+      {/* Header Fixo (Simulado) */}
+      <Header className="fixed top-0 left-0 w-full bg-gray-800 dark:bg-gray-900 z-50" />
+
+      {/* Ad Space - Top Center (Below Header) */}
+      <div className="max-w-3xl mx-auto mt-16 p-4 bg-gray-800 dark:bg-gray-700 rounded-lg">
+        <p className="text-sm text-gray-300 text-center">Ad Space - Top Center (Google AdSense)</p>
+      </div>
+
+      {/* Calculator Header */}
+      <section className="max-w-3xl mx-auto mt-4 text-center">
+        <h1 className="text-3xl font-bold mb-2 dark:text-white text-gray-900">Convert Calories to Kilograms</h1>
+        <p className="dark:text-gray-400 text-gray-600">Category: Calories Conversion</p>
+      </section>
+
       {/* Ad Space - Top Left Corner (Sticky) */}
-      <div className="fixed top-4 left-4 w-1/6 bg-gray-800 p-4 rounded-lg z-10 hidden md:block">
+      <div className="fixed top-24 left-4 w-1/6 bg-gray-800 p-4 rounded-lg z-10 hidden md:block">
         <p className="text-sm text-gray-300">Ad Space - Top Left (Google AdSense)</p>
       </div>
 
       {/* Ad Space - Top Right Corner (Sticky) */}
-      <div className="fixed top-4 right-4 w-1/6 bg-gray-800 p-4 rounded-lg z-10 hidden md:block">
+      <div className="fixed top-24 right-4 w-1/6 bg-gray-800 p-4 rounded-lg z-10 hidden md:block">
         <p className="text-sm text-gray-300">Ad Space - Top Right (Google AdSense)</p>
       </div>
-
-      {/* Calculator Header */}
-      <section className="max-w-3xl mx-auto mt-8">
-        <h1 className="text-3xl font-bold mb-2 dark:text-white text-gray-900">Convert Calories to Kilograms</h1>
-        <p className="dark:text-gray-400 text-gray-600 mb-6">
-          Use our free calories to kilograms converter to estimate body fat equivalent from caloric energy. Adjust for activity level and get accurate results.
-        </p>
-      </section>
 
       {/* Calculator Section */}
       <Card className="max-w-3xl mx-auto dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
