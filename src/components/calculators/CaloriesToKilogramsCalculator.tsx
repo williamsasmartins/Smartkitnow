@@ -134,7 +134,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
               <label htmlFor="activityLevel" className="text-sm font-medium dark:text-gray-300 text-gray-700">
                 Activity Level
               </label>
-              <Select value={activityLevel} onValueChange={setActivityLevel} className="w-full">
+              <Select value={activityLevel} onValueChange={setActivityLevel}>
                 <SelectTrigger className="w-full dark:bg-gray-700 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900">
                   <SelectValue placeholder="Select your activity level..." />
                 </SelectTrigger>
