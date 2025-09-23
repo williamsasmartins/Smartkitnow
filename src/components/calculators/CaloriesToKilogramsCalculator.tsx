@@ -5,8 +5,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2, Moon, Sun } from "lucide-react";
-import { Header } from "@/components/Header"; // Usa o Header real do Lovable
+import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2 } from "lucide-react";
+import { Header } from "@/components/Header";
 
 interface CaloriesToKgProps {}
 
@@ -17,7 +17,6 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [feedback, setFeedback] = useState({ name: "", email: "", suggestions: "" });
-  const [isDarkMode, setIsDarkMode] = useState(true); // Estado pra toggle tema
 
   const activityFactors = {
     sedentary: { factor: 0.90, label: "Sedentary" },
@@ -75,18 +74,10 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   };
 
   const currentUrl = window.location.href;
-  const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'dark:bg-gray-900 bg-white dark:text-white text-gray-900' : 'bg-white text-gray-900'} p-4`}>
-      {/* Header Fixo com Logo e Toggle Tema */}
-      <Header className="fixed top-0 left-0 w-full bg-gray-800 dark:bg-gray-900 z-50 flex items-center justify-between p-4">
-        <div className="text-white font-bold">Smart Kit Now</div> {/* Placeholder único pro logo */}
-        <Button variant="ghost" size="sm" onClick={toggleTheme} className="text-white mr-4">
-          {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-        </Button>
-      </Header>
-
+    <div className="min-h-screen dark:bg-gray-900 bg-white dark:text-white text-gray-900 p-4">
+      <Header />
       {/* Ad Space - Top Center (Below Header) */}
       <div className="max-w-3xl mx-auto mt-16 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
         <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Top Center (Google AdSense)</p>
@@ -102,24 +93,8 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Top Right (Google AdSense)</p>
       </div>
 
-      {/* Calculator Header */}
-      <section className="max-w-3xl mx-auto mt-4 text-center">
-        <h1 className="text-3xl font-bold mb-2 dark:text-white text-gray-900">Convert Calories to Kilograms</h1>
-        <p className="dark:text-gray-400 text-gray-600">Category: Calories Conversion</p>
-      </section>
-
-      {/* Ad Space - Left Side (Sticky) */}
-      <div className="fixed top-1/2 transform -translate-y-1/2 left-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-0 hidden md:block">
-        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Left Side (Google AdSense)</p>
-      </div>
-
-      {/* Ad Space - Right Side (Sticky) */}
-      <div className="fixed top-1/2 transform -translate-y-1/2 right-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-0 hidden md:block">
-        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Right Side (Google AdSense)</p>
-      </div>
-
       {/* Calculator Section */}
-      <Card className="max-w-3xl mx-auto dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+      <Card className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
         <CardHeader className="flex flex-row items-center space-x-2">
           <Calculator className="h-6 w-6 dark:text-blue-400 text-blue-600" />
           <div>
