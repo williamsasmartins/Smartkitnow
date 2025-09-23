@@ -5,8 +5,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2, Moon, Sun } from "lucide-react";
-import { Header } from "@/components/Header"; // Simula a barra fixa com logo
+import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2 } from "lucide-react";
+import { Header } from "@/components/Header";
 
 interface CaloriesToKgProps {}
 
@@ -17,7 +17,6 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [feedback, setFeedback] = useState({ name: "", email: "", suggestions: "" });
-  const [isDarkMode, setIsDarkMode] = useState(true); // Estado pra toggle tema
 
   const activityFactors = {
     sedentary: { factor: 0.90, label: "Sedentary" },
@@ -75,18 +74,11 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   };
 
   const currentUrl = window.location.href;
-  const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'dark:bg-gray-900 bg-white dark:text-white text-gray-900' : 'bg-white text-gray-900'} p-4`}>
-      {/* Header Fixo com Logo e Toggle Tema */}
+    <div className="min-h-screen p-4">
+      {/* Header */}
       <Header />
-      <div className="fixed top-0 left-0 w-full bg-gray-800 dark:bg-gray-900 z-50 flex justify-between items-center p-4">
-        <div className="text-white font-bold">Smart Kit Now Logo</div> {/* Simula um logo único */}
-        <Button variant="ghost" size="sm" onClick={toggleTheme} className="text-white">
-          {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-        </Button>
-      </div>
 
       {/* Ad Space - Top Center (Below Header) */}
       <div className="max-w-3xl mx-auto mt-16 p-4 bg-gray-800 dark:bg-gray-700 rounded-lg">
