@@ -377,8 +377,8 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
        <h2 className="text-2xl font-semibold">Recommended Fitness Tools</h2>
 <p>Enhance your calorie tracking with these tools. (Affiliate links - commission may be earned at no cost to you)</p>
-<div className="grid gap-4 md:grid-cols-2">
-  <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+    <div className="grid gap-4 md:grid-cols-2">
+  <Card key="card-amazon" className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
     <CardHeader>
       <CardTitle className="text-lg dark:text-white text-gray-900">Fitness Trackers on Amazon</CardTitle>
     </CardHeader>
@@ -391,7 +391,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </Button>
     </CardContent>
   </Card>
-  <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+  <Card key="card-myfitnesspal" className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
     <CardHeader>
       <CardTitle className="text-lg dark:text-white text-gray-900">MyFitnessPal Premium</CardTitle>
     </CardHeader>
@@ -404,33 +404,33 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
       </Button>
     </CardContent>
   </Card>
-  <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+  <Card key="card-smoothie" className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
     <CardHeader>
-      <CardTitle className="text-lg dark:text-white text-gray-900">AquaSculpt Supplement</CardTitle>
+      <CardTitle className="text-lg dark:text-white text-gray-900">The Smoothie Diet</CardTitle>
     </CardHeader>
     <CardContent>
-      <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">Water-based supplement for calorie burn and detox – supports weight loss goals.</p>
-      <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
-        <a href="https://getaquasculptnow.net/extraBottle/?hop=zzzzz&hopId=6086a95d-69cf-4c81-9390-1c0a5e9ebe8d" target="_blank" rel="nofollow noreferrer">
-          Get AquaSculpt <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
-        </a>
-      </Button>
-    </CardContent>
-  </Card>
-  <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
-    <CardHeader>
-      <CardTitle className="text-lg dark:text-white text-gray-900">The Smoothie Diet (Updated)</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">Updated 21-day smoothie program for calorie deficit, detox, and sustainable weight loss with new recipes.</p>
+      <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">21-day smoothie program for calorie deficit and weight loss with delicious recipes.</p>
       <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
         <a href="https://45633oyw4b2o6taioi0hr3r7uc.hop.clickbank.net" target="_blank" rel="nofollow noreferrer">
           Get Smoothie Diet <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
         </a>
       </Button>
-      </CardContent>
-      </Card>
-     </div>
+    </CardContent>
+  </Card>
+  <Card key="card-aquasculpt" className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+    <CardHeader>
+      <CardTitle className="text-lg dark:text-white text-gray-900">Get AQUA Sculpt</CardTitle>
+    </CardHeader>
+    <CardContent>
+      <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">Program for sculpted body with calorie-burning workouts and nutrition plans.</p>
+      <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
+        <a href="https://getaquasculptnow.net/extraBottle/?hop=zzzzz&hopId=6086a95d-69cf-4c81-9390-1c0a5e9ebe8d" target="_blank" rel="nofollow noreferrer">
+          Get AQUA Sculpt <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
+        </a>
+      </Button>
+    </CardContent>
+  </Card>
+</div>
       </section>
       <div className="max-w-3xl mx-auto mt-8 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
         <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Bottom (Google AdSense)</p>
