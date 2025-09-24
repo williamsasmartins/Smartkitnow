@@ -84,11 +84,12 @@ export function Header() {
       <div className="container mx-auto px-4 py-3 max-w-7xl flex items-center justify-between">
         {/* Logo único, sem duplicação */}
        <div 
-         className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
-            onClick={handleHomeClick}
-              >
-          <img key="logo-main" src={logoImage} alt="Smart Kit Now Logo" className="h-8 w-auto z-60" />
-         </div>
+  key="logo-container" 
+  className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity relative z-100"
+  onClick={handleHomeClick}
+>
+  <img key="logo-main" src={logoImage} alt="Smart Kit Now Logo" className="h-8 w-auto z-100 absolute" />
+</div>
         {backTarget && (
           <Button variant="ghost" size="sm" onClick={() => navigate(backTarget)} className="ml-2">
             <ArrowLeft className="h-4 w-4 mr-2" />
