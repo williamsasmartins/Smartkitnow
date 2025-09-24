@@ -29,7 +29,7 @@ const FinancialSubCategory = () => {
     <div className="min-h-screen bg-gradient-soft">
       <Header />
       
-      <main className="pt-24">
+      <main className="pt-16">
         <section className="container mx-auto px-4 py-8">
           <div className="max-w-3xl mx-auto mt-16 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
             <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Top Center (Google AdSense)</p>
@@ -67,7 +67,7 @@ const FinancialSubCategory = () => {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">  <!-- 4 colunas pra caber mais cards -->
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {subCategory.calculators.map((calculator: any, index: number) => (
                 <Card 
                   key={index} 
@@ -105,6 +105,7 @@ const FinancialSubCategory = () => {
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
   );
