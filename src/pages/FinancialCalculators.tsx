@@ -10,24 +10,23 @@ const FinancialCalculators = () => {
   const navigate = useNavigate();
 
   const subCategories = [
-    {
-      title: "Loan Calculators",
-      icon: "fa-solid fa-hand-holding-dollar",
-      calculators: [
-        { key: "loan", name: "Loan Calculator" },
-        { key: "auto-loan", name: "Auto Loan Calculator" },
-        { key: "mortgage", name: "Mortgage Calculator" },
-      ],
-    },
-    {
-      title: "Investment Calculators",
-      icon: "fa-solid fa-chart-line",
-      calculators: [
-        { key: "compound-interest", name: "Compound Interest Calculator" },
-        { key: "roi", name: "ROI Calculator" },
-        { key: "financial-gpa", name: "Financial GPA Calculator" },
-      ],
-    },
+    { title: "Personal Finance Calculators", icon: "fa-solid fa-user-tie", calculators: [{ key: "personal-finance", name: "Personal Finance Tools" }] },
+    { title: "Interest and Loan Calculators", icon: "fa-solid fa-percentage", calculators: [{ key: "interest-loan", name: "Interest & Loan Tools" }] },
+    { title: "Mortgage and Home Loan Calculators", icon: "fa-solid fa-home", calculators: [{ key: "mortgage-home", name: "Mortgage & Home Loan Tools" }] },
+    { title: "Property and Real Estate Calculators", icon: "fa-solid fa-building", calculators: [{ key: "property-real-estate", name: "Property & Real Estate Tools" }] },
+    { title: "Investment and Annuity Calculators", icon: "fa-solid fa-chart-line", calculators: [{ key: "investment-annuity", name: "Investment & Annuity Tools" }] },
+    { title: "Vehicle Loan Calculators", icon: "fa-solid fa-car", calculators: [{ key: "vehicle-loan", name: "Vehicle Loan Tools" }] },
+    { title: "Retirement Planning Calculators", icon: "fa-solid fa-calendar-alt", calculators: [{ key: "retirement-planning", name: "Retirement Planning Tools" }] },
+    { title: "Tax Calculators", icon: "fa-solid fa-receipt", calculators: [{ key: "tax", name: "Tax Tools" }] },
+    { title: "Savings and Budget Calculators", icon: "fa-solid fa-piggy-bank", calculators: [{ key: "savings-budget", name: "Savings & Budget Tools" }] },
+    { title: "Credit and Debt Calculators", icon: "fa-solid fa-credit-card", calculators: [{ key: "credit-debt", name: "Credit & Debt Tools" }] },
+    { title: "Insurance Calculators", icon: "fa-solid fa-shield-alt", calculators: [{ key: "insurance", name: "Insurance Tools" }] },
+    { title: "Currency and Exchange Calculators", icon: "fa-solid fa-exchange-alt", calculators: [{ key: "currency-exchange", name: "Currency & Exchange Tools" }] },
+    { title: "Small Business Calculators", icon: "fa-solid fa-building-columns", calculators: [{ key: "small-business", name: "Small Business Tools" }] },
+    { title: "Education Finance Calculators", icon: "fa-solid fa-graduation-cap", calculators: [{ key: "education-finance", name: "Education Finance Tools" }] },
+    { title: "Cryptocurrency Calculators", icon: "fa-solid fa-coins", calculators: [{ key: "cryptocurrency", name: "Crypto Tools" }] },
+    { title: "Banking and Financial Services", icon: "fa-solid fa-university", calculators: [{ key: "banking-financial", name: "Banking & Financial Services" }] },
+    { title: "Business Finance Calculators", icon: "fa-solid fa-briefcase", calculators: [{ key: "business-finance", name: "Business Finance Tools" }] },
   ];
 
   const handleSubCategoryClick = (subCategory: any) => {
@@ -39,7 +38,7 @@ const FinancialCalculators = () => {
     <div className="min-h-screen bg-gradient-soft">
       <Header />
       
-      <main className="pt-16">
+      <main className="pt-24">  <!-- Aumentado pra 24 pra dar espaço pro header -->
         <section className="container mx-auto px-4 py-8">
           <div className="max-w-3xl mx-auto mt-16 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
             <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Top Center (Google AdSense)</p>
@@ -77,7 +76,7 @@ const FinancialCalculators = () => {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">  <!-- Mudado pra 4 colunas pra caber 18 cards -->
               {subCategories.map((subCategory, index) => (
                 <Card 
                   key={index} 
