@@ -17,7 +17,12 @@ const FinancialSubCategory = () => {
 
   const handleCalculatorClick = (calculator: any) => {
     const slug = calculator.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    navigate(`/financial/calculator/${slug}`, { state: { calculator, subCategory: subCategory.title } });
+    navigate(`/financial/calculator/${slug}`, { 
+      state: { 
+        calculator, 
+        subCategory: subCategory.title 
+      } 
+    });
   };
 
   return (
@@ -62,7 +67,7 @@ const FinancialSubCategory = () => {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {subCategory.calculators.map((calculator: any, index: number) => (
                 <Card 
                   key={index} 
