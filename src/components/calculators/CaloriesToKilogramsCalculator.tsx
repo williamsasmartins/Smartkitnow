@@ -406,31 +406,31 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   </Card>
   <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
     <CardHeader>
-      <CardTitle className="text-lg dark:text-white text-gray-900">Puravive Supplement</CardTitle>
+      <CardTitle className="text-lg dark:text-white text-gray-900">AquaSculpt Supplement</CardTitle>
     </CardHeader>
     <CardContent>
-      <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">Boost calorie burn with tropical nutrients to activate brown fat for weight loss.</p>
+      <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">Water-based supplement for calorie burn and detox – supports weight loss goals.</p>
       <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
-        <a href="https://puravive.clickbank.net/?aff=wwasm" target="_blank" rel="nofollow noreferrer">
-          Get Puravive <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
+        <a href="https://getaquasculptnow.net/extraBottle/?hop=zzzzz&hopId=6086a95d-69cf-4c81-9390-1c0a5e9ebe8d" target="_blank" rel="nofollow noreferrer">
+          Get AquaSculpt <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
         </a>
       </Button>
     </CardContent>
   </Card>
   <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
     <CardHeader>
-      <CardTitle className="text-lg dark:text-white text-gray-900">Back to Life Yoga Program</CardTitle>
+      <CardTitle className="text-lg dark:text-white text-gray-900">The Smoothie Diet (Updated)</CardTitle>
     </CardHeader>
     <CardContent>
-      <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">Yoga routines for back pain relief and calorie-burning fitness.</p>
+      <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">Updated 21-day smoothie program for calorie deficit, detox, and sustainable weight loss with new recipes.</p>
       <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
-        <a href="https://btlife.clickbank.net/?aff=wwasm" target="_blank" rel="nofollow noreferrer">
-          Get Back to Life <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
+        <a href="https://45633oyw4b2o6taioi0hr3r7uc.hop.clickbank.net" target="_blank" rel="nofollow noreferrer">
+          Get Smoothie Diet <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
         </a>
-           </Button>
-           </CardContent>
-         </Card>
-       </div> 
+      </Button>
+      </CardContent>
+      </Card>
+     </div>
       </section>
       <div className="max-w-3xl mx-auto mt-8 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
         <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Bottom (Google AdSense)</p>
