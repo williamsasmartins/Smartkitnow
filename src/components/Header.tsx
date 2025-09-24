@@ -65,10 +65,10 @@ export function Header() {
       science: `/science/calculator/${calculator.key}`,
       time: `/time/calculator/${calculator.key}`,
       tv: `/tv/calculator/${calculator.key}`,
-    };
+    } as const;
     const path = paths[calculator.category as keyof typeof paths];
     if (path) {
-      navigate(path);
+      navigate(path, { state: { calculator, subCategory: calculator.category } });
     }
   };
   
