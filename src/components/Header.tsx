@@ -4,14 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Search, ArrowLeft } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useMemo } from "react";
-import logoImage from "@/assets/logo-skn.png";
+import logoImage from "@/assets/logo-skn.png"; // Verifique se o arquivo existe em src/assets/
 import { recipeData } from "@/data/recipeData";
 
 export function Header() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
-
   const calculators = useMemo(() => [
     { key: "carburetor-cfm", name: "Carburetor CFM Calculator", category: "automotive" },
     { key: "engine-compression", name: "Engine Compression Ratio Calculator", category: "automotive" },
@@ -19,7 +18,7 @@ export function Header() {
     { key: "fuel-cost", name: "Fuel Cost Calculator", category: "automotive" },
     { key: "gas-mileage", name: "Gas Mileage Calculator", category: "automotive" },
     { key: "auto-loan", name: "Auto Loan Calculator", category: "automotive" },
-    { key: "tv-mounting-cost", name: "TV Mounting and Installation Cost Guide", category: "tv" }
+    { key: "tv-mounting-cost", name: "TV Mounting and Installation Cost Guide", category: "tv" },
   ], []);
 
   const filteredCalculators = useMemo(() => {
@@ -51,19 +50,17 @@ export function Header() {
       financial: `/financial/calculator/${calculator.key}`,
       health: `/health/calculator/${calculator.key}`,
       math: `/math/calculator/${calculator.key}`,
-      pets: `/pets/calculator/${pets.key}`,
+      pets: `/pets/calculator/${calculator.key}`,
       science: `/science/calculator/${calculator.key}`,
       time: `/time/calculator/${calculator.key}`,
-      tv: `/tv/calculator/${calculator.key}`
+      tv: `/tv/calculator/${calculator.key}`,
     };
     navigate(paths[calculator.category as keyof typeof paths] || "/");
   };
   const handleSuggestionClick = (calculator: any) => navigateToCalculator(calculator);
-
   const location = useLocation();
   const pathname = location.pathname;
   const stateCategory = (location.state as any)?.category as string | undefined;
-
   const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   let backTarget: string | null = null;
   if (pathname === '/recipes') backTarget = '/';
@@ -80,16 +77,20 @@ export function Header() {
   }
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95">
+    <header className="fixed top-0 w-full border-b border-border/40 bg-background/95 backdrop-blur-md z-50">
       <div className="container mx-auto px-4 py-3 max-w-7xl flex items-center justify-between">
-        {/* Logo único, sem duplicação */}
-       <div 
-  key="logo-container" 
-  className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity relative z-100"
-  onClick={handleHomeClick}
->
-  <img key="logo-main" src={logoImage} alt="Smart Kit Now Logo" className="h-8 w-auto z-100 absolute" />
-</div>
+        {/* Logo único com fallback */}
+        <div 
+          key="logo-container"
+          className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
+          onClick={handleHomeClick}
+        >
+          {logoImage ? (
+            <img key="logo-main" src={logoImage} alt="Smart Kit Now Logo" className="h-8 w-auto z-60" />
+          ) : (
+            <span className="text-lg font-bold">Smart Kit Now</span> // Fallback se a imagem falhar
+          )}
+        </div>
         {backTarget && (
           <Button variant="ghost" size="sm" onClick={() => navigate(backTarget)} className="ml-2">
             <ArrowLeft className="h-4 w-4 mr-2" />
@@ -122,8 +123,8 @@ export function Header() {
             </div>
           )}
         </form>
-        <div className="flex items-center space-x-2 flex-shrink-0">
-          <ThemeToggle />
+        <div className="flex items-center space-x-2">
+          <ThemeToggle className="fixed top-4 right-4 z-50" />
         </div>
       </div>
     </header>
