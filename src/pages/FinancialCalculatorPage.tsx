@@ -7,11 +7,17 @@ import { ArrowLeft } from "lucide-react";
 // Import financial calculator components
 import { LoanCalculator } from "@/components/calculators/LoanCalculator";
 import { CompoundInterestCalculator } from "@/components/calculators/CompoundInterestCalculator";
-import { ROICalculator } from "@/components/calculators/ROICalculator";
+import { ROICalculator as ExistingROICalculator } from "@/components/calculators/ROICalculator";
 import { TipCalculator } from "@/components/calculators/TipCalculator";
 import { MortgageCalculator } from "@/components/calculators/MortgageCalculator";
 
 // Import new financial calculators
+import { ROICalculator } from "@/components/calculators/financial/ROICalculator";
+import { MortgageRefinanceCalculator } from "@/components/calculators/financial/MortgageRefinanceCalculator";
+import { HomeAffordabilityCalculator } from "@/components/calculators/financial/HomeAffordabilityCalculator";
+import { RefinanceBreakevenCalculator } from "@/components/calculators/financial/RefinanceBreakevenCalculator";
+import { InvestmentReturnCalculator } from "@/components/calculators/financial/InvestmentReturnCalculator";
+
 import { AdjustedGrossIncomeCalculator } from "@/components/calculators/financial/AdjustedGrossIncomeCalculator";
 import { AnnualIncomeCalculator } from "@/components/calculators/financial/AnnualIncomeCalculator";
 import { BiweeklyPayCalculator } from "@/components/calculators/financial/BiweeklyPayCalculator";
@@ -74,6 +80,16 @@ const FinancialCalculatorPage = () => {
       case 'roi':
       case 'rate-of-return':
         return <ROICalculator />;
+      case 'investment-return':
+        return <InvestmentReturnCalculator />;
+        
+      // Mortgage and Home Loan
+      case 'mortgage-refinance':
+        return <MortgageRefinanceCalculator />;
+      case 'home-affordability':
+        return <HomeAffordabilityCalculator />;
+      case 'refinance-breakeven':
+        return <RefinanceBreakevenCalculator />;
         
       // Mortgage
       case 'mortgage':
