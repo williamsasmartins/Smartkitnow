@@ -95,12 +95,6 @@ export function Header() {
             <span className="text-lg font-bold">Smart Kit Now</span>
           )}
         </div>
-        {backTarget && (
-          <Button variant="ghost" size="sm" onClick={() => navigate(backTarget)} className="ml-2">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            <span className="hidden sm:inline">Back</span>
-          </Button>
-        )}
         <form onSubmit={handleSearchSubmit} className="flex-1 max-w-xl mx-4 relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
