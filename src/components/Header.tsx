@@ -1,16 +1,15 @@
 import { ThemeToggle } from "./ThemeToggle";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Search, ArrowLeft } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useState, useMemo } from "react";
-import logoImage from "@/assets/logo-skn.png"; // Verifique se o arquivo existe em src/assets/
-import { recipeData } from "@/data/recipeData";
+import logoImage from "@/assets/logo-skn.png";
 
 export function Header() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
+
   const calculators = useMemo(() => [
     { key: "carburetor-cfm", name: "Carburetor CFM Calculator", category: "automotive" },
     { key: "engine-compression", name: "Engine Compression Ratio Calculator", category: "automotive" },
@@ -19,6 +18,13 @@ export function Header() {
     { key: "gas-mileage", name: "Gas Mileage Calculator", category: "automotive" },
     { key: "auto-loan", name: "Auto Loan Calculator", category: "automotive" },
     { key: "tv-mounting-cost", name: "TV Mounting and Installation Cost Guide", category: "tv" },
+    { key: "bmi", name: "BMI Calculator", category: "health" },
+    { key: "bmr", name: "BMR Calculator", category: "health" },
+    { key: "calorie", name: "Calorie Calculator", category: "health" },
+    { key: "convert-calories-to-kilograms", name: "Calories to Kilograms Calculator", category: "health" },
+    { key: "body-fat", name: "Body Fat Calculator", category: "health" },
+    { key: "age", name: "Age Calculator", category: "health" },
+    { key: "tdee", name: "TDEE Calculator", category: "health" },
   ], []);
 
   const filteredCalculators = useMemo(() => {
@@ -30,15 +36,20 @@ export function Header() {
   }, [searchTerm, calculators]);
 
   const handleHomeClick = () => navigate("/");
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
     setShowSuggestions(value.trim().length > 0);
   };
+
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchTerm.trim() && filteredCalculators.length > 0) navigateToCalculator(filteredCalculators[0]);
+    if (searchTerm.trim() && filteredCalculators.length > 0) {
+      navigateToCalculator(filteredCalculators[0]);
+    }
   };
+
   const navigateToCalculator = (calculator: any) => {
     setSearchTerm("");
     setShowSuggestions(false);
@@ -54,53 +65,33 @@ export function Header() {
       science: `/science/calculator/${calculator.key}`,
       time: `/time/calculator/${calculator.key}`,
       tv: `/tv/calculator/${calculator.key}`,
-    };
-    navigate(paths[calculator.category as keyof typeof paths] || "/");
-  };
-  const handleSuggestionClick = (calculator: any) => navigateToCalculator(calculator);
-  const location = useLocation();
-  const pathname = location.pathname;
-  const stateCategory = (location.state as any)?.category as string | undefined;
-  const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  let backTarget: string | null = null;
-  if (pathname === '/recipes') backTarget = '/';
-  else if (pathname.startsWith('/recipes/')) backTarget = '/recipes';
-  else if (pathname.startsWith('/recipe/')) {
-    let cat = stateCategory;
-    if (!cat) {
-      const slug = pathname.split('/').pop();
-      outer: for (const [catName, list] of Object.entries(recipeData as Record<string, any[]>)) {
-        for (const r of list as any[]) if (slugify(r.name) === slug) { cat = catName; break outer; }
-      }
+    } as const;
+    const path = paths[calculator.category as keyof typeof paths];
+    if (path) {
+      navigate(path, { state: { calculator, subCategory: calculator.category } });
     }
-    backTarget = cat ? `/recipes/${slugify(cat)}` : '/recipes';
-  }
+  };
+
+  const handleSuggestionClick = (calculator: any) => navigateToCalculator(calculator);
 
   return (
     <header className="fixed top-0 w-full border-b border-border/40 bg-background/95 backdrop-blur-md z-[10000]">
       <div className="container mx-auto px-4 py-3 max-w-7xl flex items-center justify-between">
-        <div 
-          key="logo-container" 
-          className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
+        <div
+          className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
           onClick={handleHomeClick}
         >
           {logoImage ? (
-            <img 
-              key="logo-main" 
-              src={logoImage} 
-              alt="Smart Kit Now Logo" 
-              className="h-8 w-auto z-[10000] block"
+            <img
+              src={logoImage}
+              alt="Smart Kit Now Logo"
+              className="h-8 w-auto block"
             />
           ) : (
             <span className="text-lg font-bold">Smart Kit Now</span>
           )}
         </div>
-        {backTarget && (
-          <Button variant="ghost" size="sm" onClick={() => navigate(backTarget)} className="ml-2">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            <span className="hidden sm:inline">Back</span>
-          </Button>
-        )}
+
         <form onSubmit={handleSearchSubmit} className="flex-1 max-w-xl mx-4 relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
@@ -117,7 +108,10 @@ export function Header() {
               {filteredCalculators.map((calc) => (
                 <div
                   key={calc.key}
-                  onClick={() => handleSuggestionClick(calc)}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    handleSuggestionClick(calc);
+                  }}
                   className="px-4 py-2 hover:bg-muted cursor-pointer border-b border-border/50 last:border-b-0"
                 >
                   <div className="font-medium text-sm">{calc.name}</div>
@@ -127,10 +121,11 @@ export function Header() {
             </div>
           )}
         </form>
-        <div className="flex items-center space-x-2">
-          <div className="fixed top-4 right-4 z-[10000]">
-            <ThemeToggle />
-          </div>
+
+        <div className="flex items-center mr-3 sm:mr-4 md:mr-6">
+          <ThemeToggle />
+          {/* Se quiser fixar no canto direito, descomente a linha abaixo e comente a linha acima */}
+          {/* <div className="fixed top-4 right-4 z-[10000]"><ThemeToggle /></div> */}
         </div>
       </div>
     </header>
