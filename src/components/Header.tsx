@@ -87,7 +87,7 @@ export function Header() {
          className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
             onClick={handleHomeClick}
               >
-          <img src={logoImage} alt="Smart Kit Now Logo" className="h-8 w-auto z-10" />
+          <img key="logo-main" src={logoImage} alt="Smart Kit Now Logo" className="h-8 w-auto z-60" />
          </div>
         {backTarget && (
           <Button variant="ghost" size="sm" onClick={() => navigate(backTarget)} className="ml-2">
