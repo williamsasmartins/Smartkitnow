@@ -5,7 +5,6 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { DollarSign, ArrowLeft } from "lucide-react";
-import { AdLayout } from "@/components/ads/AdLayout";
 const FinancialCalculators = () => {
   const navigate = useNavigate();
   const subCategories = [{
@@ -550,71 +549,61 @@ const FinancialCalculators = () => {
       }
     });
   };
-  return (
-    <>
+  return <div className="min-h-screen bg-gradient-soft">
       <Header />
       
-      <AdLayout>
-        <main className="pt-20">
-          <section className="container mx-auto px-4 py-8">
-            <div className="mb-8">
-              <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="flex items-center space-x-2 mb-6">
-                <ArrowLeft className="h-4 w-4" />
-                <span>Back</span>
-              </Button>
-              
-              <div className="flex flex-col items-center text-center space-y-3 mb-6">
-                <div className="p-3 rounded-lg bg-primary/10">
-                  <DollarSign className="h-8 w-8 text-primary" />
-                </div>
-                <div>
-                  <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">Financial Calculators – Plan, Invest & Save Smarter</h1>
-                  <p className="text-muted-foreground mt-2 text-lg">Explore our full range of financial calculators to manage money wisely. Calculate loan payments, investment growth, interest rates, and savings goals with clear formulas and step-by-step guidance.</p>
-                </div>
+      <main className="pt-20">
+        <section className="container mx-auto px-4 py-8">
+          <div className="mb-8">
+            <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="flex items-center space-x-2 mb-6">
+              <ArrowLeft className="h-4 w-4" />
+              <span>Back</span>
+            </Button>
+            
+            <div className="flex flex-col items-center text-center space-y-3 mb-6">
+              <div className="p-3 rounded-lg bg-primary/10">
+                <DollarSign className="h-8 w-8 text-primary" />
+              </div>
+              <div>
+                <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">Financial Calculators – Plan, Invest & Save Smarter</h1>
+                <p className="text-muted-foreground mt-2 text-lg">Explore our full range of financial calculators to manage money wisely. Calculate loan payments, investment growth, interest rates, and savings goals with clear formulas and step-by-step guidance.</p>
               </div>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {subCategories.map((subCategory, index) => (
-                <Card key={index} className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer" onClick={() => handleSubCategoryClick(subCategory)}>
-                  <CardHeader>
-                    <div className="flex items-center space-x-3">
-                      <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                        <i className={`${subCategory.icon} text-primary text-lg`}></i>
-                      </div>
-                      <div>
-                        <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                          {subCategory.title}
-                        </CardTitle>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          {subCategory.calculators.length} calculators available
-                        </p>
-                      </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {subCategories.map((subCategory, index) => <Card key={index} className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer" onClick={() => handleSubCategoryClick(subCategory)}>
+                <CardHeader>
+                  <div className="flex items-center space-x-3">
+                    <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <i className={`${subCategory.icon} text-primary text-lg`}></i>
                     </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-1">
-                      {subCategory.calculators.slice(0, 3).map((calc, calcIndex) => (
-                        <p key={calcIndex} className="text-xs text-muted-foreground">
-                          • {calc.name}
-                        </p>
-                      ))}
-                      {subCategory.calculators.length > 3 && (
-                        <p className="text-xs text-muted-foreground font-medium">
-                          + {subCategory.calculators.length - 3} more calculators
-                        </p>
-                      )}
+                    <div>
+                      <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                        {subCategory.title}
+                      </CardTitle>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        {subCategory.calculators.length} calculators available
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
-        </main>
-      </AdLayout>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-1">
+                    {subCategory.calculators.slice(0, 3).map((calc, calcIndex) => <p key={calcIndex} className="text-xs text-muted-foreground">
+                        • {calc.name}
+                      </p>)}
+                    {subCategory.calculators.length > 3 && <p className="text-xs text-muted-foreground font-medium">
+                        + {subCategory.calculators.length - 3} more calculators
+                      </p>}
+                  </div>
+                </CardContent>
+              </Card>)}
+          </div>
+        </section>
+      </main>
 
       <Footer />
-    </>
-  );
+    </div>;
 };
 export default FinancialCalculators;
