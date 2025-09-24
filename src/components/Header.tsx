@@ -81,7 +81,7 @@ export function Header() {
       <div className="container mx-auto px-4 py-3 max-w-7xl flex items-center justify-between">
         <div 
           key="logo-container" 
-          className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
+          className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
           onClick={handleHomeClick}
         >
           {logoImage ? (
