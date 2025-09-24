@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 interface InputGroupProps {
   label: string;
   id: string;
-  type?: 'text' | 'number' | 'select';
+  type?: 'text' | 'number' | 'select' | 'date';
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
