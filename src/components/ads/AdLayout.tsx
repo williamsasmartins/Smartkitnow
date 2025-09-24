@@ -16,12 +16,12 @@ export function AdLayout({ children, showCenterAd = true }: AdLayoutProps) {
       {/* Main Content with Side Ads */}
       <div className="relative">
         {/* Left Side Ad - Desktop Only */}
-        <div className="hidden xl:block fixed left-4 top-1/2 transform -translate-y-1/2 z-10">
+        <div className="hidden xl:block fixed left-2 top-1/2 transform -translate-y-1/2 z-10">
           <AdSense slot="ad-left-side" size="side-banner" />
         </div>
 
         {/* Right Side Ad - Desktop Only */}
-        <div className="hidden xl:block fixed right-4 top-1/2 transform -translate-y-1/2 z-10">
+        <div className="hidden xl:block fixed right-2 top-1/2 transform -translate-y-1/2 z-10">
           <AdSense slot="ad-right-side" size="side-banner" />
         </div>
 
