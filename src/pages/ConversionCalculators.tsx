@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, ChevronRight, Ruler, Map, ChefHat, Zap, Battery, Fuel, Move, Gauge, Thermometer, Clock, Volume2, Weight } from "lucide-react";
+import { AdLayout } from "@/components/ads/AdLayout";
 
 const ConversionCalculators = () => {
   const navigate = useNavigate();
@@ -221,112 +222,114 @@ const ConversionCalculators = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-soft">
+    <>
       <Header />
       
-      <main className="pt-20">
-        <section className="container mx-auto px-4 py-8">
-          {/* Back Button */}
-          <div className="mb-6">
-            <button 
-              onClick={() => navigate('/')} 
-              className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back</span>
-            </button>
-          </div>
+      <AdLayout>
+        <main className="pt-20">
+          <section className="container mx-auto px-4 py-8">
+            {/* Back Button */}
+            <div className="mb-6">
+              <button 
+                onClick={() => navigate('/')} 
+                className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                <span>Back</span>
+              </button>
+            </div>
 
-          {/* Page Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">
-              Conversion Calculators
-            </h1>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Unit conversion is the process of converting a measurement from one unit to another, for instance, converting your height from inches to centimeters. Convert nearly any measurement using one of the conversion calculators below.
-            </p>
-          </div>
+            {/* Page Header */}
+            <div className="text-center mb-12">
+              <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">
+                Conversion Calculators
+              </h1>
+              <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+                Unit conversion is the process of converting a measurement from one unit to another, for instance, converting your height from inches to centimeters. Convert nearly any measurement using one of the conversion calculators below.
+              </p>
+            </div>
 
-          {/* Popular Converters Section */}
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-center mb-8 text-foreground">Popular Converters</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {popularConverters.map((category, index) => (
-                <Card key={index} className="border border-border/50 hover:shadow-soft transition-shadow">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="flex items-center space-x-2 text-lg">
-                      <div className={`p-2 rounded-lg ${category.bgColor}`}>
-                        <div className={category.color}>
-                          {category.icon}
+            {/* Popular Converters Section */}
+            <div className="mb-12">
+              <h2 className="text-3xl font-bold text-center mb-8 text-foreground">Popular Converters</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {popularConverters.map((category, index) => (
+                  <Card key={index} className="border border-border/50 hover:shadow-soft transition-shadow">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="flex items-center space-x-2 text-lg">
+                        <div className={`p-2 rounded-lg ${category.bgColor}`}>
+                          <div className={category.color}>
+                            {category.icon}
+                          </div>
                         </div>
+                        <span className="text-foreground">{category.title}</span>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <div className="space-y-2">
+                        {category.conversions.map((conversion, idx) => (
+                          <div 
+                            key={idx}
+                            className="flex items-center justify-between py-1 px-2 rounded hover:bg-muted/50 cursor-pointer group transition-colors"
+                            onClick={() => navigate(`/calculator/${conversion.key}`)}
+                          >
+                            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                              {conversion.from} to {conversion.to}
+                            </span>
+                            <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                          </div>
+                        ))}
                       </div>
-                      <span className="text-foreground">{category.title}</span>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Sub Categories Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {subCategories.map((subCategory, index) => (
+                <Card 
+                  key={index} 
+                  className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer"
+                  onClick={() => handleSubCategoryClick(subCategory)}
+                >
+                  <CardHeader>
+                    <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors flex items-center space-x-3">
+                      <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/20 group-hover:bg-primary/10 transition-colors">
+                        <i className={`${subCategory.icon} text-green-600 text-lg`}></i>
+                      </div>
+                      <span>{subCategory.title}</span>
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="pt-0">
+                  <CardContent>
                     <div className="space-y-2">
-                      {category.conversions.map((conversion, idx) => (
-                        <div 
-                          key={idx}
-                          className="flex items-center justify-between py-1 px-2 rounded hover:bg-muted/50 cursor-pointer group transition-colors"
-                          onClick={() => navigate(`/calculator/${conversion.key}`)}
-                        >
-                          <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                            {conversion.from} to {conversion.to}
-                          </span>
-                          <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                        </div>
-                      ))}
+                      <p className="text-muted-foreground text-sm mb-3">
+                        {subCategory.calculators.length} converters available
+                      </p>
+                      <div className="space-y-1">
+                        {subCategory.calculators.slice(0, 3).map((calc, idx) => (
+                          <p key={idx} className="text-sm text-muted-foreground">
+                            • {calc.name}
+                          </p>
+                        ))}
+                        {subCategory.calculators.length > 3 && (
+                          <p className="text-sm text-muted-foreground font-medium">
+                            + {subCategory.calculators.length - 3} more...
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
-          </div>
-
-          {/* Sub Categories Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {subCategories.map((subCategory, index) => (
-              <Card 
-                key={index} 
-                className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer"
-                onClick={() => handleSubCategoryClick(subCategory)}
-              >
-                <CardHeader>
-                  <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors flex items-center space-x-3">
-                    <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/20 group-hover:bg-primary/10 transition-colors">
-                      <i className={`${subCategory.icon} text-green-600 text-lg`}></i>
-                    </div>
-                    <span>{subCategory.title}</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    <p className="text-muted-foreground text-sm mb-3">
-                      {subCategory.calculators.length} converters available
-                    </p>
-                    <div className="space-y-1">
-                      {subCategory.calculators.slice(0, 3).map((calc, idx) => (
-                        <p key={idx} className="text-sm text-muted-foreground">
-                          • {calc.name}
-                        </p>
-                      ))}
-                      {subCategory.calculators.length > 3 && (
-                        <p className="text-sm text-muted-foreground font-medium">
-                          + {subCategory.calculators.length - 3} more...
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-      </main>
+          </section>
+        </main>
+      </AdLayout>
 
       <Footer />
-    </div>
+    </>
   );
 };
 
