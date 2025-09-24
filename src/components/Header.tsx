@@ -66,7 +66,10 @@ export function Header() {
       time: `/time/calculator/${calculator.key}`,
       tv: `/tv/calculator/${calculator.key}`,
     };
-    navigate(paths[calculator.category as keyof typeof paths] || "/");
+    const path = paths[calculator.category as keyof typeof paths];
+    if (path) {
+      navigate(path);
+    }
   };
   
   const handleSuggestionClick = (calculator: any) => navigateToCalculator(calculator);
@@ -105,7 +108,10 @@ export function Header() {
               {filteredCalculators.map((calc) => (
                 <div
                   key={calc.key}
-                  onClick={() => handleSuggestionClick(calc)}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    handleSuggestionClick(calc);
+                  }}
                   className="px-4 py-2 hover:bg-muted cursor-pointer border-b border-border/50 last:border-b-0"
                 >
                   <div className="font-medium text-sm">{calc.name}</div>
