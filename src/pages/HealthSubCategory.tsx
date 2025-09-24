@@ -101,9 +101,6 @@ const HealthSubCategory = () => {
             </div>
           </div>
           <div className="max-w-3xl mx-auto mt-8 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
-            <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Mid Page (Google AdSense)</p>
-          </div>
-          <div className="max-w-3xl mx-auto mt-8 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
             <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Bottom (Google AdSense)</p>
           </div>
         </section>
