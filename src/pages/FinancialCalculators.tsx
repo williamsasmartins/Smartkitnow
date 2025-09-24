@@ -14,47 +14,53 @@ const FinancialCalculators = () => {
       title: "Personal Finance Calculators", 
       icon: "fa-solid fa-user-tie", 
       calculators: [
+        { key: "age", name: "Age Calculator" },
         { key: "amortization", name: "Amortization Calculator" },
         { key: "apr", name: "APR Calculator" },
         { key: "budget", name: "Budget Calculator" },
         { key: "debt-payoff", name: "Debt Payoff Calculator" },
+        { key: "fraction", name: "Fraction Calculator" },
+        { key: "gpa", name: "GPA Calculator" },
         { key: "net-worth", name: "Net Worth Calculator" },
+        { key: "percentage", name: "Percentage Calculator" },
         { key: "savings-goal", name: "Savings Goal Calculator" },
-        { key: "retirement", name: "Retirement Calculator" },
         { key: "tax", name: "Tax Calculator" },
         { key: "tip", name: "Tip Calculator" },
-        { key: "withdrawal", name: "Withdrawal Calculator" },
+        { key: "withdrawal", name: "Withdrawal Calculator" }, // Ajustado manualmente
       ]
     },
     { 
       title: "Interest and Loan Calculators", 
       icon: "fa-solid fa-percentage", 
       calculators: [
+        { key: "compound-interest", name: "Compound Interest Calculator" },
+        { key: "loan", name: "Loan Calculator" },
+        { key: "mortgage", name: "Mortgage Calculator" },
+        { key: "simple-interest", name: "Simple Interest Calculator" },
+        { key: "future-value", name: "Future Value Calculator" },
         { key: "loan-payment", name: "Loan Payment Calculator" },
         { key: "loan-interest", name: "Loan Interest Calculator" },
         { key: "auto-loan", name: "Auto Loan Calculator" },
         { key: "student-loan", name: "Student Loan Calculator" },
-        { key: "compound-interest", name: "Compound Interest Calculator" },
-        { key: "simple-interest", name: "Simple Interest Calculator" },
-        { key: "future-value", name: "Future Value Calculator" },
       ]
     },
     { 
       title: "Mortgage and Home Loan Calculators", 
       icon: "fa-solid fa-home", 
       calculators: [
+        { key: "mortgage", name: "Mortgage Calculator" },
         { key: "mortgage-payoff", name: "Mortgage Payoff Calculator" },
         { key: "mortgage-affordability", name: "Mortgage Affordability Calculator" },
-        { key: "home-equity", name: "Home Equity Calculator" },
       ]
     },
     { 
       title: "Property and Real Estate Calculators", 
       icon: "fa-solid fa-building", 
       calculators: [
+        { key: "area", name: "Area Calculator" },
+        { key: "density", name: "Density Calculator" },
         { key: "property-value", name: "Property Value Calculator" },
         { key: "rental-yield", name: "Rental Yield Calculator" },
-        { key: "cap-rate", name: "Cap Rate Calculator" },
       ]
     },
     { 
@@ -63,7 +69,7 @@ const FinancialCalculators = () => {
       calculators: [
         { key: "roi", name: "ROI Calculator" },
         { key: "rate-of-return", name: "Rate of Return Calculator" },
-        { key: "annuity", name: "Annuity Calculator" },
+        { key: "annuity", name: "Annuity Calculator" }, // Ajustado manualmente
       ]
     },
     { 
@@ -79,7 +85,7 @@ const FinancialCalculators = () => {
       icon: "fa-solid fa-calendar-alt", 
       calculators: [
         { key: "retirement", name: "Retirement Calculator" },
-        { key: "pension", name: "Pension Calculator" },
+        { key: "pension", name: "Pension Calculator" }, // Ajustado manualmente
       ]
     },
     { 
@@ -87,7 +93,7 @@ const FinancialCalculators = () => {
       icon: "fa-solid fa-receipt", 
       calculators: [
         { key: "tax", name: "Tax Calculator" },
-        { key: "sales-tax", name: "Sales Tax Calculator" },
+        { key: "sales-tax", name: "Sales Tax Calculator" }, // Ajustado manualmente
       ]
     },
     { 
@@ -103,28 +109,28 @@ const FinancialCalculators = () => {
       icon: "fa-solid fa-credit-card", 
       calculators: [
         { key: "debt-payoff", name: "Debt Payoff Calculator" },
-        { key: "credit-score", name: "Credit Score Calculator" },
+        { key: "credit-score", name: "Credit Score Calculator" }, // Ajustado manualmente
       ]
     },
     { 
       title: "Insurance Calculators", 
       icon: "fa-solid fa-shield-alt", 
       calculators: [
-        { key: "insurance-cost", name: "Insurance Cost Calculator" },
+        { key: "insurance-cost", name: "Insurance Cost Calculator" }, // Ajustado manualmente
       ]
     },
     { 
       title: "Currency and Exchange Calculators", 
       icon: "fa-solid fa-exchange-alt", 
       calculators: [
-        { key: "currency-converter", name: "Currency Converter" },
+        { key: "currency-converter", name: "Currency Converter" }, // Ajustado manualmente
       ]
     },
     { 
       title: "Small Business Calculators", 
       icon: "fa-solid fa-building-columns", 
       calculators: [
-        { key: "profit-margin", name: "Profit Margin Calculator" },
+        { key: "profit-margin", name: "Profit Margin Calculator" }, // Ajustado manualmente
       ]
     },
     { 
@@ -132,14 +138,14 @@ const FinancialCalculators = () => {
       icon: "fa-solid fa-graduation-cap", 
       calculators: [
         { key: "student-loan", name: "Student Loan Calculator" },
-        { key: "tuition", name: "Tuition Calculator" },
+        { key: "tuition", name: "Tuition Calculator" }, // Ajustado manualmente
       ]
     },
     { 
       title: "Cryptocurrency Calculators", 
       icon: "fa-solid fa-coins", 
       calculators: [
-        { key: "crypto-profit", name: "Crypto Profit Calculator" },
+        { key: "crypto-profit", name: "Crypto Profit Calculator" }, // Ajustado manualmente
       ]
     },
     { 
@@ -147,14 +153,14 @@ const FinancialCalculators = () => {
       icon: "fa-solid fa-university", 
       calculators: [
         { key: "apy", name: "APY Calculator" },
-        { key: "cd", name: "CD Calculator" },
+        { key: "cd", name: "CD Calculator" }, // Ajustado manualmente
       ]
     },
     { 
       title: "Business Finance Calculators", 
       icon: "fa-solid fa-briefcase", 
       calculators: [
-        { key: "break-even", name: "Break-Even Calculator" },
+        { key: "break-even", name: "Break-Even Calculator" }, // Ajustado manualmente
       ]
     },
   ];
