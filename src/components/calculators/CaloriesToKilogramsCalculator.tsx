@@ -152,19 +152,20 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
               <label htmlFor="activityLevel" className="text-sm font-medium dark:text-gray-300 text-gray-700">
                 Activity Level
               </label>
-              <Select value={activityLevel} onValueChange={setActivityLevel} className="w-full">
-                <SelectTrigger className="w-full dark:bg-gray-700 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900">
-                  <SelectValue placeholder="Select your activity level..." />
-                </SelectTrigger>
-                <SelectContent className="dark:bg-gray-800 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900">
-                  <SelectItem value="sedentary" className="dark:hover:bg-gray-700 hover:bg-gray-100">Sedentary (little or no exercise)</SelectItem>
-                  <SelectItem value="light" className="dark:hover:bg-gray-700 hover:bg-gray-100">Lightly active (light exercise 1-3 days/week)</SelectItem>
-                  <SelectItem value="moderate" className="dark:hover:bg-gray-700 hover:bg-gray-100">Moderately active (moderate exercise 3-5 days/week)</SelectItem>
-                  <SelectItem value="active" className="dark:hover:bg-gray-700 hover:bg-gray-100">Active (intense exercise 6-7 days/week)</SelectItem>
-                  <SelectItem value="veryActive" className="dark:hover:bg-gray-700 hover:bg-gray-100">Very active (very intense exercise & physical job)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+              <div className="w-full">
+  <Select value={activityLevel} onValueChange={setActivityLevel}>
+    <SelectTrigger className="w-full dark:bg-gray-700 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900">
+      <SelectValue placeholder="Select your activity level..." />
+    </SelectTrigger>
+    <SelectContent className="dark:bg-gray-800 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900">
+      <SelectItem value="sedentary" className="dark:hover:bg-gray-700 hover:bg-gray-100">Sedentary (little or no exercise)</SelectItem>
+      <SelectItem value="light" className="dark:hover:bg-gray-700 hover:bg-gray-100">Lightly active (light exercise 1-3 days/week)</SelectItem>
+      <SelectItem value="moderate" className="dark:hover:bg-gray-700 hover:bg-gray-100">Moderately active (moderate exercise 3-5 days/week)</SelectItem>
+      <SelectItem value="active" className="dark:hover:bg-gray-700 hover:bg-gray-100">Active (intense exercise 6-7 days/week)</SelectItem>
+      <SelectItem value="veryActive" className="dark:hover:bg-gray-700 hover:bg-gray-100">Very active (very intense exercise & physical job)</SelectItem>
+    </SelectContent>
+  </Select>
+</div>
           </div>
           <div className="flex gap-3">
             <Button

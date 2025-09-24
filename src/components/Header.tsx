@@ -81,16 +81,17 @@ export function Header() {
       <div className="container mx-auto px-4 py-3 max-w-7xl flex items-center justify-between">
         {/* Logo único com fallback */}
         <div 
-          key="logo-container"
-          className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={handleHomeClick}
-        >
-          {logoImage ? (
-            <img key="logo-main" src={logoImage} alt="Smart Kit Now Logo" className="h-8 w-auto z-60" />
-          ) : (
-            <span className="text-lg font-bold">Smart Kit Now</span> // Fallback se a imagem falhar
-          )}
-        </div>
+  key="logo-container" 
+  className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity relative z-[9999]"
+  onClick={handleHomeClick}
+>
+  <img 
+    key="logo-main" 
+    src={logoImage || "/logo-skn.png"} 
+    alt="Smart Kit Now Logo" 
+    className="h-8 w-auto z-[9999] block"
+  />
+</div>
         {backTarget && (
           <Button variant="ghost" size="sm" onClick={() => navigate(backTarget)} className="ml-2">
             <ArrowLeft className="h-4 w-4 mr-2" />
@@ -124,9 +125,10 @@ export function Header() {
           )}
         </form>
         <div className="flex items-center space-x-2">
-          <ThemeToggle className="fixed top-4 right-4 z-50" />
-        </div>
-      </div>
+  <div className="fixed top-4 right-4 z-[10000]">
+    <ThemeToggle />
+  </div>
+</div>
     </header>
   );
 }
