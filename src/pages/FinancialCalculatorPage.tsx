@@ -11,6 +11,17 @@ import { ROICalculator } from "@/components/calculators/ROICalculator";
 import { TipCalculator } from "@/components/calculators/TipCalculator";
 import { MortgageCalculator } from "@/components/calculators/MortgageCalculator";
 
+// Import new financial calculators
+import { AdjustedGrossIncomeCalculator } from "@/components/calculators/financial/AdjustedGrossIncomeCalculator";
+import { AnnualIncomeCalculator } from "@/components/calculators/financial/AnnualIncomeCalculator";
+import { BiweeklyPayCalculator } from "@/components/calculators/financial/BiweeklyPayCalculator";
+import { DebtToIncomeCalculator } from "@/components/calculators/financial/DebtToIncomeCalculator";
+import { DiscountCalculator } from "@/components/calculators/financial/DiscountCalculator";
+import { HourlyToSalaryCalculator } from "@/components/calculators/financial/HourlyToSalaryCalculator";
+import { AmortizationCalculator } from "@/components/calculators/financial/AmortizationCalculator";
+import { APRCalculator } from "@/components/calculators/financial/APRCalculator";
+import { SimpleInterestCalculator } from "@/components/calculators/financial/SimpleInterestCalculator";
+
 const FinancialCalculatorPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,22 +38,48 @@ const FinancialCalculatorPage = () => {
     
     // Map calculator keys to components
     switch (calculatorKey) {
+      // Personal Finance
+      case 'adjusted-gross-income':
+        return <AdjustedGrossIncomeCalculator />;
+      case 'annual-income':
+        return <AnnualIncomeCalculator />;
+      case 'biweekly-pay':
+        return <BiweeklyPayCalculator />;
+      case 'debt-to-income':
+        return <DebtToIncomeCalculator />;
+      case 'discount':
+        return <DiscountCalculator />;
+      case 'hourly-to-salary':
+        return <HourlyToSalaryCalculator />;
+      case 'tip':
+        return <TipCalculator />;
+      
+      // Interest and Loan
+      case 'amortization':
+        return <AmortizationCalculator />;
+      case 'apr':
+        return <APRCalculator />;
+      case 'simple-interest':
+        return <SimpleInterestCalculator />;
+      case 'compound-interest':
+      case 'future-value':
+        return <CompoundInterestCalculator />;
       case 'loan-payment':
       case 'loan-interest':
       case 'auto-loan':
       case 'student-loan':
         return <LoanCalculator />;
-      case 'compound-interest':
-      case 'simple-interest':
-      case 'future-value':
-        return <CompoundInterestCalculator />;
+      
+      // Investment
       case 'roi':
       case 'rate-of-return':
         return <ROICalculator />;
-      case 'tip':
-        return <TipCalculator />;
+        
+      // Mortgage
+      case 'mortgage':
       case 'mortgage-payoff':
         return <MortgageCalculator />;
+        
       default:
         return (
           <div className="bg-card rounded-lg p-8 text-center">
