@@ -127,10 +127,8 @@ export function Header() {
             </div>
           )}
         </form>
-        <div className="flex items-center space-x-2">
-          <div className="fixed top-4 right-4 z-[10000]">
-            <ThemeToggle />
-          </div>
+        <div className="flex items-center mr-4">
+          <ThemeToggle />
         </div>
       </div>
     </header>
