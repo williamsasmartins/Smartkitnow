@@ -10,24 +10,153 @@ const FinancialCalculators = () => {
   const navigate = useNavigate();
 
   const subCategories = [
-    { title: "Personal Finance Calculators", icon: "fa-solid fa-user-tie", calculators: [{ key: "personal-finance", name: "Personal Finance Tools" }] },
-    { title: "Interest and Loan Calculators", icon: "fa-solid fa-percentage", calculators: [{ key: "interest-loan", name: "Interest & Loan Tools" }] },
-    { title: "Mortgage and Home Loan Calculators", icon: "fa-solid fa-home", calculators: [{ key: "mortgage-home", name: "Mortgage & Home Loan Tools" }] },
-    { title: "Property and Real Estate Calculators", icon: "fa-solid fa-building", calculators: [{ key: "property-real-estate", name: "Property & Real Estate Tools" }] },
-    { title: "Investment and Annuity Calculators", icon: "fa-solid fa-chart-line", calculators: [{ key: "investment-annuity", name: "Investment & Annuity Tools" }] },
-    { title: "Vehicle Loan Calculators", icon: "fa-solid fa-car", calculators: [{ key: "vehicle-loan", name: "Vehicle Loan Tools" }] },
-    { title: "Retirement Planning Calculators", icon: "fa-solid fa-calendar-alt", calculators: [{ key: "retirement-planning", name: "Retirement Planning Tools" }] },
-    { title: "Tax Calculators", icon: "fa-solid fa-receipt", calculators: [{ key: "tax", name: "Tax Tools" }] },
-    { title: "Savings and Budget Calculators", icon: "fa-solid fa-piggy-bank", calculators: [{ key: "savings-budget", name: "Savings & Budget Tools" }] },
-    { title: "Credit and Debt Calculators", icon: "fa-solid fa-credit-card", calculators: [{ key: "credit-debt", name: "Credit & Debt Tools" }] },
-    { title: "Insurance Calculators", icon: "fa-solid fa-shield-alt", calculators: [{ key: "insurance", name: "Insurance Tools" }] },
-    { title: "Currency and Exchange Calculators", icon: "fa-solid fa-exchange-alt", calculators: [{ key: "currency-exchange", name: "Currency & Exchange Tools" }] },
-    { title: "Small Business Calculators", icon: "fa-solid fa-building-columns", calculators: [{ key: "small-business", name: "Small Business Tools" }] },
-    { title: "Education Finance Calculators", icon: "fa-solid fa-graduation-cap", calculators: [{ key: "education-finance", name: "Education Finance Tools" }] },
-    { title: "Cryptocurrency Calculators", icon: "fa-solid fa-coins", calculators: [{ key: "cryptocurrency", name: "Crypto Tools" }] },
-    { title: "Banking and Financial Services", icon: "fa-solid fa-university", calculators: [{ key: "banking-financial", name: "Banking & Financial Services" }] },
-    { title: "Business Finance Calculators", icon: "fa-solid fa-briefcase", calculators: [{ key: "business-finance", name: "Business Finance Tools" }] },
-    { title: "Financial Planning Calculators", icon: "fa-solid fa-clipboard-list", calculators: [{ key: "financial-planning", name: "Financial Planning Tools" }] },
+    { 
+      title: "Personal Finance Calculators", 
+      icon: "fa-solid fa-user-tie", 
+      calculators: [
+        { key: "amortization", name: "Amortization Calculator" },
+        { key: "apr", name: "APR Calculator" },
+        { key: "budget", name: "Budget Calculator" },
+        { key: "debt-payoff", name: "Debt Payoff Calculator" },
+        { key: "net-worth", name: "Net Worth Calculator" },
+        { key: "savings-goal", name: "Savings Goal Calculator" },
+        { key: "retirement", name: "Retirement Calculator" },
+        { key: "tax", name: "Tax Calculator" },
+        { key: "tip", name: "Tip Calculator" },
+        { key: "withdrawal", name: "Withdrawal Calculator" },
+      ]
+    },
+    { 
+      title: "Interest and Loan Calculators", 
+      icon: "fa-solid fa-percentage", 
+      calculators: [
+        { key: "loan-payment", name: "Loan Payment Calculator" },
+        { key: "loan-interest", name: "Loan Interest Calculator" },
+        { key: "auto-loan", name: "Auto Loan Calculator" },
+        { key: "student-loan", name: "Student Loan Calculator" },
+        { key: "compound-interest", name: "Compound Interest Calculator" },
+        { key: "simple-interest", name: "Simple Interest Calculator" },
+        { key: "future-value", name: "Future Value Calculator" },
+      ]
+    },
+    { 
+      title: "Mortgage and Home Loan Calculators", 
+      icon: "fa-solid fa-home", 
+      calculators: [
+        { key: "mortgage-payoff", name: "Mortgage Payoff Calculator" },
+        { key: "mortgage-affordability", name: "Mortgage Affordability Calculator" },
+        { key: "home-equity", name: "Home Equity Calculator" },
+      ]
+    },
+    { 
+      title: "Property and Real Estate Calculators", 
+      icon: "fa-solid fa-building", 
+      calculators: [
+        { key: "property-value", name: "Property Value Calculator" },
+        { key: "rental-yield", name: "Rental Yield Calculator" },
+        { key: "cap-rate", name: "Cap Rate Calculator" },
+      ]
+    },
+    { 
+      title: "Investment and Annuity Calculators", 
+      icon: "fa-solid fa-chart-line", 
+      calculators: [
+        { key: "roi", name: "ROI Calculator" },
+        { key: "rate-of-return", name: "Rate of Return Calculator" },
+        { key: "annuity", name: "Annuity Calculator" },
+      ]
+    },
+    { 
+      title: "Vehicle Loan Calculators", 
+      icon: "fa-solid fa-car", 
+      calculators: [
+        { key: "auto-loan", name: "Auto Loan Calculator" },
+        { key: "car-affordability", name: "Car Affordability Calculator" },
+      ]
+    },
+    { 
+      title: "Retirement Planning Calculators", 
+      icon: "fa-solid fa-calendar-alt", 
+      calculators: [
+        { key: "retirement", name: "Retirement Calculator" },
+        { key: "pension", name: "Pension Calculator" },
+      ]
+    },
+    { 
+      title: "Tax Calculators", 
+      icon: "fa-solid fa-receipt", 
+      calculators: [
+        { key: "tax", name: "Tax Calculator" },
+        { key: "sales-tax", name: "Sales Tax Calculator" },
+      ]
+    },
+    { 
+      title: "Savings and Budget Calculators", 
+      icon: "fa-solid fa-piggy-bank", 
+      calculators: [
+        { key: "savings-goal", name: "Savings Goal Calculator" },
+        { key: "budget", name: "Budget Calculator" },
+      ]
+    },
+    { 
+      title: "Credit and Debt Calculators", 
+      icon: "fa-solid fa-credit-card", 
+      calculators: [
+        { key: "debt-payoff", name: "Debt Payoff Calculator" },
+        { key: "credit-score", name: "Credit Score Calculator" },
+      ]
+    },
+    { 
+      title: "Insurance Calculators", 
+      icon: "fa-solid fa-shield-alt", 
+      calculators: [
+        { key: "insurance-cost", name: "Insurance Cost Calculator" },
+      ]
+    },
+    { 
+      title: "Currency and Exchange Calculators", 
+      icon: "fa-solid fa-exchange-alt", 
+      calculators: [
+        { key: "currency-converter", name: "Currency Converter" },
+      ]
+    },
+    { 
+      title: "Small Business Calculators", 
+      icon: "fa-solid fa-building-columns", 
+      calculators: [
+        { key: "profit-margin", name: "Profit Margin Calculator" },
+      ]
+    },
+    { 
+      title: "Education Finance Calculators", 
+      icon: "fa-solid fa-graduation-cap", 
+      calculators: [
+        { key: "student-loan", name: "Student Loan Calculator" },
+        { key: "tuition", name: "Tuition Calculator" },
+      ]
+    },
+    { 
+      title: "Cryptocurrency Calculators", 
+      icon: "fa-solid fa-coins", 
+      calculators: [
+        { key: "crypto-profit", name: "Crypto Profit Calculator" },
+      ]
+    },
+    { 
+      title: "Banking and Financial Services", 
+      icon: "fa-solid fa-university", 
+      calculators: [
+        { key: "apy", name: "APY Calculator" },
+        { key: "cd", name: "CD Calculator" },
+      ]
+    },
+    { 
+      title: "Business Finance Calculators", 
+      icon: "fa-solid fa-briefcase", 
+      calculators: [
+        { key: "break-even", name: "Break-Even Calculator" },
+      ]
+    },
   ];
 
   const handleSubCategoryClick = (subCategory: any) => {
@@ -101,16 +230,11 @@ const FinancialCalculators = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-1">
-                      {subCategory.calculators.slice(0, 3).map((calc, calcIndex) => (
+                      {subCategory.calculators.map((calc, calcIndex) => (
                         <p key={calcIndex} className="text-xs text-muted-foreground">
                           • {calc.name}
                         </p>
                       ))}
-                      {subCategory.calculators.length > 3 && (
-                        <p className="text-xs text-muted-foreground font-medium">
-                          + {subCategory.calculators.length - 3} more calculators
-                        </p>
-                      )}
                     </div>
                   </CardContent>
                 </Card>

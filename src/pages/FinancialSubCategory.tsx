@@ -17,19 +17,14 @@ const FinancialSubCategory = () => {
 
   const handleCalculatorClick = (calculator: any) => {
     const slug = calculator.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    navigate(`/financial/calculator/${slug}`, { 
-      state: { 
-        calculator, 
-        subCategory: subCategory.title 
-      } 
-    });
+    navigate(`/financial/calculator/${slug}`, { state: { calculator, subCategory: subCategory.title } });
   };
 
   return (
     <div className="min-h-screen bg-gradient-soft">
       <Header />
       
-      <main className="pt-16">
+      <main className="pt-24">
         <section className="container mx-auto px-4 py-8">
           <div className="max-w-3xl mx-auto mt-16 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
             <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Top Center (Google AdSense)</p>
@@ -105,7 +100,6 @@ const FinancialSubCategory = () => {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );
