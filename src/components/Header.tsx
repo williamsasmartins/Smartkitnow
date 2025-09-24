@@ -9,7 +9,11 @@ export function Header() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> d13a27804d022119020bf1ea55277aa9c8092e17
   const calculators = useMemo(() => [
     { key: "carburetor-cfm", name: "Carburetor CFM Calculator", category: "automotive" },
     { key: "engine-compression", name: "Engine Compression Ratio Calculator", category: "automotive" },
@@ -36,20 +40,32 @@ export function Header() {
   }, [searchTerm, calculators]);
 
   const handleHomeClick = () => navigate("/");
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> d13a27804d022119020bf1ea55277aa9c8092e17
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
     setShowSuggestions(value.trim().length > 0);
   };
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> d13a27804d022119020bf1ea55277aa9c8092e17
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim() && filteredCalculators.length > 0) {
       navigateToCalculator(filteredCalculators[0]);
     }
   };
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> d13a27804d022119020bf1ea55277aa9c8092e17
   const navigateToCalculator = (calculator: any) => {
     setSearchTerm("");
     setShowSuggestions(false);
@@ -71,27 +87,45 @@ export function Header() {
       navigate(path, { state: { calculator, subCategory: calculator.category } });
     }
   };
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> d13a27804d022119020bf1ea55277aa9c8092e17
   const handleSuggestionClick = (calculator: any) => navigateToCalculator(calculator);
 
   return (
     <header className="fixed top-0 w-full border-b border-border/40 bg-background/95 backdrop-blur-md z-[10000]">
       <div className="container mx-auto px-4 py-3 max-w-7xl flex items-center justify-between">
+<<<<<<< HEAD
         <div
+=======
+        <div 
+>>>>>>> d13a27804d022119020bf1ea55277aa9c8092e17
           className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
           onClick={handleHomeClick}
         >
           {logoImage ? (
+<<<<<<< HEAD
             <img
               src={logoImage}
               alt="Smart Kit Now Logo"
+=======
+            <img 
+              src={logoImage} 
+              alt="Smart Kit Now Logo" 
+>>>>>>> d13a27804d022119020bf1ea55277aa9c8092e17
               className="h-8 w-auto block"
             />
           ) : (
             <span className="text-lg font-bold">Smart Kit Now</span>
           )}
         </div>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> d13a27804d022119020bf1ea55277aa9c8092e17
         <form onSubmit={handleSearchSubmit} className="flex-1 max-w-xl mx-4 relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
@@ -121,11 +155,16 @@ export function Header() {
             </div>
           )}
         </form>
+<<<<<<< HEAD
 
         <div className="flex items-center mr-3 sm:mr-4 md:mr-6">
           <ThemeToggle />
           {/* Se quiser fixar no canto direito, descomente a linha abaixo e comente a linha acima */}
           {/* <div className="fixed top-4 right-4 z-[10000]"><ThemeToggle /></div> */}
+        
+        <div className="flex items-center mr-3 sm:mr-4 md:mr-6">
+          <ThemeToggle />
+>>>>>>> d13a27804d022119020bf1ea55277aa9c8092e17
         </div>
       </div>
     </header>

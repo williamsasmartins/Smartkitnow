@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -15,16 +15,18 @@ import { CaloriesToKilogramsCalculator } from "@/components/calculators/Calories
 const HealthCalculatorPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const calculator = location.state?.calculator;
-  const subCategory = location.state?.subCategory;
+  const params = useParams();
 
-  if (!calculator) {
-    navigate('/health');
-    return null;
-  }
+  const stateCalculator = location.state?.calculator as { key: string; name: string } | undefined;
+  const stateSubCategory = location.state?.subCategory as string | undefined;
+  const slug = params.calculator;
+
+  const effectiveKey = stateCalculator?.key ?? slug ?? "";
+  const effectiveName = stateCalculator?.name ?? (slug ? slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()) : "Calculator");
+  const effectiveCategory = stateSubCategory ?? "health";
 
   const renderCalculator = () => {
-    const calculatorKey = calculator.key;
+    const calculatorKey = effectiveKey.toLowerCase();
     
     // Map calculator keys to components
     switch (calculatorKey) {
@@ -45,12 +47,15 @@ const HealthCalculatorPage = () => {
         return <BodyFatCalculator />;
       case 'tdee':
         return <TDEECalculator />;
-        case 'calories-to-kg':
+      case 'convert-calories-to-kilograms':
+      case 'calories-to-kilograms':
+      case 'calories-to-kg':
+      case 'convert-calories-to-kg':
         return <CaloriesToKilogramsCalculator />;
       default:
         return (
           <div className="bg-card rounded-lg p-8 text-center">
-            <h3 className="text-xl font-semibold mb-4">{calculator.name}</h3>
+            <h3 className="text-xl font-semibold mb-4">{effectiveName}</h3>
             <p className="text-muted-foreground mb-6">
               This calculator is coming soon. We're working on implementing all health calculators.
             </p>
@@ -59,7 +64,7 @@ const HealthCalculatorPage = () => {
                 Calculator Key: <code className="bg-muted px-2 py-1 rounded">{calculatorKey}</code>
               </p>
               <p className="text-sm text-muted-foreground mt-2">
-                Category: {subCategory}
+                Category: {effectiveCategory}
               </p>
             </div>
           </div>
@@ -86,10 +91,10 @@ const HealthCalculatorPage = () => {
             
             <div className="mb-6 text-center">
               <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
-                {calculator.name}
+                {effectiveName}
               </h1>
               <p className="text-muted-foreground text-lg">
-                Category: {subCategory}
+                Category: {effectiveCategory}
               </p>
             </div>
           </div>
