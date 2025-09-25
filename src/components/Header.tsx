@@ -4,34 +4,36 @@ import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useMemo } from "react";
 import logoImage from "@/assets/logo-skn.png";
+import { calculatorRegistry } from '@/data/calculatorRegistry';  // Corrigido: aponta para src/data/calculatorRegistry.ts
+
+// Defina um tipo para as calculadoras (mantém a estrutura esperada do registry)
+interface CalculatorInfo {
+  name: string;
+  subcategory?: string;
+  category?: string;
+  // Adicione mais campos se precisar, baseado no seu registry
+}
 
 export function Header() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const calculators = useMemo(() => [
-    { key: "carburetor-cfm", name: "Carburetor CFM Calculator", category: "automotive" },
-    { key: "engine-compression", name: "Engine Compression Ratio Calculator", category: "automotive" },
-    { key: "horsepower", name: "Engine Horsepower Calculator", category: "automotive" },
-    { key: "fuel-cost", name: "Fuel Cost Calculator", category: "automotive" },
-    { key: "gas-mileage", name: "Gas Mileage Calculator", category: "automotive" },
-    { key: "auto-loan", name: "Auto Loan Calculator", category: "automotive" },
-    { key: "tv-mounting-cost", name: "TV Mounting and Installation Cost Guide", category: "tv" },
-    { key: "bmi", name: "BMI Calculator", category: "health" },
-    { key: "bmr", name: "BMR Calculator", category: "health" },
-    { key: "calorie", name: "Calorie Calculator", category: "health" },
-    { key: "convert-calories-to-kilograms", name: "Calories to Kilograms Calculator", category: "health" },
-    { key: "body-fat", name: "Body Fat Calculator", category: "health" },
-    { key: "age", name: "Age Calculator", category: "health" },
-    { key: "tdee", name: "TDEE Calculator", category: "health" },
-  ], []);
+  const calculators = useMemo(() => {
+    return Object.entries(calculatorRegistry as Record<string, CalculatorInfo>).map(([key, calc]) => ({
+      key,
+      name: calc.name,
+      category: calc.category || 'health',  // Use 'health' como default se não tiver category
+      subcategory: calc.subcategory,  // Adicione subcategory para busca melhor
+    }));
+  }, []);
 
   const filteredCalculators = useMemo(() => {
     if (!searchTerm.trim()) return [];
     return calculators.filter(calc =>
       calc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      calc.category.toLowerCase().includes(searchTerm.toLowerCase())
+      calc.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (calc.subcategory && calc.subcategory.toLowerCase().includes(searchTerm.toLowerCase()))
     ).slice(0, 5);
   }, [searchTerm, calculators]);
 
@@ -54,21 +56,21 @@ export function Header() {
     setSearchTerm("");
     setShowSuggestions(false);
     const paths = {
-      automotive: `/automotive/${calculator.key}`,
-      construction: `/construction/${calculator.key}`,
-      conversion: `/conversion/${calculator.key}`,
-      cooking: `/cooking/${calculator.key}`,
-      financial: `/financial/calculator/${calculator.key}`,
-      health: `/health/calculator/${calculator.key}`,
-      math: `/math/calculator/${calculator.key}`,
-      pets: `/pets/calculator/${calculator.key}`,
-      science: `/science/calculator/${calculator.key}`,
-      time: `/time/calculator/${calculator.key}`,
-      tv: `/tv/calculator/${calculator.key}`,
+      automotive: `/automotive/${calculator.key}-calculator`,
+      construction: `/construction/${calculator.key}-calculator`,
+      conversion: `/conversion/${calculator.key}-calculator`,
+      cooking: `/cooking/${calculator.key}-calculator`,
+      financial: `/financial/calculator/${calculator.key}-calculator`,
+      health: `/health/calculator/${calculator.key}-calculator`,
+      math: `/math/calculator/${calculator.key}-calculator`,
+      pets: `/pets/calculator/${calculator.key}-calculator`,
+      science: `/science/calculator/${calculator.key}-calculator`,
+      time: `/time/calculator/${calculator.key}-calculator`,
+      tv: `/tv/calculator/${calculator.key}-calculator`,
     } as const;
     const path = paths[calculator.category as keyof typeof paths];
     if (path) {
-      navigate(path, { state: { calculator, subCategory: calculator.category } });
+      navigate(path);  // Removi o state, pois não é usado
     }
   };
 
