@@ -8,6 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2, ArrowLeft } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 
+
 interface IMCProps {}
 
 const IMCCalculator: React.FC<IMCProps> = () => {
@@ -241,7 +242,7 @@ const IMCCalculator: React.FC<IMCProps> = () => {
             <Alert className="dark:border-green-800 border-green-200 dark:bg-green-900/50 bg-green-100">
               <Info className="h-4 w-4 dark:text-green-400 text-green-700" />
               <AlertDescription className="dark:text-gray-200 text-gray-800">
-                <strong>💡 Tip:</strong> BMI categories: Underweight (<18.5), Normal (18.5-24.9), Overweight (25-29.9), Obese (30+). Consider consulting a doctor for accurate health assessment.
+                <strong>💡 Tip:</strong> BMI categories: Underweight (&lt;18.5), Normal (18.5-24.9), Overweight (25-29.9), Obese (30+). Consider consulting a doctor for accurate health assessment.
               </AlertDescription>
             </Alert>
           </CardContent>
@@ -311,12 +312,12 @@ const IMCCalculator: React.FC<IMCProps> = () => {
           </TableHeader>
           <TableBody>
             {[
-              { range: "< 18.5", category: "Underweight" },
+              { range: "&lt; 18.5", category: "Underweight" },
               { range: "18.5 - 24.9", category: "Normal" },
               { range: "25.0 - 29.9", category: "Overweight" },
               { range: "30.0 - 34.9", category: "Obese Class I" },
               { range: "35.0 - 39.9", category: "Obese Class II" },
-              { range: "≥ 40.0", category: "Obese Class III" },
+              { range: "&gt;= 40.0", category: "Obese Class III" },
             ].map((item, index) => (
               <TableRow key={index}>
                 <TableCell className="dark:text-gray-300 text-gray-700">{item.range}</TableCell>
@@ -508,3 +509,22 @@ const IMCCalculator: React.FC<IMCProps> = () => {
 }
 
 export default IMCCalculator;
+```
+
+### Passo 3: Rode os Comandos Git
+- No terminal:
+  ```
+  git add .
+  ```
+  ```
+  git commit -m "Corrigido erro de JSX em IMC"
+  ```
+  ```
+  git push
+  ```
+
+### Passo 4: Teste
+- Espere o redeploy na Vercel (1-2 min).
+- Acesse www.smartkitnow.com/health/calculator/imc.
+
+Agora o build deve passar sem erro! 😊
