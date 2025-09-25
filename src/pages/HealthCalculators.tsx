@@ -35,8 +35,8 @@ const HealthCalculators = () => {
         { key: "navy-body-fat", name: "Navy Body Fat Calculator" },
         { key: "waist-to-height-ratio", name: "Waist-to-Height Ratio Calculator" },
         { key: "waist-to-hip-ratio", name: "Waist-to-Hip Ratio Calculator" },
-        { key: "weight-loss-percentage", name: "Weight Loss Percentage Calculator" }
-        { key: "imc", name: "IMC Calculator" }
+        { key: "weight-loss-percentage", name: "Weight Loss Percentage Calculator" },
+        { key: "imc", name: "IMC Calculator" },
       ]
     },
     {
