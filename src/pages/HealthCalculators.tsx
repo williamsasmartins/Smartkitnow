@@ -36,6 +36,7 @@ const HealthCalculators = () => {
         { key: "waist-to-height-ratio", name: "Waist-to-Height Ratio Calculator" },
         { key: "waist-to-hip-ratio", name: "Waist-to-Hip Ratio Calculator" },
         { key: "weight-loss-percentage", name: "Weight Loss Percentage Calculator" }
+        { key: "imc", name: "IMC Calculator" }
       ]
     },
     {
