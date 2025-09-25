@@ -36,6 +36,7 @@ import FinancialCalculatorPage from "./pages/FinancialCalculatorPage";
 import HealthCalculators from "./pages/HealthCalculators";
 import HealthSubCategory from "./pages/HealthSubCategory";
 import HealthCalculatorPage from "./pages/HealthCalculatorPage";
+import IMCCalculator from "@/components/calculators/IMCCalculator";
 import MathCalculators from "./pages/MathCalculators";
 import MathSubCategory from "./pages/MathSubCategory";
 import MathCalculatorPage from "./pages/MathCalculatorPage";
@@ -110,6 +111,7 @@ const App = () => (
             <Route path="/health" element={<HealthCalculators />} />
             <Route path="/health/:subcategory" element={<HealthSubCategory />} />
             <Route path="/health/calculator/:calculator" element={<HealthCalculatorPage />} />
+            <Route path="/health/calculator/imc-calculator" element={<IMCCalculator />} />
             <Route path="/math" element={<MathCalculators />} />
             <Route path="/math/:subcategory" element={<MathSubCategory />} />
             <Route path="/math/calculator/:calculator" element={<MathCalculatorPage />} />
