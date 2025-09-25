@@ -4,14 +4,17 @@ import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useMemo } from "react";
 import logoImage from "@/assets/logo-skn.png";
-import { calculatorRegistry } from '@/data/calculatorRegistry';  // Corrigido: aponta para src/data/calculatorRegistry.ts
+import { calculatorRegistry } from '@/data/calculatorRegistry';  // Import correto para src/data/calculatorRegistry.ts
 
-// Defina um tipo para as calculadoras (mantém a estrutura esperada do registry)
+// Tipo compatível com o calculatorRegistry
 interface CalculatorInfo {
+  key: string;
   name: string;
-  subcategory?: string;
-  category?: string;
-  // Adicione mais campos se precisar, baseado no seu registry
+  description: string;
+  category: string;
+  subcategory: string;
+  formula?: string;
+  tags: string[];
 }
 
 export function Header() {
@@ -20,11 +23,11 @@ export function Header() {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const calculators = useMemo(() => {
-    return Object.entries(calculatorRegistry as Record<string, CalculatorInfo>).map(([key, calc]) => ({
-      key,
+    return Object.entries(calculatorRegistry).map(([key, calc]) => ({
+      key: calc.key,
       name: calc.name,
-      category: calc.category || 'health',  // Use 'health' como default se não tiver category
-      subcategory: calc.subcategory,  // Adicione subcategory para busca melhor
+      category: calc.category,
+      subcategory: calc.subcategory,
     }));
   }, []);
 
@@ -33,7 +36,7 @@ export function Header() {
     return calculators.filter(calc =>
       calc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       calc.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (calc.subcategory && calc.subcategory.toLowerCase().includes(searchTerm.toLowerCase()))
+      calc.subcategory.toLowerCase().includes(searchTerm.toLowerCase())
     ).slice(0, 5);
   }, [searchTerm, calculators]);
 
@@ -52,7 +55,7 @@ export function Header() {
     }
   };
 
-  const navigateToCalculator = (calculator: any) => {
+  const navigateToCalculator = (calculator: { key: string; category: string }) => {
     setSearchTerm("");
     setShowSuggestions(false);
     const paths = {
@@ -70,11 +73,11 @@ export function Header() {
     } as const;
     const path = paths[calculator.category as keyof typeof paths];
     if (path) {
-      navigate(path);  // Removi o state, pois não é usado
+      navigate(path);
     }
   };
 
-  const handleSuggestionClick = (calculator: any) => navigateToCalculator(calculator);
+  const handleSuggestionClick = (calculator: { key: string; category: string }) => navigateToCalculator(calculator);
 
   return (
     <header className="fixed top-0 w-full border-b border-border/40 bg-background/95 backdrop-blur-md z-[10000]">
