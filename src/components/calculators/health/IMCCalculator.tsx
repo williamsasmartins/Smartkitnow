@@ -507,5 +507,5 @@ const IMCCalculator: React.FC<IMCProps> = () => {
     </div>
   );
 }
-export { IMCCalculator };
+
 export default IMCCalculator;

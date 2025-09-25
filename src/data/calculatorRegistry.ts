@@ -55,62 +55,15 @@ export const calculatorRegistry: Record<string, CalculatorInfo> = {
     formula: 'Discount Amount = Original Price × (Discount % ÷ 100)',
     tags: ['discount', 'savings', 'shopping']
   },
-  // ... (This would continue for all 610+ calculators)
-  // For now, I'll add key ones and we can expand systematically
-  
-  // Existing calculators
-  'loan-payment': {
-    key: 'loan-payment',
-    name: 'Loan Payment Calculator',
-    description: 'Calculate monthly loan payments',
-    category: 'financial',
-    subcategory: 'Interest and Loan Calculators',
-    formula: 'PMT = P × [r(1+r)^n] / [(1+r)^n - 1]',
-    tags: ['loan', 'payment', 'interest']
-  },
-  'compound-interest': {
-    key: 'compound-interest',
-    name: 'Compound Interest Calculator',
-    description: 'Calculate compound interest and future value',
-    category: 'financial',
-    subcategory: 'Interest and Loan Calculators',
-    formula: 'A = P(1 + r/n)^(nt)',
-    tags: ['interest', 'investment', 'savings']
-  },
-  'roi': {
-    key: 'roi',
-    name: 'ROI Calculator',
-    description: 'Calculate return on investment',
-    category: 'financial',
-    subcategory: 'Investment and Annuity Calculators',
-    formula: 'ROI = (Gain - Cost) / Cost × 100%',
-    tags: ['roi', 'investment', 'return']
-  },
-  'tip': {
-    key: 'tip',
-    name: 'Tip Calculator',
-    description: 'Calculate tip amount and total bill',
-    category: 'financial',
-    subcategory: 'Personal Finance Calculators',
-    formula: 'Tip = Bill Amount × (Tip % ÷ 100)',
-    tags: ['tip', 'service', 'restaurant']
-  },
-  'mortgage': {
-    key: 'mortgage',
-    name: 'Mortgage Calculator',
-    description: 'Calculate monthly mortgage payments',
-    category: 'financial',
-    subcategory: 'Mortgage and Home Loan Calculators',
-    formula: 'M = P × [r(1+r)^n] / [(1+r)^n - 1]',
-    tags: ['mortgage', 'home', 'loan']
+  // ... (mantenha as outras entradas que você tem)
+  // Adicione a nova no final, sem vírgula extra
+  'imc': {
+    key: 'imc',
+    name: 'IMC Calculator',
+    description: 'Specialized calculator for precise calculations',
+    category: 'health',
+    subcategory: 'body-measurement',
+    formula: 'IMC = peso / (altura^2)',
+    tags: ['health', 'bmi', 'weight']
   }
-
-   'imc': {
-  key: 'imc',
-  name: 'IMC Calculator',
-  description: 'Specialized calculator for precise calculations',
-  category: 'health',
-  subcategory: 'body-measurement',
-  formula: 'IMC = peso / (altura^2)',
-  tags: ['health', 'bmi', 'weight']
-},
+};
