@@ -7,6 +7,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2, ArrowLeft } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
+import { Header } from "@/components/Header";
 
 interface IMCProps {}
 
@@ -114,7 +115,7 @@ const IMCCalculator: React.FC<IMCProps> = () => {
 
   return (
     <div className="min-h-screen dark:bg-gray-900 bg-white dark:text-white text-gray-900 p-4">
-      
+      <Header />
       <div className="max-w-3xl mx-auto mb-4">
         <Button variant="outline" onClick={() => navigate(-1)} className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
           <ArrowLeft className="h-4 w-4 mr-2" /> Back
