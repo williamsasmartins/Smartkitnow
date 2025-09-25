@@ -8,7 +8,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2, ArrowLeft } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 
-
 interface IMCProps {}
 
 const IMCCalculator: React.FC<IMCProps> = () => {
@@ -65,8 +64,8 @@ const IMCCalculator: React.FC<IMCProps> = () => {
 
       setResult({
         imc: imcValue,
-        category,
-        message
+        category: category,
+        message: message
       });
     } catch (err) {
       setError("Error calculating. Please try again.");
