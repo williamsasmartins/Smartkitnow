@@ -104,4 +104,13 @@ export const calculatorRegistry: Record<string, CalculatorInfo> = {
     formula: 'M = P × [r(1+r)^n] / [(1+r)^n - 1]',
     tags: ['mortgage', 'home', 'loan']
   }
-};
+
+   'imc': {
+  key: 'imc',
+  name: 'IMC Calculator',
+  description: 'Specialized calculator for precise calculations',
+  category: 'health',
+  subcategory: 'body-measurement',
+  formula: 'IMC = peso / (altura^2)',
+  tags: ['health', 'bmi', 'weight']
+},
