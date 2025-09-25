@@ -8,6 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2, ArrowLeft } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 
+
 interface IMCProps {}
 
 const IMCCalculator: React.FC<IMCProps> = () => {
@@ -407,4 +408,104 @@ const IMCCalculator: React.FC<IMCProps> = () => {
         <h2 className="text-2xl font-semibold">Recommended Health Tools</h2>
         <p>Enhance your health tracking with these tools. (Affiliate links - commission may be earned at no cost to you)</p>
         <div className="grid gap-4 md:grid-cols-2">
-          <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200
+          <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+            <CardHeader>
+              <CardTitle className="text-lg dark:text-white text-gray-900">Digital Scales on Amazon</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">Accurate body weight measurement devices.</p>
+              <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
+                <a href="https://www.amazon.com/s?k=digital+scale&tag=youraffiliateid-20" target="_blank" rel="nofollow noreferrer">
+                  Shop Now <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
+          <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+            <CardHeader>
+              <CardTitle className="text-lg dark:text-white text-gray-900">Body Composition Analyzers</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">Advanced devices for detailed body metrics.</p>
+              <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
+                <a href="https://www.amazon.com/s?k=body+composition+analyzer&tag=youraffiliateid-20" target="_blank" rel="nofollow noreferrer">
+                  Shop Now <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
+          <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+            <CardHeader>
+              <CardTitle className="text-lg dark:text-white text-gray-900">The Smoothie Diet</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">21-day program for healthy weight management.</p>
+              <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
+                <a href="https://45633oyw4b2o6taioi0hr3r7uc.hop.clickbank.net" target="_blank" rel="nofollow noreferrer">
+                  Get Smoothie Diet <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
+          <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+            <CardHeader>
+              <CardTitle className="text-lg dark:text-white text-gray-900">Get AQUA Sculpt</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">Program for body sculpting and fitness improvement.</p>
+              <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
+                <a href="https://getaquasculptnow.net/extraBottle/?hop=zzzzz&hopId=6086a95d-69cf-4c81-9390-1c0a5e9ebe8d" target="_blank" rel="nofollow noreferrer">
+                  Get AQUA Sculpt <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+      <div className="max-w-3xl mx-auto mt-8 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
+        <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Bottom (Google AdSense)</p>
+      </div>
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+        <h2 className="text-2xl font-semibold mb-4">Send Us Your Feedback</h2>
+        <form onSubmit={handleFeedbackSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="name" className="text-sm font-medium dark:text-gray-300 text-gray-700">Name (Optional)</label>
+            <Input
+              id="name"
+              value={feedback.name}
+              onChange={(e) => setFeedback({ ...feedback, name: e.target.value })}
+              className="mt-1 dark:bg-gray-700 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900 dark:placeholder-gray-500 placeholder-gray-400"
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="text-sm font-medium dark:text-gray-300 text-gray-700">Email (Optional)</label>
+            <Input
+              id="email"
+              type="email"
+              value={feedback.email}
+              onChange={(e) => setFeedback({ ...feedback, email: e.target.value })}
+              className="mt-1 dark:bg-gray-700 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900 dark:placeholder-gray-500 placeholder-gray-400"
+            />
+          </div>
+          <div>
+            <label htmlFor="suggestions" className="text-sm font-medium dark:text-gray-300 text-gray-700">Suggestions</label>
+            <Input
+              id="suggestions"
+              value={feedback.suggestions}
+              onChange={(e) => setFeedback({ ...feedback, suggestions: e.target.value })}
+              className="mt-1 dark:bg-gray-700 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900 dark:placeholder-gray-500 placeholder-gray-400"
+            />
+          </div>
+          <Button type="submit" className="dark:bg-blue-600 bg-blue-500 dark:text-white text-white dark:hover:bg-blue-700 hover:bg-blue-600">Submit Feedback</Button>
+        </form>
+      </section>
+      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900 text-center">
+        <p className="text-sm">
+          <strong>Note:</strong> This calculator is reviewed by the Smart Kit Now Team for accuracy. For health-related decisions, consult a professional healthcare provider.
+        </p>
+      </section>
+    </div>
+  );
+}
+
+export default IMCCalculator;
