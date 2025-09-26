@@ -1,174 +1,46 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import React, { lazy, Suspense } from "react";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { CalculatorFooter } from "@/components/CalculatorFooter";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calculator } from "lucide-react";
+import React, { lazy, Suspense } from 'react';
+import { useParams } from 'react-router-dom';
+import { calculatorRegistry } from '../../data/calculatorRegistry'; // Named import
+import { CalculatorLayout } from '../../components/calculators/common/CalculatorLayout'; // Named import
 
-/**
- * Registre aqui cada calculadora pelo SLUG (param :calculator da URL).
- * Ex.: /construction/concrete-masonry-calculators/concrete-slab -> "concrete-slab"
- */
-const ConcreteSlab = lazy(() => import("@/components/calculators/ConcreteSlab"));
-const DrywallAreaSheets = lazy(() => import("@/components/calculators/DrywallAreaSheets"));
+const CalculatorPage: React.FC = () => {
+  const { calculator } = useParams<{ calculator: string }>();
+  const calcInfo = calculatorRegistry[calculator || ''];
 
-type CalcEntry = {
-  Component: React.LazyExoticComponent<React.ComponentType<any>>;
-  name: string;     // Título exibido
-  category: string; // Raiz da categoria (ex.: "construction")
-};
+  if (!calcInfo) {
+    return <div>Calculadora não encontrada. Tente outra na categoria genérica (ex.: automotive). Verifique se o URL está correto ou adicione a entrada no registry.</div>; // Fallback informativo
+  }
 
-const REGISTRY: Record<string, CalcEntry> = {
-  "concrete-slab": {
-    Component: ConcreteSlab,
-    name: "Concrete Slab — Volume & Bags",
-    category: "construction",
-  },
-  "drywall-area-sheets": {
-    Component: DrywallAreaSheets,
-    name: "Drywall — Area & Sheets",
-    category: "construction",
-  },
-};
+  // Derive nome do componente dinamicamente (ex.: 'auto-loan' -> 'AutoLoanCalculator')
+  const componentName = calculator
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join('') + 'Calculator';
 
-/** Helper: "concrete-masonry-calculators" -> "Concrete Masonry Calculators" */
-function titleCaseFromSlug(slug?: string) {
-  if (!slug) return "";
-  return slug
-    .split("-")
-    .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w))
-    .join(" ");
-}
+  const CalculatorComponent = lazy(() => import(`@/components/calculators/automotive/${componentName}`)); // Path com alias @/ para Vite; mude 'automotive' para outra categoria se necessário, ex.: 'construction'
 
-const CalculatorPage = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  // Usamos os PARAMS da rota (não dependemos mais de location.state)
-  const { subcategory, calculator } = useParams<{ subcategory: string; calculator: string }>();
-
-  // Busca o componente no registro
-  const entry = calculator ? REGISTRY[calculator] : undefined;
-  const subCategoryTitle = titleCaseFromSlug(subcategory);
-
-  // Descobre a "category" a partir do path (primeiro segmento após "/")
-  // Ex.: "/construction/..." -> "construction"
-  const categoryFromPath =
-    location.pathname.split("/")[1] || entry?.category || "construction";
-
-  // "Voltar": para a subcategoria, se houver; senão, para a raiz da categoria
-  const handleGoBack = () => {
-    if (subcategory) {
-      navigate(`/${categoryFromPath}/${subcategory}`);
-    } else {
-      navigate(`/${categoryFromPath}`);
-    }
-  };
-
-  // Estado para quando o slug não está registrado
-  const NotFoundCalc = (
-    <Card className="bg-card border-border/50">
-      <CardContent className="p-8">
-        <div className="bg-muted/30 rounded-lg p-8 text-center">
-          <Calculator className="h-16 w-16 text-primary mx-auto mb-4" />
-          <h3 className="text-xl font-semibold text-foreground mb-2">Calculator not found</h3>
-          <p className="text-muted-foreground">
-            We couldn’t find this calculator. Please go back and choose another one.
-          </p>
-          <div className="mt-6">
-            <Button
-              onClick={() =>
-                navigate(
-                  subcategory
-                    ? `/${categoryFromPath}/${subcategory}`
-                    : `/${categoryFromPath}`
-                )
-              }
-            >
-              Back to {subCategoryTitle || titleCaseFromSlug(categoryFromPath)}
-            </Button>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
+  // Meta tags dinâmicas para SEO (baseadas no registry)
+  const pageTitle = `${calcInfo.name} Calculator | Smart Kit Now`;
+  const pageDescription = `Use our professional ${calcInfo.name} calculator to ${calcInfo.description.toLowerCase()}. Includes step-by-step instructions, practical examples, and trusted references for accurate calculations in automotive, construction, or other categories.`;
+  const pageKeywords = `${calcInfo.tags.join(', ')}, general calculators, automotive tools, online calculator, smart kit now`;
 
   return (
-    <div className="min-h-screen bg-gradient-soft">
-      <Header />
-
-      <main className="pt-20">
-        <section className="container mx-auto px-4 py-8">
-          {/* Botão Voltar */}
-          <div className="mb-8">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleGoBack}
-              className="flex items-center space-x-2 mb-6"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back</span>
-            </Button>
-
-            {/* Cabeçalho da calculadora */}
-            <div className="flex flex-col items-center text-center space-y-3 mb-6">
-              <div className="p-3 rounded-lg bg-primary/10">
-                <Calculator className="h-8 w-8 text-primary" />
-              </div>
-              <div>
-                <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                  {entry?.name ?? "Calculator"}
-                </h1>
-                <p className="text-muted-foreground mt-2 text-lg">
-                  Category: {titleCaseFromSlug(categoryFromPath)}
-                  {subcategory ? ` · ${subCategoryTitle}` : ""}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Conteúdo da calculadora */}
-          {entry ? (
-            <Suspense
-              fallback={
-                <div className="mx-auto max-w-3xl px-4 py-10 text-center">
-                  Loading…
-                </div>
-              }
-            >
-              <entry.Component />
-            </Suspense>
-          ) : (
-            NotFoundCalc
-          )}
-
-          {/* Rodapé explicativo/SEO-friendly (genérico) */}
-          <CalculatorFooter
-            calculatorName={entry?.name ?? "Calculator"}
-            description={
-              entry
-                ? `This tool estimates key values for ${entry.name.toLowerCase()}. Enter your project dimensions and review the results before purchasing materials or scheduling work.`
-                : "This tool estimates key values. Enter your project dimensions and review the results before purchasing materials or scheduling work."
-            }
-            formula={
-              entry?.name?.toLowerCase().includes("concrete slab")
-                ? "Volume = Length × Width × Thickness (converted to yd³ or m³); Bags ≈ Volume(ft³) ÷ bag yield."
-                : "Result = (Variable1 × Variable2) / Constant"
-            }
-            sources={[
-              { title: "ASTM C94 / Ready-Mixed Concrete", url: "https://www.astm.org" },
-              { title: "ACI Concrete Fundamentals", url: "https://www.concrete.org" },
-              { title: "NIST Engineering Handbook", url: "https://www.nist.gov" },
-            ]}
-          />
-        </section>
-      </main>
-
-      <Footer />
-    </div>
+    <CalculatorLayout
+      title={pageTitle}
+      description={pageDescription}
+      keywords={pageKeywords}
+      calculatorName={calcInfo.name}
+      formula={calcInfo.formula}
+      sources={calcInfo.sources || []} // Usa sources do registry para referências no footer
+    >
+      <Suspense fallback={<div className="text-center py-10">Carregando calculadora...</div>}>
+        <CalculatorComponent />
+      </Suspense>
+      {/* Seções opcionais para AdSense/SEO: instructions, examples, affiliates */}
+      {/* Exemplo: <section className="mt-8"><h2>How to Use</h2><p>Enter loan amount and interest rate.</p></section> */}
+      {/* <section className="mt-8"><h2>Practical Examples</h2><ul><li>Example: $20,000 auto loan at 5% for 5 years = $377 monthly.</li></ul></section> */}
+      {/* Affiliate: <a href="https://amazon.com/car-accessories?tag=youraffid" target="_blank">Buy Car Accessories on Amazon</a> */}
+    </CalculatorLayout>
   );
 };
 

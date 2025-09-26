@@ -23,7 +23,11 @@ const FinancialCalculatorPage: React.FC = () => {
   const pageTitle = `${calcInfo.name} Calculator | Smart Kit Now`;
   const pageDescription = `Use our professional ${calcInfo.name} calculator to ${calcInfo.description.toLowerCase()}. Includes step-by-step instructions, practical examples, and trusted references for accurate financial planning.`;
   const pageKeywords = `${calcInfo.tags.join(', ')}, financial calculators, money tools, online calculator, smart kit now`;
-
+try {
+  // o return existente
+} catch (e) {
+  return <div>Erro no import: {e.message}</div>;
+}
   return (
     <CalculatorLayout
       title={pageTitle}

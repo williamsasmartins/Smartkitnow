@@ -1,38 +1,47 @@
+import React, { lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
-import { calculatorRegistry } from '@/data/calculatorRegistry';
-import AspectRatioCalculator from '@/components/calculators/tv/AspectRatioCalculator';
-import PPICalculator from '@/components/calculators/tv/PPICalculator';
-import ProjectorCalculator from '@/components/calculators/tv/ProjectorCalculator';
-import ScreenSizeCalculator from '@/components/calculators/tv/ScreenSizeCalculator';
-import TVDimensionsChart from '@/components/calculators/tv/TVDimensionsChart';
-import TVHeightCalculator from '@/components/calculators/tv/TVHeightCalculator';
-import TVMountingCostCalculator from '@/components/calculators/tv/TVMountingCostCalculator';
-import TVViewingDistanceCalculator from '@/components/calculators/tv/TVViewingDistanceCalculator';
-import TVViewingRangesGuide from '@/components/calculators/tv/TVViewingRangesGuide';
-import VideoResolutionsGuide from '@/components/calculators/tv/VideoResolutionsGuide';
-import NotFound from '../NotFound';
+import { calculatorRegistry } from '../../data/calculatorRegistry'; // Named import
+import { CalculatorLayout } from '../../components/calculators/common/CalculatorLayout'; // Named import
 
-const calculatorComponents: Record<string, React.ComponentType> = {
-  'aspect-ratio': AspectRatioCalculator,
-  'ppi': PPICalculator,
-  'projector': ProjectorCalculator,
-  'screen-size': ScreenSizeCalculator,
-  'tv-dimensions': TVDimensionsChart,
-  'tv-height': TVHeightCalculator,
-  'tv-mounting-cost': TVMountingCostCalculator,
-  'tv-viewing-distance': TVViewingDistanceCalculator,
-  'tv-viewing-ranges': TVViewingRangesGuide,
-  'video-resolutions': VideoResolutionsGuide,
-};
-
-export default function TVCalculatorPage() {
+const TVCalculatorPage: React.FC = () => {
   const { calculator } = useParams<{ calculator: string }>();
-  const calcKey = calculator?.replace('-calculator', '');
-  
-  if (!calcKey || !calculatorRegistry[calcKey] || !calculatorComponents[calcKey]) {
-    return <NotFound />;
+  const calcInfo = calculatorRegistry[calculator || ''];
+
+  if (!calcInfo) {
+    return <div>Calculadora não encontrada. Tente outra na categoria de tv. Verifique se o URL está correto ou adicione a entrada no registry.</div>; // Fallback informativo
   }
 
-  const CalculatorComponent = calculatorComponents[calcKey];
-  return <CalculatorComponent />;
-}
+  // Derive nome do componente dinamicamente (ex.: 'screen-size' -> 'ScreenSizeCalculator')
+  const componentName = calculator
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join('') + 'Calculator';
+
+  const CalculatorComponent = lazy(() => import(`@/components/calculators/tv/${componentName}.js`)); // Adicionado .js para Vite analisar o dynamic import
+
+  // Meta tags dinâmicas para SEO (baseadas no registry)
+  const pageTitle = `${calcInfo.name} Calculator | Smart Kit Now`;
+  const pageDescription = `Use our professional ${calcInfo.name} calculator to ${calcInfo.description.toLowerCase()}. Includes step-by-step instructions, practical examples, and trusted references for accurate TV and video calculations.`;
+  const pageKeywords = `${calcInfo.tags.join(', ')}, tv calculators, video tools, online calculator, smart kit now`;
+
+  return (
+    <CalculatorLayout
+      title={pageTitle}
+      description={pageDescription}
+      keywords={pageKeywords}
+      calculatorName={calcInfo.name}
+      formula={calcInfo.formula}
+      sources={calcInfo.sources || []} // Usa sources do registry para referências no footer
+    >
+      <Suspense fallback={<div className="text-center py-10">Carregando calculadora...</div>}>
+        <CalculatorComponent />
+      </Suspense>
+      {/* Seções opcionais para AdSense/SEO: instructions, examples, affiliates */}
+      {/* Exemplo: <section className="mt-8"><h2>How to Use</h2><p>Enter room size and viewing distance.</p></section> */}
+      {/* <section className="mt-8"><h2>Practical Examples</h2><ul><li>Example: 10ft viewing distance = 55-65 inch TV.</li></ul></section> */}
+      {/* Affiliate: <a href="https://amazon.com/tvs?tag=youraffid" target="_blank">Buy TVs on Amazon</a> */}
+    </CalculatorLayout>
+  );
+};
+
+export default TVCalculatorPage;
