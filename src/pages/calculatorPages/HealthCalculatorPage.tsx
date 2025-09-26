@@ -5,7 +5,7 @@ import { BMRCalculator } from '@/components/calculators/health/BMRCalculator';
 import { BodyFatCalculator } from '@/components/calculators/health/BodyFatCalculator';
 import { CalorieCalculator } from '@/components/calculators/health/CalorieCalculator';
 import { CaloriesToKilogramsCalculator } from '@/components/calculators/health/CaloriesToKilogramsCalculator';
-import { IMCCalculator } from '@/components/calculators/health/IMCCalculator';
+import IMCCalculator from '@/components/calculators/health/IMCCalculator';
 import { TDEECalculator } from '@/components/calculators/health/TDEECalculator';
 import NotFound from '../NotFound';
 
@@ -17,11 +17,10 @@ const calculatorComponents: Record<string, React.ComponentType> = {
   'calories-to-kilograms': CaloriesToKilogramsCalculator,
   'imc': IMCCalculator,
   'tdee': TDEECalculator,
-  // Adicione mais se houver outras calcs em health/
 };
 
 export default function HealthCalculatorPage() {
-  const { calculator } from useParams<{ calculator: string }>();
+  const { calculator } = useParams<{ calculator: string }>();
   const calcKey = calculator?.replace('-calculator', '');
   
   if (!calcKey || !calculatorRegistry[calcKey] || !calculatorComponents[calcKey]) {

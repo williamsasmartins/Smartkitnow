@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { CalculatorLayout } from "@/components/common/CalculatorLayout";
-import { InputGroup } from "@/components/common/InputGroup";
-import { ResultCard } from "@/components/common/ResultCard";
+import { CalculatorLayout } from "@/components/calculators/common/CalculatorLayout";
+import { InputGroup } from "@/components/calculators/common/InputGroup";
+import { ResultCard } from "@/components/calculators/common/ResultCard";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
