@@ -87,7 +87,7 @@ export const PercentageCalculator = () => {
               id="percentage"
               type="number"
               value={percentage}
-              onChange={setPercentage}
+              onChange={(e) => setPercentage(e.target.value)}
               placeholder="25"
               required
             />
@@ -96,7 +96,7 @@ export const PercentageCalculator = () => {
               id="value1"
               type="number"
               value={value1}
-              onChange={setValue1}
+              onChange={(e) => setValue1(e.target.value)}
               placeholder="200"
               required
             />
@@ -110,7 +110,7 @@ export const PercentageCalculator = () => {
               id="value1"
               type="number"
               value={value1}
-              onChange={setValue1}
+              onChange={(e) => setValue1(e.target.value)}
               placeholder="50"
               required
             />
@@ -119,7 +119,7 @@ export const PercentageCalculator = () => {
               id="value2"
               type="number"
               value={value2}
-              onChange={setValue2}
+              onChange={(e) => setValue2(e.target.value)}
               placeholder="200"
               required
             />
@@ -133,7 +133,7 @@ export const PercentageCalculator = () => {
               id="value1"
               type="number"
               value={value1}
-              onChange={setValue1}
+              onChange={(e) => setValue1(e.target.value)}
               placeholder="100"
               required
             />
@@ -142,7 +142,7 @@ export const PercentageCalculator = () => {
               id="value2"
               type="number"
               value={value2}
-              onChange={setValue2}
+              onChange={(e) => setValue2(e.target.value)}
               placeholder="125"
               required
             />

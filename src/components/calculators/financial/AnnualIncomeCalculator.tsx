@@ -1,142 +1,91 @@
 import React, { useState } from 'react';
-import { CalculatorLayout } from "@/components/common/CalculatorLayout";
-import { InputGroup } from "@/components/common/InputGroup";
-import { ResultCard } from "@/components/common/ResultCard";
+import { CalculatorLayout } from "@/components/calculators/common/CalculatorLayout";
+import { InputGroup } from "@/components/calculators/common/InputGroup";
+import { ResultCard } from "@/components/calculators/common/ResultCard";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const AnnualIncomeCalculator = () => {
-  const [payAmount, setPayAmount] = useState('');
-  const [payPeriod, setPayPeriod] = useState('hourly');
-  const [hoursPerWeek, setHoursPerWeek] = useState('40');
-  const [result, setResult] = useState<{
-    annualIncome: number;
-    monthlyIncome: number;
-    weeklyIncome: number;
-  } | null>(null);
+  const [hourlyRate, setHourlyRate] = useState('');
+  const [hoursPerWeek, setHoursPerWeek] = useState('');
+  const [weeksPerYear, setWeeksPerYear] = useState('52');
+  const [activeTab, setActiveTab] = useState('hourly');
+  const [annualIncome, setAnnualIncome] = useState<number | null>(null);
 
-  const calculateIncome = () => {
-    const amount = parseFloat(payAmount);
+  const calculateFromHourly = () => {
+    const rate = parseFloat(hourlyRate);
     const hours = parseFloat(hoursPerWeek);
-
-    if (amount > 0) {
-      let annual = 0;
-      
-      switch (payPeriod) {
-        case 'hourly':
-          annual = amount * hours * 52;
-          break;
-        case 'daily':
-          annual = amount * 5 * 52;
-          break;
-        case 'weekly':
-          annual = amount * 52;
-          break;
-        case 'biweekly':
-          annual = amount * 26;
-          break;
-        case 'monthly':
-          annual = amount * 12;
-          break;
-        case 'annual':
-          annual = amount;
-          break;
-      }
-
-      setResult({
-        annualIncome: Math.round(annual * 100) / 100,
-        monthlyIncome: Math.round((annual / 12) * 100) / 100,
-        weeklyIncome: Math.round((annual / 52) * 100) / 100
-      });
+    const weeks = parseFloat(weeksPerYear);
+    if (rate > 0 && hours > 0 && weeks > 0) {
+      setAnnualIncome(rate * hours * weeks);
     }
   };
 
   const handleReset = () => {
-    setPayAmount('');
-    setPayPeriod('hourly');
-    setHoursPerWeek('40');
-    setResult(null);
+    setHourlyRate('');
+    setHoursPerWeek('');
+    setWeeksPerYear('52');
+    setAnnualIncome(null);
   };
-
-  const payPeriodOptions = [
-    { value: 'hourly', label: 'Hourly' },
-    { value: 'daily', label: 'Daily' },
-    { value: 'weekly', label: 'Weekly' },
-    { value: 'biweekly', label: 'Bi-weekly' },
-    { value: 'monthly', label: 'Monthly' },
-    { value: 'annual', label: 'Annual' }
-  ];
 
   return (
     <CalculatorLayout
       title="Annual Income Calculator"
-      description="Convert your hourly, daily, weekly, or monthly pay into annual income."
-      formula="Annual Income = Pay Amount × Pay Periods per Year"
-      example="$25/hour × 40 hours/week × 52 weeks = $52,000 annual income"
+      description="Calculate annual income from hourly rate and hours worked."
+      formula="Annual Income = Hourly Rate × Hours per Week × Weeks per Year"
+      example="Hourly $20, 40 hours/week, 52 weeks = $41,600/year"
     >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <InputGroup
-          label="Pay Amount"
-          id="payAmount"
-          type="number"
-          value={payAmount}
-          onChange={setPayAmount}
-          placeholder="25"
-          step="0.01"
-          required
-        />
-        <InputGroup
-          label="Pay Period"
-          id="payPeriod"
-          type="select"
-          value={payPeriod}
-          onChange={setPayPeriod}
-          options={payPeriodOptions}
-        />
-        {payPeriod === 'hourly' && (
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <TabsList className="grid w-full grid-cols-1">
+          <TabsTrigger value="hourly">From Hourly Rate</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="hourly" className="space-y-4">
+          <InputGroup
+            label="Hourly Rate ($)"
+            id="hourlyRate"
+            type="number"
+            value={hourlyRate}
+            onChange={(e) => setHourlyRate(e.target.value)}
+            placeholder="20"
+            required
+          />
           <InputGroup
             label="Hours per Week"
             id="hoursPerWeek"
             type="number"
             value={hoursPerWeek}
-            onChange={setHoursPerWeek}
+            onChange={(e) => setHoursPerWeek(e.target.value)}
             placeholder="40"
+            required
           />
-        )}
-      </div>
+          <InputGroup
+            label="Weeks per Year"
+            id="weeksPerYear"
+            type="number"
+            value={weeksPerYear}
+            onChange={(e) => setWeeksPerYear(e.target.value)}
+            placeholder="52"
+            required
+          />
+        </TabsContent>
+      </Tabs>
 
       <div className="flex gap-4">
-        <Button onClick={calculateIncome} className="flex-1">
-          Calculate Income
-        </Button>
-        <Button variant="outline" onClick={handleReset}>
-          Reset
-        </Button>
+        <Button onClick={calculateFromHourly} className="flex-1">Calculate</Button>
+        <Button variant="outline" onClick={handleReset}>Reset</Button>
       </div>
 
-      {result && (
+      {annualIncome !== null && (
         <>
           <Separator />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <ResultCard
-              title="Annual Income"
-              value={result.annualIncome}
-              prefix="$"
-              colorClass="text-primary"
-            />
-            <ResultCard
-              title="Monthly Income"
-              value={result.monthlyIncome}
-              prefix="$"
-              colorClass="text-green-600"
-            />
-            <ResultCard
-              title="Weekly Income"
-              value={result.weeklyIncome}
-              prefix="$"
-              colorClass="text-blue-600"
-            />
-          </div>
+          <ResultCard
+            title="Annual Income"
+            value={annualIncome.toFixed(2)}
+            suffix="$"
+            colorClass="text-primary"
+          />
         </>
       )}
     </CalculatorLayout>
