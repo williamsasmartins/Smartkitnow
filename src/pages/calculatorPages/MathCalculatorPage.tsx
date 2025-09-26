@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { calculatorRegistry } from '@/data/calculatorRegistry';
-import AreaCalculator from '@/components/calculators/math/AreaCalculator';
-import FractionCalculator from '@/components/calculators/math/FractionCalculator';
-import GPACalculator from '@/components/calculators/math/GPACalculator';
-import PercentageCalculator from '@/components/calculators/math/PercentageCalculator';
-import SlopeCalculator from '@/components/calculators/math/SlopeCalculator';
-import NotFound from '../NotFound';  // Corrigido para '../NotFound'
+import { AreaCalculator } from '@/components/calculators/math/AreaCalculator';
+import { FractionCalculator } from '@/components/calculators/math/FractionCalculator';
+import { GPACalculator } from '@/components/calculators/math/GPACalculator';
+import { PercentageCalculator } from '@/components/calculators/math/PercentageCalculator';
+import { SlopeCalculator } from '@/components/calculators/math/SlopeCalculator';
+import NotFound from '../NotFound';
 
 const calculatorComponents: Record<string, React.ComponentType> = {
   'area': AreaCalculator,
