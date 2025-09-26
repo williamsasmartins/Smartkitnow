@@ -7,6 +7,7 @@ import { CalorieCalculator } from '@/components/calculators/health/CalorieCalcul
 import { CaloriesToKilogramsCalculator } from '@/components/calculators/health/CaloriesToKilogramsCalculator';
 import IMCCalculator from '@/components/calculators/health/IMCCalculator';  // Corrigido: default import (sem { })
 import { TDEECalculator } from '@/components/calculators/health/TDEECalculator';
+import { AdjustedBodyWeightCalculator } from '@/components/calculators/health/AdjustedBodyWeightCalculator';
 import NotFound from '../NotFound';
 
 const calculatorComponents: Record<string, React.ComponentType> = {
@@ -17,6 +18,7 @@ const calculatorComponents: Record<string, React.ComponentType> = {
   'calories-to-kilograms': CaloriesToKilogramsCalculator,
   'imc': IMCCalculator,
   'tdee': TDEECalculator,
+  'adjusted-body-weight': AdjustedBodyWeightCalculator,
 };
 
 export default function HealthCalculatorPage() {

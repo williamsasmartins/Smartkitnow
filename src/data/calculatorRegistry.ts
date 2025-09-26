@@ -65,5 +65,14 @@ export const calculatorRegistry: Record<string, CalculatorInfo> = {
     subcategory: 'body-measurement',
     formula: 'IMC = peso / (altura^2)',
     tags: ['health', 'bmi', 'weight']
-  }
+  },
+  'adjusted-body-weight': {
+  key: 'adjusted-body-weight',
+  name: 'Adjusted Body Weight Calculator',
+  description: 'Calculate adjusted body weight for obese individuals',
+  category: 'health',
+  subcategory: 'body-measurement',
+  formula: 'ABW = IBW + 0.4 × (Actual Weight - IBW)',
+  tags: ['health', 'weight', 'obesity']
+ },
 };
