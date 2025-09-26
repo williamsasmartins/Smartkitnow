@@ -5,7 +5,7 @@ import { BMRCalculator } from '@/components/calculators/health/BMRCalculator';
 import { BodyFatCalculator } from '@/components/calculators/health/BodyFatCalculator';
 import { CalorieCalculator } from '@/components/calculators/health/CalorieCalculator';
 import { CaloriesToKilogramsCalculator } from '@/components/calculators/health/CaloriesToKilogramsCalculator';
-import IMCCalculator from '@/components/calculators/health/IMCCalculator';
+import IMCCalculator from '@/components/calculators/health/IMCCalculator';  // Corrigido: default import (sem { })
 import { TDEECalculator } from '@/components/calculators/health/TDEECalculator';
 import NotFound from '../NotFound';
 
