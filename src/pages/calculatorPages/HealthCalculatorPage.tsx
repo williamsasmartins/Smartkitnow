@@ -1,34 +1,41 @@
+import React, { lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
-import { calculatorRegistry } from '@/data/calculatorRegistry';
-import { BMICalculator } from '@/components/calculators/health/BMICalculator';
-import { BMRCalculator } from '@/components/calculators/health/BMRCalculator';
-import { BodyFatCalculator } from '@/components/calculators/health/BodyFatCalculator';
-import { CalorieCalculator } from '@/components/calculators/health/CalorieCalculator';
-import { CaloriesToKilogramsCalculator } from '@/components/calculators/health/CaloriesToKilogramsCalculator';
-import IMCCalculator from '@/components/calculators/health/IMCCalculator';  // Corrigido: default import (sem { })
-import { TDEECalculator } from '@/components/calculators/health/TDEECalculator';
-import { AdjustedBodyWeightCalculator } from '@/components/calculators/health/AdjustedBodyWeightCalculator';
-import NotFound from '../NotFound';
+import { calculatorRegistry } from '../../data/calculatorRegistry';
+import { CalculatorLayout } from '../../components/calculators/common/CalculatorLayout';
 
-const calculatorComponents: Record<string, React.ComponentType> = {
-  'bmi': BMICalculator,
-  'bmr': BMRCalculator,
-  'body-fat': BodyFatCalculator,
-  'calorie': CalorieCalculator,
-  'calories-to-kilograms': CaloriesToKilogramsCalculator,
-  'imc': IMCCalculator,
-  'tdee': TDEECalculator,
-  'adjusted-body-weight': AdjustedBodyWeightCalculator,
-};
-
-export default function HealthCalculatorPage() {
+const HealthCalculatorPage: React.FC = () => {
   const { calculator } = useParams<{ calculator: string }>();
-  const calcKey = calculator?.replace('-calculator', '');
-  
-  if (!calcKey || !calculatorRegistry[calcKey] || !calculatorComponents[calcKey]) {
-    return <NotFound />;
+  const calcInfo = calculatorRegistry[calculator || ''];
+
+  if (!calcInfo) {
+    return <div>Calculadora não encontrada. Tente outra na categoria de health & fitness. Verifique se o URL está correto ou adicione a entrada no registry.</div>; // Melhorado: Mais informativo
   }
 
-  const CalculatorComponent = calculatorComponents[calcKey];
-  return <CalculatorComponent />;
-}
+  const componentName = calculator
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join('') + 'Calculator';
+
+  const CalculatorComponent = lazy(() => import(`../../components/calculators/health/${componentName}.tsx`));
+
+  const pageTitle = `${calcInfo.name} Calculator | Smart Kit Now`;
+  const pageDescription = `Use our professional ${calcInfo.name} calculator to ${calcInfo.description.toLowerCase()}. Includes step-by-step instructions, practical examples, and trusted references for accurate results.`;
+  const pageKeywords = `${calcInfo.tags.join(', ')}, health calculators, fitness tools, online calculator, smart kit now`;
+
+  return (
+    <CalculatorLayout
+      title={pageTitle}
+      description={pageDescription}
+      keywords={pageKeywords}
+      calculatorName={calcInfo.name}
+      formula={calcInfo.formula}
+      sources={calcInfo.sources || []} // Usa sources do registry para referências no footer
+    >
+      <Suspense fallback={<div className="text-center py-10">Carregando calculadora...</div>}>
+        <CalculatorComponent />
+      </Suspense>
+    </CalculatorLayout>
+  );
+};
+
+export default HealthCalculatorPage;

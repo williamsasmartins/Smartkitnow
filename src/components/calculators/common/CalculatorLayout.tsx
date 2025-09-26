@@ -1,29 +1,53 @@
-import React, { PropsWithChildren } from 'react';
-import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Helmet } from 'react-helmet'; // Para meta tags SEO
+import { Header } from '../../Header'; // Named import
+import { Footer } from '../../Footer'; // Named import
+import { CalculatorFooter } from '../../CalculatorFooter'; // Named import
+// Outros imports se existirem (ex.: para ads ou share)
 
-interface CalculatorLayoutProps extends PropsWithChildren {
-  title: string;
-  description: string;
-  formula?: string;
-  example?: string;
+interface CalculatorLayoutProps {
+  title: string; // Para SEO
+  description: string; // Para SEO e footer
+  keywords?: string; // Para SEO
+  calculatorName: string; // Para footer
+  formula: string; // Para footer
+  sources: { title: string; url: string }[]; // Para footer (referências)
+  children: React.ReactNode;
 }
 
-export const CalculatorLayout = ({ children, title, description, formula, example }: CalculatorLayoutProps) => {
-  const navigate = useNavigate();
+export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({
+  title,
+  description,
+  keywords = 'calculators, online tools, smart kit now, free calculators, health fitness, financial planning',
+  calculatorName,
+  formula,
+  sources,
+  children,
+}) => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        <Button onClick={() => navigate(-1)} className="mb-4">
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back
-        </Button>
-        <h1 className="text-3xl font-bold mb-2">{title}</h1>
-        <p className="text-muted-foreground mb-4">{description}</p>
-        {formula && <div className="mb-4 p-4 bg-muted rounded-lg"><strong>Formula:</strong> {formula}</div>}
-        {example && <div className="mb-4 p-4 bg-muted rounded-lg"><strong>Example:</strong> {example}</div>}
-        <div className="space-y-6">{children}</div>
-      </div>
-    </div>
+    <>
+      <Helmet>
+        <title>{title} - Smart Kit Now</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      <Header />
+      <main className="container mx-auto px-4 py-8">
+        {children}
+        {/* Seções para AdSense/SEO: instructions, examples */}
+      </main>
+      <CalculatorFooter
+        calculatorName={calculatorName}
+        description={description}
+        formula={formula}
+        sources={sources} // Limpo, sem vírgula extra ou spread incompleto
+      />
+      <Footer />
+    </>
   );
 };
