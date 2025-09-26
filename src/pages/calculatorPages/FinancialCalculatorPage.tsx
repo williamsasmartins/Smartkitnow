@@ -5,7 +5,7 @@ import { AnnualIncomeCalculator } from '@/components/calculators/financial/Annua
 import { BiweeklyPayCalculator } from '@/components/calculators/financial/BiweeklyPayCalculator';
 import { DebtToIncomeCalculator } from '@/components/calculators/financial/DebtToIncomeCalculator';
 import { DiscountCalculator } from '@/components/calculators/financial/DiscountCalculator';
-import NotFound from './NotFound';
+import NotFound from '../NotFound';
 
 const calculatorComponents: Record<string, React.ComponentType> = {
   'adjusted-gross-income': AdjustedGrossIncomeCalculator,
@@ -13,6 +13,7 @@ const calculatorComponents: Record<string, React.ComponentType> = {
   'biweekly-pay': BiweeklyPayCalculator,
   'debt-to-income': DebtToIncomeCalculator,
   'discount': DiscountCalculator,
+  // Adicione outros como 'compound-interest': CompoundInterestCalculator, etc., importando-os
 };
 
 export default function FinancialCalculatorPage() {
