@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate, useParams } from 'react-router-dom'
 import ScrollToTop from '@/components/ScrollToTop'
-import AppErrorBoundary from './components/AppErrorBoundary'
+import AppErrorBoundary from '@/components/AppErrorBoundary'
 
 // Páginas principais
 import Index from '@/pages/Index'
@@ -40,8 +40,14 @@ import PetsSubCategory from '@/pages/PetsSubCategory'
 import ConstructionSubCategory from '@/pages/ConstructionSubCategory'
 import AutomotiveSubCategory from '@/pages/AutomotiveSubCategory'
 
-// Página genérica de calculadora
+// Página genérica
 import CalculatorPage from '@/pages/CalculatorPage'
+
+// Redireciona rotas antigas /calculator/:slug -> formato curto
+function LegacyCalcRedirect() {
+  const { category, subcategory, slug } = useParams()
+  return <Navigate to={`/${category}/${subcategory}/${slug}`} replace />
+}
 
 export default function App() {
   return (
@@ -86,8 +92,11 @@ export default function App() {
             <Route path="/construction/:subcategory" element={<ConstructionSubCategory />} />
             <Route path="/automotive/:subcategory" element={<AutomotiveSubCategory />} />
 
-            {/* Página de calculadora */}
-            <Route path="/:category/:subcategory/calculator/:slug" element={<CalculatorPage />} />
+            {/* Calculadora — formato curto */}
+            <Route path="/:category/:subcategory/:slug" element={<CalculatorPage />} />
+
+            {/* Legado -> redireciona */}
+            <Route path="/:category/:subcategory/calculator/:slug" element={<LegacyCalcRedirect />} />
 
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
