@@ -6,7 +6,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-    /* Bundler mode */
+    /* Bundler mode (Vite) */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
@@ -21,6 +21,7 @@
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": false,
 
+    /* Alias @ -> src */
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]

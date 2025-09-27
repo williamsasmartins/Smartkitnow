@@ -1,24 +1,23 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-import { resolve } from 'path'; // Para paths absolutos
+import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'), // Mantido: Alias para dynamic imports
+      '@': resolve(__dirname, 'src'), // Alias para imports: "@/..."
     },
   },
   server: {
-    port: 8080, // Mantido: Seu port local
+    port: 8080, // Porta local
   },
   build: {
-    chunkSizeWarningLimit: 1000, // Novo: Aumenta limite para 1000kB – suprime o aviso (ajuste para 2000 se precisar mais)
+    chunkSizeWarningLimit: 1000, // Suprime aviso de chunk grande
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Opcional: Otimização manual para splitting chunks grandes (ex.: vendor para dependências)
           if (id.includes('node_modules')) {
             return id.toString().split('node_modules/')[1].split('/')[0].toString();
           }
