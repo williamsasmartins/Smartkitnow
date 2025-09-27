@@ -4,39 +4,34 @@ import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useMemo } from "react";
 import logoImage from "@/assets/logo-skn.png";
-import { calculatorRegistry } from '@/data/calculatorRegistry';  // Import correto para src/data/calculatorRegistry.ts
-
-// Tipo compatível com o calculatorRegistry
-interface CalculatorInfo {
-  key: string;
-  name: string;
-  description: string;
-  category: string;
-  subcategory: string;
-  formula?: string;
-  tags: string[];
-}
 
 export function Header() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const calculators = useMemo(() => {
-    return Object.entries(calculatorRegistry).map(([key, calc]) => ({
-      key: calc.key,
-      name: calc.name,
-      category: calc.category,
-      subcategory: calc.subcategory,
-    }));
-  }, []);
+  const calculators = useMemo(() => [
+    { key: "carburetor-cfm", name: "Carburetor CFM Calculator", category: "automotive" },
+    { key: "engine-compression", name: "Engine Compression Ratio Calculator", category: "automotive" },
+    { key: "horsepower", name: "Engine Horsepower Calculator", category: "automotive" },
+    { key: "fuel-cost", name: "Fuel Cost Calculator", category: "automotive" },
+    { key: "gas-mileage", name: "Gas Mileage Calculator", category: "automotive" },
+    { key: "auto-loan", name: "Auto Loan Calculator", category: "automotive" },
+    { key: "tv-mounting-cost", name: "TV Mounting and Installation Cost Guide", category: "tv" },
+    { key: "bmi", name: "BMI Calculator", category: "health" },
+    { key: "bmr", name: "BMR Calculator", category: "health" },
+    { key: "calorie", name: "Calorie Calculator", category: "health" },
+    { key: "convert-calories-to-kilograms", name: "Calories to Kilograms Calculator", category: "health" },
+    { key: "body-fat", name: "Body Fat Calculator", category: "health" },
+    { key: "age", name: "Age Calculator", category: "health" },
+    { key: "tdee", name: "TDEE Calculator", category: "health" },
+  ], []);
 
   const filteredCalculators = useMemo(() => {
     if (!searchTerm.trim()) return [];
     return calculators.filter(calc =>
       calc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      calc.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      calc.subcategory.toLowerCase().includes(searchTerm.toLowerCase())
+      calc.category.toLowerCase().includes(searchTerm.toLowerCase())
     ).slice(0, 5);
   }, [searchTerm, calculators]);
 
@@ -55,29 +50,29 @@ export function Header() {
     }
   };
 
-  const navigateToCalculator = (calculator: { key: string; category: string }) => {
+  const navigateToCalculator = (calculator: any) => {
     setSearchTerm("");
     setShowSuggestions(false);
     const paths = {
-      automotive: `/automotive/${calculator.key}-calculator`,
-      construction: `/construction/${calculator.key}-calculator`,
-      conversion: `/conversion/${calculator.key}-calculator`,
-      cooking: `/cooking/${calculator.key}-calculator`,
-      financial: `/financial/calculator/${calculator.key}-calculator`,
-      health: `/health/calculator/${calculator.key}-calculator`,
-      math: `/math/calculator/${calculator.key}-calculator`,
-      pets: `/pets/calculator/${calculator.key}-calculator`,
-      science: `/science/calculator/${calculator.key}-calculator`,
-      time: `/time/calculator/${calculator.key}-calculator`,
-      tv: `/tv/calculator/${calculator.key}-calculator`,
+      automotive: `/automotive/${calculator.key}`,
+      construction: `/construction/${calculator.key}`,
+      conversion: `/conversion/${calculator.key}`,
+      cooking: `/cooking/${calculator.key}`,
+      financial: `/financial/calculator/${calculator.key}`,
+      health: `/health/calculator/${calculator.key}`,
+      math: `/math/calculator/${calculator.key}`,
+      pets: `/pets/calculator/${calculator.key}`,
+      science: `/science/calculator/${calculator.key}`,
+      time: `/time/calculator/${calculator.key}`,
+      tv: `/tv/calculator/${calculator.key}`,
     } as const;
     const path = paths[calculator.category as keyof typeof paths];
     if (path) {
-      navigate(path);
+      navigate(path, { state: { calculator, subCategory: calculator.category } });
     }
   };
 
-  const handleSuggestionClick = (calculator: { key: string; category: string }) => navigateToCalculator(calculator);
+  const handleSuggestionClick = (calculator: any) => navigateToCalculator(calculator);
 
   return (
     <header className="fixed top-0 w-full border-b border-border/40 bg-background/95 backdrop-blur-md z-[10000]">
