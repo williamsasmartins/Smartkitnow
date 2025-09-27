@@ -1,5 +1,6 @@
+// no topo do arquivo (deixe seus imports existentes)
+import React, { Suspense, lazy, useMemo } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import React, { lazy, Suspense } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CalculatorFooter } from "@/components/CalculatorFooter";
@@ -8,32 +9,60 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calculator } from "lucide-react";
 
 /**
- * Registre aqui cada calculadora pelo SLUG (param :calculator da URL).
- * Ex.: /construction/concrete-masonry-calculators/concrete-slab -> "concrete-slab"
+ * AUTO-REGISTRY de calculadoras
+ * - Descobre todos os arquivos em src/components/calculators/**\/*.tsx
+ * - Converte o nome do arquivo para um slug (kebab-case)
+ * - Carrega via lazy() a calculadora correspondente ao :calculator da URL
  */
-const ConcreteSlab = lazy(() => import("@/components/calculators/ConcreteSlab"));
-const DrywallAreaSheets = lazy(() => import("@/components/calculators/DrywallAreaSheets"));
+const modules = import.meta.glob("@/components/calculators/**/*.tsx");
 
-type CalcEntry = {
-  Component: React.LazyExoticComponent<React.ComponentType<any>>;
-  name: string;     // Título exibido
-  category: string; // Raiz da categoria (ex.: "construction")
+// Converte "ConcreteSlab" -> "concrete-slab", "TVHeightCalculator" -> "tv-height-calculator"
+function kebabFromPascal(fileBase: string) {
+  return fileBase
+    .replace(/\.tsx$/i, "")
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .replace(/_/g, "-")
+    .toLowerCase();
+}
+
+// Lista de arquivos que NÃO são calculadoras “unitárias” (são listas, grupos, etc.)
+// Excluímos para não virar rota por engano.
+const EXCLUDES = [
+  "Calculators",   // ...Calculators.tsx (listas)
+  "SubCategory",   // ...SubCategory.tsx
+];
+
+// Mapa opcional de "slug -> título bonito" (só para ajustar nomes exibidos)
+const FRIENDLY_TITLES: Record<string, string> = {
+  "concrete-slab": "Concrete Slab — Volume & Bags",
+  "drywall-area-sheets": "Drywall — Area & Sheets",
+  "calories-to-kilograms-calculator": "Calories to Kilograms Calculator",
+  // adicione títulos bonitos aqui se quiser customizar
 };
 
-const REGISTRY: Record<string, CalcEntry> = {
-  "concrete-slab": {
-    Component: ConcreteSlab,
-    name: "Concrete Slab — Volume & Bags",
-    category: "construction",
-  },
-  "drywall-area-sheets": {
-    Component: DrywallAreaSheets,
-    name: "Drywall — Area & Sheets",
-    category: "construction",
-  },
-};
+// Constrói o índice: slug -> loader (função que importa o módulo)
+const slugToLoader: Record<string, (() => Promise<any>)> = (() => {
+  const entries: Record<string, (() => Promise<any>)> = {};
 
-/** Helper: "concrete-masonry-calculators" -> "Concrete Masonry Calculators" */
+  Object.entries(modules).forEach(([path, loader]) => {
+    const base = path.split("/").pop() || "";
+    // pula arquivos de lista/subcategoria/etc
+    if (EXCLUDES.some((marker) => base.includes(marker))) return;
+
+    const slug = kebabFromPascal(base);
+    // também aceitamos variações: com e sem "-calculator"
+    const withCalc = slug.endsWith("-calculator") ? slug : `${slug}-calculator`;
+    const withoutCalc = slug.replace(/-calculator$/i, "");
+
+    // registra ambas as chaves apontando para o mesmo loader
+    entries[withCalc] = loader as any;
+    entries[withoutCalc] = loader as any;
+  });
+
+  return entries;
+})();
+
+// Helper: "concrete-masonry-calculators" -> "Concrete Masonry Calculators"
 function titleCaseFromSlug(slug?: string) {
   if (!slug) return "";
   return slug
@@ -42,23 +71,32 @@ function titleCaseFromSlug(slug?: string) {
     .join(" ");
 }
 
-const CalculatorPage = () => {
+const CalculatorPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { subcategory, calculator } = useParams<{ subcategory?: string; calculator?: string }>();
 
-  // Usamos os PARAMS da rota (não dependemos mais de location.state)
-  const { subcategory, calculator } = useParams<{ subcategory: string; calculator: string }>();
-
-  // Busca o componente no registro
-  const entry = calculator ? REGISTRY[calculator] : undefined;
+  // Descobre category a partir do path (1º segmento) — igual você já fazia
+  const categoryFromPath = location.pathname.split("/")[1] || "construction";
   const subCategoryTitle = titleCaseFromSlug(subcategory);
 
-  // Descobre a "category" a partir do path (primeiro segmento após "/")
-  // Ex.: "/construction/..." -> "construction"
-  const categoryFromPath =
-    location.pathname.split("/")[1] || entry?.category || "construction";
+  // Encontra o loader pela slug e cria um componente lazy para render
+  const LazyComp = useMemo(() => {
+    if (!calculator) return null;
+    const loader = slugToLoader[calculator];
+    if (!loader) return null;
+    return lazy(async () => {
+      const mod = await loader();
+      // garante default
+      return mod.default ? mod : { default: mod[Object.keys(mod)[0]] };
+    });
+  }, [calculator]);
 
-  // "Voltar": para a subcategoria, se houver; senão, para a raiz da categoria
+  const displayName = useMemo(() => {
+    if (!calculator) return "Calculator";
+    return FRIENDLY_TITLES[calculator] || titleCaseFromSlug(calculator);
+  }, [calculator]);
+
   const handleGoBack = () => {
     if (subcategory) {
       navigate(`/${categoryFromPath}/${subcategory}`);
@@ -67,7 +105,6 @@ const CalculatorPage = () => {
     }
   };
 
-  // Estado para quando o slug não está registrado
   const NotFoundCalc = (
     <Card className="bg-card border-border/50">
       <CardContent className="p-8">
@@ -101,7 +138,7 @@ const CalculatorPage = () => {
 
       <main className="pt-20">
         <section className="container mx-auto px-4 py-8">
-          {/* Botão Voltar */}
+          {/* Back */}
           <div className="mb-8">
             <Button
               variant="ghost"
@@ -113,14 +150,14 @@ const CalculatorPage = () => {
               <span>Back</span>
             </Button>
 
-            {/* Cabeçalho da calculadora */}
+            {/* Header */}
             <div className="flex flex-col items-center text-center space-y-3 mb-6">
               <div className="p-3 rounded-lg bg-primary/10">
                 <Calculator className="h-8 w-8 text-primary" />
               </div>
               <div>
                 <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                  {entry?.name ?? "Calculator"}
+                  {displayName}
                 </h1>
                 <p className="text-muted-foreground mt-2 text-lg">
                   Category: {titleCaseFromSlug(categoryFromPath)}
@@ -130,8 +167,8 @@ const CalculatorPage = () => {
             </div>
           </div>
 
-          {/* Conteúdo da calculadora */}
-          {entry ? (
+          {/* Content */}
+          {LazyComp ? (
             <Suspense
               fallback={
                 <div className="mx-auto max-w-3xl px-4 py-10 text-center">
@@ -139,28 +176,18 @@ const CalculatorPage = () => {
                 </div>
               }
             >
-              <entry.Component />
+              <LazyComp />
             </Suspense>
           ) : (
             NotFoundCalc
           )}
 
-          {/* Rodapé explicativo/SEO-friendly (genérico) */}
+          {/* Footer SEO/refs genérico */}
           <CalculatorFooter
-            calculatorName={entry?.name ?? "Calculator"}
-            description={
-              entry
-                ? `This tool estimates key values for ${entry.name.toLowerCase()}. Enter your project dimensions and review the results before purchasing materials or scheduling work.`
-                : "This tool estimates key values. Enter your project dimensions and review the results before purchasing materials or scheduling work."
-            }
-            formula={
-              entry?.name?.toLowerCase().includes("concrete slab")
-                ? "Volume = Length × Width × Thickness (converted to yd³ or m³); Bags ≈ Volume(ft³) ÷ bag yield."
-                : "Result = (Variable1 × Variable2) / Constant"
-            }
+            calculatorName={displayName}
+            description={`This tool estimates key values for ${displayName.toLowerCase()}. Enter your inputs and review the results before making decisions.`}
+            formula={"Result = (Variable1 × Variable2) / Constant"}
             sources={[
-              { title: "ASTM C94 / Ready-Mixed Concrete", url: "https://www.astm.org" },
-              { title: "ACI Concrete Fundamentals", url: "https://www.concrete.org" },
               { title: "NIST Engineering Handbook", url: "https://www.nist.gov" },
             ]}
           />
