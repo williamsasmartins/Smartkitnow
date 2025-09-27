@@ -78,7 +78,6 @@ export const SUBCATEGORY_TITLES: Record<string, string> = {
 
 // Construction
 const loadConcreteSlab = () => import("@/components/calculators/ConcreteSlab");
-const loadDrywallAreaSheets = () => import("@/components/calculators/DrywallAreaSheets");
 const loadDrywallEstimator = () => import("@/components/calculators/DrywallEstimator");
 const loadPaint = () => import("@/components/calculators/PaintCalculator");
 const loadWallpaper = () => import("@/components/calculators/WallpaperCalculator");
@@ -139,16 +138,6 @@ export const REGISTRY: CalcEntry[] = [
     loader: loadDrywallEstimator,
   },
 
-  // Opcional: manter o componente antigo acessível
-  {
-    slug: "drywall-area-sheets-legacy",
-    aliases: ["drywall-legacy"],
-    name: "Drywall — Area & Sheets (Legacy)",
-    category: "construction",
-    subcategory: "wall-ceiling-calculators",
-    description: "Legacy drywall area & sheets calculator.",
-    loader: loadDrywallAreaSheets,
-  },
 
   // Novas calculadoras da subcategoria Wall & Ceiling
   {
