@@ -1,43 +1,51 @@
-import React, { lazy, Suspense } from "react";
-import { useParams } from "react-router-dom";
-import { CalculatorLayout } from "../../components/calculators/common/CalculatorLayout";
+import { Suspense, lazy } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import NotFound from "@/pages/NotFound";
 
-const componentMap: Record<string, () => Promise<{ default: React.FC<any> }>> = {
-  CatAgeCalculator: () =>
-    import("../../components/calculators/pets/CatAgeCalculator").then(mod => ({ default: mod.CatAgeCalculator })),
-  DogAgeCalculator: () =>
-    import("../../components/calculators/pets/DogAgeCalculator").then(mod => ({ default: mod.DogAgeCalculator })),
-  DogCalorieCalculator: () =>
-    import("../../components/calculators/pets/DogCalorieCalculator").then(mod => ({ default: mod.DogCalorieCalculator })),
-  AquariumVolumeCalculator: () =>
-    import("../../components/calculators/pets/AquariumVolumeCalculator").then(mod => ({ default: mod.AquariumVolumeCalculator })),
-  AquariumWeightCalculator: () =>
-    import("../../components/calculators/pets/AquariumWeightCalculator").then(mod => ({ default: mod.AquariumWeightCalculator })),
+type LazyComp = React.LazyExoticComponent<React.ComponentType<any>>;
+const preferDefault = <T extends Record<string, any>>(m: T, key?: string) =>
+  ({ default: (key && m[key]) ? m[key] : (m as any).default }) as { default: React.ComponentType<any> };
+
+const calculators: Record<string, LazyComp> = {
+  "aquarium-volume-calculator": lazy(() =>
+    import("@/components/calculators/pets/AquariumVolumeCalculator").then(m => preferDefault(m, "AquariumVolumeCalculator"))
+  ),
+  "aquarium-weight-calculator": lazy(() =>
+    import("@/components/calculators/pets/AquariumWeightCalculator").then(m => preferDefault(m, "AquariumWeightCalculator"))
+  ),
+  "cat-age-calculator": lazy(() =>
+    import("@/components/calculators/pets/CatAgeCalculator").then(m => preferDefault(m, "CatAgeCalculator"))
+  ),
+  "dog-age-calculator": lazy(() =>
+    import("@/components/calculators/pets/DogAgeCalculator").then(m => preferDefault(m, "DogAgeCalculator"))
+  ),
+  "dog-calorie-calculator": lazy(() =>
+    import("@/components/calculators/pets/DogCalorieCalculator").then(m => preferDefault(m, "DogCalorieCalculator"))
+  ),
 };
 
-const PetsCalculatorPage: React.FC = () => {
-  const { calculator } = useParams<{ calculator: string }>();
+export default function PetsCalculatorPage() {
+  const { calculator, subcategory } = useParams();
+  const navigate = useNavigate();
+  if (!calculator) return <NotFound />;
 
-  if (!calculator || !componentMap[calculator]) {
-    return <div className="mx-auto max-w-3xl px-4 py-10">Calculadora não encontrada.</div>;
-  }
-
-  const LazyComponent = lazy(componentMap[calculator]);
+  const Comp = calculators[calculator];
+  if (!Comp) return <NotFound />;
 
   return (
-    <CalculatorLayout
-      title={`${calculator} | Smart Kit Now`}
-      description={`Use our ${calculator} calculator for pets. Accurate and easy to use.`}
-      keywords={`pets calculators, ${calculator}, online calculator`}
-      calculatorName={calculator}
-      formula=""
-      sources={[]}
-    >
-      <Suspense fallback={<div className="mx-auto max-w-3xl px-4 py-10">Carregando calculadora...</div>}>
-        <LazyComponent />
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-6 flex items-center gap-3">
+        <Button variant="outline" onClick={() => (subcategory ? navigate(`/pets/${subcategory}`) : navigate("/pets"))}>
+          ← Voltar
+        </Button>
+        <h1 className="text-2xl font-bold">
+          {calculator.split("-").map(s => s[0]?.toUpperCase() + s.slice(1)).join(" ")}
+        </h1>
+      </div>
+      <Suspense fallback={<div className="mx-auto max-w-2xl py-10">Carregando calculadora…</div>}>
+        <Comp />
       </Suspense>
-    </CalculatorLayout>
+    </div>
   );
-};
-
-export default PetsCalculatorPage;
+}

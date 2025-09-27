@@ -1,23 +1,23 @@
 {
-  "files": [],  // Mantido: Nenhum arquivo específico, usa references
+  "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "baseUrl": "src",  // Mudado para 'src' – melhor para aliases como '@' em imports dinâmicos, evita erros de resolve
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]  // Ajustado para mapear '@/' diretamente para 'src/*' – corrige "Failed to resolve module specifier"
+      "@/*": ["src/*"]
     },
-    "noImplicitAny": false,  // Mantido: Permite any implícito para evitar erros em código legado
-    "noUnusedParameters": false,  // Mantido: Ignora params não usados
-    "skipLibCheck": true,  // Mantido: Acelera build, ignora checks em libs
-    "allowJs": true,  // Mantido: Permite JS no projeto (útil se tiver mixed TS/JS)
-    "noUnusedLocals": false,  // Mantido: Ignora locals não usados
-    "strictNullChecks": true,  // Mudado para true: Ativa checks para null/undefined – melhora segurança sem quebrar muito, mas se der erros, volte para false
-    "target": "ES2020",  // Novo: Alvo moderno para Vite, melhora performance
-    "module": "ESNext",  // Novo: Para modules modernos, compatível com Vite
-    "moduleResolution": "node",  // Novo: Resolução padrão para Node/Vite
-    "allowSyntheticDefaultImports": true  // Novo: Permite default imports de modules sem default, comum em libs
+    "skipLibCheck": true,
+    "allowJs": true,
+    "strictNullChecks": true,
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "noUnusedParameters": false,
+    "noUnusedLocals": false
   }
 }

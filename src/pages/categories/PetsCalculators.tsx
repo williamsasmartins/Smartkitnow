@@ -1,152 +1,170 @@
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, Dog, Cat, Fish, Calculator } from "lucide-react";
 
-const petsData = {
-  "dog": {
-    title: "Dog Calculators",
-    description: "Health, nutrition, and care calculators for dogs",
-    calculators: [
-      { key: "dog-age", name: "Dog Age Calculator", description: "Convert dog age to human years" },
-      { key: "dog-calorie", name: "Dog Calorie Calculator", description: "Calculate daily calorie needs for your dog" },
-      { key: "dog-chocolate-toxicity", name: "Dog Chocolate Toxicity Calculator", description: "Assess chocolate poisoning risk" },
-      { key: "dog-pregnancy", name: "Dog Pregnancy Calculator", description: "Calculate due date and pregnancy stages" },
-      { key: "dog-water-intake", name: "Dog Water Intake Calculator", description: "Calculate daily water requirements" },
-      { key: "dog-weight", name: "Dog Weight Calculator", description: "Assess if your dog is at ideal weight" }
-    ]
-  },
-  "cat": {
-    title: "Cat Calculators",
-    description: "Health and care calculators for cats",
-    calculators: [
-      { key: "cat-age", name: "Cat Age Calculator", description: "Convert cat age to human years" },
-      { key: "cat-calorie", name: "Cat Calorie Calculator", description: "Calculate daily calorie needs for your cat" },
-      { key: "cat-water-intake", name: "Cat Water Intake Calculator", description: "Calculate daily water requirements" },
-      { key: "cat-weight", name: "Cat Weight Calculator", description: "Assess if your cat is at ideal weight" },
-      { key: "cat-litter", name: "Cat Litter Calculator", description: "Calculate litter box requirements" }
-    ]
-  },
-  "aquarium": {
-    title: "Aquarium Calculators",
-    description: "Tank setup and maintenance calculators for aquariums",
-    calculators: [
-      { key: "aquarium-volume", name: "Aquarium Tank Volume Calculator", description: "Calculate tank volume and water capacity" },
-      { key: "aquarium-weight", name: "Aquarium Tank Weight Calculator", description: "Calculate total weight with water and decorations" },
-      { key: "fish-tank-filter", name: "Fish Tank Filter Calculator", description: "Calculate filtration requirements" },
-      { key: "aquarium-heater", name: "Aquarium Heater Calculator", description: "Calculate heater wattage needed" },
-      { key: "fish-stocking", name: "Fish Stocking Calculator", description: "Calculate fish capacity for your tank" }
-    ]
-  },
-  "general": {
-    title: "General Pet Calculators",
-    description: "Multi-pet and general pet care calculators",
-    calculators: [
-      { key: "pet-age", name: "Pet Age Calculator", description: "Convert various pet ages to human years" },
-      { key: "pet-medication", name: "Pet Medication Dosage Calculator", description: "Calculate medication dosages by weight" },
-      { key: "pet-travel-cost", name: "Pet Travel Cost Calculator", description: "Calculate costs for traveling with pets" },
-      { key: "pet-food-cost", name: "Pet Food Cost Calculator", description: "Calculate monthly and yearly food costs" },
-      { key: "pet-insurance", name: "Pet Insurance Calculator", description: "Calculate potential insurance savings" }
-    ]
-  }
-};
+const PetsCalculators = () => {
+  const navigate = useNavigate();
 
-export default function PetsCalculators() {
-  const [searchTerm, setSearchTerm] = useState("");
+  // Slug consistente para subcategorias
+  const slugify = (s: string) =>
+    s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
-  const filteredData = useMemo(() => {
-    if (!searchTerm.trim()) return petsData;
-    
-    const filtered: Partial<typeof petsData> = {};
-    Object.entries(petsData).forEach(([key, category]) => {
-      const filteredCalculators = category.calculators.filter(calc =>
-        calc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        calc.description.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      
-      if (filteredCalculators.length > 0) {
-        filtered[key as keyof typeof petsData] = {
-          ...category,
-          calculators: filteredCalculators
-        };
-      }
+  // MUITO IMPORTANTE:
+  // As chaves "key" abaixo DEVEM ser exatamente os nomes esperados pelo PetsCalculatorPage:
+  // CatAgeCalculator, DogAgeCalculator, DogCalorieCalculator,
+  // AquariumVolumeCalculator, AquariumWeightCalculator
+  const petsCategories = [
+    {
+      id: "dogs",
+      title: "Dogs",
+      description: "Age & calorie tools tailored for dogs.",
+      icon: Dog,
+      calculators: [
+        { key: "DogAgeCalculator", name: "Dog Age Calculator" },
+        { key: "DogCalorieCalculator", name: "Dog Calorie Calculator" },
+      ],
+    },
+    {
+      id: "cats",
+      title: "Cats",
+      description: "Estimate your cat’s age and life stage.",
+      icon: Cat,
+      calculators: [{ key: "CatAgeCalculator", name: "Cat Age Calculator" }],
+    },
+    {
+      id: "aquariums",
+      title: "Aquariums",
+      description: "Volume & weight estimations for tanks.",
+      icon: Fish,
+      calculators: [
+        { key: "AquariumVolumeCalculator", name: "Aquarium Volume Calculator" },
+        { key: "AquariumWeightCalculator", name: "Aquarium Weight Calculator" },
+      ],
+    },
+  ];
+
+  const handleCategoryClick = (
+    category: (typeof petsCategories)[number]
+  ) => {
+    const subSlug = slugify(category.title);
+    navigate(`/pets/${subSlug}`, {
+      state: {
+        subCategory: {
+          title: category.title,
+          calculators: category.calculators,
+        },
+      },
     });
-    
-    return filtered;
-  }, [searchTerm]);
+  };
+
+  // Clique direto na calculadora a partir da página de categorias
+  // OBS: aqui o parâmetro :calculator DEVE ser o key exato (ex.: DogAgeCalculator)
+  const handleCalculatorClick = (
+    category: (typeof petsCategories)[number],
+    calculator: { key: string; name: string }
+  ) => {
+    const subSlug = slugify(category.title);
+    navigate(`/pets/${subSlug}/calculator/${calculator.key}`, {
+      state: {
+        calculator,
+        subCategory: category.title,
+      },
+    });
+  };
+
+  const handleBackClick = () => navigate("/");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
+    <>
       <Header />
-      
-      <main className="container mx-auto px-4 pt-24 pb-12">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-            Pet Care Calculators
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Use our pet calculators to calculate the age, weight, nutrition, and habitat requirements for your best friends.
-          </p>
-          
-          {/* Search Bar */}
-          <div className="max-w-md mx-auto relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search for a calculator"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 bg-background/80 border-border/60 focus:border-primary/40"
-            />
-          </div>
-        </div>
+      <main className="min-h-screen bg-gradient-subtle pt-20 pb-8">
+        <div className="container mx-auto px-4 py-8 max-w-6xl">
+          {/* Back Button */}
+          <Button
+            variant="ghost"
+            onClick={handleBackClick}
+            className="mb-6 text-muted-foreground hover:text-foreground"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Home
+          </Button>
 
-        {/* Calculator Categories */}
-        <div className="grid gap-8">
-          {Object.entries(filteredData).map(([key, category]) => (
-            <Card key={key} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader className="bg-gradient-subtle">
-                <CardTitle className="text-2xl">{category.title}</CardTitle>
-                <CardDescription className="text-base">
-                  {category.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {category.calculators.map((calculator) => (
-                    <Link
-                      key={calculator.key}
-                      to={`/pets/calculator/${calculator.key}`}
-                      className="block p-4 rounded-lg border border-border/60 hover:border-primary/40 hover:bg-muted/50 transition-all duration-200 group"
-                    >
-                      <h3 className="font-semibold group-hover:text-primary transition-colors">
-                        {calculator.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mt-2">
-                        {calculator.description}
-                      </p>
-                    </Link>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {Object.keys(filteredData).length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">
-              No calculators found matching "{searchTerm}"
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              Pet Care Calculators
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mt-3">
+              Pet health, nutrition, and care tools for dogs, cats, and aquariums.
             </p>
           </div>
-        )}
-      </main>
 
+          {/* Categories */}
+          <div className="space-y-12">
+            {petsCategories.map((category) => {
+              const Icon = category.icon;
+              return (
+                <div key={category.id}>
+                  <Card className="bg-card/30 border-border/30 mb-6">
+                    <CardHeader
+                      className="cursor-pointer group"
+                      onClick={() => handleCategoryClick(category)}
+                    >
+                      <CardTitle className="flex items-center gap-3 text-2xl group-hover:text-primary transition-colors">
+                        <div className="p-2 rounded-lg bg-gradient-primary/10">
+                          <Icon className="h-5 w-5 text-primary" />
+                        </div>
+                        {category.title}
+                      </CardTitle>
+                      <CardDescription className="text-base">
+                        {category.description}
+                      </CardDescription>
+                    </CardHeader>
+                  </Card>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {category.calculators.map((calculator) => (
+                      <Card
+                        key={calculator.key}
+                        className="group cursor-pointer transition-all duration-300 hover:shadow-elegant border-border/60 bg-card/50 backdrop-blur-sm hover:bg-card/80"
+                        onClick={() =>
+                          handleCalculatorClick(category, calculator)
+                        }
+                      >
+                        <CardHeader className="text-center pb-4">
+                          <div className="mx-auto mb-3 p-2 rounded-lg bg-gradient-primary/10 group-hover:bg-gradient-primary/20 transition-colors w-fit">
+                            <Calculator className="h-5 w-5 text-primary" />
+                          </div>
+                          <CardTitle className="text-lg font-bold group-hover:text-primary transition-colors">
+                            {calculator.name}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-sm text-muted-foreground text-center">
+                            Quick and accurate pet care calculations
+                          </p>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </main>
       <Footer />
-    </div>
+    </>
   );
-}
+};
+
+export default PetsCalculators;

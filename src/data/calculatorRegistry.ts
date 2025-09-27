@@ -1,294 +1,506 @@
-// src/data/calculatorRegistry.ts
-type CalculatorInfo = {
-  name: string;
-  description: string;
-  category: string;
-  subcategory: string;
-  formula: string;
-  tags: string[];
-  sources: { title: string; url: string }[]; // Referências para SEO/AdSense
+// /src/data/calculatorRegistry.ts
+type Loader = () => Promise<any>;
+
+export type RegistryEntry = {
+  title?: string;
+  description?: string;
+  appCategory?: string; // "FinanceApplication" | "HealthApplication" | ...
+  exportName?: string;  // named export when there is no default
+  loader: Loader;
 };
 
-export const calculatorRegistry: Record<string, CalculatorInfo> = {
-  // Health (8 calcs)
-  'adjusted-body-weight': {
-    name: 'Adjusted Body Weight',
-    description: 'Calculate adjusted body weight for dosing in obese patients',
-    category: 'health',
-    subcategory: 'body-weight',
-    formula: 'ABW = IBW + 0.4 * (actual weight - IBW)',
-    tags: ['weight', 'medical', 'fitness'],
-    sources: [
-      { title: 'Medscape', url: 'https://reference.medscape.com/calculator/3/adjusted-body-weight' },
-    ],
-  },
-  'bmi': {
-  name: 'BMI',
-  description: 'Calculate Body Mass Index to assess weight status',
-  category: 'health',
-  subcategory: 'body-composition',
-  formula: 'BMI = weight (kg) / height^2 (m)',
-  tags: ['bmi', 'health', 'fitness'],
-  sources: [
-    { title: 'CDC BMI Calculator', url: 'https://www.cdc.gov/healthyweight/assessing/bmi/adult_bmi/index.html' },
-  ],
-},
-// Adicione os outros 7 para health como no código anterior
-  'bmr': {
-    name: 'BMR',
-    description: 'Calculate Basal Metabolic Rate for daily calorie needs at rest',
-    category: 'health',
-    subcategory: 'metabolism',
-    formula: 'BMR = 88.362 + (13.397 × weight in kg) + (4.799 × height in cm) - (5.677 × age in years) for men',
-    tags: ['bmr', 'calories', 'metabolism'],
-    sources: [
-      { title: 'Harris-Benedict Equation', url: 'https://en.wikipedia.org/wiki/Harris–Benedict_equation' },
-    ],
-  },
-  'body-fat': {
-    name: 'Body Fat',
-    description: 'Estimate body fat percentage using measurements',
-    category: 'health',
-    subcategory: 'body-composition',
-    formula: 'Body Fat % = (495 / density) - 450',
-    tags: ['body-fat', 'fitness', 'health'],
-    sources: [
-      { title: 'American Council on Exercise', url: 'https://www.acefitness.org/resources/everyone/tools-calculators/percent-body-fat-calculator/' },
-    ],
-  },
-  'calorie': {
-    name: 'Calorie',
-    description: 'Calculate daily calorie needs based on activity',
-    category: 'health',
-    subcategory: 'calories',
-    formula: 'Daily Calories = BMR × activity multiplier',
-    tags: ['calories', 'nutrition', 'fitness'],
-    sources: [
-      { title: 'USDA Dietary Guidelines', url: 'https://www.dietaryguidelines.gov/' },
-    ],
-  },
-  'calories-to-kilograms': {
-    name: 'Calories to Kilograms',
-    description: 'Convert calorie surplus/deficit to body weight change in kilograms',
-    category: 'health',
-    subcategory: 'calories-conversion',
-    formula: 'kg = calories / 7700 × activity factor',
-    tags: ['calories', 'weight-loss', 'fitness'],
-    sources: [
-      { title: 'Mayo Clinic Calories Guide', url: 'https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065' },
-    ],
-  },
-  'imc': {
-    name: 'IMC',
-    description: 'Índice de Massa Corporal (versão em português do BMI)',
-    category: 'health',
-    subcategory: 'body-composition',
-    formula: 'IMC = peso (kg) / altura^2 (m)',
-    tags: ['imc', 'saude', 'fitness'],
-    sources: [
-      { title: 'OMS IMC', url: 'https://www.who.int/tools/child-growth-standards/standards/body-mass-index-for-age-bmi-for-age' },
-    ],
-  },
-  'tdee': {
-    name: 'TDEE',
-    description: 'Calculate Total Daily Energy Expenditure including activity',
-    category: 'health',
-    subcategory: 'metabolism',
-    formula: 'TDEE = BMR × activity multiplier',
-    tags: ['tdee', 'calories', 'energy'],
-    sources: [
-      { title: 'NIH Body Weight Planner', url: 'https://www.niddk.nih.gov/bwp' },
-    ],
+export type CategoryRegistry = Record<string, RegistryEntry>;
+export type CalculatorRegistry = Record<string, CategoryRegistry>;
+
+export const calculatorRegistry: CalculatorRegistry = {
+  // -------- FINANCIAL --------
+  financial: {
+    "adjusted-gross-income-calculator": {
+      title: "Adjusted Gross Income (AGI) Calculator",
+      description: "Estimate your Adjusted Gross Income fast.",
+      appCategory: "FinanceApplication",
+      exportName: "AdjustedGrossIncomeCalculator",
+      loader: () => import("@/components/calculators/financial/AdjustedGrossIncomeCalculator"),
+    },
+    "amortization-calculator": {
+      title: "Amortization Calculator",
+      description: "Build an amortization schedule and break down interest vs. principal.",
+      appCategory: "FinanceApplication",
+      exportName: "AmortizationCalculator",
+      loader: () => import("@/components/calculators/financial/AmortizationCalculator"),
+    },
+    "annual-income-calculator": {
+      title: "Annual Income Calculator",
+      description: "Convert hourly/weekly/monthly pay into annual income.",
+      appCategory: "FinanceApplication",
+      exportName: "AnnualIncomeCalculator",
+      loader: () => import("@/components/calculators/financial/AnnualIncomeCalculator"),
+    },
+    "apr-calculator": {
+      title: "APR Calculator",
+      description: "Compute annual percentage rate and total loan cost.",
+      appCategory: "FinanceApplication",
+      exportName: "APRCalculator",
+      loader: () => import("@/components/calculators/financial/APRCalculator"),
+    },
+    "biweekly-pay-calculator": {
+      title: "Biweekly Pay Calculator",
+      description: "Estimate your biweekly paycheck and deductions.",
+      appCategory: "FinanceApplication",
+      exportName: "BiweeklyPayCalculator",
+      loader: () => import("@/components/calculators/financial/BiweeklyPayCalculator"),
+    },
+    "compound-interest-calculator": {
+      title: "Compound Interest Calculator",
+      description: "Project growth of savings with compound interest.",
+      appCategory: "FinanceApplication",
+      exportName: "CompoundInterestCalculator",
+      loader: () => import("@/components/calculators/financial/CompoundInterestCalculator"),
+    },
+    "debt-to-income-calculator": {
+      title: "Debt-to-Income (DTI) Calculator",
+      description: "Check your DTI ratio for lending decisions.",
+      appCategory: "FinanceApplication",
+      exportName: "DebtToIncomeCalculator",
+      loader: () => import("@/components/calculators/financial/DebtToIncomeCalculator"),
+    },
+    "discount-calculator": {
+      title: "Discount Calculator",
+      description: "Find final price after discounts and taxes.",
+      appCategory: "FinanceApplication",
+      exportName: "DiscountCalculator",
+      loader: () => import("@/components/calculators/financial/DiscountCalculator"),
+    },
+    "home-affordability-calculator": {
+      title: "Home Affordability Calculator",
+      description: "Estimate how much house you can afford.",
+      appCategory: "FinanceApplication",
+      exportName: "HomeAffordabilityCalculator",
+      loader: () => import("@/components/calculators/financial/HomeAffordabilityCalculator"),
+    },
+    "hourly-to-salary-calculator": {
+      title: "Hourly to Salary Calculator",
+      description: "Convert hourly wage to annual salary.",
+      appCategory: "FinanceApplication",
+      exportName: "HourlyToSalaryCalculator",
+      loader: () => import("@/components/calculators/financial/HourlyToSalaryCalculator"),
+    },
+    "investment-return-calculator": {
+      title: "Investment Return (ROI) Calculator",
+      description: "Calculate total and annualized returns.",
+      appCategory: "FinanceApplication",
+      exportName: "InvestmentReturnCalculator",
+      loader: () => import("@/components/calculators/financial/InvestmentReturnCalculator"),
+    },
+    "loan-calculator": {
+      title: "Loan Payment Calculator",
+      description: "Compute monthly payment, interest and total cost.",
+      appCategory: "FinanceApplication",
+      exportName: "LoanCalculator",
+      loader: () => import("@/components/calculators/financial/LoanCalculator"),
+    },
+    "mortgage-calculator": {
+      title: "Mortgage Calculator",
+      description: "Estimate mortgage payments and amortization.",
+      appCategory: "FinanceApplication",
+      exportName: "MortgageCalculator",
+      loader: () => import("@/components/calculators/financial/MortgageCalculator"),
+    },
+    "mortgage-refinance-calculator": {
+      title: "Mortgage Refinance Calculator",
+      description: "Check savings and break-even on a refi.",
+      appCategory: "FinanceApplication",
+      exportName: "MortgageRefinanceCalculator",
+      loader: () => import("@/components/calculators/financial/MortgageRefinanceCalculator"),
+    },
+    "refinance-breakeven-calculator": {
+      title: "Refinance Breakeven Calculator",
+      description: "Find months-to-breakeven for refinancing.",
+      appCategory: "FinanceApplication",
+      exportName: "RefinanceBreakevenCalculator",
+      loader: () => import("@/components/calculators/financial/RefinanceBreakevenCalculator"),
+    },
+    "roi-calculator": {
+      title: "ROI Calculator",
+      description: "Compute return on investment.",
+      appCategory: "FinanceApplication",
+      exportName: "ROICalculator",
+      loader: () => import("@/components/calculators/financial/ROICalculator"),
+    },
+    "simple-interest-calculator": {
+      title: "Simple Interest Calculator",
+      description: "Calculate simple interest for loans or savings.",
+      appCategory: "FinanceApplication",
+      exportName: "SimpleInterestCalculator",
+      loader: () => import("@/components/calculators/financial/SimpleInterestCalculator"),
+    },
+    "tip-calculator": {
+      title: "Tip Calculator",
+      description: "Split the bill and calculate the right tip.",
+      appCategory: "FinanceApplication",
+      exportName: "TipCalculator",
+      loader: () => import("@/components/calculators/financial/TipCalculator"),
+    },
   },
 
-  // Financial (18 calcs) - já adicionado antes, mas completo aqui para referência
-  'adjusted-gross-income': {
-    name: 'Adjusted Gross Income',
-    description: 'Calculate your adjusted gross income for tax purposes',
-    category: 'financial',
-    subcategory: 'income',
-    formula: 'AGI = Gross Income - Adjustments (e.g., student loan interest, alimony)',
-    tags: ['income', 'tax', 'finance'],
-    sources: [
-      { title: 'IRS Adjusted Gross Income Guide', url: 'https://www.irs.gov/taxtopics/tc551' },
-    ],
-  },
-  // ... (adiciona os outros 17 como no código anterior para financial, para não alongar, mas inclua todos no seu arquivo)
-
-  // Math (6 calcs)
-  'area': {
-    name: 'Area',
-    description: 'Calculate area of shapes like circles, rectangles, triangles',
-    category: 'math',
-    subcategory: 'geometry',
-    formula: 'Area = base * height / 2 for triangle',
-    tags: ['area', 'geometry', 'math'],
-    sources: [
-      { title: 'Khan Academy Area', url: 'https://www.khanacademy.org/math/geometry-home/geometry-area-perimeter' },
-    ],
-  },
-  'fraction': {
-    name: 'Fraction',
-    description: 'Perform operations on fractions like addition, subtraction',
-    category: 'math',
-    subcategory: 'arithmetic',
-    formula: 'a/b + c/d = (ad + bc)/bd',
-    tags: ['fraction', 'arithmetic', 'math'],
-    sources: [
-      { title: 'Math is Fun Fractions', url: 'https://www.mathsisfun.com/fractions.html' },
-    ],
-  },
-  'gpa': {
-    name: 'GPA',
-    description: 'Calculate Grade Point Average from grades and credits',
-    category: 'math',
-    subcategory: 'statistics',
-    formula: 'GPA = total grade points / total credits',
-    tags: ['gpa', 'grades', 'education'],
-    sources: [
-      { title: 'College Board GPA', url: 'https://bigfuture.collegeboard.org/help-center/how-calculate-your-gpa' },
-    ],
-  },
-  'percentage': {
-    name: 'Percentage',
-    description: 'Calculate percentages, increases, decreases',
-    category: 'math',
-    subcategory: 'arithmetic',
-    formula: 'Percentage = (part / whole) * 100',
-    tags: ['percentage', 'math', 'calculation'],
-    sources: [
-      { title: 'BBC Bitesize Percentages', url: 'https://www.bbc.co.uk/bitesize/topics/zf6pyrd' },
-    ],
-  },
-  'slope': {
-    name: 'Slope',
-    description: 'Calculate slope of a line from two points',
-    category: 'math',
-    subcategory: 'algebra',
-    formula: 'Slope = (y2 - y1) / (x2 - x1)',
-    tags: ['slope', 'algebra', 'math'],
-    sources: [
-      { title: 'Khan Academy Slope', url: 'https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:linear-equations-graphs/x2f8bb11595b61c86:slope/a/slope-review' },
-    ],
+  // -------- COOKING --------
+  cooking: {
+    "cake-calculator": {
+      title: "Cake Calculator",
+      description: "Scale cake recipes and pan sizes.",
+      appCategory: "FoodApplication",
+      exportName: "CakeCalculator",
+      loader: () => import("@/components/calculators/cooking/CakeCalculator"),
+    },
+    "cooking-conversion-calculator": {
+      title: "Cooking Conversion Calculator",
+      description: "Convert cooking units and ingredients.",
+      appCategory: "FoodApplication",
+      exportName: "CookingConversionCalculator",
+      loader: () => import("@/components/calculators/cooking/CookingConversionCalculator"),
+    },
+    "cooking-timer": {
+      title: "Timer",
+      description: "Simple cooking countdown timer.",
+      appCategory: "FoodApplication",
+      exportName: "CookingTimer",
+      loader: () => import("@/components/calculators/cooking/CookingTimer"),
+    },
+    "oven-temperature-conversion": {
+      title: "Oven Temperature Converter",
+      description: "Convert °C, °F and gas mark easily.",
+      appCategory: "FoodApplication",
+      exportName: "OvenTemperatureConverter",
+      loader: () => import("@/components/calculators/cooking/OvenTemperatureConverter"),
+    },
+    "pizza-calculator": {
+      title: "Pizza Calculator",
+      description: "Flour, hydration and dough yield.",
+      appCategory: "FoodApplication",
+      exportName: "PizzaCalculator",
+      loader: () => import("@/components/calculators/cooking/PizzaCalculator"),
+    },
+    "recipe-scale-conversion": {
+      title: "Recipe Scaling Calculator",
+      description: "Scale any recipe by servings or factor.",
+      appCategory: "FoodApplication",
+      exportName: "RecipeScalingCalculator",
+      loader: () => import("@/components/calculators/cooking/RecipeScalingCalculator"),
+    },
   },
 
-  // Pets (5 calcs)
-  'aquarium-volume': {
-    name: 'Aquarium Volume',
-    description: 'Calculate aquarium volume in gallons or liters',
-    category: 'pets',
-    subcategory: 'aquarium',
-    formula: 'Volume = length * width * height / 231 for gallons',
-    tags: ['aquarium', 'pets', 'fish'],
-    sources: [
-      { title: 'Aquarium Calculator Guide', url: 'https://www.fishlore.com/VolumeCalculator.htm' },
-    ],
-  },
-  'aquarium-weight': {
-    name: 'Aquarium Weight',
-    description: 'Calculate weight of filled aquarium',
-    category: 'pets',
-    subcategory: 'aquarium',
-    formula: 'Weight = volume * 8.34 lbs/gallon + tank weight',
-    tags: ['aquarium', 'weight', 'pets'],
-    sources: [
-      { title: 'Reef2Reef Aquarium Weight', url: 'https://www.reef2reef.com/threads/aquarium-weight-calculator.661748/' },
-    ],
-  },
-  'cat-age': {
-    name: 'Cat Age',
-    description: 'Convert cat age to human years',
-    category: 'pets',
-    subcategory: 'age',
-    formula: 'Human Age = 15 + 9 + (cat age - 2) * 4',
-    tags: ['cat', 'age', 'pets'],
-    sources: [
-      { title: 'Purina Cat Age Chart', url: 'https://www.purina.com/cats/cat-articles/understanding-your-cat/cat-age-chart' },
-    ],
-  },
-  'dog-age': {
-    name: 'Dog Age',
-    description: 'Convert dog age to human years',
-    category: 'pets',
-    subcategory: 'age',
-    formula: 'Human Age = 16 * ln(dog age) + 31',
-    tags: ['dog', 'age', 'pets'],
-    sources: [
-      { title: 'AKC Dog Age Calculator', url: 'https://www.akc.org/expert-advice/health/how-to-calculate-dog-years-to-human-years/' },
-    ],
-  },
-  'dog-calorie': {
-    name: 'Dog Calorie',
-    description: 'Calculate daily calorie needs for dogs',
-    category: 'pets',
-    subcategory: 'nutrition',
-    formula: 'Calories = (weight in kg ^ 0.75) * 70 * activity factor',
-    tags: ['dog', 'calories', 'nutrition'],
-    sources: [
-      { title: 'PetMD Dog Calorie Calculator', url: 'https://www.petmd.com/dog/nutrition/evr_dg_dog_calorie_calculator' },
-    ],
+  // -------- ELECTRICAL --------
+  electrical: {
+    "ohms-law-calculator": {
+      title: "Ohm's Law Calculator",
+      description: "Compute voltage, current, resistance, and power.",
+      appCategory: "EngineeringApplication",
+      exportName: "OhmsLawCalculator",
+      loader: () => import("@/components/calculators/electrical/OhmsLawCalculator"),
+    },
+    "wire-size-calculator": {
+      title: "Wire Size Calculator",
+      description: "Estimate AWG size by load and distance.",
+      appCategory: "EngineeringApplication",
+      exportName: "WireSizeCalculator",
+      loader: () => import("@/components/calculators/electrical/WireSizeCalculator"),
+    },
   },
 
-  // ... (continue com entries para science, time, tv, cooking, electrical, construction, conversion, automotive – similar ao padrão, para não alongar o response, mas inclua todos no seu arquivo. Ex.: para construction 'concrete-slab': name: 'Concrete Slab', sources: [{title: 'Home Depot Concrete Guide', url: 'https://www.homedepot.com/c/ab/how-to-calculate-concrete/9ba683603be9fa5395fab901f8e4a4b4'}] )
+  // -------- HEALTH --------
+  health: {
+    "adjusted-body-weight-calculator": {
+      title: "Adjusted Body Weight (ABW) Calculator",
+      description: "Clinical ABW estimate based on IBW and TBW.",
+      appCategory: "HealthApplication",
+      exportName: "AdjustedBodyWeightCalculator",
+      loader: () => import("@/components/calculators/health/AdjustedBodyWeightCalculator"),
+    },
+    "bmi-calculator": {
+      title: "BMI Calculator",
+      description: "Body Mass Index for adults.",
+      appCategory: "HealthApplication",
+      exportName: "BMICalculator",
+      loader: () => import("@/components/calculators/health/BMICalculator"),
+    },
+    "bmr-calculator": {
+      title: "BMR Calculator",
+      description: "Basal Metabolic Rate (Mifflin-St Jeor, etc.).",
+      appCategory: "HealthApplication",
+      exportName: "BMRCalculator",
+      loader: () => import("@/components/calculators/health/BMRCalculator"),
+    },
+    "body-fat-calculator": {
+      title: "Body Fat Calculator",
+      description: "Estimate body fat via measurements.",
+      appCategory: "HealthApplication",
+      exportName: "BodyFatCalculator",
+      loader: () => import("@/components/calculators/health/BodyFatCalculator"),
+    },
+    "calorie-calculator": {
+      title: "Calorie Calculator",
+      description: "Daily calorie needs based on activity.",
+      appCategory: "HealthApplication",
+      exportName: "CalorieCalculator",
+      loader: () => import("@/components/calculators/health/CalorieCalculator"),
+    },
+    "calories-to-kilograms-calculator": {
+      title: "Calories to Kilograms Calculator",
+      description: "Rough weight change from calorie balance.",
+      appCategory: "HealthApplication",
+      exportName: "CaloriesToKilogramsCalculator",
+      loader: () => import("@/components/calculators/health/CaloriesToKilogramsCalculator"),
+    },
+    "imc-calculator": {
+      title: "BMI Calculator (IMC)",
+      description: "Body Mass Index (IMC) for adults.",
+      appCategory: "HealthApplication",
+      exportName: "IMCCalculator",
+      loader: () => import("@/components/calculators/health/IMCCalculator"),
+    },
+    "tdee-calculator": {
+      title: "TDEE Calculator",
+      description: "Total Daily Energy Expenditure.",
+      appCategory: "HealthApplication",
+      exportName: "TDEECalculator",
+      loader: () => import("@/components/calculators/health/TDEECalculator"),
+    },
+  },
 
-  // Exemplo para construction (4 calcs)
-  'concrete': {
-    name: 'Concrete',
-    description: 'Calculate concrete volume for projects',
-    category: 'construction',
-    subcategory: 'materials',
-    formula: 'Volume = length * width * thickness',
-    tags: ['concrete', 'construction', 'building'],
-    sources: [
-      { title: 'Cement.org Concrete Calculator', url: 'https://www.cement.org/cement-concrete/how-concrete-is-made/concrete-calculator' },
-    ],
+  // -------- MATH --------
+  math: {
+    "area-calculator": {
+      title: "Area Calculator",
+      description: "Areas for rectangles, circles and more.",
+      appCategory: "EducationalApplication",
+      exportName: "AreaCalculator",
+      loader: () => import("@/components/calculators/math/AreaCalculator"),
+    },
+    "fraction-calculator": {
+      title: "Fraction Calculator",
+      description: "Add, subtract, multiply, divide, and simplify fractions.",
+      appCategory: "EducationalApplication",
+      exportName: "FractionCalculator",
+      loader: () => import("@/components/calculators/math/FractionCalculator"),
+    },
+    "gpa-calculator": {
+      title: "GPA Calculator",
+      description: "Grade Point Average computation.",
+      appCategory: "EducationalApplication",
+      exportName: "GPACalculator",
+      loader: () => import("@/components/calculators/math/GPACalculator"),
+    },
+    "percentage-calculator": {
+      title: "Percentage Calculator",
+      description: "Find % change, % of, and reverse %.",
+      appCategory: "EducationalApplication",
+      exportName: "PercentageCalculator",
+      loader: () => import("@/components/calculators/math/PercentageCalculator"),
+    },
+    "slope-calculator": {
+      title: "Slope Calculator",
+      description: "Calculate slope, rise, run, and angle.",
+      appCategory: "EducationalApplication",
+      exportName: "SlopeCalculator",
+      loader: () => import("@/components/calculators/math/SlopeCalculator"),
+    },
   },
-  'concrete-slab': {
-    name: 'Concrete Slab',
-    description: 'Calculate concrete for slabs',
-    category: 'construction',
-    subcategory: 'materials',
-    formula: 'Volume = area * thickness',
-    tags: ['slab', 'concrete', 'construction'],
-    sources: [
-      { title: 'Quikrete Concrete Calculator', url: 'https://www.quikrete.com/calculator/main.asp' },
-    ],
-  },
-  'drywall-area-sheets': {
-    name: 'Drywall Area Sheets',
-    description: 'Calculate drywall sheets needed for area',
-    category: 'construction',
-    subcategory: 'materials',
-    formula: 'Sheets = area / sheet size',
-    tags: ['drywall', 'sheets', 'construction'],
-    sources: [
-      { title: 'Home Depot Drywall Calculator', url: 'https://www.homedepot.com/c/ah/how-to-calculate-drywall/9ba683603be9fa5395fab90b7e5b3d5f' },
-    ],
-  },
-  'drywall-estimator': {
-    name: 'Drywall Estimator',
-    description: 'Estimate drywall materials for project',
-    category: 'construction',
-    subcategory: 'materials',
-    formula: 'Materials = area * factors for tape, mud, screws',
-    tags: ['drywall', 'estimator', 'construction'],
-    sources: [
-      { title: 'USG Drywall Calculator', url: 'https://www.usg.com/content/usgcom/en/resource-center/calculators/drywall-calculator.html' },
-    ],
-  },
-    'adjusted-gross-income-calculator': {
-    name: 'Adjusted Gross Income Calculator',
-    description: 'Calculate your adjusted gross income for tax purposes',
-    category: 'financial',
-    subcategory: 'personal-finance',
-    formula: 'AGI = Gross Income - Adjustments (e.g., student loan interest, alimony)',
-    tags: ['income', 'tax', 'finance'],
-    sources: [
-      { title: 'IRS Adjusted Gross Income Guide', url: 'https://www.irs.gov/taxtopics/tc551' },
-    ],
-  },
-  // Adicione mais para personal-finance se quiser (ex.: 'annual-income', etc.)
-  
 
-  // Complete com as outras categorias da árvore: conversion (ex.: 'electrical-conversion'), automotive (if any), etc.
+  // -------- PETS --------
+  pets: {
+    "aquarium-volume-calculator": {
+      title: "Aquarium Volume Calculator",
+      description: "Tank volume by dimensions and shape.",
+      appCategory: "LifestyleApplication",
+      exportName: "AquariumVolumeCalculator",
+      loader: () => import("@/components/calculators/pets/AquariumVolumeCalculator"),
+    },
+    "aquarium-weight-calculator": {
+      title: "Aquarium Weight Calculator",
+      description: "Estimate weight of tank + water.",
+      appCategory: "LifestyleApplication",
+      exportName: "AquariumWeightCalculator",
+      loader: () => import("@/components/calculators/pets/AquariumWeightCalculator"),
+    },
+    "cat-age-calculator": {
+      title: "Cat Age Calculator",
+      description: "Convert cat years to human years.",
+      appCategory: "LifestyleApplication",
+      exportName: "CatAgeCalculator",
+      loader: () => import("@/components/calculators/pets/CatAgeCalculator"),
+    },
+    "dog-age-calculator": {
+      title: "Dog Age Calculator",
+      description: "Convert dog years to human years.",
+      appCategory: "LifestyleApplication",
+      exportName: "DogAgeCalculator",
+      loader: () => import("@/components/calculators/pets/DogAgeCalculator"),
+    },
+    "dog-calorie-calculator": {
+      title: "Dog Calorie Calculator",
+      description: "Estimate daily calories for dogs.",
+      appCategory: "LifestyleApplication",
+      exportName: "DogCalorieCalculator",
+      loader: () => import("@/components/calculators/pets/DogCalorieCalculator"),
+    },
+  },
+
+  // -------- SCIENCE --------
+  science: {
+    "density-calculator": {
+      title: "Density Calculator",
+      description: "Compute density from mass and volume.",
+      appCategory: "STEMApplication",
+      exportName: "DensityCalculator",
+      loader: () => import("@/components/calculators/science/DensityCalculator"),
+    },
+    "force-calculator": {
+      title: "Force Calculator",
+      description: "Newton's second law calculations.",
+      appCategory: "STEMApplication",
+      exportName: "ForceCalculator",
+      loader: () => import("@/components/calculators/science/ForceCalculator"),
+    },
+    "molarity-calculator": {
+      title: "Molarity Calculator",
+      description: "Moles of solute per liter of solution.",
+      appCategory: "STEMApplication",
+      exportName: "MolarityCalculator",
+      loader: () => import("@/components/calculators/science/MolarityCalculator"),
+    },
+    "molar-mass-calculator": {
+      title: "Molar Mass Calculator",
+      description: "Sum atomic masses by chemical formula.",
+      appCategory: "STEMApplication",
+      exportName: "MolarMassCalculator",
+      loader: () => import("@/components/calculators/science/MolarMassCalculator"),
+    },
+    "physics-calculator": {
+      title: "Physics Calculator",
+      description: "Common physics computations.",
+      appCategory: "STEMApplication",
+      exportName: "PhysicsCalculator",
+      loader: () => import("@/components/calculators/science/PhysicsCalculator"),
+    },
+    "velocity-calculator": {
+      title: "Velocity Calculator",
+      description: "Average velocity from distance/time.",
+      appCategory: "STEMApplication",
+      exportName: "VelocityCalculator",
+      loader: () => import("@/components/calculators/science/VelocityCalculator"),
+    },
+  },
+
+  // -------- TIME --------
+  time: {
+    "age-calculator": {
+      title: "Age Calculator",
+      description: "Compute exact age from birthdate.",
+      appCategory: "UtilityApplication",
+      exportName: "AgeCalculator",
+      loader: () => import("@/components/calculators/time/AgeCalculator"),
+    },
+    "countdown-calculator": {
+      title: "Countdown Calculator",
+      description: "Countdown to a target date/time.",
+      appCategory: "UtilityApplication",
+      exportName: "CountdownCalculator",
+      loader: () => import("@/components/calculators/time/CountdownCalculator"),
+    },
+    "date-calculator": {
+      title: "Date Calculator",
+      description: "Add/subtract days and business days.",
+      appCategory: "UtilityApplication",
+      exportName: "DateCalculator",
+      loader: () => import("@/components/calculators/time/DateCalculator"),
+    },
+    "duration-calculator": {
+      title: "Duration Calculator",
+      description: "Time between two timestamps.",
+      appCategory: "UtilityApplication",
+      exportName: "DurationCalculator",
+      loader: () => import("@/components/calculators/time/DurationCalculator"),
+    },
+    "time-converter": {
+      title: "Time Converter",
+      description: "Convert hours, minutes, seconds and more.",
+      appCategory: "UtilityApplication",
+      exportName: "TimeConverter",
+      loader: () => import("@/components/calculators/time/TimeConverter"),
+    },
+  },
+
+  // -------- TV --------
+  tv: {
+    "aspect-ratio-calculator": {
+      title: "Aspect Ratio Calculator",
+      description: "Compute aspect ratio & dimensions.",
+      appCategory: "MediaApplication",
+      exportName: "AspectRatioCalculator",
+      loader: () => import("@/components/calculators/tv/AspectRatioCalculator"),
+    },
+    "ppi-calculator": {
+      title: "PPI Calculator",
+      description: "Pixels per inch by size & resolution.",
+      appCategory: "MediaApplication",
+      exportName: "PPICalculator",
+      loader: () => import("@/components/calculators/tv/PPICalculator"),
+    },
+    "projector-calculator": {
+      title: "Projector Calculator",
+      description: "Throw distance and screen size.",
+      appCategory: "MediaApplication",
+      exportName: "ProjectorCalculator",
+      loader: () => import("@/components/calculators/tv/ProjectorCalculator"),
+    },
+    "screen-size-calculator": {
+      title: "Screen Size Calculator",
+      description: "Find diagonal, width and height.",
+      appCategory: "MediaApplication",
+      exportName: "ScreenSizeCalculator",
+      loader: () => import("@/components/calculators/tv/ScreenSizeCalculator"),
+    },
+    "tv-dimensions-chart": {
+      title: "TV Dimensions Chart",
+      description: "Common TV sizes and dimensions.",
+      appCategory: "MediaApplication",
+      exportName: "TVDimensionsChart",
+      loader: () => import("@/components/calculators/tv/TVDimensionsChart"),
+    },
+    "tv-height-calculator": {
+      title: "TV Height Calculator",
+      description: "Ideal center height from seating distance.",
+      appCategory: "MediaApplication",
+      exportName: "TVHeightCalculator",
+      loader: () => import("@/components/calculators/tv/TVHeightCalculator"),
+    },
+    "tv-mounting-cost-calculator": {
+      title: "TV Mounting Cost Calculator",
+      description: "Estimate labor and materials for mounting.",
+      appCategory: "MediaApplication",
+      exportName: "TVMountingCostCalculator",
+      loader: () => import("@/components/calculators/tv/TVMountingCostCalculator"),
+    },
+    "tv-viewing-distance-calculator": {
+      title: "TV Viewing Distance Calculator",
+      description: "Recommended viewing distance by size & resolution.",
+      appCategory: "MediaApplication",
+      exportName: "TVViewingDistanceCalculator",
+      loader: () => import("@/components/calculators/tv/TVViewingDistanceCalculator"),
+    },
+    "tv-viewing-ranges-guide": {
+      title: "TV Viewing Ranges Guide",
+      description: "Guide to viewing angles and distances.",
+      appCategory: "MediaApplication",
+      exportName: "TVViewingRangesGuide",
+      loader: () => import("@/components/calculators/tv/TVViewingRangesGuide"),
+    },
+    "video-resolutions-guide": {
+      title: "Video Resolutions Guide",
+      description: "Common SD/HD/4K/8K resolution table.",
+      appCategory: "MediaApplication",
+      exportName: "VideoResolutionsGuide",
+      loader: () => import("@/components/calculators/tv/VideoResolutionsGuide"),
+    },
+  },
 };
