@@ -1,3 +1,4 @@
+// src/pages/ConstructionSubCategory.tsx
 import { useNavigate, useParams } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -14,20 +15,16 @@ export default function ConstructionSubCategory() {
   const navigate = useNavigate();
   const { subcategory = "" } = useParams<{ subcategory: string }>();
 
-  // Busca todas as calculadoras dessa subcategoria a partir do registry
+  // pega do registry, sem depender de location.state
   const calculators = listByCategorySubcategory("construction", subcategory);
 
-  // Título bonito a partir do slug
+  // título bonitinho para o header
   const title =
     SUBCATEGORY_TITLES[subcategory] ||
     subcategory.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
 
-  const handleUseCalc = (cat: string, sub: string, slug: string) => {
-    navigate(`/${cat}/${sub}/${slug}`);
-  };
-
-  const handleBack = () => {
-    navigate("/construction");
+  const handleUseCalc = (slug: string) => {
+    navigate(`/construction/${subcategory}/${slug}`);
   };
 
   return (
@@ -36,10 +33,10 @@ export default function ConstructionSubCategory() {
 
       <main className="pt-20">
         <section className="container mx-auto px-4 py-8">
-          {/* Back Button */}
+          {/* Back */}
           <div className="mb-6">
             <button
-              onClick={handleBack}
+              onClick={() => navigate("/construction")}
               className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -47,7 +44,7 @@ export default function ConstructionSubCategory() {
             </button>
           </div>
 
-          {/* Page Header */}
+          {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
               {title}
@@ -57,12 +54,14 @@ export default function ConstructionSubCategory() {
             </p>
           </div>
 
-          {/* Se não houver nada no registry, mostra aviso amigável */}
+          {/* Lista de calculadoras */}
           {calculators.length === 0 ? (
             <div className="text-center text-muted-foreground">
               <p>No calculators found for this subcategory.</p>
               <div className="mt-6">
-                <Button onClick={handleBack}>Back to Construction</Button>
+                <Button onClick={() => navigate("/construction")}>
+                  Back to Construction
+                </Button>
               </div>
             </div>
           ) : (
@@ -82,9 +81,7 @@ export default function ConstructionSubCategory() {
                       {calc.description || "Open calculator"}
                     </p>
                     <Button
-                      onClick={() =>
-                        handleUseCalc(calc.category, calc.subcategory || subcategory, calc.slug)
-                      }
+                      onClick={() => handleUseCalc(calc.slug)}
                       className="w-full bg-primary hover:bg-primary-glow text-primary-foreground"
                     >
                       Use Calculator
