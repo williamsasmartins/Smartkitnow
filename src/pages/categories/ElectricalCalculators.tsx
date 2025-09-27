@@ -1,13 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Zap, Calculator } from "lucide-react";
 
 const ElectricalCalculators = () => {
   const navigate = useNavigate();
 
+  // Helper para criar slugs estáveis
+  const slugify = (s: string) =>
+    s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+  // === DADOS DA PÁGINA (ajuste/expanda como preferir) ===
   const electricalCategories = [
     {
       id: "electrical-conversion-calculators",
@@ -17,28 +28,54 @@ const ElectricalCalculators = () => {
         { key: "amps-to-watts", name: "Amps to Watts Calculator" },
         { key: "watts-to-amps", name: "Watts to Amps Calculator" },
         { key: "volts-to-amps", name: "Volts to Amps Calculator" },
-        { key: "amps-to-volts", name: "Amps to Volts Calculator" }
-      ]
+        { key: "amps-to-volts", name: "Amps to Volts Calculator" },
+      ],
     },
     {
       id: "electrical-calculators",
-      title: "Electrical Calculators", 
+      title: "Electrical Calculators",
       description: "Practical electrical calculators",
       calculators: [
         { key: "ohms-law", name: "Ohm's Law Calculator" },
         { key: "wire-size", name: "Wire Size Calculator" },
         { key: "voltage-drop", name: "Voltage Drop Calculator" },
-        { key: "power-factor", name: "Power Factor Calculator" }
-      ]
-    }
+        { key: "power-factor", name: "Power Factor Calculator" },
+      ],
+    },
   ];
 
-  const handleCalculatorClick = (categoryId: string, calculatorKey: string) => {
-    navigate(`/electrical/${categoryId}/${calculatorKey}`);
+  // Clicar em uma CATEGORIA → navega para /electrical/:subcategory
+  // e envia o "state.subCategory" que a SubCategory vai usar
+  const handleCategoryClick = (category: (typeof electricalCategories)[number]) => {
+    const subcategorySlug = slugify(category.title);
+
+    navigate(`/electrical/${subcategorySlug}`, {
+      state: {
+        subCategory: {
+          title: category.title,
+          // Se você tiver um ícone FontAwesome nessa categoria, coloque aqui: icon: "fa-solid fa-bolt"
+          calculators: category.calculators,
+        },
+      },
+    });
   };
 
-  const handleCategoryClick = (categoryId: string) => {
-    navigate(`/electrical/${categoryId}`);
+  // Clicar em uma CALCULADORA (a partir desta página de categorias)
+  // → navega direto para /electrical/:subcategory/calculator/:calculator
+  // Também envia o state para a página de calculadora
+  const handleCalculatorClick = (
+    category: (typeof electricalCategories)[number],
+    calculator: { key: string; name: string }
+  ) => {
+    const subcategorySlug = slugify(category.title);
+    const calculatorSlug = slugify(calculator.name);
+
+    navigate(`/electrical/${subcategorySlug}/calculator/${calculatorSlug}`, {
+      state: {
+        calculator,
+        subCategory: category.title,
+      },
+    });
   };
 
   const handleBackClick = () => {
@@ -51,8 +88,8 @@ const ElectricalCalculators = () => {
       <main className="min-h-screen bg-gradient-subtle pt-20 pb-8">
         <div className="container mx-auto px-4 py-8 max-w-6xl">
           {/* Back Button */}
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             onClick={handleBackClick}
             className="mb-6 text-muted-foreground hover:text-foreground"
           >
@@ -71,7 +108,8 @@ const ElectricalCalculators = () => {
               </h1>
             </div>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              Our electrical calculators convert between different electrical units of power, current, frequency, and more.
+              Our electrical calculators convert between different electrical
+              units of power, current, frequency, and more.
             </p>
           </div>
 
@@ -80,9 +118,9 @@ const ElectricalCalculators = () => {
             {electricalCategories.map((category) => (
               <div key={category.id}>
                 <Card className="bg-card/30 border-border/30 mb-6">
-                  <CardHeader 
+                  <CardHeader
                     className="cursor-pointer group"
-                    onClick={() => handleCategoryClick(category.id)}
+                    onClick={() => handleCategoryClick(category)}
                   >
                     <CardTitle className="flex items-center gap-3 text-2xl group-hover:text-primary transition-colors">
                       <div className="p-2 rounded-lg bg-gradient-primary/10">
@@ -99,10 +137,10 @@ const ElectricalCalculators = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {category.calculators.map((calculator) => (
-                    <Card 
+                    <Card
                       key={calculator.key}
                       className="group cursor-pointer transition-all duration-300 hover:shadow-elegant border-border/60 bg-card/50 backdrop-blur-sm hover:bg-card/80"
-                      onClick={() => handleCalculatorClick(category.id, calculator.key)}
+                      onClick={() => handleCalculatorClick(category, calculator)}
                     >
                       <CardHeader className="text-center pb-4">
                         <div className="mx-auto mb-3 p-2 rounded-lg bg-gradient-primary/10 group-hover:bg-gradient-primary/20 transition-colors w-fit">

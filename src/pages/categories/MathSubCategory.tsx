@@ -1,210 +1,159 @@
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Search, ArrowLeft } from "lucide-react";
-import { useState, useMemo } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { ArrowLeft, Calculator } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
-const mathData = {
-  "basic": {
-    title: "Basic Calculators",
-    description: "Essential mathematical calculation tools",
-    calculators: [
-      { key: "scientific", name: "Scientific Calculator", description: "Advanced mathematical functions and operations" },
-      { key: "basic", name: "Basic Calculator", description: "Simple arithmetic operations and calculations" }
-    ]
-  },
-  "percentage": {
-    title: "Percentage Calculators", 
-    description: "Calculate percentages, increases, decreases and conversions",
-    calculators: [
-      { key: "percentage", name: "Percentage Calculator", description: "Calculate percentages and ratios" },
-      { key: "percent-increase", name: "Percent Increase Calculator", description: "Calculate percentage increase between values" },
-      { key: "percent-decrease", name: "Percent Decrease Calculator", description: "Calculate percentage decrease between values" },
-      { key: "percent-change", name: "Percent Change Calculator", description: "Calculate percentage change between values" },
-      { key: "percent-to-decimal", name: "Percent to Decimal Calculator", description: "Convert percentages to decimal values" },
-      { key: "percent-to-fraction", name: "Percent to Fraction Calculator", description: "Convert percentages to fractions" }
-    ]
-  },
-  "grade": {
-    title: "Grade Calculators",
-    description: "Academic grade calculations and GPA tools",
-    calculators: [
-      { key: "gpa", name: "GPA Calculator", description: "Calculate your Grade Point Average" },
-      { key: "college-gpa", name: "College GPA Calculator", description: "Calculate college-level GPA with credits" },
-      { key: "final-grade", name: "Final Grade Calculator", description: "Calculate required final exam score" },
-      { key: "weighted-grade", name: "Weighted Grade Calculator", description: "Calculate weighted grades and averages" }
-    ]
-  },
-  "fraction": {
-    title: "Fraction Calculators",
-    description: "Fraction operations and conversions",
-    calculators: [
-      { key: "fraction-to-decimal", name: "Fraction to Decimal Calculator", description: "Convert fractions to decimal numbers" },
-      { key: "decimal-to-fraction", name: "Decimal to Fraction Calculator", description: "Convert decimal numbers to fractions" },
-      { key: "fraction-to-percent", name: "Fraction to Percent Calculator", description: "Convert fractions to percentages" },
-      { key: "fraction-simplifier", name: "Fraction Simplifier / Reducer", description: "Simplify and reduce fractions" },
-      { key: "mixed-number", name: "Mixed Number ↔ Improper Fraction", description: "Convert between mixed numbers and improper fractions" }
-    ]
-  },
-  "geometry": {
-    title: "Geometry Calculators",
-    description: "Area, volume, perimeter and geometric calculations",
-    calculators: [
-      { key: "area", name: "Area Calculator", description: "Calculate area of various shapes" },
-      { key: "volume", name: "Volume Calculator", description: "Calculate volume of 3D shapes" },
-      { key: "perimeter", name: "Perimeter Calculator", description: "Calculate perimeter of shapes" },
-      { key: "circumference", name: "Circumference Calculator", description: "Calculate circle circumference" }
-    ]
-  },
-  "number-conversion": {
-    title: "Number Conversion Calculators",
-    description: "Convert between different number systems",
-    calculators: [
-      { key: "decimal-to-binary", name: "Decimal to Binary Converter", description: "Convert decimal numbers to binary" },
-      { key: "binary-to-decimal", name: "Binary to Decimal Converter", description: "Convert binary numbers to decimal" },
-      { key: "decimal-to-hex", name: "Decimal to Hexadecimal Converter", description: "Convert decimal to hexadecimal" },
-      { key: "base-converter", name: "Base Converter", description: "Convert between different number bases" }
-    ]
-  },
-  "slope-line": {
-    title: "Slope and Line Calculators",
-    description: "Linear equation and coordinate geometry tools",
-    calculators: [
-      { key: "slope", name: "Slope Calculator", description: "Calculate slope between two points" },
-      { key: "distance", name: "Distance Between Two Points Calculator", description: "Calculate distance between coordinates" }
-    ]
-  },
-  "statistics": {
-    title: "Statistics Calculators",
-    description: "Statistical analysis and probability tools",
-    calculators: [
-      { key: "mean-median-mode", name: "Mean, Median, Mode Calculator", description: "Calculate central tendency measures" },
-      { key: "standard-deviation", name: "Standard Deviation Calculator", description: "Calculate standard deviation and variance" },
-      { key: "z-score", name: "Z-Score Calculator", description: "Calculate z-scores and probabilities" },
-      { key: "probability", name: "Probability Calculator", description: "Calculate probability and combinations" }
-    ]
-  },
-  "trigonometry": {
-    title: "Triangle & Trigonometry",
-    description: "Triangular calculations and trigonometric functions",
-    calculators: [
-      { key: "pythagorean", name: "Pythagorean Theorem Calculator", description: "Calculate triangle sides using Pythagorean theorem" },
-      { key: "right-triangle", name: "Right Triangle Calculator", description: "Calculate right triangle properties" },
-      { key: "trigonometric", name: "Sine, Cosine, Tangent Calculators", description: "Calculate trigonometric functions" },
-      { key: "unit-circle", name: "Unit Circle Calculator", description: "Unit circle values and calculations" }
-    ]
-  }
-};
-
-export default function MathSubCategory() {
-  const { subcategory } = useParams();
+const MathSubCategory = () => {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState("");
+  const location = useLocation();
+  const { subcategory } = useParams<{ subcategory: string }>();
 
-  const categoryData = subcategory ? mathData[subcategory as keyof typeof mathData] : null;
+  const slugify = (s: string) =>
+    s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
-  const filteredCalculators = useMemo(() => {
-    if (!categoryData) return [];
-    if (!searchTerm.trim()) return categoryData.calculators;
-    
-    return categoryData.calculators.filter(calc =>
-      calc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      calc.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [categoryData, searchTerm]);
+  // Catálogo local — espelha o de MathCalculators
+  const catalog = [
+    {
+      title: "Algebra Calculators",
+      description:
+        "Linear equations, quadratic equations, factorization, proportions and more.",
+      calculators: [
+        { key: "linear-equation", name: "Linear Equation Solver" },
+        { key: "quadratic-equation", name: "Quadratic Equation Solver" },
+        { key: "percentage", name: "Percentage Calculator" },
+        { key: "proportion", name: "Proportion Calculator" },
+      ],
+    },
+    {
+      title: "Geometry Calculators",
+      description:
+        "Areas, perimeters, volumes, circles, triangles, rectangles and solids.",
+      calculators: [
+        { key: "circle-area", name: "Circle Area Calculator" },
+        { key: "triangle-area", name: "Triangle Area Calculator" },
+        { key: "rectangle-perimeter", name: "Rectangle Perimeter Calculator" },
+        { key: "sphere-volume", name: "Sphere Volume Calculator" },
+      ],
+    },
+    {
+      title: "Trigonometry Calculators",
+      description:
+        "Sine, cosine, tangent, right triangle sides and angle conversions.",
+      calculators: [
+        { key: "right-triangle", name: "Right Triangle Calculator" },
+        { key: "sine-cosine-tangent", name: "Sin/Cos/Tan Calculator" },
+        { key: "deg-to-rad", name: "Degrees to Radians" },
+        { key: "rad-to-deg", name: "Radians to Degrees" },
+      ],
+    },
+    {
+      title: "Statistics Calculators",
+      description:
+        "Mean, median, mode, standard deviation and basic descriptive stats.",
+      calculators: [
+        { key: "mean-median-mode", name: "Mean / Median / Mode" },
+        { key: "standard-deviation", name: "Standard Deviation Calculator" },
+        { key: "z-score", name: "Z-Score Calculator" },
+      ],
+    },
+  ];
 
-  if (!categoryData) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
-        <Header />
-        <main className="container mx-auto px-4 pt-24 pb-12">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Category Not Found</h1>
-            <p className="text-muted-foreground mb-8">The requested math calculator category does not exist.</p>
-            <Button onClick={() => navigate("/math")}>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Math Calculators
-            </Button>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
+  // 1) tenta pelo state (quando veio do clique da categoria)
+  const stateSub = location.state?.subCategory as
+    | { title: string; calculators: { key: string; name: string }[] }
+    | undefined;
+
+  // 2) se não tiver state, resolve pelo slug na URL
+  let resolved = stateSub;
+  if (!resolved && subcategory) {
+    resolved = catalog.find((c) => slugify(c.title) === subcategory);
   }
+
+  // 3) se nada encontrado, volta para /math
+  if (!resolved) {
+    navigate("/math");
+    return null;
+  }
+
+  const handleBackClick = () => navigate("/math");
+
+  const handleCalculatorClick = (calc: { key: string; name: string }) => {
+    const subSlug = slugify(resolved!.title);
+    const calcSlug = slugify(calc.name);
+    navigate(`/math/${subSlug}/calculator/${calcSlug}`, {
+      state: {
+        calculator: calc,
+        subCategory: resolved!.title,
+      },
+    });
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
+    <div className="min-h-screen bg-gradient-subtle">
       <Header />
-      
-      <main className="container mx-auto px-4 pt-24 pb-12">
-        {/* Back Button */}
-        <Button 
-          variant="ghost" 
-          onClick={() => navigate("/math")}
-          className="mb-6 hover:bg-muted/80"
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to All Math Calculators
-        </Button>
 
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-            {categoryData.title}
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            {categoryData.description}
-          </p>
-          
-          {/* Search Bar */}
-          <div className="max-w-md mx-auto relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search calculators..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 bg-background/80 border-border/60 focus:border-primary/40"
-            />
+      <main className="pt-20">
+        <section className="container mx-auto px-4 py-8 max-w-6xl">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleBackClick}
+            className="mb-6 text-muted-foreground hover:text-foreground"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Math
+          </Button>
+
+          <div className="flex flex-col items-center text-center space-y-3 mb-8">
+            <div className="p-3 rounded-lg bg-primary/10">
+              <Calculator className="h-8 w-8 text-primary" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+                {resolved.title}
+              </h1>
+              <p className="text-muted-foreground mt-2 text-lg max-w-2xl">
+                Choose a calculator below to continue.
+              </p>
+            </div>
+            <Badge variant="secondary">{resolved.calculators.length} tools</Badge>
           </div>
-        </div>
 
-        {/* Calculator Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredCalculators.map((calculator) => (
-            <Card 
-              key={calculator.key} 
-              className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
-            >
-              <Link to={`/math/calculator/${calculator.key}`} className="block h-full">
-                <CardHeader className="bg-gradient-subtle group-hover:bg-gradient-primary/10 transition-colors duration-300">
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {resolved.calculators.map((calculator) => (
+              <Card
+                key={calculator.key}
+                className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/60 cursor-pointer"
+                onClick={() => handleCalculatorClick(calculator)}
+              >
+                <CardHeader className="pb-2">
+                  <div className="mx-auto mb-3 p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors w-fit">
+                    <Calculator className="h-5 w-5 text-primary" />
+                  </div>
+                  <CardTitle className="text-lg font-semibold text-center group-hover:text-primary transition-colors">
                     {calculator.name}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-6">
-                  <CardDescription className="text-base">
-                    {calculator.description}
-                  </CardDescription>
+                <CardContent className="pt-0">
+                  <p className="text-sm text-muted-foreground text-center">
+                    Specialized calculator for precise calculations
+                  </p>
+                  <Button variant="outline" className="w-full mt-4">
+                    Use Calculator
+                  </Button>
                 </CardContent>
-              </Link>
-            </Card>
-          ))}
-        </div>
-
-        {filteredCalculators.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">
-              No calculators found matching "{searchTerm}"
-            </p>
+              </Card>
+            ))}
           </div>
-        )}
+        </section>
       </main>
 
       <Footer />
     </div>
   );
-}
+};
+
+export default MathSubCategory;

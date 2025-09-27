@@ -1,160 +1,150 @@
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Search, ArrowLeft } from "lucide-react";
-import { useState, useMemo } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
+import { ArrowLeft, Clock, Users, ChefHat, Star } from "lucide-react";
+import { useMemo } from "react";
+import { recipeData } from "@/data/recipeData"; // se não usar, pode remover
 
-const petsData = {
-  "dog": {
-    title: "Dog Calculators",
-    description: "Health, nutrition, and care calculators for dogs",
-    calculators: [
-      { key: "dog-age", name: "Dog Age Calculator", description: "Convert dog age to human years" },
-      { key: "dog-calorie", name: "Dog Calorie Calculator", description: "Calculate daily calorie needs for your dog" },
-      { key: "dog-chocolate-toxicity", name: "Dog Chocolate Toxicity Calculator", description: "Assess chocolate poisoning risk" },
-      { key: "dog-pregnancy", name: "Dog Pregnancy Calculator", description: "Calculate due date and pregnancy stages" },
-      { key: "dog-water-intake", name: "Dog Water Intake Calculator", description: "Calculate daily water requirements" },
-      { key: "dog-weight", name: "Dog Weight Calculator", description: "Assess if your dog is at ideal weight" }
-    ]
-  },
-  "cat": {
-    title: "Cat Calculators",
-    description: "Health and care calculators for cats",
-    calculators: [
-      { key: "cat-age", name: "Cat Age Calculator", description: "Convert cat age to human years" },
-      { key: "cat-calorie", name: "Cat Calorie Calculator", description: "Calculate daily calorie needs for your cat" },
-      { key: "cat-water-intake", name: "Cat Water Intake Calculator", description: "Calculate daily water requirements" },
-      { key: "cat-weight", name: "Cat Weight Calculator", description: "Assess if your cat is at ideal weight" },
-      { key: "cat-litter", name: "Cat Litter Calculator", description: "Calculate litter box requirements" }
-    ]
-  },
-  "aquarium": {
-    title: "Aquarium Calculators",
-    description: "Tank setup and maintenance calculators for aquariums",
-    calculators: [
-      { key: "aquarium-volume", name: "Aquarium Tank Volume Calculator", description: "Calculate tank volume and water capacity" },
-      { key: "aquarium-weight", name: "Aquarium Tank Weight Calculator", description: "Calculate total weight with water and decorations" },
-      { key: "fish-tank-filter", name: "Fish Tank Filter Calculator", description: "Calculate filtration requirements" },
-      { key: "aquarium-heater", name: "Aquarium Heater Calculator", description: "Calculate heater wattage needed" },
-      { key: "fish-stocking", name: "Fish Stocking Calculator", description: "Calculate fish capacity for your tank" }
-    ]
-  },
-  "general": {
-    title: "General Pet Calculators",
-    description: "Multi-pet and general pet care calculators",
-    calculators: [
-      { key: "pet-age", name: "Pet Age Calculator", description: "Convert various pet ages to human years" },
-      { key: "pet-medication", name: "Pet Medication Dosage Calculator", description: "Calculate medication dosages by weight" },
-      { key: "pet-travel-cost", name: "Pet Travel Cost Calculator", description: "Calculate costs for traveling with pets" },
-      { key: "pet-food-cost", name: "Pet Food Cost Calculator", description: "Calculate monthly and yearly food costs" },
-      { key: "pet-insurance", name: "Pet Insurance Calculator", description: "Calculate potential insurance savings" }
-    ]
-  }
+// Tipos auxiliares
+type CalcItem = { key: string; name: string };
+type SubCategoryState = {
+  title: string;
+  calculators: ReadonlyArray<CalcItem>; // <- aceita readonly
+  icon?: React.ComponentType<any>;
+  description?: string;
 };
 
+const slugify = (s: string) =>
+  s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
 export default function PetsSubCategory() {
-  const { subcategory } = useParams();
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState("");
+  const location = useLocation();
+  const { subcategory } = useParams();
 
-  const categoryData = subcategory ? petsData[subcategory as keyof typeof petsData] : null;
+  // pega o state vindo da navegação
+  const subCategory = location.state?.subCategory as SubCategoryState | undefined;
 
-  const filteredCalculators = useMemo(() => {
-    if (!categoryData) return [];
-    if (!searchTerm.trim()) return categoryData.calculators;
-    
-    return categoryData.calculators.filter(calc =>
-      calc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      calc.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [categoryData, searchTerm]);
+  // fallback: se veio só o slug pela URL, tenta montar um título bonitinho
+  const categoryTitle =
+    subCategory?.title ||
+    (subcategory
+      ? subcategory
+          .split("-")
+          .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+          .join(" ")
+      : "");
 
-  if (!categoryData) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
-        <Header />
-        <main className="container mx-auto px-4 pt-24 pb-12">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Category Not Found</h1>
-            <p className="text-muted-foreground mb-8">The requested pet calculator category does not exist.</p>
-            <Button onClick={() => navigate("/pets")}>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Pet Calculators
-            </Button>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
+  // Se não tiver state, voltamos para a página /pets
+  if (!subCategory) {
+    navigate("/pets");
+    return null;
   }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
-      <Header />
-      
-      <main className="container mx-auto px-4 pt-24 pb-12">
-        {/* Back Button */}
-        <Button 
-          variant="ghost" 
-          onClick={() => navigate("/pets")}
-          className="mb-6 hover:bg-muted/80"
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to All Pet Calculators
-        </Button>
+  // Como o array é Readonly, se você precisar mutar/ordenar, crie uma cópia:
+  const calculators = useMemo(
+    () => [...subCategory.calculators],
+    [subCategory.calculators]
+  );
 
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-            {categoryData.title}
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            {categoryData.description}
-          </p>
-          
-          {/* Search Bar */}
-          <div className="max-w-md mx-auto relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search calculators..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 bg-background/80 border-border/60 focus:border-primary/40"
-            />
+  const handleBackClick = () => {
+    navigate("/pets");
+  };
+
+  const handleCalculatorClick = (calculator: CalcItem) => {
+    const calcSlug = slugify(calculator.name);
+    const subSlug = slugify(subCategory.title);
+
+    navigate(`/pets/${subSlug}/calculator/${calcSlug}`, {
+      state: {
+        calculator,
+        subCategory: subCategory.title,
+      },
+    });
+  };
+
+  // Badge de dificuldade — se não usar, remova tudo relacionado
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case "Easy":
+        return "bg-green-100 text-green-800";
+      case "Medium":
+        return "bg-yellow-100 text-yellow-800";
+      case "Hard":
+        return "bg-red-100 text-red-800";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+      <Header />
+
+      <main className="container mx-auto px-4 py-8 max-w-7xl">
+        <div className="mb-8">
+          <button
+            onClick={handleBackClick}
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 hover:bg-muted rounded-lg mb-6"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Pets
+          </button>
+
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              {categoryTitle}
+            </h1>
+            {subCategory.description ? (
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                {subCategory.description}
+              </p>
+            ) : (
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Explore our curated calculators and tools for {categoryTitle.toLowerCase()}.
+              </p>
+            )}
           </div>
         </div>
 
-        {/* Calculator Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredCalculators.map((calculator) => (
-            <Card 
-              key={calculator.key} 
-              className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {calculators.map((calculator, index) => (
+            <Card
+              key={index}
+              className="cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 bg-card"
+              onClick={() => handleCalculatorClick(calculator)}
             >
-              <Link to={`/pets/calculator/${calculator.key}`} className="block h-full">
-                <CardHeader className="bg-gradient-subtle group-hover:bg-gradient-primary/10 transition-colors duration-300">
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
+              <CardHeader className="pb-3">
+                <div className="flex justify-between items-start mb-2">
+                  <CardTitle className="text-lg font-semibold line-clamp-2">
                     {calculator.name}
                   </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <CardDescription className="text-base">
-                    {calculator.description}
-                  </CardDescription>
-                </CardContent>
-              </Link>
+                </div>
+              </CardHeader>
+
+              <CardContent className="pt-0">
+                <p className="text-sm text-muted-foreground mb-4">
+                  Specialized calculator for {categoryTitle.toLowerCase()}.
+                </p>
+                <div className="flex flex-col gap-2">
+                  <Button className="w-full">Use Calculator</Button>
+                </div>
+              </CardContent>
             </Card>
           ))}
         </div>
 
-        {filteredCalculators.length === 0 && (
+        {calculators.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">
-              No calculators found matching "{searchTerm}"
+            <ChefHat className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-foreground mb-2">
+              No Calculators Found
+            </h3>
+            <p className="text-muted-foreground">
+              We're working on adding calculators for this category. Check back soon!
             </p>
           </div>
         )}

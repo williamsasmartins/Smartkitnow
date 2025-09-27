@@ -8,59 +8,77 @@ import { ArrowLeft, Calculator } from "lucide-react";
 const FinancialSubCategory = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const subCategory = location.state?.subCategory;
+  const subCategory = location.state?.subCategory as
+    | { title: string; icon?: string; calculators: any[] }
+    | undefined;
 
+  // Se ninguém passou a subcategoria via state, voltamos para a lista de Financial.
   if (!subCategory) {
-    navigate('/financial');
+    navigate("/financial");
     return null;
   }
 
+  // Utilitário para gerar slug (igual ao que você já usa em outras páginas)
+  const slugify = (s: string) =>
+    s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
   const handleCalculatorClick = (calculator: any) => {
-    const slug = calculator.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    navigate(`/financial/calculator/${slug}`, { 
-      state: { 
-        calculator, 
-        subCategory: subCategory.title 
-      } 
+    const calculatorSlug = slugify(calculator.name);
+    const subcategorySlug = slugify(subCategory.title);
+
+    // >>> HIERARQUIA AJUSTADA <<<
+    // /financial/:subcategory/calculator/:calculator
+    navigate(`/financial/${subcategorySlug}/calculator/${calculatorSlug}`, {
+      state: {
+        calculator,
+        subCategory: subCategory.title,
+      },
     });
   };
 
   return (
     <div className="min-h-screen bg-gradient-soft">
       <Header />
-      
+
       <main className="pt-20">
         <section className="container mx-auto px-4 py-8">
           <div className="mb-8">
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               size="sm"
-              onClick={() => navigate('/financial')}
+              onClick={() => navigate("/financial")}
               className="flex items-center space-x-2 mb-6"
             >
               <ArrowLeft className="h-4 w-4" />
               <span>Back</span>
             </Button>
-            
+
             <div className="flex flex-col items-center text-center space-y-3 mb-6">
               <div className="p-3 rounded-lg bg-primary/10">
-                <i className={`${subCategory.icon} text-primary text-2xl`}></i>
+                {subCategory.icon ? (
+                  <i className={`${subCategory.icon} text-primary text-2xl`} />
+                ) : (
+                  <Calculator className="h-8 w-8 text-primary" />
+                )}
               </div>
               <div>
+                {/* Título dinâmico com o nome da subcategoria */}
                 <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                  Personal Finance Calculators – Budget, Debt & Savings Tools
+                  {subCategory.title}
                 </h1>
                 <p className="text-muted-foreground mt-2 text-lg">
-                  Access 20 personal finance calculators designed to help you budget better, manage debt, track expenses, and plan your financial future with confidence.
+                  Explore calculadoras desta subcategoria para obter resultados
+                  precisos e rápidos.
                 </p>
               </div>
             </div>
           </div>
-          
+
+          {/* Lista de calculadoras */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {subCategory.calculators.map((calculator: any, index: number) => (
-              <Card 
-                key={index} 
+              <Card
+                key={index}
                 className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer"
                 onClick={() => handleCalculatorClick(calculator)}
               >
@@ -76,10 +94,14 @@ const FinancialSubCategory = () => {
                       <p className="text-sm text-muted-foreground mt-1">
                         Specialized calculator for precise calculations
                       </p>
-                      <Button 
-                        variant="outline" 
+                      <Button
+                        variant="outline"
                         size="sm"
                         className="mt-3 w-full"
+                        onClick={(e) => {
+                          e.stopPropagation(); // evita disparar o onClick do Card
+                          handleCalculatorClick(calculator);
+                        }}
                       >
                         Use Calculator
                       </Button>

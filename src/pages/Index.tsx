@@ -624,14 +624,8 @@ const Index = () => {
           key: "timer",
           name: "Timer"
         }, {
-          key: "turkey-cooking-time",
-          name: "Turkey Cooking Time Calculator"
         }, {
-          key: "turkey-size",
-          name: "Turkey Size Calculator"
         }, {
-          key: "turkey-thawing-time",
-          name: "Turkey Thawing Time Calculator"
         }]
       }, {
         title: "Cooking Measurements",

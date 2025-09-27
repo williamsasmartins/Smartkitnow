@@ -1,198 +1,139 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Zap, Calculator } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const ElectricalSubCategory = () => {
-  const { subcategory } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const { subcategory } = useParams<{ subcategory: string }>();
 
-  const electricalCategories = {
-    "electrical-conversion-calculators": {
+  // Mesmo slugify usado em ElectricalCalculators
+  const slugify = (s: string) =>
+    s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+  // Catálogo local para fallback (igual ao de ElectricalCalculators)
+  const catalog = [
+    {
       title: "Electrical Conversion Calculators",
-      icon: "fa-solid fa-bolt",
-      description: "Convert between different electrical units of power, current, voltage, and more",
+      description: "Convert between different electrical units",
       calculators: [
-        { key: "ah-to-kwh", name: "Amp-Hours (Ah) to Kilowatt-Hours (kWh) Conversion Calculator", description: "Convert amp-hours to kilowatt-hours" },
-        { key: "ah-to-wh", name: "Amp-Hours (Ah) to Watt-Hours (Wh) Conversion Calculator", description: "Convert amp-hours to watt-hours" },
-        { key: "amps-to-hp", name: "Amps to Horsepower Calculator", description: "Convert electric current to horsepower" },
-        { key: "amps-to-kva", name: "Amps to Kilovolt-Amps (kVA) Conversion Calculator", description: "Convert amps to kilovolt-amps" },
-        { key: "amps-to-kw", name: "Amps to Kilowatts (kW) Conversion Calculator", description: "Convert amps to kilowatts" },
-        { key: "amps-to-va", name: "Amps to Volt-Amps (VA) Conversion Calculator", description: "Convert amps to volt-amps" },
-        { key: "amps-to-volts", name: "Amps to Volts Conversion Calculator", description: "Convert current to voltage" },
-        { key: "amps-to-watts", name: "Amps to Watts Conversion Calculator", description: "Convert amps to watts" },
-        { key: "capacitance-to-charge", name: "Capacitance to Charge Conversion Calculator", description: "Convert capacitance to electrical charge" },
-        { key: "hp-to-amps", name: "Horsepower to Amps Calculator", description: "Convert horsepower to electric current" },
-        { key: "hp-to-kva", name: "Horsepower to Kilovolt-Amps (kVA) Conversion Calculator", description: "Convert horsepower to kilovolt-amps" },
-        { key: "joules-to-volts", name: "Joules to Volts Conversion Calculator", description: "Convert energy to voltage" },
-        { key: "joules-to-watts", name: "Joules to Watts Conversion Calculator", description: "Convert energy to power" },
-        { key: "kva-to-amps", name: "Kilovolt-Amps (kVA) to Amps Conversion Calculator", description: "Convert kilovolt-amps to amps" },
-        { key: "kva-to-hp", name: "Kilovolt-Amps (kVA) to Horsepower Conversion Calculator", description: "Convert kilovolt-amps to horsepower" },
-        { key: "kva-to-kw", name: "Kilovolt-Amps (kVA) to Kilowatts (kW) Conversion Calculator", description: "Convert kilovolt-amps to kilowatts" },
-        { key: "kva-to-va", name: "Kilovolt-Amps (kVA) to Volt-Amps (VA) Conversion Calculator", description: "Convert kilovolt-amps to volt-amps" },
-        { key: "kva-to-watts", name: "Kilovolt-Amps (kVA) to Watts Conversion Calculator", description: "Convert kilovolt-amps to watts" },
-        { key: "kwh-to-ah", name: "Kilowatt-Hours (kWh) to Amp-Hours (Ah) Conversion Calculator", description: "Convert kilowatt-hours to amp-hours" },
-        { key: "kwh-to-kw", name: "Kilowatt-Hours (kWh) to Kilowatts (kW) Conversion Calculator", description: "Convert kilowatt-hours to kilowatts" },
-        { key: "kwh-to-watts", name: "Kilowatt-Hours (kWh) to Watts Conversion Calculator", description: "Convert kilowatt-hours to watts" },
-        { key: "kw-to-amps", name: "Kilowatts (kW) to Amps Conversion Calculator", description: "Convert kilowatts to amps" },
-        { key: "kw-to-kva", name: "Kilowatts (kW) to Kilovolt-Amps (kVA) Conversion Calculator", description: "Convert kilowatts to kilovolt-amps" },
-        { key: "kw-to-kwh", name: "Kilowatts (kW) to Kilowatt-Hours (kWh) Conversion Calculator", description: "Convert kilowatts to kilowatt-hours" },
-        { key: "kw-to-va", name: "Kilowatts (kW) to Volt-Amps (VA) Conversion Calculator", description: "Convert kilowatts to volt-amps" },
-        { key: "mah-to-wh", name: "Milliamp-Hours (mAh) to Watt-Hours (Wh) Conversion Calculator", description: "Convert milliamp-hours to watt-hours" },
-        { key: "va-to-amps", name: "Volt-amps (VA) to Amps Conversion Calculator", description: "Convert volt-amps to amps" },
-        { key: "va-to-kva", name: "Volt-Amps (VA) to Kilovolt-Amps (kVA) Conversion Calculator", description: "Convert volt-amps to kilovolt-amps" },
-        { key: "va-to-kw", name: "Volt-amps (VA) to Kilowatts (kW) Conversion Calculator", description: "Convert volt-amps to kilowatts" },
-        { key: "volts-to-amps", name: "Volts to Amps Conversion Calculator", description: "Convert voltage to current" },
-        { key: "volts-to-joules", name: "Volts to Joules Conversion Calculator", description: "Convert voltage to energy" },
-        { key: "volts-to-watts", name: "Volts to Watts Conversion Calculator", description: "Convert voltage to power" },
-        { key: "wh-to-ah", name: "Watt-Hours (Wh) to Amp-Hours (Ah) Conversion Calculator", description: "Convert watt-hours to amp-hours" },
-        { key: "wh-to-mah", name: "Watt-Hours (Wh) to Milliamp-Hours (mAh) Conversion Calculator", description: "Convert watt-hours to milliamp-hours" },
-        { key: "watts-to-amps", name: "Watts to Amps Conversion Calculator", description: "Convert power to current" },
-        { key: "watts-to-joules", name: "Watts to Joules Conversion Calculator", description: "Convert power to energy" },
-        { key: "watts-to-kva", name: "Watts to Kilovolt-Amps (kVA) Conversion Calculator", description: "Convert watts to kilovolt-amps" },
-        { key: "watts-to-kwh", name: "Watts to Kilowatt-Hours (kWh) Conversion Calculator", description: "Convert watts to kilowatt-hours" },
-        { key: "watts-to-volts", name: "Watts to Volts Conversion Calculator", description: "Convert power to voltage" }
-      ]
+        { key: "amps-to-watts", name: "Amps to Watts Calculator" },
+        { key: "watts-to-amps", name: "Watts to Amps Calculator" },
+        { key: "volts-to-amps", name: "Volts to Amps Calculator" },
+        { key: "amps-to-volts", name: "Amps to Volts Calculator" },
+      ],
     },
-    "electrical-calculators": {
+    {
       title: "Electrical Calculators",
-      icon: "fa-solid fa-calculator",
-      description: "Practical electrical calculators for projects, installations, and calculations",
+      description: "Practical electrical calculators",
       calculators: [
-        { key: "electricity-cost", name: "2025 Electricity Cost Calculator", description: "Calculate electricity costs and usage" },
-        { key: "lighting-energy-cost", name: "2025 Lighting Energy Cost Calculator", description: "Calculate lighting energy costs" },
-        { key: "capacitance", name: "Capacitance Calculator", description: "Calculate capacitance values" },
-        { key: "coulombs-law", name: "Coulomb's Law Charge Calculator", description: "Calculate electrostatic force and charge" },
-        { key: "current-calculator", name: "Current Calculator", description: "Calculate electrical current" },
-        { key: "led-resistor", name: "LED Resistor Calculator", description: "Calculate resistor values for LED circuits" },
-        { key: "ohms-law", name: "Ohm's Law Calculator", description: "Calculate voltage, current, resistance, and power" },
-        { key: "parallel-plate-capacitance", name: "Parallel Plate Capacitance Calculator", description: "Calculate parallel plate capacitor values" },
-        { key: "parallel-resistor", name: "Parallel Resistor Calculator", description: "Calculate parallel resistance values" },
-        { key: "peak-voltage", name: "Peak Voltage Calculator", description: "Calculate peak voltage values" },
-        { key: "peak-to-peak-voltage", name: "Peak-to-Peak Voltage Calculator", description: "Calculate peak-to-peak voltage" },
-        { key: "power-factor", name: "Power Factor Calculator", description: "Calculate electrical power factor" },
-        { key: "resistance", name: "Resistance Calculator", description: "Calculate electrical resistance" },
-        { key: "resistor-capacitor", name: "Resistor Capacitor Circuit Calculator", description: "Calculate RC circuit values" },
-        { key: "rlc-impedance", name: "RLC Impedance Calculator", description: "Calculate impedance of RLC circuits" },
-        { key: "rms-voltage", name: "RMS Voltage Calculator", description: "Calculate RMS voltage values" },
-        { key: "series-parallel-capacitor", name: "Series and Parallel Capacitor Calculator", description: "Calculate series and parallel capacitor values" },
-        { key: "series-resistor", name: "Series Resistor Calculator", description: "Calculate series resistance values" },
-        { key: "voltage-calculator", name: "Voltage Calculator", description: "Calculate electrical voltage" },
-        { key: "voltage-divider", name: "Voltage Divider Calculator", description: "Calculate voltage divider circuit values" },
-        { key: "voltage-drop", name: "Voltage Drop Calculator", description: "Calculate voltage drop across circuits" },
-        { key: "wattage", name: "Wattage Calculator", description: "Calculate electrical power consumption" },
-        { key: "wire-ampacity", name: "Wire Ampacity Calculator", description: "Calculate wire current carrying capacity" },
-        { key: "wire-size", name: "Wire Size Calculator", description: "Determine proper wire gauge for electrical projects" }
-      ]
+        { key: "ohms-law", name: "Ohm's Law Calculator" },
+        { key: "wire-size", name: "Wire Size Calculator" },
+        { key: "voltage-drop", name: "Voltage Drop Calculator" },
+        { key: "power-factor", name: "Power Factor Calculator" },
+      ],
     },
-    "additional-resources": {
-      title: "Additional Resources",
-      icon: "fa-solid fa-tools",
-      description: "More specialized electrical conversion calculators organized by type",
-      calculators: [
-        { key: "capacitance-conversion", name: "Capacitance Conversion Calculators", description: "Convert capacitance units" },
-        { key: "charge-conversion", name: "Charge Conversion Calculators", description: "Convert electrical charge units" },
-        { key: "conductance-conversion", name: "Conductance Conversion Calculators", description: "Convert conductance units" },
-        { key: "current-conversion", name: "Current Conversion Calculators", description: "Convert electrical current units" },
-        { key: "energy-conversion", name: "Energy Conversion Calculators", description: "Convert energy units" },
-        { key: "force-conversion", name: "Force Conversion Calculators", description: "Convert force units" },
-        { key: "frequency-conversion", name: "Frequency Conversion Calculators", description: "Convert frequency units" },
-        { key: "inductance-conversion", name: "Inductance Conversion Calculators", description: "Convert inductance units" },
-        { key: "power-conversion", name: "Power Conversion Calculators", description: "Convert power units" },
-        { key: "resistance-conversion", name: "Resistance Conversion Calculators", description: "Convert resistance units" },
-        { key: "voltage-conversion", name: "Voltage Conversion Calculators", description: "Convert voltage units" }
-      ]
-    }
-  };
+  ];
 
-  const category = subcategory ? electricalCategories[subcategory as keyof typeof electricalCategories] : null;
+  // 1) Tenta ler do state (quando veio clicando da lista de categorias)
+  const stateSub = location.state?.subCategory as
+    | { title: string; calculators: { key: string; name: string }[] }
+    | undefined;
 
-  const handleCalculatorClick = (calculatorKey: string) => {
-    navigate(`/electrical/${subcategory}/${calculatorKey}`);
-  };
-
-  const handleBackClick = () => {
-    navigate("/electrical");
-  };
-
-  if (!category) {
-    return (
-      <>
-        <Header />
-        <main className="min-h-screen bg-gradient-subtle pt-20 pb-8">
-          <div className="container mx-auto px-4 py-8 max-w-4xl text-center">
-            <h1 className="text-3xl font-bold text-foreground mb-4">Category Not Found</h1>
-            <p className="text-muted-foreground mb-8">The electrical category you're looking for doesn't exist.</p>
-            <Button onClick={() => navigate("/electrical")}>
-              Back to Electrical Calculators
-            </Button>
-          </div>
-        </main>
-        <Footer />
-      </>
-    );
+  // 2) Se não tiver state, tenta descobrir pelo slug da URL
+  let resolved = stateSub;
+  if (!resolved && subcategory) {
+    resolved = catalog.find((c) => slugify(c.title) === subcategory);
   }
 
+  // 3) Se ainda não achou, volta para /electrical
+  if (!resolved) {
+    navigate("/electrical");
+    return null;
+  }
+
+  const handleBackClick = () => navigate("/electrical");
+
+  const handleCalculatorClick = (calc: { key: string; name: string }) => {
+    const subSlug = slugify(resolved!.title);
+    const calcSlug = slugify(calc.name);
+    navigate(`/electrical/${subSlug}/calculator/${calcSlug}`, {
+      state: {
+        calculator: calc,
+        subCategory: resolved!.title,
+      },
+    });
+  };
+
   return (
-    <>
+    <div className="min-h-screen bg-gradient-subtle">
       <Header />
-      <main className="min-h-screen bg-gradient-subtle pt-20 pb-8">
-        <div className="container mx-auto px-4 py-8 max-w-6xl">
-          {/* Back Button */}
-          <Button 
-            variant="ghost" 
+
+      <main className="pt-20">
+        <section className="container mx-auto px-4 py-8 max-w-6xl">
+          {/* Back */}
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={handleBackClick}
             className="mb-6 text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Electrical Calculators
+            Back to Electrical
           </Button>
 
-          {/* Header Section */}
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="h-12 w-12 rounded-xl bg-gradient-primary flex items-center justify-center animate-glow">
-                <i className={`${category.icon} text-xl text-white`}></i>
-              </div>
-              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                {category.title}
-              </h1>
+          {/* Título da subcategoria */}
+          <div className="flex flex-col items-center text-center space-y-3 mb-8">
+            <div className="p-3 rounded-lg bg-primary/10">
+              <Zap className="h-8 w-8 text-primary" />
             </div>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              {category.description}
-            </p>
+            <div>
+              <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+                {resolved.title}
+              </h1>
+              <p className="text-muted-foreground mt-2 text-lg max-w-2xl">
+                Selecione uma calculadora abaixo para continuar.
+              </p>
+            </div>
+            <Badge variant="secondary">{resolved.calculators.length} tools</Badge>
           </div>
 
-          {/* Calculators Grid */}
+          {/* Lista de calculadoras */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {category.calculators.map((calculator) => (
-              <Card 
+            {resolved.calculators.map((calculator) => (
+              <Card
                 key={calculator.key}
-                className="group cursor-pointer transition-all duration-300 hover:shadow-elegant border-border/60 bg-card/50 backdrop-blur-sm hover:bg-card/80"
-                onClick={() => handleCalculatorClick(calculator.key)}
+                className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/60 cursor-pointer"
+                onClick={() => handleCalculatorClick(calculator)}
               >
-                <CardHeader className="text-center pb-4">
-                  <div className="mx-auto mb-3 p-2 rounded-lg bg-gradient-primary/10 group-hover:bg-gradient-primary/20 transition-colors w-fit">
+                <CardHeader className="pb-2">
+                  <div className="mx-auto mb-3 p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors w-fit">
                     <Calculator className="h-5 w-5 text-primary" />
                   </div>
-                  <CardTitle className="text-lg font-bold group-hover:text-primary transition-colors">
+                  <CardTitle className="text-lg font-semibold text-center group-hover:text-primary transition-colors">
                     {calculator.name}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <CardDescription className="text-center text-muted-foreground">
-                    {calculator.description}
-                  </CardDescription>
+                  <p className="text-sm text-muted-foreground text-center">
+                    Specialized calculator for precise calculations
+                  </p>
+                  <Button variant="outline" className="w-full mt-4">
+                    Use Calculator
+                  </Button>
                 </CardContent>
               </Card>
             ))}
           </div>
-        </div>
+        </section>
       </main>
+
       <Footer />
-    </>
+    </div>
   );
 };
 

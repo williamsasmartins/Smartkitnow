@@ -1,193 +1,140 @@
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Search, ArrowLeft, Monitor, DollarSign, BookOpen } from "lucide-react";
-import { useState, useMemo } from "react";
+import { ArrowLeft, Monitor } from "lucide-react";
+import { useMemo } from "react";
+
+// Tipos auxiliares
+type CalcItem = { key: string; name: string };
+type SubCategoryState = {
+  title: string;
+  calculators: ReadonlyArray<CalcItem>; // aceita arrays readonly
+  icon?: React.ComponentType<any>;
+  description?: string;
+};
+
+const slugify = (s: string) =>
+  s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 export default function TVSubCategory() {
-  const { subcategory } = useParams();
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState("");
+  const location = useLocation();
+  const { subcategory } = useParams();
 
-  const categories = {
-    "tv-video": {
-      title: "TV & Video Calculators",
-      description: "Calculate TV sizes, distances, mounting positions, and display specifications",
-      icon: Monitor,
-      calculators: [
-        {
-          key: "aspect-ratio",
-          name: "Aspect Ratio Calculator",
-          description: "Calculate aspect ratios for screens and videos"
-        },
-        {
-          key: "ppi-dpi",
-          name: "PPI Calculator / DPI Calculator", 
-          description: "Calculate pixels per inch and dots per inch for displays"
-        },
-        {
-          key: "projector",
-          name: "Projector Calculator",
-          description: "Calculate projector distance, screen size, and throw ratio"
-        },
-        {
-          key: "screen-size",
-          name: "Screen Size Calculator",
-          description: "Calculate screen dimensions from diagonal measurements"
-        },
-        {
-          key: "tv-height",
-          name: "TV Height Calculator",
-          description: "Calculate optimal TV mounting height for viewing"
-        },
-        {
-          key: "tv-viewing-distance",
-          name: "TV Size and Viewing Distance Calculator",
-          description: "Calculate optimal viewing distance based on TV size"
-        }
-      ]
-    },
-    "cost-guides": {
-      title: "Cost Calculators & Price Guides",
-      description: "Calculate installation costs and price estimates",
-      icon: DollarSign,
-      calculators: [
-        {
-          key: "tv-mounting-cost",
-          name: "TV Mounting and Installation Cost Guide",
-          description: "Calculate TV mounting and installation costs"
-        }
-      ]
-    },
-    "resources": {
-      title: "Additional Resources",
-      description: "Reference guides and charts for TV specifications",
-      icon: BookOpen,
-      calculators: [
-        {
-          key: "tv-dimensions-chart",
-          name: "16:9 TV Dimensions – Screen Size Chart",
-          description: "Reference chart for standard TV dimensions"
-        },
-        {
-          key: "video-resolutions",
-          name: "Common Video Display Resolutions and Aspect Ratios",
-          description: "Guide to standard video formats and resolutions"
-        },
-        {
-          key: "tv-viewing-ranges",
-          name: "TV Size and Viewing Distance Ranges",
-          description: "Recommended viewing distances for different TV sizes"
-        }
-      ]
-    }
-  };
+  // state vindo da navegação a partir de TVCalculators
+  const subCategory = location.state?.subCategory as SubCategoryState | undefined;
 
-  const currentCategory = categories[subcategory as keyof typeof categories];
+  // Fallback apenas para exibir o título formatado se vier só pela URL
+  const categoryTitle =
+    subCategory?.title ||
+    (subcategory
+      ? subcategory
+          .split("-")
+          .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+          .join(" ")
+      : "");
 
-  const filteredCalculators = useMemo(() => {
-    if (!currentCategory) return [];
-    if (!searchTerm.trim()) return currentCategory.calculators;
-    return currentCategory.calculators.filter(calc => 
-      calc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      calc.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [searchTerm, currentCategory]);
-
-  const handleCalculatorClick = (calculatorKey: string) => {
-    navigate(`/tv/calculator/${calculatorKey}`);
-  };
-
-  if (!currentCategory) {
-    return (
-      <div className="min-h-screen bg-gradient-subtle pt-20">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Category Not Found</h1>
-            <p className="text-muted-foreground mb-8">The requested category does not exist.</p>
-            <Link to="/tv">
-              <Button>Back to TV & Video Calculators</Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
+  // Se não houver state, volta para /tv
+  if (!subCategory) {
+    navigate("/tv");
+    return null;
   }
 
-  const Icon = currentCategory.icon;
+  // Cria cópia mutável se você precisar ordenar/filtrar sem erro do TS
+  const calculators = useMemo(
+    () => [...subCategory.calculators],
+    [subCategory.calculators]
+  );
+
+  const handleBackClick = () => {
+    navigate("/tv");
+  };
+
+  const handleCalculatorClick = (calculator: CalcItem) => {
+    const subSlug = slugify(subCategory.title);
+    const calcSlug = slugify(calculator.name);
+
+    navigate(`/tv/${subSlug}/calculator/${calcSlug}`, {
+      state: {
+        calculator,
+        subCategory: subCategory.title,
+      },
+    });
+  };
+
+  const Icon = subCategory.icon ?? Monitor;
 
   return (
-    <div className="min-h-screen bg-gradient-subtle pt-20">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={() => navigate("/tv")}
-            className="hover:bg-primary/10"
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+      <Header />
+
+      <main className="container mx-auto px-4 py-8 max-w-7xl">
+        <div className="mb-8">
+          <button
+            onClick={handleBackClick}
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 hover:bg-muted rounded-lg mb-6"
           >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to TV & Video Calculators
-          </Button>
-        </div>
+            <ArrowLeft className="h-4 w-4" />
+            Back to TV Calculators
+          </button>
 
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="p-3 rounded-lg bg-primary/10">
-              <Icon className="h-8 w-8 text-primary" />
+          <div className="text-center mb-12">
+            <div className="flex justify-center mb-4">
+              <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
+                <Icon className="h-8 w-8 text-primary" />
+              </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              {currentCategory.title}
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              {categoryTitle}
             </h1>
-          </div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            {currentCategory.description}
-          </p>
-        </div>
-
-        {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-12">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search calculators..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-12 py-3 text-lg bg-background/80 backdrop-blur-sm border-border/60 focus:border-primary/40 transition-all duration-300"
-            />
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              {subCategory.description ??
+                `Explore our curated calculators and tools for ${categoryTitle.toLowerCase()}.`}
+            </p>
           </div>
         </div>
 
-        {/* Calculators Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredCalculators.map((calculator) => (
-            <Card 
-              key={calculator.key}
-              className="cursor-pointer hover:shadow-elegant transition-all duration-300 hover:scale-105 bg-background/80 backdrop-blur-sm border-border/60"
-              onClick={() => handleCalculatorClick(calculator.key)}
+        {/* Lista de calculadoras */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {calculators.map((calculator, idx) => (
+            <Card
+              key={idx}
+              className="cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 bg-card"
+              onClick={() => handleCalculatorClick(calculator)}
             >
-              <CardHeader>
-                <CardTitle className="text-xl">{calculator.name}</CardTitle>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg font-semibold line-clamp-2">
+                  {calculator.name}
+                </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-4">{calculator.description}</p>
-                <Button className="w-full">
-                  Use Calculator
-                </Button>
+              <CardContent className="pt-0">
+                <p className="text-sm text-muted-foreground mb-4">
+                  Specialized calculator for {categoryTitle.toLowerCase()}.
+                </p>
+                <div className="flex flex-col gap-2">
+                  <Button className="w-full">Use Calculator</Button>
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {filteredCalculators.length === 0 && (
+        {calculators.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">No calculators found matching your search.</p>
+            <Icon className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-foreground mb-2">
+              No Calculators Found
+            </h3>
+            <p className="text-muted-foreground">
+              We're working on adding calculators for this category. Check back soon!
+            </p>
           </div>
         )}
-      </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }

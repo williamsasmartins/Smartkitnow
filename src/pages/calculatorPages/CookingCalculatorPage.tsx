@@ -1,47 +1,22 @@
-import React, { lazy, Suspense } from 'react';
-import { useParams } from 'react-router-dom';
-import { calculatorRegistry } from '../../data/calculatorRegistry'; // Named import
-import { CalculatorLayout } from '../../components/calculators/common/CalculatorLayout'; // Named import
+import React, { lazy, Suspense } from "react";
+import { CalculatorLayout } from "@/components/calculators/common/CalculatorLayout";
 
-const CookingCalculatorPage: React.FC = () => {
-  const { calculator } = useParams<{ calculator: string }>();
-  const calcInfo = calculatorRegistry[calculator || ''];
+const RecipeScalingCalculator = lazy(() =>
+  import("@/components/calculators/cooking/RecipeScalingCalculator")
+);
 
-  if (!calcInfo) {
-    return <div>Calculadora não encontrada. Tente outra na categoria de cooking. Verifique se o URL está correto ou adicione a entrada no registry.</div>; // Fallback informativo
-  }
-
-  // Derive nome do componente dinamicamente (ex.: 'recipe-scaling' -> 'RecipeScalingCalculator')
-  const componentName = calculator
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join('') + 'Calculator';
-
-  const CalculatorComponent = lazy(() => import(`@/components/calculators/cooking/${componentName}`)); // Path com alias @/ para Vite
-
-  // Meta tags dinâmicas para SEO (baseadas no registry)
-  const pageTitle = `${calcInfo.name} Calculator | Smart Kit Now`;
-  const pageDescription = `Use our professional ${calcInfo.name} calculator to ${calcInfo.description.toLowerCase()}. Includes step-by-step instructions, practical examples, and trusted references for accurate cooking and recipe calculations.`;
-  const pageKeywords = `${calcInfo.tags.join(', ')}, cooking calculators, recipe tools, online calculator, smart kit now`;
-
+export default function CookingCalculatorPage() {
   return (
     <CalculatorLayout
-      title={pageTitle}
-      description={pageDescription}
-      keywords={pageKeywords}
-      calculatorName={calcInfo.name}
-      formula={calcInfo.formula}
-      sources={calcInfo.sources || []} // Usa sources do registry para referências no footer
+      title="Recipe Scaling Calculator"
+      description="Scale your recipe ingredients based on desired servings"
+      formula="Scaled Amount = (Original Amount * Desired Servings) / Original Servings"
+      calculatorName="Recipe Scaling Calculator"
+      sources={[]}
     >
-      <Suspense fallback={<div className="text-center py-10">Carregando calculadora...</div>}>
-        <CalculatorComponent />
+      <Suspense fallback={<div>Loading Recipe Scaling Calculator...</div>}>
+        <RecipeScalingCalculator />
       </Suspense>
-      {/* Seções opcionais para AdSense/SEO: instructions, examples, affiliates */}
-      {/* Exemplo: <section className="mt-8"><h2>How to Use</h2><p>Enter original recipe amounts and new servings.</p></section> */}
-      {/* <section className="mt-8"><h2>Practical Examples</h2><ul><li>Example: Scale 4 servings to 6 = multiply ingredients by 1.5.</li></ul></section> */}
-      {/* Affiliate: <a href="https://amazon.com/kitchen-tools?tag=youraffid" target="_blank">Buy Kitchen Tools on Amazon</a> */}
     </CalculatorLayout>
   );
-};
-
-export default CookingCalculatorPage;
+}

@@ -23,16 +23,17 @@ export const calculatorRegistry: Record<string, CalculatorInfo> = {
     ],
   },
   'bmi': {
-    name: 'BMI',
-    description: 'Calculate Body Mass Index to assess weight status',
-    category: 'health',
-    subcategory: 'body-composition',
-    formula: 'BMI = weight (kg) / height^2 (m)',
-    tags: ['bmi', 'health', 'fitness'],
-    sources: [
-      { title: 'CDC BMI Calculator', url: 'https://www.cdc.gov/healthyweight/assessing/bmi/adult_bmi/index.html' },
-    ],
-  },
+  name: 'BMI',
+  description: 'Calculate Body Mass Index to assess weight status',
+  category: 'health',
+  subcategory: 'body-composition',
+  formula: 'BMI = weight (kg) / height^2 (m)',
+  tags: ['bmi', 'health', 'fitness'],
+  sources: [
+    { title: 'CDC BMI Calculator', url: 'https://www.cdc.gov/healthyweight/assessing/bmi/adult_bmi/index.html' },
+  ],
+},
+// Adicione os outros 7 para health como no código anterior
   'bmr': {
     name: 'BMR',
     description: 'Calculate Basal Metabolic Rate for daily calorie needs at rest',
@@ -275,6 +276,19 @@ export const calculatorRegistry: Record<string, CalculatorInfo> = {
       { title: 'USG Drywall Calculator', url: 'https://www.usg.com/content/usgcom/en/resource-center/calculators/drywall-calculator.html' },
     ],
   },
+    'adjusted-gross-income-calculator': {
+    name: 'Adjusted Gross Income Calculator',
+    description: 'Calculate your adjusted gross income for tax purposes',
+    category: 'financial',
+    subcategory: 'personal-finance',
+    formula: 'AGI = Gross Income - Adjustments (e.g., student loan interest, alimony)',
+    tags: ['income', 'tax', 'finance'],
+    sources: [
+      { title: 'IRS Adjusted Gross Income Guide', url: 'https://www.irs.gov/taxtopics/tc551' },
+    ],
+  },
+  // Adicione mais para personal-finance se quiser (ex.: 'annual-income', etc.)
+  
 
   // Complete com as outras categorias da árvore: conversion (ex.: 'electrical-conversion'), automotive (if any), etc.
 };
