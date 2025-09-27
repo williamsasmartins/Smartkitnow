@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { CalculatorLayout } from "@/components/calculators/common/CalculatorLayout";
-import { InputGroup } from "@/components/calculators/common/InputGroup";
-import { ResultCard } from "@/components/calculators/common/ResultCard";
+import { CalculatorLayout } from "@/components/common/CalculatorLayout";
+import { InputGroup } from "@/components/common/InputGroup";
+import { ResultCard } from "@/components/common/ResultCard";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -87,7 +87,7 @@ export const PercentageCalculator = () => {
               id="percentage"
               type="number"
               value={percentage}
-              onChange={(e) => setPercentage(e.target.value)}
+              onChange={setPercentage}
               placeholder="25"
               required
             />
@@ -96,7 +96,7 @@ export const PercentageCalculator = () => {
               id="value1"
               type="number"
               value={value1}
-              onChange={(e) => setValue1(e.target.value)}
+              onChange={setValue1}
               placeholder="200"
               required
             />
@@ -110,7 +110,7 @@ export const PercentageCalculator = () => {
               id="value1"
               type="number"
               value={value1}
-              onChange={(e) => setValue1(e.target.value)}
+              onChange={setValue1}
               placeholder="50"
               required
             />
@@ -119,7 +119,7 @@ export const PercentageCalculator = () => {
               id="value2"
               type="number"
               value={value2}
-              onChange={(e) => setValue2(e.target.value)}
+              onChange={setValue2}
               placeholder="200"
               required
             />
@@ -133,7 +133,7 @@ export const PercentageCalculator = () => {
               id="value1"
               type="number"
               value={value1}
-              onChange={(e) => setValue1(e.target.value)}
+              onChange={setValue1}
               placeholder="100"
               required
             />
@@ -142,7 +142,7 @@ export const PercentageCalculator = () => {
               id="value2"
               type="number"
               value={value2}
-              onChange={(e) => setValue2(e.target.value)}
+              onChange={setValue2}
               placeholder="125"
               required
             />

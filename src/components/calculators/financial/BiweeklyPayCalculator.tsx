@@ -1,77 +1,97 @@
 import React, { useState } from 'react';
-import { CalculatorLayout } from "@/components/calculators/common/CalculatorLayout";
-import { InputGroup } from "@/components/calculators/common/InputGroup";
-import { ResultCard } from "@/components/calculators/common/ResultCard";
+import { CalculatorLayout } from "@/components/common/CalculatorLayout";
+import { InputGroup } from "@/components/common/InputGroup";
+import { ResultCard } from "@/components/common/ResultCard";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const BiweeklyPayCalculator = () => {
-  const [annualSalary, setAnnualSalary] = useState('');
+  const [inputType, setInputType] = useState('annual');
+  const [salary, setSalary] = useState('');
   const [hourlyRate, setHourlyRate] = useState('');
-  const [hoursPerWeek, setHoursPerWeek] = useState('');
-  const [activeTab, setActiveTab] = useState('salary');
-  const [biweeklyPay, setBiweeklyPay] = useState<number | null>(null);
+  const [hoursPerWeek, setHoursPerWeek] = useState('40');
+  const [result, setResult] = useState<{
+    biweeklyPay: number;
+    annualSalary: number;
+    monthlyPay: number;
+    weeklyPay: number;
+  } | null>(null);
 
-  const calculateFromSalary = () => {
-    const salary = parseFloat(annualSalary);
-    if (salary > 0) {
-      setBiweeklyPay(salary / 26);
+  const calculatePay = () => {
+    let annual = 0;
+
+    if (inputType === 'annual') {
+      annual = parseFloat(salary);
+    } else if (inputType === 'hourly') {
+      const rate = parseFloat(hourlyRate);
+      const hours = parseFloat(hoursPerWeek);
+      if (rate > 0 && hours > 0) {
+        annual = rate * hours * 52;
+      }
     }
-  };
 
-  const calculateFromHourly = () => {
-    const rate = parseFloat(hourlyRate);
-    const hours = parseFloat(hoursPerWeek);
-    if (rate > 0 && hours > 0) {
-      setBiweeklyPay(rate * hours * 2);
+    if (annual > 0) {
+      const biweekly = annual / 26;
+      const monthly = annual / 12;
+      const weekly = annual / 52;
+
+      setResult({
+        biweeklyPay: Math.round(biweekly * 100) / 100,
+        annualSalary: Math.round(annual * 100) / 100,
+        monthlyPay: Math.round(monthly * 100) / 100,
+        weeklyPay: Math.round(weekly * 100) / 100
+      });
     }
   };
 
   const handleReset = () => {
-    setAnnualSalary('');
+    setSalary('');
     setHourlyRate('');
-    setHoursPerWeek('');
-    setBiweeklyPay(null);
+    setHoursPerWeek('40');
+    setResult(null);
   };
 
-  const getCalculateFunction = () => {
-    return activeTab === 'salary' ? calculateFromSalary : calculateFromHourly;
-  };
+  const inputTypeOptions = [
+    { value: 'annual', label: 'Annual Salary' },
+    { value: 'hourly', label: 'Hourly Rate' }
+  ];
 
   return (
     <CalculatorLayout
       title="Biweekly Pay Calculator"
-      description="Calculate your biweekly pay based on annual salary or hourly rate."
-      formula="Biweekly Pay = Annual Salary / 26 or Hourly Rate × Hours per Week × 2"
-      example="Annual $52,000 = $2,000 biweekly"
+      description="Calculate your biweekly pay from annual salary or hourly rate."
+      formula="Biweekly Pay = Annual Salary ÷ 26 pay periods"
+      example="$52,000 annual salary ÷ 26 = $2,000 biweekly pay"
     >
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="salary">From Salary</TabsTrigger>
-          <TabsTrigger value="hourly">From Hourly Rate</TabsTrigger>
-        </TabsList>
+      <InputGroup
+        label="Input Type"
+        id="inputType"
+        type="select"
+        value={inputType}
+        onChange={setInputType}
+        options={inputTypeOptions}
+      />
 
-        <TabsContent value="salary" className="space-y-4">
+      {inputType === 'annual' ? (
+        <InputGroup
+          label="Annual Salary"
+          id="salary"
+          type="number"
+          value={salary}
+          onChange={setSalary}
+          placeholder="52000"
+          required
+        />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <InputGroup
-            label="Annual Salary ($)"
-            id="annualSalary"
-            type="number"
-            value={annualSalary}
-            onChange={(e) => setAnnualSalary(e.target.value)}
-            placeholder="52000"
-            required
-          />
-        </TabsContent>
-
-        <TabsContent value="hourly" className="space-y-4">
-          <InputGroup
-            label="Hourly Rate ($)"
+            label="Hourly Rate"
             id="hourlyRate"
             type="number"
             value={hourlyRate}
-            onChange={(e) => setHourlyRate(e.target.value)}
+            onChange={setHourlyRate}
             placeholder="25"
+            step="0.01"
             required
           />
           <InputGroup
@@ -79,27 +99,50 @@ export const BiweeklyPayCalculator = () => {
             id="hoursPerWeek"
             type="number"
             value={hoursPerWeek}
-            onChange={(e) => setHoursPerWeek(e.target.value)}
+            onChange={setHoursPerWeek}
             placeholder="40"
-            required
           />
-        </TabsContent>
-      </Tabs>
+        </div>
+      )}
 
       <div className="flex gap-4">
-        <Button onClick={getCalculateFunction()} className="flex-1">Calculate</Button>
-        <Button variant="outline" onClick={handleReset}>Reset</Button>
+        <Button onClick={calculatePay} className="flex-1">
+          Calculate Pay
+        </Button>
+        <Button variant="outline" onClick={handleReset}>
+          Reset
+        </Button>
       </div>
 
-      {biweeklyPay !== null && (
+      {result && (
         <>
           <Separator />
-          <ResultCard
-            title="Biweekly Pay"
-            value={Math.round(biweeklyPay * 100) / 100}
-            suffix="$"
-            colorClass="text-primary"
-          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <ResultCard
+              title="Biweekly Pay"
+              value={result.biweeklyPay}
+              prefix="$"
+              colorClass="text-primary"
+            />
+            <ResultCard
+              title="Annual Salary"
+              value={result.annualSalary}
+              prefix="$"
+              colorClass="text-green-600"
+            />
+            <ResultCard
+              title="Monthly Pay"
+              value={result.monthlyPay}
+              prefix="$"
+              colorClass="text-blue-600"
+            />
+            <ResultCard
+              title="Weekly Pay"
+              value={result.weeklyPay}
+              prefix="$"
+              colorClass="text-purple-600"
+            />
+          </div>
         </>
       )}
     </CalculatorLayout>
