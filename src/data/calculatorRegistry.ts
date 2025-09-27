@@ -50,7 +50,7 @@ export const SUBCATEGORY_TITLES: Record<string, string> = {
   "carpentry-trim-calculators": "Carpentry & Trim Calculators",
   "wall-ceiling-calculators": "Wall & Ceiling Calculators",
 
-  // (mantém os antigos se ainda existirem em algum lugar do site)
+  // Compat: se algo antigo ainda apontar para isso
   "drywall-paint-calculators": "Wall & Ceiling Calculators",
 
   // Cooking
@@ -70,9 +70,10 @@ export const SUBCATEGORY_TITLES: Record<string, string> = {
   "mortgage-and-home-loan-calculators": "Mortgage & Home Loan Calculators",
 };
 
-/**
- * Carregadores (lazy)
- * IMPORTANTE: mantenha os caminhos condizentes com seus arquivos em src/components/calculators
+/* =========================
+ *  Loaders (lazy imports)
+ * =========================
+ * IMPORTANTE: caminhos devem bater com src/components/calculators
  */
 
 // Construction
@@ -122,7 +123,7 @@ export const REGISTRY: CalcEntry[] = [
     loader: loadConcreteSlab,
   },
 
-  // 🔹 Slug canônico “drywall-area-sheets” usando o DrywallEstimator
+  // Slug canônico do drywall usa o Estimator (mais completo)
   {
     slug: "drywall-area-sheets",
     aliases: [
@@ -138,7 +139,7 @@ export const REGISTRY: CalcEntry[] = [
     loader: loadDrywallEstimator,
   },
 
-  // (opcional) manter o componente antigo acessível por um slug próprio
+  // Opcional: manter o componente antigo acessível
   {
     slug: "drywall-area-sheets-legacy",
     aliases: ["drywall-legacy"],
@@ -149,7 +150,7 @@ export const REGISTRY: CalcEntry[] = [
     loader: loadDrywallAreaSheets,
   },
 
-  // ✅ Novas calculadoras da subcategoria Wall & Ceiling
+  // Novas calculadoras da subcategoria Wall & Ceiling
   {
     slug: "paint-calculator",
     aliases: ["paint", "painting-calculator"],
