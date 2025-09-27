@@ -74,14 +74,19 @@ export const REGISTRY: CalcEntry[] = [
    *  e apontamos o loader para DrywallEstimator (o componente avançado).
    */
   {
-  slug: "drywall-area-sheets",            // mantém a URL
-  name: "Drywall Estimator",              // muda o título exibido
+  slug: "drywall-area-sheets",                 // URL canônica (mantém a principal)
+  name: "Drywall Estimator",                   // título exibido
   category: "construction",
   subcategory: "wall-ceiling-calculators",
   description: "Drywall estimator with rooms, openings, boards and costs.",
-  loader: loadDrywallEstimator,           // continua usando seu componente grande
-  // (opcional) aliases para aceitar URLs alternativas
-  aliases: ["drywall-estimator", "drywall-area-and-sheets"]
+  loader: loadDrywallEstimator,
+  // 👉 URLs alternativas que também devem funcionar:
+  aliases: [
+    "drywall-estimator",
+    "drywall-area-and-sheets",
+    "drywall-sheets",
+    "drywall-calculator"
+  ]
 },
 
 
