@@ -16,7 +16,7 @@ const ElectricalCalculatorPage: React.FC = () => {
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join('') + 'Calculator';
 
-  const CalculatorComponent = lazy(() => /* @vite-ignore */ import(`@/components/calculators/electrical/${componentName}`));
+  const CalculatorComponent = lazy(() => /* @vite-ignore */ import(`@/components/calculators/electrical/${componentName}.tsx`));
 
   return (
     <CalculatorLayout
