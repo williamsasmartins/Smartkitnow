@@ -1,3 +1,4 @@
+// src/components/calculators/WallpaperCalculator.tsx
 import React from "react";
 
 export default function WallpaperCalculator() {

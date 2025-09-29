@@ -1,3 +1,4 @@
+// src/components/calculators/PaintCalculator.tsx
 import React from "react";
 
 export default function PaintCalculator() {

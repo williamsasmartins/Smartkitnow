@@ -1,97 +1,116 @@
 // src/pages/ConstructionSubCategory.tsx
-import { useNavigate, useParams } from "react-router-dom";
+import React from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import PageWithRails from "@/components/layouts/PageWithRails";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
 import {
-  FRIENDLY_TITLES,
-  SUBCATEGORY_TITLES,
   listByCategorySubcategory,
+  SUBCATEGORY_TITLES,
+  FRIENDLY_TITLES,
 } from "@/data/calculatorRegistry";
+import { ArrowLeft } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 export default function ConstructionSubCategory() {
+  const category = "construction";
+  const { subcategory } = useParams<{ subcategory: string }>();
   const navigate = useNavigate();
-  const { subcategory = "" } = useParams<{ subcategory: string }>();
 
-  // pega do registry, sem depender de location.state
-  const calculators = listByCategorySubcategory("construction", subcategory);
+  const calculators = subcategory
+    ? listByCategorySubcategory(category, subcategory)
+    : [];
 
-  // título bonitinho para o header
-  const title =
-    SUBCATEGORY_TITLES[subcategory] ||
-    subcategory.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
+  const subcatTitle =
+    (subcategory && SUBCATEGORY_TITLES[subcategory]) ||
+    (subcategory
+      ? subcategory.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase())
+      : "Calculators");
 
-  const handleUseCalc = (slug: string) => {
-    navigate(`/construction/${subcategory}/${slug}`);
-  };
+  const categoryTitle = FRIENDLY_TITLES[category] || "Construction Calculators";
 
   return (
     <div className="min-h-screen bg-gradient-soft">
+      <SEOHead
+        title={`${subcatTitle} — ${categoryTitle} · SmartKitNow`}
+        description={`Professional construction calculators in ${subcatTitle}. Accurate project planning and material estimation.`}
+        breadcrumbs={[
+          { name: "Home", url: "https://www.smartkitnow.com/" },
+          { name: categoryTitle, url: `https://www.smartkitnow.com/${category}` },
+          { name: subcatTitle, url: `https://www.smartkitnow.com/${category}/${subcategory || ""}` },
+        ]}
+      />
+
       <Header />
 
       <main className="pt-20">
-        <section className="container mx-auto px-4 py-8">
-          {/* Back */}
-          <div className="mb-6">
-            <button
-              onClick={() => navigate("/construction")}
-              className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back</span>
-            </button>
-          </div>
-
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
-              {title}
-            </h1>
-            <p className="text-muted-foreground text-base">
-              Category: {FRIENDLY_TITLES["construction"] || "Construction Calculators"}
-            </p>
-          </div>
-
-          {/* Lista de calculadoras */}
-          {calculators.length === 0 ? (
-            <div className="text-center text-muted-foreground">
-              <p>No calculators found for this subcategory.</p>
-              <div className="mt-6">
-                <Button onClick={() => navigate("/construction")}>
-                  Back to Construction
+        <PageWithRails
+          titleBlock={
+            <div>
+              {/* Back à esquerda */}
+              <div className="mb-6">
+                <Button
+                  variant="default"
+                  onClick={() => navigate(`/${category}`)}
+                  className="flex items-center gap-2"
+                  style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back
                 </Button>
               </div>
+
+              {/* Título + Subtítulo centralizados */}
+              <div className="text-center">
+                <h1 className="text-4xl font-bold mb-3" style={{ color: "#5c82ee" }}>
+                  {subcatTitle}
+                </h1>
+                <p className="text-lg max-w-2xl mx-auto" style={{ color: "#747886" }}>
+                  Professional construction calculators for accurate project planning and material estimation.
+                </p>
+              </div>
             </div>
+          }
+          showRails
+          showTopBanner
+          showBottomBanner
+          railsSticky={false} // produção segura (AdSense)
+        >
+          {/* 1/2/3 colunas — 3 cards centralizados dentro do miolo */}
+          {!calculators || calculators.length === 0 ? (
+            <p className="text-center" style={{ color: "#747886" }}>
+              No calculators found yet in this subcategory.
+            </p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {calculators.map((calc) => (
-                <Card
+                <Link
                   key={calc.slug}
-                  className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50"
+                  to={`/${category}/${calc.subcategory}/${calc.slug}`}
+                  className="group block"
                 >
-                  <CardHeader>
-                    <CardTitle className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {calc.name}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      {calc.description || "Open calculator"}
-                    </p>
-                    <Button
-                      onClick={() => handleUseCalc(calc.slug)}
-                      className="w-full bg-primary hover:bg-primary-glow text-primary-foreground"
-                    >
-                      Use Calculator
-                    </Button>
-                  </CardContent>
-                </Card>
+                  <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                    <CardHeader>
+                      <CardTitle
+                        className="text-lg font-semibold transition-colors"
+                        style={{ color: "#3c83f6" }}
+                      >
+                        {calc.name}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm" style={{ color: "#747886" }}>
+                        {calc.description || "Open calculator"}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           )}
-        </section>
+        </PageWithRails>
       </main>
 
       <Footer />

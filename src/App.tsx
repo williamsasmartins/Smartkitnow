@@ -2,6 +2,8 @@ import { Suspense } from 'react'
 import { Routes, Route, Navigate, useParams } from 'react-router-dom'
 import ScrollToTop from '@/components/ScrollToTop'
 import AppErrorBoundary from '@/components/AppErrorBoundary'
+import CategoryIndex from "@/pages/CategoryIndex";
+import CategorySubcategory from "@/pages/CategorySubcategory";
 
 // Páginas principais
 import Index from '@/pages/Index'
@@ -91,6 +93,8 @@ export default function App() {
             <Route path="/pets/:subcategory" element={<PetsSubCategory />} />
             <Route path="/construction/:subcategory" element={<ConstructionSubCategory />} />
             <Route path="/automotive/:subcategory" element={<AutomotiveSubCategory />} />
+            
+
 
             {/* Calculadora — formato curto */}
             <Route path="/:category/:subcategory/:slug" element={<CalculatorPage />} />

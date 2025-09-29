@@ -125,19 +125,13 @@ export const REGISTRY: CalcEntry[] = [
   // Slug canônico do drywall usa o Estimator (mais completo)
   {
     slug: "drywall-area-sheets",
-    aliases: [
-      "drywall-estimator",
-      "drywall-area-and-sheets",
-      "drywall-sheets",
-      "drywall-calculator"
-    ],
+    aliases: ["drywall-estimator", "drywall-area-and-sheets", "drywall-sheets", "drywall-calculator"],
     name: "Drywall — Area & Sheets",
     category: "construction",
     subcategory: "wall-ceiling-calculators",
     description: "Drywall estimator with rooms, openings, boards and costs.",
     loader: loadDrywallEstimator,
   },
-
 
   // Novas calculadoras da subcategoria Wall & Ceiling
   {
@@ -150,14 +144,15 @@ export const REGISTRY: CalcEntry[] = [
     loader: loadPaint,
   },
   {
-    slug: "wallpaper-calculator",
-    aliases: ["wallpaper"],
-    name: "Wallpaper Calculator",
-    category: "construction",
-    subcategory: "wall-ceiling-calculators",
-    description: "Estimate rolls needed based on room size and pattern repeat.",
-    loader: loadWallpaper,
-  },
+  slug: "wallpaper-calculator",
+  aliases: ["wallpaper"],
+  name: "Wallpaper Calculator",
+  category: "construction",
+  subcategory: "wall-ceiling-calculators",
+  description: "Estimate rolls needed based on room size and pattern repeat.",
+  loader: () => import("@/components/calculators/WallpaperCalculator"),
+},
+
 
   /**
    * =========================
