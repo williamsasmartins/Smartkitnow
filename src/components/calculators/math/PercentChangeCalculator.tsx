@@ -3,66 +3,83 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown } from "lucide-react";
 
 export default function PercentChangeCalculator() {
   const [oldVal, setOldVal] = useState<string>("120");
-  const [newVal, setNewVal] = useState<string>("108");
+  const [newVal, setNewVal] = useState<string>("90");
 
   const pct = useMemo(() => {
     const o = parseFloat(oldVal);
     const n = parseFloat(newVal);
     if (!isFinite(o) || !isFinite(n) || o === 0) return NaN;
-    return ((n - o) / o) * 100; // sinal indica aumento(+) ou queda(-)
+    return ((n - o) / o) * 100; // negativo = queda, positivo = alta
   }, [oldVal, newVal]);
+
+  const formatted = Number.isFinite(pct) ? pct.toFixed(2) : "—";
 
   return (
     <div className="mx-auto max-w-3xl p-4 sm:p-6">
-      {/* Header padrão SKN (âmbar p/ change) */}
-      <header className="mb-6 text-center">
-        <div
-          className="mx-auto mb-3 inline-flex items-center justify-center rounded-xl"
-          style={{ width: 44, height: 44, backgroundColor: "rgba(245,158,11,0.24)", color: "#fbbf24" }}
-          aria-hidden="true"
-        >
-          <ArrowUpDown className="h-5 w-5" />
-        </div>
-
-        <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-          Percent Change
-        </h1>
-
-        <p className="text-muted-foreground">
-          Positive = increase, negative = decrease. Uses the standard percent change formula.
-        </p>
-      </header>
+      {/* Sem header/título aqui — o título vem do CalculatorPage */}
 
       <Card className="mb-6 bg-card border-border/50">
         <CardContent className="p-4 grid gap-4 sm:grid-cols-3">
           <div className="grid gap-2">
             <Label htmlFor="old">Old value</Label>
-            <Input id="old" inputMode="decimal" value={oldVal} onChange={(e) => setOldVal(e.target.value)} />
+            <Input
+              id="old"
+              inputMode="decimal"
+              value={oldVal}
+              onChange={(e) => setOldVal(e.target.value)}
+              placeholder="e.g. 120"
+            />
           </div>
+
           <div className="grid gap-2">
             <Label htmlFor="new">New value</Label>
-            <Input id="new" inputMode="decimal" value={newVal} onChange={(e) => setNewVal(e.target.value)} />
+            <Input
+              id="new"
+              inputMode="decimal"
+              value={newVal}
+              onChange={(e) => setNewVal(e.target.value)}
+              placeholder="e.g. 90"
+            />
           </div>
+
           <div className="grid gap-2">
-            <Label>Change (%)</Label>
-            <Input readOnly value={Number.isFinite(pct) ? pct.toFixed(2) : "—"} />
+            <Label>Percent change (%)</Label>
+            <Input readOnly value={formatted} />
           </div>
         </CardContent>
       </Card>
 
       <div className="flex gap-2">
-        <Button variant="secondary" onClick={() => { setOldVal("120"); setNewVal("108"); }}>
-          Reset to example
+        <Button
+          variant="calculate"
+          onClick={() => {
+            // cálculo já é reativo; manter o botão por padrão visual/UX
+            // (sem setState aqui)
+          }}
+        >
+          Calculate
+        </Button>
+
+        <Button
+          variant="reset"
+          onClick={() => {
+            setOldVal("120");
+            setNewVal("90");
+          }}
+        >
+          Reset
         </Button>
       </div>
 
       <section className="mt-8 space-y-2 text-sm text-muted-foreground">
-        <h2 className="text-base font-semibold text-foreground">Formula</h2>
-        <p><strong>Percent change</strong> = ((new − old) ÷ old) × 100</p>
+        <h2 className="text-base font-semibold text-foreground">How it works</h2>
+        <p>
+          <strong>Percent change</strong> = ((<em>new</em> − <em>old</em>) ÷ <em>old</em>) × 100.
+          Valores positivos indicam aumento; negativos, diminuição.
+        </p>
       </section>
     </div>
   );

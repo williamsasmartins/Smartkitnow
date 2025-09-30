@@ -137,10 +137,10 @@ export const BMRCalculator = () => {
           </div>
 
           <div className="flex gap-4">
-            <Button onClick={calculateBMR} className="flex-1">
+            <Button variant="calculate" onClick={calculateBMR} className="flex-1">
               Calculate BMR
             </Button>
-            <Button variant="outline" onClick={handleReset}>
+            <Button variant="reset" onClick={handleReset}>
               Reset
             </Button>
           </div>

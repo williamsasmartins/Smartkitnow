@@ -1,4 +1,3 @@
-// src/pages/CalculatorPage.tsx
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import React, { Suspense, useMemo } from "react";
 import { Header } from "@/components/Header";
@@ -12,13 +11,12 @@ import CalculatorLayout from "@/components/layouts/CalculatorLayout";
 import SEOHead from "@/components/SEOHead";
 import { PALETTE } from "@/components/theme/palette";
 
-/** Carrega um componente dinamicamente a partir do entry do registry */
 function lazyFrom(entry?: { loader: () => Promise<any>; namedExport?: string }) {
   if (!entry) return null;
   return React.lazy(async () => {
     const mod = await entry.loader();
     const Comp =
-      (entry.namedExport ? (mod as any)[entry.namedExport] : (mod as any).default) as React.ComponentType<any>;
+      (entry.namedExport ? mod[entry.namedExport] : mod.default) as React.ComponentType<any>;
     if (!Comp) {
       const first = mod && Object.values(mod)[0];
       if (!first || typeof first !== "function") {
@@ -30,7 +28,6 @@ function lazyFrom(entry?: { loader: () => Promise<any>; namedExport?: string }) 
   });
 }
 
-/** Transforma slug em Title Case simples */
 function titleCaseFromSlug(slug?: string) {
   if (!slug) return "";
   return slug
@@ -39,7 +36,7 @@ function titleCaseFromSlug(slug?: string) {
     .join(" ");
 }
 
-const CalculatorPage: React.FC = () => {
+const CalculatorPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { category, subcategory, slug } = useParams<{
@@ -48,14 +45,11 @@ const CalculatorPage: React.FC = () => {
     slug: string;
   }>();
 
-  // slug da calculadora vem da rota curta "/:category/:subcategory/:slug"
   const calcSlug = slug;
   const entry = getEntry(calcSlug);
 
-  // fallback para category/subcategory a partir da URL caso o registry não informe
   const categoryFromPath =
     location.pathname.split("/")[1] || entry?.category || "construction";
-  const subCategoryTitle = subcategory ? titleCaseFromSlug(subcategory) : undefined;
 
   const handleGoBack = () => {
     if (subcategory) navigate(`/${categoryFromPath}/${subcategory}`);
@@ -63,17 +57,6 @@ const CalculatorPage: React.FC = () => {
   };
 
   const LazyComp = useMemo(() => lazyFrom(entry), [entry]);
-
-  // SEO defaults
-  const calcName = entry?.name ?? "Calculator";
-  const catTitle =
-    FRIENDLY_TITLES[entry?.category ?? categoryFromPath] ??
-    titleCaseFromSlug(entry?.category ?? categoryFromPath);
-
-  const pageTitle = `${calcName} - Smart Kit Now`;
-  const pageDesc =
-    entry?.description ??
-    `Use the ${calcName} to estimate and analyze values with professional-grade accuracy. Includes how-to, examples and references.`;
 
   const NotFoundCalc = (
     <Card className="bg-card border-border/50">
@@ -87,15 +70,24 @@ const CalculatorPage: React.FC = () => {
           <div className="mt-6">
             <Button onClick={handleGoBack}>
               Back to{" "}
-              {subCategoryTitle ||
-                FRIENDLY_TITLES[categoryFromPath] ||
-                titleCaseFromSlug(categoryFromPath)}
+              {FRIENDLY_TITLES[categoryFromPath] || titleCaseFromSlug(categoryFromPath)}
             </Button>
           </div>
         </div>
       </CardContent>
     </Card>
   );
+
+  // SEO defaults
+  const calcName = entry?.name ?? "Calculator";
+  const catTitle =
+    FRIENDLY_TITLES[entry?.category ?? categoryFromPath] ??
+    titleCaseFromSlug(entry?.category ?? categoryFromPath);
+
+  const pageTitle = `${calcName} - Smart Kit Now`;
+  const pageDesc =
+    entry?.description ??
+    `Use the ${calcName} to estimate and analyze values with professional-grade accuracy. Includes how-to, examples and references.`;
 
   return (
     <div className="min-h-screen bg-gradient-soft">
@@ -105,7 +97,6 @@ const CalculatorPage: React.FC = () => {
         keywords={[
           calcName.toLowerCase(),
           `${categoryFromPath} calculator`,
-          subcategory || "",
           "online calculator",
         ].filter(Boolean)}
         breadcrumbs={[
@@ -139,53 +130,64 @@ const CalculatorPage: React.FC = () => {
       <main className="pt-20">
         <CalculatorLayout>
           {/* Back + header */}
-          <section className="px-1 sm:px-0">
-            <div className="mb-6">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleGoBack}
-                className="flex items-center space-x-2 mb-6 text-white hover:brightness-110"
-                style={{ backgroundColor: PALETTE.brand.button }}
-              >
-                <ArrowLeft className="h-4 w-4" />
-                <span>Back</span>
-              </Button>
+<section className="px-1 sm:px-0">
+  <div className="mb-6">
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={handleGoBack}
+      className="flex items-center space-x-2 mb-6 text-white hover:brightness-110"
+      style={{ backgroundColor: PALETTE.brand.button }}
+    >
+      <ArrowLeft className="h-4 w-4" />
+      <span>Back</span>
+    </Button>
 
-              <div className="flex flex-col items-center text-center space-y-3 mb-6">
-                <div className="p-3 rounded-lg bg-primary/10">
-                  <Calculator className="h-8 w-8 text-primary" />
-                </div>
+    <div className="flex flex-col items-center text-center space-y-3 mb-6">
+  <span
+    className="inline-flex items-center justify-center rounded-xl"
+    style={{
+      width: 44,
+      height: 44,
+      backgroundColor: "rgba(59,130,246,0.14)", // bg azul translúcido
+      color: "#3b82f6",                          // ícone azul
+    }}
+    aria-hidden="true"
+  >
+    <Calculator className="h-5 w-5" />
+  </span>
 
-                {/* Título e subtítulo nas cores padrão do site */}
-                <h1
-                  className="text-4xl font-bold mb-2"
-                  style={{ color: "#5c82ee" }}
-                >
-                  {calcName}
-                </h1>
+  {/* TÍTULO COM A COR PADRÃO DO SITE (mesma dos cards) */}
+  <h1
+    className="text-4xl font-bold leading-tight"
+    style={{ color: "#5c82ee" }} // <- cor sólida padrão
+  >
+    {calcName}
+  </h1>
 
-                <p
-                  className="mt-2 text-lg"
-                  style={{ color: "#747886" }}
-                >
-                  Category: {catTitle}
-                  {subcategory ? ` · ${titleCaseFromSlug(subcategory)}` : ""}
-                </p>
-              </div>
-            </div>
+  {/* Descrição logo abaixo do título (texto secundário) */}
+  <p
+    className="mt-2 text-lg"
+    style={{ color: "#8b90a0" }} // tom neutro/secondary para descrição
+  >
+    {pageDesc}
+  </p>
+</div>
 
-            {/* Calculadora */}
-            {entry && LazyComp ? (
-              <Suspense fallback={<div className="mx-auto max-w-3xl px-4 py-10 text-center">Loading…</div>}>
-                <LazyComp />
-              </Suspense>
-            ) : (
-              NotFoundCalc
-            )}
-          </section>
+  </div>
 
-          {/* Seções SEO minimalistas (pode personalizar depois) */}
+  {/* calculadora / fallback */}
+  {entry && LazyComp ? (
+    <Suspense fallback={<div className="mx-auto max-w-3xl px-4 py-10 text-center">Loading…</div>}>
+      <LazyComp />
+    </Suspense>
+  ) : (
+    NotFoundCalc
+  )}
+</section>
+
+
+          {/* Seções auxiliares SEO (mantidas, já com cores corretas) */}
           <section className="mx-auto max-w-4xl my-10 grid gap-6">
             <Card className="bg-card border-border/50">
               <CardContent className="p-6">
@@ -219,7 +221,7 @@ const CalculatorPage: React.FC = () => {
             </Card>
           </section>
 
-          {/* Rodapé explicativo/SEO-friendly */}
+          {/* Rodapé explicativo */}
           <section>
             <CalculatorFooter
               calculatorName={calcName}

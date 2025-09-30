@@ -123,10 +123,10 @@ export const CalorieCalculator = () => {
           </div>
 
           <div className="flex gap-4">
-            <Button onClick={calculateCalories} className="flex-1">
+            <Button variant="calculate" onClick={calculateCalories} className="flex-1">
               Calculate Calories
             </Button>
-            <Button variant="outline" onClick={handleReset}>
+            <Button variant="reset" onClick={handleReset}>
               Reset
             </Button>
           </div>

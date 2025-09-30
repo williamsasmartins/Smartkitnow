@@ -101,10 +101,10 @@ export const MortgageCalculator = () => {
           </div>
 
           <div className="flex gap-4">
-            <Button onClick={calculateMortgage} className="flex-1">
+            <Button variant="calculate" onClick={calculateMortgage} className="flex-1">
               Calculate Mortgage
             </Button>
-            <Button variant="outline" onClick={handleReset}>
+            <Button variant="reset" onClick={handleReset}>
               Reset
             </Button>
           </div>

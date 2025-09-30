@@ -122,7 +122,7 @@ export function MolarMassCalculator() {
             <Button onClick={calculateMolarMass}>
               Calculate Molar Mass
             </Button>
-            <Button onClick={clearAll} variant="secondary">
+            <Button onClick={clearAll} variant="reset">
               Clear
             </Button>
           </div>
@@ -179,7 +179,7 @@ export function MolarMassCalculator() {
             {commonCompounds.map((compound, index) => (
               <Button
                 key={index}
-                variant="outline"
+                variant="reset"
                 onClick={() => {
                   setFormula(compound.formula);
                   const elements = parseFormula(compound.formula);

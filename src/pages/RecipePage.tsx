@@ -95,7 +95,7 @@ export default function RecipePage() {
             </div>
             
             <div className="flex gap-2">
-              <Button variant="outline" size="sm">
+              <Button variant="calculate" size="sm">
                 <Heart className="h-4 w-4 mr-2" />
                 Save
               </Button>

@@ -105,7 +105,7 @@ export const RecipeScalingCalculator = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle>Ingredients</CardTitle>
-            <Button onClick={addIngredient} variant="outline" size="sm">
+            <Button onClick={addIngredient} variant="calculate" size="sm">
               Add Ingredient
             </Button>
           </CardHeader>
@@ -139,7 +139,7 @@ export const RecipeScalingCalculator = () => {
                 />
                 <Button 
                   onClick={() => removeIngredient(index)} 
-                  variant="outline" 
+                  variant="reset" 
                   size="sm"
                   disabled={ingredients.length === 1}
                 >
@@ -152,10 +152,10 @@ export const RecipeScalingCalculator = () => {
       </div>
 
       <div className="flex gap-4">
-        <Button onClick={calculateScaling} className="flex-1">
+        <Button variant="calculate" onClick={calculateScaling} className="flex-1">
           Scale Recipe
         </Button>
-        <Button variant="outline" onClick={handleReset}>
+        <Button variant="reset" onClick={handleReset}>
           Reset
         </Button>
       </div>

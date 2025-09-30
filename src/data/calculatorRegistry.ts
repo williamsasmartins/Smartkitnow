@@ -118,13 +118,32 @@ const loadCompoundInterest = () =>
 // Math (percent) loaders
 const loadPercentOf = () =>
   import("@/components/calculators/math/PercentOfCalculator");
-// Math (percent) loaders
 const loadPercentIncrease = () =>
   import("@/components/calculators/math/PercentIncreaseCalculator");
 const loadPercentDecrease = () =>
   import("@/components/calculators/math/PercentDecreaseCalculator");
 const loadPercentChange = () =>
   import("@/components/calculators/math/PercentChangeCalculator");
+
+// Math — Fractions (LOADERS)
+const loadFractionReducer = () =>
+  import("@/components/calculators/math/FractionReducerCalculator");
+const loadFractionToDecimal = () =>
+  import("@/components/calculators/math/FractionToDecimalCalculator");
+const loadDecimalToFraction = () =>
+  import("@/components/calculators/math/DecimalToFractionCalculator");
+const loadPercentToFraction = () =>
+  import("@/components/calculators/math/PercentToFractionCalculator");
+
+// Math (everyday) loaders
+const loadAverage = () =>
+  import("@/components/calculators/math/AverageCalculator");
+const loadProportion = () =>
+  import("@/components/calculators/math/ProportionCalculator");
+
+
+
+
 
   
 
@@ -316,8 +335,46 @@ export const REGISTRY: CalcEntry[] = [
     description: "Growth with compounding interest.",
     loader: loadCompoundInterest,
   },
+   
+   /**
+ * =========================
+ * MATH — Fractions & Percent
+ * =========================
+ */
+{
+  slug: "fraction-reducer",
+  name: "Fraction Reducer",
+  category: "math",
+  subcategory: "fraction-calculators",
+  loader: loadFractionReducer,
+  description: "Simplify any fraction or mixed/decimal input to lowest terms. Examples: 42/56, 3 6/8, 1.25.",
+},
+{
+  slug: "fraction-to-decimal",
+  name: "Fraction to Decimal",
+  category: "math",
+  subcategory: "fraction-calculators",
+  loader: loadFractionToDecimal,
+  description: "Convert any fraction (including mixed numbers) to a decimal with a chosen precision.",
+},
+{
+  slug: "decimal-to-fraction",
+  name: "Decimal to Fraction",
+  category: "math",
+  subcategory: "fraction-calculators",
+  loader: loadDecimalToFraction,
+  description: "Convert any decimal to an exact or approximate fraction, including mixed numbers.",
+},
+{
+  slug: "percent-to-fraction",
+  name: "Percent to Fraction",
+  category: "math",
+  subcategory: "fraction-calculators",
+  loader: loadPercentToFraction,
+  description: "Convert a percentage into a reduced fraction and mixed-number form when applicable.",
+},
 
-  /**
+    /**
    * =========================
    * MATH (novo bloco)
    * =========================
@@ -332,29 +389,83 @@ export const REGISTRY: CalcEntry[] = [
     loader: loadPercentOf,
   },
   {
-  slug: "percent-increase",
-  name: "Percent Increase",
+    slug: "percent-increase",
+    name: "Percent Increase",
+    category: "math",
+    subcategory: "percent-calculators",
+    loader: loadPercentIncrease,
+    description: "Compute the percentage increase from an old value to a new value.",
+  },
+  {
+    slug: "percent-decrease",
+    name: "Percent Decrease",
+    category: "math",
+    subcategory: "percent-calculators",
+    loader: loadPercentDecrease,
+    description: "Compute the percentage decrease from an old value to a new value.",
+  },
+  {
+    slug: "percent-change",
+    name: "Percent Change",
+    category: "math",
+    subcategory: "percent-calculators",
+    loader: loadPercentChange,
+    description: "Signed percent change: positive for increase, negative for decrease.",
+  },
+  {
+  slug: "fraction-reducer",
+  name: "Fraction Reducer",
   category: "math",
-  subcategory: "percent-calculators",
-  loader: loadPercentIncrease,
-  description: "Compute the percentage increase from an old value to a new value.",
+  subcategory: "fraction-calculators",
+  loader: loadFractionReducer,
+  description: "Simplify any fraction to lowest terms.",
 },
 {
-  slug: "percent-decrease",
-  name: "Percent Decrease",
+  slug: "fraction-to-decimal",
+  name: "Fraction to Decimal",
   category: "math",
-  subcategory: "percent-calculators",
-  loader: loadPercentDecrease,
-  description: "Compute the percentage decrease from an old value to a new value.",
+  subcategory: "fraction-calculators",
+  loader: loadFractionToDecimal,
+  description: "Convert a fraction (or mixed number) into decimal.",
 },
 {
-  slug: "percent-change",
-  name: "Percent Change",
+  slug: "decimal-to-fraction",
+  name: "Decimal to Fraction",
   category: "math",
-  subcategory: "percent-calculators",
-  loader: loadPercentChange,
-  description: "Signed percent change: positive for increase, negative for decrease.",
+  subcategory: "fraction-calculators",
+  loader: loadDecimalToFraction,
+  description: "Convert a decimal number into an exact/approximate fraction.",
 },
+{
+  slug: "percent-to-fraction",
+  name: "Percent to Fraction",
+  category: "math",
+  subcategory: "fraction-calculators",
+  loader: loadPercentToFraction,
+  description: "Convert percent values to reduced fractions.",
+},
+{
+  slug: "average-calculator",
+  aliases: ["mean-calculator", "average"],
+  name: "Average (Mean) Calculator",
+  category: "math",
+  subcategory: "everyday-math",
+  description: "Compute the arithmetic mean of a list of numbers.",
+  loader: loadAverage,
+},
+{
+  slug: "proportion-solver",
+  aliases: ["proportion-calculator", "rule-of-three", "ratio-solver"],
+  name: "Proportion Solver",
+  category: "math",
+  subcategory: "everyday-math",
+  description: "Solve a/b = c/d leaving one value blank and compute it.",
+  loader: loadProportion,
+},
+
+
+
+
 
 ];
 

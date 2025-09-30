@@ -193,10 +193,10 @@ export const TDEECalculator = () => {
           </div>
 
           <div className="flex gap-4">
-            <Button onClick={calculateTDEE} className="flex-1">
+            <Button variant="calculate" onClick={calculateTDEE} className="flex-1">
               Calculate TDEE
             </Button>
-            <Button variant="outline" onClick={handleReset}>
+            <Button variant="reset" onClick={handleReset}>
               Reset
             </Button>
           </div>

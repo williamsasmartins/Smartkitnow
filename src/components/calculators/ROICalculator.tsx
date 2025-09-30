@@ -71,10 +71,10 @@ export const ROICalculator = () => {
           </div>
 
           <div className="flex gap-4">
-            <Button onClick={calculateROI} className="flex-1">
+            <Button variant="calculate" onClick={calculateROI} className="flex-1">
               Calculate ROI
             </Button>
-            <Button variant="outline" onClick={handleReset}>
+            <Button variant="reset" onClick={handleReset}>
               Reset
             </Button>
           </div>

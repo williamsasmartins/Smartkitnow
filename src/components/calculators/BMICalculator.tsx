@@ -117,10 +117,10 @@ export const BMICalculator = () => {
           </div>
 
           <div className="flex gap-4">
-            <Button onClick={calculateBMI} className="flex-1">
+            <Button variant="calculate" onClick={calculateBMI} className="flex-1">
               Calculate BMI
             </Button>
-            <Button variant="outline" onClick={handleReset}>
+            <Button variant="reset" onClick={handleReset}>
               Reset
             </Button>
           </div>

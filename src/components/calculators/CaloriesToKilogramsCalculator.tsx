@@ -177,7 +177,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
               {loading ? <>Calculating...</> : (<><Calculator className="h-4 w-4 mr-2 dark:text-blue-400 text-blue-600" />Calculate</>)}
             </Button>
             {(calories || activityLevel) && (
-              <Button variant="outline" onClick={resetCalculator} className="flex-0 dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
+              <Button variant="reset" onClick={resetCalculator} className="flex-0 dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
                 Reset
               </Button>
             )}

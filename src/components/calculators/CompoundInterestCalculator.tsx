@@ -101,10 +101,10 @@ export const CompoundInterestCalculator = () => {
           </div>
 
           <div className="flex gap-4">
-            <Button onClick={calculateCompoundInterest} className="flex-1">
+            <Button variant="calculate" onClick={calculateCompoundInterest} className="flex-1">
               Calculate Interest
             </Button>
-            <Button variant="outline" onClick={handleReset}>
+            <Button variant="reset" onClick={handleReset}>
               Reset
             </Button>
           </div>

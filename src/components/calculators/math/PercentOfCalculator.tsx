@@ -3,7 +3,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Calculator } from "lucide-react";
 
 export default function PercentOfCalculator() {
   const [percent, setPercent] = useState<string>("15");
@@ -16,32 +15,13 @@ export default function PercentOfCalculator() {
     return (p / 100) * t;
   }, [percent, total]);
 
+  const onReset = () => {
+    setPercent("15");
+    setTotal("240");
+  };
+
   return (
     <div className="mx-auto max-w-3xl p-4 sm:p-6">
-      {/* Header padrão SKN */}
-      <header className="mb-6 text-center">
-        <div
-          className="mx-auto mb-3 inline-flex items-center justify-center rounded-xl"
-          style={{
-            width: 44,
-            height: 44,
-            backgroundColor: "rgba(59,130,246,0.24)", // mais visível no dark
-            color: "#60a5fa",
-          }}
-          aria-hidden="true"
-        >
-          <Calculator className="h-5 w-5" />
-        </div>
-
-        <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-          Percent of Total
-        </h1>
-
-        <p className="text-muted-foreground">
-          Compute <em>X%</em> of a number. Example: 15% of 240 = 36.
-        </p>
-      </header>
-
       <Card className="mb-6 bg-card border-border/50">
         <CardContent className="p-4 grid gap-4 sm:grid-cols-3">
           <div className="grid gap-2">
@@ -72,15 +52,8 @@ export default function PercentOfCalculator() {
       </Card>
 
       <div className="flex gap-2">
-        <Button
-          variant="secondary"
-          onClick={() => {
-            setPercent("15");
-            setTotal("240");
-          }}
-        >
-          Reset to example
-        </Button>
+        <Button variant="calculate">Calculate</Button>
+        <Button variant="reset" onClick={onReset}>Reset</Button>
       </div>
 
       <section className="mt-8 space-y-2 text-sm text-muted-foreground">

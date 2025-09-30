@@ -15,7 +15,12 @@ import Terms from "@/pages/Terms";
 import NotFound from "@/pages/NotFound";
 import MathCalculators from '@/pages/MathCalculators';
 import MathSubCategory from '@/pages/MathSubCategory';
+import MathComingSoon from '@/pages/MathComingSoon';
 import EverydayMath from "@/pages/math/EverydayMath";
+import PercentageCalculators from "@/pages/math/PercentageCalculators";
+import FractionsCalculators from "@/pages/math/FractionsCalculators";
+
+
 
 
 // Categorias (raiz)
@@ -30,6 +35,7 @@ import TVCalculators from "@/pages/TVCalculators";
 import PetsCalculators from "@/pages/PetsCalculators";
 import AutomotiveCalculators from "@/pages/AutomotiveCalculators";
 import ConstructionCalculators from "@/pages/ConstructionCalculators";
+
 
 // Subcategorias
 import FinancialSubCategory from "@/pages/FinancialSubCategory";
@@ -105,7 +111,10 @@ export default function App() {
             <Route path="/pets/:subcategory" element={<PetsSubCategory />} />
             <Route path="/automotive/:subcategory" element={<AutomotiveSubCategory />} />
             <Route path="/math/everyday-math" element={<EverydayMath />} />   
-            <Route path="/math/:subcategory" element={<MathSubCategory />} />  
+            <Route path="/math/everyday-math/percentages" element={<PercentageCalculators />} />
+            <Route path="/math/:subcategory" element={<MathSubCategory />} /> 
+            <Route path="/math/fractions" element={<FractionsCalculators />} />
+            <Route path="/math/coming-soon" element={<MathComingSoon />} />
 
 
 

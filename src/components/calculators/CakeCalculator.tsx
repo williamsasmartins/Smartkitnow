@@ -185,7 +185,7 @@ const CakeCalculator = () => {
             </div>
           </div>
 
-          <Button 
+          <Button variant="calculate"
             onClick={calculateCake}
             className="w-full"
             disabled={!guests}

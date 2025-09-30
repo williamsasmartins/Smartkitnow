@@ -190,9 +190,9 @@ const CookingTimer = () => {
                 <Label>Quick Presets</Label>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                   {presetTimes.map((preset, index) => (
-                    <Button
+                    <Button 
                       key={index}
-                      variant="outline"
+                      variant="calculate"
                       size="sm"
                       onClick={() => setPresetTime(preset.h, preset.m, preset.s)}
                     >
