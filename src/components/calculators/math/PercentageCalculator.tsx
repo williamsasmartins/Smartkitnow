@@ -1,175 +1,178 @@
-import React, { useState } from 'react';
-import { CalculatorLayout } from "@/components/common/CalculatorLayout";
-import { InputGroup } from "@/components/common/InputGroup";
-import { ResultCard } from "@/components/common/ResultCard";
+import React, { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export const PercentageCalculator = () => {
-  const [value1, setValue1] = useState('');
-  const [value2, setValue2] = useState('');
-  const [percentage, setPercentage] = useState('');
-  const [activeTab, setActiveTab] = useState('percentage-of');
-  const [result, setResult] = useState<number | null>(null);
+const fmt = (n: number) =>
+  Number.isFinite(n) ? n.toLocaleString(undefined, { maximumFractionDigits: 8 }) : "—";
 
-  const calculatePercentageOf = () => {
-    const percent = parseFloat(percentage);
-    const value = parseFloat(value1);
-    if (percent >= 0 && value >= 0) {
-      setResult((percent / 100) * value);
+export default function PercentageCalculator() {
+  const [value, setValue] = useState<string>("");
+  const [total, setTotal] = useState<string>("");
+  const [percentage, setPercentage] = useState<string>("");
+
+  const [result, setResult] = useState<string | null>(null);
+
+  const calculatePercentage = () => {
+    const val = parseFloat(value);
+    const tot = parseFloat(total);
+    if (!Number.isFinite(val) || !Number.isFinite(tot) || tot === 0) {
+      setResult("Please enter valid numbers (Total ≠ 0).");
+      return;
     }
+    const percent = (val / tot) * 100;
+    setResult(`${fmt(val)} is ${percent.toFixed(2)}% of ${fmt(tot)}`);
   };
 
-  const calculateWhatPercent = () => {
-    const part = parseFloat(value1);
-    const whole = parseFloat(value2);
-    if (part >= 0 && whole > 0) {
-      setResult((part / whole) * 100);
+  const calculateValue = () => {
+    const pct = parseFloat(percentage);
+    const tot = parseFloat(total);
+    if (!Number.isFinite(pct) || !Number.isFinite(tot)) {
+      setResult("Please enter valid numbers.");
+      return;
     }
+    const val = (pct / 100) * tot;
+    setResult(`${pct}% of ${fmt(tot)} is ${fmt(val)}`);
   };
 
-  const calculatePercentChange = () => {
-    const oldValue = parseFloat(value1);
-    const newValue = parseFloat(value2);
-    if (oldValue > 0) {
-      setResult(((newValue - oldValue) / oldValue) * 100);
-    }
-  };
-
-  const handleReset = () => {
-    setValue1('');
-    setValue2('');
-    setPercentage('');
+  const clearAll = () => {
+    setValue("");
+    setTotal("");
+    setPercentage("");
     setResult(null);
   };
 
-  const getCalculateFunction = () => {
-    switch (activeTab) {
-      case 'percentage-of': return calculatePercentageOf;
-      case 'what-percent': return calculateWhatPercent;
-      case 'percent-change': return calculatePercentChange;
-      default: return calculatePercentageOf;
-    }
-  };
-
-  const getResultLabel = () => {
-    switch (activeTab) {
-      case 'percentage-of': return 'Result';
-      case 'what-percent': return 'Percentage';
-      case 'percent-change': return 'Percent Change';
-      default: return 'Result';
-    }
-  };
-
-  const getResultSuffix = () => {
-    return activeTab === 'percentage-of' ? '' : '%';
-  };
-
   return (
-    <CalculatorLayout
-      title="Percentage Calculator"
-      description="Calculate percentages, percent changes, and find what percent one number is of another."
-      formula="Percentage = (Part ÷ Whole) × 100%"
-      example="25% of 200 = 50, or 50 is 25% of 200"
-    >
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="percentage-of">X% of Y</TabsTrigger>
-          <TabsTrigger value="what-percent">X is what % of Y</TabsTrigger>
-          <TabsTrigger value="percent-change">% Change</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="percentage-of" className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <InputGroup
-              label="Percentage (%)"
-              id="percentage"
-              type="number"
-              value={percentage}
-              onChange={setPercentage}
-              placeholder="25"
-              required
-            />
-            <InputGroup
-              label="Of Value"
-              id="value1"
-              type="number"
-              value={value1}
-              onChange={setValue1}
-              placeholder="200"
-              required
-            />
-          </div>
-        </TabsContent>
-
-        <TabsContent value="what-percent" className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <InputGroup
-              label="Part (X)"
-              id="value1"
-              type="number"
-              value={value1}
-              onChange={setValue1}
-              placeholder="50"
-              required
-            />
-            <InputGroup
-              label="Whole (Y)"
-              id="value2"
-              type="number"
-              value={value2}
-              onChange={setValue2}
-              placeholder="200"
-              required
-            />
-          </div>
-        </TabsContent>
-
-        <TabsContent value="percent-change" className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <InputGroup
-              label="Original Value"
-              id="value1"
-              type="number"
-              value={value1}
-              onChange={setValue1}
-              placeholder="100"
-              required
-            />
-            <InputGroup
-              label="New Value"
-              id="value2"
-              type="number"
-              value={value2}
-              onChange={setValue2}
-              placeholder="125"
-              required
-            />
-          </div>
-        </TabsContent>
-      </Tabs>
-
-      <div className="flex gap-4">
-        <Button onClick={getCalculateFunction()} className="flex-1">
-          Calculate
-        </Button>
-        <Button variant="outline" onClick={handleReset}>
-          Reset
-        </Button>
+    <div className="mx-auto max-w-4xl p-4 sm:p-6">
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold mb-2 bg-gradient-primary bg-clip-text text-transparent">
+          Percentage Calculator
+        </h1>
+        <p className="text-lg text-muted-foreground">
+          Calculate percentages, find what percent one number is of another, or find X% of a number.
+        </p>
       </div>
 
-      {result !== null && (
-        <>
-          <Separator />
-          <ResultCard
-            title={getResultLabel()}
-            value={Math.round(result * 100) / 100}
-            suffix={getResultSuffix()}
-            colorClass="text-primary"
-          />
-        </>
+      <div className="grid gap-8 lg:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>What percent is X of Y?</CardTitle>
+            <CardDescription>Find what percentage one number is of another</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid gap-2">
+              <Label htmlFor="val">Value (X)</Label>
+              <Input
+                id="val"
+                inputMode="decimal"
+                placeholder="Enter value"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+              />
+            </div>
+
+            <div className="grid gap-2">
+              <Label htmlFor="totA">Total (Y)</Label>
+              <Input
+                id="totA"
+                inputMode="decimal"
+                placeholder="Enter total"
+                value={total}
+                onChange={(e) => setTotal(e.target.value)}
+              />
+            </div>
+
+            <Button onClick={calculatePercentage} className="w-full">
+              Calculate Percentage
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>What is X% of Y?</CardTitle>
+            <CardDescription>Find a percentage of a number</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid gap-2">
+              <Label htmlFor="pct">Percentage (%)</Label>
+              <Input
+                id="pct"
+                inputMode="decimal"
+                placeholder="Enter percentage"
+                value={percentage}
+                onChange={(e) => setPercentage(e.target.value)}
+              />
+            </div>
+
+            <div className="grid gap-2">
+              <Label htmlFor="totB">Total (Y)</Label>
+              <Input
+                id="totB"
+                inputMode="decimal"
+                placeholder="Enter total"
+                value={total}
+                onChange={(e) => setTotal(e.target.value)}
+              />
+            </div>
+
+            <Button onClick={calculateValue} className="w-full">
+              Calculate Value
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      {result && (
+        <Card className="mt-8">
+          <CardHeader>
+            <CardTitle>Result</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-center">
+              <p className="text-2xl font-bold text-primary mb-4">{result}</p>
+              <Button variant="outline" onClick={clearAll}>
+                Clear All
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       )}
-    </CalculatorLayout>
+
+      <Card className="mt-8">
+        <CardHeader>
+          <CardTitle>How to Calculate Percentages</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <h3 className="font-semibold mb-1">What percent is X of Y?</h3>
+            <p className="text-muted-foreground">
+              <strong>Formula:</strong> (X ÷ Y) × 100 = Percentage
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Example: What percent is 25 of 200? → (25 ÷ 200) × 100 = <strong>12.5%</strong>
+            </p>
+          </div>
+          <Separator />
+          <div>
+            <h3 className="font-semibold mb-1">What is X% of Y?</h3>
+            <p className="text-muted-foreground">
+              <strong>Formula:</strong> (X ÷ 100) × Y = Result
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Example: What is 15% of 300? → (15 ÷ 100) × 300 = <strong>45</strong>
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
-};
+}

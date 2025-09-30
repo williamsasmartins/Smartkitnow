@@ -15,13 +15,31 @@ export default function Privacy() {
   return (
     <div className="min-h-screen bg-gradient-soft">
       <SEOHead
-        title="Privacy Policy · SmartKitNow"
-        description="Privacy Policy for SmartKitNow."
-        breadcrumbs={[
-          { name: "Home", url: "https://www.smartkitnow.com/" },
-          { name: "Privacy Policy", url: "https://www.smartkitnow.com/privacy-policy" },
-        ]}
-      />
+  title="Privacy Policy · SmartKitNow"
+  description="Privacy Policy for SmartKitNow — how we collect, use, and protect your information."
+  canonical="https://www.smartkitnow.com/privacy"
+  breadcrumbs={[
+    { name: "Home", url: "https://www.smartkitnow.com/" },
+    { name: "Privacy Policy", url: "https://www.smartkitnow.com/privacy" },
+  ]}
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "PrivacyPolicy",
+    name: "Privacy Policy",
+    url: "https://www.smartkitnow.com/privacy",
+    description: "How SmartKitNow collects, uses, and protects information.",
+    dateModified: "2025-09-20",
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.smartkitnow.com/" },
+        { "@type": "ListItem", position: 2, name: "Privacy Policy", item: "https://www.smartkitnow.com/privacy" }
+      ]
+    },
+    publisher: { "@type": "Organization", name: "SmartKitNow", url: "https://www.smartkitnow.com/" }
+  }}
+/>
+
 
       <Header />
 

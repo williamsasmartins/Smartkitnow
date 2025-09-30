@@ -12,12 +12,13 @@ import CalculatorLayout from "@/components/layouts/CalculatorLayout";
 import SEOHead from "@/components/SEOHead";
 import { PALETTE } from "@/components/theme/palette";
 
+/** Carrega um componente dinamicamente a partir do entry do registry */
 function lazyFrom(entry?: { loader: () => Promise<any>; namedExport?: string }) {
   if (!entry) return null;
   return React.lazy(async () => {
     const mod = await entry.loader();
     const Comp =
-      (entry.namedExport ? mod[entry.namedExport] : mod.default) as React.ComponentType<any>;
+      (entry.namedExport ? (mod as any)[entry.namedExport] : (mod as any).default) as React.ComponentType<any>;
     if (!Comp) {
       const first = mod && Object.values(mod)[0];
       if (!first || typeof first !== "function") {
@@ -29,6 +30,7 @@ function lazyFrom(entry?: { loader: () => Promise<any>; namedExport?: string }) 
   });
 }
 
+/** Transforma slug em Title Case simples */
 function titleCaseFromSlug(slug?: string) {
   if (!slug) return "";
   return slug
@@ -37,7 +39,7 @@ function titleCaseFromSlug(slug?: string) {
     .join(" ");
 }
 
-const CalculatorPage = () => {
+const CalculatorPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { category, subcategory, slug } = useParams<{
@@ -46,11 +48,11 @@ const CalculatorPage = () => {
     slug: string;
   }>();
 
-  // no seu App.tsx atual você usa: "/:category/:subcategory/calculator/:slug"
-  // se tiver outra assinatura, ajuste aqui.
+  // slug da calculadora vem da rota curta "/:category/:subcategory/:slug"
   const calcSlug = slug;
   const entry = getEntry(calcSlug);
 
+  // fallback para category/subcategory a partir da URL caso o registry não informe
   const categoryFromPath =
     location.pathname.split("/")[1] || entry?.category || "construction";
   const subCategoryTitle = subcategory ? titleCaseFromSlug(subcategory) : undefined;
@@ -61,6 +63,17 @@ const CalculatorPage = () => {
   };
 
   const LazyComp = useMemo(() => lazyFrom(entry), [entry]);
+
+  // SEO defaults
+  const calcName = entry?.name ?? "Calculator";
+  const catTitle =
+    FRIENDLY_TITLES[entry?.category ?? categoryFromPath] ??
+    titleCaseFromSlug(entry?.category ?? categoryFromPath);
+
+  const pageTitle = `${calcName} - Smart Kit Now`;
+  const pageDesc =
+    entry?.description ??
+    `Use the ${calcName} to estimate and analyze values with professional-grade accuracy. Includes how-to, examples and references.`;
 
   const NotFoundCalc = (
     <Card className="bg-card border-border/50">
@@ -83,17 +96,6 @@ const CalculatorPage = () => {
       </CardContent>
     </Card>
   );
-
-  // SEO defaults
-  const calcName = entry?.name ?? "Calculator";
-  const catTitle =
-    FRIENDLY_TITLES[entry?.category ?? categoryFromPath] ??
-    titleCaseFromSlug(entry?.category ?? categoryFromPath);
-
-  const pageTitle = `${calcName} - Smart Kit Now`;
-  const pageDesc =
-    entry?.description ??
-    `Use the ${calcName} to estimate and analyze values with professional-grade accuracy. Includes how-to, examples and references.`;
 
   return (
     <div className="min-h-screen bg-gradient-soft">
@@ -154,15 +156,22 @@ const CalculatorPage = () => {
                 <div className="p-3 rounded-lg bg-primary/10">
                   <Calculator className="h-8 w-8 text-primary" />
                 </div>
-                <div>
-                  <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                    {calcName}
-                  </h1>
-                  <p className="text-muted-foreground mt-2 text-lg">
-                    Category: {catTitle}
-                    {subcategory ? ` · ${titleCaseFromSlug(subcategory)}` : ""}
-                  </p>
-                </div>
+
+                {/* Título e subtítulo nas cores padrão do site */}
+                <h1
+                  className="text-4xl font-bold mb-2"
+                  style={{ color: "#5c82ee" }}
+                >
+                  {calcName}
+                </h1>
+
+                <p
+                  className="mt-2 text-lg"
+                  style={{ color: "#747886" }}
+                >
+                  Category: {catTitle}
+                  {subcategory ? ` · ${titleCaseFromSlug(subcategory)}` : ""}
+                </p>
               </div>
             </div>
 

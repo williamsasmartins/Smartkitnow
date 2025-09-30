@@ -1,193 +1,213 @@
+// src/pages/MathCalculators.tsx
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import PageWithRails from "@/components/layouts/PageWithRails";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  ArrowLeft,
+  Percent,
+  Calculator,
+  Shapes,
+  GraduationCap,
+  Hash,
+  Ruler,
+  Triangle,
+  Sigma,
+  FunctionSquare,
+  LineChart,
+  Axis3D, // <— trocamos por este
+} from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
-const mathData = {
-  "basic": {
-    title: "Basic Calculators",
-    description: "Essential mathematical calculation tools",
-    calculators: [
-      { key: "scientific", name: "Scientific Calculator", description: "Advanced mathematical functions and operations" },
-      { key: "basic", name: "Basic Calculator", description: "Simple arithmetic operations and calculations" }
-    ]
-  },
-  "percentage": {
-    title: "Percentage Calculators",
-    description: "Calculate percentages, increases, decreases and conversions",
-    calculators: [
-      { key: "percentage", name: "Percentage Calculator", description: "Calculate percentages and ratios" },
-      { key: "percent-increase", name: "Percent Increase Calculator", description: "Calculate percentage increase between values" },
-      { key: "percent-decrease", name: "Percent Decrease Calculator", description: "Calculate percentage decrease between values" },
-      { key: "percent-change", name: "Percent Change Calculator", description: "Calculate percentage change between values" },
-      { key: "percent-to-decimal", name: "Percent to Decimal Calculator", description: "Convert percentages to decimal values" },
-      { key: "percent-to-fraction", name: "Percent to Fraction Calculator", description: "Convert percentages to fractions" }
-    ]
-  },
-  "grade": {
-    title: "Grade Calculators",
-    description: "Academic grade calculations and GPA tools",
-    calculators: [
-      { key: "gpa", name: "GPA Calculator", description: "Calculate your Grade Point Average" },
-      { key: "college-gpa", name: "College GPA Calculator", description: "Calculate college-level GPA with credits" },
-      { key: "final-grade", name: "Final Grade Calculator", description: "Calculate required final exam score" },
-      { key: "weighted-grade", name: "Weighted Grade Calculator", description: "Calculate weighted grades and averages" }
-    ]
-  },
-  "fraction": {
-    title: "Fraction Calculators",
-    description: "Fraction operations and conversions",
-    calculators: [
-      { key: "fraction-to-decimal", name: "Fraction to Decimal Calculator", description: "Convert fractions to decimal numbers" },
-      { key: "decimal-to-fraction", name: "Decimal to Fraction Calculator", description: "Convert decimal numbers to fractions" },
-      { key: "fraction-to-percent", name: "Fraction to Percent Calculator", description: "Convert fractions to percentages" },
-      { key: "fraction-simplifier", name: "Fraction Simplifier / Reducer", description: "Simplify and reduce fractions" },
-      { key: "mixed-number", name: "Mixed Number ↔ Improper Fraction", description: "Convert between mixed numbers and improper fractions" }
-    ]
-  },
-  "geometry": {
-    title: "Geometry Calculators",
-    description: "Area, volume, perimeter and geometric calculations",
-    calculators: [
-      { key: "area", name: "Area Calculator", description: "Calculate area of various shapes" },
-      { key: "volume", name: "Volume Calculator", description: "Calculate volume of 3D shapes" },
-      { key: "perimeter", name: "Perimeter Calculator", description: "Calculate perimeter of shapes" },
-      { key: "circumference", name: "Circumference Calculator", description: "Calculate circle circumference" }
-    ]
-  },
-  "number-conversion": {
-    title: "Number Conversion Calculators",
-    description: "Convert between different number systems",
-    calculators: [
-      { key: "decimal-to-binary", name: "Decimal to Binary Converter", description: "Convert decimal numbers to binary" },
-      { key: "binary-to-decimal", name: "Binary to Decimal Converter", description: "Convert binary numbers to decimal" },
-      { key: "decimal-to-hex", name: "Decimal to Hexadecimal Converter", description: "Convert decimal to hexadecimal" },
-      { key: "base-converter", name: "Base Converter", description: "Convert between different number bases" }
-    ]
-  },
-  "slope-line": {
-    title: "Slope and Line Calculators",
-    description: "Linear equation and coordinate geometry tools",
-    calculators: [
-      { key: "slope", name: "Slope Calculator", description: "Calculate slope between two points" },
-      { key: "distance", name: "Distance Between Two Points Calculator", description: "Calculate distance between coordinates" }
-    ]
-  },
-  "statistics": {
-    title: "Statistics Calculators",
-    description: "Statistical analysis and probability tools",
-    calculators: [
-      { key: "mean-median-mode", name: "Mean, Median, Mode Calculator", description: "Calculate central tendency measures" },
-      { key: "standard-deviation", name: "Standard Deviation Calculator", description: "Calculate standard deviation and variance" },
-      { key: "z-score", name: "Z-Score Calculator", description: "Calculate z-scores and probabilities" },
-      { key: "probability", name: "Probability Calculator", description: "Calculate probability and combinations" }
-    ]
-  },
-  "trigonometry": {
-    title: "Triangle & Trigonometry",
-    description: "Triangular calculations and trigonometric functions",
-    calculators: [
-      { key: "pythagorean", name: "Pythagorean Theorem Calculator", description: "Calculate triangle sides using Pythagorean theorem" },
-      { key: "right-triangle", name: "Right Triangle Calculator", description: "Calculate right triangle properties" },
-      { key: "trigonometric", name: "Sine, Cosine, Tangent Calculators", description: "Calculate trigonometric functions" },
-      { key: "unit-circle", name: "Unit Circle Calculator", description: "Unit circle values and calculations" }
-    ]
-  }
+type Subcat = {
+  to: string;
+  title: string;
+  countText: string;
+  icon: React.ReactNode;
+  bg: string; // rgba bg
+  fg: string; // hex fg
 };
 
-export default function MathCalculators() {
-  const [searchTerm, setSearchTerm] = useState("");
+const SUBCATS: Subcat[] = [
+  {
+    to: "/math/percent-calculators",
+    title: "Percentage Calculators",
+    countText: "4 calculators available",
+    icon: <Percent className="h-5 w-5" />,
+    bg: "rgba(59,130,246,0.12)",
+    fg: "#3b82f6",
+  },
+  {
+    to: "/math/fraction-calculators",
+    title: "Fraction Calculators",
+    countText: "14 calculators available",
+    icon: <Calculator className="h-5 w-5" />,
+    bg: "rgba(234,179,8,0.12)",
+    fg: "#eab308",
+  },
+  {
+    to: "/math/geometry-calculators",
+    title: "Geometry Calculators",
+    countText: "22 calculators available",
+    icon: <Shapes className="h-5 w-5" />,
+    bg: "rgba(99,102,241,0.12)",
+    fg: "#6366f1",
+  },
+  {
+    to: "/math/triangle-calculators",
+    title: "Triangle Calculators",
+    countText: "13 calculators available",
+    icon: <Triangle className="h-5 w-5" />,
+    bg: "rgba(20,184,166,0.12)",
+    fg: "#14b8a6",
+  },
+  {
+    to: "/math/trig-calculators",
+    title: "Trigonometry Calculators",
+    countText: "16 calculators available",
+    icon: <FunctionSquare className="h-5 w-5" />,
+    bg: "rgba(99,102,241,0.12)",
+    fg: "#6366f1",
+  },
+  {
+    to: "/math/statistics-calculators",
+    title: "Statistics Calculators",
+    countText: "28 calculators available",
+    icon: <LineChart className="h-5 w-5" />,
+    bg: "rgba(59,130,246,0.12)",
+    fg: "#3b82f6",
+  },
+  {
+    to: "/math/grade-calculators",
+    title: "Grade & GPA Calculators",
+    countText: "10 calculators available",
+    icon: <GraduationCap className="h-5 w-5" />,
+    bg: "rgba(34,197,94,0.12)",
+    fg: "#22c55e",
+  },
+  {
+    to: "/math/number-system",
+    title: "Number System Converters",
+    countText: "16 calculators available",
+    icon: <Hash className="h-5 w-5" />,
+    bg: "rgba(168,85,247,0.12)",
+    fg: "#a855f7",
+  },
+  {
+    to: "/math/line-vector-calculators",
+    title: "Lines & Vectors",
+    countText: "18 calculators available",
+    icon: <Axis3D className="h-5 w-5" />, // <— aqui
+    bg: "rgba(234,88,12,0.12)",
+    fg: "#ea580c",
+  },
+  {
+    to: "/math/measure-tools",
+    title: "Measurement & Rounding",
+    countText: "12 calculators available",
+    icon: <Ruler className="h-5 w-5" />,
+    bg: "rgba(107,114,128,0.12)",
+    fg: "#6b7280",
+  },
+  {
+    to: "/math/algebra-calculators",
+    title: "Algebra & Equations",
+    countText: "12 calculators available",
+    icon: <Sigma className="h-5 w-5" />,
+    bg: "rgba(244,63,94,0.12)",
+    fg: "#f43f5e",
+  },
+  {
+    to: "/math/more-math",
+    title: "More Math Tools",
+    countText: "20+ calculators available",
+    icon: <Calculator className="h-5 w-5" />,
+    bg: "rgba(2,132,199,0.12)",
+    fg: "#0284c7",
+  },
+];
 
-  const filteredData = useMemo(() => {
-    if (!searchTerm.trim()) return mathData;
-    
-    const filtered: Partial<typeof mathData> = {};
-    Object.entries(mathData).forEach(([key, category]) => {
-      const filteredCalculators = category.calculators.filter(calc =>
-        calc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        calc.description.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      
-      if (filteredCalculators.length > 0) {
-        filtered[key as keyof typeof mathData] = {
-          ...category,
-          calculators: filteredCalculators
-        };
-      }
-    });
-    
-    return filtered;
-  }, [searchTerm]);
+export default function MathCalculators() {
+  const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
+    <div className="min-h-screen bg-gradient-soft">
+      <SEOHead
+        title="Math & Algebra Calculators · SmartKitNow"
+        description="Everyday math tools: percentages, fractions, geometry, statistics, trigonometry, triangles and more."
+        breadcrumbs={[
+          { name: "Home", url: "https://www.smartkitnow.com/" },
+          { name: "Math & Algebra Calculators", url: "https://www.smartkitnow.com/math" },
+        ]}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Math & Algebra Calculators",
+          url: "https://www.smartkitnow.com/math",
+          description: "Browse math calculator categories.",
+        }}
+      />
+
       <Header />
-      
-      <main className="container mx-auto px-4 pt-24 pb-12">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-            Math & Algebra Calculators
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Use our math and algebra calculators for mathematical operations, conversions, and academic calculations. From basic arithmetic to advanced trigonometry.
-          </p>
-          
-          {/* Search Bar */}
-          <div className="max-w-md mx-auto relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search for a calculator"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 bg-background/80 border-border/60 focus:border-primary/40"
-            />
-          </div>
-        </div>
 
-        {/* Calculator Categories */}
-        <div className="grid gap-8">
-          {Object.entries(filteredData).map(([key, category]) => (
-            <Card key={key} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader className="bg-gradient-subtle">
-                <CardTitle className="text-2xl">{category.title}</CardTitle>
-                <CardDescription className="text-base">
-                  {category.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {category.calculators.map((calculator) => (
-                    <Link
-                      key={calculator.key}
-                      to={`/math/calculator/${calculator.key}`}
-                      className="block p-4 rounded-lg border border-border/60 hover:border-primary/40 hover:bg-muted/50 transition-all duration-200 group"
+      <main className="pt-20">
+        <PageWithRails
+          titleBlock={
+            <div className="text-center">
+              <div className="mb-6 text-left">
+                <Button
+                  variant="default"
+                  onClick={() => navigate("/")}
+                  className="flex items-center gap-2"
+                  style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back
+                </Button>
+              </div>
+
+              <h1 className="text-4xl font-bold mb-3" style={{ color: "#5c82ee" }}>
+                Math & Algebra Calculators
+              </h1>
+              <p className="text-lg max-w-3xl mx-auto" style={{ color: "#747886" }}>
+                Quick, accurate math tools. Choose a category below.
+              </p>
+            </div>
+          }
+          showRails
+          showTopBanner
+          showBottomBanner
+        >
+          {/* Grid de subcategorias (TODAS clicáveis) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {SUBCATS.map((sc) => (
+              <Link key={sc.to} to={sc.to} className="group block">
+                <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                  <CardHeader className="flex items-center gap-3">
+                    <span
+                      className="inline-flex items-center justify-center rounded-xl"
+                      style={{ width: 40, height: 40, backgroundColor: sc.bg, color: sc.fg }}
+                      aria-hidden="true"
                     >
-                      <h3 className="font-semibold group-hover:text-primary transition-colors">
-                        {calculator.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mt-2">
-                        {calculator.description}
-                      </p>
-                    </Link>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {Object.keys(filteredData).length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">
-              No calculators found matching "{searchTerm}"
-            </p>
+                      {sc.icon}
+                    </span>
+                    <CardTitle className="text-xl font-bold" style={{ color: "#5c82ee" }}>
+                      {sc.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm" style={{ color: "#747886" }}>
+                      {sc.countText}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
           </div>
-        )}
+        </PageWithRails>
       </main>
 
       <Footer />

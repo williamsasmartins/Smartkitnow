@@ -1,193 +1,130 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// src/pages/HealthCalculators.tsx
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import PageWithRails from "@/components/layouts/PageWithRails";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Heart, ArrowLeft } from "lucide-react";
+import { ArrowLeft, Activity, Apple, Dumbbell, Flame, HeartPulse, Ruler } from "lucide-react";
+import { listSubcategoriesOfCategory, FRIENDLY_TITLES } from "@/data/calculatorRegistry";
+import SEOHead from "@/components/SEOHead";
 
-const HealthCalculators = () => {
+/**
+ * ÍCONES COLORIDOS POR SUBCATEGORIA (seguindo o padrão da home)
+ * - Se a subcategoria não estiver mapeada, cai no default (HeartPulse roxo).
+ * - Cores: ícone com cor viva + “badge” arredondado com fundo suave.
+ */
+const ICONS_BY_SUBCAT: Record<
+  string,
+  { Icon: React.ComponentType<any>; color: string; bg: string }
+> = {
+  // Health
+  "body-measurement-calculators": { Icon: Ruler,      color: "#22c55e", bg: "rgba(34,197,94,0.12)" },   // green
+  "diet-nutrition-calculators":   { Icon: Apple,      color: "#f97316", bg: "rgba(249,115,22,0.12)" },  // orange
+  "calories-conversion":          { Icon: Flame,      color: "#ef4444", bg: "rgba(239,68,68,0.12)" },   // red
+  "fitness-calculators":          { Icon: Dumbbell,   color: "#06b6d4", bg: "rgba(6,182,212,0.12)" },   // cyan
+};
+
+const DEFAULT_ICON = { Icon: HeartPulse, color: "#8b5cf6", bg: "rgba(139,92,246,0.12)" }; // purple
+
+function getIconForSubcat(slug: string) {
+  return ICONS_BY_SUBCAT[slug] || DEFAULT_ICON;
+}
+
+export default function HealthCalculators() {
   const navigate = useNavigate();
-
-  const subCategories = [
-    {
-      title: "Body Measurement Calculators",
-      icon: "fa-solid fa-user",
-      calculators: [
-        { key: "adjusted-body-weight", name: "Adjusted Body Weight Calculator" },
-        { key: "army-body-fat", name: "Army Body Fat Calculator" },
-        { key: "baby-growth-percentile", name: "Baby Growth Percentile Calculator" },
-        { key: "bac", name: "Blood Alcohol Content (BAC) Calculator" },
-        { key: "bmi", name: "BMI Calculator" },
-        { key: "body-fat", name: "Body Fat Calculator" },
-        { key: "body-shape", name: "Body Shape Calculator" },
-        { key: "body-surface-area", name: "Body Surface Area Calculator" },
-        { key: "child-teen-bmi", name: "Child & Teen BMI Calculator" },
-        { key: "child-height-percentile", name: "Child Height Percentile Calculator" },
-        { key: "child-weight-percentile", name: "Child Weight Percentile Calculator" },
-        { key: "desk-height", name: "Desk Height Calculator" },
-        { key: "ffmi", name: "FFMI Calculator (Fat-Free Mass Index)" },
-        { key: "height", name: "Height Calculator" },
-        { key: "height-converter", name: "Height Converter" },
-        { key: "ideal-body-weight", name: "Ideal Body Weight Calculator" },
-        { key: "iq-percentile", name: "IQ Percentile Calculator" },
-        { key: "lean-body-mass", name: "Lean Body Mass Calculator" },
-        { key: "navy-body-fat", name: "Navy Body Fat Calculator" },
-        { key: "waist-to-height-ratio", name: "Waist-to-Height Ratio Calculator" },
-        { key: "waist-to-hip-ratio", name: "Waist-to-Hip Ratio Calculator" },
-        { key: "weight-loss-percentage", name: "Weight Loss Percentage Calculator" }
-      ]
-    },
-    {
-      title: "Calories Conversion",
-      icon: "fa-solid fa-fire",
-      calculators: [
-        { key: "calories-to-kg", name: "Convert Calories to Kilograms" },
-        { key: "calories-to-pounds", name: "Convert Calories to Pounds" },
-        { key: "kg-to-calories", name: "Convert Kilograms to Calories" },
-        { key: "pounds-to-calories", name: "Convert Pounds to Calories" }
-      ]
-    },
-    {
-      title: "Dietary and Nutrition Calculators",
-      icon: "fa-solid fa-apple-whole",
-      calculators: [
-        { key: "bmr", name: "BMR Calculator" },
-        { key: "calorie-density", name: "Calorie Density Calculator" },
-        { key: "calorie-intake", name: "Calorie Intake Calculator" },
-        { key: "carb", name: "Carb Calculator" },
-        { key: "fat-intake", name: "Fat Intake Calculator" },
-        { key: "harris-benedict", name: "Harris-Benedict Calculator" },
-        { key: "keto", name: "Keto Calculator" },
-        { key: "macro", name: "Macro Calculator" },
-        { key: "maintenance-calorie", name: "Maintenance Calorie Calculator" },
-        { key: "mifflin-st-jeor", name: "Mifflin St. Jeor Calculator" },
-        { key: "net-carb", name: "Net Carb Calculator" },
-        { key: "protein-intake", name: "Protein Intake Calculator" },
-        { key: "rmr", name: "RMR Calculator" },
-        { key: "tdee", name: "TDEE Calculator" },
-        { key: "water-intake", name: "Water Intake Calculator" },
-        { key: "weight-gain", name: "Weight Gain Calculator" },
-        { key: "weight-loss", name: "Weight Loss Calculator" }
-      ]
-    },
-    {
-      title: "Fitness Calculators",
-      icon: "fa-solid fa-dumbbell",
-      calculators: [
-        { key: "acft", name: "ACFT Calculator" },
-        { key: "air-force-pt-test", name: "Air Force PT Test Calculator" },
-        { key: "bench-press", name: "Bench Press Calculator" },
-        { key: "calories-burned-biking", name: "Calories Burned Biking Calculator" },
-        { key: "calories-burned", name: "Calories Burned Calculator" },
-        { key: "calories-burned-hiking", name: "Calories Burned Hiking Calculator" },
-        { key: "calories-burned-jumping-rope", name: "Calories Burned Jumping Rope Calculator" },
-        { key: "calories-burned-running", name: "Calories Burned Running Calculator" },
-        { key: "calories-burned-swimming", name: "Calories Burned Swimming Calculator" },
-        { key: "calories-burned-walking", name: "Calories Burned Walking Calculator" },
-        { key: "calories-burned-weight-lifting", name: "Calories Burned Weight Lifting Calculator" },
-        { key: "deadlift-max", name: "Deadlift Max Calculator" },
-        { key: "golf-altitude-adjustment", name: "Golf Altitude Adjustment Calculator" },
-        { key: "ice-rink-volume", name: "Ice Rink Volume and Fill Time Calculator" },
-        { key: "lifting-strength", name: "Lifting Strength Calculator" },
-        { key: "miles-to-steps", name: "Miles to Steps Calculator" },
-        { key: "navy-prt", name: "Navy PRT Calculator" },
-        { key: "one-rep-max", name: "One-Rep Max Calculator" },
-        { key: "pace-distance", name: "Pace and Distance Calculator" },
-        { key: "push-ups-calorie", name: "Push-Ups Calorie Calculator" },
-        { key: "squat-max", name: "Squat Max Calculator" },
-        { key: "steps-to-calories", name: "Steps to Calories Calculator" },
-        { key: "steps-to-kilometers", name: "Steps to Kilometers Calculator" },
-        { key: "steps-to-miles", name: "Steps to Miles Calculator" },
-        { key: "target-heart-rate", name: "Target Heart Rate Calculator" },
-        { key: "usmc-pft-cft", name: "USMC PFT/CFT Calculator" },
-        { key: "zone-2-heart-rate", name: "Zone 2 Heart Rate Calculator" }
-      ]
-    }
-  ];
-
-  const handleSubCategoryClick = (subCategory: any) => {
-    const slug = subCategory.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    navigate(`/health/${slug}`, { state: { subCategory } });
-  };
+  const category = "health";
+  const subcats = listSubcategoriesOfCategory(category);
+  const categoryTitle = FRIENDLY_TITLES[category] || "Health & Fitness Calculators";
 
   return (
     <div className="min-h-screen bg-gradient-soft">
+      <SEOHead
+        title={`${categoryTitle} · SmartKitNow`}
+        description="Accurate health & fitness calculators: BMI, BMR, TDEE, calorie intake, and more — with clear explanations."
+        canonical="https://www.smartkitnow.com/health"
+        breadcrumbs={[
+          { name: "Home", url: "https://www.smartkitnow.com/" },
+          { name: categoryTitle, url: "https://www.smartkitnow.com/health" },
+        ]}
+      />
+
       <Header />
-      
+
       <main className="pt-20">
-        <section className="container mx-auto px-4 py-8">
-          <div className="mb-8">
-            <Button 
-              variant="ghost" 
-              size="sm"
-              onClick={() => navigate('/')}
-              className="flex items-center space-x-2 mb-6"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back</span>
-            </Button>
-            
-            <div className="flex flex-col items-center text-center space-y-3 mb-6">
-              <div className="p-3 rounded-lg bg-primary/10">
-                <Heart className="h-8 w-8 text-primary" />
+        <PageWithRails
+          titleBlock={
+            <div className="text-center">
+              {/* Back alinhado à esquerda */}
+              <div className="mb-6 text-left">
+                <Button
+                  variant="default"
+                  onClick={() => navigate("/")}
+                  className="flex items-center gap-2"
+                  style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back
+                </Button>
               </div>
-              <div>
-                <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                  Health & Fitness Calculators
-                </h1>
-                <p className="text-muted-foreground mt-2 text-lg">
-                  Use our health and fitness calculators for measurements and conversions for various exercise, fitness, nutritional, dietary, and body measurement applications.
-                </p>
-              </div>
+
+              <h1 className="text-4xl font-bold mb-3" style={{ color: "#5c82ee" }}>
+                {categoryTitle}
+              </h1>
+              <p className="text-lg max-w-3xl mx-auto" style={{ color: "#747886" }}>
+                Health, nutrition, and fitness tools to plan goals, track progress, and understand
+                your numbers—designed for clarity on any device.
+              </p>
             </div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {subCategories.map((subCategory, index) => (
-              <Card 
-                key={index} 
-                className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer"
-                onClick={() => handleSubCategoryClick(subCategory)}
-              >
-                <CardHeader>
-                  <div className="flex items-center space-x-3">
-                    <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                      <i className={`${subCategory.icon} text-primary text-lg`}></i>
-                    </div>
-                    <div>
-                      <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                        {subCategory.title}
+          }
+          showRails
+          showTopBanner
+          showBottomBanner
+          railsSticky={false} // produção segura (AdSense)
+        >
+          {/* Grid 1/2/3 colunas centralizada dentro do miolo (320/728/970) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {subcats.map((sc) => {
+              const { Icon, color, bg } = getIconForSubcat(sc.slug);
+              return (
+                <Link key={sc.slug} to={`/health/${sc.slug}`} className="group block">
+                  <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                    <CardHeader className="flex flex-row items-center gap-3">
+                      {/* Badge colorido com ícone */}
+                      <span
+                        className="inline-flex items-center justify-center rounded-xl"
+                        style={{
+                          width: 40,
+                          height: 40,
+                          backgroundColor: bg,
+                          color,
+                        }}
+                        aria-hidden="true"
+                      >
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <CardTitle
+                        className="text-xl font-bold transition-colors"
+                        style={{ color: "#3c83f6" }}
+                      >
+                        {sc.title}
                       </CardTitle>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {subCategory.calculators.length} calculators available
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm" style={{ color: "#747886" }}>
+                        {sc.count} calculators available
                       </p>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-1">
-                    {subCategory.calculators.slice(0, 3).map((calc, calcIndex) => (
-                      <p key={calcIndex} className="text-xs text-muted-foreground">
-                        • {calc.name}
-                      </p>
-                    ))}
-                    {subCategory.calculators.length > 3 && (
-                      <p className="text-xs text-muted-foreground font-medium">
-                        + {subCategory.calculators.length - 3} more calculators
-                      </p>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
-        </section>
+        </PageWithRails>
       </main>
 
       <Footer />
     </div>
   );
-};
-
-export default HealthCalculators;
+}

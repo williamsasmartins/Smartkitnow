@@ -1,163 +1,135 @@
+// src/pages/PetsSubCategory.tsx
+import React from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import PageWithRails from "@/components/layouts/PageWithRails";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Search, ArrowLeft } from "lucide-react";
-import { useState, useMemo } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import {
+  listByCategorySubcategory,
+  SUBCATEGORY_TITLES,
+  FRIENDLY_TITLES,
+} from "@/data/calculatorRegistry";
+import {
+  ArrowLeft, Dog, Cat, PawPrint, Bone, Fish, HeartPulse, Scale, Salad, GaugeCircle
+} from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
-const petsData = {
-  "dog": {
-    title: "Dog Calculators",
-    description: "Health, nutrition, and care calculators for dogs",
-    calculators: [
-      { key: "dog-age", name: "Dog Age Calculator", description: "Convert dog age to human years" },
-      { key: "dog-calorie", name: "Dog Calorie Calculator", description: "Calculate daily calorie needs for your dog" },
-      { key: "dog-chocolate-toxicity", name: "Dog Chocolate Toxicity Calculator", description: "Assess chocolate poisoning risk" },
-      { key: "dog-pregnancy", name: "Dog Pregnancy Calculator", description: "Calculate due date and pregnancy stages" },
-      { key: "dog-water-intake", name: "Dog Water Intake Calculator", description: "Calculate daily water requirements" },
-      { key: "dog-weight", name: "Dog Weight Calculator", description: "Assess if your dog is at ideal weight" }
-    ]
-  },
-  "cat": {
-    title: "Cat Calculators",
-    description: "Health and care calculators for cats",
-    calculators: [
-      { key: "cat-age", name: "Cat Age Calculator", description: "Convert cat age to human years" },
-      { key: "cat-calorie", name: "Cat Calorie Calculator", description: "Calculate daily calorie needs for your cat" },
-      { key: "cat-water-intake", name: "Cat Water Intake Calculator", description: "Calculate daily water requirements" },
-      { key: "cat-weight", name: "Cat Weight Calculator", description: "Assess if your cat is at ideal weight" },
-      { key: "cat-litter", name: "Cat Litter Calculator", description: "Calculate litter box requirements" }
-    ]
-  },
-  "aquarium": {
-    title: "Aquarium Calculators",
-    description: "Tank setup and maintenance calculators for aquariums",
-    calculators: [
-      { key: "aquarium-volume", name: "Aquarium Tank Volume Calculator", description: "Calculate tank volume and water capacity" },
-      { key: "aquarium-weight", name: "Aquarium Tank Weight Calculator", description: "Calculate total weight with water and decorations" },
-      { key: "fish-tank-filter", name: "Fish Tank Filter Calculator", description: "Calculate filtration requirements" },
-      { key: "aquarium-heater", name: "Aquarium Heater Calculator", description: "Calculate heater wattage needed" },
-      { key: "fish-stocking", name: "Fish Stocking Calculator", description: "Calculate fish capacity for your tank" }
-    ]
-  },
-  "general": {
-    title: "General Pet Calculators",
-    description: "Multi-pet and general pet care calculators",
-    calculators: [
-      { key: "pet-age", name: "Pet Age Calculator", description: "Convert various pet ages to human years" },
-      { key: "pet-medication", name: "Pet Medication Dosage Calculator", description: "Calculate medication dosages by weight" },
-      { key: "pet-travel-cost", name: "Pet Travel Cost Calculator", description: "Calculate costs for traveling with pets" },
-      { key: "pet-food-cost", name: "Pet Food Cost Calculator", description: "Calculate monthly and yearly food costs" },
-      { key: "pet-insurance", name: "Pet Insurance Calculator", description: "Calculate potential insurance savings" }
-    ]
-  }
-};
+// Ícones coloridos por calculadora (slug/name)
+type IconSpec = { Icon: React.ComponentType<any>; color: string; bg: string };
+const DEF: IconSpec = { Icon: PawPrint, color: "#8b5cf6", bg: "rgba(139,92,246,0.14)" };
+
+const RULES: Array<{ test: (k: string) => boolean; spec: IconSpec }> = [
+  { test: k => /dog|canine|puppy/.test(k),                spec: { Icon: Dog,        color: "#f59e0b", bg: "rgba(245,158,11,0.14)" } }, // amber
+  { test: k => /cat|feline|kitten/.test(k),               spec: { Icon: Cat,        color: "#22c55e", bg: "rgba(34,197,94,0.14)" } }, // green
+  { test: k => /weight|kg|lb|bmi|bcs|score/.test(k),      spec: { Icon: Scale,      color: "#a855f7", bg: "rgba(168,85,247,0.14)" } }, // purple
+  { test: k => /nutrition|calorie|food|diet|macro/.test(k), spec: { Icon: Salad,   color: "#06b6d4", bg: "rgba(6,182,212,0.14)" } }, // cyan
+  { test: k => /health|pulse|heart|fitness/.test(k),      spec: { Icon: HeartPulse, color: "#ef4444", bg: "rgba(239,68,68,0.14)" } }, // red
+  { test: k => /fish|aquatic|tank/.test(k),               spec: { Icon: Fish,       color: "#3b82f6", bg: "rgba(59,130,246,0.14)" } }, // blue
+  { test: k => /general|misc|other/.test(k),              spec: { Icon: GaugeCircle,color: "#22c55e", bg: "rgba(34,197,94,0.14)" } }, // green
+];
+
+function iconForCalc(slug: string, name: string): IconSpec {
+  const k = `${slug} ${name}`.toLowerCase();
+  const r = RULES.find(x => x.test(k));
+  return r ? r.spec : DEF;
+}
 
 export default function PetsSubCategory() {
-  const { subcategory } = useParams();
+  const category = "pets";
+  const { subcategory } = useParams<{ subcategory: string }>();
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState("");
 
-  const categoryData = subcategory ? petsData[subcategory as keyof typeof petsData] : null;
-
-  const filteredCalculators = useMemo(() => {
-    if (!categoryData) return [];
-    if (!searchTerm.trim()) return categoryData.calculators;
-    
-    return categoryData.calculators.filter(calc =>
-      calc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      calc.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [categoryData, searchTerm]);
-
-  if (!categoryData) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
-        <Header />
-        <main className="container mx-auto px-4 pt-24 pb-12">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Category Not Found</h1>
-            <p className="text-muted-foreground mb-8">The requested pet calculator category does not exist.</p>
-            <Button onClick={() => navigate("/pets")}>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Pet Calculators
-            </Button>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
+  const calculators = subcategory ? listByCategorySubcategory(category, subcategory) : [];
+  const subcatTitle =
+    (subcategory && SUBCATEGORY_TITLES[subcategory]) ||
+    (subcategory ? subcategory.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase()) : "Calculators");
+  const categoryTitle = FRIENDLY_TITLES[category] || "Pets Calculators";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
+    <div className="min-h-screen bg-gradient-soft">
+      <SEOHead
+        title={`${subcatTitle} — ${categoryTitle} · SmartKitNow`}
+        description={`Pet calculators: ${subcatTitle}. Health, nutrition, and care for dogs, cats, and more.`}
+        canonical={`https://www.smartkitnow.com/pets/${subcategory || ""}`}
+        breadcrumbs={[
+          { name: "Home", url: "https://www.smartkitnow.com/" },
+          { name: categoryTitle, url: "https://www.smartkitnow.com/pets" },
+          { name: subcatTitle, url: `https://www.smartkitnow.com/pets/${subcategory || ""}` },
+        ]}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: `${subcatTitle} — ${categoryTitle}`,
+          url: `https://www.smartkitnow.com/pets/${subcategory || ""}`,
+          description: `List of ${subcatTitle} calculators on SmartKitNow.`,
+        }}
+      />
+
       <Header />
-      
-      <main className="container mx-auto px-4 pt-24 pb-12">
-        {/* Back Button */}
-        <Button 
-          variant="ghost" 
-          onClick={() => navigate("/pets")}
-          className="mb-6 hover:bg-muted/80"
+
+      <main className="pt-20">
+        <PageWithRails
+          titleBlock={
+            <div>
+              <div className="mb-6">
+                <Button
+                  variant="default"
+                  onClick={() => navigate(`/pets`)}
+                  className="flex items-center gap-2"
+                  style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back
+                </Button>
+              </div>
+
+              <div className="text-center">
+                <h1 className="text-4xl font-bold mb-3" style={{ color: "#5c82ee" }}>
+                  {subcatTitle}
+                </h1>
+                <p className="text-lg max-w-2xl mx-auto" style={{ color: "#747886" }}>
+                  Practical pet tools for planning diet, tracking health, and more.
+                </p>
+              </div>
+            </div>
+          }
+          showRails
+          showTopBanner
+          showBottomBanner
+          railsSticky={false}
         >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to All Pet Calculators
-        </Button>
-
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-            {categoryData.title}
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            {categoryData.description}
-          </p>
-          
-          {/* Search Bar */}
-          <div className="max-w-md mx-auto relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search calculators..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 bg-background/80 border-border/60 focus:border-primary/40"
-            />
-          </div>
-        </div>
-
-        {/* Calculator Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredCalculators.map((calculator) => (
-            <Card 
-              key={calculator.key} 
-              className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
-            >
-              <Link to={`/pets/calculator/${calculator.key}`} className="block h-full">
-                <CardHeader className="bg-gradient-subtle group-hover:bg-gradient-primary/10 transition-colors duration-300">
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                    {calculator.name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <CardDescription className="text-base">
-                    {calculator.description}
-                  </CardDescription>
-                </CardContent>
-              </Link>
-            </Card>
-          ))}
-        </div>
-
-        {filteredCalculators.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">
-              No calculators found matching "{searchTerm}"
-            </p>
-          </div>
-        )}
+          {!calculators || calculators.length === 0 ? (
+            <p className="text-center" style={{ color: "#747886" }}>No calculators found yet in this subcategory.</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {calculators.map((calc) => {
+                const { Icon, color, bg } = iconForCalc(calc.slug, calc.name);
+                return (
+                  <Link key={calc.slug} to={`/pets/${calc.subcategory}/${calc.slug}`} className="group block">
+                    <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                      <CardHeader className="flex flex-row items-center gap-3">
+                        <span className="inline-flex items-center justify-center rounded-xl"
+                              style={{ width: 40, height: 40, backgroundColor: bg, color }} aria-hidden="true">
+                          <Icon className="h-5 w-5" />
+                        </span>
+                        <CardTitle className="text-lg font-semibold" style={{ color: "#3c83f6" }}>
+                          {calc.name}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm" style={{ color: "#747886" }}>
+                          {calc.description || "Open calculator"}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </PageWithRails>
       </main>
 
       <Footer />

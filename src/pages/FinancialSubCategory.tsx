@@ -1,100 +1,144 @@
-import { useLocation, useNavigate } from "react-router-dom";
+// src/pages/FinancialSubCategory.tsx
+import React from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Card, CardContent } from "@/components/ui/card";
+import PageWithRails from "@/components/layouts/PageWithRails";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calculator } from "lucide-react";
+import {
+  listByCategorySubcategory,
+  SUBCATEGORY_TITLES,
+  FRIENDLY_TITLES,
+} from "@/data/calculatorRegistry";
+import {
+  ArrowLeft,
+  Banknote,
+  Percent,
+  PiggyBank,
+  Home,
+  Landmark,
+  LineChart,
+  Calculator,
+} from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
-const FinancialSubCategory = () => {
+/** Ícones coloridos por calculadora (slug/name) — badge 40×40 */
+type IconSpec = { Icon: React.ComponentType<any>; color: string; bg: string };
+const DEF: IconSpec = { Icon: Calculator, color: "#8b5cf6", bg: "rgba(139,92,246,0.14)" };
+
+const RULES: Array<{ test: (k: string) => boolean; spec: IconSpec }> = [
+  { test: k => /mortgage|home|house/.test(k),        spec: { Icon: Home,      color: "#06b6d4", bg: "rgba(6,182,212,0.14)" } }, // cyan
+  { test: k => /interest|loan|refinance|apr|rate/.test(k), spec: { Icon: Percent,   color: "#f59e0b", bg: "rgba(245,158,11,0.14)" } }, // amber
+  { test: k => /roi|return|investment/.test(k),      spec: { Icon: LineChart, color: "#22c55e", bg: "rgba(34,197,94,0.14)" } }, // green
+  { test: k => /savings|budget|finance|personal/.test(k),  spec: { Icon: PiggyBank, color: "#ef4444", bg: "rgba(239,68,68,0.14)" } }, // red
+  { test: k => /cash|note|payment|amort/.test(k),    spec: { Icon: Banknote,  color: "#3b82f6", bg: "rgba(59,130,246,0.14)" } }, // blue
+  { test: k => /bank|institution|policy/.test(k),    spec: { Icon: Landmark,  color: "#a855f7", bg: "rgba(168,85,247,0.14)" } }, // purple
+];
+
+function iconForCalc(slug: string, name: string): IconSpec {
+  const k = `${slug} ${name}`.toLowerCase();
+  const r = RULES.find(x => x.test(k));
+  return r ? r.spec : DEF;
+}
+
+export default function FinancialSubCategory() {
+  const category = "financial";
+  const { subcategory } = useParams<{ subcategory: string }>();
   const navigate = useNavigate();
-  const location = useLocation();
-  const subCategory = location.state?.subCategory;
 
-  if (!subCategory) {
-    navigate('/financial');
-    return null;
-  }
-
-  const handleCalculatorClick = (calculator: any) => {
-    const slug = calculator.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    navigate(`/financial/calculator/${slug}`, { 
-      state: { 
-        calculator, 
-        subCategory: subCategory.title 
-      } 
-    });
-  };
+  const calculators = subcategory ? listByCategorySubcategory(category, subcategory) : [];
+  const subcatTitle =
+    (subcategory && SUBCATEGORY_TITLES[subcategory]) ||
+    (subcategory ? subcategory.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase()) : "Calculators");
+  const categoryTitle = FRIENDLY_TITLES[category] || "Financial Calculators";
 
   return (
     <div className="min-h-screen bg-gradient-soft">
+      <SEOHead
+        title={`${subcatTitle} — ${categoryTitle} · SmartKitNow`}
+        description={`Financial calculators: ${subcatTitle}. Loans, mortgages, ROI, and compounding.`}
+        canonical={`https://www.smartkitnow.com/financial/${subcategory || ""}`}
+        breadcrumbs={[
+          { name: "Home", url: "https://www.smartkitnow.com/" },
+          { name: categoryTitle, url: "https://www.smartkitnow.com/financial" },
+          { name: subcatTitle, url: `https://www.smartkitnow.com/financial/${subcategory || ""}` },
+        ]}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: `${subcatTitle} — ${categoryTitle}`,
+          url: `https://www.smartkitnow.com/financial/${subcategory || ""}`,
+          description: `List of ${subcatTitle} calculators on SmartKitNow.`,
+        }}
+      />
+
       <Header />
-      
+
       <main className="pt-20">
-        <section className="container mx-auto px-4 py-8">
-          <div className="mb-8">
-            <Button 
-              variant="ghost" 
-              size="sm"
-              onClick={() => navigate('/financial')}
-              className="flex items-center space-x-2 mb-6"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back</span>
-            </Button>
-            
-            <div className="flex flex-col items-center text-center space-y-3 mb-6">
-              <div className="p-3 rounded-lg bg-primary/10">
-                <i className={`${subCategory.icon} text-primary text-2xl`}></i>
+        <PageWithRails
+          titleBlock={
+            <div>
+              <div className="mb-6">
+                <Button
+                  variant="default"
+                  onClick={() => navigate(`/financial`)}
+                  className="flex items-center gap-2"
+                  style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back
+                </Button>
               </div>
-              <div>
-                <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                  Personal Finance Calculators – Budget, Debt & Savings Tools
+
+              <div className="text-center">
+                <h1 className="text-4xl font-bold mb-3" style={{ color: "#5c82ee" }}>
+                  {subcatTitle}
                 </h1>
-                <p className="text-muted-foreground mt-2 text-lg">
-                  Access 20 personal finance calculators designed to help you budget better, manage debt, track expenses, and plan your financial future with confidence.
+                <p className="text-lg max-w-2xl mx-auto" style={{ color: "#747886" }}>
+                  Professional finance tools for accurate planning and decisions.
                 </p>
               </div>
             </div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {subCategory.calculators.map((calculator: any, index: number) => (
-              <Card 
-                key={index} 
-                className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer"
-                onClick={() => handleCalculatorClick(calculator)}
-              >
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-3">
-                    <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                      <Calculator className="h-5 w-5 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {calculator.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        Specialized calculator for precise calculations
-                      </p>
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="mt-3 w-full"
-                      >
-                        Use Calculator
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
+          }
+          showRails
+          showTopBanner
+          showBottomBanner
+          railsSticky={false}
+        >
+          {!calculators || calculators.length === 0 ? (
+            <p className="text-center" style={{ color: "#747886" }}>No calculators found yet in this subcategory.</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {calculators.map((calc) => {
+                const { Icon, color, bg } = iconForCalc(calc.slug, calc.name);
+                return (
+                  <Link key={calc.slug} to={`/financial/${calc.subcategory}/${calc.slug}`} className="group block">
+                    <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                      <CardHeader className="flex flex-row items-center gap-3">
+                        <span className="inline-flex items-center justify-center rounded-xl"
+                              style={{ width: 40, height: 40, backgroundColor: bg, color }} aria-hidden="true">
+                          <Icon className="h-5 w-5" />
+                        </span>
+                        <CardTitle className="text-lg font-semibold" style={{ color: "#3c83f6" }}>
+                          {calc.name}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm" style={{ color: "#747886" }}>
+                          {calc.description || "Open calculator"}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </PageWithRails>
       </main>
 
       <Footer />
     </div>
   );
-};
-
-export default FinancialSubCategory;
+}

@@ -1,333 +1,150 @@
-import { useNavigate } from "react-router-dom";
+// src/pages/ConversionCalculators.tsx
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import PageWithRails from "@/components/layouts/PageWithRails";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, ChevronRight, Ruler, Map, ChefHat, Zap, Battery, Fuel, Move, Gauge, Thermometer, Clock, Volume2, Weight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, Gauge, Soup, Star } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
-const ConversionCalculators = () => {
+export default function ConversionCalculators() {
   const navigate = useNavigate();
 
-  const popularConverters = [
-    {
-      title: "Angle",
-      icon: <Ruler className="h-5 w-5" />,
-      color: "text-red-500",
-      bgColor: "bg-red-50 dark:bg-red-900/20",
-      conversions: [
-        { from: "deg", to: "rad", key: "deg-to-rad" },
-        { from: "rad", to: "deg", key: "rad-to-deg" },
-        { from: "deg", to: "mrad", key: "deg-to-mrad" },
-        { from: "mrad", to: "deg", key: "mrad-to-deg" }
-      ]
-    },
-    {
-      title: "Area",
-      icon: <Map className="h-5 w-5" />,
-      color: "text-red-500",
-      bgColor: "bg-red-50 dark:bg-red-900/20",
-      conversions: [
-        { from: "sq ft", to: "sq m", key: "sq-ft-to-sq-m" },
-        { from: "sq m", to: "sq ft", key: "sq-m-to-sq-ft" },
-        { from: "sq mi", to: "sq km", key: "sq-mi-to-sq-km" },
-        { from: "sq km", to: "sq mi", key: "sq-km-to-sq-mi" }
-      ]
-    },
-    {
-      title: "Cooking",
-      icon: <ChefHat className="h-5 w-5" />,
-      color: "text-red-500",
-      bgColor: "bg-red-50 dark:bg-red-900/20",
-      conversions: [
-        { from: "g", to: "mL", key: "g-to-ml" },
-        { from: "mL", to: "g", key: "ml-to-g" },
-        { from: "mg", to: "mL", key: "mg-to-ml" },
-        { from: "mL", to: "mg", key: "ml-to-mg" }
-      ]
-    },
-    {
-      title: "Electrical",
-      icon: <Zap className="h-5 w-5" />,
-      color: "text-red-500",
-      bgColor: "bg-red-50 dark:bg-red-900/20",
-      conversions: [
-        { from: "kΩ", to: "Ω", key: "kohm-to-ohm" },
-        { from: "MΩ", to: "Ω", key: "mohm-to-ohm" },
-        { from: "Ω", to: "kΩ", key: "ohm-to-kohm" },
-        { from: "mΩ", to: "Ω", key: "mohm-to-ohm-small" }
-      ]
-    },
-    {
-      title: "Energy",
-      icon: <Battery className="h-5 w-5" />,
-      color: "text-red-500",
-      bgColor: "bg-red-50 dark:bg-red-900/20",
-      conversions: [
-        { from: "kcal", to: "cal", key: "kcal-to-cal" },
-        { from: "MJ", to: "kWh", key: "mj-to-kwh" },
-        { from: "MWh", to: "kWh", key: "mwh-to-kwh" },
-        { from: "MMBTU", to: "MWh", key: "mmbtu-to-mwh" }
-      ]
-    },
-    {
-      title: "Fuel Economy",
-      icon: <Fuel className="h-5 w-5" />,
-      color: "text-red-500",
-      bgColor: "bg-red-50 dark:bg-red-900/20",
-      conversions: [
-        { from: "mpg", to: "km/L", key: "mpg-to-kml" },
-        { from: "km/L", to: "mpg", key: "kml-to-mpg" },
-        { from: "mpg", to: "L/100km", key: "mpg-to-l100km" },
-        { from: "L/100km", to: "mpg", key: "l100km-to-mpg" }
-      ]
-    },
-    {
-      title: "Length",
-      icon: <Move className="h-5 w-5" />,
-      color: "text-red-500",
-      bgColor: "bg-red-50 dark:bg-red-900/20",
-      conversions: [
-        { from: "in", to: "cm", key: "in-to-cm" },
-        { from: "cm", to: "in", key: "cm-to-in" },
-        { from: "ft", to: "m", key: "ft-to-m" },
-        { from: "m", to: "ft", key: "m-to-ft" }
-      ]
-    },
-    {
-      title: "Speed",
-      icon: <Gauge className="h-5 w-5" />,
-      color: "text-red-500",
-      bgColor: "bg-red-900/20",
-      conversions: [
-        { from: "mph", to: "km/h", key: "mph-to-kmh" },
-        { from: "km/h", to: "mph", key: "kmh-to-mph" },
-        { from: "ft/s", to: "mph", key: "fts-to-mph" },
-        { from: "mph", to: "m/s", key: "mph-to-ms" }
-      ]
-    },
-    {
-      title: "Temperature",
-      icon: <Thermometer className="h-5 w-5" />,
-      color: "text-red-500",
-      bgColor: "bg-red-50 dark:bg-red-900/20",
-      conversions: [
-        { from: "°F", to: "°C", key: "f-to-c" },
-        { from: "°C", to: "°F", key: "c-to-f" },
-        { from: "°F", to: "K", key: "f-to-k" },
-        { from: "°C", to: "K", key: "c-to-k" }
-      ]
-    },
-    {
-      title: "Time",
-      icon: <Clock className="h-5 w-5" />,
-      color: "text-red-500",
-      bgColor: "bg-red-50 dark:bg-red-900/20",
-      conversions: [
-        { from: "sec", to: "min", key: "sec-to-min" },
-        { from: "min", to: "sec", key: "min-to-sec" },
-        { from: "sec", to: "hr", key: "sec-to-hr" },
-        { from: "hr", to: "sec", key: "hr-to-sec" }
-      ]
-    },
-    {
-      title: "Volume",
-      icon: <Volume2 className="h-5 w-5" />,
-      color: "text-red-500",
-      bgColor: "bg-red-50 dark:bg-red-900/20",
-      conversions: [
-        { from: "tbsp", to: "cups", key: "tbsp-to-cups" },
-        { from: "cm³", to: "m³", key: "cm3-to-m3" },
-        { from: "gal", to: "L", key: "gal-to-l" },
-        { from: "tsp", to: "mL", key: "tsp-to-ml" }
-      ]
-    },
-    {
-      title: "Weight",
-      icon: <Weight className="h-5 w-5" />,
-      color: "text-red-500",
-      bgColor: "bg-red-50 dark:bg-red-900/20",
-      conversions: [
-        { from: "lbs", to: "kg", key: "lbs-to-kg" },
-        { from: "kg", to: "lbs", key: "kg-to-lbs" },
-        { from: "oz", to: "g", key: "oz-to-g" },
-        { from: "g", to: "oz", key: "g-to-oz" }
-      ]
-    }
-  ];
-
-  const subCategories = [
-    {
-      title: "Commonly Used Converters",
-      icon: "fa-solid fa-arrows-rotate",
-      calculators: [
-        { key: "conversion-calculator", name: "Conversion Calculator" },
-        { key: "angle-conversion", name: "Angle Conversion" },
-        { key: "area-conversion", name: "Area Conversion" },
-        { key: "length-conversion", name: "Length Conversion" },
-        { key: "pressure-conversion", name: "Pressure Conversion" },
-        { key: "speed-conversion", name: "Speed Conversion" },
-        { key: "temperature-conversion", name: "Temperature Conversion" },
-        { key: "time-conversion", name: "Time Conversion" },
-        { key: "volume-conversion", name: "Volume Conversion" },
-        { key: "weight-conversion", name: "Weight Conversion" }
-      ]
-    },
-    {
-      title: "Cooking & Baking Converters",
-      icon: "fa-solid fa-utensils",
-      calculators: [
-        { key: "cooking-ingredient-conversion", name: "Cooking Ingredient Conversion" },
-        { key: "beer-conversion", name: "Beer Conversion" },
-        { key: "butter-conversion", name: "Butter Conversion" },
-        { key: "flour-conversion", name: "Flour Conversion" },
-        { key: "salt-conversion", name: "Salt Conversion" },
-        { key: "sugar-conversion", name: "Sugar Conversion" }
-      ]
-    },
-    {
-      title: "Electrical Converters",
-      icon: "fa-solid fa-bolt",
-      calculators: [
-        { key: "capacitance-conversion", name: "Capacitance Conversion" },
-        { key: "electric-charge-conversion", name: "Electric Charge Conversion" },
-        { key: "electric-current-conversion", name: "Electric Current Conversion" },
-        { key: "electrical-conductance-conversion", name: "Electrical Conductance Conversion" },
-        { key: "electrical-inductance-conversion", name: "Electrical Inductance Conversion" },
-        { key: "electrical-resistance-conversion", name: "Electrical Resistance Conversion" },
-        { key: "energy-conversion", name: "Energy Conversion" },
-        { key: "mixed-electrical-unit-conversion", name: "Mixed Electrical Unit Conversion" },
-        { key: "power-conversion", name: "Power Conversion" },
-        { key: "voltage-conversion", name: "Voltage Conversion" }
-      ]
-    },
-    {
-      title: "More Converters",
-      icon: "fa-solid fa-plus",
-      calculators: [
-        { key: "data-storage-conversion", name: "Data Storage Conversion" },
-        { key: "data-transfer-conversion", name: "Data Transfer Conversion" },
-        { key: "electric-car-efficiency-conversion", name: "Electric Car Efficiency Conversion" },
-        { key: "force-conversion", name: "Force Conversion" },
-        { key: "frequency-conversion", name: "Frequency Conversion" },
-        { key: "fuel-economy-conversion", name: "Fuel Economy Conversion" },
-        { key: "number-system-conversion", name: "Number System Conversion" },
-        { key: "torque-conversion", name: "Torque Conversion" }
-      ]
-    }
-  ];
-
-  const handleSubCategoryClick = (subCategory: any) => {
-    const slug = subCategory.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    navigate(`/conversion/${slug}`, { state: { subCategory } });
-  };
+  // Contagem que aparece nos CARDS (apenas números, sem listar nomes)
+  const POPULAR_COUNT = 48; // 12 cards × 4 links
+  const COOKING_COUNT = 6;  // 1 card × 6 links
+  const COMMON_COUNT = 10;  // 1 card × 10 links
 
   return (
     <div className="min-h-screen bg-gradient-soft">
+      <SEOHead
+        title="Conversion Calculators · SmartKitNow"
+        description="Explore Popular Unit Converters, Cooking & Baking Converters, and Common Unit Converters."
+        breadcrumbs={[
+          { name: "Home", url: "https://www.smartkitnow.com/" },
+          { name: "Conversion Calculators", url: "https://www.smartkitnow.com/conversion" },
+        ]}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Conversion Calculators",
+          url: "https://www.smartkitnow.com/conversion",
+          description: "Hubs for popular, cooking & baking, and common unit converters.",
+        }}
+      />
+
       <Header />
-      
+
       <main className="pt-20">
-        <section className="container mx-auto px-4 py-8">
-          {/* Back Button */}
-          <div className="mb-6">
-            <button 
-              onClick={() => navigate('/')} 
-              className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back</span>
-            </button>
-          </div>
+        <PageWithRails
+          titleBlock={
+            <div>
+              {/* Botão Back (para Home) */}
+              <div className="mb-6">
+                <Button
+                  variant="default"
+                  onClick={() => navigate("/")}
+                  className="flex items-center gap-2"
+                  style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back
+                </Button>
+              </div>
 
-          {/* Page Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">
-              Conversion Calculators
-            </h1>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Unit conversion is the process of converting a measurement from one unit to another, for instance, converting your height from inches to centimeters. Convert nearly any measurement using one of the conversion calculators below.
-            </p>
-          </div>
-
-          {/* Popular Converters Section */}
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-center mb-8 text-foreground">Popular Converters</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {popularConverters.map((category, index) => (
-                <Card key={index} className="border border-border/50 hover:shadow-soft transition-shadow">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="flex items-center space-x-2 text-lg">
-                      <div className={`p-2 rounded-lg ${category.bgColor}`}>
-                        <div className={category.color}>
-                          {category.icon}
-                        </div>
-                      </div>
-                      <span className="text-foreground">{category.title}</span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <div className="space-y-2">
-                      {category.conversions.map((conversion, idx) => (
-                        <div 
-                          key={idx}
-                          className="flex items-center justify-between py-1 px-2 rounded hover:bg-muted/50 cursor-pointer group transition-colors"
-                          onClick={() => navigate(`/calculator/${conversion.key}`)}
-                        >
-                          <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                            {conversion.from} to {conversion.to}
-                          </span>
-                          <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+              <div className="text-center">
+                <h1 className="text-4xl font-bold mb-3" style={{ color: "#5c82ee" }}>
+                  Conversion Calculators
+                </h1>
+                <p className="text-lg max-w-3xl mx-auto" style={{ color: "#747886" }}>
+                  Choose a hub to find common conversions quickly.
+                </p>
+              </div>
             </div>
-          </div>
-
-          {/* Sub Categories Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {subCategories.map((subCategory, index) => (
-              <Card 
-                key={index} 
-                className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer"
-                onClick={() => handleSubCategoryClick(subCategory)}
-              >
-                <CardHeader>
-                  <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors flex items-center space-x-3">
-                    <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/20 group-hover:bg-primary/10 transition-colors">
-                      <i className={`${subCategory.icon} text-green-600 text-lg`}></i>
-                    </div>
-                    <span>{subCategory.title}</span>
+          }
+          showRails
+          showTopBanner
+          showBottomBanner
+        >
+          {/* EXATAMENTE 3 CARDS CLICÁVEIS (sem nomes de calculadoras; apenas contagem) */}
+          <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Popular Unit Converters */}
+            <Link to="/conversion/popular" className="group block">
+              <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                <CardHeader className="flex flex-row items-center gap-3">
+                  <span
+                    className="inline-flex items-center justify-center rounded-xl"
+                    style={{ width: 44, height: 44, backgroundColor: "rgba(59,130,246,0.14)", color: "#3b82f6" }}
+                    aria-hidden="true"
+                  >
+                    <Gauge className="h-5 w-5" />
+                  </span>
+                  <CardTitle className="text-xl font-bold" style={{ color: "#3c83f6" }}>
+                    Popular Unit Converters
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-2">
-                    <p className="text-muted-foreground text-sm mb-3">
-                      {subCategory.calculators.length} converters available
-                    </p>
-                    <div className="space-y-1">
-                      {subCategory.calculators.slice(0, 3).map((calc, idx) => (
-                        <p key={idx} className="text-sm text-muted-foreground">
-                          • {calc.name}
-                        </p>
-                      ))}
-                      {subCategory.calculators.length > 3 && (
-                        <p className="text-sm text-muted-foreground font-medium">
-                          + {subCategory.calculators.length - 3} more...
-                        </p>
-                      )}
-                    </div>
-                  </div>
+                  <p className="text-sm" style={{ color: "#747886" }}>
+                    {POPULAR_COUNT} calculators available
+                  </p>
                 </CardContent>
               </Card>
-            ))}
+            </Link>
+
+            {/* Cooking & Baking Converters */}
+            {/* Cooking & Baking Ingredient Converters */}
+<Link to="/conversion/cooking-baking" className="group block">
+  <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+    <CardHeader className="flex flex-row items-center gap-3">
+      <span
+        className="inline-flex items-center justify-center rounded-xl"
+        style={{ width: 44, height: 44, backgroundColor: "rgba(249,115,22,0.14)", color: "#f97316" }}
+        aria-hidden="true"
+      >
+        <Soup className="h-5 w-5" />
+      </span>
+      <CardTitle className="text-xl font-bold" style={{ color: "#3c83f6" }}>
+        Cooking &amp; Baking Ingredient Converters
+      </CardTitle>
+    </CardHeader>
+    <CardContent>
+      <p className="text-sm" style={{ color: "#747886" }}>
+        {COOKING_COUNT} calculators available
+      </p>
+    </CardContent>
+  </Card>
+</Link>
+
+
+            {/* Common Unit Converters (SEO de “Commonly Used Converters”) */}
+            <Link to="/conversion/common" className="group block">
+              <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                <CardHeader className="flex flex-row items-center gap-3">
+                  <span
+                    className="inline-flex items-center justify-center rounded-xl"
+                    style={{ width: 44, height: 44, backgroundColor: "rgba(250,204,21,0.18)", color: "#ca8a04" }}
+                    aria-hidden="true"
+                  >
+                    <Star className="h-5 w-5" />
+                  </span>
+                  <CardTitle className="text-xl font-bold" style={{ color: "#3c83f6" }}>
+                    Common Unit Converters
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm" style={{ color: "#747886" }}>
+                    {COMMON_COUNT} calculators available
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
-        </section>
+        </PageWithRails>
       </main>
 
       <Footer />
     </div>
   );
-};
-
-export default ConversionCalculators;
+}
