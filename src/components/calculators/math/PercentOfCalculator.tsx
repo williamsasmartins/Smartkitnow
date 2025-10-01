@@ -11,13 +11,20 @@ export default function PercentOfCalculator() {
   const value = useMemo(() => {
     const p = parseFloat(percent);
     const t = parseFloat(total);
-    if (!isFinite(p) || !isFinite(t)) return NaN;
+    if (!Number.isFinite(p) || !Number.isFinite(t)) return NaN;
     return (p / 100) * t;
   }, [percent, total]);
 
   const onReset = () => {
     setPercent("15");
     setTotal("240");
+  };
+
+  const formatValue = (v: number) => {
+    if (!Number.isFinite(v)) return "—";
+    const fixed = v.toFixed(2);
+    return parseFloat(fixed).toString();
+    // fica "36" ou "36.5" ou "36.25"
   };
 
   return (
@@ -28,6 +35,7 @@ export default function PercentOfCalculator() {
             <Label htmlFor="p">Percent (%)</Label>
             <Input
               id="p"
+              type="number"
               inputMode="decimal"
               value={percent}
               onChange={(e) => setPercent(e.target.value)}
@@ -38,6 +46,7 @@ export default function PercentOfCalculator() {
             <Label htmlFor="t">Total</Label>
             <Input
               id="t"
+              type="number"
               inputMode="decimal"
               value={total}
               onChange={(e) => setTotal(e.target.value)}
@@ -46,7 +55,7 @@ export default function PercentOfCalculator() {
           </div>
           <div className="grid gap-2">
             <Label>Result</Label>
-            <Input readOnly value={Number.isFinite(value) ? value.toString() : "—"} />
+            <Input readOnly value={formatValue(value)} />
           </div>
         </CardContent>
       </Card>

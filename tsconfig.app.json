@@ -14,7 +14,10 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Linting */
+    /* Tipos necessários para o editor entender React/Vite/Node */
+    "types": ["vite/client", "node"],
+
+    /* Linting relax */
     "strict": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,

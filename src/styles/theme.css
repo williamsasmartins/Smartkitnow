@@ -1,7 +1,22 @@
-.skn-title { color: #5c82ee !important; }
-.skn-subtitle { color: #747886 !important; }
+/* ========= SKN hard tokens ========= */
+:root {
+  --skn-title: #5c82ee;  /* títulos (H1/H2) */
+  --skn-sub:   #747886;  /* subtítulos/descrições */
+  --skn-back:  #3c83f6;  /* botão Back padrão */
+}
 
-/* wrapper para ícones coloridos dos mini-cards */
+/* Vence qualquer override do tema/componentes */
+.skn-title { color: var(--skn-title) !important; }
+.skn-sub   { color: var(--skn-sub) !important; }
+
+/* Botão Back sempre azul */
+.skn-back  {
+  background-color: var(--skn-back) !important;
+  color: #fff !important;
+}
+a.skn-back { text-decoration: none !important; }
+
+/* Wrapper para ícones coloridos dos mini-cards */
 .skn-icon-badge {
   width: 40px;
   height: 40px;

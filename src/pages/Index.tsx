@@ -1197,70 +1197,80 @@ const Index = () => {
       {/* Main Content Area - Add top padding to account for fixed header */}
       <main className="pt-20">
         {/* Categories Section */}
-        <section className="container mx-auto px-4 py-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4 py-[10px]">
-              Calculator Categories
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Explore our comprehensive collection of calculators organized by category
-            </p>
-          </div>
+<section className="container mx-auto px-4 py-8">
+  <div className="text-center mb-12">
+    <h2 className="text-4xl font-bold skn-title mb-4 py-[10px]">
+  Calculator Categories
+</h2>
 
-          {/* Categories Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
-            {calculatorCategories.map((category, index) => {
-            const IconComponent = category.icon;
-            const isAutomotive = category.name === "Automotive Calculators";
-            const isConstruction = category.name === "Construction Calculators";
-            const isConversion = category.name === "Conversion Calculators";
-            const isCooking = category.name === "Cooking Calculators";
-            const isElectrical = category.name === "Electrical Calculators";
-            const isFinancial = category.name === "Financial Calculators";
-            const isHealth = category.name === "Health & Fitness Calculators";
-            const isMath = category.name === "Math & Algebra Calculators";
-            const isPets = category.name === "Pet Care Calculators";
-            const isScience = category.name === "Science Calculators";
-            const isTime = category.name === "Time & Date Calculators";
-            const isRecipes = category.name === "Recipes";
-            const isSmartTips = category.name === "Smart Tips";
-            const handleClick = () => {
-              console.log("Category clicked:", category.name);
-              if (isAutomotive) navigate('/automotive');
-              if (isConstruction) navigate('/construction');
-              if (isConversion) navigate('/conversion');
-              if (isCooking) navigate('/cooking');
-              if (isElectrical) navigate('/electrical');
-              if (isFinancial) navigate('/financial');
-              if (isHealth) navigate('/health');
-              if (isMath) navigate('/math');
-              if (isPets) navigate('/pets');
-              if (isScience) navigate('/science');
-              if (isTime) navigate('/time');
-              if (isRecipes) navigate('/recipes');
-              if (isSmartTips) navigate('/smart-tips');
-            };
-            return <Card key={index} className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer" onClick={handleClick}>
-                  <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
-                    <div className="p-3 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors">
-                      <IconComponent className={`h-6 w-6 ${category.color} group-hover:text-primary transition-colors`} />
-                    </div>
-                    <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                      {category.name}
-                    </h3>
-                  </CardContent>
-                </Card>;
-          })}
-          </div>
+    <p className="text-lg max-w-2xl mx-auto skn-sub">
+      Explore our comprehensive collection of calculators organized by category
+    </p>
+  </div>
 
-          {/* Discover More Button */}
-          <div className="text-center">
-            <Button className="bg-primary hover:bg-primary-glow text-primary-foreground shadow-soft transition-all duration-300 hover:shadow-glow">
-              <TrendingUp className="mr-2 h-4 w-4" />
-              Discover More Calculators
-            </Button>
-          </div>
-        </section>
+  {/* Categories Grid */}
+  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
+    {calculatorCategories.map((category, index) => {
+      const IconComponent = category.icon;
+      const isAutomotive = category.name === "Automotive Calculators";
+      const isConstruction = category.name === "Construction Calculators";
+      const isConversion = category.name === "Conversion Calculators";
+      const isCooking = category.name === "Cooking Calculators";
+      const isElectrical = category.name === "Electrical Calculators";
+      const isFinancial = category.name === "Financial Calculators";
+      const isHealth = category.name === "Health & Fitness Calculators";
+      const isMath = category.name === "Math & Algebra Calculators";
+      const isPets = category.name === "Pet Care Calculators";
+      const isScience = category.name === "Science Calculators";
+      const isTime = category.name === "Time & Date Calculators";
+      const isRecipes = category.name === "Recipes";
+      const isSmartTips = category.name === "Smart Tips";
+
+      const handleClick = () => {
+        console.log("Category clicked:", category.name);
+        if (isAutomotive) navigate('/automotive');
+        if (isConstruction) navigate('/construction');
+        if (isConversion) navigate('/conversion');
+        if (isCooking) navigate('/cooking');
+        if (isElectrical) navigate('/electrical');
+        if (isFinancial) navigate('/financial');
+        if (isHealth) navigate('/health');
+        if (isMath) navigate('/math');
+        if (isPets) navigate('/pets');
+        if (isScience) navigate('/science');
+        if (isTime) navigate('/time');
+        if (isRecipes) navigate('/recipes');
+        if (isSmartTips) navigate('/smart-tips');
+      };
+
+      return (
+        <Card
+          key={index}
+          className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer"
+          onClick={handleClick}
+        >
+          <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
+            <div className="p-3 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors">
+              <IconComponent className={`h-6 w-6 ${category.color} group-hover:text-primary transition-colors`} />
+            </div>
+            <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+              {category.name}
+            </h3>
+          </CardContent>
+        </Card>
+      );
+    })}
+  </div>
+
+  {/* Discover More Button */}
+  <div className="text-center">
+    <Button className="bg-primary hover:bg-primary-glow text-primary-foreground shadow-soft transition-all duration-300 hover:shadow-glow">
+      <TrendingUp className="mr-2 h-4 w-4" />
+      Discover More Calculators
+    </Button>
+  </div>
+</section>
+
 
         {/* Featured Section */}
         <section className="container mx-auto px-4 py-16 bg-muted/20">

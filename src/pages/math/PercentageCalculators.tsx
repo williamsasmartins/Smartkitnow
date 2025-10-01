@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Percent, TrendingUp, TrendingDown, Shuffle } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import BackButton from "@/components/BackButton";
+
 
 export default function PercentageCalculators() {
   const navigate = useNavigate();
@@ -35,34 +37,27 @@ export default function PercentageCalculators() {
       <Header />
 
       <main className="pt-20">
-        <PageWithRails
-          titleBlock={
-            <div>
-              <div className="mb-6">
-                <Button
-                  variant="default"
-                  onClick={() => navigate("/math/everyday-math")}
-                  className="flex items-center gap-2"
-                  style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                  Back
-                </Button>
-              </div>
+  <PageWithRails
+    titleBlock={
+      <div>
+  {/* Back azul alinhado à esquerda */}
+  <div className="mb-6 flex justify-start">
+    <BackButton fallback="/math" className="!px-3 !py-1.5" />
+  </div>
 
-              <div className="text-center">
-                <h1 className="text-4xl font-bold mb-3" style={{ color: "#5c82ee" }}>
-                  Percentage Calculators
-                </h1>
-                <p className="text-lg max-w-3xl mx-auto" style={{ color: "#747886" }}>
-                  Solve everyday percentage problems quickly.
-                </p>
-              </div>
-            </div>
-          }
-          showRails
-          showTopBanner
-          showBottomBanner
+  {/* Título/subtítulo centralizados com cores SKN */}
+  <div className="text-center">
+    <h1 className="skn-title text-4xl font-bold">Percentage Calculators</h1>
+    <p className="skn-sub text-lg max-w-2xl mx-auto">
+      Solve everyday percentage problems quickly.
+    </p>
+  </div>
+</div>
+
+    }
+    showRails
+    showTopBanner
+    showBottomBanner
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mx-auto max-w-6xl">
             {/* Real: abre calculadora */}

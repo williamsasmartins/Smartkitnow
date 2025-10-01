@@ -1,12 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Divide } from "lucide-react";
+import { Divide as DivideIcon } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
-import { PALETTE } from "@/components/theme/palette";
+import BackButton from "@/components/BackButton";
 
 const CARDS = [
   {
@@ -40,8 +39,6 @@ const CARDS = [
 ];
 
 export default function FractionsCalculators() {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen bg-gradient-soft">
       <SEOHead
@@ -67,34 +64,34 @@ export default function FractionsCalculators() {
       <main className="pt-20">
         <PageWithRails
           titleBlock={
-            <div className="text-center">
+            <div>
+              {/* Back azul alinhado à esquerda */}
               <div className="mb-6 flex justify-start">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => navigate("/math")}
-                  className="text-white hover:brightness-110"
-                  style={{ backgroundColor: PALETTE.brand.button }}
-                >
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back
-                </Button>
+                <BackButton fallback="/math" className="!px-3 !py-1.5" />
               </div>
 
-              <div className="flex flex-col items-center gap-3">
-                <span
-                  className="inline-flex items-center justify-center rounded-xl"
-                  style={{ width: 44, height: 44, backgroundColor: "rgba(59,130,246,0.14)", color: "#3b82f6" }}
-                  aria-hidden="true"
-                >
-                  <Divide className="h-5 w-5" />
-                </span>
-                <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                  Fractions & Ratios
-                </h1>
-                <p className="text-muted-foreground max-w-2xl">
-                  Reduce fractions and convert between fraction, decimal and percent — clean UI, fast results.
-                </p>
+              {/* Título e subtítulo centralizados com cores padrão SKN */}
+              <div className="text-center">
+                <div className="flex flex-col items-center gap-3">
+                  <span
+                    className="inline-flex items-center justify-center rounded-xl"
+                    style={{
+                      width: 44,
+                      height: 44,
+                      backgroundColor: "rgba(59,130,246,0.14)",
+                      color: "#3b82f6",
+                    }}
+                    aria-hidden="true"
+                  >
+                    <DivideIcon className="h-5 w-5" />
+                  </span>
+
+                  <h1 className="skn-title text-4xl font-bold">Fractions & Ratios</h1>
+
+                  <p className="skn-sub text-lg max-w-2xl mx-auto">
+                    Reduce fractions and convert between fraction, decimal and percent — clean UI, fast results.
+                  </p>
+                </div>
               </div>
             </div>
           }
@@ -112,7 +109,7 @@ export default function FractionsCalculators() {
                       style={{ width: 40, height: 40, backgroundColor: c.bg, color: c.fg }}
                       aria-hidden="true"
                     >
-                      <Divide className="h-5 w-5" />
+                      <DivideIcon className="h-5 w-5" />
                     </span>
                     <CardTitle className="text-lg font-bold" style={{ color: c.fg }}>
                       {c.title}

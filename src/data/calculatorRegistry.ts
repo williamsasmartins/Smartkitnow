@@ -2,8 +2,11 @@
 import React from "react";
 
 /**
- * Estrutura de cada calculadora registrada
+ * ============================================
+ * TIPOS
+ * ============================================
  */
+
 export type CalcEntry = {
   /** slug final da calculadora (usado na URL) */
   slug: string;
@@ -24,7 +27,9 @@ export type CalcEntry = {
 };
 
 /**
- * Títulos “bonitos” por categoria (usados nos headers das páginas)
+ * ============================================
+ * TÍTULOS “BONITOS” POR CATEGORIA
+ * ============================================
  */
 export const FRIENDLY_TITLES: Record<string, string> = {
   construction: "Construction Calculators",
@@ -41,45 +46,62 @@ export const FRIENDLY_TITLES: Record<string, string> = {
 };
 
 /**
- * Títulos “bonitos” por subcategoria (aparecem nas páginas intermediárias)
- * — mantenha os slugs exatamente como na rota.
+ * ============================================
+ * TÍTULOS / SLUGS DE SUBCATEGORIA
+ * (Mantenha os slugs exatamente como nas rotas)
+ * ============================================
+ * Observação:
+ * - Padronizei Math para:
+ *    - "percentage-calculators" (antes você usava alguns "percent-calculators")
+ *    - "fractions-calculators"  (antes havia "fraction-calculators")
+ * - Mantive chaves de compatibilidade para não quebrar links antigos.
  */
 export const SUBCATEGORY_TITLES: Record<string, string> = {
-  // Construction
+  // ---------- Construction ----------
   "concrete-masonry-calculators": "Concrete & Masonry Calculators",
   "carpentry-trim-calculators": "Carpentry & Trim Calculators",
   "wall-ceiling-calculators": "Wall & Ceiling Calculators",
   // Compat antigo
   "drywall-paint-calculators": "Wall & Ceiling Calculators",
 
-  // Cooking
+  // ---------- Cooking ----------
   "cooking-baking-calculators": "Cooking & Baking Calculators",
   "cooking-measurements": "Cooking Measurements",
   "cooking-unit-conversions": "Unit Conversion Calculators",
 
-  // Health
+  // ---------- Health ----------
   "body-measurement-calculators": "Body Measurement Calculators",
   "calories-conversion": "Calories Conversion",
   "diet-nutrition-calculators": "Dietary & Nutrition Calculators",
   "fitness-calculators": "Fitness Calculators",
 
-  // Financial
+  // ---------- Financial ----------
   "personal-finance-calculators": "Personal Finance Calculators",
   "interest-and-loan-calculators": "Interest and Loan Calculators",
   "mortgage-and-home-loan-calculators": "Mortgage & Home Loan Calculators",
 
-  // Math
+  // ---------- Math ----------
   "everyday-math": "Everyday Math",
+
+  // Padrões ATUAIS
+  "percentage-calculators": "Percentage Calculators",
+  "fractions-calculators": "Fraction Calculators",
+
+  // Compatibilidade (aceita rotas antigas sem quebrar o título)
   "percent-calculators": "Percentage Calculators",
+  "fraction-calculators": "Fraction Calculators",
 };
 
-/* =========================
- *  Loaders (lazy imports)
- * =========================
+/**
+ * ============================================
+ * LOADERS (lazy imports)
+ * ============================================
  * IMPORTANTE: caminhos devem bater com src/components/calculators
  */
 
-// Construction
+/* =========================
+ * CONSTRUCTION (loaders)
+ * ========================= */
 const loadConcreteSlab = () => import("@/components/calculators/ConcreteSlab");
 const loadDrywallEstimator = () =>
   import("@/components/calculators/DrywallEstimator");
@@ -87,7 +109,9 @@ const loadPaint = () => import("@/components/calculators/PaintCalculator");
 const loadWallpaper = () =>
   import("@/components/calculators/WallpaperCalculator");
 
-// Cooking
+/* =========================
+ * COOKING (loaders)
+ * ========================= */
 const loadCake = () => import("@/components/calculators/CakeCalculator");
 const loadCookingConversion = () =>
   import("@/components/calculators/CookingConversionCalculator");
@@ -96,7 +120,9 @@ const loadCookingTimer = () =>
 const loadRecipeScaling = () =>
   import("@/components/calculators/cooking/RecipeScalingCalculator");
 
-// Health
+/* =========================
+ * HEALTH (loaders)
+ * ========================= */
 const loadCaloriesToKg = () =>
   import("@/components/calculators/CaloriesToKilogramsCalculator");
 const loadBMI = () => import("@/components/calculators/BMICalculator");
@@ -105,7 +131,9 @@ const loadTDEE = () => import("@/components/calculators/TDEECalculator");
 const loadCalorieIntake = () =>
   import("@/components/calculators/CalorieCalculator");
 
-// Financial
+/* =========================
+ * FINANCIAL (loaders)
+ * ========================= */
 const loadMortgage = () =>
   import("@/components/calculators/MortgageCalculator");
 const loadMortgageRefi = () =>
@@ -115,7 +143,9 @@ const loadROI = () => import("@/components/calculators/financial/ROICalculator")
 const loadCompoundInterest = () =>
   import("@/components/calculators/CompoundInterestCalculator");
 
-// Math (percent) loaders
+/* =========================
+ * MATH — Percentage (loaders)
+ * ========================= */
 const loadPercentOf = () =>
   import("@/components/calculators/math/PercentOfCalculator");
 const loadPercentIncrease = () =>
@@ -125,7 +155,9 @@ const loadPercentDecrease = () =>
 const loadPercentChange = () =>
   import("@/components/calculators/math/PercentChangeCalculator");
 
-// Math — Fractions (LOADERS)
+/* =========================
+ * MATH — Fractions (loaders)
+ * ========================= */
 const loadFractionReducer = () =>
   import("@/components/calculators/math/FractionReducerCalculator");
 const loadFractionToDecimal = () =>
@@ -135,22 +167,21 @@ const loadDecimalToFraction = () =>
 const loadPercentToFraction = () =>
   import("@/components/calculators/math/PercentToFractionCalculator");
 
-// Math (everyday) loaders
+/* =========================
+ * MATH — Everyday (loaders)
+ * ========================= */
 const loadAverage = () =>
   import("@/components/calculators/math/AverageCalculator");
 const loadProportion = () =>
   import("@/components/calculators/math/ProportionCalculator");
 
-
-
-
-
-  
-
 /**
- * REGISTRY – liste aqui todas as calculadoras com categoria/subcategoria/slug
- * A hierarquia da rota fica: /:category/:subcategory/:slug
+ * ============================================
+ * REGISTRY – LISTE AQUI TODAS AS CALCULADORAS
+ * Rota: /:category/:subcategory/:slug
+ * ============================================
  */
+
 export const REGISTRY: CalcEntry[] = [
   /**
    * =========================
@@ -166,7 +197,6 @@ export const REGISTRY: CalcEntry[] = [
     description: "Estimate concrete volume and bag counts for slabs.",
     loader: loadConcreteSlab,
   },
-  // Drywall estimator (canônico)
   {
     slug: "drywall-area-sheets",
     aliases: [
@@ -178,8 +208,7 @@ export const REGISTRY: CalcEntry[] = [
     name: "Drywall — Area & Sheets",
     category: "construction",
     subcategory: "wall-ceiling-calculators",
-    description:
-      "Drywall estimator with rooms, openings, boards and costs.",
+    description: "Drywall estimator with rooms, openings, boards and costs.",
     loader: loadDrywallEstimator,
   },
   {
@@ -188,8 +217,7 @@ export const REGISTRY: CalcEntry[] = [
     name: "Paint Calculator",
     category: "construction",
     subcategory: "wall-ceiling-calculators",
-    description:
-      "Estimate paint needed by area, number of coats and coverage.",
+    description: "Estimate paint needed by area, number of coats and coverage.",
     loader: loadPaint,
   },
   {
@@ -198,8 +226,7 @@ export const REGISTRY: CalcEntry[] = [
     name: "Wallpaper Calculator",
     category: "construction",
     subcategory: "wall-ceiling-calculators",
-    description:
-      "Estimate rolls needed based on room size and pattern repeat.",
+    description: "Estimate rolls needed based on room size and pattern repeat.",
     loader: loadWallpaper,
   },
 
@@ -335,56 +362,23 @@ export const REGISTRY: CalcEntry[] = [
     description: "Growth with compounding interest.",
     loader: loadCompoundInterest,
   },
-   
-   /**
- * =========================
- * MATH — Fractions & Percent
- * =========================
- */
-{
-  slug: "fraction-reducer",
-  name: "Fraction Reducer",
-  category: "math",
-  subcategory: "fraction-calculators",
-  loader: loadFractionReducer,
-  description: "Simplify any fraction or mixed/decimal input to lowest terms. Examples: 42/56, 3 6/8, 1.25.",
-},
-{
-  slug: "fraction-to-decimal",
-  name: "Fraction to Decimal",
-  category: "math",
-  subcategory: "fraction-calculators",
-  loader: loadFractionToDecimal,
-  description: "Convert any fraction (including mixed numbers) to a decimal with a chosen precision.",
-},
-{
-  slug: "decimal-to-fraction",
-  name: "Decimal to Fraction",
-  category: "math",
-  subcategory: "fraction-calculators",
-  loader: loadDecimalToFraction,
-  description: "Convert any decimal to an exact or approximate fraction, including mixed numbers.",
-},
-{
-  slug: "percent-to-fraction",
-  name: "Percent to Fraction",
-  category: "math",
-  subcategory: "fraction-calculators",
-  loader: loadPercentToFraction,
-  description: "Convert a percentage into a reduced fraction and mixed-number form when applicable.",
-},
 
-    /**
+  /**
    * =========================
-   * MATH (novo bloco)
+   * MATH — PERCENTAGE
+   * URLs: /math/percentage-calculators/*
    * =========================
+   * Slug canônico:
+   *  - Percent Of  => "percent-of"
+   * Aliases úteis:
+   *  - "percent-of-total", "percentage-of-total", "percent-of-number"
    */
   {
-    slug: "percent-of-total",
-    aliases: ["percent-of", "percentage-of-total"],
-    name: "Percent of Total",
+    slug: "percent-of",
+    aliases: ["percent-of-total", "percentage-of-total", "percent-of-number"],
+    name: "Percent Of",
     category: "math",
-    subcategory: "everyday-math",
+    subcategory: "percentage-calculators",
     description: "Find X% of a number (e.g., 15% of 240).",
     loader: loadPercentOf,
   },
@@ -392,7 +386,7 @@ export const REGISTRY: CalcEntry[] = [
     slug: "percent-increase",
     name: "Percent Increase",
     category: "math",
-    subcategory: "percent-calculators",
+    subcategory: "percentage-calculators",
     loader: loadPercentIncrease,
     description: "Compute the percentage increase from an old value to a new value.",
   },
@@ -400,7 +394,7 @@ export const REGISTRY: CalcEntry[] = [
     slug: "percent-decrease",
     name: "Percent Decrease",
     category: "math",
-    subcategory: "percent-calculators",
+    subcategory: "percentage-calculators",
     loader: loadPercentDecrease,
     description: "Compute the percentage decrease from an old value to a new value.",
   },
@@ -408,71 +402,84 @@ export const REGISTRY: CalcEntry[] = [
     slug: "percent-change",
     name: "Percent Change",
     category: "math",
-    subcategory: "percent-calculators",
+    subcategory: "percentage-calculators",
     loader: loadPercentChange,
     description: "Signed percent change: positive for increase, negative for decrease.",
   },
+
+  /**
+   * =========================
+   * MATH — FRACTIONS
+   * URLs: /math/fractions-calculators/*
+   * =========================
+   */
   {
-  slug: "fraction-reducer",
-  name: "Fraction Reducer",
-  category: "math",
-  subcategory: "fraction-calculators",
-  loader: loadFractionReducer,
-  description: "Simplify any fraction to lowest terms.",
-},
-{
-  slug: "fraction-to-decimal",
-  name: "Fraction to Decimal",
-  category: "math",
-  subcategory: "fraction-calculators",
-  loader: loadFractionToDecimal,
-  description: "Convert a fraction (or mixed number) into decimal.",
-},
-{
-  slug: "decimal-to-fraction",
-  name: "Decimal to Fraction",
-  category: "math",
-  subcategory: "fraction-calculators",
-  loader: loadDecimalToFraction,
-  description: "Convert a decimal number into an exact/approximate fraction.",
-},
-{
-  slug: "percent-to-fraction",
-  name: "Percent to Fraction",
-  category: "math",
-  subcategory: "fraction-calculators",
-  loader: loadPercentToFraction,
-  description: "Convert percent values to reduced fractions.",
-},
-{
-  slug: "average-calculator",
-  aliases: ["mean-calculator", "average"],
-  name: "Average (Mean) Calculator",
-  category: "math",
-  subcategory: "everyday-math",
-  description: "Compute the arithmetic mean of a list of numbers.",
-  loader: loadAverage,
-},
-{
-  slug: "proportion-solver",
-  aliases: ["proportion-calculator", "rule-of-three", "ratio-solver"],
-  name: "Proportion Solver",
-  category: "math",
-  subcategory: "everyday-math",
-  description: "Solve a/b = c/d leaving one value blank and compute it.",
-  loader: loadProportion,
-},
+    slug: "fraction-reducer",
+    name: "Fraction Reducer",
+    category: "math",
+    subcategory: "fractions-calculators",
+    loader: loadFractionReducer,
+    description:
+      "Simplify any fraction or mixed/decimal input to lowest terms. Examples: 42/56, 3 6/8, 1.25.",
+  },
+  {
+    slug: "fraction-to-decimal",
+    name: "Fraction to Decimal",
+    category: "math",
+    subcategory: "fractions-calculators",
+    loader: loadFractionToDecimal,
+    description:
+      "Convert any fraction (including mixed numbers) to a decimal with a chosen precision.",
+  },
+  {
+    slug: "decimal-to-fraction",
+    name: "Decimal to Fraction",
+    category: "math",
+    subcategory: "fractions-calculators",
+    loader: loadDecimalToFraction,
+    description:
+      "Convert any decimal to an exact or approximate fraction, including mixed numbers.",
+  },
+  {
+    slug: "percent-to-fraction",
+    name: "Percent to Fraction",
+    category: "math",
+    subcategory: "fractions-calculators",
+    loader: loadPercentToFraction,
+    description:
+      "Convert a percentage into a reduced fraction and mixed-number form when applicable.",
+  },
 
-
-
-
-
+  /**
+   * =========================
+   * MATH — EVERYDAY
+   * URLs: /math/everyday-math/*
+   * =========================
+   */
+  {
+    slug: "average-calculator",
+    aliases: ["mean-calculator", "average"],
+    name: "Average (Mean) Calculator",
+    category: "math",
+    subcategory: "everyday-math",
+    description: "Compute the arithmetic mean of a list of numbers.",
+    loader: loadAverage,
+  },
+  {
+    slug: "proportion-solver",
+    aliases: ["proportion-calculator", "rule-of-three", "ratio-solver"],
+    name: "Proportion Solver",
+    category: "math",
+    subcategory: "everyday-math",
+    description: "Solve a/b = c/d leaving one value blank and compute it.",
+    loader: loadProportion,
+  },
 ];
 
 /**
- * ================
- * Helpers públicos
- * ================
+ * ============================================
+ * HELPERS PÚBLICOS
+ * ============================================
  */
 
 /** Localiza uma calculadora pelo slug OU pelos seus aliases */
@@ -502,7 +509,8 @@ export function listByCategorySubcategory(
 
 /**
  * Retorna as subcategorias existentes dentro de uma categoria,
- * junto com a contagem de calculadoras em cada uma — útil para montar a página intermediária.
+ * junto com a contagem de calculadoras em cada uma.
+ * Útil para montar a página intermediária de subcategorias.
  */
 export function listSubcategoriesOfCategory(category: string) {
   const items = listByCategory(category);

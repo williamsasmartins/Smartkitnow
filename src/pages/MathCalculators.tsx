@@ -1,22 +1,17 @@
+// src/pages/MathCalculators.tsx
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import BackButton from "@/components/BackButton";
 
-// Ícones (todos garantidos no lucide-react)
-import { Calculator, Percent, Slash, Sigma, Ruler, Shapes, ArrowLeft } from "lucide-react";
+// Ícones (lucide-react)
+import { Calculator, Percent, Slash, Sigma, Ruler, Shapes } from "lucide-react";
 
-// Paleta usada no site (azul para títulos/realces)
-const BRAND = {
-  title: "#5c82ee", // cor padrão de títulos
-  sub: "#747886",   // subtítulos/descrições
-};
-
-// Badge colorido consistente com as outras páginas
+/** Badge de ícone colorido (mesmo visual dos outros hubs) */
 function IconBadge({
   children,
   bg = "rgba(59,130,246,0.14)",
@@ -44,9 +39,10 @@ type HubCard = {
   icon: React.ReactNode;
 };
 
+/** Rotas dos hubs (ajustadas aos caminhos que você tem no App.tsx) */
 const HUBS: HubCard[] = [
   {
-    to: "/math/percent-calculators",
+    to: "/math/percentage-calculators",
     title: "Percentage Calculators",
     description: "Percent of, Increase, Decrease, Change.",
     icon: (
@@ -56,9 +52,9 @@ const HUBS: HubCard[] = [
     ),
   },
   {
-    to: "/math/fraction-calculators",
-    title: "Fraction Calculators",
-    description: "Reduce, convert fraction ⇄ decimal and more.",
+    to: "/math/fractions",
+    title: "Fractions & Ratios",
+    description: "Reduce, fraction ⇄ decimal, percent conversion.",
     icon: (
       <IconBadge bg="rgba(139,92,246,0.14)" fg="#8b5cf6">
         <Slash className="h-5 w-5" />
@@ -68,7 +64,7 @@ const HUBS: HubCard[] = [
   {
     to: "/math/everyday-math",
     title: "Everyday Math",
-    description: "Average, proportion (regra de 3), ratio, LCM/GCD.",
+    description: "Average, proportion (regra de 3), ratio, etc.",
     icon: (
       <IconBadge bg="rgba(16,185,129,0.14)" fg="#10b981">
         <Calculator className="h-5 w-5" />
@@ -108,8 +104,6 @@ const HUBS: HubCard[] = [
 ];
 
 export default function MathCalculators() {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen bg-gradient-soft">
       <SEOHead
@@ -134,32 +128,28 @@ export default function MathCalculators() {
       <main className="pt-20">
         <PageWithRails
           titleBlock={
-            <div className="text-center">
-              <div className="mb-6 flex justify-center">
-                <Button
-                  variant="default"
-                  onClick={() => navigate("/")}
-                  className="flex items-center gap-2"
-                  style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                  Back
-                </Button>
+            <div className="max-w-6xl mx-auto px-4">
+              {/* Back azul à esquerda (volta para a Home se não houver histórico) */}
+              <div className="mb-6 flex justify-start">
+                <BackButton fallback="/" className="!px-3 !py-1.5" />
               </div>
 
-              <h1 className="text-4xl font-bold mb-3" style={{ color: BRAND.title }}>
-                Math & Algebra Calculators
-              </h1>
-              <p className="text-lg max-w-3xl mx-auto" style={{ color: BRAND.sub }}>
-                Choose a hub to explore focused mini-tools and calculators.
-              </p>
+              {/* Título/subtítulo centralizados com as cores SKN */}
+              <div className="text-center">
+                <h1 className="skn-title text-4xl font-bold mb-3">
+                  Math & Algebra Calculators
+                </h1>
+                <p className="skn-sub text-lg max-w-3xl mx-auto">
+                  Choose a hub to explore focused mini-tools and calculators.
+                </p>
+              </div>
             </div>
           }
           showRails
           showTopBanner
           showBottomBanner
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto px-4">
             {HUBS.map((hub) => (
               <Link key={hub.to} to={hub.to} className="group block">
                 <Card className="bg-card border border-border/50 hover:shadow-soft hover:-translate-y-0.5 transition-all">
@@ -167,10 +157,10 @@ export default function MathCalculators() {
                     <div className="flex items-start gap-3">
                       {hub.icon}
                       <div className="min-w-0">
-                        <div className="text-base font-semibold mb-1" style={{ color: BRAND.title }}>
+                        <div className="text-base font-semibold mb-1 skn-title">
                           {hub.title}
                         </div>
-                        <div className="text-sm" style={{ color: BRAND.sub }}>
+                        <div className="text-sm skn-sub">
                           {hub.description}
                         </div>
                       </div>

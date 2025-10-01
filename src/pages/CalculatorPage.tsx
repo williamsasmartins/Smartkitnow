@@ -1,15 +1,14 @@
+// src/pages/CalculatorPage.tsx
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import React, { Suspense, useMemo } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { CalculatorFooter } from "@/components/CalculatorFooter";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calculator } from "lucide-react";
+import { Calculator as CalcIcon } from "lucide-react";
 import { getEntry, FRIENDLY_TITLES } from "@/data/calculatorRegistry";
 import CalculatorLayout from "@/components/layouts/CalculatorLayout";
 import SEOHead from "@/components/SEOHead";
-import { PALETTE } from "@/components/theme/palette";
+import BackButton from "@/components/BackButton";
 
 function lazyFrom(entry?: { loader: () => Promise<any>; namedExport?: string }) {
   if (!entry) return null;
@@ -36,7 +35,7 @@ function titleCaseFromSlug(slug?: string) {
     .join(" ");
 }
 
-const CalculatorPage = () => {
+export default function CalculatorPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { category, subcategory, slug } = useParams<{
@@ -45,9 +44,10 @@ const CalculatorPage = () => {
     slug: string;
   }>();
 
-  const calcSlug = slug;
-  const entry = getEntry(calcSlug);
+  const entry = getEntry(slug);
+  const LazyComp = useMemo(() => lazyFrom(entry), [entry]);
 
+  // Categoria “derivada” para breadcrumbs/voltar
   const categoryFromPath =
     location.pathname.split("/")[1] || entry?.category || "construction";
 
@@ -55,28 +55,6 @@ const CalculatorPage = () => {
     if (subcategory) navigate(`/${categoryFromPath}/${subcategory}`);
     else navigate(`/${categoryFromPath}`);
   };
-
-  const LazyComp = useMemo(() => lazyFrom(entry), [entry]);
-
-  const NotFoundCalc = (
-    <Card className="bg-card border-border/50">
-      <CardContent className="p-8">
-        <div className="bg-muted/30 rounded-lg p-8 text-center">
-          <Calculator className="h-16 w-16 text-primary mx-auto mb-4" />
-          <h3 className="text-xl font-semibold text-foreground mb-2">Calculator not found</h3>
-          <p className="text-muted-foreground">
-            We couldn’t find this calculator. Please go back and choose another one.
-          </p>
-          <div className="mt-6">
-            <Button onClick={handleGoBack}>
-              Back to{" "}
-              {FRIENDLY_TITLES[categoryFromPath] || titleCaseFromSlug(categoryFromPath)}
-            </Button>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
 
   // SEO defaults
   const calcName = entry?.name ?? "Calculator";
@@ -88,6 +66,23 @@ const CalculatorPage = () => {
   const pageDesc =
     entry?.description ??
     `Use the ${calcName} to estimate and analyze values with professional-grade accuracy. Includes how-to, examples and references.`;
+
+  const NotFoundCalc = (
+    <Card className="bg-card border-border/50">
+      <CardContent className="p-8">
+        <div className="bg-muted/30 rounded-lg p-8 text-center">
+          <CalcIcon className="h-16 w-16 text-primary mx-auto mb-4" />
+          <h3 className="text-xl font-semibold skn-title mb-2">Calculator not found</h3>
+          <p className="skn-sub">
+            We couldn’t find this calculator. Please go back and choose another one.
+          </p>
+          <div className="mt-6">
+            <BackButton fallback={`/${categoryFromPath}`}>Back to {catTitle}</BackButton>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
 
   return (
     <div className="min-h-screen bg-gradient-soft">
@@ -129,70 +124,62 @@ const CalculatorPage = () => {
 
       <main className="pt-20">
         <CalculatorLayout>
-          {/* Back + header */}
-<section className="px-1 sm:px-0">
-  <div className="mb-6">
-    <Button
-      variant="ghost"
-      size="sm"
-      onClick={handleGoBack}
-      className="flex items-center space-x-2 mb-6 text-white hover:brightness-110"
-      style={{ backgroundColor: PALETTE.brand.button }}
-    >
-      <ArrowLeft className="h-4 w-4" />
-      <span>Back</span>
-    </Button>
+          {/* Barra superior: Back à ESQUERDA (azul), Título/descrição CENTRALIZADOS */}
+          <section className="px-1 sm:px-0">
+            {/* Back alinhado à esquerda */}
+            <div className="mb-6 flex items-center justify-start">
+              <BackButton fallback={subcategory ? `/${categoryFromPath}/${subcategory}` : `/${categoryFromPath}`}>
+  Back
+</BackButton>
 
-    <div className="flex flex-col items-center text-center space-y-3 mb-6">
-  <span
-    className="inline-flex items-center justify-center rounded-xl"
-    style={{
-      width: 44,
-      height: 44,
-      backgroundColor: "rgba(59,130,246,0.14)", // bg azul translúcido
-      color: "#3b82f6",                          // ícone azul
-    }}
-    aria-hidden="true"
-  >
-    <Calculator className="h-5 w-5" />
-  </span>
+            </div>
 
-  {/* TÍTULO COM A COR PADRÃO DO SITE (mesma dos cards) */}
-  <h1
-    className="text-4xl font-bold leading-tight"
-    style={{ color: "#5c82ee" }} // <- cor sólida padrão
-  >
-    {calcName}
-  </h1>
+            {/* Título e descrição centralizados com cores fixas */}
+            <div className="flex flex-col items-center text-center space-y-3 mb-6">
+              <span
+                className="inline-flex items-center justify-center rounded-xl"
+                style={{
+                  width: 44,
+                  height: 44,
+                  backgroundColor: "rgba(59,130,246,0.14)",
+                  color: "#3b82f6",
+                }}
+                aria-hidden="true"
+              >
+                <CalcIcon className="h-5 w-5" />
+              </span>
 
-  {/* Descrição logo abaixo do título (texto secundário) */}
-  <p
-    className="mt-2 text-lg"
-    style={{ color: "#8b90a0" }} // tom neutro/secondary para descrição
-  >
-    {pageDesc}
-  </p>
-</div>
+              <h1 className="text-4xl font-bold leading-tight skn-title">
+                {calcName}
+              </h1>
 
-  </div>
+              <p className="mt-2 text-lg skn-sub">
+                {pageDesc}
+              </p>
+            </div>
 
-  {/* calculadora / fallback */}
-  {entry && LazyComp ? (
-    <Suspense fallback={<div className="mx-auto max-w-3xl px-4 py-10 text-center">Loading…</div>}>
-      <LazyComp />
-    </Suspense>
-  ) : (
-    NotFoundCalc
-  )}
-</section>
+            {/* Calculadora ou fallback */}
+            {entry && LazyComp ? (
+              <Suspense
+                fallback={
+                  <div className="mx-auto max-w-3xl px-4 py-10 text-center skn-sub">
+                    Loading…
+                  </div>
+                }
+              >
+                <LazyComp />
+              </Suspense>
+            ) : (
+              NotFoundCalc
+            )}
+          </section>
 
-
-          {/* Seções auxiliares SEO (mantidas, já com cores corretas) */}
+          {/* Seções auxiliares SEO (mantidas) */}
           <section className="mx-auto max-w-4xl my-10 grid gap-6">
             <Card className="bg-card border-border/50">
               <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-2">How to Use</h2>
-                <ul className="list-disc pl-5 text-muted-foreground space-y-1">
+                <h2 className="text-xl font-semibold skn-title mb-2">How to Use</h2>
+                <ul className="list-disc pl-5 skn-sub space-y-1 text-left">
                   <li>Enter the project inputs using the form fields.</li>
                   <li>Adjust units and options when available.</li>
                   <li>Review the calculated results and totals.</li>
@@ -202,8 +189,8 @@ const CalculatorPage = () => {
 
             <Card className="bg-card border-border/50">
               <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-2">Glossary & Notes</h2>
-                <p className="text-muted-foreground">
+                <h2 className="text-xl font-semibold skn-title mb-2">Glossary & Notes</h2>
+                <p className="skn-sub">
                   This calculator provides estimations for planning purposes. Always verify specifications and
                   local standards before purchasing materials.
                 </p>
@@ -212,34 +199,13 @@ const CalculatorPage = () => {
 
             <Card className="bg-card border-border/50">
               <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-2">Related Tools</h2>
-                <ul className="list-disc pl-5 text-muted-foreground space-y-1">
-                  <li><a className="text-primary underline" href="/construction">Construction Calculators</a></li>
-                  <li><a className="text-primary underline" href="/health">Health & Fitness Calculators</a></li>
+                <h2 className="text-xl font-semibold skn-title mb-2">Related Tools</h2>
+                <ul className="list-disc pl-5 skn-sub space-y-1 text-left">
+                  <li><a className="underline" href="/construction">Construction Calculators</a></li>
+                  <li><a className="underline" href="/health">Health & Fitness Calculators</a></li>
                 </ul>
               </CardContent>
             </Card>
-          </section>
-
-          {/* Rodapé explicativo */}
-          <section>
-            <CalculatorFooter
-              calculatorName={calcName}
-              description={
-                entry
-                  ? `This tool estimates key values for ${calcName.toLowerCase()}. Enter your inputs and review the results before decisions.`
-                  : "This tool estimates key values. Enter your inputs and review the results."
-              }
-              formula={
-                entry?.name?.toLowerCase().includes("concrete")
-                  ? "Volume = Length × Width × Thickness (converted to yd³ or m³); Bags ≈ Volume(ft³) ÷ bag yield."
-                  : "Result = (Variable1 × Variable2) / Constant"
-              }
-              sources={[
-                { title: "ASTM / ACI (when applicable)", url: "https://www.astm.org" },
-                { title: "NIST Engineering Handbook", url: "https://www.nist.gov" },
-              ]}
-            />
           </section>
         </CalculatorLayout>
       </main>
@@ -247,6 +213,4 @@ const CalculatorPage = () => {
       <Footer />
     </div>
   );
-};
-
-export default CalculatorPage;
+}

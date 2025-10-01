@@ -207,7 +207,7 @@ const CookingConversionCalculator = () => {
               </Select>
             </div>
 
-            <Button 
+            <Button variant="calculate"
               onClick={convertUnits}
               disabled={!amount}
               className="w-full"

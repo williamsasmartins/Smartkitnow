@@ -26,29 +26,29 @@ export default function CategoryIndex() {
       <main className="pt-20">
         <AdRailLayout
           titleBlock={
-            <div>
-              {/* Back à ESQUERDA (azul) */}
-              <button
-                onClick={() => navigate("/")}
-                className="mb-4 inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-white hover:brightness-110 transition-colors"
-                style={{ backgroundColor: PALETTE.brand.button }}
-                aria-label="Back to Home"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                <span>Back</span>
-              </button>
+  <div>
+    {/* Back à ESQUERDA (azul) */}
+    <button
+      onClick={() => navigate("/")}
+      className="mb-4 inline-flex items-center gap-2 rounded-md px-3 py-1.5 transition-colors skn-back"
+      aria-label="Back to Home"
+    >
+      <ArrowLeft className="h-4 w-4" />
+      <span>Back</span>
+    </button>
 
-              {/* Título/Subtítulo CENTRALIZADOS */}
-              <div className="text-center">
-                <h1 className="text-4xl font-bold mb-3" style={{ color: PALETTE.brand.title }}>
-                  {title}
-                </h1>
-                <p className="text-lg max-w-4xl mx-auto" style={{ color: PALETTE.brand.text }}>
-                  Comprehensive {title.toLowerCase()} for materials, measurements, costs, and planning.
-                </p>
-              </div>
-            </div>
-          }
+    {/* Título/Subtítulo CENTRALIZADOS */}
+    <div className="text-center">
+      <h1 className="text-4xl font-bold mb-3 skn-title">
+        {title}
+      </h1>
+      <p className="text-lg max-w-4xl mx-auto skn-sub">
+        Comprehensive {title.toLowerCase()} for materials, measurements, costs, and planning.
+      </p>
+    </div>
+  </div>
+}
+
         >
           {subcats.length === 0 ? (
             <p className="text-center" style={{ color: PALETTE.brand.text }}>

@@ -19,6 +19,8 @@ import MathComingSoon from '@/pages/MathComingSoon';
 import EverydayMath from "@/pages/math/EverydayMath";
 import PercentageCalculators from "@/pages/math/PercentageCalculators";
 import FractionsCalculators from "@/pages/math/FractionsCalculators";
+import SearchPage from "@/pages/Search";
+
 
 
 
@@ -82,6 +84,8 @@ export default function App() {
             <Route path="/cookie-settings" element={<CookieSettings />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/search" element={<SearchPage />} />
+
 
             {/* Categorias raiz */}
             <Route path="/construction" element={<ConstructionCalculators />} />

@@ -1,8 +1,9 @@
+// src/pages/MathCalculatorPage.tsx
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { BackButton } from "@/components/BackButton";
 import { useParams, useNavigate } from "react-router-dom";
+
 import { PercentageCalculator } from "@/components/calculators/PercentageCalculator";
 import { GPACalculator } from "@/components/calculators/GPACalculator";
 import { FractionCalculator } from "@/components/calculators/FractionCalculator";
@@ -28,34 +29,27 @@ export default function MathCalculatorPage() {
       default:
         return (
           <div className="text-center py-12">
-            <h2 className="text-2xl font-bold mb-4">Calculator Coming Soon</h2>
-            <p className="text-muted-foreground mb-6">
-              The {calculator?.replace(/-/g, ' ')} calculator is under development.
+            <h2 className="text-2xl font-bold mb-4 skn-title">Calculator Coming Soon</h2>
+            <p className="text-muted-foreground mb-6 skn-sub">
+              The {calculator?.replace(/-/g, " ")} calculator is under development.
             </p>
-            <Button onClick={() => navigate("/math")}>
-              Browse Other Calculators
-            </Button>
+            <BackButton fallback="/math">Browse Other Calculators</BackButton>
           </div>
         );
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
+    <div className="min-h-screen bg-gradient-soft">
       <Header />
-      
-      <main className="container mx-auto px-4 pt-24 pb-12">
-        {/* Back Button */}
-        <Button 
-          variant="ghost" 
-          onClick={() => navigate("/math")}
-          className="mb-6 hover:bg-muted/80"
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Math Calculators
-        </Button>
 
-        {/* Calculator Component */}
+      <main className="container mx-auto px-4 pt-24 pb-12">
+        {/* Back à esquerda (azul) */}
+        <div className="mb-6 flex items-center justify-start">
+          <BackButton fallback="/math">Back to Math Calculators</BackButton>
+        </div>
+
+        {/* Conteúdo da calculadora */}
         {getCalculatorComponent()}
       </main>
 
