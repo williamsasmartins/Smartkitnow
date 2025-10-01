@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import logoImage from "@/assets/logo-skn.png";
 import { Input } from "@/components/ui/input";
 import { Search as SearchIcon } from "lucide-react";
-import { SEARCH_INDEX } from "@/data/searchIndex";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { SEARCH_INDEX, type SearchEntry } from "@/data/searchIndex";
 
-/** Normaliza texto para busca (casefold + remove acentos) */
+/** normaliza: minúsculas + remove acentos */
 function normalize(s: string) {
   return s
     .toLowerCase()
@@ -24,7 +24,7 @@ export function Header() {
   const boxRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  // Fechar ao tocar/clicar fora (pointerdown cobre mouse/touch/caneta)
+  // Fecha dropdown ao tocar/clicar fora (pointerdown cobre mouse + toque)
   useEffect(() => {
     const onDoc = (ev: PointerEvent) => {
       const el = ev.target as Node;
@@ -35,33 +35,37 @@ export function Header() {
     return () => document.removeEventListener("pointerdown", onDoc);
   }, []);
 
-  // Resultados (filtro leve e robusto)
-  const results = useMemo(() => {
+  // Resultados da busca (sem usar .terms)
+  const results = useMemo<SearchEntry[]>(() => {
     const q = normalize(term.trim());
     if (!q) return [];
 
-    // Filtra: confere em 'terms' (se houver) e sempre confere no 'name'
-    const filtered = SEARCH_INDEX.filter((e) => {
-      const nameHit = normalize(e.name ?? "").includes(q);
-      const terms = Array.isArray(e.terms) ? e.terms : [];
-      const termsHit = terms.some((t) => normalize(t).includes(q));
-      return nameHit || termsHit;
+    const arr = SEARCH_INDEX.filter((e) => {
+      // monta um haystack com os campos disponíveis
+      const haystack = normalize(
+        [
+          e.name,
+          e.category,
+          Array.isArray((e as any).tags) ? (e as any).tags.join(" ") : "",
+          Array.isArray((e as any).keywords) ? (e as any).keywords.join(" ") : "",
+          e.path,
+        ]
+          .filter(Boolean)
+          .join(" ")
+      );
+      return haystack.includes(q);
     });
 
-    // Ordena com alguns mimos: começa-com tem prioridade; drywall sobe
-    const scored = filtered
-      .map((e) => {
-        const n = normalize(e.name ?? "");
-        let score = 0;
-        if (n.startsWith(q)) score -= 10;
-        if (n.includes(q)) score -= 1;
-        if (n.startsWith("drywall")) score -= 100; // boost especial
-        return { e, score };
+    // prioriza "Drywall" se empatar; depois ordena por nome
+    return arr
+      .sort((a, b) => {
+        const an = a.name.toLowerCase();
+        const bn = b.name.toLowerCase();
+        if (an.startsWith("drywall") && !bn.startsWith("drywall")) return -1;
+        if (!an.startsWith("drywall") && bn.startsWith("drywall")) return 1;
+        return an.localeCompare(bn);
       })
-      .sort((a, b) => a.score - b.score)
-      .map((x) => x.e);
-
-    return scored.slice(0, 8);
+      .slice(0, 8);
   }, [term]);
 
   const goto = (path: string) => {
@@ -79,7 +83,7 @@ export function Header() {
 
   return (
     <header className="fixed top-0 w-full border-b border-border/40 bg-background/95 backdrop-blur-md z-50">
-      {/* Layout: centraliza a busca e permite quebrar em 2 linhas no mobile */}
+      {/* Layout em duas linhas no mobile; centraliza a busca */}
       <div className="container mx-auto px-4 py-3 max-w-7xl flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         {/* Logo */}
         <div
@@ -93,7 +97,7 @@ export function Header() {
           )}
         </div>
 
-        {/* 🔎 Search centralizada */}
+        {/* Search centralizado */}
         <div ref={boxRef} className="w-full sm:flex-1 sm:max-w-xl sm:mx-4 relative">
           <form onSubmit={onSubmit}>
             <div className="relative">
@@ -107,7 +111,7 @@ export function Header() {
                   setTerm(v);
                   setOpen(v.trim().length > 0);
                 }}
-                // iOS: força atualização imediata do valor
+                // Ajuda iOS/Android a refletir a digitação imediatamente
                 onInput={(e) => {
                   const v = (e.target as HTMLInputElement).value;
                   if (v !== term) setTerm(v);
@@ -134,23 +138,20 @@ export function Header() {
                   key={item.path}
                   role="option"
                   onPointerDown={(e) => {
-                    // evita o blur no iOS antes da navegação
-                    e.preventDefault();
+                    e.preventDefault(); // evita blur antes de navegar no iOS
                     goto(item.path);
                   }}
                   className="px-4 py-2 hover:bg-muted cursor-pointer border-b border-border/50 last:border-b-0"
                 >
                   <div className="font-medium text-sm">{item.name}</div>
-                  <div className="text-xs text-muted-foreground capitalize">
-                    {item.category}
-                  </div>
+                  <div className="text-xs text-muted-foreground capitalize">{item.category}</div>
                 </div>
               ))}
             </div>
           )}
         </div>
 
-        {/* Tema */}
+        {/* Theme toggle à direita */}
         <div className="flex items-center sm:justify-end">
           <ThemeToggle />
         </div>
