@@ -1,0 +1,28 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "redirects": [
+    {
+      "source": "/construction/wall-ceiling-calculators/drywall-estimator",
+      "destination": "/construction/wall-ceiling-calculators/drywall-area-sheets",
+      "permanent": true
+    },
+    {
+      "source": "/construction/wall-ceiling-calculators/drywall-area-and-sheets",
+      "destination": "/construction/wall-ceiling-calculators/drywall-area-sheets",
+      "permanent": true
+    },
+    {
+      "source": "/construction/wall-ceiling-calculators/drywall-sheets",
+      "destination": "/construction/wall-ceiling-calculators/drywall-area-sheets",
+      "permanent": true
+    },
+    {
+      "source": "/construction/wall-ceiling-calculators/drywall-calculator",
+      "destination": "/construction/wall-ceiling-calculators/drywall-area-sheets",
+      "permanent": true
+    }
+  ]
+}
