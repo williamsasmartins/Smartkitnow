@@ -1,10 +1,9 @@
-// src/data/calculatorRegistry.ts
-import React from "react";
-
 /**
- * ============================================
- * TIPOS
- * ============================================
+ * Registro ÚNICO de calculadoras do site
+ * ------------------------------------------------------
+ * - Mantém UM tipo (CalcEntry) para evitar duplicidade.
+ * - Inclui tags/keywords opcionais para melhorar a busca.
+ * - Slugs/paths precisam bater com suas rotas reais.
  */
 
 export type CalcEntry = {
@@ -24,13 +23,13 @@ export type CalcEntry = {
   namedExport?: string;
   /** URLs alternativas aceitas para a mesma calculadora */
   aliases?: string[];
+  /** Palavras-chave para busca (opcional) */
+  keywords?: string[];
+  /** Etiquetas curtas para busca (opcional) */
+  tags?: string[];
 };
 
-/**
- * ============================================
- * TÍTULOS “BONITOS” POR CATEGORIA
- * ============================================
- */
+/** Títulos “bonitos” por categoria (opcional, usado em páginas de listagem) */
 export const FRIENDLY_TITLES: Record<string, string> = {
   construction: "Construction Calculators",
   cooking: "Cooking Calculators",
@@ -38,70 +37,52 @@ export const FRIENDLY_TITLES: Record<string, string> = {
   financial: "Financial Calculators",
   electrical: "Electrical Calculators",
   math: "Math & Algebra Calculators",
-  pets: "Pets Calculators",
+  pets: "Pet Care Calculators",
   science: "Science Calculators",
   time: "Time & Date Calculators",
   tv: "TV & Home Theater Calculators",
   conversion: "Conversion Calculators",
 };
 
-/**
- * ============================================
- * TÍTULOS / SLUGS DE SUBCATEGORIA
- * (Mantenha os slugs exatamente como nas rotas)
- * ============================================
- * Observação:
- * - Padronizei Math para:
- *    - "percentage-calculators" (antes você usava alguns "percent-calculators")
- *    - "fractions-calculators"  (antes havia "fraction-calculators")
- * - Mantive chaves de compatibilidade para não quebrar links antigos.
- */
+/** Títulos de subcategoria (slug -> título) */
 export const SUBCATEGORY_TITLES: Record<string, string> = {
-  // ---------- Construction ----------
+  // Construction
   "concrete-masonry-calculators": "Concrete & Masonry Calculators",
   "carpentry-trim-calculators": "Carpentry & Trim Calculators",
   "wall-ceiling-calculators": "Wall & Ceiling Calculators",
-  // Compat antigo
+  // compat antigo
   "drywall-paint-calculators": "Wall & Ceiling Calculators",
 
-  // ---------- Cooking ----------
+  // Cooking
   "cooking-baking-calculators": "Cooking & Baking Calculators",
   "cooking-measurements": "Cooking Measurements",
   "cooking-unit-conversions": "Unit Conversion Calculators",
 
-  // ---------- Health ----------
+  // Health
   "body-measurement-calculators": "Body Measurement Calculators",
   "calories-conversion": "Calories Conversion",
   "diet-nutrition-calculators": "Dietary & Nutrition Calculators",
   "fitness-calculators": "Fitness Calculators",
 
-  // ---------- Financial ----------
+  // Financial
   "personal-finance-calculators": "Personal Finance Calculators",
   "interest-and-loan-calculators": "Interest and Loan Calculators",
   "mortgage-and-home-loan-calculators": "Mortgage & Home Loan Calculators",
 
-  // ---------- Math ----------
+  // Math
   "everyday-math": "Everyday Math",
-
-  // Padrões ATUAIS
   "percentage-calculators": "Percentage Calculators",
   "fractions-calculators": "Fraction Calculators",
 
-  // Compatibilidade (aceita rotas antigas sem quebrar o título)
+  // Compat (aceita rotas antigas)
   "percent-calculators": "Percentage Calculators",
   "fraction-calculators": "Fraction Calculators",
 };
 
-/**
- * ============================================
- * LOADERS (lazy imports)
- * ============================================
- * IMPORTANTE: caminhos devem bater com src/components/calculators
- */
-
 /* =========================
- * CONSTRUCTION (loaders)
+ * LOADERS (lazy imports)
  * ========================= */
+// Construction
 const loadConcreteSlab = () => import("@/components/calculators/ConcreteSlab");
 const loadDrywallEstimator = () =>
   import("@/components/calculators/DrywallEstimator");
@@ -109,9 +90,7 @@ const loadPaint = () => import("@/components/calculators/PaintCalculator");
 const loadWallpaper = () =>
   import("@/components/calculators/WallpaperCalculator");
 
-/* =========================
- * COOKING (loaders)
- * ========================= */
+// Cooking
 const loadCake = () => import("@/components/calculators/CakeCalculator");
 const loadCookingConversion = () =>
   import("@/components/calculators/CookingConversionCalculator");
@@ -120,9 +99,7 @@ const loadCookingTimer = () =>
 const loadRecipeScaling = () =>
   import("@/components/calculators/cooking/RecipeScalingCalculator");
 
-/* =========================
- * HEALTH (loaders)
- * ========================= */
+// Health
 const loadCaloriesToKg = () =>
   import("@/components/calculators/CaloriesToKilogramsCalculator");
 const loadBMI = () => import("@/components/calculators/BMICalculator");
@@ -131,9 +108,7 @@ const loadTDEE = () => import("@/components/calculators/TDEECalculator");
 const loadCalorieIntake = () =>
   import("@/components/calculators/CalorieCalculator");
 
-/* =========================
- * FINANCIAL (loaders)
- * ========================= */
+// Financial
 const loadMortgage = () =>
   import("@/components/calculators/MortgageCalculator");
 const loadMortgageRefi = () =>
@@ -143,9 +118,7 @@ const loadROI = () => import("@/components/calculators/financial/ROICalculator")
 const loadCompoundInterest = () =>
   import("@/components/calculators/CompoundInterestCalculator");
 
-/* =========================
- * MATH — Percentage (loaders)
- * ========================= */
+// Math — Percentage
 const loadPercentOf = () =>
   import("@/components/calculators/math/PercentOfCalculator");
 const loadPercentIncrease = () =>
@@ -155,9 +128,7 @@ const loadPercentDecrease = () =>
 const loadPercentChange = () =>
   import("@/components/calculators/math/PercentChangeCalculator");
 
-/* =========================
- * MATH — Fractions (loaders)
- * ========================= */
+// Math — Fractions
 const loadFractionReducer = () =>
   import("@/components/calculators/math/FractionReducerCalculator");
 const loadFractionToDecimal = () =>
@@ -167,27 +138,21 @@ const loadDecimalToFraction = () =>
 const loadPercentToFraction = () =>
   import("@/components/calculators/math/PercentToFractionCalculator");
 
-/* =========================
- * MATH — Everyday (loaders)
- * ========================= */
+// Math — Everyday
 const loadAverage = () =>
   import("@/components/calculators/math/AverageCalculator");
 const loadProportion = () =>
   import("@/components/calculators/math/ProportionCalculator");
 
+
 /**
  * ============================================
- * REGISTRY – LISTE AQUI TODAS AS CALCULADORAS
- * Rota: /:category/:subcategory/:slug
+ * REGISTRY – TODAS AS CALCULADORAS
+ * (Rota padrão: /:category/:subcategory/:slug)
  * ============================================
  */
-
 export const REGISTRY: CalcEntry[] = [
-  /**
-   * =========================
-   * CONSTRUCTION
-   * =========================
-   */
+  // ========= CONSTRUCTION =========
   {
     slug: "concrete-slab-volume-bags",
     aliases: ["concrete-slab"],
@@ -196,6 +161,8 @@ export const REGISTRY: CalcEntry[] = [
     subcategory: "concrete-masonry-calculators",
     description: "Estimate concrete volume and bag counts for slabs.",
     loader: loadConcreteSlab,
+    keywords: ["concrete", "slab", "volume", "bags"],
+    tags: ["concrete"],
   },
   {
     slug: "drywall-area-sheets",
@@ -210,6 +177,8 @@ export const REGISTRY: CalcEntry[] = [
     subcategory: "wall-ceiling-calculators",
     description: "Drywall estimator with rooms, openings, boards and costs.",
     loader: loadDrywallEstimator,
+    keywords: ["drywall", "sheetrock", "plasterboard", "board", "wall", "ceiling"],
+    tags: ["drywall", "construction"],
   },
   {
     slug: "paint-calculator",
@@ -219,6 +188,8 @@ export const REGISTRY: CalcEntry[] = [
     subcategory: "wall-ceiling-calculators",
     description: "Estimate paint needed by area, number of coats and coverage.",
     loader: loadPaint,
+    keywords: ["paint", "coats", "coverage"],
+    tags: ["paint"],
   },
   {
     slug: "wallpaper-calculator",
@@ -228,13 +199,11 @@ export const REGISTRY: CalcEntry[] = [
     subcategory: "wall-ceiling-calculators",
     description: "Estimate rolls needed based on room size and pattern repeat.",
     loader: loadWallpaper,
+    keywords: ["wallpaper", "rolls", "pattern"],
+    tags: ["wallpaper"],
   },
 
-  /**
-   * =========================
-   * COOKING
-   * =========================
-   */
+  // ========= COOKING =========
   {
     slug: "cake",
     name: "Cake Calculator",
@@ -250,6 +219,7 @@ export const REGISTRY: CalcEntry[] = [
     subcategory: "cooking-unit-conversions",
     description: "Convert between cups, grams, tablespoons, etc.",
     loader: loadCookingConversion,
+    keywords: ["cups", "grams", "tablespoons", "ml"],
   },
   {
     slug: "timer",
@@ -269,11 +239,7 @@ export const REGISTRY: CalcEntry[] = [
     loader: loadRecipeScaling,
   },
 
-  /**
-   * =========================
-   * HEALTH
-   * =========================
-   */
+  // ========= HEALTH =========
   {
     slug: "calories-to-kilograms-calculator",
     aliases: ["calories-to-kg", "convert-calories-to-kilograms"],
@@ -317,11 +283,7 @@ export const REGISTRY: CalcEntry[] = [
     loader: loadCalorieIntake,
   },
 
-  /**
-   * =========================
-   * FINANCIAL
-   * =========================
-   */
+  // ========= FINANCIAL =========
   {
     slug: "mortgage-calculator",
     name: "Mortgage Calculator",
@@ -329,6 +291,7 @@ export const REGISTRY: CalcEntry[] = [
     subcategory: "mortgage-and-home-loan-calculators",
     description: "Estimate monthly mortgage payments.",
     loader: loadMortgage,
+    keywords: ["mortgage", "home loan", "payment"],
   },
   {
     slug: "mortgage-refinance-calculator",
@@ -363,16 +326,7 @@ export const REGISTRY: CalcEntry[] = [
     loader: loadCompoundInterest,
   },
 
-  /**
-   * =========================
-   * MATH — PERCENTAGE
-   * URLs: /math/percentage-calculators/*
-   * =========================
-   * Slug canônico:
-   *  - Percent Of  => "percent-of"
-   * Aliases úteis:
-   *  - "percent-of-total", "percentage-of-total", "percent-of-number"
-   */
+  // ========= MATH — PERCENTAGE =========
   {
     slug: "percent-of",
     aliases: ["percent-of-total", "percentage-of-total", "percent-of-number"],
@@ -407,12 +361,7 @@ export const REGISTRY: CalcEntry[] = [
     description: "Signed percent change: positive for increase, negative for decrease.",
   },
 
-  /**
-   * =========================
-   * MATH — FRACTIONS
-   * URLs: /math/fractions-calculators/*
-   * =========================
-   */
+  // ========= MATH — FRACTIONS =========
   {
     slug: "fraction-reducer",
     name: "Fraction Reducer",
@@ -450,12 +399,7 @@ export const REGISTRY: CalcEntry[] = [
       "Convert a percentage into a reduced fraction and mixed-number form when applicable.",
   },
 
-  /**
-   * =========================
-   * MATH — EVERYDAY
-   * URLs: /math/everyday-math/*
-   * =========================
-   */
+  // ========= MATH — EVERYDAY =========
   {
     slug: "average-calculator",
     aliases: ["mean-calculator", "average"],
@@ -476,11 +420,9 @@ export const REGISTRY: CalcEntry[] = [
   },
 ];
 
-/**
- * ============================================
- * HELPERS PÚBLICOS
- * ============================================
- */
+/* =========================
+ * HELPERS
+ * ========================= */
 
 /** Localiza uma calculadora pelo slug OU pelos seus aliases */
 export function getEntry(slug?: string) {
@@ -496,10 +438,7 @@ export function listByCategory(category: string) {
 }
 
 /** Lista todas as calculadoras de uma categoria + (opcional) subcategoria */
-export function listByCategorySubcategory(
-  category: string,
-  subcategory?: string
-) {
+export function listByCategorySubcategory(category: string, subcategory?: string) {
   return REGISTRY.filter(
     (e) =>
       e.category === category &&
@@ -507,11 +446,7 @@ export function listByCategorySubcategory(
   );
 }
 
-/**
- * Retorna as subcategorias existentes dentro de uma categoria,
- * junto com a contagem de calculadoras em cada uma.
- * Útil para montar a página intermediária de subcategorias.
- */
+/** Subcategorias existentes dentro de uma categoria, com contagem */
 export function listSubcategoriesOfCategory(category: string) {
   const items = listByCategory(category);
   const map = new Map<string, number>();
