@@ -275,7 +275,7 @@ export default function DrywallEstimator() {
   }, []);
   useEffect(() => {
     const state = { rooms, drywall, manualMaterials, unit };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
   }, [rooms, drywall, manualMaterials, unit]);
 
   const { totalWallAreaFt2, totalCeilingAreaFt2, totalOpeningsAreaFt2 } = useMemo(() => {
@@ -896,3 +896,4 @@ export default function DrywallEstimator() {
     </div>
   );
 }
+

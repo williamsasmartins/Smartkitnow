@@ -127,7 +127,7 @@ const CalculatorPage = () => {
 
       <Header />
 
-      <main className="pt-20">
+      <main className="pt-40 sm:pt-20">
         <CalculatorLayout>
           {/* Back + header */}
 <section className="px-1 sm:px-0">
@@ -250,3 +250,4 @@ const CalculatorPage = () => {
 };
 
 export default CalculatorPage;
+

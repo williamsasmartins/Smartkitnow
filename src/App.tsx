@@ -72,7 +72,14 @@ export default function App() {
     <>
       <ScrollToTop />
       <AppErrorBoundary>
-        <Suspense fallback={null}>
+        <Suspense
+          fallback={
+            <div className="fixed inset-0 flex items-center justify-center bg-background/80">
+              <div className="animate-spin rounded-full h-8 w-8 border-2 border-primary border-t-transparent" />
+              <span className="sr-only">Loading…</span>
+            </div>
+          }
+        >
           <Routes>
             {/* Home & institucionais */}
             <Route path="/" element={<Index />} />

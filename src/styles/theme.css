@@ -12,3 +12,11 @@
   background-color: rgba(59,130,246,0.15);
   color: #3b82f6;
 }
+
+/* Ajuste de espaçamento para header fixo em mobile */
+@media (max-width: 639px) {
+  main.pt-20 {
+    padding-top: 10rem !important; /* ~112px */
+  }
+}
+
