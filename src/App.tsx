@@ -4,8 +4,7 @@ import { Routes, Route, Navigate, useParams, useLocation } from "react-router-do
 import ScrollToTop from "@/components/ScrollToTop";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 import { SpeedInsights } from '@vercel/speed-insights/react'
-function Insights() { const location = useLocation(); return
-; }
+
 // Páginas principais
 import Index from "@/pages/Index";
 import About from "@/pages/About";
@@ -68,7 +67,8 @@ function LegacyCalcRedirect() {
   const { category, subcategory, slug } = useParams();
   return <Navigate to={`/${category}/${subcategory}/${slug}`} replace />;
 }
-
+function Insights() { const location = useLocation(); return
+; }
 export default function App() {
   return (
     <>
@@ -143,6 +143,7 @@ export default function App() {
               path="/:category/:subcategory/calculator/:slug"
               element={<LegacyCalcRedirect />}
             />
+            
 
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
