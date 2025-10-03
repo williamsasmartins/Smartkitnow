@@ -48,7 +48,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   // Tenta inferir URL atual para OG/twitter se canonical não vier
   const currentUrl =
     typeof window !== "undefined" ? window.location.href : undefined;
-  const ogUrl = canonical || currentUrl;
+  const canonicalUrl = canonical || currentUrl;
+  const ogUrl = canonicalUrl;
 
   // JSON-LD (schema + breadcrumbs)
   const ldJson: any[] = [];
@@ -74,7 +75,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
         )}
 
         {/* Canonical */}
-        {canonical && <link rel="canonical" href={canonical} />}
+        {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
         {/* Open Graph */}
         <meta property="og:site_name" content={siteName} />
