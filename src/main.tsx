@@ -10,8 +10,8 @@ import { injectSpeedInsights } from '@vercel/speed-insights'
 import * as Sentry from '@sentry/react'
 
 // Inicializa o Sentry somente se o DSN existir nas variáveis de ambiente
-const SENTRY_DSN = import.meta.env.VITE_SENTRY_DSN
-if (SENTRY_DSN) {
+const SENTRY_DSN = import.meta.env.VITE_SENTRY_DSN?.trim()
+if (SENTRY_DSN && SENTRY_DSN !== "REPLACE_WITH_YOUR_SENTRY_DSN") {
   Sentry.init({
     dsn: SENTRY_DSN,
     integrations: [Sentry.browserTracingIntegration()],
@@ -36,3 +36,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </ThemeProvider>
   </React.StrictMode>
 )
+
+
