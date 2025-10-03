@@ -41,7 +41,7 @@ const PizzaCalculator = () => {
     const servings = servingsPerPizza[size][appetite as keyof typeof servingsPerPizza[typeof size]];
     const pizzasNeeded = Math.ceil(numGuests / servings);
 
-    let calculatedResult: any = {
+    const calculatedResult: any = {
       pizzasNeeded,
       size: pizzaSize,
       servings,

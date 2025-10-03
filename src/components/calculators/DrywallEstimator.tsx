@@ -19,9 +19,10 @@ const DECIMAL_RE = /^\d*(?:\.\d*)?$/;
 
 function safeId() {
   try {
-    // @ts-ignore
-    if (typeof crypto !== "undefined" && crypto.randomUUID) return crypto.randomUUID();
-  } catch {}
+    // Use feature detection with globalThis to avoid TypeScript errors when 'crypto' is absent
+    const c = (typeof globalThis !== "undefined" && (globalThis as any).crypto) ? (globalThis as any).crypto : undefined;
+    if (c && typeof c.randomUUID === "function") return c.randomUUID();
+  } catch { /* Ignored: crypto.randomUUID may not be available or throws in some environments */ }
   return `id_${Date.now().toString(36)}_${Math.random().toString(36).slice(2)}`;
 }
 
@@ -158,10 +159,18 @@ function NumInput({
   value,
   onChange,
   className = "",
+  id,
+  name,
+  ariaLabel,
+  ariaDescribedBy,
 }: {
   value: number;
   onChange: (n: number) => void;
   className?: string;
+  id?: string;
+  name?: string;
+  ariaLabel?: string;
+  ariaDescribedBy?: string;
 }) {
   const [text, setText] = useState<string>(Number.isFinite(value) ? String(value) : "");
   const [isEditing, setIsEditing] = useState(false);
@@ -191,6 +200,10 @@ function NumInput({
       pattern="[0-9]*[.]?[0-9]*"
       className={`w-full rounded-lg border bg-background px-3 py-2 shadow-sm outline-none focus:ring ${className}`}
       value={text}
+      id={id}
+      name={name}
+      aria-label={ariaLabel}
+      aria-describedby={ariaDescribedBy}
       onFocus={() => setIsEditing(true)}
       onChange={(e) => setText(e.target.value)}
       onKeyDown={(e) => {
@@ -204,11 +217,22 @@ function NumInput({
   );
 }
 
-function Select({ value, onChange, children, className = "" }: any) {
+function Select({ value, onChange, children, className = "", id, name, ariaLabel }: {
+  value: any;
+  onChange: (v: any) => void;
+  children: React.ReactNode;
+  className?: string;
+  id?: string;
+  name?: string;
+  ariaLabel?: string;
+}) {
   return (
     <select
       className={`w-full rounded-lg border bg-background px-3 py-2 shadow-sm ${className}`}
       value={value}
+      id={id}
+      name={name}
+      aria-label={ariaLabel}
       onChange={(e) => onChange(e.target.value)}
     >
       {children}
@@ -221,18 +245,20 @@ function FieldWithUnit({
   unitLabel,
   value,
   onChange,
+  id,
 }: {
   label: string;
   unitLabel: string;
   value: number;
   onChange: (n: number) => void;
+  id?: string;
 }) {
   return (
     <div>
-      <label className="mb-1 block text-sm">
+      <label className="mb-1 block text-sm" htmlFor={id}>
         {label} ({unitLabel})
       </label>
-      <NumInput value={value} onChange={onChange} />
+      <NumInput id={id} value={value} onChange={onChange} />
     </div>
   );
 }
@@ -271,11 +297,11 @@ export default function DrywallEstimator() {
         if (parsed.manualMaterials) setManualMaterials(parsed.manualMaterials);
         if (parsed.unit) setUnit(parsed.unit);
       }
-    } catch {}
+    } catch { /* Ignored: failed to load persisted state from localStorage */ }
   }, []);
   useEffect(() => {
     const state = { rooms, drywall, manualMaterials, unit };
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch { /* Ignored: localStorage may fail due to quota or privacy settings */ }
   }, [rooms, drywall, manualMaterials, unit]);
 
   const { totalWallAreaFt2, totalCeilingAreaFt2, totalOpeningsAreaFt2 } = useMemo(() => {
@@ -352,8 +378,8 @@ export default function DrywallEstimator() {
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
-            <label className="text-sm">Units</label>
-            <Select value={unit} onChange={setUnit} className="w-auto">
+            <label className="text-sm" htmlFor="unit-system">Units</label>
+            <Select value={unit} onChange={setUnit} className="w-auto" id="unit-system" name="unit-system" aria-label="Unit system">
               <option value={UnitSystem.IMPERIAL}>Imperial (ft/in)</option>
               <option value={UnitSystem.METRIC}>Metric (m)</option>
             </Select>
@@ -402,7 +428,12 @@ export default function DrywallEstimator() {
             <div key={r.id} className="rounded-2xl border p-4 shadow-sm">
               <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
+                  <label className="text-sm" htmlFor={`room-${r.id}-name`}>Room name</label>
                   <input
+                    id={`room-${r.id}-name`}
+                    name={`room-${r.id}-name`}
+                    aria-label="Room name"
+                    aria-describedby={`room-${r.id}-index`}
                     className="w-56 rounded-lg border bg-background px-3 py-2 shadow-sm"
                     value={r.name}
                     onChange={(e) =>
@@ -411,7 +442,7 @@ export default function DrywallEstimator() {
                       )
                     }
                   />
-                  <span className="text-sm text-muted-foreground">#{idx + 1}</span>
+                  <span id={`room-${r.id}-index`} className="text-sm text-muted-foreground">#{idx + 1}</span>
                 </div>
                 <button
                   onClick={() =>
@@ -437,6 +468,7 @@ export default function DrywallEstimator() {
                       )
                     )
                   }
+                  id={`room-${r.id}-length`}
                 />
                 <FieldWithUnit
                   label="Width"
@@ -451,6 +483,7 @@ export default function DrywallEstimator() {
                       )
                     )
                   }
+                  id={`room-${r.id}-width`}
                 />
                 <FieldWithUnit
                   label="Height"
@@ -465,6 +498,7 @@ export default function DrywallEstimator() {
                       )
                     )
                   }
+                  id={`room-${r.id}-height`}
                 />
                 <div className="flex items-end">
                   <label className="flex items-center gap-2 text-sm">
@@ -510,8 +544,11 @@ export default function DrywallEstimator() {
                     {r.openings.map((o) => (
                       <div key={o.id} className="grid grid-cols-1 items-end gap-3 sm:grid-cols-6">
                         <div>
-                          <label className="mb-1 block text-sm">Type</label>
+                          <label className="mb-1 block text-sm" htmlFor={`opening-${o.id}-type`}>Type</label>
                           <Select
+                            id={`opening-${o.id}-type`}
+                            name={`opening-${o.id}-type`}
+                            ariaLabel="Opening type"
                             value={o.label}
                             onChange={(v: "Window" | "Door") =>
                               setRooms((prev) =>
@@ -559,6 +596,7 @@ export default function DrywallEstimator() {
                               )
                             )
                           }
+                          id={`opening-${o.id}-width`}
                         />
                         <FieldWithUnit
                           label="Height"
@@ -587,10 +625,14 @@ export default function DrywallEstimator() {
                               )
                             )
                           }
+                          id={`opening-${o.id}-height`}
                         />
                         <div>
-                          <label className="mb-1 block text-sm">Count</label>
+                          <label className="mb-1 block text-sm" htmlFor={`opening-${o.id}-count`}>Count</label>
                           <NumInput
+                            id={`opening-${o.id}-count`}
+                            name={`opening-${o.id}-count`}
+                            ariaLabel="Opening count"
                             value={o.count}
                             onChange={(v) =>
                               setRooms((prev) =>
@@ -606,13 +648,13 @@ export default function DrywallEstimator() {
                                                 count: Number.isFinite(v)
                                                   ? Math.max(0, Math.round(v))
                                                   : oo.count,
-                                              }
-                                            : oo
-                                        ),
-                                      }
-                                )
+                                            }
+                                          : oo
+                                      ),
+                                    }
                               )
-                            }
+                            )
+                          }
                           />
                         </div>
                         <div className="sm:col-span-1">
@@ -649,9 +691,11 @@ export default function DrywallEstimator() {
       <section className="mb-8 rounded-2xl border p-4 shadow-sm">
         <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="text-xl font-semibold">Drywall Boards</h2>
-          <label className="flex items-center gap-2 text-sm">
+          <label className="flex items-center gap-2 text-sm" htmlFor="cover-ceilings">
             <input
               type="checkbox"
+              id="cover-ceilings"
+              name="cover-ceilings"
               checked={drywall.coverCeilings}
               onChange={(e) => setDrywall((d) => ({ ...d, coverCeilings: e.target.checked }))}
             />
@@ -663,7 +707,7 @@ export default function DrywallEstimator() {
           {drywall.selections.map((s) => (
             <div key={s.id} className="grid grid-cols-1 items-end gap-3 rounded-xl border p-3 sm:grid-cols-6">
               <div>
-                <label className="mb-1 block text-sm">Sheet Size</label>
+                <label className="mb-1 block text-sm" htmlFor={`board-selection-${s.id}-size`}>Sheet Size</label>
                 <Select
                   value={s.boardId}
                   onChange={(v: string) =>
@@ -672,6 +716,9 @@ export default function DrywallEstimator() {
                       selections: d.selections.map((x) => (x.id === s.id ? { ...x, boardId: v } : x)),
                     }))
                   }
+                  id={`board-selection-${s.id}-size`}
+                  name={`board-selection-${s.id}-size`}
+                  ariaLabel="Sheet Size"
                 >
                   {BOARD_OPTIONS.map((b) => (
                     <option key={b.id} value={b.id}>
@@ -681,7 +728,7 @@ export default function DrywallEstimator() {
                 </Select>
               </div>
               <div>
-                <label className="mb-1 block text-sm">Thickness</label>
+                <label className="mb-1 block text-sm" htmlFor={`board-selection-${s.id}-thickness`}>Thickness</label>
                 <Select
                   value={s.thickness}
                   onChange={(v: string) =>
@@ -690,6 +737,9 @@ export default function DrywallEstimator() {
                       selections: d.selections.map((x) => (x.id === s.id ? { ...x, thickness: v } : x)),
                     }))
                   }
+                  id={`board-selection-${s.id}-thickness`}
+                  name={`board-selection-${s.id}-thickness`}
+                  ariaLabel="Thickness"
                 >
                   {THICKNESS_OPTIONS.map((t) => (
                     <option key={t} value={t}>
@@ -699,7 +749,7 @@ export default function DrywallEstimator() {
                 </Select>
               </div>
               <div>
-                <label className="mb-1 block text-sm">Quantity (sheets)</label>
+                <label className="mb-1 block text-sm" htmlFor={`board-selection-${s.id}-quantity`}>Quantity (sheets)</label>
                 <NumInput
                   value={s.quantity}
                   onChange={(v) =>
@@ -712,10 +762,13 @@ export default function DrywallEstimator() {
                       ),
                     }))
                   }
+                  id={`board-selection-${s.id}-quantity`}
+                  name={`board-selection-${s.id}-quantity`}
+                  ariaLabel="Quantity (sheets)"
                 />
               </div>
               <div>
-                <label className="mb-1 block text-sm">Unit Price ($)</label>
+                <label className="mb-1 block text-sm" htmlFor={`board-selection-${s.id}-unitprice`}>Unit Price ($)</label>
                 <NumInput
                   value={s.unitPrice}
                   onChange={(v) =>
@@ -728,6 +781,9 @@ export default function DrywallEstimator() {
                       ),
                     }))
                   }
+                  id={`board-selection-${s.id}-unitprice`}
+                  name={`board-selection-${s.id}-unitprice`}
+                  ariaLabel="Unit Price ($)"
                 />
               </div>
               <div>
@@ -753,12 +809,15 @@ export default function DrywallEstimator() {
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div className="grid grid-cols-1 gap-3 rounded-xl border p-3">
             <div>
-              <label className="mb-1 block text-sm">Waste % (target)</label>
+              <label className="mb-1 block text-sm" htmlFor="drywall-waste-pct">Waste % (target)</label>
               <NumInput
                 value={drywall.wastePct}
                 onChange={(v) =>
                   setDrywall((d) => ({ ...d, wastePct: Number.isFinite(v) ? Math.max(0, v) : d.wastePct }))
                 }
+                id="drywall-waste-pct"
+                name="drywall-waste-pct"
+                ariaLabel="Waste percentage"
               />
             </div>
             <SummaryRow label="Project Area (incl. ceilings option)" value={fmtArea(coverageFt2, unit)} />
@@ -792,7 +851,7 @@ export default function DrywallEstimator() {
             {manualMaterials.map((m) => (
               <div key={m.id} className="grid grid-cols-1 items-end gap-3 rounded-xl border p-3 sm:grid-cols-6">
                 <div>
-                  <label className="mb-1 block text-sm">Name</label>
+                  <label className="mb-1 block text-sm" htmlFor={`manual-material-${m.id}-name`}>Name</label>
                   <input
                     className="w-full rounded-lg border bg-background px-3 py-2 shadow-sm"
                     value={m.name}
@@ -801,10 +860,12 @@ export default function DrywallEstimator() {
                         prev.map((x) => (x.id === m.id ? { ...x, name: e.target.value } : x))
                       )
                     }
+                    id={`manual-material-${m.id}-name`}
+                    name={`manual-material-${m.id}-name`}
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-sm">Size</label>
+                  <label className="mb-1 block text-sm" htmlFor={`manual-material-${m.id}-size`}>Size</label>
                   <input
                     className="w-full rounded-lg border bg-background px-3 py-2 shadow-sm"
                     value={m.size}
@@ -813,10 +874,12 @@ export default function DrywallEstimator() {
                         prev.map((x) => (x.id === m.id ? { ...x, size: e.target.value } : x))
                       )
                     }
+                    id={`manual-material-${m.id}-size`}
+                    name={`manual-material-${m.id}-size`}
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-sm">Thickness</label>
+                  <label className="mb-1 block text-sm" htmlFor={`manual-material-${m.id}-thickness`}>Thickness</label>
                   <Select
                     value={m.thickness}
                     onChange={(v: string) =>
@@ -824,6 +887,9 @@ export default function DrywallEstimator() {
                         prev.map((x) => (x.id === m.id ? { ...x, thickness: v } : x))
                       )
                     }
+                    id={`manual-material-${m.id}-thickness`}
+                    name={`manual-material-${m.id}-thickness`}
+                    ariaLabel="Thickness"
                   >
                     <option value="N/A">N/A</option>
                     {THICKNESS_OPTIONS.map((t) => (
@@ -834,7 +900,7 @@ export default function DrywallEstimator() {
                   </Select>
                 </div>
                 <div>
-                  <label className="mb-1 block text-sm">Quantity</label>
+                  <label className="mb-1 block text-sm" htmlFor={`manual-material-${m.id}-quantity`}>Quantity</label>
                   <NumInput
                     value={m.quantity}
                     onChange={(v) =>
@@ -842,10 +908,13 @@ export default function DrywallEstimator() {
                         prev.map((x) => (x.id === m.id ? { ...x, quantity: Number.isFinite(v) ? Math.max(0, Math.round(v)) : x.quantity } : x))
                       )
                     }
+                    id={`manual-material-${m.id}-quantity`}
+                    name={`manual-material-${m.id}-quantity`}
+                    ariaLabel="Quantity"
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-sm">Unit Price ($)</label>
+                  <label className="mb-1 block text-sm" htmlFor={`manual-material-${m.id}-unitprice`}>Unit Price ($)</label>
                   <NumInput
                     value={m.unitPrice}
                     onChange={(v) =>
@@ -853,6 +922,9 @@ export default function DrywallEstimator() {
                         prev.map((x) => (x.id === m.id ? { ...x, unitPrice: Number.isFinite(v) ? Math.max(0, v) : x.unitPrice } : x))
                       )
                     }
+                    id={`manual-material-${m.id}-unitprice`}
+                    name={`manual-material-${m.id}-unitprice`}
+                    ariaLabel="Unit Price ($)"
                   />
                 </div>
                 <div className="sm:col-span-1">

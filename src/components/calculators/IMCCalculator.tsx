@@ -9,7 +9,7 @@ import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twi
 import { useNavigate } from 'react-router-dom';
 
 
-interface IMCProps {}
+type IMCProps = Record<string, never>;
 
 const IMCCalculator: React.FC<IMCProps> = () => {
   const navigate = useNavigate();

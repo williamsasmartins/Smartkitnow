@@ -9,7 +9,7 @@ import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twi
 import { useNavigate } from 'react-router-dom';
 
 
-interface CaloriesToKgProps {}
+type CaloriesToKgProps = Record<string, never>;
 
 const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
   const navigate = useNavigate();

@@ -15,14 +15,7 @@ export default defineConfig({
   },
   build: {
     chunkSizeWarningLimit: 1000, // Suprime aviso de chunk grande
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            return id.toString().split('node_modules/')[1].split('/')[0].toString();
-          }
-        },
-      },
-    },
+    // Removido manualChunks personalizado para evitar possíveis problemas de ordem de inicialização em libs com múltiplos pacotes (ex.: Sentry)
+    // Mantemos a configuração padrão de chunking do Vite/Rollup por estabilidade
   },
 });

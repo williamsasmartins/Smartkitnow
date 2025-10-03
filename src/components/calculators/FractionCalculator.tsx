@@ -44,7 +44,8 @@ export function FractionCalculator() {
       const tolerance = 1.0E-6;
       let numerator = 1;
       let denominator = 1;
-      let h1 = 1, h2 = 0, k1 = 0, k2 = 1;
+      let h1 = 1, k1 = 0;
+      const h2 = 0, k2 = 1;
       let b = dec;
       
       do {

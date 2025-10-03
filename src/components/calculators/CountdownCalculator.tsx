@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -18,7 +18,7 @@ export function CountdownCalculator() {
     isPast: boolean;
   } | null>(null);
 
-  const calculateCountdown = () => {
+  const calculateCountdown = useCallback(() => {
     if (!targetDate) return null;
 
     const now = new Date();
@@ -37,7 +37,7 @@ export function CountdownCalculator() {
     const seconds = totalSeconds % 60;
 
     return { days, hours, minutes, seconds, isPast };
-  };
+  }, [targetDate]);
 
   useEffect(() => {
     if (!targetDate) return;
@@ -50,7 +50,7 @@ export function CountdownCalculator() {
     const interval = setInterval(updateCountdown, 1000);
 
     return () => clearInterval(interval);
-  }, [targetDate]);
+  }, [targetDate, calculateCountdown]);
 
   const clearAll = () => {
     setTargetDate(undefined);

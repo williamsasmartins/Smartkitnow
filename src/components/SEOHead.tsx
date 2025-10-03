@@ -17,6 +17,8 @@ export type SEOHeadProps = {
   schema?: Record<string, any>;
   /** link rel="canonical" (opcional) */
   canonical?: string;
+  /** imagem para compartilhamento (OG/Twitter) */
+  image?: string;
   /** children opcionais */
   children?: React.ReactNode;
 };
@@ -34,7 +36,7 @@ function buildBreadcrumbLD(bcs: Crumb[]) {
   };
 }
 
-const siteName = "SmartKitNow";
+const siteName = "Smart Kit Now";
 
 const SEOHead: React.FC<SEOHeadProps> = ({
   title,
@@ -43,6 +45,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   breadcrumbs,
   schema,
   canonical,
+  image,
   children,
 }) => {
   // Tenta inferir URL atual para OG/twitter se canonical não vier
@@ -50,6 +53,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     typeof window !== "undefined" ? window.location.href : undefined;
   const canonicalUrl = canonical || currentUrl;
   const ogUrl = canonicalUrl;
+  const ogImage = image || "/favicon.png";
 
   // JSON-LD (schema + breadcrumbs)
   const ldJson: any[] = [];
@@ -85,6 +89,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
         )}
         {ogUrl && <meta property="og:url" content={ogUrl} />}
         <meta property="og:type" content="website" />
+        {ogImage && <meta property="og:image" content={ogImage} />}
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -93,6 +98,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
           <meta name="twitter:description" content={description} />
         )}
         {ogUrl && <meta name="twitter:url" content={ogUrl} />}
+        {ogImage && <meta name="twitter:image" content={ogImage} />}
 
         {/* JSON-LD */}
         {ldJson.length > 0 && (

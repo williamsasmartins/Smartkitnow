@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React from "react";
 import { Link } from "react-router-dom";
 import { Calculator, Percent, Sigma, Slash, Shapes, Ruler } from "lucide-react";

@@ -63,7 +63,7 @@ export default function AdSlot({
   React.useEffect(() => {
     if (!canRenderAds || !inView) return;
     try {
-      // @ts-ignore
+      // @ts-expect-error Adsbygoogle is injected by AdSense script and has no TypeScript typings in our project; invoking push requests ad rendering
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (e) {
       // Silencia erros em dev/local sem configuração

@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button";
 /** Props padrão para permitir esconder header interno quando a página pai já renderiza um header */
 type BrandingProps = { branding?: { hideHeader?: boolean } };
 
+// Função pura fora do componente para evitar warnings de hooks
+const gcd = (a: number, b: number): number => (b === 0 ? Math.abs(a) : gcd(b, a % b));
+
 export default function FractionReducerCalculator({ branding }: BrandingProps) {
   const [num, setNum] = useState("42");
   const [den, setDen] = useState("56");
-
-  const gcd = (a: number, b: number) => (b === 0 ? Math.abs(a) : gcd(b, a % b));
 
   const reduced = useMemo(() => {
     const n = parseFloat(num);

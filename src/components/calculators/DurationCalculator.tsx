@@ -59,7 +59,7 @@ export function DurationCalculator() {
         return;
       }
 
-      let startSeconds = timeToSeconds(start.hours, start.minutes, start.seconds);
+      const startSeconds = timeToSeconds(start.hours, start.minutes, start.seconds);
       let endSeconds = timeToSeconds(end.hours, end.minutes, end.seconds);
 
       // Handle overnight duration

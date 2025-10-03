@@ -9,7 +9,7 @@ export default function TVCalculators() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
-  const categories = [
+  const categories = useMemo(() => [
     {
       id: "tv-video",
       title: "TV & Video Calculators",
@@ -84,7 +84,7 @@ export default function TVCalculators() {
         }
       ]
     }
-  ];
+  ], []);
 
   const allCalculators = useMemo(() => {
     return categories.flatMap(category => 
@@ -94,7 +94,7 @@ export default function TVCalculators() {
         categoryTitle: category.title
       }))
     );
-  }, []);
+  }, [categories]);
 
   const filteredCalculators = useMemo(() => {
     if (!searchTerm.trim()) return allCalculators;

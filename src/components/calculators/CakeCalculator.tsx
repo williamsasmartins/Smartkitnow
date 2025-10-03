@@ -50,7 +50,7 @@ const CakeCalculator = () => {
     const adjustedGuests = numGuests * portionMultiplier;
 
     let cakesNeeded = 1;
-    let recommendations = [];
+    const recommendations = [];
 
     if (cakeType === 'sheet') {
       if (adjustedGuests <= 24) {
