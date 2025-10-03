@@ -1,9 +1,11 @@
 // src/App.tsx
 import { Suspense } from "react";
-import { Routes, Route, Navigate, useParams } from "react-router-dom";
+import { Routes, Route, Navigate, useParams, useLocation } from "react-router-dom";
 import ScrollToTop from "@/components/ScrollToTop";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
-
+import { SpeedInsights } from '@vercel/speed-insights/react'
+function Insights() { const location = useLocation(); return
+; }
 // Páginas principais
 import Index from "@/pages/Index";
 import About from "@/pages/About";

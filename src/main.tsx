@@ -6,7 +6,8 @@ import App from './App'
 import './index.css'
 import './styles/theme.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
-
+import { injectSpeedInsights } from '@vercel/speed-insights'
+injectSpeedInsights()
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     {/* Provider de tema no topo do app */}
