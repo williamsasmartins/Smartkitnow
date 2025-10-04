@@ -98,7 +98,7 @@ export function AquariumVolumeCalculator() {
             <div>
               <Label htmlFor="shape">Tank Shape</Label>
               <Select value={shape} onValueChange={setShape}>
-                <SelectTrigger>
+                <SelectTrigger id="shape" aria-label="Tank shape">
                   <SelectValue placeholder="Select tank shape" />
                 </SelectTrigger>
                 <SelectContent>
@@ -111,7 +111,7 @@ export function AquariumVolumeCalculator() {
             <div>
               <Label htmlFor="units">Units</Label>
               <Select value={units} onValueChange={setUnits}>
-                <SelectTrigger>
+                <SelectTrigger id="units" aria-label="Units">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

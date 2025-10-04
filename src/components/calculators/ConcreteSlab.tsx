@@ -101,9 +101,9 @@ export default function ConcreteSlab() {
         <CardHeader><CardTitle>Inputs</CardTitle></CardHeader>
         <CardContent className="grid gap-4 md:grid-cols-4">
           <div className="space-y-2">
-            <Label>Units</Label>
+            <Label htmlFor="units">Units</Label>
             <Select value={unit} onValueChange={(v) => setUnit(v as any)}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectTrigger id="units" aria-label="Units"><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="imperial">US (ft / in)</SelectItem>
                 <SelectItem value="metric">Metric (m / cm)</SelectItem>

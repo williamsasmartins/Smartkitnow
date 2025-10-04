@@ -82,9 +82,9 @@ export const TurkeyCookingTimeCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Cooking Method</Label>
+              <Label htmlFor="cookingMethod">Cooking Method</Label>
               <Select value={cookingMethod} onValueChange={setCookingMethod}>
-                <SelectTrigger>
+                <SelectTrigger id="cookingMethod" aria-label="Cooking method">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -96,9 +96,9 @@ export const TurkeyCookingTimeCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Stuffed?</Label>
+              <Label htmlFor="stuffed">Stuffed?</Label>
               <Select value={stuffed} onValueChange={setStuffed} disabled={cookingMethod === 'deepFried'}>
-                <SelectTrigger>
+                <SelectTrigger id="stuffed" aria-label="Stuffed">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -197,9 +197,9 @@ export const TurkeySizeCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Leftover Preference</Label>
+              <Label htmlFor="leftoverPreference">Leftover Preference</Label>
               <Select value={leftoverPreference} onValueChange={setLeftoverPreference}>
-                <SelectTrigger>
+                <SelectTrigger id="leftoverPreference" aria-label="Leftover preference">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -319,9 +319,9 @@ export const TurkeyThawingTimeCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Thawing Method</Label>
+              <Label htmlFor="thawingMethod">Thawing Method</Label>
               <Select value={thawingMethod} onValueChange={setThawingMethod}>
-                <SelectTrigger>
+                <SelectTrigger id="thawingMethod" aria-label="Thawing method">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

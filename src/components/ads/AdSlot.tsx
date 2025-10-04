@@ -16,6 +16,10 @@ type AdSlotProps = {
   stickyRail?: boolean;
   /** Ativar lazy loading via IntersectionObserver */
   lazy?: boolean;
+  /** Formato do anúncio para banners: 'auto' (padrão) ou 'autorelaxed' (Multiplex) */
+  adFormat?: "auto" | "autorelaxed";
+  /** Controla data-full-width-responsive quando em banner */
+  fullWidthResponsive?: boolean;
 };
 
 /**
@@ -34,6 +38,8 @@ export default function AdSlot({
   adSlot,
   stickyRail = false,
   lazy = true,
+  adFormat = "auto",
+  fullWidthResponsive = true,
 }: AdSlotProps) {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const [inView, setInView] = React.useState(!lazy);
@@ -86,8 +92,8 @@ export default function AdSlot({
             style={{ display: "block" }}
             data-ad-client={adClient}
             data-ad-slot={adSlot}
-            data-ad-format="auto"
-            data-full-width-responsive="true"
+            data-ad-format={adFormat}
+            data-full-width-responsive={fullWidthResponsive ? "true" : "false"}
           />
         ) : (
           <div
@@ -101,7 +107,7 @@ export default function AdSlot({
               text-xs text-muted-foreground
             "
           >
-            {label || "Ad - Banner (Google AdSense)"}
+            {label || (adFormat === "autorelaxed" ? "Ad - Multiplex (Google AdSense)" : "Ad - Banner (Google AdSense)")}
           </div>
         )}
       </div>

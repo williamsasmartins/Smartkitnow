@@ -77,7 +77,7 @@ export const BMICalculator = () => {
           <div className="space-y-2">
             <Label htmlFor="units">Unit System</Label>
             <Select value={units} onValueChange={setUnits}>
-              <SelectTrigger>
+              <SelectTrigger id="units" aria-label="Unit system">
                 <SelectValue placeholder="Select units" />
               </SelectTrigger>
               <SelectContent>

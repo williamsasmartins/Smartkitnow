@@ -125,7 +125,7 @@ export function TimeConverter() {
             <div>
               <Label htmlFor="inputFormat">Input Format</Label>
               <Select value={inputFormat} onValueChange={setInputFormat}>
-                <SelectTrigger>
+                <SelectTrigger id="inputFormat" aria-label="Input format">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

@@ -15,7 +15,7 @@ type CalculatorLayoutProps = {
 
 export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ children }) => {
   return (
-    <div className="mx-auto max-w-5xl px-4 py-8">
+    <div className="mx-auto max-w-[680px] px-4 py-8">
       {children}
     </div>
   );

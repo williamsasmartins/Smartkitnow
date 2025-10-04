@@ -86,7 +86,7 @@ export const CompoundInterestCalculator = () => {
             <div className="space-y-2">
               <Label htmlFor="compound">Compound Frequency</Label>
               <Select value={compoundFrequency} onValueChange={setCompoundFrequency}>
-                <SelectTrigger>
+                <SelectTrigger id="compound" aria-label="Compound frequency">
                   <SelectValue placeholder="Select frequency" />
                 </SelectTrigger>
                 <SelectContent>

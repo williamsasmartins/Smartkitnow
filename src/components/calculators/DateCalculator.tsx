@@ -104,7 +104,7 @@ export function DateCalculator() {
           <div>
             <Label htmlFor="calculationType">Calculation Type</Label>
             <Select value={calculationType} onValueChange={setCalculationType}>
-              <SelectTrigger>
+              <SelectTrigger id="calculationType" aria-label="Calculation type">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -144,7 +144,7 @@ export function DateCalculator() {
                 <div>
                   <Label htmlFor="operation">Operation</Label>
                   <Select value={operation} onValueChange={setOperation}>
-                    <SelectTrigger>
+                    <SelectTrigger id="operation" aria-label="Operation">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>

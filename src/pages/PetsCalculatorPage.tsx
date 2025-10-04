@@ -2,6 +2,8 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { getEntry } from "@/data/calculatorRegistry";
+import { computeBackPath } from "@/lib/navigation";
 import { useParams, useNavigate } from "react-router-dom";
 import { DogAgeCalculator } from "@/components/calculators/DogAgeCalculator";
 import { DogCalorieCalculator } from "@/components/calculators/DogCalorieCalculator";
@@ -12,6 +14,9 @@ import { AquariumWeightCalculator } from "@/components/calculators/AquariumWeigh
 export default function PetsCalculatorPage() {
   const { calculator } = useParams();
   const navigate = useNavigate();
+
+  // Compute dynamic back path using centralized utility
+  const backPath = computeBackPath(calculator ?? undefined, "pets");
 
   const getCalculatorComponent = () => {
     switch (calculator) {
@@ -32,7 +37,7 @@ export default function PetsCalculatorPage() {
             <p className="text-muted-foreground mb-6">
               The {calculator?.replace(/-/g, ' ')} calculator is under development.
             </p>
-            <Button onClick={() => navigate("/pets")}>
+            <Button onClick={() => navigate(backPath)}>
               Browse Other Calculators
             </Button>
           </div>
@@ -48,7 +53,7 @@ export default function PetsCalculatorPage() {
         {/* Back Button */}
         <Button 
           variant="ghost" 
-          onClick={() => navigate("/pets")}
+          onClick={() => navigate(backPath)}
           className="mb-6 hover:bg-muted/80"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />

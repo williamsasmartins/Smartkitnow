@@ -109,7 +109,7 @@ export function GPACalculator() {
                   value={course.grade}
                   onValueChange={(value) => updateCourse(course.id, "grade", value)}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger id={`grade-${course.id}`} aria-label="Grade">
                     <SelectValue placeholder="Select grade" />
                   </SelectTrigger>
                   <SelectContent>

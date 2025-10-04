@@ -107,7 +107,7 @@ export default function TVViewingDistanceCalculator() {
             <div className="space-y-2">
               <Label htmlFor="resolution">TV Resolution</Label>
               <Select value={resolution} onValueChange={setResolution}>
-                <SelectTrigger>
+                <SelectTrigger id="resolution" aria-label="TV resolution">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

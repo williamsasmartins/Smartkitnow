@@ -7,6 +7,7 @@ type Props = {
   children: React.ReactNode;
   showRails?: boolean;
   showTopBanner?: boolean;
+  showMiddleBanner?: boolean;
   showBottomBanner?: boolean;
   /**
    * PRODUÇÃO (AdSense): deixe false para evitar sticky manual.
@@ -18,8 +19,8 @@ type Props = {
 /**
  * Layout para listagens (categoria/subcategoria):
  * - Rails à esquerda e direita (fora do conteúdo central).
- * - Banners Top/Bottom centralizados (320/728/970).
- * - Miolo com mesma largura dos banners (harmonia total).
+ * - Banners Top/Bottom/Middle centralizados.
+ * - Miolo mais estreito para seguir a referência (linha amarela).
  * - Rails 120px em lg/xl; 160px apenas em 2XL (>=1536px).
  */
 export default function PageWithRails({
@@ -27,6 +28,7 @@ export default function PageWithRails({
   children,
   showRails = true,
   showTopBanner = true,
+  showMiddleBanner = true,
   showBottomBanner = true,
   railsSticky = false, // produção segura
 }: Props) {
@@ -62,17 +64,23 @@ export default function PageWithRails({
           <div className="hidden lg:block" />
         )}
 
-        {/* Miolo com mesma largura dos banners */}
+        {/* Miolo mais estreito que antes para alinhar com a referência */}
         <div
           className="
             relative z-10
             mx-auto w-full
-            max-w-[320px]
-            sm:max-w-[728px]
-            xl:max-w-[970px]
-          "
+            max-w-[280px] sm:max-w-[560px] xl:max-w-[680px]
+            "
         >
           {titleBlock && <div className="mb-6">{titleBlock}</div>}
+
+          {/* MIDDLE BANNER dentro do miolo */}
+          {showMiddleBanner && (
+            <div className="mb-6">
+              <AdSlot variant="banner" id="pageMiddleBanner" label="Ad - Middle Banner (Google AdSense)" />
+            </div>
+          )}
+
           <div>{children}</div>
         </div>
 

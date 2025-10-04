@@ -11,6 +11,8 @@ import { CalorieCalculator } from "@/components/calculators/CalorieCalculator";
 import { BodyFatCalculator } from "@/components/calculators/BodyFatCalculator";
 import { TDEECalculator } from "@/components/calculators/TDEECalculator";
 import { CaloriesToKilogramsCalculator } from "@/components/calculators/CaloriesToKilogramsCalculator";
+import PageWithRails from "@/components/layouts/PageWithRails";
+import { computeBackPath } from "@/lib/navigation";
 
 const HealthCalculatorPage = () => {
   const navigate = useNavigate();
@@ -24,6 +26,9 @@ const HealthCalculatorPage = () => {
   const effectiveKey = stateCalculator?.key ?? slug ?? "";
   const effectiveName = stateCalculator?.name ?? (slug ? slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()) : "Calculator");
   const effectiveCategory = stateSubCategory ?? "health";
+
+  // Compute standardized back path using centralized utility
+  const backPath = computeBackPath(effectiveKey ?? undefined, "health", stateSubCategory);
 
   const renderCalculator = () => {
     const calculatorKey = effectiveKey.toLowerCase();
@@ -77,30 +82,39 @@ const HealthCalculatorPage = () => {
       <Header />
       
       <main className="pt-20">
-        <section className="container mx-auto px-4 py-8">
-          <div className="mb-8">
-            <Button 
-              variant="ghost" 
-              size="sm"
-              onClick={() => navigate(-1)}
-              className="flex items-center space-x-2 mb-6"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back</span>
-            </Button>
-            
-            <div className="mb-6 text-center">
-              <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
-                {effectiveName}
-              </h1>
-              <p className="text-muted-foreground text-lg">
-                Category: {effectiveCategory}
-              </p>
+        <PageWithRails
+          titleBlock={
+            <div className="mb-8">
+              {/* Back button moved below calculator name and set to default styling */}
+              <div className="mb-6 text-center">
+                <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
+                  {effectiveName}
+                </h1>
+                <p className="text-muted-foreground text-lg">
+                  Category: {effectiveCategory}
+                </p>
+              </div>
+              <div className="text-center">
+                <Button 
+                  variant="default"
+                  size="sm"
+                  onClick={() => navigate(backPath)}
+                  className="inline-flex items-center space-x-2 mb-6"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  <span>Back</span>
+                </Button>
+              </div>
             </div>
-          </div>
-          
+          }
+          showRails
+          showTopBanner={true}
+          showMiddleBanner={false}
+          showBottomBanner={true}
+          railsSticky={false}
+        >
           {renderCalculator()}
-        </section>
+        </PageWithRails>
       </main>
 
       <Footer />

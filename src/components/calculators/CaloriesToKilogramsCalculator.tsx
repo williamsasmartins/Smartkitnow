@@ -5,14 +5,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2, ArrowLeft } from "lucide-react";
-import { useNavigate } from 'react-router-dom';
+import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2, Linkedin, Mail, Copy, Send } from "lucide-react";
+import AdSlot from "@/components/ads/AdSlot";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
 
 type CaloriesToKgProps = Record<string, never>;
 
 const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
-  const navigate = useNavigate();
   const [calories, setCalories] = useState<number | "">("");
   const [activityLevel, setActivityLevel] = useState<string>("");
   const [result, setResult] = useState<{ kg: number; message: string } | null>(null);
@@ -97,24 +97,42 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
 
   const currentUrl = window.location.href;
 
+  const handleNativeShare = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: 'Calories to Kilograms Calculator',
+          text: 'Check out this Calories to Kilograms Calculator!',
+          url: currentUrl,
+        });
+      } else {
+        await navigator.clipboard.writeText(currentUrl);
+        alert('Link copied to clipboard!');
+      }
+    } catch (err) {
+      console.error('Share error:', err);
+    }
+  };
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(currentUrl);
+      alert('Link copied to clipboard!');
+    } catch (err) {
+      console.error('Copy error:', err);
+    }
+  };
+
   return (
     <div className="min-h-screen dark:bg-gray-900 bg-white dark:text-white text-gray-900 p-4">
       
-      <div className="max-w-3xl mx-auto mb-4">
-        <Button variant="outline" onClick={() => navigate(-1)} className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
-          <ArrowLeft className="h-4 w-4 mr-2" /> Back
-        </Button>
-      </div>
-      <div className="max-w-3xl mx-auto mt-16 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
-        <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Top Center (Google AdSense)</p>
-      </div>
-      <div className="fixed top-24 left-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-10 hidden md:block">
-        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Top Left (Google AdSense)</p>
-      </div>
-      <div className="fixed top-24 right-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-10 hidden md:block">
-        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Top Right (Google AdSense)</p>
-      </div>
-      <Card className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+      {/* Removed internal Back button to keep only the standardized one on the page header */}
+      {/* Internal Top Center Ad removed — parent PageWithRails will manage top banner and side rails */}
+      {/* Side Ad Rails removed per request — layout now provides rails */}
+
+      {/* Internal Top Center Ad removed — parent PageWithRails manages top banner */}
+
+      <Card className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
         <CardHeader className="flex flex-row items-center space-x-2">
           <Calculator className="h-6 w-6 dark:text-blue-400 text-blue-600" />
           <div>
@@ -154,7 +172,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
               </label>
               <div className="w-full">
                 <Select value={activityLevel} onValueChange={setActivityLevel}>
-                  <SelectTrigger className="w-full dark:bg-gray-700 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900">
+                  <SelectTrigger id="activityLevel" aria-label="Activity level" className="w-full dark:bg-gray-700 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900">
                     <SelectValue placeholder="Select your activity level..." />
                   </SelectTrigger>
                   <SelectContent className="dark:bg-gray-800 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900">
@@ -185,7 +203,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         </CardContent>
       </Card>
       {result && (
-        <Card className="max-w-3xl mx-auto dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+        <Card className="max-w-2xl mx-auto dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
           <CardHeader className="flex flex-row items-center space-x-2">
             <CheckCircle className="h-5 w-5 dark:text-green-500 text-green-700" />
             <CardTitle className="text-xl dark:text-white text-gray-900">Conversion Result</CardTitle>
@@ -210,7 +228,11 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
           </CardContent>
         </Card>
       )}
-      <Card className="max-w-3xl mx-auto dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
+
+      {/* Spacer between calculator card and How to Use card */}
+      <div className="max-w-2xl mx-auto h-4" />
+
+      <Card className="max-w-2xl mx-auto dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
         <CardHeader>
           <CardTitle className="flex items-center space-x-2 dark:text-white text-gray-900">
             <Info className="h-5 w-5 dark:text-blue-400 text-blue-600" />
@@ -235,10 +257,8 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
           </div>
         </CardContent>
       </Card>
-      <div className="max-w-3xl mx-auto mt-8 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
-        <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Mid Page 1 (Google AdSense)</p>
-      </div>
-      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+
+      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">How to Convert Calories to Kilograms</h2>
         <p>To convert calories to kilograms of body fat, divide the number of calories by 7,700 (the approximate calories in 1 kg of fat) and multiply by an activity factor. The formula is:</p>
         <code className="block dark:bg-gray-700 bg-gray-200 p-2 rounded mb-4 dark:text-gray-300 text-gray-900">kilograms = (calories ÷ 7700) × activity_factor</code>
@@ -252,23 +272,21 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         </ul>
         <p>This conversion helps estimate how caloric deficits translate to weight loss or surpluses to gain. Note: Actual results vary due to individual metabolism, muscle mass, and water weight.</p>
       </section>
-      <div className="max-w-3xl mx-auto mt-8 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
-        <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Mid Page 2 (Google AdSense)</p>
-      </div>
-      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+
+      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">What is a Calorie?</h2>
         <p>A calorie is a unit of energy, specifically the amount needed to raise 1 gram of water by 1°C. In nutrition, we use kilocalories (kcal), often just called "calories."</p>
         <p>Calories come from food and are used for bodily functions, movement, and growth. Excess calories are stored as fat, while a deficit causes the body to burn stored energy. Understanding calories is key to weight management, fitness, and health.</p>
         <p>One large calorie (kcal) equals 1,000 small calories. Typical daily intake is 2,000-2,500 kcal for adults, varying by age, sex, and activity.</p>
         <p>Learn more: <a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">Mayo Clinic Calories Guide <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></p>
       </section>
-      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">What is a Kilogram?</h2>
         <p>A kilogram (kg) is the base unit of mass in the metric system, equal to 1,000 grams or about 2.2 pounds. It's defined by the Planck constant since 2019.</p>
         <p>In fitness, a kilogram of body fat stores about 7,700 kcal due to fat's energy density (9 kcal/g). This conversion assumes 85-95% efficiency in metabolism. Kilograms measure body weight changes from caloric balance.</p>
         <p>Learn more: <a href="https://www.nist.gov/si-redefinition/kilogram" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">NIST Kilogram Definition <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></p>
       </section>
-      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">Calorie to Kilogram Conversion Table</h2>
         <p>Quick reference for common values (moderate activity level, factor 1.00).</p>
         <Table className="dark:bg-gray-700 bg-gray-100 dark:border-gray-600 border-gray-300">
@@ -300,7 +318,32 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         </Table>
         <p className="text-xs dark:text-gray-500 text-gray-600 mt-2">Table assumes moderate activity; adjust for your level using the calculator.</p>
       </section>
-      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+
+      {/* In-article ads between Conversion Table and Practical Examples */}
+      <div className="max-w-2xl mx-auto">
+        <div className="my-10">
+          <AdSlot
+            variant="banner"
+            label="Ad - In-Article Banner (Google AdSense)"
+            lazy
+            adClient={import.meta.env.VITE_ADSENSE_CLIENT}
+            adSlot={import.meta.env.VITE_ADSENSE_SLOT_IN_ARTICLE}
+          />
+        </div>
+        <div className="my-8">
+          <AdSlot
+            variant="banner"
+            label="Ad - In-Article Multiplex (Google AdSense)"
+            adFormat="autorelaxed"
+            fullWidthResponsive={false}
+            lazy
+            adClient={import.meta.env.VITE_ADSENSE_CLIENT}
+            adSlot={import.meta.env.VITE_ADSENSE_SLOT_IN_ARTICLE_MULTIPLEX}
+          />
+        </div>
+      </div>
+
+      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">Practical Examples</h2>
         <div className="grid gap-4 md:grid-cols-3">
           {[
@@ -336,45 +379,92 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
           ))}
         </div>
       </section>
-      <div className="max-w-3xl mx-auto mt-8 flex justify-between gap-4">
-        <div className="w-1/3 p-2 dark:bg-gray-800 bg-gray-200 rounded-lg">
-          <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Left (Google AdSense)</p>
-        </div>
-        <div className="w-1/3 p-2 dark:bg-gray-800 bg-gray-200 rounded-lg">
-          <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Center (Google AdSense)</p>
-        </div>
-        <div className="w-1/3 p-2 dark:bg-gray-800 bg-gray-200 rounded-lg">
-          <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Right (Google AdSense)</p>
-        </div>
-      </div>
-      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-4 rounded-lg shadow-soft dark:text-gray-300 text-gray-900 text-center">
+
+      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-4 rounded-lg shadow-soft dark:text-gray-300 text-gray-900 text-center">
         <h2 className="text-2xl font-semibold mb-4">Share This Calculator</h2>
         <div className="flex justify-center gap-2 flex-wrap">
+          <Button variant="outline" size="sm" onClick={handleNativeShare} className="mb-2 w-full sm:w-auto" aria-label="Share via device">
+            <Share2 className="h-4 w-4 mr-2" /> Share
+          </Button>
           <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
-            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center">
-              <Facebook className="h-4 w-4 mr-2 dark:text-blue-400 text-blue-600" /> Facebook
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on Facebook">
+              <Facebook className="h-4 w-4 mr-2" /> Facebook
             </a>
           </Button>
           <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
-            <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=Check out this Calories to Kilograms Calculator!`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center">
-              <Twitter className="h-4 w-4 mr-2 dark:text-blue-400 text-blue-600" /> Twitter/X
+            <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=Check out this Calories to Kilograms Calculator!`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on Twitter/X">
+              <Twitter className="h-4 w-4 mr-2" /> Twitter/X
             </a>
           </Button>
           <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
-            <a href={`whatsapp://send?text=Check out this Calories to Kilograms Calculator! ${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" data-action="share/whatsapp/share" className="dark:text-gray-300 text-gray-900 w-full text-center">
-              <Share2 className="h-4 w-4 mr-2 dark:text-blue-400 text-blue-600" /> WhatsApp
+            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on LinkedIn">
+              <Linkedin className="h-4 w-4 mr-2" /> LinkedIn
             </a>
+          </Button>
+          <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
+            <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent('Check out this Calories to Kilograms Calculator! ' + currentUrl)}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on WhatsApp">
+              <Share2 className="h-4 w-4 mr-2" /> WhatsApp
+            </a>
+          </Button>
+          <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
+            <a href={`https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent('Check out this Calories to Kilograms Calculator!')}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on Telegram">
+              <Send className="h-4 w-4 mr-2" /> Telegram
+            </a>
+          </Button>
+          <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
+            <a href={`mailto:?subject=${encodeURIComponent('Calories to Kilograms Calculator')}&body=${encodeURIComponent('Check out this Calories to Kilograms Calculator! ' + currentUrl)}`} className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share via Email">
+              <Mail className="h-4 w-4 mr-2" /> Email
+            </a>
+          </Button>
+          <Button variant="outline" size="sm" onClick={handleCopyLink} className="mb-2 w-full sm:w-auto" aria-label="Copy link">
+            <Copy className="h-4 w-4 mr-2" /> Copy Link
           </Button>
         </div>
       </section>
-      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
-        <h2 className="text-2xl font-semibold">References</h2>
+      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+        <h2 className="text-2xl font-semibold">Example Scenario</h2>
         <ul>
-          <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4035446/" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">National Institutes of Health - Energy Balance <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
-          <li><a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">Mayo Clinic - Calories and Weight Loss <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
-          <li><a href="https://www.acsm.org/" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">American College of Sports Medicine - Nutrition Guidelines <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
-          <li><a href="https://jamanetwork.com/journals/jama/fullarticle/2800195" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">JAMA - Calorie Deficit and Weight Loss <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
+          <li><a href="https://pubmed.ncbi.nlm.nih.gov/13594881/" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">Wishnofsky, M. (1958) — Caloric equivalents of gained or lost weight (3,500 kcal/lb ≈ 7,700 kcal/kg) <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
+          <li><a href="https://pubmed.ncbi.nlm.nih.gov/21483406/" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">Hall, K.D. et al. (2011) — Quantifying the effect of changes in energy intake on body weight (dynamic model) <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
+          <li><a href="https://www.niddk.nih.gov/health-information/weight-management/body-weight-planner" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">NIDDK — Body Weight Planner (NIH dynamic weight change model) <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
+          <li><a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">Mayo Clinic — Calories and weight loss basics <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
         </ul>
+      </section>
+      {/* FAQ Section */}
+      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+        <h2 className="text-2xl font-semibold">FAQ</h2>
+        <Accordion type="single" collapsible className="mt-4">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>How do calories convert to kilograms?</AccordionTrigger>
+            <AccordionContent>
+              Roughly, 7,700 kilocalories (kcal) corresponds to about 1 kilogram of body fat, based on classic estimates. Real-world results vary due to metabolism, activity level, and individual differences.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Is 7,700 kcal per kilogram always accurate?</AccordionTrigger>
+            <AccordionContent>
+              No. It is a simplified rule-of-thumb. Dynamic models show that weight change depends on many variables (diet composition, adaptive thermogenesis, time horizon). Use this calculator as an educational tool, not a precise predictor.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Does activity level affect the conversion?</AccordionTrigger>
+            <AccordionContent>
+              Yes. The same calorie amount will have different effects depending on your energy expenditure. That’s why we include an activity level factor to give a more realistic estimate.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-4">
+            <AccordionTrigger>Are kcal and Calories the same?</AccordionTrigger>
+            <AccordionContent>
+              In nutrition, “Calorie” (with a capital C) usually means kilocalorie (kcal). Food labels often use Calories to represent kilocalories.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-5">
+            <AccordionTrigger>Medical disclaimer</AccordionTrigger>
+            <AccordionContent>
+              This calculator provides educational information only and is not a substitute for professional medical advice. Always consult healthcare professionals for personalized guidance.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </section>
       <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">Recommended Fitness Tools</h2>
@@ -434,10 +524,18 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
           </Card>
         </div>
       </section>
-      <div className="max-w-3xl mx-auto mt-8 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
-        <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Bottom (Google AdSense)</p>
+      <div className="max-w-2xl mx-auto mt-8">
+        <AdSlot
+          variant="banner"
+          label="Ad - Bottom Multiplex (Google AdSense)"
+          adFormat="autorelaxed"
+          fullWidthResponsive={false}
+          lazy
+          adClient={import.meta.env.VITE_ADSENSE_CLIENT}
+          adSlot={import.meta.env.VITE_ADSENSE_SLOT_BOTTOM_MULTIPLEX}
+        />
       </div>
-      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold mb-4">Send Us Your Feedback</h2>
         <form onSubmit={handleFeedbackSubmit} className="space-y-4">
           <div>
@@ -471,9 +569,13 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
           <Button type="submit" className="dark:bg-blue-600 bg-blue-500 dark:text-white text-white dark:hover:bg-blue-700 hover:bg-blue-600">Submit Feedback</Button>
         </form>
       </section>
-      <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900 text-center">
-        <p className="text-sm">
-          <strong>Note:</strong> This calculator is reviewed by the Smart Kit Now Team for accuracy. For health-related decisions, consult a professional healthcare provider.
+      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900 text-center">
+        <h2 className="text-2xl font-semibold mb-2">Disclaimer</h2>
+        <p className="text-sm leading-relaxed">
+          The content and results provided by this calculator are for informational and educational purposes only. They are not intended to diagnose, treat, cure, or prevent any health condition. Always seek the advice of a qualified healthcare professional with any questions regarding your health, nutrition, or fitness.
+        </p>
+        <p className="text-sm mt-2 leading-relaxed">
+          Individual outcomes may vary based on metabolism, body composition, age, and activity level. Although Smart Kit Now strives for accuracy and clarity, we make no representations or warranties of any kind, express or implied, about the completeness, reliability, or suitability of the information. Use this tool at your own discretion.
         </p>
       </section>
     </div>

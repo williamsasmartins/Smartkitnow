@@ -122,7 +122,7 @@ export function AreaCalculator() {
           <div>
             <Label htmlFor="shape">Shape</Label>
             <Select value={shape} onValueChange={setShape}>
-              <SelectTrigger>
+              <SelectTrigger id="shape" aria-label="Shape">
                 <SelectValue placeholder="Select a shape" />
               </SelectTrigger>
               <SelectContent>

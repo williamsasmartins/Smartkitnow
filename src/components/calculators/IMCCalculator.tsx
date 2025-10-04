@@ -7,6 +7,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, AlertCircle, CheckCircle, Info, ExternalLink, Facebook, Twitter, Share2, ArrowLeft } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
+import AdSlot from "@/components/ads/AdSlot";
 
 
 type IMCProps = Record<string, never>;
@@ -121,14 +122,14 @@ const IMCCalculator: React.FC<IMCProps> = () => {
           <ArrowLeft className="h-4 w-4 mr-2" /> Back
         </Button>
       </div>
-      <div className="max-w-3xl mx-auto mt-16 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
-        <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Top Center (Google AdSense)</p>
-      </div>
-      <div className="fixed top-24 left-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-10 hidden md:block">
-        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Top Left (Google AdSense)</p>
-      </div>
-      <div className="fixed top-24 right-4 w-1/6 dark:bg-gray-800 bg-gray-200 p-4 rounded-lg z-10 hidden md:block">
-        <p className="text-sm dark:text-gray-300 text-gray-700">Ad Space - Top Right (Google AdSense)</p>
+      <div className="max-w-3xl mx-auto mt-10 sm:mt-12 lg:mt-16">
+        <AdSlot
+          variant="banner"
+          label="Ad - Top Center (Google AdSense)"
+          lazy
+          adClient={import.meta.env.VITE_ADSENSE_CLIENT}
+          adSlot={import.meta.env.VITE_ADSENSE_SLOT_TOP_CENTER}
+        />
       </div>
       <Card className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
         <CardHeader className="flex flex-row items-center space-x-2">
@@ -199,7 +200,7 @@ const IMCCalculator: React.FC<IMCProps> = () => {
               </label>
               <div className="w-full">
                 <Select value={gender} onValueChange={setGender}>
-                  <SelectTrigger className="w-full dark:bg-gray-700 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900">
+                  <SelectTrigger id="gender" aria-label="Gender" className="w-full dark:bg-gray-700 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900">
                     <SelectValue placeholder="Select your gender..." />
                   </SelectTrigger>
                   <SelectContent className="dark:bg-gray-800 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900">
@@ -274,9 +275,7 @@ const IMCCalculator: React.FC<IMCProps> = () => {
           </div>
         </CardContent>
       </Card>
-      <div className="max-w-3xl mx-auto mt-8 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
-        <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Mid Page 1 (Google AdSense)</p>
-      </div>
+
       <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">How to Calculate BMI</h2>
         <p>To calculate BMI, divide weight in kilograms by height in meters squared. The formula is:</p>
@@ -284,9 +283,7 @@ const IMCCalculator: React.FC<IMCProps> = () => {
         <p>Age and gender are used for more accurate category interpretation in advanced calculators, but basic BMI doesn't require them. This tool includes them for context.</p>
         <p>Learn more: <a href="https://www.cdc.gov/healthyweight/assessing/bmi/index.html" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">CDC BMI Guide <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></p>
       </section>
-      <div className="max-w-3xl mx-auto mt-8 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
-        <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Mid Page 2 (Google AdSense)</p>
-      </div>
+
       <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold">What is BMI?</h2>
         <p>Body Mass Index (BMI) is a measure that uses height and weight to estimate body fat. It helps screen for weight categories that may lead to health problems.</p>
@@ -364,17 +361,7 @@ const IMCCalculator: React.FC<IMCProps> = () => {
           ))}
         </div>
       </section>
-      <div className="max-w-3xl mx-auto mt-8 flex justify-between gap-4">
-        <div className="w-1/3 p-2 dark:bg-gray-800 bg-gray-200 rounded-lg">
-          <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Left (Google AdSense)</p>
-        </div>
-        <div className="w-1/3 p-2 dark:bg-gray-800 bg-gray-200 rounded-lg">
-          <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Center (Google AdSense)</p>
-        </div>
-        <div className="w-1/3 p-2 dark:bg-gray-800 bg-gray-200 rounded-lg">
-          <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Right (Google AdSense)</p>
-        </div>
-      </div>
+
       <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-4 rounded-lg shadow-soft dark:text-gray-300 text-gray-900 text-center">
         <h2 className="text-2xl font-semibold mb-4">Share This Calculator</h2>
         <div className="flex justify-center gap-2 flex-wrap">
@@ -462,8 +449,16 @@ const IMCCalculator: React.FC<IMCProps> = () => {
           </Card>
         </div>
       </section>
-      <div className="max-w-3xl mx-auto mt-8 p-4 dark:bg-gray-800 bg-gray-200 rounded-lg">
-        <p className="text-sm dark:text-gray-300 text-gray-700 text-center">Ad Space - Bottom (Google AdSense)</p>
+      <div className="max-w-3xl mx-auto mt-8">
+        <AdSlot
+          variant="banner"
+          label="Ad - Bottom Multiplex (Google AdSense)"
+          adFormat="autorelaxed"
+          fullWidthResponsive={false}
+          lazy
+          adClient={import.meta.env.VITE_ADSENSE_CLIENT}
+          adSlot={import.meta.env.VITE_ADSENSE_SLOT_BOTTOM_MULTIPLEX}
+        />
       </div>
       <section className="max-w-3xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
         <h2 className="text-2xl font-semibold mb-4">Send Us Your Feedback</h2>
@@ -504,6 +499,17 @@ const IMCCalculator: React.FC<IMCProps> = () => {
           <strong>Note:</strong> This calculator is reviewed by the Smart Kit Now Team for accuracy. For health-related decisions, consult a professional healthcare provider.
         </p>
       </section>
+      {/* Top center banner */}
+      <div className="max-w-3xl mx-auto mt-16">
+        <AdSlot
+          variant="banner"
+          label="Ad - Top Center (Google AdSense)"
+          lazy
+          adClient={import.meta.env.VITE_ADSENSE_CLIENT}
+          adSlot={import.meta.env.VITE_ADSENSE_SLOT_TOP_CENTER}
+        />
+      </div>
+      {/* Side rails removed per request — reverted to previous layout without fixed lateral ads */}
     </div>
   );
 }

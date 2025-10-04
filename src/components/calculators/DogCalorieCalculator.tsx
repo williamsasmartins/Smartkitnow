@@ -124,7 +124,7 @@ export function DogCalorieCalculator() {
             <div>
               <Label htmlFor="activity">Activity Level</Label>
               <Select value={activityLevel} onValueChange={setActivityLevel}>
-                <SelectTrigger>
+                <SelectTrigger id="activity" aria-label="Activity level">
                   <SelectValue placeholder="Select activity level" />
                 </SelectTrigger>
                 <SelectContent>
@@ -139,7 +139,7 @@ export function DogCalorieCalculator() {
             <div>
               <Label htmlFor="spayed">Spayed/Neutered?</Label>
               <Select value={spayedNeutered} onValueChange={setSpayedNeutered}>
-                <SelectTrigger>
+                <SelectTrigger id="spayed" aria-label="Spayed/Neutered status">
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
                 <SelectContent>

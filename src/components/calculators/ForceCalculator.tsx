@@ -135,7 +135,7 @@ export function ForceCalculator() {
           <div>
             <Label htmlFor="calculationType">What do you want to calculate?</Label>
             <Select value={calculationType} onValueChange={setCalculationType}>
-              <SelectTrigger>
+              <SelectTrigger id="calculationType" aria-label="Calculation type">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -162,7 +162,7 @@ export function ForceCalculator() {
                     className="flex-1"
                   />
                   <Select value={massUnit} onValueChange={setMassUnit}>
-                    <SelectTrigger className="w-20">
+                    <SelectTrigger id="massUnit" aria-label="Mass unit" className="w-20">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -189,7 +189,7 @@ export function ForceCalculator() {
                     className="flex-1"
                   />
                   <Select value={accelerationUnit} onValueChange={setAccelerationUnit}>
-                    <SelectTrigger className="w-24">
+                    <SelectTrigger id="accelerationUnit" aria-label="Acceleration unit" className="w-24">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -216,7 +216,7 @@ export function ForceCalculator() {
                     className="flex-1"
                   />
                   <Select value={forceUnit} onValueChange={setForceUnit}>
-                    <SelectTrigger className="w-20">
+                    <SelectTrigger id="forceUnit" aria-label="Force unit" className="w-20">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>

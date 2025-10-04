@@ -125,7 +125,7 @@ export default function AspectRatioCalculator() {
             <div className="space-y-2">
               <Label htmlFor="mode">Calculation Mode</Label>
               <Select value={mode} onValueChange={setMode}>
-                <SelectTrigger>
+                <SelectTrigger id="mode" aria-label="Calculation mode">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -163,7 +163,7 @@ export default function AspectRatioCalculator() {
                 <div className="space-y-2">
                   <Label htmlFor="targetRatio">Target Aspect Ratio</Label>
                   <Select value={targetRatio} onValueChange={setTargetRatio}>
-                    <SelectTrigger>
+                    <SelectTrigger id="targetRatio" aria-label="Target aspect ratio">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>

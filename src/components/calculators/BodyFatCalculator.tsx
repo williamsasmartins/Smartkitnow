@@ -119,7 +119,7 @@ export const BodyFatCalculator = () => {
             <div className="space-y-2">
               <Label htmlFor="units">Unit System</Label>
               <Select value={units} onValueChange={setUnits}>
-                <SelectTrigger>
+                <SelectTrigger id="units" aria-label="Unit system">
                   <SelectValue placeholder="Select units" />
                 </SelectTrigger>
                 <SelectContent>
@@ -131,7 +131,7 @@ export const BodyFatCalculator = () => {
             <div className="space-y-2">
               <Label htmlFor="gender">Gender</Label>
               <Select value={gender} onValueChange={setGender}>
-                <SelectTrigger>
+                <SelectTrigger id="gender" aria-label="Gender">
                   <SelectValue placeholder="Select gender" />
                 </SelectTrigger>
                 <SelectContent>

@@ -141,9 +141,9 @@ const CakeCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Portion Size</Label>
+              <Label htmlFor="portionSize">Portion Size</Label>
               <Select value={portionSize} onValueChange={setPortionSize}>
-                <SelectTrigger>
+                <SelectTrigger id="portionSize" aria-label="Portion size">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -155,9 +155,9 @@ const CakeCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Cake Type</Label>
+              <Label htmlFor="cakeType">Cake Type</Label>
               <Select value={cakeType} onValueChange={setCakeType}>
-                <SelectTrigger>
+                <SelectTrigger id="cakeType" aria-label="Cake type">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -169,9 +169,9 @@ const CakeCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Number of Tiers</Label>
+              <Label htmlFor="tiers">Number of Tiers</Label>
               <Select value={tiers} onValueChange={setTiers}>
-                <SelectTrigger>
+                <SelectTrigger id="tiers" aria-label="Number of tiers">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

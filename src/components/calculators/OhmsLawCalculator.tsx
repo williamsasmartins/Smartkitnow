@@ -94,9 +94,9 @@ const OhmsLawCalculator = () => {
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">
-            <Label>Calculate</Label>
+            <Label htmlFor="calculate">Calculate</Label>
             <Select value={calculate} onValueChange={setCalculate}>
-              <SelectTrigger>
+              <SelectTrigger id="calculate" aria-label="Calculate">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="bg-background border-border z-50">

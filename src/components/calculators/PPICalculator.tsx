@@ -131,8 +131,9 @@ export default function PPICalculator() {
                   onChange={(e) => setScreenSize(e.target.value)}
                   className="flex-1"
                 />
+                <Label htmlFor="unit" className="sr-only">Unit</Label>
                 <Select value={unit} onValueChange={setUnit}>
-                  <SelectTrigger className="w-24">
+                  <SelectTrigger id="unit" aria-label="Unit" className="w-24">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>

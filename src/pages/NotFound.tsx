@@ -12,8 +12,8 @@ const NotFound = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
       <SEOHead
-        title="404 • Página não encontrada"
-        description="A página que você tentou acessar não existe ou foi movida."
+        title="404 • Page not found"
+        description="The page you tried to access does not exist or has been moved."
         breadcrumbs={[
           { name: "Home", url: "/" },
           { name: "404", url: location.pathname },
@@ -23,9 +23,9 @@ const NotFound = () => {
         <h1 className="mb-4 text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent" aria-live="polite">
           404
         </h1>
-        <p className="mb-6 text-lg text-muted-foreground">Oops! Página não encontrada.</p>
+        <p className="mb-6 text-lg text-muted-foreground">Oops! Page not found.</p>
         <Link to="/" className="inline-block rounded-md border border-border px-4 py-2 text-primary hover:bg-primary/10">
-          Voltar para a Home
+          Back to Home
         </Link>
       </main>
     </div>

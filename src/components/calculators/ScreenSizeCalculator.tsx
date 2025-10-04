@@ -76,7 +76,7 @@ export default function ScreenSizeCalculator() {
             <div className="space-y-2">
               <Label htmlFor="aspectRatio">Aspect Ratio</Label>
               <Select value={aspectRatio} onValueChange={setAspectRatio}>
-                <SelectTrigger>
+                <SelectTrigger id="aspectRatio" aria-label="Aspect ratio">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

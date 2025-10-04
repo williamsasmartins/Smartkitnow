@@ -147,9 +147,9 @@ const ElectricalConversionCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>From</Label>
+              <Label htmlFor="fromUnit">From</Label>
               <Select value={fromUnit} onValueChange={setFromUnit}>
-                <SelectTrigger>
+                <SelectTrigger id="fromUnit" aria-label="From unit">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-background border-border z-50">
@@ -167,9 +167,9 @@ const ElectricalConversionCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>To</Label>
+              <Label htmlFor="toUnit">To</Label>
               <Select value={toUnit} onValueChange={setToUnit}>
-                <SelectTrigger>
+                <SelectTrigger id="toUnit" aria-label="To unit">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-background border-border z-50">

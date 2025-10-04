@@ -161,7 +161,7 @@ export function VelocityCalculator() {
           <div>
             <Label htmlFor="calculationType">What do you want to calculate?</Label>
             <Select value={calculationType} onValueChange={setCalculationType}>
-              <SelectTrigger>
+              <SelectTrigger id="calculationType" aria-label="Calculation type">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -188,7 +188,7 @@ export function VelocityCalculator() {
                     className="flex-1"
                   />
                   <Select value={displacementUnit} onValueChange={setDisplacementUnit}>
-                    <SelectTrigger className="w-20">
+                    <SelectTrigger id="displacementUnit" aria-label="Displacement unit" className="w-20">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -219,7 +219,7 @@ export function VelocityCalculator() {
                     className="flex-1"
                   />
                   <Select value={timeUnit} onValueChange={setTimeUnit}>
-                    <SelectTrigger className="w-20">
+                    <SelectTrigger id="timeUnit" aria-label="Time unit" className="w-20">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -249,7 +249,7 @@ export function VelocityCalculator() {
                     className="flex-1"
                   />
                   <Select value={velocityUnit} onValueChange={setVelocityUnit}>
-                    <SelectTrigger className="w-24">
+                    <SelectTrigger id="velocityUnit" aria-label="Velocity unit" className="w-24">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -277,7 +277,7 @@ export function VelocityCalculator() {
                     className="flex-1"
                   />
                   <Select value={velocityUnit} onValueChange={setVelocityUnit}>
-                    <SelectTrigger className="w-24">
+                    <SelectTrigger id="initialVelocityUnit" aria-label="Initial velocity unit" className="w-24">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>

@@ -1,6 +1,6 @@
 // src/components/SEOHead.tsx
 import React from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 type Crumb = { name: string; url: string };
 
@@ -15,6 +15,8 @@ export type SEOHeadProps = {
   breadcrumbs?: Crumb[];
   /** objeto Schema.org para JSON-LD (opcional) */
   schema?: Record<string, any>;
+  /** múltiplos objetos Schema.org para JSON-LD (opcional) */
+  schemas?: Record<string, any>[];
   /** link rel="canonical" (opcional) */
   canonical?: string;
   /** imagem para compartilhamento (OG/Twitter) */
@@ -44,6 +46,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   keywords,
   breadcrumbs,
   schema,
+  schemas,
   canonical,
   image,
   children,
@@ -62,6 +65,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   }
   if (schema) {
     ldJson.push(schema);
+  }
+  if (schemas && schemas.length > 0) {
+    ldJson.push(...schemas);
   }
 
   return (

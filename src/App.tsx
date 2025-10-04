@@ -137,6 +137,16 @@ export default function App() {
             {/* Calculadora — formato curto */}
             <Route path="/:category/:subcategory/:slug" element={<CalculatorPage />} />
 
+            {/* Atalhos diretos para slugs populares (sem categoria/subcategoria) */}
+            <Route
+              path="/convert-calories-to-kg"
+              element={<Navigate to="/health/calculators/convert-calories-to-kg" replace />}
+            />
+            <Route
+              path="/calories-to-kilograms"
+              element={<Navigate to="/health/calculators/calories-to-kilograms" replace />}
+            />
+
             {/* Legado -> redireciona */}
             <Route
               path="/:category/:subcategory/calculator/:slug"

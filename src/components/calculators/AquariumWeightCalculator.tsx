@@ -112,7 +112,7 @@ export function AquariumWeightCalculator() {
             <div>
               <Label htmlFor="tankType">Tank Type</Label>
               <Select value={tankType} onValueChange={setTankType}>
-                <SelectTrigger>
+                <SelectTrigger id="tankType" aria-label="Tank type">
                   <SelectValue placeholder="Select tank type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -128,7 +128,7 @@ export function AquariumWeightCalculator() {
             <div>
               <Label htmlFor="substrate">Substrate Type</Label>
               <Select value={substrate} onValueChange={setSubstrate}>
-                <SelectTrigger>
+                <SelectTrigger id="substrate" aria-label="Substrate type">
                   <SelectValue placeholder="Select substrate" />
                 </SelectTrigger>
                 <SelectContent>

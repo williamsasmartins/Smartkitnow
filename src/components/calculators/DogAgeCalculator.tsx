@@ -112,7 +112,7 @@ export function DogAgeCalculator() {
             <div>
               <Label htmlFor="dogSize">Dog Size</Label>
               <Select value={dogSize} onValueChange={setDogSize}>
-                <SelectTrigger>
+                <SelectTrigger id="dogSize" aria-label="Dog size">
                   <SelectValue placeholder="Select dog size" />
                 </SelectTrigger>
                 <SelectContent>

@@ -2,15 +2,53 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WC1M7X9STR"></script>
+<!-- Load GA only in production (not on localhost/127.0.0.1) to avoid preview noise -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);} 
-  gtag('js', new Date());
-  gtag('config', 'G-WC1M7X9STR', { anonymize_ip: true });
+  (function() {
+    const host = location.hostname;
+    const isLocal = host === 'localhost' || host === '127.0.0.1';
+    if (!isLocal) {
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WC1M7X9STR';
+      document.head.appendChild(s);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);} 
+      window.gtag = gtag;
+      gtag('js', new Date());
+      // Consent Mode v2: default denied until CMP updates
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500
+      });
+      // Helper to be called by CMP to update consent state
+      window.updateConsent = function(params) { gtag('consent', 'update', params); };
+      gtag('config', 'G-WC1M7X9STR', { anonymize_ip: true });
+    }
+  })();
 </script>
-    <!-- Google AdSense (replace ca-pub-XXXXXXXXXXXX with your client ID) -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <!-- Google AdSense - load only in production and when client is configured -->
+    <script>
+      (function() {
+        const host = location.hostname;
+        const isLocal = host === 'localhost' || host === '127.0.0.1';
+        // Read client from meta tag to avoid hardcoding in source
+        var meta = document.querySelector('meta[name="google-adsense-account"]');
+        var client = meta ? meta.getAttribute('content') : '';
+        if (!isLocal && client && client.startsWith('ca-pub-')) {
+          const s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + client;
+          s.crossOrigin = 'anonymous';
+          document.head.appendChild(s);
+        }
+      })();
+    </script>
+    <meta name="google-adsense-account" content="ca-pub-3663257080779677">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Smart Kit Now - Your Ultimate Smart Tools Collection</title>

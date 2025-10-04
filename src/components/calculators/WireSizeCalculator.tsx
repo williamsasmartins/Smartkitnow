@@ -161,7 +161,7 @@ const WireSizeCalculator = () => {
             <div className="space-y-2">
               <Label htmlFor="voltage">System Voltage (V)</Label>
               <Select value={voltage} onValueChange={setVoltage}>
-                <SelectTrigger>
+                <SelectTrigger id="voltage" aria-label="System voltage">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-background border-border z-50">
@@ -177,7 +177,7 @@ const WireSizeCalculator = () => {
             <div className="space-y-2">
               <Label htmlFor="voltageDrop">Max Voltage Drop (%)</Label>
               <Select value={voltageDropPercent} onValueChange={setVoltageDropPercent}>
-                <SelectTrigger>
+                <SelectTrigger id="voltageDrop" aria-label="Max voltage drop">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-background border-border z-50">
@@ -189,9 +189,9 @@ const WireSizeCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Wire Material</Label>
+              <Label htmlFor="wireType">Wire Material</Label>
               <Select value={wireType} onValueChange={setWireType}>
-                <SelectTrigger>
+                <SelectTrigger id="wireType" aria-label="Wire material">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-background border-border z-50">
@@ -202,9 +202,9 @@ const WireSizeCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Installation Type</Label>
+              <Label htmlFor="conduitType">Installation Type</Label>
               <Select value={conduitType} onValueChange={setConduitType}>
-                <SelectTrigger>
+                <SelectTrigger id="conduitType" aria-label="Installation type">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-background border-border z-50">

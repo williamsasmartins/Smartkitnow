@@ -2,16 +2,21 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { getEntry } from "@/data/calculatorRegistry";
 import { useParams, useNavigate } from "react-router-dom";
 import { MolarMassCalculator } from "@/components/calculators/MolarMassCalculator";
 import { MolarityCalculator } from "@/components/calculators/MolarityCalculator";
 import { DensityCalculator } from "@/components/calculators/DensityCalculator";
 import { ForceCalculator } from "@/components/calculators/ForceCalculator";
 import { VelocityCalculator } from "@/components/calculators/VelocityCalculator";
+import { computeBackPath } from "@/lib/navigation";
 
 export default function ScienceCalculatorPage() {
   const { calculator } = useParams();
   const navigate = useNavigate();
+
+  // Compute dynamic back path using centralized utility
+  const backPath = computeBackPath(calculator, "science");
 
   const getCalculatorComponent = () => {
     switch (calculator) {
@@ -32,7 +37,7 @@ export default function ScienceCalculatorPage() {
             <p className="text-muted-foreground mb-6">
               The {calculator?.replace(/-/g, ' ')} calculator is under development.
             </p>
-            <Button onClick={() => navigate("/science")}>
+            <Button onClick={() => navigate(backPath)}>
               Browse Other Calculators
             </Button>
           </div>
@@ -48,7 +53,7 @@ export default function ScienceCalculatorPage() {
         {/* Back Button */}
         <Button 
           variant="ghost" 
-          onClick={() => navigate("/science")}
+          onClick={() => navigate(backPath)}
           className="mb-6 hover:bg-muted/80"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />

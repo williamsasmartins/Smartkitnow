@@ -71,7 +71,7 @@ export const CalorieCalculator = () => {
           <div className="space-y-2">
             <Label htmlFor="units">Unit System</Label>
             <Select value={units} onValueChange={setUnits}>
-              <SelectTrigger>
+              <SelectTrigger id="units" aria-label="Unit system">
                 <SelectValue placeholder="Select units" />
               </SelectTrigger>
               <SelectContent>
@@ -85,7 +85,7 @@ export const CalorieCalculator = () => {
             <div className="space-y-2">
               <Label htmlFor="activity">Activity</Label>
               <Select value={activity} onValueChange={setActivity}>
-                <SelectTrigger>
+                <SelectTrigger id="activity" aria-label="Activity">
                   <SelectValue placeholder="Select activity" />
                 </SelectTrigger>
                 <SelectContent>

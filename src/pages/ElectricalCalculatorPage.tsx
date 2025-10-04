@@ -4,6 +4,8 @@ import { Footer } from "@/components/Footer";
 import { CalculatorFooter } from "@/components/CalculatorFooter";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Zap } from "lucide-react";
+import { getEntry } from "@/data/calculatorRegistry";
+import { computeBackPath } from "@/lib/navigation";
 import OhmsLawCalculator from "@/components/calculators/OhmsLawCalculator";
 import ElectricalConversionCalculator from "@/components/calculators/ElectricalConversionCalculator";
 import WireSizeCalculator from "@/components/calculators/WireSizeCalculator";
@@ -112,12 +114,11 @@ const ElectricalCalculatorPage = () => {
 
   const currentCalculator = calculator ? calculatorComponents[calculator as keyof typeof calculatorComponents] : null;
 
+  // Compute dynamic back path using centralized utility
+  const backPath = computeBackPath(calculator ?? undefined, "electrical", subcategory);
+
   const handleGoBack = () => {
-    if (subcategory) {
-      navigate(`/electrical/${subcategory}`);
-    } else {
-      navigate('/electrical');
-    }
+    navigate(backPath);
   };
 
   if (!currentCalculator) {
@@ -129,7 +130,7 @@ const ElectricalCalculatorPage = () => {
             <div className="text-center">
               <h1 className="text-3xl font-bold text-foreground mb-4">Calculator Not Found</h1>
               <p className="text-muted-foreground mb-8">The calculator you're looking for doesn't exist.</p>
-              <Button onClick={() => navigate("/electrical")}>
+              <Button onClick={() => navigate(backPath)}>
                 Back to Electrical Calculators
               </Button>
             </div>

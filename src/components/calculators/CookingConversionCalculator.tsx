@@ -142,9 +142,9 @@ const CookingConversionCalculator = () => {
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">
-            <Label>Ingredient</Label>
+            <Label htmlFor="ingredient">Ingredient</Label>
             <Select value={ingredient} onValueChange={setIngredient}>
-              <SelectTrigger>
+              <SelectTrigger id="ingredient" aria-label="Ingredient">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -172,9 +172,9 @@ const CookingConversionCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>From Unit</Label>
+              <Label htmlFor="fromUnit">From Unit</Label>
               <Select value={fromUnit} onValueChange={setFromUnit}>
-                <SelectTrigger>
+                <SelectTrigger id="fromUnit" aria-label="From unit">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -192,9 +192,9 @@ const CookingConversionCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>To Unit</Label>
+              <Label htmlFor="toUnit">To Unit</Label>
               <Select value={toUnit} onValueChange={setToUnit}>
-                <SelectTrigger>
+                <SelectTrigger id="toUnit" aria-label="To unit">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

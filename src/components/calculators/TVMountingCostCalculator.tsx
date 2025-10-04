@@ -130,7 +130,7 @@ export default function TVMountingCostCalculator() {
             <div className="space-y-2">
               <Label htmlFor="mountType">Mount Type</Label>
               <Select value={mountType} onValueChange={setMountType}>
-                <SelectTrigger>
+                <SelectTrigger id="mountType" aria-label="Mount type">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -144,7 +144,7 @@ export default function TVMountingCostCalculator() {
             <div className="space-y-2">
               <Label htmlFor="wallType">Wall Type</Label>
               <Select value={wallType} onValueChange={setWallType}>
-                <SelectTrigger>
+                <SelectTrigger id="wallType" aria-label="Wall type">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

@@ -125,7 +125,7 @@ export function DensityCalculator() {
           <div>
             <Label htmlFor="calculationType">What do you want to calculate?</Label>
             <Select value={calculationType} onValueChange={setCalculationType}>
-              <SelectTrigger>
+              <SelectTrigger id="calculationType" aria-label="Calculation type">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -152,7 +152,7 @@ export function DensityCalculator() {
                     className="flex-1"
                   />
                   <Select value={massUnit} onValueChange={setMassUnit}>
-                    <SelectTrigger className="w-20">
+                    <SelectTrigger id="massUnit" aria-label="Mass unit" className="w-20">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -180,7 +180,7 @@ export function DensityCalculator() {
                     className="flex-1"
                   />
                   <Select value={volumeUnit} onValueChange={setVolumeUnit}>
-                    <SelectTrigger className="w-20">
+                    <SelectTrigger id="volumeUnit" aria-label="Volume unit" className="w-20">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>

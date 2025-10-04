@@ -2,16 +2,21 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { getEntry } from "@/data/calculatorRegistry";
 import { useParams, useNavigate } from "react-router-dom";
 import { AgeCalculator } from "@/components/calculators/AgeCalculator";
 import { CountdownCalculator } from "@/components/calculators/CountdownCalculator";
 import { TimeConverter } from "@/components/calculators/TimeConverter";
 import { DateCalculator } from "@/components/calculators/DateCalculator";
 import { DurationCalculator } from "@/components/calculators/DurationCalculator";
+import { computeBackPath } from "@/lib/navigation";
 
 export default function TimeCalculatorPage() {
   const { calculator } = useParams();
   const navigate = useNavigate();
+
+  // Compute dynamic back path using centralized utility
+  const backPath = computeBackPath(calculator, "time");
 
   const getCalculatorComponent = () => {
     switch (calculator) {
@@ -44,7 +49,7 @@ export default function TimeCalculatorPage() {
             <p className="text-muted-foreground mb-6">
               The {calculator?.replace(/-/g, ' ')} calculator is under development.
             </p>
-            <Button onClick={() => navigate("/time")}>
+            <Button onClick={() => navigate(backPath)}>
               Browse Other Calculators
             </Button>
           </div>
@@ -60,7 +65,7 @@ export default function TimeCalculatorPage() {
         {/* Back Button */}
         <Button 
           variant="ghost" 
-          onClick={() => navigate("/time")}
+          onClick={() => navigate(backPath)}
           className="mb-6 hover:bg-muted/80"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />

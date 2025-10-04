@@ -90,9 +90,9 @@ const PizzaCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Appetite Level</Label>
+              <Label htmlFor="appetite">Appetite Level</Label>
               <Select value={appetite} onValueChange={setAppetite}>
-                <SelectTrigger>
+                <SelectTrigger id="appetite" aria-label="Appetite level">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -104,9 +104,9 @@ const PizzaCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Pizza Size</Label>
+              <Label htmlFor="pizzaSize">Pizza Size</Label>
               <Select value={pizzaSize} onValueChange={setPizzaSize}>
-                <SelectTrigger>
+                <SelectTrigger id="pizzaSize" aria-label="Pizza size">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -120,9 +120,9 @@ const PizzaCalculator = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Pizza Type</Label>
+              <Label htmlFor="pizzaType">Pizza Type</Label>
               <Select value={pizzaType} onValueChange={setPizzaType}>
-                <SelectTrigger>
+                <SelectTrigger id="pizzaType" aria-label="Pizza type">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

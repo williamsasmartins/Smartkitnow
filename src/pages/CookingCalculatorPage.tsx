@@ -4,12 +4,14 @@ import { Footer } from "@/components/Footer";
 import { CalculatorFooter } from "@/components/CalculatorFooter";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calculator } from "lucide-react";
+import { getEntry } from "@/data/calculatorRegistry";
 import CakeCalculator from "@/components/calculators/CakeCalculator";
 import CookingConversionCalculator from "@/components/calculators/CookingConversionCalculator";
 import OvenTemperatureConverter from "@/components/calculators/OvenTemperatureConverter";
 import CookingTimer from "@/components/calculators/CookingTimer";
 import { TurkeyCookingTimeCalculator, TurkeySizeCalculator, TurkeyThawingTimeCalculator } from "@/components/calculators/TurkeyCalculators";
 import PizzaCalculator from "@/components/calculators/PizzaCalculator";
+import { computeBackPath } from "@/lib/navigation";
 
 const CookingCalculatorPage = () => {
   const { calculator, subcategory } = useParams();
@@ -60,12 +62,11 @@ const CookingCalculatorPage = () => {
 
   const currentCalculator = calculator ? calculatorComponents[calculator as keyof typeof calculatorComponents] : null;
 
+  // Compute dynamic back path using centralized utility
+  const backPath = computeBackPath(calculator ?? undefined, "cooking", subcategory);
+
   const handleGoBack = () => {
-    if (subcategory) {
-      navigate(`/cooking/${subcategory}`);
-    } else {
-      navigate('/cooking');
-    }
+    navigate(backPath);
   };
 
   if (!currentCalculator) {
@@ -77,7 +78,7 @@ const CookingCalculatorPage = () => {
             <div className="text-center">
               <h1 className="text-3xl font-bold text-foreground mb-4">Calculator Not Found</h1>
               <p className="text-muted-foreground mb-8">The calculator you're looking for doesn't exist.</p>
-              <Button onClick={() => navigate("/cooking")}>
+              <Button onClick={() => navigate(backPath)}>
                 Back to Cooking Calculators
               </Button>
             </div>

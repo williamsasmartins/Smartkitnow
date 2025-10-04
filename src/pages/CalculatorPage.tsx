@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import React, { Suspense, useMemo } from "react";
+import React, { Suspense, useMemo, useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CalculatorFooter } from "@/components/CalculatorFooter";
@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calculator } from "lucide-react";
 import { getEntry, FRIENDLY_TITLES } from "@/data/calculatorRegistry";
+import { computeBackPath } from "@/lib/navigation";
 import CalculatorLayout from "@/components/layouts/CalculatorLayout";
 import SEOHead from "@/components/SEOHead";
 import { PALETTE } from "@/components/theme/palette";
@@ -45,6 +46,8 @@ const CalculatorPage = () => {
     slug: string;
   }>();
 
+  const [showInterstitial, setShowInterstitial] = useState(false);
+
   const calcSlug = slug;
   const entry = getEntry(calcSlug);
 
@@ -52,8 +55,8 @@ const CalculatorPage = () => {
     location.pathname.split("/")[1] || entry?.category || "construction";
 
   const handleGoBack = () => {
-    if (subcategory) navigate(`/${categoryFromPath}/${subcategory}`);
-    else navigate(`/${categoryFromPath}`);
+    // Exibe intersticial (placeholder) para simular o comportamento de anúncios de retorno
+    setShowInterstitial(true);
   };
 
   const LazyComp = useMemo(() => lazyFrom(entry), [entry]);
@@ -69,8 +72,7 @@ const CalculatorPage = () => {
           </p>
           <div className="mt-6">
             <Button onClick={handleGoBack}>
-              Back to{" "}
-              {FRIENDLY_TITLES[categoryFromPath] || titleCaseFromSlug(categoryFromPath)}
+              Back
             </Button>
           </div>
         </div>
@@ -214,8 +216,11 @@ const CalculatorPage = () => {
               <CardContent className="p-6">
                 <h2 className="text-xl font-semibold mb-2">Related Tools</h2>
                 <ul className="list-disc pl-5 text-muted-foreground space-y-1">
-                  <li><a className="text-primary underline" href="/construction">Construction Calculators</a></li>
-                  <li><a className="text-primary underline" href="/health">Health & Fitness Calculators</a></li>
+                  <li>
+                    <a className="text-primary underline" href={`/${categoryFromPath}`}>
+                      See more in {FRIENDLY_TITLES[entry?.category ?? categoryFromPath] ?? titleCaseFromSlug(entry?.category ?? categoryFromPath)}
+                    </a>
+                  </li>
                 </ul>
               </CardContent>
             </Card>
@@ -235,14 +240,70 @@ const CalculatorPage = () => {
                   ? "Volume = Length × Width × Thickness (converted to yd³ or m³); Bags ≈ Volume(ft³) ÷ bag yield."
                   : "Result = (Variable1 × Variable2) / Constant"
               }
-              sources={[
-                { title: "ASTM / ACI (when applicable)", url: "https://www.astm.org" },
-                { title: "NIST Engineering Handbook", url: "https://www.nist.gov" },
-              ]}
+              sources={(() => {
+                const cat = (entry?.category ?? categoryFromPath) as string;
+                const catTitleLocal = FRIENDLY_TITLES[cat] ?? titleCaseFromSlug(cat);
+                switch (cat) {
+                  case "health":
+                    return [
+                      { title: "World Health Organization (WHO)", url: "https://www.who.int" },
+                      { title: "National Institutes of Health (NIH)", url: "https://www.nih.gov" },
+                      { title: "Centers for Disease Control and Prevention (CDC)", url: "https://www.cdc.gov" },
+                    ];
+                  case "construction":
+                    return [
+                      { title: "ASTM / ACI (when applicable)", url: "https://www.astm.org" },
+                      { title: "American Concrete Institute (ACI)", url: "https://www.concrete.org" },
+                      { title: "NIST Engineering Handbook", url: "https://www.nist.gov" },
+                    ];
+                  case "electrical":
+                    return [
+                      { title: "IEEE Standards Association", url: "https://standards.ieee.org" },
+                      { title: "National Electrical Code (NEC)", url: "https://www.nfpa.org/NEC" },
+                    ];
+                  case "math":
+                    return [
+                      { title: "Wolfram MathWorld", url: "https://mathworld.wolfram.com" },
+                      { title: "Khan Academy - Math", url: "https://www.khanacademy.org/math" },
+                    ];
+                  case "cooking":
+                    return [
+                      { title: "USDA FoodData Central", url: "https://fdc.nal.usda.gov" },
+                      { title: "FDA Food Safety", url: "https://www.fda.gov/food/food-safety" },
+                    ];
+                  default:
+                    return [
+                      { title: `${catTitleLocal} Resources`, url: `/${categoryFromPath}` },
+                    ];
+                }
+              })()}
             />
           </section>
         </CalculatorLayout>
       </main>
+
+      {/* Intersticial de anúncio (placeholder) */}
+      {showInterstitial && (
+        <div className="fixed inset-0 z-[1000] bg-black/60 backdrop-blur-sm flex items-center justify-center">
+          <div className="bg-card border border-border/60 rounded-xl shadow-2xl max-w-xl w-[90%] p-6 text-center">
+            <h3 className="text-xl font-semibold mb-2 text-foreground">Ad Interstitial</h3>
+            <p className="text-muted-foreground mb-4">Ad Space — Large Interstitial (placeholder)</p>
+            <div className="bg-muted/30 rounded-lg h-48 flex items-center justify-center mb-6">
+              <span className="text-muted-foreground">Google AdSense — Vignette/Interstitial</span>
+            </div>
+            <Button
+              onClick={() => {
+                setShowInterstitial(false);
+                const backPath = computeBackPath(entry?.slug ?? slug ?? undefined, entry?.category ?? categoryFromPath);
+                navigate(backPath);
+              }}
+              className="w-full"
+            >
+              Close and go back
+            </Button>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

@@ -115,7 +115,7 @@ export const TDEECalculator = () => {
           <div className="space-y-2">
             <Label htmlFor="units">Unit System</Label>
             <Select value={units} onValueChange={setUnits}>
-              <SelectTrigger>
+              <SelectTrigger id="units" aria-label="Unit system">
                 <SelectValue placeholder="Select units" />
               </SelectTrigger>
               <SelectContent>
@@ -139,7 +139,7 @@ export const TDEECalculator = () => {
             <div className="space-y-2">
               <Label htmlFor="gender">Gender</Label>
               <Select value={gender} onValueChange={setGender}>
-                <SelectTrigger>
+                <SelectTrigger id="gender" aria-label="Gender">
                   <SelectValue placeholder="Select gender" />
                 </SelectTrigger>
                 <SelectContent>
@@ -179,7 +179,7 @@ export const TDEECalculator = () => {
           <div className="space-y-2">
             <Label htmlFor="activityLevel">Activity Level</Label>
             <Select value={activityLevel} onValueChange={setActivityLevel}>
-              <SelectTrigger>
+              <SelectTrigger id="activityLevel" aria-label="Activity level">
                 <SelectValue placeholder="Select activity level" />
               </SelectTrigger>
               <SelectContent>
