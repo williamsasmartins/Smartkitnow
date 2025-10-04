@@ -275,7 +275,7 @@ export const BMRCalculator = () => {
       </Card>
 
       <Card>
-        <CardHeader>
+        <CardHeader className="text-center">
           <CardTitle>Send Us Your Feedback</CardTitle>
           <CardDescription>Help us improve this calculator</CardDescription>
         </CardHeader>

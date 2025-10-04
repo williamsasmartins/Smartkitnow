@@ -566,7 +566,7 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
               className="mt-1 dark:bg-gray-700 bg-white dark:border-gray-600 border-gray-300 dark:text-white text-gray-900 dark:placeholder-gray-500 placeholder-gray-400"
             />
           </div>
-          <Button type="submit" className="dark:bg-blue-600 bg-blue-500 dark:text-white text-white dark:hover:bg-blue-700 hover:bg-blue-600">Submit Feedback</Button>
+          <Button type="submit" variant="calculate">Submit Feedback</Button>
         </form>
       </section>
       <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900 text-center">

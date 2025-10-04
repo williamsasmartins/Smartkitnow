@@ -409,7 +409,7 @@ export function AquariumWeightCalculator() {
               <Label htmlFor="fb-suggestions">Suggestions</Label>
               <Textarea id="fb-suggestions" value={feedback.suggestions} onChange={(e) => setFeedback({ ...feedback, suggestions: e.target.value })} placeholder="Tell us how we can improve this tool" />
             </div>
-            <Button type="submit">Send Feedback</Button>
+            <Button type="submit" variant="calculate">Send Feedback</Button>
           </form>
         </CardContent>
       </Card>

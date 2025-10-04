@@ -369,7 +369,7 @@ export const TDEECalculator = () => {
                 <ValidationError prefix="Message" field="message" errors={formState.errors} />
               </div>
               <div className="md:col-span-2">
-                <Button type="submit" disabled={formState.submitting}>Submit</Button>
+                <Button type="submit" variant="calculate" disabled={formState.submitting}>Submit</Button>
               </div>
             </form>
           )}

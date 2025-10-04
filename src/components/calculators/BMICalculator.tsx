@@ -331,8 +331,13 @@ export const BMICalculator = () => {
           ) : (
             <form onSubmit={handleFormSubmit} className="grid gap-4 md:grid-cols-2">
               <div>
+                <Label htmlFor="name">Nome (opcional)</Label>
+                <Input id="name" name="name" placeholder="Seu nome (opcional)" />
+                <ValidationError prefix="Name" field="name" errors={formState.errors} />
+              </div>
+              <div>
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" name="email" placeholder="Your email (optional)" />
+                <Input id="email" type="email" name="email" placeholder="Seu email (opcional)" />
                 <ValidationError prefix="Email" field="email" errors={formState.errors} />
               </div>
               <div className="md:col-span-2">
