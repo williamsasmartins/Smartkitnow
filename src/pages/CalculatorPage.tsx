@@ -7,7 +7,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calculator } from "lucide-react";
 import { getEntry, FRIENDLY_TITLES } from "@/data/calculatorRegistry";
-import { computeBackPath } from "@/lib/navigation";
 import CalculatorLayout from "@/components/layouts/CalculatorLayout";
 import SEOHead from "@/components/SEOHead";
 import { PALETTE } from "@/components/theme/palette";
@@ -72,7 +71,8 @@ const CalculatorPage = () => {
           </p>
           <div className="mt-6">
             <Button onClick={handleGoBack}>
-              Back
+              Back to{" "}
+              {FRIENDLY_TITLES[categoryFromPath] || titleCaseFromSlug(categoryFromPath)}
             </Button>
           </div>
         </div>
@@ -191,26 +191,7 @@ const CalculatorPage = () => {
 
           {/* Seções auxiliares SEO (mantidas, já com cores corretas) */}
           <section className="mx-auto max-w-4xl my-10 grid gap-6">
-            <Card className="bg-card border-border/50">
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-2">How to Use</h2>
-                <ul className="list-disc pl-5 text-muted-foreground space-y-1">
-                  <li>Enter the project inputs using the form fields.</li>
-                  <li>Adjust units and options when available.</li>
-                  <li>Review the calculated results and totals.</li>
-                </ul>
-              </CardContent>
-            </Card>
 
-            <Card className="bg-card border-border/50">
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-2">Glossary & Notes</h2>
-                <p className="text-muted-foreground">
-                  This calculator provides estimations for planning purposes. Always verify specifications and
-                  local standards before purchasing materials.
-                </p>
-              </CardContent>
-            </Card>
 
             <Card className="bg-card border-border/50">
               <CardContent className="p-6">
@@ -294,8 +275,10 @@ const CalculatorPage = () => {
             <Button
               onClick={() => {
                 setShowInterstitial(false);
-                const backPath = computeBackPath(entry?.slug ?? slug ?? undefined, entry?.category ?? categoryFromPath);
-                navigate(backPath);
+                const backCategory = entry?.category ?? categoryFromPath;
+                const backSubcategory = entry?.subcategory;
+                if (backSubcategory) navigate(`/${backCategory}/${backSubcategory}`);
+                else navigate(`/${backCategory}`);
               }}
               className="w-full"
             >

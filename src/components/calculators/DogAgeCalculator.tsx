@@ -126,10 +126,10 @@ export function DogAgeCalculator() {
           </div>
 
           <div className="flex gap-2">
-            <Button onClick={calculateAge}>
+            <Button variant="calculate" onClick={calculateAge}>
               Calculate Age
             </Button>
-            <Button onClick={clearAll} variant="secondary">
+            <Button onClick={clearAll} variant="reset">
               Clear
             </Button>
           </div>

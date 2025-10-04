@@ -71,6 +71,10 @@ export const SUBCATEGORY_TITLES: Record<string, string> = {
   // Math
   "everyday-math": "Everyday Math",
   "percent-calculators": "Percentage Calculators",
+
+  // Pets
+  "pet-care-calculators": "Pet Care Calculators",
+  "general": "General Pet Calculators",
 };
 
 /* =========================
@@ -143,6 +147,19 @@ const loadProportion = () =>
 // Add placeholder loader for batch creation of calculators without content
 const loadPlaceholder = () =>
   import("@/components/calculators/PlaceholderCalculator");
+
+// Pets — Loaders
+const loadPetAge = () => import("@/components/calculators/PetAgeCalculator");
+const loadQualityOfLifeScale = () => import("@/components/calculators/QualityOfLifeScale");
+const loadPetQualityOfLife = () => import("@/components/calculators/PetQualityOfLifeCalculator");
+// New pet calculators
+const loadPetCaloriePNA = () => import("@/components/calculators/PetCaloriePNACalculator");
+const loadPetCalorieVet = () => import("@/components/calculators/PetCalorieVetCalculator");
+const loadPetFeedingDecisions = () => import("@/components/calculators/PetFeedingDecisionsCalculator");
+// General pets calculators (new)
+const loadPetLife = () => import("@/components/calculators/PetLifeCalculator");
+const loadPetEmergencyDrug = () => import("@/components/calculators/PetEmergencyDrugCalculator");
+const loadPetCosts = () => import("@/components/calculators/PetCostsCalculator");
 
 
 
@@ -636,11 +653,27 @@ export const REGISTRY: CalcEntry[] = [
   },
   {
     slug: "pet-age-converter-human-years",
-    name: "Pet Age to Human Years (Coming Soon)",
+    name: "Pet Age to Human Years",
     category: "pets",
     subcategory: "pet-care-calculators",
-    description: "Página placeholder para conversão idade pet ⇄ anos humanos.",
-    loader: loadPlaceholder,
+    description: "Convert pet age to human years (cats & dogs).",
+    loader: loadPetAge,
+  },
+  {
+    slug: "pet-quality-of-life-scale",
+    name: "Pet Quality of Life — HHHHHMM Scale",
+    category: "pets",
+    subcategory: "pet-care-calculators",
+    description: "Rate Hurt, Hunger, Hydration, Hygiene, Happiness, Mobility, and More Good Days than Bad to assess overall quality.",
+    loader: loadQualityOfLifeScale,
+  },
+  {
+    slug: "pet-quality-of-life-planner",
+    name: "Pet Quality of Life Planner",
+    category: "pets",
+    subcategory: "pet-care-calculators",
+    description: "Use the HHHHHMM scale with tips to plan supportive care for your pet.",
+    loader: loadPetQualityOfLife,
   },
   {
     slug: "dog-walking-calorie-burn",
@@ -660,11 +693,21 @@ export const REGISTRY: CalcEntry[] = [
   },
   {
     slug: "aquarium-volume-calculator",
-    name: "Aquarium Volume (Coming Soon)",
+    name: "Aquarium Volume Calculator",
     category: "pets",
     subcategory: "pet-care-calculators",
-    description: "Página placeholder para volume de aquário.",
-    loader: loadPlaceholder,
+    description: "Calculate aquarium volume in gallons/liters for common shapes.",
+    loader: () => import("@/components/calculators/AquariumVolumeCalculator"),
+    namedExport: "AquariumVolumeCalculator",
+  },
+  {
+    slug: "aquarium-weight-calculator",
+    name: "Aquarium Weight Calculator",
+    category: "pets",
+    subcategory: "pet-care-calculators",
+    description: "Estimate total aquarium weight including water and decorations.",
+    loader: () => import("@/components/calculators/AquariumWeightCalculator"),
+    namedExport: "AquariumWeightCalculator",
   },
   {
     slug: "reptile-terrarium-size",
@@ -697,6 +740,56 @@ export const REGISTRY: CalcEntry[] = [
     subcategory: "pet-care-calculators",
     description: "Página placeholder para planejamento de custos de pets.",
     loader: loadPlaceholder,
+  },
+
+  // New general pet calculators
+  {
+    slug: "pet-calorie-calculator",
+    name: "Pet Calorie Calculator - Daily Nutritional Needs for Dogs and Cats",
+    category: "pets",
+    subcategory: "general",
+    description: "Estimate your pet's daily calorie requirements for weight maintenance or loss, using veterinary-approved formulas for optimal pet nutrition SEO.",
+    loader: loadPetCaloriePNA,
+  },
+  {
+    slug: "calorie-requirements-calculator",
+    name: "Vet-Approved Calorie Requirements Calculator for Pets",
+    category: "pets",
+    subcategory: "general",
+    description: "Calculate precise calorie needs based on body condition and criteria, ideal for veterinary nutrition planning and SEO-targeted pet diet tools.",
+    loader: loadPetCalorieVet,
+  },
+  {
+    slug: "pet-food-feeding-decisions",
+    name: "Pet Food and Feeding Decisions Calculator - Cost and Portion Estimator",
+    category: "pets",
+    subcategory: "general",
+    description: "Tools to calculate commercial pet food costs, portions, and feeding decisions, optimized for pet owners seeking budget-friendly nutrition advice.",
+    loader: loadPetFeedingDecisions,
+  },
+  {
+    slug: "pet-life-calculator",
+    name: "Pet Life Stage & Lifespan Estimator",
+    category: "pets",
+    subcategory: "general",
+    description: "Estimate pet life stage, lifespan range, and compare to human years for dogs, cats and birds.",
+    loader: loadPetLife,
+  },
+  {
+    slug: "veterinary-emergency-drug-dose",
+    name: "Veterinary Emergency Drug Dose Calculator",
+    category: "pets",
+    subcategory: "general",
+    description: "Compute bolus and CRI doses for common emergency drugs (epinephrine, atropine, naloxone, diazepam, lidocaine) with species-specific guidance.",
+    loader: loadPetEmergencyDrug,
+  },
+  {
+    slug: "pet-ownership-costs",
+    name: "Pet Ownership Costs Calculator",
+    category: "pets",
+    subcategory: "general",
+    description: "Estimate annual and lifetime costs of pet ownership with a category breakdown chart.",
+    loader: loadPetCosts,
   },
 
   // --- Placeholders (Financial) ---

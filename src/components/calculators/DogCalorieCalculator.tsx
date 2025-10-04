@@ -151,10 +151,10 @@ export function DogCalorieCalculator() {
           </div>
 
           <div className="flex gap-2">
-            <Button onClick={calculateCalories}>
+            <Button variant="calculate" onClick={calculateCalories}>
               Calculate Calories
             </Button>
-            <Button onClick={clearAll} variant="secondary">
+            <Button variant="reset" onClick={clearAll}>
               Clear All
             </Button>
           </div>

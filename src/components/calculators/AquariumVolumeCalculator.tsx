@@ -5,6 +5,10 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import { Textarea } from "@/components/ui/textarea";
+import { Info, Share2, Copy, Mail } from "lucide-react";
 
 export function AquariumVolumeCalculator() {
   const [length, setLength] = useState("");
@@ -18,6 +22,8 @@ export function AquariumVolumeCalculator() {
     cubicInches: number;
     waterWeight: number;
   } | null>(null);
+  const [feedback, setFeedback] = useState({ name: "", email: "", suggestions: "" });
+  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
 
   const calculateVolume = () => {
     const l = parseFloat(length);
@@ -73,6 +79,59 @@ export function AquariumVolumeCalculator() {
     setShape("");
     setUnits("inches");
     setResult(null);
+  };
+
+  const handleNativeShare = async () => {
+    try {
+      if (navigator.share && currentUrl) {
+        await navigator.share({
+          title: "Aquarium Volume Calculator",
+          text: "Check out this Aquarium Volume Calculator!",
+          url: currentUrl,
+        });
+      } else if (currentUrl) {
+        await navigator.clipboard.writeText(currentUrl);
+        alert("Link copied to clipboard!");
+      }
+    } catch (err) {
+      console.error("Share error:", err);
+    }
+  };
+
+  const handleCopyLink = async () => {
+    try {
+      if (currentUrl) {
+        await navigator.clipboard.writeText(currentUrl);
+        alert("Link copied to clipboard!");
+      }
+    } catch (err) {
+      console.error("Copy error:", err);
+    }
+  };
+
+  const handleFeedbackSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", feedback.name || "Anônimo");
+    formData.append("email", feedback.email || "No email");
+    formData.append("suggestions", feedback.suggestions);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xanpypnb", {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+      if (response.ok) {
+        alert("Thank you for your feedback! It has been sent successfully.");
+        setFeedback({ name: "", email: "", suggestions: "" });
+      } else {
+        throw new Error("Failed to send");
+      }
+    } catch (error) {
+      alert("Failed to send feedback. Please try again later.");
+      console.error("Formspree error:", error);
+    }
   };
 
   return (
@@ -166,10 +225,10 @@ export function AquariumVolumeCalculator() {
           </div>
 
           <div className="flex gap-2">
-            <Button onClick={calculateVolume}>
+            <Button onClick={calculateVolume} variant="calculate">
               Calculate Volume
             </Button>
-            <Button onClick={clearAll} variant="secondary">
+            <Button onClick={clearAll} variant="reset">
               Clear All
             </Button>
           </div>
@@ -245,6 +304,148 @@ export function AquariumVolumeCalculator() {
               <li>• Fill levels are typically 1-2 inches below the rim</li>
             </ul>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Rich Content Sections */}
+      <Card className="mt-8">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2"><Info className="h-5 w-5" /> How to Use the Calculator</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="grid md:grid-cols-3 gap-4">
+            {[{ step: 1, title: "Select Tank Shape", desc: "Choose rectangular, cylindrical, or bow front" }, { step: 2, title: "Enter Dimensions", desc: "Fill the length, width, and height fields" }, { step: 3, title: "Calculate Volume", desc: "Click Calculate to see the results" }].map((s) => (
+              <div key={s.step} className="text-center space-y-2 p-4 bg-muted/30 rounded-lg">
+                <div className="w-8 h-8 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto font-semibold">{s.step}</div>
+                <div className="font-semibold">{s.title}</div>
+                <p className="text-sm text-muted-foreground">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+          <Alert className="bg-blue-50">
+            <Info className="h-4 w-4 text-blue-600" />
+            <AlertDescription>
+              For bow front tanks, we use a 1.2x multiplier as an approximation of the curved front.
+            </AlertDescription>
+          </Alert>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle>How Volume is Calculated</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          <p className="text-sm text-muted-foreground">Rectangular tanks: V = L × W × H; Cylindrical tanks: V = π × r² × H; Bow front: approx. 1.2 × L × W × H.</p>
+          <p className="text-sm text-muted-foreground">We estimate actual water volume at about 90% of the gross tank volume to account for substrate and equipment displacement.</p>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle>Practical Examples</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="list-disc pl-5 text-sm text-muted-foreground space-y-1">
+            <li>20" × 10" × 12" (rectangular) → ~9.3 gal actual water</li>
+            <li>24" diameter × 18" height (cylindrical) → ~17.5 gal actual water</li>
+            <li>36" × 12" × 18" (bow front) → ~30 gal actual water</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle>FAQ</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="q1">
+              <AccordionTrigger>Which unit should I use?</AccordionTrigger>
+              <AccordionContent>Use inches for US measurements or centimeters if you prefer metric. We convert automatically.</AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="q2">
+              <AccordionTrigger>Does substrate affect water volume?</AccordionTrigger>
+              <AccordionContent>Yes. Substrate, rocks, and equipment displace water; that's why we estimate 90% of gross volume.</AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="q3">
+              <AccordionTrigger>How full should I fill the tank?</AccordionTrigger>
+              <AccordionContent>Most tanks are filled 1–2 inches below the rim to accommodate surface movement and equipment.</AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2"><Share2 className="h-5 w-5" /> Share This Calculator</CardTitle>
+        </CardHeader>
+        <CardContent className="flex gap-2">
+          <Button variant="outline" onClick={handleNativeShare} className="flex items-center gap-2"><Share2 className="h-4 w-4" /> Share</Button>
+          <Button variant="outline" onClick={handleCopyLink} className="flex items-center gap-2"><Copy className="h-4 w-4" /> Copy Link</Button>
+          <a href={`mailto:?subject=Aquarium Volume Calculator&body=${encodeURIComponent(currentUrl || "")}`} className="inline-flex items-center gap-2">
+            <Button variant="outline"><Mail className="h-4 w-4" /> Email</Button>
+          </a>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle>Send Us Your Feedback</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleFeedbackSubmit} className="space-y-3">
+            <div className="grid md:grid-cols-2 gap-3">
+              <div>
+                <Label htmlFor="fb-name">Name</Label>
+                <Input id="fb-name" value={feedback.name} onChange={(e) => setFeedback({ ...feedback, name: e.target.value })} placeholder="Optional" />
+              </div>
+              <div>
+                <Label htmlFor="fb-email">Email</Label>
+                <Input id="fb-email" type="email" value={feedback.email} onChange={(e) => setFeedback({ ...feedback, email: e.target.value })} placeholder="Optional" />
+              </div>
+            </div>
+            <div>
+              <Label htmlFor="fb-suggestions">Suggestions</Label>
+              <Textarea id="fb-suggestions" value={feedback.suggestions} onChange={(e) => setFeedback({ ...feedback, suggestions: e.target.value })} placeholder="Tell us how we can improve this tool" />
+            </div>
+            <Button type="submit">Send Feedback</Button>
+          </form>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle>Disclaimer</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">This calculator provides estimates for planning purposes. Always verify stand and floor load capacity and consult manufacturers for specific limits.</p>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle>Glossary & Notes</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="list-disc pl-5 text-sm text-muted-foreground space-y-1">
+            <li>231 cubic inches = 1 US gallon</li>
+            <li>1 gallon = 3.78541 liters</li>
+            <li>Water weight ≈ 8.34 lbs per gallon</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-6 mb-10">
+        <CardHeader>
+          <CardTitle>Related Tools</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="list-disc pl-5 text-sm text-muted-foreground space-y-1">
+            <li>
+              <a className="text-primary underline" href="/pets/pet-care-calculators/aquarium-weight-calculator">Aquarium Weight Calculator</a>
+            </li>
+          </ul>
         </CardContent>
       </Card>
     </div>
