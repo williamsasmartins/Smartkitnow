@@ -33,7 +33,7 @@ export default function CategorySubcategory() {
         <AdRailLayout
           titleBlock={
             <div>
-              {/* Back à ESQUERDA (azul) */}
+              {/* Back to the LEFT (blue) */}
               <button
                 onClick={() => navigate(`/${category}`)}
                 className="mb-4 inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-white hover:brightness-110 transition-colors"
@@ -75,7 +75,7 @@ export default function CategorySubcategory() {
                         style={{ color: PALETTE.brand.title }}
                       >
                         <Link to={url} className="hover:underline">
-                          {calc.name}
+                          {calc.title}
                         </Link>
                       </CardTitle>
                     </CardHeader>

@@ -4,21 +4,21 @@ import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useMemo } from "react";
 import logoImage from "@/assets/logo-skn.png";
-import { REGISTRY, type CalcEntry } from "@/data/calculatorRegistry";
+import { REGISTRY, type CalculatorEntry } from "@/data/calculatorRegistry";
 
 export function Header() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const searchIndex: CalcEntry[] = useMemo(() => REGISTRY.filter(e => !!e.subcategory), []);
+  const searchIndex: CalculatorEntry[] = useMemo(() => REGISTRY.filter(e => !!e.subcategory), []);
 
   const filteredCalculators = useMemo(() => {
     const q = searchTerm.trim().toLowerCase();
     if (!q) return [];
     return searchIndex
       .filter((e) => {
-        const nameMatch = e.name.toLowerCase().includes(q);
+        const nameMatch = e.title.toLowerCase().includes(q);
         const categoryMatch = e.category.toLowerCase().includes(q);
         const subcategoryMatch = (e.subcategory || "").toLowerCase().includes(q);
         const aliasMatch = (e.aliases || []).some(a => a.toLowerCase().includes(q));
@@ -43,7 +43,7 @@ export function Header() {
     }
   };
 
-  const navigateToCalculator = (calculator: CalcEntry) => {
+  const navigateToCalculator = (calculator: CalculatorEntry) => {
     setSearchTerm("");
     setShowSuggestions(false);
     const category = calculator.category;
@@ -96,7 +96,7 @@ export function Header() {
                   }}
                   className="px-4 py-2 hover:bg-muted cursor-pointer border-b border-border/50 last:border-b-0"
                 >
-                  <div className="font-medium text-sm">{calc.name}</div>
+                  <div className="font-medium text-sm">{calc.title}</div>
                   <div className="text-xs text-muted-foreground capitalize">{calc.category}{calc.subcategory ? ` • ${calc.subcategory}` : ""}</div>
                 </div>
               ))}

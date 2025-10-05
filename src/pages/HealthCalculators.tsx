@@ -11,9 +11,9 @@ import { listSubcategoriesOfCategory, FRIENDLY_TITLES } from "@/data/calculatorR
 import SEOHead from "@/components/SEOHead";
 
 /**
- * ÍCONES COLORIDOS POR SUBCATEGORIA (seguindo o padrão da home)
- * - Se a subcategoria não estiver mapeada, cai no default (HeartPulse roxo).
- * - Cores: ícone com cor viva + “badge” arredondado com fundo suave.
+ * COLORED ICONS BY SUBCATEGORY (following the home pattern)
+ * - If the subcategory is not mapped, falls back to default (purple HeartPulse).
+ * - Colors: icon with vivid color + rounded "badge" with soft background.
  */
 const ICONS_BY_SUBCAT: Record<
   string,
@@ -56,7 +56,7 @@ export default function HealthCalculators() {
         <PageWithRails
           titleBlock={
             <div className="text-center">
-              {/* Back alinhado à esquerda */}
+              {/* Back aligned to the left */}
               <div className="mb-6 text-left">
                 <Button
                   variant="default"
@@ -91,7 +91,7 @@ export default function HealthCalculators() {
                 <Link key={sc.slug} to={`/health/${sc.slug}`} className="group block">
                   <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
                     <CardHeader className="flex flex-row items-center gap-3">
-                      {/* Badge colorido com ícone */}
+                      {/* Colored badge with icon */}
                       <span
                         className="inline-flex items-center justify-center rounded-xl"
                         style={{

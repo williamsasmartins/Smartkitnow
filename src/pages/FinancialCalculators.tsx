@@ -10,7 +10,7 @@ import { ArrowLeft, Banknote, Percent, PiggyBank, Home, Landmark, LineChart } fr
 import { listSubcategoriesOfCategory, FRIENDLY_TITLES } from "@/data/calculatorRegistry";
 import SEOHead from "@/components/SEOHead";
 
-/** Ícones coloridos por subcategoria (badge 40×40) */
+/** Colored icons by subcategory (40×40 badge) */
 const ICONS_BY_SUBCAT: Record<string, { Icon: React.ComponentType<any>; color: string; bg: string }> = {
   "personal-finance-calculators":      { Icon: PiggyBank, color: "#22c55e", bg: "rgba(34,197,94,0.14)" },  // green
   "interest-and-loan-calculators":     { Icon: Percent,   color: "#f59e0b", bg: "rgba(245,158,11,0.14)" }, // amber

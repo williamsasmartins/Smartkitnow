@@ -425,3 +425,5 @@ export function AquariumWeightCalculator() {
     </div>
   );
 }
+
+export default AquariumWeightCalculator;

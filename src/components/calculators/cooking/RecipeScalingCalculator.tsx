@@ -197,3 +197,5 @@ export const RecipeScalingCalculator = () => {
     </CalculatorLayout>
   );
 };
+
+export default RecipeScalingCalculator;

@@ -8,18 +8,18 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'), // Alias para imports: "@/..."
+      '@': resolve(__dirname, 'src'), // Alias for imports: "@/..."
     },
   },
   server: {
     port: 8080, // Porta local
   },
   build: {
-    chunkSizeWarningLimit: 1000, // Suprime aviso de chunk grande
-    // Removido manualChunks personalizado para evitar possíveis problemas de ordem de inicialização em libs com múltiplos pacotes (ex.: Sentry)
-    // Mantemos a configuração padrão de chunking do Vite/Rollup por estabilidade
+    chunkSizeWarningLimit: 1000, // Suppress large chunk warning
+    // Removed custom manualChunks to avoid possible initialization order issues in libs with multiple packages (e.g.: Sentry)
+    // We keep the default Vite/Rollup chunking configuration for stability
   },
-  // Configuração de testes para Vitest
+  // Test configuration for Vitest
   test: {
     environment: 'jsdom',
     globals: true,

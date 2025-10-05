@@ -8,21 +8,21 @@ import { ArrowLeft } from "lucide-react";
 import AdRailLayout from "@/components/layouts/AdRailLayout";
 import SEOHead from "@/components/SEOHead";
 
-const ConstructionSubCategory: React.FC = () => {
+const AutomotiveSubCategory: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { subCategory } = (location.state as any) || {};
 
-  // Se acessar direto a URL sem state, volta para /construction
+  // Se acessar direto a URL sem state, volta para /automotive
   useEffect(() => {
-    if (!subCategory) navigate("/construction", { replace: true });
+    if (!subCategory) navigate("/automotive", { replace: true });
   }, [subCategory, navigate]);
 
   if (!subCategory) return null;
 
   const handleCalculatorClick = (calculator: any) => {
     navigate(
-      `/construction/${subCategory.title
+      `/automotive/${subCategory.title
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)/g, "")}/${calculator.key}`,
@@ -30,14 +30,14 @@ const ConstructionSubCategory: React.FC = () => {
         state: {
           calculator: {
             ...calculator,
-            category: "Construction",
+            category: "Automotive",
             description: `Calculate ${calculator.name
               .toLowerCase()
-              .replace(" calculator", "")} for your construction project.`,
+              .replace(" calculator", "")} for your vehicle.`,
             formula: "Calculation details will be shown here",
             sources: [
-              { title: "Construction Standards", url: "https://example.com" },
-              { title: "Building Codes", url: "https://example.com" },
+              { title: "Automotive Standards", url: "https://example.com" },
+              { title: "Vehicle Manuals", url: "https://example.com" },
             ],
           },
           subCategory,
@@ -54,20 +54,20 @@ const ConstructionSubCategory: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-soft">
       <SEOHead
-        title={`${subCategory.title} - Construction Calculators | Smart Kit Now`}
-        description={`Professional ${subCategory.title.toLowerCase()} for accurate project planning and material estimation.`}
+        title={`${subCategory.title} - Automotive Calculators | Smart Kit Now`}
+        description={`Professional ${subCategory.title.toLowerCase()} for accurate vehicle performance and maintenance.`}
         keywords={[
-          "construction calculators",
+          "automotive calculators",
           subCategory.title.toLowerCase(),
-          "material estimator",
-          "project planning",
+          "vehicle performance",
+          "maintenance",
         ]}
         breadcrumbs={[
           { name: "Home", url: "https://www.smartkitnow.com/" },
-          { name: "Construction Calculators", url: "https://www.smartkitnow.com/construction" },
+          { name: "Automotive Calculators", url: "https://www.smartkitnow.com/automotive" },
           {
             name: subCategory.title,
-            url: `https://www.smartkitnow.com/construction/${subSlug}`,
+            url: `https://www.smartkitnow.com/automotive/${subSlug}`,
           },
         ]}
       />
@@ -80,7 +80,7 @@ const ConstructionSubCategory: React.FC = () => {
             {/* Back Button */}
             <div className="mb-6">
               <button
-                onClick={() => navigate("/construction")}
+                onClick={() => navigate("/automotive")}
                 className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" />
@@ -94,8 +94,7 @@ const ConstructionSubCategory: React.FC = () => {
                 {subCategory.title}
               </h1>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Professional construction calculators for accurate project planning and material
-                estimation.
+                Professional automotive calculators for accurate performance analysis and maintenance planning.
               </p>
             </div>
 
@@ -131,4 +130,4 @@ const ConstructionSubCategory: React.FC = () => {
   );
 };
 
-export default ConstructionSubCategory;
+export default AutomotiveSubCategory;

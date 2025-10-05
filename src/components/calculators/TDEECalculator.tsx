@@ -403,3 +403,5 @@ export const TDEECalculator = () => {
     </div>
   );
 };
+
+export default TDEECalculator;

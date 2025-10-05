@@ -141,3 +141,5 @@ export const CompoundInterestCalculator = () => {
     </div>
   );
 };
+
+export default CompoundInterestCalculator;

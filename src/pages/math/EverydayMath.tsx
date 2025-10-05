@@ -14,11 +14,11 @@ export default function EverydayMath() {
 
   const tiles = [
     {
-      to: "/math/everyday-math/percentages", // <-- abre o HUB
+      to: "/math/everyday-math/percentages", // <-- opens the HUB
       title: "Percentage Calculators",
       count: 4,
       Icon: Percent,
-      iconBg: "rgba(59,130,246,0.12)", // azul claro
+      iconBg: "rgba(59,130,246,0.12)", // light blue
       iconColor: "#3b82f6",
       desc: "Percent of, Increase, Decrease, Change.",
     },

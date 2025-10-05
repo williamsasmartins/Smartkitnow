@@ -97,7 +97,7 @@ export default function ConstructionSubCategory() {
                         className="text-lg font-semibold transition-colors"
                         style={{ color: "#3c83f6" }}
                       >
-                        {calc.name}
+                        {calc.title}
                       </CardTitle>
                     </CardHeader>
                     <CardContent>

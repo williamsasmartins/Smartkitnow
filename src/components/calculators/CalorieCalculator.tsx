@@ -173,3 +173,5 @@ export const CalorieCalculator = () => {
     </div>
   );
 };
+
+export default CalorieCalculator;

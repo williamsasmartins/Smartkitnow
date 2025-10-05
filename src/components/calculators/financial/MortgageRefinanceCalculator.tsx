@@ -160,3 +160,5 @@ export const MortgageRefinanceCalculator = () => {
     </CalculatorLayout>
   );
 };
+
+export default MortgageRefinanceCalculator;

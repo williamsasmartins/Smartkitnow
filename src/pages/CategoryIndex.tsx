@@ -27,7 +27,7 @@ export default function CategoryIndex() {
         <AdRailLayout
           titleBlock={
             <div>
-              {/* Back à ESQUERDA (azul) */}
+              {/* Back to the LEFT (blue) */}
               <button
                 onClick={() => navigate("/")}
                 className="mb-4 inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-white hover:brightness-110 transition-colors"
@@ -78,7 +78,7 @@ export default function CategoryIndex() {
                         <div className="space-y-1 text-center">
                           {preview.map((calc) => (
                             <p key={calc.slug} className="text-sm" style={{ color: PALETTE.brand.text }}>
-                              • {calc.name}
+                              • {calc.title}
                             </p>
                           ))}
                           {sc.count > 3 && (

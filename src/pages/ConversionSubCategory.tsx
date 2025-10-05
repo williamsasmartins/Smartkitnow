@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 
-// ÍCONES coloridos por calculadora (slug/name)
+// COLORED icons by calculator (slug/name)
 type IconSpec = { Icon: React.ComponentType<any>; color: string; bg: string };
 const DEF: IconSpec = { Icon: Calculator, color: "#8b5cf6", bg: "rgba(139,92,246,0.14)" };
 
@@ -107,7 +107,7 @@ export default function ConversionSubCategory() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {calculators.map((calc) => {
-                const { Icon, color, bg } = iconForCalc(calc.slug, calc.name);
+                const { Icon, color, bg } = iconForCalc(calc.slug, calc.title);
                 return (
                   <Link key={calc.slug} to={`/conversion/${calc.subcategory}/${calc.slug}`} className="group block">
                     <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
@@ -117,7 +117,7 @@ export default function ConversionSubCategory() {
                           <Icon className="h-5 w-5" />
                         </span>
                         <CardTitle className="text-lg font-semibold" style={{ color: "#3c83f6" }}>
-                          {calc.name}
+                          {calc.title}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>

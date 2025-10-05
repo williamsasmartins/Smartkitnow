@@ -68,7 +68,7 @@ export default function ConversionCalculators() {
           showTopBanner
           showBottomBanner
         >
-          {/* EXATAMENTE 3 CARDS CLICÁVEIS (sem nomes de calculadoras; apenas contagem) */}
+          {/* EXACTLY 3 CLICKABLE CARDS (no calculator names; just count) */}
           <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Popular Unit Converters */}
             <Link to="/conversion/popular" className="group block">

@@ -122,3 +122,5 @@ export const ROICalculator = () => {
     </CalculatorLayout>
   );
 };
+
+export default ROICalculator;

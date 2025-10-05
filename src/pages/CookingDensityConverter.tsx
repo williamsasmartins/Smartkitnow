@@ -14,7 +14,7 @@ import SEOHead from "@/components/SEOHead";
  * - Unidades de massa: g, kg, oz, lb
  * - Unidades de volume: mL, L, tsp, tbsp, cup
  * - Ingredientes pré-definidos (densidades típicas) + densidade manual
- * - Sem anúncios (página de calculadora)
+ * - No ads (calculator page)
  */
 
 type Unit =

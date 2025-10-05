@@ -9,7 +9,7 @@ const Index = () => {
 
   // Categories with detailed automotive and construction structures
   const categories = {
-    automotivo: {
+    automotive: {
       name: "Automotive Calculators",
       icon: Car,
       color: "text-blue-600",
@@ -1162,7 +1162,7 @@ const Index = () => {
     color: "text-pink-500"
   },
   // Restored categories
-  categories.automotivo, categories.construction, categories.electrical];
+  categories.automotive, categories.construction, categories.electrical];
 
   // Featured Calculators Data
   const featuredCalculators = [{

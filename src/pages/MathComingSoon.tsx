@@ -111,7 +111,7 @@ export default function MathComingSoon() {
           showTopBanner
           showBottomBanner
         >
-          {/* GRID de subcategorias — agora CLICÁVEIS */}
+          {/* GRID of subcategories — now CLICKABLE */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {CARDS.map(({ to, title, desc, Icon, bubbleBg, bubbleFg }) => (
               <Link key={to} to={to} className="group block">
@@ -151,7 +151,7 @@ export default function MathComingSoon() {
             ))}
           </div>
 
-          {/* bloco de feedback */}
+          {/* feedback block */}
           <div className="mt-8 text-center">
             <p className="text-sm" style={{ color: "#747886" }}>
               Want this section sooner? Tell us which calculators you need most via{" "}

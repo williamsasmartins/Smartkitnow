@@ -4,10 +4,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
-/** Props padrão para permitir esconder header interno quando a página pai já renderiza um header */
+/** Default props to allow hiding internal header when parent page already renders a header */
 type BrandingProps = { branding?: { hideHeader?: boolean } };
 
-// Função pura fora do componente para evitar warnings de hooks
+// Pure function outside component to avoid hook warnings
 const gcd = (a: number, b: number): number => (b === 0 ? Math.abs(a) : gcd(b, a % b));
 
 export default function FractionReducerCalculator({ branding }: BrandingProps) {

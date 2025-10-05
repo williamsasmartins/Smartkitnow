@@ -78,7 +78,7 @@ export default function PercentChangeCalculator() {
         <h2 className="text-base font-semibold text-foreground">How it works</h2>
         <p>
           <strong>Percent change</strong> = ((<em>new</em> − <em>old</em>) ÷ <em>old</em>) × 100.
-          Valores positivos indicam aumento; negativos, diminuição.
+          Positive values indicate increase; negative values indicate decrease.
         </p>
       </section>
     </div>

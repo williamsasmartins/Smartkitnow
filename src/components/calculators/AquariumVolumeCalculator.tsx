@@ -451,3 +451,5 @@ export function AquariumVolumeCalculator() {
     </div>
   );
 }
+
+export default AquariumVolumeCalculator;

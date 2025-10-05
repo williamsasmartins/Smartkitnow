@@ -28,7 +28,7 @@ function round(n: number, d = 0) {
 function humanYearsDog(age: number, size: DogSize): number {
   if (!isFinite(age) || age <= 0) return 0;
   // Base formula from studies: 16 * ln(age) + 31
-  let base = 16 * Math.log(age) + 31;
+  const base = 16 * Math.log(age) + 31;
   // Adjust by size: small slightly higher, giant lower
   const adjust = size === "small" ? 1.0 : size === "medium" ? 0.5 : size === "large" ? -2.0 : size === "giant" ? -4.0 : 0;
   return Math.max(0, base + adjust);

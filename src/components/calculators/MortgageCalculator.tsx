@@ -161,3 +161,5 @@ export const MortgageCalculator = () => {
     </div>
   );
 };
+
+export default MortgageCalculator;

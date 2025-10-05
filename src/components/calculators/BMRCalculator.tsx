@@ -330,10 +330,10 @@ export const BMRCalculator = () => {
         </CardHeader>
         <CardContent className="space-y-2 text-sm">
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://pubmed.ncbi.nlm.nih.gov/2239751/" target="_blank" rel="nofollow noreferrer" className="text-primary underline">Mifflin, M.D. et al. (1990) — A new predictive equation for resting energy expenditure in healthy individuals <ExternalLink className="h-4 w-4 inline" /></a></li>
-            <li><a href="https://pubmed.ncbi.nlm.nih.gov/15883556/" target="_blank" rel="nofollow noreferrer" className="text-primary underline">Frankenfield, D. et al. (2005) — Comparison of predictive equations for resting metabolic rate in healthy nonobese and obese adults <ExternalLink className="h-4 w-4 inline" /></a></li>
-            <li><a href="https://www.niddk.nih.gov/health-information/weight-management/body-weight-planner" target="_blank" rel="nofollow noreferrer" className="text-primary underline">NIDDK — Body Weight Planner (NIH dynamic weight change model) <ExternalLink className="h-4 w-4 inline" /></a></li>
-            <li><a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/metabolism/art-20046508" target="_blank" rel="nofollow noreferrer" className="text-primary underline">Mayo Clinic — Metabolism and weight loss basics <ExternalLink className="h-4 w-4 inline" /></a></li>
+            <li><a href="https://pubmed.ncbi.nlm.nih.gov/2239751/" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">Mifflin, M.D. et al. (1990) — A new predictive equation for resting energy expenditure in healthy individuals <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
+            <li><a href="https://pubmed.ncbi.nlm.nih.gov/15883556/" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">Frankenfield, D. et al. (2005) — Comparison of predictive equations for resting metabolic rate in healthy nonobese and obese adults <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
+            <li><a href="https://www.niddk.nih.gov/health-information/weight-management/body-weight-planner" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">NIDDK — Body Weight Planner (NIH dynamic weight change model) <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
+            <li><a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/metabolism/art-20046508" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">Mayo Clinic — Metabolism and weight loss basics <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
           </ul>
         </CardContent>
       </Card>
@@ -414,3 +414,5 @@ export const BMRCalculator = () => {
     </div>
   );
 };
+
+export default BMRCalculator;

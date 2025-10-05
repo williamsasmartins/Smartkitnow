@@ -28,8 +28,8 @@ import {
 import SEOHead from "@/components/SEOHead";
 
 /**
- * Mapeia ÍCONE + CORES por calculadora (slug/nome) — badge colorido como na home.
- * Regras simples por palavra-chave; se não casar, cai no DEFAULT_ICON.
+ * Maps ICON + COLORS by calculator (slug/name) — colored badge like on home.
+ * Simple rules by keyword; if no match, falls back to DEFAULT_ICON.
  */
 type IconSpec = { Icon: React.ComponentType<any>; color: string; bg: string };
 
@@ -40,7 +40,7 @@ const DEFAULT_ICON: IconSpec = {
 };
 
 const RULES: Array<{ test: (key: string) => boolean; spec: IconSpec }> = [
-  // Medidas corporais / antropometria
+  // Body measurements / anthropometry
   { test: k => /body|measurement|waist|hip|neck|height|weight/.test(k), spec: { Icon: Ruler, color: "#22c55e", bg: "rgba(34,197,94,0.12)" } }, // green
   // BMI / IMC
   { test: k => /\bbmi\b|mass index/.test(k), spec: { Icon: Activity, color: "#0ea5e9", bg: "rgba(14,165,233,0.12)" } }, // sky
@@ -113,7 +113,7 @@ export default function HealthSubCategory() {
         <PageWithRails
           titleBlock={
             <div>
-              {/* Back à esquerda */}
+              {/* Back to the left */}
               <div className="mb-6">
                 <Button
                   variant="default"
@@ -142,7 +142,7 @@ export default function HealthSubCategory() {
           showBottomBanner
           railsSticky={false} // produção segura (AdSense)
         >
-          {/* Cards com ícone colorido + nome + descrição */}
+          {/* Cards with colored icon + name + description */}
           {!calculators || calculators.length === 0 ? (
             <p className="text-center" style={{ color: "#747886" }}>
               No calculators found yet in this subcategory.
@@ -150,7 +150,7 @@ export default function HealthSubCategory() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {calculators.map((calc) => {
-                const { Icon, color, bg } = iconForCalculator(calc.slug, calc.name);
+                const { Icon, color, bg } = iconForCalculator(calc.slug, calc.title);
                 return (
                   <Link
                     key={calc.slug}
@@ -159,7 +159,7 @@ export default function HealthSubCategory() {
                   >
                     <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
                       <CardHeader className="flex flex-row items-center gap-3">
-                        {/* Badge colorido com ícone (mesmo padrão visual do /health e home) */}
+                        {/* Colored badge with icon (same visual pattern as /health and home) */}
                         <span
                           className="inline-flex items-center justify-center rounded-xl"
                           style={{
@@ -176,7 +176,7 @@ export default function HealthSubCategory() {
                           className="text-lg font-semibold transition-colors"
                           style={{ color: "#3c83f6" }}
                         >
-                          {calc.name}
+                          {calc.title}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>

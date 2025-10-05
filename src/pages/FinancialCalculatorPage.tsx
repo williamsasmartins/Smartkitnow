@@ -99,7 +99,7 @@ const FinancialCalculatorPage = () => {
       default:
         return (
           <div className="bg-card rounded-lg p-8 text-center">
-            <h3 className="text-xl font-semibold mb-4">{calculator.name}</h3>
+            <h3 className="text-xl font-semibold mb-4">{calculator.name ?? calculator.title}</h3>
             <p className="text-muted-foreground mb-6">
               This calculator is coming soon. We're working on implementing all financial calculators.
             </p>
@@ -135,7 +135,7 @@ const FinancialCalculatorPage = () => {
             
             <div className="mb-6 text-center">
               <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
-                {calculator.name}
+                {calculator.name ?? calculator.title}
               </h1>
               <p className="text-muted-foreground text-lg">
                 Category: {subCategory}

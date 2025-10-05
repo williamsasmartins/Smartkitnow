@@ -65,7 +65,7 @@ export default function PercentageCalculators() {
           showBottomBanner
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mx-auto max-w-6xl">
-            {/* Real: abre calculadora */}
+            {/* Real: opens calculator */}
             <Link to="/math/everyday-math/percent-of-total" className="group block">
               <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
                 <CardHeader className="flex flex-row items-center gap-3">

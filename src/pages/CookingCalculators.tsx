@@ -10,7 +10,7 @@ import { ArrowLeft, ChefHat, Timer, Ruler, Beaker, ArrowLeftRight, Soup } from "
 import { listSubcategoriesOfCategory, FRIENDLY_TITLES } from "@/data/calculatorRegistry";
 import SEOHead from "@/components/SEOHead";
 
-/** Ícones coloridos por subcategoria (badge 40×40) */
+/** Colored icons by subcategory (40×40 badge) */
 const ICONS_BY_SUBCAT: Record<string, { Icon: React.ComponentType<any>; color: string; bg: string }> = {
   "cooking-baking-calculators": { Icon: ChefHat,       color: "#f59e0b", bg: "rgba(245,158,11,0.14)" }, // amber
   "cooking-measurements":       { Icon: Beaker,        color: "#06b6d4", bg: "rgba(6,182,212,0.14)" },  // cyan

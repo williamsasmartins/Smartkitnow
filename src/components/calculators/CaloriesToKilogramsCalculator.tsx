@@ -247,8 +247,8 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
               { step: 3, title: "Get the Result", desc: "Click 'Calculate' to see the kg equivalent" }
             ].map((item) => (
               <div key={item.step} className="text-center space-y-2 p-4 dark:bg-gray-700 bg-gray-100 rounded-lg">
-                <div className="w-8 h-8 dark:bg-blue-900 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-                  <span className="dark:text-blue-400 text-blue-600 font-bold">{item.step}</span>
+                <div className="w-8 h-8 dark:bg-gray-600 bg-gray-200 rounded-full flex items-center justify-center mx-auto">
+                  <span className="text-blue-600 font-bold">{item.step}</span>
                 </div>
                 <h4 className="font-medium dark:text-white text-gray-900">{item.title}</h4>
                 <p className="text-sm dark:text-gray-400 text-gray-600">{item.desc}</p>
@@ -380,45 +380,47 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         </div>
       </section>
 
-      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-4 rounded-lg shadow-soft dark:text-gray-300 text-gray-900 text-center">
-        <h2 className="text-2xl font-semibold mb-4">Share This Calculator</h2>
-        <div className="flex justify-center gap-2 flex-wrap">
-          <Button variant="outline" size="sm" onClick={handleNativeShare} className="mb-2 w-full sm:w-auto" aria-label="Share via device">
-            <Share2 className="h-4 w-4 mr-2" /> Share
-          </Button>
-          <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
-            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on Facebook">
-              <Facebook className="h-4 w-4 mr-2" /> Facebook
-            </a>
-          </Button>
-          <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
-            <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=Check out this Calories to Kilograms Calculator!`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on Twitter/X">
-              <Twitter className="h-4 w-4 mr-2" /> Twitter/X
-            </a>
-          </Button>
-          <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
-            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on LinkedIn">
-              <Linkedin className="h-4 w-4 mr-2" /> LinkedIn
-            </a>
-          </Button>
-          <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
-            <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent('Check out this Calories to Kilograms Calculator! ' + currentUrl)}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on WhatsApp">
-              <Share2 className="h-4 w-4 mr-2" /> WhatsApp
-            </a>
-          </Button>
-          <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
-            <a href={`https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent('Check out this Calories to Kilograms Calculator!')}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on Telegram">
-              <Send className="h-4 w-4 mr-2" /> Telegram
-            </a>
-          </Button>
-          <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
-            <a href={`mailto:?subject=${encodeURIComponent('Calories to Kilograms Calculator')}&body=${encodeURIComponent('Check out this Calories to Kilograms Calculator! ' + currentUrl)}`} className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share via Email">
-              <Mail className="h-4 w-4 mr-2" /> Email
-            </a>
-          </Button>
-          <Button variant="outline" size="sm" onClick={handleCopyLink} className="mb-2 w-full sm:w-auto" aria-label="Copy link">
-            <Copy className="h-4 w-4 mr-2" /> Copy Link
-          </Button>
+      <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-4 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">
+        <div className="text-center">
+          <h2 className="text-2xl font-semibold mb-4">Share This Calculator</h2>
+          <div className="flex justify-center gap-2 flex-wrap">
+            <Button variant="outline" size="sm" onClick={handleNativeShare} className="mb-2 w-full sm:w-auto" aria-label="Share via device">
+              <Share2 className="h-4 w-4 mr-2" /> Share
+            </Button>
+            <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on Facebook">
+                <Facebook className="h-4 w-4 mr-2" /> Facebook
+              </a>
+            </Button>
+            <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
+              <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=Check out this Calories to Kilograms Calculator!`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on Twitter/X">
+                <Twitter className="h-4 w-4 mr-2" /> Twitter/X
+              </a>
+            </Button>
+            <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
+              <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on LinkedIn">
+                <Linkedin className="h-4 w-4 mr-2" /> LinkedIn
+              </a>
+            </Button>
+            <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
+              <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent('Check out this Calories to Kilograms Calculator! ' + currentUrl)}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on WhatsApp">
+                <Share2 className="h-4 w-4 mr-2" /> WhatsApp
+              </a>
+            </Button>
+            <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
+              <a href={`https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent('Check out this Calories to Kilograms Calculator!')}`} target="_blank" rel="noopener noreferrer" className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share on Telegram">
+                <Send className="h-4 w-4 mr-2" /> Telegram
+              </a>
+            </Button>
+            <Button variant="outline" size="sm" asChild className="mb-2 w-full sm:w-auto">
+              <a href={`mailto:?subject=${encodeURIComponent('Calories to Kilograms Calculator')}&body=${encodeURIComponent('Check out this Calories to Kilograms Calculator! ' + currentUrl)}`} className="dark:text-gray-300 text-gray-900 w-full text-center" aria-label="Share via Email">
+                <Mail className="h-4 w-4 mr-2" /> Email
+              </a>
+            </Button>
+            <Button variant="outline" size="sm" onClick={handleCopyLink} className="mb-2 w-full sm:w-auto" aria-label="Copy link">
+              <Copy className="h-4 w-4 mr-2" /> Copy Link
+            </Button>
+          </div>
         </div>
       </section>
       <section className="max-w-2xl mx-auto mt-8 dark:bg-gray-800 bg-white p-6 rounded-lg shadow-soft dark:text-gray-300 text-gray-900">

@@ -331,13 +331,13 @@ export const BMICalculator = () => {
           ) : (
             <form onSubmit={handleFormSubmit} className="grid gap-4 md:grid-cols-2">
               <div>
-                <Label htmlFor="name">Nome (opcional)</Label>
-                <Input id="name" name="name" placeholder="Seu nome (opcional)" />
+                <Label htmlFor="name">Name (optional)</Label>
+                <Input id="name" name="name" placeholder="Your name (optional)" />
                 <ValidationError prefix="Name" field="name" errors={formState.errors} />
               </div>
               <div>
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" name="email" placeholder="Seu email (opcional)" />
+                <Input id="email" type="email" name="email" placeholder="Your email (optional)" />
                 <ValidationError prefix="Email" field="email" errors={formState.errors} />
               </div>
               <div className="md:col-span-2">
@@ -373,10 +373,10 @@ export const BMICalculator = () => {
         </CardHeader>
         <CardContent className="space-y-2 text-sm">
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://pubmed.ncbi.nlm.nih.gov/13594881/" target="_blank" rel="nofollow noreferrer" className="text-primary underline">Wishnofsky, M. (1958) — Caloric equivalents of gained or lost weight (3,500 kcal/lb ≈ 7,700 kcal/kg) <ExternalLink className="h-4 w-4 inline" /></a></li>
-            <li><a href="https://pubmed.ncbi.nlm.nih.gov/21483406/" target="_blank" rel="nofollow noreferrer" className="text-primary underline">Hall, K.D. et al. (2011) — Quantifying the effect of changes in energy intake on body weight (dynamic model) <ExternalLink className="h-4 w-4 inline" /></a></li>
-            <li><a href="https://www.niddk.nih.gov/health-information/weight-management/body-weight-planner" target="_blank" rel="nofollow noreferrer" className="text-primary underline">NIDDK — Body Weight Planner (NIH dynamic weight change model) <ExternalLink className="h-4 w-4 inline" /></a></li>
-            <li><a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065" target="_blank" rel="nofollow noreferrer" className="text-primary underline">Mayo Clinic — Calories and weight loss basics <ExternalLink className="h-4 w-4 inline" /></a></li>
+            <li><a href="https://pubmed.ncbi.nlm.nih.gov/13594881/" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">Wishnofsky, M. (1958) — Caloric equivalents of gained or lost weight (3,500 kcal/lb ≈ 7,700 kcal/kg) <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
+            <li><a href="https://pubmed.ncbi.nlm.nih.gov/21483406/" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">Hall, K.D. et al. (2011) — Quantifying the effect of changes in energy intake on body weight (dynamic model) <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
+            <li><a href="https://www.niddk.nih.gov/health-information/weight-management/body-weight-planner" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">NIDDK — Body Weight Planner (NIH dynamic weight change model) <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
+            <li><a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065" target="_blank" rel="nofollow noreferrer" className="dark:text-blue-400 text-blue-600 hover:underline">Mayo Clinic — Calories and weight loss basics <ExternalLink className="h-4 w-4 inline dark:text-blue-400 text-blue-600" /></a></li>
           </ul>
         </CardContent>
       </Card>
@@ -457,3 +457,5 @@ export const BMICalculator = () => {
     </div>
   );
 };
+
+export default BMICalculator;

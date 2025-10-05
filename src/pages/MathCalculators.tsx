@@ -7,16 +7,16 @@ import SEOHead from "@/components/SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-// Ícones (todos garantidos no lucide-react)
+// Icons (all guaranteed in lucide-react)
 import { Calculator, Percent, Slash, Sigma, Ruler, Shapes, ArrowLeft } from "lucide-react";
 
-// Paleta usada no site (azul para títulos/realces)
+// Palette used on the site (blue for titles/highlights)
 const BRAND = {
-  title: "#5c82ee", // cor padrão de títulos
+  title: "#5c82ee", // default color for titles
   sub: "#747886",   // subtítulos/descrições
 };
 
-// Badge colorido consistente com as outras páginas
+// Colored badge consistent with other pages
 function IconBadge({
   children,
   bg = "rgba(59,130,246,0.14)",

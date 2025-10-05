@@ -10,7 +10,7 @@ import { ArrowLeft, Dog, Cat, PawPrint, Bone, Fish, HeartPulse } from "lucide-re
 import { listSubcategoriesOfCategory, FRIENDLY_TITLES } from "@/data/calculatorRegistry";
 import SEOHead from "@/components/SEOHead";
 
-// Ícones coloridos por subcategoria (ajuste pelos slugs reais do seu registry)
+// Colored icons by subcategory (adjust by actual slugs from your registry)
 const ICONS_BY_SUBCAT: Record<string, { Icon: React.ComponentType<any>; color: string; bg: string }> = {
   "dog-calculators":     { Icon: Dog,       color: "#f59e0b", bg: "rgba(245,158,11,0.14)" }, // amber
   "cat-calculators":     { Icon: Cat,       color: "#22c55e", bg: "rgba(34,197,94,0.14)" },  // green

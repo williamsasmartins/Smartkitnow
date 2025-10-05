@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 
-/** Regras de ícones coloridos por calculadora (slug/name) — badge 40×40 */
+/** Colored icon rules by calculator (slug/name) — 40×40 badge */
 type IconSpec = { Icon: React.ComponentType<any>; color: string; bg: string };
 const DEF: IconSpec = { Icon: Soup, color: "#8b5cf6", bg: "rgba(139,92,246,0.14)" };
 
@@ -116,7 +116,7 @@ export default function CookingSubCategory() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {calculators.map((calc) => {
-                const { Icon, color, bg } = iconForCalc(calc.slug, calc.name);
+                const { Icon, color, bg } = iconForCalc(calc.slug, calc.title);
                 return (
                   <Link key={calc.slug} to={`/cooking/${calc.subcategory}/${calc.slug}`} className="group block">
                     <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
@@ -126,7 +126,7 @@ export default function CookingSubCategory() {
                           <Icon className="h-5 w-5" />
                         </span>
                         <CardTitle className="text-lg font-semibold" style={{ color: "#3c83f6" }}>
-                          {calc.name}
+                          {calc.title}
                         </CardTitle>
                       </CardHeader>
                       <CardContent>

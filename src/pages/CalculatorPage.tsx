@@ -11,12 +11,11 @@ import CalculatorLayout from "@/components/layouts/CalculatorLayout";
 import SEOHead from "@/components/SEOHead";
 import { PALETTE } from "@/components/theme/palette";
 
-function lazyFrom(entry?: { loader: () => Promise<any>; namedExport?: string }) {
+function lazyFrom(entry?: { loader: () => Promise<any> }) {
   if (!entry) return null;
   return React.lazy(async () => {
     const mod = await entry.loader();
-    const Comp =
-      (entry.namedExport ? mod[entry.namedExport] : mod.default) as React.ComponentType<any>;
+    const Comp = mod.default as React.ComponentType<any>;
     if (!Comp) {
       const first = mod && Object.values(mod)[0];
       if (!first || typeof first !== "function") {
@@ -54,7 +53,7 @@ const CalculatorPage = () => {
     location.pathname.split("/")[1] || entry?.category || "construction";
 
   const handleGoBack = () => {
-    // Exibe intersticial (placeholder) para simular o comportamento de anúncios de retorno
+    // Displays interstitial (placeholder) to simulate return ad behavior
     setShowInterstitial(true);
   };
 
@@ -81,7 +80,7 @@ const CalculatorPage = () => {
   );
 
   // SEO defaults
-  const calcName = entry?.name ?? "Calculator";
+  const calcName = entry?.title ?? "Calculator";
   const catTitle =
     FRIENDLY_TITLES[entry?.category ?? categoryFromPath] ??
     titleCaseFromSlug(entry?.category ?? categoryFromPath);
@@ -151,26 +150,26 @@ const CalculatorPage = () => {
     style={{
       width: 44,
       height: 44,
-      backgroundColor: "rgba(59,130,246,0.14)", // bg azul translúcido
-      color: "#3b82f6",                          // ícone azul
+      backgroundColor: "rgba(59,130,246,0.14)", // translucent blue bg
+        color: "#3b82f6",                          // blue icon
     }}
     aria-hidden="true"
   >
     <Calculator className="h-5 w-5" />
   </span>
 
-  {/* TÍTULO COM A COR PADRÃO DO SITE (mesma dos cards) */}
+  {/* TITLE WITH SITE DEFAULT COLOR (same as cards) */}
   <h1
     className="text-4xl font-bold leading-tight"
-    style={{ color: "#5c82ee" }} // <- cor sólida padrão
+    style={{ color: "#5c82ee" }} // <- solid default color
   >
     {calcName}
   </h1>
 
-  {/* Descrição logo abaixo do título (texto secundário) */}
+  {/* Description right below title (secondary text) */}
   <p
     className="mt-2 text-lg"
-    style={{ color: "#8b90a0" }} // tom neutro/secondary para descrição
+    style={{ color: "#8b90a0" }} // neutral/secondary tone for description
   >
     {pageDesc}
   </p>
@@ -178,7 +177,7 @@ const CalculatorPage = () => {
 
   </div>
 
-  {/* calculadora / fallback */}
+  {/* calculator / fallback */}
   {entry && LazyComp ? (
     <Suspense fallback={<div className="mx-auto max-w-3xl px-4 py-10 text-center">Loading…</div>}>
       <LazyComp />
@@ -189,7 +188,7 @@ const CalculatorPage = () => {
 </section>
 
 
-          {/* Seções auxiliares SEO (mantidas, já com cores corretas) */}
+          {/* Auxiliary SEO sections (maintained, already with correct colors) */}
           <section className="mx-auto max-w-4xl my-10 grid gap-6">
 
 
@@ -217,7 +216,7 @@ const CalculatorPage = () => {
                   : "This tool estimates key values. Enter your inputs and review the results."
               }
               formula={
-                entry?.name?.toLowerCase().includes("concrete")
+                entry?.title?.toLowerCase().includes("concrete")
                   ? "Volume = Length × Width × Thickness (converted to yd³ or m³); Bags ≈ Volume(ft³) ÷ bag yield."
                   : "Result = (Variable1 × Variable2) / Constant"
               }
@@ -263,7 +262,7 @@ const CalculatorPage = () => {
         </CalculatorLayout>
       </main>
 
-      {/* Intersticial de anúncio (placeholder) */}
+      {/* Interstitial ad (placeholder) */}
       {showInterstitial && (
         <div className="fixed inset-0 z-[1000] bg-black/60 backdrop-blur-sm flex items-center justify-center">
           <div className="bg-card border border-border/60 rounded-xl shadow-2xl max-w-xl w-[90%] p-6 text-center">
