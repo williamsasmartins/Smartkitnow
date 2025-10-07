@@ -376,18 +376,6 @@ export function AquariumVolumeCalculator() {
         </CardContent>
       </Card>
 
-      <Card className="mt-6">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2"><Share2 className="h-5 w-5" /> Share This Calculator</CardTitle>
-        </CardHeader>
-        <CardContent className="flex gap-2">
-          <Button variant="outline" onClick={handleNativeShare} className="flex items-center gap-2"><Share2 className="h-4 w-4" /> Share</Button>
-          <Button variant="outline" onClick={handleCopyLink} className="flex items-center gap-2"><Copy className="h-4 w-4" /> Copy Link</Button>
-          <a href={`mailto:?subject=Aquarium Volume Calculator&body=${encodeURIComponent(currentUrl || "")}`} className="inline-flex items-center gap-2">
-            <Button variant="outline"><Mail className="h-4 w-4" /> Email</Button>
-          </a>
-        </CardContent>
-      </Card>
 
       <Card className="mt-6">
         <CardHeader>
