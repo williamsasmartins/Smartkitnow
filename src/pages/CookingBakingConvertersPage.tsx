@@ -83,7 +83,7 @@ export default function CookingBakingConvertersPage() {
                 >
                   <Soup className="h-5 w-5" />
                 </span>
-                <CardTitle className="text-xl font-bold" style={{ color: "#3c83f6" }}>
+                <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
                   Cooking &amp; Baking Ingredients
                  </CardTitle>
 

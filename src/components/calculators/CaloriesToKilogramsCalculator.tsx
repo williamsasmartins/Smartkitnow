@@ -123,6 +123,36 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
     }
   };
 
+  const recommendedResources = [
+    {
+      title: "Fitness Trackers on Amazon",
+      description: "Track your daily activity with Fitbit or Garmin devices.",
+      href: "https://www.amazon.com/s?k=fitness+tracker&tag=youraffiliateid-20",
+      cta: "Shop Now",
+    },
+    {
+      title: "MyFitnessPal Premium",
+      description: "Log meals and track calories with advanced features.",
+      href: "https://www.myfitnesspal.com/premium?affiliate=yourid",
+      cta: "Get Premium",
+    },
+    {
+      title: "The Smoothie Diet",
+      description:
+        "21-day smoothie program for calorie deficit and weight loss with delicious recipes.",
+      href: "https://45633oyw4b2o6taioi0hr3r7uc.hop.clickbank.net",
+      cta: "Get Smoothie Diet",
+    },
+    {
+      title: "Get AQUA Sculpt",
+      description:
+        "Program for sculpted body with calorie-burning workouts and nutrition plans.",
+      href:
+        "https://getaquasculptnow.net/extraBottle/?hop=zzzzz&hopId=6086a95d-69cf-4c81-9390-1c0a5e9ebe8d",
+      cta: "Get AQUA Sculpt",
+    },
+  ];
+
   return (
     <div className="min-h-screen dark:bg-gray-900 bg-white dark:text-white text-gray-900 p-4">
       
@@ -472,58 +502,21 @@ const CaloriesToKilogramsCalculator: React.FC<CaloriesToKgProps> = () => {
         <h2 className="text-2xl font-semibold">Recommended Fitness Tools</h2>
         <p>Enhance your calorie tracking with these tools. (Affiliate links - commission may be earned at no cost to you)</p>
         <div className="grid gap-4 md:grid-cols-2">
-          <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
-            <CardHeader>
-              <CardTitle className="text-lg dark:text-white text-gray-900">Fitness Trackers on Amazon</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">Track your daily activity with Fitbit or Garmin devices.</p>
-              <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
-                <a href="https://www.amazon.com/s?k=fitness+tracker&tag=youraffiliateid-20" target="_blank" rel="nofollow noreferrer">
-                  Shop Now <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
-          <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
-            <CardHeader>
-              <CardTitle className="text-lg dark:text-white text-gray-900">MyFitnessPal Premium</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">Log meals and track calories with advanced features.</p>
-              <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
-                <a href="https://www.myfitnesspal.com/premium?affiliate=yourid" target="_blank" rel="nofollow noreferrer">
-                  Get Premium <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
-          <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
-            <CardHeader>
-              <CardTitle className="text-lg dark:text-white text-gray-900">The Smoothie Diet</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">21-day smoothie program for calorie deficit and weight loss with delicious recipes.</p>
-              <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
-                <a href="https://45633oyw4b2o6taioi0hr3r7uc.hop.clickbank.net" target="_blank" rel="nofollow noreferrer">
-                  Get Smoothie Diet <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
-          <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200">
-            <CardHeader>
-              <CardTitle className="text-lg dark:text-white text-gray-900">Get AQUA Sculpt</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">Program for sculpted body with calorie-burning workouts and nutrition plans.</p>
-              <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
-                <a href="https://getaquasculptnow.net/extraBottle/?hop=zzzzz&hopId=6086a95d-69cf-4c81-9390-1c0a5e9ebe8d" target="_blank" rel="nofollow noreferrer">
-                  Get AQUA Sculpt <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
+          {recommendedResources.map((item, idx) => (
+            <Card className="dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200" key={idx}>
+              <CardHeader>
+                <CardTitle className="text-lg dark:text-white text-gray-900">{item.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm mb-2 dark:text-gray-300 text-gray-700">{item.description}</p>
+                <Button variant="outline" asChild className="dark:text-white text-gray-900 dark:border-gray-600 border-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100">
+                  <a href={item.href} target="_blank" rel="nofollow noreferrer">
+                    {item.cta} <ExternalLink className="h-4 w-4 ml-2 dark:text-blue-400 text-blue-600" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
       <div className="max-w-2xl mx-auto mt-8">

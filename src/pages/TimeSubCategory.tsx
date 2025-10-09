@@ -107,7 +107,7 @@ export default function TimeSubCategory() {
             </Button>
           </div>
         </main>
-        <Footer />
+        
       </div>
     );
   }

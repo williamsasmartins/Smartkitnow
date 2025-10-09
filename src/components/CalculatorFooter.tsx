@@ -16,7 +16,7 @@ export function CalculatorFooter({ calculatorName, description, formula, sources
       <Card className="bg-card border-border/50">
         <CardHeader>
           <CardTitle className="text-xl font-bold text-foreground flex items-center space-x-2">
-            <span>How this calculator works</span>
+            How this calculator works
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">

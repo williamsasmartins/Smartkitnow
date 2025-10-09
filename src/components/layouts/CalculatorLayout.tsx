@@ -1,5 +1,7 @@
 // src/components/layouts/CalculatorLayout.tsx
 import React from "react";
+import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
+import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 
 /**
  * Layout LIMPO para páginas de CALCULADORA.
@@ -15,7 +17,7 @@ type CalculatorLayoutProps = {
 
 export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ children }) => {
   return (
-    <div className="mx-auto max-w-[680px] px-4 py-8">
+    <div className="mx-auto max-w-[680px] px-4 xl:pr-6 py-8">
       {children}
     </div>
   );

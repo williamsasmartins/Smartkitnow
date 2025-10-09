@@ -76,7 +76,7 @@ export default function PercentageCalculators() {
                   >
                     <Percent className="h-5 w-5" />
                   </span>
-                  <CardTitle className="text-lg font-bold" style={{ color: "#3c83f6" }}>
+                  <CardTitle className="text-lg font-bold" style={{ color: "#000000" }}>
                     Percent of Total
                   </CardTitle>
                 </CardHeader>
@@ -98,7 +98,7 @@ export default function PercentageCalculators() {
                 >
                   <TrendingUp className="h-5 w-5" />
                 </span>
-                <CardTitle className="text-lg font-bold" style={{ color: "#3c83f6" }}>
+                <CardTitle className="text-lg font-bold" style={{ color: "#000000" }}>
                   Percent Increase
                 </CardTitle>
               </CardHeader>
@@ -116,7 +116,7 @@ export default function PercentageCalculators() {
                 >
                   <TrendingDown className="h-5 w-5" />
                 </span>
-                <CardTitle className="text-lg font-bold" style={{ color: "#3c83f6" }}>
+                <CardTitle className="text-lg font-bold" style={{ color: "#000000" }}>
                   Percent Decrease
                 </CardTitle>
               </CardHeader>
@@ -134,7 +134,7 @@ export default function PercentageCalculators() {
                 >
                   <Shuffle className="h-5 w-5" />
                 </span>
-                <CardTitle className="text-lg font-bold" style={{ color: "#3c83f6" }}>
+                <CardTitle className="text-lg font-bold" style={{ color: "#000000" }}>
                   Percent Change
                 </CardTitle>
               </CardHeader>

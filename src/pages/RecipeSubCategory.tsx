@@ -1,4 +1,4 @@
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -10,9 +10,9 @@ import { recipeData } from "@/data/recipeData";
 export default function RecipeSubCategory() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { subcategory } = useParams();
+  const { categorySlug } = useParams();
   
-  const categoryTitle = subcategory?.split('-').map(word => 
+  const categoryTitle = categorySlug?.split('-').map(word => 
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(' ') || '';
 

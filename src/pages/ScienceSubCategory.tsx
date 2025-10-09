@@ -82,7 +82,7 @@ export default function ScienceSubCategory() {
             </Button>
           </div>
         </main>
-        <Footer />
+        
       </div>
     );
   }

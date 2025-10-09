@@ -1,6 +1,8 @@
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import SEOHead from "@/components/SEOHead";
+import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
+import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 
 const NotFound = () => {
   const location = useLocation();
@@ -27,6 +29,10 @@ const NotFound = () => {
         <Link to="/" className="inline-block rounded-md border border-border px-4 py-2 text-primary hover:bg-primary/10">
           Back to Home
         </Link>
+        <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <SiteFeedbackForm title="Questions or suggestions?" />
+          <ShareThisCalculator />
+        </section>
       </main>
     </div>
   );

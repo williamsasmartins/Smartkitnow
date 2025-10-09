@@ -79,7 +79,7 @@ const handleBackClick = () => {
             </Button>
           </div>
         </main>
-        <Footer />
+
       </div>
     );
   }
@@ -90,7 +90,7 @@ const handleBackClick = () => {
       
       <main className="container mx-auto px-4 py-8">
         {/* Back Button */}
-        <nav className="mb-6">
+        <div className="mb-6">
           <Button 
             variant="ghost"
             size="sm"
@@ -99,9 +99,9 @@ const handleBackClick = () => {
             aria-label="Back"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>Back</span>
+            Back
           </Button>
-        </nav>
+        </div>
 
         {/* Article Header */}
         <article className="max-w-4xl mx-auto">

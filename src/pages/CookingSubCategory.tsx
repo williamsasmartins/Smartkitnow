@@ -125,7 +125,7 @@ export default function CookingSubCategory() {
                               style={{ width: 40, height: 40, backgroundColor: bg, color }} aria-hidden="true">
                           <Icon className="h-5 w-5" />
                         </span>
-                        <CardTitle className="text-lg font-semibold" style={{ color: "#3c83f6" }}>
+                        <CardTitle className="text-lg font-semibold" style={{ color: "#000000" }}>
                           {calc.title}
                         </CardTitle>
                       </CardHeader>

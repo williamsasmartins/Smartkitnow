@@ -1,124 +1,43 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
-
-// Import health calculator components
-import { BMICalculator } from "@/components/calculators/BMICalculator";
-import { BMRCalculator } from "@/components/calculators/BMRCalculator";
-import { CalorieCalculator } from "@/components/calculators/CalorieCalculator";
-import { BodyFatCalculator } from "@/components/calculators/BodyFatCalculator";
-import { TDEECalculator } from "@/components/calculators/TDEECalculator";
-import { CaloriesToKilogramsCalculator } from "@/components/calculators/CaloriesToKilogramsCalculator";
-import PageWithRails from "@/components/layouts/PageWithRails";
-import { computeBackPath } from "@/lib/navigation";
+import { useMemo } from "react";
+import CategoryPageTemplate from "@/components/layouts/CategoryPageTemplate";
+import { buildSectionsForCategory } from "@/data/categorySections";
 
 const HealthCalculatorPage = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const params = useParams();
+  const sections = useMemo(
+    () =>
+      buildSectionsForCategory("health", {
+        shortPaths: true,
+        subcategoryIconMap: {
+          "body-composition-calculators": "⚖️",
+          "metabolism-calculators": "🔥",
+          "nutrition-calculators": "🥗",
+          "weight-loss-calculators": "📉",
+          "general": "🩺",
+        },
+      }),
+    []
+  );
 
-  const stateCalculator = location.state?.calculator as { key: string; name: string } | undefined;
-  const stateSubCategory = location.state?.subCategory as string | undefined;
-  const slug = params.calculator;
-
-  const effectiveKey = stateCalculator?.key ?? slug ?? "";
-  const effectiveName = stateCalculator?.name ?? (slug ? slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()) : "Calculator");
-  const effectiveCategory = stateSubCategory ?? "health";
-
-  // Compute standardized back path using centralized utility
-  const backPath = computeBackPath(effectiveKey ?? undefined, "health", stateSubCategory);
-
-  const renderCalculator = () => {
-    const calculatorKey = effectiveKey.toLowerCase();
-    
-    // Map calculator keys to components
-    switch (calculatorKey) {
-      case 'bmi':
-      case 'child-teen-bmi':
-        return <BMICalculator />;
-      case 'bmr':
-      case 'harris-benedict':
-      case 'mifflin-st-jeor':
-        return <BMRCalculator />;
-      case 'calories-burned':
-      case 'calorie-intake':
-      case 'maintenance-calorie':
-        return <CalorieCalculator />;
-      case 'body-fat':
-      case 'army-body-fat':
-      case 'navy-body-fat':
-        return <BodyFatCalculator />;
-      case 'tdee':
-        return <TDEECalculator />;
-      case 'convert-calories-to-kilograms':
-      case 'calories-to-kilograms':
-      case 'calories-to-kg':
-      case 'convert-calories-to-kg':
-        return <CaloriesToKilogramsCalculator />;
-      default:
-        return (
-          <div className="bg-card rounded-lg p-8 text-center">
-            <h3 className="text-xl font-semibold mb-4">{effectiveName}</h3>
-            <p className="text-muted-foreground mb-6">
-              This calculator is coming soon. We're working on implementing all health calculators.
-            </p>
-            <div className="bg-muted/50 rounded-lg p-6">
-              <p className="text-sm text-muted-foreground">
-                Calculator Key: <code className="bg-muted px-2 py-1 rounded">{calculatorKey}</code>
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Category: {effectiveCategory}
-              </p>
-            </div>
-          </div>
-        );
-    }
-  };
+  const intro = (
+    <div className="space-y-3">
+      <p>
+        Explore nossa coleção de calculadoras de saúde e fitness para avaliar composição corporal, metabolismo, necessidades calóricas e muito mais.
+      </p>
+      <p>
+        Ferramentas como BMI, BMR e TDEE ajudam você a entender métricas essenciais do seu corpo, enquanto conversores e guias de nutrição apoiam decisões do dia a dia.
+      </p>
+    </div>
+  );
 
   return (
-    <div className="min-h-screen bg-gradient-soft">
-      <Header />
-      
-      <main className="pt-20">
-        <PageWithRails
-          titleBlock={
-            <div className="mb-8">
-              {/* Back button moved below calculator name and set to default styling */}
-              <div className="mb-6 text-center">
-                <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
-                  {effectiveName}
-                </h1>
-                <p className="text-muted-foreground text-lg">
-                  Category: {effectiveCategory}
-                </p>
-              </div>
-              <div className="text-center">
-                <Button 
-                  variant="default"
-                  size="sm"
-                  onClick={() => navigate(backPath)}
-                  className="inline-flex items-center space-x-2 mb-6"
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                  <span>Back</span>
-                </Button>
-              </div>
-            </div>
-          }
-          showRails
-          showTopBanner={true}
-          showMiddleBanner={false}
-          showBottomBanner={true}
-          railsSticky={false}
-        >
-          {renderCalculator()}
-        </PageWithRails>
-      </main>
-
-      <Footer />
-    </div>
+    <CategoryPageTemplate
+      title="Health & Fitness Calculators"
+      intro={intro}
+      sections={sections}
+      showTopBanner={true}
+      showRightRail={true}
+      contentBackgroundColor="#0c1324"
+    />
   );
 };
 

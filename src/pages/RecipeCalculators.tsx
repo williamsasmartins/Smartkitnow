@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ChefHat, Baby, Heart, Utensils, Leaf, Globe, Flame, Cookie } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { recipeData } from "@/data/recipeData";
 
 export default function RecipeCalculators() {
   const navigate = useNavigate();
@@ -84,6 +85,8 @@ export default function RecipeCalculators() {
     navigate('/');
   };
 
+  const getRecipeCount = (title: string) => (recipeData as Record<string, any[]>)[title]?.length ?? 0;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
       <Header />
@@ -135,7 +138,7 @@ export default function RecipeCalculators() {
                   </div>
                   
                   <div className="text-xs text-muted-foreground font-medium">
-                    10 Recipes Available
+                    {getRecipeCount(category.title)} Recipes Available
                   </div>
                 </div>
               </CardContent>

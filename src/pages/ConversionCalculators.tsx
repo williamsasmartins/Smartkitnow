@@ -81,7 +81,7 @@ export default function ConversionCalculators() {
                   >
                     <Gauge className="h-5 w-5" />
                   </span>
-                  <CardTitle className="text-xl font-bold" style={{ color: "#3c83f6" }}>
+                  <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
                     Popular Unit Converters
                   </CardTitle>
                 </CardHeader>
@@ -105,7 +105,7 @@ export default function ConversionCalculators() {
       >
         <Soup className="h-5 w-5" />
       </span>
-      <CardTitle className="text-xl font-bold" style={{ color: "#3c83f6" }}>
+      <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
         Cooking &amp; Baking Ingredient Converters
       </CardTitle>
     </CardHeader>
@@ -129,7 +129,7 @@ export default function ConversionCalculators() {
                   >
                     <Star className="h-5 w-5" />
                   </span>
-                  <CardTitle className="text-xl font-bold" style={{ color: "#3c83f6" }}>
+                  <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
                     Common Unit Converters
                   </CardTitle>
                 </CardHeader>

@@ -3,13 +3,18 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { ArrowLeft } from "lucide-react";
 import AdRailLayout from "@/components/layouts/AdRailLayout";
 import {
   listByCategorySubcategory,
   SUBCATEGORY_TITLES,
+  FRIENDLY_TITLES,
+  subcategoryIcon,
 } from "@/data/calculatorRegistry";
 import { PALETTE } from "@/components/theme/palette";
+import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
+import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 
 export default function CategorySubcategory() {
   const navigate = useNavigate();
@@ -29,11 +34,18 @@ export default function CategorySubcategory() {
   return (
     <div className="min-h-screen bg-gradient-soft">
       <Header />
+
+
       <main className="pt-20">
         <AdRailLayout
+          topCenterAd={false}
+          bottomCenterAd={false}
+          showRails={true}
+          showLeftRail={false}
+          showRightRail={true}
           titleBlock={
-            <div>
-              {/* Back to the LEFT (blue) */}
+            <div className="max-w-5xl">
+              {/* Back à esquerda */}
               <button
                 onClick={() => navigate(`/${category}`)}
                 className="mb-4 inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-white hover:brightness-110 transition-colors"
@@ -41,18 +53,17 @@ export default function CategorySubcategory() {
                 aria-label={`Back to ${category}`}
               >
                 <ArrowLeft className="h-4 w-4" />
-                <span>Back</span>
+        Back
               </button>
 
-              {/* Título/Subtítulo CENTRALIZADOS */}
-              <div className="text-center">
-                <h1 className="text-4xl font-bold mb-3" style={{ color: PALETTE.brand.title }}>
-                  {prettySubcat}
-                </h1>
-                <p className="text-lg max-w-3xl mx-auto" style={{ color: PALETTE.brand.text }}>
-                  {subtitle}
-                </p>
-              </div>
+              {/* Título alinhado à esquerda com ícone */}
+              <h1 className="text-4xl font-bold mb-3 flex items-center gap-2" style={{ color: PALETTE.brand.title }}>
+                <span aria-hidden="true">{subcategoryIcon(subcategory, category)}</span>
+                {prettySubcat}
+              </h1>
+              <p className="text-lg max-w-3xl" style={{ color: PALETTE.brand.text }}>
+                Choose a calculator below to get started.
+              </p>
             </div>
           }
         >
@@ -61,44 +72,34 @@ export default function CategorySubcategory() {
               No calculators found.
             </p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ul className="space-y-4">
               {calculators.map((calc) => {
-                const url = `/${category}/${calc.subcategory}/${calc.slug}`;
+                const url = `/${category}/${calc.slug}`;
                 return (
-                  <Card
-                    key={calc.slug}
-                    className="bg-card border-border/50 hover:shadow-soft transition-all"
-                  >
-                    <CardHeader>
-                      <CardTitle
-                        className="text-lg font-semibold text-center"
-                        style={{ color: PALETTE.brand.title }}
-                      >
-                        <Link to={url} className="hover:underline">
-                          {calc.title}
-                        </Link>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-center" style={{ color: PALETTE.brand.text }}>
-                        {calc.description || "Open the calculator"}
-                      </p>
-                      <div className="mt-4 flex justify-center">
-                        <Link to={url}>
-                          <Button
-                            className="text-white"
-                            style={{ backgroundColor: PALETTE.brand.button }}
-                          >
-                            Use Calculator
-                          </Button>
-                        </Link>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <li key={calc.slug} className="bg-card border border-border/50 rounded-md p-4">
+                    <h2 className="text-lg font-semibold">
+                      <Link to={url} className="skn-calc-link">
+                        {calc.title}
+                      </Link>
+                    </h2>
+                    <p className="text-sm mt-1" style={{ color: PALETTE.brand.text }}>
+                      {calc.description || "Open the calculator"}
+                    </p>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           )}
+
+          {/* Feedback + Share section above footer */}
+          <section className="mt-4 skn-typography text-sm">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-6">
+                  <SiteFeedbackForm title="Questions or suggestions?" includeFile={false} compact={true} />
+                  <ShareThisCalculator />
+                </div>
+              </div>
+          </section>
         </AdRailLayout>
       </main>
       <Footer />

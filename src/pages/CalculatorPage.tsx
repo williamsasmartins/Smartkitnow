@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calculator } from "lucide-react";
 import { getEntry, FRIENDLY_TITLES } from "@/data/calculatorRegistry";
 import CalculatorLayout from "@/components/layouts/CalculatorLayout";
+import AdRailLayout from "@/components/layouts/AdRailLayout";
+import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
+import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 import SEOHead from "@/components/SEOHead";
 import { PALETTE } from "@/components/theme/palette";
 
@@ -38,9 +41,8 @@ function titleCaseFromSlug(slug?: string) {
 const CalculatorPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { category, subcategory, slug } = useParams<{
+  const { category, slug } = useParams<{
     category: string;
-    subcategory: string;
     slug: string;
   }>();
 
@@ -103,14 +105,6 @@ const CalculatorPage = () => {
         breadcrumbs={[
           { name: "Home", url: "https://www.smartkitnow.com/" },
           { name: catTitle, url: `https://www.smartkitnow.com/${categoryFromPath}` },
-          ...(subcategory
-            ? [
-                {
-                  name: titleCaseFromSlug(subcategory),
-                  url: `https://www.smartkitnow.com/${categoryFromPath}/${subcategory}`,
-                },
-              ]
-            : []),
           { name: calcName, url: typeof window !== "undefined" ? window.location.href : "" },
         ]}
         schema={{
@@ -131,7 +125,7 @@ const CalculatorPage = () => {
       <main className="pt-40 sm:pt-20">
         <CalculatorLayout>
           {/* Back + header */}
-<section className="px-1 sm:px-0">
+<section className="px-1 sm:px-0 xl:pr-6">
   <div className="mb-6">
     <Button
       variant="ghost"
@@ -141,7 +135,7 @@ const CalculatorPage = () => {
       style={{ backgroundColor: PALETTE.brand.button }}
     >
       <ArrowLeft className="h-4 w-4" />
-      <span>Back</span>
+      Back
     </Button>
 
     <div className="flex flex-col items-center text-center space-y-3 mb-6">
@@ -259,6 +253,13 @@ const CalculatorPage = () => {
               })()}
             />
           </section>
+
+          <AdRailLayout topCenterAd={false} bottomCenterAd={false} showRails={true} showLeftRail={false} showRightRail={true}>
+            <section className="mt-6 space-y-3">
+              <SiteFeedbackForm title="Questions or suggestions?" compact={true} />
+              <ShareThisCalculator />
+            </section>
+          </AdRailLayout>
         </CalculatorLayout>
       </main>
 
@@ -275,9 +276,7 @@ const CalculatorPage = () => {
               onClick={() => {
                 setShowInterstitial(false);
                 const backCategory = entry?.category ?? categoryFromPath;
-                const backSubcategory = entry?.subcategory;
-                if (backSubcategory) navigate(`/${backCategory}/${backSubcategory}`);
-                else navigate(`/${backCategory}`);
+                navigate(`/${backCategory}`);
               }}
               className="w-full"
             >

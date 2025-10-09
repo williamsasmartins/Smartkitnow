@@ -7,6 +7,8 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
+import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 
 export default function About() {
   const navigate = useNavigate();
@@ -110,6 +112,10 @@ export default function About() {
               </p>
             </CardContent>
           </Card>
+        <section className="mt-10 space-y-3">
+          <SiteFeedbackForm title="Questions or suggestions?" compact={true} />
+          <ShareThisCalculator />
+        </section>
         </div>
       </main>
 

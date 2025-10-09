@@ -66,7 +66,7 @@ export default function ConstructionCalculators() {
               <Link key={sc.slug} to={`/${category}/${sc.slug}`} className="group block">
                 <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
                   <CardHeader>
-                    <CardTitle className="text-xl font-bold transition-colors" style={{ color: "#3c83f6" }}>
+                    <CardTitle className="text-xl font-bold transition-colors" style={{ color: "#000000" }}>
                       {sc.title}
                     </CardTitle>
                   </CardHeader>

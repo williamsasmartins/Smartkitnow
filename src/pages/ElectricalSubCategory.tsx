@@ -130,7 +130,7 @@ const ElectricalSubCategory = () => {
             </Button>
           </div>
         </main>
-        <Footer />
+        
       </>
     );
   }

@@ -75,6 +75,66 @@ export const SUBCATEGORY_TITLES: Record<string, string> = {
   "general": "General Pet Calculators",
 };
 
+// Centralized icons for categories and subcategories
+export function categoryIcon(category: string): string {
+  const byCategory: Record<string, string> = {
+    health: "🩺",
+    cooking: "🍳",
+    construction: "🏗️",
+    financial: "💰",
+    pets: "🐶",
+    math: "🧮",
+    science: "🔬",
+    time: "⏱️",
+    tv: "📺",
+    conversion: "🧭",
+    electrical: "⚡",
+    // Additional categories used in Header More menu
+    "smart-tips": "💡",
+    automotive: "🚗",
+    sports: "🏅",
+    funny: "🎭",
+    "daily-quotes": "💬",
+    "everyday-life": "🏡",
+  };
+  return byCategory[category] ?? "📚";
+}
+
+export function subcategoryIcon(slug: string, fallbackCategory?: string): string {
+  const bySlug: Record<string, string> = {
+    // Health
+    "body-measurement-calculators": "📏",
+    "fitness-calculators": "🏋️",
+    "metabolism-calculators": "🔥",
+    "diet-nutrition-calculators": "🥗",
+    "calories-conversion": "🍎",
+    "weight-loss-calculators": "⚖️",
+    // Cooking
+    "cooking-baking-calculators": "🍰",
+    "cooking-measurements": "🥄",
+    "cooking-unit-conversions": "🔁",
+    // Construction
+    "wall-ceiling-calculators": "🧱",
+    "carpentry-trim-calculators": "🪚",
+    "concrete-masonry-calculators": "🧱",
+    // Financial
+    "personal-finance-calculators": "💼",
+    "interest-and-loan-calculators": "💳",
+    "loan-calculators": "💳",
+    "mortgage-and-home-loan-calculators": "🏠",
+    "investment-calculators": "📈",
+    // Math
+    "percent-calculators": "🔢",
+    "everyday-math": "🧮",
+    // Pets
+    "pet-care-calculators": "🐾",
+    // Fallback for generic groups
+    "general": "🐾",
+  };
+  if (bySlug[slug]) return bySlug[slug];
+  return categoryIcon(fallbackCategory ?? "");
+}
+
 /* =========================
  *  Loaders (lazy imports)
  * =========================
@@ -238,6 +298,14 @@ export const REGISTRY: CalculatorEntry[] = [
     title: "Timer",
     description: "Kitchen timer for cooking",
     loader: () => import("@/components/calculators/CookingTimer"),
+  },
+  {
+    slug: 'recipe-scale-conversion',
+    category: 'cooking',
+    subcategory: 'scaling',
+    title: 'Recipe Scale Conversion',
+    description: 'Adjust your recipe quantities for any number of servings.',
+    loader: () => import('../components/calculators/RecipeScaleCalculator'),
   },
   {
     slug: "recipe-scale-conversion-calculator",
@@ -988,3 +1056,6 @@ export function listSubcategoriesOfCategory(category: string) {
     count,
   }));
 }
+
+// Alias público para uso em categorySections.ts
+export const calculatorRegistry = REGISTRY;

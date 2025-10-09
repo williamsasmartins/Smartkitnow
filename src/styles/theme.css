@@ -9,14 +9,56 @@
   align-items: center;
   justify-content: center;
   border-radius: 0.75rem; /* ~rounded-xl */
-  background-color: rgba(59,130,246,0.15);
-  color: #3b82f6;
+  background-color: rgba(92,130,238,0.15);
+  color: #5c82ee;
+}
+
+/* Category menu fixes */
+.skn-cat-menu {
+  display: flex;
+  gap: 1.25rem; /* ~gap-5 */
+  white-space: nowrap;
+}
+.skn-cat-menu > li {
+  flex: 0 0 auto; /* prevent shrinking so text isn't truncated */
 }
 
 /* Spacing adjustment for fixed header on mobile */
 @media (max-width: 639px) {
   main.pt-20 {
-    padding-top: 10rem !important; /* ~112px */
+    padding-top: 12rem !important; /* increase to ~128px to give more space for top banner */
   }
+}
+
+/* Spacing adjustment for fixed header on desktop */
+@media (min-width: 640px) {
+  main.pt-20 {
+    padding-top: 8rem !important; /* increase to ~128px on desktop */
+  }
+}
+
+/* Hide scrollbar but keep scroll behavior */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* Reusable calculator link (blue + short underline) */
+.skn-calc-link {
+  @apply inline-block pb-1 text-[#3c83f6] border-b border-[#3c83f6]/40 
+         hover:border-[#3c83f6] focus:border-[#3c83f6] 
+         focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#3c83f6]/60;
+}
+/* Normalize calculator lists spacing */
+.skn-calc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.skn-calc-list > li {
+  margin: 0.25rem 0;
 }
 

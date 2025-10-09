@@ -58,7 +58,7 @@ export default function FinancialCalculators() {
                 </Button>
               </div>
 
-              <h1 className="text-4xl font-bold mb-3" style={{ color: "#5c82ee" }}>
+              <h1 className="text-4xl font-bold mb-3 text-foreground">
                 {categoryTitle}
               </h1>
               <p className="text-lg max-w-3xl mx-auto" style={{ color: "#747886" }}>
@@ -85,7 +85,11 @@ export default function FinancialCalculators() {
                       >
                         <Icon className="h-5 w-5" />
                       </span>
-                      <CardTitle className="text-xl font-bold" style={{ color: "#3c83f6" }}>
+                      <CardTitle className="text-xl font-bold" style={{ color: [
+                        "investment-calculators",
+                        "interest-and-loan-calculators",
+                        "personal-finance-calculators"
+                      ].includes(sc.slug) ? "#5c82ee" : "#000000" }}>
                         {sc.title}
                       </CardTitle>
                     </CardHeader>

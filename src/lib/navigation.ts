@@ -13,9 +13,8 @@ export function computeBackPath(
 ): string {
   const entry = calculatorSlug ? getEntry(calculatorSlug) : undefined;
   const category = entry?.category ?? defaultCategory;
-  const subcategory = entry?.subcategory ?? fallbackSubcategory;
 
-  if (category && subcategory) return `/${category}/${subcategory}`;
+  // Com URLs curtas, sempre voltar para a raiz da categoria
   if (category) return `/${category}`;
   return "/";
 }

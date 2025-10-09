@@ -106,7 +106,7 @@ export default function HealthCalculators() {
                       </span>
                       <CardTitle
                         className="text-xl font-bold transition-colors"
-                        style={{ color: "#3c83f6" }}
+                        style={{ color: "#000000" }}
                       >
                         {sc.title}
                       </CardTitle>

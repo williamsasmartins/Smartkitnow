@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { Routes, Route, Navigate, useParams, useLocation } from "react-router-dom";
 import ScrollToTop from "@/components/ScrollToTop";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
+
 // Removido SpeedInsights em App, mantido apenas injeção em main.tsx para evitar conflitos em localhost
 
 // Páginas principais
@@ -14,42 +15,30 @@ import CookieSettings from "@/pages/CookieSettings";
 import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
 import NotFound from "@/pages/NotFound";
-import MathCalculators from '@/pages/MathCalculators';
-import MathSubCategory from '@/pages/MathSubCategory';
-import MathComingSoon from '@/pages/MathComingSoon';
-import EverydayMath from "@/pages/math/EverydayMath";
-import PercentageCalculators from "@/pages/math/PercentageCalculators";
-import FractionsCalculators from "@/pages/math/FractionsCalculators";
 
+// Páginas Smart Tips & TV
+import SmartTips from "@/pages/SmartTips";
+import SmartTipsSubCategory from "@/pages/SmartTipsSubCategory";
+import SmartTipDetail from "@/pages/SmartTipDetail";
+import TVCalculatorPage from "@/pages/TVCalculatorPage";
+import RecipeCalculators from "@/pages/RecipeCalculators";
+import RecipeSubCategory from "@/pages/RecipeSubCategory";
+import RecipePage from "@/pages/RecipePage";
+import DailyQuotesPage from "@/pages/DailyQuotesPage";
+import EverydayLifeCalculators from "@/pages/EverydayLifeCalculators";
+import SportsCalculators from "@/pages/SportsCalculators";
+import FunnyCalculators from "@/pages/FunnyCalculators";
 
+// Adicionar landing pages novas usando o template
+import HealthCalculatorPage from "@/pages/HealthCalculatorPage";
+import FinancialCalculatorPage from "@/pages/FinancialCalculatorPage";
 
 
 // Categorias (raiz)
-import FinancialCalculators from "@/pages/FinancialCalculators";
-import HealthCalculators from "@/pages/HealthCalculators";
-import CookingCalculators from "@/pages/CookingCalculators";
-import ConversionCalculators from "@/pages/ConversionCalculators";
-import ElectricalCalculators from "@/pages/ElectricalCalculators";
-import ScienceCalculators from "@/pages/ScienceCalculators";
-import TimeCalculators from "@/pages/TimeCalculators";
-import TVCalculators from "@/pages/TVCalculators";
-import PetsCalculators from "@/pages/PetsCalculators";
-import AutomotiveCalculators from "@/pages/AutomotiveCalculators";
-import ConstructionCalculators from "@/pages/ConstructionCalculators";
-
+// (Removidos imports de páginas específicas; agora usamos CategoryIndex)
 
 // Subcategorias
-import FinancialSubCategory from "@/pages/FinancialSubCategory";
-import HealthSubCategory from "@/pages/HealthSubCategory";
-import CookingSubCategory from "@/pages/CookingSubCategory";
-import ConversionSubCategory from "@/pages/ConversionSubCategory";
-import ElectricalSubCategory from "@/pages/ElectricalSubCategory";
-import ScienceSubCategory from "@/pages/ScienceSubCategory";
-import TimeSubCategory from "@/pages/TimeSubCategory";
-import TVSubCategory from "@/pages/TVSubCategory";
-import PetsSubCategory from "@/pages/PetsSubCategory";
-import ConstructionSubCategory from "@/pages/ConstructionSubCategory";
-import AutomotiveSubCategory from "@/pages/AutomotiveSubCategory";
+// (Removidos imports de subcategorias específicas; agora usamos CategorySubcategory)
 
 // Páginas de hubs de conversão (se você as usa)
 import PopularConvertersPage from "@/pages/PopularConvertersPage";
@@ -58,14 +47,17 @@ import CommonConvertersPage from "@/pages/CommonConvertersPage";
 
 // Página genérica de calculadora
 import CalculatorPage from "@/pages/CalculatorPage";
+// Páginas genéricas baseadas em listas
+import CategoryIndex from "@/pages/CategoryIndex";
+import CategorySubcategory from "@/pages/CategorySubcategory";
 
 // Conversor genérico (se você usa atalhos /conversion/:group/:slug)
 import ConverterPage from "@/pages/ConverterPage";
 
 // Redireciona rotas antigas /calculator/:slug -> formato curto
 function LegacyCalcRedirect() {
-  const { category, subcategory, slug } = useParams();
-  return <Navigate to={`/${category}/${subcategory}/${slug}`} replace />;
+  const { category, slug } = useParams();
+  return <Navigate to={`/${category}/${slug}`} replace />;
 }
 
 export default function App() {
@@ -91,38 +83,37 @@ export default function App() {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
 
+            {/* Smart Tips hub */}
+            <Route path="/smart-tips" element={<SmartTips />} />
+            <Route path="/smart-tips/:subcategory" element={<SmartTipsSubCategory />} />
+            <Route path="/smart-tip/:slug" element={<SmartTipDetail />} />
+
+            {/* TV & Home Theater */}
+            <Route path="/tv-video" element={<TVCalculatorPage />} />
+            <Route path="/tv" element={<Navigate to="/tv-video" replace />} />
+
+            {/* Recipes */}
+            <Route path="/recipes" element={<RecipeCalculators />} />
+            <Route path="/recipes/:categorySlug" element={<RecipeSubCategory />} />
+            <Route path="/recipe/:recipeSlug" element={<RecipePage />} />
+
+            {/* New category hubs */}
+            <Route path="/daily-quotes" element={<DailyQuotesPage />} />
+            <Route path="/everyday-life" element={<EverydayLifeCalculators />} />
+            <Route path="/sports" element={<SportsCalculators />} />
+            <Route path="/funny" element={<FunnyCalculators />} />
+
+            {/* Category landing pages with new template */}
+            <Route path="/health" element={<HealthCalculatorPage />} />
+            <Route path="/financial" element={<FinancialCalculatorPage />} />
+
             {/* Categorias raiz */}
-            <Route path="/construction" element={<ConstructionCalculators />} />
-            <Route path="/financial" element={<FinancialCalculators />} />
-            <Route path="/health" element={<HealthCalculators />} />
-            <Route path="/cooking" element={<CookingCalculators />} />
-            <Route path="/conversion" element={<ConversionCalculators />} />
-            <Route path="/electrical" element={<ElectricalCalculators />} />
-            <Route path="/science" element={<ScienceCalculators />} />
-            <Route path="/time" element={<TimeCalculators />} />
-            <Route path="/tv" element={<TVCalculators />} />
-            <Route path="/pets" element={<PetsCalculators />} />
-            <Route path="/automotive" element={<AutomotiveCalculators />} />
-            <Route path="/math" element={<MathCalculators />} />
+             <Route path="/math" element={<CategoryIndex />} />
+             <Route path="/:category" element={<CategoryIndex />} />
 
 
             {/* Subcategorias (todas as seções) */}
-            <Route path="/construction/:subcategory" element={<ConstructionSubCategory />} />
-            <Route path="/financial/:subcategory" element={<FinancialSubCategory />} />
-            <Route path="/health/:subcategory" element={<HealthSubCategory />} />
-            <Route path="/cooking/:subcategory" element={<CookingSubCategory />} />
-            <Route path="/conversion/:subcategory" element={<ConversionSubCategory />} />
-            <Route path="/electrical/:subcategory" element={<ElectricalSubCategory />} />
-            <Route path="/science/:subcategory" element={<ScienceSubCategory />} />
-            <Route path="/time/:subcategory" element={<TimeSubCategory />} />
-            <Route path="/tv/:subcategory" element={<TVSubCategory />} />
-            <Route path="/pets/:subcategory" element={<PetsSubCategory />} />
-            <Route path="/automotive/:subcategory" element={<AutomotiveSubCategory />} />
-            <Route path="/math/everyday-math" element={<EverydayMath />} />   
-            <Route path="/math/everyday-math/percentages" element={<PercentageCalculators />} />
-            <Route path="/math/:subcategory" element={<MathSubCategory />} /> 
-            <Route path="/math/fractions" element={<FractionsCalculators />} />
-            <Route path="/math/coming-soon" element={<MathComingSoon />} />
+             <Route path="/:category/:subcategory" element={<CategorySubcategory />} />
 
 
 
@@ -135,16 +126,16 @@ export default function App() {
             <Route path="/conversion/:group/:slug" element={<ConverterPage />} />
 
             {/* Calculadora — formato curto */}
-            <Route path="/:category/:subcategory/:slug" element={<CalculatorPage />} />
+            <Route path="/:category/:slug" element={<CalculatorPage />} />
 
             {/* Atalhos diretos para slugs populares (sem categoria/subcategoria) */}
             <Route
               path="/convert-calories-to-kg"
-              element={<Navigate to="/health/calculators/convert-calories-to-kg" replace />}
+              element={<Navigate to="/health/convert-calories-to-kg" replace />}
             />
             <Route
               path="/calories-to-kilograms"
-              element={<Navigate to="/health/calculators/calories-to-kilograms" replace />}
+              element={<Navigate to="/health/calories-to-kilograms" replace />}
             />
 
             {/* Legado -> redireciona */}
@@ -158,6 +149,7 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+
       </AppErrorBoundary>
     </>
   );

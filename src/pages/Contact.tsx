@@ -10,6 +10,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
+import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 
 export default function Contact() {
   const navigate = useNavigate();
@@ -120,6 +122,10 @@ export default function Contact() {
             </CardContent>
           </Card>
         </div>
+        <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <SiteFeedbackForm title="Questions or suggestions?" />
+          <ShareThisCalculator />
+        </section>
       </main>
 
       <Footer />

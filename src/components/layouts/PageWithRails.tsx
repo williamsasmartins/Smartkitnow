@@ -1,6 +1,8 @@
 // src/components/layouts/PageWithRails.tsx
 import React from "react";
 import AdSlot from "@/components/ads/AdSlot";
+import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
+import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 
 type Props = {
   titleBlock?: React.ReactNode;
@@ -30,7 +32,7 @@ export default function PageWithRails({
   showTopBanner = true,
   showMiddleBanner = true,
   showBottomBanner = true,
-  railsSticky = false, // produção segura
+  railsSticky = true, // sticky por padrão em desktop
 }: Props) {
   return (
     <div className="w-full overflow-x-hidden">
@@ -47,19 +49,18 @@ export default function PageWithRails({
         className="
           mt-6
           grid grid-cols-1
-          lg:grid-cols-[120px_minmax(0,1fr)_120px]
-          2xl:grid-cols-[160px_minmax(0,1fr)_160px]
-          gap-3 lg:gap-4
-          px-2 sm:px-3 lg:px-3
+          xl:grid-cols-[160px_minmax(0,1fr)_160px]
+          gap-3 xl:gap-4
+          px-2 sm:px-3 xl:px-3
         "
       >
         {/* Rail esquerdo */}
         {showRails ? (
-          <div className="hidden lg:flex justify-center z-0">
-            <div className={railsSticky ? "sticky top-24" : ""}>
+          <aside className="hidden xl:block w-[160px]">
+            <div className={railsSticky ? "sticky top-24 space-y-4" : "space-y-4"}>
               <AdSlot variant="rail" id="leftRail" label="Ad - Left Rail (Google AdSense)" />
             </div>
-          </div>
+          </aside>
         ) : (
           <div className="hidden lg:block" />
         )}
@@ -68,8 +69,9 @@ export default function PageWithRails({
         <div
           className="
             relative z-10
-            mx-auto w-full
-            max-w-[280px] sm:max-w-[560px] xl:max-w-[680px]
+            mr-auto w-full
+            max-w-full sm:max-w-[640px] xl:max-w-[880px]
+            pr-2 sm:pr-3 xl:pr-6
             "
         >
           {titleBlock && <div className="mb-6">{titleBlock}</div>}
@@ -82,15 +84,19 @@ export default function PageWithRails({
           )}
 
           <div>{children}</div>
+          <section className="mt-10 space-y-3">
+            <SiteFeedbackForm title="Questions or suggestions?" compact={true} />
+            <ShareThisCalculator />
+          </section>
         </div>
 
         {/* Rail direito */}
         {showRails ? (
-          <div className="hidden lg:flex justify-center z-0">
-            <div className={railsSticky ? "sticky top-24" : ""}>
+          <aside className="hidden xl:block w-[160px]">
+            <div className={railsSticky ? "sticky top-24 space-y-4" : "space-y-4"}>
               <AdSlot variant="rail" id="rightRail" label="Ad - Right Rail (Google AdSense)" />
             </div>
-          </div>
+          </aside>
         ) : (
           <div className="hidden lg:block" />
         )}

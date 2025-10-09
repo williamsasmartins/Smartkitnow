@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
+import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft } from "lucide-react";
@@ -138,7 +140,7 @@ const Index = () => {
     construction: {
       name: "Construction Calculators",
       icon: HardHat,
-      color: "text-orange-600",
+      color: "text-yellow-600",
       description: "Comprehensive construction calculators for building materials, measurements, costs, and project planning. From concrete and lumber to roofing and flooring calculations.",
       subCategories: [{
         title: "Carpentry & Trim Calculators",
@@ -964,7 +966,7 @@ const Index = () => {
     financial: {
       name: "Financial Calculators",
       icon: DollarSign,
-      color: "text-emerald-600",
+      color: "text-purple-600",
       description: "Use one of our financial calculators to plan investments, calculate interest, or estimate savings on a purchase. Each calculator includes a wealth of financial information about the topic, along with the process and formulas to do the calculation.",
       subCategories: [{
         title: "Business Finance Calculators",
@@ -1037,7 +1039,7 @@ const Index = () => {
     health: {
       name: "Health & Fitness Calculators",
       icon: Heart,
-      color: "text-pink-600",
+      color: "text-green-600",
       description: "Use our health and fitness calculators for measurements and conversions for various exercise, fitness, nutritional, dietary, and body measurement applications.",
       subCategories: [{
         title: "Body Measurement Calculators",
@@ -1133,7 +1135,9 @@ const Index = () => {
   }, {
     name: "Video Calculators",
     icon: Video,
-    color: "text-violet-600"
+    color: "text-violet-600",
+    path: "/tv-video",
+    description: "Optimize your home theater setup: find ideal TV viewing distance, screen size, and speaker placement for immersive video experiences."
   }, {
     name: "Recipes",
     icon: BookOpen,
@@ -1143,23 +1147,33 @@ const Index = () => {
   }, {
     name: "Smart Tips",
     icon: Lightbulb,
-    color: "text-yellow-500"
+    color: "text-yellow-500",
+    path: "/smart-tips",
+    description: "Actionable life hacks and practical guidance, from home organization and cleaning to travel planning and more."
   }, {
     name: "Daily Quotes",
     icon: Quote,
-    color: "text-slate-600"
+    color: "text-slate-600",
+    path: "/daily-quotes",
+    description: "Inspirational and motivational quotes to brighten your day and spark a positive mindset."
   }, {
     name: "Every day Life Calculators",
     icon: Home,
-    color: "text-blue-500"
+    color: "text-blue-500",
+    path: "/everyday-life",
+    description: "Handy everyday calculators for household budgeting, time planning, chores, and daily life management."
   }, {
     name: "Sports",
     icon: Dumbbell,
-    color: "text-orange-500"
+    color: "text-orange-500",
+    path: "/sports",
+    description: "Training, performance, and fitness calculators for athletes and enthusiasts across multiple sports."
   }, {
     name: "Funny Calculators",
     icon: Smile,
-    color: "text-pink-500"
+    color: "text-pink-500",
+    path: "/funny",
+    description: "Lighthearted tools for fun estimations, playful math, and humorous calculations to share with friends."
   },
   // Restored categories
   categories.automotive, categories.construction, categories.electrical];
@@ -1199,7 +1213,7 @@ const Index = () => {
         {/* Categories Section */}
         <section className="container mx-auto px-4 py-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4 py-[10px]">
+            <h2 className="text-4xl font-bold mb-4 py-[10px] skn-title">
               Calculator Categories
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -1226,6 +1240,12 @@ const Index = () => {
             const isSmartTips = category.name === "Smart Tips";
             const handleClick = () => {
               console.log("Category clicked:", category.name);
+              // Prefer explicit path if provided on the category object
+              if ((category as any).path) {
+                navigate((category as any).path);
+                return;
+              }
+              // Fallbacks for legacy categories without explicit paths
               if (isAutomotive) navigate('/automotive');
               if (isConstruction) navigate('/construction');
               if (isConversion) navigate('/conversion');
@@ -1242,10 +1262,10 @@ const Index = () => {
             };
             return <Card key={index} className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer" onClick={handleClick}>
                   <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
-                    <div className="p-3 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors">
-                      <IconComponent className={`h-6 w-6 ${category.color} group-hover:text-primary transition-colors`} />
+                    <div className="p-3 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors skn-icon-badge">
+                      <IconComponent className={`h-6 w-6 ${category.color || ''}`} />
                     </div>
-                    <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-sm font-medium skn-title">
                       {category.name}
                     </h3>
                   </CardContent>
@@ -1255,7 +1275,7 @@ const Index = () => {
 
           {/* Discover More Button */}
           <div className="text-center">
-            <Button className="bg-primary hover:bg-primary-glow text-primary-foreground shadow-soft transition-all duration-300 hover:shadow-glow">
+            <Button className="bg-[#5c82ee] hover:bg-[#4a6fe0] text-white shadow-soft transition-all duration-300 hover:shadow-glow">
               <TrendingUp className="mr-2 h-4 w-4" />
               Discover More Calculators
             </Button>
@@ -1265,7 +1285,7 @@ const Index = () => {
         {/* Featured Section */}
         <section className="container mx-auto px-4 py-16 bg-muted/20">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-foreground mb-4">Featured Calculators</h3>
+            <h3 className="text-3xl font-bold skn-title mb-4">Featured Calculators</h3>
             <p className="text-muted-foreground text-lg">
               Essential calculation tools trusted by millions of professionals, students, and DIY enthusiasts worldwide
             </p>
@@ -1278,11 +1298,11 @@ const Index = () => {
             return <Card key={index} className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer">
                   <CardHeader>
                     <div className="flex items-center space-x-3">
-                      <div className="p-2 rounded-lg bg-primary-soft/20 group-hover:bg-primary-soft/30 transition-colors">
-                        <IconComponent className="h-5 w-5 text-primary" />
+                      <div className="p-2 rounded-lg bg-muted/50 skn-icon-badge">
+                        <IconComponent className="h-5 w-5" style={{ color: ['#ef4444','#f59e0b','#10b981','#06b6d4','#a855f7','#eab308','#0ea5e9','#14b8a6','#fb7185','#64748b'][index % 10] }} />
                       </div>
                       <div>
-                        <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                        <CardTitle className="text-lg skn-title">
                           {calc.name}
                         </CardTitle>
                         <CardDescription>{calc.description}</CardDescription>
@@ -1290,7 +1310,7 @@ const Index = () => {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <Button variant="outline" className="w-full">
+                    <Button variant="outline" className="w-full border-[#5c82ee] text-[#5c82ee] hover:bg-[#5c82ee] hover:text-white">
                       Use Calculator
                     </Button>
                   </CardContent>
@@ -1303,7 +1323,7 @@ const Index = () => {
         <section className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-4">About Smart Kit Now</h2>
+              <h2 className="text-3xl font-bold skn-title mb-4">About Smart Kit Now</h2>
               <p className="text-muted-foreground text-lg">
                 Your trusted companion for accurate calculations and conversions
               </p>
@@ -1312,8 +1332,8 @@ const Index = () => {
             <div className="grid md:grid-cols-2 gap-8 mb-12">
               <Card className="border-border/50">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Calculator className="h-5 w-5 text-primary" />
+                  <CardTitle className="flex items-center gap-2 skn-title">
+                    <Calculator className="h-5 w-5 text-[var(--primary)]" style={{ color: '#10b981' }} />
                     Precision & Reliability
                   </CardTitle>
                 </CardHeader>
@@ -1328,8 +1348,8 @@ const Index = () => {
 
               <Card className="border-border/50">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Lightbulb className="h-5 w-5 text-primary" />
+                  <CardTitle className="flex items-center gap-2 skn-title">
+                    <Lightbulb className="h-5 w-5 text-[var(--primary)]" style={{ color: '#f59e0b' }} />
                     Easy to Use
                   </CardTitle>
                 </CardHeader>
@@ -1343,7 +1363,7 @@ const Index = () => {
             </div>
 
             <div className="prose prose-slate max-w-none">
-              <h3 className="text-2xl font-semibold text-foreground mb-4">Why Choose Smart Kit Now?</h3>
+              <h3 className="text-2xl font-semibold skn-title mb-4">Why Choose Smart Kit Now?</h3>
               <p className="text-muted-foreground mb-6">
                 Smart Kit Now has become the go-to platform for millions of users worldwide who need reliable calculation tools. 
                 Our comprehensive suite of calculators covers everything from basic math operations to specialized industry calculations, 
@@ -1352,26 +1372,26 @@ const Index = () => {
 
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-primary-soft/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Star className="h-6 w-6 text-primary" />
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 skn-icon-badge">
+                    <Star className="h-6 w-6" style={{ color: "#eab308" }} />
                   </div>
-                  <h4 className="font-semibold text-foreground mb-2">Trusted by Millions</h4>
+                  <h4 className="font-semibold skn-title mb-2">Trusted by Millions</h4>
                   <p className="text-sm text-muted-foreground">Over 5 million calculations performed monthly</p>
                 </div>
                 
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-primary-soft/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Dumbbell className="h-6 w-6 text-primary" />
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 skn-icon-badge">
+                    <Dumbbell className="h-6 w-6" style={{ color: "#f97316" }} />
                   </div>
-                  <h4 className="font-semibold text-foreground mb-2">Professional Grade</h4>
+                  <h4 className="font-semibold skn-title mb-2">Professional Grade</h4>
                   <p className="text-sm text-muted-foreground">Used by engineers, contractors, and professionals</p>
                 </div>
                 
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-primary-soft/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Heart className="h-6 w-6 text-primary" />
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 skn-icon-badge">
+                    <Heart className="h-6 w-6" style={{ color: "#ef4444" }} />
                   </div>
-                  <h4 className="font-semibold text-foreground mb-2">Always Free</h4>
+                  <h4 className="font-semibold skn-title mb-2">Always Free</h4>
                   <p className="text-sm text-muted-foreground">No subscriptions, no hidden fees, completely free</p>
                 </div>
               </div>
@@ -1382,14 +1402,14 @@ const Index = () => {
         {/* Why Our Calculators Matter Section */}
         <section className="container mx-auto px-4 py-16 bg-muted/20">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center text-foreground mb-12">
+            <h2 className="text-3xl font-bold text-center skn-title mb-12">
               Empowering Better Decisions Through Accurate Calculations
             </h2>
 
             <div className="space-y-8">
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-xl font-semibold text-foreground mb-4">For Professionals & Contractors</h3>
+                  <h3 className="text-xl font-semibold skn-title mb-4">For Professionals & Contractors</h3>
                   <p className="text-muted-foreground mb-4">
                     Construction professionals rely on Smart Kit Now for accurate material estimates, cost calculations, 
                     and project planning. Our construction calculators help you minimize waste, stay within budget, and 
@@ -1403,7 +1423,7 @@ const Index = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-semibold text-foreground mb-4">For Health & Fitness Enthusiasts</h3>
+                  <h3 className="text-xl font-semibold skn-title mb-4">For Health & Fitness Enthusiasts</h3>
                   <p className="text-muted-foreground mb-4">
                     Take control of your health journey with our comprehensive health calculators. Whether you're tracking 
                     your BMI, calculating daily calorie needs, or monitoring your fitness progress, our tools provide 
@@ -1419,7 +1439,7 @@ const Index = () => {
 
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-xl font-semibold text-foreground mb-4">For Financial Planning</h3>
+                  <h3 className="text-xl font-semibold skn-title mb-4">For Financial Planning</h3>
                   <p className="text-muted-foreground mb-4">
                     Make smarter financial decisions with our suite of financial calculators. From loan payments and 
                     mortgage calculations to investment returns and retirement planning, we help you understand the 
@@ -1433,7 +1453,7 @@ const Index = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-semibold text-foreground mb-4">For Students & Educators</h3>
+                  <h3 className="text-xl font-semibold skn-title mb-4">For Students & Educators</h3>
                   <p className="text-muted-foreground mb-4">
                     Students and teachers use Smart Kit Now to verify homework answers, explore mathematical concepts, 
                     and solve real-world problems. Our calculators serve as both learning tools and practical resources 
@@ -1453,7 +1473,7 @@ const Index = () => {
         {/* Our Commitment Section */}
         <section className="container mx-auto px-4 py-16">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-6">Our Commitment to Excellence</h2>
+            <h2 className="text-3xl font-bold skn-title mb-6">Our Commitment to Excellence</h2>
             <p className="text-lg text-muted-foreground mb-8">
               At Smart Kit Now, we're committed to providing you with the most accurate, reliable, and user-friendly 
               calculators available online. We continuously update our tools based on user feedback and industry 
@@ -1462,30 +1482,34 @@ const Index = () => {
             
             <div className="grid md:grid-cols-3 gap-6">
               <div className="p-6 rounded-lg bg-card border border-border/50">
-                <BookOpen className="h-8 w-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Continuous Learning</h4>
+                <BookOpen className="h-8 w-8 mx-auto mb-3" style={{ color: '#14b8a6' }} />
+                <h4 className="font-semibold skn-title mb-2">Continuous Learning</h4>
                 <p className="text-sm text-muted-foreground">
                   We regularly add new calculators and improve existing ones based on user needs and industry developments.
                 </p>
               </div>
               
               <div className="p-6 rounded-lg bg-card border border-border/50">
-                <Smile className="h-8 w-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">User-Centric Design</h4>
+                <Smile className="h-8 w-8 mx-auto mb-3" style={{ color: '#f97316' }} />
+                <h4 className="font-semibold skn-title mb-2">User-Centric Design</h4>
                 <p className="text-sm text-muted-foreground">
                   Every feature we build is designed with our users in mind, ensuring maximum usability and efficiency.
                 </p>
               </div>
               
               <div className="p-6 rounded-lg bg-card border border-border/50">
-                <Quote className="h-8 w-8 text-primary mx-auto mb-3" />
-                <h4 className="font-semibold text-foreground mb-2">Transparency</h4>
+                <Quote className="h-8 w-8 mx-auto mb-3" style={{ color: '#0ea5e9' }} />
+                <h4 className="font-semibold skn-title mb-2">Transparency</h4>
                 <p className="text-sm text-muted-foreground">
                   We provide clear explanations of our formulas and methodologies so you understand exactly how results are calculated.
                 </p>
               </div>
             </div>
           </div>
+        </section>
+        <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <SiteFeedbackForm title="Questions or suggestions?" />
+          <ShareThisCalculator />
         </section>
       </main>
 

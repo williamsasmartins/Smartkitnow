@@ -102,7 +102,6 @@ export default function AdSlot({
               sm:w-[728px] sm:h-[90px]
               xl:w-[970px] xl:h-[90px]
               max-w-full
-              rounded-lg border border-border/50 bg-muted/30
               flex items-center justify-center
               text-xs text-muted-foreground
             "
@@ -130,17 +129,15 @@ export default function AdSlot({
       {inView && canRenderAds ? (
         <ins
           className="adsbygoogle"
-          style={{ display: "inline-block", width: "120px", height: "600px" }}
+          style={{ display: "inline-block", width: "160px", height: "600px" }}
           data-ad-client={adClient}
           data-ad-slot={adSlot}
         />
       ) : (
         <div
           className="
-            w-[120px] 2xl:w-[160px]
-            rounded-lg border border-border/50 bg-muted/30
+            w-[160px]
             text-center text-xs text-muted-foreground
-            p-2
             z-0
           "
           style={{ minHeight: 600 }}

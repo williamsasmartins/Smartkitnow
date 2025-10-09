@@ -14,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 223 77% 66%; /* #5c82ee */
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -47,7 +47,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    --primary: 223 77% 66%; /* #5c82ee */
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -85,4 +85,32 @@
 }
 .hover\:shadow-soft:hover {
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* Utilitário para truncar texto em 3 linhas (fallback ao plugin @tailwindcss/line-clamp) */
+@layer utilities {
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Tipografia global para páginas de categoria */
+@layer components {
+  .skn-typography {
+    @apply text-[15px] leading-[1.6];
+  }
+  .skn-typography h1 {
+    @apply text-[24px] md:text-[28px] leading-tight font-bold;
+  }
+  .skn-typography h2 {
+    @apply text-[20px] md:text-[24px] leading-tight font-semibold;
+  }
+  .skn-typography p,
+  .skn-typography li,
+  .skn-typography a {
+    @apply text-[15px] leading-[1.6];
+  }
 }

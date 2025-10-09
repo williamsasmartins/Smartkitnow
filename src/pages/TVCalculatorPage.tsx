@@ -92,7 +92,7 @@ export default function TVCalculatorPage() {
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">Calculator Not Found</h1>
             <p className="text-muted-foreground mb-8">The requested calculator does not exist.</p>
-            <Link to="/tv">
+            <Link to="/tv-video">
               <Button>Back to TV & Video Calculators</Button>
             </Link>
           </div>
@@ -111,7 +111,7 @@ export default function TVCalculatorPage() {
           <Button 
             variant="ghost" 
             size="sm" 
-            onClick={() => navigate("/tv")}
+            onClick={() => navigate("/tv-video")}
             className="hover:bg-primary/10"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />

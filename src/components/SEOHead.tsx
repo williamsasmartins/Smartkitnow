@@ -77,6 +77,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
         <title>{title}</title>
 
         {/* Meta básicos */}
+        <meta name="google-site-verification" content="YtJGpKTUhVan-Fob03Lkt4sAXT6K0xlepSfvPyrRK2g" />
         {description && (
           <meta name="description" content={description} />
         )}

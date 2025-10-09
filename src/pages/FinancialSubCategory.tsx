@@ -48,6 +48,7 @@ export default function FinancialSubCategory() {
   const navigate = useNavigate();
 
   const calculators = subcategory ? listByCategorySubcategory(category, subcategory) : [];
+  const isBlueSubcat = ["investment-calculators","interest-and-loan-calculators","personal-finance-calculators"].includes(String(subcategory ?? ""));
   const subcatTitle =
     (subcategory && SUBCATEGORY_TITLES[subcategory]) ||
     (subcategory ? subcategory.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase()) : "Calculators");
@@ -92,7 +93,7 @@ export default function FinancialSubCategory() {
               </div>
 
               <div className="text-center">
-                <h1 className="text-4xl font-bold mb-3" style={{ color: "#5c82ee" }}>
+                <h1 className="text-4xl font-bold mb-3 text-foreground">
                   {subcatTitle}
                 </h1>
                 <p className="text-lg max-w-2xl mx-auto" style={{ color: "#747886" }}>
@@ -120,7 +121,19 @@ export default function FinancialSubCategory() {
                               style={{ width: 40, height: 40, backgroundColor: bg, color }} aria-hidden="true">
                           <Icon className="h-5 w-5" />
                         </span>
-                        <CardTitle className="text-lg font-semibold" style={{ color: "#3c83f6" }}>
+                        <CardTitle className="text-lg font-semibold" style={{ color: [
+                          "Loan Calculator",
+                          "Mortgage Refinance Calculator",
+                          "Mortgage Calculator",
+                          "Budget Percentage Calculator (Coming Soon)",
+                          "Investment Fees Calculator (Coming Soon)",
+                          "Savings Goal Planner (Coming Soon)",
+                          "Emergency Fund Calculator (Coming Soon)",
+                          "Retirement Savings Estimator (Coming Soon)",
+                          "Compound Interest Calculator",
+                          "ROI Calculator",
+                          "Credit Card Payoff Planner (Coming Soon)"
+                        ].includes(calc.title) ? "#5c82ee" : "#000000" }}>
                           {calc.title}
                         </CardTitle>
                       </CardHeader>

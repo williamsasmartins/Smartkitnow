@@ -130,7 +130,7 @@ export default function MathComingSoon() {
                       <Icon className="h-5 w-5" />
                     </span>
                     <div>
-                      <CardTitle className="text-xl font-bold" style={{ color: "#5c82ee" }}>
+                      <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
                         {title}
                       </CardTitle>
                       <p className="mt-1 text-sm" style={{ color: "#747886" }}>

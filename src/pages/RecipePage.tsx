@@ -41,7 +41,7 @@ export default function RecipePage() {
             </Button>
           </div>
         </main>
-        <Footer />
+        
       </div>
     );
   }

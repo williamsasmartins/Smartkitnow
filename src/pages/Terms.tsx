@@ -7,6 +7,8 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
+import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 
 export default function Terms() {
   const navigate = useNavigate();
@@ -135,6 +137,10 @@ export default function Terms() {
             </CardContent>
           </Card>
         </div>
+        <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <SiteFeedbackForm title="Questions or suggestions?" />
+          <ShareThisCalculator />
+        </section>
       </main>
 
       <Footer />

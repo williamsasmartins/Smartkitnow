@@ -60,7 +60,7 @@ const SmartTips: React.FC = () => {
             className="flex items-center space-x-2 mb-6"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>Back</span>
+          Back
           </Button>
         </div>
 
