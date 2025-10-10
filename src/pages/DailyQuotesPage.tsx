@@ -1,5 +1,4 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import CategoryPageTemplate from "@/components/layouts/CategoryPageTemplate";
 
 export default function DailyQuotesPage() {
   const quotes = [
@@ -21,27 +20,36 @@ export default function DailyQuotesPage() {
   const index = (today.getFullYear() + today.getMonth() + today.getDate()) % quotes.length;
   const quote = quotes[index];
 
-  return (
-    <div className="min-h-screen bg-gradient-soft">
-      <Header />
-      <main className="pt-20">
-        <section className="container mx-auto px-4 py-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-3" style={{ color: "#1f2937" }}>Daily Quotes</h1>
-            <p className="text-lg mb-8 text-muted-foreground">Inspiration to brighten your day and spark a positive mindset.</p>
-
-            <div className="bg-card/50 border border-border/60 rounded-lg p-6 shadow-sm">
-              <blockquote className="text-2xl leading-relaxed" style={{ color: "#0f172a" }}>
-                “{quote.text}”
-              </blockquote>
-              <p className="mt-3 text-sm text-muted-foreground">— {quote.author}</p>
-            </div>
-
-            <p className="mt-6 text-sm text-muted-foreground">New categories and quote sources coming soon.</p>
-          </div>
-        </section>
-      </main>
-      <Footer />
+  const intro = (
+    <div className="space-y-3">
+      <p>
+        Inspiration to brighten your day and spark a positive mindset.
+      </p>
+      <p>
+        Come back daily for thoughtful words and timeless wisdom selected to motivate and encourage.
+      </p>
     </div>
+  );
+
+  return (
+    <CategoryPageTemplate
+      title="Daily Quotes"
+      intro={intro}
+      sections={[]}
+      showTopBanner={true}
+      showRightRail={true}
+      contentBackgroundColor="#0c1324"
+      recommendedFooter={(
+        <div className="space-y-6">
+          <div className="bg-card/50 border border-border/60 rounded-lg p-6 shadow-sm text-center max-w-3xl">
+            <blockquote className="text-2xl leading-relaxed" style={{ color: "#0f172a" }}>
+              “{quote.text}”
+            </blockquote>
+            <p className="mt-3 text-sm text-muted-foreground">— {quote.author}</p>
+          </div>
+          <p className="text-sm text-muted-foreground text-center">New categories and quote sources coming soon.</p>
+        </div>
+      )}
+    />
   );
 }

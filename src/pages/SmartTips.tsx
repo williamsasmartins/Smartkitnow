@@ -4,8 +4,7 @@ import { ArrowLeft, Home, Plane, DollarSign, Heart, Leaf, Laptop, Users, Briefca
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { smartTipsCategories } from '@/data/smartTipsData';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import CategoryPageTemplate from '@/components/layouts/CategoryPageTemplate';
 
 const iconMap = {
   Home,
@@ -38,46 +37,25 @@ const SmartTips: React.FC = () => {
     });
   };
 
-  const handleBackClick = () => {
-    if (window.history.length > 1) {
-      navigate(-1);
-    } else {
-      navigate('/');
-    }
-  };
+  const intro = (
+    <div className="space-y-3">
+      <p>
+        Discover practical, expert-backed tips across all areas of life.
+      </p>
+      <p>
+        From home organization to career development, each category contains carefully curated tips designed to improve your daily routine and long-term success.
+      </p>
+    </div>
+  );
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-      <Header />
-      
-      <main className="container mx-auto px-4 py-8">
-        {/* Back Button */}
-        <div className="mb-6">
-          <Button 
-            variant="ghost"
-            size="sm"
-            onClick={handleBackClick}
-            className="flex items-center space-x-2 mb-6"
-          >
-            <ArrowLeft className="h-4 w-4" />
-          Back
-          </Button>
-        </div>
-
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-primary mb-4">Smart Tips Collection</h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Discover practical, expert-backed tips across all areas of life. From home organization to career development, 
-            each category contains 10 carefully curated tips designed to improve your daily routine and long-term success.
-          </p>
-        </div>
-
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+  const recommendedFooter = (
+    <div className="space-y-10">
+      {/* Categories Grid */}
+      <div>
+        <h2 className="sr-only">Categories</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-2">
           {smartTipsCategories.map((category) => {
             const IconComponent = iconMap[category.icon as keyof typeof iconMap];
-            
             return (
               <Card
                 key={category.slug}
@@ -106,58 +84,81 @@ const SmartTips: React.FC = () => {
             );
           })}
         </div>
+      </div>
 
-        {/* SEO Content Section */}
-        <div className="max-w-4xl mx-auto">
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-primary mb-4">Transform Your Life with Expert-Backed Smart Tips</h2>
-            <div className="prose prose-lg max-w-none text-muted-foreground">
-              <p className="mb-4">
-                Our comprehensive Smart Tips collection brings together evidence-based advice from leading experts across 
-                12 essential life categories. Each tip has been carefully researched and tested to provide maximum impact 
-                with minimal effort.
-              </p>
-              
-              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Why These Tips Work</h3>
-              <ul className="space-y-2 mb-4">
-                <li><strong>Expert-Sourced:</strong> Every tip comes from recognized authorities and proven research</li>
-                <li><strong>Actionable Steps:</strong> Clear, step-by-step instructions make implementation easy</li>
-                <li><strong>Practical Focus:</strong> Designed for real-world application in busy lifestyles</li>
-                <li><strong>Comprehensive Coverage:</strong> From health and finances to productivity and relationships</li>
-              </ul>
+      {/* SEO Content Section */}
+      <div className="max-w-4xl">
+        <section className="mb-2">
+          <h2 className="text-2xl font-semibold text-primary mb-4">Transform Your Life with Expert-Backed Smart Tips</h2>
+          <div className="prose prose-lg max-w-none text-muted-foreground">
+            <p className="mb-4">
+              Our comprehensive Smart Tips collection brings together evidence-based advice from leading experts across 
+              12 essential life categories. Each tip has been carefully researched and tested to provide maximum impact 
+              with minimal effort.
+            </p>
+            
+            <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Why These Tips Work</h3>
+            <ul className="space-y-2 mb-4">
+              <li><strong>Expert-Sourced:</strong> Every tip comes from recognized authorities and proven research</li>
+              <li><strong>Actionable Steps:</strong> Clear, step-by-step instructions make implementation easy</li>
+              <li><strong>Practical Focus:</strong> Designed for real-world application in busy lifestyles</li>
+              <li><strong>Comprehensive Coverage:</strong> From health and finances to productivity and relationships</li>
+            </ul>
 
-              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Featured Categories</h3>
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                <div>
-                  <h4 className="font-medium text-foreground">Personal Development</h4>
-                  <ul className="text-sm space-y-1">
-                    <li>• Health & Wellness optimization</li>
-                    <li>• Mental Health & Self-Care practices</li>
-                    <li>• Career Development strategies</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-medium text-foreground">Practical Living</h4>
-                  <ul className="text-sm space-y-1">
-                    <li>• Home Organization & Cleaning</li>
-                    <li>• Personal Finance management</li>
-                    <li>• DIY & Home Maintenance</li>
-                  </ul>
-                </div>
+            <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Featured Categories</h3>
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              <div>
+                <h4 className="font-medium text-foreground">Personal Development</h4>
+                <ul className="text-sm space-y-1">
+                  <li>• Health & Wellness optimization</li>
+                  <li>• Mental Health & Self-Care practices</li>
+                  <li>• Career Development strategies</li>
+                </ul>
               </div>
-
-              <p>
-                Start exploring any category that interests you most, or browse systematically to create a comprehensive 
-                improvement plan. Each tip includes the science behind why it works, making it easier to understand and 
-                maintain new habits long-term.
-              </p>
+              <div>
+                <h4 className="font-medium text-foreground">Practical Living</h4>
+                <ul className="text-sm space-y-1">
+                  <li>• Home Organization & Cleaning</li>
+                  <li>• Personal Finance management</li>
+                  <li>• DIY & Home Maintenance</li>
+                </ul>
+              </div>
             </div>
-          </section>
-        </div>
-      </main>
 
-      <Footer />
+            <p>
+              Start exploring any category that interests you most, or browse systematically to create a comprehensive 
+              improvement plan. Each tip includes the science behind why it works, making it easier to understand and 
+              maintain new habits long-term.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      {/* Bottom back button for convenience */}
+      <div>
+        <Button 
+          variant="ghost"
+          size="sm"
+          onClick={() => navigate('/')}
+          className="flex items-center space-x-2"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to Home
+        </Button>
+      </div>
     </div>
+  );
+
+  return (
+    <CategoryPageTemplate
+      title="Smart Tips"
+      intro={intro}
+      sections={[]}
+      showTopBanner={true}
+      showRightRail={true}
+      contentBackgroundColor="#0c1324"
+      recommendedFooter={recommendedFooter}
+    />
   );
 };
 

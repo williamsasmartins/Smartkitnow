@@ -100,7 +100,6 @@ const FinancialCalculatorPage = () => {
       sections={sections}
       showTopBanner={true}
       showRightRail={true}
-      contentBackgroundColor="#0c1324"
       additionalItemCount={additionalItemCount}
       recommendedFooter={(
         <div className="category-footer space-y-6">

@@ -50,11 +50,9 @@ export function Header() {
   const navigateToCalculator = (calculator: CalculatorEntry) => {
     setSearchTerm("");
     setShowSuggestions(false);
-    const category = calculator.category;
-    const subcategory = calculator.subcategory || "";
-    const slug = calculator.slug;
-    if (category && subcategory && slug) {
-      navigate(`/${category}/${subcategory}/${slug}`);
+    const { category, slug } = calculator;
+    if (category && slug) {
+      navigate(`/${category}/${slug}`);
     }
   };
 

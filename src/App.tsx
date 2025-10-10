@@ -113,6 +113,7 @@ export default function App() {
 
 
             {/* Subcategorias (todas as seções) */}
+             <Route path="/:category/:slug" element={<CalculatorPage />} />
              <Route path="/:category/:subcategory" element={<CategorySubcategory />} />
 
 
@@ -125,8 +126,6 @@ export default function App() {
             {/* Atalhos: /conversion/:group/:slug */}
             <Route path="/conversion/:group/:slug" element={<ConverterPage />} />
 
-            {/* Calculadora — formato curto */}
-            <Route path="/:category/:slug" element={<CalculatorPage />} />
 
             {/* Atalhos diretos para slugs populares (sem categoria/subcategoria) */}
             <Route

@@ -85,6 +85,34 @@ export default function TVCalculatorPage() {
 
   const calculatorData = calculatorComponents[calculator as keyof typeof calculatorComponents];
 
+  // If no calculator param, show landing list of TV & Video calculators
+  if (!calculatorData && !calculator) {
+    return (
+      <div className="min-h-screen bg-gradient-subtle pt-20">
+        <div className="container mx-auto px-4 py-8">
+          <div className="mb-8 text-center">
+            <h1 className="text-4xl font-bold mb-4">TV & Video Calculators</h1>
+            <p className="text-muted-foreground max-w-3xl mx-auto">
+              Explore tools for display math, viewing distances, projector throw, aspect ratios, and helpful reference guides.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {Object.entries(calculatorComponents).map(([slug, meta]) => (
+              <Link key={slug} to={`/tv-video/${slug}`} className="group">
+                <div className="rounded-lg border bg-card p-4 hover:shadow-md transition-colors group-hover:border-primary">
+                  <h3 className="font-semibold mb-1">{meta.title}</h3>
+                  <p className="text-sm text-muted-foreground">{meta.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // If calculator slug provided but not found, show not found message
   if (!calculatorData) {
     return (
       <div className="min-h-screen bg-gradient-subtle pt-20">
