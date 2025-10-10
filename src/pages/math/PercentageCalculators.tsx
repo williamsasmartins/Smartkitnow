@@ -1,6 +1,6 @@
 // src/pages/math/PercentageCalculators.tsx
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Percent, TrendingUp, TrendingDown, Shuffle } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 export default function PercentageCalculators() {
   const navigate = useNavigate();
@@ -66,27 +67,25 @@ export default function PercentageCalculators() {
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mx-auto max-w-6xl">
             {/* Real: opens calculator */}
-            <Link to="/math/everyday-math/percent-of-total" className="group block">
-              <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
-                <CardHeader className="flex flex-row items-center gap-3">
-                  <span
-                    className="inline-flex items-center justify-center rounded-xl"
-                    style={{ width: 42, height: 42, backgroundColor: "rgba(59,130,246,0.12)", color: "#3b82f6" }}
-                    aria-hidden="true"
-                  >
-                    <Percent className="h-5 w-5" />
-                  </span>
-                  <CardTitle className="text-lg font-bold" style={{ color: "#000000" }}>
-                    Percent of Total
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm" style={{ color: "#747886" }}>
-                    Find X% of a number (e.g., 15% of 240).
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
+            <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+              <CardHeader className="flex flex-row items-center gap-3">
+                <span
+                  className="inline-flex items-center justify-center rounded-xl"
+                  style={{ width: 42, height: 42, backgroundColor: "rgba(59,130,246,0.12)", color: "#3b82f6" }}
+                  aria-hidden="true"
+                >
+                  <Percent className="h-5 w-5" />
+                </span>
+                <CardTitle className="text-lg font-bold" style={{ color: "#000000" }}>
+                  <CalculatorLink to="/math/everyday-math/percent-of-total">Percent of Total</CalculatorLink>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm" style={{ color: "#747886" }}>
+                  Find X% of a number (e.g., 15% of 240).
+                </p>
+              </CardContent>
+            </Card>
 
             {/* Coming soon (desabilitados) */}
             <Card className="bg-card border-border/50 opacity-90">

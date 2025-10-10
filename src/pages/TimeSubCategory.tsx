@@ -1,11 +1,10 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, ArrowLeft } from "lucide-react";
 import { useState, useMemo } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 const timeData = {
   "countdown": {
@@ -96,8 +95,8 @@ export default function TimeSubCategory() {
   if (!categoryData) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
-        <Header />
-        <main className="container mx-auto px-4 pt-24 pb-12">
+        
+        <main className="container mx-auto px-4 pt-20 pb-12">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">Category Not Found</h1>
             <p className="text-muted-foreground mb-8">The requested time calculator category does not exist.</p>
@@ -114,9 +113,8 @@ export default function TimeSubCategory() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
-      <Header />
       
-      <main className="container mx-auto px-4 pt-24 pb-12">
+      <main className="container mx-auto px-4 pt-20 pb-12">
         {/* Back Button */}
         <Button 
           variant="ghost" 
@@ -156,18 +154,16 @@ export default function TimeSubCategory() {
               key={calculator.key} 
               className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
             >
-              <Link to={`/time/calculator/${calculator.key}`} className="block h-full">
-                <CardHeader className="bg-gradient-subtle group-hover:bg-gradient-primary/10 transition-colors duration-300">
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                    {calculator.name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <CardDescription className="text-base">
-                    {calculator.description}
-                  </CardDescription>
-                </CardContent>
-              </Link>
+              <CardHeader className="bg-gradient-subtle group-hover:bg-gradient-primary/10 transition-colors duration-300">
+                <CardTitle className="text-lg">
+                  <CalculatorLink to={`/time/calculator/${calculator.key}`}>{calculator.name}</CalculatorLink>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <CardDescription className="text-base">
+                  {calculator.description}
+                </CardDescription>
+              </CardContent>
             </Card>
           ))}
         </div>
@@ -181,7 +177,7 @@ export default function TimeSubCategory() {
         )}
       </main>
 
-      <Footer />
+      
     </div>
   );
 }

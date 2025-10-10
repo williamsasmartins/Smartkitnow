@@ -1,6 +1,6 @@
 // src/pages/CommonConvertersPage.tsx
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
@@ -8,18 +8,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Star } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import CalculatorListBlue from "@/components/common/CalculatorListBlue";
 
 const links = [
-  { label: "Speed Conversion",        to: "/conversion/speed/mph-to-kmh" },
-  { label: "Temperature Conversion",  to: "/conversion/temperature/f-to-c" },
-  { label: "Time Conversion",         to: "/conversion/time/sec-to-min" },
-  { label: "Conversion Calculator",   to: "/conversion/popular" }, // hub completo
-  { label: "Angle Conversion",        to: "/conversion/angle/deg-to-rad" },
-  { label: "Area Conversion",         to: "/conversion/area/sqft-to-sqm" },
-  { label: "Length Conversion",       to: "/conversion/length/in-to-cm" },
-  { label: "Weight Conversion",       to: "/conversion/weight/lb-to-kg" },
-  { label: "Pressure Conversion",     to: "/conversion/pressure/psi-to-kpa" },
-  { label: "Volume Conversion",       to: "/conversion/volume/gal-to-l" },
+  { title: "Speed Conversion",        to: "/conversion/speed/mph-to-kmh" },
+  { title: "Temperature Conversion",  to: "/conversion/temperature/f-to-c" },
+  { title: "Time Conversion",         to: "/conversion/time/sec-to-min" },
+  { title: "Conversion Calculator",   to: "/conversion/popular" }, // hub completo
+  { title: "Angle Conversion",        to: "/conversion/angle/deg-to-rad" },
+  { title: "Area Conversion",         to: "/conversion/area/sqft-to-sqm" },
+  { title: "Length Conversion",       to: "/conversion/length/in-to-cm" },
+  { title: "Weight Conversion",       to: "/conversion/weight/lb-to-kg" },
+  { title: "Pressure Conversion",     to: "/conversion/pressure/psi-to-kpa" },
+  { title: "Volume Conversion",       to: "/conversion/volume/gal-to-l" },
 ];
 
 export default function CommonConvertersPage() {
@@ -91,17 +92,11 @@ export default function CommonConvertersPage() {
                 </CardTitle>
               </CardHeader>
 
-              <CardContent className="grid grid-cols-2 gap-2">
-                {links.map((lnk) => (
-                  <Link
-                    key={lnk.to}
-                    to={lnk.to}
-                    className="text-sm underline underline-offset-2 hover:opacity-90"
-                    style={{ color: "#5c82ee" }}
-                  >
-                    {lnk.label}
-                  </Link>
-                ))}
+              <CardContent>
+                <div className="grid grid-cols-2 gap-4">
+                  <CalculatorListBlue items={links.slice(0, Math.ceil(links.length / 2))} />
+                  <CalculatorListBlue items={links.slice(Math.ceil(links.length / 2))} />
+                </div>
               </CardContent>
             </Card>
           </div>

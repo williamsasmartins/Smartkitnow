@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Divide } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { PALETTE } from "@/components/theme/palette";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 const CARDS = [
   {
@@ -104,25 +105,23 @@ export default function FractionsCalculators() {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {CARDS.map((c) => (
-              <Link key={c.to} to={c.to} className="group">
-                <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 h-full">
-                  <CardHeader className="flex flex-row items-center gap-3">
-                    <span
-                      className="inline-flex items-center justify-center rounded-xl"
-                      style={{ width: 40, height: 40, backgroundColor: c.bg, color: c.fg }}
-                      aria-hidden="true"
-                    >
-                      <Divide className="h-5 w-5" />
-                    </span>
-                    <CardTitle className="text-lg font-bold" style={{ color: c.fg }}>
-                      {c.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0 pb-6 px-6">
-                    <p className="text-sm text-muted-foreground">{c.caption}</p>
-                  </CardContent>
-                </Card>
-              </Link>
+              <Card key={c.to} className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 h-full">
+                <CardHeader className="flex flex-row items-center gap-3">
+                  <span
+                    className="inline-flex items-center justify-center rounded-xl"
+                    style={{ width: 40, height: 40, backgroundColor: c.bg, color: c.fg }}
+                    aria-hidden="true"
+                  >
+                    <Divide className="h-5 w-5" />
+                  </span>
+                  <CardTitle className="text-lg font-bold" style={{ color: c.fg }}>
+                    <CalculatorLink to={c.to}>{c.title}</CalculatorLink>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0 pb-6 px-6">
+                  <p className="text-sm text-muted-foreground">{c.caption}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </PageWithRails>

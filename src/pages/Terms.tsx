@@ -1,8 +1,7 @@
 // src/pages/Terms.tsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -43,7 +42,7 @@ export default function Terms() {
 />
 
 
-      <Header />
+
 
       <main className="pt-20">
         <div className="mx-auto max-w-3xl px-4 py-10 space-y-6">
@@ -143,7 +142,9 @@ export default function Terms() {
         </section>
       </main>
 
-      <Footer />
+
     </div>
   );
 }
+
+export const pageMeta = { allowAds: false, minContentScore: 1 };

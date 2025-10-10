@@ -1,6 +1,6 @@
 // src/pages/ConstructionCalculators.tsx
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { listSubcategoriesOfCategory, FRIENDLY_TITLES } from "@/data/calculatorRegistry";
 import SEOHead from "@/components/SEOHead";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 export default function ConstructionCalculators() {
   const navigate = useNavigate();
@@ -63,20 +64,18 @@ export default function ConstructionCalculators() {
           {/* Grid 1/2/3 colunas centralizada dentro do miolo (320/728/970) */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {subcats.map((sc) => (
-              <Link key={sc.slug} to={`/${category}/${sc.slug}`} className="group block">
-                <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
-                  <CardHeader>
-                    <CardTitle className="text-xl font-bold transition-colors" style={{ color: "#000000" }}>
-                      {sc.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm" style={{ color: "#747886" }}>
-                      {sc.count} calculators available
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
+              <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                <CardHeader>
+                  <CardTitle className="text-xl font-bold transition-colors" style={{ color: "#000000" }}>
+                    <CalculatorLink to={`/${category}/${sc.slug}`}>{sc.title}</CalculatorLink>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm" style={{ color: "#747886" }}>
+                    {sc.count} calculators available
+                  </p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </PageWithRails>

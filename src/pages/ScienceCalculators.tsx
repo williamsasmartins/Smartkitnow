@@ -1,10 +1,8 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 const scienceData = {
   "chemistry": {
@@ -76,9 +74,9 @@ export default function ScienceCalculators() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
-      <Header />
+
       
-      <main className="container mx-auto px-4 pt-24 pb-12">
+      <main className="container mx-auto px-4 pt-20 pb-12">
         {/* Hero Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
@@ -114,18 +112,17 @@ export default function ScienceCalculators() {
               <CardContent className="p-6">
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {category.calculators.map((calculator) => (
-                    <Link
+                    <div
                       key={calculator.key}
-                      to={`/science/calculator/${calculator.key}`}
                       className="block p-4 rounded-lg border border-border/60 hover:border-primary/40 hover:bg-muted/50 transition-all duration-200 group"
                     >
                       <h3 className="font-semibold group-hover:text-primary transition-colors">
-                        {calculator.name}
+                        <CalculatorLink to={`/science/calculator/${calculator.key}`}>{calculator.name}</CalculatorLink>
                       </h3>
                       <p className="text-sm text-muted-foreground mt-2">
                         {calculator.description}
                       </p>
-                    </Link>
+                    </div>
                   ))}
                 </div>
               </CardContent>
@@ -142,7 +139,7 @@ export default function ScienceCalculators() {
         )}
       </main>
 
-      <Footer />
+
     </div>
   );
 }

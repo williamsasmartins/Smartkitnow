@@ -14,3 +14,4 @@ export default function Cookies() {
     </div>
   );
 }
+export const pageMeta = { allowAds: false, minContentScore: 1 };

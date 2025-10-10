@@ -1,6 +1,6 @@
 // src/pages/ConversionCalculators.tsx
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Gauge, Soup, Star } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 export default function ConversionCalculators() {
   const navigate = useNavigate();
@@ -71,75 +72,67 @@ export default function ConversionCalculators() {
           {/* EXACTLY 3 CLICKABLE CARDS (no calculator names; just count) */}
           <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Popular Unit Converters */}
-            <Link to="/conversion/popular" className="group block">
-              <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
-                <CardHeader className="flex flex-row items-center gap-3">
-                  <span
-                    className="inline-flex items-center justify-center rounded-xl"
-                    style={{ width: 44, height: 44, backgroundColor: "rgba(59,130,246,0.14)", color: "#3b82f6" }}
-                    aria-hidden="true"
-                  >
-                    <Gauge className="h-5 w-5" />
-                  </span>
-                  <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
-                    Popular Unit Converters
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm" style={{ color: "#747886" }}>
-                    {POPULAR_COUNT} calculators available
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
+            <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+              <CardHeader className="flex flex-row items-center gap-3">
+                <span
+                  className="inline-flex items-center justify-center rounded-xl"
+                  style={{ width: 44, height: 44, backgroundColor: "rgba(59,130,246,0.14)", color: "#3b82f6" }}
+                  aria-hidden="true"
+                >
+                  <Gauge className="h-5 w-5" />
+                </span>
+                <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
+                  <CalculatorLink to="/conversion/popular">Popular Unit Converters</CalculatorLink>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm" style={{ color: "#747886" }}>
+                  {POPULAR_COUNT} calculators available
+                </p>
+              </CardContent>
+            </Card>
 
-            {/* Cooking & Baking Converters */}
             {/* Cooking & Baking Ingredient Converters */}
-<Link to="/conversion/cooking-baking" className="group block">
-  <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
-    <CardHeader className="flex flex-row items-center gap-3">
-      <span
-        className="inline-flex items-center justify-center rounded-xl"
-        style={{ width: 44, height: 44, backgroundColor: "rgba(249,115,22,0.14)", color: "#f97316" }}
-        aria-hidden="true"
-      >
-        <Soup className="h-5 w-5" />
-      </span>
-      <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
-        Cooking &amp; Baking Ingredient Converters
-      </CardTitle>
-    </CardHeader>
-    <CardContent>
-      <p className="text-sm" style={{ color: "#747886" }}>
-        {COOKING_COUNT} calculators available
-      </p>
-    </CardContent>
-  </Card>
-</Link>
-
+            <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+              <CardHeader className="flex flex-row items-center gap-3">
+                <span
+                  className="inline-flex items-center justify-center rounded-xl"
+                  style={{ width: 44, height: 44, backgroundColor: "rgba(249,115,22,0.14)", color: "#f97316" }}
+                  aria-hidden="true"
+                >
+                  <Soup className="h-5 w-5" />
+                </span>
+                <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
+                  <CalculatorLink to="/conversion/cooking-baking">Cooking &amp; Baking Ingredient Converters</CalculatorLink>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm" style={{ color: "#747886" }}>
+                  {COOKING_COUNT} calculators available
+                </p>
+              </CardContent>
+            </Card>
 
             {/* Common Unit Converters (SEO de “Commonly Used Converters”) */}
-            <Link to="/conversion/common" className="group block">
-              <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
-                <CardHeader className="flex flex-row items-center gap-3">
-                  <span
-                    className="inline-flex items-center justify-center rounded-xl"
-                    style={{ width: 44, height: 44, backgroundColor: "rgba(250,204,21,0.18)", color: "#ca8a04" }}
-                    aria-hidden="true"
-                  >
-                    <Star className="h-5 w-5" />
-                  </span>
-                  <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
-                    Common Unit Converters
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm" style={{ color: "#747886" }}>
-                    {COMMON_COUNT} calculators available
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
+            <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+              <CardHeader className="flex flex-row items-center gap-3">
+                <span
+                  className="inline-flex items-center justify-center rounded-xl"
+                  style={{ width: 44, height: 44, backgroundColor: "rgba(250,204,21,0.18)", color: "#ca8a04" }}
+                  aria-hidden="true"
+                >
+                  <Star className="h-5 w-5" />
+                </span>
+                <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
+                  <CalculatorLink to="/conversion/common">Common Unit Converters</CalculatorLink>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm" style={{ color: "#747886" }}>
+                  {COMMON_COUNT} calculators available
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </PageWithRails>
       </main>

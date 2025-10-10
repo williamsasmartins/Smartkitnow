@@ -1,6 +1,6 @@
 // src/pages/FinancialSubCategory.tsx
 import React from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
@@ -22,6 +22,7 @@ import {
   Calculator,
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 /** Colored icons by calculator (slug/name) — 40×40 badge */
 type IconSpec = { Icon: React.ComponentType<any>; color: string; bg: string };
@@ -114,36 +115,22 @@ export default function FinancialSubCategory() {
               {calculators.map((calc) => {
                 const { Icon, color, bg } = iconForCalc(calc.slug, calc.title);
                 return (
-                  <Link key={calc.slug} to={`/financial/${calc.subcategory}/${calc.slug}`} className="group block">
-                    <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
-                      <CardHeader className="flex flex-row items-center gap-3">
-                        <span className="inline-flex items-center justify-center rounded-xl"
-                              style={{ width: 40, height: 40, backgroundColor: bg, color }} aria-hidden="true">
-                          <Icon className="h-5 w-5" />
-                        </span>
-                        <CardTitle className="text-lg font-semibold" style={{ color: [
-                          "Loan Calculator",
-                          "Mortgage Refinance Calculator",
-                          "Mortgage Calculator",
-                          "Budget Percentage Calculator (Coming Soon)",
-                          "Investment Fees Calculator (Coming Soon)",
-                          "Savings Goal Planner (Coming Soon)",
-                          "Emergency Fund Calculator (Coming Soon)",
-                          "Retirement Savings Estimator (Coming Soon)",
-                          "Compound Interest Calculator",
-                          "ROI Calculator",
-                          "Credit Card Payoff Planner (Coming Soon)"
-                        ].includes(calc.title) ? "#5c82ee" : "#000000" }}>
-                          {calc.title}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-sm" style={{ color: "#747886" }}>
-                          {calc.description || "Open calculator"}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                  <Card key={calc.slug} className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                    <CardHeader className="flex flex-row items-center gap-3">
+                      <span className="inline-flex items-center justify-center rounded-xl"
+                            style={{ width: 40, height: 40, backgroundColor: bg, color }} aria-hidden="true">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <CardTitle className="text-lg font-semibold">
+                        <CalculatorLink to={`/financial/${calc.subcategory}/${calc.slug}`}>{calc.title}</CalculatorLink>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm" style={{ color: "#747886" }}>
+                        {calc.description || "Open calculator"}
+                      </p>
+                    </CardContent>
+                  </Card>
                 );
               })}
             </div>

@@ -1,5 +1,3 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { getEntry } from "@/data/calculatorRegistry";
@@ -59,9 +57,7 @@ export default function TimeCalculatorPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
-      <Header />
-      
-      <main className="container mx-auto px-4 pt-24 pb-12">
+      <main className="container mx-auto px-4 pt-20 pb-12">
         {/* Back Button */}
         <Button 
           variant="ghost" 
@@ -76,7 +72,6 @@ export default function TimeCalculatorPage() {
         {getCalculatorComponent()}
       </main>
 
-      <Footer />
     </div>
   );
 }

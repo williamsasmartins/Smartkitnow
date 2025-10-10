@@ -1,11 +1,12 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 // Icons (all guaranteed in lucide-react)
 import { Calculator, Percent, Slash, Sigma, Ruler, Shapes, ArrowLeft } from "lucide-react";
@@ -161,23 +162,21 @@ export default function MathCalculators() {
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
             {HUBS.map((hub) => (
-              <Link key={hub.to} to={hub.to} className="group block">
-                <Card className="bg-card border border-border/50 hover:shadow-soft hover:-translate-y-0.5 transition-all">
-                  <CardContent className="p-4">
-                    <div className="flex items-start gap-3">
-                      {hub.icon}
-                      <div className="min-w-0">
-                        <div className="text-base font-semibold mb-1" style={{ color: BRAND.title }}>
-                          {hub.title}
-                        </div>
-                        <div className="text-sm" style={{ color: BRAND.sub }}>
-                          {hub.description}
-                        </div>
+              <Card className="bg-card border border-border/50 hover:shadow-soft hover:-translate-y-0.5 transition-all">
+                <CardContent className="p-4">
+                  <div className="flex items-start gap-3">
+                    {hub.icon}
+                    <div className="min-w-0">
+                      <div className="text-base font-semibold mb-1" style={{ color: BRAND.title }}>
+                        <CalculatorLink to={hub.to}>{hub.title}</CalculatorLink>
+                      </div>
+                      <div className="text-sm" style={{ color: BRAND.sub }}>
+                        {hub.description}
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </Link>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </PageWithRails>

@@ -1,6 +1,6 @@
 // src/pages/CookingBakingConvertersPage.tsx
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
@@ -8,14 +8,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Soup } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import CalculatorListBlue from "@/components/common/CalculatorListBlue";
 
 const links = [
-  { label: "Flour Conversion",   to: "/conversion/cooking-baking/flour-conversion" },
-  { label: "Salt Conversion",    to: "/conversion/cooking-baking/salt-conversion" },
-  { label: "Sugar Conversion",   to: "/conversion/cooking-baking/sugar-conversion" },
-  { label: "Cooking Ingredient", to: "/conversion/cooking-baking/ingredient-conversion" },
-  { label: "Beer Conversion",    to: "/conversion/cooking-baking/beer-conversion" },
-  { label: "Butter Conversion",  to: "/conversion/cooking-baking/butter-conversion" },
+  { title: "Flour Conversion",   to: "/conversion/cooking-baking/flour-conversion" },
+  { title: "Salt Conversion",    to: "/conversion/cooking-baking/salt-conversion" },
+  { title: "Sugar Conversion",   to: "/conversion/cooking-baking/sugar-conversion" },
+  { title: "Cooking Ingredient", to: "/conversion/cooking-baking/ingredient-conversion" },
+  { title: "Beer Conversion",    to: "/conversion/cooking-baking/beer-conversion" },
+  { title: "Butter Conversion",  to: "/conversion/cooking-baking/butter-conversion" },
 ];
 
 export default function CookingBakingConvertersPage() {
@@ -88,17 +89,11 @@ export default function CookingBakingConvertersPage() {
                  </CardTitle>
 
               </CardHeader>
-              <CardContent className="grid grid-cols-2 gap-2">
-                {links.map((lnk) => (
-                  <Link
-                    key={lnk.to}
-                    to={lnk.to}
-                    className="text-sm underline underline-offset-2 hover:opacity-90"
-                    style={{ color: "#5c82ee" }}
-                  >
-                    {lnk.label}
-                  </Link>
-                ))}
+              <CardContent>
+                <div className="grid grid-cols-2 gap-4">
+                  <CalculatorListBlue items={links.slice(0, Math.ceil(links.length / 2))} />
+                  <CalculatorListBlue items={links.slice(Math.ceil(links.length / 2))} />
+                </div>
               </CardContent>
             </Card>
           </div>

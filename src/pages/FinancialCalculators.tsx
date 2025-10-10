@@ -1,6 +1,6 @@
 // src/pages/FinancialCalculators.tsx
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Banknote, Percent, PiggyBank, Home, Landmark, LineChart } from "lucide-react";
 import { listSubcategoriesOfCategory, FRIENDLY_TITLES } from "@/data/calculatorRegistry";
 import SEOHead from "@/components/SEOHead";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 /** Colored icons by subcategory (40×40 badge) */
 const ICONS_BY_SUBCAT: Record<string, { Icon: React.ComponentType<any>; color: string; bg: string }> = {
@@ -75,31 +76,29 @@ export default function FinancialCalculators() {
             {subcats.map((sc) => {
               const { Icon, color, bg } = getIconForSubcat(sc.slug);
               return (
-                <Link key={sc.slug} to={`/financial/${sc.slug}`} className="group block">
-                  <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
-                    <CardHeader className="flex flex-row items-center gap-3">
-                      <span
-                        className="inline-flex items-center justify-center rounded-xl"
-                        style={{ width: 40, height: 40, backgroundColor: bg, color }}
-                        aria-hidden="true"
-                      >
-                        <Icon className="h-5 w-5" />
-                      </span>
-                      <CardTitle className="text-xl font-bold" style={{ color: [
-                        "investment-calculators",
-                        "interest-and-loan-calculators",
-                        "personal-finance-calculators"
-                      ].includes(sc.slug) ? "#5c82ee" : "#000000" }}>
-                        {sc.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm" style={{ color: "#747886" }}>
-                        {sc.count} calculators available
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
+                <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                  <CardHeader className="flex flex-row items-center gap-3">
+                    <span
+                      className="inline-flex items-center justify-center rounded-xl"
+                      style={{ width: 40, height: 40, backgroundColor: bg, color }}
+                      aria-hidden="true"
+                    >
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <CardTitle className="text-xl font-bold" style={{ color: [
+                      "investment-calculators",
+                      "interest-and-loan-calculators",
+                      "personal-finance-calculators"
+                    ].includes(sc.slug) ? "#5c82ee" : "#000000" }}>
+                      <CalculatorLink to={`/financial/${sc.slug}`}>{sc.title}</CalculatorLink>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm" style={{ color: "#747886" }}>
+                      {sc.count} calculators available
+                    </p>
+                  </CardContent>
+                </Card>
               );
             })}
           </div>

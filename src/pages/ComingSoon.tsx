@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
 import { Construction, ArrowLeft } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 type ComingSoonProps = {
   title?: string;
@@ -25,19 +26,17 @@ export default function ComingSoon({
             We’re finishing this tool. Check back soon — or explore our other calculators meanwhile.
           </p>
           <div className="flex items-center justify-center gap-3">
-            <Link
-              to={backTo}
-              className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 hover:bg-muted transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Go back
-            </Link>
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-4 py-2 hover:opacity-90 transition-opacity"
-            >
-              Explore calculators
-            </Link>
+            <Button variant="outline" asChild>
+              <CalculatorLink to={backTo} className="inline-flex items-center gap-2">
+                <ArrowLeft className="w-4 h-4" />
+                Go back
+              </CalculatorLink>
+            </Button>
+            <Button asChild>
+              <CalculatorLink to="/" className="inline-flex items-center gap-2">
+                Explore calculators
+              </CalculatorLink>
+            </Button>
           </div>
         </div>
       </main>
@@ -46,3 +45,5 @@ export default function ComingSoon({
     </div>
   );
 }
+
+export const pageMeta = { allowAds: false, minContentScore: 1 };

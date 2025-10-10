@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calculator, Ruler, Sigma, Pi } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 type CardDef = {
   to: string;
@@ -114,58 +115,57 @@ export default function MathComingSoon() {
           {/* GRID of subcategories — now CLICKABLE */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {CARDS.map(({ to, title, desc, Icon, bubbleBg, bubbleFg }) => (
-              <Link key={to} to={to} className="group block">
-                <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
-                  <CardHeader className="flex flex-row items-start gap-3">
-                    <span
-                      className="inline-flex shrink-0 items-center justify-center rounded-xl"
-                      style={{
-                        width: 40,
-                        height: 40,
-                        backgroundColor: bubbleBg,
-                        color: bubbleFg,
-                      }}
-                      aria-hidden="true"
-                    >
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
-                        {title}
-                      </CardTitle>
-                      <p className="mt-1 text-sm" style={{ color: "#747886" }}>
-                        {desc}
-                      </p>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <span
-                      className="text-xs opacity-80 group-hover:opacity-100"
-                      style={{ color: "#747886" }}
-                    >
-                      Coming soon — click to preview the section path
-                    </span>
-                  </CardContent>
-                </Card>
-              </Link>
+              <Card key={to} className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                <CardHeader className="flex flex-row items-start gap-3">
+                  <span
+                    className="inline-flex shrink-0 items-center justify-center rounded-xl"
+                    style={{
+                      width: 40,
+                      height: 40,
+                      backgroundColor: bubbleBg,
+                      color: bubbleFg,
+                    }}
+                    aria-hidden="true"
+                  >
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
+                      <CalculatorLink to={to}>{title}</CalculatorLink>
+                    </CardTitle>
+                    <p className="mt-1 text-sm" style={{ color: "#747886" }}>
+                      {desc}
+                    </p>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <span
+                    className="text-xs opacity-80 group-hover:opacity-100"
+                    style={{ color: "#747886" }}
+                  >
+                    Coming soon — click to preview the section path
+                  </span>
+                </CardContent>
+              </Card>
             ))}
-          </div>
++           </div>
 
-          {/* feedback block */}
-          <div className="mt-8 text-center">
-            <p className="text-sm" style={{ color: "#747886" }}>
-              Want this section sooner? Tell us which calculators you need most via{" "}
-              <Link to="/contact" className="underline" style={{ color: "#5c82ee" }}>
-                Contact
-              </Link>
-              .
-            </p>
-          </div>
-        </PageWithRails>
-      </main>
+           {/* feedback block */}
+           <div className="mt-8 text-center">
+             <p className="text-sm" style={{ color: "#747886" }}>
+               Want this section sooner? Tell us which calculators you need most via{" "}
+               <CalculatorLink to="/contact">Contact</CalculatorLink>
+               .
+             </p>
+           </div>
+           {/* close PageWithRails children container */}
+         </PageWithRails>
+       </main>
 
-      {/* AdSense policy: no footer banner ads on placeholder pages */}
-      <Footer showBanner={false} />
-    </div>
-  );
-}
+       {/* AdSense policy: no footer banner ads on placeholder pages */}
+       <Footer showBanner={false} />
+     </div>
+   );
+ }
+
+ export const pageMeta = { allowAds: false, minContentScore: 1 };

@@ -1,6 +1,7 @@
 // src/pages/ConstructionSubCategory.tsx
 import React from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import CalculatorLink from "@/components/common/CalculatorLink";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
@@ -86,27 +87,18 @@ export default function ConstructionSubCategory() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {calculators.map((calc) => (
-                <Link
-                  key={calc.slug}
-                  to={`/${category}/${calc.subcategory}/${calc.slug}`}
-                  className="group block"
-                >
-                  <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
-                    <CardHeader>
-                      <CardTitle
-                        className="text-lg font-semibold transition-colors"
-                        style={{ color: "#3c83f6" }}
-                      >
-                        {calc.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm" style={{ color: "#747886" }}>
-                        {calc.description || "Open calculator"}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
+                <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                  <CardHeader>
+                    <CardTitle className="text-lg font-semibold transition-colors">
+                      <CalculatorLink to={`/${category}/${calc.subcategory}/${calc.slug}`}>{calc.title}</CalculatorLink>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm" style={{ color: "#747886" }}>
+                      {calc.description || "Open calculator"}
+                    </p>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           )}

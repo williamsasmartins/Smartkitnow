@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
@@ -33,10 +32,8 @@ export default function CategorySubcategory() {
       : "Professional construction calculators for accurate project planning and material estimation.";
 
   return (
-    <div className="min-h-screen bg-gradient-soft">
-      <Header />
-
-
+    <div className="min-h-screen bg-background">
+      {/* Main Content Area - Add top padding to account for fixed header */}
       <main className="pt-20">
         <AdRailLayout
           topCenterAd={false}
@@ -101,7 +98,6 @@ export default function CategorySubcategory() {
           </section>
         </AdRailLayout>
       </main>
-      <Footer />
     </div>
   );
 }

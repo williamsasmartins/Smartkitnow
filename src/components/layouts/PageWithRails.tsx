@@ -1,8 +1,18 @@
 // src/components/layouts/PageWithRails.tsx
 import React from "react";
 import AdSlot from "@/components/ads/AdSlot";
+import RightRailAds from "@/components/ads/RightRailAds";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
 import ShareThisCalculator from "@/components/share/ShareThisCalculator";
+
+// Helper para ler metadados estáticos da página
+type PageMeta = { allowAds?: boolean; minContentScore?: number };
+function getPageMeta(children: any): PageMeta {
+  return children?.type?.pageMeta || { allowAds: true, minContentScore: 0 };
+}
+function hasEnoughContent(score: number) {
+  return score >= 3;
+}
 
 type Props = {
   titleBlock?: React.ReactNode;
@@ -34,10 +44,14 @@ export default function PageWithRails({
   showBottomBanner = true,
   railsSticky = true, // sticky por padrão em desktop
 }: Props) {
+  // Lógica AdSense: só renderiza anúncios quando há conteúdo suficiente
+  const meta = getPageMeta(children);
+  const canServeAds = !!meta.allowAds && hasEnoughContent(meta.minContentScore ?? 0);
+
   return (
     <div className="w-full overflow-x-hidden">
       {/* TOP BANNER */}
-      {showTopBanner && (
+      {showTopBanner && canServeAds && (
         <div className="mt-4">
           <AdSlot variant="banner" id="pageTopBanner" label="Ad - Top Banner (Google AdSense)" />
         </div>
@@ -58,7 +72,9 @@ export default function PageWithRails({
         {showRails ? (
           <aside className="hidden xl:block w-[160px]">
             <div className={railsSticky ? "sticky top-24 space-y-4" : "space-y-4"}>
-              <AdSlot variant="rail" id="leftRail" label="Ad - Left Rail (Google AdSense)" />
+              {canServeAds && (
+                <AdSlot variant="rail" id="leftRail" label="Ad - Left Rail (Google AdSense)" />
+              )}
             </div>
           </aside>
         ) : (
@@ -77,7 +93,7 @@ export default function PageWithRails({
           {titleBlock && <div className="mb-6">{titleBlock}</div>}
 
           {/* MIDDLE BANNER dentro do miolo */}
-          {showMiddleBanner && (
+          {showMiddleBanner && canServeAds && (
             <div className="mb-6">
               <AdSlot variant="banner" id="pageMiddleBanner" label="Ad - Middle Banner (Google AdSense)" />
             </div>
@@ -94,7 +110,7 @@ export default function PageWithRails({
         {showRails ? (
           <aside className="hidden xl:block w-[160px]">
             <div className={railsSticky ? "sticky top-24 space-y-4" : "space-y-4"}>
-              <AdSlot variant="rail" id="rightRail" label="Ad - Right Rail (Google AdSense)" />
+              {canServeAds && <RightRailAds />}
             </div>
           </aside>
         ) : (
@@ -103,7 +119,7 @@ export default function PageWithRails({
       </div>
 
       {/* BOTTOM BANNER */}
-      {showBottomBanner && (
+      {showBottomBanner && canServeAds && (
         <div className="my-6">
           <AdSlot variant="banner" id="pageBottomBanner" label="Ad - Bottom Banner (Google AdSense)" />
         </div>

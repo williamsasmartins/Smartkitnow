@@ -1,6 +1,6 @@
 // src/pages/math/EverydayMath.tsx
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Percent, Calculator, Sigma, Shapes } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 export default function EverydayMath() {
   const navigate = useNavigate();
@@ -104,28 +105,26 @@ export default function EverydayMath() {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-auto max-w-6xl">
             {tiles.map(({ to, title, count, Icon, iconBg, iconColor, desc }) => (
-              <Link key={to} to={to} className="group block">
-                <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
-                  <CardHeader className="flex flex-row items-center gap-3">
-                    <span
-                      className="inline-flex items-center justify-center rounded-xl"
-                      style={{ width: 42, height: 42, backgroundColor: iconBg, color: iconColor }}
-                      aria-hidden="true"
-                    >
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
-                      {title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm mb-2" style={{ color: "#747886" }}>{desc}</p>
-                    <p className="text-sm" style={{ color: "#747886" }}>
-                      {count} calculators available
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
+              <Card key={to} className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                <CardHeader className="flex flex-row items-center gap-3">
+                  <span
+                    className="inline-flex items-center justify-center rounded-xl"
+                    style={{ width: 42, height: 42, backgroundColor: iconBg, color: iconColor }}
+                    aria-hidden="true"
+                  >
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
+                    <CalculatorLink to={to}>{title}</CalculatorLink>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm mb-2" style={{ color: "#747886" }}>{desc}</p>
+                  <p className="text-sm" style={{ color: "#747886" }}>
+                    {count} calculators available
+                  </p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </PageWithRails>

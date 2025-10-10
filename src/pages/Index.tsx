@@ -1,6 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
 import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -1371,9 +1369,6 @@ const Index = () => {
     icon: Star
   }];
   return <div className="min-h-screen bg-background">
-      {/* Fixed Header */}
-      <Header />
-
       {/* Main Content Area - Add top padding to account for fixed header */}
       <main className="pt-20">
         {/* Categories Section */}
@@ -1677,7 +1672,6 @@ const Index = () => {
         {/* removed per user request */}
 
         </main>
-        <Footer />
       </div>;
 };
 export default Index;

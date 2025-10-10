@@ -1,7 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+
 import { ArrowLeft } from "lucide-react";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
@@ -39,16 +38,16 @@ export default function CategoryIndex() {
 
   return (
     <div className="min-h-screen bg-gradient-soft">
-      <Header />
 
-
-      {/* Banner horizontal no topo (abaixo da barra de navegação) */}
+{/* Banner horizontal no topo (abaixo da barra de navegação) */}
       <div className="container mx-auto px-4 mt-6 mb-2">
         <div className="flex justify-center items-center min-h-[100px]">
           <AdSlot variant="banner" label="Ad - Top Banner (Google AdSense)" />
         </div>
       </div>
 
+      <div className="min-h-screen bg-background">
+{/* Main Content Area - Add top padding to account for fixed header */}
       <main className="pt-20">
         <AdRailLayout
           topCenterAd={false}
@@ -197,7 +196,7 @@ export default function CategoryIndex() {
           </section>
         </AdRailLayout>
       </main>
-      <Footer />
     </div>
-  );
+  </div>
+);
 }

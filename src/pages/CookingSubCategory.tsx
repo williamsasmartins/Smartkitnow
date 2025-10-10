@@ -1,6 +1,7 @@
 // src/pages/CookingSubCategory.tsx
 import React from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import CalculatorLink from "@/components/common/CalculatorLink";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
@@ -118,24 +119,22 @@ export default function CookingSubCategory() {
               {calculators.map((calc) => {
                 const { Icon, color, bg } = iconForCalc(calc.slug, calc.title);
                 return (
-                  <Link key={calc.slug} to={`/cooking/${calc.subcategory}/${calc.slug}`} className="group block">
-                    <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
-                      <CardHeader className="flex flex-row items-center gap-3">
-                        <span className="inline-flex items-center justify-center rounded-xl"
-                              style={{ width: 40, height: 40, backgroundColor: bg, color }} aria-hidden="true">
-                          <Icon className="h-5 w-5" />
-                        </span>
-                        <CardTitle className="text-lg font-semibold" style={{ color: "#000000" }}>
-                          {calc.title}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-sm" style={{ color: "#747886" }}>
-                          {calc.description || "Open calculator"}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                  <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                    <CardHeader className="flex flex-row items-center gap-3">
+                      <span className="inline-flex items-center justify-center rounded-xl"
+                            style={{ width: 40, height: 40, backgroundColor: bg, color }} aria-hidden="true">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <CardTitle className="text-lg font-semibold">
+                        <CalculatorLink to={`/cooking/${calc.subcategory}/${calc.slug}`}>{calc.title}</CalculatorLink>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm" style={{ color: "#747886" }}>
+                        {calc.description || "Open calculator"}
+                      </p>
+                    </CardContent>
+                  </Card>
                 );
               })}
             </div>

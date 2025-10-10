@@ -1,8 +1,10 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import SEOHead from "@/components/SEOHead";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
 import ShareThisCalculator from "@/components/share/ShareThisCalculator";
+import { Button } from "@/components/ui/button";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 const NotFound = () => {
   const location = useLocation();
@@ -26,9 +28,9 @@ const NotFound = () => {
           404
         </h1>
         <p className="mb-6 text-lg text-muted-foreground">Oops! Page not found.</p>
-        <Link to="/" className="inline-block rounded-md border border-border px-4 py-2 text-primary hover:bg-primary/10">
-          Back to Home
-        </Link>
+        <Button variant="outline" asChild>
+          <CalculatorLink to="/">Back to Home</CalculatorLink>
+        </Button>
         <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           <SiteFeedbackForm title="Questions or suggestions?" />
           <ShareThisCalculator />
@@ -39,3 +41,4 @@ const NotFound = () => {
 };
 
 export default NotFound;
+export const pageMeta = { allowAds: false, minContentScore: 1 };

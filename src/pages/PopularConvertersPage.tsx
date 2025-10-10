@@ -1,6 +1,7 @@
 // src/pages/PopularConvertersPage.tsx
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import CalculatorLink from "@/components/common/CalculatorLink";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
@@ -160,14 +161,13 @@ export default function PopularConvertersPage() {
                   </CardHeader>
                   <CardContent className="grid grid-cols-2 gap-2">
                     {group.links.map((lnk) => (
-                      <Link
+                      <CalculatorLink
                         key={lnk.to}
                         to={lnk.to}
-                        className="text-sm underline underline-offset-2 hover:opacity-90"
-                        style={{ color: "#5c82ee" }}
+                        className="text-sm"
                       >
                         {lnk.label}
-                      </Link>
+                      </CalculatorLink>
                     ))}
                   </CardContent>
                 </Card>

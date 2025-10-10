@@ -132,3 +132,5 @@ export default function Contact() {
     </div>
   );
 }
+
+export const pageMeta = { allowAds: false, minContentScore: 1 };

@@ -5,8 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { getSmartTipsCategoryBySlug } from '@/data/smartTipsData';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+
 
 const SmartTipsSubCategory: React.FC = () => {
   const { subcategory } = useParams<{ subcategory: string }>();
@@ -43,9 +42,8 @@ const SmartTipsSubCategory: React.FC = () => {
 
   if (!category) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-        <Header />
-        <main className="container mx-auto px-4 py-8">
+      <div className="min-h-screen bg-background">
+        <main className="pt-20 container mx-auto px-4 py-8">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-primary mb-4">Category Not Found</h1>
             <p className="text-muted-foreground mb-6">The requested smart tips category could not be found.</p>
@@ -61,10 +59,9 @@ const SmartTipsSubCategory: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-      <Header />
-      
-      <main className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-background">
+      {/* Main Content Area - Add top padding to account for fixed header */}
+      <main className="pt-20">
         {/* Back Button */}
         <div className="mb-6">
           <Button 
@@ -176,9 +173,8 @@ const SmartTipsSubCategory: React.FC = () => {
         </div>
       </main>
 
-      <Footer />
-    </div>
-  );
-};
+     </div>
+   );
+ };
 
 export default SmartTipsSubCategory;

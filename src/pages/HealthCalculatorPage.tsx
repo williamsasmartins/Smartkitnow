@@ -1,44 +1,14 @@
-import { useMemo } from "react";
-import CategoryPageTemplate from "@/components/layouts/CategoryPageTemplate";
-import { buildSectionsForCategory } from "@/data/categorySections";
+import CategoryPageTemplate, { defaultPageMeta } from "@/components/layouts/CategoryPageTemplate";
+import { HEALTH_TITLE, HEALTH_DESCRIPTION, HEALTH_SECTIONS } from "@/data/categories/health.data";
 
-const HealthCalculatorPage = () => {
-  const sections = useMemo(
-    () =>
-      buildSectionsForCategory("health", {
-        shortPaths: true,
-        subcategoryIconMap: {
-          "body-composition-calculators": "⚖️",
-          "metabolism-calculators": "🔥",
-          "nutrition-calculators": "🥗",
-          "weight-loss-calculators": "📉",
-          "general": "🩺",
-        },
-      }),
-    []
-  );
+export const pageMeta = { ...defaultPageMeta, minContentScore: 3 };
 
-  const intro = (
-    <div className="space-y-3">
-      <p>
-        Explore nossa coleção de calculadoras de saúde e fitness para avaliar composição corporal, metabolismo, necessidades calóricas e muito mais.
-      </p>
-      <p>
-        Ferramentas como BMI, BMR e TDEE ajudam você a entender métricas essenciais do seu corpo, enquanto conversores e guias de nutrição apoiam decisões do dia a dia.
-      </p>
-    </div>
-  );
-
+export default function HealthCalculatorPage() {
   return (
     <CategoryPageTemplate
-      title="Health & Fitness Calculators"
-      intro={intro}
-      sections={sections}
-      showTopBanner={true}
-      showRightRail={true}
-      contentBackgroundColor="#0c1424"
+      title={HEALTH_TITLE}
+      description={HEALTH_DESCRIPTION}
+      sections={HEALTH_SECTIONS}
     />
   );
-};
-
-export default HealthCalculatorPage;
+}
