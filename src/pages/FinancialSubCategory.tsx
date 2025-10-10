@@ -83,7 +83,7 @@ export default function FinancialSubCategory() {
               <div className="mb-6">
                 <Button
                   variant="default"
-                  onClick={() => navigate(`/financial`)}
+                  onClick={() => navigate(`/`)}
                   className="flex items-center gap-2"
                   style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
                 >

@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, ArrowLeft } from "lucide-react";
 import { useState, useMemo } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 const scienceData = {
   "chemistry": {
@@ -131,18 +132,16 @@ export default function ScienceSubCategory() {
               key={calculator.key} 
               className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
             >
-              <Link to={`/science/calculator/${calculator.key}`} className="block h-full">
-                <CardHeader className="bg-gradient-subtle group-hover:bg-gradient-primary/10 transition-colors duration-300">
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                    {calculator.name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <CardDescription className="text-base">
-                    {calculator.description}
-                  </CardDescription>
-                </CardContent>
-              </Link>
+              <CardHeader className="bg-gradient-subtle group-hover:bg-gradient-primary/10 transition-colors duration-300">
+                <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                  <CalculatorLink to={`/science/calculator/${calculator.key}`}>{calculator.name}</CalculatorLink>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <CardDescription className="text-base">
+                  {calculator.description}
+                </CardDescription>
+              </CardContent>
             </Card>
           ))}
         </div>

@@ -130,11 +130,11 @@ export default function App() {
             {/* Atalhos diretos para slugs populares (sem categoria/subcategoria) */}
             <Route
               path="/convert-calories-to-kg"
-              element={<Navigate to="/health/convert-calories-to-kg" replace />}
+              element={<Navigate to="/" replace />}
             />
             <Route
               path="/calories-to-kilograms"
-              element={<Navigate to="/health/calories-to-kilograms" replace />}
+              element={<Navigate to="/" replace />}
             />
 
             {/* Legado -> redireciona */}

@@ -1,9 +1,10 @@
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ArrowLeft, Monitor, DollarSign, BookOpen } from "lucide-react";
 import { useState, useMemo } from "react";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 export default function TVSubCategory() {
   const { subcategory } = useParams();
@@ -106,9 +107,8 @@ export default function TVSubCategory() {
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">Category Not Found</h1>
             <p className="text-muted-foreground mb-8">The requested category does not exist.</p>
-            <Link to="/tv">
-              <Button>Back to TV & Video Calculators</Button>
-            </Link>
+-            <Button onClick={() => navigate("/tv")}>Back to TV & Video Calculators</Button>
++            <Button onClick={() => navigate("/tv")}>Back to TV & Video Calculators</Button>
           </div>
         </div>
       </div>
@@ -170,7 +170,9 @@ export default function TVSubCategory() {
               onClick={() => handleCalculatorClick(calculator.key)}
             >
               <CardHeader>
-                <CardTitle className="text-xl">{calculator.name}</CardTitle>
+                <CardTitle className="text-xl">
+                  <CalculatorLink to={`/tv/calculator/${calculator.key}`}>{calculator.name}</CalculatorLink>
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-4">{calculator.description}</p>

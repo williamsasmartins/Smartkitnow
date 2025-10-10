@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,6 +15,7 @@ import {
 import { PALETTE } from "@/components/theme/palette";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
 import ShareThisCalculator from "@/components/share/ShareThisCalculator";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 export default function CategorySubcategory() {
   const navigate = useNavigate();
@@ -78,9 +79,7 @@ export default function CategorySubcategory() {
                 return (
                   <li key={calc.slug} className="bg-card border border-border/50 rounded-md p-4">
                     <h2 className="text-lg font-semibold">
-                      <Link to={url} className="skn-calc-link">
-                        {calc.title}
-                      </Link>
+                      <CalculatorLink to={url}>{calc.title}</CalculatorLink>
                     </h2>
                     <p className="text-sm mt-1" style={{ color: PALETTE.brand.text }}>
                       {calc.description || "Open the calculator"}

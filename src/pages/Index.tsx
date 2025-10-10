@@ -961,6 +961,172 @@ const Index = () => {
           key: "wire-size",
           name: "Wire Size Calculator"
         }]
+      },
+      {
+        title: "Featured Calculators",
+        icon: "fa-solid fa-utensils",
+        calculators: [{
+          key: "cake",
+          name: "Cake Calculator"
+        }, {
+          key: "cooking-conversion",
+          name: "Cooking Conversion Calculator"
+        }, {
+          key: "ham-cooking-time",
+          name: "Ham Cooking Time Calculator"
+        }, {
+          key: "ham-size",
+          name: "Ham Size Calculator"
+        }, {
+          key: "milk-weight",
+          name: "Milk Weight Calculator"
+        }, {
+          key: "oven-temperature-conversion",
+          name: "Oven Temperature Conversion Calculator & Chart"
+        }, {
+          key: "oven-air-fryer-conversion",
+          name: "Oven to Air Fryer Conversion Calculator"
+        }, {
+          key: "pizza",
+          name: "Pizza Calculator"
+        }, {
+          key: "recipe-scale-conversion",
+          name: "Recipe Scale Conversion Calculator"
+        }, {
+          key: "timer",
+          name: "Timer"
+        }, {
+          key: "turkey-cooking-time",
+          name: "Turkey Cooking Time Calculator"
+        }, {
+          key: "turkey-size",
+          name: "Turkey Size Calculator"
+        }, {
+          key: "turkey-thawing-time",
+          name: "Turkey Thawing Time Calculator"
+        }]
+      }, {
+        title: "Cooking Measurements",
+        icon: "fa-solid fa-measuring-cup",
+        calculators: [{
+          key: "ounces-half-cup",
+          name: "How Many Ounces In 1/2 Cup?"
+        }, {
+          key: "ounces-third-cup",
+          name: "How Many Ounces In 1/3 Cup?"
+        }, {
+          key: "ounces-quarter-cup",
+          name: "How Many Ounces In 1/4 Cup?"
+        }, {
+          key: "ounces-cup",
+          name: "How Many Ounces In a Cup?"
+        }, {
+          key: "tablespoons-cup",
+          name: "How Many Tablespoons In 1 Cup?"
+        }, {
+          key: "tablespoons-half-cup",
+          name: "How Many Tablespoons In 1/2 Cup?"
+        }, {
+          key: "tablespoons-third-cup",
+          name: "How Many Tablespoons In 1/3 Cup?"
+        }, {
+          key: "tablespoons-quarter-cup",
+          name: "How Many Tablespoons In 1/4 Cup?"
+        }, {
+          key: "tablespoons-eighth-cup",
+          name: "How Many Tablespoons In 1/8 Cup?"
+        }, {
+          key: "tablespoons-two-thirds-cup",
+          name: "How Many Tablespoons In 2/3 Cup?"
+        }, {
+          key: "tablespoons-three-quarters-cup",
+          name: "How Many Tablespoons In 3/4 Cup?"
+        }, {
+          key: "teaspoons-third-cup",
+          name: "How Many Teaspoons In 1/3 Cup?"
+        }, {
+          key: "teaspoons-quarter-cup",
+          name: "How Many Teaspoons In 1/4 Cup?"
+        }, {
+          key: "teaspoons-eighth-cup",
+          name: "How Many Teaspoons In 1/8 Cup?"
+        }, {
+          key: "teaspoons-tablespoon",
+          name: "How Many Teaspoons In a Tablespoon?"
+        }, {
+          key: "teaspoons-half-tablespoon",
+          name: "How Many Teaspoons In Half a Tablespoon?"
+        }]
+      }, {
+        title: "Unit Conversion Calculators",
+        icon: "fa-solid fa-arrows-rotate",
+        calculators: [{
+          key: "beer-volume-conversions",
+          name: "Beer Volume Conversions"
+        }, {
+          key: "butter-unit-conversions",
+          name: "Butter Unit Conversions"
+        }, {
+          key: "cups-to-grams",
+          name: "Cups to Grams Converter"
+        }, {
+          key: "cups-to-ml",
+          name: "Cups to mL Converter"
+        }, {
+          key: "cups-to-tablespoons",
+          name: "Cups to Tablespoons Converter"
+        }, {
+          key: "flour-volume-weight",
+          name: "Flour Volume & Weight Conversions"
+        }, {
+          key: "grams-to-cups",
+          name: "Grams to Cups Converter"
+        }, {
+          key: "grams-to-ml",
+          name: "Grams to mL Converter"
+        }, {
+          key: "grams-to-ounces",
+          name: "Grams to Ounces Converter"
+        }, {
+          key: "grams-to-tablespoons",
+          name: "Grams to Tablespoons Converter"
+        }, {
+          key: "grams-to-teaspoons",
+          name: "Grams to Teaspoons Converter"
+        }, {
+          key: "mg-to-ml",
+          name: "mg to mL Converter"
+        }, {
+          key: "ml-to-grams",
+          name: "mL to Grams Converter"
+        }, {
+          key: "ml-to-mg",
+          name: "mL to mg Converter"
+        }, {
+          key: "ounces-to-grams",
+          name: "Ounces to Grams Converter"
+        }, {
+          key: "salt-volume-weight",
+          name: "Salt Volume & Weight Conversions"
+        }, {
+          key: "sugar-volume-weight",
+          name: "Sugar Volume & Weight Conversions"
+        }, {
+          key: "tablespoons-to-cups",
+          name: "Tablespoons to Cups Converter"
+        }, {
+          key: "tablespoons-to-grams",
+          name: "Tablespoons to Grams Converter"
+        }, {
+          key: "teaspoons-to-grams",
+          name: "Teaspoons to Grams Converter"
+        }, {
+          key: "volume-unit-conversions",
+          name: "Volume Unit Conversions"
+        }, {
+          key: "weight-unit-conversions",
+          name: "Weight Unit Conversions"
+        }]
       }]
     },
     financial: {
@@ -1204,7 +1370,7 @@ const Index = () => {
     description: "Calculate your GPA",
     icon: Star
   }];
-  return <div className="min-h-screen bg-gradient-soft">
+  return <div className="min-h-screen bg-background">
       {/* Fixed Header */}
       <Header />
 
@@ -1282,8 +1448,11 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Gradient Divider Between Sections */}
+        {/* removed per user request */}
+
         {/* Featured Section */}
-        <section className="container mx-auto px-4 py-16 bg-muted/20">
+        <section className="container mx-auto px-4 py-16">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold skn-title mb-4">Featured Calculators</h3>
             <p className="text-muted-foreground text-lg">
@@ -1318,6 +1487,9 @@ const Index = () => {
           })}
           </div>
         </section>
+
+        {/* Gradient Divider Between Sections */}
+        {/* removed per user request */}
 
         {/* About Us Section */}
         <section className="container mx-auto px-4 py-16">
@@ -1400,7 +1572,9 @@ const Index = () => {
         </section>
 
         {/* Why Our Calculators Matter Section */}
-        <section className="container mx-auto px-4 py-16 bg-muted/20">
+        {/* removed per user request */}
+
+        <section className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center skn-title mb-12">
               Empowering Better Decisions Through Accurate Calculations
@@ -1475,46 +1649,35 @@ const Index = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold skn-title mb-6">Our Commitment to Excellence</h2>
             <p className="text-lg text-muted-foreground mb-8">
-              At Smart Kit Now, we're committed to providing you with the most accurate, reliable, and user-friendly 
-              calculators available online. We continuously update our tools based on user feedback and industry 
+              At Smart Kit Now, we're committed to providing you with the most accurate, reliable, and user-friendly
+              calculators available online. We continuously update our tools based on user feedback and industry
               standards to ensure you always have access to the best calculation resources.
             </p>
-            
+
             <div className="grid md:grid-cols-3 gap-6">
               <div className="p-6 rounded-lg bg-card border border-border/50">
-                <BookOpen className="h-8 w-8 mx-auto mb-3" style={{ color: '#14b8a6' }} />
-                <h4 className="font-semibold skn-title mb-2">Continuous Learning</h4>
-                <p className="text-sm text-muted-foreground">
-                  We regularly add new calculators and improve existing ones based on user needs and industry developments.
-                </p>
+                <BookOpen className="h-8 w-8 mx-auto mb-3" style={{ color: '#34d399' }} />
+                <h4 className="font-semibold skn-title mb-2">Continuous Improvement</h4>
+                <p className="text-sm text-muted-foreground">We continually refine our tools based on user feedback and industry standards.</p>
               </div>
-              
               <div className="p-6 rounded-lg bg-card border border-border/50">
-                <Smile className="h-8 w-8 mx-auto mb-3" style={{ color: '#f97316' }} />
-                <h4 className="font-semibold skn-title mb-2">User-Centric Design</h4>
-                <p className="text-sm text-muted-foreground">
-                  Every feature we build is designed with our users in mind, ensuring maximum usability and efficiency.
-                </p>
+                <Star className="h-8 w-8 mx-auto mb-3" style={{ color: '#60a5fa' }} />
+                <h4 className="font-semibold skn-title mb-2">Accuracy & Transparency</h4>
+                <p className="text-sm text-muted-foreground">Clear formulas and explanations ensure reliable, verifiable results.</p>
               </div>
-              
               <div className="p-6 rounded-lg bg-card border border-border/50">
-                <Quote className="h-8 w-8 mx-auto mb-3" style={{ color: '#0ea5e9' }} />
-                <h4 className="font-semibold skn-title mb-2">Transparency</h4>
-                <p className="text-sm text-muted-foreground">
-                  We provide clear explanations of our formulas and methodologies so you understand exactly how results are calculated.
-                </p>
+                <Zap className="h-8 w-8 mx-auto mb-3" style={{ color: '#f59e0b' }} />
+                <h4 className="font-semibold skn-title mb-2">Performance & UX</h4>
+                <p className="text-sm text-muted-foreground">Fast, accessible and delightful experience across devices.</p>
               </div>
             </div>
           </div>
         </section>
-        <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <SiteFeedbackForm title="Questions or suggestions?" />
-          <ShareThisCalculator />
-        </section>
-      </main>
 
-      {/* Footer Section */}
-      <Footer />
-    </div>;
+        {/* removed per user request */}
+
+        </main>
+        <Footer />
+      </div>;
 };
 export default Index;

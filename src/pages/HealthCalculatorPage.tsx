@@ -36,6 +36,7 @@ const HealthCalculatorPage = () => {
       sections={sections}
       showTopBanner={true}
       showRightRail={true}
+      contentBackgroundColor="#0c1424"
     />
   );
 };

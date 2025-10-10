@@ -101,6 +101,7 @@ const FinancialCalculatorPage = () => {
       showTopBanner={true}
       showRightRail={true}
       additionalItemCount={additionalItemCount}
+      contentBackgroundColor="#0c1424"
       recommendedFooter={(
         <div className="category-footer space-y-6">
           {/* New H2 sections after existing subcategories */}

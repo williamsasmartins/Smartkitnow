@@ -117,7 +117,7 @@ export default function HealthSubCategory() {
               <div className="mb-6">
                 <Button
                   variant="default"
-                  onClick={() => navigate(`/health`)}
+                  onClick={() => navigate(`/`)}
                   className="flex items-center gap-2"
                   style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
                 >

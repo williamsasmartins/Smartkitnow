@@ -11,6 +11,7 @@ import CalculatorListBlue from "@/components/common/CalculatorListBlue";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
 import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 import AdRailLayout from "@/components/layouts/AdRailLayout";
+import { useTheme } from "next-themes";
 
 export type CategoryPageTemplateProps = {
   title: string;
@@ -42,13 +43,15 @@ export default function CategoryPageTemplate({
   const [introExpanded, setIntroExpanded] = React.useState(false);
   const navigate = useNavigate();
   const totalCount = React.useMemo(() => sections.reduce((sum, s) => sum + s.items.length, 0) + (additionalItemCount ?? 0), [sections, additionalItemCount]);
+  const { resolvedTheme } = useTheme();
+  const darkBgStyle = (resolvedTheme === "dark" && contentBackgroundColor) ? { backgroundColor: contentBackgroundColor } : undefined;
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
       {contentBackgroundColor ? (
-        <div style={{ backgroundColor: contentBackgroundColor }} className="mt-20">
+        <div style={darkBgStyle} className="mt-0">
           <main className="pt-0">
             {/* Top banner (90px) */}
             {showTopBanner && (
@@ -144,9 +147,7 @@ export default function CategoryPageTemplate({
                 </div>
             </section>
           </AdRailLayout>
-          <div className="overflow-hidden">
-            <Footer />
-          </div>
+          {/* Footer moved outside to ensure it always uses theme-aware background */}
         </div>
       ) : (
         <>
@@ -245,9 +246,10 @@ export default function CategoryPageTemplate({
                 </div>
             </section>
           </AdRailLayout>
-      {!contentBackgroundColor && <Footer />}
-        </>
-      )}
-    </div>
-  );
+          {/* Footer moved outside to ensure consistent theming */}
+         </>
+       )}
+      <Footer />
+     </div>
+   );
 }

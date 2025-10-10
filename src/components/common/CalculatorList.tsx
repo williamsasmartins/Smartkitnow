@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
+import CalculatorLink from "@/components/common/CalculatorLink";
 
 type Item = { title: string; to: string };
 
 export default function CalculatorList({ items }: { items: Item[] }) {
   return (
-    <ul className="skn-calc-list">
+    <ul className="list-disc pl-5 space-y-2">
       {items.map((it) => (
         <li key={it.to}>
-          <Link to={it.to} className="skn-calc-link">{it.title}</Link>
+          <CalculatorLink to={it.to}>{it.title}</CalculatorLink>
         </li>
       ))}
     </ul>

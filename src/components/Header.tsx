@@ -112,18 +112,6 @@ export function Header() {
         <ul className="skn-cat-menu flex items-center justify-start gap-5 text-sm whitespace-nowrap w-full">
           {/* 11 principais categorias */}
           <li className="flex items-center">
-            <Link to="/financial" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{categoryIcon("financial")}</span>
-              Financial
-            </Link>
-          </li>
-          <li className="flex items-center">
-            <Link to="/health" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{categoryIcon("health")}</span>
-              Health & Fitness
-            </Link>
-          </li>
-          <li className="flex items-center">
             <Link to="/cooking" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
               <span className="mr-1" aria-hidden>{categoryIcon("cooking")}</span>
               Cooking
@@ -139,6 +127,18 @@ export function Header() {
             <Link to="/math" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
               <span className="mr-1" aria-hidden>{categoryIcon("math")}</span>
               Math & Algebra
+            </Link>
+          </li>
+          <li className="flex items-center">
+            <Link to="/financial" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
+              <span className="mr-1" aria-hidden>{categoryIcon("financial")}</span>
+              Financial
+            </Link>
+          </li>
+          <li className="flex items-center">
+            <Link to="/health" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
+              <span className="mr-1" aria-hidden>{categoryIcon("health")}</span>
+              Health & Fitness
             </Link>
           </li>
           <li className="flex items-center">

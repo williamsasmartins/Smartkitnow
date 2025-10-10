@@ -1,4 +1,13 @@
 .skn-title { color: #5c82ee !important; }
+/* Calculator link style — matches Omni's health category behavior */
+.skn-link-readmore {
+  @apply inline text-[#3c83f6] underline decoration-[#3c83f6] underline-offset-2;
+}
+/* opcional: underline um pouco mais forte no hover/focus */
+.skn-link-readmore:hover,
+.skn-link-readmore:focus {
+  @apply decoration-2;
+}
 .skn-subtitle { color: #747886 !important; }
 
 /* wrapper for colored icons of mini-cards */
