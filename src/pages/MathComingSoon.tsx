@@ -107,9 +107,9 @@ export default function MathComingSoon() {
               </div>
             </div>
           }
-          showRails
-          showTopBanner
-          showBottomBanner
+          showRails={false}
+          showTopBanner={false}
+          showBottomBanner={false}
         >
           {/* GRID of subcategories — now CLICKABLE */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -164,7 +164,8 @@ export default function MathComingSoon() {
         </PageWithRails>
       </main>
 
-      <Footer />
+      {/* AdSense policy: no footer banner ads on placeholder pages */}
+      <Footer showBanner={false} />
     </div>
   );
 }

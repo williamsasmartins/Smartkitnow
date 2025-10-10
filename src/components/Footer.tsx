@@ -48,7 +48,7 @@ const COLS: Array<{ title: string; links: { label: string; to: string }[] }> = [
   },
 ];
 
-export function Footer() {
+export function Footer({ showBanner = true }: { showBanner?: boolean }) {
   return (
     <footer className="mt-0 border-t border-border bg-background">
       <div className="mx-auto max-w-6xl px-4 md:px-6 py-10">
@@ -96,9 +96,11 @@ export function Footer() {
             </nav>
           ))}
         </div>
-        <div className="pt-6">
-          <AdSlot variant="banner" id="footerTopBanner" label="Ad - Footer Banner (Google AdSense)" />
-        </div>
+        {showBanner && (
+          <div className="pt-6">
+            <AdSlot variant="banner" id="footerTopBanner" label="Ad - Footer Banner (Google AdSense)" />
+          </div>
+        )}
       </div>
 
       <div className="border-t border-border">

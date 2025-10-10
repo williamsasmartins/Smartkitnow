@@ -52,7 +52,7 @@ export default function CategoryPageTemplate({
 
       {contentBackgroundColor ? (
         <div style={darkBgStyle} className="mt-0">
-          <main className="pt-0">
+          <main className="pt-20">
             {/* Top banner (90px) */}
             {showTopBanner && (
               <div className="container mx-auto px-4">

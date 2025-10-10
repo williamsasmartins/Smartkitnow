@@ -41,7 +41,8 @@ export default function ComingSoon({
           </div>
         </div>
       </main>
-      <Footer />
+      {/* AdSense policy: no footer banner ads on placeholder pages */}
+      <Footer showBanner={false} />
     </div>
   );
 }

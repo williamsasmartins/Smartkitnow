@@ -54,6 +54,9 @@ const CalculatorPage = () => {
   const categoryFromPath =
     location.pathname.split("/")[1] || entry?.category || "construction";
 
+  // Suppress ads for placeholder calculators (titles marked with "(Coming Soon)")
+  const isPlaceholder = !!entry?.title?.includes("(Coming Soon)");
+
   const handleGoBack = () => {
     // Displays interstitial (placeholder) to simulate return ad behavior
     setShowInterstitial(true);
@@ -254,7 +257,7 @@ const CalculatorPage = () => {
             />
           </section>
 
-          <AdRailLayout topCenterAd={false} bottomCenterAd={false} showRails={true} showLeftRail={false} showRightRail={true}>
+          <AdRailLayout topCenterAd={false} bottomCenterAd={false} showRails={!isPlaceholder} showLeftRail={false} showRightRail={!isPlaceholder}>
             <section className="mt-6 space-y-3">
               <SiteFeedbackForm title="Questions or suggestions?" compact={true} />
               <ShareThisCalculator />
@@ -286,7 +289,7 @@ const CalculatorPage = () => {
         </div>
       )}
 
-      <Footer />
+      <Footer showBanner={!isPlaceholder} />
     </div>
   );
 };
