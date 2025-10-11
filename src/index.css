@@ -95,6 +95,14 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  .skn-offset-header {
+    padding-top: 140px; /* mobile: header + category menu */
+  }
+  @media (min-width: 640px) {
+    .skn-offset-header {
+      padding-top: 160px; /* sm+: slightly larger header */
+    }
+  }
 }
 
 /* Tipografia global para páginas de categoria */

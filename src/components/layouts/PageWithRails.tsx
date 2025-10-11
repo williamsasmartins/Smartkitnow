@@ -97,7 +97,7 @@ export default function PageWithRails({
             justify-self-start
             "
         >
-          {titleBlock && <div className="mb-6">{titleBlock}</div>}
+          {titleBlock && <div className="skn-offset-header mb-6">{titleBlock}</div>}
 
           {/* MIDDLE BANNER dentro do miolo */}
           {showMiddleBanner && canServeAds && (
