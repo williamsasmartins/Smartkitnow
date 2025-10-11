@@ -6,22 +6,10 @@ import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ChefHat, Timer, Ruler, Beaker, ArrowLeftRight, Soup } from "lucide-react";
-import { listSubcategoriesOfCategory, FRIENDLY_TITLES } from "@/data/calculatorRegistry";
+import { ArrowLeft } from "lucide-react";
+import { listSubcategoriesOfCategory, FRIENDLY_TITLES, subcategoryIcon } from "@/data/calculatorRegistry";
 import SEOHead from "@/components/SEOHead";
 import CalculatorLink from "@/components/common/CalculatorLink";
-
-/** Colored icons by subcategory (40×40 badge) */
-const ICONS_BY_SUBCAT: Record<string, { Icon: React.ComponentType<any>; color: string; bg: string }> = {
-  "cooking-baking-calculators": { Icon: ChefHat,       color: "#f59e0b", bg: "rgba(245,158,11,0.14)" }, // amber
-  "cooking-measurements":       { Icon: Beaker,        color: "#06b6d4", bg: "rgba(6,182,212,0.14)" },  // cyan
-  "cooking-unit-conversions":   { Icon: ArrowLeftRight,color: "#22c55e", bg: "rgba(34,197,94,0.14)" },  // green
-};
-const DEFAULT_ICON = { Icon: Soup, color: "#8b5cf6", bg: "rgba(139,92,246,0.14)" };
-
-function getIconForSubcat(slug: string) {
-  return ICONS_BY_SUBCAT[slug] || DEFAULT_ICON;
-}
 
 export default function CookingCalculators() {
   const navigate = useNavigate();
@@ -74,16 +62,16 @@ export default function CookingCalculators() {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {subcats.map((sc) => {
-              const { Icon, color, bg } = getIconForSubcat(sc.slug);
+              const emoji = subcategoryIcon(sc.slug, category);
               return (
                 <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
                   <CardHeader className="flex flex-row items-center gap-3">
                     <span
-                      className="inline-flex items-center justify-center rounded-xl"
-                      style={{ width: 40, height: 40, backgroundColor: bg, color }}
+                      className="inline-flex items-center justify-center rounded-xl text-xl"
+                      style={{ width: 40, height: 40 }}
                       aria-hidden="true"
                     >
-                      <Icon className="h-5 w-5" />
+                      {emoji}
                     </span>
                     <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
                       <CalculatorLink to={`/cooking/${sc.slug}`}>{sc.title}</CalculatorLink>

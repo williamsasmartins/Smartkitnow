@@ -6,9 +6,10 @@ import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Gauge, Soup, Star } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import CalculatorLink from "@/components/common/CalculatorLink";
+import { categoryIcon, subcategoryIcon } from "@/data/calculatorRegistry";
 
 export default function ConversionCalculators() {
   const navigate = useNavigate();
@@ -76,10 +77,12 @@ export default function ConversionCalculators() {
               <CardHeader className="flex flex-row items-center gap-3">
                 <span
                   className="inline-flex items-center justify-center rounded-xl"
-                  style={{ width: 44, height: 44, backgroundColor: "rgba(59,130,246,0.14)", color: "#3b82f6" }}
+                  style={{ width: 44, height: 44, backgroundColor: "rgba(59,130,246,0.14)" }}
                   aria-hidden="true"
                 >
-                  <Gauge className="h-5 w-5" />
+                  <span className="text-xl leading-none" aria-hidden="true">
+                    {categoryIcon("conversion")}
+                  </span>
                 </span>
                 <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
                   <CalculatorLink to="/conversion/popular">Popular Unit Converters</CalculatorLink>
@@ -97,10 +100,12 @@ export default function ConversionCalculators() {
               <CardHeader className="flex flex-row items-center gap-3">
                 <span
                   className="inline-flex items-center justify-center rounded-xl"
-                  style={{ width: 44, height: 44, backgroundColor: "rgba(249,115,22,0.14)", color: "#f97316" }}
+                  style={{ width: 44, height: 44, backgroundColor: "rgba(249,115,22,0.14)" }}
                   aria-hidden="true"
                 >
-                  <Soup className="h-5 w-5" />
+                  <span className="text-xl leading-none" aria-hidden="true">
+                    {subcategoryIcon("cooking-baking-calculators", "cooking")}
+                  </span>
                 </span>
                 <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
                   <CalculatorLink to="/conversion/cooking-baking">Cooking &amp; Baking Ingredient Converters</CalculatorLink>
@@ -118,10 +123,12 @@ export default function ConversionCalculators() {
               <CardHeader className="flex flex-row items-center gap-3">
                 <span
                   className="inline-flex items-center justify-center rounded-xl"
-                  style={{ width: 44, height: 44, backgroundColor: "rgba(250,204,21,0.18)", color: "#ca8a04" }}
+                  style={{ width: 44, height: 44, backgroundColor: "rgba(250,204,21,0.18)" }}
                   aria-hidden="true"
                 >
-                  <Star className="h-5 w-5" />
+                  <span className="text-xl leading-none" aria-hidden="true">
+                    {categoryIcon("conversion")}
+                  </span>
                 </span>
                 <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
                   <CalculatorLink to="/conversion/common">Common Unit Converters</CalculatorLink>

@@ -1,39 +1,36 @@
 // src/pages/FinancialCalculators.tsx
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Banknote, Percent, PiggyBank, Home, Landmark, LineChart } from "lucide-react";
-import { listSubcategoriesOfCategory, FRIENDLY_TITLES } from "@/data/calculatorRegistry";
+import { ArrowLeft } from "lucide-react";
+import {
+  listSubcategoriesOfCategory,
+  listByCategorySubcategory,
+  FRIENDLY_TITLES,
+  subcategoryIcon,
+  categoryIcon,
+} from "@/data/calculatorRegistry";
 import SEOHead from "@/components/SEOHead";
 import CalculatorLink from "@/components/common/CalculatorLink";
-
-/** Colored icons by subcategory (40×40 badge) */
-const ICONS_BY_SUBCAT: Record<string, { Icon: React.ComponentType<any>; color: string; bg: string }> = {
-  "personal-finance-calculators":      { Icon: PiggyBank, color: "#22c55e", bg: "rgba(34,197,94,0.14)" },  // green
-  "interest-and-loan-calculators":     { Icon: Percent,   color: "#f59e0b", bg: "rgba(245,158,11,0.14)" }, // amber
-  "mortgage-and-home-loan-calculators":{ Icon: Home,      color: "#06b6d4", bg: "rgba(6,182,212,0.14)" },  // cyan
-};
-const DEFAULT_ICON = { Icon: Banknote, color: "#8b5cf6", bg: "rgba(139,92,246,0.14)" };
-
-function getIconForSubcat(slug: string) {
-  return ICONS_BY_SUBCAT[slug] || DEFAULT_ICON;
-}
 
 export default function FinancialCalculators() {
   const navigate = useNavigate();
   const category = "financial";
   const subcats = listSubcategoriesOfCategory(category);
   const categoryTitle = FRIENDLY_TITLES[category] || "Financial Calculators";
+  const [descOpen, setDescOpen] = useState(false);
+
+  // Soma total de calculadoras das subcategorias (mostrado abaixo do H1)
+  const totalCount = subcats.reduce((acc, sc) => acc + (Number(sc.count) || 0), 0);
 
   return (
-    <div className="min-h-screen bg-gradient-soft">
+    // usa as cores globais do tema (light/dark) e não força gradiente
+    <div className="min-h-screen">
       <SEOHead
         title={`${categoryTitle} · SmartKitNow`}
-        description="Financial calculators for loans, mortgages, ROI, and compounding — clear and fast."
+        description="Plan loans, investments, and personal budgets with clear, transparent math. Compare rates, project returns, estimate taxes, and make confident money decisions."
         canonical="https://www.smartkitnow.com/financial"
         breadcrumbs={[
           { name: "Home", url: "https://www.smartkitnow.com/" },
@@ -43,10 +40,12 @@ export default function FinancialCalculators() {
 
       <Header />
 
-      <main className="pt-20">
+      {/* mais espaço no topo e antes do rodapé */}
+      {/* força offset grande para garantir que o H1 fique visível abaixo do header fixo */}
+      <main className="pt-[140px] md:pt-[160px] pb-28">
         <PageWithRails
           titleBlock={
-            <div className="text-center">
+            <div className="text-left">
               <div className="mb-6 text-left">
                 <Button
                   variant="default"
@@ -59,53 +58,88 @@ export default function FinancialCalculators() {
                 </Button>
               </div>
 
-              <h1 className="text-4xl font-bold mb-3 text-foreground">
+              {/* H1 visível */}
+              <h1 className="text-4xl font-bold mb-2 flex items-center gap-2" style={{ color: "#5c82ee" }}>
+                <span className="text-[30px] leading-none select-none" aria-hidden="true">
+                  {categoryIcon("financial")}
+                </span>
                 {categoryTitle}
               </h1>
-              <p className="text-lg max-w-3xl mx-auto" style={{ color: "#747886" }}>
-                Loans, mortgages, ROI, and compounding — with transparent formulas and examples.
+
+              {/* Contagem total imediatamente abaixo do título */}
+              <div className="text-sm mb-3" style={{ color: "#9aa0ae" }}>
+                {totalCount} calculators
+              </div>
+
+              {/* ÚNICA descrição (sem duplicar) e mais estreita para conviver com right-rail ads */}
+              <p className={`${descOpen ? "" : "line-clamp-3"} text-lg max-w-[740px]`} style={{ color: "#747886" }}>
+                Money touches every decision we make—choosing a mortgage, planning a budget, comparing loans, estimating taxes, or deciding where to invest. Our Financial Calculators are built to turn uncertainty into clear, actionable numbers. Each tool uses transparent formulas, sensible defaults, and instant results so you can compare rates, project returns, model monthly payments, forecast long-term savings, and understand the real impact of interest, fees, and inflation. Whether you’re a business owner validating cash flow, a student learning finance, or simply planning for everyday life, you’ll get fast, accurate calculations you can trust and share.
+                <br />
+                <br />
+                Browse focused sections for Loan & Interest, Investment, Personal Finance, Tax & Income, Debt & Credit, and Currency & Inflation. Learn as you calculate with plain-English explanations and examples, then adjust inputs to see how small changes affect outcomes. Make confident money decisions—quickly, clearly, and with zero guesswork.
               </p>
+              {!descOpen && (
+                <button
+                  className="mt-2 inline-flex items-center text-primary hover:text-primary/80 text-sm"
+                  onClick={() => setDescOpen(true)}
+                >
+                  Read More
+                </button>
+              )}
             </div>
           }
           showRails
+          showLeftRail={false}
+          showRightRail={true}
           showTopBanner
           showBottomBanner
           railsSticky={false}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {/* Seções por subcategoria (ícone + heading) e listas em 2 colunas */}
+          <div className="space-y-10">
             {subcats.map((sc) => {
-              const { Icon, color, bg } = getIconForSubcat(sc.slug);
+              const emoji = subcategoryIcon(sc.slug, category);
+              const calcs = listByCategorySubcategory(category, sc.slug) || [];
+              // divide em 2 colunas (metade/ metade)
+              const mid = Math.ceil(calcs.length / 2);
+              const colA = calcs.slice(0, mid);
+              const colB = calcs.slice(mid);
               return (
-                <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
-                  <CardHeader className="flex flex-row items-center gap-3">
-                    <span
-                      className="inline-flex items-center justify-center rounded-xl"
-                      style={{ width: 40, height: 40, backgroundColor: bg, color }}
-                      aria-hidden="true"
-                    >
-                      <Icon className="h-5 w-5" />
+                <section key={sc.slug}>
+                  {/* Título da subcategoria com ícone */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-[20px] leading-none select-none" aria-hidden="true">
+                      {emoji}
                     </span>
-                    <CardTitle className="text-xl font-bold" style={{ color: [
-                      "investment-calculators",
-                      "interest-and-loan-calculators",
-                      "personal-finance-calculators"
-                    ].includes(sc.slug) ? "#5c82ee" : "#000000" }}>
-                      <CalculatorLink to={`/financial/${sc.slug}`}>{sc.title}</CalculatorLink>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm" style={{ color: "#747886" }}>
-                      {sc.count} calculators available
-                    </p>
-                  </CardContent>
-                </Card>
+                    <h2 className="text-[22px] md:text-[24px] font-semibold tracking-[-0.01em] text-foreground">
+                      {sc.title}
+                    </h2>
+                    <span className="text-sm skn-text-muted">({sc.count})</span>
+                  </div>
+
+                  {/* Listas em 2 colunas */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+                    <ul className="list-disc pl-5 space-y-3 leading-7">
+                      {colA.map((c) => (
+                        <li key={c.slug}>
+                          <CalculatorLink to={`/${category}/${c.slug}`}>{c.title}</CalculatorLink>
+                        </li>
+                      ))}
+                    </ul>
+                    <ul className="list-disc pl-5 space-y-3 leading-7 mt-3 md:mt-0">
+                      {colB.map((c) => (
+                        <li key={c.slug}>
+                          <CalculatorLink to={`/${category}/${c.slug}`}>{c.title}</CalculatorLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </section>
               );
             })}
           </div>
         </PageWithRails>
       </main>
-
-      <Footer />
     </div>
   );
 }

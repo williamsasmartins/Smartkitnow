@@ -6,9 +6,10 @@ import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Star } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import CalculatorListBlue from "@/components/common/CalculatorListBlue";
+import { categoryIcon } from "@/data/calculatorRegistry";
 
 const links = [
   { title: "Speed Conversion",        to: "/conversion/speed/mph-to-kmh" },
@@ -25,6 +26,7 @@ const links = [
 
 export default function CommonConvertersPage() {
   const navigate = useNavigate();
+  const convEmoji = categoryIcon("conversion");
 
   return (
     <div className="min-h-screen bg-gradient-soft">
@@ -81,11 +83,11 @@ export default function CommonConvertersPage() {
             <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
               <CardHeader className="flex flex-row items-center gap-3">
                 <span
-                  className="inline-flex items-center justify-center rounded-xl"
-                  style={{ width: 40, height: 40, backgroundColor: "rgba(250,204,21,0.18)", color: "#ca8a04" }}
+                  className="inline-flex items-center justify-center rounded-xl text-xl"
+                  style={{ width: 40, height: 40 }}
                   aria-hidden="true"
                 >
-                  <Star className="h-5 w-5" />
+                  {convEmoji}
                 </span>
                 <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
                   Common Converters

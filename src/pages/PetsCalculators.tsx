@@ -6,24 +6,10 @@ import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Dog, Cat, PawPrint, Bone, Fish, HeartPulse } from "lucide-react";
-import { listSubcategoriesOfCategory, FRIENDLY_TITLES } from "@/data/calculatorRegistry";
+import { ArrowLeft } from "lucide-react";
+import { listSubcategoriesOfCategory, FRIENDLY_TITLES, subcategoryIcon } from "@/data/calculatorRegistry";
 import SEOHead from "@/components/SEOHead";
 import CalculatorLink from "@/components/common/CalculatorLink";
-
-// Colored icons by subcategory (adjust by actual slugs from your registry)
-const ICONS_BY_SUBCAT: Record<string, { Icon: React.ComponentType<any>; color: string; bg: string }> = {
-  "dog-calculators":     { Icon: Dog,       color: "#f59e0b", bg: "rgba(245,158,11,0.14)" }, // amber
-  "cat-calculators":     { Icon: Cat,       color: "#22c55e", bg: "rgba(34,197,94,0.14)" },  // green
-  "pet-nutrition":       { Icon: Bone,      color: "#06b6d4", bg: "rgba(6,182,212,0.14)" },  // cyan
-  "pet-health-fitness":  { Icon: HeartPulse,color: "#ef4444", bg: "rgba(239,68,68,0.14)" },  // red
-  "aquatic-pets":        { Icon: Fish,      color: "#3b82f6", bg: "rgba(59,130,246,0.14)" }, // blue
-};
-const DEFAULT_ICON = { Icon: PawPrint, color: "#8b5cf6", bg: "rgba(139,92,246,0.14)" };
-
-function getIconForSubcat(slug: string) {
-  return ICONS_BY_SUBCAT[slug] || DEFAULT_ICON;
-}
 
 export default function PetsCalculators() {
   const navigate = useNavigate();
@@ -35,7 +21,7 @@ export default function PetsCalculators() {
     <div className="min-h-screen bg-gradient-soft">
       <SEOHead
         title={`${categoryTitle} · SmartKitNow`}
-        description="Pet calculators for dogs, cats, nutrition, and health — fast and easy."
+        description="Pet care calculators: feeding, health, growth tracking, and training helpers with clear guidance."
         canonical="https://www.smartkitnow.com/pets"
         breadcrumbs={[
           { name: "Home", url: "https://www.smartkitnow.com/" },
@@ -65,7 +51,7 @@ export default function PetsCalculators() {
                 {categoryTitle}
               </h1>
               <p className="text-lg max-w-3xl mx-auto" style={{ color: "#747886" }}>
-                Practical tools for pet health, nutrition, and care — made simple.
+                Feeding guides, health trackers, growth charts, and training helpers for your pets.
               </p>
             </div>
           }
@@ -76,13 +62,16 @@ export default function PetsCalculators() {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {subcats.map((sc) => {
-              const { Icon, color, bg } = getIconForSubcat(sc.slug);
+              const emoji = subcategoryIcon(sc.slug, category);
               return (
                 <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
                   <CardHeader className="flex flex-row items-center gap-3">
-                    <span className="inline-flex items-center justify-center rounded-xl"
-                          style={{ width: 40, height: 40, backgroundColor: bg, color }} aria-hidden="true">
-                      <Icon className="h-5 w-5" />
+                    <span
+                      className="inline-flex items-center justify-center rounded-xl text-xl"
+                      style={{ width: 40, height: 40 }}
+                      aria-hidden="true"
+                    >
+                      {emoji}
                     </span>
                     <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
                       <CalculatorLink to={`/pets/${sc.slug}`}>{sc.title}</CalculatorLink>

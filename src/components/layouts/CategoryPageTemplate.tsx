@@ -2,6 +2,27 @@ import { useMemo, useState, ReactNode } from "react";
 import { getCategoryIcon } from "@/lib/navigation";
 import { BadgeDollarSign, LineChart, PiggyBank, Percent, BriefcaseBusiness, CreditCard, Banknote } from "lucide-react";
 
+const KIND_TITLES: Record<string,string> = {
+  financial: "Financial Calculators",
+  health: "Health & Fitness Calculators",
+  cooking: "Cooking Calculators",
+  conversion: "Conversion Calculators",
+  math: "Math & Algebra Calculators",
+  pet: "Pet Care Calculators",
+  science: "Science Calculators",
+  time: "Time & Date Calculators",
+  video: "Video Calculators",
+  recipes: "Recipes",
+  tips: "Smart Tips",
+  quotes: "Daily Quotes",
+  everyday: "Every day Life Calculators",
+  sports: "Sports",
+  funny: "Funny Calculators",
+  automotive: "Automotive Calculators",
+  construction: "Construction Calculators",
+  electrical: "Electrical Calculators",
+};
+
 export type CategorySection = {
   heading: string;
   items: { title: string; to: string }[];
@@ -34,12 +55,13 @@ export default function CategoryPageTemplate({
     () => sections.reduce((acc, s) => acc + s.items.length, 0),
     [sections]
   );
+  const resolvedTitle = title || KIND_TITLES[kind] || "Calculators";
   const emoji = getCategoryIcon(kind);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 md:px-6">
-      {/* DEFAULT CATEGORY HEADER — ALWAYS SHOWN WHEN 'title' EXISTS */}
-      {title ? (
+    <div className="mx-auto max-w-6xl px-4 md:px-6 pb-16 md:pb-24 pt-6 md:pt-8">
+      {/* H1 SEMPRE renderizado quando houver título (ou fallback) */}
+      {resolvedTitle ? (
         <header className="mb-8">
           <div className="flex items-center gap-3">
             <div
@@ -49,8 +71,8 @@ export default function CategoryPageTemplate({
             >
               {emoji}
             </div>
-            <h1 className="text-[28px] md:text-[32px] font-bold tracking-[-0.01em]">
-              {title}
+            <h1 className="block text-[28px] md:text-[32px] font-bold tracking-[-0.01em]">
+              {resolvedTitle}
             </h1>
           </div>
 

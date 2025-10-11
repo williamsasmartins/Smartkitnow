@@ -1277,71 +1277,90 @@ const Index = () => {
   };
 
   // Calculator Categories Data (ordered by popularity - most popular first)
-  const calculatorCategories = [categories.financial, categories.health, categories.cooking, categories.conversion, {
-    name: "Math & Algebra Calculators",
-    icon: Calculator,
-    color: "text-purple-600",
-    description: "Mathematical calculations from basic arithmetic to advanced algebra, geometry, statistics, and trigonometry."
-  }, {
-    name: "Pet Care Calculators",
-    icon: Dog,
-    color: "text-amber-600",
-    description: "Pet health, nutrition, and care calculators for dogs, cats, and aquariums."
-  }, {
-    name: "Science Calculators",
-    icon: Atom,
-    color: "text-cyan-600",
-    description: "Chemistry, physics, and density calculations for scientific applications."
-  }, {
-    name: "Time & Date Calculators",
-    icon: Clock,
-    color: "text-indigo-600",
-    description: "Age calculations, countdowns, date arithmetic, and time conversions."
-  }, {
-    name: "Video Calculators",
-    icon: Video,
-    color: "text-violet-600",
-    path: "/tv-video",
-    description: "Optimize your home theater setup: find ideal TV viewing distance, screen size, and speaker placement for immersive video experiences."
-  }, {
-    name: "Recipes",
-    icon: BookOpen,
-    color: "text-teal-600",
-    path: "/recipes",
-    description: "Delicious and healthy recipes with detailed nutrition information, cooking tips, and step-by-step instructions."
-  }, {
-    name: "Smart Tips",
-    icon: Lightbulb,
-    color: "text-yellow-500",
-    path: "/smart-tips",
-    description: "Actionable life hacks and practical guidance, from home organization and cleaning to travel planning and more."
-  }, {
-    name: "Daily Quotes",
-    icon: Quote,
-    color: "text-slate-600",
-    path: "/daily-quotes",
-    description: "Inspirational and motivational quotes to brighten your day and spark a positive mindset."
-  }, {
-    name: "Every day Life Calculators",
-    icon: Home,
-    color: "text-blue-500",
-    path: "/everyday-life",
-    description: "Handy everyday calculators for household budgeting, time planning, chores, and daily life management."
-  }, {
-    name: "Sports",
-    icon: Dumbbell,
-    color: "text-orange-500",
-    path: "/sports",
-    description: "Training, performance, and fitness calculators for athletes and enthusiasts across multiple sports."
-  }, {
-    name: "Funny Calculators",
-    icon: Smile,
-    color: "text-pink-500",
-    path: "/funny",
-    description: "Lighthearted tools for fun estimations, playful math, and humorous calculations to share with friends."
-  },
-  // Restored categories
-  categories.automotive, categories.construction, categories.electrical];
+  const calculatorCategories = [
+    { ...categories.financial, key: "financial" },
+    { ...categories.health, key: "health" },
+    { ...categories.cooking, key: "cooking" },
+    { ...categories.conversion, key: "conversion" },
+    {
+      key: "math",
+      name: "Math & Algebra Calculators",
+      icon: Calculator,
+      color: "text-purple-600",
+      description: "Mathematical calculations from basic arithmetic to advanced algebra, geometry, statistics, and trigonometry."
+    }, {
+      key: "pet",
+      name: "Pet Care Calculators",
+      icon: Dog,
+      color: "text-amber-600",
+      description: "Pet health, nutrition, and care calculators for dogs, cats, and aquariums."
+    }, {
+      key: "science",
+      name: "Science Calculators",
+      icon: Atom,
+      color: "text-cyan-600",
+      description: "Chemistry, physics, and density calculations for scientific applications."
+    }, {
+      key: "time",
+      name: "Time & Date Calculators",
+      icon: Clock,
+      color: "text-indigo-600",
+      description: "Age calculations, countdowns, date arithmetic, and time conversions."
+    }, {
+      key: "video",
+      name: "Video Calculators",
+      icon: Video,
+      color: "text-violet-600",
+      path: "/tv-video",
+      description: "Optimize your home theater setup: find ideal TV viewing distance, screen size, and speaker placement for immersive video experiences."
+    }, {
+      key: "recipes",
+      name: "Recipes",
+      icon: BookOpen,
+      color: "text-teal-600",
+      path: "/recipes",
+      description: "Delicious and healthy recipes with detailed nutrition information, cooking tips, and step-by-step instructions."
+    }, {
+      key: "tips",
+      name: "Smart Tips",
+      icon: Lightbulb,
+      color: "text-yellow-500",
+      path: "/smart-tips",
+      description: "Actionable life hacks and practical guidance, from home organization and cleaning to travel planning and more."
+    }, {
+      key: "quotes",
+      name: "Daily Quotes",
+      icon: Quote,
+      color: "text-slate-600",
+      path: "/daily-quotes",
+      description: "Inspirational and motivational quotes to brighten your day and spark a positive mindset."
+    }, {
+      key: "everyday",
+      name: "Every day Life Calculators",
+      icon: Home,
+      color: "text-blue-500",
+      path: "/everyday-life",
+      description: "Handy everyday calculators for household budgeting, time planning, chores, and daily life management."
+    }, {
+      key: "sports",
+      name: "Sports",
+      icon: Dumbbell,
+      color: "text-orange-500",
+      path: "/sports",
+      description: "Training, performance, and fitness calculators for athletes and enthusiasts across multiple sports."
+    }, {
+      key: "funny",
+      name: "Funny Calculators",
+      icon: Smile,
+      color: "text-pink-500",
+      path: "/funny",
+      description: "Lighthearted tools for fun estimations, playful math, and humorous calculations to share with friends."
+    },
+    // Restored categories
+    { ...categories.automotive, key: "automotive" },
+    { ...categories.construction, key: "construction" },
+    { ...categories.electrical, key: "electrical" }
+  ];
 
   // Featured Calculators Data
   const featuredCalculators = [{
@@ -1375,7 +1394,7 @@ const Index = () => {
         {/* Categories Section */}
         <section className="container mx-auto px-4 py-8 md:py-12">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 py-[10px] skn-title">
+            <h2 className="text-4xl font-bold mb-4 py-[10px] skn-home-title">
               Calculator Categories
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -1424,24 +1443,11 @@ const Index = () => {
             };
             return <Card key={index} className="skn-card group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={handleClick}>
                   <CardContent className="p-6 flex flex-col items-center text-center space-y-2">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm">
-                      <span className="text-[20px] leading-none">{getCategoryIcon(
-                        isAutomotive ? 'automotive' :
-                        isConstruction ? 'construction' :
-                        isConversion ? 'conversion' :
-                        isCooking ? 'cooking' :
-                        isElectrical ? 'electrical' :
-                        isFinancial ? 'financial' :
-                        isHealth ? 'health' :
-                        isMath ? 'math' :
-                        isPets ? 'pets' :
-                        isScience ? 'science' :
-                        isTime ? 'time' :
-                        (category as any).key
-                      )}</span>
+                    <span className="text-[22px] leading-none select-none">
+                      {getCategoryIcon((category as any).key)}
                     </span>
-                    <h3 className="text-[16px] md:text-[17px] font-semibold tracking-[-0.01em] text-[var(--skn-link)]">
-                      {category.name}
+                    <h3 className="skn-home-title text-[16px] md:text-[17px] font-semibold tracking-[-0.01em]">
+                      {(category as any).title ?? category.name}
                     </h3>
                   </CardContent>
                 </Card>;
@@ -1462,7 +1468,7 @@ const Index = () => {
         {/* Featured Section */}
         <section className="container mx-auto px-4 py-8 md:py-12">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold skn-title mb-4">Featured Calculators</h3>
+            <h3 className="text-3xl font-bold skn-home-title mb-4">Featured Calculators</h3>
             <p className="text-muted-foreground text-lg">
               Essential calculation tools trusted by millions of professionals, students, and DIY enthusiasts worldwide
             </p>
@@ -1503,7 +1509,7 @@ const Index = () => {
         <section className="container mx-auto px-4 py-8 md:py-12">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold skn-title mb-4">About Smart Kit Now</h2>
+              <h2 className="text-3xl font-bold skn-home-title mb-4">About Smart Kit Now</h2>
               <p className="text-muted-foreground text-lg">
                 Your trusted companion for accurate calculations and conversions
               </p>
@@ -1586,7 +1592,7 @@ const Index = () => {
 
         <section className="container mx-auto px-4 py-8 md:py-12">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center skn-title mb-12">
+            <h2 className="text-3xl font-bold text-center skn-home-title mb-12">
               Empowering Better Decisions Through Accurate Calculations
             </h2>
 
@@ -1657,7 +1663,7 @@ const Index = () => {
         {/* Our Commitment Section */}
         <section className="container mx-auto px-4 py-8 md:py-12">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold skn-title mb-6">Our Commitment to Excellence</h2>
+            <h2 className="text-3xl font-bold skn-home-title mb-6">Our Commitment to Excellence</h2>
             <p className="text-lg text-muted-foreground mb-8">
               At Smart Kit Now, we're committed to providing you with the most accurate, reliable, and user-friendly
               calculators available online. We continuously update our tools based on user feedback and industry

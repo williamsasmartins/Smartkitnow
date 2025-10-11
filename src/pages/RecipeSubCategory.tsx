@@ -2,10 +2,13 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Clock, Users, ChefHat, Star } from "lucide-react";
+
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { recipeData } from "@/data/recipeData";
+
+// Removed Lucide icon; using emoji via registry
+import { subcategoryIcon } from "@/data/calculatorRegistry";
 
 export default function RecipeSubCategory() {
   const navigate = useNavigate();
@@ -17,6 +20,9 @@ export default function RecipeSubCategory() {
   ).join(' ') || '';
 
   const recipes = recipeData[categoryTitle] || [];
+
+  // Emoji para o header da subcategoria (fallback para categoria "cooking")
+  const emoji = subcategoryIcon(categorySlug ?? "", "cooking");
 
   const handleRecipeClick = (recipe: any) => {
     const slug = recipe.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -47,22 +53,19 @@ export default function RecipeSubCategory() {
       
       <main className="container mx-auto px-4 py-8 max-w-7xl">
         <div className="mb-8">
-          <button
-            onClick={handleBackClick}
-            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 hover:bg-muted rounded-lg mb-6"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Recipes
-          </button>
+-          {/* Back button removed as requested */}
++          {/* Back button removed as requested */}
           
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              {categoryTitle} Recipes
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Discover our collection of {recipes.length} carefully curated {categoryTitle.toLowerCase()} recipes, 
-              each with detailed instructions and nutritional information.
-            </p>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl shadow-sm text-[20px] leading-none select-none" aria-hidden="true">
+                {emoji}
+              </span>
+              <h1 className="block text-[28px] md:text-[32px] font-bold tracking-[-0.01em]">{categoryTitle} Recipes</h1>
+            </div>
+            <div className="mt-2 text-sm skn-text-muted">{recipes.length} recipes</div>
+-            {/* Description paragraph removed as requested */}
++            {/* Description paragraph removed as requested */}
           </div>
         </div>
 
@@ -74,19 +77,16 @@ export default function RecipeSubCategory() {
                   <CardTitle className="text-lg font-semibold line-clamp-2">
                     {recipe.name}
                   </CardTitle>
-                  <div className="flex items-center gap-1 text-yellow-500">
-                    <Star className="h-4 w-4 fill-current" />
-                    <span className="text-sm font-medium">{recipe.rating}</span>
-                  </div>
+                  <span className="text-sm font-medium text-yellow-500">⭐ {recipe.rating}</span>
                 </div>
                 
                 <div className="flex flex-wrap gap-2 mb-3">
                   <Badge variant="secondary" className="text-xs">
-                    <Clock className="h-3 w-3 mr-1" />
+                    <span className="mr-1">⏱️</span>
                     {recipe.prepTime}
                   </Badge>
                   <Badge variant="secondary" className="text-xs">
-                    <Users className="h-3 w-3 mr-1" />
+                    <span className="mr-1">👥</span>
                     {recipe.servings}
                   </Badge>
                   <Badge className={`text-xs ${getDifficultyColor(recipe.difficulty)}`}>
@@ -129,7 +129,7 @@ export default function RecipeSubCategory() {
 
         {recipes.length === 0 && (
           <div className="text-center py-12">
-            <ChefHat className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+            <span className="h-16 w-16 text-[40px] leading-none mx-auto mb-4 select-none">👨‍🍳</span>
             <h3 className="text-xl font-semibold text-foreground mb-2">No Recipes Found</h3>
             <p className="text-muted-foreground">
               We're working on adding recipes for this category. Check back soon!

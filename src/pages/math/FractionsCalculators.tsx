@@ -4,10 +4,11 @@ import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Divide } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { PALETTE } from "@/components/theme/palette";
 import CalculatorLink from "@/components/common/CalculatorLink";
+import { subcategoryIcon } from "@/data/calculatorRegistry";
 
 const CARDS = [
   {
@@ -85,10 +86,12 @@ export default function FractionsCalculators() {
               <div className="flex flex-col items-center gap-3">
                 <span
                   className="inline-flex items-center justify-center rounded-xl"
-                  style={{ width: 44, height: 44, backgroundColor: "rgba(59,130,246,0.14)", color: "#3b82f6" }}
+                  style={{ width: 44, height: 44, backgroundColor: "rgba(59,130,246,0.14)" }}
                   aria-hidden="true"
                 >
-                  <Divide className="h-5 w-5" />
+                  <span className="text-xl leading-none" aria-hidden="true">
+                    {subcategoryIcon("fraction-calculators", "math")}
+                  </span>
                 </span>
                 <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                   Fractions & Ratios
@@ -109,10 +112,12 @@ export default function FractionsCalculators() {
                 <CardHeader className="flex flex-row items-center gap-3">
                   <span
                     className="inline-flex items-center justify-center rounded-xl"
-                    style={{ width: 40, height: 40, backgroundColor: c.bg, color: c.fg }}
+                    style={{ width: 40, height: 40, backgroundColor: c.bg }}
                     aria-hidden="true"
                   >
-                    <Divide className="h-5 w-5" />
+                    <span className="text-xl leading-none" aria-hidden="true">
+                      {subcategoryIcon("fraction-calculators", "math")}
+                    </span>
                   </span>
                   <CardTitle className="text-lg font-bold" style={{ color: c.fg }}>
                     <CalculatorLink to={c.to}>{c.title}</CalculatorLink>

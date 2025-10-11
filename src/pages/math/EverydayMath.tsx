@@ -6,48 +6,41 @@ import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Percent, Calculator, Sigma, Shapes } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import CalculatorLink from "@/components/common/CalculatorLink";
+import { subcategoryIcon } from "@/data/calculatorRegistry";
 
 export default function EverydayMath() {
   const navigate = useNavigate();
 
   const tiles = [
     {
-      to: "/math/everyday-math/percentages", // <-- opens the HUB
+      to: "/math/everyday-math/percentages",
+      slug: "percent-calculators",
       title: "Percentage Calculators",
       count: 4,
-      Icon: Percent,
-      iconBg: "rgba(59,130,246,0.12)", // light blue
-      iconColor: "#3b82f6",
       desc: "Percent of, Increase, Decrease, Change.",
     },
     {
       to: "/math/everyday-math/basic-arithmetic",
+      slug: "basic-arithmetic",
       title: "Basic Arithmetic",
       count: 6,
-      Icon: Calculator,
-      iconBg: "rgba(16,185,129,0.12)",
-      iconColor: "#10b981",
       desc: "Add, subtract, multiply, divide, exponent, roots.",
     },
     {
       to: "/math/everyday-math/statistics",
+      slug: "statistics",
       title: "Quick Statistics",
       count: 6,
-      Icon: Sigma,
-      iconBg: "rgba(234,179,8,0.14)",
-      iconColor: "#ca8a04",
       desc: "Mean, median, mode, range, stdev.",
     },
     {
       to: "/math/everyday-math/geometry",
+      slug: "geometry",
       title: "Geometry Minis",
       count: 6,
-      Icon: Shapes,
-      iconBg: "rgba(168,85,247,0.12)",
-      iconColor: "#a855f7",
       desc: "Circle, rectangle, triangle, perimeter & area.",
     },
   ];
@@ -104,28 +97,31 @@ export default function EverydayMath() {
           showBottomBanner
         >
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-auto max-w-6xl">
-            {tiles.map(({ to, title, count, Icon, iconBg, iconColor, desc }) => (
-              <Card key={to} className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
-                <CardHeader className="flex flex-row items-center gap-3">
-                  <span
-                    className="inline-flex items-center justify-center rounded-xl"
-                    style={{ width: 42, height: 42, backgroundColor: iconBg, color: iconColor }}
-                    aria-hidden="true"
-                  >
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
-                    <CalculatorLink to={to}>{title}</CalculatorLink>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm mb-2" style={{ color: "#747886" }}>{desc}</p>
-                  <p className="text-sm" style={{ color: "#747886" }}>
-                    {count} calculators available
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+            {tiles.map(({ to, slug, title, count, desc }) => {
+              const emoji = subcategoryIcon(slug, "math");
+              return (
+                <Card key={to} className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                  <CardHeader className="flex flex-row items-center gap-3">
+                    <span
+                      className="inline-flex items-center justify-center rounded-xl text-xl"
+                      style={{ width: 42, height: 42 }}
+                      aria-hidden="true"
+                    >
+                      {emoji}
+                    </span>
+                    <CardTitle className="text-xl font-bold" style={{ color: "#000000" }}>
+                      <CalculatorLink to={to}>{title}</CalculatorLink>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm mb-2" style={{ color: "#747886" }}>{desc}</p>
+                    <p className="text-sm" style={{ color: "#747886" }}>
+                      {count} calculators available
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </PageWithRails>
       </main>

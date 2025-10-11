@@ -79,3 +79,38 @@ html.dark .skn-text-muted {
   color: var(--skn-link);
 }
 
+:root{
+  --skn-home-title: #224691;
+}
+
+/* Título dos cards da HOME na mesma cor solicitada */
+.skn-home-title {
+  color: var(--skn-home-title);
+}
+
+:root{ 
+  /* ajuste os valores à altura real do seu header em cada breakpoint */ 
+  --skn-header-h-sm: 64px; 
+  --skn-header-h-md: 80px; 
+} 
+
+/* empurra o conteúdo para baixo do header fixo */ 
+.skn-offset-header{ 
+  padding-top: var(--skn-header-h-sm); 
+} 
+@media (min-width: 768px){ 
+  .skn-offset-header{ 
+    padding-top: var(--skn-header-h-md); 
+  } 
+} 
+
+/* melhora navegação por âncoras (links que rolam para títulos) */ 
+html{ 
+  scroll-padding-top: var(--skn-header-h-sm); 
+} 
+@media (min-width: 768px){ 
+  html{ 
+    scroll-padding-top: var(--skn-header-h-md); 
+  } 
+}
+

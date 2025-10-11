@@ -9,7 +9,8 @@ import { Button } from "@/components/ui/button";
 import CalculatorLink from "@/components/common/CalculatorLink";
 
 // Icons (all guaranteed in lucide-react)
-import { Calculator, Percent, Slash, Sigma, Ruler, Shapes, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import { subcategoryIcon } from "@/data/calculatorRegistry";
 
 // Palette used on the site (blue for titles/highlights)
 const BRAND = {
@@ -51,8 +52,10 @@ const HUBS: HubCard[] = [
     title: "Percentage Calculators",
     description: "Percent of, Increase, Decrease, Change.",
     icon: (
-      <IconBadge bg="rgba(59,130,246,0.14)" fg="#3b82f6">
-        <Percent className="h-5 w-5" />
+      <IconBadge>
+        <span className="text-xl leading-none" aria-hidden="true">
+          {subcategoryIcon("percent-calculators", "math")}
+        </span>
       </IconBadge>
     ),
   },
@@ -61,8 +64,10 @@ const HUBS: HubCard[] = [
     title: "Fraction Calculators",
     description: "Reduce, convert fraction ⇄ decimal and more.",
     icon: (
-      <IconBadge bg="rgba(139,92,246,0.14)" fg="#8b5cf6">
-        <Slash className="h-5 w-5" />
+      <IconBadge>
+        <span className="text-xl leading-none" aria-hidden="true">
+          {subcategoryIcon("fraction-calculators", "math")}
+        </span>
       </IconBadge>
     ),
   },
@@ -71,8 +76,10 @@ const HUBS: HubCard[] = [
     title: "Everyday Math",
     description: "Average, proportion (regra de 3), ratio, LCM/GCD.",
     icon: (
-      <IconBadge bg="rgba(16,185,129,0.14)" fg="#10b981">
-        <Calculator className="h-5 w-5" />
+      <IconBadge>
+        <span className="text-xl leading-none" aria-hidden="true">
+          {subcategoryIcon("everyday-math", "math")}
+        </span>
       </IconBadge>
     ),
   },
@@ -81,8 +88,10 @@ const HUBS: HubCard[] = [
     title: "Algebra Basics",
     description: "Linear/Quadratic solvers, exponents & roots.",
     icon: (
-      <IconBadge bg="rgba(245,158,11,0.14)" fg="#f59e0b">
-        <Sigma className="h-5 w-5" />
+      <IconBadge>
+        <span className="text-xl leading-none" aria-hidden="true">
+          {subcategoryIcon("algebra-basics", "math")}
+        </span>
       </IconBadge>
     ),
   },
@@ -91,8 +100,10 @@ const HUBS: HubCard[] = [
     title: "Geometry",
     description: "Area, perimeter, circle, triangle, rectangle.",
     icon: (
-      <IconBadge bg="rgba(59,130,246,0.12)" fg="#3b82f6">
-        <Shapes className="h-5 w-5" />
+      <IconBadge>
+        <span className="text-xl leading-none" aria-hidden="true">
+          {subcategoryIcon("geometry", "math")}
+        </span>
       </IconBadge>
     ),
   },
@@ -101,8 +112,10 @@ const HUBS: HubCard[] = [
     title: "Statistics Quick Tools",
     description: "Median, mode, range and more.",
     icon: (
-      <IconBadge bg="rgba(107,114,128,0.14)" fg="#6b7280">
-        <Ruler className="h-5 w-5" />
+      <IconBadge>
+        <span className="text-xl leading-none" aria-hidden="true">
+          {subcategoryIcon("statistics", "math")}
+        </span>
       </IconBadge>
     ),
   },

@@ -6,9 +6,10 @@ import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Percent, TrendingUp, TrendingDown, Shuffle } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import CalculatorLink from "@/components/common/CalculatorLink";
+import { subcategoryIcon } from "@/data/calculatorRegistry";
 
 export default function PercentageCalculators() {
   const navigate = useNavigate();
@@ -74,7 +75,9 @@ export default function PercentageCalculators() {
                   style={{ width: 42, height: 42, backgroundColor: "rgba(59,130,246,0.12)", color: "#3b82f6" }}
                   aria-hidden="true"
                 >
-                  <Percent className="h-5 w-5" />
+                  <span className="text-xl leading-none" aria-hidden="true">
+                    {subcategoryIcon("percent-calculators", "math")}
+                  </span>
                 </span>
                 <CardTitle className="text-lg font-bold" style={{ color: "#000000" }}>
                   <CalculatorLink to="/math/everyday-math/percent-of-total">Percent of Total</CalculatorLink>
@@ -92,10 +95,12 @@ export default function PercentageCalculators() {
               <CardHeader className="flex flex-row items-center gap-3">
                 <span
                   className="inline-flex items-center justify-center rounded-xl"
-                  style={{ width: 42, height: 42, backgroundColor: "rgba(16,185,129,0.12)", color: "#10b981" }}
+                  style={{ width: 42, height: 42, backgroundColor: "rgba(59,130,246,0.12)", color: "#3b82f6" }}
                   aria-hidden="true"
                 >
-                  <TrendingUp className="h-5 w-5" />
+                  <span className="text-xl leading-none" aria-hidden="true">
+                    {subcategoryIcon("percent-calculators", "math")}
+                  </span>
                 </span>
                 <CardTitle className="text-lg font-bold" style={{ color: "#000000" }}>
                   Percent Increase
@@ -110,10 +115,12 @@ export default function PercentageCalculators() {
               <CardHeader className="flex flex-row items-center gap-3">
                 <span
                   className="inline-flex items-center justify-center rounded-xl"
-                  style={{ width: 42, height: 42, backgroundColor: "rgba(239,68,68,0.12)", color: "#ef4444" }}
+                  style={{ width: 42, height: 42, backgroundColor: "rgba(59,130,246,0.12)", color: "#3b82f6" }}
                   aria-hidden="true"
                 >
-                  <TrendingDown className="h-5 w-5" />
+                  <span className="text-xl leading-none" aria-hidden="true">
+                    {subcategoryIcon("percent-calculators", "math")}
+                  </span>
                 </span>
                 <CardTitle className="text-lg font-bold" style={{ color: "#000000" }}>
                   Percent Decrease
@@ -128,10 +135,12 @@ export default function PercentageCalculators() {
               <CardHeader className="flex flex-row items-center gap-3">
                 <span
                   className="inline-flex items-center justify-center rounded-xl"
-                  style={{ width: 42, height: 42, backgroundColor: "rgba(234,179,8,0.14)", color: "#ca8a04" }}
+                  style={{ width: 42, height: 42, backgroundColor: "rgba(59,130,246,0.12)", color: "#3b82f6" }}
                   aria-hidden="true"
                 >
-                  <Shuffle className="h-5 w-5" />
+                  <span className="text-xl leading-none" aria-hidden="true">
+                    {subcategoryIcon("percent-calculators", "math")}
+                  </span>
                 </span>
                 <CardTitle className="text-lg font-bold" style={{ color: "#000000" }}>
                   Percent Change
