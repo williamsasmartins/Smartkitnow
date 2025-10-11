@@ -38,6 +38,7 @@
   --skn-text-muted-dark:  #a9b7d9;
 
   --skn-brand: #3c83f6; /* azul dos links/ícones */
+  --skn-link: var(--skn-brand);
 }
 
 /* Light */
@@ -73,5 +74,8 @@ html.dark .skn-text-muted {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+.skn-heading-accent {
+  color: var(--skn-link);
 }
 

@@ -1440,7 +1440,7 @@ const Index = () => {
                         (category as any).key
                       )}</span>
                     </span>
-                    <h3 className="text-sm font-medium skn-title">
+                    <h3 className="text-[16px] md:text-[17px] font-semibold tracking-[-0.01em] text-[var(--skn-link)]">
                       {category.name}
                     </h3>
                   </CardContent>

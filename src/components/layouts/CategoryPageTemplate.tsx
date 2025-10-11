@@ -8,14 +8,13 @@ export type CategorySection = {
 };
 
 export type CategoryPageTemplateProps = {
-  title: string;
+  title?: string;
   description?: string;
   sections: CategorySection[];
-  headerSlot?: ReactNode;
+  headerSlot?: ReactNode;  // optional custom content AFTER the default H1
   railSlot?: ReactNode;
   minContentScore?: number;
-  /** Use the same key you use in the header/navigation: "financial", "health", ... */
-  kind?: string;
+  kind?: string;           // same key used in the top menu, e.g. "financial"
 };
 
 // Keep page meta export for compatibility with existing pages
@@ -39,17 +38,14 @@ export default function CategoryPageTemplate({
 
   return (
     <div className="mx-auto max-w-6xl px-4 md:px-6">
-      {/* HEADER (Omni-like) */}
-      {headerSlot ? (
-        <div className="mb-8">{headerSlot}</div>
-      ) : (
+      {/* DEFAULT CATEGORY HEADER — ALWAYS SHOWN WHEN 'title' EXISTS */}
+      {title ? (
         <header className="mb-8">
           <div className="flex items-center gap-3">
             <div
               className="inline-flex h-10 w-10 items-center justify-center rounded-xl shadow-sm text-[20px] leading-none select-none"
-              aria-hidden="true"
-              /* badge de cor mantém o azul de marca, mas você pode trocar por kind-based se quiser */
               style={{ backgroundColor: "#3c83f6", color: "#fff" }}
+              aria-hidden="true"
             >
               {emoji}
             </div>
@@ -64,7 +60,7 @@ export default function CategoryPageTemplate({
 
           {description && (
             <div className="mt-3">
-              {/* descrição mais estreita para conviver com right rail ad */}
+              {/* NARROW DESCRIPTION FOR RIGHT-RAIL AD COMPAT */}
               <div className="max-w-[740px]">
                 <p className={expanded ? "text-[15px] md:text-[16px] leading-[1.8]" : "text-[15px] md:text-[16px] leading-[1.8] skn-line-clamp-3"}>
                   {description}
@@ -80,7 +76,10 @@ export default function CategoryPageTemplate({
             </div>
           )}
         </header>
-      )}
+      ) : null}
+
+      {/* If you still want custom content, it will render AFTER the default H1 */}
+      {headerSlot ? <div className="mb-6">{headerSlot}</div> : null}
 
       {/* Seções com ícones coloridos e duas colunas */}
       <div className="space-y-10">
