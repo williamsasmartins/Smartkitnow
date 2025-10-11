@@ -40,9 +40,8 @@ export default function FinancialCalculators() {
 
       <Header />
 
-      {/* mais espaço no topo e antes do rodapé */}
-      {/* offset agora é gerenciado pelo layout via .skn-offset-header */}
-      <main className="pb-28">
+      {/* espaço controlado pela página: garante que o conteúdo fique abaixo do header */}
+      <main className="mt-[156px] md:mt-[176px] pb-28">
         <PageWithRails
           titleBlock={
             <div className="text-left">

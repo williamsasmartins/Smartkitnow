@@ -97,7 +97,7 @@ export default function PageWithRails({
             justify-self-start
             "
         >
-          {titleBlock && <div className="skn-offset-header mb-6">{titleBlock}</div>}
+          {titleBlock && <div className="mb-6">{titleBlock}</div>}
 
           {/* MIDDLE BANNER dentro do miolo */}
           {showMiddleBanner && canServeAds && (
@@ -106,7 +106,7 @@ export default function PageWithRails({
             </div>
           )}
 
-          <main className="w-full skn-offset-header pb-16 md:pb-24"> 
+          <main className="w-full pb-16 md:pb-24"> 
             {children}
           </main>
           <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
