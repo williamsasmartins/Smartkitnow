@@ -5,6 +5,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
+import GlowCardDemo from "@/pages/GlowCardDemo";
 
 // Removido SpeedInsights em App, mantido apenas injeção em main.tsx para evitar conflitos em localhost
 
@@ -80,6 +81,7 @@ export default function App() {
             <Routes>
               {/* Home & institucionais */}
               <Route path="/" element={<Index />} />
+              <Route path="/glow-demo" element={<GlowCardDemo />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/cookies" element={<Cookies />} />
