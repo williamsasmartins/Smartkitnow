@@ -1,14 +1,12 @@
-import CategoryPageTemplate, { defaultPageMeta } from "@/components/layouts/CategoryPageTemplate";
-import { TVVIDEO_TITLE, TVVIDEO_DESCRIPTION, TVVIDEO_SECTIONS } from "@/data/categories/tvVideo.data";
-
-export const pageMeta = { ...defaultPageMeta, minContentScore: 3 };
+import CategoryCalculatorsTemplate from "@/components/layouts/CategoryCalculatorsTemplate";
 
 export default function TVCalculatorPage() {
   return (
-    <CategoryPageTemplate
-      title={TVVIDEO_TITLE}
-      description={TVVIDEO_DESCRIPTION}
-      sections={TVVIDEO_SECTIONS}
+    <CategoryCalculatorsTemplate
+      category="tv"
+      description="Optimize your TV and home theater setup with viewing distance, screen size, and mounting guides."
+      canonical="https://www.smartkitnow.com/tv-video"
+      backTo="/"
     />
   );
 }

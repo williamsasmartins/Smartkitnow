@@ -1,14 +1,13 @@
-import CategoryPageTemplate, { defaultPageMeta } from "@/components/layouts/CategoryPageTemplate";
-import { SMART_TIPS_TITLE, SMART_TIPS_DESCRIPTION, SMART_TIPS_SECTIONS } from "@/data/categories/smartTips.data";
-
-export const pageMeta = { ...defaultPageMeta, minContentScore: 3 };
+import CategoryCalculatorsTemplate from "@/components/layouts/CategoryCalculatorsTemplate";
 
 export default function SmartTips() {
   return (
-    <CategoryPageTemplate
-      title={SMART_TIPS_TITLE}
-      description={SMART_TIPS_DESCRIPTION}
-      sections={SMART_TIPS_SECTIONS}
+    <CategoryCalculatorsTemplate
+      category="smart-tips"
+      titleOverride="Smart Tips"
+      description="Practical tips and everyday advice to make life easier, smarter, and more efficient."
+      canonical="https://www.smartkitnow.com/smart-tips"
+      backTo="/"
     />
   );
 }

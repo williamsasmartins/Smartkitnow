@@ -6,6 +6,9 @@ import AppErrorBoundary from "@/components/AppErrorBoundary";
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import GlowCardDemo from "@/pages/GlowCardDemo";
+import HealthCalculators from "@/pages/HealthCalculators";
+import ScienceCalculators from "@/pages/ScienceCalculators";
+import TimeCalculators from "@/pages/TimeCalculators";
 
 // Removido SpeedInsights em App, mantido apenas injeção em main.tsx para evitar conflitos em localhost
 
@@ -31,11 +34,17 @@ import DailyQuotesPage from "@/pages/DailyQuotesPage";
 import EverydayLifeCalculators from "@/pages/EverydayLifeCalculators";
 import SportsCalculators from "@/pages/SportsCalculators";
 import FunnyCalculators from "@/pages/FunnyCalculators";
+import ConstructionCalculators from "@/pages/ConstructionCalculators";
+import ElectricalCalculators from "@/pages/ElectricalCalculators";
+import AutomotiveCalculators from "@/pages/AutomotiveCalculators";
 
 // Adicionar landing pages novas usando o template
 import HealthCalculatorPage from "@/pages/HealthCalculatorPage";
 import FinancialCalculatorPage from "@/pages/FinancialCalculatorPage";
-
+import CookingCalculators from "@/pages/CookingCalculators";
+import PetsCalculators from "@/pages/PetsCalculators";
+import MathCalculators from "@/pages/MathCalculators";
+import ConversionCalculators from "@/pages/ConversionCalculators";
 
 // Categorias (raiz)
 // (Removidos imports de páginas específicas; agora usamos CategoryIndex)
@@ -108,14 +117,22 @@ export default function App() {
               <Route path="/everyday-life" element={<EverydayLifeCalculators />} />
               <Route path="/sports" element={<SportsCalculators />} />
               <Route path="/funny" element={<FunnyCalculators />} />
+              <Route path="/construction" element={<ConstructionCalculators />} />
+              <Route path="/electrical" element={<ElectricalCalculators />} />
+              <Route path="/automotive" element={<AutomotiveCalculators />} />
 
               {/* Category landing pages with new template */}
-              <Route path="/health" element={<HealthCalculatorPage />} />
+              <Route path="/health" element={<HealthCalculators />} />
               <Route path="/financial" element={<FinancialCalculatorPage />} />
+              <Route path="/cooking" element={<CookingCalculators />} />
+              <Route path="/pets" element={<PetsCalculators />} />
+              <Route path="/math" element={<MathCalculators />} />
+              <Route path="/conversion" element={<ConversionCalculators />} />
+              <Route path="/science" element={<ScienceCalculators />} />
+              <Route path="/time" element={<TimeCalculators />} />
 
               {/* Categorias raiz */}
-               <Route path="/math" element={<CategoryIndex />} />
-               <Route path="/:category" element={<CategoryIndex />} />
+              <Route path="/:category" element={<CategoryIndex />} />
 
 
               {/* Subcategorias (todas as seções) */}

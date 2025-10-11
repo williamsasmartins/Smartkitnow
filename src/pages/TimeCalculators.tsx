@@ -1,8 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { useState, useMemo } from "react";
-import CalculatorLink from "@/components/common/CalculatorLink";
+import CategoryCalculatorsTemplate from "@/components/layouts/CategoryCalculatorsTemplate";
 
 const timeData = {
   "countdown": {
@@ -74,97 +70,19 @@ const timeData = {
 };
 
 export default function TimeCalculators() {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const filteredData = useMemo(() => {
-    if (!searchTerm.trim()) return timeData;
-    
-    const filtered: Partial<typeof timeData> = {};
-    Object.entries(timeData).forEach(([key, category]) => {
-      const filteredCalculators = category.calculators.filter(calc =>
-        calc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        calc.description.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      
-      if (filteredCalculators.length > 0) {
-        filtered[key as keyof typeof timeData] = {
-          ...category,
-          calculators: filteredCalculators
-        };
-      }
-    });
-    
-    return filtered;
-  }, [searchTerm]);
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
-
-      
-      <main className="container mx-auto px-4 pt-20 pb-12">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-            Time & Date Calculators
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Calculate ages, dates, countdowns, and time durations. Perfect for planning events, tracking time, and date calculations.
-          </p>
-          
-          {/* Search Bar */}
-          <div className="max-w-md mx-auto relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search for a calculator"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 bg-background/80 border-border/60 focus:border-primary/40"
-            />
-          </div>
-        </div>
-
-        {/* Calculator Categories */}
-        <div className="grid gap-8">
-          {Object.entries(filteredData).map(([key, category]) => (
-            <Card key={key} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader className="bg-gradient-subtle">
-                <CardTitle className="text-2xl">{category.title}</CardTitle>
-                <CardDescription className="text-base">
-                  {category.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {category.calculators.map((calculator) => (
-                    <div
-                      key={calculator.key}
-                      className="block p-4 rounded-lg border border-border/60 hover:border-primary/40 hover:bg-muted/50 transition-all duration-200 group"
-                    >
-                      <h3 className="font-semibold group-hover:text-primary transition-colors">
-                        <CalculatorLink to={`/time/calculator/${calculator.key}`}>{calculator.name}</CalculatorLink>
-                      </h3>
-                      <p className="text-sm text-muted-foreground mt-2">
-                        {calculator.description}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {Object.keys(filteredData).length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">
-              No calculators found matching "{searchTerm}"
-            </p>
-          </div>
-        )}
-      </main>
-
-
-    </div>
+    <CategoryCalculatorsTemplate
+      category="time"
+      description="Calculate ages, dates, countdowns, and time durations."
+      canonical="https://www.smartkitnow.com/time"
+      titleOverride={undefined}
+      breadcrumbsOverride={undefined}
+      marginTopClass="mt-[156px] md:mt-[176px]"
+      showRightRail={true}
+      showTopBanner={true}
+      showBottomBanner={true}
+      railsSticky={false}
+      backTo="/"
+    />
   );
 }

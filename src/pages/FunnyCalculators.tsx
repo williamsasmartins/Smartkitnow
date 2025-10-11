@@ -1,50 +1,11 @@
-import { useMemo } from "react";
-import CategoryPageTemplate from "@/components/layouts/CategoryPageTemplate";
-import { buildSectionsForCategory } from "@/data/categorySections";
+import CategoryCalculatorsTemplate from "@/components/layouts/CategoryCalculatorsTemplate";
 
 export default function FunnyCalculators() {
-  const sections = useMemo(
-    () =>
-      buildSectionsForCategory("funny", {
-        shortPaths: true,
-        subcategoryIconMap: {
-          "meme-math-calculators": "😄",
-          "productivity-coffee-calculators": "☕",
-          "food-fun-calculators": "🍕",
-          "general": "🎉",
-        },
-      }),
-    []
-  );
-
-  const intro = (
-    <div className="space-y-3">
-      <p>
-        Lighthearted tools for playful math and humorous estimations.
-      </p>
-      <p>
-        Discover whimsical ideas: meme weights, coffee-to-productivity calculators, pizza slice fairness meters, and more.
-      </p>
-    </div>
-  );
-
   return (
-    <CategoryPageTemplate
-      title="Funny Calculators"
-      intro={intro}
-      sections={sections}
-      showTopBanner={true}
-      showRightRail={true}
-      contentBackgroundColor="#0c1324"
-      recommendedFooter={(
-        <div className="space-y-6">
-          <div className="bg-card/50 border border-border/60 rounded-lg p-6 shadow-sm">
-            <p className="text-base text-muted-foreground">Wecb4re crafting a whimsical collection — meme weights, coffee-to-productivity calculators, pizza slice fairness meters, and more. Stay tuned!</p>
-          </div>
-
-          <p className="mt-2 text-sm text-muted-foreground">Suggest a fun idea and wecb4ll add it to the list soon.</p>
-        </div>
-      )}
+    <CategoryCalculatorsTemplate
+      category="funny"
+      description="Lighthearted tools for playful math and humorous estimations: meme weights, coffee-to-productivity fun, pizza slice fairness meters, and more."
+      backTo="/"
     />
   );
 }
