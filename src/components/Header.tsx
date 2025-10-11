@@ -180,47 +180,29 @@ export function Header() {
           
           {/* More */}
           <li>
-            <div className="relative inline-block group">
-              {/* Mobile: details */}
-              <details className="sm:hidden">
-                <summary className="cursor-pointer list-none text-muted-foreground hover:text-foreground">More</summary>
-                <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[min(92vw,720px)] rounded-md border border-border bg-background shadow-lg z-[11000]">
-                  <ul className="py-2 text-sm grid grid-cols-2 gap-x-6 gap-y-2">
-                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/daily-quotes" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("daily-quotes")}</span>Daily Quotes</Link></li>
-                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/everyday-life" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("everyday-life")}</span>Everyday Life</Link></li>
-                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/sports" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("sports")}</span>Sports</Link></li>
-                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/funny" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("funny")}</span>Funny</Link></li>
-                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/automotive" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("automotive")}</span>Automotive</Link></li>
+            <div className="relative inline-block">
+              <Popover open={isMoreOpen} onOpenChange={setIsMoreOpen}>
+                <PopoverTrigger asChild>
+                  <button
+                    className="cursor-pointer text-muted-foreground hover:text-foreground"
+                    aria-haspopup="dialog"
+                    aria-expanded={isMoreOpen}
+                  >
+                    More
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent align="center" sideOffset={8} className="w-[min(92vw,720px)] p-2">
+                  <ul className="py-2 text-sm grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2">
                     <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/construction" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("construction")}</span>Construction</Link></li>
                     <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/electrical" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("electrical")}</span>Electrical</Link></li>
+                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/automotive" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("automotive")}</span>Automotive</Link></li>
+                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/sports" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("sports")}</span>Sports</Link></li>
+                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/everyday-life" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("everyday-life")}</span>Everyday Life</Link></li>
+                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/daily-quotes" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("daily-quotes")}</span>Daily Quotes</Link></li>
+                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/funny" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("funny")}</span>Funny</Link></li>
                   </ul>
-                </div>
-              </details>
-              {/* Desktop: Popover do sistema de UI */}
-              <div className="hidden sm:block">
-                <Popover open={isMoreOpen} onOpenChange={setIsMoreOpen}>
-                  <PopoverTrigger asChild>
-                    <button
-                      className="cursor-pointer text-muted-foreground hover:text-foreground"
-                      aria-haspopup="dialog"
-                      aria-expanded={isMoreOpen}
-                    >
-                      More
-                    </button>
-                  </PopoverTrigger>
-                  <PopoverContent align="center" sideOffset={8} className="w-[min(92vw,720px)] p-2">
-                    <ul className="py-2 text-sm grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2">
-                      <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/construction" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("construction")}</span>Construction</Link></li>
-                      <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/electrical" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("electrical")}</span>Electrical</Link></li>
-                      <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/automotive" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("automotive")}</span>Automotive</Link></li>
-                      <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/sports" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("sports")}</span>Sports</Link></li>
-                      <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/everyday-life" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("everyday-life")}</span>Everyday Life</Link></li>
-                      <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/daily-quotes" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("daily-quotes")}</span>Daily Quotes</Link></li>
-                      <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/funny" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("funny")}</span>Funny</Link></li>
-                    </ul>
-                  </PopoverContent>
-                </Popover>
-              </div>
+                </PopoverContent>
+              </Popover>
             </div>
           </li>
         </ul>
