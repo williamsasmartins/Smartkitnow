@@ -1,29 +1,24 @@
-import React, { ReactNode } from "react";
-import CalculatorListBlue from "@/components/common/CalculatorListBlue";
-import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
-import ShareThisCalculator from "@/components/share/ShareThisCalculator";
+import { useMemo, useState, ReactNode } from "react";
+import { getCategoryIcon } from "@/lib/navigation";
+import { BadgeDollarSign, LineChart, PiggyBank, Percent, BriefcaseBusiness, CreditCard, Banknote } from "lucide-react";
 
-// Data contracts
-export type CategoryItem = { title: string; to: string };
-export type CategorySection = { icon?: ReactNode; title?: string; heading?: ReactNode; items: CategoryItem[] };
+export type CategorySection = {
+  heading: string;
+  items: { title: string; to: string }[];
+};
 
 export type CategoryPageTemplateProps = {
   title: string;
-  description?: ReactNode; // accept ReactNode to stay compatible with existing pages
-  sections: CategorySection[];     // rendered as 2-col lists
-  headerSlot?: ReactNode;          // optional banner/breadcrumb
-  railSlot?: ReactNode;            // optional right rail content (default: none)
-  minContentScore?: number;        // provided for PageWithRails gating; not enforced here
-  // Backward-compatible props used by existing pages (optional)
-  intro?: ReactNode;
-  showTopBanner?: boolean;         // ignored here; ads are controlled by PageWithRails
-  showRightRail?: boolean;         // ignored here; ads are controlled by PageWithRails
-  recommendedFooter?: ReactNode;
-  contentBackgroundColor?: string;
-  additionalItemCount?: number;
+  description?: string;
+  sections: CategorySection[];
+  headerSlot?: ReactNode;
+  railSlot?: ReactNode;
+  minContentScore?: number;
+  /** Use the same key you use in the header/navigation: "financial", "health", ... */
+  kind?: string;
 };
 
-// Page meta exported for PageWithRails to read. This template does NOT enforce gating.
+// Keep page meta export for compatibility with existing pages
 export const defaultPageMeta = { allowAds: true, minContentScore: 3 };
 
 export default function CategoryPageTemplate({
@@ -33,73 +28,110 @@ export default function CategoryPageTemplate({
   headerSlot,
   railSlot,
   minContentScore = 3,
-  // Backward-compatible props
-  intro,
-  showTopBanner = false,
-  showRightRail = true,
-  recommendedFooter,
-  contentBackgroundColor,
-  additionalItemCount = 0,
+  kind = "financial",
 }: CategoryPageTemplateProps) {
+  const [expanded, setExpanded] = useState(false);
+  const calculatorsCount = useMemo(
+    () => sections.reduce((acc, s) => acc + s.items.length, 0),
+    [sections]
+  );
+  const emoji = getCategoryIcon(kind);
+
   return (
-    <div className="mx-auto max-w-6xl px-4 md:px-6 py-8" style={contentBackgroundColor ? { backgroundColor: contentBackgroundColor } : undefined}>
+    <div className="mx-auto max-w-6xl px-4 md:px-6">
+      {/* HEADER (Omni-like) */}
       {headerSlot ? (
         <div className="mb-8">{headerSlot}</div>
       ) : (
-        <header className="mb-8 space-y-2">
-          <h1 className="text-[28px] md:text-[32px] font-bold leading-tight tracking-[-0.01em] text-[#5c82ee]">
-            {title}
-          </h1>
-          {(description || intro) && (
-            <div className="text-[15px] md:text-[16px] leading-[1.65] text-[#747886]">
-              {description ?? intro}
+        <header className="mb-8">
+          <div className="flex items-center gap-3">
+            <div
+              className="inline-flex h-10 w-10 items-center justify-center rounded-xl shadow-sm text-[20px] leading-none select-none"
+              aria-hidden="true"
+              /* badge de cor mantém o azul de marca, mas você pode trocar por kind-based se quiser */
+              style={{ backgroundColor: "#3c83f6", color: "#fff" }}
+            >
+              {emoji}
+            </div>
+            <h1 className="text-[28px] md:text-[32px] font-bold tracking-[-0.01em]">
+              {title}
+            </h1>
+          </div>
+
+          <div className="mt-2 text-sm skn-text-muted">
+            {calculatorsCount} calculators
+          </div>
+
+          {description && (
+            <div className="mt-3">
+              {/* descrição mais estreita para conviver com right rail ad */}
+              <div className="max-w-[740px]">
+                <p className={expanded ? "text-[15px] md:text-[16px] leading-[1.8]" : "text-[15px] md:text-[16px] leading-[1.8] skn-line-clamp-3"}>
+                  {description}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setExpanded((v) => !v)}
+                  className="mt-1 text-[var(--skn-brand)] underline underline-offset-2"
+                >
+                  {expanded ? "Read less" : "Read more"}
+                </button>
+              </div>
             </div>
           )}
         </header>
       )}
 
-      {/* grid: content + rail */}
-      <div className="grid grid-cols-1 xl:grid-cols-[1fr_auto] gap-8">
-        {/* content */}
-        <main className="space-y-8">
-          {sections.map((sec, idx) => {
-            const half = Math.ceil(sec.items.length / 2);
-            const left = sec.items.slice(0, half);
-            const right = sec.items.slice(half);
-            return (
-              <section key={String(sec.title ?? (typeof sec.heading === "string" ? sec.heading : idx))} className="space-y-3">
-                <h2 className="text-[22px] md:text-[24px] font-semibold leading-snug tracking-[-0.005em] text-[#5c82ee]">
-                  {sec.icon ? <span className="mr-2 align-middle" aria-hidden>{sec.icon}</span> : null}
-                  {sec.title ?? sec.heading}
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <CalculatorListBlue items={left} />
-                  <CalculatorListBlue items={right} />
-                </div>
-              </section>
-            );
-          })}
-
-          {/* Bottom utilities: feedback + share */}
-          <section className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <SiteFeedbackForm title="Questions or suggestions?" />
-            <ShareThisCalculator />
-          </section>
-
-          {recommendedFooter && (
-            <section className="mt-4">
-              {recommendedFooter}
+      {/* Seções com ícones coloridos e duas colunas */}
+      <div className="space-y-10">
+        {sections.map((sec) => {
+          const s = sectionIcon(sec.heading);
+          return (
+            <section key={sec.heading} className="mt-10">
+              <h2 className="text-[22px] md:text-[24px] font-semibold leading-snug tracking-[-0.005em] mb-6 flex items-center gap-3">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg" style={{ backgroundColor: s.color, color: "#fff" }}>
+                  {s.el}
+                </span>
+                <span style={{ color: "#224691" }}>{sec.heading}</span>
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
+                <ul className="list-disc pl-5 space-y-3 leading-7">
+                  {sec.items.filter((_, i) => i % 2 === 0).map((it) => (
+                    <li key={it.to} className="marker:text-[var(--skn-brand)]">
+                      <a href={it.to} className="inline-block text-[var(--skn-brand)] underline decoration-[var(--skn-brand)] underline-offset-2 hover:decoration-2">
+                        {it.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <ul className="list-disc pl-5 space-y-3 leading-7">
+                  {sec.items.filter((_, i) => i % 2 === 1).map((it) => (
+                    <li key={it.to} className="marker:text-[var(--skn-brand)]">
+                      <a href={it.to} className="inline-block text-[var(--skn-brand)] underline decoration-[var(--skn-brand)] underline-offset-2 hover:decoration-2">
+                        {it.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </section>
-          )}
-        </main>
-
-        {/* rail: sticky container with optional slot; no direct ads rendered here */}
-        <aside className="hidden xl:block">
-          <div className="sticky top-24 w-[160px] space-y-4">
-            {railSlot ?? null}
-          </div>
-        </aside>
+          );
+        })}
       </div>
     </div>
   );
 }
+
+/* helper de ícones por heading (coloridos) */
+const sectionIcon = (heading: string) => {
+  const base = "w-5 h-5";
+  const norm = heading.toLowerCase();
+  if (norm.includes("interest") || norm.includes("loan"))  return { el: <BadgeDollarSign className={base} />, color: "#3b82f6" }; // blue
+  if (norm.includes("investment"))                          return { el: <LineChart className={base} />,      color: "#16a34a" }; // green
+  if (norm.startsWith("loan"))                              return { el: <PiggyBank className={base} />,       color: "#8b5cf6" }; // violet
+  if (norm.includes("tax") || norm.includes("income"))      return { el: <Percent className={base} />,         color: "#f59e0b" }; // amber
+  if (norm.includes("business") || norm.includes("profit")) return { el: <BriefcaseBusiness className={base} />,color: "#6366f1" }; // indigo
+  if (norm.includes("debt") || norm.includes("credit"))     return { el: <CreditCard className={base} />,      color: "#ef4444" }; // red
+  if (norm.includes("currency") || norm.includes("inflation")) return { el: <Banknote className={base} />,     color: "#14b8a6" }; // teal
+  return { el: <BadgeDollarSign className={base} />, color: "#3c83f6" };
+};

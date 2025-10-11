@@ -163,7 +163,7 @@ export default function MathComingSoon() {
        </main>
 
        {/* AdSense policy: no footer banner ads on placeholder pages */}
-       <Footer showBanner={false} />
+       <Footer />
      </div>
    );
  }

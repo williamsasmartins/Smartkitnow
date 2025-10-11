@@ -3,6 +3,7 @@ import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
 import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { getCategoryIcon } from "@/lib/navigation";
 import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft } from "lucide-react";
 const Index = () => {
   const navigate = useNavigate();
@@ -1368,11 +1369,11 @@ const Index = () => {
     description: "Calculate your GPA",
     icon: Star
   }];
-  return <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-[var(--skn-bg-soft)]">
       {/* Main Content Area - Add top padding to account for fixed header */}
       <main className="pt-20">
         {/* Categories Section */}
-        <section className="container mx-auto px-4 py-8">
+        <section className="container mx-auto px-4 py-8 md:py-12">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 py-[10px] skn-title">
               Calculator Categories
@@ -1421,11 +1422,24 @@ const Index = () => {
               if (isRecipes) navigate('/recipes');
               if (isSmartTips) navigate('/smart-tips');
             };
-            return <Card key={index} className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer" onClick={handleClick}>
-                  <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
-                    <div className="p-3 rounded-lg bg-muted/50 group-hover:bg-primary/10 transition-colors skn-icon-badge">
-                      <IconComponent className={`h-6 w-6 ${category.color || ''}`} />
-                    </div>
+            return <Card key={index} className="skn-card group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={handleClick}>
+                  <CardContent className="p-6 flex flex-col items-center text-center space-y-2">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm">
+                      <span className="text-[20px] leading-none">{getCategoryIcon(
+                        isAutomotive ? 'automotive' :
+                        isConstruction ? 'construction' :
+                        isConversion ? 'conversion' :
+                        isCooking ? 'cooking' :
+                        isElectrical ? 'electrical' :
+                        isFinancial ? 'financial' :
+                        isHealth ? 'health' :
+                        isMath ? 'math' :
+                        isPets ? 'pets' :
+                        isScience ? 'science' :
+                        isTime ? 'time' :
+                        (category as any).key
+                      )}</span>
+                    </span>
                     <h3 className="text-sm font-medium skn-title">
                       {category.name}
                     </h3>
@@ -1443,11 +1457,10 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Gradient Divider Between Sections */}
-        {/* removed per user request */}
+        <div className="border-t border-gray-200 my-8" />
 
         {/* Featured Section */}
-        <section className="container mx-auto px-4 py-16">
+        <section className="container mx-auto px-4 py-8 md:py-12">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold skn-title mb-4">Featured Calculators</h3>
             <p className="text-muted-foreground text-lg">
@@ -1459,7 +1472,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredCalculators.map((calc, index) => {
             const IconComponent = calc.icon;
-            return <Card key={index} className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50 cursor-pointer">
+            return <Card key={index} className="skn-card group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer">
                   <CardHeader>
                     <div className="flex items-center space-x-3">
                       <div className="p-2 rounded-lg bg-muted/50 skn-icon-badge">
@@ -1473,7 +1486,7 @@ const Index = () => {
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="p-6">
                     <Button variant="outline" className="w-full border-[#5c82ee] text-[#5c82ee] hover:bg-[#5c82ee] hover:text-white">
                       Use Calculator
                     </Button>
@@ -1487,7 +1500,7 @@ const Index = () => {
         {/* removed per user request */}
 
         {/* About Us Section */}
-        <section className="container mx-auto px-4 py-16">
+        <section className="container mx-auto px-4 py-8 md:py-12">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold skn-title mb-4">About Smart Kit Now</h2>
@@ -1497,7 +1510,7 @@ const Index = () => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <Card className="border-border/50">
+              <Card className="skn-card">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 skn-title">
                     <Calculator className="h-5 w-5 text-[var(--primary)]" style={{ color: '#10b981' }} />
@@ -1513,7 +1526,7 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-border/50">
+              <Card className="skn-card">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 skn-title">
                     <Lightbulb className="h-5 w-5 text-[var(--primary)]" style={{ color: '#f59e0b' }} />
@@ -1566,10 +1579,12 @@ const Index = () => {
           </div>
         </section>
 
+        <div className="border-t border-gray-200 my-8" />
+
         {/* Why Our Calculators Matter Section */}
         {/* removed per user request */}
 
-        <section className="container mx-auto px-4 py-16">
+        <section className="container mx-auto px-4 py-8 md:py-12">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center skn-title mb-12">
               Empowering Better Decisions Through Accurate Calculations
@@ -1640,7 +1655,7 @@ const Index = () => {
         </section>
 
         {/* Our Commitment Section */}
-        <section className="container mx-auto px-4 py-16">
+        <section className="container mx-auto px-4 py-8 md:py-12">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold skn-title mb-6">Our Commitment to Excellence</h2>
             <p className="text-lg text-muted-foreground mb-8">
@@ -1650,17 +1665,17 @@ const Index = () => {
             </p>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-lg bg-card border border-border/50">
+              <div className="skn-card p-6">
                 <BookOpen className="h-8 w-8 mx-auto mb-3" style={{ color: '#34d399' }} />
                 <h4 className="font-semibold skn-title mb-2">Continuous Improvement</h4>
                 <p className="text-sm text-muted-foreground">We continually refine our tools based on user feedback and industry standards.</p>
               </div>
-              <div className="p-6 rounded-lg bg-card border border-border/50">
+              <div className="skn-card p-6">
                 <Star className="h-8 w-8 mx-auto mb-3" style={{ color: '#60a5fa' }} />
                 <h4 className="font-semibold skn-title mb-2">Accuracy & Transparency</h4>
                 <p className="text-sm text-muted-foreground">Clear formulas and explanations ensure reliable, verifiable results.</p>
               </div>
-              <div className="p-6 rounded-lg bg-card border border-border/50">
+              <div className="skn-card p-6">
                 <Zap className="h-8 w-8 mx-auto mb-3" style={{ color: '#f59e0b' }} />
                 <h4 className="font-semibold skn-title mb-2">Performance & UX</h4>
                 <p className="text-sm text-muted-foreground">Fast, accessible and delightful experience across devices.</p>

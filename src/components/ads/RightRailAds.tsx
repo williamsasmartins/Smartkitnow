@@ -9,13 +9,13 @@ import AdSlot from "@/components/ads/AdSlot";
  */
 export default function RightRailAds() {
   return (
-    <div className="w-[160px] space-y-4">
-      <AdSlot
-        variant="rail"
-        label="Ad - Right Rail (Google AdSense)"
-        className="w-[160px]"
-        stickyRail
-      />
+    <div className="space-y-4">
+      <div className="ad-reserve-rail ad-frame">
+        <AdSlot variant="rail" id="rail-top" />
+      </div>
+      <div className="ad-reserve-rail ad-frame">
+        <AdSlot variant="rail" id="rail-mid" />
+      </div>
     </div>
   );
 }

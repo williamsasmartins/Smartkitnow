@@ -8,6 +8,7 @@ import './styles/theme.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { injectSpeedInsights } from '@vercel/speed-insights'
 import { HelmetProvider } from 'react-helmet-async'
+import { initWebVitals } from '@/lib/webvitals'
 
 // Inicializa o Sentry somente se explicitamente habilitado e com DSN válido fora de localhost
 const SENTRY_DSN = import.meta.env.VITE_SENTRY_DSN?.trim()
@@ -50,5 +51,37 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </ThemeProvider>
   </React.StrictMode>
 )
+
+// Inicializa Web Vitals unificado (CLS, LCP, INP) em produção
+if (import.meta.env.PROD) {
+  initWebVitals({
+    debug: false,
+    beaconUrl: "/metrics/web-vitals",
+    onFinal: (m) => {
+      console.log("[WebVitals]", m)
+      // @ts-ignore
+      window.gtag?.("event", "web_vital", {
+        event_category: "Web Vitals",
+        event_label: "CLS",
+        value: Math.round((m.CLS ?? 0) * 1000),
+        non_interaction: true,
+      })
+      // @ts-ignore
+      window.gtag?.("event", "web_vital", {
+        event_category: "Web Vitals",
+        event_label: "LCP",
+        value: Math.round((m.LCP ?? 0)),
+        non_interaction: true,
+      })
+      // @ts-ignore
+      window.gtag?.("event", "web_vital", {
+        event_category: "Web Vitals",
+        event_label: "INP",
+        value: Math.round((m.INP ?? 0)),
+        non_interaction: true,
+      })
+    },
+  })
+}
 
 

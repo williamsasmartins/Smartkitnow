@@ -1,73 +1,77 @@
-.skn-title { color: #5c82ee !important; }
-/* Calculator link style — matches Omni's health category behavior */
-.skn-link-readmore {
-  @apply inline text-[#3c83f6] underline decoration-[#3c83f6] underline-offset-2;
+/* Reserve space for ad slots to reduce CLS */
+.ad-reserve-banner {
+  min-height: 100px; /* mobile: 320x100 */
 }
-/* opcional: underline um pouco mais forte no hover/focus */
-.skn-link-readmore:hover,
-.skn-link-readmore:focus {
-  @apply decoration-2;
+@media (min-width: 768px) {
+  .ad-reserve-banner { min-height: 90px; } /* md: 728x90 fits */
 }
-.skn-subtitle { color: #747886 !important; }
-
-/* wrapper for colored icons of mini-cards */
-.skn-icon-badge {
-  width: 40px;
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.75rem; /* ~rounded-xl */
-  background-color: rgba(92,130,238,0.15);
-  color: #5c82ee;
+@media (min-width: 1024px) {
+  .ad-reserve-banner { min-height: 100px; } /* lg: allow 300x250 fallback */
 }
 
-/* Category menu fixes */
-.skn-cat-menu {
-  display: flex;
-  gap: 1.25rem; /* ~gap-5 */
-  white-space: nowrap;
+/* Right rail typical sizes */
+.ad-reserve-rail {
+  min-height: 260px; /* 300x250 + padding */
 }
-.skn-cat-menu > li {
-  flex: 0 0 auto; /* prevent shrinking so text isn't truncated */
+@media (min-width: 1280px) {
+  .ad-reserve-rail { min-height: 620px; } /* 300x600 inventory when present */
 }
 
-/* Spacing adjustment for fixed header on mobile */
-@media (max-width: 639px) {
-  main.pt-20 {
-    padding-top: 12rem !important; /* increase to ~128px to give more space for top banner */
-  }
+/* Optional: generic box to avoid layout flicker while loading */
+.ad-frame {
+  display: flex; align-items: center; justify-content: center;
+  background: transparent;
 }
 
-/* Spacing adjustment for fixed header on desktop */
-@media (min-width: 640px) {
-  main.pt-20 {
-    padding-top: 8rem !important; /* increase to ~128px on desktop */
-  }
+:root {
+  /* EXACT colors requested */
+  --skn-bg-light: #f7f9ff;
+  --skn-bg-dark:  #0c1324;
+
+  --skn-card-light: #ffffff;
+  --skn-card-dark:  #0f1a33;
+
+  --skn-text-main-light: #0b152b;
+  --skn-text-main-dark:  #e6ecff;
+
+  --skn-text-muted-light: #51607a;
+  --skn-text-muted-dark:  #a9b7d9;
+
+  --skn-brand: #3c83f6; /* azul dos links/ícones */
 }
 
-/* Hide scrollbar but keep scroll behavior */
-.no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-.no-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+/* Light */
+html:not(.dark) body {
+  background: var(--skn-bg-light);
+  color: var(--skn-text-main-light);
 }
 
-/* Reusable calculator link (blue + short underline) */
-.skn-calc-link {
-  @apply inline-block pb-1 text-[#3c83f6] border-b border-[#3c83f6]/40 
-         hover:border-[#3c83f6] focus:border-[#3c83f6] 
-         focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#3c83f6]/60;
+/* Dark */
+html.dark body {
+  background: var(--skn-bg-dark);
+  color: var(--skn-text-main-dark);
 }
-/* Normalize calculator lists spacing */
-.skn-calc-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+
+/* Helpers for cards/sections */
+.skn-card {
+  background: var(--skn-card-light);
 }
-.skn-calc-list > li {
-  margin: 0.25rem 0;
+html.dark .skn-card {
+  background: var(--skn-card-dark);
+}
+
+.skn-text-muted {
+  color: var(--skn-text-muted-light);
+}
+html.dark .skn-text-muted {
+  color: var(--skn-text-muted-dark);
+}
+
+/* 3-line clamp utility (se não tiver Tailwind line-clamp) */
+.skn-line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 

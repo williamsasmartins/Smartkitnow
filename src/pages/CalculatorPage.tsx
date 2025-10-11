@@ -289,7 +289,7 @@ const CalculatorPage = () => {
         </div>
       )}
 
-      <Footer showBanner={!isPlaceholder} />
+      <Footer />
     </div>
   );
 };

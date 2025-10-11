@@ -118,10 +118,19 @@ export default function PageWithRails({
         )}
       </div>
 
-      {/* BOTTOM BANNER */}
-      {showBottomBanner && canServeAds && (
-        <div className="my-6">
-          <AdSlot variant="banner" id="pageBottomBanner" label="Ad - Bottom Banner (Google AdSense)" />
+      {/* Bottom banner above global Footer (gated by AdSense) */}
+      {canServeAds && (
+        <div className="mx-auto max-w-6xl px-4 md:px-6 mt-10">
+          <div className="flex justify-center">
+            <div className="w-full ad-reserve-banner ad-frame">
+              <AdSlot
+                variant="banner"
+                id="pageBottomBannerAboveFooter"
+                className="w-full"
+                label="Page bottom banner above footer"
+              />
+            </div>
+          </div>
         </div>
       )}
     </div>

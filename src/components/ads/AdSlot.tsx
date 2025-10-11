@@ -56,7 +56,7 @@ export default function AdSlot({
           io.disconnect();
         }
       },
-      { rootMargin: "200px" },
+      { rootMargin: "200px 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
