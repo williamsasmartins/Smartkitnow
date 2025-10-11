@@ -46,7 +46,7 @@ export default function CategorySubcategory() {
               {/* Back à esquerda */}
               <button
                 onClick={() => navigate(`/${category}`)}
-                className="mb-4 inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-white hover:brightness-110 transition-colors"
+                className="mb-4 inline-flex items-center gap-2 rounded-md px-3 py-2 md:py-2.5 text-white hover:brightness-110 transition-colors"
                 style={{ backgroundColor: PALETTE.brand.button }}
                 aria-label={`Back to ${category}`}
               >

@@ -50,7 +50,7 @@ export default function FinancialCalculators() {
                 <Button
                   variant="default"
                   onClick={() => navigate("/")}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 px-3 py-2 md:py-2.5"
                   style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
                 >
                   <ArrowLeft className="h-4 w-4" />
