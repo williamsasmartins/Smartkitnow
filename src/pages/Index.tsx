@@ -1443,11 +1443,11 @@ const Index = () => {
               if (isSmartTips) navigate('/smart-tips');
             };
             return <GlowCard key={index} className="skn-card group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={handleClick} customSize glowColor={isFinancial ? 'green' : isHealth ? 'red' : isPets ? 'orange' : isRecipes ? 'purple' : isConversion ? 'blue' : isElectrical ? 'orange' : isConstruction ? 'orange' : isCooking ? 'orange' : isMath ? 'purple' : isScience ? 'blue' : isTime ? 'blue' : 'blue'}>
-                  <CardContent className="p-6 flex flex-col items-center text-center space-y-2">
-                    <span className="text-[22px] leading-none select-none">
+                  <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
+                    <span className="text-[20px] leading-none select-none">
                       {getCategoryIcon((category as any).key)}
                     </span>
-                    <h3 className="skn-home-title text-[16px] md:text-[17px] font-semibold tracking-[-0.01em]">
+                    <h3 className="skn-home-title text-[14px] md:text-[15px] font-semibold tracking-[-0.01em]">
                       {(category as any).title ?? category.name}
                     </h3>
                   </CardContent>
@@ -1486,14 +1486,14 @@ const Index = () => {
                         <IconComponent className="h-5 w-5" style={{ color: ['#ef4444','#f59e0b','#10b981','#06b6d4','#a855f7','#eab308','#0ea5e9','#14b8a6','#fb7185','#64748b'][index % 10] }} />
                       </div>
                       <div>
-                        <CardTitle className="text-lg skn-title">
+                        <CardTitle className="text-base skn-title">
                           {calc.name}
                         </CardTitle>
-                        <CardDescription>{calc.description}</CardDescription>
+                        <CardDescription className="line-clamp-1">{calc.description}</CardDescription>
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="p-6">
+                  <CardContent className="p-5">
                     <Button variant="outline" className="w-full border-[#5c82ee] text-[#5c82ee] hover:bg-[#5c82ee] hover:text-white">
                       Use Calculator
                     </Button>

@@ -38,19 +38,42 @@ const GlowCard: React.FC<GlowCardProps> = ({
   const innerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const syncPointer = (e: PointerEvent) => {
-      const { clientX: x, clientY: y } = e;
+    const el = cardRef.current;
+    if (!el) return;
 
-      if (cardRef.current) {
-        cardRef.current.style.setProperty('--x', x.toFixed(2));
-        cardRef.current.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
-        cardRef.current.style.setProperty('--y', y.toFixed(2));
-        cardRef.current.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
-      }
+    const setFromClientXY = (clientX: number, clientY: number) => {
+      const rect = el.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      el.style.setProperty('--x', x.toFixed(2));
+      el.style.setProperty('--y', y.toFixed(2));
+      el.style.setProperty('--xp', (clientX / window.innerWidth).toFixed(2));
+      el.style.setProperty('--yp', (clientY / window.innerHeight).toFixed(2));
     };
 
-    document.addEventListener('pointermove', syncPointer);
-    return () => document.removeEventListener('pointermove', syncPointer);
+    const onPointerMove = (e: PointerEvent) => setFromClientXY(e.clientX, e.clientY);
+    const onTouchMove = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (!t) return;
+      setFromClientXY(t.clientX, t.clientY);
+    };
+    const onPointerLeave = () => {
+      const rect = el.getBoundingClientRect();
+      setFromClientXY(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    };
+
+    el.addEventListener('pointermove', onPointerMove);
+    el.addEventListener('touchmove', onTouchMove, { passive: true } as EventListenerOptions);
+    el.addEventListener('pointerleave', onPointerLeave);
+
+    // initialize to center
+    onPointerLeave();
+
+    return () => {
+      el.removeEventListener('pointermove', onPointerMove);
+      el.removeEventListener('touchmove', onTouchMove);
+      el.removeEventListener('pointerleave', onPointerLeave);
+    };
   }, []);
 
   const { base, spread } = glowColorMap[glowColor];
@@ -64,6 +87,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
   };
 
   const getInlineStyles = (): CSSProperties & Record<string, string | number> => {
+    const isFinePointer = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: fine)').matches;
     const baseStyles: CSSProperties & Record<string, string | number> = {
       '--base': base,
       '--spread': spread,
@@ -85,10 +109,10 @@ const GlowCard: React.FC<GlowCardProps> = ({
       backgroundColor: 'var(--backdrop, transparent)',
       backgroundSize: 'calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)))',
       backgroundPosition: '50% 50%',
-      backgroundAttachment: 'fixed',
+      backgroundAttachment: isFinePointer ? 'fixed' : 'scroll',
       border: 'var(--border-size) solid var(--backup-border)',
       position: 'relative',
-      touchAction: 'none',
+      // Allow default touch actions on mobile to keep scroll/gesture behavior
     };
 
     // Add width and height if provided
@@ -168,7 +192,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
         className={`
           ${getSizeClasses()}
           ${!customSize ? 'aspect-[3/4]' : ''}
-          rounded-2xl
+          rounded-3xl
           relative
           grid
           grid-rows-[1fr_auto]
