@@ -87,15 +87,16 @@ export function categoryIcon(category: string): string {
     science: "🔬",
     time: "⏱️",
     tv: "📺",
-    conversion: "🧭",
+    conversion: "🔁",
     electrical: "⚡",
     // Additional categories used in Header More menu
     "smart-tips": "💡",
     automotive: "🚗",
     sports: "🏅",
-    funny: "🎭",
+    funny: "😄",
     "daily-quotes": "💬",
     "everyday-life": "🏡",
+    recipes: "📚",
   };
   return byCategory[category] ?? "📚";
 }
