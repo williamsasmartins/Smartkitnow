@@ -75,12 +75,12 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
     <div className="w-full">
       <Card className="w-full bg-card border-border/50 shadow-sm">
         <CardHeader>
-          <CardTitle className="text-lg">{config.title}</CardTitle>
-          <CardDescription>{config.shortDescription}</CardDescription>
+          <CardTitle className="text-[15px] md:text-[16px]">{config.title}</CardTitle>
+          <CardDescription className="text-[13px] md:text-[14px]">{config.shortDescription}</CardDescription>
         </CardHeader>
         <CardContent>
           {/* Inputs */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             {config.inputs.map((f) => {
               if (f.type === "number") {
                 return (
@@ -144,7 +144,7 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
               {config.metricsDisplay.map((m) => (
                 <div key={m.key} className="rounded-md border border-border/50 bg-muted/20 p-3">
                   <div className="text-xs text-muted-foreground">{m.label}</div>
-                  <div className="text-lg font-semibold">{m.format(computeOut.metrics[m.key])}</div>
+                  <div className="text-base md:text-lg font-semibold">{m.format(computeOut.metrics[m.key])}</div>
                 </div>
               ))}
             </div>
@@ -174,13 +174,13 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
   );
 
   const left = (
-    <article>
-      <h1 className="text-3xl font-bold" style={{ color: "#5c82ee" }}>{config.title}</h1>
-      <p className="text-muted-foreground mt-2">{config.shortDescription}</p>
+    <article className="text-[14px] md:text-[15px] leading-relaxed">
+      <h1 className="text-xl md:text-2xl font-bold mb-1" style={{ color: "#5c82ee" }}>{config.title}</h1>
+      <p className="text-sm md:text-[15px] text-muted-foreground">{config.shortDescription}</p>
 
       {config.howToUse?.length ? (
         <section className="mt-8">
-          <h2 className="text-xl font-semibold" style={{ color: "#5c82ee" }}>How to use</h2>
+          <h2 className="text-lg md:text-xl font-semibold" style={{ color: "#5c82ee" }}>How to use</h2>
           <ul className="list-disc pl-6 mt-2 text-muted-foreground">
             {config.howToUse.map((t, i) => (
               <li key={i}>{t}</li>
@@ -191,10 +191,10 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
 
       {config.howItWorks && (config.howItWorks.intro || config.howItWorks.formula || config.howItWorks.variables?.length) ? (
         <section className="mt-8">
-          <h2 className="text-xl font-semibold" style={{ color: "#5c82ee" }}>How the calculation works</h2>
+          <h2 className="text-lg md:text-xl font-semibold" style={{ color: "#5c82ee" }}>How the calculation works</h2>
           {config.howItWorks.intro && <p className="mt-2 text-muted-foreground">{config.howItWorks.intro}</p>}
           {config.howItWorks.formula && (
-            <pre className="mt-3 bg-muted/50 text-sm p-3 rounded-md overflow-auto">
+            <pre className="mt-3 bg-muted/50 text-xs md:text-sm p-3 rounded-md overflow-auto">
               <code>{config.howItWorks.formula}</code>
             </pre>
           )}
@@ -211,9 +211,9 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
       {config.tables?.length
         ? config.tables.map((t, idx) => (
             <section key={idx} className="mt-8">
-              <h2 className="text-xl font-semibold" style={{ color: "#5c82ee" }}>{t.title}</h2>
+              <h2 className="text-lg md:text-xl font-semibold" style={{ color: "#5c82ee" }}>{t.title}</h2>
               <div className="mt-3 overflow-x-auto">
-                <table className="w-full text-sm">
+                <table className="w-full text-xs md:text-sm">
                   <thead className="text-left">
                     <tr>{t.headers.map((h, i) => <th key={i} className="py-2 pr-4">{h}</th>)}</tr>
                   </thead>
@@ -229,7 +229,7 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
                 </table>
               </div>
               {t.notes?.length ? (
-                <ul className="list-disc pl-6 mt-2 text-xs text-muted-foreground">
+                <ul className="list-disc pl-6 mt-2 text-[11px] md:text-xs text-muted-foreground">
                   {t.notes.map((n, i) => (
                     <li key={i}>{n}</li>
                   ))}
@@ -241,7 +241,7 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
 
       {config.faqs?.length ? (
         <section className="mt-8">
-          <h2 className="text-xl font-semibold" style={{ color: "#5c82ee" }}>FAQs</h2>
+          <h2 className="text-lg md:text-xl font-semibold" style={{ color: "#5c82ee" }}>FAQs</h2>
           <div className="mt-2 space-y-4">
             {config.faqs.map((f, i) => (
               <details key={i} className="rounded-md border border-border/50 p-3 bg-card">
@@ -255,7 +255,7 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
 
       {config.sources?.length ? (
         <section className="mt-8">
-          <h2 className="text-xl font-semibold" style={{ color: "#5c82ee" }}>Formula & Sources</h2>
+          <h2 className="text-lg md:text-xl font-semibold" style={{ color: "#5c82ee" }}>Formula & Sources</h2>
           <ul className="list-disc pl-6 mt-2 text-sm text-muted-foreground">
             {config.sources.map((s, i) => (
               <li key={i}>
@@ -277,9 +277,12 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
         left={left}
         center={center}
         showTopAd={config.showTopAd}
+        showRightAd={false}
       />
-      <div className="w-screen max-w-none mx-0 px-2 sm:px-4 md:pl-6 md:pr-4">
-        <CalculatorFeedbackShare />
+      <div className="mt-6 pl-4 md:pl-8 pr-2 md:pr-4">
+        <div className="max-w-[560px] md:max-w-[864px]">
+          <CalculatorFeedbackShare />
+        </div>
       </div>
     </>
   );

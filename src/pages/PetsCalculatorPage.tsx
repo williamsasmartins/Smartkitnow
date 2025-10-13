@@ -49,7 +49,7 @@ export default function PetsCalculatorPage() {
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
       <Header />
       
-      <main className="container mx-auto px-4 pt-24 pb-12">
+      <main className="w-screen max-w-none mx-0 px-0 md:px-0 pt-24 pb-12">
         {/* Back Button */}
         <Button 
           variant="ghost" 

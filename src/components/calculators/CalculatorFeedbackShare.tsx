@@ -5,11 +5,12 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
+import SocialShareButtons from "@/components/common/SocialShareButtons";
 
 export default function CalculatorFeedbackShare() {
   const [url, setUrl] = useState<string>("");
   const embed = useMemo(() => {
-    const u = url || " `https://smartkitnow.com` ";
+    const u = url || "https://www.smartkitnow.com";
     return `<iframe src="${u}" width="100%" height="600" frameborder="0" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
   }, [url]);
 
@@ -38,7 +39,7 @@ export default function CalculatorFeedbackShare() {
       {/* Questions / Suggestions */}
       <Card className="bg-card border-border/60">
         <CardHeader>
-          <CardTitle>Questions or suggestions?</CardTitle>
+          <CardTitle className="text-base md:text-lg">Questions or suggestions?</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <div>
@@ -64,7 +65,7 @@ export default function CalculatorFeedbackShare() {
       {/* Share */}
       <Card className="bg-card border-border/60">
         <CardHeader>
-          <CardTitle>Share this calculator</CardTitle>
+          <CardTitle className="text-base md:text-lg">Share this calculator</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <div>
@@ -81,6 +82,9 @@ export default function CalculatorFeedbackShare() {
             <div className="mt-2">
               <Button variant="secondary" onClick={() => copy(embed)}><Copy className="h-4 w-4 mr-1" />Copy embed code</Button>
             </div>
+          </div>
+          <div className="pt-2">
+            <SocialShareButtons url={url} title={typeof document !== "undefined" ? document.title : "Smart Kit Now"} />
           </div>
         </CardContent>
       </Card>
