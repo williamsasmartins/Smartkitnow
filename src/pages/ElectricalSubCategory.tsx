@@ -170,14 +170,14 @@ const ElectricalSubCategory = () => {
             {category.calculators.map((calculator) => (
               <Card 
                 key={calculator.key}
-                className="group cursor-pointer transition-all duration-300 hover:shadow-elegant border-border/60 bg-card/50 backdrop-blur-sm hover:bg-card/80"
+                className="group/card cursor-pointer transition-all duration-300 hover:shadow-elegant border-border/60 bg-card/50 backdrop-blur-sm hover:bg-card/80"
                 onClick={() => handleCalculatorClick(calculator.key)}
               >
                 <CardHeader className="text-center pb-4">
-                  <div className="mx-auto mb-3 p-2 rounded-lg bg-gradient-primary/10 group-hover:bg-gradient-primary/20 transition-colors w-fit">
+                  <div className="mx-auto mb-3 p-2 rounded-lg bg-gradient-primary/10 group-hover/card:bg-gradient-primary/20 transition-colors w-fit">
                     <Calculator className="h-5 w-5 text-primary" />
                   </div>
-                  <CardTitle className="text-lg font-bold group-hover:text-primary transition-colors">
+                  <CardTitle className="text-lg font-bold group-hover/card:text-primary transition-colors">
                     {calculator.name}
                   </CardTitle>
                 </CardHeader>

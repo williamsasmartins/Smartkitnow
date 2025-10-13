@@ -110,7 +110,7 @@ export default function ConversionSubCategory() {
               {calculators.map((calc) => {
                 const { Icon, color, bg } = iconForCalc(calc.slug, calc.title);
                 return (
-                  <Card key={calc.slug} className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                  <Card key={calc.slug} className="group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
                     <CardHeader className="flex flex-row items-center gap-3">
                       <span className="inline-flex items-center justify-center rounded-xl"
                             style={{ width: 40, height: 40, backgroundColor: bg, color }} aria-hidden="true">

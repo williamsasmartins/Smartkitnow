@@ -1442,7 +1442,7 @@ const Index = () => {
               if (isRecipes) navigate('/recipes');
               if (isSmartTips) navigate('/smart-tips');
             };
-            return <GlowCard key={index} className="skn-card group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={handleClick} customSize glowColor={isFinancial ? 'green' : isHealth ? 'red' : isPets ? 'orange' : isRecipes ? 'purple' : isConversion ? 'blue' : isElectrical ? 'orange' : isConstruction ? 'orange' : isCooking ? 'orange' : isMath ? 'purple' : isScience ? 'blue' : isTime ? 'blue' : 'blue'}>
+            return <GlowCard key={index} className="skn-card group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={handleClick} customSize glowColor={isFinancial ? 'green' : isHealth ? 'red' : isPets ? 'orange' : isRecipes ? 'purple' : isConversion ? 'blue' : isElectrical ? 'orange' : isConstruction ? 'orange' : isCooking ? 'orange' : isMath ? 'purple' : isScience ? 'blue' : isTime ? 'blue' : 'blue'}>
                   <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
                     <span className="text-[20px] leading-none select-none">
                       {getCategoryIcon((category as any).key)}
@@ -1479,7 +1479,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredCalculators.map((calc, index) => {
             const IconComponent = calc.icon;
-            return <GlowCard key={index} className="skn-card group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" customSize glowColor={calc.name.includes('BMI') || calc.name.includes('BMR') ? 'red' : calc.name.includes('Loan') || calc.name.includes('Mortgage') ? 'green' : calc.name.includes('Unit') || calc.name.includes('Conversion') ? 'blue' : calc.name.includes('Recipe') ? 'purple' : 'blue'}>
+            return <GlowCard key={index} className="skn-card group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" customSize glowColor={calc.name.includes('BMI') || calc.name.includes('BMR') ? 'red' : calc.name.includes('Loan') || calc.name.includes('Mortgage') ? 'green' : calc.name.includes('Unit') || calc.name.includes('Conversion') ? 'blue' : calc.name.includes('Recipe') ? 'purple' : 'blue'}>
                   <CardHeader>
                     <div className="flex items-center space-x-3">
                       <div className="p-2 rounded-lg bg-muted/50 skn-icon-badge">

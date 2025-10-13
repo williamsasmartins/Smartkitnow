@@ -103,10 +103,10 @@ const AutomotiveSubCategory: React.FC = () => {
               {subCategory.calculators.map((calculator: any, index: number) => (
                 <Card
                   key={index}
-                  className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50"
+                  className="group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50"
                 >
                   <CardHeader>
-                    <CardTitle className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <CardTitle className="text-lg font-semibold text-foreground group-hover/card:text-primary transition-colors">
                       {calculator.name}
                     </CardTitle>
                   </CardHeader>

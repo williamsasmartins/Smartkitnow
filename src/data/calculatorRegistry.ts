@@ -71,7 +71,7 @@ export const SUBCATEGORY_TITLES: Record<string, string> = {
   "percent-calculators": "Percentage Calculators",
 
   // Pets
-  "pet-care-calculators": "Pet Care Calculators",
+  "pet-care-calculators": "Dog Care Calculators",
   "general": "General Pet Calculators",
 };
 
@@ -818,6 +818,15 @@ export const REGISTRY: CalculatorEntry[] = [
     description: "Estimate annual and lifetime costs of pet ownership with a category breakdown chart.",
     loader: () => import("@/components/calculators/PetCostsCalculator"),
   },
+  {
+    slug: "dog-chocolate-toxicity-calculator",
+    aliases: ["dog-chocolate-toxicity"],
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Chocolate Toxicity Calculator",
+    description: "Estimate risk based on dog weight, chocolate type, and amount ingested (educational purposes only).",
+    loader: () => import("@/components/calculators/DogChocolateToxicityCalculator"),
+  },
 
   // --- Placeholders (Financial) ---
   {
@@ -1013,11 +1022,16 @@ export const REGISTRY: CalculatorEntry[] = [
  * ================
  */
 
-/** Localiza uma calculadora pelo slug OU pelos seus aliases */
-export function getEntry(slug?: string) {
-  if (!slug) return undefined;
-  return REGISTRY.find(
-    (e) => e.slug === slug || (e.aliases && e.aliases.includes(slug))
+/** Localiza uma calculadora pelo slug OU pelos seus aliases (case-insensitive) */
+export function getEntry(slugOrAlias: string) {
+  const key = (slugOrAlias ?? "").toLowerCase();
+  if (!key) return null;
+  return (
+    REGISTRY.find(
+      (e) =>
+        e.slug?.toLowerCase() === key ||
+        (Array.isArray(e.aliases) && e.aliases.some((a) => a.toLowerCase() === key))
+    ) || null
   );
 }
 

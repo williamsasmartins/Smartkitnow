@@ -12,6 +12,7 @@ import {
   subcategoryIcon,
   categoryIcon,
 } from "@/data/calculatorRegistry";
+import type { CalculatorEntry } from "@/data/calculatorRegistry";
 import SEOHead from "@/components/SEOHead";
 import CalculatorLink from "@/components/common/CalculatorLink";
 
@@ -50,6 +51,13 @@ export interface CategoryCalculatorsTemplateProps {
   showBottomBanner?: boolean; // por padrão: true
   railsSticky?: boolean; // por padrão: false
   backTo?: string; // por padrão: "/"
+  // New: optional filtering controls
+  includeSubcategories?: string[]; // limit listed subcategories by slug
+  filterCalculator?: (c: CalculatorEntry) => boolean; // filter calculators within each subcategory
+  // New: allow custom static sections instead of dynamic registry lists
+  renderSections?: () => React.ReactNode;
+  // New: allow overriding the total calculators count shown below the title
+  totalOverride?: number;
 }
 
 export default function CategoryCalculatorsTemplate({
@@ -64,9 +72,16 @@ export default function CategoryCalculatorsTemplate({
   showBottomBanner = true,
   railsSticky = false,
   backTo = "/",
+  includeSubcategories,
+  filterCalculator,
+  renderSections,
+  totalOverride,
 }: CategoryCalculatorsTemplateProps) {
   const navigate = useNavigate();
-  const subcats = listSubcategoriesOfCategory(category);
+  const subcatsRaw = listSubcategoriesOfCategory(category);
+  const subcats = includeSubcategories
+    ? subcatsRaw.filter((sc) => includeSubcategories.includes(sc.slug))
+    : subcatsRaw;
   const categoryTitle = titleOverride || FRIENDLY_TITLES[category] || "Calculators";
   const [descOpen, setDescOpen] = useState(false);
 
@@ -74,7 +89,13 @@ export default function CategoryCalculatorsTemplate({
   // Em vez de remover, troca o ícone por um alternativo único por página
   const usedIcons = new Set<string>();
   
-  const totalCount = subcats.reduce((acc, sc) => acc + (Number(sc.count) || 0), 0);
+  // Compute filtered total count displayed (allow override for static pages)
+  const computedTotal = subcats.reduce((acc, sc) => {
+    const list = listByCategorySubcategory(category, sc.slug) || [];
+    const filtered = filterCalculator ? list.filter(filterCalculator) : list;
+    return acc + filtered.length;
+  }, 0);
+  const totalCount = typeof totalOverride === "number" ? totalOverride : computedTotal;
 
   const canonicalUrl = canonical || `https://www.smartkitnow.com/${category}`;
   const breadcrumbs =
@@ -146,54 +167,62 @@ export default function CategoryCalculatorsTemplate({
           }
         >
           {/* Seções por subcategoria (ícone + título) e listas em 2 colunas */}
-          <div className="space-y-10">
-            {subcats.map((sc) => {
-               const baseEmoji = subcategoryIcon(sc.slug, category);
-               const emoji = getUniqueEmojiForSubcategory(baseEmoji, category, usedIcons);
-               if (emoji) {
-                 usedIcons.add(emoji);
-               }
-               const calcs = listByCategorySubcategory(category, sc.slug) || [];
-               const mid = Math.ceil(calcs.length / 2);
-               const colA = calcs.slice(0, mid);
-               const colB = calcs.slice(mid);
+          {renderSections ? (
+            <div className="space-y-10">{renderSections()}</div>
+          ) : (
+            <div className="space-y-10">
+              {subcats.map((sc) => {
+                 const baseEmoji = subcategoryIcon(sc.slug, category);
+                 const emoji = getUniqueEmojiForSubcategory(baseEmoji, category, usedIcons);
+                 if (emoji) {
+                   usedIcons.add(emoji);
+                 }
+                 const listAll = listByCategorySubcategory(category, sc.slug) || [];
+                 const calcs = filterCalculator ? listAll.filter(filterCalculator) : listAll;
+                 const mid = Math.ceil(calcs.length / 2);
+                 const colA = calcs.slice(0, mid);
+                 const colB = calcs.slice(mid);
 
-               return (
-                 <section key={sc.slug}>
-                   {/* Título da subcategoria com ícone */}
-                   <div className="flex items-center gap-3 mb-3">
-                    {emoji && (
-                      <span className="text-[20px] leading-none select-none" aria-hidden="true">
-                        {emoji}
-                      </span>
-                    )}
-                     <h2 className="text-[22px] md:text-[24px] font-semibold tracking-[-0.01em] text-foreground">
-                       {sc.title}
-                     </h2>
-                     <span className="text-sm skn-text-muted">({sc.count})</span>
-                   </div>
+                 // Skip rendering empty sections after filtering
+                 if (calcs.length === 0) return null;
 
-                  {/* Listas em 2 colunas */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
-                    <ul className="list-disc pl-5 space-y-3 leading-7">
-                      {colA.map((c) => (
-                        <li key={c.slug}>
-                          <CalculatorLink to={`/${category}/${c.slug}`}>{c.title}</CalculatorLink>
-                        </li>
-                      ))}
-                    </ul>
-                    <ul className="list-disc pl-5 space-y-3 leading-7 mt-3 md:mt-0">
-                      {colB.map((c) => (
-                        <li key={c.slug}>
-                          <CalculatorLink to={`/${category}/${c.slug}`}>{c.title}</CalculatorLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </section>
-              );
-            })}
-          </div>
+                 return (
+                   <section key={sc.slug}>
+                     {/* Título da subcategoria com ícone */}
+                     <div className="flex items-center gap-3 mb-3">
+                      {emoji && (
+                        <span className="text-[20px] leading-none select-none" aria-hidden="true">
+                          {emoji}
+                        </span>
+                      )}
+                       <h2 className="text-[22px] md:text-[24px] font-semibold tracking-[-0.01em] text-foreground">
+                         {sc.title}
+                       </h2>
+                       <span className="text-sm skn-text-muted">({calcs.length})</span>
+                     </div>
+
+                    {/* Listas em 2 colunas */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+                      <ul className="list-disc pl-5 space-y-3 leading-7">
+                        {colA.map((c) => (
+                          <li key={c.slug}>
+                            <CalculatorLink to={`/${category}/${c.slug}`}>{c.title}</CalculatorLink>
+                          </li>
+                        ))}
+                      </ul>
+                      <ul className="list-disc pl-5 space-y-3 leading-7 mt-3 md:mt-0">
+                        {colB.map((c) => (
+                          <li key={c.slug}>
+                            <CalculatorLink to={`/${category}/${c.slug}`}>{c.title}</CalculatorLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </section>
+                );
+              })}
+            </div>
+          )}
         </PageWithRails>
       </main>
     </div>

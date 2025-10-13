@@ -137,6 +137,8 @@ export default function App() {
 
               {/* Subcategorias (todas as seções) */}
                <Route path="/:category/:slug" element={<CalculatorPage />} />
+               {/* Nested calculators under subcategory */}
+               <Route path="/:category/:subcategory/:calculator" element={<CalculatorPage />} />
                <Route path="/:category/:subcategory" element={<CategorySubcategory />} />
 
 
@@ -164,6 +166,11 @@ export default function App() {
               <Route
                 path="/:category/:subcategory/calculator/:slug"
                 element={<LegacyCalcRedirect />}
+              />
+              {/* Redirects legados/curtos — opcionais, mas ajudam muito */}
+              <Route
+                path="/pets/dogs/dog-chocolate-toxicity"
+                element={<Navigate to="/pets/dogs/dog-chocolate-toxicity-calculator" replace />} 
               />
               
 

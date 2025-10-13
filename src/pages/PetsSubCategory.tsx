@@ -42,7 +42,18 @@ export default function PetsSubCategory() {
   const { subcategory } = useParams<{ subcategory: string }>();
   const navigate = useNavigate();
 
-  const calculators = subcategory ? listByCategorySubcategory(category, subcategory) : [];
+  const calculatorsAll = subcategory ? listByCategorySubcategory(category, subcategory) : [];
+  // Dog-only filter: allow dog-specific and relevant general tools; exclude other species
+  const dogOnlyFilter = (c: { slug: string; title: string; subcategory: string }) => {
+    const k = `${c.slug} ${c.title}`.toLowerCase();
+    const allowGenerics = /quality|cost|emergency|life|age to human|lifespan|ownership|drug|dose/.test(k);
+    const isDog = /dog|canine|puppy/.test(k);
+    const notDogSpecies = /(cat|feline|kitten|aquarium|fish|reptile|terrarium|bird|cage)/.test(k);
+    if (notDogSpecies) return false;
+    return isDog || allowGenerics;
+  };
+  const calculators = calculatorsAll.filter(dogOnlyFilter);
+
   const subcatTitle =
     (subcategory && SUBCATEGORY_TITLES[subcategory]) ||
     (subcategory ? subcategory.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase()) : "Calculators");
@@ -52,7 +63,7 @@ export default function PetsSubCategory() {
     <div className="min-h-screen bg-gradient-soft">
       <SEOHead
         title={`${subcatTitle} — ${categoryTitle} · SmartKitNow`}
-        description={`Pet calculators: ${subcatTitle}. Health, nutrition, and care for dogs, cats, and more.`}
+        description={`Dog care calculators: ${subcatTitle}. Health, nutrition, and care for dogs.`}
         canonical={`https://www.smartkitnow.com/pets/${subcategory || ""}`}
         breadcrumbs={[
           { name: "Home", url: "https://www.smartkitnow.com/" },
@@ -91,7 +102,7 @@ export default function PetsSubCategory() {
                   {subcatTitle}
                 </h1>
                 <p className="text-lg max-w-2xl mx-auto" style={{ color: "#747886" }}>
-                  Practical pet tools for planning diet, tracking health, and more.
+                  Practical dog care tools for planning diet, tracking health, and more.
                 </p>
               </div>
             </div>
@@ -102,20 +113,20 @@ export default function PetsSubCategory() {
           railsSticky={false}
         >
           {!calculators || calculators.length === 0 ? (
-            <p className="text-center" style={{ color: "#747886" }}>No calculators found yet in this subcategory.</p>
+            <p className="text-center" style={{ color: "#747886" }}>No dog calculators found yet in this subcategory.</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {calculators.map((calc) => {
                 const { Icon, color, bg } = iconForCalc(calc.slug, calc.title);
                 return (
-                  <Card key={calc.slug} className="group hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                  <Card key={calc.slug} className="group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
                     <CardHeader className="flex flex-row items-center gap-3">
                       <span className="inline-flex items-center justify-center rounded-xl"
                             style={{ width: 40, height: 40, backgroundColor: bg, color }} aria-hidden="true">
                         <Icon className="h-5 w-5" />
                       </span>
                       <CardTitle className="text-lg font-semibold" style={{ color: "#000000" }}>
-                        <CalculatorLink to={`/pets/${calc.subcategory}/${calc.slug}`}>{calc.title}</CalculatorLink>
+                        <CalculatorLink to={`/${category}/${calc.slug}`}>{calc.title}</CalculatorLink>
                       </CardTitle>
                     </CardHeader>
                     <CardContent>

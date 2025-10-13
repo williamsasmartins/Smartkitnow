@@ -152,9 +152,9 @@ export default function TimeSubCategory() {
           {filteredCalculators.map((calculator) => (
             <Card 
               key={calculator.key} 
-              className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
+              className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group/card cursor-pointer"
             >
-              <CardHeader className="bg-gradient-subtle group-hover:bg-gradient-primary/10 transition-colors duration-300">
+              <CardHeader className="bg-gradient-subtle group-hover/card:bg-gradient-primary/10 transition-colors duration-300">
                 <CardTitle className="text-lg">
                   <CalculatorLink to={`/time/calculator/${calculator.key}`}>{calculator.name}</CalculatorLink>
                 </CardTitle>

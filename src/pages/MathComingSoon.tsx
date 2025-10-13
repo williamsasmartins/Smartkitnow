@@ -115,7 +115,7 @@ export default function MathComingSoon() {
           {/* GRID of subcategories — now CLICKABLE */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {CARDS.map(({ to, title, desc, Icon, bubbleBg, bubbleFg }) => (
-              <Card key={to} className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+              <Card key={to} className="group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
                 <CardHeader className="flex flex-row items-start gap-3">
                   <span
                     className="inline-flex shrink-0 items-center justify-center rounded-xl"
@@ -140,7 +140,7 @@ export default function MathComingSoon() {
                 </CardHeader>
                 <CardContent>
                   <span
-                    className="text-xs opacity-80 group-hover:opacity-100"
+                    className="text-xs opacity-80 group-hover/card:opacity-100"
                     style={{ color: "#747886" }}
                   >
                     Coming soon — click to preview the section path
@@ -148,7 +148,7 @@ export default function MathComingSoon() {
                 </CardContent>
               </Card>
             ))}
-+           </div>
+            </div>
 
            {/* feedback block */}
            <div className="mt-8 text-center">

@@ -96,13 +96,13 @@ const SmartTipsSubCategory: React.FC = () => {
           {category.tips.map((tip, index) => (
             <Card
               key={tip.id}
-              className="group cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-2 hover:border-primary/20"
+              className="group/card cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-2 hover:border-primary/20"
               onClick={() => handleTipClick(tip.slug)}
             >
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
-                    <CardTitle className="text-lg font-semibold group-hover:text-primary transition-colors leading-tight">
+                    <CardTitle className="text-lg font-semibold group-hover/card:text-primary transition-colors leading-tight">
                       {tip.title}
                     </CardTitle>
                   </div>
@@ -127,7 +127,7 @@ const SmartTipsSubCategory: React.FC = () => {
                       <span>5 min read</span>
                     </div>
                   </div>
-                  <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <ExternalLink className="h-3 w-3 opacity-0 group-hover/card:opacity-100 transition-opacity" />
                 </div>
               </CardContent>
             </Card>

@@ -1,26 +1,15 @@
-// src/components/layouts/CalculatorLayout.tsx
 import React from "react";
-import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
-import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 
-/**
- * Layout LIMPO para páginas de CALCULADORA.
- * - Sem AdSlot, sem banners/rails.
- * - Mantém apenas um container central responsivo.
- * - Mantém named export e default export para compatibilidade.
- */
-type CalculatorLayoutProps = {
-  children: React.ReactNode; // conteúdo da calculadora
-  // Mantemos ids opcional apenas para compatibilidade futura; não é usado aqui.
-  ids?: Record<string, string>;
-};
+// Layout limpo: sem Footer aqui (Footer fica no App layout raíz)
+// Sem "Related / How it works / Sources" genéricos.
+// Sem "Ad Rail" para calculators (padrão SKN).
 
-export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ children }) => {
+type Props = { children: React.ReactNode };
+
+export default function CalculatorLayout({ children }: Props) {
   return (
-    <div className="mx-auto max-w-[680px] px-4 xl:pr-6 py-8">
+    <main className="mx-auto max-w-5xl px-4 py-4">
       {children}
-    </div>
+    </main>
   );
-};
-
-export default CalculatorLayout;
+}
