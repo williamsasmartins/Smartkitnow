@@ -3,11 +3,11 @@ import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
 
 const CHOCOLATE = {
-  milk:  { label: "Milk Chocolate",        theo: 1.6,  caf: 0.2 },
-  dark:  { label: "Dark/Semisweet",        theo: 6.0,  caf: 0.6 },
-  baking:{ label: "Baking/Unsweetened",    theo: 15.0, caf: 1.2 },
-  cocoa: { label: "Cocoa Powder",          theo: 20.0, caf: 2.0 },
-  white: { label: "White (trace)",         theo: 0.05, caf: 0.0 },
+  milk:   { label: "Milk Chocolate",     theo: 1.6,  caf: 0.2,  hint: "~1.8 mg/g" },
+  dark:   { label: "Dark/Semisweet",     theo: 6.0,  caf: 0.6,  hint: "~6.6 mg/g" },
+  baking: { label: "Baking/Unsweetened", theo: 15.0, caf: 1.2,  hint: "~16.2 mg/g" },
+  cocoa:  { label: "Cocoa Powder",       theo: 20.0, caf: 2.0,  hint: "~22 mg/g"  },
+  white:  { label: "White (trace)",      theo: 0.05, caf: 0.0,  hint: "trace"     },
 } as const;
 
 const cfg: PetCalcOmniConfig = {
@@ -17,7 +17,7 @@ const cfg: PetCalcOmniConfig = {
   strongDisclaimer:
     "This tool does not replace professional veterinary care. Toxicity risk depends on individual sensitivity, stomach contents, co-ingestants, and timing. If exposure is suspected, call a veterinarian or poison helpline immediately.",
   showTopAd: true,
-  showRightAd: true,
+  showRightAd: false,
 
   // Inputs
   inputs: [
@@ -26,7 +26,7 @@ const cfg: PetCalcOmniConfig = {
     { type: "number", key: "amount", label: "Amount Ingested", min: 0, step: 1, default: 50 },
     { type: "unit",   key: "amountUnit", label: "Amount Unit", options: ["g","oz"], default: "g" },
     { type: "select", key: "type", label: "Chocolate Type", default: "milk",
-      options: Object.entries(CHOCOLATE).map(([value,v])=>({ value, label: v.label })) },
+      options: Object.entries(CHOCOLATE).map(([value,v])=>({ value, label: `${v.label} (${v.hint})` })) },
   ],
 
   // Cálculo
@@ -35,7 +35,8 @@ const cfg: PetCalcOmniConfig = {
     const a = parseFloat(s.amount || "0");
     const wkg   = s.toKg(w, s.weightUnit);
     const grams = s.toGrams(a, s.amountUnit);
-    const p = CHOCOLATE[s.type as keyof typeof CHOCOLATE] ?? CHOCOLATE.milk;
+    const kind = (s.type as keyof typeof CHOCOLATE) ?? "milk";
+    const p = CHOCOLATE[kind];
 
     const theo = grams * p.theo;
     const caf  = grams * p.caf;
@@ -77,12 +78,12 @@ const cfg: PetCalcOmniConfig = {
 
   howItWorks: {
     intro:
-      "Chocolate contains methylxanthines (theobromine and caffeine). Darker chocolate typically contains more. The estimated dose per kilogram helps triage severity.",
+      "Chocolate contains methylxanthines — theobromine and caffeine. Darker chocolate typically contains more. We estimate dose per kg of body weight to triage risk.",
     formula:
       "dose_mg_per_kg = (grams × (theobromine_mg/g + caffeine_mg/g)) ÷ weight_kg",
     variables: [
       "grams — estimated amount of chocolate consumed",
-      "theobromine_mg/g, caffeine_mg/g — reference content by chocolate type (approximate)",
+      "theobromine_mg/g, caffeine_mg/g — approximate content by chocolate type",
       "weight_kg — dog body weight in kilograms",
     ],
   },
@@ -90,9 +91,12 @@ const cfg: PetCalcOmniConfig = {
   tables: [
     {
       title: "Approximate methylxanthine content by chocolate type",
-      headers: ["Type", "Theobromine (mg/g)", "Caffeine (mg/g)"],
-      rows: Object.entries(CHOCOLATE).map(([k,v])=>[v.label, v.theo, v.caf]),
-      notes: ["Values are simplified educational references; different brands/batches vary."],
+      headers: ["Type", "Theobromine (mg/g)", "Caffeine (mg/g)", "Total (mg/g)"],
+      rows: Object.entries(CHOCOLATE).map(([k,v])=>[v.label, v.theo, v.caf, (v.theo+v.caf).toFixed(1)]),
+      notes: [
+        "Values are simplified educational references; brands/batches vary.",
+        "Risk also depends on time since ingestion, stomach contents, and individual sensitivity.",
+      ],
     },
     {
       title: "Example doses for 50 g of chocolate",
@@ -105,12 +109,54 @@ const cfg: PetCalcOmniConfig = {
       ],
       notes: ["Use your dog’s exact weight and actual amount for a better estimate."],
     },
+    {
+      title: "How much chocolate can a 70 lb dog eat? (illustrative)",
+      headers: ["Type", "Approx. grams to reach ~20 mg/kg (mild band)"],
+      rows: (() => {
+        // 70 lb ≈ 31.75 kg; alvo ~20 mg/kg (faixa 'mild')
+        const weightKg = 31.7514659;
+        const targetMg = 20 * weightKg; // ~635 mg
+        const grams = (mgPerG: number) => (targetMg / mgPerG).toFixed(0);
+        return [
+          ["Milk Chocolate",        grams(sumMgPerGram("milk"))],   // ~353 g
+          ["Dark/Semisweet",        grams(sumMgPerGram("dark"))],   // ~96 g
+          ["Baking/Unsweetened",    grams(sumMgPerGram("baking"))], // ~39 g
+          ["Cocoa Powder",          grams(sumMgPerGram("cocoa"))],  // ~29 g
+          ["White (trace)",         "—"], // não encorajar cálculo
+        ];
+      })(),
+      notes: [
+        "This is not a 'safe' amount — it's an educational illustration for the ~20 mg/kg band.",
+        "Any suspected ingestion warrants veterinary advice.",
+      ],
+    },
+    {
+      title: "Household conversions (helpful rough guide)",
+      headers: ["Measure", "Approx. grams"],
+      rows: [
+        ["1 oz chocolate", "28 g"],
+        ["1 tbsp cocoa powder (level)", "≈5–6 g"],
+        ["1 square baking chocolate", "≈28 g (varies by brand)"],
+      ],
+      notes: ["Brand geometry varies; weigh when possible."],
+    },
+    {
+      title: "Symptoms & timeline (typical, varies widely)",
+      headers: ["Dose band", "Possible signs", "When to act"],
+      rows: [
+        ["Mild (~10–20 mg/kg)", "Restlessness, GI upset", "Call your vet for monitoring guidance"],
+        ["Moderate (~20–40 mg/kg)", "Vomiting, agitation, tachycardia", "Vet assessment recommended"],
+        ["High (≥40 mg/kg)", "Tremors, arrhythmias, seizures", "Emergency care immediately"],
+      ],
+      notes: ["Signs depend on the individual dog and co-ingestants."],
+    },
   ],
 
   faqs: [
-    { question: "Is white chocolate safe?", answer: "White chocolate has trace methylxanthines, but may still cause GI upset. Always consult your vet." },
-    { question: "When is this an emergency?", answer: "If your dog shows tremors, seizures, or if the dose is high for his weight — seek emergency care immediately." },
+    { question: "Is white chocolate safe?", answer: "White chocolate contains trace methylxanthines, but ingestion can still cause GI upset. Always consult your vet." },
+    { question: "When is this an emergency?", answer: "If dose is high for the dog's weight or if there are neurologic/cardiac signs (tremors, seizures, collapse) — seek emergency care immediately." },
     { question: "Should I induce vomiting at home?", answer: "Do not induce vomiting unless instructed by a veterinarian." },
+    { question: "What info should I have when I call the vet?", answer: "Dog's weight, type of chocolate, estimated amount, and time since ingestion." },
   ],
 
   sources: [
@@ -121,4 +167,9 @@ const cfg: PetCalcOmniConfig = {
 
 export default function DogChocolateToxicityCalculator() {
   return <PetCalcOmniTemplate config={cfg} />;
+}
+
+function sumMgPerGram(kind: keyof typeof CHOCOLATE) {
+  const p = CHOCOLATE[kind];
+  return p.theo + p.caf;
 }

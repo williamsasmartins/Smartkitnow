@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import CalculatorFeedbackShare from "@/components/calculators/CalculatorFeedbackShare";
 
 type Unit = "kg" | "lb" | "g" | "oz";
 type SelectOption = { value: string; label: string };
@@ -70,32 +72,52 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
 
   // ===================== colunas =====================
   const center = (
-    <Card className="bg-card border-border/50">
-      <CardHeader>
-        <CardTitle className="text-lg">{config.title}</CardTitle>
-        <CardDescription>{config.shortDescription}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        {/* Inputs */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {config.inputs.map((f) => {
-            if (f.type === "number") {
-              return (
-                <div key={f.key}>
-                  <Label htmlFor={f.key}>{f.label}</Label>
-                  <Input
-                    id={f.key}
-                    type="number"
-                    min={f.min ?? 0}
-                    step={f.step ?? 0.1}
-                    className="mt-2"
-                    value={state[f.key] ?? ""}
-                    onChange={(e) => setState((s) => ({ ...s, [f.key]: e.target.value }))}
-                  />
-                </div>
-              );
-            }
-            if (f.type === "select") {
+    <div className="w-full">
+      <Card className="w-full bg-card border-border/50 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg">{config.title}</CardTitle>
+          <CardDescription>{config.shortDescription}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {/* Inputs */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {config.inputs.map((f) => {
+              if (f.type === "number") {
+                return (
+                  <div key={f.key}>
+                    <Label htmlFor={f.key}>{f.label}</Label>
+                    <Input
+                      id={f.key}
+                      type="number"
+                      min={f.min ?? 0}
+                      step={f.step ?? 0.1}
+                      className="mt-2"
+                      value={state[f.key] ?? ""}
+                      onChange={(e) => setState((s) => ({ ...s, [f.key]: e.target.value }))}
+                    />
+                  </div>
+                );
+              }
+              if (f.type === "select") {
+                return (
+                  <div key={f.key}>
+                    <Label>{f.label}</Label>
+                    <Select value={state[f.key] ?? f.default ?? ""} onValueChange={(v) => setState((s) => ({ ...s, [f.key]: v }))}>
+                      <SelectTrigger className="mt-2">
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {f.options.map((o) => (
+                          <SelectItem key={o.value} value={o.value}>
+                            {o.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                );
+              }
+              // unit
               return (
                 <div key={f.key}>
                   <Label>{f.label}</Label>
@@ -105,108 +127,50 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
                     </SelectTrigger>
                     <SelectContent>
                       {f.options.map((o) => (
-                        <SelectItem key={o.value} value={o.value}>
-                          {o.label}
+                        <SelectItem key={o} value={o}>
+                          {o}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
               );
-            }
-            // unit
-            return (
-              <div key={f.key}>
-                <Label>{f.label}</Label>
-                <Select value={state[f.key] ?? f.default} onValueChange={(v) => setState((s) => ({ ...s, [f.key]: v }))}>
-                  <SelectTrigger className="mt-2">
-                    <SelectValue placeholder="Unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {f.options.map((u) => (
-                      <SelectItem key={u} value={u}>
-                        {u}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+            })}
+          </div>
+
+          {/* Metrics */}
+          {config.metricsDisplay?.length ? (
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+              {config.metricsDisplay.map((m) => (
+                <div key={m.key} className="rounded-md border border-border/50 bg-muted/20 p-3">
+                  <div className="text-xs text-muted-foreground">{m.label}</div>
+                  <div className="text-lg font-semibold">{m.format(computeOut.metrics[m.key])}</div>
+                </div>
+              ))}
+            </div>
+          ) : null}
+
+          {/* Risk band */}
+          {risk ? (
+            <div className="mt-6">
+              <div className={`rounded-md p-3 text-white ${risk.tone}`}>
+                <div className="font-semibold">{risk.label} risk</div>
+                <p className="text-sm mt-1">{risk.message}</p>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          ) : null}
 
-        {/* Métricas + risco + CTA */}
-        {(config.metricsDisplay?.length || risk || config.cta) && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-            {config.metricsDisplay?.length ? (
-              <Card className="bg-muted/30 border-border/50">
-                <CardHeader>
-                  <CardTitle className="text-base">Estimated Metrics</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    {config.metricsDisplay.map((m) => (
-                      <li key={m.key}>
-                        <span className="font-medium text-foreground">{m.label}:</span>{" "}
-                        {m.format ? m.format(computeOut.metrics[m.key]) : fmt1(computeOut.metrics[m.key])}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ) : null}
-
-            {risk ? (
-              <Card className="bg-muted/30 border-border/50">
-                <CardHeader>
-                  <CardTitle className="text-base">Risk Level</CardTitle>
-                  <CardDescription>Educational-only classification</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-3">
-                    <span className={`inline-block h-3 w-3 rounded-full ${risk.tone}`} />
-                    <Badge>{risk.label}</Badge>
-                  </div>
-                  <p className="mt-3 text-sm text-muted-foreground">{risk.message}</p>
-                </CardContent>
-              </Card>
-            ) : null}
-
-            {config.cta ? (
-              <Card className="bg-muted/30 border-border/50">
-                <CardHeader>
-                  <CardTitle className="text-base">Immediate Steps</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
-                    <li>{config.cta.label}</li>
-                    {config.cta.tel && (
-                      <li>
-                        <a href={`tel:${config.cta.tel}`}>{config.cta.tel}</a>
-                      </li>
-                    )}
-                    {config.cta.href && (
-                      <li>
-                        <a className="underline" href={config.cta.href} target="_blank" rel="noreferrer">
-                          Open guidance
-                        </a>
-                      </li>
-                    )}
-                  </ul>
-                </CardContent>
-              </Card>
-            ) : null}
-          </div>
-        )}
-
-        {config.strongDisclaimer && (
-          <div className="mt-6 text-xs text-muted-foreground border rounded-md p-3">
-            <strong>Strong Disclaimer</strong>
-            <p className="mt-1">{config.strongDisclaimer}</p>
-          </div>
-        )}
-      </CardContent>
-    </Card>
+          {/* Call to action */}
+          {config.cta ? (
+            <div className="mt-6">
+              <Button className="w-full" variant="destructive">
+                {config.cta.label}
+              </Button>
+            </div>
+          ) : null}
+        </CardContent>
+      </Card>
+    </div>
   );
 
   const left = (
@@ -308,11 +272,15 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
   );
 
   return (
-    <PetCalculatorPageLayout
-      left={left}
-      center={center}
-      showTopAd={config.showTopAd}
-      showRightAd={config.showRightAd}
-    />
+    <>
+      <PetCalculatorPageLayout
+        left={left}
+        center={center}
+        showTopAd={config.showTopAd}
+      />
+      <div className="w-screen max-w-none mx-0 px-2 sm:px-4 md:pl-6 md:pr-4">
+        <CalculatorFeedbackShare />
+      </div>
+    </>
   );
 }

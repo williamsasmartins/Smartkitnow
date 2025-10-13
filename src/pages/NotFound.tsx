@@ -1,44 +1,22 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import SEOHead from "@/components/SEOHead";
-import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
-import ShareThisCalculator from "@/components/share/ShareThisCalculator";
+import React from "react";
 import { Button } from "@/components/ui/button";
-import CalculatorLink from "@/components/common/CalculatorLink";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-  }, [location.pathname]);
-
+export default function NotFound() {
+  const navigate = useNavigate();
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <SEOHead
-        title="404 • Page not found"
-        description="The page you tried to access does not exist or has been moved."
-        breadcrumbs={[
-          { name: "Home", url: "/" },
-          { name: "404", url: location.pathname },
-        ]}
-      />
-      <main className="text-center">
-        <h1 className="mb-4 text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent" aria-live="polite">
-          404
-        </h1>
-        <p className="mb-6 text-lg text-muted-foreground">Oops! Page not found.</p>
-        <Button variant="outline" asChild>
-          <CalculatorLink to="/">Back to Home</CalculatorLink>
-        </Button>
-        <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <SiteFeedbackForm title="Questions or suggestions?" />
-          <ShareThisCalculator />
-        </section>
-      </main>
+    <div className="mx-auto max-w-4xl px-4 py-10">
+      <Button variant="ghost" onClick={() => navigate(-1)} className="mb-6">
+        <ArrowLeft className="mr-2 h-4 w-4" /> Back
+      </Button>
+      <div className="rounded-2xl border border-border/60 bg-card p-8 text-center">
+        <div className="text-2xl font-semibold text-foreground mb-2">Calculator not found</div>
+        <p className="text-muted-foreground mb-6">
+          We couldn’t find this calculator. Please go back and choose another one.
+        </p>
+        <Button onClick={() => navigate("/")}>Go to Home</Button>
+      </div>
     </div>
   );
-};
-
-export default NotFound;
-export const pageMeta = { allowAds: false, minContentScore: 1 };
+}

@@ -1024,12 +1024,11 @@ export const REGISTRY: CalculatorEntry[] = [
 
 /** Localiza uma calculadora pelo slug OU pelos seus aliases (case-insensitive) */
 export function getEntry(slugOrAlias: string) {
-  const key = (slugOrAlias ?? "").toLowerCase();
-  if (!key) return null;
+  const key = slugOrAlias.toLowerCase();
   return (
     REGISTRY.find(
       (e) =>
-        e.slug?.toLowerCase() === key ||
+        e.slug.toLowerCase() === key ||
         (Array.isArray(e.aliases) && e.aliases.some((a) => a.toLowerCase() === key))
     ) || null
   );
