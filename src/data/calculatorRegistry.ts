@@ -827,6 +827,15 @@ export const REGISTRY: CalculatorEntry[] = [
     description: "Estimate risk based on dog weight, chocolate type, and amount ingested (educational purposes only).",
     loader: () => import("@/components/calculators/DogChocolateToxicityCalculator"),
   },
+  {
+    slug: "dog-grape-raisin-exposure-risk",
+    aliases: ["dog-grape-raisin-exposure-risk-calculator"],
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Grape/Raisin Exposure Risk",
+    description: "Triage tool for grape/raisin ingestion in dogs — no known safe dose; call your veterinarian immediately.",
+    loader: () => import("@/components/calculators/DogGrapeRaisinExposureCalculator"),
+  },
 
   // --- Placeholders (Financial) ---
   {

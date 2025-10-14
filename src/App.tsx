@@ -172,6 +172,10 @@ export default function App() {
                 path="/pets/dogs/dog-chocolate-toxicity"
                 element={<Navigate to="/pets/dogs/dog-chocolate-toxicity-calculator" replace />} 
               />
+              <Route 
+                path="/pets/dogs/dog-grape-raisin-exposure" 
+                element={<Navigate to="/pets/dogs/dog-grape-raisin-exposure-risk" replace />} 
+              />
               
 
               {/* 404 */}
