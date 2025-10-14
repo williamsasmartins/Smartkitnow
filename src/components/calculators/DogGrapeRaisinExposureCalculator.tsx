@@ -32,14 +32,12 @@ const cfg: PetCalcOmniConfig = {
     name: "Williams Martins",
     role: "Content Editor",
     date: "2025-10-13",
-    bioUrl: " `https://www.smartkitnow.com/about` ",
+    bioUrl: "https://www.smartkitnow.com/about",
   },
   reviewedBy: {
-    name: "Dr. Jane Smith",
-    credentials: "DVM",
-    role: "Veterinarian",
-    date: "2025-10-12",
-    bioUrl: " `https://www.smartkitnow.com/about` ",
+    name: "Smart Kit Now Editorial Team",
+    role: "Content Review",
+    date: "2025-10-13",
   },
 
   // Inputs do painel
@@ -135,6 +133,11 @@ const cfg: PetCalcOmniConfig = {
   ],
 
   cta: { label: "Call your veterinarian or a poison helpline immediately" },
+  stickyCta: {
+    whenRiskIn: ["recent-exposure", "exposure"],
+    label: "Urgent: call your vet",
+    tel: "+1-800-222-1222",
+  },
 
   howToUse: [
     "Enter your dog’s weight and units.",
@@ -220,6 +223,12 @@ const cfg: PetCalcOmniConfig = {
     { label: "Merck Veterinary Manual — Grapes & Raisins in Dogs", href: "https://www.merckvetmanual.com/" },
     { label: "Pet Poison Helpline — Grapes & Raisins", href: "https://www.petpoisonhelpline.com/" },
   ],
+  
+  relatedLinks: [
+    { label: "Dog Chocolate Toxicity Calculator", href: "/pets/dogs/dog-chocolate-toxicity-calculator" },
+    { label: "Dog Water Intake — Daily Hydration", href: "/pets/dogs/dog-water-intake" },
+    { label: "Dog Calorie Needs — RER & MER", href: "/pets/dogs/dog-calorie-needs-rer-mer" },
+  ],
 };
 
 export default function DogGrapeRaisinExposureCalculator() {
@@ -258,12 +267,12 @@ export default function DogGrapeRaisinExposureCalculator() {
   } as const;
 
   const webpageJson = {
-    "@context": " `https://schema.org` ",
+    "@context": "https://schema.org",
     "@type": "WebPage",
     name: TITLE,
     url: CANONICAL,
     description: DESC,
-    isPartOf: { "@type": "WebSite", "name": "Smart Kit Now", "url": " `https://www.smartkitnow.com` " },
+    isPartOf: { "@type": "WebSite", name: "Smart Kit Now", url: "https://www.smartkitnow.com" },
     author: {
       "@type": "Person",
       name: cfg.authoredBy?.name,
@@ -271,9 +280,8 @@ export default function DogGrapeRaisinExposureCalculator() {
       url: cfg.authoredBy?.bioUrl,
     },
     reviewedBy: {
-      "@type": "Person",
+      "@type": "Organization",
       name: cfg.reviewedBy?.name,
-      jobTitle: cfg.reviewedBy?.role,
     },
     dateModified: cfg.authoredBy?.date || cfg.reviewedBy?.date,
   } as const;
