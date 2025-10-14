@@ -836,6 +836,24 @@ export const REGISTRY: CalculatorEntry[] = [
     description: "Triage tool for grape/raisin ingestion in dogs — no known safe dose; call your veterinarian immediately.",
     loader: () => import("@/components/calculators/DogGrapeRaisinExposureCalculator"),
   },
+  {
+    slug: "dog-calorie-needs-rer-mer",
+    aliases: ["dog-calorie-needs"],
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Calorie Needs — RER & MER",
+    description: "Estimate daily calories for dogs using RER and MER factors. Educational estimate — confirm with your veterinarian.",
+    loader: () => import("@/components/calculators/DogCalorieNeedsRerMerCalculator"),
+  },
+  {
+    slug: "dog-water-intake",
+    aliases: ["dog-daily-water-intake", "dog-hydration-checker"],
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Water Intake — Daily Hydration Checker",
+    description: "Compare your dog’s measured water intake to a typical range (~50–60 mL/kg/day). Educational guidance only.",
+    loader: () => import("@/components/calculators/DogWaterIntakeCalculator"),
+  },
 
   // --- Placeholders (Financial) ---
   {

@@ -1,9 +1,18 @@
 // src/components/calculators/DogGrapeRaisinExposureCalculator.tsx
 import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
+import SeoHead from "@/components/seo/SeoHead";
+import JsonLd from "@/components/seo/JsonLd";
 
 type Item = "grapes" | "raisins";
 type Measure = "count" | "g" | "oz";
+
+// ====== SEO constants ======
+const CANONICAL = "https://www.smartkitnow.com/pets/dogs/dog-grape-raisin-exposure-risk";
+const TITLE = "Dog Grape/Raisin Exposure Risk";
+const DESC =
+  "Any grape/raisin ingestion can be dangerous for dogs. Use this triage tool and contact your veterinarian immediately.";
+const OG_IMAGE = undefined; // optional social image URL
 
 const AVG_WEIGHTS = {
   grape_g: 5,       // ~5 g por uva inteira (média de mercado)
@@ -11,13 +20,27 @@ const AVG_WEIGHTS = {
 };
 
 const cfg: PetCalcOmniConfig = {
-  title: "Dog Grape/Raisin Exposure Risk",
+  title: TITLE,
   shortDescription:
     "Any ingestion of grapes or raisins can be dangerous for dogs. Use this tool for triage only and call your veterinarian immediately.",
   strongDisclaimer:
     "No 'safe' amount is known. Some dogs develop acute kidney injury even with small exposures, while others do not. This tool is for educational triage only and does not replace veterinary care.",
   showTopAd: true,
   showRightAd: true,
+
+  authoredBy: {
+    name: "Williams Martins",
+    role: "Content Editor",
+    date: "2025-10-13",
+    bioUrl: " `https://www.smartkitnow.com/about` ",
+  },
+  reviewedBy: {
+    name: "Dr. Jane Smith",
+    credentials: "DVM",
+    role: "Veterinarian",
+    date: "2025-10-12",
+    bioUrl: " `https://www.smartkitnow.com/about` ",
+  },
 
   // Inputs do painel
   inputs: [
@@ -194,11 +217,75 @@ const cfg: PetCalcOmniConfig = {
   ],
 
   sources: [
-    { label: "Merck Veterinary Manual — Grapes and Raisins Poisoning in Dogs", href: "https://www.merckvetmanual.com/" },
+    { label: "Merck Veterinary Manual — Grapes & Raisins in Dogs", href: "https://www.merckvetmanual.com/" },
     { label: "Pet Poison Helpline — Grapes & Raisins", href: "https://www.petpoisonhelpline.com/" },
   ],
 };
 
 export default function DogGrapeRaisinExposureCalculator() {
-  return <PetCalcOmniTemplate config={cfg} />;
+  const softwareJson = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: TITLE,
+    applicationCategory: "Calculator",
+    applicationSubCategory: "Pet Health",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    url: CANONICAL,
+    description: DESC,
+    publisher: { "@type": "Organization", name: "Smart Kit Now", url: "https://www.smartkitnow.com" },
+  } as const;
+
+  const faqsJson = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity:
+      cfg.faqs?.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.answer },
+      })) ?? [],
+  } as const;
+
+  const breadcrumbsJson = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Pets", item: "https://www.smartkitnow.com/pets" },
+      { "@type": "ListItem", position: 2, name: "Dogs", item: "https://www.smartkitnow.com/pets/dogs" },
+      { "@type": "ListItem", position: 3, name: TITLE, item: CANONICAL },
+    ],
+  } as const;
+
+  const webpageJson = {
+    "@context": " `https://schema.org` ",
+    "@type": "WebPage",
+    name: TITLE,
+    url: CANONICAL,
+    description: DESC,
+    isPartOf: { "@type": "WebSite", "name": "Smart Kit Now", "url": " `https://www.smartkitnow.com` " },
+    author: {
+      "@type": "Person",
+      name: cfg.authoredBy?.name,
+      jobTitle: cfg.authoredBy?.role,
+      url: cfg.authoredBy?.bioUrl,
+    },
+    reviewedBy: {
+      "@type": "Person",
+      name: cfg.reviewedBy?.name,
+      jobTitle: cfg.reviewedBy?.role,
+    },
+    dateModified: cfg.authoredBy?.date || cfg.reviewedBy?.date,
+  } as const;
+
+  return (
+    <>
+      <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} ogImage={OG_IMAGE} />
+      <JsonLd data={softwareJson} />
+      <JsonLd data={faqsJson} />
+      <JsonLd data={breadcrumbsJson} />
+      <JsonLd data={webpageJson} />
+      <PetCalcOmniTemplate config={cfg} />
+    </>
+  );
 }

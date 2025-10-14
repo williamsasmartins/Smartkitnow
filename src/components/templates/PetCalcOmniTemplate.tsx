@@ -31,6 +31,25 @@ export type PetCalcOmniConfig = {
   showTopAd?: boolean;
   showRightAd?: boolean;
 
+  // E-E-A-T: Reviewer metadata
+  reviewedBy?: {
+    name: string;
+    credentials?: string; // ex.: DVM, PhD
+    role?: string;        // ex.: Veterinarian
+    date?: string;        // ex.: 2025-10-10
+    bioUrl?: string;      // link opcional p/ perfil
+    avatarUrl?: string;   // avatar opcional
+  };
+
+  // E-E-A-T: Author metadata
+  authoredBy?: {
+    name: string;
+    role?: string;        // ex.: Content Writer, Editor
+    date?: string;        // ex.: 2025-10-12 (publicado/atualizado)
+    bioUrl?: string;
+    avatarUrl?: string;
+  };
+
   // Inputs e cálculo
   inputs: FieldConfig[];
   compute: (s: Record<string, any> & { toKg: (v: number, u: Unit) => number; toGrams: (v: number, u: Unit) => number }) => {
@@ -177,6 +196,38 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
     <article className="text-[14px] md:text-[15px] leading-relaxed">
       <h1 className="text-xl md:text-2xl font-bold mb-1" style={{ color: "#5c82ee" }}>{config.title}</h1>
       <p className="text-sm md:text-[15px] text-muted-foreground">{config.shortDescription}</p>
+
+      {config.reviewedBy ? (
+        <section className="mt-4">
+          <div className="flex items-start gap-3 rounded-md border border-border/50 bg-card p-3">
+            {config.reviewedBy.avatarUrl ? (
+              <img
+                src={config.reviewedBy.avatarUrl}
+                alt={config.reviewedBy.name}
+                className="h-10 w-10 rounded-full object-cover"
+                loading="lazy"
+              />
+            ) : null}
+            <div className="text-[13px] md:text-[14px]">
+              <div className="font-medium">
+                Reviewed by{" "}
+                {config.reviewedBy.bioUrl ? (
+                  <a href={config.reviewedBy.bioUrl} target="_blank" rel="noreferrer" className="underline">
+                    {config.reviewedBy.name}
+                  </a>
+                ) : (
+                  config.reviewedBy.name
+                )}
+                {config.reviewedBy.credentials ? `, ${config.reviewedBy.credentials}` : ""}
+                {config.reviewedBy.role ? ` — ${config.reviewedBy.role}` : ""}
+              </div>
+              {config.reviewedBy.date ? (
+                <div className="text-xs text-muted-foreground">Last reviewed: {config.reviewedBy.date}</div>
+              ) : null}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {config.howToUse?.length ? (
         <section className="mt-8">

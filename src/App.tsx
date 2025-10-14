@@ -172,9 +172,33 @@ export default function App() {
                 path="/pets/dogs/dog-chocolate-toxicity"
                 element={<Navigate to="/pets/dogs/dog-chocolate-toxicity-calculator" replace />} 
               />
+              <Route
+                path="/pets/dogs/dog-calorie-needs"
+                element={<Navigate to="/pets/dogs/dog-calorie-needs-rer-mer" replace />} 
+              />
+              <Route 
+                path="/pets/dogs/dog-rer-mer" 
+                element={<Navigate to="/pets/dogs/dog-calorie-needs-rer-mer" replace />} 
+              />
               <Route 
                 path="/pets/dogs/dog-grape-raisin-exposure" 
                 element={<Navigate to="/pets/dogs/dog-grape-raisin-exposure-risk" replace />} 
+              />
+              <Route 
+                path="/pets/dogs/dog-water-intake" 
+                element={<Navigate to="/pets/dogs/dog-water-intake" replace />} 
+              />
+              <Route 
+                path="/pets/dog-daily-water-intake-checker" 
+                element={<Navigate to="/pets/dogs/dog-water-intake" replace />} 
+              />
+              <Route 
+                path="/pets/dog-daily-water-intake" 
+                element={<Navigate to="/pets/dog-water-intake" replace />} 
+              />
+              <Route 
+                path="/pets/dog-hydration-checker" 
+                element={<Navigate to="/pets/dog-water-intake" replace />} 
               />
               
 

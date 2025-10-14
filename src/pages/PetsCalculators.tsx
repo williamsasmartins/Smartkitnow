@@ -27,6 +27,7 @@ export default function PetsCalculators() {
       emoji: "🦴",
       items: [
         { to: "/pets/dog-calorie-needs-rer-mer", title: "Dog Calorie Needs (RER/MER) Calculator" },
+        { to: "/pets/dog-water-intake", title: "Dog Daily Water Intake Checker" },
         { to: "/pets/dog-weight-loss-planner", title: "Dog Weight Loss Planner" },
         { to: "/pets/dog-ideal-weight-target-calories", title: "Dog Ideal Weight & Target Calories Calculator" },
         { to: "/pets/dog-treat-calories-daily-allowance", title: "Dog Treat Calories & Daily Allowance Calculator" },

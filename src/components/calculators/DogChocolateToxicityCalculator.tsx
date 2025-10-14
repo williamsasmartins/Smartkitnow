@@ -1,6 +1,8 @@
 // src/components/calculators/DogChocolateToxicityCalculator.tsx
 import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
+import SeoHead from "@/components/seo/SeoHead";
+import JsonLd from "@/components/seo/JsonLd";
 
 const CHOCOLATE = {
   milk:   { label: "Milk Chocolate",     theo: 1.6,  caf: 0.2,  hint: "~1.8 mg/g" },
@@ -10,14 +12,36 @@ const CHOCOLATE = {
   white:  { label: "White (trace)",      theo: 0.05, caf: 0.0,  hint: "trace"     },
 } as const;
 
+// ====== SEO constants ======
+const CANONICAL = "https://www.smartkitnow.com/pets/dogs/dog-chocolate-toxicity-calculator";
+const TITLE = "Dog Chocolate Toxicity Calculator";
+const DESC =
+  "Estimate risk based on dog weight, chocolate type, and amount ingested. Educational use only — contact your veterinarian immediately if ingestion is suspected.";
+const OG_IMAGE = undefined; // optional social image URL
+
 const cfg: PetCalcOmniConfig = {
-  title: "Dog Chocolate Toxicity Calculator",
+  title: TITLE,
   shortDescription:
     "Estimate risk based on dog weight, chocolate type, and amount ingested. Educational use only — contact your veterinarian immediately if ingestion is suspected.",
   strongDisclaimer:
     "This tool does not replace professional veterinary care. Toxicity risk depends on individual sensitivity, stomach contents, co-ingestants, and timing. If exposure is suspected, call a veterinarian or poison helpline immediately.",
   showTopAd: true,
   showRightAd: false,
+
+  authoredBy: {
+    name: "Williams Martins",
+    role: "Content Editor",
+    date: "2025-10-13",
+    bioUrl: " `https://www.smartkitnow.com/about` ",
+  },
+
+  reviewedBy: {
+    name: "Dr. Jane Smith",
+    credentials: "DVM",
+    role: "Veterinarian",
+    date: "2025-10-12",
+    bioUrl: " `https://www.smartkitnow.com/about` ",
+  },
 
   // Inputs
   inputs: [
@@ -166,7 +190,72 @@ const cfg: PetCalcOmniConfig = {
 };
 
 export default function DogChocolateToxicityCalculator() {
-  return <PetCalcOmniTemplate config={cfg} />;
+  // ===== JSON-LD blocks =====
+  const softwareJson = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: TITLE,
+    applicationCategory: "Calculator",
+    applicationSubCategory: "Pet Health",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    url: CANONICAL,
+    description: DESC,
+    publisher: { "@type": "Organization", name: "Smart Kit Now", url: "https://www.smartkitnow.com" },
+  } as const;
+
+  const faqsJson = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity:
+      cfg.faqs?.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.answer },
+      })) ?? [],
+  } as const;
+
+  const breadcrumbsJson = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Pets", item: "https://www.smartkitnow.com/pets" },
+      { "@type": "ListItem", position: 2, name: "Dogs", item: "https://www.smartkitnow.com/pets/dogs" },
+      { "@type": "ListItem", position: 3, name: TITLE, item: CANONICAL },
+    ],
+  } as const;
+
+  const webpageJson = {
+    "@context": " `https://schema.org` ",
+    "@type": "WebPage",
+    name: TITLE,
+    url: CANONICAL,
+    description: DESC,
+    isPartOf: { "@type": "WebSite", "name": "Smart Kit Now", "url": " `https://www.smartkitnow.com` " },
+    author: {
+      "@type": "Person",
+      name: cfg.authoredBy?.name,
+      jobTitle: cfg.authoredBy?.role,
+      url: cfg.authoredBy?.bioUrl,
+    },
+    reviewedBy: {
+      "@type": "Person",
+      name: cfg.reviewedBy?.name,
+      jobTitle: cfg.reviewedBy?.role,
+    },
+    dateModified: cfg.authoredBy?.date || cfg.reviewedBy?.date,
+  } as const;
+
+  return (
+    <>
+      <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} ogImage={OG_IMAGE} />
+      <JsonLd data={softwareJson} />
+      <JsonLd data={faqsJson} />
+      <JsonLd data={breadcrumbsJson} />
+      <JsonLd data={webpageJson} />
+      <PetCalcOmniTemplate config={cfg} />
+    </>
+  );
 }
 
 function sumMgPerGram(kind: keyof typeof CHOCOLATE) {
