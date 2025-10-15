@@ -11,12 +11,17 @@ const CHOCOLATE = {
   white:  { label: "White (trace)",      theo: 0.05, caf: 0.0,  hint: "trace"     },
 } as const;
 
+function sum(kind: keyof typeof CHOCOLATE) {
+  const p = CHOCOLATE[kind];
+  return p.theo + p.caf;
+}
+
 const CANONICAL = "https://www.smartkitnow.com/pets/dogs/dog-chocolate-toxicity-calculator";
 const TITLE = "Dog Chocolate Toxicity Calculator (v2)";
 const DESC = "Estimate risk by weight, chocolate type, and amount ingested. Educational triage — contact your veterinarian immediately if exposure is suspected.";
 
 const cfg: PetCalcOmniConfig = {
-  title: TITLE,
+  title: "Dog Chocolate Toxicity Calculator",
   shortDescription:
     "Estimate risk based on dog weight, chocolate type, and amount ingested. Educational use only — contact your veterinarian immediately if ingestion is suspected.",
   strongDisclaimer:
@@ -88,9 +93,10 @@ const cfg: PetCalcOmniConfig = {
   },
 
   howToUse: [
-    "Enter your dog’s weight and unit.",
-    "Select chocolate type and amount ingested.",
-    "Review mg/kg and risk band; call your vet.",
+    "Enter your dog’s weight and choose the correct unit (kg or lb).",
+    "Select the chocolate type and enter the estimated amount ingested.",
+    "Review the total dose (mg/kg) and the risk band. Call your vet for guidance.",
+    "If ingestion is recent, your vet may advise decontamination steps. Do not induce vomiting unless instructed.",
   ],
 
   howItWorks: {
@@ -104,17 +110,53 @@ const cfg: PetCalcOmniConfig = {
       title: "Approximate methylxanthine content by chocolate type",
       headers: ["Type", "Theobromine (mg/g)", "Caffeine (mg/g)", "Total (mg/g)"],
       rows: Object.entries(CHOCOLATE).map(([k,v])=>[v.label, v.theo, v.caf, (v.theo+v.caf).toFixed(1)]),
+      notes: [
+        "Values are simplified educational references; brands/batches vary.",
+        "Risk also depends on time since ingestion, stomach contents, and individual sensitivity.",
+      ],
+    },
+    {
+      title: "Example doses for 50 g of chocolate",
+      headers: ["Weight (kg)","Milk (mg/kg)","Dark (mg/kg)","Baking (mg/kg)"],
+      rows: [
+        [5,  Math.round((50*sum("milk"))/5),  Math.round((50*sum("dark"))/5),  Math.round((50*sum("baking"))/5)],
+        [10, Math.round((50*sum("milk"))/10), Math.round((50*sum("dark"))/10), Math.round((50*sum("baking"))/10)],
+        [20, Math.round((50*sum("milk"))/20), Math.round((50*sum("dark"))/20), Math.round((50*sum("baking"))/20)],
+        [30, Math.round((50*sum("milk"))/30), Math.round((50*sum("dark"))/30), Math.round((50*sum("baking"))/30)],
+      ],
+      notes: ["Use your dog’s exact weight and actual amount for a better estimate."],
+    },
+    {
+      title: "How much chocolate can a 70 lb dog eat? (illustrative)",
+      headers: ["Type","Approx. grams to reach ~20 mg/kg (mild band)"],
+      rows: (() => {
+        const weightKg = 31.7514659;  // 70 lb
+        const targetMg = 20 * weightKg;
+        const grams = (mgPerG:number) => (targetMg / mgPerG).toFixed(0);
+        return [
+          ["Milk Chocolate",        grams(sum("milk"))],
+          ["Dark/Semisweet",        grams(sum("dark"))],
+          ["Baking/Unsweetened",    grams(sum("baking"))],
+          ["Cocoa Powder",          grams(sum("cocoa"))],
+          ["White (trace)",         "—"],
+        ];
+      })(),
+      notes: [
+        "This is not a 'safe' amount — it's an educational illustration for the ~20 mg/kg band.",
+        "Any suspected ingestion warrants veterinary advice.",
+      ],
     },
   ],
 
   faqs: [
-    { question: "Is white chocolate safe?", answer: "Even with trace methylxanthines, ingestion can cause GI upset. Always consult your vet." },
-    { question: "When is this an emergency?", answer: "High dose for weight or neuro/cardiac signs (tremors, seizures) — emergency care now." },
+    { question: "Is white chocolate safe?", answer: "White chocolate contains trace methylxanthines, but ingestion can still cause GI upset. Always consult your vet." },
+    { question: "When is this an emergency?", answer: "If dose is high for the dog's weight or there are neurologic/cardiac signs — seek emergency care immediately." },
+    { question: "Should I induce vomiting at home?", answer: "Do not induce vomiting unless instructed by a veterinarian." },
   ],
 
   sources: [
-    { label: "FDA — Pets & Chocolate", href: "https://www.fda.gov/" },
-    { label: "Merck Veterinary Manual — Chocolate intoxication", href: "https://www.merckvetmanual.com/" },
+    { label: "FDA — Pets & Chocolate", href: "https://www.fda.gov/animal-veterinary/animal-health-literacy/chocolate-toxic-pets" },
+    { label: "Merck Veterinary Manual — Chocolate intoxication", href: "https://www.merckvetmanual.com/toxicology/food-hazards/chocolate" },
   ],
 
   relatedLinks: [
