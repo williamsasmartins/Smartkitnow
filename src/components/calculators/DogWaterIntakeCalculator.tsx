@@ -178,6 +178,11 @@ export default function DogWaterIntakeCalculator() {
     ]
   };
 
+  const reviewedByName =
+    typeof cfg.reviewedBy === "string" ? cfg.reviewedBy : cfg.reviewedBy?.name;
+  const reviewedByDate =
+    typeof cfg.reviewedBy === "string" ? undefined : cfg.reviewedBy?.date;
+
   const webpageJson = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -186,8 +191,10 @@ export default function DogWaterIntakeCalculator() {
     "description": DESC,
     "isPartOf": { "@type": "WebSite", "name": "Smart Kit Now", "url": "https://www.smartkitnow.com" },
     "author": { "@type": "Person", "name": cfg.authoredBy?.name, "jobTitle": cfg.authoredBy?.role, "url": cfg.authoredBy?.bioUrl },
-    "reviewedBy": { "@type": "Organization", "name": cfg.reviewedBy?.name },
-    "dateModified": cfg.authoredBy?.date || cfg.reviewedBy?.date,
+    ...(reviewedByName
+      ? { "reviewedBy": { "@type": "Organization", "name": reviewedByName } }
+      : {}),
+    "dateModified": cfg.authoredBy?.date || reviewedByDate,
   };
 
   return (

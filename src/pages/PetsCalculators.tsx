@@ -47,7 +47,7 @@ export default function PetsCalculators() {
       title: "Toxicology & Hazard Intake",
       emoji: "☣️",
       items: [
-        { to: "/pets/dog-chocolate-toxicity-calculator", title: "Dog Chocolate Toxicity Calculator" },
+        { to: "/pets/dogs/dog-chocolate-toxicity-calculator", title: "Dog Chocolate Toxicity Calculator" },
         { to: "/pets/dog-grape-raisin-exposure-risk", title: "Dog Grape/Raisin Exposure Risk Calculator" },
         { to: "/pets/dog-onion-garlic-toxicity", title: "Dog Onion/Garlic Toxicity Calculator" },
         { to: "/pets/dog-xylitol-toxicity", title: "Dog Xylitol Toxicity Calculator" },

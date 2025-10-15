@@ -11,6 +11,8 @@ export type SEOHeadProps = {
   description?: string;
   /** meta keywords (opcional) */
   keywords?: string[];
+  /** meta robots noindex/nofollow (opcional) */
+  noindex?: boolean;
   /** breadcrumbs para JSON-LD (opcional) */
   breadcrumbs?: Crumb[];
   /** objeto Schema.org para JSON-LD (opcional) */
@@ -44,6 +46,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   title,
   description,
   keywords,
+  noindex,
   breadcrumbs,
   schema,
   schemas,
@@ -84,6 +87,10 @@ const SEOHead: React.FC<SEOHeadProps> = ({
         {keywords && keywords.length > 0 && (
           <meta name="keywords" content={keywords.join(", ")} />
         )}
+
+        {/* Robots */}
+        <meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow"} />
+        <meta name="googlebot" content={noindex ? "noindex,nofollow" : "index,follow"} />
 
         {/* Canonical */}
         {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}

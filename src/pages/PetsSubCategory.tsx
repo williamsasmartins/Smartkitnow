@@ -126,7 +126,7 @@ export default function PetsSubCategory() {
                         <Icon className="h-5 w-5" />
                       </span>
                       <CardTitle className="text-lg font-semibold" style={{ color: "#000000" }}>
-                        <CalculatorLink to={`/${category}/${calc.slug}`}>{calc.title}</CalculatorLink>
+                        <CalculatorLink to={`/${category}/${subcategory}/${calc.slug}`}>{calc.title}</CalculatorLink>
                       </CardTitle>
                     </CardHeader>
                     <CardContent>

@@ -12,7 +12,7 @@ const CHOCOLATE = {
 } as const;
 
 const CANONICAL = "https://www.smartkitnow.com/pets/dogs/dog-chocolate-toxicity-calculator";
-const TITLE = "Dog Chocolate Toxicity Calculator";
+const TITLE = "Dog Chocolate Toxicity Calculator (v2)";
 const DESC = "Estimate risk by weight, chocolate type, and amount ingested. Educational triage — contact your veterinarian immediately if exposure is suspected.";
 
 const cfg: PetCalcOmniConfig = {
@@ -156,6 +156,11 @@ export default function DogChocolateToxicityCalculator() {
     ]
   };
 
+  const reviewedByName =
+    typeof cfg.reviewedBy === "string" ? cfg.reviewedBy : cfg.reviewedBy?.name;
+  const reviewedByDate =
+    typeof cfg.reviewedBy === "string" ? undefined : cfg.reviewedBy?.date;
+
   const webpageJson = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -164,8 +169,10 @@ export default function DogChocolateToxicityCalculator() {
     "description": DESC,
     "isPartOf": { "@type": "WebSite", "name": "Smart Kit Now", "url": "https://www.smartkitnow.com" },
     "author": { "@type": "Person", "name": cfg.authoredBy?.name, "jobTitle": cfg.authoredBy?.role, "url": cfg.authoredBy?.bioUrl },
-    "reviewedBy": { "@type": "Organization", "name": cfg.reviewedBy?.name },
-    "dateModified": cfg.authoredBy?.date || cfg.reviewedBy?.date,
+    ...(reviewedByName
+      ? { "reviewedBy": { "@type": "Organization", "name": reviewedByName } }
+      : {}),
+    "dateModified": cfg.authoredBy?.date || reviewedByDate,
   };
 
   return (
