@@ -1,0 +1,73 @@
+# ================================
+# 1) Canonicalização domínio/HTTPS
+# ================================
+http://smartkitnow.com/*         https://www.smartkitnow.com/:splat  301!
+https://smartkitnow.com/*        https://www.smartkitnow.com/:splat  301!
+
+# (Se seu canônico for sem www, inverta as duas linhas acima.)
+
+# ================================
+# 2) Pets — rotas antigas/alternativas
+# ================================
+/pets/dogs/dog-chocolate-toxicity               /pets/dogs/dog-chocolate-toxicity-calculator 301
+/pets/dog-chocolate-toxicity                    /pets/dogs/dog-chocolate-toxicity-calculator 301
+/pets/dog-chocolate                             /pets/dogs/dog-chocolate-toxicity-calculator 301
+
+# Fallbacks amigáveis (não canônicos) → apontam para as canônicas atuais
+/pets/grape-raisins-for-dogs                    /pets/dog-grape-raisin-exposure-risk 301
+/pets/dogs/grape-raisin-toxicity                /pets/dog-grape-raisin-exposure-risk 301
+/pets/dogs/water-intake                         /pets/dog-water-intake 301
+/pets/dogs/daily-water-intake                   /pets/dog-water-intake 301
+/pets/dogs/dog-calorie-needs                    /pets/dog-calorie-needs-rer-mer 301
+/pets/dog-calorie-needs                         /pets/dog-calorie-needs-rer-mer 301
+
+# =====================================
+# 3) Rotas legadas com /calculator/:slug
+#    (liste as que você usa hoje)
+# =====================================
+/pets/dogs/calculator/dog-chocolate-toxicity-calculator   /pets/dogs/dog-chocolate-toxicity-calculator 301
+/pets/calculator/dog-water-intake                         /pets/dog-water-intake 301
+/pets/calculator/dog-calorie-needs-rer-mer               /pets/dog-calorie-needs-rer-mer 301
+/pets/calculator/dog-grape-raisin-exposure-risk          /pets/dog-grape-raisin-exposure-risk 301
+
+# =====================================
+# 4) Aliases do registry (exemplos reais do seu arquivo)
+# =====================================
+# Health
+/health/bmi                                 /health/bmi-calculator 301
+/health/body-mass-index                     /health/bmi-calculator 301
+/health/bmr                                 /health/bmr-calculator 301
+/health/basal-metabolic-rate                /health/bmr-calculator 301
+/health/tdee                                /health/tdee-calculator 301
+/health/total-daily-energy-expenditure      /health/tdee-calculator 301
+/health/calorie-calculator                  /health/calorie-intake-calculator 301
+/health/daily-calories                      /health/calorie-intake-calculator 301
+/health/calories-to-kg                      /health/calories-to-kilograms 301
+/health/calorie-weight-conversion           /health/calories-to-kilograms 301
+
+# Cooking
+/cooking/recipe-scaling                     /cooking/recipe-scale-conversion-calculator 301
+
+# Construction
+/construction/concrete-slab                 /construction/concrete-slab-volume-bags 301
+/construction/drywall                       /construction/drywall-area-sheets 301
+
+# Financial
+/financial/roi                              /financial/roi-calculator 301
+/financial/return-on-investment             /financial/roi-calculator 301
+/financial/compound-interest                /financial/compound-interest-calculator 301
+/financial/mortgage                         /financial/mortgage-calculator 301
+/financial/home-loan                        /financial/mortgage-calculator 301
+/financial/loan                             /financial/loan-calculator 301
+/financial/personal-loan                    /financial/loan-calculator 301
+
+# Math (percent)
+/math/percentage-of-total                   /math/percent-of-total 301
+/math/percentage-increase                   /math/percent-increase 301
+/math/percentage-decrease                   /math/percent-decrease 301
+/math/percentage-change                     /math/percent-change 301
+
+# ================================
+# 5) SPA fallback (deve ser a ÚLTIMA linha)
+# ================================
+/*   /index.html   200

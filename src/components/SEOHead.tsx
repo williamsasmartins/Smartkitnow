@@ -1,130 +1,52 @@
-// src/components/SEOHead.tsx
-import React from "react";
-import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
 
-type Crumb = { name: string; url: string };
-
-export type SEOHeadProps = {
-  /** <title> da página */
+type Props = {
   title: string;
-  /** meta description (opcional) */
   description?: string;
-  /** meta keywords (opcional) */
-  keywords?: string[];
-  /** meta robots noindex/nofollow (opcional) */
-  noindex?: boolean;
-  /** breadcrumbs para JSON-LD (opcional) */
-  breadcrumbs?: Crumb[];
-  /** objeto Schema.org para JSON-LD (opcional) */
-  schema?: Record<string, any>;
-  /** múltiplos objetos Schema.org para JSON-LD (opcional) */
-  schemas?: Record<string, any>[];
-  /** link rel="canonical" (opcional) */
   canonical?: string;
-  /** imagem para compartilhamento (OG/Twitter) */
-  image?: string;
-  /** children opcionais */
-  children?: React.ReactNode;
+  ogType?: string;
+  ogImage?: string;
 };
 
-function buildBreadcrumbLD(bcs: Crumb[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: bcs.map((b, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      name: b.name,
-      item: b.url,
-    })),
-  };
+export default function SeoHead({ title, description, canonical, ogType = "website", ogImage }: Props) {
+  useEffect(() => {
+    document.title = title;
+
+    const setMeta = (name: string, content?: string, attr: "name" | "property" = "name") => {
+      if (!content) return;
+      let el = document.querySelector<HTMLMetaElement>(`meta[${attr}="${name}"]`);
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute(attr, name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+
+    const setLink = (rel: string, href?: string) => {
+      if (!href) return;
+      let el = document.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`);
+      if (!el) {
+        el = document.createElement("link");
+        el.setAttribute("rel", rel);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("href", href);
+    };
+
+    setMeta("description", description);
+    setMeta("og:title", title, "property");
+    setMeta("og:description", description, "property");
+    setMeta("og:type", ogType, "property");
+    setMeta("twitter:card", "summary_large_image");
+    setMeta("twitter:title", title);
+    setMeta("twitter:description", description);
+    if (ogImage) {
+      setMeta("og:image", ogImage, "property");
+      setMeta("twitter:image", ogImage);
+    }
+    setLink("canonical", canonical);
+  }, [title, description, canonical, ogType, ogImage]);
+
+  return null;
 }
-
-const siteName = "Smart Kit Now";
-
-const SEOHead: React.FC<SEOHeadProps> = ({
-  title,
-  description,
-  keywords,
-  noindex,
-  breadcrumbs,
-  schema,
-  schemas,
-  canonical,
-  image,
-  children,
-}) => {
-  // Tenta inferir URL atual para OG/twitter se canonical não vier
-  const currentUrl =
-    typeof window !== "undefined" ? window.location.href : undefined;
-  const canonicalUrl = canonical || currentUrl;
-  const ogUrl = canonicalUrl;
-  const ogImage = image || "/favicon.png";
-
-  // JSON-LD (schema + breadcrumbs)
-  const ldJson: any[] = [];
-  if (breadcrumbs && breadcrumbs.length > 0) {
-    ldJson.push(buildBreadcrumbLD(breadcrumbs));
-  }
-  if (schema) {
-    ldJson.push(schema);
-  }
-  if (schemas && schemas.length > 0) {
-    ldJson.push(...schemas);
-  }
-
-  return (
-    <>
-      <Helmet>
-        {/* Title */}
-        <title>{title}</title>
-
-        {/* Meta básicos */}
-        <meta name="google-site-verification" content="YtJGpKTUhVan-Fob03Lkt4sAXT6K0xlepSfvPyrRK2g" />
-        {description && (
-          <meta name="description" content={description} />
-        )}
-        {keywords && keywords.length > 0 && (
-          <meta name="keywords" content={keywords.join(", ")} />
-        )}
-
-        {/* Robots */}
-        <meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow"} />
-        <meta name="googlebot" content={noindex ? "noindex,nofollow" : "index,follow"} />
-
-        {/* Canonical */}
-        {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-
-        {/* Open Graph */}
-        <meta property="og:site_name" content={siteName} />
-        <meta property="og:title" content={title} />
-        {description && (
-          <meta property="og:description" content={description} />
-        )}
-        {ogUrl && <meta property="og:url" content={ogUrl} />}
-        <meta property="og:type" content="website" />
-        {ogImage && <meta property="og:image" content={ogImage} />}
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        {description && (
-          <meta name="twitter:description" content={description} />
-        )}
-        {ogUrl && <meta name="twitter:url" content={ogUrl} />}
-        {ogImage && <meta name="twitter:image" content={ogImage} />}
-
-        {/* JSON-LD */}
-        {ldJson.length > 0 && (
-          <script type="application/ld+json">
-            {JSON.stringify(ldJson)}
-          </script>
-        )}
-      </Helmet>
-
-      {children}
-    </>
-  );
-};
-
-export default SEOHead;

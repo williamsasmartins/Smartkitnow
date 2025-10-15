@@ -9,7 +9,10 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate:sitemap": "node scripts/generate-sitemap.mjs",
+    "sitemap": "ts-node --esm scripts/generate-sitemap.ts",
+    "sitemap:js": "node scripts/sitemap.mjs",
+    "prebuild": "node scripts/sitemap.mjs && echo 'sitemap atualizado'",
+    "generate:sitemap": "node scripts/generate-sitemap-extended.mjs",
     "test": "vitest",
     "test:run": "vitest run"
   },
@@ -73,7 +76,7 @@
   "devDependencies": {
     "@eslint/js": "^9.32.0",
     "@tailwindcss/typography": "^0.5.16",
-    "@types/node": "^22.16.5",
+    "@types/node": "^22.18.10",
     "@types/react": "^18.3.26",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^5.0.3",
@@ -87,6 +90,7 @@
     "lovable-tagger": "^1.1.9",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
     "vite": "^5.4.19",

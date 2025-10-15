@@ -834,7 +834,7 @@ export const REGISTRY: CalculatorEntry[] = [
     subcategory: "dogs",
     title: "Dog Grape/Raisin Exposure Risk",
     description: "Triage tool for grape/raisin ingestion in dogs — no known safe dose; call your veterinarian immediately.",
-    loader: () => import("@/components/calculators/DogGrapeRaisinExposureCalculator"),
+    loader: () => import("@/components/calculators/DogGrapeRaisinExposureRiskCalculator"),
   },
   {
     slug: "dog-calorie-needs-rer-mer",
@@ -852,7 +852,34 @@ export const REGISTRY: CalculatorEntry[] = [
     subcategory: "dogs",
     title: "Dog Water Intake — Daily Hydration Checker",
     description: "Compare your dog’s measured water intake to a typical range (~50–60 mL/kg/day). Educational guidance only.",
-    loader: () => import("@/components/calculators/DogWaterIntakeCalculator"),
+    loader: () => import("@/components/calculators/DogWaterIntakeCalculatorNew"),
+  },
+  {
+    slug: "dog-onion-garlic-exposure-risk",
+    aliases: ["dog-allium-exposure-risk", "dog-onion-garlic-calculator"],
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Onion/Garlic (Allium) Exposure Risk Calculator",
+    description: "Educational risk estimate for onion/garlic exposure with g/kg bands, tables, and FAQs.",
+    loader: () => import("@/components/calculators/DogAlliumExposureCalculator"),
+  },
+  {
+    slug: "dog-xylitol-exposure-risk",
+    aliases: ["dog-xylitol-toxicity", "dog-xylitol-exposure-risk-calculator"],
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Xylitol Exposure Risk Calculator",
+    description: "Educational estimate of risk from xylitol ingestion in dogs, with dose bands (mg/kg), tables, and FAQs.",
+    loader: () => import("@/components/calculators/DogXylitolExposureCalculator"),
+  },
+  {
+    slug: "dog-medication-exposure-alert",
+    aliases: ["dog-human-medication-alert", "dog-ibuprofen-acetaminophen-alert"],
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Human-Medication Exposure Alert (Ibuprofen/Acetaminophen)",
+    description: "Educational mg/kg alert for accidental ingestion, with risk bands, FAQs, and sources.",
+    loader: () => import("@/components/calculators/DogMedicationExposureAlert"),
   },
 
   // --- Placeholders (Financial) ---
@@ -1100,3 +1127,6 @@ export function listSubcategoriesOfCategory(category: string) {
 
 // Alias público para uso em categorySections.ts
 export const calculatorRegistry = REGISTRY;
+
+
+

@@ -12,5 +12,7 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
 
 Sitemap: https://www.smartkitnow.com/sitemap.xml

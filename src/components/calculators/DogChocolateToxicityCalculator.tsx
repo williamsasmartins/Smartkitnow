@@ -1,45 +1,23 @@
 import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
-import SeoHead from "@/components/seo/SeoHead";
-import JsonLd from "@/components/seo/JsonLd";
 
-const CHOCOLATE = {
-  milk:   { label: "Milk Chocolate",     theo: 1.6,  caf: 0.2,  hint: "~1.8 mg/g" },
-  dark:   { label: "Dark/Semisweet",     theo: 6.0,  caf: 0.6,  hint: "~6.6 mg/g" },
-  baking: { label: "Baking/Unsweetened", theo: 15.0, caf: 1.2,  hint: "~16.2 mg/g" },
-  cocoa:  { label: "Cocoa Powder",       theo: 20.0, caf: 2.0,  hint: "~22 mg/g"  },
-  white:  { label: "White (trace)",      theo: 0.05, caf: 0.0,  hint: "trace"     },
+const CHOC = {
+  milk:   { label: "Milk Chocolate", theo: 1.6,  caf: 0.2,  hint: "~1.8 mg/g" },
+  dark:   { label: "Dark/Semisweet", theo: 6.0,  caf: 0.6,  hint: "~6.6 mg/g" },
+  baking: { label: "Baking/Unsweetened", theo: 15.0, caf: 1.2, hint: "~16.2 mg/g" },
+  cocoa:  { label: "Cocoa Powder", theo: 20.0, caf: 2.0, hint: "~22 mg/g" },
+  white:  { label: "White (trace)", theo: 0.05, caf: 0.0, hint: "trace" },
 } as const;
 
-function sum(kind: keyof typeof CHOCOLATE) {
-  const p = CHOCOLATE[kind];
-  return p.theo + p.caf;
-}
-
-const CANONICAL = "https://www.smartkitnow.com/pets/dogs/dog-chocolate-toxicity-calculator";
-const TITLE = "Dog Chocolate Toxicity Calculator (v2)";
-const DESC = "Estimate risk by weight, chocolate type, and amount ingested. Educational triage — contact your veterinarian immediately if exposure is suspected.";
+function mgPerG(kind: keyof typeof CHOC) { const p = CHOC[kind]; return p.theo + p.caf; }
 
 const cfg: PetCalcOmniConfig = {
   title: "Dog Chocolate Toxicity Calculator",
-  shortDescription:
-    "Estimate risk based on dog weight, chocolate type, and amount ingested. Educational use only — contact your veterinarian immediately if ingestion is suspected.",
-  strongDisclaimer:
-    "This tool does not replace professional veterinary care. Toxicity risk depends on individual sensitivity, stomach contents, co-ingestants, and timing.",
+  shortDescription: "Estimate risk based on dog weight, chocolate type, and amount ingested. Educational use only — contact your veterinarian immediately if ingestion is suspected.",
+  strongDisclaimer: "Não substitui atendimento veterinário. Risco depende de sensibilidade individual, conteúdo gástrico e tempo desde a ingestão.",
+  updatedAt: "2025-10-15",
   showTopAd: true,
-  showRightAd: true,
-
-  authoredBy: {
-    name: "Williams Martins",
-    role: "Content Editor",
-    date: "2025-10-13",
-    bioUrl: "https://www.smartkitnow.com/about",
-  },
-  reviewedBy: {
-    name: "Smart Kit Now Editorial Team",
-    role: "Content Review",
-    date: "2025-10-13",
-  },
+  showRightAd: false,
 
   inputs: [
     { type: "number", key: "weight", label: "Dog Weight", min: 0, step: 0.1, default: 20 },
@@ -47,33 +25,25 @@ const cfg: PetCalcOmniConfig = {
     { type: "number", key: "amount", label: "Amount Ingested", min: 0, step: 1, default: 50 },
     { type: "unit",   key: "amountUnit", label: "Amount Unit", options: ["g","oz"], default: "g" },
     { type: "select", key: "type", label: "Chocolate Type", default: "milk",
-      options: Object.entries(CHOCOLATE).map(([value,v])=>({ value, label: `${v.label} (${v.hint})` })) },
+      options: Object.entries(CHOC).map(([value,v])=>({ value, label: `${v.label} (${v.hint})` })) },
   ],
 
   compute: (s) => {
     const w = parseFloat(s.weight || "0");
     const a = parseFloat(s.amount || "0");
-    const wkg   = s.toKg(w, s.weightUnit);
+    const wkg = s.toKg(w, s.weightUnit);
     const grams = s.toGrams(a, s.amountUnit);
-    const kind = (s.type as keyof typeof CHOCOLATE) ?? "milk";
-    const p = CHOCOLATE[kind];
-    const theo = grams * p.theo;
-    const caf  = grams * p.caf;
-    const total = theo + caf;
+    const kind = (s.type as keyof typeof CHOC) ?? "milk";
+    const t = CHOC[kind];
+    const theo = grams * t.theo, caf = grams * t.caf, total = theo + caf;
     const dose = wkg > 0 ? total / wkg : 0;
-
-    const riskKey =
-      dose < 10 ? "low" :
-      dose < 20 ? "mild" :
-      dose < 40 ? "moderate" :
-      dose < 60 ? "high" : "veryhigh";
-
+    const riskKey = dose < 10 ? "low" : dose < 20 ? "mild" : dose < 40 ? "moderate" : dose < 60 ? "high" : "veryhigh";
     return { metrics: { theobromineMg: theo, caffeineMg: caf, doseMgPerKg: dose }, riskKey };
   },
 
   metricsDisplay: [
-    { key: "theobromineMg", label: "Theobromine (mg)",     format: v => `${Math.round(v)} mg` },
-    { key: "caffeineMg",    label: "Caffeine (mg)",        format: v => `${Math.round(v)} mg` },
+    { key: "theobromineMg", label: "Theobromine (mg)", format: v => `${Math.round(v)} mg` },
+    { key: "caffeineMg",    label: "Caffeine (mg)",    format: v => `${Math.round(v)} mg` },
     { key: "doseMgPerKg",   label: "Total per kg (mg/kg)", format: v => `${(v ?? 0).toFixed(1)} mg/kg` },
   ],
 
@@ -86,145 +56,93 @@ const cfg: PetCalcOmniConfig = {
   ],
 
   cta: { label: "Contact your veterinarian or an emergency clinic now." },
-  stickyCta: {
-    whenRiskIn: ["high", "veryhigh"],
-    label: "Emergency: call your vet now",
-    tel: "+1-800-222-1222"
-  },
 
   howToUse: [
-    "Enter your dog’s weight and choose the correct unit (kg or lb).",
-    "Select the chocolate type and enter the estimated amount ingested.",
-    "Review the total dose (mg/kg) and the risk band. Call your vet for guidance.",
-    "If ingestion is recent, your vet may advise decontamination steps. Do not induce vomiting unless instructed.",
+    "Informe o peso do cão (kg ou lb).",
+    "Selecione o tipo de chocolate e a quantidade ingerida.",
+    "Revise o valor total (mg/kg) e a faixa de risco.",
+    "Se a ingestão foi recente, siga a orientação do seu veterinário. Não induza vômito sem instrução.",
   ],
 
   howItWorks: {
-    intro: "Chocolate contains methylxanthines — theobromine and caffeine. We estimate dose per kg to triage risk.",
+    intro: "Chocolate contém metilxantinas (teobromina e cafeína). Estimamos a dose por kg para triagem de risco.",
     formula: "dose_mg_per_kg = (grams × (theobromine_mg/g + caffeine_mg/g)) ÷ weight_kg",
-    variables: ["grams — chocolate amount", "theobromine/caffeine — by type", "weight_kg — dog body weight"],
+    variables: ["grams — quantidade estimada de chocolate", "theobromine_mg/g + caffeine_mg/g — conteúdo por tipo", "weight_kg — peso do cão em quilogramas"],
   },
 
   tables: [
     {
-      title: "Approximate methylxanthine content by chocolate type",
-      headers: ["Type", "Theobromine (mg/g)", "Caffeine (mg/g)", "Total (mg/g)"],
-      rows: Object.entries(CHOCOLATE).map(([k,v])=>[v.label, v.theo, v.caf, (v.theo+v.caf).toFixed(1)]),
-      notes: [
-        "Values are simplified educational references; brands/batches vary.",
-        "Risk also depends on time since ingestion, stomach contents, and individual sensitivity.",
-      ],
+      title: "Methylxanthine por tipo de chocolate (aprox.)",
+      headers: ["Tipo", "Theobromine (mg/g)", "Caffeine (mg/g)", "Total (mg/g)"],
+      rows: Object.entries(CHOC).map(([k,v]) => [v.label, v.theo, v.caf, (v.theo+v.caf).toFixed(1)]),
+      notes: ["Valores educativos; marcas/lotes variam.", "Risco depende também do tempo desde ingestão e sensibilidade individual."],
     },
     {
-      title: "Example doses for 50 g of chocolate",
-      headers: ["Weight (kg)","Milk (mg/kg)","Dark (mg/kg)","Baking (mg/kg)"],
+      title: "Quanto chocolate pode levar ao ~20 mg/kg em um cão de 70 lb (31,75 kg)?",
+      headers: ["Tipo", "Aprox. gramas para ~20 mg/kg"],
       rows: [
-        [5,  Math.round((50*sum("milk"))/5),  Math.round((50*sum("dark"))/5),  Math.round((50*sum("baking"))/5)],
-        [10, Math.round((50*sum("milk"))/10), Math.round((50*sum("dark"))/10), Math.round((50*sum("baking"))/10)],
-        [20, Math.round((50*sum("milk"))/20), Math.round((50*sum("dark"))/20), Math.round((50*sum("baking"))/20)],
-        [30, Math.round((50*sum("milk"))/30), Math.round((50*sum("dark"))/30), Math.round((50*sum("baking"))/30)],
+        ["Milk Chocolate", Math.round((20*31.7515)/mgPerG("milk"))],
+        ["Dark/Semisweet", Math.round((20*31.7515)/mgPerG("dark"))],
+        ["Baking/Unsweetened", Math.round((20*31.7515)/mgPerG("baking"))],
+        ["Cocoa Powder", Math.round((20*31.7515)/mgPerG("cocoa"))],
+        ["White (trace)", "—"],
       ],
-      notes: ["Use your dog’s exact weight and actual amount for a better estimate."],
-    },
-    {
-      title: "How much chocolate can a 70 lb dog eat? (illustrative)",
-      headers: ["Type","Approx. grams to reach ~20 mg/kg (mild band)"],
-      rows: (() => {
-        const weightKg = 31.7514659;  // 70 lb
-        const targetMg = 20 * weightKg;
-        const grams = (mgPerG:number) => (targetMg / mgPerG).toFixed(0);
-        return [
-          ["Milk Chocolate",        grams(sum("milk"))],
-          ["Dark/Semisweet",        grams(sum("dark"))],
-          ["Baking/Unsweetened",    grams(sum("baking"))],
-          ["Cocoa Powder",          grams(sum("cocoa"))],
-          ["White (trace)",         "—"],
-        ];
-      })(),
-      notes: [
-        "This is not a 'safe' amount — it's an educational illustration for the ~20 mg/kg band.",
-        "Any suspected ingestion warrants veterinary advice.",
-      ],
+      notes: ["Não é uma ‘dose segura’ — apenas ilustração educacional da faixa ~20 mg/kg.", "Qualquer suspeita → procure orientação veterinária."],
     },
   ],
 
   faqs: [
-    { question: "Is white chocolate safe?", answer: "White chocolate contains trace methylxanthines, but ingestion can still cause GI upset. Always consult your vet." },
-    { question: "When is this an emergency?", answer: "If dose is high for the dog's weight or there are neurologic/cardiac signs — seek emergency care immediately." },
-    { question: "Should I induce vomiting at home?", answer: "Do not induce vomiting unless instructed by a veterinarian." },
+    { question: "Chocolate branco é seguro?", answer: "Tem traços de metilxantinas e pode causar desconforto GI. Sempre fale com o veterinário." },
+    { question: "Quando é emergência?", answer: "Dose alta para o peso ou sinais neurológicos/cardiacos (tremores, convulsões, colapso) → emergência imediata." },
   ],
 
-  sources: [
-    { label: "FDA — Pets & Chocolate", href: "https://www.fda.gov/animal-veterinary/animal-health-literacy/chocolate-toxic-pets" },
-    { label: "Merck Veterinary Manual — Chocolate intoxication", href: "https://www.merckvetmanual.com/toxicology/food-hazards/chocolate" },
+  glossary: [
+    { term: "Teobromina", def: "Principal metilxantina do chocolate; tóxica para cães." },
+    { term: "mg/kg", def: "Miligrama de substância por quilograma de peso corporal." },
   ],
 
   relatedLinks: [
-    { label: "Dog Grape/Raisin Exposure Risk", href: "/pets/dogs/dog-grape-raisin-exposure-risk" },
-    { label: "Dog Water Intake — Daily Hydration", href: "/pets/dogs/dog-water-intake" },
-    { label: "Dog Calorie Needs — RER & MER", href: "/pets/dogs/dog-calorie-needs-rer-mer" },
+    { label: "Dog Water Intake Calculator", href: "/pets/dog-water-intake" },
+    { label: "Dog Calorie Needs (RER/MER)", href: "/pets/dog-calorie-needs-rer-mer" },
   ],
+
+  sources: [
+    { label: "FDA — Pets & Chocolate (visão geral)", href: "https://www.fda.gov/animal-veterinary", note: "Informações sobre perigos do chocolate para animais." },
+    { label: "Merck Veterinary Manual — Chocolate intoxication", href: "https://www.merckvetmanual.com/" },
+  ],
+
+  reviewedByBlock: { text: "Calculadora revisada pela equipe Smart Kit Now. Para conduta clínica, consulte um veterinário." },
+
+  seo: {
+    title: "Dog Chocolate Toxicity Calculator | Smart Kit Now",
+    description: "Veja rapidamente o risco da ingestão de chocolate em cães por peso, tipo e quantidade. Uso educacional; procure seu veterinário.",
+    canonical: "https://www.smartkitnow.com/pets/dog-chocolate-toxicity-calculator",
+    keywords: ["dog chocolate toxicity","theobromine calculator","mg/kg"],
+  },
+
+  jsonLd: {
+    webpage: {
+      "@type": "MedicalWebPage",
+      "name": "Dog Chocolate Toxicity Calculator",
+      "inLanguage": "en",
+      "isPartOf": { "@type": "Website", "name": "Smart Kit Now", "url": "https://www.smartkitnow.com/" },
+      "dateModified": "2025-10-15",
+      "mainEntity": { "@type": "WebApplication", "name": "Dog Chocolate Toxicity Calculator", "applicationCategory": "Calculator", "operatingSystem": "All" }
+    },
+    breadcrumbs: {
+      items: [
+        { name: "Pets", item: "https://www.smartkitnow.com/pets" },
+        { name: "Dogs", item: "https://www.smartkitnow.com/pets/dogs" },
+        { name: "Dog Chocolate Toxicity Calculator", item: "https://www.smartkitnow.com/pets/dog-chocolate-toxicity-calculator" }
+      ]
+    },
+    faq: [
+      { q: "Chocolate branco é seguro?", a: "Tem traços de metilxantinas e pode causar desconforto GI. Sempre fale com o veterinário." },
+      { q: "Quando é emergência?", a: "Dose alta para o peso ou sinais neurológicos/cardiacos (tremores, convulsões, colapso) — emergência imediata." }
+    ]
+  }
 };
 
 export default function DogChocolateToxicityCalculator() {
-  const softwareJson = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": TITLE,
-    "applicationCategory": "Calculator",
-    "applicationSubCategory": "Pet Health",
-    "operatingSystem": "Web",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "url": CANONICAL,
-    "description": DESC,
-    "publisher": { "@type": "Organization", "name": "Smart Kit Now", "url": "https://www.smartkitnow.com" }
-  };
-
-  const faqsJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": cfg.faqs?.map(f => ({
-      "@type": "Question", "name": f.question, "acceptedAnswer": { "@type": "Answer", "text": f.answer }
-    })) ?? []
-  };
-
-  const breadcrumbsJson = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Pets",  "item": "https://www.smartkitnow.com/pets" },
-      { "@type": "ListItem", "position": 2, "name": "Dogs",  "item": "https://www.smartkitnow.com/pets/dogs" },
-      { "@type": "ListItem", "position": 3, "name": "Dog Chocolate Toxicity Calculator", "item": CANONICAL }
-    ]
-  };
-
-  const reviewedByName =
-    typeof cfg.reviewedBy === "string" ? cfg.reviewedBy : cfg.reviewedBy?.name;
-  const reviewedByDate =
-    typeof cfg.reviewedBy === "string" ? undefined : cfg.reviewedBy?.date;
-
-  const webpageJson = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": TITLE,
-    "url": CANONICAL,
-    "description": DESC,
-    "isPartOf": { "@type": "WebSite", "name": "Smart Kit Now", "url": "https://www.smartkitnow.com" },
-    "author": { "@type": "Person", "name": cfg.authoredBy?.name, "jobTitle": cfg.authoredBy?.role, "url": cfg.authoredBy?.bioUrl },
-    ...(reviewedByName
-      ? { "reviewedBy": { "@type": "Organization", "name": reviewedByName } }
-      : {}),
-    "dateModified": cfg.authoredBy?.date || reviewedByDate,
-  };
-
-  return (
-    <>
-      <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} />
-      <JsonLd data={softwareJson} />
-      <JsonLd data={faqsJson} />
-      <JsonLd data={breadcrumbsJson} />
-      <JsonLd data={webpageJson} />
-      <PetCalcOmniTemplate config={cfg} />
-    </>
-  );
+  return <PetCalcOmniTemplate config={cfg} />;
 }

@@ -1,5 +1,5 @@
 // src/pages/PetsCalculators.tsx
-import React from "react";
+
 import CategoryCalculatorsTemplate from "@/components/layouts/CategoryCalculatorsTemplate";
 import CalculatorLink from "@/components/common/CalculatorLink";
 
@@ -24,7 +24,7 @@ export default function PetsCalculators() {
   const dogSections: Section[] = [
     {
       title: "Nutrition & Weight",
-      emoji: "🦴",
+      emoji: "\u2696\uFE0F",
       items: [
         { to: "/pets/dog-calorie-needs-rer-mer", title: "Dog Calorie Needs (RER/MER) Calculator" },
         { to: "/pets/dog-water-intake", title: "Dog Daily Water Intake Checker" },
@@ -48,13 +48,13 @@ export default function PetsCalculators() {
       emoji: "☣️",
       items: [
         { to: "/pets/dogs/dog-chocolate-toxicity-calculator", title: "Dog Chocolate Toxicity Calculator" },
-        { to: "/pets/dog-grape-raisin-exposure-risk", title: "Dog Grape/Raisin Exposure Risk Calculator" },
-        { to: "/pets/dog-onion-garlic-toxicity", title: "Dog Onion/Garlic Toxicity Calculator" },
-        { to: "/pets/dog-xylitol-toxicity", title: "Dog Xylitol Toxicity Calculator" },
+        { to: "/pets/dogs/dog-grape-raisin-exposure-risk", title: "Dog Grape/Raisin Exposure Risk Calculator" },
+        { to: "/pets/dogs/dog-onion-garlic-exposure-risk", title: "Dog Onion/Garlic (Allium) Exposure Risk Calculator" },
+        { to: "/pets/dogs/dog-xylitol-exposure-risk", title: "Dog Xylitol Exposure Risk Calculator" },
         { to: "/pets/dog-caffeine-toxicity", title: "Dog Caffeine Toxicity Calculator" },
         { to: "/pets/dog-macadamia-nut-toxicity", title: "Dog Macadamia Nut Toxicity Calculator" },
         { to: "/pets/dog-alcohol-ethanol-exposure-risk", title: "Dog Alcohol/Ethanol Exposure Risk Calculator" },
-        { to: "/pets/dog-human-painkiller-ingestion-risk-ibuprofen-acetaminophen", title: "Dog Human Painkiller Ingestion Risk (Ibuprofen/Acetaminophen)" },
+        { to: "/pets/dogs/dog-medication-exposure-alert", title: "Dog Human-Medication Exposure Alert (Ibuprofen/Acetaminophen)" },
       ],
     },
     {
@@ -111,7 +111,7 @@ export default function PetsCalculators() {
   const catSections: Section[] = [
     {
       title: "Nutrition & Weight",
-      emoji: "🐱",
+      emoji: "\u2696\uFE0F",
       items: [
         { to: "/pets/cat-calorie-needs-rer-mer", title: "Cat Calorie Needs (RER/MER) Calculator" },
         { to: "/pets/cat-weight-loss-planner", title: "Cat Weight Loss Planner" },
@@ -278,9 +278,37 @@ export default function PetsCalculators() {
       renderSections={() => (
         <div className="space-y-10">
           {dogSections.map(renderSectionBlock)}
+          {/* Cat section header */}
+          <div className="mt-12 text-left">
+            <h2 className="text-3xl font-bold mb-2 flex items-center gap-2" style={{ color: "#5c82ee" }}>
+              <span className="text-[26px] leading-none select-none" aria-hidden="true">{"\uD83D\uDC31"}</span>
+              Cat Care Calculators
+            </h2>
+            <p className="text-lg max-w-[740px]" style={{ color: "#747886" }}>
+              Cat care calculators: nutrition, hydration, safety, dosing, growth and lifestyle helpers with clear guidance.
+            </p>
+          </div>
           {catSections.map(renderSectionBlock)}
         </div>
       )}
     />
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
