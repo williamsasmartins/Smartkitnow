@@ -1,5 +1,5 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "$schema": " `https://openapi.vercel.sh/vercel.json` ",
   "version": 2,
   "framework": "vite",
   "devCommand": "vite",
@@ -30,8 +30,6 @@
       "destination": "/construction/wall-ceiling-calculators/drywall-area-sheets",
       "permanent": true
     },
-    
-    // Pets — rotas antigas/alternativas
     { "source": "/pets/dogs/dog-chocolate-toxicity", "destination": "/pets/dogs/dog-chocolate-toxicity-calculator", "permanent": true },
     { "source": "/pets/dog-chocolate-toxicity", "destination": "/pets/dogs/dog-chocolate-toxicity-calculator", "permanent": true },
     { "source": "/pets/dog-chocolate", "destination": "/pets/dogs/dog-chocolate-toxicity-calculator", "permanent": true },
@@ -41,14 +39,10 @@
     { "source": "/pets/dogs/daily-water-intake", "destination": "/pets/dog-water-intake", "permanent": true },
     { "source": "/pets/dogs/dog-calorie-needs", "destination": "/pets/dog-calorie-needs-rer-mer", "permanent": true },
     { "source": "/pets/dog-calorie-needs", "destination": "/pets/dog-calorie-needs-rer-mer", "permanent": true },
-    
-    // Rotas legadas com /calculator/:slug
     { "source": "/pets/dogs/calculator/dog-chocolate-toxicity-calculator", "destination": "/pets/dogs/dog-chocolate-toxicity-calculator", "permanent": true },
     { "source": "/pets/calculator/dog-water-intake", "destination": "/pets/dog-water-intake", "permanent": true },
     { "source": "/pets/calculator/dog-calorie-needs-rer-mer", "destination": "/pets/dog-calorie-needs-rer-mer", "permanent": true },
     { "source": "/pets/calculator/dog-grape-raisin-exposure-risk", "destination": "/pets/dog-grape-raisin-exposure-risk", "permanent": true },
-    
-    // Aliases do registry — Health
     { "source": "/health/bmi", "destination": "/health/bmi-calculator", "permanent": true },
     { "source": "/health/body-mass-index", "destination": "/health/bmi-calculator", "permanent": true },
     { "source": "/health/bmr", "destination": "/health/bmr-calculator", "permanent": true },
@@ -59,17 +53,10 @@
     { "source": "/health/daily-calories", "destination": "/health/calorie-intake-calculator", "permanent": true },
     { "source": "/health/calories-to-kg", "destination": "/health/calories-to-kilograms", "permanent": true },
     { "source": "/health/calorie-weight-conversion", "destination": "/health/calories-to-kilograms", "permanent": true },
-    
-    // Cooking
     { "source": "/cooking/recipe-scaling", "destination": "/cooking/recipe-scale-conversion-calculator", "permanent": true },
-    
-    // Construction
     { "source": "/construction/concrete-slab", "destination": "/construction/concrete-slab-volume-bags", "permanent": true },
     { "source": "/construction/drywall", "destination": "/construction/drywall-area-sheets", "permanent": true },
-    
     { "source": "/:category/:subcategory/calculator/:slug", "destination": "/:category/:subcategory/:slug", "permanent": true },
-    
-    // Financial
     { "source": "/financial/roi", "destination": "/financial/roi-calculator", "permanent": true },
     { "source": "/financial/return-on-investment", "destination": "/financial/roi-calculator", "permanent": true },
     { "source": "/financial/compound-interest", "destination": "/financial/compound-interest-calculator", "permanent": true },
@@ -77,8 +64,6 @@
     { "source": "/financial/home-loan", "destination": "/financial/mortgage-calculator", "permanent": true },
     { "source": "/financial/loan", "destination": "/financial/loan-calculator", "permanent": true },
     { "source": "/financial/personal-loan", "destination": "/financial/loan-calculator", "permanent": true },
-    
-    // Math (percent)
     { "source": "/math/percentage-of-total", "destination": "/math/percent-of-total", "permanent": true },
     { "source": "/math/percentage-increase", "destination": "/math/percent-increase", "permanent": true },
     { "source": "/math/percentage-decrease", "destination": "/math/percent-decrease", "permanent": true },
