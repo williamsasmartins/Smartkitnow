@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import CalculatorFeedbackShare from "../calculators/CalculatorFeedbackShare";
 import SeoHead from "@/components/seo/SeoHead";
 import JsonLd from "@/components/seo/JsonLd";
+import EEATBanner from "@/components/EEATBanner";
 
 type Unit = "kg" | "lb" | "g" | "oz";
 type SelectOption = { value: string; label: string };
@@ -441,8 +442,11 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
       {config.seo ? (
         <SeoHead
           config={{
-            ...config.seo,
+            title: config.seo.title ?? config.title,
+            description: (config.seo.description ?? config.shortDescription ?? ""),
             canonical: config.seo.canonical ? stripGrave(config.seo.canonical) : undefined,
+            keywords: config.seo.keywords,
+            ogImage: config.seo.ogImage,
           }}
         />
       ) : null}
@@ -506,6 +510,8 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
               ) : null}
             </div>
           )}
+          {/* E-E-A-T banner */}
+          <EEATBanner niche="pets" />
           <CalculatorFeedbackShare /> 
         </div> 
       </div> 

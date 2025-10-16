@@ -1,5 +1,8 @@
-﻿import React, { useEffect } from "react";
+import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
+import SeoHead from "@/components/seo/SeoHead";
+import JsonLd from "@/components/seo/JsonLd";
+import EEATBanner from "@/components/EEATBanner";
 
 type DrugKey = "ibuprofen" | "acetaminophen";
 
@@ -136,47 +139,47 @@ const cfg: PetCalcOmniConfig = {
 };
 
 export default function DogMedicationExposureAlert() {
-  useEffect(() => {
-    document.title = "Dog Human-Medication Exposure Alert (Ibuprofen/Acetaminophen) | Smart Kit Now";
-  }, []);
+  const TITLE = "Dog Human-Medication Exposure Alert (Ibuprofen/Acetaminophen)";
+  const DESC = cfg.shortDescription as string;
+  const CANONICAL = "https://www.smartkitnow.com/pets/dogs/dog-medication-exposure-alert";
 
-  const jsonLd = {
+  const webpageJson = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Dog Human-Medication Exposure Alert (Ibuprofen/Acetaminophen)",
-    "description": "Educational alert for accidental ibuprofen/acetaminophen ingestion in dogs. Computes mg/kg and shows risk bands. Contact a veterinarian immediately.",
-    "url": "https://www.smartkitnow.com/pets/dogs/dog-medication-exposure-alert",
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Pets", "item": "https://www.smartkitnow.com/pets" },
-        { "@type": "ListItem", "position": 2, "name": "Dogs", "item": "https://www.smartkitnow.com/pets/dogs" },
-        { "@type": "ListItem", "position": 3, "name": "Dog Medication Exposure Alert", "item": "https://www.smartkitnow.com/pets/dogs/dog-medication-exposure-alert" }
-      ]
-    },
-    "mainEntity": {
-      "@type": "FAQPage",
-      "name": "Dog Human-Medication Exposure Alert  FAQs",
-      "mainEntity": (cfg.faqs || []).map(f => ({
-        "@type": "Question",
-        "name": f.question,
-        "acceptedAnswer": { "@type": "Answer", "text": f.answer }
-      }))
-    }
+    name: TITLE,
+    url: CANONICAL,
+    description: DESC,
   };
+  const breadcrumbsJson = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", position: 1, name: "Pets", item: "https://www.smartkitnow.com/pets" },
+      { "@type": "ListItem", position: 2, name: "Dogs", item: "https://www.smartkitnow.com/pets/dogs" },
+      { "@type": "ListItem", position: 3, name: TITLE, item: CANONICAL },
+    ],
+  };
+  const faqsJson = (cfg.faqs ?? []).length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": (cfg.faqs ?? []).map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : undefined;
 
   return (
     <>
-      <div className="pl-4 md:pl-8 pr-2 md:pr-4">
-        <div className="max-w-[560px] md:max-w-[864px] mt-4 rounded-md border border-border/60 bg-muted/20 p-3 text-sm text-muted-foreground">
-          <strong className="block text-foreground">Reviewed by the Smart Kit Now team</strong>
-          Content for general guidance. For medical decisions, seek a licensed veterinarian.
-        </div>
-      </div>
+      <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} />
+      <EEATBanner niche="pets" />
 
       <PetCalcOmniTemplate config={cfg} />
-
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={webpageJson} />
+      <JsonLd data={breadcrumbsJson} />
+      {faqsJson && <JsonLd data={faqsJson} />}
     </>
   );
 }

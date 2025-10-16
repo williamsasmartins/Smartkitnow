@@ -1,5 +1,8 @@
 import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
+import SeoHead from "@/components/seo/SeoHead";
+import JsonLd from "@/components/seo/JsonLd";
+import EEATBanner from "@/components/EEATBanner";
 
 const cfg: PetCalcOmniConfig = {
   title: "Dog Grape / Raisin Exposure — Risk Guide",
@@ -66,7 +69,7 @@ const cfg: PetCalcOmniConfig = {
   seo: {
     title: "Dog Grape/Raisin Exposure — Risk Guide | Smart Kit Now",
     description: "Qualquer ingestão de uva ou uva-passa em cães é potencialmente perigosa. Eduque-se e procure um veterinário imediatamente.",
-    canonical: "https://www.smartkitnow.com/pets/dog-grape-raisin-exposure-risk",
+    canonical: "https://www.smartkitnow.com/pets/dogs/dog-grape-raisin-exposure-risk",
     keywords: ["dog grapes","dog raisins","grape toxicity dog"],
   },
 
@@ -82,7 +85,7 @@ const cfg: PetCalcOmniConfig = {
       items: [
         { name: "Pets", item: "https://www.smartkitnow.com/pets" },
         { name: "Dogs", item: "https://www.smartkitnow.com/pets/dogs" },
-        { name: "Dog Grape/Raisin Exposure", item: "https://www.smartkitnow.com/pets/dog-grape-raisin-exposure-risk" }
+        { name: "Dog Grape/Raisin Exposure", item: "https://www.smartkitnow.com/pets/dogs/dog-grape-raisin-exposure-risk" }
       ]
     },
     faq: [
@@ -93,5 +96,43 @@ const cfg: PetCalcOmniConfig = {
 };
 
 export default function DogGrapeRaisinExposureRiskCalculator() {
-  return <PetCalcOmniTemplate config={cfg} />;
+  const TITLE = (cfg.seo?.title ?? cfg.title).replace(" | Smart Kit Now", "");
+  const DESC = (cfg.seo?.description ?? cfg.shortDescription) as string;
+  const CANONICAL = cfg.seo?.canonical as string | undefined;
+
+  const webpageJson = {
+    "@context": "https://schema.org",
+    ...(cfg.jsonLd?.webpage ?? { "@type": "WebPage", name: TITLE, url: CANONICAL, description: DESC }),
+  };
+  const breadcrumbsJson = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": (cfg.jsonLd?.breadcrumbs?.items ?? [
+      { name: "Pets", item: "https://www.smartkitnow.com/pets" },
+      { name: "Dogs", item: "https://www.smartkitnow.com/pets/dogs" },
+      { name: TITLE, item: CANONICAL },
+    ]).map((b: any, idx: number) => ({ "@type": "ListItem", position: idx + 1, name: b.name, item: b.item })),
+  };
+  const faqsJson = (cfg.faqs ?? []).length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": (cfg.faqs ?? []).map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : undefined;
+
+  return (
+    <>
+      <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} keywords={cfg.seo?.keywords as string[]} />
+      <EEATBanner niche="pets" />
+      <JsonLd data={webpageJson} />
+      <JsonLd data={breadcrumbsJson} />
+      {faqsJson && <JsonLd data={faqsJson} />}
+      <PetCalcOmniTemplate config={cfg} />
+    </>
+  );
 }

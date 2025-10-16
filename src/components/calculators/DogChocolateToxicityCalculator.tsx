@@ -1,5 +1,8 @@
 import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
+import SeoHead from "@/components/seo/SeoHead";
+import JsonLd from "@/components/seo/JsonLd";
+import EEATBanner from "@/components/EEATBanner";
 
 const CHOC = {
   milk:   { label: "Milk Chocolate", theo: 1.6,  caf: 0.2,  hint: "~1.8 mg/g" },
@@ -144,5 +147,48 @@ const cfg: PetCalcOmniConfig = {
 };
 
 export default function DogChocolateToxicityCalculator() {
-  return <PetCalcOmniTemplate config={cfg} />;
+  const TITLE = (cfg.seo?.title ?? cfg.title) as string;
+  const DESC = (cfg.seo?.description ?? cfg.shortDescription) as string;
+  const CANONICAL = cfg.seo?.canonical as string | undefined;
+
+  const webpageJson = {
+    "@context": "https://schema.org",
+    ...(cfg.jsonLd?.webpage ?? {
+      "@type": "WebPage",
+      name: TITLE,
+      url: CANONICAL,
+      description: DESC,
+    }),
+  };
+  const breadcrumbsJson = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": (cfg.jsonLd?.breadcrumbs?.items ?? [
+      { name: "Pets", item: "https://www.smartkitnow.com/pets" },
+      { name: "Dogs", item: "https://www.smartkitnow.com/pets/dogs" },
+      { name: TITLE, item: CANONICAL },
+    ]).map((b: any, idx: number) => ({ "@type": "ListItem", position: idx + 1, name: b.name, item: b.item })),
+  };
+  const faqsJson = (cfg.faqs ?? []).length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": (cfg.faqs ?? []).map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : undefined;
+
+  return (
+    <>
+      <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} keywords={cfg.seo?.keywords as string[]} />
+      <EEATBanner niche="pets" />
+      <JsonLd data={webpageJson} />
+      <JsonLd data={breadcrumbsJson} />
+      {faqsJson && <JsonLd data={faqsJson} />}
+      <PetCalcOmniTemplate config={cfg} />
+    </>
+  );
 }

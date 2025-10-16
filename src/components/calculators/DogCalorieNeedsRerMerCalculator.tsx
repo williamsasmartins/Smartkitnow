@@ -1,5 +1,8 @@
 import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
+import SeoHead from "@/components/seo/SeoHead";
+import JsonLd from "@/components/seo/JsonLd";
+import EEATBanner from "@/components/EEATBanner";
 
 type Unit = "kg" | "lb";
 
@@ -157,5 +160,46 @@ const cfg: PetCalcOmniConfig = {
 };
 
 export default function DogCalorieNeedsRerMerCalculator() {
-  return <PetCalcOmniTemplate config={cfg} />;
+  const TITLE = cfg.title;
+  const DESC = cfg.shortDescription as string;
+  const CANONICAL = "https://www.smartkitnow.com/pets/dogs/dog-calorie-needs-rer-mer";
+
+  const webpageJson = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: TITLE,
+    url: CANONICAL,
+    description: DESC,
+  };
+  const breadcrumbsJson = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", position: 1, name: "Pets", item: "https://www.smartkitnow.com/pets" },
+      { "@type": "ListItem", position: 2, name: "Dogs", item: "https://www.smartkitnow.com/pets/dogs" },
+      { "@type": "ListItem", position: 3, name: TITLE, item: CANONICAL },
+    ],
+  };
+  const faqsJson = (cfg.faqs ?? []).length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": (cfg.faqs ?? []).map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : undefined;
+
+  return (
+    <>
+      <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} />
+      <EEATBanner niche="pets" />
+      <JsonLd data={webpageJson} />
+      <JsonLd data={breadcrumbsJson} />
+      {faqsJson && <JsonLd data={faqsJson} />}
+      <PetCalcOmniTemplate config={cfg} />
+    </>
+  );
 }

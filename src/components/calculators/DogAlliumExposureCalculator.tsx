@@ -1,23 +1,25 @@
 import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
-import SEOHead from "@/components/SEOHead";
+import SeoHead from "@/components/seo/SeoHead";
+import JsonLd from "@/components/seo/JsonLd";
+import EEATBanner from "@/components/EEATBanner";
 
-// Conversões aproximadas: mg/kg/densidades simples para estimar "gramas equivalentes de cebola crua"
+// Conversï¿½es aproximadas: mg/kg/densidades simples para estimar "gramas equivalentes de cebola crua"
 const ALLIUM_PROFILES = {
   onion_raw:     { label: "Onion (raw)",            eqPerGram: 1.0 },   // 1 g = 1 g eq. cebola crua
-  onion_cooked:  { label: "Onion (cooked/sauteed)", eqPerGram: 0.8 },   // cozimento reduz água/compostos
-  onion_powder:  { label: "Onion powder",           eqPerGram: 10.0 },  // pó é concentrado (~10x)
+  onion_cooked:  { label: "Onion (cooked/sauteed)", eqPerGram: 0.8 },   // cozimento reduz ï¿½gua/compostos
+  onion_powder:  { label: "Onion powder",           eqPerGram: 10.0 },  // pï¿½ ï¿½ concentrado (~10x)
   garlic_raw:    { label: "Garlic (raw)",           eqPerGram: 3.0 },   // alho tende a ser + potente
   garlic_powder: { label: "Garlic powder",          eqPerGram: 15.0 },  // muito concentrado
-  leek_chive:    { label: "Leek/Chives",            eqPerGram: 0.7 },   // menos comum, referência branda
+  leek_chive:    { label: "Leek/Chives",            eqPerGram: 0.7 },   // menos comum, referï¿½ncia branda
 } as const;
 
 type Kind = keyof typeof ALLIUM_PROFILES;
 
 function classify(dose_g_per_kg: number) {
-  // Faixas educativas baseadas em literatura clínica:
-  // ~5 g/kg (gatilhos relatados com alho em gatos; cães mais resistentes, mas usamos margem)  "caution"
-  // 1530 g/kg cebola crua associados a anemia hemolítica em cães  "concern" / "high"
+  // Faixas educativas baseadas em literatura clï¿½nica:
+  // ~5 g/kg (gatilhos relatados com alho em gatos; cï¿½es mais resistentes, mas usamos margem)  "caution"
+  // 1530 g/kg cebola crua associados a anemia hemolï¿½tica em cï¿½es  "concern" / "high"
   // >30 g/kg  "very high"
   if (dose_g_per_kg < 5)
     return {
@@ -68,7 +70,7 @@ const cfg: PetCalcOmniConfig = {
       options: Object.entries(ALLIUM_PROFILES).map(([value,v])=>({ value, label: v.label })) },
   ],
 
-  // Cálculo
+  // Cï¿½lculo
   compute: (s) => {
     const toKg = s.toKg, toGrams = s.toGrams;
     const wkg = toKg(parseFloat(s.weight || "0"), s.weightUnit);
@@ -82,7 +84,7 @@ const cfg: PetCalcOmniConfig = {
     // Dose g/kg (educativa)
     const dose_g_per_kg = wkg > 0 ? (eqOnionGrams / wkg) : 0;
 
-    // Banda de risco (educativa, NÃO é diagnóstico)
+    // Banda de risco (educativa, Nï¿½O ï¿½ diagnï¿½stico)
     const band = classify(dose_g_per_kg);
 
     return {
@@ -121,7 +123,7 @@ const cfg: PetCalcOmniConfig = {
     intro:
       "Allium vegetables (onion, garlic, chives, leek) can cause oxidative damage to red blood cells, leading to hemolytic anemia. Powders/dehydrated forms are more concentrated. This tool converts estimated ingestion into 'equivalent grams of raw onion' per kg of body weight for educational triage.",
     formula:
-      "dose_g_per_kg = (grams_ingested × equivalence_factor_form) ÷ weight_kg",
+      "dose_g_per_kg = (grams_ingested ï¿½ equivalence_factor_form) ï¿½ weight_kg",
     variables: [
       "equivalence_factor_form: equivalence factor to approximate potency vs. raw onion",
       "grams_ingested: estimated quantity ingested",
@@ -132,7 +134,7 @@ const cfg: PetCalcOmniConfig = {
   tables: [
     {
       title: "Equivalence factors (educational) relative to raw onion",
-      headers: ["Food form", "Equivalence vs. raw onion (×)"],
+      headers: ["Food form", "Equivalence vs. raw onion (ï¿½)"],
       rows: Object.entries(ALLIUM_PROFILES).map(([k,v]) => [v.label, v.eqPerGram]),
       notes: [
         "Educational values for triage; brands and preparation vary.",
@@ -209,7 +211,7 @@ const cfg: PetCalcOmniConfig = {
 
 export default function DogAlliumExposureCalculator() {
   const meta = {
-    title: "Dog Onion/Garlic (Allium) Exposure Risk Calculator | Smart Kit Now",
+    title: "Dog Onion/Garlic (Allium) Exposure Risk Calculator",
     description:
       "Estimate educational risk for onion/garlic exposure in dogs (g/kg bands), with tables, FAQs, and veterinary references. Always contact a veterinarian.",
     canonical: "https://www.smartkitnow.com/pets/dogs/dog-onion-garlic-exposure-risk",
@@ -217,34 +219,49 @@ export default function DogAlliumExposureCalculator() {
   };
 
   const jsonLd = cfg.jsonLd;
+  const webpageJson = jsonLd?.webpage
+    ? { "@context": "https://schema.org", ...jsonLd.webpage }
+    : undefined;
+  const breadcrumbsJson = jsonLd?.breadcrumbs?.items
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": jsonLd.breadcrumbs.items.map((b: any, idx: number) => ({
+          "@type": "ListItem",
+          position: idx + 1,
+          name: b.name,
+          item: b.item,
+        })),
+      }
+    : undefined;
+  const faqsJson = (cfg.faqs ?? []).length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": (cfg.faqs ?? []).map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : undefined;
 
   return (
     <>
-      <SEOHead
+      <SeoHead
         title={meta.title}
         description={meta.description}
         canonical={meta.canonical}
-        ogType="article"
         ogImage={meta.ogImage}
       />
 
-      {/* aviso + template */}
-      <div className="pl-4 md:pl-8 pr-2 md:pr-4">
-        <div className="max-w-[560px] md:max-w-[864px] mt-4 rounded-md border border-border/60 bg-muted/20 p-3 text-sm text-muted-foreground">
-          <strong className="block text-foreground">Reviewed by the Smart Kit Now team</strong>
-          Content for general guidance. For medical decisions, seek a licensed veterinarian.
-        </div>
-      </div>
+      <EEATBanner niche="pets" />
 
       <PetCalcOmniTemplate config={cfg} />
 
-      {/* JSON-LD já existente */}
-      {jsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      )}
+      {webpageJson && <JsonLd data={webpageJson} />}
+      {breadcrumbsJson && <JsonLd data={breadcrumbsJson} />}
+      {faqsJson && <JsonLd data={faqsJson} />}
     </>
   );
 }

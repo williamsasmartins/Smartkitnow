@@ -3,6 +3,7 @@ import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
 import SeoHead from "@/components/seo/SeoHead";
 import JsonLd from "@/components/seo/JsonLd";
+import EEATBanner from "@/components/EEATBanner";
 
 const CANONICAL = "https://www.smartkitnow.com/pets/dogs/dog-water-intake";
 const TITLE = "Dog Water Intake — Daily Hydration";
@@ -187,6 +188,7 @@ export default function DogWaterIntakeCalculator() {
   return (
     <>
       <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} />
+      <EEATBanner niche="pets" />
       <JsonLd data={softwareJson} />
       <JsonLd data={faqsJson} />
       <JsonLd data={breadcrumbsJson} />
