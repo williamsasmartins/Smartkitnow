@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import JsonLd from "@/components/seo/JsonLd";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
 import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -1390,6 +1391,26 @@ const Index = () => {
     icon: Star
   }];
   return <div className="min-h-screen bg-[var(--skn-bg-soft)]">
+      {/* JSON-LD: Organization and WebSite with Sitelinks Search */}
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Smart Kit Now",
+        url: "https://www.smartkitnow.com",
+        logo: "https://www.smartkitnow.com/logo-512.png",
+        sameAs: []
+      }} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        url: "https://www.smartkitnow.com",
+        name: "Smart Kit Now",
+        potentialAction: {
+          "@type": "SearchAction",
+          target: "https://www.smartkitnow.com/search?q={query}",
+          "query-input": "required name=query"
+        }
+      }} />
       {/* Main Content Area - Add top padding to account for fixed header */}
       <main className="pt-20">
         {/* Categories Section */}

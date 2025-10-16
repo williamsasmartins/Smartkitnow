@@ -36,6 +36,12 @@ export default function SeoHead(props: PropsDirect | PropsConfig) {
         <meta name="keywords" content={cfg.keywords.join(", ")} />
       ) : null}
       {cfg.canonical && <link rel="canonical" href={cfg.canonical} />}
+      {cfg.canonical && (
+        <>
+          <link rel="alternate" href={cfg.canonical} hrefLang="en" />
+          <link rel="alternate" href={cfg.canonical} hrefLang="x-default" />
+        </>
+      )}
 
       {/* Open Graph */}
       <meta property="og:type" content="website" />

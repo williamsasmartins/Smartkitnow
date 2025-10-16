@@ -34,6 +34,18 @@ export default function SeoHead({ title, description, canonical, ogType = "websi
       el.setAttribute("href", href);
     };
 
+    const setAlternate = (href?: string, hreflang?: string) => {
+      if (!href || !hreflang) return;
+      let el = document.querySelector<HTMLLinkElement>(`link[rel="alternate"][hreflang="${hreflang}"]`);
+      if (!el) {
+        el = document.createElement("link");
+        el.setAttribute("rel", "alternate");
+        el.setAttribute("hreflang", hreflang);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("href", href);
+    };
+
     setMeta("description", description);
     setMeta("og:title", title, "property");
     setMeta("og:description", description, "property");
@@ -46,6 +58,8 @@ export default function SeoHead({ title, description, canonical, ogType = "websi
       setMeta("twitter:image", ogImage);
     }
     setLink("canonical", canonical);
+    setAlternate(canonical, "en");
+    setAlternate(canonical, "x-default");
   }, [title, description, canonical, ogType, ogImage]);
 
   return null;

@@ -116,7 +116,7 @@ const cfg: PetCalcOmniConfig = {
   seo: {
     title: "Dog Chocolate Toxicity Calculator | Smart Kit Now",
     description: "Veja rapidamente o risco da ingestão de chocolate em cães por peso, tipo e quantidade. Uso educacional; procure seu veterinário.",
-    canonical: "https://www.smartkitnow.com/pets/dog-chocolate-toxicity-calculator",
+    canonical: "https://www.smartkitnow.com/pets/dogs/dog-chocolate-toxicity-calculator",
     keywords: ["dog chocolate toxicity","theobromine calculator","mg/kg"],
   },
 
@@ -133,7 +133,7 @@ const cfg: PetCalcOmniConfig = {
       items: [
         { name: "Pets", item: "https://www.smartkitnow.com/pets" },
         { name: "Dogs", item: "https://www.smartkitnow.com/pets/dogs" },
-        { name: "Dog Chocolate Toxicity Calculator", item: "https://www.smartkitnow.com/pets/dog-chocolate-toxicity-calculator" }
+        { name: "Dog Chocolate Toxicity Calculator", item: "https://www.smartkitnow.com/pets/dogs/dog-chocolate-toxicity-calculator" }
       ]
     },
     faq: [
