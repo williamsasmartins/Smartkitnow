@@ -126,7 +126,7 @@ export default function PetsCalculators() {
       title: "Hydration",
       emoji: "💧",
       items: [
-        { to: "/pets/cat-daily-water-intake-checker", title: "Daily Water Intake Checker for Cats" },
+        { to: "/pets/cats/cat-water-intake", title: "Daily Water Intake Checker for Cats" },
         { to: "/pets/cat-dehydration-risk-estimator", title: "Dehydration Risk Estimator (Symptoms + Intake)" },
       ],
     },

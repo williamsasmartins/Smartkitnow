@@ -20,6 +20,7 @@ https://smartkitnow.com/*        https://www.smartkitnow.com/:splat  301!
 /pets/dogs/daily-water-intake                   /pets/dog-water-intake 301
 /pets/dogs/dog-calorie-needs                    /pets/dog-calorie-needs-rer-mer 301
 /pets/dog-calorie-needs                         /pets/dog-calorie-needs-rer-mer 301
+-/pets/dogs/allium-exposure                      /pets/dog-onion-garlic-exposure-risk 301
 
 # =====================================
 # 3) Rotas legadas com /calculator/:slug

@@ -68,5 +68,9 @@
     { "source": "/math/percentage-increase", "destination": "/math/percent-increase", "permanent": true },
     { "source": "/math/percentage-decrease", "destination": "/math/percent-decrease", "permanent": true },
     { "source": "/math/percentage-change", "destination": "/math/percent-change", "permanent": true }
+    ,
+    { "source": "/pets/cats/daily-water-intake", "destination": "/pets/cat-water-intake", "permanent": true }
+    ,
+    { "source": "/pets/cat-water-intake", "destination": "/pets/cat-daily-water-intake-checker", "permanent": true }
   ]
 }
