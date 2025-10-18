@@ -122,3 +122,13 @@
     @apply text-[15px] leading-[1.6];
   }
 }
+
+html, body {
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

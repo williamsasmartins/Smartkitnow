@@ -17,7 +17,7 @@ export default function PetCalculatorPageLayout({
 }: Props) {
   // Largura total, ancorado à esquerda, com paddings leves iguais ao /pets
   return (
-    <div className="w-screen max-w-none mx-0 pl-4 md:pl-8 pr-2 md:pr-4 py-6">
+    <div className="w-full max-w-[1400px] mx-0 pl-4 md:pl-8 pr-2 md:pr-4 py-6 overflow-x-hidden">
       {/* Top banner (placeholder de ad) */}
       {showTopAd && (
         <div className="mb-4 rounded-md border border-dashed border-border/60 bg-muted/30 p-3 text-center text-xs text-muted-foreground">
@@ -30,7 +30,7 @@ export default function PetCalculatorPageLayout({
           - centro: calculadora fixa, 440–520px (mais estreita)
           - direita: rail de ads 120–160px
       */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(200px,400px)_minmax(400px,440px)_minmax(180px,220px)]">
+      <div className="grid grid-cols-1 gap-6 md:[--rail:200px] md:[--left:420px] md:[--center:440px] md:grid-cols-[minmax(220px,var(--left))_minmax(380px,var(--center))_minmax(160px,var(--rail))]">
         {/* ESQUERDA */}
         <section className="order-2 md:order-1">
           {left}
