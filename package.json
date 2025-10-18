@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "sitemap": "ts-node --esm scripts/generate-sitemap.ts",
     "sitemap:js": "node scripts/sitemap.mjs",
-    "prebuild": "node scripts/sitemap.mjs && echo 'sitemap atualizado'",
+    "prebuild": "echo 'skip sitemap at build'",
     "generate:sitemap": "node scripts/generate-sitemap-extended.mjs",
     "test": "vitest",
     "test:run": "vitest run"

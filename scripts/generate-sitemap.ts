@@ -17,8 +17,13 @@ function today(): string {
   return d.toISOString().slice(0, 10);
 }
 
+function xmlEscape(s: string): string {
+  return s.replace(/[<>&'"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" }[c] as string));
+}
+
 function toUrl(loc: string, priority = "0.5") {
-  return `  <url>\n    <loc>${ORIGIN}${loc}</loc>\n    <lastmod>${today()}</lastmod>\n    <priority>${priority}</priority>\n  </url>`;
+  const full = `${ORIGIN}${loc}`;
+  return `  <url>\n    <loc>${xmlEscape(full)}</loc>\n    <lastmod>${today()}</lastmod>\n    <priority>${priority}</priority>\n  </url>`;
 }
 
 function priorityForCategory(cat: string): string {
