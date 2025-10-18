@@ -70,7 +70,7 @@ const isComingSoon = (entry) => /coming soon/i.test(entry.title || "") || /place
 
 // Rota canônica consistente com o site: /:category/:subcategory/:slug (removendo undefined)
 function canonicalPath(e) {
-  return `/${e.category}/${e.subcategory}/${e.slug}`.replace(/\/undefined/g, "");
+  return `/${e.category}/${e.slug}`;
 }
 
 // Monta XML

@@ -3,7 +3,7 @@ import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
 import SeoHead from "@/components/seo/SeoHead";
 import JsonLd from "@/components/seo/JsonLd";
-import EEATBanner from "@/components/EEATBanner";
+
 
 const CANONICAL = "https://www.smartkitnow.com/pets/dogs/dog-water-intake";
 const TITLE = "Dog Water Intake — Daily Hydration";
@@ -35,6 +35,7 @@ const cfg: PetCalcOmniConfig = {
   reviewedBy: { name: "Smart Kit Now Editorial Team", role: "Content Review", date: "2025-10-14" },
   professionalAdviceNote:
     "Persistently low or very high intake may indicate medical issues. Please consult your veterinarian for assessment.",
+  reviewedNote: "Content for general guidance only. For medical decisions, consult a licensed veterinarian.",
 
   inputs: [
     { type: "number", key: "weight", label: "Dog Weight", min: 0, step: 0.1, default: 20 },
@@ -188,7 +189,6 @@ export default function DogWaterIntakeCalculator() {
   return (
     <>
       <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} />
-      <EEATBanner niche="pets" />
       <JsonLd data={softwareJson} />
       <JsonLd data={faqsJson} />
       <JsonLd data={breadcrumbsJson} />

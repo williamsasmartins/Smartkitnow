@@ -2,7 +2,7 @@ import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
 import SeoHead from "@/components/seo/SeoHead";
 import JsonLd from "@/components/seo/JsonLd";
-import EEATBanner from "@/components/EEATBanner";
+
 
 type DrugKey = "ibuprofen" | "acetaminophen";
 
@@ -40,6 +40,8 @@ const cfg: PetCalcOmniConfig = {
   strongDisclaimer:
     "Educational tool only. Does not replace veterinary care. Thresholds vary by individual and formulation. If ingestion is suspected, contact a veterinarian immediately.",
   showTopAd: true,
+
+  reviewedNote: "Content for general guidance only. For medical decisions, consult a licensed veterinarian.",
   showRightAd: false,
 
   inputs: [
@@ -174,7 +176,7 @@ export default function DogMedicationExposureAlert() {
   return (
     <>
       <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} />
-      <EEATBanner niche="pets" />
+
 
       <PetCalcOmniTemplate config={cfg} />
       <JsonLd data={webpageJson} />

@@ -23,6 +23,7 @@ const cfg: PetCalcOmniConfig = {
     "Tool for educational triage only — does not replace professional veterinary care. Individual susceptibility varies widely.",
   showTopAd: true,
   showRightAd: true,
+  reviewedNote: "Content for general guidance only. For medical decisions, consult a licensed veterinarian.",
 
   authoredBy: { name: "Williams Martins", role: "Content Editor", date: "2025-10-14", bioUrl: "https://www.smartkitnow.com/about" },
   reviewedBy: { name: "Smart Kit Now Editorial Team", role: "Content Review", date: "2025-10-14" },

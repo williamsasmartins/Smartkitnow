@@ -129,6 +129,33 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/CatWaterIntakeCalculator"),
     aliases: ["cat-water-intake", "cat-water-intake-calculator"],
   },
+  {
+    slug: "dog-caffeine-toxicity-calculator",
+    category: "pets",
+    subcategory: "pet-care-calculators",
+    title: "Dog Caffeine Toxicity Calculator",
+    description: "Educational caffeine exposure triage by weight, product type, and grams/mL — with tables, FAQs, and sources.",
+    loader: () => import("@/components/calculators/DogCaffeineToxicityCalculator"),
+    aliases: ["dog caffeine toxicity", "dog caffeine", "dog coffee toxicity", "dog energy drink"],
+  },
+  {
+    slug: "dog-weight-loss-planner",
+    category: "pets",
+    subcategory: "pet-care-calculators",
+    title: "Dog Weight Loss Planner",
+    description: "Plan an educational daily calorie target using 0.8×RER (target) or 70% of maintenance, plus weeks-to-goal estimate.",
+    loader: () => import("@/components/calculators/DogWeightLossPlanner"),
+    aliases: ["dog weight loss", "dog weight loss planner", "dog diet", "canine weight management"],
+  },
+  {
+    slug: "cat-weight-loss-planner",
+    category: "pets",
+    subcategory: "pet-care-calculators",
+    title: "Cat Weight Loss Planner",
+    description: "Plan an educational daily calorie target using 0.8×RER (target) or 70% of maintenance, plus weeks-to-goal estimate.",
+    loader: () => import("@/components/calculators/CatWeightLossPlanner"),
+    aliases: ["cat weight loss", "cat weight loss planner", "feline weight management", "cat diet"],
+  },
 ];
 
 // Backwards-compat alias expected by various pages/scripts
@@ -173,4 +200,9 @@ export function listSubcategoriesOfCategory(category?: string): Array<{ slug: st
     return Object.entries(titles).map(([slug, title]) => ({ slug, title }));
   }
   return result;
+}
+
+// Gera SEMPRE a rota curta /:category/:slug
+export function calcLink(e: CalculatorEntry) {
+  return `/${e.category}/${e.slug}`;
 }

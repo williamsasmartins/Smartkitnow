@@ -2,7 +2,7 @@ import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
 import SeoHead from "@/components/seo/SeoHead";
 import JsonLd from "@/components/seo/JsonLd";
-import EEATBanner from "@/components/EEATBanner";
+
 
 // Reference examples (illustrative only  brands vary widely)
 const PRODUCT_REFERENCE = {
@@ -53,7 +53,7 @@ const cfg: PetCalcOmniConfig = {
     "Educational estimate of risk from xylitol ingestion in dogs, with dose bands (mg/kg), tables, and FAQs.",
   strongDisclaimer:
     "Educational tool. Not a substitute for veterinary evaluation. Xylitol concentrations vary widely between brands; when in doubt, assume high and seek professional guidance.",
-  reviewedByBlock: { text: "Reviewed by the Smart Kit Now team. Educational content; for clinical decisions, consult a veterinarian." },
+  reviewedNote: "Content for general guidance only. For medical decisions, consult a licensed veterinarian.",
   showTopAd: true,
   showRightAd: false,
 
@@ -231,7 +231,7 @@ export default function DogXylitolExposureCalculator() {
   return (
     <>
       <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} />
-      <EEATBanner niche="pets" />
+
       <JsonLd data={webpageJson} />
       <JsonLd data={breadcrumbsJson} />
       {faqsJson && <JsonLd data={faqsJson} />}

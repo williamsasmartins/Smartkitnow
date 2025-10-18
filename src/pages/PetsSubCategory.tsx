@@ -10,12 +10,14 @@ import {
   listByCategorySubcategory,
   SUBCATEGORY_TITLES,
   FRIENDLY_TITLES,
+  calcLink
 } from "@/data/calculatorRegistry";
 import {
   ArrowLeft, Dog, Cat, PawPrint, Bone, Fish, HeartPulse, Scale, Salad, GaugeCircle
 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import CalculatorLink from "@/components/common/CalculatorLink";
+import type { CalculatorEntry } from "@/data/calculatorRegistry";
 
 // Colored icons by calculator (slug/name)
 type IconSpec = { Icon: React.ComponentType<any>; color: string; bg: string };
@@ -44,7 +46,7 @@ export default function PetsSubCategory() {
 
   const calculatorsAll = subcategory ? listByCategorySubcategory(category, subcategory) : [];
   // Dog-only filter: allow dog-specific and relevant general tools; exclude other species
-  const dogOnlyFilter = (c: { slug: string; title: string; subcategory: string }) => {
+  const dogOnlyFilter = (c: CalculatorEntry) => {
     const k = `${c.slug} ${c.title}`.toLowerCase();
     const allowGenerics = /quality|cost|emergency|life|age to human|lifespan|ownership|drug|dose/.test(k);
     const isDog = /dog|canine|puppy/.test(k);
@@ -55,7 +57,7 @@ export default function PetsSubCategory() {
   const calculators = calculatorsAll.filter(dogOnlyFilter);
 
   const subcatTitle =
-    (subcategory && SUBCATEGORY_TITLES[subcategory]) ||
+    (subcategory && SUBCATEGORY_TITLES[category]?.[subcategory]) ||
     (subcategory ? subcategory.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase()) : "Calculators");
   const categoryTitle = FRIENDLY_TITLES[category] || "Pets Calculators";
 
@@ -65,18 +67,6 @@ export default function PetsSubCategory() {
         title={`${subcatTitle} — ${categoryTitle} · SmartKitNow`}
         description={`Dog care calculators: ${subcatTitle}. Health, nutrition, and care for dogs.`}
         canonical={`https://www.smartkitnow.com/pets/${subcategory || ""}`}
-        breadcrumbs={[
-          { name: "Home", url: "https://www.smartkitnow.com/" },
-          { name: categoryTitle, url: "https://www.smartkitnow.com/pets" },
-          { name: subcatTitle, url: `https://www.smartkitnow.com/pets/${subcategory || ""}` },
-        ]}
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: `${subcatTitle} — ${categoryTitle}`,
-          url: `https://www.smartkitnow.com/pets/${subcategory || ""}`,
-          description: `List of ${subcatTitle} calculators on SmartKitNow.`,
-        }}
       />
 
       <Header />
@@ -126,7 +116,7 @@ export default function PetsSubCategory() {
                         <Icon className="h-5 w-5" />
                       </span>
                       <CardTitle className="text-lg font-semibold" style={{ color: "#000000" }}>
-                        <CalculatorLink to={`/${category}/${subcategory}/${calc.slug}`}>{calc.title}</CalculatorLink>
+                        <CalculatorLink to={calcLink(calc)}>{calc.title}</CalculatorLink>
                       </CardTitle>
                     </CardHeader>
                     <CardContent>

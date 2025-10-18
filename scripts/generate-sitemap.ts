@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 // Ajuste este import se necessário (ts-node/tsx para executar TS diretamente)
-import { REGISTRY } from "../src/data/calculatorRegistry.ts";
+import { REGISTRY, calcLink } from "../src/data/calculatorRegistry.ts";
 
 const ORIGIN = "https://www.smartkitnow.com";
 
@@ -37,8 +37,8 @@ function main() {
 
   // calculadoras do registry
   for (const e of REGISTRY) {
-    const pathSegs = `/${e.category}/${e.subcategory}/${e.slug}`.replace(/\/undefined/g, "");
-    parts.push(toUrl(pathSegs, priorityForCategory(e.category)));
+    const shortPath = calcLink(e);
+    parts.push(toUrl(shortPath, priorityForCategory(e.category)));
   }
 
   parts.push(`</urlset>`);

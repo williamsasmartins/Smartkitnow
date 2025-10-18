@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import CalculatorFeedbackShare from "../calculators/CalculatorFeedbackShare";
 import SeoHead from "@/components/seo/SeoHead";
 import JsonLd from "@/components/seo/JsonLd";
-import EEATBanner from "@/components/EEATBanner";
+
 
 type Unit = "kg" | "lb" | "g" | "oz";
 type SelectOption = { value: string; label: string };
@@ -79,6 +79,7 @@ export type PetCalcOmniConfig = {
   relatedLinks?: Array<{ href: string; label: string }>; 
   glossary?: Array<{ term: string; def: string }>;
   reviewedByBlock?: { text: string };
+  reviewedNote?: string;
 
   // Optional SEO/JSON-LD handled by template when provided
   seo?: { title: string; description?: string; canonical?: string; keywords?: string[]; ogImage?: string };
@@ -258,44 +259,6 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
       </h1> 
       <p className="text-sm md:text-[15px] text-muted-foreground">{config.shortDescription}</p> 
 
-      {/* Reviewed by block */}
-      {config.reviewedBy ? (
-        <section className="mt-4">
-          {typeof config.reviewedBy === "string" ? (
-            <div className="rounded-md border border-border/50 bg-card p-3 text-[13px] md:text-[14px]">
-              <div className="font-medium">✅ {config.reviewedBy}</div>
-            </div>
-          ) : (
-            <div className="flex items-start gap-3 rounded-md border border-border/50 bg-card p-3">
-              {config.reviewedBy.avatarUrl ? (
-                <img
-                  src={config.reviewedBy.avatarUrl}
-                  alt={config.reviewedBy.name}
-                  className="h-10 w-10 rounded-full object-cover"
-                  loading="lazy"
-                />
-              ) : null}
-              <div className="text-[13px] md:text-[14px]">
-                <div className="font-medium">
-                  Reviewed by{" "}
-                  {config.reviewedBy.bioUrl ? (
-                    <a href={config.reviewedBy.bioUrl} target="_blank" rel="noreferrer" className="underline">
-                      {config.reviewedBy.name}
-                    </a>
-                  ) : (
-                    config.reviewedBy.name
-                  )}
-                  {config.reviewedBy.credentials ? `, ${config.reviewedBy.credentials}` : ""}
-                  {config.reviewedBy.role ? ` — ${config.reviewedBy.role}` : ""}
-                </div>
-                {config.reviewedBy.date ? (
-                  <div className="text-xs text-muted-foreground">Last reviewed: {config.reviewedBy.date}</div>
-                ) : null}
-              </div>
-            </div>
-          )}
-        </section>
-      ) : null}
 
       {/* Optional professional advice note */}
       {config.professionalAdviceNote ? (
@@ -486,35 +449,19 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
         showTopAd={config.showTopAd} 
         showRightAd={config.showRightAd} 
       /> 
-      <div className="mt-6 pl-4 md:pl-8 pr-2 md:pr-4"> 
-        <div className="max-w-[560px] md:max-w-[864px]"> 
-          {/* Reviewed block + professional note + strong disclaimer */}
-          {(config.reviewedBy || config.professionalAdviceNote || config.reviewedByBlock || config.strongDisclaimer) && (
-            <div className="mb-6 rounded-md border border-border/50 bg-muted/20 p-3 text-[13px] text-muted-foreground">
-              {config.reviewedBy ? (
-                typeof config.reviewedBy === "string" ? (
-                  <div className="font-medium">✅ {config.reviewedBy}</div>
-                ) : (
-                  <div className="font-medium">
-                    ✅ Reviewed by {config.reviewedBy.name}
-                    {config.reviewedBy.credentials ? `, ${config.reviewedBy.credentials}` : ""}
-                    {config.reviewedBy.role ? ` — ${config.reviewedBy.role}` : ""}
-                    {config.reviewedBy.date ? ` (Last reviewed: ${config.reviewedBy.date})` : ""}
-                  </div>
-                )
-              ) : null}
-              {config.professionalAdviceNote ? <div className="mt-1">{config.professionalAdviceNote}</div> : null}
-              {config.reviewedByBlock?.text ? <div className="mt-2">{config.reviewedByBlock.text}</div> : null}
-              {config.strongDisclaimer ? (
-                <div className="text-xs text-muted-foreground mt-2">{config.strongDisclaimer}</div>
-              ) : null}
-            </div>
-          )}
-          {/* E-E-A-T banner */}
-          <EEATBanner niche="pets" />
-          <CalculatorFeedbackShare /> 
-        </div> 
-      </div> 
+      {config.reviewedNote ? (
+        <div className="mt-6 pl-4 md:pl-8 pr-2 md:pr-4">
+          <div className="max-w-[560px] md:max-w-[864px] rounded-md border border-border/60 bg-muted/20 p-3 text-sm text-muted-foreground">
+            <strong className="block text-foreground">Reviewed by the Smart Kit Now editorial team</strong>
+            {config.reviewedNote}
+          </div>
+        </div>
+      ) : null}
+      <div className="mt-4 pl-4 md:pl-8 pr-2 md:pr-4">
+        <div className="max-w-[560px] md:max-w-[864px]">
+          <CalculatorFeedbackShare />
+        </div>
+      </div>
       {stickyCtaAllowed ? (
         <div className="fixed bottom-4 right-4 z-50">
           <Button variant="destructive" asChild className="shadow-lg">

@@ -12,6 +12,7 @@ import {
   listByCategorySubcategory,
   listByCategory,
   subcategoryIcon,
+  calcLink,
 } from "@/data/calculatorRegistry";
 import { PALETTE } from "@/components/theme/palette";
 import CalculatorListBlue from "@/components/common/CalculatorListBlue";
@@ -149,7 +150,7 @@ export default function CategoryIndex() {
                           </h2>
                           <div className="mt-3">
                             <CalculatorListBlue
-                              items={calculators.map((calc) => ({ title: calc.title, to: `/${category}/${calc.slug}` }))}
+                              items={calculators.map((calc) => ({ title: calc.title, to: calcLink(calc) }))}
                             />
                           </div>
                         </section>
@@ -176,7 +177,7 @@ export default function CategoryIndex() {
                       </h2>
                       <div className="mt-3">
                         <CalculatorListBlue
-                          items={calculators.map((calc) => ({ title: calc.title, to: `/${category}/${calc.slug}` }))}
+                          items={calculators.map((calc) => ({ title: calc.title, to: calcLink(calc) }))}
                         />
                       </div>
                     </section>

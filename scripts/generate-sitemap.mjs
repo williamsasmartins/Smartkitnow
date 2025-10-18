@@ -18,7 +18,7 @@ while ((m = re.exec(buf)) !== null) {
   const [_, slug, category, subcategory, title] = m;
   // Pula placeholders
   if (/Coming\s+Soon/i.test(title)) continue;
-  const pathSegs = `/${category}/${subcategory}/${slug}`.replace(/\/undefined/g, "");
+  const pathSegs = `/${category}/${slug}`;
   urls.add(`${HOST}${pathSegs}`);
 }
 

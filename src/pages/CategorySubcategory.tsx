@@ -10,6 +10,7 @@ import {
   SUBCATEGORY_TITLES,
   FRIENDLY_TITLES,
   subcategoryIcon,
+  calcLink,
 } from "@/data/calculatorRegistry";
 import { PALETTE } from "@/components/theme/palette";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
@@ -23,7 +24,7 @@ export default function CategorySubcategory() {
   const calculators = listByCategorySubcategory(category, subcategory);
 
   const prettySubcat =
-    SUBCATEGORY_TITLES[subcategory] ??
+    SUBCATEGORY_TITLES[category]?.[subcategory] ??
     subcategory.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
 
   const subtitle =
@@ -72,11 +73,10 @@ export default function CategorySubcategory() {
           ) : (
             <ul className="space-y-4">
               {calculators.map((calc) => {
-                const url = `/${category}/${calc.slug}`;
                 return (
                   <li key={calc.slug} className="bg-card border border-border/50 rounded-md p-4">
                     <h2 className="text-lg font-semibold">
-                      <CalculatorLink to={url}>{calc.title}</CalculatorLink>
+                      <CalculatorLink to={calcLink(calc)}>{calc.title}</CalculatorLink>
                     </h2>
                     <p className="text-sm mt-1" style={{ color: PALETTE.brand.text }}>
                       {calc.description || "Open the calculator"}

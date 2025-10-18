@@ -2,7 +2,7 @@ import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
 import SeoHead from "@/components/seo/SeoHead";
 import JsonLd from "@/components/seo/JsonLd";
-import EEATBanner from "@/components/EEATBanner";
+
 
 type Unit = "kg" | "lb";
 
@@ -33,6 +33,7 @@ const cfg: PetCalcOmniConfig = {
     "Results are estimates. Individual needs vary with condition, environment, and health. Always tailor feeding with veterinary guidance, especially for weight loss/gain.",
   showTopAd: true,
   showRightAd: true,
+  reviewedNote: "Content for general guidance only. For medical decisions, consult a licensed veterinarian.",
 
   inputs: [
     { type: "number", key: "weight", label: "Dog Weight", min: 0, step: 0.1, default: 20 },
@@ -195,7 +196,6 @@ export default function DogCalorieNeedsRerMerCalculator() {
   return (
     <>
       <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} />
-      <EEATBanner niche="pets" />
       <JsonLd data={webpageJson} />
       <JsonLd data={breadcrumbsJson} />
       {faqsJson && <JsonLd data={faqsJson} />}

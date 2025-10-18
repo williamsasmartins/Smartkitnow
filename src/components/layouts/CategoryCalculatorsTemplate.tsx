@@ -11,6 +11,7 @@ import {
   FRIENDLY_TITLES,
   subcategoryIcon,
   categoryIcon,
+  calcLink,
 } from "@/data/calculatorRegistry";
 import type { CalculatorEntry } from "@/data/calculatorRegistry";
 import SEOHead from "@/components/SEOHead";
@@ -110,7 +111,6 @@ export default function CategoryCalculatorsTemplate({
         title={`${categoryTitle} · SmartKitNow`}
         description={description}
         canonical={canonicalUrl}
-        breadcrumbs={breadcrumbs}
       />
 
       <Header />
@@ -206,14 +206,14 @@ export default function CategoryCalculatorsTemplate({
                       <ul className="list-disc pl-5 space-y-3 leading-7">
                         {colA.map((c) => (
                           <li key={c.slug}>
-                            <CalculatorLink to={`/${category}/${c.slug}`}>{c.title}</CalculatorLink>
+                            <CalculatorLink to={calcLink(c)}>{c.title}</CalculatorLink>
                           </li>
                         ))}
                       </ul>
                       <ul className="list-disc pl-5 space-y-3 leading-7 mt-3 md:mt-0">
                         {colB.map((c) => (
                           <li key={c.slug}>
-                            <CalculatorLink to={`/${category}/${c.slug}`}>{c.title}</CalculatorLink>
+                            <CalculatorLink to={calcLink(c)}>{c.title}</CalculatorLink>
                           </li>
                         ))}
                       </ul>

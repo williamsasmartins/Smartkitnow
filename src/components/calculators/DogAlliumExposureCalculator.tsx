@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
 import SeoHead from "@/components/seo/SeoHead";
 import JsonLd from "@/components/seo/JsonLd";
-import EEATBanner from "@/components/EEATBanner";
+
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 // Educational equivalence factors relative to raw onion
@@ -37,7 +37,7 @@ const cfg: PetCalcOmniConfig = {
   showTopAd: true,
   showRightAd: false,
 
-  reviewedByBlock: { text: "Reviewed by the Smart Kit Now team. Educational content; for clinical decisions, consult a veterinarian." },
+  reviewedNote: "Content for general guidance only. For medical decisions, consult a licensed veterinarian.",
 
   inputs: [
     { type: "number", key: "weight", label: "Dog weight", min: 0, step: 0.1, default: 10 },
@@ -177,10 +177,7 @@ export default function DogAlliumExposureCalculator() {
         twitter={{ card: "summary_large_image" }}
       />
 
-      {/* E-E-A-T banner (site team reviewed + seek professional help) */}
-      <div className="pl-4 md:pl-8 pr-2 md:pr-4">
-        <EEATBanner niche="pets" />
-      </div>
+
 
       <PetCalcOmniTemplate config={cfg} />
 

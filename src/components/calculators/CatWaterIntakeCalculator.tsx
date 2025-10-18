@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
 import SeoHead from "@/components/seo/SeoHead";
 import JsonLd from "@/components/seo/JsonLd";
-import EEATBanner from "@/components/EEATBanner";
+
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 /**
@@ -36,6 +36,8 @@ const cfg: PetCalcOmniConfig = {
     "Educational guidance only — not a diagnostic tool. Hydration needs vary with health, environment, and diet. If you have concerns, contact a licensed veterinarian.",
   showTopAd: true,
   showRightAd: false,
+
+  reviewedNote: "Content for general guidance only. For medical decisions, consult a licensed veterinarian.",
 
   inputs: [
     { type: "number", key: "weight", label: "Cat weight", min: 0, step: 0.1, default: 4 },
@@ -197,9 +199,7 @@ export default function CatWaterIntakeCalculator() {
         canonical={canonical}
       />
 
-      <div className="pl-4 md:pl-8 pr-2 md:pr-4">
-        <EEATBanner niche="pets" />
-      </div>
+
 
       <PetCalcOmniTemplate config={cfg} />
 

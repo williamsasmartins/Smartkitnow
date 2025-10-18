@@ -71,6 +71,13 @@
     ,
     { "source": "/pets/cats/daily-water-intake", "destination": "/pets/cat-water-intake", "permanent": true }
     ,
-    { "source": "/pets/cat-water-intake", "destination": "/pets/cat-daily-water-intake-checker", "permanent": true }
+    { "source": "/pets/cat-water-intake", "destination": "/pets/cat-daily-water-intake-checker", "permanent": true },
+    { "source": "/pets/dog-caffeine-toxicity-calculator", "destination": "/pets/pet-care-calculators/dog-caffeine-toxicity-calculator", "permanent": true },
+    { "source": "/pets/dogs/dog-caffeine-toxicity-calculator", "destination": "/pets/pet-care-calculators/dog-caffeine-toxicity-calculator", "permanent": true },
+    { "source": "/pets/dog-weight-loss-planner", "destination": "/pets/pet-care-calculators/dog-weight-loss-planner", "permanent": true },
+    { "source": "/pets/dogs/weight-loss-planner", "destination": "/pets/dog-weight-loss-planner", "permanent": true },
+    { "source": "/pets/cat-weight-loss-planner", "destination": "/pets/pet-care-calculators/cat-weight-loss-planner", "permanent": true },
+    { "source": "/pets/cats/weight-loss-planner", "destination": "/pets/cat-weight-loss-planner", "permanent": true },
+    { "source": "/:category/:subcategory/:slug", "destination": "/:category/:slug", "permanent": true }
   ]
 }

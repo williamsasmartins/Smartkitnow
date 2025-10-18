@@ -71,7 +71,7 @@ let m;
 while ((m = re.exec(buf)) !== null) {
   const [_, slug, category, subcategory, title] = m;
   if (/Coming\s+Soon/i.test(title)) continue;
-  const pathSegs = `/${category}/${subcategory}/${slug}`.replace(/\/undefined/g, "");
+  const pathSegs = `/${category}/${slug}`;
   const loc = `${HOST}${pathSegs}`;
   const priority = priorityByCategory[category] ?? 0.5;
   dynamicEntries.push({ loc, lastmod: formatDate(), priority });

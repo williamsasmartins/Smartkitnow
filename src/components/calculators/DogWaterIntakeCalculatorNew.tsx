@@ -2,7 +2,7 @@ import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
 import SeoHead from "@/components/seo/SeoHead";
 import JsonLd from "@/components/seo/JsonLd";
-import EEATBanner from "@/components/EEATBanner";
+
 
 const cfg: PetCalcOmniConfig = {
   title: "Dog Water Intake Calculator",
@@ -80,7 +80,7 @@ const cfg: PetCalcOmniConfig = {
     { label: "Diretrizes gerais de hidratação veterinária", href: " `https://www.merckvetmanual.com/` " },
   ],
 
-  reviewedByBlock: { text: "Revisado pela equipe Smart Kit Now. Para alterações de sede ou urina, procure o veterinário." },
+  reviewedNote: "Content for general guidance only. For medical decisions, consult a licensed veterinarian.",
 
   seo: {
     title: "Dog Water Intake Calculator | Smart Kit Now",
@@ -143,7 +143,7 @@ export default function DogWaterIntakeCalculator() {
   return (
     <> 
       <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} />
-      <EEATBanner niche="pets" />
+
       <JsonLd data={webpageJson} />
       <JsonLd data={breadcrumbsJson} />
       {faqsJson && <JsonLd data={faqsJson} />}

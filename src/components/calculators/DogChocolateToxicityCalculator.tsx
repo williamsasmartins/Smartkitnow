@@ -2,7 +2,7 @@ import React from "react";
 import PetCalcOmniTemplate, { PetCalcOmniConfig } from "@/components/templates/PetCalcOmniTemplate";
 import SeoHead from "@/components/seo/SeoHead";
 import JsonLd from "@/components/seo/JsonLd";
-import EEATBanner from "@/components/EEATBanner";
+
 
 const CHOC = {
   milk:   { label: "Milk Chocolate", theo: 1.6,  caf: 0.2,  hint: "~1.8 mg/g" },
@@ -114,7 +114,7 @@ const cfg: PetCalcOmniConfig = {
     { label: "Merck Veterinary Manual — Chocolate intoxication", href: "https://www.merckvetmanual.com/" },
   ],
 
-  reviewedByBlock: { text: "Calculadora revisada pela equipe Smart Kit Now. Para conduta clínica, consulte um veterinário." },
+  reviewedNote: "Content for general guidance only. For medical decisions, consult a licensed veterinarian.",
 
   seo: {
     title: "Dog Chocolate Toxicity Calculator | Smart Kit Now",
@@ -184,7 +184,7 @@ export default function DogChocolateToxicityCalculator() {
   return (
     <>
       <SeoHead title={TITLE} description={DESC} canonical={CANONICAL} keywords={cfg.seo?.keywords as string[]} />
-      <EEATBanner niche="pets" />
+
       <JsonLd data={webpageJson} />
       <JsonLd data={breadcrumbsJson} />
       {faqsJson && <JsonLd data={faqsJson} />}
