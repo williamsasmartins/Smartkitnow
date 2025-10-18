@@ -138,25 +138,25 @@ const cfg: PetCalcOmniConfig = {
 
   faqs: [
     {
-      question: "Should I use a single value or the range?",
+      question: "Which RER formula should I use?",
       answer:
-        "When the activity has a range (e.g., neutered adult 1.2–1.6×), start near the middle and adjust based on body condition and weight trend.",
+        "Use the standard RER = 70 × (kg^0.75) for all sizes. The shortcut (30 × kg + 70) is a practical approximation often used for mid-size dogs (~3–25 kg).",
     },
     {
-      question: "My dog needs to lose weight — what should I do?",
+      question: "How do I adjust MER for weight loss?",
       answer:
-        "Use the weight-loss preset (0.8× RER) only under veterinary guidance. Reassess every 2–4 weeks and monitor satiety and overall health.",
+        "Start with RER × 1.0, monitor weight and BCS weekly, and adjust with your veterinarian. Never restrict sharply without professional guidance.",
     },
     {
-      question: "Why does my dog eat more/less than estimated?",
+      question: "Do seniors need fewer calories?",
       answer:
-        "Metabolism, climate, breed, age, and health all change calorie needs. These factors are guides — personalize with veterinary follow-up.",
+        "Many senior dogs benefit from modestly lower MER, but needs vary with lean mass, activity and health. Use a factor around 1.2 as a starting point and individualize.",
     },
   ],
 
   sources: [
-    { label: "WSAVA — Global Nutrition Toolkit (MER factors)", href: "https://wsava.org/" },
-    { label: "Merck Veterinary Manual — Nutritional Requirements of Dogs", href: "https://www.merckvetmanual.com/" },
+    { label: "WSAVA Global Nutrition Toolkit — Energy Requirements", href: " `https://wsava.org/global-guidelines/global-nutrition-guidelines/` " },
+    { label: "Veterinary clinical nutrition texts (overview of RER/MER factors)", href: " `https://avmajournals.avma.org/` " }
   ],
 };
 

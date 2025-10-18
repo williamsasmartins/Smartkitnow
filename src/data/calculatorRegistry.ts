@@ -156,6 +156,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/CatWeightLossPlanner"),
     aliases: ["cat weight loss", "cat weight loss planner", "feline weight management", "cat diet"],
   },
+  {
+    slug: "dog-calorie-needs-rer-mer",
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Calorie Needs — RER & MER",
+    description: "Estimate your dog’s daily calories using RER and MER factors.",
+    loader: () => import("@/components/calculators/DogCalorieNeedsRerMerCalculator"),
+    aliases: ["dog calorie needs", "dog rer mer", "canine energy requirements"],
+  },
 ];
 
 // Backwards-compat alias expected by various pages/scripts
