@@ -123,6 +123,9 @@
   }
 }
 
+main, #root, .app-shell  {
+  overflow: visible;
+}
 html, body {
   overflow-x: hidden;
 }

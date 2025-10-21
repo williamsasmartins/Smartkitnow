@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import { getEntry } from "@/data/calculatorRegistry";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { getEntry } from "@/data/calculatorRegistry";
 
 function useLazyFromLoader(loader: () => Promise<any>, namedExport?: string) {
   const Lazy = React.lazy(async () => {
@@ -40,7 +40,7 @@ export default function CalculatorPage() {
   const LazyCalc = useLazyFromLoader(entry.loader as any, (entry as any).namedExport);
 
   return (
-    <div className="w-full mx-auto px-0 md:px-0 py-8 overflow-x-hidden">
+    <div className="w-screen max-w-none mx-0 px-0 md:px-0 py-8 overflow-x-hidden">
       <div className="mb-4">
         <Button variant="ghost" onClick={() => navigate(-1)}>
           <ArrowLeft className="mr-2 h-4 w-4" /> Back

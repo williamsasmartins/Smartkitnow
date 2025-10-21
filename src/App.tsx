@@ -45,6 +45,7 @@ import CookingCalculators from "@/pages/CookingCalculators";
 import PetsCalculators from "@/pages/PetsCalculators";
 import MathCalculators from "@/pages/MathCalculators";
 import ConversionCalculators from "@/pages/ConversionCalculators";
+import CalcsDebug from "@/pages/CalcsDebug";
 
 // Categorias (raiz)
 // (Removidos imports de páginas específicas; agora usamos CategoryIndex)
@@ -201,6 +202,9 @@ export default function App() {
                 element={<Navigate to="/pets/dog-water-intake" replace />} 
               />
               
+
+              {/* Debug */}
+              <Route path="/_debug/calcs" element={<CalcsDebug />} />
 
               {/* 404 */}
               <Route path="*" element={<NotFound />} />

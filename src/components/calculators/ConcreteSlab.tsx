@@ -103,7 +103,7 @@ export default function ConcreteSlab() {
           <div className="space-y-2">
             <Label htmlFor="units">Units</Label>
             <Select value={unit} onValueChange={(v) => setUnit(v as any)}>
-              <SelectTrigger id="units" aria-label="Units"><SelectValue /></SelectTrigger>
+              <SelectTrigger id="units" aria-label="Units" className="mt-2 w-[120px]"><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="imperial">US (ft / in)</SelectItem>
                 <SelectItem value="metric">Metric (m / cm)</SelectItem>

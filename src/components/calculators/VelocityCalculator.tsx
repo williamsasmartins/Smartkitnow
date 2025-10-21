@@ -188,7 +188,7 @@ export function VelocityCalculator() {
                     className="flex-1"
                   />
                   <Select value={displacementUnit} onValueChange={setDisplacementUnit}>
-                    <SelectTrigger id="displacementUnit" aria-label="Displacement unit" className="w-20">
+                    <SelectTrigger id="displacementUnit" aria-label="Displacement unit" className="mt-2 w-[120px]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -219,7 +219,7 @@ export function VelocityCalculator() {
                     className="flex-1"
                   />
                   <Select value={timeUnit} onValueChange={setTimeUnit}>
-                    <SelectTrigger id="timeUnit" aria-label="Time unit" className="w-20">
+                    <SelectTrigger id="timeUnit" aria-label="Time unit" className="mt-2 w-[120px]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -249,7 +249,7 @@ export function VelocityCalculator() {
                     className="flex-1"
                   />
                   <Select value={velocityUnit} onValueChange={setVelocityUnit}>
-                    <SelectTrigger id="velocityUnit" aria-label="Velocity unit" className="w-24">
+                    <SelectTrigger id="velocityUnit" aria-label="Velocity unit" className="mt-2 w-[120px]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -277,7 +277,7 @@ export function VelocityCalculator() {
                     className="flex-1"
                   />
                   <Select value={velocityUnit} onValueChange={setVelocityUnit}>
-                    <SelectTrigger id="initialVelocityUnit" aria-label="Initial velocity unit" className="w-24">
+                    <SelectTrigger id="initialVelocityUnit" aria-label="Initial velocity unit" className="mt-2 w-[120px]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>

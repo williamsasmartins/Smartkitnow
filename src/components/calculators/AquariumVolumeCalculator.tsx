@@ -170,7 +170,7 @@ export function AquariumVolumeCalculator() {
             <div>
               <Label htmlFor="units">Units</Label>
               <Select value={units} onValueChange={setUnits}>
-                <SelectTrigger id="units" aria-label="Units">
+                <SelectTrigger id="units" aria-label="Units" className="mt-2 w-[120px]">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

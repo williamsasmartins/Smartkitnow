@@ -174,7 +174,7 @@ const CookingConversionCalculator = () => {
             <div className="space-y-2">
               <Label htmlFor="fromUnit">From Unit</Label>
               <Select value={fromUnit} onValueChange={setFromUnit}>
-                <SelectTrigger id="fromUnit" aria-label="From unit">
+                <SelectTrigger id="fromUnit" aria-label="From unit" className="mt-2 w-[120px]">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -194,7 +194,7 @@ const CookingConversionCalculator = () => {
             <div className="space-y-2">
               <Label htmlFor="toUnit">To Unit</Label>
               <Select value={toUnit} onValueChange={setToUnit}>
-                <SelectTrigger id="toUnit" aria-label="To unit">
+                <SelectTrigger id="toUnit" aria-label="To unit" className="mt-2 w-[120px]">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

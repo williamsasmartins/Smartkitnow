@@ -171,7 +171,7 @@ export function MolarityCalculator() {
                     className="flex-1"
                   />
                   <Select value={volumeUnit} onValueChange={setVolumeUnit}>
-                    <SelectTrigger id="volumeUnit" aria-label="Volume unit" className="w-20">
+                    <SelectTrigger id="volumeUnit" aria-label="Volume unit" className="mt-2 w-[120px]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>

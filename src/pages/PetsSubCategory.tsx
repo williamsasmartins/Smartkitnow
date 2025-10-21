@@ -1,41 +1,35 @@
 // src/pages/PetsSubCategory.tsx
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import PageWithRails from "@/components/layouts/PageWithRails";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  listByCategorySubcategory,
-  SUBCATEGORY_TITLES,
-  FRIENDLY_TITLES,
-  calcLink
-} from "@/data/calculatorRegistry";
-import {
-  ArrowLeft, Dog, Cat, PawPrint, Bone, Fish, HeartPulse, Scale, Salad, GaugeCircle
-} from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import CalculatorLink from "@/components/common/CalculatorLink";
+import { FRIENDLY_TITLES, SUBCATEGORY_TITLES, listByCategorySubcategory, calcPath } from "@/data/calculatorRegistry";
 import type { CalculatorEntry } from "@/data/calculatorRegistry";
 
-// Colored icons by calculator (slug/name)
-type IconSpec = { Icon: React.ComponentType<any>; color: string; bg: string };
-const DEF: IconSpec = { Icon: PawPrint, color: "#8b5cf6", bg: "rgba(139,92,246,0.14)" };
+import { Dumbbell, Scale, Flame, Apple, Heart, ShieldPlus, ClipboardList, PawPrint, AlertTriangle, DollarSign } from "lucide-react";
 
-const RULES: Array<{ test: (k: string) => boolean; spec: IconSpec }> = [
-  { test: k => /dog|canine|puppy/.test(k),                spec: { Icon: Dog,        color: "#f59e0b", bg: "rgba(245,158,11,0.14)" } }, // amber
-  { test: k => /cat|feline|kitten/.test(k),               spec: { Icon: Cat,        color: "#22c55e", bg: "rgba(34,197,94,0.14)" } }, // green
-  { test: k => /weight|kg|lb|bmi|bcs|score/.test(k),      spec: { Icon: Scale,      color: "#a855f7", bg: "rgba(168,85,247,0.14)" } }, // purple
-  { test: k => /nutrition|calorie|food|diet|macro/.test(k), spec: { Icon: Salad,   color: "#06b6d4", bg: "rgba(6,182,212,0.14)" } }, // cyan
-  { test: k => /health|pulse|heart|fitness/.test(k),      spec: { Icon: HeartPulse, color: "#ef4444", bg: "rgba(239,68,68,0.14)" } }, // red
-  { test: k => /fish|aquatic|tank/.test(k),               spec: { Icon: Fish,       color: "#3b82f6", bg: "rgba(59,130,246,0.14)" } }, // blue
-  { test: k => /general|misc|other/.test(k),              spec: { Icon: GaugeCircle,color: "#22c55e", bg: "rgba(34,197,94,0.14)" } }, // green
+// Icon mapping rules to give dog-themed visuals
+const RULES: Array<{ pattern: RegExp; spec: IconSpec }> = [
+  { pattern: /weight|diet|fat|calorie|loss|gain|rer|mer/, spec: { Icon: Dumbbell, color: "#3b82f6", bg: "rgba(59,130,246,0.12)" } },
+  { pattern: /water|hydration|drink|intake/, spec: { Icon: Scale, color: "#10b981", bg: "rgba(16,185,129,0.12)" } },
+  { pattern: /caffeine|chocolate|xylitol|grape|raisin|allium|tox|poison|exposure/, spec: { Icon: AlertTriangle, color: "#ef4444", bg: "rgba(239,68,68,0.12)" } },
+  { pattern: /life|age|stage|senior|puppy|growth|adult/, spec: { Icon: PawPrint, color: "#8b5cf6", bg: "rgba(139,92,246,0.14)" } },
+  { pattern: /quality|health|care/, spec: { Icon: Heart, color: "#ef4444", bg: "rgba(239,68,68,0.12)" } },
+  { pattern: /cost|finance|price|budget|ownership/, spec: { Icon: DollarSign, color: "#22c55e", bg: "rgba(34,197,94,0.14)" } },
 ];
+
+type IconSpec = { Icon: React.ComponentType<any>; color: string; bg: string };
+const DEF: IconSpec = { Icon: ClipboardList, color: "#3b82f6", bg: "rgba(59,130,246,0.12)" };
 
 function iconForCalc(slug: string, name: string): IconSpec {
   const k = `${slug} ${name}`.toLowerCase();
-  const r = RULES.find(x => x.test(k));
+  const r = RULES.find(x => x.pattern.test(k));
   return r ? r.spec : DEF;
 }
 
@@ -116,7 +110,7 @@ export default function PetsSubCategory() {
                         <Icon className="h-5 w-5" />
                       </span>
                       <CardTitle className="text-lg font-semibold" style={{ color: "#000000" }}>
-                        <CalculatorLink to={calcLink(calc)}>{calc.title}</CalculatorLink>
+                        <CalculatorLink to={calcPath(calc)}>{calc.title}</CalculatorLink>
                       </CardTitle>
                     </CardHeader>
                     <CardContent>

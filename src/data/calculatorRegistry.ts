@@ -1,16 +1,22 @@
 // src/data/calculatorRegistry.ts
 // Centralized calculator registry and helpers used by pages and templates.
 
-export type CalculatorEntry = {
+import type React from "react";
+
+export type UrlStyle = "nested" | "flat";
+
+export interface CalculatorEntry {
   slug: string;
   title: string;
   category: string; // e.g., "financial", "health", "pets"
   subcategory?: string; // e.g., "dogs", "cats"
   description?: string;
   aliases?: string[]; // optional alternative search terms
-  loader: () => Promise<any>; // dynamic import to component
+  loader: () => Promise<{ default: React.ComponentType<any> }>; // dynamic import to component
   namedExport?: string; // optional named export if component is not default
-};
+  /** NEW: if "flat", links will be /:category/:slug */
+  urlStyle?: UrlStyle; // "nested" (default) | "flat"
+}
 
 // Friendly category titles shown on hubs and index pages
 export const FRIENDLY_TITLES: Record<string, string> = {
@@ -110,6 +116,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     subcategory: "dogs",
     aliases: ["dog daily water intake", "dog hydration"],
     loader: () => import("@/components/calculators/DogWaterIntakeCalculator"),
+    urlStyle: "flat",
   },
   {
     slug: "cat-water-intake",
@@ -119,6 +126,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     description: "Estimate an educational daily water intake range for cats by weight and diet, and compare with your observation.",
     loader: () => import("@/components/calculators/CatWaterIntakeCalculator"),
     aliases: ["cat daily water intake", "cat hydration"],
+    urlStyle: "flat",
   },
   {
     slug: "cat-daily-water-intake-checker",
@@ -128,15 +136,17 @@ export const calculatorRegistry: CalculatorEntry[] = [
     description: "Estimate an educational daily water intake range for cats by weight and diet, and compare with your observation.",
     loader: () => import("@/components/calculators/CatWaterIntakeCalculator"),
     aliases: ["cat-water-intake", "cat-water-intake-calculator"],
+    urlStyle: "flat",
   },
   {
     slug: "dog-caffeine-toxicity-calculator",
     category: "pets",
-    subcategory: "pet-care-calculators",
+    subcategory: "dogs",
     title: "Dog Caffeine Toxicity Calculator",
-    description: "Educational caffeine exposure triage by weight, product type, and grams/mL — with tables, FAQs, and sources.",
+    description: "Estimate educational risk bands from caffeine sources; includes mg/kg estimation and triage steps.",
     loader: () => import("@/components/calculators/DogCaffeineToxicityCalculator"),
-    aliases: ["dog caffeine toxicity", "dog caffeine", "dog coffee toxicity", "dog energy drink"],
+    aliases: ["caffeine-dogs", "dog-caffeine-toxicity"],
+    urlStyle: "flat",
   },
   {
     slug: "dog-weight-loss-planner",
@@ -146,6 +156,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     description: "Plan an educational daily calorie target using 0.8×RER (target) or 70% of maintenance, plus weeks-to-goal estimate.",
     loader: () => import("@/components/calculators/DogWeightLossPlanner"),
     aliases: ["dog weight loss", "dog weight loss planner", "dog diet", "canine weight management"],
+    urlStyle: "flat",
   },
   {
     slug: "cat-weight-loss-planner",
@@ -155,6 +166,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     description: "Plan an educational daily calorie target using 0.8×RER (target) or 70% of maintenance, plus weeks-to-goal estimate.",
     loader: () => import("@/components/calculators/CatWeightLossPlanner"),
     aliases: ["cat weight loss", "cat weight loss planner", "feline weight management", "cat diet"],
+    urlStyle: "flat",
   },
   {
     slug: "dog-calorie-needs-rer-mer",
@@ -164,6 +176,47 @@ export const calculatorRegistry: CalculatorEntry[] = [
     description: "Estimate dog RER and MER from weight and life stage/activity.",
     loader: () => import("@/components/calculators/DogCalorieNeedsRerMer"),
     aliases: ["dog calorie needs", "dog rer mer", "canine energy requirements"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "dog-chocolate-toxicity-calculator",
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Chocolate Toxicity Calculator",
+    description: "Estimate educational dose bands (mg/kg) by chocolate type and amount; strong veterinarian disclaimer.",
+    loader: () => import("@/components/calculators/DogChocolateToxicityCalculator"),
+    aliases: ["dog-chocolate-toxicity", "dog-chocolate-toxicity-checker"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "dog-grape-raisin-exposure-risk",
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Grape/Raisin Exposure Risk Calculator",
+    description: "Education-first triage for suspected grape/raisin ingestion — treat any ingestion as urgent and call your vet.",
+    loader: () => import("@/components/calculators/DogGrapeRaisinExposureCalculator"),
+    aliases: ["dog-grape-toxicity", "dog-raisins-toxicity", "grapes-for-dogs"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "dog-onion-garlic-exposure-risk",
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Onion/Garlic (Allium) Exposure Risk Calculator",
+    description: "Converts intake to raw-onion-equivalent g/kg and classifies bands; educational guidance only.",
+    loader: () => import("@/components/calculators/DogAlliumExposureCalculator"),
+    aliases: ["dog-onion-toxicity", "dog-garlic-toxicity", "allium-exposure-dogs"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "dog-xylitol-exposure-risk",
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Xylitol Exposure Risk Calculator",
+    description: "Educational triage for suspected xylitol ingestion (sugar-free gum, baked goods); call your veterinarian.",
+    loader: () => import("@/components/calculators/DogXylitolExposureCalculator"),
+    aliases: ["xylitol-dogs", "dog-xylitol-toxicity"],
+    urlStyle: "flat",
   },
 ];
 
@@ -211,7 +264,15 @@ export function listSubcategoriesOfCategory(category?: string): Array<{ slug: st
   return result;
 }
 
-// Gera SEMPRE a rota curta /:category/:slug
+/** Helper único para gerar a rota desejada de um entry */
+export function calcPath(e: CalculatorEntry): string {
+  const style: UrlStyle = e.urlStyle ?? "nested";
+  return style === "flat"
+    ? `/${e.category}/${e.slug}`
+    : `/${e.category}/${e.subcategory}/${e.slug}`;
+}
+
+// Backward compat: calcLink maps to calcPath
 export function calcLink(e: CalculatorEntry) {
-  return `/${e.category}/${e.slug}`;
+  return calcPath(e);
 }

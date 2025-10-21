@@ -10,7 +10,7 @@ import {
   SUBCATEGORY_TITLES,
   FRIENDLY_TITLES,
   subcategoryIcon,
-  calcLink,
+  calcPath,
 } from "@/data/calculatorRegistry";
 import { PALETTE } from "@/components/theme/palette";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
@@ -21,80 +21,69 @@ export default function CategorySubcategory() {
   const navigate = useNavigate();
   const { category = "", subcategory = "" } = useParams<{ category: string; subcategory: string }>();
 
-  const calculators = listByCategorySubcategory(category, subcategory);
-
-  const prettySubcat =
+  const title =
     SUBCATEGORY_TITLES[category]?.[subcategory] ??
     subcategory.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
+  const fullTitle = `${title} — ${FRIENDLY_TITLES[category] || category.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase())}`;
 
-  const subtitle =
-    subcategory === "wall-ceiling-calculators"
-      ? "Choose a calculator below to get started."
-      : "Professional construction calculators for accurate project planning and material estimation.";
+  const calculators = listByCategorySubcategory(category, subcategory);
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Main Content Area - Add top padding to account for fixed header */}
+    <div className="min-h-screen">
       <main className="pt-20">
         <AdRailLayout
-          topCenterAd={false}
-          bottomCenterAd={false}
-          showRails={true}
-          showLeftRail={false}
-          showRightRail={true}
           titleBlock={
-            <div className="max-w-5xl">
-              {/* Back à esquerda */}
-              <button
-                onClick={() => navigate(`/${category}`)}
-                className="mb-4 inline-flex items-center gap-2 rounded-md px-3 py-2 md:py-2.5 text-white hover:brightness-110 transition-colors"
-                style={{ backgroundColor: PALETTE.brand.button }}
-                aria-label={`Back to ${category}`}
-              >
-                <ArrowLeft className="h-4 w-4" />
-        Back
-              </button>
+            <div className="text-left">
+              <div className="mb-6 text-left">
+                <Button
+                  variant="default"
+                  onClick={() => navigate(`/${category}`)}
+                  className="flex items-center gap-2"
+                  style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back
+                </Button>
+              </div>
 
-              {/* Título alinhado à esquerda com ícone */}
-              <h1 className="text-4xl font-bold mb-3 flex items-center gap-2" style={{ color: PALETTE.brand.title }}>
-                <span aria-hidden="true">{subcategoryIcon(subcategory, category)}</span>
-                {prettySubcat}
+              <h1 className="text-4xl font-bold mb-2 flex items-center gap-2" style={{ color: PALETTE.brand.title }}>
+                <span className="text-[26px] leading-none select-none" aria-hidden="true">{subcategoryIcon(subcategory, category)}</span>
+                {fullTitle}
               </h1>
-              <p className="text-lg max-w-3xl" style={{ color: PALETTE.brand.text }}>
-                Choose a calculator below to get started.
+              <p className="text-lg max-w-2xl" style={{ color: PALETTE.brand.text }}>
+                Explore calculators in {title.toLowerCase()}.
               </p>
             </div>
           }
         >
-          {calculators.length === 0 ? (
-            <p className="text-center" style={{ color: PALETTE.brand.text }}>
-              No calculators found.
-            </p>
-          ) : (
-            <ul className="space-y-4">
-              {calculators.map((calc) => {
-                return (
-                  <li key={calc.slug} className="bg-card border border-border/50 rounded-md p-4">
-                    <h2 className="text-lg font-semibold">
-                      <CalculatorLink to={calcLink(calc)}>{calc.title}</CalculatorLink>
-                    </h2>
-                    <p className="text-sm mt-1" style={{ color: PALETTE.brand.text }}>
-                      {calc.description || "Open the calculator"}
-                    </p>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {calculators.map((calc) => (
+              <Card key={calc.slug} className="group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
+                <CardHeader className="flex flex-row items-center gap-3">
+                  <span className="inline-flex items-center justify-center rounded-xl"
+                        style={{ width: 40, height: 40, backgroundColor: "rgba(59,130,246,0.12)", color: "#3b82f6" }} aria-hidden="true">
+                    {/* icon placeholder */}
+                  </span>
+                  <CardTitle className="text-lg font-semibold" style={{ color: "#000000" }}>
+                    <CalculatorLink to={calcPath(calc)}>{calc.title}</CalculatorLink>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm" style={{ color: "#747886" }}>
+                    {calc.description || "Open calculator"}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
-          {/* Feedback + Share section above footer */}
-          <section className="mt-4 skn-typography text-sm">
+          <section className="mt-6 skn-typography text-sm">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-6">
-                  <SiteFeedbackForm title="Questions or suggestions?" includeFile={false} compact={true} />
-                  <ShareThisCalculator />
-                </div>
+              <div className="space-y-6">
+                <SiteFeedbackForm title="Questions or suggestions?" compact={true} />
+                <ShareThisCalculator />
               </div>
+            </div>
           </section>
         </AdRailLayout>
       </main>

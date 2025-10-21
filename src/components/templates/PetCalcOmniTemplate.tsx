@@ -229,6 +229,11 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
             </div>
           ) : null}
 
+          {/* Risk label below cards */}
+          {risk?.label ? (
+            <p className="mt-2 text-xs text-muted-foreground">{risk.label}</p>
+          ) : null}
+
           {/* Risk band */}
           {risk ? (
             <div className="mt-6">
@@ -447,7 +452,8 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
         left={left}
         center={center}
         showTopAd={config.showTopAd}
-        showRightAd={config.showRightAd}
+        showRightAd={false}
+        stickyOffsetPx={88}
       />
       {config.reviewedNote ? (
         <div className="mt-6 pl-4 md:pl-8 pr-2 md:pr-4">

@@ -38,7 +38,7 @@ export const InputGroup: React.FC<InputGroupProps> = ({
       
       {type === 'select' ? (
         <Select value={value} onValueChange={onChange}>
-          <SelectTrigger id={id}>
+          <SelectTrigger id={id} className={id.toLowerCase().includes('unit') ? "mt-2 w-[120px]" : undefined}>
             <SelectValue placeholder={placeholder || `Select ${label.toLowerCase()}`} />
           </SelectTrigger>
           <SelectContent>

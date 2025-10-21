@@ -12,7 +12,7 @@ import {
   listByCategorySubcategory,
   listByCategory,
   subcategoryIcon,
-  calcLink,
+  calcPath,
 } from "@/data/calculatorRegistry";
 import { PALETTE } from "@/components/theme/palette";
 import CalculatorListBlue from "@/components/common/CalculatorListBlue";
@@ -32,69 +32,35 @@ export default function CategoryIndex() {
   const [healthCopyOpen, setHealthCopyOpen] = useState(false);
   // Estado para controlar o comportamento "Read more" da copy em Financial
   const [financialCopyOpen, setFinancialCopyOpen] = useState(false);
-  // Contagem total de calculadoras na categoria atual
+
   const totalInCategory = listByCategory(category).length;
 
-  // Icons now provided by centralized util subcategoryIcon from calculatorRegistry
-
   return (
-    <div className="min-h-screen bg-gradient-soft">
-
-{/* Banner horizontal no topo (abaixo da barra de navegação) */}
-      <div className="container mx-auto px-4 mt-6 mb-2">
-        <div className="flex justify-center items-center min-h-[100px]">
-          <AdSlot variant="banner" label="Ad - Top Banner (Google AdSense)" />
-        </div>
-      </div>
-
-      <div className="min-h-screen bg-background">
-{/* Main Content Area - Add top padding to account for fixed header */}
+    <div className="min-h-screen">
       <main className="pt-20">
         <AdRailLayout
-          topCenterAd={false}
-          bottomCenterAd={false}
-          showRails={true}
-          showLeftRail={false}
-          showRightRail={true}
           titleBlock={
-            <div className="max-w-5xl">
-              {/* Botão Back (esquerda) */}
-              <button
-                onClick={() => navigate("/")}
-                className="mb-4 inline-flex items-center gap-2 rounded-md px-3 py-2 md:py-2.5 text-white hover:brightness-110 transition-colors"
-                style={{ backgroundColor: PALETTE.brand.button }}
-                aria-label="Back to Home"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                Back
-              </button>
-
-              {/* Título/Introdução */}
-              <h1 className="text-4xl font-bold mb-1" style={{ color: PALETTE.brand.title }}>
+            <div className="text-left">
+              <div className="mb-6 text-left">
+                <button
+                  className="inline-flex items-center gap-2 px-3 py-2 md:py-2.5 rounded-md"
+                  style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
+                  onClick={() => navigate("/")}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back
+                </button>
+              </div>
+              <h1 className="text-4xl font-bold mb-2 flex items-center gap-2" style={{ color: PALETTE.brand.title }}>
+                <span className="text-[26px] leading-none select-none" aria-hidden="true">🏷️</span>
                 {title}
               </h1>
-              {category === "health" ? (
-                <div className="mt-1">
-                  <p className="text-sm text-muted-foreground">{totalInCategory} calculators</p>
-                  <div className="mt-2">
-                    <p
-                      className={`${healthCopyOpen ? "" : "line-clamp-3"} text-base max-w-3xl`}
-                      style={{ color: PALETTE.brand.text }}
-                    >
-                      {"Discover smarter ways to take control of your health. Whether you’re a healthcare professional, a student or simply someone looking to understand your body better, our collection of health and fitness calculators delivers accurate, science‑based answers. Need to estimate your basal metabolic rate (BMR) or body mass index (BMI)? Wondering how much water you should drink each day, or what your heart rate zones should be during exercise? We’ve curated tools that tackle these questions and many more — from body composition and nutrition to fitness performance and pregnancy metrics. Every calculator on Smart Kit Now is backed by credible sources and designed to be easy to use. You’ll find guidance for dosing medications, interpreting blood values, assessing risk factors and planning workouts, all in one place. Our goal is to make complex medical formulas accessible and actionable so you can make informed decisions about your health and wellbeing. Browse the topics below to explore the full range of calculators, and feel confident taking the next step toward a healthier you."}
-                    </p>
-                    {!healthCopyOpen && (
-                      <button
-                        className="text-primary text-sm underline mt-2 px-0 py-0"
-                        onClick={() => setHealthCopyOpen(true)}
-                        aria-label="Read more"
-                      >
-                        Read more
-                      </button>
-                    )}
-                  </div>
-                </div>
-              ) : (
+              {category !== "financial" && (
+                <p className="text-lg max-w-2xl" style={{ color: PALETTE.brand.text }}>
+                  Explore practical {title.replace(/ Calculators$/, "").toLowerCase()} calculators designed to help you plan, measure, and make better decisions.
+                </p>
+              )}
+              {category === "financial" && (
                 <>
                   <p className="text-lg max-w-2xl" style={{ color: PALETTE.brand.text }}>
                     Explore practical {title.replace(/ Calculators$/, "").toLowerCase()} calculators designed to help you plan, measure, and make better decisions.
@@ -107,7 +73,7 @@ export default function CategoryIndex() {
                           className={`${financialCopyOpen ? "" : "line-clamp-3"} text-base max-w-3xl`}
                           style={{ color: PALETTE.brand.text }}
                         >
-                          {"Put your finances on track with reliable calculators. Whether you’re a market professional, a small business owner, an aspiring investor or just someone who wants to balance the household budget, our financial tools help you make informed choices. Need to compare loans and mortgages? Plan for retirement? Calculate investment returns or tax impacts? Here you’ll find clear and accurate formulas — from compound interest and ROI to cash flow and profit margins. Every calculator is based on established methods and designed to simplify complex tasks: simulate different financing scenarios, project your future wealth with our retirement calculators, estimate monthly payments and total costs before buying a car or a home. By bringing numerous applications into one place, we make life easier for anyone looking to organise personal finances or optimise business management. Browse the sections below to find the right tool for you and turn numbers into smart decisions."}
+                          {"Put your finances on track with reliable calculators. Whether you’re a market professional, a small business owner, an aspiring investor or just someone who wants to balance the household budget, our financial tools help you make informed choices. Need to compare loans quickly? Want to see how a small change impacts the long-term outcome? These calculators are built to give you clear, actionable numbers with transparent formulas and sensible defaults."}
                         </p>
                         {!financialCopyOpen && (
                           <button
@@ -150,7 +116,7 @@ export default function CategoryIndex() {
                           </h2>
                           <div className="mt-3">
                             <CalculatorListBlue
-                              items={calculators.map((calc) => ({ title: calc.title, to: calcLink(calc) }))}
+                              items={calculators.map((calc) => ({ title: calc.title, to: calcPath(calc) }))}
                             />
                           </div>
                         </section>
@@ -177,7 +143,7 @@ export default function CategoryIndex() {
                       </h2>
                       <div className="mt-3">
                         <CalculatorListBlue
-                          items={calculators.map((calc) => ({ title: calc.title, to: calcLink(calc) }))}
+                          items={calculators.map((calc) => ({ title: calc.title, to: calcPath(calc) }))}
                         />
                       </div>
                     </section>
@@ -198,6 +164,5 @@ export default function CategoryIndex() {
         </AdRailLayout>
       </main>
     </div>
-  </div>
-);
+  );
 }

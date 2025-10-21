@@ -162,7 +162,7 @@ export function ForceCalculator() {
                     className="flex-1"
                   />
                   <Select value={massUnit} onValueChange={setMassUnit}>
-                    <SelectTrigger id="massUnit" aria-label="Mass unit" className="w-20">
+                    <SelectTrigger id="massUnit" aria-label="Mass unit" className="mt-2 w-[120px]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -189,7 +189,7 @@ export function ForceCalculator() {
                     className="flex-1"
                   />
                   <Select value={accelerationUnit} onValueChange={setAccelerationUnit}>
-                    <SelectTrigger id="accelerationUnit" aria-label="Acceleration unit" className="w-24">
+                    <SelectTrigger id="accelerationUnit" aria-label="Acceleration unit" className="mt-2 w-[120px]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -216,7 +216,7 @@ export function ForceCalculator() {
                     className="flex-1"
                   />
                   <Select value={forceUnit} onValueChange={setForceUnit}>
-                    <SelectTrigger id="forceUnit" aria-label="Force unit" className="w-20">
+                    <SelectTrigger id="forceUnit" aria-label="Force unit" className="mt-2 w-[120px]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>

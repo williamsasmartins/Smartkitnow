@@ -10,7 +10,7 @@ import {
   listByCategorySubcategory,
   SUBCATEGORY_TITLES,
   FRIENDLY_TITLES,
-  calcLink
+  calcPath
 } from "@/data/calculatorRegistry";
 import { ArrowLeft, Wallet, PiggyBank, Banknote, CreditCard, Percent, LineChart } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
@@ -80,7 +80,7 @@ export default function FinancialSubCategory() {
                       <Wallet className="h-5 w-5" />
                     </span>
                     <CardTitle className="text-lg font-semibold" style={{ color: "#000000" }}>
-                      <CalculatorLink to={calcLink(calc)}>{calc.title}</CalculatorLink>
+                      <CalculatorLink to={calcPath(calc)}>{calc.title}</CalculatorLink>
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
