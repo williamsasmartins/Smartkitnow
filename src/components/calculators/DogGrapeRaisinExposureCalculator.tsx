@@ -85,7 +85,6 @@ const cfg: PetCalcOmniConfig = {
   ],
 
   cta: { label: "Call your veterinarian now" },
-  stickyCta: { whenRiskIn: ["ingested", "recent"], label: "Urgent: call your vet", tel: "+1-800-222-1222" },
 
   howToUse: [
     "Enter your dog’s weight.",

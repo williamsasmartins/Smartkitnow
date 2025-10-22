@@ -10,6 +10,15 @@ import CalculatorFeedbackShare from "../calculators/CalculatorFeedbackShare";
 import SeoHead from "@/components/seo/SeoHead";
 import JsonLd from "@/components/seo/JsonLd";
 
+const CONTAINER = "mx-auto max-w-[864px] px-4";
+
+// 2 colunas (editorial + calculadora) — levemente mais larga à esquerda 
+const GRID_2COL = 
+  "grid gap-6 grid-cols-1 md:[grid-template-columns:minmax(0,320px)_minmax(0,1fr)]"; 
+ 
+// 3 colunas (só se realmente houver rail direito) 
+const GRID_3COL = 
+  "grid gap-6 grid-cols-1 md:[grid-template-columns:minmax(0,320px)_minmax(0,540px)] xl:[grid-template-columns:minmax(0,340px)_minmax(0,560px)_minmax(0,260px)]";
 
 type Unit = "kg" | "lb" | "g" | "oz";
 type SelectOption = { value: string; label: string };
@@ -35,6 +44,9 @@ export type PetCalcOmniConfig = {
   updatedAt?: string;
   showTopAd?: boolean; 
   showRightAd?: boolean; 
+
+  hero?: { title: string; description?: string };
+  eeat?: { showAtBottomOnce?: boolean; text?: string };
 
   // E-E-A-T: Reviewer metadata (object expected by calculators)
   reviewedBy?:
@@ -67,7 +79,7 @@ export type PetCalcOmniConfig = {
   metricsDisplay?: Metric[]; 
   riskBands?: RiskBand[]; 
   cta?: { label: string; href?: string; tel?: string }; 
-  stickyCta?: { whenRiskIn?: string[]; label: string; href?: string; tel?: string };
+
 
   // editorial content
   professionalAdviceNote?: string; 
@@ -140,11 +152,7 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
     return config.riskBands.find((b) => b.id === computeOut.riskKey) ?? null; 
   }, [computeOut.riskKey, config.riskBands]); 
 
-  // Allow sticky CTA when risk matches (or no filter provided)
-  const stickyCtaAllowed = !!config.stickyCta && (
-    !config.stickyCta.whenRiskIn ||
-    (computeOut.riskKey != null && config.stickyCta.whenRiskIn?.includes(computeOut.riskKey))
-  );
+
 
   // ===================== colunas ===================== 
   const center = (
@@ -259,10 +267,14 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
 
   const left = (
     <article className="text-[14px] md:text-[15px] leading-relaxed">
-      <h1 className="text-xl md:text-2xl font-bold mb-1" style={{ color: "#5c82ee" }}>
-        {config.title}
-      </h1>
-      <p className="text-sm md:text-[15px] text-muted-foreground">{config.shortDescription}</p>
+      {!config.hero && (
+        <>
+          <h1 className="text-xl md:text-2xl font-bold mb-1" style={{ color: "#5c82ee" }}>
+            {config.title}
+          </h1>
+          <p className="text-sm md:text-[15px] text-muted-foreground">{config.shortDescription}</p>
+        </>
+      )}
 
 
       {/* Optional professional advice note */}
@@ -450,52 +462,52 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
       ) : null}
       <div className="w-full overflow-visible" style={{ transform: "none" }}>
         {config.showTopAd && (
-          <div className="mb-4 rounded-md border border-dashed border-border/60 bg-muted/30 p-3 text-center text-xs text-muted-foreground">
-            Ad — Top Banner (placeholder)
-          </div>
+          <section className={`${CONTAINER} pt-6 pb-4`}>
+            <div className="rounded-md border border-dashed border-border/60 bg-muted/30 p-3 text-center text-xs text-muted-foreground">
+              Ad — Top Banner (placeholder)
+            </div>
+          </section>
         )}
 
-        <div
-          className="mx-auto max-w-7xl px-4 lg:px-6 pb-6 grid gap-6 grid-cols-1 md:[grid-template-columns:minmax(0,280px)_minmax(0,720px)] xl:[grid-template-columns:minmax(0,300px)_minmax(0,760px)_minmax(0,260px)]"
-          style={{ overflow: "visible" }}
-        >
-          <aside className="hidden md:block overflow-visible pt-1">{left}</aside>
-          <main className="min-w-0 md:sticky self-start" style={{ top: 88 }}>
-            {center}
-          </main>
-          {config.showRightAd ? (
-            <aside className="hidden xl:block overflow-visible md:sticky self-start" style={{ top: 88 }}>
-              {/* Right rail placeholder */}
-            </aside>
-          ) : null}
+        {config.hero?.title ? (
+          <section className={`${CONTAINER} pt-6 pb-4`}>
+            <h1 className="text-3xl font-bold text-[#5c82ee]">{config.hero.title}</h1>
+            {config.hero.description ? (
+              <p className="mt-2 text-sm text-muted-foreground">{config.hero.description}</p>
+            ) : null}
+          </section>
+        ) : null}
+
+        <div 
+          className={`${CONTAINER} pb-12 grid gap-6 
+            grid-cols-1 
+            md:[grid-template-columns:minmax(0,340px)_minmax(0,1fr)] 
+          `} 
+          style={{ overflow: "visible" }} 
+        > 
+          {/* LEFT — editorial */} 
+          <aside className="hidden md:block overflow-visible pt-1"> 
+            {left} 
+          </aside> 
+ 
+          {/* CENTER — calculator sticky (cola sob o header) */} 
+          <main className="min-w-0 md:sticky self-start" style={{ top: 88 }}> 
+            {center} 
+          </main> 
         </div>
       </div>
-      {config.reviewedNote ? (
-        <div className="mt-6 pl-4 md:pl-8 pr-2 md:pr-4">
-          <div className="max-w-[560px] md:max-w-[864px] rounded-md border border-border/60 bg-muted/20 p-3 text-sm text-muted-foreground">
-            <strong className="block text-foreground">Reviewed by the Smart Kit Now editorial team</strong>
-            {config.reviewedNote}
+      {config?.eeat?.showAtBottomOnce && config?.eeat?.text ? (
+        <div className={`${CONTAINER} mt-8`}>
+          <div className="rounded-xl border bg-card p-4 text-sm text-muted-foreground">
+            {config.eeat.text}
           </div>
         </div>
       ) : null}
-      <div className="mt-4 pl-4 md:pl-8 pr-2 md:pr-4">
-        <div className="max-w-[560px] md:max-w-[864px]">
-          <CalculatorFeedbackShare />
-        </div>
+      {/* Feedback + Share — exatamente na mesma régua do grid/hero */}
+      <div className={`${CONTAINER} mt-8 mb-16`}>
+        <CalculatorFeedbackShare />
       </div>
-      {stickyCtaAllowed ? (
-        <div className="fixed bottom-4 right-4 z-50">
-          <Button variant="destructive" asChild className="shadow-lg">
-            <a
-              href={config.stickyCta!.tel ? `tel:${config.stickyCta!.tel}` : config.stickyCta!.href ?? "#"}
-              target={config.stickyCta!.href ? "_blank" : undefined}
-              rel={config.stickyCta!.href ? "noreferrer" : undefined}
-            >
-              {config.stickyCta!.label}
-            </a>
-          </Button>
-        </div>
-      ) : null}
+
     </>
   );
 }

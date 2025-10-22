@@ -9,6 +9,7 @@ import GlowCardDemo from "@/pages/GlowCardDemo";
 import HealthCalculators from "@/pages/HealthCalculators";
 import ScienceCalculators from "@/pages/ScienceCalculators";
 import TimeCalculators from "@/pages/TimeCalculators";
+import PetsOmniLeftPreview from "@/pages/PetsOmniLeftPreview";
 
 // Removido SpeedInsights em App, mantido apenas injeção em main.tsx para evitar conflitos em localhost
 
@@ -203,6 +204,8 @@ export default function App() {
               />
               
 
+              {/* Preview */}
+              <Route path="/_preview/pets-omni-left" element={<PetsOmniLeftPreview />} />
               {/* Debug */}
               <Route path="/_debug/calcs" element={<CalcsDebug />} />
 

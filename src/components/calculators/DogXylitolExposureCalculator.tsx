@@ -132,7 +132,7 @@ const cfg: PetCalcOmniConfig = {
     { id: "emergency", label: "Emergency", tone: "bg-red-700", message: "≥ 500 mg/kg: High risk of acute hepatic failure. Immediate emergency care." },
   ],
 
-  stickyCta: { whenRiskIn: ["moderate", "high", "emergency"], label: "Call your veterinarian now", href: "https://www.petpoisonhelpline.com/" },
+
 
   professionalAdviceNote: "Hypoglycemia may develop within 30 minutes to several hours after ingestion. Hepatic injury, when it occurs, may develop later. Early veterinary care is critical.",
 
