@@ -209,13 +209,13 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat",
   },
   {
-    slug: "dog-xylitol-exposure-risk",
+    slug: "dog-xylitol-exposure",
     category: "pets",
     subcategory: "dogs",
-    title: "Dog Xylitol Exposure Risk Calculator",
-    description: "Educational triage for suspected xylitol ingestion (sugar-free gum, baked goods); call your veterinarian.",
+    title: "Dog Xylitol Exposure Calculator",
+    description: "Estimate dose (mg/kg) from gum, mints, or foods; educational risk bands with urgent vet CTA.",
     loader: () => import("@/components/calculators/DogXylitolExposureCalculator"),
-    aliases: ["xylitol-dogs", "dog-xylitol-toxicity"],
+    aliases: ["dog-xylitol-toxicity", "xylitol-for-dogs"],
     urlStyle: "flat",
   },
 ];

@@ -48,12 +48,12 @@ const SOURCES = [
 ];
 
 const cfg: PetCalcOmniConfig = {
-  title: "Dog Xylitol Exposure Risk Calculator",
+  title: "Dog Xylitol Exposure Calculator",
   shortDescription:
-    "Educational estimate of risk from xylitol ingestion in dogs, with dose bands (mg/kg), tables, and FAQs.",
+    "Estimate a dog's xylitol dose (mg/kg) from gum, mints, or foods and view an educational risk band. For guidance only — contact a veterinarian immediately.",
   strongDisclaimer:
-    "Educational tool. Not a substitute for veterinary evaluation. Xylitol concentrations vary widely between brands; when in doubt, assume high and seek professional guidance.",
-  reviewedNote: "Content for general guidance only. For medical decisions, consult a licensed veterinarian.",
+    "Educational tool only. Xylitol concentrations vary widely between products and brands. Treat any suspected ingestion as urgent and contact a veterinarian immediately.",
+  reviewedNote: "Reviewed by the Smart Kit Now editorial team. Content for general guidance only. For medical decisions, consult a licensed veterinarian.",
   showTopAd: true,
   showRightAd: false,
 
@@ -62,70 +62,100 @@ const cfg: PetCalcOmniConfig = {
     { type: "unit",   key: "weightUnit", label: "Weight unit", options: ["kg","lb"], default: "kg" },
     { type: "select", key: "productType", label: "Product type", default: "gum_piece",
       options: Object.entries(PRODUCT_REFERENCE).map(([value, v]) => ({ value, label: v.label })) },
-    { type: "number", key: "units", label: "Number of units", min: 0, step: 1, default: 2 },
-    { type: "number", key: "customMgPerUnit", label: "Custom mg per unit (if selected)", min: 0, step: 10, default: 100 },
-    { type: "number", key: "totalMg", label: "Total xylitol (mg)  if known", min: 0, step: 10, default: 0 },
+    { type: "number", key: "amount", label: "Amount (pieces or grams)", min: 0, step: 1, default: 2 },
+    { type: "select", key: "amountUnit", label: "Amount unit", default: "piece", options: [
+      { value: "piece", label: "pieces" },
+      { value: "g", label: "grams (g)" },
+    ] },
+    { type: "number", key: "customMgPerUnit", label: "Custom mg per piece (if selected)", min: 0, step: 10, default: 100 },
+    { type: "number", key: "customMgPerGram", label: "Custom mg per gram (if selected)", min: 0, step: 1, default: 0 },
+    { type: "number", key: "totalMg", label: "Total xylitol (mg) — if known", min: 0, step: 10, default: 0 },
   ],
 
   compute: (s) => {
-    const wkg = s.toKg(parseFloat(s.weight || "0"), s.weightUnit);
-    const totalMgDirect = parseFloat(s.totalMg || "0");
-    const units = parseFloat(s.units || "0");
+    const toKg = (v:number,u:"kg"|"lb") => (u==="lb"? v*0.45359237: v);
+    const w = parseFloat(s.weight || "0");
+    const wkg = toKg(w, s.weightUnit);
+
     const key: ProdKey = (s.productType || "gum_piece") as ProdKey;
+    const amount = parseFloat(s.amount || "0");
+    const amountUnit: "piece"|"g" = (s.amountUnit || "piece") as any;
+
     const ref = PRODUCT_REFERENCE[key];
-    const mgPerUnit = key === "custom_mg" ? parseFloat(s.customMgPerUnit || "0") : (ref?.mgPerUnit ?? 0);
-    const estimatedTotalMg = units * mgPerUnit;
+    const isCustom = key === "custom_mg";
+    const mgPerPiece = isCustom ? parseFloat(s.customMgPerUnit || "0") : (ref?.mgPerUnit ?? 0);
+    const mgPerGramCustom = parseFloat(s.customMgPerGram || "0");
+
+    // If "gram" unit chosen and we have a grams-based reference key, use amount directly; otherwise estimate by per-piece
+    let estimatedTotalMg = 0;
+    if (amountUnit === "g") {
+      // Prefer custom mg per gram if provided (>0), otherwise approximate using mgPerPiece as a rough per-piece estimate
+      const mgPerGram = mgPerGramCustom > 0 ? mgPerGramCustom : 0;
+      estimatedTotalMg = mgPerGram > 0 ? (amount * mgPerGram) : (amount * mgPerPiece); // fallback approximate
+    } else {
+      estimatedTotalMg = amount * mgPerPiece;
+    }
+
+    const totalMgDirect = parseFloat(s.totalMg || "0");
     const total_xylitol_mg = totalMgDirect > 0 ? totalMgDirect : estimatedTotalMg;
     const dose_mg_per_kg = wkg > 0 ? total_xylitol_mg / wkg : 0;
-    const band = classifyXylitolDose(dose_mg_per_kg);
+
+    // 4-band educational classification
+    let riskKey: "low"|"moderate"|"high"|"emergency" = "low";
+    if (!Number.isFinite(dose_mg_per_kg) || dose_mg_per_kg <= 0) riskKey = "low";
+    else if (dose_mg_per_kg < 50) riskKey = "low";
+    else if (dose_mg_per_kg < 100) riskKey = "moderate";
+    else if (dose_mg_per_kg < 500) riskKey = "high";
+    else riskKey = "emergency";
+
     return {
       metrics: {
-        total_xylitol_mg,
-        dose_mg_per_kg,
-        mg_per_unit: mgPerUnit,
-        units,
+        total_xylitol_mg: total_xylitol_mg,
+        dose_mg_per_kg: dose_mg_per_kg,
+        mg_per_unit: mgPerPiece,
+        units: amount,
       },
-      riskKey: band.id,
+      riskKey,
     };
   },
 
   metricsDisplay: [
     { key: "total_xylitol_mg", label: "Total xylitol (mg)", format: (v) => `${Math.round(v)}` },
-    { key: "dose_mg_per_kg", label: "Dose (mg/kg)  educational", format: (v) => `${Math.round(v)} mg/kg` },
-    { key: "mg_per_unit", label: "Reference mg per unit (estimate)", format: (v) => `${Math.round(v)} mg` },
+    { key: "dose_mg_per_kg", label: "Dose (mg/kg)", format: (v) => `${Math.round(v)} mg/kg` },
+    { key: "mg_per_unit", label: "Reference mg per piece (estimate)", format: (v) => `${Math.round(v)} mg` },
   ],
 
   riskBands: [
-    { id: "caution", label: "Caution", tone: "bg-yellow-600", message: "< 50 mg/kg: Asymptomatic or mild GI; individual risk varies. Contact a veterinarian." },
-    { id: "hypo", label: "Hypoglycemia", tone: "bg-orange-600", message: "50100 mg/kg: Lethargy, weakness, vomiting, ataxia, seizures. Veterinary evaluation (check blood glucose)." },
-    { id: "high", label: "High", tone: "bg-red-700", message: "100500 mg/kg: Marked hypoglycemia; possible hepatic injury. Urgent veterinary care." },
-    { id: "veryhigh", label: "Very High", tone: "bg-red-800", message: " 500 mg/kg: High risk of acute hepatic failure. Immediate emergency." },
+    { id: "low", label: "Low", tone: "bg-emerald-600", message: "< 50 mg/kg: Asymptomatic or mild GI; individual risk varies. Contact a veterinarian." },
+    { id: "moderate", label: "Moderate (Hypoglycemia risk)", tone: "bg-amber-500", message: "50–100 mg/kg: Lethargy, weakness, vomiting, ataxia, seizures. Veterinary evaluation (check blood glucose)." },
+    { id: "high", label: "High", tone: "bg-orange-600", message: "100–500 mg/kg: Marked hypoglycemia; possible hepatic injury. Urgent veterinary care." },
+    { id: "emergency", label: "Emergency", tone: "bg-red-700", message: "≥ 500 mg/kg: High risk of acute hepatic failure. Immediate emergency care." },
   ],
 
-  stickyCta: { whenRiskIn: ["hypo", "high", "veryhigh"], label: "Call vet now", href: "https://www.petpoisonhelpline.com/" },
+  stickyCta: { whenRiskIn: ["moderate", "high", "emergency"], label: "Call your veterinarian now", href: "https://www.petpoisonhelpline.com/" },
 
-  professionalAdviceNote: "Signs of hypoglycemia can appear within 1560 min; hepatic injury may occur hours later.",
+  professionalAdviceNote: "Hypoglycemia may develop within 30 minutes to several hours after ingestion. Hepatic injury, when it occurs, may develop later. Early veterinary care is critical.",
 
   howToUse: [
     "Enter the dog's weight and unit (kg or lb).",
-    "Choose the product type and quantity (units).",
-    "If you know the total mg (package/servings), enter it for a direct calculation; otherwise, the tool estimates per unit.",
-    "Use the educational dose band (mg/kg) for triage and contact a veterinarian.",
+    "Choose the product type and amount (pieces or grams).",
+    "If you know the total mg (from packaging/serving), enter it for a direct calculation; otherwise the tool estimates per unit.",
+    "Use the educational dose band (mg/kg) for triage and contact a veterinarian immediately.",
   ],
 
   howItWorks: {
     intro:
-      "Xylitol, a common sweetener in sugar-free products, can cause acute hypoglycemia and hepatic injury in dogs. Because concentration varies widely among brands, this tool accepts a total mg or estimates from product categories, showing an educational risk band (mg/kg).",
+      "Xylitol, a common sweetener in sugar‑free products, can cause acute hypoglycemia and hepatic injury in dogs. Because concentration varies widely among brands, this tool accepts a total mg or estimates from product categories, showing an educational risk band (mg/kg).",
     formula: "dose_mg_per_kg = total_xylitol_mg ÷ weight_kg",
     variables: [
-      "total_xylitol_mg  estimated from package/servings OR reference tables",
-      "weight_kg  dog weight in kilograms",
+      "total_xylitol_mg — estimated from package/servings OR reference tables",
+      "weight_kg — dog weight in kilograms",
     ],
   },
 
   tables: [
     {
-      title: "Educational reference  example xylitol amounts per unit",
+      title: "Educational reference — example xylitol amounts per unit",
       headers: ["Product type", "Approx. mg per unit (example)"],
       rows: Object.entries(PRODUCT_REFERENCE)
         .filter(([k]) => k !== "custom_mg")
@@ -153,48 +183,67 @@ const cfg: PetCalcOmniConfig = {
       notes: ["Use actual dog weight and specific quantity for better estimates."],
     },
     {
-      title: "Signs and timeline (varies by individual/product)",
+      title: "Dose bands (educational) and possible signs",
       headers: ["Band (mg/kg)", "Possible signs", "When to act"],
       rows: [
-        ["< 50 (Caution)", "Asymptomatic or mild GI; individual risk varies", "Contact veterinarian for guidance and monitoring"],
-        ["~50100 (Hypoglycemia)", "Lethargy, weakness, vomiting, ataxia, seizures", "Veterinary evaluation (check blood glucose)"],
-        ["~100500 (High)", "Marked hypoglycemia; possible hepatic injury", "Urgent veterinary care"],
-        [" 500 (Very High)", "High risk of acute hepatic failure", "Emergency  seek immediate care"],
+        ["< 50 (Low)", "Asymptomatic or mild GI; individual risk varies", "Contact veterinarian for guidance and monitoring"],
+        ["50–100 (Moderate)", "Lethargy, weakness, vomiting, ataxia, seizures", "Veterinary evaluation (check blood glucose)"],
+        ["100–500 (High)", "Marked hypoglycemia; possible hepatic injury", "Urgent veterinary care"],
+        ["≥ 500 (Emergency)", "High risk of acute hepatic failure", "Immediate emergency care"],
       ],
-      notes: ["Signs of hypoglycemia can appear within 1560 min; hepatic injury may occur hours later."],
+      notes: ["Hypoglycemia may develop within 30 minutes to several hours after ingestion; hepatic injury may occur hours later."],
     },
   ],
 
-  faqs: FAQS,
-  sources: SOURCES,
+  faqs: [
+    { question: "My dog ate one piece of sugar‑free gum — what should I do?", answer: "Call your veterinarian or an emergency clinic immediately. Gum can contain very high xylitol per piece depending on brand; do not wait for symptoms." },
+    { question: "How fast can xylitol cause problems?", answer: "Hypoglycemia may develop within 30 minutes to several hours after ingestion. Hepatic injury, when it occurs, may develop later. Early veterinary care is critical." },
+    { question: "The package says ‘natural sweetener’ — is it xylitol?", answer: "‘Natural sweetener’ is nonspecific. Check the ingredients list for ‘xylitol.’ If uncertain, treat as a potential exposure and call your veterinarian." },
+    { question: "Can I induce vomiting at home?", answer: "Do not induce vomiting unless specifically instructed by a veterinarian. Some circumstances make home induction unsafe." },
+    { question: "Is any xylitol amount safe for dogs?", answer: "Sensitivity and product concentrations vary; even small amounts can be dangerous. Seek professional advice." },
+  ],
+  sources: [
+    { label: "FDA — Xylitol and Dogs (consumer health updates)", href: "https://www.fda.gov/consumers/consumer-updates/paws-xylitol-its-dangerous-dogs" },
+    { label: "Merck Veterinary Manual — Xylitol toxicity in dogs", href: "https://www.merckvetmanual.com/toxicology/food-hazards/xylitol-toxicosis-in-dogs" },
+    { label: "WSAVA — Nutritional and toxicology guidance (general references)", href: "https://wsava.org/global-guidelines/" },
+    { label: "Pet Poison Helpline — Xylitol poisoning overview", href: "https://www.petpoisonhelpline.com/poison/xylitol/" },
+  ],
 
   relatedLinks: [
-    { label: "Dog Chocolate Toxicity Calculator", href: "/pets/dogs/dog-chocolate-toxicity-calculator" },
-    { label: "Dog Grape/Raisin Exposure Risk", href: "/pets/dogs/dog-grape-raisin-exposure-risk" },
-    { label: "Dog Water Intake  Daily Hydration", href: "/pets/dogs/dog-water-intake" },
+    { label: "Dog Chocolate Toxicity Calculator", href: "/pets/dog-chocolate-toxicity-calculator" },
+    { label: "Dog Grape/Raisin Exposure Risk", href: "/pets/dog-grape-raisin-exposure-risk" },
+    { label: "Dog Water Intake — Daily Hydration", href: "/pets/dog-water-intake" },
   ],
 
   seo: {
-    title: "Dog Xylitol Exposure Risk Calculator",
-    description: "Educational estimate of risk from xylitol ingestion in dogs, with dose bands (mg/kg), tables, and FAQs.",
-    canonical: "https://www.smartkitnow.com/pets/dogs/dog-xylitol-exposure-risk",
+    title: "Dog Xylitol Exposure Calculator — Estimate mg/kg dose & educational risk",
+    description:
+      "Estimate a dog's xylitol dose (mg/kg) from gum, mints, or foods and view an educational risk band. For guidance only — contact a veterinarian immediately.",
+    canonical: "https://www.smartkitnow.com/pets/dog-xylitol-exposure",
   },
 
   jsonLd: {
     webpage: {
       "@type": "WebPage",
-      name: "Dog Xylitol Exposure Risk Calculator",
-      description: "Educational estimate of risk from xylitol ingestion in dogs, with dose bands (mg/kg), tables, FAQs, and sources.",
-      url: "https://www.smartkitnow.com/pets/dogs/dog-xylitol-exposure-risk",
+      name: "Dog Xylitol Exposure Calculator",
+      description:
+        "Estimate a dog's xylitol dose (mg/kg) from gum, mints, or foods and view an educational risk band.",
+      url: "https://www.smartkitnow.com/pets/dog-xylitol-exposure",
     },
     breadcrumbs: {
       items: [
+        { name: "Home", item: "https://www.smartkitnow.com/" },
         { name: "Pets", item: "https://www.smartkitnow.com/pets" },
-        { name: "Dogs", item: "https://www.smartkitnow.com/pets/dogs" },
-        { name: "Dog Xylitol Exposure Risk", item: "https://www.smartkitnow.com/pets/dogs/dog-xylitol-exposure-risk" },
+        { name: "Dog Xylitol Exposure", item: "https://www.smartkitnow.com/pets/dog-xylitol-exposure" },
       ],
     },
-    faq: FAQS.map((f) => ({ q: f.question, a: f.answer })),
+    faq: [
+      { q: "My dog ate one piece of sugar‑free gum — what should I do?", a: "Call your veterinarian or an emergency clinic immediately. Gum can contain very high xylitol per piece depending on brand; do not wait for symptoms." },
+      { q: "How fast can xylitol cause problems?", a: "Hypoglycemia may develop within 30 minutes to several hours after ingestion. Hepatic injury, when it occurs, may develop later. Early veterinary care is critical." },
+      { q: "The package says ‘natural sweetener’ — is it xylitol?", a: "‘Natural sweetener’ is nonspecific. Check the ingredients list for ‘xylitol.’ If uncertain, treat as a potential exposure and call your veterinarian." },
+      { q: "Can I induce vomiting at home?", a: "Do not induce vomiting unless specifically instructed by a veterinarian. Some circumstances make home induction unsafe." },
+      { q: "Is any xylitol amount safe for dogs?", a: "Sensitivity and product concentrations vary; even small amounts can be dangerous. Seek professional advice." },
+    ],
   },
 };
 

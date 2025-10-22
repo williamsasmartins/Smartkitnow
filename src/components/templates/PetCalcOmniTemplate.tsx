@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
-import PetCalculatorPageLayout from "@/components/layouts/PetCalculatorPageLayout";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -448,13 +448,28 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
           }}
         />
       ) : null}
-      <PetCalculatorPageLayout
-        left={left}
-        center={center}
-        showTopAd={config.showTopAd}
-        showRightAd={false}
-        stickyOffsetPx={88}
-      />
+      <div className="w-full overflow-visible" style={{ transform: "none" }}>
+        {config.showTopAd && (
+          <div className="mb-4 rounded-md border border-dashed border-border/60 bg-muted/30 p-3 text-center text-xs text-muted-foreground">
+            Ad — Top Banner (placeholder)
+          </div>
+        )}
+
+        <div
+          className="mx-auto max-w-7xl px-4 lg:px-6 pb-6 grid gap-6 grid-cols-1 md:[grid-template-columns:minmax(0,280px)_minmax(0,720px)] xl:[grid-template-columns:minmax(0,300px)_minmax(0,760px)_minmax(0,260px)]"
+          style={{ overflow: "visible" }}
+        >
+          <aside className="hidden md:block overflow-visible pt-1">{left}</aside>
+          <main className="min-w-0 md:sticky self-start" style={{ top: 88 }}>
+            {center}
+          </main>
+          {config.showRightAd ? (
+            <aside className="hidden xl:block overflow-visible md:sticky self-start" style={{ top: 88 }}>
+              {/* Right rail placeholder */}
+            </aside>
+          ) : null}
+        </div>
+      </div>
       {config.reviewedNote ? (
         <div className="mt-6 pl-4 md:pl-8 pr-2 md:pr-4">
           <div className="max-w-[560px] md:max-w-[864px] rounded-md border border-border/60 bg-muted/20 p-3 text-sm text-muted-foreground">

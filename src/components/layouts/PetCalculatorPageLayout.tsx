@@ -16,12 +16,12 @@ import React from "react";
    showTopAd = true,
    showRightAd = true,
    right,
-   stickyOffsetPx = 80, // ~top-20 (ajuste se seu Header mudar)
+   stickyOffsetPx = 88, // altura típica do Header; ajuste se mudar
  }: Props) {
    return (
      <div
        className="w-screen max-w-none mx-0 pl-4 md:pl-8 pr-2 md:pr-4 py-6 relative"
-       style={{ overflow: "visible" }} // garante que sticky funcione
+       style={{ overflow: "visible", transform: "none" }} // garante que sticky funcione e não seja afetado por transform
      >
        {/* Top banner (placeholder de ad) */}
        {showTopAd && (
