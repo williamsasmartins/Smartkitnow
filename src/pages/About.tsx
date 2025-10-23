@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
-import ShareThisCalculator from "@/components/share/ShareThisCalculator";
+
 
 export default function About() {
   const navigate = useNavigate();
@@ -15,35 +15,10 @@ export default function About() {
   return (
     <div className="min-h-screen bg-gradient-soft">
       <SEOHead
-  title="About Us · SmartKitNow"
-  description="Learn about SmartKitNow — mission, values, and the team building accurate, fast calculators."
-  canonical="https://www.smartkitnow.com/about"
-  breadcrumbs={[
-    { name: "Home", url: "https://www.smartkitnow.com/" },
-    { name: "About Us", url: "https://www.smartkitnow.com/about" },
-  ]}
-  schema={{
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    name: "About SmartKitNow",
-    url: "https://www.smartkitnow.com/about",
-    description: "Learn about SmartKitNow — mission, values, and the team.",
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.smartkitnow.com/" },
-        { "@type": "ListItem", position: 2, name: "About Us", item: "https://www.smartkitnow.com/about" }
-      ]
-    },
-    isPartOf: { "@type": "WebSite", name: "SmartKitNow", url: "https://www.smartkitnow.com/" },
-    publisher: {
-      "@type": "Organization",
-      name: "SmartKitNow",
-      url: "https://www.smartkitnow.com/",
-      logo: { "@type": "ImageObject", url: "https://www.smartkitnow.com/logo.png" }
-    }
-  }}
-/>
+        title="About Us · SmartKitNow"
+        description="Learn about SmartKitNow — mission, values, and the team building accurate, fast calculators."
+        canonical="https://www.smartkitnow.com/about"
+      />
 
 
 
@@ -112,7 +87,7 @@ export default function About() {
           </Card>
         <section className="mt-10 space-y-3">
           <SiteFeedbackForm title="Questions or suggestions?" compact={true} />
-          <ShareThisCalculator />
+          
         </section>
         </div>
       </main>

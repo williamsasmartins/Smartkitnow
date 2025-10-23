@@ -1,209 +1,121 @@
 import { ThemeToggle } from "./ThemeToggle";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
-import { useState, useMemo } from "react";
 import logoImage from "@/assets/logo-skn.png";
-import { REGISTRY, type CalculatorEntry, FRIENDLY_TITLES, categoryIcon } from "@/data/calculatorRegistry";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { getCategoryIcon } from "@/lib/navigation";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export function Header() {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [query, setQuery] = useState("");
 
-  const searchIndex: CalculatorEntry[] = useMemo(() => REGISTRY.filter(e => !!e.subcategory), []);
+  const PRIMARY_CATS = [
+    { key: "financial", label: "Financial", to: "/#financial" },
+    { key: "health", label: "Health", to: "/#health" },
+    { key: "cooking", label: "Cooking", to: "/#cooking" },
+    { key: "conversion", label: "Conversion", to: "/#conversion" },
+    { key: "math", label: "Math & Algebra", to: "/#math" },
+    { key: "pet", label: "Pet Care", to: "/#pet" },
+    { key: "science", label: "Science", to: "/#science" },
+    { key: "time", label: "Time & Date", to: "/#time" },
+  ];
 
-  // Estado do menu More (desktop) — controlado pelo Popover
-  const [isMoreOpen, setIsMoreOpen] = useState(false);
-
-  const filteredCalculators = useMemo(() => {
-    const q = searchTerm.trim().toLowerCase();
-    if (!q) return [];
-    return searchIndex
-      .filter((e) => {
-        const nameMatch = e.title.toLowerCase().includes(q);
-        const categoryMatch = e.category.toLowerCase().includes(q);
-        const subcategoryMatch = (e.subcategory || "").toLowerCase().includes(q);
-        const aliasMatch = (e.aliases || []).some(a => a.toLowerCase().includes(q));
-        const slugMatch = e.slug.toLowerCase().includes(q);
-        return nameMatch || categoryMatch || subcategoryMatch || aliasMatch || slugMatch;
-      })
-      .slice(0, 8);
-  }, [searchTerm, searchIndex]);
+  const MORE_CATS = [
+    { key: "automotive", label: "Automotive", to: "/#automotive" },
+    { key: "construction", label: "Construction", to: "/#construction" },
+    { key: "electrical", label: "Electrical", to: "/#electrical" },
+    { key: "everyday", label: "Everyday Life", to: "/everyday-life" },
+    { key: "sports", label: "Sports", to: "/sports" },
+    { key: "funny", label: "Funny", to: "/funny" },
+    { key: "video", label: "Video", to: "/tv-video" },
+  ];
 
   const handleHomeClick = () => navigate("/");
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    setShowSuggestions(value.trim().length > 0);
-  };
-
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchTerm.trim() && filteredCalculators.length > 0) {
-      navigateToCalculator(filteredCalculators[0]);
-    }
+    const q = query.trim();
+    if (!q) return;
+    window.location.href = `https://www.smartkitnow.com/search?q=${encodeURIComponent(q)}`;
   };
-
-  const navigateToCalculator = (calculator: CalculatorEntry) => {
-    setSearchTerm("");
-    setShowSuggestions(false);
-    const { category, slug } = calculator;
-    if (category && slug) {
-      navigate(`/${category}/${slug}`);
-    }
-  };
-
-  const handleSuggestionClick = (calculator: any) => navigateToCalculator(calculator);
 
   return (
     <header className="fixed top-0 w-full bg-background/95 backdrop-blur-md z-[10000] border-b border-border/50">
-      <div className="container mx-auto px-4 py-2 max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0">
+      <div className="container mx-auto px-4 py-2 max-w-7xl grid grid-cols-1 sm:grid-cols-3 items-center gap-3">
         <div
-          className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+          className="flex items-center cursor-pointer hover:opacity-80 transition-opacity justify-self-start"
           onClick={handleHomeClick}
         >
-          <img
-            src={logoImage}
-            alt="Smart Kit Now Logo"
-            className="h-9 w-auto block"
-          />
+          <img src={logoImage} alt="Smart Kit Now Logo" className="h-9 w-auto block" />
         </div>
 
-        <form onSubmit={handleSearchSubmit} className="flex-1 w-full sm:max-w-xl mx-0 sm:mx-4 relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            type="text"
-            placeholder="Search for a calculator"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            onFocus={() => setShowSuggestions(searchTerm.trim().length > 0)}
-            onBlur={() => setTimeout(() => setShowSuggestions(false), 180)}
-            className="pl-10 bg-muted/50 border-border/60 focus:border-primary/40 transition-all duration-300 w-full h-9 text-sm"
-          />
-          {showSuggestions && filteredCalculators.length > 0 && (
-            <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
-              {filteredCalculators.map((calc) => (
-                <div
-                  key={`${calc.category}-${calc.slug}`}
-                  onPointerDown={(e) => {
-                    e.preventDefault();
-                    handleSuggestionClick(calc);
-                  }}
-                  className="px-4 py-2 hover:bg-muted cursor-pointer border-b border-border/50 last:border-b-0"
-                >
-                  <div className="font-medium text-sm">{calc.title}</div>
-                  <div className="text-xs text-muted-foreground capitalize">{calc.category}{calc.subcategory ? ` • ${calc.subcategory}` : ""}</div>
-                </div>
-              ))}
-            </div>
-          )}
-        </form>
+        <div className="w-full justify-self-center">
+          <form onSubmit={handleSearchSubmit} className="mx-auto w-full max-w-lg flex items-center gap-2">
+            <Input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search calculators, tips, recipes…"
+              className="h-9 w-full"
+            />
+            <Button type="submit" className="h-9">Search</Button>
+          </form>
+        </div>
 
-        <div className="flex items-center mr-0 sm:mr-3 md:mr-6">
+        <div className="justify-self-end">
           <ThemeToggle />
         </div>
       </div>
 
-      {/* Compact category menu inside Header */}
-      <nav className="container mx-auto px-4 pb-2 overflow-x-auto no-scrollbar">
-        <ul className="skn-cat-menu flex items-center justify-start gap-5 text-sm whitespace-nowrap w-full">
-          {/* 11 principais categorias */}
-          <li className="flex items-center">
-            <Link to="/cooking" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{categoryIcon("cooking")}</span>
-              Cooking
-            </Link>
-          </li>
-          <li className="flex items-center">
-            <Link to="/conversion" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{categoryIcon("conversion")}</span>
-              Conversion
-            </Link>
-          </li>
-          <li className="flex items-center">
-            <Link to="/math" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{categoryIcon("math")}</span>
-              Math & Algebra
-            </Link>
-          </li>
-          <li className="flex items-center">
-            <Link to="/financial" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{categoryIcon("financial")}</span>
-              Financial
-            </Link>
-          </li>
-          <li className="flex items-center">
-            <Link to="/health" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{categoryIcon("health")}</span>
-              Health & Fitness
-            </Link>
-          </li>
-          <li className="flex items-center">
-            <Link to="/pets" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{categoryIcon("pets")}</span>
-              Pet Care
-            </Link>
-          </li>
-          <li className="flex items-center">
-            <Link to="/science" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{categoryIcon("science")}</span>
-              Science
-            </Link>
-          </li>
-          <li className="flex items-center">
-            <Link to="/time" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{categoryIcon("time")}</span>
-              Time & Date
-            </Link>
-          </li>
-          <li className="flex items-center">
-            <Link to="/tv-video" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{categoryIcon("tv")}</span>
-              Video
-            </Link>
-          </li>
+      <nav className="container mx-auto px-4 pb-2 overflow-x-hidden">
+        <ul className="skn-cat-menu flex items-center justify-start gap-4 text-sm whitespace-nowrap w-full">
           <li className="flex items-center">
             <Link to="/recipes" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{categoryIcon("recipes")}</span>
+              <span className="mr-1" aria-hidden>{getCategoryIcon("recipes")}</span>
               Recipes
             </Link>
           </li>
           <li className="flex items-center">
             <Link to="/smart-tips" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{categoryIcon("smart-tips")}</span>
+              <span className="mr-1" aria-hidden>{getCategoryIcon("smart-tips")}</span>
               Smart Tips
             </Link>
           </li>
-          
-          {/* More */}
-          <li>
-            <div className="relative inline-block">
-              <Popover open={isMoreOpen} onOpenChange={setIsMoreOpen}>
-                <PopoverTrigger asChild>
-                  <button
-                    className="cursor-pointer text-muted-foreground hover:text-foreground"
-                    aria-haspopup="dialog"
-                    aria-expanded={isMoreOpen}
-                  >
-                    More
-                  </button>
-                </PopoverTrigger>
-                <PopoverContent align="center" sideOffset={8} className="w-[min(92vw,720px)] p-2">
-                  <ul className="py-2 text-sm grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2">
-                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/construction" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("construction")}</span>Construction</Link></li>
-                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/electrical" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("electrical")}</span>Electrical</Link></li>
-                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/automotive" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("automotive")}</span>Automotive</Link></li>
-                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/sports" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("sports")}</span>Sports</Link></li>
-                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/everyday-life" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("everyday-life")}</span>Everyday Life</Link></li>
-                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/daily-quotes" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("daily-quotes")}</span>Daily Quotes</Link></li>
-                    <li className="px-4 py-2.5 hover:bg-muted tracking-wide text-center"><Link to="/funny" className="inline-flex items-center justify-center"><span className="mr-1" aria-hidden>{categoryIcon("funny")}</span>Funny</Link></li>
-                  </ul>
-                </PopoverContent>
-              </Popover>
-            </div>
+          <li className="flex items-center">
+            <Link to="/daily-quotes" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
+              <span className="mr-1" aria-hidden>{getCategoryIcon("daily-quotes")}</span>
+              Daily Quotes
+            </Link>
+          </li>
+
+          {PRIMARY_CATS.map((cat) => (
+            <li key={cat.key} className="flex items-center">
+              <Link to={cat.to} className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
+                <span className="mr-1" aria-hidden>{getCategoryIcon(cat.key)}</span>
+                {cat.label}
+              </Link>
+            </li>
+          ))}
+
+          <li className="flex items-center">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="text-primary hover:text-primary/80 transition-colors inline-flex items-center px-2">
+                  More
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent side="bottom" align="start" className="min-w-[220px]">
+                {MORE_CATS.map((cat) => (
+                  <DropdownMenuItem key={cat.key} asChild>
+                    <Link to={cat.to} className="inline-flex items-center gap-2">
+                      <span className="text-[16px]" aria-hidden>{getCategoryIcon(cat.key)}</span>
+                      <span>{cat.label}</span>
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </li>
         </ul>
       </nav>

@@ -1,230 +1,51 @@
-// src/components/layouts/CategoryCalculatorsTemplate.tsx
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Header } from "@/components/Header";
-import PageWithRails from "@/components/layouts/PageWithRails";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
-import {
-  listSubcategoriesOfCategory,
-  listByCategorySubcategory,
-  FRIENDLY_TITLES,
-  subcategoryIcon,
-  categoryIcon,
-  calcPath,
-} from "@/data/calculatorRegistry";
-import type { CalculatorEntry } from "@/data/calculatorRegistry";
-import SEOHead from "@/components/SEOHead";
-import CalculatorLink from "@/components/common/CalculatorLink";
+import React from "react";
+import CategoryPageTemplate, { type CategorySection } from "@/components/layouts/CategoryPageTemplate";
 
-// Helper: Alternate emoji pools per category to avoid duplicates by swapping
-const ALT_EMOJI_POOLS: Record<string, string[]> = {
-  cooking: ["🍳", "🍽️", "🥘", "🍲", "🍝", "🧁", "🍰", "🍞", "🥗", "🍔"],
-  math: ["➗", "➕", "➖", "✖️", "📐", "📏", "📊", "📈", "🧮", "🔢"],
-  health: ["❤️", "🩺", "🧠", "🫁", "🦷", "🩸", "🏥", "💊", "🧪", "🥼"],
-  construction: ["🧱", "🛠️", "🪚", "🏗️", "🔨", "🪛", "🚧", "📐", "📏", "🧰"],
-  financial: ["💵", "💰", "📈", "📉", "💳", "🏦", "🧮", "💹", "💱", "🪙"],
-  sports: ["🏀", "⚽", "🏈", "🎾", "🏐", "🥎", "⚾", "🏓", "🏒", "🥊"],
+export type CategoryCalculatorsTemplateProps = {
+  category: string;
+  titleOverride?: string;
+  description?: string;
+  canonical?: string; // reservado para SEO; sem efeito funcional aqui
+  backTo?: string;    // opcional: exibe link de retorno
+  sections?: CategorySection[];
+  minContentScore?: number;
 };
-const GENERIC_FALLBACK: string[] = ["🔷", "🔶", "🔺", "🔹", "🔸", "⭐", "🌟", "✅", "📌", "🧭"];
 
-function getUniqueEmojiForSubcategory(baseEmoji: string | undefined, category: string, usedIcons: Set<string>): string | undefined {
-  const pool = ALT_EMOJI_POOLS[category] || GENERIC_FALLBACK;
-  if (baseEmoji && !usedIcons.has(baseEmoji)) return baseEmoji;
-  for (const e of pool) {
-    if (!usedIcons.has(e)) return e;
-  }
-  for (const e of GENERIC_FALLBACK) {
-    if (!usedIcons.has(e)) return e;
-  }
-  return undefined;
-}
-
-export interface CategoryCalculatorsTemplateProps {
-  category: string; // ex: "financial", "health"
-  description: string; // descrição do H1 (com Read More)
-  canonical?: string; // por padrão: https://www.smartkitnow.com/<category>
-  titleOverride?: string; // por padrão: FRIENDLY_TITLES[category]
-  breadcrumbsOverride?: { name: string; url: string }[]; // por padrão: Home -> /<category>
-  marginTopClass?: string; // por padrão: "mt-[156px] md:mt-[176px]"
-  showRightRail?: boolean; // por padrão: true
-  showTopBanner?: boolean; // por padrão: true
-  showBottomBanner?: boolean; // por padrão: true
-  railsSticky?: boolean; // por padrão: false
-  backTo?: string; // por padrão: "/"
-  // New: optional filtering controls
-  includeSubcategories?: string[]; // limit listed subcategories by slug
-  filterCalculator?: (c: CalculatorEntry) => boolean; // filter calculators within each subcategory
-  // New: allow custom static sections instead of dynamic registry lists
-  renderSections?: () => React.ReactNode;
-  // New: allow overriding the total calculators count shown below the title
-  totalOverride?: number;
-}
+const toKind = (category: string): string => {
+  const c = category.toLowerCase();
+  if (c.startsWith("smart")) return "tips";
+  if (c.includes("quote")) return "quotes";
+  if (c.includes("recipe")) return "recipes";
+  return c; // usa diretamente quando já é uma chave conhecida
+};
 
 export default function CategoryCalculatorsTemplate({
   category,
+  titleOverride,
   description,
   canonical,
-  titleOverride,
-  breadcrumbsOverride,
-  marginTopClass = "mt-[156px] md:mt-[176px]",
-  showRightRail = true,
-  showTopBanner = true,
-  showBottomBanner = true,
-  railsSticky = false,
-  backTo = "/",
-  includeSubcategories,
-  filterCalculator,
-  renderSections,
-  totalOverride,
+  backTo,
+  sections = [],
+  minContentScore = 3,
 }: CategoryCalculatorsTemplateProps) {
-  const navigate = useNavigate();
-  const subcatsRaw = listSubcategoriesOfCategory(category);
-  const subcats = includeSubcategories
-    ? subcatsRaw.filter((sc) => includeSubcategories.includes(sc.slug))
-    : subcatsRaw;
-  const categoryTitle = titleOverride || FRIENDLY_TITLES[category] || "Calculators";
-  const [descOpen, setDescOpen] = useState(false);
+  const kind = toKind(category);
 
-  // Evita repetição de ícones de subcategorias dentro da mesma página
-  // Em vez de remover, troca o ícone por um alternativo único por página
-  const usedIcons = new Set<string>();
-  
-  // Compute filtered total count displayed (allow override for static pages)
-  const computedTotal = subcats.reduce((acc, sc) => {
-    const list = listByCategorySubcategory(category, sc.slug) || [];
-    const filtered = filterCalculator ? list.filter(filterCalculator) : list;
-    return acc + filtered.length;
-  }, 0);
-  const totalCount = typeof totalOverride === "number" ? totalOverride : computedTotal;
-
-  const canonicalUrl = canonical || `https://www.smartkitnow.com/${category}`;
-  const breadcrumbs =
-    breadcrumbsOverride || [
-      { name: "Home", url: "https://www.smartkitnow.com/" },
-      { name: categoryTitle, url: canonicalUrl },
-    ];
+  const headerSlot = backTo ? (
+    <div className="mt-2">
+      <a href={backTo} className="text-[var(--skn-brand)] underline underline-offset-2 hover:decoration-2">
+        ← Back
+      </a>
+    </div>
+  ) : null;
 
   return (
-    <div className="min-h-screen">
-      <SEOHead
-        title={`${categoryTitle} · SmartKitNow`}
-        description={description}
-        canonical={canonicalUrl}
-      />
-
-      <Header />
-
-      {/* Espaço para o header fixo + respiro antes do rodapé */}
-      <main className={`${marginTopClass} pb-28`}>
-        <PageWithRails
-          showRails
-          showLeftRail={false}
-          showRightRail={showRightRail}
-          showTopBanner={showTopBanner}
-          showBottomBanner={showBottomBanner}
-          railsSticky={railsSticky}
-          titleBlock={
-            <div className="text-left">
-              <div className="mb-6 text-left">
-                <Button
-                  variant="default"
-                  onClick={() => navigate(backTo)}
-                  className="flex items-center gap-2 px-3 py-2 md:py-2.5"
-                  style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                  Back
-                </Button>
-              </div>
-
-              {/* H1 com ícone da categoria */}
-              <h1 className="text-4xl font-bold mb-2 flex items-center gap-2" style={{ color: "#5c82ee" }}>
-                <span className="text-[30px] leading-none select-none" aria-hidden="true">
-                  {categoryIcon(category)}
-                </span>
-                {categoryTitle}
-              </h1>
-
-              {/* Contagem total */}
-              <div className="text-sm mb-3" style={{ color: "#9aa0ae" }}>
-                {totalCount} calculators
-              </div>
-
-              {/* Descrição estreita + Read More */}
-              <p className={`${descOpen ? "" : "line-clamp-3"} text-lg max-w-[740px]`} style={{ color: "#747886" }}>
-                {description}
-              </p>
-              {!descOpen && (
-                <button
-                  className="mt-2 inline-flex items-center text-primary hover:text-primary/80 text-sm"
-                  onClick={() => setDescOpen(true)}
-                >
-                  Read More
-                </button>
-              )}
-            </div>
-          }
-        >
-          {/* Seções por subcategoria (ícone + título) e listas em 2 colunas */}
-          {renderSections ? (
-            <div className="space-y-10">{renderSections()}</div>
-          ) : (
-            <div className="space-y-10">
-              {subcats.map((sc) => {
-                 const baseEmoji = subcategoryIcon(sc.slug, category);
-                 const emoji = getUniqueEmojiForSubcategory(baseEmoji, category, usedIcons);
-                 if (emoji) {
-                   usedIcons.add(emoji);
-                 }
-                 const listAll = listByCategorySubcategory(category, sc.slug) || [];
-                 const calcs = filterCalculator ? listAll.filter(filterCalculator) : listAll;
-                 const mid = Math.ceil(calcs.length / 2);
-                 const colA = calcs.slice(0, mid);
-                 const colB = calcs.slice(mid);
-
-                 // Skip rendering empty sections after filtering
-                 if (calcs.length === 0) return null;
-
-                 return (
-                   <section key={sc.slug}>
-                     {/* Título da subcategoria com ícone */}
-                     <div className="flex items-center gap-3 mb-3">
-                      {emoji && (
-                        <span className="text-[20px] leading-none select-none" aria-hidden="true">
-                          {emoji}
-                        </span>
-                      )}
-                       <h2 className="text-[22px] md:text-[24px] font-semibold tracking-[-0.01em] text-foreground">
-                         {sc.title}
-                       </h2>
-                       <span className="text-sm skn-text-muted">({calcs.length})</span>
-                     </div>
-
-                    {/* Listas em 2 colunas */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
-                      <ul className="list-disc pl-5 space-y-3 leading-7">
-                        {colA.map((c) => (
-                          <li key={c.slug}>
-                            <CalculatorLink to={calcPath(c)}>{c.title}</CalculatorLink>
-                          </li>
-                        ))}
-                      </ul>
-                      <ul className="list-disc pl-5 space-y-3 leading-7 mt-3 md:mt-0">
-                        {colB.map((c) => (
-                          <li key={c.slug}>
-                            <CalculatorLink to={calcPath(c)}>{c.title}</CalculatorLink>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </section>
-                );
-              })}
-            </div>
-          )}
-        </PageWithRails>
-      </main>
-    </div>
+    <CategoryPageTemplate
+      title={titleOverride}
+      description={description}
+      sections={sections}
+      headerSlot={headerSlot}
+      minContentScore={minContentScore}
+      kind={kind}
+    />
   );
 }

@@ -129,6 +129,15 @@ main, #root, .app-shell, .app-root, .page-wrapper {
 html, body {
   overflow-x: hidden;
 }
+/* Sempre reserve espaço da barra vertical para evitar deslocamentos ao abrir overlays */
+body {
+  overflow-y: scroll;
+}
+
+/* Evita layout shift quando a barra de rolagem vertical aparece/desaparece */
+html {
+  scrollbar-gutter: stable;
+}
 
 *,
 *::before,

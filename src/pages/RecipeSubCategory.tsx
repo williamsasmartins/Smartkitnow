@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -7,12 +7,12 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { recipeData } from "@/data/recipeData";
 
-// Removed Lucide icon; using emoji via registry
-import { subcategoryIcon } from "@/data/calculatorRegistry";
+import { getCategoryIcon } from "@/lib/navigation";
+// Removed Lucide icon; using category emoji via navigation
 
 export default function RecipeSubCategory() {
   const navigate = useNavigate();
-  const location = useLocation();
+
   const { categorySlug } = useParams();
   
   const categoryTitle = categorySlug?.split('-').map(word => 
@@ -21,8 +21,8 @@ export default function RecipeSubCategory() {
 
   const recipes = recipeData[categoryTitle] || [];
 
-  // Emoji para o header da subcategoria (fallback para categoria "cooking")
-  const emoji = subcategoryIcon(categorySlug ?? "", "cooking");
+  // Emoji para o header da subcategoria (usa ícone da categoria Recipes)
+  const emoji = getCategoryIcon("recipes");
 
   const handleRecipeClick = (recipe: any) => {
     const slug = recipe.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -34,9 +34,7 @@ export default function RecipeSubCategory() {
     });
   };
 
-  const handleBackClick = () => {
-    navigate('/recipes');
-  };
+  // Back button removido
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -53,8 +51,8 @@ export default function RecipeSubCategory() {
       
       <main className="container mx-auto px-4 py-8 max-w-7xl">
         <div className="mb-8">
--          {/* Back button removed as requested */}
-+          {/* Back button removed as requested */}
+
+          {/* Back button removed as requested */}
           
           <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
@@ -64,8 +62,8 @@ export default function RecipeSubCategory() {
               <h1 className="block text-[28px] md:text-[32px] font-bold tracking-[-0.01em]">{categoryTitle} Recipes</h1>
             </div>
             <div className="mt-2 text-sm skn-text-muted">{recipes.length} recipes</div>
--            {/* Description paragraph removed as requested */}
-+            {/* Description paragraph removed as requested */}
+
+            {/* Description paragraph removed as requested */}
           </div>
         </div>
 

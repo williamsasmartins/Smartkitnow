@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
-import ShareThisCalculator from "@/components/share/ShareThisCalculator";
+
 
 export default function Terms() {
   const navigate = useNavigate();
@@ -16,30 +16,10 @@ export default function Terms() {
   return (
     <div className="min-h-screen bg-gradient-soft">
       <SEOHead
-  title="Terms of Use · SmartKitNow"
-  description="Terms of Use for SmartKitNow — rules governing access and usage."
-  canonical="https://www.smartkitnow.com/terms"
-  breadcrumbs={[
-    { name: "Home", url: "https://www.smartkitnow.com/" },
-    { name: "Terms of Use", url: "https://www.smartkitnow.com/terms" },
-  ]}
-  schema={{
-    "@context": "https://schema.org",
-    "@type": "TermsOfService",
-    name: "Terms of Use",
-    url: "https://www.smartkitnow.com/terms",
-    description: "Rules governing access and usage of SmartKitNow.",
-    dateModified: "2025-09-20",
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.smartkitnow.com/" },
-        { "@type": "ListItem", position: 2, name: "Terms of Use", item: "https://www.smartkitnow.com/terms" }
-      ]
-    },
-    publisher: { "@type": "Organization", name: "SmartKitNow", url: "https://www.smartkitnow.com/" }
-  }}
-/>
+        title="Terms of Use · SmartKitNow"
+        description="Terms of Use for SmartKitNow — rules governing access and usage."
+        canonical="https://www.smartkitnow.com/terms"
+      />
 
 
 
@@ -138,7 +118,7 @@ export default function Terms() {
         </div>
         <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           <SiteFeedbackForm title="Questions or suggestions?" />
-          <ShareThisCalculator />
+          
         </section>
       </main>
 

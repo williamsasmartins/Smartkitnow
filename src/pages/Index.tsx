@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import JsonLd from "@/components/seo/JsonLd";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
-import ShareThisCalculator from "@/components/share/ShareThisCalculator";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getCategoryIcon } from "@/lib/navigation";

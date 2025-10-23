@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
-import ShareThisCalculator from "@/components/share/ShareThisCalculator";
+
 
 export default function Contact() {
   const navigate = useNavigate();
@@ -19,40 +19,10 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-gradient-soft">
       <SEOHead
-  title="Contact · SmartKitNow"
-  description="Contact SmartKitNow — questions, feedback, and partnerships."
-  canonical="https://www.smartkitnow.com/contact"
-  breadcrumbs={[
-    { name: "Home", url: "https://www.smartkitnow.com/" },
-    { name: "Contact", url: "https://www.smartkitnow.com/contact" },
-  ]}
-  schema={{
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    name: "Contact SmartKitNow",
-    url: "https://www.smartkitnow.com/contact",
-    description: "Contact SmartKitNow — questions, feedback, and partnerships.",
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.smartkitnow.com/" },
-        { "@type": "ListItem", position: 2, name: "Contact", item: "https://www.smartkitnow.com/contact" }
-      ]
-    },
-    mainEntity: {
-      "@type": "Organization",
-      name: "SmartKitNow",
-      url: "https://www.smartkitnow.com/",
-      contactPoint: [{
-        "@type": "ContactPoint",
-        contactType: "customer support",
-        email: "contact@smartkitnow.com",
-        areaServed: "Worldwide",
-        availableLanguage: ["English", "Português"]
-      }]
-    }
-  }}
-/>
+        title="Contact · SmartKitNow"
+        description="Contact SmartKitNow — questions, feedback, and partnerships."
+        canonical="https://www.smartkitnow.com/contact"
+      />
 
       <Header />
 
@@ -124,7 +94,7 @@ export default function Contact() {
         </div>
         <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           <SiteFeedbackForm title="Questions or suggestions?" />
-          <ShareThisCalculator />
+          
         </section>
       </main>
 

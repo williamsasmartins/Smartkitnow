@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
-import ShareThisCalculator from "@/components/share/ShareThisCalculator";
+
 
 export default function Privacy() {
   const navigate = useNavigate();
@@ -16,30 +16,10 @@ export default function Privacy() {
   return (
     <div className="min-h-screen bg-gradient-soft">
       <SEOHead
-  title="Privacy Policy · SmartKitNow"
-  description="Privacy Policy for SmartKitNow — how we collect, use, and protect your information."
-  canonical="https://www.smartkitnow.com/privacy"
-  breadcrumbs={[
-    { name: "Home", url: "https://www.smartkitnow.com/" },
-    { name: "Privacy Policy", url: "https://www.smartkitnow.com/privacy" },
-  ]}
-  schema={{
-    "@context": "https://schema.org",
-    "@type": "PrivacyPolicy",
-    name: "Privacy Policy",
-    url: "https://www.smartkitnow.com/privacy",
-    description: "How SmartKitNow collects, uses, and protects information.",
-    dateModified: "2025-09-20",
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.smartkitnow.com/" },
-        { "@type": "ListItem", position: 2, name: "Privacy Policy", item: "https://www.smartkitnow.com/privacy" }
-      ]
-    },
-    publisher: { "@type": "Organization", name: "SmartKitNow", url: "https://www.smartkitnow.com/" }
-  }}
-/>
+        title="Privacy Policy · SmartKitNow"
+        description="Privacy Policy for SmartKitNow — how we collect, use, and protect your information."
+        canonical="https://www.smartkitnow.com/privacy"
+      />
 
 
 
@@ -136,7 +116,7 @@ export default function Privacy() {
         </div>
         <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           <SiteFeedbackForm title="Questions or suggestions?" />
-          <ShareThisCalculator />
+          
         </section>
       </main>
 

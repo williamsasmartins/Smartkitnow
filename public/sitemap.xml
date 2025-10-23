@@ -2,112 +2,312 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.smartkitnow.com/</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/about</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/contact</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/privacy</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/terms</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/pets</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/health</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/financial</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/cooking</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/math</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/conversion</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/science</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/time</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/tv</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/smart-tips</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/recipes</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/pets/dog-water-intake</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/pets/cat-water-intake</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/pets/cat-daily-water-intake-checker</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/pets/dog-caffeine-toxicity-calculator</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/pets/dog-weight-loss-planner</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.smartkitnow.com/pets/cat-weight-loss-planner</loc>
-    <lastmod>2025-10-18</lastmod>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/dog-calorie-needs-rer-mer</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/dog-chocolate-toxicity-calculator</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/dog-grape-raisin-exposure-risk</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/dog-onion-garlic-exposure-risk</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/dog-xylitol-exposure</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-allium-toxicity</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-grape-raisin-education</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-xylitol-exposure</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-caffeine-toxicity</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-essential-oils-exposure</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats-lilies-risk</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-human-meds-exposure</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-benadryl-dose</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-cephalexin-dose</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-meloxicam-dose</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-gabapentin-dose</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-prednisolone-dose</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-omega3-supplement</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-insulin-starter-info</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/kitten-adult-weight-predictor</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-bcs-helper</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-bmi-index</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-carrier-size</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-harness-size</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-activity-calorie-adjuster</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-play-session-planner</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-rest-active-balance</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-age-human-years</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/senior-cat-readiness-checklist</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-life-expectancy</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-litter-output-tracker</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-intake-vs-urine-balance</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-phosphorus-per-meal</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-gestation-due-date</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/kitten-weaning-timeline</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-shedding-combing-planner</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-nail-trim-interval</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/multi-cat-litterbox-count</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-enrichment-planner</loc>
+    <lastmod>2025-10-23</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cat-stress-score-playtime-offset</loc>
+    <lastmod>2025-10-23</lastmod>
     <priority>0.85</priority>
   </url>
 </urlset>

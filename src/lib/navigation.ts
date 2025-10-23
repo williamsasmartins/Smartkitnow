@@ -1,35 +1,13 @@
-import { getEntry } from "@/data/calculatorRegistry";
-
-/**
- * Compute a safe back path for calculator pages using the registry.
- * - If the calculator slug exists in the registry, returns "/category/subcategory" or "/category".
- * - If not, uses the provided defaultCategory if available, else "/".
- * - Optionally accepts a fallbackSubcategory (e.g. from route params) used when registry lacks subcategory.
- */
-export function computeBackPath(
-  calculatorSlug?: string,
-  defaultCategory?: string,
-  fallbackSubcategory?: string
-): string {
-  const entry = calculatorSlug ? getEntry(calculatorSlug) : undefined;
-  const category = entry?.category ?? defaultCategory;
-
-  // Com URLs curtas, sempre voltar para a raiz da categoria
-  if (category) return `/${category}`;
-  return "/";
-}
-
-/** Category icon registry — must mirror the header icons exactly. */
+/** Category icon registry — used across header and pages. */
 export const CATEGORY_ICON_EMOJI: Record<string, string> = {
+  // Core
   financial: "💰",
   health: "🩺",
   cooking: "🍳",
   conversion: "🔁",
   math: "🧮",
-  pet: "🐶",
   science: "🔬",
   time: "⏱️",
-  video: "📺",
   recipes: "📚",
   tips: "💡",
   quotes: "💬",
@@ -39,6 +17,15 @@ export const CATEGORY_ICON_EMOJI: Record<string, string> = {
   automotive: "🚗",
   construction: "🏗️",
   electrical: "⚡",
+  video: "📺",
+
+  // Synonyms (normalized by getCategoryIcon)
+  pets: "🐶", // alias of pet
+  pet: "🐶",
+  tv: "📺", // alias of video
+  smarttips: "💡", // alias of tips
+  dailyquotes: "💬", // alias of quotes
+  everydaylife: "🏠", // alias of everyday
 };
 
 /** Safe getter (falls back to calculator emoji) */
