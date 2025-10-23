@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+set -e
+
+echo "▶ Checking /pets registry…"
+npm run -s check:registry || {
+  echo "❌ Registry check failed. Fix the missing slugs shown above."
+  exit 1
+}
+
+echo "✅ Registry OK."

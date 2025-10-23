@@ -97,7 +97,7 @@ export function PetCalcOmniTemplate<I = any>({
               </aside>
 
               {/* CENTER — calculadora sticky */}
-              <main className="min-w-0 md:sticky self-start" style={{ top: stickyOffsetPx }}>
+              <main className="min-w-0 sticky self-start" style={{ top: stickyOffsetPx }}>
                 <CalculatorPanel config={config} />
               </main>
             </div>

@@ -43,7 +43,7 @@ import React from "react";
          {/* CENTRO (calculadora sticky) */}
          <aside className="order-1 md:order-2 self-start overflow-visible">
            <div
-             className="md:sticky"
+             className="sticky"
              style={{ top: stickyOffsetPx, overflow: "visible" }}
            >
              {center}

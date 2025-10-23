@@ -35,17 +35,17 @@ export default function CalculatorPage() {
   const LazyCalc = useLazyFromLoader(entry.loader, entry.namedExport);
 
   return (
-    <div className="w-full overflow-visible">
-      {/* Top row (Back button) — match the main grid container width */}
-      <div className="mx-auto max-w-[864px] px-4 pt-6 pb-2">
-        <Button variant="ghost" onClick={() => navigate(-1)}>
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back
-        </Button>
+    <div className="w-full pl-4 pr-4 md:pl-8 lg:pl-10 xl:pl-14">
+      <div className="max-w-[864px]">
+        <div className="pt-6 pb-2">
+          <Button variant="ghost" onClick={() => navigate(-1)}>
+            <ArrowLeft className="mr-2 h-4 w-4" /> Back
+          </Button>
+        </div>
+        <Suspense fallback={<div className="py-10 text-muted-foreground">Loading…</div>}>
+          <LazyCalc />
+        </Suspense>
       </div>
-      {/* Calculator body — the calculator component should render its own hero + 3-col grid + sticky */}
-      <Suspense fallback={<div className="mx-auto max-w-7xl px-4 lg:px-6 py-10 text-muted-foreground">Loading…</div>}>
-        <LazyCalc />
-      </Suspense>
     </div>
   );
 }

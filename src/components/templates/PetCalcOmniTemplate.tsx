@@ -490,10 +490,10 @@ export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniCon
             {left} 
           </aside> 
  
-          {/* CENTER — calculator sticky (cola sob o header) */} 
-          <main className="min-w-0 md:sticky self-start" style={{ top: 88 }}> 
-            {center} 
-          </main> 
+          {/* CENTER — calculator sticky (cola sob o header) */}
+          <main className="min-w-0 sticky self-start" style={{ top: 88 }}>
+            {center}
+          </main>
         </div>
       </div>
       {config?.eeat?.showAtBottomOnce && config?.eeat?.text ? (
