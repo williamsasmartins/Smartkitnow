@@ -57,10 +57,8 @@ export default function App() {
               <Route path="/smart-tip/:slug" element={<SmartTipDetail />} />
 
               {/* Recipes */}
--              <Route path="/recipes/:categorySlug" element={<RecipeSubCategory />} />
--              <Route path="/recipe/:recipeSlug" element={<RecipePage />} />
-+              <Route path="/recipes" element={<RecipePage />} />
-+              <Route path="/recipes/:categorySlug" element={<RecipeSubCategory />} />
+              <Route path="/recipes" element={<RecipePage />} />
+              <Route path="/recipes/:categorySlug" element={<RecipeSubCategory />} />
 
               {/* Daily Quotes */}
               <Route path="/daily-quotes" element={<DailyQuotesPage />} />

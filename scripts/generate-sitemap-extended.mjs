@@ -7,10 +7,9 @@ const HOST = "https://www.smartkitnow.com";
 const SRC = path.resolve("src/data/calculatorRegistry.ts");
 
 const buf = readFileSync(SRC, "utf8");
-
-// Extrai blocos com slug, category, subcategory e title
-// Observação: usamos regex não-gulosa para cobrir variações na ordem dos campos.
-const re = /\{[\s\S]*?slug:\s*"([^"]+)"[\s\S]*?category:\s*"([^"]+)"[\s\S]*?subcategory:\s*"([^"]+)"[\s\S]*?title:\s*"([^"]+)"[\s\S]*?\}/g;
+// Extrai blocos de arrays de RegistryEntry e objetos individuais dentro deles
+const blocksRe = /const\s+\w+\s*:\s*RegistryEntry\[\]\s*=\s*\[\s*([\s\S]*?)\s*\];/g;
+const objRe = /\{[\s\S]*?\}/g;
 
 const formatDate = (d = new Date()) => {
   const yyyy = d.getFullYear();
@@ -67,14 +66,28 @@ const STATIC_ENTRIES = [
 
 // Coleta calculadoras do registry
 const dynamicEntries = [];
-let m;
-while ((m = re.exec(buf)) !== null) {
-  const [_, slug, category, subcategory, title] = m;
-  if (/Coming\s+Soon/i.test(title)) continue;
-  const pathSegs = `/${category}/${slug}`;
-  const loc = `${HOST}${pathSegs}`;
-  const priority = priorityByCategory[category] ?? 0.5;
-  dynamicEntries.push({ loc, lastmod: formatDate(), priority });
+let bm;
+while ((bm = blocksRe.exec(buf)) !== null) {
+  const block = bm[1];
+  let om;
+  while ((om = objRe.exec(block)) !== null) {
+    const obj = om[0];
+    const slug = (obj.match(/slug:\s*"([^"]+)"/) || [])[1];
+    const category = (obj.match(/category:\s*"([^"]+)"/) || [])[1];
+    const subcategory = (obj.match(/subcategory:\s*"([^"]+)"/) || [])[1];
+    const title = (obj.match(/title:\s*"([^"]+)"/) || [])[1];
+
+    if (!slug || !category) continue;
+    if (/Coming\s+Soon/i.test(title || "")) continue;
+
+    const seg = category; // canonical short segment
+    const pathSegs = subcategory && subcategory.trim().length > 0
+      ? `/${seg}/${subcategory}/${slug}`
+      : `/${seg}/${slug}`;
+    const loc = `${HOST}${pathSegs}`;
+    const priority = priorityByCategory[category] ?? 0.5;
+    dynamicEntries.push({ loc, lastmod: formatDate(), priority });
+  }
 }
 
 // Mescla estáticos e dinâmicos, removendo duplicados
