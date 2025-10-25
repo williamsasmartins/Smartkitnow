@@ -128,7 +128,7 @@ export default function FinancialCategory() {
           </section>
 
           {/* Coluna do right rail */}
-          <aside className="hidden lg:block lg:col-span-3 skn-rail-pad">
+          <aside className="hidden lg:block lg:col-span-3">
             <div className="sticky" style={{ top: "var(--skn-rail-top)" }}>
               <AdSidebarRight topOffset={0} />
             </div>
