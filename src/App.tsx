@@ -6,11 +6,12 @@ import AppErrorBoundary from "@/components/AppErrorBoundary";
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import GlowCardDemo from "@/pages/GlowCardDemo";
+import FinancialCategory from "@/pages/categories/FinancialCategory";
 
 // Páginas principais
 import Index from "@/pages/Index";
 import About from "@/pages/About";
-import Contact from "@/pages/Contact";
+import ContactSuggestionPage from "@/pages/ContactSuggestionPage";
 import Cookies from "@/pages/Cookies";
 import CookieSettings from "@/pages/CookieSettings";
 import Privacy from "@/pages/Privacy";
@@ -24,6 +25,8 @@ import SmartTipDetail from "@/pages/SmartTipDetail";
 import RecipeSubCategory from "@/pages/RecipeSubCategory";
 import RecipePage from "@/pages/RecipePage";
 import DailyQuotesPage from "@/pages/DailyQuotesPage";
+import CategoryIndex from "@/pages/CategoryIndex";
+import CalculatorPage from "@/pages/CalculatorPage";
 
 export default function App() {
   return (
@@ -45,7 +48,7 @@ export default function App() {
               <Route path="/" element={<Index />} />
               <Route path="/glow-demo" element={<GlowCardDemo />} />
               <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/contact" element={<ContactSuggestionPage />} />
               <Route path="/cookies" element={<Cookies />} />
               <Route path="/cookie-settings" element={<CookieSettings />} />
               <Route path="/privacy" element={<Privacy />} />
@@ -62,6 +65,16 @@ export default function App() {
 
               {/* Daily Quotes */}
               <Route path="/daily-quotes" element={<DailyQuotesPage />} />
+
+              {/* Financial dedicated route */}
+              <Route path="/financial" element={<FinancialCategory />} />
+
+              {/* Category index (generic) */}
+              <Route path=":category" element={<CategoryIndex />} />
+
+              {/* Calculator detail (supports both with and without subcategory) */}
+              <Route path=":category/:subcategory/:slug" element={<CalculatorPage />} />
+              <Route path=":category/:slug" element={<CalculatorPage />} />
 
               {/* 404 */}
               <Route path="*" element={<NotFound />} />

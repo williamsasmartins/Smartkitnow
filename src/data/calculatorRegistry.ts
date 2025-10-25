@@ -489,7 +489,41 @@ const pets: RegistryEntry[] = [
 // Placeholder arrays for other categories (to be populated incrementally)
 const construction: RegistryEntry[] = [];
 const electrical: RegistryEntry[] = [];
-const financial: RegistryEntry[] = [];
+const financial: RegistryEntry[] = [
+  // Loans, Mortgages & Payments (8)
+  { title: "Loan Payment Calculator (Principal, Rate, Term)", category: "financial", subcategory: "loans-mortgages-payments", slug: "loan-payment", loader: () => import("@/components/calculators/Financial/Loans/LoanPaymentCalculator") },
+  { title: "Mortgage Payment & Amortization Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "mortgage-amortization", loader: () => import("@/components/calculators/Financial/Loans/MortgageAmortizationCalculator") },
+  { title: "Extra Payments & Payoff Time Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "extra-payments-payoff", loader: () => import("@/components/calculators/Financial/Loans/ExtraPaymentsPayoffCalculator") },
+  { title: "Interest-Only Loan Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "interest-only-loan", loader: () => import("@/components/calculators/Financial/Loans/InterestOnlyLoanCalculator") },
+  { title: "Refinance Savings Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "refinance-savings", loader: () => import("@/components/calculators/Financial/Loans/RefinanceSavingsCalculator") },
+  { title: "HELOC Payment Estimator", category: "financial", subcategory: "loans-mortgages-payments", slug: "heloc-payment-estimator", loader: () => import("@/components/calculators/Financial/Loans/HELOCPaymentEstimator") },
+  { title: "Car Loan Affordability Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "car-loan-affordability", loader: () => import("@/components/calculators/Financial/Loans/CarLoanAffordabilityCalculator") },
+  { title: "Balloon Payment Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "balloon-payment", loader: () => import("@/components/calculators/Financial/Loans/BalloonPaymentCalculator") },
+
+  // Investments & Savings (7)
+  { title: "Compound Interest Calculator", category: "financial", subcategory: "investments-savings", slug: "compound-interest", loader: () => import("@/components/calculators/Financial/Investing/CompoundInterestCalculator") },
+  { title: "Future Value of Investment Calculator", category: "financial", subcategory: "investments-savings", slug: "future-value-investment", loader: () => import("@/components/calculators/Financial/Investing/FutureValueInvestmentCalculator") },
+  { title: "Investment Return (ROI) Calculator", category: "financial", subcategory: "investments-savings", slug: "roi-return-on-investment", loader: () => import("@/components/calculators/Financial/Investing/ROICalculator") },
+  { title: "SIP/Monthly Investment Planner", category: "financial", subcategory: "investments-savings", slug: "sip-monthly-investment-planner", loader: () => import("@/components/calculators/Financial/Investing/SIPMonthlyInvestmentPlanner") },
+  { title: "Inflation Adjusted Value Calculator", category: "financial", subcategory: "investments-savings", slug: "inflation-adjusted-value", loader: () => import("@/components/calculators/Financial/Investing/InflationAdjustedValueCalculator") },
+  { title: "Retirement Savings Goal Calculator", category: "financial", subcategory: "investments-savings", slug: "retirement-savings-goal", loader: () => import("@/components/calculators/Financial/Investing/RetirementSavingsGoalCalculator") },
+  { title: "Emergency Fund Goal Calculator", category: "financial", subcategory: "investments-savings", slug: "emergency-fund-goal", loader: () => import("@/components/calculators/Financial/Investing/EmergencyFundGoalCalculator") },
+
+  // Income, Budget & Expenses (6)
+  { title: "Monthly Budget Planner", category: "financial", subcategory: "income-budget-expenses", slug: "monthly-budget-planner", loader: () => import("@/components/calculators/Financial/Budget/MonthlyBudgetPlanner") },
+  { title: "Net Income after Tax Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "net-income-after-tax", loader: () => import("@/components/calculators/Financial/Budget/NetIncomeAfterTaxCalculator") },
+  { title: "Hourly to Annual Salary Converter", category: "financial", subcategory: "income-budget-expenses", slug: "hourly-to-annual-salary", loader: () => import("@/components/calculators/Financial/Budget/HourlyToAnnualSalaryConverter") },
+  { title: "Debt-to-Income Ratio Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "debt-to-income-ratio", loader: () => import("@/components/calculators/Financial/Budget/DebtToIncomeCalculator") },
+  { title: "Savings Rate Tracker", category: "financial", subcategory: "income-budget-expenses", slug: "savings-rate-tracker", loader: () => import("@/components/calculators/Financial/Budget/SavingsRateTracker") },
+  { title: "Expense Splitter (Shared Bills) Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "expense-splitter-shared-bills", loader: () => import("@/components/calculators/Financial/Budget/ExpenseSplitterSharedBills") },
+
+  // Currency & Tax (5)
+  { title: "Currency Converter (Live Rates)", category: "financial", subcategory: "currency-tax", slug: "currency-converter-live", loader: () => import("@/components/calculators/Financial/Tax/CurrencyConverterLive") },
+  { title: "Sales Tax Calculator", category: "financial", subcategory: "currency-tax", slug: "sales-tax", loader: () => import("@/components/calculators/Financial/Tax/SalesTaxCalculator") },
+  { title: "VAT/GST Calculator", category: "financial", subcategory: "currency-tax", slug: "vat-gst", loader: () => import("@/components/calculators/Financial/Tax/VATGSTCalculator") },
+  { title: "Tip & Split Bill Calculator", category: "financial", subcategory: "currency-tax", slug: "tip-split-bill", loader: () => import("@/components/calculators/Financial/Tax/TipSplitBillCalculator") },
+  { title: "Discount & Final Price Calculator", category: "financial", subcategory: "currency-tax", slug: "discount-final-price", loader: () => import("@/components/calculators/Financial/Tax/DiscountFinalPriceCalculator") },
+];
 const health: RegistryEntry[] = [];
 const cooking: RegistryEntry[] = [];
 const conversion: RegistryEntry[] = [
