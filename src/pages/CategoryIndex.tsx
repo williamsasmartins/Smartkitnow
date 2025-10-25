@@ -35,7 +35,7 @@ export default function CategoryIndex() {
       {/* topo com banner */}
       <AdBannerTop />
 
-      <main className="mx-auto max-w-7xl px-4 pb-16">
+      <main className="mx-auto max-w-7xl px-4 pb-16 lg:pr-[65px]">
         {/* header da categoria */}
         <header className="py-6 border-b mb-6">
           <h1 className="text-2xl md:text-3xl font-semibold text-primary flex items-center gap-3">
@@ -50,9 +50,9 @@ export default function CategoryIndex() {
           </p>
         </header>
 
-        <div className="flex gap-8">
-          {/* coluna principal */}
-          <section className="flex-1">
+        <div className="grid gap-8 lg:grid-cols-12">
+          {/* coluna principal: esquerda (9) */}
+           <section className="lg:col-span-9 pr-[15px]">
             {/* grid de cards por subcategoria */}
             <div className="space-y-10">
               {grouped.map(([subKey, items]) => (
@@ -85,7 +85,11 @@ export default function CategoryIndex() {
           </section>
 
           {/* sidebar com anúncios (sticky) */}
-          <AdSidebarRight />
+          <aside className="hidden lg:block lg:col-span-3">
+                <div className="sticky pr-[65px]" style={{ top: "var(--skn-rail-top)" }}>
+                  <AdSidebarRight topOffset={0} />
+                </div>
+              </aside>
         </div>
       </main>
     </div>

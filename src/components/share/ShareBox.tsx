@@ -1,22 +1,11 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import * as React from "react";
 
-function copyToClipboard(text: string) {
-  return navigator.clipboard?.writeText(text);
+function usePageUrl(fallback: string = "") {
+  if (typeof window === "undefined") return fallback;
+  const { origin, pathname } = window.location;
+  return `${origin}${pathname}`;
 }
 
-function openPopup(url: string) {
-  const w = 600, h = 520;
-  const y = window.top?.outerHeight ? (window.top.outerHeight - h) / 2 : 100;
-  const x = window.top?.outerWidth ? (window.top.outerWidth - w) / 2 : 100;
-  window.open(
-    url,
-    "_blank",
-    `popup=yes,toolbar=0,location=0,status=0,menubar=0,scrollbars=1,resizable=1,width=${w},height=${h},top=${y},left=${x}`,
-  );
-}
-
-/** Brand icons (SVG inline) */
 function IconX(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden {...props}>
@@ -47,18 +36,18 @@ function IconLinkedIn(props: React.SVGProps<SVGSVGElement>) {
 function IconReddit(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden {...props}>
-      <path d="M12 2c.55 0 1 .45 1 1v1.09c1.52.1 2.9.55 4 .97l.73-1.69a1 1 0 011.83.8l-.7 1.6c1.02.5 1.86 1.06 2.44 1.6.4.36.43.98.06 1.38a.98.98 0 01-1.38.07c-.42-.38-1.12-.83-2.02-1.24-.15 1.1-.46 2.1-.98 2.97C17.97 12.3 19 13.57 19 15c0 2.76-3.13 5-7 5s-7-2.24-7-5c0-1.43 1.03-2.7 2.32-3.65-.52-.87-.83-1.87-.98-2.97-.9.41-1.6.86-2.02 1.24a.98.98 0 01-1.38-.07 1 1 0 01.06-1.38C3.46 7.53 6.91 6 12 6c5.1 0 8.54 1.53 9.4 2.45.36.38.34 1-.06 1.36a.98.98 0 01-1.38.07c-.18-.16-.43-.33-.75-.5-.06.64-.19 1.24-.4 1.79C19.85 12.11 21 13.47 21 15c0 3.31-4.03 6-9 6s-9-2.69-9-6c0-1.53 1.15-2.89 2.87-3.83-.21-.55-.34-1.15-.4-1.79-.32.17-.58.34-.75.5a.98.98 0 01-1.38-.07 1 1 0 01-.06-1.36C3.46 7.53 6.91 6 12 6z" fill="currentColor"/>
+      <path d="M12 2c.55 0 1 .45 1 1v1.09c1.52.1 2.9.55 4 .97l.73-1.69a1 1 0 011.83.8l-.7 1.6c1.02.5 1.86 1.06 2.44 1.6.4.36.43.98.06 1.38a.98.98 0 01-1.38.07c-.42-.38-1.12-.83-2.02-1.24-.15 1.1-.46 2.1-.98 2.97C17.97 12.3 19 13.57 19 15c0 2.76-3.13 5-7 5s-7-2.24-7-5c0-1.43 1.03-2.7 2.32-3.65-.52-.8-.83-1.7-.98-2.8-.9.4-1.6.86-2.02 1.24a.98.98 0 01-1.38-.07c-.37-.4-.34-1.02.06-1.38.58-.54 1.42-1.1 2.44-1.6l-.7-1.6a1 1 0 011.83-.8l.73 1.69c1.1-.42 2.48-.87 4-.97V3c0-.55.45-1 1-1z" fill="currentColor"/>
     </svg>
   );
 }
 function IconWhatsApp(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden {...props}>
-      <path d="M20.5 3.5A10.5 10.5 0 006.2 19.5L2 22l2.6-4.1A10.5 10.5 0 1020.5 3.5zM7 18.1c4.3 2.6 9.9 1.2 12.5-3 2.6-4.3 1.2-9.9-3-12.5-4.3-2.6-9.9-1.2-12.5 3A9.5 9.5 0 007 18.1zm9.4-4.4c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.1.2-.3.2-.5.1-1-.5-2-1.2-2.7-2.1-.2-.2-.2-.4 0-.6.1-.2.2-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.8-2.1-.2-.6-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.7 4.3 3.7.6.3 1 .4 1.3.5.5.2.9.2 1.2.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.1-.3-.2z" fill="currentColor"/>
+      <path d="M20.5 3.5A10.5 10.5 0 006.2 19.5L2 22l2.6-4.1A10.5 10.5 0 1020.5 3.5zM7 18.1c4.3 2.6 9.9 1.2 12.5-3 2.6-4.3 1.2-9.9-3-12.5-4.3-2.6-9.9-1.2-12.5 3A9.5 9.5 0 007 18.1zm9.4-4.4c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.1.2-.3.2-.5.1-1-.5-2-1.2-2.7-2.1-.2-.2-.2-.4 0-.6.1-.2.2-.4.3-.6.2-.2.2-.4.1-.6-.1-.2-.7-1.4-.8-1.6-.2-.2-.4-.3-.6-.2-.2 0-.4.1-.5.3-.2.2-.9 1-1 2.2-.1 1.3.8 2.6 1.9 3.5 1.1 1 2.4 1.5 3.7 1.4 1.2-.1 2-.8 2.2-1 .2-.2.2-.4 0-.6z" fill="currentColor"/>
     </svg>
   );
 }
-function IconEmail(props: React.SVGProps<SVGSVGElement>) {
+function IconMail(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden {...props}>
       <path d="M20 4H4a2 2 0 00-2 2v.4l10 6.6 10-6.6V6a2 2 0 00-2-2zm0 4.3l-8.6 5.7a1 1 0 01-1.1 0L2 8.3V18a2 2 0 002 2h16a2 2 0 002-2V8.3z" fill="currentColor"/>
@@ -67,133 +56,100 @@ function IconEmail(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function ShareBox({
+  className = "",
   title = "Share this page",
-  embedTitle = "Embed",
-  showEmbed = true,
+  url,
 }: {
+  className?: string;
   title?: string;
-  embedTitle?: string;
-  showEmbed?: boolean;
+  url?: string;
 }) {
-  const location = useLocation();
-  const origin = typeof window !== "undefined" ? window.location.origin : "";
-  const url = origin + location.pathname;
+  const pageUrl = url ?? usePageUrl("");
+  const encoded = encodeURIComponent(pageUrl);
 
-  const embedCode = `<iframe src="${url}" title="Calculator" style="width:100%;min-height:650px;border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+  const shareTargets = [
+    { name: "X / Twitter", href: `https://twitter.com/intent/tweet?url=${encoded}`, bg: "bg-[#000000]", Icon: IconX },
+    { name: "Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${encoded}`, bg: "bg-[#1877F2]", Icon: IconFacebook },
+    { name: "LinkedIn", href: `https://www.linkedin.com/shareArticle?mini=true&url=${encoded}`, bg: "bg-[#0A66C2]", Icon: IconLinkedIn },
+    { name: "Reddit", href: `https://www.reddit.com/submit?url=${encoded}`, bg: "bg-[#FF4500]", Icon: IconReddit },
+    { name: "WhatsApp", href: `https://api.whatsapp.com/send?text=${encoded}`, bg: "bg-[#25D366]", Icon: IconWhatsApp },
+    { name: "Email", href: `mailto:?subject=Smart Kit Now&body=${encoded}`, bg: "bg-[#EA4335]", Icon: IconMail },
+  ] as const;
 
-  const share = {
-    twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent("Great calculator I found!")}`,
-    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
-    reddit: `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent("Useful calculator")}`,
-    whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent("Check this calculator: " + url)}`,
-    email: `mailto:?subject=${encodeURIComponent("Awesome calculator")}&body=${encodeURIComponent(url)}`,
-  } as const;
-
-  const onWebShare = async () => {
-    if ((navigator as any).share) {
-      try {
-        await (navigator as any).share({ title: document.title, url });
-      } catch {}
-    } else {
-      await copyToClipboard(url);
-      alert("Link copied to clipboard!");
-    }
+  const onNativeShare = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: document.title, url: pageUrl });
+      }
+    } catch {}
   };
 
-  const IconWrap = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-    <span className={`inline-flex h-4 w-4 text-current ${className}`}>{children}</span>
-  );
+  const copy = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {}
+  };
 
-  const Btn = ({
-    onClick,
-    children,
-    className = "",
-    title,
-  }: {
-    onClick?: () => void;
-    children: React.ReactNode;
-    className?: string;
-    title?: string;
-  }) => (
-    <button
-      type="button"
-      onClick={onClick}
-      title={title}
-      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-md border text-sm hover:bg-accent/40 ${className}`}
-    >
-      {children}
-    </button>
-  );
+  const embedCode = `<iframe src="${pageUrl}" title="Calculator" style="width:100%;min-height:650px;border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
 
   return (
-    <div className="border rounded-xl p-4 bg-card">
-      <div className="flex items-center gap-2 mb-2">
-        <span className="text-xl" aria-hidden>🔗</span>
-        <h3 className="text-lg font-semibold text-primary">{title}</h3>
+    <div className={`border rounded-xl p-4 bg-card ${className}`}>
+      <h3 className="text-lg font-semibold text-primary mb-3">{title}</h3>
+
+      {/* Linha de ações principais */}
+      <div className="flex flex-wrap items-center gap-2 mb-3">
+        <button
+          onClick={onNativeShare}
+          className="px-3 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90"
+        >
+          Share
+        </button>
+        <button
+          onClick={() => copy(pageUrl)}
+          className="px-3 py-2 rounded-md border text-sm hover:bg-accent/40"
+        >
+          Copy link
+        </button>
+        <span className="text-sm text-muted-foreground truncate">{pageUrl}</span>
       </div>
 
-      <div className="grid gap-4">
-        {/* Linha: Copy link + Web Share */}
-        <div className="flex flex-wrap items-center gap-2">
-          <button
-            onClick={() => onWebShare()}
-            className="px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-sm"
+      {/* Botões com logos oficiais coloridos */}
+      <div className="flex flex-wrap gap-2 mb-4">
+        {shareTargets.map(({ name, href, bg, Icon }) => (
+          <a
+            key={name}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center gap-2 px-3 py-2 rounded-xl text-white ${bg} hover:brightness-110 transition`}
+            aria-label={`Share on ${name}`}
+            title={`Share on ${name}`}
           >
-            Share
-          </button>
-          <Btn onClick={async () => { await copyToClipboard(url); alert("Link copied to clipboard!"); }}>
-            Copy link
-          </Btn>
-          <span className="text-xs opacity-70 truncate">{url}</span>
-        </div>
-
-        {/* Socials com ícones oficiais */}
-        <div className="flex flex-wrap items-center gap-2">
-          <Btn onClick={() => openPopup(share.twitter)} title="Share on X/Twitter">
-            <IconWrap><IconX /></IconWrap> X / Twitter
-          </Btn>
-          <Btn onClick={() => openPopup(share.facebook)} title="Share on Facebook">
-            <IconWrap><IconFacebook /></IconWrap> Facebook
-          </Btn>
-          <Btn onClick={() => openPopup(share.linkedin)} title="Share on LinkedIn">
-            <IconWrap><IconLinkedIn /></IconWrap> LinkedIn
-          </Btn>
-          <Btn onClick={() => openPopup(share.reddit)} title="Share on Reddit">
-            <IconWrap><IconReddit /></IconWrap> Reddit
-          </Btn>
-          <Btn onClick={() => openPopup(share.whatsapp)} title="Share on WhatsApp">
-            <IconWrap><IconWhatsApp /></IconWrap> WhatsApp
-          </Btn>
-          <a href={share.email} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border text-sm hover:bg-accent/40" title="Share via Email">
-            <IconWrap><IconEmail /></IconWrap> Email
+            <Icon className="w-5 h-5 text-white" />
+            <span className="text-sm">{name}</span>
           </a>
-        </div>
+        ))}
+      </div>
 
-        {/* Embed */}
-        {showEmbed && (
-          <div className="mt-2">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-lg" aria-hidden>📥</span>
-              <h4 className="font-semibold">{embedTitle}</h4>
-              <button
-                onClick={async () => { await copyToClipboard(embedCode); alert("Embed code copied!"); }}
-                className="ml-auto px-2 py-1 rounded-md border text-xs hover:bg-accent/40"
-              >
-                Copy embed
-              </button>
-            </div>
-            <textarea
-              readOnly
-              className="w-full rounded-md border p-2 text-xs bg-background"
-              rows={4}
-              value={embedCode}
-            />
-            <p className="text-xs text-muted-foreground mt-1">
-              Paste this snippet into your page to embed this calculator.
-            </p>
-          </div>
-        )}
+      {/* EMBED (mantido) */}
+      <div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="font-medium">Embed</span>
+          <button
+            onClick={() => copy(embedCode)}
+            className="px-2 py-1 rounded-md border text-xs hover:bg-accent/40"
+          >
+            Copy embed
+          </button>
+        </div>
+        <textarea
+          readOnly
+          className="w-full h-28 rounded-md bg-background border p-2 text-xs"
+          value={embedCode}
+        />
+        <p className="mt-2 text-xs text-muted-foreground">
+          Paste this snippet into your page to embed this calculator.
+        </p>
       </div>
     </div>
   );

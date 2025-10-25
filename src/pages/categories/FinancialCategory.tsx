@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AdBannerTop from "@/components/ads/AdBannerTop";
-import AdSidebarRight from "@/components/ads/AdSidebarRight";
-import EmojiIcon from "@/components/ui/EmojiIcon";
-import ShareBox from "@/components/share/ShareBox";
-import SuggestBoxInline from "@/components/contact/SuggestBoxInline";
+import AdBannerTop from "../../components/ads/AdBannerTop";
+import AdSidebarRight from "../../components/ads/AdSidebarRight";
+import EmojiIcon from "../../components/ui/EmojiIcon";
+import ShareBox from "../../components/share/ShareBox";
+import SuggestBoxInline from "../../components/contact/SuggestBoxInline";
 
 type Item = { name: string; slug: string };
 
@@ -60,92 +60,92 @@ export default function FinancialCategory() {
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />
 
-      <main className="mx-auto max-w-7xl px-4 pb-16">
-        {/* HERO */}
--        <header className="py-6 mb-8">
-+        <div className="max-w-[880px] w-full">
-+          <header className="py-6 mb-8">
-            <div className="flex items-center gap-3">
-              <EmojiIcon symbol="💰" size={38} className="text-primary" label="Financial" />
-              <h1 className="text-3xl md:text-4xl font-semibold text-primary">Financial Calculators</h1>
-              <span className="ml-2 inline-flex items-center rounded-full border px-2 py-0.5 text-xs">
-                {TOTAL} tools
-              </span>
-            </div>
-            <p className="mt-4 max-w-4xl text-base md:text-lg leading-relaxed text-muted-foreground">
-              Make confident money decisions with {TOTAL} expert-built finance calculators. Compare
-              <strong> loan and mortgage payments</strong>, accelerate payoff with
-              <strong> extra contributions</strong>, explore <strong>interest-only</strong> and
-              <strong> balloon</strong> scenarios, and estimate <strong>refinance savings</strong>.
-              Project wealth with <strong>compound interest</strong>, <strong>future value</strong>, and
-              <strong> ROI</strong>, while accounting for <strong>inflation</strong>. Build a realistic
-              <strong> monthly budget</strong>, estimate <strong>after-tax income</strong>, convert
-              <strong> hourly ↔ annual salary</strong>, track your <strong>savings rate</strong>, and split
-              <strong> shared bills</strong> fairly. Handle <strong>currency conversion</strong>,
-              <strong> sales/VAT/GST</strong>, <strong>tips</strong>, and <strong>discount vs. final price</strong> with
-              clear formulas and worked examples.
-            </p>
--        </header>
-+          </header>
-+        </div>
-
+      <main className="mx-auto max-w-7xl px-4 pb-16 lg:pr-[65px]">
         <div className="grid gap-8 lg:grid-cols-12">
-          {/* coluna principal */}
--          <section className="lg:col-span-9">
-+          <section className="lg:col-span-9">
-+            <div className="max-w-[880px] w-full">
-              <Section
-                emoji="🏦"
-                title={`Loans, Mortgages & Payments (${loansMortgages.length})`}
-                description="Compute payment amount and amortization, simulate extra payments to shorten payoff time, evaluate interest-only and balloon structures, estimate refinance savings, and plan HELOC payments."
-                items={loansMortgages}
-                base="/financial"
-              />
-
-              <Section
-                emoji="📈"
-                title={`Investments & Savings (${investmentsSavings.length})`}
-                description="Model compound growth, future value, and ROI; adjust results for inflation; and set long-term targets such as retirement and emergency funds."
-                items={investmentsSavings}
-                base="/financial"
-              />
-
-              <Section
-                emoji="👛"
-                title={`Income, Budget & Expenses (${incomeBudgetExpenses.length})`}
-                description="Build a monthly budget, estimate take-home pay after taxes, convert wages (hourly ↔ annual), track your savings rate, and split shared expenses fairly."
-                items={incomeBudgetExpenses}
-                base="/financial"
-              />
-
-              <Section
-                emoji="💱"
-                title={`Currency & Tax (${currencyTax.length})`}
-                description="Convert currencies with live rates, compute sales tax and VAT/GST, split tips and bills, and compare discount vs. final price."
-                items={currencyTax}
-                base="/financial"
-              />
-
-              {/* Boxes inferiores: Share + Suggest embutido */}
-              <div className="mt-14 grid gap-6 md:grid-cols-2">
-                <ShareBox />
-                <SuggestBoxInline />
+          {/* coluna esquerda: header + conteúdo */}
+          <div className="lg:col-span-9 pr-[15px]">
+            {/* HERO */}
+            <header className="py-6 mb-8">
+              <div className="flex items-center gap-3">
+                <EmojiIcon symbol="💰" size={38} className="text-primary" label="Financial" />
+                <h1 className="text-3xl md:text-4xl font-semibold text-primary">Financial Calculators</h1>
+                <span className="ml-2 inline-flex items-center rounded-full border px-2 py-0.5 text-xs">
+                  {TOTAL} tools
+                </span>
               </div>
-+            </div>
-           </section>
+              <div className="mt-4 max-w-4xl text-base md:text-lg leading-relaxed text-muted-foreground space-y-3">
+                <p>
+                  Make confident money decisions with {TOTAL} expert-built finance calculators.
+                </p>
+                <p>
+                  Compare <strong>loan and mortgage payments</strong>, accelerate payoff with
+                  <strong> extra contributions</strong>, explore <strong>interest-only</strong> and
+                  <strong> balloon</strong> scenarios, and estimate <strong>refinance savings</strong>.
+                </p>
+                <p>
+                  Project wealth with <strong>compound interest</strong>, <strong>future value</strong>, and
+                  <strong> ROI</strong>, while accounting for <strong>inflation</strong>. Build a realistic
+                  <strong> monthly budget</strong>, estimate <strong>after-tax income</strong>, convert
+                  <strong> hourly ↔ annual salary</strong>, track your <strong>savings rate</strong>, and split
+                  <strong> shared bills</strong> fairly.
+                </p>
+                <p>
+                  Handle <strong>currency conversion</strong>, <strong> sales/VAT/GST</strong>, <strong>tips</strong>, and
+                  <strong> discount vs. final price</strong> with clear formulas and worked examples.
+                </p>
+              </div>
+            </header>
 
-           {/* Coluna do right rail */}
-           <aside className="hidden lg:block lg:col-span-3">
--            <div className="sticky" style={{ top: "var(--skn-rail-top)" }}>
-+            <div className="sticky" style={{ top: "120px", marginLeft: "8px" }}>
-               <AdSidebarRight topOffset={0} />
-             </div>
-           </aside>
+            <Section
+              emoji="🏦"
+              title={`Loans, Mortgages & Payments (${loansMortgages.length})`}
+              description="Compute payment amount and amortization, simulate extra payments to shorten payoff time, evaluate interest-only and balloon structures, estimate refinance savings, and plan HELOC payments."
+              items={loansMortgages}
+              base="/financial"
+            />
+
+            <Section
+              emoji="📈"
+              title={`Investments & Savings (${investmentsSavings.length})`}
+              description="Model compound growth, future value, and ROI; adjust results for inflation; and set long-term targets such as retirement and emergency funds."
+              items={investmentsSavings}
+              base="/financial"
+            />
+
+            <Section
+              emoji="👛"
+              title={`Income, Budget & Expenses (${incomeBudgetExpenses.length})`}
+              description="Build a monthly budget, estimate take-home pay after taxes, convert wages (hourly ↔ annual), track your savings rate, and split shared expenses fairly."
+              items={incomeBudgetExpenses}
+              base="/financial"
+            />
+
+            <Section
+              emoji="💱"
+              title={`Currency & Tax (${currencyTax.length})`}
+              description="Convert currencies with live rates, compute sales tax and VAT/GST, split tips and bills, and compare discount vs. final price."
+              items={currencyTax}
+              base="/financial"
+            />
+
+            {/* Boxes inferiores: Share + Suggest embutido */}
+            <div className="mt-14 grid gap-6 md:grid-cols-2">
+              <ShareBox />
+              <SuggestBoxInline />
+            </div>
+          </div>
+
+          {/* Coluna do right rail */}
+          <aside className="hidden lg:block lg:col-span-3">
+            <div className="sticky pr-[65px]" style={{ top: "var(--skn-rail-top)" }}>
+              <AdSidebarRight topOffset={0} />
+            </div>
+          </aside>
         </div>
       </main>
     </div>
   );
-}
+} // End of FinancialCategory
 
 /* ---------- helpers ---------- */
 

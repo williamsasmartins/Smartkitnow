@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 
+
 export default function AdSidebarRight({ topOffset = 0 }: { topOffset?: number }) {
   useEffect(() => {
     // // @ts-ignore
@@ -17,6 +18,8 @@ export default function AdSidebarRight({ topOffset = 0 }: { topOffset?: number }
         <div className="w-[300px] h-[250px] border rounded-md bg-muted/40 text-muted-foreground grid place-items-center">
           <span className="text-xs">Sidebar Ad (300×250)</span>
         </div>
+
+
       </div>
     </aside>
   );
