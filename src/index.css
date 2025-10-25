@@ -149,17 +149,35 @@ html, body, #root {
 /* === SKN: Scroll + Right Rail control (desktop) === */
 :root{
   /* Altura (top) em que o sidebar ad começa a "grudar" (ajuste fino aqui) */
-  --skn-rail-top: 136px;   /* deixe 128–148px conforme seu gosto */
+  --skn-rail-top: 140px;   /* << ajuste fino aqui */
   /* Respiro para a barra de rolagem não cobrir o ad */
   --skn-rail-pad: 10px;    /* 8–12px funciona bem no Windows */
 }
 
 @media (min-width: 1024px) {
-  /* Mantém a barra de rolagem SEMPRE visível no desktop
-     (evita sumir quando abre o menu “More”) */
+  /* 1) NÃO forçar mais a barra visível */
   html, body {
-    overflow-y: scroll;
-    scrollbar-gutter: stable both-edges;
+    overflow-y: auto !important;       /* volta ao comportamento normal */
+    scrollbar-gutter: auto !important; /* não reserva “calha” fixa */
+  }
+
+  /* 2) Esconder a UI da scrollbar nos principais motores */
+  /* Chrome/Safari/Edge (WebKit/Blink) */
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  #root::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  /* Firefox */
+  html, body, #root {
+    scrollbar-width: none !important;
+  }
+
+  /* IE/antigo Edge */
+  body {
+    -ms-overflow-style: none !important;
   }
 
   /* Utilitário para dar um "passo à esquerda" no rail
