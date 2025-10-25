@@ -85,7 +85,7 @@ export default function FinancialCategory() {
           </p>
         </header>
 
-        <div className="grid gap-8 lg:grid-cols-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,880px)_minmax(260px,320px)] gap-8 pr-6">
           {/* coluna principal */}
           <section className="lg:col-span-9">
             <Section
