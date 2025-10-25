@@ -135,8 +135,9 @@ body {
 }
 
 /* Evita layout shift quando a barra de rolagem vertical aparece/desaparece */
-html {
-  scrollbar-gutter: stable;
+/* — SKN: reservar espaço fixo para a barra de rolagem — */
+html, body, #root {
+  scrollbar-gutter: stable both-edges;
 }
 
 *,
