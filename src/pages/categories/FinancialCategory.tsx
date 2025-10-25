@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AdBannerTop from "../../components/ads/AdBannerTop";
 import AdSidebarRight from "../../components/ads/AdSidebarRight";
@@ -54,6 +54,7 @@ const TOTAL =
   currencyTax.length; // 26
 
 export default function FinancialCategory() {
+  const [descExpanded, setDescExpanded] = useState(false);
   return (
     <div className="min-h-screen">
       {/* empurra tudo abaixo do header fixo */}
@@ -74,25 +75,43 @@ export default function FinancialCategory() {
                 </span>
               </div>
               <div className="mt-4 max-w-4xl text-base md:text-lg leading-relaxed text-muted-foreground space-y-3">
-                <p>
-                  Make confident money decisions with {TOTAL} expert-built finance calculators.
-                </p>
-                <p>
-                  Compare <strong>loan and mortgage payments</strong>, accelerate payoff with
-                  <strong> extra contributions</strong>, explore <strong>interest-only</strong> and
-                  <strong> balloon</strong> scenarios, and estimate <strong>refinance savings</strong>.
-                </p>
-                <p>
-                  Project wealth with <strong>compound interest</strong>, <strong>future value</strong>, and
-                  <strong> ROI</strong>, while accounting for <strong>inflation</strong>. Build a realistic
-                  <strong> monthly budget</strong>, estimate <strong>after-tax income</strong>, convert
-                  <strong> hourly ↔ annual salary</strong>, track your <strong>savings rate</strong>, and split
-                  <strong> shared bills</strong> fairly.
-                </p>
-                <p>
-                  Handle <strong>currency conversion</strong>, <strong> sales/VAT/GST</strong>, <strong>tips</strong>, and
-                  <strong> discount vs. final price</strong> with clear formulas and worked examples.
-                </p>
+                {descExpanded ? (
+                  <>
+                    <p>
+                      Make confident money decisions with {TOTAL} expert-built finance calculators.
+                    </p>
+                    <p>
+                      Compare <strong>loan and mortgage payments</strong>, accelerate payoff with
+                      <strong> extra contributions</strong>, explore <strong>interest-only</strong> and
+                      <strong> balloon</strong> scenarios, and estimate <strong>refinance savings</strong>.
+                    </p>
+                    <p>
+                      Project wealth with <strong>compound interest</strong>, <strong>future value</strong>, and
+                      <strong> ROI</strong>, while accounting for <strong>inflation</strong>. Build a realistic
+                      <strong> monthly budget</strong>, estimate <strong>after-tax income</strong>, convert
+                      <strong> hourly ↔ annual salary</strong>, track your <strong>savings rate</strong>, and split
+                      <strong> shared bills</strong> fairly.
+                    </p>
+                    <p>
+                      Handle <strong>currency conversion</strong>, <strong> sales/VAT/GST</strong>, <strong>tips</strong>, and
+                      <strong> discount vs. final price</strong> with clear formulas and worked examples.
+                    </p>
+                  </>
+                ) : (
+                  <p className="line-clamp-3">
+                    Make confident money decisions with {TOTAL} expert-built finance calculators. Compare loan and mortgage payments, accelerate payoff with extra contributions, explore interest-only and balloon scenarios, and estimate refinance savings. Project wealth with compound interest, future value, and ROI, while accounting for inflation. Build a realistic monthly budget, estimate after-tax income, convert hourly ↔ annual salary, track your savings rate, and split shared bills fairly.
+                  </p>
+                )}
+                {!descExpanded && (
+                  <button
+                    type="button"
+                    className="mt-2 inline-flex items-center rounded-md border px-3 py-1 text-sm text-primary hover:underline"
+                    onClick={() => setDescExpanded(true)}
+                    aria-expanded={descExpanded}
+                  >
+                    Read More
+                  </button>
+                )}
               </div>
             </header>
 

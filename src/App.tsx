@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import GlowCardDemo from "@/pages/GlowCardDemo";
 import FinancialCategory from "@/pages/categories/FinancialCategory";
+import HealthCategory from "@/pages/categories/HealthCategory";
 
 // Páginas principais
 import Index from "@/pages/Index";
@@ -68,6 +69,9 @@ export default function App() {
 
               {/* Financial dedicated route */}
               <Route path="/financial" element={<FinancialCategory />} />
+
+              {/* Health dedicated route */}
+              <Route path="/health" element={<HealthCategory />} />
 
               {/* Category index (generic) */}
               <Route path=":category" element={<CategoryIndex />} />

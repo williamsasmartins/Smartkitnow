@@ -9,13 +9,15 @@ export type CategoryMeta = {
 
 export const CATEGORIES: Record<string, CategoryMeta> = {
   "financial":         { key: "financial",         path: "financial",         display: "Financial Calculators",         icon: "PiggyBank",       emoji: "💰" },
-  "health-fitness":    { key: "health-fitness",    path: "health-fitness",    display: "Health & Fitness Calculators",  icon: "HeartPulse",      emoji: "💪" },
+  // normalized to match registry keys and routes
+  "health":            { key: "health",            path: "health",            display: "Health & Fitness Calculators",  icon: "HeartPulse",      emoji: "💪" },
   "cooking":           { key: "cooking",           path: "cooking",           display: "Cooking Calculators",           icon: "Utensils",        emoji: "🍳" },
   "conversion":        { key: "conversion",        path: "conversion",        display: "Conversion Calculators",        icon: "ArrowsLeftRight", emoji: "🔁" },
   "math":              { key: "math",              path: "math",              display: "Math & Algebra Calculators",    icon: "FunctionSquare",  emoji: "➗" },
   "pets":              { key: "pets",              path: "pets",              display: "Pet Care Calculators",          icon: "PawPrint",        emoji: "🐾" },
   "science":           { key: "science",           path: "science",           display: "Science Calculators",           icon: "FlaskConical",    emoji: "🔬" },
-  "time-date":         { key: "time-date",         path: "time-date",         display: "Time & Date Calculators",       icon: "CalendarClock",   emoji: "⏱️" },
+  // normalized from time-date to time
+  "time":              { key: "time",              path: "time",              display: "Time & Date Calculators",       icon: "CalendarClock",   emoji: "⏱️" },
   "video":             { key: "video",             path: "video",             display: "Video Calculators",             icon: "Clapperboard",    emoji: "🎬" },
   "recipes":           { key: "recipes",           path: "recipes",           display: "Recipes",                       icon: "BookOpen",        emoji: "🍽️" },
   "smart-tips":        { key: "smart-tips",        path: "smart-tips",        display: "Smart Tips",                    icon: "Lightbulb",       emoji: "💡" },

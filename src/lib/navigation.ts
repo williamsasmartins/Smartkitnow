@@ -2,7 +2,7 @@
 export const CATEGORY_ICON_EMOJI: Record<string, string> = {
   // Core
   financial: "💰",
-  health: "🩺",
+  health: "❤️",
   cooking: "🍳",
   conversion: "🔁",
   math: "🧮",

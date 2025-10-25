@@ -8,24 +8,31 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'), // Alias for imports: "@/..."
+      '@': resolve(__dirname, 'src'),
+      'react': resolve(__dirname, 'node_modules/react'),
+      'react-dom': resolve(__dirname, 'node_modules/react-dom'),
     },
+    dedupe: ['react', 'react-dom'],
   },
   server: {
-    port: 8080, // Porta local
+    port: 8080,
   },
   build: {
-    chunkSizeWarningLimit: 1000, // Suppress large chunk warning
-    // Removed custom manualChunks to avoid possible initialization order issues in libs with multiple packages (e.g.: Sentry)
-    // We keep the default Vite/Rollup chunking configuration for stability
+    chunkSizeWarningLimit: 1000,
   },
-  // Test configuration for Vitest
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: [],
+    setupFiles: [resolve(__dirname, 'src/test/setup.ts')],
     alias: {
       '@': resolve(__dirname, 'src'),
+      'react': resolve(__dirname, 'node_modules/react'),
+      'react-dom': resolve(__dirname, 'node_modules/react-dom'),
+    },
+    server: {
+      deps: {
+        inline: ['react-router', 'react-router-dom'],
+      },
     },
   },
 });

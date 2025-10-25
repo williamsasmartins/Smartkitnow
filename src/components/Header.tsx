@@ -12,24 +12,24 @@ export function Header() {
   const [query, setQuery] = useState("");
 
   const PRIMARY_CATS = [
-    { key: "financial", label: "Financial", to: "/#financial" },
-    { key: "health", label: "Health", to: "/#health" },
-    { key: "cooking", label: "Cooking", to: "/#cooking" },
-    { key: "conversion", label: "Conversion", to: "/#conversion" },
-    { key: "math", label: "Math & Algebra", to: "/#math" },
-    { key: "pet", label: "Pet Care", to: "/#pet" },
-    { key: "science", label: "Science", to: "/#science" },
-    { key: "time", label: "Time & Date", to: "/#time" },
+    { key: "financial", label: "Financial", to: "/financial" },
+    { key: "health", label: "Health", to: "/health" },
+    { key: "cooking", label: "Cooking", to: "/cooking" },
+    { key: "conversion", label: "Conversion", to: "/conversion" },
+    { key: "math", label: "Math & Algebra", to: "/math" },
+    { key: "pets", label: "Pet Care", to: "/pets" },
+    { key: "science", label: "Science", to: "/science" },
+    { key: "time", label: "Time & Date", to: "/time" },
   ];
 
   const MORE_CATS = [
-    { key: "automotive", label: "Automotive", to: "/#automotive" },
-    { key: "construction", label: "Construction", to: "/#construction" },
-    { key: "electrical", label: "Electrical", to: "/#electrical" },
-    { key: "everyday", label: "Everyday Life", to: "/everyday-life" },
+    { key: "automotive", label: "Automotive", to: "/automotive" },
+    { key: "construction", label: "Construction", to: "/construction" },
+    { key: "electrical", label: "Electrical", to: "/electrical" },
+    { key: "everyday", label: "Everyday Life", to: "/everyday" },
     { key: "sports", label: "Sports", to: "/sports" },
     { key: "funny", label: "Funny", to: "/funny" },
-    { key: "video", label: "Video", to: "/tv-video" },
+    { key: "video", label: "Video", to: "/video" },
   ];
 
   const handleHomeClick = () => navigate("/");
