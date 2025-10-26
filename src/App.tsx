@@ -8,6 +8,19 @@ import Footer from "@/components/Footer";
 import GlowCardDemo from "@/pages/GlowCardDemo";
 import FinancialCategory from "@/pages/categories/FinancialCategory";
 import HealthCategory from "@/pages/categories/HealthCategory";
+import CookingCategory from "@/pages/categories/CookingCategory";
+import ConversionCategory from "@/pages/categories/ConversionCategory";
+import MathCategory from "./pages/categories/MathCategory";
+import ScienceCategory from "./pages/categories/ScienceCategory";
+import TimeCategory from "@/pages/categories/TimeCategory";
+import AutomotiveCategory from "@/pages/categories/AutomotiveCategory";
+import PetsCategory from "@/pages/categories/PetsCategory";
+import ConstructionCategory from "@/pages/categories/ConstructionCategory";
+import ElectricalCategory from "@/pages/categories/ElectricalCategory";
+import EverydayCategory from "@/pages/categories/EverydayCategory";
+import SportsCategory from "@/pages/categories/SportsCategory";
+import FunnyCategory from "@/pages/categories/FunnyCategory";
+import VideoCategory from "@/pages/categories/VideoCategory";
 
 // Páginas principais
 import Index from "@/pages/Index";
@@ -72,6 +85,45 @@ export default function App() {
 
               {/* Health dedicated route */}
               <Route path="/health" element={<HealthCategory />} />
+
+              {/* Cooking dedicated route */}
+              <Route path="/cooking" element={<CookingCategory />} />
+
+              {/* Conversion dedicated route */}
+              <Route path="/conversion" element={<ConversionCategory />} />
+
+              {/* Math dedicated route */}
+              <Route path="/math" element={<MathCategory />} />
+
+              {/* Science dedicated route */}
+              <Route path="/science" element={<ScienceCategory />} />
+
+              {/* Time dedicated route */}
+              <Route path="/time" element={<TimeCategory />} />
+
+              {/* Pets dedicated route */}
+              <Route path="/pets" element={<PetsCategory />} />
+
+              {/* Automotive dedicated route */}
+              <Route path="/automotive" element={<AutomotiveCategory />} />
+
+              {/* Construction dedicated route */}
+              <Route path="/construction" element={<ConstructionCategory />} />
+
+              {/* Electrical dedicated route */}
+              <Route path="/electrical" element={<ElectricalCategory />} />
+
+              {/* Everyday dedicated route */}
+              <Route path="/everyday" element={<EverydayCategory />} />
+
+              {/* Sports dedicated route */}
+              <Route path="/sports" element={<SportsCategory />} />
+
+              {/* Funny dedicated route */}
+              <Route path="/funny" element={<FunnyCategory />} />
+
+              {/* Video dedicated route */}
+              <Route path="/video" element={<VideoCategory />} />
 
               {/* Category index (generic) */}
               <Route path=":category" element={<CategoryIndex />} />

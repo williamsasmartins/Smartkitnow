@@ -5,10 +5,11 @@ import AdSidebarRight from "../../components/ads/AdSidebarRight";
 import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareBox from "../../components/share/ShareBox";
 import SuggestBoxInline from "../../components/contact/SuggestBoxInline";
+import SEOHead from "@/components/SEOHead";
 
 type Item = { name: string; slug: string };
 
-// ===== LISTA OFICIAL (26) =====
+// ===== LISTA OFICIAL (73) =====
 const loansMortgages: Item[] = [
   { name: "Loan Payment Calculator (Principal, Rate, Term)", slug: "loan-payment" },
   { name: "Mortgage Payment & Amortization Calculator", slug: "mortgage-amortization" },
@@ -18,6 +19,10 @@ const loansMortgages: Item[] = [
   { name: "HELOC Payment Estimator", slug: "heloc-payment-estimator" },
   { name: "Car Loan Affordability Calculator", slug: "car-loan-affordability" },
   { name: "Balloon Payment Calculator", slug: "balloon-payment" },
+  { name: "How Much House Can I Afford? Calculator", slug: "house-affordability" },
+  { name: "Auto Loan Calculator", slug: "auto-loan" },
+  { name: "Student Loan Repayment Calculator", slug: "student-loan-repayment" },
+  { name: "Lease vs Buy Calculator", slug: "lease-vs-buy" },
 ];
 
 const investmentsSavings: Item[] = [
@@ -28,6 +33,14 @@ const investmentsSavings: Item[] = [
   { name: "Inflation Adjusted Value Calculator", slug: "inflation-adjusted-value" },
   { name: "Retirement Savings Goal Calculator", slug: "retirement-savings-goal" },
   { name: "Emergency Fund Goal Calculator", slug: "emergency-fund-goal" },
+  { name: "401(k) / Retirement Savings Growth Calculator", slug: "401k-retirement-savings-growth" },
+  { name: "Social Security Benefit Estimator", slug: "social-security-benefit-estimator" },
+  { name: "Rule of 72 Calculator", slug: "rule-of-72" },
+  { name: "Bond Yield Calculator", slug: "bond-yield" },
+  { name: "Roth IRA Conversion Calculator", slug: "roth-ira-conversion" },
+  { name: "Dollar Cost Averaging (DCA) Simulator", slug: "dca-simulator" },
+  { name: "Crypto DCA Strategy Calculator", slug: "crypto-dca-strategy" },
+  { name: "Stock DCA Return Estimator", slug: "stock-dca-return-estimator" },
 ];
 
 const incomeBudgetExpenses: Item[] = [
@@ -37,6 +50,57 @@ const incomeBudgetExpenses: Item[] = [
   { name: "Debt-to-Income Ratio Calculator", slug: "debt-to-income-ratio" },
   { name: "Savings Rate Tracker", slug: "savings-rate-tracker" },
   { name: "Expense Splitter (Shared Bills) Calculator", slug: "expense-splitter-shared-bills" },
+  { name: "Take-Home Pay Calculator", slug: "take-home-pay" },
+  { name: "Paycheck Calculator", slug: "paycheck-calculator" },
+];
+
+const debtManagementCredit: Item[] = [
+  { name: "Credit Card Payoff Calculator", slug: "credit-card-payoff" },
+  { name: "Debt Consolidation Calculator", slug: "debt-consolidation" },
+  { name: "Net Worth Calculator", slug: "net-worth" },
+  { name: "Currency Converter (Live Rates)", slug: "currency-converter-live" },
+  { name: "Sales Tax Calculator", slug: "sales-tax" },
+  { name: "VAT/GST Calculator", slug: "vat-gst" },
+  { name: "Debt Snowball Calculator", slug: "debt-snowball" },
+  { name: "APR Calculator", slug: "apr" },
+  { name: "Credit Card Interest Calculator", slug: "credit-card-interest" },
+  { name: "Loan Comparison Calculator", slug: "loan-comparison" },
+  { name: "College Savings Calculator", slug: "college-savings" },
+  { name: "IRR NPV Calculator", slug: "irr-npv" },
+  { name: "Tax Bracket Calculator", slug: "tax-bracket" },
+];
+
+const cryptoCoreTools: Item[] = [
+  // Basic Conversions & Pricing (6)
+  { name: "Crypto to Fiat Converter", slug: "crypto-to-fiat" },
+  { name: "Crypto to Crypto Exchange Rate Calculator", slug: "crypto-to-crypto-exchange-rate" },
+  { name: "Live Price Checker (Real-Time Rates)", slug: "live-price-checker" },
+  { name: "Portfolio Value Tracker", slug: "portfolio-value-tracker" },
+  { name: "Fiat to Crypto Purchase Calculator", slug: "fiat-to-crypto-purchase" },
+  { name: "Multi-Currency Crypto Converter", slug: "multi-currency-crypto-converter" },
+  // Profit & Investment Analysis (7)
+  { name: "Crypto Profit/Loss Calculator", slug: "crypto-profit-loss" },
+  { name: "ROI (Return on Investment) Calculator", slug: "crypto-roi" },
+  { name: "Future Value & Compound Growth Estimator", slug: "crypto-future-value-compound-growth" },
+  { name: "Yield Farming APY Calculator", slug: "yield-farming-apy" },
+  { name: "Staking Rewards Estimator", slug: "staking-rewards-estimator" },
+  { name: "Investment Break-Even Point Calculator", slug: "investment-break-even-point" },
+  { name: "DCA Strategy Analyzer (Crypto)", slug: "dca-strategy-analyzer-crypto" },
+  // Mining & Hardware (5)
+  { name: "Mining Profitability Calculator", slug: "mining-profitability" },
+  { name: "Hash Rate to Earnings Converter", slug: "hash-rate-to-earnings" },
+  { name: "Electricity Cost vs Mining Revenue", slug: "electricity-cost-vs-mining-revenue" },
+  { name: "GPU/ASIC Mining ROI Calculator", slug: "gpu-asic-mining-roi" },
+  { name: "Pool Fee Impact Estimator", slug: "pool-fee-impact" },
+  // Taxes & Compliance (4)
+  { name: "Crypto Tax Liability Calculator", slug: "crypto-tax-liability" },
+  { name: "Capital Gains Tax Estimator", slug: "capital-gains-tax-estimator" },
+  { name: "Transaction Fee Deduction Tool", slug: "transaction-fee-deduction" },
+  { name: "Cost Basis Calculator (FIFO/LIFO)", slug: "cost-basis-fifo-lifo" },
+  // Advanced Trading (3)
+  { name: "Leverage & Margin Profit Calculator", slug: "leverage-margin-profit" },
+  { name: "Position Size & Risk Management Tool", slug: "position-size-risk-management" },
+  { name: "Volatility & Risk Assessment Calculator", slug: "volatility-risk-assessment" },
 ];
 
 const currencyTax: Item[] = [
@@ -51,12 +115,22 @@ const TOTAL =
   loansMortgages.length +
   investmentsSavings.length +
   incomeBudgetExpenses.length +
-  currencyTax.length; // 26
+  debtManagementCredit.length +
+  cryptoCoreTools.length; // 73
 
 export default function FinancialCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title="Financial & Cryptocurrency Calculators"
+        description="Explore 73 calculators spanning loans and mortgages, investments and savings, income and budgeting, debt management and credit, plus comprehensive crypto tools for pricing, profit, mining, taxes, and trading."
+        canonical="https://www.smartkitnow.com/financial"
+        robots="index,follow"
+        og={{ type: "website", url: "https://www.smartkitnow.com/financial", siteName: "Smart Kit Now" }}
+        twitter={{ card: "summary_large_image" }}
+        extra={[{ name: "keywords", content: "financial calculators, loan calculator, mortgage amortization, extra payments, refinance savings, HELOC, affordability, student loans, lease vs buy, compound interest, future value, ROI, inflation, retirement savings, emergency fund, 401k growth, social security benefit, rule of 72, bond yield, Roth IRA conversion, DCA simulator, crypto DCA, stock DCA, monthly budget, net income after tax, hourly to annual salary, debt-to-income ratio, savings rate, expense splitter, take-home pay, paycheck calculator, credit card payoff, debt consolidation, net worth, currency converter, sales tax, VAT GST, debt snowball, APR, credit card interest, loan comparison, college savings, IRR NPV, tax bracket, crypto to fiat, crypto exchange rate, live price checker, portfolio tracker, fiat to crypto, multi-currency converter, crypto profit loss, crypto ROI, compound growth, yield farming APY, staking rewards, break-even, mining profitability, hash rate earnings, electricity cost revenue, GPU ASIC ROI, pool fee impact, crypto tax liability, capital gains tax, transaction fee deduction, cost basis FIFO LIFO, leverage margin profit, position size risk management, volatility risk assessment" }]}
+      />
       {/* empurra tudo abaixo do header fixo */}
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />
@@ -69,7 +143,7 @@ export default function FinancialCategory() {
             <header className="py-6 mb-8">
               <div className="flex items-center gap-3">
                 <EmojiIcon symbol="💰" size={38} className="text-primary" label="Financial" />
-                <h1 className="text-3xl md:text-4xl font-semibold text-primary">Financial Calculators</h1>
+                <h1 className="text-3xl md:text-4xl font-semibold text-primary">Financial & Cryptocurrency Calculators</h1>
                 <span className="ml-2 inline-flex items-center rounded-full border px-2 py-0.5 text-xs">
                   {TOTAL} tools
                 </span>
@@ -78,28 +152,27 @@ export default function FinancialCategory() {
                 {descExpanded ? (
                   <>
                     <p>
-                      Make confident money decisions with {TOTAL} expert-built finance calculators.
+                      Make confident money decisions with {TOTAL} expert-built calculators across finance and crypto.
                     </p>
                     <p>
-                      Compare <strong>loan and mortgage payments</strong>, accelerate payoff with
-                      <strong> extra contributions</strong>, explore <strong>interest-only</strong> and
-                      <strong> balloon</strong> scenarios, and estimate <strong>refinance savings</strong>.
+                      Compare <strong>loan and mortgage payments</strong>, accelerate payoff with <strong>extra contributions</strong>, explore <strong>interest-only</strong> and <strong>balloon</strong> scenarios, estimate <strong>refinance savings</strong>, plan <strong>HELOC</strong>, evaluate <strong>house affordability</strong>, <strong>auto loans</strong>, <strong>student loans</strong>, and <strong>lease vs buy</strong>.
                     </p>
                     <p>
-                      Project wealth with <strong>compound interest</strong>, <strong>future value</strong>, and
-                      <strong> ROI</strong>, while accounting for <strong>inflation</strong>. Build a realistic
-                      <strong> monthly budget</strong>, estimate <strong>after-tax income</strong>, convert
-                      <strong> hourly ↔ annual salary</strong>, track your <strong>savings rate</strong>, and split
-                      <strong> shared bills</strong> fairly.
+                      Model wealth with <strong>compound interest</strong>, <strong>future value</strong>, and <strong>ROI</strong>; adjust for <strong>inflation</strong>; set <strong>retirement</strong> and <strong>emergency fund</strong> targets; project <strong>401(k)</strong> growth, estimate <strong>Social Security</strong>, apply the <strong>Rule of 72</strong>, compute <strong>bond yields</strong>, and plan <strong>Roth IRA conversion</strong> and <strong>DCA</strong> strategies.
                     </p>
                     <p>
-                      Handle <strong>currency conversion</strong>, <strong> sales/VAT/GST</strong>, <strong>tips</strong>, and
-                      <strong> discount vs. final price</strong> with clear formulas and worked examples.
+                      Organize finances: build a <strong>monthly budget</strong>, estimate <strong>after-tax income</strong>, convert <strong>hourly ↔ annual salary</strong>, track <strong>savings rate</strong>, split <strong>shared expenses</strong>, and review <strong>take-home pay</strong> and <strong>paychecks</strong>.
+                    </p>
+                    <p>
+                      Manage debt & credit: <strong>credit card payoff</strong>, <strong>consolidation</strong>, <strong>snowball</strong>, <strong>APR</strong>, <strong>credit card interest</strong>, <strong>loan comparison</strong>, <strong>net worth</strong>, <strong>currency conversion</strong>, <strong>sales tax</strong>, <strong>VAT/GST</strong>, <strong>college savings</strong>, <strong>IRR/NPV</strong>, and <strong>tax brackets</strong>.
+                    </p>
+                    <p>
+                      Crypto tools: conversions & pricing, <strong>profit/loss</strong>, <strong>APY</strong> & <strong>staking rewards</strong>, <strong>DCA</strong> & break‑even, <strong>mining profitability</strong>, hardware <strong>ROI</strong>, <strong>electricity costs</strong>, <strong>pool fees</strong>, <strong>tax liability</strong>, <strong>cost basis</strong>, and <strong>advanced trading</strong> (leverage, margin, position size, volatility).
                     </p>
                   </>
                 ) : (
                   <p className="line-clamp-3">
-                    Make confident money decisions with {TOTAL} expert-built finance calculators. Compare loan and mortgage payments, accelerate payoff with extra contributions, explore interest-only and balloon scenarios, and estimate refinance savings. Project wealth with compound interest, future value, and ROI, while accounting for inflation. Build a realistic monthly budget, estimate after-tax income, convert hourly ↔ annual salary, track your savings rate, and split shared bills fairly.
+                    Make confident money decisions with {TOTAL} expert-built calculators across finance and crypto: loans & mortgages, investments & savings, income & budgeting, debt & credit, and comprehensive crypto tools for pricing, profit, mining, taxes, and trading.
                   </p>
                 )}
                 {!descExpanded && (
@@ -118,7 +191,7 @@ export default function FinancialCategory() {
             <Section
               emoji="🏦"
               title={`Loans, Mortgages & Payments (${loansMortgages.length})`}
-              description="Compute payment amount and amortization, simulate extra payments to shorten payoff time, evaluate interest-only and balloon structures, estimate refinance savings, and plan HELOC payments."
+              description="Compute payments and amortization, simulate extra payments, evaluate interest-only and balloon structures, estimate refinance savings, plan HELOC, and assess house affordability, auto loans, student loans, and lease vs buy."
               items={loansMortgages}
               base="/financial"
             />
@@ -126,7 +199,7 @@ export default function FinancialCategory() {
             <Section
               emoji="📈"
               title={`Investments & Savings (${investmentsSavings.length})`}
-              description="Model compound growth, future value, and ROI; adjust results for inflation; and set long-term targets such as retirement and emergency funds."
+              description="Model compound growth, future value, and ROI; adjust for inflation; set retirement and emergency targets; 401(k) growth, Social Security, Rule of 72, bond yields, Roth conversion, and DCA strategies (crypto & stocks)."
               items={investmentsSavings}
               base="/financial"
             />
@@ -134,16 +207,24 @@ export default function FinancialCategory() {
             <Section
               emoji="👛"
               title={`Income, Budget & Expenses (${incomeBudgetExpenses.length})`}
-              description="Build a monthly budget, estimate take-home pay after taxes, convert wages (hourly ↔ annual), track your savings rate, and split shared expenses fairly."
+              description="Build a monthly budget, estimate take-home pay after taxes, convert wages (hourly ↔ annual), track savings rate, split shared expenses, and review paycheck details."
               items={incomeBudgetExpenses}
               base="/financial"
             />
 
             <Section
-              emoji="💱"
-              title={`Currency & Tax (${currencyTax.length})`}
-              description="Convert currencies with live rates, compute sales tax and VAT/GST, split tips and bills, and compare discount vs. final price."
-              items={currencyTax}
+              emoji="💳"
+              title={`Debt Management & Credit (${debtManagementCredit.length})`}
+              description="Credit card payoff, consolidation, snowball, APR, credit interest, loan comparisons, net worth, currency conversion, sales/VAT/GST taxes, college savings, IRR/NPV, and tax brackets."
+              items={debtManagementCredit}
+              base="/financial"
+            />
+
+            <Section
+              emoji="🪙"
+              title={`Cryptocurrency Core Tools (${cryptoCoreTools.length})`}
+              description="Conversions & pricing, profit/loss, APY & staking, DCA & break‑even, mining profitability & hardware ROI, electricity costs & pool fees, tax liability & cost basis, and advanced trading (leverage, margin, position size, volatility)."
+              items={cryptoCoreTools}
               base="/financial"
             />
 
