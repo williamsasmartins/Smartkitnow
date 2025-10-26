@@ -31,6 +31,7 @@ import CookieSettings from "@/pages/CookieSettings";
 import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
 import NotFound from "@/pages/NotFound";
+import Search from "@/pages/Search";
 
 // Smart Tips & Recipes
 import SmartTips from "@/pages/SmartTips";
@@ -67,6 +68,7 @@ export default function App() {
               <Route path="/cookie-settings" element={<CookieSettings />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/search" element={<Search />} />
 
               {/* Smart Tips */}
               <Route path="/smart-tips" element={<SmartTips />} />

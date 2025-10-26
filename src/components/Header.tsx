@@ -38,7 +38,7 @@ export function Header() {
     e.preventDefault();
     const q = query.trim();
     if (!q) return;
-    window.location.href = `https://www.smartkitnow.com/search?q=${encodeURIComponent(q)}`;
+    navigate(`/search?q=${encodeURIComponent(q)}`);
   };
 
   return (
