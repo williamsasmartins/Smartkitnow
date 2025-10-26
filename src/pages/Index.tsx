@@ -1407,7 +1407,7 @@ const Index = () => {
         name: "Smart Kit Now",
         potentialAction: {
           "@type": "SearchAction",
-          target: "https://www.smartkitnow.com/search?q={query}",
+          target: "/search?q={query}",
           "query-input": "required name=query"
         }
       }} />
