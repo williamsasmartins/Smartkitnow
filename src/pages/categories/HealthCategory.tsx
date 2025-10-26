@@ -27,24 +27,24 @@ const nutritionMacros: Item[] = [
   { name: "Carb Target (incl. low-carb/keto ranges)", slug: "carb-target-low-carb-keto" },
   { name: "Fat Intake Range (AMDR)", slug: "fat-intake-range-amdr" },
   { name: "Fiber Intake Target (by kcal/sexo)", slug: "fiber-intake-target" },
-  { name: "Water Intake per Day (by weight/activity/clima)", slug: "water-intake-per-day" },
+  { name: "Water Intake per Day (by weight/activity/climate)", slug: "water-intake-per-day" },
   { name: "Meal Calories Split (breakfast/lunch/dinner/snacks)", slug: "meal-calories-split" },
 ];
 
 const trainingPerformance: Item[] = [
   { name: "Running Pace, Speed & Split Calculator", slug: "running-pace-speed-splits" },
   { name: "Calories Burned by Activity (MET-based)", slug: "calories-burned-met" },
-  { name: "Heart Rate Zones (Karvonen/percentuais)", slug: "heart-rate-zones" },
-  { name: "VO₂max Estimator (Cooper/rockport)", slug: "vo2max-estimator-cooper-rockport" },
+  { name: "Heart Rate Zones (Karvonen/percentages)", slug: "heart-rate-zones" },
+  { name: "VO2max Estimator (Cooper/Rockport)", slug: "vo2max-estimator-cooper-rockport" },
   { name: "1RM — One-Rep Max (Epley/Brzycki)", slug: "one-rep-max-1rm-epley-brzycki" },
-  { name: "Steps → Distance → Calories Converter", slug: "steps-distance-calories-converter" },
+  { name: "Steps ↔ Distance ↔ Calories Converter", slug: "steps-distance-calories-converter" },
 ];
 
 const womensHealth: Item[] = [
   { name: "Ovulation & Fertile Window Estimator", slug: "ovulation-fertile-window" },
   { name: "Pregnancy Due-Date (Naegele)", slug: "pregnancy-due-date-naegele" },
-  { name: "Pregnancy Weight-Gain Range (IMC-aware)", slug: "pregnancy-weight-gain-range-bmi-aware" },
-  { name: "TDEE Ajustado na Gestação (educacional)", slug: "tdee-gestation-adjusted" },
+  { name: "Pregnancy Weight-Gain Range (BMI-aware)", slug: "pregnancy-weight-gain-range-bmi-aware" },
+  { name: "Gestational TDEE (educational)", slug: "tdee-gestation-adjusted" },
 ];
 
 const TOTAL =
@@ -87,7 +87,7 @@ export default function HealthCategory() {
                       Dial in <strong>macros</strong> with protein/carbs/fat splits, set <strong>protein</strong>, <strong>carb</strong> and <strong>fat</strong> targets (incl. AMDR & keto ranges), and plan <strong>fiber</strong>, <strong>water</strong> and balanced <strong>meal calorie</strong> distribution.
                     </p>
                     <p>
-                      Optimize performance: calculate <strong>running pace and splits</strong>, estimate <strong>calories burned</strong> via METs, determine <strong>heart-rate zones</strong>, approximate <strong>VO₂max</strong>, compute <strong>1RM</strong>, and convert <strong>steps ↔ distance ↔ calories</strong>.
+                      Optimize performance: calculate <strong>running pace and splits</strong>, estimate <strong>calories burned</strong> via METs, determine <strong>heart-rate zones</strong>, approximate <strong>VO2max</strong>, compute <strong>1RM</strong>, and convert <strong>steps ↔ distance ↔ calories</strong>.
                     </p>
                     <p>
                       Support women’s health: estimate <strong>ovulation window</strong>, calculate <strong>due date</strong>, track <strong>pregnancy weight gain</strong> by BMI, and review <strong>gestational TDEE</strong> concepts.
@@ -95,7 +95,7 @@ export default function HealthCategory() {
                   </>
                 ) : (
                   <p className="line-clamp-3">
-                    Build a healthier routine with {TOTAL} practical calculators spanning body metrics, nutrition and macros, training & cardio, and women’s health. Track BMI, BMR and TDEE, estimate body fat, check waist-to-height, compute BSA, plan daily calories and set a realistic weight-loss timeline. Dial in macros with protein/carbs/fat splits, set protein, carb and fat targets (incl. AMDR & keto ranges), and plan fiber, water and balanced meal calorie distribution. Optimize performance: calculate running pace and splits, estimate calories burned via METs, determine heart-rate zones, approximate VO₂max, compute 1RM, and convert steps ↔ distance ↔ calories. Support women’s health: estimate ovulation window, calculate due date, track pregnancy weight gain by BMI, and review gestational TDEE concepts.
+                    Build a healthier routine with {TOTAL} practical calculators spanning body metrics, nutrition and macros, training & cardio, and women’s health. Track BMI, BMR and TDEE, estimate body fat, check waist-to-height, compute BSA, plan daily calories and set a realistic weight-loss timeline. Dial in macros with protein/carbs/fat splits, set protein, carb and fat targets (incl. AMDR & keto ranges), and plan fiber, water and balanced meal calorie distribution. Optimize performance: calculate running pace and splits, estimate calories burned via METs, determine heart-rate zones, approximate VO2max, compute 1RM, and convert steps ↔ distance ↔ calories. Support women’s health: estimate ovulation window, calculate due date, track pregnancy weight gain by BMI, and review gestational TDEE concepts.
                   </p>
                 )}
                 {!descExpanded && (
@@ -112,7 +112,7 @@ export default function HealthCategory() {
             </header>
 
             <Section
-              emoji="⚖️"
+              emoji="❤️"
               title={`Body Metrics & Weight Management (${bodyMetrics.length})`}
               description="Compute BMI, BMR and TDEE; estimate body fat (US Navy/3-sites); check waist-to-height; calculate body surface area; plan daily calories and map a safe, time‑bound weight‑loss strategy."
               items={bodyMetrics}
@@ -130,7 +130,7 @@ export default function HealthCategory() {
             <Section
               emoji="🏃"
               title={`Training, Performance & Cardio (${trainingPerformance.length})`}
-              description="Calculate running pace, speed and splits; estimate calories burned with METs; define heart‑rate zones (Karvonen/percentages); estimate VO₂max (Cooper/Rockport); compute one‑rep max (Epley/Brzycki); and convert steps to distance and calories."
+              description="Calculate running pace, speed and splits; estimate calories burned with METs; define heart‑rate zones (Karvonen/percentages); estimate VO2max (Cooper/Rockport); compute one‑rep max (Epley/Brzycki); and convert steps to distance and calories."
               items={trainingPerformance}
               base="/health"
             />
