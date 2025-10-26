@@ -1407,8 +1407,8 @@ const Index = () => {
         name: "Smart Kit Now",
         potentialAction: {
           "@type": "SearchAction",
-          target: "/search?q={query}",
-          "query-input": "required name=query"
+          target: "/search?q={q}",
+          "query-input": "required name=q"
         }
       }} />
       {/* Main Content Area - Add top padding to account for fixed header */}
