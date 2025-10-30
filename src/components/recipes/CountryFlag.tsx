@@ -1,56 +1,18 @@
-import React, { memo, useEffect, useMemo, useState } from "react";
+import React, { memo } from "react";
 
 type Props = {
-  flag: string; // emoji flag string (e.g., "🇮🇹")
+  code?: string; // ISO 3166-1 alpha-2 (e.g., "it")
+  flag?: string; // emoji fallback (e.g., "🇮🇹")
   size?: number;
   className?: string;
   alt?: string;
-  renderAs?: "emoji" | "svg"; // default emoji; svg uses CDN + cache
 };
 
-const FLAG_CACHE = new Map<string, string>(); // slug -> objectURL
-const CDN_BASE = "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg";
+function CountryFlag({ code, flag, size = 28, className = "", alt = "Flag" }: Props) {
+  const normalized = (code || "").trim().toLowerCase();
 
-function emojiToSlug(emoji: string): string {
-  const cps = Array.from(emoji).map((c) => c.codePointAt(0)?.toString(16)).filter(Boolean) as string[];
-  return cps.join("-");
-}
-
-function CountryFlag({ flag, size = 28, className = "", alt = "Flag", renderAs = "emoji" }: Props) {
-  const slug = useMemo(() => (renderAs === "svg" ? emojiToSlug(flag) : null), [flag, renderAs]);
-  const [src, setSrc] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (renderAs !== "svg" || !slug) return;
-    const url = `${CDN_BASE}/${slug}.svg`;
-
-    if (FLAG_CACHE.has(slug)) {
-      setSrc(FLAG_CACHE.get(slug)!);
-      return;
-    }
-
-    let cancelled = false;
-    fetch(url, { cache: "force-cache", mode: "cors" })
-      .then((res) => {
-        if (!res.ok) throw new Error("Flag fetch failed");
-        return res.blob();
-      })
-      .then((blob) => {
-        if (cancelled) return;
-        const objectUrl = URL.createObjectURL(blob);
-        FLAG_CACHE.set(slug, objectUrl);
-        setSrc(objectUrl);
-      })
-      .catch(() => {
-        setSrc(null);
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [slug, renderAs]);
-
-  if (renderAs === "svg" && src) {
+  if (normalized) {
+    const src = `/flags/${normalized}.svg`;
     return (
       <img
         src={src}
@@ -64,6 +26,7 @@ function CountryFlag({ flag, size = 28, className = "", alt = "Flag", renderAs =
     );
   }
 
+  // Fallback to emoji rendering if no code provided
   return (
     <span
       className={`inline-grid place-items-center rounded-full border bg-card ${className}`}

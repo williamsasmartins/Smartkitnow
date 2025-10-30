@@ -311,7 +311,7 @@ export default function RecipePage() {
                         className="text-primary hover:underline text-base md:text-[1.05rem] font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 rounded-sm inline-flex items-center gap-2"
                         aria-label={aria}
                       >
-                        <CountryFlag flag={c.flag} renderAs="svg" size={18} alt={`${c.name} flag`} />
+                        <CountryFlag code={c.countryCode} size={18} alt={`${c.name} flag`} />
                         <span>{c.name}</span>
                         <span className="text-xs text-muted-foreground">({c.recipes.length})</span>
                       </Link>

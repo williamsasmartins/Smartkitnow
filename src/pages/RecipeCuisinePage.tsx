@@ -29,7 +29,7 @@ export default function RecipeCuisinePage() {
               <span>{data.name}</span>
             </nav>
             <div className="flex items-center gap-3">
-              <CountryFlag flag={data.flag} size={36} renderAs="svg" alt={`${data.name} flag`} />
+              <CountryFlag code={data.countryCode} size={36} alt={`${data.name} flag`} />
               <h1 className="text-3xl md:text-4xl font-semibold text-primary">
                 {data.name} Recipes
               </h1>
