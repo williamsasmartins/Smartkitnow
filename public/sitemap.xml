@@ -1,119 +1,508 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://www.smartkitnow.com/</loc><lastmod>2025-10-24</lastmod><priority>1</priority></url>
-<url><loc>https://www.smartkitnow.com/about</loc><lastmod>2025-10-24</lastmod><priority>0.4</priority></url>
-<url><loc>https://www.smartkitnow.com/automotive</loc><lastmod>2025-10-24</lastmod><priority>0.4</priority></url>
-<url><loc>https://www.smartkitnow.com/construction</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/construction/wall-ceiling-calculators</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/contact</loc><lastmod>2025-10-24</lastmod><priority>0.4</priority></url>
-<url><loc>https://www.smartkitnow.com/conversion</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/conversion/common</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/conversion/cooking-baking</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/conversion/core-units/length-converter</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/conversion/popular</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/cookie-settings</loc><lastmod>2025-10-24</lastmod><priority>0.2</priority></url>
-<url><loc>https://www.smartkitnow.com/cookies</loc><lastmod>2025-10-24</lastmod><priority>0.2</priority></url>
-<url><loc>https://www.smartkitnow.com/cooking</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/cooking/cooking-baking-calculators</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/electrical</loc><lastmod>2025-10-24</lastmod><priority>0.4</priority></url>
-<url><loc>https://www.smartkitnow.com/everyday/events/beverage-mix-planner</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/everyday/events/coffee-urn-yield-strength</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/everyday/garden/mulch-bags-needed</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/everyday/home/light-bulb-cost-per-year</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/everyday/home/propane-tank-burn-time</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/everyday/home/water-heater-recovery-time</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/financial</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/currency-tax/currency-converter-live</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/currency-tax/discount-final-price</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/currency-tax/sales-tax</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/currency-tax/tip-split-bill</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/currency-tax/vat-gst</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/income-budget-expenses/debt-to-income-ratio</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/income-budget-expenses/expense-splitter-shared-bills</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/income-budget-expenses/hourly-to-annual-salary</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/income-budget-expenses/monthly-budget-planner</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/income-budget-expenses/net-income-after-tax</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/income-budget-expenses/savings-rate-tracker</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/investments-savings/compound-interest</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/investments-savings/emergency-fund-goal</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/investments-savings/future-value-investment</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/investments-savings/inflation-adjusted-value</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/investments-savings/retirement-savings-goal</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/investments-savings/roi-return-on-investment</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/investments-savings/sip-monthly-investment-planner</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/balloon-payment</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/car-loan-affordability</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/extra-payments-payoff</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/heloc-payment-estimator</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/interest-only-loan</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/loan-payment</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/mortgage-amortization</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/refinance-savings</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/financial/mortgage-and-home-loan-calculators</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/health</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/health/fitness-calculators</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/math</loc><lastmod>2025-10-24</lastmod><priority>0.6</priority></url>
-<url><loc>https://www.smartkitnow.com/math/everyday-math</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/math/everyday-math/percentages</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/math/fractions</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/pets</loc><lastmod>2025-10-24</lastmod><priority>0.9</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/birds/bird-weight-trend-alert</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-activity-calorie-adjuster</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-age-human-years</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-bcs-helper</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-benadryl-dose</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-bmi-index</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-carrier-size</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-cephalexin-dose</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-enrichment-planner</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-gabapentin-dose</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-gestation-due-date</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-harness-size</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-insulin-starter-info</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-intake-vs-urine-balance</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-life-expectancy</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-litter-output-tracker</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-meloxicam-dose</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-nail-trim-interval</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-omega3-supplement</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-phosphorus-per-meal</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-play-session-planner</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-prednisolone-dose</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-rest-active-balance</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-shedding-combing-planner</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/cat-stress-score-playtime-offset</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/kitten-adult-weight-predictor</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/kitten-weaning-timeline</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/multi-cat-litterbox-count</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/omega3-supplement-cats</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/prednisolone-dose-cats</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/cats/senior-cat-readiness-checklist</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/dog-nutrition-weight/dog-calorie-needs-rer-mer</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/dogs/gabapentin-dose-dogs</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/dogs/meloxicam-dose-dogs</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/fish/aquarium-water-change</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/fish/salinity-sg-ppt-converter</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/general/asfed-me-kcal-converter</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/general/dry-matter-basis-converter</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/horses/horse-water-intake</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/horses/horse-workload-calories</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/reptiles/reptile-basking-gradient</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/reptiles/reptile-enclosure-size</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/reptiles/reptile-feeder-quantity</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/reptiles/reptile-humidity-misting-interval</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/reptiles/reptile-uvb-distance</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/small-mammals/guinea-pig-vitamin-c-intake</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/small-mammals/hamster-wheel-size-speed</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/small-mammals/rabbit-hay-greens-portion</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/pets/small-mammals/small-mammal-cage-size</loc><lastmod>2025-10-24</lastmod><priority>0.85</priority></url>
-<url><loc>https://www.smartkitnow.com/privacy</loc><lastmod>2025-10-24</lastmod><priority>0.2</priority></url>
-<url><loc>https://www.smartkitnow.com/recipes</loc><lastmod>2025-10-24</lastmod><priority>0.4</priority></url>
-<url><loc>https://www.smartkitnow.com/science</loc><lastmod>2025-10-24</lastmod><priority>0.4</priority></url>
-<url><loc>https://www.smartkitnow.com/smart-tips</loc><lastmod>2025-10-24</lastmod><priority>0.4</priority></url>
-<url><loc>https://www.smartkitnow.com/smart-tips/planning/commute-cost-time</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/smart-tips/wellbeing/caffeine-max-per-day</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/smart-tips/wellbeing/sleep-debt-ideal-bedtime</loc><lastmod>2025-10-24</lastmod><priority>0.5</priority></url>
-<url><loc>https://www.smartkitnow.com/terms</loc><lastmod>2025-10-24</lastmod><priority>0.2</priority></url>
-<url><loc>https://www.smartkitnow.com/time</loc><lastmod>2025-10-24</lastmod><priority>0.4</priority></url>
-<url><loc>https://www.smartkitnow.com/tv</loc><lastmod>2025-10-24</lastmod><priority>0.4</priority></url>
+  <url>
+    <loc>https://www.smartkitnow.com/</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/about</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/contact</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/privacy</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/terms</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/health</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/cooking</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/math</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/conversion</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/science</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/time</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/tv</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/smart-tips</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/recipes</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/loan-payment</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/mortgage-amortization</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/extra-payments-payoff</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/interest-only-loan</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/refinance-savings</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/heloc-payment-estimator</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/car-loan-affordability</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/loans-mortgages-payments/balloon-payment</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/investments-savings/compound-interest</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/investments-savings/future-value-investment</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/investments-savings/roi-return-on-investment</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/investments-savings/sip-monthly-investment-planner</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/investments-savings/inflation-adjusted-value</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/investments-savings/retirement-savings-goal</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/investments-savings/emergency-fund-goal</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/income-budget-expenses/monthly-budget-planner</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/income-budget-expenses/net-income-after-tax</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/income-budget-expenses/hourly-to-annual-salary</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/income-budget-expenses/debt-to-income-ratio</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/income-budget-expenses/savings-rate-tracker</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/income-budget-expenses/expense-splitter-shared-bills</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/currency-tax/currency-converter-live</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/currency-tax/sales-tax</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/currency-tax/vat-gst</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/currency-tax/tip-split-bill</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/financial/currency-tax/discount-final-price</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/conversion/core-units/length-converter</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/everyday/home/light-bulb-cost-per-year</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/everyday/home/water-heater-recovery-time</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/everyday/home/propane-tank-burn-time</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/everyday/events/beverage-mix-planner</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/everyday/events/coffee-urn-yield-strength</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/everyday/garden/mulch-bags-needed</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/smart-tips/wellbeing/sleep-debt-ideal-bedtime</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/smart-tips/wellbeing/caffeine-max-per-day</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/smart-tips/planning/commute-cost-time</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/reptiles/reptile-enclosure-size</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/reptiles/reptile-basking-gradient</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/reptiles/reptile-uvb-distance</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/reptiles/reptile-feeder-quantity</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/small-mammals/rabbit-hay-greens-portion</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/small-mammals/guinea-pig-vitamin-c-intake</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/small-mammals/hamster-wheel-size-speed</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/small-mammals/small-mammal-cage-size</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-benadryl-dose</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-cephalexin-dose</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-meloxicam-dose</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-gabapentin-dose</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-prednisolone-dose</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-omega3-supplement</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-insulin-starter-info</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/kitten-adult-weight-predictor</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-bcs-helper</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-bmi-index</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-carrier-size</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-harness-size</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-activity-calorie-adjuster</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-play-session-planner</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-rest-active-balance</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-age-human-years</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/senior-cat-readiness-checklist</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-life-expectancy</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-litter-output-tracker</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-intake-vs-urine-balance</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-phosphorus-per-meal</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-gestation-due-date</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/kitten-weaning-timeline</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-shedding-combing-planner</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-nail-trim-interval</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/multi-cat-litterbox-count</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-enrichment-planner</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/cat-stress-score-playtime-offset</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/dogs/meloxicam-dose-dogs</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/dogs/gabapentin-dose-dogs</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/dog-nutrition-weight/dog-calorie-needs-rer-mer</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/prednisolone-dose-cats</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/cats/omega3-supplement-cats</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/general/dry-matter-basis-converter</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/general/asfed-me-kcal-converter</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/horses/horse-water-intake</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/horses/horse-workload-calories</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/birds/bird-weight-trend-alert</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/fish/aquarium-water-change</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/fish/salinity-sg-ppt-converter</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/pets/reptiles/reptile-humidity-misting-interval</loc>
+    <lastmod>2025-10-30</lastmod>
+    <priority>0.85</priority>
+  </url>
 </urlset>
