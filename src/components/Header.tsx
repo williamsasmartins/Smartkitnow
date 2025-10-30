@@ -22,11 +22,9 @@ export function Header() {
     { key: "time", label: "Time & Date", to: "/time" },
   ];
 
-  const MORE_CATS = [
-    { key: "automotive", label: "Automotive", to: "/automotive" },
-    { key: "construction", label: "Construction", to: "/construction" },
-    { key: "electrical", label: "Electrical", to: "/electrical" },
-    { key: "everyday", label: "Everyday Life", to: "/everyday" },
+  const MORE_CATS = [    { key: "recipes", label: "Recipes", to: "/recipes" },
+    { key: "smart-tips", label: "Smart Tips", to: "/smart-tips" },
+    { key: "daily-quotes", label: "Daily Quotes", to: "/daily-quotes" },{ key: "everyday", label: "Everyday Life", to: "/everyday" },
     { key: "sports", label: "Sports", to: "/sports" },
     { key: "funny", label: "Funny", to: "/funny" },
     { key: "video", label: "Video", to: "/video" },
@@ -70,22 +68,22 @@ export function Header() {
 
       <nav className="container mx-auto px-4 pb-2 overflow-x-hidden">
         <ul className="skn-cat-menu flex items-center justify-start gap-4 text-sm whitespace-nowrap w-full">
-          <li className="flex items-center">
-            <Link to="/recipes" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{getCategoryIcon("recipes")}</span>
-              Recipes
+                    <li className="flex items-center">
+            <Link to="/construction" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
+              <span className="mr-1" aria-hidden>{getCategoryIcon("construction")}</span>
+              Construction
             </Link>
           </li>
-          <li className="flex items-center">
-            <Link to="/smart-tips" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{getCategoryIcon("smart-tips")}</span>
-              Smart Tips
+                    <li className="flex items-center">
+            <Link to="/electrical" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
+              <span className="mr-1" aria-hidden>{getCategoryIcon("electrical")}</span>
+              Electrical
             </Link>
           </li>
-          <li className="flex items-center">
-            <Link to="/daily-quotes" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{getCategoryIcon("daily-quotes")}</span>
-              Daily Quotes
+                    <li className="flex items-center">
+            <Link to="/automotive" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
+              <span className="mr-1" aria-hidden>{getCategoryIcon("automotive")}</span>
+              Automotive
             </Link>
           </li>
 
@@ -105,7 +103,7 @@ export function Header() {
                   More
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent side="bottom" align="start" className="min-w-[220px]">
+              <DropdownMenuContent side="bottom" align="start" className="min-w-[220px] animate-in fade-in-0 zoom-in-95 data-[side=bottom]:slide-in-from-top-2 duration-150 ease-out">
                 {MORE_CATS.map((cat) => (
                   <DropdownMenuItem key={cat.key} asChild>
                     <Link to={cat.to} className="inline-flex items-center gap-2">
@@ -122,3 +120,5 @@ export function Header() {
     </header>
   );
 }
+
+

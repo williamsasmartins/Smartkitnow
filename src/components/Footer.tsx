@@ -26,9 +26,9 @@ const COLS: Array<{ title: string; links: { label: string; to: string }[] }> = [
   {
     title: "Resources",
     links: [
-      { label: "Recipes", to: "/recipes" },
-      { label: "Smart Tips", to: "/smart-tips" },
-      { label: "Daily Quotes", to: "/daily-quotes" },
+      { label: "Construction", to: "/construction" },
+      { label: "Electrical", to: "/electrical" },
+      { label: "Automotive", to: "/automotive" },
       { label: "Everyday Life", to: "/everyday-life" },
       { label: "Sports", to: "/sports" },
       { label: "Funny Calculators", to: "/funny" },
