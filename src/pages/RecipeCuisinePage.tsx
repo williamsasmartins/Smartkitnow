@@ -51,20 +51,23 @@ export default function RecipeCuisinePage() {
         {/* Lista de receitas (duas colunas responsivas com bullets) */}
         <section className="lg:col-span-9">
           <ul
-            className="grid gap-x-10 gap-y-2.5 grid-cols-1 md:grid-cols-2 list-disc ml-6"
+            className="grid gap-x-10 gap-y-2.5 grid-cols-1 md:grid-cols-2 list-disc list-inside"
             aria-label={`${data.name} recipes`}
           >
-            {data.recipes.map((r) => (
-              <li key={r.slug} className="leading-relaxed">
-                <Link
-                  to={`/recipes/${data.key}/${r.slug}`}
-                  className="text-primary hover:underline text-base md:text-[1.05rem] font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 rounded-sm"
-                  aria-label={`${r.title} — abrir detalhes da receita`}
-                >
-                  {r.title}
-                </Link>
-              </li>
-            ))}
+            {data.recipes.map((r) => {
+              const display = r.title ?? r.slug;
+              return (
+                <li key={r.slug} className="leading-relaxed">
+                  <Link
+                    to={`/recipes/${data.key}/${r.slug}`}
+                    className="text-primary hover:underline text-base md:text-[1.05rem] font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 rounded-sm"
+                    aria-label={`${display} — abrir detalhes da receita`}
+                  >
+                    {display}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </section>
 
