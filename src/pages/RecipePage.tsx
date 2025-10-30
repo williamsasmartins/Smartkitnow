@@ -298,7 +298,7 @@ export default function RecipePage() {
               )}
 
               <ul
-                className="grid gap-x-10 gap-y-2 grid-cols-1 md:grid-cols-2 list-disc ml-6"
+                className="grid gap-x-10 gap-y-2.5 grid-cols-1 md:grid-cols-2 list-disc ml-6"
                 aria-label="Cuisines"
               >
                 {visibleCuisines.map((c) => {
