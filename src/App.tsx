@@ -38,10 +38,12 @@ import SmartTips from "@/pages/SmartTips";
 import SmartTipsSubCategory from "@/pages/SmartTipsSubCategory";
 import SmartTipDetail from "@/pages/SmartTipDetail";
 import RecipeSubCategory from "@/pages/RecipeSubCategory";
-import RecipePage from "@/pages/RecipePage";
+import RecipesCategory from "@/pages/RecipesCategory";
 import DailyQuotesPage from "@/pages/DailyQuotesPage";
 import CategoryIndex from "@/pages/CategoryIndex";
 import CalculatorPage from "@/pages/CalculatorPage";
+import RecipeCuisinePage from "@/pages/RecipeCuisinePage";
+import RecipeDetailPage from "@/pages/RecipeDetailPage";
 
 export default function App() {
   return (
@@ -76,7 +78,11 @@ export default function App() {
               <Route path="/smart-tip/:slug" element={<SmartTipDetail />} />
 
               {/* Recipes */}
-              <Route path="/recipes" element={<RecipePage />} />
+              <Route path="/recipes" element={<RecipesCategory />} />
+              {/* More specific: cuisine recipe detail */}
+              <Route path="/recipes/:cuisine/:recipe" element={<RecipeDetailPage />} />
+              {/* Cuisine list page should precede the generic subcategory route to avoid conflicts */}
+              <Route path="/recipes/:cuisine" element={<RecipeCuisinePage />} />
               <Route path="/recipes/:categorySlug" element={<RecipeSubCategory />} />
 
               {/* Daily Quotes */}

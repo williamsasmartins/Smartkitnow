@@ -6,6 +6,9 @@ import EmojiIcon from "../components/ui/EmojiIcon";
 import ShareBox from "../components/share/ShareBox";
 import SuggestBoxInline from "../components/contact/SuggestBoxInline";
 import SEOHead from "@/components/SEOHead";
+import CountryFlag from "@/components/recipes/CountryFlag";
+import { listCuisines } from "@/data/recipes/cuisines";
+import { useHiddenCuisines } from "@/hooks/useHiddenCuisines";
 
 // Item para receita/categoria com slug opcional
  type Item = { name: string; slug?: string };
@@ -213,6 +216,10 @@ const TOTAL =
   childNutritionTips.length;
 
 export default function RecipePage() {
+  const cuisines = listCuisines();
+  const totalCuisines = cuisines.length;
+  const { hidden, isHidden, restoreAll } = useHiddenCuisines();
+  const visibleCuisines = cuisines.filter((c) => !isHidden(c.key));
   return (
     <div className="min-h-screen">
       {/* empurra tudo abaixo do header fixo */}
@@ -235,6 +242,11 @@ export default function RecipePage() {
           <div className="lg:col-span-9 pr-[15px]">
             {/* HERO */}
             <header className="py-6 mb-8">
+              <nav aria-label="Breadcrumb" className="text-sm mb-2 text-muted-foreground">
+                <Link to="/" className="hover:underline">Home</Link>
+                <span> &gt; </span>
+                <span>Recipes</span>
+              </nav>
               <div className="flex items-center gap-3">
                 <EmojiIcon symbol="🍳" size={38} className="text-primary" label="Recipes" />
                 <h1 className="text-3xl md:text-4xl font-semibold text-primary">Recipes & Cooking</h1>
@@ -258,13 +270,56 @@ export default function RecipePage() {
               base="/recipes"
             />
 
-            <Section
-              emoji="🌎"
-              title={`International & Regional Cuisines (${regionalCuisines.length})`}
-              description="Explore diverse flavors from around the world: bistro staples, street food, curries, noodles, grills and more."
-              items={regionalCuisines}
-              base="/recipes"
-            />
+            {/* --- International & Regional Cuisines (bandeiras + nome + (2)) --- */}
+            <section className="mb-12">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="inline-grid place-items-center h-8 w-8 rounded-lg border bg-card">
+                  <EmojiIcon symbol="🌍" size={20} />
+                </span>
+                <h2 className="text-2xl font-semibold text-primary">
+                  International & Regional Cuisines ({visibleCuisines.length})
+                </h2>
+              </div>
+              <p className="text-sm md:text-base text-muted-foreground mb-5">
+                Choose a cuisine link to open its page. Links follow the same visual style used across sections.
+              </p>
+
+              {hidden.size > 0 && (
+                <div className="mb-4">
+                  <button
+                    type="button"
+                    onClick={restoreAll}
+                    className="inline-flex items-center rounded-md border px-3 py-1 text-xs hover:bg-muted"
+                    aria-label="Restore removed cuisines"
+                  >
+                    Restore removed cuisines
+                  </button>
+                </div>
+              )}
+
+              <ul
+                className="grid gap-x-10 gap-y-2 grid-cols-1 md:grid-cols-2 list-disc ml-6"
+                aria-label="Cuisines"
+              >
+                {visibleCuisines.map((c) => {
+                  const href = `/recipes/${c.key}`;
+                  const aria = `${c.name} recipes`;
+                  return (
+                    <li key={c.key} className="leading-relaxed">
+                      <Link
+                        to={href}
+                        className="text-primary hover:underline text-base md:text-[1.05rem] font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 rounded-sm inline-flex items-center gap-2"
+                        aria-label={aria}
+                      >
+                        <CountryFlag flag={c.flag} renderAs="svg" size={18} alt={`${c.name} flag`} />
+                        <span>{c.name}</span>
+                        <span className="text-xs text-muted-foreground">({c.recipes.length})</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
 
             <Section
               emoji="🍢"
