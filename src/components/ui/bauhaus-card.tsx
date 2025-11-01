@@ -15,6 +15,7 @@ const BAUHAUS_CARD_STYLES = `
   place-items: center;
   text-align: center;
   box-shadow: 1px 12px 25px rgb(0,0,0/78%);
+  transition: box-shadow 0.3s ease;
   border-radius: var(--card-radius, 20px);
   border: var(--card-border-width, 2px) solid transparent;
   --rotation: 4.2rad;
@@ -24,6 +25,10 @@ const BAUHAUS_CARD_STYLES = `
   background-origin: border-box;
   background-clip: padding-box, border-box;
   color: var(--card-text-main, #f0f0f1);
+}
+.bauhaus-card:hover {
+  /* Hover: mantém mesma geometria, muda a cor para azul #0000FF */
+  box-shadow: 1px 12px 25px rgb(0,0,255/78%);
 }
 .bauhaus-card::before {
   position: absolute;

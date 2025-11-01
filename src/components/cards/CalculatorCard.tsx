@@ -36,7 +36,7 @@ export default function CalculatorCard({
   const href = `/${category}/${subcategory}/${slug}`;
 
   return (
-    <article className="border rounded-xl p-4 bg-card hover:shadow-md transition-shadow">
+    <article className="border rounded-xl p-4 bg-card hover:shadow-md transition-shadow duration-300">
       <header className="flex items-center gap-2 mb-2">
         {/* icon placeholder; hook into your icon map if you want */}
         <span aria-hidden className="inline-grid place-items-center h-8 w-8 rounded-lg border bg-card">

@@ -84,7 +84,13 @@
   background-image: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--foreground)) 100%);
 }
 .hover\:shadow-soft:hover {
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  /* Azul #0000FF mantendo os mesmos offsets/blur/spread */
+  box-shadow: 0 10px 25px rgba(0, 0, 255, 0.08);
+}
+
+/* Hover azul para shadow-md mantendo a geometria do Tailwind */
+.hover\:shadow-md:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 255, 0.1), 0 2px 4px -2px rgba(0, 0, 255, 0.1);
 }
 
 /* Utilitário para truncar texto em 3 linhas (fallback ao plugin @tailwindcss/line-clamp) */

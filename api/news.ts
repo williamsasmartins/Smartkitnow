@@ -11,9 +11,12 @@ export default async function handler(req: any, res: any) {
     const { q = "fitness", category = "health", language = "en", pageSize = "12", page = "1", country = "", sources = "" } = req.query as any;
 
     if (!keys.length) {
-      return res.status(503).json({
-        ok: false,
-        message: "News service temporarily unavailable",
+      // Graceful degradation: when no API key is configured, return an empty
+      // list with 200 OK so the UI can render without surfacing a 503.
+      return res.status(200).json({
+        ok: true,
+        message: "News service disabled (no API key configured)",
+        totalResults: 0,
         articles: [],
       });
     }
