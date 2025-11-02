@@ -44,17 +44,16 @@ export default function CalculatorPage() {
   }
   if (error) {
     return (
-      <div className="container mx-auto px-4 py-10">
-        <h1 className="text-xl font-semibold mb-4">Unable to load calculator</h1>
+      <div>
+        <h1 className="text-xl font-semibold mb-2">Unable to load calculator</h1>
         <p className="text-muted-foreground">{String(error)}</p>
       </div>
     );
   }
   if (!Loaded) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-background/60">
-        <div className="animate-spin rounded-full h-8 w-8 border-2 border-primary border-t-transparent" />
-        <span className="sr-only">Loading…</span>
+      <div aria-live="polite" role="status" className="p-4">
+        Loading…
       </div>
     );
   }

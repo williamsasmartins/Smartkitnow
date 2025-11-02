@@ -491,8 +491,8 @@ const construction: RegistryEntry[] = [];
 const electrical: RegistryEntry[] = [];
 const financial: RegistryEntry[] = [
   // Loans, Mortgages & Payments (8)
-  { title: "Loan Payment Calculator (Principal, Rate, Term)", category: "financial", subcategory: "loans-mortgages-payments", slug: "loan-payment", loader: () => import("@/components/calculators/Financial/Loans/LoanPaymentCalculator") },
-  { title: "Mortgage Payment & Amortization Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "mortgage-amortization", loader: () => import("@/components/calculators/Financial/Loans/MortgageAmortizationCalculator") },
+  { title: "Loan Payment Calculator (Principal, Rate, Term)", category: "financial", subcategory: "loans-mortgages-payments", slug: "loan-payment", loader: () => import("@/components/calculators/Financial/LoanPaymentCalculator") },
+  { title: "Mortgage Payment & Amortization Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "mortgage-amortization", loader: () => import("@/components/calculators/Financial/MortgageAmortizationCalculator") },
   { title: "Extra Payments & Payoff Time Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "extra-payments-payoff", loader: () => import("@/components/calculators/Financial/Loans/ExtraPaymentsPayoffCalculator") },
   { title: "Interest-Only Loan Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "interest-only-loan", loader: () => import("@/components/calculators/Financial/Loans/InterestOnlyLoanCalculator") },
   { title: "Refinance Savings Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "refinance-savings", loader: () => import("@/components/calculators/Financial/Loans/RefinanceSavingsCalculator") },
@@ -523,6 +523,9 @@ const financial: RegistryEntry[] = [
   { title: "VAT/GST Calculator", category: "financial", subcategory: "currency-tax", slug: "vat-gst", loader: () => import("@/components/calculators/Financial/Tax/VATGSTCalculator") },
   { title: "Tip & Split Bill Calculator", category: "financial", subcategory: "currency-tax", slug: "tip-split-bill", loader: () => import("@/components/calculators/Financial/Tax/TipSplitBillCalculator") },
   { title: "Discount & Final Price Calculator", category: "financial", subcategory: "currency-tax", slug: "discount-final-price", loader: () => import("@/components/calculators/Financial/Tax/DiscountFinalPriceCalculator") },
+  
+  // Debt Management & Credit
+  { title: "Credit Card Interest Calculator", category: "financial", subcategory: "debt-management-credit", slug: "credit-card-interest", loader: () => import("@/components/calculators/Financial/CreditCardInterestCalculator") },
 ];
 const health: RegistryEntry[] = [];
 const cooking: RegistryEntry[] = [];

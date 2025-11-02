@@ -152,6 +152,46 @@ html, body, #root {
   box-sizing: border-box;
 }
 
+/* ===== Calculator Safe Zone ===== */
+/* Mantém todo conteúdo das calculadoras estritamente dentro da área demarcada */
+.calculator-safe-zone {
+  max-width: 100%;
+  overflow-x: hidden;           /* nunca ultrapassar horizontalmente */
+  padding-right: 5px;           /* margem de segurança mínima */
+}
+.calculator-safe-zone * {
+  min-width: 0;                 /* grids/flex não estourarem colunas */
+  word-wrap: break-word;
+  overflow-wrap: anywhere;      /* textos grandes se adaptarem ao viewport */
+}
+.calculator-safe-zone table {
+  table-layout: fixed;          /* proporções estáveis em todas larguras */
+  width: 100%;
+}
+.calculator-safe-zone img,
+.calculator-safe-zone svg,
+.calculator-safe-zone canvas,
+.calculator-safe-zone video {
+  max-width: 100%;
+  height: auto;                 /* manter proporção sem transbordo */
+}
+
+/* Breakpoints abrangentes para ajustes finos */
+@media (max-width: 767px) {
+  .calculator-safe-zone {
+    padding-right: 6px; /* mobile: margem levemente maior para o zoom */
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .calculator-safe-zone { padding-right: 6px; }
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .calculator-safe-zone { padding-right: 5px; }
+}
+@media (min-width: 1440px) {
+  .calculator-safe-zone { padding-right: 5px; }
+}
+
 /* === SKN: Scroll + Right Rail control (desktop) === */
 :root{
   /* Altura (top) em que o sidebar ad começa a "grudar" (ajuste fino aqui) */
