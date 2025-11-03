@@ -1,2 +1,2 @@
-import CalculatorScaffold from "@/components/templates/CalculatorScaffold";
-export default CalculatorScaffold;
+import CalculatorUnifiedLayout from "@/components/templates/CalculatorUnifiedLayout";
+export default CalculatorUnifiedLayout;
