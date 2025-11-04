@@ -1,61 +1,54 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getEntry, REGISTRY } from "@/data/calculatorRegistry";
-import NotFound from "@/pages/NotFound";
+import React, { Suspense } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import { getEntry } from "@/data/calculatorRegistry";
+
+function useLazyFromLoader(loader: () => Promise<any>, namedExport?: string) {
+  const Lazy = React.lazy(async () => {
+    const mod = await loader();
+    return { default: namedExport ? mod[namedExport] : (mod.default ?? Object.values(mod)[0]) };
+  });
+  return Lazy;
+}
 
 export default function CalculatorPage() {
-  const { category = "", subcategory = "", slug = "" } = useParams();
-  const [Loaded, setLoaded] = useState<React.ComponentType | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const { category, subcategory, calculator, slug } = useParams();
+  const isPets = (category ?? "").toLowerCase() === "pets";
+  
+  const calcSlug = (calculator ?? slug ?? "").toLowerCase();
+  const entry = calcSlug ? getEntry(calcSlug) : null;
 
-  // Prefer exact match by category+slug when available to avoid collisions
-  const entry = useMemo(() => {
-    const s = String(slug || "").trim().toLowerCase();
-    const c = String(category || "").trim().toLowerCase();
-    const sub = String(subcategory || "").trim().toLowerCase();
-    const byCat = REGISTRY.find(e => e.slug === s && e.category === c && (!sub || e.subcategory === sub));
-    return byCat || getEntry(s);
-  }, [category, subcategory, slug]);
-
-  useEffect(() => {
-    let cancelled = false;
-    setLoaded(null);
-    setError(null);
-    if (!entry) {
-      setError("notfound");
-      return;
-    }
-    (async () => {
-      try {
-        const mod = await entry.loader();
-        const Comp = mod?.default || mod;
-        if (!cancelled) setLoaded(() => Comp as React.ComponentType);
-      } catch (err: any) {
-        if (!cancelled) setError(err?.message || "loaderror");
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [entry]);
-
-  if (!entry || error === "notfound") {
-    return <NotFound />;
-  }
-  if (error) {
+  if (!entry) {
     return (
-      <div>
-        <h1 className="text-xl font-semibold mb-2">Unable to load calculator</h1>
-        <p className="text-muted-foreground">{String(error)}</p>
+      <div className="mx-auto max-w-3xl px-4 lg:px-6 py-10">
+        {/* Removed Back button */}
+        <h1 className="text-2xl font-bold text-[#5c82ee]">Calculator not found</h1>
+        <p className="mt-2 text-muted-foreground">We couldn't find this calculator. Please use the site menu.</p>
       </div>
     );
   }
-  if (!Loaded) {
-    return (
-      <div aria-live="polite" role="status" className="p-4">
-        Loading…
+
+  const LazyCalc = useLazyFromLoader(entry.loader, entry.namedExport);
+
+  return (
+    <div className={isPets ? "w-full pl-4 pr-4 md:pl-8 lg:pl-10 xl:pl-14 mt-[156px] md:mt-[176px]" : "w-full pl-4 pr-4 md:pl-8 lg:pl-10 xl:pl-14"}>
+      <div className={isPets ? "max-w-none" : "max-w-[864px]"}>
+        {/* Removed Back button */}
+        <Suspense fallback={<div className="py-10 text-muted-foreground">Loading…</div>}>
+          {isPets ? (
+            <main className="min-w-0">
+              <LazyCalc />
+            </main>
+          ) : (
+            <main className="min-w-0 sticky self-start" style={{ top: 88 }}>
+              <LazyCalc />
+            </main>
+          )}
+        </Suspense>
       </div>
-    );
-  }
-  return <Loaded />;
+    </div>
+  );
 }
+

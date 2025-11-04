@@ -1,734 +1,644 @@
 // src/data/calculatorRegistry.ts
-// Unified calculator registry consumed by scripts (sitemap, checks)
-// - Exports types `CalculatorEntry` and `RegistryEntry` (alias)
-// - Preserves loader functions using dynamic import specs
-// - Provides helpers: calcLink, getEntry, listByCategory, listByCategorySubcategory
+// Centralized calculator registry and helpers used by pages and templates.
 
-export type CalculatorEntry = {
+import type React from "react";
+
+export type UrlStyle = "nested" | "flat";
+
+export interface CalculatorEntry {
   slug: string;
-  category: string; // canonical category key, e.g. "pets", "health", "financial"
-  subcategory: string; // canonical subcategory key when applicable, e.g. "dogs", "cats", "general"
-  title: string; // display title
+  title: string;
+  category: string; // e.g., "financial", "health", "pets"
+  subcategory?: string; // e.g., "dogs", "cats"
   description?: string;
-  loader: () => Promise<any>;
-  aliases?: string[];
-  // Optional display labels (if different from canonical keys)
-  displayCategory?: string;
-  displaySubcategory?: string;
+  aliases?: string[]; // optional alternative search terms
+  loader: () => Promise<{ default: React.ComponentType<any> }>; // dynamic import to component
+  namedExport?: string; // optional named export if component is not default
+  /** NEW: if "flat", links will be /:category/:slug */
+  urlStyle?: UrlStyle; // "nested" (default) | "flat"
+}
+
+// Friendly category titles shown on hubs and index pages
+export const FRIENDLY_TITLES: Record<string, string> = {
+  financial: "Financial Calculators",
+  health: "Health Calculators",
+  cooking: "Cooking Calculators",
+  pets: "Pets Calculators",
+  math: "Math Calculators",
+  conversion: "Conversion Calculators",
+  science: "Science Calculators",
+  time: "Time Calculators",
+  "everyday-life": "Everyday Life Calculators",
+  sports: "Sports Calculators",
+  funny: "Funny Calculators",
+  automotive: "Automotive Calculators",
+  construction: "Construction Calculators",
+  electrical: "Electrical Calculators",
+  recipes: "Recipe Collections",
 };
 
-export type RegistryEntry = CalculatorEntry;
+// Optional friendlier titles per subcategory
+export const SUBCATEGORY_TITLES: Record<string, Record<string, string>> = {
+  pets: {
+    dogs: "Dog Care",
+    cats: "Cat Care",
+    "pet-care-calculators": "Pet Care Tools",
+    general: "General",
+  },
+  financial: {
+    general: "General",
+  },
+  health: {
+    general: "General",
+  },
+  cooking: {
+    general: "General",
+  },
+  math: {
+    general: "General",
+  },
+};
 
+function normalize(v?: string) {
+  return String(v ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w\-]/g, "");
+}
 
-// Map canonical category key to short URL segment
-function categoryToPathSegment(category: string): string {
-  const key = category.trim().toLowerCase();
-  const map: Record<string, string> = {
-    // canonical keys
-    pets: "pets",
-    health: "health",
-    financial: "financial",
-    cooking: "cooking",
-    conversion: "conversion",
-    math: "math",
-    science: "science",
-    time: "time",
-    tv: "tv",
-    automotive: "automotive",
-    construction: "construction",
-    electrical: "electrical",
-    sports: "sports",
-    funny: "funny",
-    everyday: "everyday",
-    "smart-tips": "smart-tips",
-    recipes: "recipes",
+// Emoji icons per category (used by CategoryCalculatorsTemplate header)
+export function categoryIcon(category?: string): string {
+  const key = normalize(category);
+  const MAP: Record<string, string> = {
+    financial: "💰",
+    health: "🩺",
+    cooking: "🍳",
+    pets: "🐾",
+    math: "🧮",
+    conversion: "🔁",
+    science: "🔬",
+    time: "⏱️",
+    "everyday-life": "🏠",
+    sports: "🏅",
+    funny: "😄",
+    automotive: "🚗",
+    construction: "🏗️",
+    electrical: "⚡",
+    recipes: "📚",
   };
-  return map[key] ?? key.replace(/\s+/g, "-").replace(/[^\w-]/g, "");
+  return MAP[key] ?? "🧮";
 }
 
-// Generate the short path used by sitemap generator
-export function calcLink(e: CalculatorEntry): string {
-  const seg = categoryToPathSegment(e.category);
-  if (e.subcategory && e.subcategory.trim().length > 0) {
-    return `/${seg}/${e.subcategory}/${e.slug}`;
-  }
-  return `/${seg}/${e.slug}`;
+// Emoji icons per subcategory — allows pages to avoid repeating the same icon
+export function subcategoryIcon(subcategory?: string, category?: string): string | undefined {
+  const sub = normalize(subcategory);
+  const cat = normalize(category);
+  const PETS: Record<string, string> = {
+    dogs: "🐶",
+    cats: "🐈",
+    "pet-care-calculators": "🐾",
+    general: "📦",
+  };
+  const GENERIC: Record<string, string> = {
+    general: "📦",
+  };
+  if (cat === "pets") return PETS[sub] ?? "🐾";
+  return GENERIC[sub] ?? undefined;
 }
 
-// ------------------------------
-// Registry content
-// ------------------------------
-
-// NOTE: This initial registry focuses on Pets entries required by scripts/check-expected.ts
-// You can expand other categories (construction, electrical, health, etc.) incrementally.
-
-const pets: RegistryEntry[] = [
-  // Reptiles — Habitat & Lighting
+// The actual registry of calculators. Keep lightweight and focused.
+export const calculatorRegistry: CalculatorEntry[] = [
   {
-    title: "Enclosure Size & Floor Area by Species",
+    slug: "dog-water-intake",
+    title: "Dog Water Intake — Daily Hydration",
     category: "pets",
-    subcategory: "reptiles",
-    slug: "reptile-enclosure-size",
-    loader: () => import("@/components/calculators/Pets/Reptile/Habitat/ReptileEnclosureSize"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Reptiles — Habitat & Lighting",
+    subcategory: "dogs",
+    aliases: ["dog daily water intake", "dog hydration"],
+    loader: () => import("@/components/calculators/DogWaterIntakeCalculator"),
+    urlStyle: "flat",
   },
   {
-    title: "Basking Gradient & Heat Lamp Distance",
-    category: "pets",
-    subcategory: "reptiles",
-    slug: "reptile-basking-gradient",
-    loader: () => import("@/components/calculators/Pets/Reptile/Habitat/ReptileBaskingGradient"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Reptiles — Habitat & Lighting",
+    category: "financial",
+    subcategory: "income-budget-expenses",
+    title: "Absence Percentage Calculator",
+    slug: "absence-percentage-calculator",
+    loader: () => import("@/components/calculators/Financial/Budget/AbsencePercentageCalculator"),
   },
   {
-    title: "UVB Index & Lamp Distance Helper",
+    slug: "cat-water-intake",
     category: "pets",
-    subcategory: "reptiles",
-    slug: "reptile-uvb-distance",
-    loader: () => import("@/components/calculators/Pets/Reptile/Habitat/ReptileUVBDistanceHelper"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Reptiles — Habitat & Lighting",
+    subcategory: "cats",
+    title: "Cat Water Intake Calculator",
+    description: "Estimate an educational daily water intake range for cats by weight and diet, and compare with your observation.",
+    loader: () => import("@/components/calculators/CatWaterIntakeCalculator"),
+    aliases: ["cat daily water intake", "cat hydration"],
+    urlStyle: "flat",
   },
   {
-    title: "Feeder Quantity by Body Weight (educational)",
+    slug: "cat-daily-water-intake-checker",
     category: "pets",
-    subcategory: "reptiles",
-    slug: "reptile-feeder-quantity",
-    loader: () => import("@/components/calculators/Pets/Reptile/Nutrition/ReptileFeederQuantity"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Reptiles — Nutrition",
-  },
-
-  // Small Mammals — Nutrition & Weight
-  {
-    title: "Rabbit Daily Hay & Greens Portion",
-    category: "pets",
-    subcategory: "small-mammals",
-    slug: "rabbit-hay-greens-portion",
-    loader: () => import("@/components/calculators/Pets/SmallMammals/Nutrition/RabbitHayGreensPortion"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Small Mammals — Nutrition & Weight",
+    subcategory: "cats",
+    title: "Cat Daily Water Intake Checker",
+    description: "Estimate an educational daily water intake range for cats by weight and diet, and compare with your observation.",
+    loader: () => import("@/components/calculators/CatWaterIntakeCalculator"),
+    aliases: ["cat-water-intake", "cat-water-intake-calculator"],
+    urlStyle: "flat",
   },
   {
-    title: "Guinea Pig Vitamin C Intake Checker",
+    slug: "dog-caffeine-toxicity-calculator",
     category: "pets",
-    subcategory: "small-mammals",
-    slug: "guinea-pig-vitamin-c-intake",
-    loader: () => import("@/components/calculators/Pets/SmallMammals/Nutrition/GuineaPigVitaminCIntake"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Small Mammals — Nutrition & Weight",
-  },
-
-  // Small Mammals — Activity & Housing
-  {
-    title: "Hamster Wheel Size & Speed (educational)",
-    category: "pets",
-    subcategory: "small-mammals",
-    slug: "hamster-wheel-size-speed",
-    loader: () => import("@/components/calculators/Pets/SmallMammals/Housing/HamsterWheelSizeSpeed"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Small Mammals — Activity & Housing",
+    subcategory: "dogs",
+    title: "Dog Caffeine Toxicity Calculator",
+    description: "Estimate educational risk bands from caffeine sources; includes mg/kg estimation and triage steps.",
+    loader: () => import("@/components/calculators/DogCaffeineToxicityCalculator"),
+    aliases: ["caffeine-dogs", "dog-caffeine-toxicity"],
+    urlStyle: "flat",
   },
   {
-    title: "Cage Size & Bar Spacing Guide",
+    slug: "dog-weight-loss-planner",
     category: "pets",
-    subcategory: "small-mammals",
-    slug: "small-mammal-cage-size",
-    loader: () => import("@/components/calculators/Pets/SmallMammals/Housing/SmallMammalCageSizeGuide"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Small Mammals — Activity & Housing",
+    subcategory: "pet-care-calculators",
+    title: "Dog Weight Loss Planner",
+    description: "Plan an educational daily calorie target using 0.8×RER (target) or 70% of maintenance, plus weeks-to-goal estimate.",
+    loader: () => import("@/components/calculators/DogWeightLossPlanner"),
+    aliases: ["dog weight loss", "dog weight loss planner", "dog diet", "canine weight management"],
+    urlStyle: "flat",
   },
-
-  // --- Cats (expected by scripts/expected-pets.ts) ---
-  // Medication & Dosing*
+  {
+    slug: "cat-weight-loss-planner",
+    category: "pets",
+    subcategory: "pet-care-calculators",
+    title: "Cat Weight Loss Planner",
+    description: "Plan an educational daily calorie target using 0.8×RER (target) or 70% of maintenance, plus weeks-to-goal estimate.",
+    loader: () => import("@/components/calculators/CatWeightLossPlanner"),
+    aliases: ["cat weight loss", "cat weight loss planner", "feline weight management", "cat diet"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "dog-calorie-needs-rer-mer",
+    category: "pets",
+    subcategory: "general",
+    title: "Dog Calorie Needs (RER/MER) Calculator",
+    description: "Estimate dog RER and MER from weight and life stage/activity.",
+    loader: () => import("@/components/calculators/DogCalorieNeedsRerMer"),
+    aliases: ["dog calorie needs", "dog rer mer", "canine energy requirements"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "dog-chocolate-toxicity-calculator",
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Chocolate Toxicity Calculator",
+    description: "Estimate educational dose bands (mg/kg) by chocolate type and amount; strong veterinarian disclaimer.",
+    loader: () => import("@/components/calculators/DogChocolateToxicityCalculator"),
+    aliases: ["dog-chocolate-toxicity", "dog-chocolate-toxicity-checker"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "dog-grape-raisin-exposure-risk",
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Grape/Raisin Exposure Risk Calculator",
+    description: "Education-first triage for suspected grape/raisin ingestion — treat any ingestion as urgent and call your vet.",
+    loader: () => import("@/components/calculators/DogGrapeRaisinExposureCalculator"),
+    aliases: ["dog-grape-toxicity", "dog-raisins-toxicity", "grapes-for-dogs"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "dog-onion-garlic-exposure-risk",
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Onion/Garlic (Allium) Exposure Risk Calculator",
+    description: "Converts intake to raw-onion-equivalent g/kg and classifies bands; educational guidance only.",
+    loader: () => import("@/components/calculators/DogAlliumExposureCalculator"),
+    aliases: ["dog-onion-toxicity", "dog-garlic-toxicity", "allium-exposure-dogs"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "dog-xylitol-exposure",
+    category: "pets",
+    subcategory: "dogs",
+    title: "Dog Xylitol Exposure Calculator",
+    description: "Estimate dose (mg/kg) from gum, mints, or foods; educational risk bands with urgent vet CTA.",
+    loader: () => import("@/components/calculators/DogXylitolExposureCalculator"),
+    aliases: ["dog-xylitol-toxicity", "xylitol-for-dogs"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "cat-allium-toxicity",
+    category: "pets",
+    subcategory: "cats",
+    title: "Cat Onion/Garlic Toxicity Calculator",
+    description: "Allium exposure bands in g/kg and supportive advice — vet CTA.",
+    loader: () => import("@/components/calculators/CatAlliumToxicityCalculator"),
+    aliases: ["cat-onion-garlic"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "cat-grape-raisin-education",
+    category: "pets",
+    subcategory: "cats",
+    title: "Cat Grape/Raisin Exposure Risk (education-first)",
+    description: "Educational guidance — immediate veterinary contact recommended.",
+    loader: () => import("@/components/calculators/CatGrapeRaisinEducation"),
+    aliases: ["cat-grapes-raisins"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "cat-xylitol-exposure",
+    category: "pets",
+    subcategory: "cats",
+    title: "Xylitol Exposure Risk for Cats (rare but educational)",
+    description: "Rare exposure scenarios — educational overview and vet CTA.",
+    loader: () => import("@/components/calculators/CatXylitolExposure"),
+    aliases: [],
+    urlStyle: "flat",
+  },
+  {
+    slug: "cat-caffeine-toxicity",
+    category: "pets",
+    subcategory: "cats",
+    title: "Caffeine Toxicity Risk for Cats",
+    description: "Estimate caffeine dose (mg/kg) and educational guidance.",
+    loader: () => import("@/components/calculators/CatCaffeineToxicity"),
+    aliases: [],
+    urlStyle: "flat",
+  },
+  {
+    slug: "cat-essential-oils-exposure",
+    category: "pets",
+    subcategory: "cats",
+    title: "Essential Oils Exposure Risk (diffuser/dermal)",
+    description: "Educational guidance for essential oil exposures in cats.",
+    loader: () => import("@/components/calculators/CatEssentialOilsExposure"),
+    aliases: ["cats-essential-oils"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "cats-lilies-risk",
+    category: "pets",
+    subcategory: "cats",
+    title: "Lilies Poisoning Risk Guide (cats)",
+    description: "Education-first guidance on lily exposures (emergency).",
+    loader: () => import("@/components/calculators/CatsLiliesRiskGuide"),
+    aliases: ["cat-lilies-risk"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "cat-human-meds-exposure",
+    category: "pets",
+    subcategory: "cats",
+    title: "Acetaminophen/Ibuprofen Exposure Risk (human meds)",
+    description: "Educational triage for common human medications exposure in cats.",
+    loader: () => import("@/components/calculators/CatHumanMedsExposure"),
+    aliases: ["cat-human-meds"],
+    urlStyle: "flat",
+  },
   {
     slug: "cat-benadryl-dose",
     category: "pets",
     subcategory: "cats",
     title: "Benadryl (Diphenhydramine) Dose Calculator for Cats*",
+    description: "Educational dose calculator with strong veterinary disclaimer.",
     loader: () => import("@/components/calculators/CatBenadrylDoseCalculator"),
+    aliases: [],
+    urlStyle: "flat",
   },
   {
     slug: "cat-cephalexin-dose",
     category: "pets",
     subcategory: "cats",
     title: "Cephalexin Dose Calculator for Cats*",
+    description: "Educational cephalexin dosing helper — not a substitute for vet.",
     loader: () => import("@/components/calculators/CatCephalexinDoseCalculator"),
+    aliases: [],
+    urlStyle: "flat",
   },
   {
     slug: "cat-meloxicam-dose",
     category: "pets",
     subcategory: "cats",
     title: "Meloxicam Dose Calculator for Cats*",
+    description: "Educational NSAID dosing guidance for cats (vet oversight required).",
     loader: () => import("@/components/calculators/CatMeloxicamDoseCalculator"),
+    aliases: [],
+    urlStyle: "flat",
   },
   {
     slug: "cat-gabapentin-dose",
     category: "pets",
     subcategory: "cats",
     title: "Gabapentin Dose Calculator for Cats*",
+    description: "Educational gabapentin dose helper (consult your veterinarian).",
     loader: () => import("@/components/calculators/CatGabapentinDoseCalculator"),
+    aliases: [],
+    urlStyle: "flat",
   },
   {
     slug: "cat-prednisolone-dose",
     category: "pets",
     subcategory: "cats",
     title: "Prednisolone Dose Calculator for Cats*",
+    description: "Educational steroid dosing bands — strong vet disclaimer.",
     loader: () => import("@/components/calculators/CatPrednisoloneDoseCalculator"),
+    aliases: [],
+    urlStyle: "flat",
   },
   {
     slug: "cat-omega3-supplement",
     category: "pets",
     subcategory: "cats",
     title: "Omega-3 (EPA/DHA) Supplement Calculator for Cats*",
+    description: "Estimate EPA/DHA targets per weight and product label info.",
     loader: () => import("@/components/calculators/CatOmega3Calculator"),
+    aliases: ["cat-omega-3"],
+    urlStyle: "flat",
   },
   {
     slug: "cat-insulin-starter-info",
     category: "pets",
     subcategory: "cats",
     title: "Insulin Starter Reference (info-only)*",
+    description: "Info-only insulin starter reference — educational, not diagnostic.",
     loader: () => import("@/components/calculators/CatInsulinStarterInfo"),
+    aliases: ["cat-insulin-info"],
+    urlStyle: "flat",
   },
-
-  // Growth, Size & Body Measures
   {
     slug: "kitten-adult-weight-predictor",
     category: "pets",
     subcategory: "cats",
     title: "Kitten Adult Weight Predictor",
+    description: "Predict adult weight from age/weight data.",
     loader: () => import("@/components/calculators/KittenAdultWeightPredictor"),
+    aliases: [],
+    urlStyle: "flat",
   },
   {
     slug: "cat-bcs-helper",
     category: "pets",
     subcategory: "cats",
     title: "Cat Body Condition Score Helper (BCS → Target Plan)",
+    description: "BCS helper with target plan and calorie adjustments.",
     loader: () => import("@/components/calculators/CatBCSHelper"),
+    aliases: ["cat-body-condition-score"],
+    urlStyle: "flat",
   },
   {
     slug: "cat-bmi-index",
     category: "pets",
     subcategory: "cats",
     title: "Cat BMI/Body Index (educational)",
+    description: "Educational body index calculator for cats.",
     loader: () => import("@/components/calculators/CatBMICalculator"),
+    aliases: ["cat-bmi"],
+    urlStyle: "flat",
   },
   {
     slug: "cat-carrier-size",
     category: "pets",
     subcategory: "cats",
     title: "Cat Carrier Size & Fit Guide",
+    description: "Find a suitable carrier size from body measures.",
     loader: () => import("@/components/calculators/CatCarrierSizeGuide"),
+    aliases: ["carrier-size-cat"],
+    urlStyle: "flat",
   },
   {
     slug: "cat-harness-size",
     category: "pets",
     subcategory: "cats",
     title: "Cat Harness Size & Fit Guide",
+    description: "Measure-and-fit helper for harness selection.",
     loader: () => import("@/components/calculators/CatHarnessSizeGuide"),
+    aliases: ["harness-size-cat"],
+    urlStyle: "flat",
   },
-
-  // Activity & Lifestyle
   {
     slug: "cat-activity-calorie-adjuster",
     category: "pets",
     subcategory: "cats",
     title: "Indoor/Outdoor Activity Calorie Adjuster",
+    description: "Adjust calorie targets by indoor/outdoor activity level.",
     loader: () => import("@/components/calculators/CatActivityCalorieAdjuster"),
+    aliases: [],
+    urlStyle: "flat",
   },
   {
     slug: "cat-play-session-planner",
     category: "pets",
     subcategory: "cats",
     title: "Play Session Planner (Feather/Chase Time Targets)",
+    description: "Plan play sessions and time targets for enrichment.",
     loader: () => import("@/components/calculators/CatPlaySessionPlanner"),
+    aliases: [],
+    urlStyle: "flat",
   },
   {
     slug: "cat-rest-active-balance",
     category: "pets",
     subcategory: "cats",
     title: "Resting vs. Active Hours Balance Tracker",
+    description: "Track balance of resting vs. active hours (owner input).",
     loader: () => import("@/components/calculators/CatRestActiveBalance"),
+    aliases: [],
+    urlStyle: "flat",
   },
-
-  // Age, Life Stage & Longevity
   {
     slug: "cat-age-human-years",
     category: "pets",
     subcategory: "cats",
     title: "Cat Age in Human Years (Breed/Size Aware)",
+    description: "Convert cat age to human years with breed/size awareness.",
     loader: () => import("@/components/calculators/CatAgeHumanYears"),
+    aliases: ["cat-age-in-human-years"],
+    urlStyle: "flat",
   },
   {
     slug: "senior-cat-readiness-checklist",
     category: "pets",
     subcategory: "cats",
     title: "Senior Cat Care Readiness Checklist (scored)",
+    description: "Checklist-style helper to gauge senior cat care readiness.",
     loader: () => import("@/components/calculators/SeniorCatReadinessChecklist"),
+    aliases: [],
+    urlStyle: "flat",
   },
   {
     slug: "cat-life-expectancy",
     category: "pets",
     subcategory: "cats",
     title: "Life Expectancy Estimator (lifestyle factors; educational)",
+    description: "Educational estimator of life expectancy from lifestyle factors.",
     loader: () => import("@/components/calculators/CatLifeExpectancyEstimator"),
+    aliases: [],
+    urlStyle: "flat",
   },
-
-  // Urinary & Kidney Health
   {
     slug: "cat-litter-output-tracker",
     category: "pets",
     subcategory: "cats",
     title: "Litter Box Output Tracker (Normal vs. Increased)",
+    description: "Track litter box output vs. intake for kidney/urinary awareness.",
     loader: () => import("@/components/calculators/CatLitterOutputTracker"),
+    aliases: [],
+    urlStyle: "flat",
   },
   {
     slug: "cat-intake-vs-urine-balance",
     category: "pets",
     subcategory: "cats",
     title: "Fluid Intake vs. Urine Output Balance Checker",
+    description: "Compare fluid intake vs. urine output for balance awareness.",
     loader: () => import("@/components/calculators/CatIntakeUrineBalance"),
+    aliases: ["cat-intake-urine"],
+    urlStyle: "flat",
   },
   {
     slug: "cat-phosphorus-per-meal",
     category: "pets",
     subcategory: "cats",
     title: "Phosphorus per Meal Estimator (diet label helper)",
+    description: "Estimate phosphorus per meal using label data (owner helper).",
     loader: () => import("@/components/calculators/CatPhosphorusPerMeal"),
+    aliases: [],
+    urlStyle: "flat",
   },
-
-  // Reproduction
   {
     slug: "cat-gestation-due-date",
     category: "pets",
     subcategory: "cats",
     title: "Cat Pregnancy (Gestation) Due-Date Calculator",
+    description: "Estimate due date and stages across gestation.",
     loader: () => import("@/components/calculators/CatGestationDueDate"),
+    aliases: ["cat-pregnancy-due-date"],
+    urlStyle: "flat",
   },
   {
     slug: "kitten-weaning-timeline",
     category: "pets",
     subcategory: "cats",
     title: "Kitten Weaning Timeline & Feeding Amounts",
+    description: "Timeline and amounts for weaning kittens.",
     loader: () => import("@/components/calculators/KittenWeaningTimeline"),
+    aliases: [],
+    urlStyle: "flat",
   },
-
-  // Grooming & Care
   {
     slug: "cat-shedding-combing-planner",
     category: "pets",
     subcategory: "cats",
     title: "Shedding & Combing Time Planner",
+    description: "Plan combing time based on coat type and shedding.",
     loader: () => import("@/components/calculators/CatSheddingCombingPlanner"),
+    aliases: [],
+    urlStyle: "flat",
   },
   {
     slug: "cat-nail-trim-interval",
     category: "pets",
     subcategory: "cats",
     title: "Nail Trim Interval Planner (activity/surface based)",
+    description: "Plan nail trimming interval from activity and surfaces.",
     loader: () => import("@/components/calculators/CatNailTrimInterval"),
+    aliases: [],
+    urlStyle: "flat",
   },
-
-  // Behavior & Environment
   {
     slug: "multi-cat-litterbox-count",
     category: "pets",
     subcategory: "cats",
     title: "Multi-Cat Litter Box Count Calculator",
+    description: "Recommended litter box count by number of cats and rooms.",
     loader: () => import("@/components/calculators/MultiCatLitterboxCount"),
+    aliases: ["multi-cat-litterbox"],
+    urlStyle: "flat",
   },
   {
     slug: "cat-enrichment-planner",
     category: "pets",
     subcategory: "cats",
     title: "Environmental Enrichment Planner (per room)",
+    description: "Room-by-room enrichment planner for indoor cats.",
     loader: () => import("@/components/calculators/CatEnrichmentPlanner"),
+    aliases: [],
+    urlStyle: "flat",
   },
   {
     slug: "cat-stress-score-playtime-offset",
     category: "pets",
     subcategory: "cats",
     title: "Stress Score & Playtime Offset Planner",
+    description: "Estimate stress score and offset with planned playtime.",
     loader: () => import("@/components/calculators/CatStressScorePlaytimeOffset"),
-  },
-
-  // -- Dogs: add a few high-demand medication calculators
-  {
-    title: "Meloxicam/Metacam Dose — Dogs",
-    category: "pets",
-    subcategory: "dogs",
-    slug: "meloxicam-dose-dogs",
-    loader: () => import("@/components/calculators/Pets/Dog/Medication/MeloxicamDoseDogs"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Dog — Medication & Dosing",
-  },
-  {
-    title: "Gabapentin Dose — Dogs",
-    category: "pets",
-    subcategory: "dogs",
-    slug: "gabapentin-dose-dogs",
-    loader: () => import("@/components/calculators/Pets/Dog/Medication/GabapentinDoseDogs"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Dog — Medication & Dosing",
-  },
-  {
-    title: "Dog Calorie Needs (RER/MER)",
-    category: "pets",
-    subcategory: "dog-nutrition-weight",
-    slug: "dog-calorie-needs-rer-mer",
-    loader: () => import("@/components/calculators/Pets/Dog/Nutrition/DogCalorieNeedsCalculator"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Dog — Nutrition & Weight",
-  },
-
-  // -- Cats: popular meds/utilities
-  {
-    title: "Prednisolone Dose — Cats",
-    category: "pets",
-    subcategory: "cats",
-    slug: "prednisolone-dose-cats",
-    loader: () => import("@/components/calculators/Pets/Cat/Medication/PrednisoloneDoseCats"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Cat — Medication & Dosing",
-  },
-  {
-    title: "Omega-3 (EPA/DHA) Supplement — Cats",
-    category: "pets",
-    subcategory: "cats",
-    slug: "omega3-supplement-cats",
-    loader: () => import("@/components/calculators/Pets/Cat/Medication/Omega3SupplementCats"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Cat — Medication & Dosing",
-  },
-
-  // -- All Pets: two frequent food label helpers
-  {
-    title: "Dry Matter Basis Converter (DMB)",
-    category: "pets",
-    subcategory: "general",
-    slug: "dry-matter-basis-converter",
-    loader: () => import("@/components/calculators/Pets/All/Utilities/DryMatterBasisConverter"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "All Pets — Utilities",
-  },
-  {
-    title: "As-Fed ↔ Metabolizable Energy (kcal) Converter",
-    category: "pets",
-    subcategory: "general",
-    slug: "asfed-me-kcal-converter",
-    loader: () => import("@/components/calculators/Pets/All/Utilities/AsFedMEKcalConverter"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "All Pets — Utilities",
-  },
-
-  // -- Horses: hydration & workload
-  {
-    title: "Horse Daily Water Intake Estimator",
-    category: "pets",
-    subcategory: "horses",
-    slug: "horse-water-intake",
-    loader: () => import("@/components/calculators/Pets/Horse/Nutrition/HorseWaterIntake"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Horse — Nutrition & Weight",
-  },
-  {
-    title: "Horse Workload Calories (educational)",
-    category: "pets",
-    subcategory: "horses",
-    slug: "horse-workload-calories",
-    loader: () => import("@/components/calculators/Pets/Horse/Nutrition/HorseWorkloadCalories"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Horse — Nutrition & Weight",
-  },
-
-  // -- Birds: weight & intake
-  {
-    title: "Bird Weight Trend & Alert (owner input)",
-    category: "pets",
-    subcategory: "birds",
-    slug: "bird-weight-trend-alert",
-    loader: () => import("@/components/calculators/Pets/Bird/Body/BirdWeightTrendAlert"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Birds — Growth, Size & Body Measures",
-  },
-
-  // -- Fish & Aquatics: water maintenance essentials
-  {
-    title: "Water Change Calculator (nitrate control)",
-    category: "pets",
-    subcategory: "fish",
-    slug: "aquarium-water-change",
-    loader: () => import("@/components/calculators/Pets/Fish/Tank/AquariumWaterChangeCalculator"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Fish & Aquatics — Tank & Equipment",
-  },
-  {
-    title: "Salinity / SG ↔ PPT Converter (marine)",
-    category: "pets",
-    subcategory: "fish",
-    slug: "salinity-sg-ppt-converter",
-    loader: () => import("@/components/calculators/Pets/Fish/Tank/SalinitySGPPTConverter"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Fish & Aquatics — Tank & Equipment",
-  },
-
-  // -- Reptiles: humidity
-  {
-    title: "Enclosure Humidity Target & Misting Interval",
-    category: "pets",
-    subcategory: "reptiles",
-    slug: "reptile-humidity-misting-interval",
-    loader: () => import("@/components/calculators/Pets/Reptile/Habitat/ReptileHumidityMistingInterval"),
-    displayCategory: "Pet Care Calculators",
-    displaySubcategory: "Reptiles — Habitat & Lighting",
+    aliases: ["cat-stress-score"],
+    urlStyle: "flat",
   },
 ];
 
-// Placeholder arrays for other categories (to be populated incrementally)
-const construction: RegistryEntry[] = [];
-const electrical: RegistryEntry[] = [];
-const financial: RegistryEntry[] = [
-  // Loans, Mortgages & Payments (8)
-  { title: "Loan Payment Calculator (Principal, Rate, Term)", category: "financial", subcategory: "loans-mortgages-payments", slug: "loan-payment", loader: () => import("@/components/calculators/Financial/LoanPaymentCalculator") },
-  { title: "Mortgage Payment & Amortization Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "mortgage-amortization", loader: () => import("@/components/calculators/Financial/MortgageAmortizationCalculator") },
-  { title: "Extra Payments & Payoff Time Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "extra-payments-payoff", loader: () => import("@/components/calculators/Financial/Loans/ExtraPaymentsPayoffCalculator") },
-  { title: "Interest-Only Loan Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "interest-only-loan", loader: () => import("@/components/calculators/Financial/Loans/InterestOnlyLoanCalculator") },
-  { title: "Refinance Savings Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "refinance-savings", loader: () => import("@/components/calculators/Financial/Loans/RefinanceSavingsCalculator") },
-  { title: "HELOC Payment Estimator", category: "financial", subcategory: "loans-mortgages-payments", slug: "heloc-payment-estimator", loader: () => import("@/components/calculators/Financial/Loans/HELOCPaymentEstimator") },
-  { title: "Car Loan Affordability Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "car-loan-affordability", loader: () => import("@/components/calculators/Financial/Loans/CarLoanAffordabilityCalculator") },
-  { title: "Balloon Payment Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "balloon-payment", loader: () => import("@/components/calculators/Financial/Loans/BalloonPaymentCalculator") },
-  { title: "How Much House Can I Afford? Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "house-affordability", loader: () => import("@/components/calculators/Financial/Loans/HouseAffordabilityCalculator") },
-  { title: "Auto Loan Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "auto-loan", loader: () => import("@/components/calculators/Financial/Loans/AutoLoanCalculator") },
-  { title: "Student Loan Repayment Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "student-loan-repayment", loader: () => import("@/components/calculators/Financial/Loans/StudentLoanRepaymentCalculator") },
-  { title: "Lease vs Buy Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "lease-vs-buy", loader: () => import("@/components/calculators/Financial/Loans/LeaseVsBuyCalculator") },
-  // Alternate slug requested
-  { title: "Loan Payment Calculator", category: "financial", subcategory: "loans", slug: "loan-payment-calculator", loader: () => import("@/components/calculators/Financial/Loans/LoanPaymentCalculator") },
+// Backwards-compat alias expected by various pages/scripts
+export const REGISTRY: CalculatorEntry[] = [];
 
-  // Investments & Savings (7)
-  { title: "Compound Interest Calculator", category: "financial", subcategory: "investments-savings", slug: "compound-interest", loader: () => import("@/components/calculators/Financial/Investing/CompoundInterestCalculator") },
-  { title: "Future Value of Investment Calculator", category: "financial", subcategory: "investments-savings", slug: "future-value-investment", loader: () => import("@/components/calculators/Financial/Investing/FutureValueInvestmentCalculator") },
-  { title: "Investment Return (ROI) Calculator", category: "financial", subcategory: "investments-savings", slug: "roi-return-on-investment", loader: () => import("@/components/calculators/Financial/Investing/ROICalculator") },
-  { title: "SIP/Monthly Investment Planner", category: "financial", subcategory: "investments-savings", slug: "sip-monthly-investment-planner", loader: () => import("@/components/calculators/Financial/Investing/SIPMonthlyInvestmentPlanner") },
-  { title: "Inflation Adjusted Value Calculator", category: "financial", subcategory: "investments-savings", slug: "inflation-adjusted-value", loader: () => import("@/components/calculators/Financial/Investing/InflationAdjustedValueCalculator") },
-  { title: "Retirement Savings Goal Calculator", category: "financial", subcategory: "investments-savings", slug: "retirement-savings-goal", loader: () => import("@/components/calculators/Financial/Investing/RetirementSavingsGoalCalculator") },
-  { title: "Emergency Fund Goal Calculator", category: "financial", subcategory: "investments-savings", slug: "emergency-fund-goal", loader: () => import("@/components/calculators/Financial/Investing/EmergencyFundGoalCalculator") },
-  { title: "401(k) / Retirement Savings Growth Calculator", category: "financial", subcategory: "investments-savings", slug: "401k-retirement-savings-growth", loader: () => import("@/components/calculators/Financial/Investing/RetirementSavingsGrowthCalculator") },
-  { title: "Social Security Benefit Estimator", category: "financial", subcategory: "investments-savings", slug: "social-security-benefit-estimator", loader: () => import("@/components/calculators/Financial/Investing/SocialSecurityBenefitEstimator") },
-  { title: "Rule of 72 Calculator", category: "financial", subcategory: "investments-savings", slug: "rule-of-72", loader: () => import("@/components/calculators/Financial/Investing/RuleOf72Calculator") },
-  { title: "Bond Yield Calculator", category: "financial", subcategory: "investments-savings", slug: "bond-yield", loader: () => import("@/components/calculators/Financial/Investing/BondYieldCalculator") },
-  { title: "Roth IRA Conversion Calculator", category: "financial", subcategory: "investments-savings", slug: "roth-ira-conversion", loader: () => import("@/components/calculators/Financial/Investing/RothIRAConversionCalculator") },
-  { title: "Dollar Cost Averaging (DCA) Simulator", category: "financial", subcategory: "investments-savings", slug: "dca-simulator", loader: () => import("@/components/calculators/Financial/Investing/DCASimulator") },
-  { title: "Crypto DCA Strategy Calculator", category: "financial", subcategory: "investments-savings", slug: "crypto-dca-strategy", loader: () => import("@/components/calculators/Financial/Investing/CryptoDCAStrategyCalculator") },
-  { title: "Stock DCA Return Estimator", category: "financial", subcategory: "investments-savings", slug: "stock-dca-return-estimator", loader: () => import("@/components/calculators/Financial/Investing/StockDCAReturnEstimator") },
+// Include aliases in lookup
+function allSlugs(entry: CalculatorEntry): string[] {
+  return [entry.slug, ...(entry.aliases ?? [])];
+}
 
-  // Income, Budget & Expenses (6)
-  { title: "Monthly Budget Planner", category: "financial", subcategory: "income-budget-expenses", slug: "monthly-budget-planner", loader: () => import("@/components/calculators/Financial/Budget/MonthlyBudgetPlanner") },
-  { title: "Net Income after Tax Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "net-income-after-tax", loader: () => import("@/components/calculators/Financial/Budget/NetIncomeAfterTaxCalculator") },
-  { title: "Hourly to Annual Salary Converter", category: "financial", subcategory: "income-budget-expenses", slug: "hourly-to-annual-salary", loader: () => import("@/components/calculators/Financial/Budget/HourlyToAnnualSalaryConverter") },
-  { title: "Debt-to-Income Ratio Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "debt-to-income-ratio", loader: () => import("@/components/calculators/Financial/Budget/DebtToIncomeCalculator") },
-  { title: "Savings Rate Tracker", category: "financial", subcategory: "income-budget-expenses", slug: "savings-rate-tracker", loader: () => import("@/components/calculators/Financial/Budget/SavingsRateTracker") },
-  { title: "Expense Splitter (Shared Bills) Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "expense-splitter-shared-bills", loader: () => import("@/components/calculators/Financial/Budget/ExpenseSplitterSharedBills") },
-  { title: "Take-Home Pay Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "take-home-pay", loader: () => import("@/components/calculators/Financial/Budget/TakeHomePayCalculator") },
-  { title: "Paycheck Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "paycheck-calculator", loader: () => import("@/components/calculators/Financial/Budget/PaycheckCalculator") },
-  { title: "Absence Percentage Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "absence-percentage-calculator", loader: () => import("@/components/calculators/Financial/Budget/AbsencePercentageCalculator") },
+// Lookup an entry by slug or alias
+export function getEntry(slugOrAlias?: string): CalculatorEntry | undefined {
+  const s = (slugOrAlias || "").toLowerCase();
+  return REGISTRY.find((e) => allSlugs(e).some((x) => (x || "").toLowerCase() === s));
+}
 
-  // Currency & Tax (5)
-  { title: "Currency Converter (Live Rates)", category: "financial", subcategory: "currency-tax", slug: "currency-converter-live", loader: () => import("@/components/calculators/Financial/Tax/CurrencyConverterLive") },
-  { title: "Sales Tax Calculator", category: "financial", subcategory: "currency-tax", slug: "sales-tax", loader: () => import("@/components/calculators/Financial/Tax/SalesTaxCalculator") },
-  { title: "VAT/GST Calculator", category: "financial", subcategory: "currency-tax", slug: "vat-gst", loader: () => import("@/components/calculators/Financial/Tax/VATGSTCalculator") },
-  { title: "Tip & Split Bill Calculator", category: "financial", subcategory: "currency-tax", slug: "tip-split-bill", loader: () => import("@/components/calculators/Financial/Tax/TipSplitBillCalculator") },
-  { title: "Discount & Final Price Calculator", category: "financial", subcategory: "currency-tax", slug: "discount-final-price", loader: () => import("@/components/calculators/Financial/Tax/DiscountFinalPriceCalculator") },
-  
-  // Debt Management & Credit
-  { title: "Credit Card Interest Calculator", category: "financial", subcategory: "debt-management-credit", slug: "credit-card-interest", loader: () => import("@/components/calculators/Financial/CreditCardInterestCalculator") },
-  { title: "Credit Card Payoff Calculator", category: "financial", subcategory: "debt-management-credit", slug: "credit-card-payoff", loader: () => import("@/components/calculators/Financial/CreditCardPayoffCalculator") },
-  { title: "Debt Consolidation Calculator", category: "financial", subcategory: "debt-management-credit", slug: "debt-consolidation", loader: () => import("@/components/calculators/Financial/DebtConsolidationCalculator") },
-  { title: "Net Worth Calculator", category: "financial", subcategory: "debt-management-credit", slug: "net-worth", loader: () => import("@/components/calculators/Financial/NetWorthCalculator") },
-  { title: "Debt Snowball Calculator", category: "financial", subcategory: "debt-management-credit", slug: "debt-snowball", loader: () => import("@/components/calculators/Financial/DebtSnowballCalculator") },
-  { title: "APR Calculator", category: "financial", subcategory: "debt-management-credit", slug: "apr", loader: () => import("@/components/calculators/Financial/APRCalculator") },
-  { title: "Loan Comparison Calculator", category: "financial", subcategory: "debt-management-credit", slug: "loan-comparison", loader: () => import("@/components/calculators/Financial/LoanComparisonCalculator") },
-  { title: "College Savings Calculator", category: "financial", subcategory: "debt-management-credit", slug: "college-savings", loader: () => import("@/components/calculators/Financial/Investing/CollegeSavingsCalculator") },
-  { title: "IRR NPV Calculator", category: "financial", subcategory: "debt-management-credit", slug: "irr-npv", loader: () => import("@/components/calculators/Financial/Investing/IRRNPVCalculator") },
-  { title: "Tax Bracket Calculator", category: "financial", subcategory: "debt-management-credit", slug: "tax-bracket", loader: () => import("@/components/calculators/Financial/Tax/TaxBracketCalculator") },
-  
-  // Cryptocurrency Core Tools (25)
-  // Basic Conversions & Pricing (6)
-  { title: "Crypto to Fiat Converter", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "crypto-to-fiat", loader: () => import("@/components/calculators/Financial/Crypto/CryptoToFiatConverter") },
-  { title: "Crypto to Crypto Exchange Rate Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "crypto-to-crypto-exchange-rate", loader: () => import("@/components/calculators/Financial/Crypto/CryptoToCryptoExchangeRateCalculator") },
-  { title: "Live Price Checker (Real-Time Rates)", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "live-price-checker", loader: () => import("@/components/calculators/Financial/Crypto/LivePriceChecker") },
-  { title: "Portfolio Value Tracker", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "portfolio-value-tracker", loader: () => import("@/components/calculators/Financial/Crypto/PortfolioValueTracker") },
-  { title: "Fiat to Crypto Purchase Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "fiat-to-crypto-purchase", loader: () => import("@/components/calculators/Financial/Crypto/FiatToCryptoPurchaseCalculator") },
-  { title: "Multi-Currency Crypto Converter", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "multi-currency-crypto-converter", loader: () => import("@/components/calculators/Financial/Crypto/MultiCurrencyCryptoConverter") },
+// List calculators under a category
+export function listByCategory(category?: string): CalculatorEntry[] {
+  const key = normalize(category);
+  return REGISTRY.filter((e) => normalize(e.category) === key);
+}
 
-  // Profit & Investment Analysis (7)
-  { title: "Crypto Profit/Loss Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "crypto-profit-loss", loader: () => import("@/components/calculators/Financial/Crypto/CryptoProfitLossCalculator") },
-  { title: "ROI (Return on Investment) Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "crypto-roi", loader: () => import("@/components/calculators/Financial/Crypto/CryptoROICalculator") },
-  { title: "Future Value & Compound Growth Estimator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "crypto-future-value-compound-growth", loader: () => import("@/components/calculators/Financial/Crypto/CryptoFutureValueGrowthEstimator") },
-  { title: "Yield Farming APY Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "yield-farming-apy", loader: () => import("@/components/calculators/Financial/Crypto/YieldFarmingAPYCalculator") },
-  { title: "Staking Rewards Estimator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "staking-rewards-estimator", loader: () => import("@/components/calculators/Financial/Crypto/StakingRewardsEstimator") },
-  { title: "Investment Break-Even Point Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "investment-break-even-point", loader: () => import("@/components/calculators/Financial/Crypto/InvestmentBreakEvenPointCalculator") },
-  { title: "DCA Strategy Analyzer (Crypto)", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "dca-strategy-analyzer-crypto", loader: () => import("@/components/calculators/Financial/Crypto/DCAStrategyAnalyzerCrypto") },
-
-  // Mining & Hardware (5)
-  { title: "Mining Profitability Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "mining-profitability", loader: () => import("@/components/calculators/Financial/Crypto/MiningProfitabilityCalculator") },
-  { title: "Hash Rate to Earnings Converter", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "hash-rate-to-earnings", loader: () => import("@/components/calculators/Financial/Crypto/HashRateToEarningsConverter") },
-  { title: "Electricity Cost vs Mining Revenue", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "electricity-cost-vs-mining-revenue", loader: () => import("@/components/calculators/Financial/Crypto/ElectricityCostVsMiningRevenue") },
-  { title: "GPU/ASIC Mining ROI Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "gpu-asic-mining-roi", loader: () => import("@/components/calculators/Financial/Crypto/GPUASICMiningROICalculator") },
-  { title: "Pool Fee Impact Estimator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "pool-fee-impact", loader: () => import("@/components/calculators/Financial/Crypto/PoolFeeImpactEstimator") },
-
-  // Taxes & Compliance (4)
-  { title: "Crypto Tax Liability Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "crypto-tax-liability", loader: () => import("@/components/calculators/Financial/Crypto/CryptoTaxLiabilityCalculator") },
-  { title: "Capital Gains Tax Estimator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "capital-gains-tax-estimator", loader: () => import("@/components/calculators/Financial/Crypto/CapitalGainsTaxEstimator") },
-  { title: "Transaction Fee Deduction Tool", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "transaction-fee-deduction", loader: () => import("@/components/calculators/Financial/Crypto/TransactionFeeDeductionTool") },
-  { title: "Cost Basis Calculator (FIFO/LIFO)", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "cost-basis-fifo-lifo", loader: () => import("@/components/calculators/Financial/Crypto/CostBasisCalculator") },
-
-  // Advanced Trading (3)
-  { title: "Leverage & Margin Profit Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "leverage-margin-profit", loader: () => import("@/components/calculators/Financial/Crypto/LeverageMarginProfitCalculator") },
-  { title: "Position Size & Risk Management Tool", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "position-size-risk-management", loader: () => import("@/components/calculators/Financial/Crypto/PositionSizeRiskManagementTool") },
-  { title: "Volatility & Risk Assessment Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "volatility-risk-assessment", loader: () => import("@/components/calculators/Financial/Crypto/VolatilityRiskAssessmentCalculator") },
-];
-const health: RegistryEntry[] = [];
-const cooking: RegistryEntry[] = [];
-const conversion: RegistryEntry[] = [
-  {
-    title: "Length Converter",
-    category: "conversion",
-    subcategory: "core-units",
-    slug: "length-converter",
-    loader: () => import("@/components/calculators/Conversion/Core/LengthConverter"),
-    displayCategory: "Unit Converters",
-    displaySubcategory: "Core Units",
-  },
-];
-const math: RegistryEntry[] = [];
-const science: RegistryEntry[] = [];
-const timeDate: RegistryEntry[] = [];
-const video: RegistryEntry[] = [];
-const automotive: RegistryEntry[] = [];
-const sports: RegistryEntry[] = [];
-const funny: RegistryEntry[] = [];
-const everyday: RegistryEntry[] = [
-  {
-    title: "Light Bulb Cost per Year",
-    category: "everyday",
-    subcategory: "home",
-    slug: "light-bulb-cost-per-year",
-    loader: () => import("@/components/calculators/Everyday/Home/LightBulbCostPerYear"),
-    displayCategory: "Everyday Life Calculators",
-    displaySubcategory: "Home & Routine",
-  },
-  {
-    title: "Water Heater Recovery Time",
-    category: "everyday",
-    subcategory: "home",
-    slug: "water-heater-recovery-time",
-    loader: () => import("@/components/calculators/Everyday/Home/WaterHeaterRecoveryTime"),
-    displayCategory: "Everyday Life Calculators",
-    displaySubcategory: "Home & Routine",
-  },
-  {
-    title: "Propane Tank Burn Time",
-    category: "everyday",
-    subcategory: "home",
-    slug: "propane-tank-burn-time",
-    loader: () => import("@/components/calculators/Everyday/Home/PropaneTankBurnTime"),
-    displayCategory: "Everyday Life Calculators",
-    displaySubcategory: "Home & Routine",
-  },
-  {
-    title: "Wine/Beer/Soft Drink Mix Planner",
-    category: "everyday",
-    subcategory: "events",
-    slug: "beverage-mix-planner",
-    loader: () => import("@/components/calculators/Everyday/Events/BeverageMixPlanner"),
-    displayCategory: "Everyday Life Calculators",
-    displaySubcategory: "Events & Hosting",
-  },
-  {
-    title: "Coffee Urn Yield & Strength",
-    category: "everyday",
-    subcategory: "events",
-    slug: "coffee-urn-yield-strength",
-    loader: () => import("@/components/calculators/Everyday/Events/CoffeeUrnYieldStrength"),
-    displayCategory: "Everyday Life Calculators",
-    displaySubcategory: "Events & Hosting",
-  },
-  {
-    title: "Mulch Coverage — Bags Needed",
-    category: "everyday",
-    subcategory: "garden",
-    slug: "mulch-bags-needed",
-    loader: () => import("@/components/calculators/Everyday/Garden/MulchBagsNeeded"),
-    displayCategory: "Everyday Life Calculators",
-    displaySubcategory: "Garden & Outdoor",
-  },
-];
-const smartTips: RegistryEntry[] = [
-  {
-    title: "Sleep Debt & Ideal Bedtime",
-    category: "smart-tips",
-    subcategory: "wellbeing",
-    slug: "sleep-debt-ideal-bedtime",
-    loader: () => import("@/components/calculators/SmartTips/Wellbeing/SleepDebtIdealBedtime"),
-    displayCategory: "Smart Tips",
-    displaySubcategory: "Wellbeing",
-  },
-  {
-    title: "Caffeine Max per Day (by body weight)",
-    category: "smart-tips",
-    subcategory: "wellbeing",
-    slug: "caffeine-max-per-day",
-    loader: () => import("@/components/calculators/SmartTips/Wellbeing/CaffeineMaxPerDay"),
-    displayCategory: "Smart Tips",
-    displaySubcategory: "Wellbeing",
-  },
-  {
-    title: "Commute Cost & Time",
-    category: "smart-tips",
-    subcategory: "planning",
-    slug: "commute-cost-time",
-    loader: () => import("@/components/calculators/SmartTips/Planning/CommuteCostTime"),
-    displayCategory: "Smart Tips",
-    displaySubcategory: "Everyday Planning",
-  },
-];
-
-// ---- Combined export the scripts expect ----
-export const REGISTRY: RegistryEntry[] = [
-  ...construction,
-  ...electrical,
-  ...financial,
-  ...health,
-  ...cooking,
-  ...conversion,
-  ...math,
-  ...science,
-  ...timeDate,
-  ...video,
-  ...automotive,
-  ...sports,
-  ...funny,
-  ...everyday,
-  ...smartTips,
-  ...pets,
-];
-
-// Optional helpers
-export const getEntry = (slugOrAlias: string) => {
-  const s = String(slugOrAlias || "").trim().toLowerCase();
-  return REGISTRY.find(
-    (e) => e.slug === s || (e.aliases && e.aliases.map((a) => a.toLowerCase()).includes(s))
+// List calculators under a specific category and subcategory
+export function listByCategorySubcategory(category?: string, subcategory?: string): CalculatorEntry[] {
+  const cat = normalize(category);
+  const sub = normalize(subcategory);
+  return REGISTRY.filter(
+    (e) => normalize(e.category) === cat && normalize(e.subcategory) === sub
   );
-};
+}
 
-export const listByCategory = (category: string) =>
-  REGISTRY.filter((e) => e.category.trim().toLowerCase() === category.trim().toLowerCase());
+// List calculators by subcategory (dogs, cats, general, etc.)
+export function listBy(subcategory: CalculatorEntry["subcategory"]) {
+  return REGISTRY.filter((e) => e.subcategory === subcategory);
+}
 
-export const listByCategorySubcategory = (category: string, subcategory: string) =>
-  REGISTRY.filter(
-    (e) =>
-      e.category.trim().toLowerCase() === category.trim().toLowerCase() &&
-      e.subcategory.trim().toLowerCase() === subcategory.trim().toLowerCase()
+// List subcategories that exist for a category, with friendly titles when available
+export function listSubcategoriesOfCategory(category?: string): Array<{ slug: string; title: string }> {
+  const cat = normalize(category);
+  // Prefer dynamic discovery from registry
+  const subs = new Set(
+    REGISTRY
+      .filter((e) => normalize(e.category) === cat)
+      .map((e) => normalize(e.subcategory))
+      .filter(Boolean)
   );
+  const titles = SUBCATEGORY_TITLES[cat] ?? {};
+  const result = Array.from(subs).map((slug) => ({ slug, title: titles[slug] ?? slug.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase()) }));
+  // If no dynamic subs found, fall back to static map
+  if (result.length === 0 && Object.keys(titles).length > 0) {
+    return Object.entries(titles).map(([slug, title]) => ({ slug, title }));
+  }
+  return result;
+}
+
+/** Helper único para gerar a rota desejada de um entry */
+export function calcPath(e: CalculatorEntry): string {
+  const style: UrlStyle = e.urlStyle ?? "nested";
+  return style === "flat"
+    ? `/${e.category}/${e.slug}`
+    : `/${e.category}/${e.subcategory}/${e.slug}`;
+}
+
+// Backward compat: calcLink maps to calcPath
+export function calcLink(e: CalculatorEntry) {
+  return calcPath(e);
+}

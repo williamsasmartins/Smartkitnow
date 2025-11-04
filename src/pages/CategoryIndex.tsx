@@ -1,96 +1,167 @@
-import React, { useMemo } from "react";
-import { useParams } from "react-router-dom";
-import { REGISTRY, type RegistryEntry } from "@/data/calculatorRegistry";
-import { getCategoryMeta } from "@/data/categoryMeta";
-import AdBannerTop from "@/components/ads/AdBannerTop";
-import AdSidebarRight from "@/components/ads/AdSidebarRight";
-import CalculatorCard from "@/components/cards/CalculatorCard";
-import EmojiIcon from "@/components/ui/EmojiIcon";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+
+import { ArrowLeft } from "lucide-react";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import AdRailLayout from "@/components/layouts/AdRailLayout";
+import AdSlot from "@/components/ads/AdSlot";
+import {
+  FRIENDLY_TITLES,
+  listSubcategoriesOfCategory,
+  listByCategorySubcategory,
+  listByCategory,
+  subcategoryIcon,
+  calcPath,
+} from "@/data/calculatorRegistry";
+import { PALETTE } from "@/components/theme/palette";
+import CalculatorListBlue from "@/components/common/CalculatorListBlue";
+import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
+import ShareThisCalculator from "@/components/share/ShareThisCalculator";
 
 export default function CategoryIndex() {
-  const { category = "" } = useParams();
-  const meta = getCategoryMeta(category);
-  const title = meta?.display ?? category;
+  const navigate = useNavigate();
+  const { category = "" } = useParams<{ category: string }>();
 
-  // filtra entries por categoria
-  const entries = useMemo(
-    () => REGISTRY.filter(e => e.category === category),
-    [category]
-  );
+  const title =
+    FRIENDLY_TITLES[category] ??
+    category.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
+  const subcats = listSubcategoriesOfCategory(category);
 
-  // agrupa por subcategoria e ordena
-  const grouped = useMemo(() => {
-    const map = new Map<string, RegistryEntry[]>();
-    for (const e of entries) {
-      const key = e.subcategory || "general";
-      if (!map.has(key)) map.set(key, []);
-      map.get(key)!.push(e);
-    }
-    for (const arr of map.values()) arr.sort((a,b) => (a.title || "").localeCompare(b.title || ""));
-    return Array.from(map.entries()).sort((a,b) => a[0].localeCompare(b[0]));
-  }, [entries]);
+  // Estado para controlar o comportamento "Read more" da copy em Health
+  const [healthCopyOpen, setHealthCopyOpen] = useState(false);
+  // Estado para controlar o comportamento "Read more" da copy em Financial
+  const [financialCopyOpen, setFinancialCopyOpen] = useState(false);
+
+  const totalInCategory = listByCategory(category).length;
 
   return (
     <div className="min-h-screen">
-      {/* topo com banner */}
-      <AdBannerTop />
-
-      <main className="mx-auto max-w-7xl px-4 pb-16 lg:pr-[65px]">
-        {/* header da categoria */}
-        <header className="py-6 border-b mb-6">
-          <h1 className="text-2xl md:text-3xl font-semibold text-primary flex items-center gap-3">
-            {meta?.emoji && (
-              <EmojiIcon symbol={meta.emoji} size={32} className="text-primary" label={meta?.display ?? title} />
-            )}
-            {meta?.display ?? title}
-          </h1>
-          <p className="mt-2 max-w-3xl text-sm md:text-base text-muted-foreground">
-            Explore curated tools in {title}. Each calculator includes explanations, formulas,
-            and worked examples to help you get precise answers fast.
-          </p>
-        </header>
-
-        <div className="grid gap-8 lg:grid-cols-12">
-          {/* coluna principal: esquerda (9) */}
-           <section className="lg:col-span-9 pr-[15px]">
-            {/* grid de cards por subcategoria */}
-            <div className="space-y-10">
-              {grouped.map(([subKey, items]) => (
-                <div key={subKey}>
-                  {/* título da seção/subcategoria */}
-                  <h2 className="text-xl font-semibold mb-3">
-                    {/* usamos o display via CalculatorCard footer; manter simples aqui */}
-                  </h2>
-
-                  <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                    {items.map((e) => (
-                      <CalculatorCard
-                        key={e.slug}
-                        category={e.category}
-                        subcategory={e.subcategory}
-                        slug={e.slug}
-                        name={e.title}
-                        // se quiser, acrescente descrições reais aqui por slug:
-                        // description="Board foot calculator to estimate lumber volume from dimensions."
-                      />
-                    ))}
-                  </div>
-                </div>
-              ))}
-
-              {!entries.length && (
-                <p className="opacity-70">No calculators found for this category yet.</p>
+      <main className="pt-20">
+        <AdRailLayout
+          titleBlock={
+            <div className="text-left">
+              <div className="mb-6 text-left">
+                <button
+                  className="inline-flex items-center gap-2 px-3 py-2 md:py-2.5 rounded-md"
+                  style={{ backgroundColor: "#3c83f6", color: "#ffffff" }}
+                  onClick={() => navigate("/")}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back
+                </button>
+              </div>
+              <h1 className="text-4xl font-bold mb-2 flex items-center gap-2" style={{ color: PALETTE.brand.title }}>
+                <span className="text-[26px] leading-none select-none" aria-hidden="true">🏷️</span>
+                {title}
+              </h1>
+              {category !== "financial" && (
+                <p className="text-lg max-w-2xl" style={{ color: PALETTE.brand.text }}>
+                  Explore practical {title.replace(/ Calculators$/, "").toLowerCase()} calculators designed to help you plan, measure, and make better decisions.
+                </p>
+              )}
+              {category === "financial" && (
+                <>
+                  <p className="text-lg max-w-2xl" style={{ color: PALETTE.brand.text }}>
+                    Explore practical {title.replace(/ Calculators$/, "").toLowerCase()} calculators designed to help you plan, measure, and make better decisions.
+                  </p>
+                  {category === "financial" && (
+                    <div className="mt-2">
+                      <p className="text-sm text-muted-foreground">{totalInCategory} calculators</p>
+                      <div className="mt-2">
+                        <p
+                          className={`${financialCopyOpen ? "" : "line-clamp-3"} text-base max-w-3xl`}
+                          style={{ color: PALETTE.brand.text }}
+                        >
+                          {"Put your finances on track with reliable calculators. Whether you’re a market professional, a small business owner, an aspiring investor or just someone who wants to balance the household budget, our financial tools help you make informed choices. Need to compare loans quickly? Want to see how a small change impacts the long-term outcome? These calculators are built to give you clear, actionable numbers with transparent formulas and sensible defaults."}
+                        </p>
+                        {!financialCopyOpen && (
+                          <button
+                            className="text-primary text-sm underline mt-2 px-0 py-0"
+                            onClick={() => setFinancialCopyOpen(true)}
+                            aria-label="Read more"
+                          >
+                            Read more
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </>
               )}
             </div>
-          </section>
-
-          {/* sidebar com anúncios (sticky) */}
-          <aside className="hidden lg:block lg:col-span-3">
-                <div className="sticky pr-[65px]" style={{ top: "var(--skn-rail-top)" }}>
-                  <AdSidebarRight topOffset={0} />
+          }
+        >
+          {subcats.length === 0 ? (
+            <p className="text-left" style={{ color: PALETTE.brand.text }}>
+              No subcategories found.
+            </p>
+          ) : (
+            category === "financial" ? (
+              // Grid com introdução à direita e listas à esquerda
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* Listas de calculadoras (duas colunas) */}
+                <div className="lg:col-span-2">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {subcats.map((sc) => {
+                      const calculators = listByCategorySubcategory(category, sc.slug);
+                      return (
+                        <section
+                          key={sc.slug}
+                          className="bg-card/40 border border-border/50 rounded-lg p-4 shadow-sm"
+                        >
+                          <h2 className="text-xl font-semibold flex items-center gap-2" style={{ color: PALETTE.brand.title }}>
+                            <span aria-hidden="true">{subcategoryIcon(sc.slug, category)}</span>
+                            {sc.title}
+                          </h2>
+                          <div className="mt-3">
+                            <CalculatorListBlue
+                              items={calculators.map((calc) => ({ title: calc.title, to: calcPath(calc) }))}
+                            />
+                          </div>
+                        </section>
+                      );
+                    })}
+                  </div>
                 </div>
-              </aside>
-        </div>
+
+
+              </div>
+            ) : (
+              // Layout padrão para demais categorias
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {subcats.map((sc) => {
+                  const calculators = listByCategorySubcategory(category, sc.slug);
+                  return (
+                    <section
+                      key={sc.slug}
+                      className="bg-card/40 border border-border/50 rounded-lg p-4 shadow-sm"
+                    >
+                      <h2 className="text-xl font-semibold flex items-center gap-2" style={{ color: PALETTE.brand.title }}>
+                        <span aria-hidden="true">{subcategoryIcon(sc.slug, category)}</span>
+                        {sc.title}
+                      </h2>
+                      <div className="mt-3">
+                        <CalculatorListBlue
+                          items={calculators.map((calc) => ({ title: calc.title, to: calcPath(calc) }))}
+                        />
+                      </div>
+                    </section>
+                  );
+                })}
+              </div>
+            )
+          )}
+
+          <section className="mt-6 skn-typography text-sm">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-6">
+                  <SiteFeedbackForm title="Questions or suggestions?" compact={true} />
+                  <ShareThisCalculator />
+                </div>
+              </div>
+          </section>
+        </AdRailLayout>
       </main>
     </div>
   );

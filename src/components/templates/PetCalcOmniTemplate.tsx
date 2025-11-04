@@ -1,195 +1,221 @@
-import React, { useMemo, useState } from "react";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
+import React, { useMemo, useState, useEffect } from "react";
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+// import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
+import CalculatorFeedbackShare from "../calculators/CalculatorFeedbackShare";
+import SeoHead from "@/components/seo/SeoHead";
+import JsonLd from "@/components/seo/JsonLd";
 
-export type OmniNumberInput = {
-  key: string;
-  label: string;
-  type: "number";
-  unit?: string;
-  min?: number;
-  max?: number;
-  step?: number;
-  default?: number;
-};
+const CONTAINER = "w-full pl-4 pr-4 md:pl-8 lg:pl-10 xl:pl-14";
+const CONTENT_MAX = "max-w-[864px]";
 
-export type OmniSelectInput = {
-  key: string;
-  label: string;
-  type: "select";
-  options: { value: string; label: string }[];
-  default?: string;
-};
+// 2 colunas (editorial + calculadora) — levemente mais larga à esquerda 
+const GRID_2COL = 
+  "grid gap-6 grid-cols-1 md:[grid-template-columns:minmax(0,320px)_minmax(0,1fr)]"; 
+ 
+// 3 colunas (só se realmente houver rail direito) 
+const GRID_3COL = 
+  "grid gap-6 grid-cols-1 md:[grid-template-columns:minmax(0,320px)_minmax(0,540px)] xl:[grid-template-columns:minmax(0,340px)_minmax(0,560px)_minmax(0,260px)]";
 
-export type OmniUnitInput = {
-  key: string;
-  label: string;
-  type: "unit";
-  options: string[];
-  default?: string;
-};
+type Unit = "kg" | "lb" | "g" | "oz";
+type SelectOption = { value: string; label: string };
 
-export type OmniInput = OmniNumberInput | OmniSelectInput | OmniUnitInput;
+type RiskBand = { id: string; label: string; tone: string; message: string };
 
-export type OmniMetric = { label: string; value: string | number };
-export type OmniCTA = { label: string; href: string };
+type Metric = { 
+  key: string; 
+  label: string; 
+  format?: (v: number) => string; 
+}; 
 
-export type OmniDisplaySection = { title: string; content: string };
-export type OmniDisplayTable = {
-  title: string;
-  headers: string[];
-  rows: (string | number)[][];
-  notes?: string[];
-};
+type NumberField = { type: "number"; key: string; label: string; min?: number; step?: number; default?: number }; 
+type SelectField = { type: "select"; key: string; label: string; options: SelectOption[]; default?: string }; 
+type UnitField = { type: "unit"; key: string; label: string; options: Unit[]; default?: Unit }; 
 
-export type PetCalcOmniConfig = {
-  id?: string;
-  title: string;
-  description?: string;
-  shortDescription?: string;
-  strongDisclaimer?: string;
-  tags?: string[];
-  showTopAd?: boolean;
-  showRightAd?: boolean;
-  inputs: OmniInput[];
-  calculate: (inputs: Record<string, unknown>) => {
-    metrics?: OmniMetric[];
-    riskBand?: "none" | "mild" | "moderate" | "severe" | string;
-    cta?: OmniCTA;
+type FieldConfig = NumberField | SelectField | UnitField; 
+
+export type PetCalcOmniConfig = { 
+  title: string; 
+  shortDescription: string; 
+  strongDisclaimer?: string; 
+  updatedAt?: string;
+  showTopAd?: boolean; 
+  showRightAd?: boolean; 
+
+  hero?: { title: string; description?: string };
+  eeat?: { showAtBottomOnce?: boolean; text?: string };
+
+  // E-E-A-T: Reviewer metadata (object expected by calculators)
+  reviewedBy?:
+    | string
+    | {
+        name: string;
+        credentials?: string; 
+        role?: string;        
+        date?: string;        
+        bioUrl?: string;      
+        avatarUrl?: string;   
+      };
+
+  // E-E-A-T: Author metadata (object expected by calculators)
+  authoredBy?: {
+    name: string;
+    role?: string;        
+    date?: string;        
+    bioUrl?: string;
+    avatarUrl?: string;
   };
-  display?: {
-    sections?: OmniDisplaySection[];
-    tables?: OmniDisplayTable[];
+
+  inputs: FieldConfig[]; 
+  compute: ( 
+    s: Record<string, any> & { toKg: (v: number, u: Unit) => number; toGrams: (v: number, u: Unit) => number } 
+  ) => { 
+    metrics: Record<string, number>; 
+    riskKey?: string; 
+  }; 
+  metricsDisplay?: Metric[]; 
+  riskBands?: RiskBand[]; 
+  cta?: { label: string; href?: string; tel?: string }; 
+
+
+  // editorial content
+  professionalAdviceNote?: string; 
+  howToUse?: string[]; 
+  howItWorks?: { intro?: string; formula?: string; variables?: string[] }; 
+  tables?: Array<{ title: string; headers: string[]; rows: Array<(string | number)[]>; notes?: string[] }>; 
+  faqs?: Array<{ question: string; answer: string }>; 
+  sources?: Array<{ label: string; href: string; note?: string }>; 
+  relatedLinks?: Array<{ href: string; label: string }>; 
+  glossary?: Array<{ term: string; def: string }>;
+  reviewedByBlock?: { text: string };
+  reviewedNote?: string;
+
+  // Optional SEO/JSON-LD handled by template when provided
+  seo?: { title: string; description?: string; canonical?: string; keywords?: string[]; ogImage?: string };
+  jsonLd?: {
+    webpage?: Record<string, any>;
+    breadcrumbs?: { items: Array<{ name: string; item: string }> };
+    faq?: Array<{ q: string; a: string }>;
   };
-  faqs?: { question: string; answer: string }[];
-  sources?: { label: string; href: string }[];
-};
+}; 
 
-type Props = { config: PetCalcOmniConfig };
+const fmt1 = (v: number) => (Number.isFinite(v) ? v.toFixed(1) : "-"); 
+const toKg = (v: number, u: Unit) => (u === "lb" ? v * 0.45359237 : v); 
+const toGrams = (v: number, u: Unit) => (u === "oz" ? v * 28.349523125 : v); 
 
-function getDefaultValues(inputs: OmniInput[]): Record<string, unknown> {
-  const acc: Record<string, unknown> = {};
-  for (const input of inputs) {
-    if (input.type === "number") {
-      acc[input.key] = input.default ?? 0;
-    } else if (input.type === "select") {
-      acc[input.key] = input.default ?? (input.options[0]?.value ?? "");
-    } else if (input.type === "unit") {
-      acc[input.key] = input.default ?? (input.options[0] ?? "");
-    }
+// Deep sanitize helper: strips backticks from all string values and trims whitespace
+const stripGrave = (s: any): any => (typeof s === "string" ? s.replace(/`/g, "").trim() : s);
+const deepSanitizeStrings = (value: any): any => {
+  if (value == null) return value;
+  if (typeof value === "string") return stripGrave(value);
+  if (Array.isArray(value)) return value.map(deepSanitizeStrings);
+  if (typeof value === "object") {
+    const out: any = {};
+    for (const [k, v] of Object.entries(value)) out[k] = deepSanitizeStrings(v);
+    return out;
   }
-  return acc;
-}
+  return value;
+};
 
-export default function PetCalcOmniTemplate({ config }: Props) {
-  const { title, description, inputs, display } = config;
-  const [values, setValues] = useState<Record<string, unknown>>(
-    () => getDefaultValues(inputs)
-  );
-  const [metrics, setMetrics] = useState<OmniMetric[] | undefined>(undefined);
-  const [riskBand, setRiskBand] = useState<string | undefined>(undefined);
-  const [cta, setCTA] = useState<OmniCTA | undefined>(undefined);
+export default function PetCalcOmniTemplate({ config }: { config: PetCalcOmniConfig }) { 
+  useEffect(() => {
+    console.log("PetCalcOmniTemplate — ATIVO");
+  }, []);
+  // ======= estado inicial com narrowing correto do union ======= 
+  const initial = useMemo(() => { 
+    const acc: Record<string, any> = {}; 
+    for (const f of config.inputs) { 
+      switch (f.type) { 
+        case "number": 
+          acc[f.key] = f.default ?? ""; 
+          break; 
+        case "select": 
+          acc[f.key] = f.default ?? f.options[0]?.value ?? ""; 
+          break; 
+        case "unit": 
+          acc[f.key] = f.default ?? f.options[0]; 
+          break; 
+      } 
+    } 
+    return acc; 
+  }, [config.inputs]); 
 
-  const onCalculate = () => {
-    const result = config.calculate(values);
-    setMetrics(result.metrics);
-    setRiskBand(result.riskBand);
-    setCTA(result.cta);
-  };
+  const [state, setState] = useState<Record<string, any>>(initial); 
 
-  const sectionCards = useMemo(() => display?.sections ?? [], [display]);
-  const tables = useMemo(() => display?.tables ?? [], [display]);
+  const computeOut = useMemo(() => config.compute({ ...state, toKg, toGrams }), [state, config]); 
 
-  return (
-    <div className="container mx-auto px-4 py-6 max-w-5xl">
-      <div className="mb-6">
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">{title}</h1>
-        {description && (
-          <p className="text-muted-foreground mt-2">{description}</p>
-        )}
-      </div>
+  const risk = useMemo(() => { 
+    if (!config.riskBands || !computeOut.riskKey) return null; 
+    return config.riskBands.find((b) => b.id === computeOut.riskKey) ?? null; 
+  }, [computeOut.riskKey, config.riskBands]); 
 
-      <Card className="mb-6">
-        <CardHeader>
-          <CardTitle>Inputs</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {inputs.map((input) => {
-              if (input.type === "number") {
-                const ni = input as OmniNumberInput;
-                const val = (values[ni.key] as number) ?? ni.default ?? 0;
+
+
+  // ===================== colunas ===================== 
+  const center = (
+    <div className="w-full">
+      <Card className="w-full bg-card border-border/50 shadow-sm"> 
+        <CardHeader> 
+          <CardTitle className="text-[15px] md:text-[16px]">{config.title}</CardTitle> 
+          <CardDescription className="text-[13px] md:text-[14px]">{config.shortDescription}</CardDescription> 
+        </CardHeader> 
+        <CardContent> 
+          {/* Inputs */} 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4"> 
+            {config.inputs.map((f) => { 
+              if (f.type === "number") {
                 return (
-                  <div key={ni.key} className="flex flex-col gap-2">
-                    <Label htmlFor={ni.key}>{ni.label}{ni.unit ? ` (${ni.unit})` : ""}</Label>
+                  <div key={f.key} className="max-w-[260px]">
+                    <Label htmlFor={f.key}>{f.label}</Label>
                     <Input
-                      id={ni.key}
+                      id={f.key}
                       type="number"
-                      min={ni.min}
-                      max={ni.max}
-                      step={ni.step}
-                      value={val}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        const next = e.target.value === "" ? undefined : Number(e.target.value);
-                        setValues((prev) => ({ ...prev, [ni.key]: next }));
-                      }}
+                      min={f.min ?? 0}
+                      step={f.step ?? 0.1}
+                      className="mt-2"
+                      value={state[f.key] ?? ""}
+                      onChange={(e) => setState((s) => ({ ...s, [f.key]: e.target.value }))}
                     />
                   </div>
                 );
               }
-
-              if (input.type === "select") {
-                const si = input as OmniSelectInput;
-                const val = (values[si.key] as string) ?? si.default ?? si.options[0]?.value ?? "";
+              if (f.type === "select") {
                 return (
-                  <div key={si.key} className="flex flex-col gap-2">
-                    <Label>{si.label}</Label>
-                    <Select
-                      value={val}
-                      onValueChange={(v: string) => {
-                        setValues((prev) => ({ ...prev, [si.key]: v }));
-                      }}
-                    >
-                      <SelectTrigger>
+                  <div key={f.key} className="max-w-[260px]">
+                    <Label>{f.label}</Label>
+                    <Select value={state[f.key] ?? f.default ?? ""} onValueChange={(v) => setState((s) => ({ ...s, [f.key]: v }))}>
+                      <SelectTrigger className="mt-2 w-[120px]">
                         <SelectValue placeholder="Select" />
                       </SelectTrigger>
-                      <SelectContent>
-                        {si.options.map((opt) => (
-                          <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                      <SelectContent side="bottom" align="start" sideOffset={4} className="max-h-[260px] overflow-y-auto max-w-[220px]">
+                        {f.options.map((o) => (
+                          <SelectItem key={o.value} value={o.value}>
+                            {o.label}
+                          </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
                   </div>
                 );
               }
-
-              // unit behaves like select with string options
-              const ui = input as OmniUnitInput;
-              const val = (values[ui.key] as string) ?? ui.default ?? ui.options[0] ?? "";
+              
+              // unit 
               return (
-                <div key={ui.key} className="flex flex-col gap-2">
-                  <Label>{ui.label}</Label>
-                  <Select
-                    value={val}
-                    onValueChange={(v: string) => {
-                      setValues((prev) => ({ ...prev, [ui.key]: v }));
-                    }}
-                  >
-                    <SelectTrigger>
+                <div key={f.key} className="max-w-[260px]">
+                  <Label>{f.label}</Label>
+                  <Select value={state[f.key] ?? f.default ?? ""} onValueChange={(v) => setState((s) => ({ ...s, [f.key]: v }))}>
+                    <SelectTrigger className="mt-2 w-[120px]">
                       <SelectValue placeholder="Select" />
                     </SelectTrigger>
-                    <SelectContent>
-                      {ui.options.map((opt) => (
-                        <SelectItem key={opt} value={opt}>{opt}</SelectItem>
+                    <SelectContent side="bottom" align="start" sideOffset={4} className="max-h-[260px] overflow-y-auto max-w-[220px]">
+                      {f.options.map((o) => (
+                        <SelectItem key={o} value={o}>
+                          {o}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -198,97 +224,296 @@ export default function PetCalcOmniTemplate({ config }: Props) {
             })}
           </div>
 
-          <div className="mt-4">
-            <Button onClick={onCalculate}>Calculate</Button>
-          </div>
+          {/* Metrics */}
+          {config.metricsDisplay?.length ? (
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+              {config.metricsDisplay.map((m) => (
+                <div key={m.key} className="rounded-md border border-border/50 bg-muted/20 p-3">
+                  <div className="text-xs text-muted-foreground">{m.label}</div>
+                  <div className="text-base md:text-lg font-semibold">
+                    {(m.format ?? fmt1)(computeOut.metrics[m.key])}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : null}
+
+          {/* Risk label below cards */}
+          {risk?.label ? (
+            <p className="mt-2 text-xs text-muted-foreground">{risk.label}</p>
+          ) : null}
+
+          {/* Risk band */}
+          {risk ? (
+            <div className="mt-6">
+              <div className={`rounded-md p-3 text-white ${risk.tone}`}>
+                <div className="font-semibold">{risk.label} risk</div>
+                <p className="text-sm mt-1">{risk.message}</p>
+              </div>
+            </div>
+          ) : null}
+
+          {/* Call to action */}
+          {config.cta ? (
+            <div className="mt-6">
+              <Button className="w-full" variant="destructive">
+                {config.cta.label}
+              </Button>
+            </div>
+          ) : null}
         </CardContent>
       </Card>
+    </div>
+  );
 
-      {(metrics || riskBand || cta) && (
-        <Card className="mb-6">
-          <CardHeader>
-            <CardTitle>Results</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {metrics && metrics.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                {metrics.map((m, idx) => (
-                  <div key={idx} className="p-3 border rounded">
-                    <div className="text-sm text-muted-foreground">{m.label}</div>
-                    <div className="text-lg font-semibold">{m.value}</div>
-                  </div>
-                ))}
-              </div>
-            )}
-            {riskBand && (
-              <div className="mb-2">Risk band: <span className="font-medium">{riskBand}</span></div>
-            )}
-            {cta && (
-              <div className="mt-2">
-                <a href={cta.href} target="_blank" rel="noopener noreferrer">
-                  <Button variant="secondary">{cta.label}</Button>
-                </a>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+  const left = (
+    <article className="text-[14px] md:text-[15px] leading-relaxed">
+      {!config.hero && (
+        <>
+          <h1 className="text-xl md:text-2xl font-bold mb-1" style={{ color: "#5c82ee" }}>
+            {config.title}
+          </h1>
+          <p className="text-sm md:text-[15px] text-muted-foreground">{config.shortDescription}</p>
+        </>
       )}
 
-      {sectionCards.length > 0 && (
-        <div className="grid grid-cols-1 gap-4 mb-6">
-          {sectionCards.map((s, idx) => (
-            <Card key={idx}>
-              <CardHeader>
-                <CardTitle>{s.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground whitespace-pre-wrap">{s.content}</p>
-              </CardContent>
-            </Card>
-          ))}
+
+      {/* Optional professional advice note */}
+      {config.professionalAdviceNote ? (
+        <div className="mt-3 rounded-md border border-border/50 bg-muted/20 p-3 text-[13px] text-muted-foreground">
+          {config.professionalAdviceNote}
         </div>
-      )}
+      ) : null}
 
-      {tables.length > 0 && (
-        <div className="grid grid-cols-1 gap-4">
-          {tables.map((t, idx) => (
-            <Card key={idx}>
-              <CardHeader>
-                <CardTitle>{t.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="overflow-x-auto">
-                  <table className="min-w-full text-sm">
-                    <thead>
-                      <tr>
-                        {t.headers.map((h, i) => (
-                          <th key={i} className="text-left p-2 border-b">{h}</th>
+      {config.howToUse?.length ? (
+        <section className="mt-8">
+          <h2 className="text-lg md:text-xl font-semibold" style={{ color: "#5c82ee" }}>
+            How to use
+          </h2>
+          <ul className="list-disc pl-6 mt-2 text-muted-foreground">
+            {config.howToUse.map((t, i) => (
+              <li key={i}>{t}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {config.howItWorks && (config.howItWorks.intro || config.howItWorks.formula || config.howItWorks.variables?.length) ? (
+        <section className="mt-8">
+          <h2 className="text-lg md:text-xl font-semibold" style={{ color: "#5c82ee" }}>
+            How the calculation works
+          </h2>
+          {config.howItWorks.intro && <p className="mt-2 text-muted-foreground">{config.howItWorks.intro}</p>}
+          {config.howItWorks.formula && (
+            <pre className="mt-3 bg-muted/50 text-xs md:text-sm p-3 rounded-md overflow-auto">
+              <code>{config.howItWorks.formula}</code>
+            </pre>
+          )}
+          {config.howItWorks.variables?.length ? (
+            <ul className="list-disc pl-6 mt-2 text-muted-foreground">
+              {config.howItWorks.variables.map((v, i) => (
+                <li key={i}>{v}</li>
+              ))}
+            </ul>
+          ) : null}
+        </section>
+      ) : null}
+
+      {config.tables?.length
+        ? config.tables.map((t, idx) => (
+            <section key={idx} className="mt-8">
+              <h2 className="text-lg md:text-xl font-semibold" style={{ color: "#5c82ee" }}>
+                {t.title}
+              </h2>
+              <div className="mt-3 overflow-x-auto">
+                <table className="w-full text-xs md:text-sm">
+                  <thead className="text-left">
+                    <tr>{t.headers.map((h, i) => <th key={i} className="py-2 pr-4">{h}</th>)}</tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    {t.rows.map((r, i) => (
+                      <tr key={i} className="border-t border-border/50">
+                        {r.map((c, j) => (
+                          <td key={j} className="py-2 pr-4">{c}</td>
                         ))}
                       </tr>
-                    </thead>
-                    <tbody>
-                      {t.rows.map((row, rIdx) => (
-                        <tr key={rIdx}>
-                          {row.map((cell, cIdx) => (
-                            <td key={cIdx} className="p-2 border-b">{String(cell)}</td>
-                          ))}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                {t.notes && t.notes.length > 0 && (
-                  <ul className="mt-3 list-disc pl-5 text-xs text-muted-foreground">
-                    {t.notes.map((n, nIdx) => (
-                      <li key={nIdx}>{n}</li>
                     ))}
-                  </ul>
-                )}
-              </CardContent>
-            </Card>
-          ))}
+                  </tbody>
+                </table>
+              </div>
+              {t.notes?.length ? (
+                <ul className="list-disc pl-6 mt-2 text-[11px] md:text-xs text-muted-foreground">
+                  {t.notes.map((n, i) => (
+                    <li key={i}>{n}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </section>
+          ))
+        : null}
+
+      {config.glossary?.length ? (
+        <section className="mt-8">
+          <h2 className="text-lg md:text-xl font-semibold" style={{ color: "#5c82ee" }}>
+            Glossary
+          </h2>
+          <ul className="mt-2 space-y-2 text-muted-foreground">
+            {config.glossary.map((g, i) => (
+              <li key={i}>
+                <span className="font-medium text-foreground">{g.term}:</span> {g.def}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {config.faqs?.length ? (
+        <section className="mt-8">
+          <h2 className="text-lg md:text-xl font-semibold" style={{ color: "#5c82ee" }}>
+            FAQs
+          </h2>
+          <div className="mt-2 space-y-4">
+            {config.faqs.map((f, i) => (
+              <details key={i} className="rounded-md border border-border/50 p-3 bg-card">
+                <summary className="cursor-pointer font-medium">{f.question}</summary>
+                <p className="mt-2 text-muted-foreground">{f.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {config.relatedLinks?.length ? (
+        <section className="mt-8">
+          <h2 className="text-lg md:text-xl font-semibold" style={{ color: "#5c82ee" }}>
+            Related calculators
+          </h2>
+          <ul className="list-disc pl-6 mt-2 text-muted-foreground">
+            {config.relatedLinks.map((l, i) => (
+              <li key={i}>
+                <a className="underline" href={l.href}>{l.label}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {config.sources?.length ? (
+        <section className="mt-8">
+          <h2 className="text-lg md:text-xl font-semibold" style={{ color: "#5c82ee" }}>
+            Formula & Sources
+          </h2>
+          <ul className="list-disc pl-6 mt-2 text-sm text-muted-foreground">
+            {config.sources.map((s, i) => (
+              <li key={i}>
+                <a className="underline" href={s.href.replace(/`/g, "").trim()} target="_blank" rel="noreferrer">
+                  {s.label}
+                </a>
+                {s.note ? ` — ${s.note}` : ""}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+    </article>
+  );
+
+  return (
+    <>
+      {config.seo ? (
+        <SeoHead
+          config={{
+            title: config.seo.title ?? config.title,
+            description: (config.seo.description ?? config.shortDescription ?? ""),
+            canonical: config.seo.canonical ? stripGrave(config.seo.canonical) : undefined,
+            keywords: config.seo.keywords,
+            ogImage: config.seo.ogImage,
+          }}
+        />
+      ) : null}
+      {config.jsonLd?.webpage ? (
+        <JsonLd data={{ "@context": "https://schema.org", ...deepSanitizeStrings(config.jsonLd.webpage) }} />
+      ) : null}
+      {config.jsonLd?.breadcrumbs?.items?.length ? (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: config.jsonLd.breadcrumbs.items.map((it, idx) => ({
+              "@type": "ListItem",
+              position: idx + 1,
+              name: it.name,
+              item: it.item.replace(/`/g, "").trim(),
+            })),
+          }}
+        />
+      ) : null}
+      {config.jsonLd?.faq?.length ? (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: config.jsonLd.faq.map((qa) => ({
+              "@type": "Question",
+              name: stripGrave(qa.q),
+              acceptedAnswer: { "@type": "Answer", text: stripGrave(qa.a) },
+            })),
+          }}
+        />
+      ) : null}
+      <div className="w-full overflow-visible" style={{ transform: "none" }}>
+        {config.showTopAd && (
+          <section className={`${CONTAINER} pt-6 pb-4`}>
+            <div className={CONTENT_MAX}>
+              <div className="rounded-md border border-dashed border-border/60 bg-muted/30 p-3 text-center text-xs text-muted-foreground">
+                Ad — Top Banner (placeholder)
+              </div>
+            </div>
+          </section>
+        )}
+
+        {config.hero?.title ? (
+          <section className={`${CONTAINER} pt-6 pb-4`}>
+            <div className={CONTENT_MAX}>
+              <h1 className="text-3xl font-bold text-[#5c82ee]">{config.hero.title}</h1>
+              {config.hero.description ? (
+                <p className="mt-2 text-sm text-muted-foreground">{config.hero.description}</p>
+              ) : null}
+            </div>
+          </section>
+        ) : null}
+
+        <div 
+          className={`${CONTAINER} ${CONTENT_MAX} pb-12 grid gap-6 
+            grid-cols-1 
+            md:[grid-template-columns:minmax(0,420px)_minmax(0,1fr)] 
+            xl:[grid-template-columns:minmax(0,460px)_minmax(0,1fr)]
+          `} 
+          style={{ overflow: "visible" }} 
+        > 
+          {/* LEFT — editorial */} 
+          <aside className="hidden md:block overflow-visible pt-1"> 
+            {left} 
+          </aside> 
+ 
+          {/* CENTER — calculator sticky (cola sob o header) */}
+          <main className="min-w-0 sticky self-start" style={{ top: 88 }}>
+            {center}
+          </main>
         </div>
-      )}
-    </div>
+      </div>
+      {config?.eeat?.showAtBottomOnce && config?.eeat?.text ? (
+        <div className={`${CONTAINER} mt-8`}>
+          <div className="rounded-xl border bg-card p-4 text-sm text-muted-foreground">
+            {config.eeat.text}
+          </div>
+        </div>
+      ) : null}
+      {/* Feedback + Share — exatamente na mesma régua do grid/hero */}
+      <div className={`${CONTAINER} ${CONTENT_MAX} mt-8 mb-16`}>
+        <CalculatorFeedbackShare />
+      </div>
+
+    </>
   );
 }

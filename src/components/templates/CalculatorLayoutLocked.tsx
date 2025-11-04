@@ -1,79 +1,164 @@
-'use client';
-
 import React, { ReactNode } from "react";
 
+/**
+ * CalculatorLayoutLocked
+ * - Conteúdo "dentro da linha vermelha": Main (9 col) + Right rail (3 col)
+ * - Dentro do Main: Editorial (7) + Widget sticky (5)
+ * - Sticky apenas no Widget; Editorial e Rail rolam
+ * - Guard rails anti-overflow + media queries explícitas
+ */
 export default function CalculatorLayoutLocked({
   title,
-  box1,
-  box2,
-  stickyTopPx = 120,
+  editorial,
+  widget,
+  railRight = null,
+  showTitle = true,
+  stickyTopPx = 120, // ajuste se seu header for maior
 }: {
   title: string;
-  box1: ReactNode;
-  box2: ReactNode;
+  editorial: ReactNode;
+  widget: ReactNode;
+  railRight?: ReactNode;
+  showTitle?: boolean;
   stickyTopPx?: number;
 }) {
   return (
     <>
-            <style>{`
-        .calc-wrapper { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
-        .calc-grid { display: grid; gap: 2rem; grid-template-columns: 1fr; }
-        @media (min-width: 768px) { .calc-grid { grid-template-columns: 7fr 5fr; } }
-        @media (min-width: 1024px) { .calc-grid { grid-template-columns: 1fr 380px 300px; } }
-
-        /* <<< A LINHA MÁGICA QUE FALTAVA >>> */
-        .calc-sticky {
-          position: -webkit-sticky; /* Safari */
-          position: sticky;
-          top: ${stickyTopPx}px !important;
-          z-index: 50 !important;
-          align-self: start !important;
+      {/* CSS crítico inline para independer de Tailwind e impedir overflow */}
+      <style>{`
+        :root{
+          --container-w: 1200px;  /* MESMO valor da /financial */
+          --gap: 24px;            /* gap desktop (24px == gap-6) */
+          --gap-lg: 32px;         /* gap desktop grande (32px == gap-8) */
+          --rail-w: 3fr;          /* Right rail = 3 colunas */
+          --main-w: 9fr;          /* Main = 9 colunas */
+          --inner-left: 7fr;      /* Editorial */
+          --inner-widget: 5fr;    /* Widget */
+          --safe: 0px;            /* margem de segurança intra-container (0 para encostar) */
         }
-        /* <<< FIM DA LINHA MÁGICA >>> */
 
-        .calc-ad { background: #111; border: 2px dashed #333; border-radius: 1rem; height: 250px; display: flex; align-items: center; justify-content: center; color: #666; }
+        /* CONTÊINER CENTRAL: alinha com /financial (linha vermelha) */
+        .locked__container{
+          box-sizing: border-box;
+          width: 100%;
+          max-width: var(--container-w);
+          margin: 0 auto;
+          padding: 96px 16px 40px;  /* pt-24 ~96px (abaixo do header), laterais 16px */
+          overflow: visible;        /* não bloquear sticky */
+        }
+
+        /* GRID EXTERNO: Main (9) + Rail (3) */
+        .locked__outer{
+          display: grid;
+          grid-template-columns: var(--main-w) var(--rail-w);
+          gap: var(--gap-lg);
+        }
+        .locked__outer > * { min-width: 0; }
+
+        /* GRID INTERNO do Main: Editorial (7) + Widget (5) */
+        .locked__mainInner{
+          display: grid;
+          grid-template-columns: var(--inner-left) var(--inner-widget);
+          gap: var(--gap-lg);
+          align-items: start;
+        }
+        .locked__mainInner > * { min-width: 0; }
+
+        /* Guard rails anti-overflow: nada sai do limite do Main */
+        .locked__guard, .locked__guard *{
+          box-sizing: border-box;
+          max-width: 100%;
+        }
+        .locked__guard{
+          overflow: hidden;       /* corta eventuais vazamentos horizontais */
+        }
+        .locked__tableWrap{       /* tabelas com rolagem horizontal controlada */
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        /* Widget sticky */
+        .locked__sticky{
+          position: sticky;
+          top: ${/* não usar var aqui pq vem via prop */""}${0}px; /* será sobrescrito inline */
+        }
+
+        /* Boxes de engajamento: mesmas bordas/padding e NUNCA passam a linha */
+        .locked__card{
+          border: 1px solid rgba(120,120,140,0.25);
+          border-radius: 16px;
+          padding: 16px;
+          background: rgba(255,255,255,0.04);
+        }
+
+        /* MEDIA QUERIES — pedidas por você */
+        /* Mobile: 320–767px */
+        @media (max-width: 767px){
+          .locked__container{ padding: 88px 12px 32px; }
+          .locked__outer{ grid-template-columns: 1fr; gap: 20px; }
+          .locked__mainInner{ grid-template-columns: 1fr; gap: 20px; }
+          .locked__sticky{ position: static; top: auto; } /* sem sticky no mobile */
+        }
+
+        /* Tablet: 768–1023px */
+        @media (min-width: 768px) and (max-width: 1023px){
+          .locked__container{ padding: 96px 16px 36px; }
+          .locked__outer{ grid-template-columns: 1fr; gap: var(--gap); }
+          .locked__mainInner{ grid-template-columns: 7fr 5fr; gap: var(--gap); }
+          .locked__sticky{ top: 104px; }
+        }
+
+        /* Desktop: 1024–1439px */
+        @media (min-width: 1024px) and (max-width: 1439px){
+          .locked__container{ padding-top: 104px; }
+          .locked__outer{ grid-template-columns: var(--main-w) var(--rail-w); gap: var(--gap-lg); }
+          .locked__mainInner{ grid-template-columns: var(--inner-left) var(--inner-widget); gap: var(--gap-lg); }
+        }
+
+        /* Ultrawide: 1440px+ */
+        @media (min-width: 1440px){
+          .locked__container{ padding-top: 112px; }
+          .locked__outer{ gap: var(--gap-lg); }
+          /* Mantemos container-w para bater exatamente com a linha vermelha */
+        }
+
+        /* Fallbacks e zoom: se viewport for menor que 320px, evitar quebrar */
+        @media (max-width: 319px){
+          .locked__container{ padding: 84px 8px 28px; }
+        }
       `}</style>
 
-      <div className="calc-wrapper">
-        <div className="calc-grid">
-          <article className="text-gray-200">
-            <h1 className="text-4xl font-bold text-[#5c82ee] mb-8">{title}</h1>
-            {box1}
+      <div className="locked__container">
+        {/* OUTER GRID: Main (9) + Rail (3) */}
+        <div className="locked__outer">
+          {/* MAIN (alinhado à linha vermelha) */}
+          <main className="locked__guard">
+            {/* INNER GRID: Editorial + Widget */}
+            <div className="locked__mainInner">
+              {/* LEFT — editorial */}
+              <article>
+                {showTitle && (
+                  <h1 className="text-3xl font-bold" style={{ color: "#5c82ee" }}>
+                    {title}
+                  </h1>
+                )}
+                {editorial}
+              </article>
 
-            <div className="my-8 p-6 rounded-2xl bg-amber-900/30 border border-amber-700/50">
-              <strong className="text-amber-300">Important — Not Financial Advice</strong>
-              <p className="text-sm mt-2">This tool is for educational purposes only. Always consult a professional.</p>
+              {/* CENTER — widget sticky (único sticky) */}
+              <aside
+                className="locked__sticky"
+                aria-label="Calculator widget"
+                style={{ top: `${stickyTopPx}px` }}
+              >
+                {widget}
+              </aside>
             </div>
+          </main>
 
-            <div className="my-8 p-6 rounded-2xl bg-white/5 border border-white/10">
-              <h3 className="font-bold mb-4">Share this page</h3>
-              <div className="flex flex-wrap gap-2">
-                {["X", "Facebook", "LinkedIn", "Reddit", "WhatsApp"].map(s => (
-                  <button key={s} className="px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition">
-                    {s}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="my-8 p-6 rounded-2xl bg-white/5 border border-white/10">
-              <h3 className="font-bold mb-3">Send a suggestion</h3>
-              <input placeholder="Your name" className="w-full mb-2 p-3 bg-black/30 rounded border border-white/10" />
-              <input placeholder="email@ex.com" className="w-full mb-2 p-3 bg-black/30 rounded border border-white/10" />
-              <textarea rows={3} placeholder="Your idea..." className="w-full mb-3 p-3 bg-black/30 rounded border border-white/10"></textarea>
-              <button className="w-full py-3 bg-[#5c82ee] rounded-lg font-bold hover:bg-[#4a6bc7]">
-                Send
-              </button>
-            </div>
-          </article>
-
-          <aside className="calc-sticky">
-            {box2}
-          </aside>
-
-          <aside className="calc-ad">
-            <p>Advertisement</p>
-            <div className="mt-2 w-full h-32 bg-gray-800 rounded" />
+          {/* RIGHT RAIL — rola normal; serve só de espaço/ads */}
+          <aside aria-label="Right rail">
+            {railRight}
           </aside>
         </div>
       </div>

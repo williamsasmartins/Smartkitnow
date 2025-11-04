@@ -1,121 +1,147 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from 'react';
+import { CalculatorLayout } from "@/components/common/CalculatorLayout";
+import { InputGroup } from "@/components/common/InputGroup";
+import { ResultCard } from "@/components/common/ResultCard";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
-function formatCurrency(v: number) {
-  return v.toLocaleString(undefined, { style: "currency", currency: "USD" });
-}
+export const APRCalculator = () => {
+  const [loanAmount, setLoanAmount] = useState('');
+  const [interestRate, setInterestRate] = useState('');
+  const [loanTerm, setLoanTerm] = useState('');
+  const [fees, setFees] = useState('');
+  const [result, setResult] = useState<{
+    monthlyPayment: number;
+    totalCost: number;
+    apr: number;
+    totalFees: number;
+  } | null>(null);
 
-export default function APRCalculator() {
-  const [principal, setPrincipal] = useState<string>("25000");
-  const [nominalRate, setNominalRate] = useState<string>("7.5"); // % annual
-  const [termYears, setTermYears] = useState<string>("5");
-  const [fees, setFees] = useState<string>("500"); // prepaid finance charges
+  const calculateAPR = () => {
+    const principal = parseFloat(loanAmount);
+    const rate = parseFloat(interestRate) / 100 / 12;
+    const payments = parseFloat(loanTerm) * 12;
+    const totalFees = parseFloat(fees) || 0;
 
-  const inputs = useMemo(() => {
-    const P = Number(principal);
-    const rNomPct = Number(nominalRate);
-    const years = Number(termYears);
-    const F = Number(fees);
-    if (![P, rNomPct, years, F].every((x) => isFinite(x) && x >= 0)) return null;
-    const n = Math.round(years * 12);
-    const r_m = rNomPct / 100 / 12;
-    return { P, rNomPct, years, F, n, r_m };
-  }, [principal, nominalRate, termYears, fees]);
-
-  const monthlyPayment = useMemo(() => {
-    if (!inputs) return null;
-    const { P, n, r_m } = inputs;
-    if (n <= 0) return null;
-    if (r_m === 0) return P / n;
-    return (P * r_m) / (1 - Math.pow(1 + r_m, -n));
-  }, [inputs]);
-
-  function pvOfPayments(M: number, i: number, n: number) {
-    if (i === 0) return M * n; // zero rate PV
-    return M * (1 - Math.pow(1 + i, -n)) / i;
-  }
-
-  const aprMonthly = useMemo(() => {
-    if (!inputs || monthlyPayment == null) return null;
-    const { P, F, n } = inputs;
-    const targetPV = P - F; // net amount financed
-    if (targetPV <= 0 || n <= 0) return null;
-    const M = monthlyPayment;
-    // Bisection on i in [0, 1] (0%..100% per month)
-    let lo = 0;
-    let hi = 1;
-    for (let k = 0; k < 60; k++) {
-      const mid = (lo + hi) / 2;
-      const pv = pvOfPayments(M, mid, n);
-      if (pv > targetPV) {
-        // rate too low (PV too high) => increase rate
-        lo = mid;
+    if (principal > 0 && rate >= 0 && payments > 0) {
+      // Monthly payment calculation
+      let monthlyPayment = 0;
+      if (rate > 0) {
+        monthlyPayment = (principal * rate * Math.pow(1 + rate, payments)) / (Math.pow(1 + rate, payments) - 1);
       } else {
-        hi = mid;
+        monthlyPayment = principal / payments;
       }
-    }
-    const i = (lo + hi) / 2;
-    if (!isFinite(i) || i < 0) return null;
-    return i;
-  }, [inputs, monthlyPayment]);
+      
+      // Total cost including fees
+      const totalCost = (monthlyPayment * payments) + totalFees;
+      
+      // APR calculation (simplified)
+      const totalInterestAndFees = totalCost - principal;
+      const apr = (totalInterestAndFees / principal / (payments / 12)) * 100;
 
-  const summary = useMemo(() => {
-    if (!inputs || monthlyPayment == null) return null;
-    const { P, F, n, r_m } = inputs;
-    const totalPaid = monthlyPayment * n;
-    const interestTotal = totalPaid - P;
-    const financeCharge = interestTotal + F;
-    const aprAnnual = aprMonthly != null ? aprMonthly * 12 : null;
-    const aprEffective = aprMonthly != null ? Math.pow(1 + aprMonthly, 12) - 1 : null;
-    const earNominal = Math.pow(1 + r_m, 12) - 1;
-    return { totalPaid, interestTotal, financeCharge, aprAnnual, aprEffective, earNominal };
-  }, [inputs, monthlyPayment, aprMonthly]);
+      setResult({
+        monthlyPayment: Math.round(monthlyPayment * 100) / 100,
+        totalCost: Math.round(totalCost * 100) / 100,
+        apr: Math.round(apr * 100) / 100,
+        totalFees
+      });
+    }
+  };
+
+  const handleReset = () => {
+    setLoanAmount('');
+    setInterestRate('');
+    setLoanTerm('');
+    setFees('');
+    setResult(null);
+  };
 
   return (
-    <div className="max-w-3xl mx-auto prose prose-neutral dark:prose-invert">
-      <h1 className="mb-2">APR Calculator</h1>
-      <p className="text-sm opacity-80">Category: financial · Subcategory: debt-management-credit</p>
-
-      <div className="mt-6 p-4 border rounded-xl">
-        <h2>Taxa anual equivalente (APR) com taxas</h2>
-        <p>Calcula a APR efetiva considerando taxas pré‑pagas e pagamentos mensais fixos.</p>
-
-        <form className="mt-4 grid gap-3 sm:grid-cols-2">
-          <label className="block">
-            <span className="text-sm font-medium">Valor do empréstimo (principal)</span>
-            <input className="mt-1 w-full border rounded-md px-3 py-2" inputMode="decimal" value={principal} onChange={(e) => setPrincipal(e.target.value)} />
-          </label>
-          <label className="block">
-            <span className="text-sm font-medium">Taxa nominal anual (%)</span>
-            <input className="mt-1 w-full border rounded-md px-3 py-2" inputMode="decimal" value={nominalRate} onChange={(e) => setNominalRate(e.target.value)} />
-          </label>
-          <label className="block">
-            <span className="text-sm font-medium">Prazo (anos)</span>
-            <input className="mt-1 w-full border rounded-md px-3 py-2" inputMode="decimal" value={termYears} onChange={(e) => setTermYears(e.target.value)} />
-          </label>
-          <label className="block">
-            <span className="text-sm font-medium">Taxas pré‑pagas (finance charges)</span>
-            <input className="mt-1 w-full border rounded-md px-3 py-2" inputMode="decimal" value={fees} onChange={(e) => setFees(e.target.value)} />
-          </label>
-        </form>
-
-        <div className="mt-4 grid gap-2 text-sm">
-          {inputs && monthlyPayment != null ? (
-            <>
-              <div><strong>Parcela mensal:</strong> {formatCurrency(monthlyPayment)}</div>
-              <div><strong>Montante líquido financiado:</strong> {formatCurrency(inputs.P - inputs.F)}</div>
-              <div><strong>Total pago:</strong> {formatCurrency((monthlyPayment ?? 0) * (inputs.n ?? 0))}</div>
-              <div><strong>Encargos totais (juros + taxas):</strong> {summary ? formatCurrency(summary.financeCharge) : "—"}</div>
-              <div><strong>APR anual (com taxas):</strong> {summary?.aprAnnual != null ? `${(summary.aprAnnual * 100).toFixed(2)}%` : "—"}</div>
-              <div><strong>APR efetiva (composta, 12x):</strong> {summary?.aprEffective != null ? `${(summary.aprEffective * 100).toFixed(2)}%` : "—"}</div>
-              <div><strong>EAR da taxa nominal:</strong> {summary ? `${(summary.earNominal * 100).toFixed(2)}%` : "—"}</div>
-            </>
-          ) : (
-            <span className="opacity-70">Preencha valores válidos para calcular.</span>
-          )}
-        </div>
-
-        <p className="mt-3 text-xs opacity-70">Observação: APR regulamentar equaciona o valor líquido financiado (principal − taxas pré‑pagas) à soma presente das parcelas. Este cálculo assume pagamentos mensais nível.</p>
+    <CalculatorLayout
+      title="APR Calculator"
+      description="Calculate the Annual Percentage Rate (APR) including all loan fees and costs."
+      formula="APR includes interest rate plus fees distributed over loan term"
+      example="5% interest rate + $2,000 fees on $100,000 loan may result in 5.5% APR"
+    >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <InputGroup
+          label="Loan Amount"
+          id="loanAmount"
+          type="number"
+          value={loanAmount}
+          onChange={setLoanAmount}
+          placeholder="100000"
+          required
+        />
+        <InputGroup
+          label="Annual Interest Rate (%)"
+          id="interestRate"
+          type="number"
+          value={interestRate}
+          onChange={setInterestRate}
+          placeholder="5"
+          step="0.01"
+          required
+        />
+        <InputGroup
+          label="Loan Term (years)"
+          id="loanTerm"
+          type="number"
+          value={loanTerm}
+          onChange={setLoanTerm}
+          placeholder="30"
+          required
+        />
+        <InputGroup
+          label="Total Fees and Costs"
+          id="fees"
+          type="number"
+          value={fees}
+          onChange={setFees}
+          placeholder="2000"
+        />
       </div>
-    </div>
+
+      <div className="flex gap-4">
+        <Button onClick={calculateAPR} className="flex-1">
+          Calculate APR
+        </Button>
+        <Button variant="outline" onClick={handleReset}>
+          Reset
+        </Button>
+      </div>
+
+      {result && (
+        <>
+          <Separator />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <ResultCard
+              title="Monthly Payment"
+              value={result.monthlyPayment}
+              prefix="$"
+              colorClass="text-primary"
+            />
+            <ResultCard
+              title="APR"
+              value={result.apr}
+              suffix="%"
+              colorClass="text-red-600"
+            />
+            <ResultCard
+              title="Total Cost"
+              value={result.totalCost}
+              prefix="$"
+              colorClass="text-orange-600"
+            />
+            <ResultCard
+              title="Total Fees"
+              value={result.totalFees}
+              prefix="$"
+              colorClass="text-blue-600"
+            />
+          </div>
+        </>
+      )}
+    </CalculatorLayout>
   );
-}
+};
