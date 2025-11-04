@@ -52,6 +52,7 @@ const incomeBudgetExpenses: Item[] = [
   { name: "Expense Splitter (Shared Bills) Calculator", slug: "expense-splitter-shared-bills" },
   { name: "Take-Home Pay Calculator", slug: "take-home-pay" },
   { name: "Paycheck Calculator", slug: "paycheck-calculator" },
+  { name: "Absence Percentage Calculator", slug: "absence-percentage-calculator" },
 ];
 
 const debtManagementCredit: Item[] = [

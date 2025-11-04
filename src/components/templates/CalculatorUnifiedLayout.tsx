@@ -312,8 +312,18 @@ export default function CalculatorUnifiedLayout({
           </div>
         </section>
 
+        {/* Bottom Banner - AdSense 728x90 */}
+        <div className="mt-12 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-24 flex items-center justify-center text-gray-500 text-xs">
+          ADSENSE - 728x90
+        </div>
+
         {/* RIGHT RAIL (3 col) */}
         <aside className="col-span-12 mt-8 lg:col-span-3 lg:mt-0 pr-4 sm:pr-6 skn-no-overflow" aria-label="Right rail">
+          {/* AdSense 300x600 */}
+          <div className="mb-6 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-64 flex items-center justify-center text-gray-500 text-xs">
+            ADSENSE - 300x600
+          </div>
+
           {railRight}
         </aside>
       </div>

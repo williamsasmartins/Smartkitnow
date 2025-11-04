@@ -499,6 +499,12 @@ const financial: RegistryEntry[] = [
   { title: "HELOC Payment Estimator", category: "financial", subcategory: "loans-mortgages-payments", slug: "heloc-payment-estimator", loader: () => import("@/components/calculators/Financial/Loans/HELOCPaymentEstimator") },
   { title: "Car Loan Affordability Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "car-loan-affordability", loader: () => import("@/components/calculators/Financial/Loans/CarLoanAffordabilityCalculator") },
   { title: "Balloon Payment Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "balloon-payment", loader: () => import("@/components/calculators/Financial/Loans/BalloonPaymentCalculator") },
+  { title: "How Much House Can I Afford? Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "house-affordability", loader: () => import("@/components/calculators/Financial/Loans/HouseAffordabilityCalculator") },
+  { title: "Auto Loan Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "auto-loan", loader: () => import("@/components/calculators/Financial/Loans/AutoLoanCalculator") },
+  { title: "Student Loan Repayment Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "student-loan-repayment", loader: () => import("@/components/calculators/Financial/Loans/StudentLoanRepaymentCalculator") },
+  { title: "Lease vs Buy Calculator", category: "financial", subcategory: "loans-mortgages-payments", slug: "lease-vs-buy", loader: () => import("@/components/calculators/Financial/Loans/LeaseVsBuyCalculator") },
+  // Alternate slug requested
+  { title: "Loan Payment Calculator", category: "financial", subcategory: "loans", slug: "loan-payment-calculator", loader: () => import("@/components/calculators/Financial/Loans/LoanPaymentCalculator") },
 
   // Investments & Savings (7)
   { title: "Compound Interest Calculator", category: "financial", subcategory: "investments-savings", slug: "compound-interest", loader: () => import("@/components/calculators/Financial/Investing/CompoundInterestCalculator") },
@@ -508,6 +514,14 @@ const financial: RegistryEntry[] = [
   { title: "Inflation Adjusted Value Calculator", category: "financial", subcategory: "investments-savings", slug: "inflation-adjusted-value", loader: () => import("@/components/calculators/Financial/Investing/InflationAdjustedValueCalculator") },
   { title: "Retirement Savings Goal Calculator", category: "financial", subcategory: "investments-savings", slug: "retirement-savings-goal", loader: () => import("@/components/calculators/Financial/Investing/RetirementSavingsGoalCalculator") },
   { title: "Emergency Fund Goal Calculator", category: "financial", subcategory: "investments-savings", slug: "emergency-fund-goal", loader: () => import("@/components/calculators/Financial/Investing/EmergencyFundGoalCalculator") },
+  { title: "401(k) / Retirement Savings Growth Calculator", category: "financial", subcategory: "investments-savings", slug: "401k-retirement-savings-growth", loader: () => import("@/components/calculators/Financial/Investing/RetirementSavingsGrowthCalculator") },
+  { title: "Social Security Benefit Estimator", category: "financial", subcategory: "investments-savings", slug: "social-security-benefit-estimator", loader: () => import("@/components/calculators/Financial/Investing/SocialSecurityBenefitEstimator") },
+  { title: "Rule of 72 Calculator", category: "financial", subcategory: "investments-savings", slug: "rule-of-72", loader: () => import("@/components/calculators/Financial/Investing/RuleOf72Calculator") },
+  { title: "Bond Yield Calculator", category: "financial", subcategory: "investments-savings", slug: "bond-yield", loader: () => import("@/components/calculators/Financial/Investing/BondYieldCalculator") },
+  { title: "Roth IRA Conversion Calculator", category: "financial", subcategory: "investments-savings", slug: "roth-ira-conversion", loader: () => import("@/components/calculators/Financial/Investing/RothIRAConversionCalculator") },
+  { title: "Dollar Cost Averaging (DCA) Simulator", category: "financial", subcategory: "investments-savings", slug: "dca-simulator", loader: () => import("@/components/calculators/Financial/Investing/DCASimulator") },
+  { title: "Crypto DCA Strategy Calculator", category: "financial", subcategory: "investments-savings", slug: "crypto-dca-strategy", loader: () => import("@/components/calculators/Financial/Investing/CryptoDCAStrategyCalculator") },
+  { title: "Stock DCA Return Estimator", category: "financial", subcategory: "investments-savings", slug: "stock-dca-return-estimator", loader: () => import("@/components/calculators/Financial/Investing/StockDCAReturnEstimator") },
 
   // Income, Budget & Expenses (6)
   { title: "Monthly Budget Planner", category: "financial", subcategory: "income-budget-expenses", slug: "monthly-budget-planner", loader: () => import("@/components/calculators/Financial/Budget/MonthlyBudgetPlanner") },
@@ -516,6 +530,9 @@ const financial: RegistryEntry[] = [
   { title: "Debt-to-Income Ratio Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "debt-to-income-ratio", loader: () => import("@/components/calculators/Financial/Budget/DebtToIncomeCalculator") },
   { title: "Savings Rate Tracker", category: "financial", subcategory: "income-budget-expenses", slug: "savings-rate-tracker", loader: () => import("@/components/calculators/Financial/Budget/SavingsRateTracker") },
   { title: "Expense Splitter (Shared Bills) Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "expense-splitter-shared-bills", loader: () => import("@/components/calculators/Financial/Budget/ExpenseSplitterSharedBills") },
+  { title: "Take-Home Pay Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "take-home-pay", loader: () => import("@/components/calculators/Financial/Budget/TakeHomePayCalculator") },
+  { title: "Paycheck Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "paycheck-calculator", loader: () => import("@/components/calculators/Financial/Budget/PaycheckCalculator") },
+  { title: "Absence Percentage Calculator", category: "financial", subcategory: "income-budget-expenses", slug: "absence-percentage-calculator", loader: () => import("@/components/calculators/Financial/Budget/AbsencePercentageCalculator") },
 
   // Currency & Tax (5)
   { title: "Currency Converter (Live Rates)", category: "financial", subcategory: "currency-tax", slug: "currency-converter-live", loader: () => import("@/components/calculators/Financial/Tax/CurrencyConverterLive") },
@@ -526,6 +543,51 @@ const financial: RegistryEntry[] = [
   
   // Debt Management & Credit
   { title: "Credit Card Interest Calculator", category: "financial", subcategory: "debt-management-credit", slug: "credit-card-interest", loader: () => import("@/components/calculators/Financial/CreditCardInterestCalculator") },
+  { title: "Credit Card Payoff Calculator", category: "financial", subcategory: "debt-management-credit", slug: "credit-card-payoff", loader: () => import("@/components/calculators/Financial/CreditCardPayoffCalculator") },
+  { title: "Debt Consolidation Calculator", category: "financial", subcategory: "debt-management-credit", slug: "debt-consolidation", loader: () => import("@/components/calculators/Financial/DebtConsolidationCalculator") },
+  { title: "Net Worth Calculator", category: "financial", subcategory: "debt-management-credit", slug: "net-worth", loader: () => import("@/components/calculators/Financial/NetWorthCalculator") },
+  { title: "Debt Snowball Calculator", category: "financial", subcategory: "debt-management-credit", slug: "debt-snowball", loader: () => import("@/components/calculators/Financial/DebtSnowballCalculator") },
+  { title: "APR Calculator", category: "financial", subcategory: "debt-management-credit", slug: "apr", loader: () => import("@/components/calculators/Financial/APRCalculator") },
+  { title: "Loan Comparison Calculator", category: "financial", subcategory: "debt-management-credit", slug: "loan-comparison", loader: () => import("@/components/calculators/Financial/LoanComparisonCalculator") },
+  { title: "College Savings Calculator", category: "financial", subcategory: "debt-management-credit", slug: "college-savings", loader: () => import("@/components/calculators/Financial/Investing/CollegeSavingsCalculator") },
+  { title: "IRR NPV Calculator", category: "financial", subcategory: "debt-management-credit", slug: "irr-npv", loader: () => import("@/components/calculators/Financial/Investing/IRRNPVCalculator") },
+  { title: "Tax Bracket Calculator", category: "financial", subcategory: "debt-management-credit", slug: "tax-bracket", loader: () => import("@/components/calculators/Financial/Tax/TaxBracketCalculator") },
+  
+  // Cryptocurrency Core Tools (25)
+  // Basic Conversions & Pricing (6)
+  { title: "Crypto to Fiat Converter", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "crypto-to-fiat", loader: () => import("@/components/calculators/Financial/Crypto/CryptoToFiatConverter") },
+  { title: "Crypto to Crypto Exchange Rate Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "crypto-to-crypto-exchange-rate", loader: () => import("@/components/calculators/Financial/Crypto/CryptoToCryptoExchangeRateCalculator") },
+  { title: "Live Price Checker (Real-Time Rates)", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "live-price-checker", loader: () => import("@/components/calculators/Financial/Crypto/LivePriceChecker") },
+  { title: "Portfolio Value Tracker", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "portfolio-value-tracker", loader: () => import("@/components/calculators/Financial/Crypto/PortfolioValueTracker") },
+  { title: "Fiat to Crypto Purchase Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "fiat-to-crypto-purchase", loader: () => import("@/components/calculators/Financial/Crypto/FiatToCryptoPurchaseCalculator") },
+  { title: "Multi-Currency Crypto Converter", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "multi-currency-crypto-converter", loader: () => import("@/components/calculators/Financial/Crypto/MultiCurrencyCryptoConverter") },
+
+  // Profit & Investment Analysis (7)
+  { title: "Crypto Profit/Loss Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "crypto-profit-loss", loader: () => import("@/components/calculators/Financial/Crypto/CryptoProfitLossCalculator") },
+  { title: "ROI (Return on Investment) Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "crypto-roi", loader: () => import("@/components/calculators/Financial/Crypto/CryptoROICalculator") },
+  { title: "Future Value & Compound Growth Estimator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "crypto-future-value-compound-growth", loader: () => import("@/components/calculators/Financial/Crypto/CryptoFutureValueGrowthEstimator") },
+  { title: "Yield Farming APY Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "yield-farming-apy", loader: () => import("@/components/calculators/Financial/Crypto/YieldFarmingAPYCalculator") },
+  { title: "Staking Rewards Estimator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "staking-rewards-estimator", loader: () => import("@/components/calculators/Financial/Crypto/StakingRewardsEstimator") },
+  { title: "Investment Break-Even Point Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "investment-break-even-point", loader: () => import("@/components/calculators/Financial/Crypto/InvestmentBreakEvenPointCalculator") },
+  { title: "DCA Strategy Analyzer (Crypto)", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "dca-strategy-analyzer-crypto", loader: () => import("@/components/calculators/Financial/Crypto/DCAStrategyAnalyzerCrypto") },
+
+  // Mining & Hardware (5)
+  { title: "Mining Profitability Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "mining-profitability", loader: () => import("@/components/calculators/Financial/Crypto/MiningProfitabilityCalculator") },
+  { title: "Hash Rate to Earnings Converter", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "hash-rate-to-earnings", loader: () => import("@/components/calculators/Financial/Crypto/HashRateToEarningsConverter") },
+  { title: "Electricity Cost vs Mining Revenue", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "electricity-cost-vs-mining-revenue", loader: () => import("@/components/calculators/Financial/Crypto/ElectricityCostVsMiningRevenue") },
+  { title: "GPU/ASIC Mining ROI Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "gpu-asic-mining-roi", loader: () => import("@/components/calculators/Financial/Crypto/GPUASICMiningROICalculator") },
+  { title: "Pool Fee Impact Estimator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "pool-fee-impact", loader: () => import("@/components/calculators/Financial/Crypto/PoolFeeImpactEstimator") },
+
+  // Taxes & Compliance (4)
+  { title: "Crypto Tax Liability Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "crypto-tax-liability", loader: () => import("@/components/calculators/Financial/Crypto/CryptoTaxLiabilityCalculator") },
+  { title: "Capital Gains Tax Estimator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "capital-gains-tax-estimator", loader: () => import("@/components/calculators/Financial/Crypto/CapitalGainsTaxEstimator") },
+  { title: "Transaction Fee Deduction Tool", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "transaction-fee-deduction", loader: () => import("@/components/calculators/Financial/Crypto/TransactionFeeDeductionTool") },
+  { title: "Cost Basis Calculator (FIFO/LIFO)", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "cost-basis-fifo-lifo", loader: () => import("@/components/calculators/Financial/Crypto/CostBasisCalculator") },
+
+  // Advanced Trading (3)
+  { title: "Leverage & Margin Profit Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "leverage-margin-profit", loader: () => import("@/components/calculators/Financial/Crypto/LeverageMarginProfitCalculator") },
+  { title: "Position Size & Risk Management Tool", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "position-size-risk-management", loader: () => import("@/components/calculators/Financial/Crypto/PositionSizeRiskManagementTool") },
+  { title: "Volatility & Risk Assessment Calculator", category: "financial", subcategory: "cryptocurrency-core-tools", slug: "volatility-risk-assessment", loader: () => import("@/components/calculators/Financial/Crypto/VolatilityRiskAssessmentCalculator") },
 ];
 const health: RegistryEntry[] = [];
 const cooking: RegistryEntry[] = [];
