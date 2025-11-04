@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import SuggestionBox from "@/components/SuggestionBox";
 import LegalDisclaimer from "@/components/LegalDisclaimer";
@@ -57,6 +57,17 @@ export default function CalculatorUnifiedLayout({
         .skn-eqgrid { align-items: stretch; }
         .skn-eqcard { display: flex; flex-direction: column; height: 100%; }
         .skn-eqcard > * { height: 100%; }
+
+        /* Estado fixo do widget: destaque visual e transições suaves */
+        .skn-fixed-container { transition: box-shadow 220ms ease, border-color 220ms ease, background-color 220ms ease, transform 220ms ease; }
+        .skn-fixed-active .rounded-2xl.p-4 {
+          border-color: #5c82ee !important;
+          box-shadow: none !important;
+        }
+        :where(html.dark) .skn-fixed-active .rounded-2xl.p-4 {
+          border-color: #5c82ee !important;
+          box-shadow: none !important;
+        }
 
         /* Visual redesign: consistent, accessible card styling across content and widget */
         :where([aria-label="Calculator content"], [aria-label="Calculator widget"]) .rounded-2xl.p-4 {
@@ -169,6 +180,40 @@ export default function CalculatorUnifiedLayout({
           box-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
         }
 
+        /* Calculadora: remover sombras/hover e manter contorno azul */
+        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4 {
+          box-shadow: none !important;
+          border-color: #5c82ee !important;
+        }
+        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:hover,
+        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:active,
+        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus,
+        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus-visible,
+        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus-within {
+          box-shadow: none !important;
+          border-color: #5c82ee !important;
+        }
+        :where(html:not(.dark)) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4,
+        :where(html:not(.dark)) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:hover,
+        :where(html:not(.dark)) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:active,
+        :where(html:not(.dark)) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus,
+        :where(html:not(.dark)) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus-visible,
+        :where(html:not(.dark)) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus-within {
+          background-color: rgba(255, 255, 255, 0.92) !important;
+          box-shadow: none !important;
+          border-color: #5c82ee !important;
+        }
+        :where(html.dark) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4,
+        :where(html.dark) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:hover,
+        :where(html.dark) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:active,
+        :where(html.dark) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus,
+        :where(html.dark) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus-visible,
+        :where(html.dark) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus-within {
+          background-color: rgba(31, 41, 55, 0.88) !important;
+          box-shadow: none !important;
+          border-color: #5c82ee !important;
+        }
+
         /* Typography: enforce <p> color per theme within this layout */
         :where(html:not(.dark)) :where(.skn-no-overflow) p {
           color: #000000 !important;
@@ -176,6 +221,9 @@ export default function CalculatorUnifiedLayout({
         :where(html.dark) :where(.skn-no-overflow) p {
           color: #ffffff !important;
         }
+
+        /* Sentinelas de limite (invisíveis) */
+        .skn-top-bound, .skn-bottom-bound { height: 0; border: 0; }
       `}
     </style>
 
@@ -230,18 +278,19 @@ export default function CalculatorUnifiedLayout({
               rowGap: gap,
             }}
           >
+            {/* Limite superior (sentinela) */}
+            <div className="col-span-12 skn-top-bound" aria-hidden />
             <section className="col-span-12 lg:col-span-7 pl-4 sm:pl-6" aria-label="Calculator content">
               {editorial}
             </section>
 
-            <aside
-              aria-label="Calculator widget"
-              className="col-span-12 lg:col-span-5 lg:sticky lg:self-start justify-self-start"
-              style={{ top: stickyTopPx, maxWidth: 420, width: "100%" }}
-            >
+            <FixedViewportPreserver maxWidth={420} stickyTopPx={stickyTopPx}>
               {widget}
-            </aside>
+            </FixedViewportPreserver>
           </div>
+
+          {/* Limite inferior (sentinela) */}
+          <div className="skn-bottom-bound" aria-hidden />
 
           {/* Disclaimer + Share + Suggestion */}
           <div className="mt-8" role="note" aria-label="Important notice">
@@ -269,6 +318,96 @@ export default function CalculatorUnifiedLayout({
         </aside>
       </div>
     </div>
+  );
+}
+
+type FixedViewportProps = {
+  children: ReactNode;
+  maxWidth?: number;
+  stickyTopPx?: number;
+};
+
+function FixedViewportPreserver({ children, maxWidth = 420, stickyTopPx = 20 }: FixedViewportProps) {
+  const anchorRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [fixed, setFixed] = useState(false);
+  const [metrics, setMetrics] = useState<{ top: number; left: number; width: number; height: number }>({ top: 0, left: 0, width: maxWidth, height: 0 });
+
+  useEffect(() => {
+    const mm = window.matchMedia("(min-width: 1024px)"); // lg breakpoint
+    const enable = mm.matches;
+
+    const unfix = () => setFixed(false);
+
+    const recalc = () => {
+      if (!anchorRef.current) return;
+      const anchorRect = anchorRef.current.getBoundingClientRect();
+      const containerRect = containerRef.current?.getBoundingClientRect();
+      const contentHeight = containerRect?.height ?? anchorRect.height;
+      const topEl = document.querySelector('.skn-top-bound');
+      const bottomEl = document.querySelector('.skn-bottom-bound') || document.querySelector('div[role="note"][aria-label="Important notice"]');
+      const topRect = topEl ? (topEl as HTMLElement).getBoundingClientRect() : null;
+      const stopRect = bottomEl ? (bottomEl as HTMLElement).getBoundingClientRect() : null;
+
+      // Limita o topo para que a base do widget não ultrapasse o limite (linha vermelha)
+      const margin = 16; // respiro visual acima da linha
+      let minTop = typeof stickyTopPx === 'number' ? stickyTopPx : 20;
+      if (topRect) {
+        minTop = Math.max(minTop, topRect.top + margin);
+      }
+      let top = minTop;
+      if (stopRect) {
+        const maxTop = Math.max(0, stopRect.top - contentHeight - margin);
+        // aplica clamp entre minTop e maxTop
+        if (minTop > maxTop) {
+          // Sem espaço: desfaz fixo e deixa fluxo normal
+          setFixed(false);
+          setMetrics({ top: 0, left: anchorRect.left, width: Math.min(anchorRect.width, maxWidth), height: contentHeight });
+          return;
+        }
+        top = Math.min(Math.max(minTop, stickyTopPx), maxTop);
+      }
+
+      setMetrics({
+        top,
+        left: anchorRect.left,
+        width: Math.min(anchorRect.width, maxWidth),
+        height: contentHeight,
+      });
+      setFixed(true);
+    };
+
+    if (enable) {
+      requestAnimationFrame(() => recalc());
+      window.addEventListener("scroll", recalc, { passive: true });
+      window.addEventListener("resize", recalc);
+    } else {
+      unfix();
+    }
+
+    return () => {
+      window.removeEventListener("scroll", recalc as any);
+      window.removeEventListener("resize", recalc as any);
+    };
+  }, [maxWidth, stickyTopPx]);
+
+  return (
+    <aside
+      aria-label="Calculator widget"
+      className="col-span-12 lg:col-span-5 justify-self-start"
+      style={{ maxWidth, width: "100%" }}
+    >
+      {/* Placeholder para não interferir no fluxo quando fixo */}
+      <div ref={anchorRef} style={{ minHeight: fixed ? Math.max(metrics.height, 0) : "auto" }} />
+
+      <div
+        className={`skn-fixed-container ${fixed ? "skn-fixed-active" : ""}`}
+        ref={containerRef}
+        style={fixed ? { position: "fixed", top: metrics.top, left: metrics.left, width: metrics.width, zIndex: 30 } : { position: "static", width: "100%" }}
+      >
+        {children}
+      </div>
+    </aside>
   );
 }
 
