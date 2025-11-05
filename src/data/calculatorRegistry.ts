@@ -575,10 +575,12 @@ export const calculatorRegistry: CalculatorEntry[] = [
     aliases: ["cat-stress-score"],
     urlStyle: "flat",
   },
+
+  // SKN-AUTO-REGISTER: do not remove this line
 ];
 
 // Backwards-compat alias expected by various pages/scripts
-export const REGISTRY: CalculatorEntry[] = [];
+export const REGISTRY: CalculatorEntry[] = calculatorRegistry;
 
 // Include aliases in lookup
 function allSlugs(entry: CalculatorEntry): string[] {
