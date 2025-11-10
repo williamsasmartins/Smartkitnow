@@ -63,10 +63,7 @@ export default function ConversionSubCategory() {
               </div>
             </div>
           }
-          showRails
-          showTopBanner
-          showBottomBanner
-          railsSticky={false}
+          showRails={false}
         >
           {!calculators || calculators.length === 0 ? (
             <p className="text-center" style={{ color: "#747886" }}>No converters found yet in this subcategory.</p>

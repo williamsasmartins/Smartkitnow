@@ -641,6 +641,23 @@ export function calcPath(e: CalculatorEntry): string {
 }
 
 // Backward compat: calcLink maps to calcPath
-export function calcLink(e: CalculatorEntry) {
-  return calcPath(e);
+// -------- Helper para montar o path correto a partir do entry --------
+export function calcLink(entry: CalculatorEntry): string {
+  // Suporta urlStyle: "flat"  => /:category/:slug
+  // e o padrão "nested"       => /:category/:subcategory/:slug
+  const category = entry.category;
+  const slug = entry.slug || (entry as any).name?.toLowerCase().replace(/\s+/g, "-") || "";
+  const subcategory = entry.subcategory;
+
+  const style = (entry as any).urlStyle; // alguns entries já têm urlStyle: "flat"
+  if (style === "flat") {
+    return `/${category}/${slug}`;
+  }
+
+  // fallback: nested
+  if (subcategory) {
+    return `/${category}/${subcategory}/${slug}`;
+  }
+  // fallback extra: se não houver subcategory, retorna flat mesmo
+  return `/${category}/${slug}`;
 }

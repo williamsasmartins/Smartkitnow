@@ -10,7 +10,7 @@ import {
   SUBCATEGORY_TITLES,
   FRIENDLY_TITLES,
   subcategoryIcon,
-  calcPath,
+  calcLink,
 } from "@/data/calculatorRegistry";
 import { PALETTE } from "@/components/theme/palette";
 import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
@@ -65,7 +65,7 @@ export default function CategorySubcategory() {
                     {/* icon placeholder */}
                   </span>
                   <CardTitle className="text-lg font-semibold" style={{ color: "#000000" }}>
-                    <CalculatorLink to={calcPath(calc)}>{calc.title}</CalculatorLink>
+                    <CalculatorLink to={calcLink(calc)}>{calc.title}</CalculatorLink>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>

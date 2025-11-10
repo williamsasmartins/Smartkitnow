@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import CalculatorLink from "@/components/common/CalculatorLink";
-import { FRIENDLY_TITLES, SUBCATEGORY_TITLES, listByCategorySubcategory, calcPath } from "@/data/calculatorRegistry";
+import { FRIENDLY_TITLES, SUBCATEGORY_TITLES, listByCategorySubcategory, calcLink } from "@/data/calculatorRegistry";
 import type { CalculatorEntry } from "@/data/calculatorRegistry";
 
 import { Dumbbell, Scale, Flame, Apple, Heart, ShieldPlus, ClipboardList, PawPrint, AlertTriangle, DollarSign } from "lucide-react";
@@ -91,10 +91,7 @@ export default function PetsSubCategory() {
               </div>
             </div>
           }
-          showRails
-          showTopBanner
-          showBottomBanner
-          railsSticky={false}
+          showRails={false}
         >
           {!calculators || calculators.length === 0 ? (
             <p className="text-center" style={{ color: "#747886" }}>No dog calculators found yet in this subcategory.</p>
@@ -110,7 +107,7 @@ export default function PetsSubCategory() {
                         <Icon className="h-5 w-5" />
                       </span>
                       <CardTitle className="text-lg font-semibold" style={{ color: "#000000" }}>
-                        <CalculatorLink to={calcPath(calc)}>{calc.title}</CalculatorLink>
+                        <CalculatorLink to={calcLink(calc)}>{calc.title}</CalculatorLink>
                       </CardTitle>
                     </CardHeader>
                     <CardContent>

@@ -11,6 +11,7 @@ import {
   listByCategorySubcategory,
   SUBCATEGORY_TITLES,
   FRIENDLY_TITLES,
+  calcLink,
 } from "@/data/calculatorRegistry";
 import {
   ArrowLeft,
@@ -81,7 +82,7 @@ export default function HealthSubCategory() {
     : [];
 
   const subcatTitle =
-    (subcategory && SUBCATEGORY_TITLES[subcategory]) ||
+    (subcategory && SUBCATEGORY_TITLES[category]?.[subcategory]) ||
     (subcategory
       ? subcategory.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase())
       : "Calculators");
@@ -94,18 +95,6 @@ export default function HealthSubCategory() {
         title={`${subcatTitle} — ${categoryTitle} · SmartKitNow`}
         description={`Health & fitness calculators: ${subcatTitle}. Track, plan, and optimize your goals with clarity.`}
         canonical={`https://www.smartkitnow.com/health/${subcategory || ""}`}
-        breadcrumbs={[
-          { name: "Home", url: "https://www.smartkitnow.com/" },
-          { name: categoryTitle, url: "https://www.smartkitnow.com/health" },
-          { name: subcatTitle, url: `https://www.smartkitnow.com/health/${subcategory || ""}` },
-        ]}
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: `${subcatTitle} — ${categoryTitle}`,
-          url: `https://www.smartkitnow.com/health/${subcategory || ""}`,
-          description: `List of ${subcatTitle} calculators on SmartKitNow.`,
-        }}
       />
 
       <Header />
@@ -138,10 +127,7 @@ export default function HealthSubCategory() {
               </div>
             </div>
           }
-          showRails
-          showTopBanner
-          showBottomBanner
-          railsSticky={false} // produção segura (AdSense)
+          showRails={false}
         >
           {/* Cards with colored icon + name + description */}
           {!calculators || calculators.length === 0 ? (
@@ -169,7 +155,7 @@ export default function HealthSubCategory() {
                         <Icon className="h-5 w-5" />
                       </span>
                       <CardTitle className="text-lg font-semibold transition-colors">
-                        <CalculatorLink to={`/health/${calc.subcategory}/${calc.slug}`}>{calc.title}</CalculatorLink>
+                        <CalculatorLink to={calcLink(calc)}>{calc.title}</CalculatorLink>
                       </CardTitle>
                     </CardHeader>
                     <CardContent>

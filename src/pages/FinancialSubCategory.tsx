@@ -10,7 +10,7 @@ import {
   listByCategorySubcategory,
   SUBCATEGORY_TITLES,
   FRIENDLY_TITLES,
-  calcPath
+  calcLink
 } from "@/data/calculatorRegistry";
 import { ArrowLeft, Wallet, PiggyBank, Banknote, CreditCard, Percent, LineChart } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
@@ -63,10 +63,7 @@ export default function FinancialSubCategory() {
               </div>
             </div>
           }
-          showRails
-          showTopBanner
-          showBottomBanner
-          railsSticky={false}
+          showRails={false}
         >
           {!calculators || calculators.length === 0 ? (
             <p className="text-center" style={{ color: "#747886" }}>No calculators found yet in this subcategory.</p>
@@ -80,7 +77,7 @@ export default function FinancialSubCategory() {
                       <Wallet className="h-5 w-5" />
                     </span>
                     <CardTitle className="text-lg font-semibold" style={{ color: "#000000" }}>
-                      <CalculatorLink to={calcPath(calc)}>{calc.title}</CalculatorLink>
+                      <CalculatorLink to={calcLink(calc)}>{calc.title}</CalculatorLink>
                     </CardTitle>
                   </CardHeader>
                   <CardContent>

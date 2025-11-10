@@ -11,6 +11,7 @@ import {
   listByCategorySubcategory,
   SUBCATEGORY_TITLES,
   FRIENDLY_TITLES,
+  calcLink,
 } from "@/data/calculatorRegistry";
 import { ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
@@ -25,7 +26,7 @@ export default function ConstructionSubCategory() {
     : [];
 
   const subcatTitle =
-    (subcategory && SUBCATEGORY_TITLES[subcategory]) ||
+    (subcategory && SUBCATEGORY_TITLES[category]?.[subcategory]) ||
     (subcategory
       ? subcategory.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase())
       : "Calculators");
@@ -37,11 +38,7 @@ export default function ConstructionSubCategory() {
       <SEOHead
         title={`${subcatTitle} — ${categoryTitle} · SmartKitNow`}
         description={`Professional construction calculators in ${subcatTitle}. Accurate project planning and material estimation.`}
-        breadcrumbs={[
-          { name: "Home", url: "https://www.smartkitnow.com/" },
-          { name: categoryTitle, url: `https://www.smartkitnow.com/${category}` },
-          { name: subcatTitle, url: `https://www.smartkitnow.com/${category}/${subcategory || ""}` },
-        ]}
+        canonical={`https://www.smartkitnow.com/${category}/${subcategory || ""}`}
       />
 
       <Header />
@@ -74,10 +71,7 @@ export default function ConstructionSubCategory() {
               </div>
             </div>
           }
-          showRails
-          showTopBanner
-          showBottomBanner
-          railsSticky={false} // produção segura (AdSense)
+          showRails={false}
         >
           {/* 1/2/3 colunas — 3 cards centralizados dentro do miolo */}
           {!calculators || calculators.length === 0 ? (
@@ -90,7 +84,7 @@ export default function ConstructionSubCategory() {
                 <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">
                   <CardHeader>
                     <CardTitle className="text-lg font-semibold transition-colors">
-                      <CalculatorLink to={`/${category}/${calc.subcategory}/${calc.slug}`}>{calc.title}</CalculatorLink>
+                      <CalculatorLink to={calcLink(calc)}>{calc.title}</CalculatorLink>
                     </CardTitle>
                   </CardHeader>
                   <CardContent>

@@ -11,7 +11,7 @@ import {
   FRIENDLY_TITLES,
   subcategoryIcon,
   categoryIcon,
-  calcPath,
+  calcLink,
 } from "@/data/calculatorRegistry";
 import type { CalculatorEntry } from "@/data/calculatorRegistry";
 import SEOHead from "@/components/SEOHead";
@@ -118,12 +118,7 @@ export default function CategoryCalculatorsTemplate({
       {/* Espaço para o header fixo + respiro antes do rodapé */}
       <main className={`${marginTopClass} pb-28`}>
         <PageWithRails
-          showRails
-          showLeftRail={false}
-          showRightRail={showRightRail}
-          showTopBanner={showTopBanner}
-          showBottomBanner={showBottomBanner}
-          railsSticky={railsSticky}
+          showRails={false}
           titleBlock={
             <div className="text-left">
               <div className="mb-6 text-left">
@@ -206,14 +201,14 @@ export default function CategoryCalculatorsTemplate({
                       <ul className="list-disc pl-5 space-y-3 leading-7">
                         {colA.map((c) => (
                           <li key={c.slug}>
-                            <CalculatorLink to={calcPath(c)}>{c.title}</CalculatorLink>
+                            <CalculatorLink to={calcLink(c)}>{c.title}</CalculatorLink>
                           </li>
                         ))}
                       </ul>
                       <ul className="list-disc pl-5 space-y-3 leading-7 mt-3 md:mt-0">
                         {colB.map((c) => (
                           <li key={c.slug}>
-                            <CalculatorLink to={calcPath(c)}>{c.title}</CalculatorLink>
+                            <CalculatorLink to={calcLink(c)}>{c.title}</CalculatorLink>
                           </li>
                         ))}
                       </ul>

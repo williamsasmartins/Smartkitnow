@@ -11,6 +11,7 @@ import {
   listByCategorySubcategory,
   SUBCATEGORY_TITLES,
   FRIENDLY_TITLES,
+  calcLink,
 } from "@/data/calculatorRegistry";
 import {
   ArrowLeft,
@@ -55,7 +56,7 @@ export default function CookingSubCategory() {
 
   const calculators = subcategory ? listByCategorySubcategory(category, subcategory) : [];
   const subcatTitle =
-    (subcategory && SUBCATEGORY_TITLES[subcategory]) ||
+    (subcategory && SUBCATEGORY_TITLES[category]?.[subcategory]) ||
     (subcategory ? subcategory.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase()) : "Calculators");
   const categoryTitle = FRIENDLY_TITLES[category] || "Cooking Calculators";
 
@@ -65,18 +66,6 @@ export default function CookingSubCategory() {
         title={`${subcatTitle} — ${categoryTitle} · SmartKitNow`}
         description={`Cooking calculators: ${subcatTitle}. Timers, conversions, measurements, and scaling.`}
         canonical={`https://www.smartkitnow.com/cooking/${subcategory || ""}`}
-        breadcrumbs={[
-          { name: "Home", url: "https://www.smartkitnow.com/" },
-          { name: categoryTitle, url: "https://www.smartkitnow.com/cooking" },
-          { name: subcatTitle, url: `https://www.smartkitnow.com/cooking/${subcategory || ""}` },
-        ]}
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: `${subcatTitle} — ${categoryTitle}`,
-          url: `https://www.smartkitnow.com/cooking/${subcategory || ""}`,
-          description: `List of ${subcatTitle} calculators on SmartKitNow.`,
-        }}
       />
 
       <Header />
@@ -107,10 +96,7 @@ export default function CookingSubCategory() {
               </div>
             </div>
           }
-          showRails
-          showTopBanner
-          showBottomBanner
-          railsSticky={false}
+          showRails={false}
         >
           {!calculators || calculators.length === 0 ? (
             <p className="text-center" style={{ color: "#747886" }}>No calculators found yet in this subcategory.</p>
@@ -126,7 +112,7 @@ export default function CookingSubCategory() {
                         <Icon className="h-5 w-5" />
                       </span>
                       <CardTitle className="text-lg font-semibold">
-                        <CalculatorLink to={`/cooking/${calc.subcategory}/${calc.slug}`}>{calc.title}</CalculatorLink>
+                        <CalculatorLink to={calcLink(calc)}>{calc.title}</CalculatorLink>
                       </CardTitle>
                     </CardHeader>
                     <CardContent>

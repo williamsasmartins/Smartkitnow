@@ -1,84 +1,105 @@
-import React, { useMemo, useState } from "react";
+'use client';
+
+import CalculatorUnifiedLayout from "@/components/templates/CalculatorUnifiedLayout";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useState, useMemo } from "react";
 
 export default function AbsencePercentageCalculator() {
-  const [mode, setMode] = useState<"days" | "hours">("days");
-  const [total, setTotal] = useState<string>("22");
-  const [absent, setAbsent] = useState<string>("2");
-  const [decimals, setDecimals] = useState<string>("2");
+  const [absentDays, setAbsentDays] = useState("50");
+  const [employees, setEmployees] = useState("100");
+  const [workdays, setWorkdays] = useState("20");
 
-  const parsed = useMemo(() => {
-    const t = Number(total);
-    const a = Number(absent);
-    const d = Math.max(0, Math.min(6, Math.floor(Number(decimals)) || 0));
-    if (![t, a].every((x) => isFinite(x) && x >= 0)) return null;
-    if (t === 0) return { t, a, d };
-    return { t, a: Math.min(a, t), d };
-  }, [total, absent, decimals]);
-
-  const result = useMemo(() => {
-    if (!parsed) return null;
-    const { t, a, d } = parsed;
-    const absencePct = t > 0 ? (a / t) * 100 : 0;
-    const presencePct = 100 - absencePct;
-    const formatter = (x: number) => x.toFixed(d);
-    return {
-      absencePct: formatter(absencePct),
-      presencePct: formatter(presencePct),
-      absentCount: a,
-      totalCount: t,
-    };
-  }, [parsed]);
+  const rate = useMemo(() => {
+    const absent = Number(absentDays) || 0;
+    const total = (Number(employees) || 0) * (Number(workdays) || 0);
+    return total > 0 ? ((absent / total) * 100).toFixed(2) : "0.00";
+  }, [absentDays, employees, workdays]);
 
   return (
-    <div className="max-w-3xl mx-auto prose prose-neutral dark:prose-invert">
-      <h1 className="mb-2">Absence Percentage Calculator</h1>
-      <p className="text-sm opacity-80">Category: financial · Subcategory: income-budget-expenses</p>
+    <CalculatorUnifiedLayout
+      title="Absence Percentage Calculator"
+      jsonLd={{
+        "@context": "https://schema.org",
+        "@type": "Calculator",
+        "name": "Absence Percentage Calculator",
+        "description": "Calculate employee absence rate instantly with examples and HR insights.",
+        "url": "https://smartkitnow.com/financial/absence-percentage-calculator"
+      }}
+      editorial={
+        <>
+          {/* Instruções */}
+          <section>
+            <h2 className="text-2xl font-bold mb-3">How to Use</h2>
+            <ol className="list-decimal pl-6 space-y-2 text-gray-700 dark:text-gray-300">
+              <li>Enter total <strong>absent days</strong> in the period</li>
+              <li>Input <strong>number of employees</strong></li>
+              <li>Set <strong>workdays</strong> (e.g., 20 per month)</li>
+              <li>Result updates <strong>live</strong></li>
+            </ol>
+          </section>
 
-      <div className="mt-6 p-4 border rounded-xl">
-        <h2>Cálculo de ausência por período</h2>
-        <p>Estime a porcentagem de ausência em um período usando dias ou horas.</p>
+          {/* Fórmula */}
+          <section className="mt-8">
+            <h2 className="text-2xl font-bold mb-3">Formula</h2>
+            <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg font-mono text-sm">
+              Absence Rate = (Absent Days ÷ (Employees × Workdays)) × 100
+            </div>
+          </section>
 
-        <div className="mt-4 flex gap-2">
-          <button type="button" className={`px-3 py-2 rounded-md border ${mode === "days" ? "bg-gray-100 dark:bg-gray-800" : ""}`} onClick={() => setMode("days")}>Por dias</button>
-          <button type="button" className={`px-3 py-2 rounded-md border ${mode === "hours" ? "bg-gray-100 dark:bg-gray-800" : ""}`} onClick={() => setMode("hours")}>Por horas</button>
+          {/* Exemplos */}
+          <section className="mt-8">
+            <h2 className="text-2xl font-bold mb-3">Real Examples</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg">
+                <p className="font-semibold">Healthy Team</p>
+                <p>50 absent, 100 employees, 20 days → <strong>2.50%</strong></p>
+              </div>
+              <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-lg">
+                <p className="font-semibold">High Absence</p>
+                <p>200 absent, 50 employees, 22 days → <strong>18.18%</strong></p>
+              </div>
+            </div>
+          </section>
+
+          {/* FAQ */}
+          <section className="mt-8">
+            <h2 className="text-2xl font-bold mb-3">FAQ</h2>
+            <div className="space-y-4">
+              <details className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                <summary className="font-semibold cursor-pointer">What is a good absence rate?</summary>
+                <p className="mt-2 text-sm">Below 2% is excellent. 2–4% is average. Above 5% needs attention.</p>
+              </details>
+            </div>
+          </section>
+        </>
+      }
+      widget={
+        <div className="space-y-4 p-4 bg-white dark:bg-gray-900 rounded-xl shadow-md border">
+          <div>
+            <Label>Absent Days</Label>
+            <Input value={absentDays} onChange={e => setAbsentDays(e.target.value)} placeholder="50" />
+          </div>
+          <div>
+            <Label>Employees</Label>
+            <Input value={employees} onChange={e => setEmployees(e.target.value)} placeholder="100" />
+          </div>
+          <div>
+            <Label>Workdays</Label>
+            <Input value={workdays} onChange={e => setWorkdays(e.target.value)} placeholder="20" />
+          </div>
+          <div className="p-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl text-center font-bold text-4xl">
+            {rate}%
+          </div>
         </div>
-
-        <form className="mt-4 grid gap-3 sm:grid-cols-2">
-          <label className="block">
-            <span className="text-sm font-medium">Total {mode === "days" ? "de dias" : "de horas"} no período</span>
-            <input className="mt-1 w-full border rounded-md px-3 py-2" inputMode="decimal" value={total} onChange={(e) => setTotal(e.target.value)} />
-          </label>
-          <label className="block">
-            <span className="text-sm font-medium">Ausências {mode === "days" ? "(dias)" : "(horas)"}</span>
-            <input className="mt-1 w-full border rounded-md px-3 py-2" inputMode="decimal" value={absent} onChange={(e) => setAbsent(e.target.value)} />
-          </label>
-          <label className="block">
-            <span className="text-sm font-medium">Casas decimais</span>
-            <input className="mt-1 w-full border rounded-md px-3 py-2" inputMode="numeric" value={decimals} onChange={(e) => setDecimals(e.target.value)} />
-          </label>
-        </form>
-
-        <div className="mt-4 grid gap-2 text-sm">
-          {parsed && result ? (
-            <>
-              <div><strong>Total:</strong> {result.totalCount}</div>
-              <div><strong>Ausente:</strong> {result.absentCount}</div>
-              <div><strong>% de ausência:</strong> {result.absencePct}%</div>
-              <div><strong>% de presença:</strong> {result.presencePct}%</div>
-            </>
-          ) : (
-            <span className="opacity-70">Informe valores válidos (não negativos).</span>
-          )}
+      }
+      railRight={
+        <div className="space-y-6">
+          <div className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-64 flex items-center justify-center text-xs text-gray-500">
+            ADSENSE 300x600
+          </div>
         </div>
-
-        <p className="mt-3 text-xs opacity-70">Dica: se a ausência for maior que o total, ela é limitada ao total para evitar porcentagem acima de 100%.</p>
-      </div>
-
-      <div className="mt-8">
-        <h3>Fórmula</h3>
-        <pre><code>absence% = (absent / total) × 100\npresence% = 100 − absence%</code></pre>
-        <p>Use dias ou horas conforme seu controle de frequência. A calculadora apenas normaliza os valores.</p>
-      </div>
-    </div>
+      }
+    />
   );
 }

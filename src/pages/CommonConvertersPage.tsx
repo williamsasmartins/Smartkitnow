@@ -33,18 +33,7 @@ export default function CommonConvertersPage() {
       <SEOHead
         title="Common Unit Converters · SmartKitNow"
         description="Quick access to the most common unit conversions."
-        breadcrumbs={[
-          { name: "Home", url: "https://www.smartkitnow.com/" },
-          { name: "Conversion Calculators", url: "https://www.smartkitnow.com/conversion" },
-          { name: "Common Unit Converters", url: "https://www.smartkitnow.com/conversion/common" },
-        ]}
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: "Common Unit Converters",
-          url: "https://www.smartkitnow.com/conversion/common",
-          description: "Ten frequently-used conversion shortcuts.",
-        }}
+        canonical="https://www.smartkitnow.com/conversion/common"
       />
 
       <Header />
@@ -75,9 +64,7 @@ export default function CommonConvertersPage() {
               </div>
             </div>
           }
-          showRails
-          showTopBanner
-          showBottomBanner
+          showRails={false}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-auto max-w-5xl">
             <Card className="hover:shadow-soft transition-all duration-300 hover:-translate-y-1 bg-card border-border/50">

@@ -134,11 +134,11 @@ export default function App() {
               <Route path="/video" element={<VideoCategory />} />
 
               {/* Category index (generic) */}
-              <Route path=":category" element={<CategoryIndex />} />
+              <Route path="/:category" element={<CategoryIndex />} />
 
               {/* Calculator detail (supports both with and without subcategory) */}
-              <Route path=":category/:subcategory/:slug" element={<CalculatorPage />} />
-              <Route path=":category/:slug" element={<CalculatorPage />} />
+              <Route path="/:category/:subcategory/:slug" element={<CalculatorPage />} />
+              <Route path="/:category/:slug" element={<CalculatorPage />} />
 
               {/* 404 */}
               <Route path="*" element={<NotFound />} />
