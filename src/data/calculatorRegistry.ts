@@ -576,7 +576,16 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat",
   },
 
-  // SKN-AUTO-REGISTER: do not remove this line
+  // SKN-AUTO-REGISTER: do not remove this line,
+  {
+  slug: "new-calculator",
+  title: "New Calculator",
+  category: "financial",
+  subcategory: "general",
+  description: "New Calculator — financial calculator",
+  loader: () => import("@/components/calculators/Financial/NewCalculator"),
+  urlStyle: "flat"
+}
 ];
 
 // Backwards-compat alias expected by various pages/scripts
