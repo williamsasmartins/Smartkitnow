@@ -576,7 +576,16 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat",
   },
 
-  // SKN-AUTO-REGISTER: do not remove this line
+  // SKN-AUTO-REGISTER: do not remove this line,
+  {
+  slug: "loan-payment",
+  title: "Loan Payment Calculator",
+  category: "financial",
+  subcategory: "loans-mortgages-payments",
+  description: "Calculate fixed loan payments with principal, interest rate and term.",
+  loader: () => import("@/components/calculators/Financial/LoanPayment"),
+  urlStyle: "flat"
+}
 ];
 
 // Backwards-compat alias expected by various pages/scripts
