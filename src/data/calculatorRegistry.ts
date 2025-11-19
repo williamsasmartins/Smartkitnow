@@ -594,6 +594,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
   description: "Calculate fixed loan payments with principal, interest rate and term.",
   loader: () => import("@/components/calculators/Financial/LoanPayment"),
   urlStyle: "flat"
+},
+  {
+  slug: "loan-payment",
+  title: "Loan Payment Calculator",
+  category: "financial",
+  subcategory: "loans-mortgages-payments",
+  description: "Calculate monthly loan payments based on principal, interest rate, and loan term",
+  loader: () => import("@/components/calculators/Financial/LoanPayment"),
+  urlStyle: "flat"
 }
 ];
 
