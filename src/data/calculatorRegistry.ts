@@ -585,15 +585,6 @@ export const calculatorRegistry: CalculatorEntry[] = [
   description: "New Calculator — financial calculator",
   loader: () => import("@/components/calculators/Financial/NewCalculator"),
   urlStyle: "flat"
-},
-  {
-  slug: "loan-payment",
-  title: "Loan Payment Calculator",
-  category: "financial",
-  subcategory: "loans-mortgages-payments",
-  description: "Calculate fixed loan payments with principal, interest rate and term.",
-  loader: () => import("@/components/calculators/Financial/LoanPayment"),
-  urlStyle: "flat"
 }
 ];
 
