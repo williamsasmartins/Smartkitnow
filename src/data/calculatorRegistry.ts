@@ -126,6 +126,14 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/Budget/AbsencePercentageCalculator"),
   },
   {
+    slug: "loan-payment",
+    title: "Loan Payment Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    loader: () => import("@/components/calculators/Financial/LoanPaymentCalculator"),
+    urlStyle: "flat",
+  },
+  {
     slug: "cat-water-intake",
     category: "pets",
     subcategory: "cats",
