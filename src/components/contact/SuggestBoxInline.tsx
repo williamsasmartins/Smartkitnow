@@ -1,9 +1,9 @@
 import React from "react";
 import ContactSuggestionForm from "@/components/forms/ContactSuggestionForm";
 
-export default function SuggestBoxInline() {
+export default function SuggestBoxInline({ className = "" }: { className?: string }) {
   return (
-    <div className="border rounded-xl p-4 bg-card">
+    <div className={`border rounded-xl p-4 bg-card ${className}`}>
       <div className="flex items-center gap-2 mb-2">
         <span className="text-xl" aria-hidden>💡</span>
         <h3 className="text-lg font-semibold text-primary">Send a suggestion</h3>

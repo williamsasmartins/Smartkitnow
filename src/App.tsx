@@ -45,6 +45,7 @@ import CalculatorPage from "@/pages/CalculatorPage";
 import RecipeCuisinePage from "@/pages/RecipeCuisinePage";
 import RecipeDetailPage from "@/pages/RecipeDetailPage";
 
+
 export default function App() {
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
@@ -64,6 +65,7 @@ export default function App() {
               {/* Home & institucionais */}
               <Route path="/" element={<Index />} />
               <Route path="/glow-demo" element={<GlowCardDemo />} />
+              
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<ContactSuggestionPage />} />
               <Route path="/cookies" element={<Cookies />} />

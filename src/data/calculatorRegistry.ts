@@ -575,7 +575,16 @@ export const calculatorRegistry: CalculatorEntry[] = [
     aliases: ["cat-stress-score"],
     urlStyle: "flat",
   },
-
+  {
+    slug: "loan-payment",
+    title: "Loan Payment Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Calculate monthly loan payments based on principal, interest rate, and loan term.",
+    loader: () =>
+      import("@/components/calculators/Financial/LoanPaymentCalculator"),
+    urlStyle: "flat",
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
