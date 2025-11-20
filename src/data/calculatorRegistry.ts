@@ -593,7 +593,16 @@ export const calculatorRegistry: CalculatorEntry[] = [
   description: "New Calculator — financial calculator",
   loader: () => import("@/components/calculators/Financial/NewCalculator"),
   urlStyle: "flat"
-}
+},
+  {
+    slug: "car-loan-affordability",
+    title: "Car Loan Affordability Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Calculate how much car you can afford based on your budget, income, and loan terms. Get monthly payment estimates and total cost breakdown.",
+    loader: () => import("@/components/calculators/Financial/CarLoanAffordabilityCalculator"),
+    urlStyle: "flat"
+  }
 ];
 
 // Backwards-compat alias expected by various pages/scripts
