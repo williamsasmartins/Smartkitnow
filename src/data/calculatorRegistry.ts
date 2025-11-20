@@ -593,7 +593,16 @@ export const calculatorRegistry: CalculatorEntry[] = [
   description: "New Calculator — financial calculator",
   loader: () => import("@/components/calculators/Financial/NewCalculator"),
   urlStyle: "flat"
-}
+},
+  {
+    slug: "almost-there",
+    title: "Almost There Calculator",
+    category: "math",
+    subcategory: "general",
+    description: "We're so close!",
+    loader: () => import("@/components/calculators/Math/AlmostThereCalculator"),
+    urlStyle: "nested"
+  }
 ];
 
 // Backwards-compat alias expected by various pages/scripts
