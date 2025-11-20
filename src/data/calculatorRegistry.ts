@@ -593,7 +593,16 @@ export const calculatorRegistry: CalculatorEntry[] = [
   description: "New Calculator — financial calculator",
   loader: () => import("@/components/calculators/Financial/NewCalculator"),
   urlStyle: "flat"
-}
+},
+  {
+    slug: "final-test",
+    title: "Final Test Calculator",
+    category: "math",
+    subcategory: "general",
+    description: "Final test before success",
+    loader: () => import("@/components/calculators/Math/FinalTestCalculator"),
+    urlStyle: "nested"
+  }
 ];
 
 // Backwards-compat alias expected by various pages/scripts
