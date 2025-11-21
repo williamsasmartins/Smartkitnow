@@ -227,7 +227,7 @@ export default function CalculatorUnifiedLayout({
             </h1>
           )}
 
-          {/* Editorial (7) + Widget (5 sticky) */}
+          {/* Editorial (7) + Widget (5 sticky) - SIDE BY SIDE */}
           <div
             data-role="calc-grid"
             className="grid skn-no-overflow"
@@ -236,6 +236,7 @@ export default function CalculatorUnifiedLayout({
               gridTemplateColumns: "repeat(12, minmax(0,1fr))",
               columnGap: gap,
               rowGap: gap,
+              alignItems: "start", // CRITICAL: start alignment for sticky to work
             }}
           >
             <section 
@@ -243,6 +244,26 @@ export default function CalculatorUnifiedLayout({
               aria-label="Calculator content"
             >
               {editorial}
+              
+              {/* Disclaimer INSIDE content column */}
+              <div className="mt-8" role="note" aria-label="Important notice">
+                <LegalDisclaimer
+                  kind="financial"
+                  locale="en"
+                  note="Smart Kit Now is not responsible for actions taken based on these estimates."
+                  className="rounded-2xl border border-gray-200 bg-white/5 p-4 dark:border-gray-800"
+                />
+              </div>
+
+              {/* Share + Suggestion INSIDE content column */}
+              <div className="mt-4 grid grid-cols-12 gap-4 skn-eqgrid">
+                <div className="col-span-12 md:col-span-6">
+                  <div className="skn-eqcard h-full"><ShareThisPageBox /></div>
+                </div>
+                <div className="col-span-12 md:col-span-6">
+                  <div className="skn-eqcard h-full"><SuggestionBox /></div>
+                </div>
+              </div>
             </section>
 
             <aside
@@ -252,29 +273,6 @@ export default function CalculatorUnifiedLayout({
             >
               {widget}
             </aside>
-          </div>
-
-          {/* Disclaimer + Share + Suggestion */}
-          <div className="mt-8" role="note" aria-label="Important notice">
-            <LegalDisclaimer
-              kind="financial"
-              locale="en"
-              note="Smart Kit Now is not responsible for actions taken based on these estimates."
-              className="rounded-2xl border border-gray-200 bg-white/5 p-4 dark:border-gray-800"
-            />
-          </div>
-
-          <div className="mt-4 grid grid-cols-12 gap-4 skn-eqgrid">
-            <div className="col-span-12 md:col-span-6">
-              <div className="skn-eqcard h-full">
-                <ShareThisPageBox />
-              </div>
-            </div>
-            <div className="col-span-12 md:col-span-6">
-              <div className="skn-eqcard h-full">
-                <SuggestionBox />
-              </div>
-            </div>
           </div>
         </section>
 
