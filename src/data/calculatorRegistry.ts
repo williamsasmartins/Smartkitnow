@@ -602,6 +602,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     description: "Calculate how much car you can afford based on your budget, income, and loan terms. Get monthly payment estimates and total cost breakdown.",
     loader: () => import("@/components/calculators/Financial/CarLoanAffordabilityCalculator"),
     urlStyle: "flat"
+  },
+  {
+    slug: "auto-loan-budget",
+    title: "Auto Loan Budget Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Determine your auto loan budget based on income and expenses",
+    loader: () => import("@/components/calculators/Financial/AutoLoanBudgetCalculator"),
+    urlStyle: "flat"
   }
 ];
 
