@@ -64,11 +64,14 @@ export default function CalculatorUnifiedLayout({
         @media (min-width: 1024px) {
           [aria-label="Calculator widget"] {
             position: sticky !important;
-            top: 80px !important; /* Just below header (70px) + small margin */
+            top: 20px !important; /* Small top margin - calculator can scroll within its container */
             align-self: start !important;
             z-index: 10 !important;
-            max-height: calc(100vh - 100px) !important; /* Prevent calculator from being taller than viewport */
-            overflow-y: auto !important; /* Allow scrolling within calculator if needed */
+          }
+          
+          /* Allow calculator to be taller than viewport */
+          [data-role="calc-grid"] {
+            align-items: flex-start !important;
           }
         }
 
