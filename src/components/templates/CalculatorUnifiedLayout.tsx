@@ -1,31 +1,22 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode } from "react";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import SuggestionBox from "@/components/SuggestionBox";
 import LegalDisclaimer from "@/components/LegalDisclaimer";
 
 type Props = {
   title: string;
-  editorial: ReactNode; // conteúdo principal (artigo, fórmula, exemplos)
-  widget: ReactNode; // calculadora (sticky)
-  railRight?: ReactNode | null; // opcional: anúncios / conteúdo lateral
+  editorial: ReactNode;
+  widget: ReactNode;
+  railRight?: ReactNode | null;
   showTitle?: boolean;
   stickyTopPx?: number;
   maxWidth?: number;
-  gap?: number; // px spacing entre colunas/linhas
+  gap?: number;
   jsonLd?: object | object[];
   showTopBanner?: boolean;
-  topBannerHeight?: number; // altura do slot superior (ex.: 90)
+  topBannerHeight?: number;
 };
 
-/**
- * CalculatorUnifiedLayout — layout padrão único para todas as páginas de calculadora.
- * Objetivos:
- *  - Design limpo e organizado
- *  - Espaçamento adequado e consistente
- *  - Tipografia e cores padronizadas
- *  - Sticky estável com fallback seguro
- *  - BOXes auxiliares: disclaimer + share + suggestion
- */
 export default function CalculatorUnifiedLayout({
   title,
   editorial,
@@ -39,193 +30,122 @@ export default function CalculatorUnifiedLayout({
   showTopBanner = true,
   topBannerHeight = 90,
 }: Props) {
-  // Sticky nativo; sem fallback fixed.
-
   return (
     <div className="w-full skn-no-overflow">
-      {(() => { console.log("[SKN] CalculatorUnifiedLayout LIVE"); return null; })()}
       <style>{`
         .skn-no-overflow { overflow: visible !important; }
-        @media (max-width: 767.98px){
-          [aria-label="Calculator widget"] { position: static !important; top: auto !important; }
+        
+        /* Mobile: disable sticky */
+        @media (max-width: 1023px) {
+          [aria-label="Calculator widget"] { position: static !important; }
         }
+        
+        /* Desktop: enable sticky */
+        @media (min-width: 1024px) {
+          [aria-label="Calculator widget"] {
+            position: sticky;
+            top: ${stickyTopPx}px;
+            align-self: start;
+          }
+        }
+
         /* Evita pais com overflow/transform quebrarem o sticky */
         [aria-label="Calculator content"], [aria-label="Calculator widget"] {
           overflow: visible !important;
           transform: none !important;
         }
+
         .skn-eqgrid { align-items: stretch; }
         .skn-eqcard { display: flex; flex-direction: column; height: 100%; }
         .skn-eqcard > * { height: 100%; }
 
-        /* Estado fixo do widget: destaque visual e transições suaves */
-        .skn-fixed-container { transition: box-shadow 220ms ease, border-color 220ms ease, background-color 220ms ease, transform 220ms ease; }
-        .skn-fixed-active .rounded-2xl.p-4 {
-          border-color: #5c82ee !important;
-          box-shadow: none !important;
-        }
-        :where(html.dark) .skn-fixed-active .rounded-2xl.p-4 {
-          border-color: #5c82ee !important;
-          box-shadow: none !important;
-        }
-
-        /* Visual redesign: consistent, accessible card styling across content and widget */
+        /* Visual redesign: consistent card styling */
         :where([aria-label="Calculator content"], [aria-label="Calculator widget"]) .rounded-2xl.p-4 {
           background-color: rgba(255, 255, 255, 0.92);
-          border-color: #e5e7eb; /* gray-200 */
+          border-color: #e5e7eb;
           box-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 1px 1px rgb(0 0 0 / 0.04);
-          color: #111827; /* gray-900 */
+          color: #111827;
           transition: background-color 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
         }
 
         :where(html.dark) :where([aria-label="Calculator content"], [aria-label="Calculator widget"]) .rounded-2xl.p-4 {
-          background-color: rgba(31, 41, 55, 0.88); /* gray-800 */
-          border-color: #111827; /* gray-900 */
-          color: #f9fafb; /* gray-50 */
+          background-color: rgba(31, 41, 55, 0.88);
+          border-color: #111827;
+          color: #f9fafb;
         }
 
         :where([aria-label="Calculator content"], [aria-label="Calculator widget"]) .rounded-2xl.p-4:hover {
-          background-color: rgba(248, 250, 252, 0.96); /* gray-50 */
+          background-color: rgba(248, 250, 252, 0.96);
           box-shadow: 0 2px 4px rgb(0 0 0 / 0.08), 0 1px 2px rgb(0 0 0 / 0.06);
-          border-color: #d1d5db; /* gray-300 */
+          border-color: #d1d5db;
         }
 
         :where(html.dark) :where([aria-label="Calculator content"], [aria-label="Calculator widget"]) .rounded-2xl.p-4:hover {
-          background-color: rgba(31, 41, 55, 0.95); /* gray-800 darker */
+          background-color: rgba(31, 41, 55, 0.95);
           box-shadow: 0 2px 4px rgb(0 0 0 / 0.35);
-          border-color: #1f2937; /* gray-800 */
+          border-color: #1f2937;
         }
 
-        /* Light mode: apply #c6c8ca background consistently to the two content cards */
+        /* Light mode: content cards */
         :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4 {
           background-color: #c6c8ca !important;
-          color: #111827; /* ensure readable dark text on light bg */
-          border-color: #9ca3af; /* clearer edge */
+          color: #111827;
+          border-color: #9ca3af;
           box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
         }
-        :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4:hover,
-        :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4:active,
-        :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4:focus,
-        :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4:focus-visible,
-        :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4:focus-within {
-          background-color: #c6c8ca !important; /* keep same bg across states */
+
+        :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4:hover {
+          background-color: #c6c8ca !important;
           border-color: #89919a;
           box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
         }
 
-        /* Light mode: override first content card (Share this page) to #9ea7a8 */
-        :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4:first-of-type {
-          background-color: #9ea7a8 !important;
-          color: #111827; /* readable text */
-          border-color: #8b9496;
-          box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
-        }
-        :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4:first-of-type:hover,
-        :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4:first-of-type:active,
-        :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4:first-of-type:focus,
-        :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4:first-of-type:focus-visible,
-        :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4:first-of-type:focus-within {
-          background-color: #9ea7a8 !important; /* keep same bg across states */
-          border-color: #7e888a;
-          box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
-        }
-
-        /* Light mode: Share & Suggestion boxes inside .skn-eqgrid */
-        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4,
-        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4:hover,
-        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4:active,
-        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4:focus,
-        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4:focus-visible,
-        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4:focus-within {
+        /* Light mode: Share box */
+        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4 {
           background-color: #9ea7a8 !important;
           color: #111827;
           border-color: #8b9496;
           box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
         }
 
-        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4,
-        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4:hover,
-        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4:active,
-        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4:focus,
-        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4:focus-visible,
-        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4:focus-within {
+        :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4 {
           background-color: #c6c8ca !important;
           color: #111827;
           border-color: #89919a;
           box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
         }
 
-        /* Dark mode: Share & Suggestion boxes use #18202b across states */
-        :where(html.dark) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4,
-        :where(html.dark) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4:hover,
-        :where(html.dark) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4:active,
-        :where(html.dark) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4:focus,
-        :where(html.dark) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4:focus-visible,
-        :where(html.dark) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4:focus-within {
+        /* Dark mode: Share & Suggestion boxes */
+        :where(html.dark) :where(.skn-eqgrid) .skn-eqcard .rounded-2xl.p-4 {
           background-color: #18202b !important;
           color: #e5e7eb;
           border-color: #0f1924;
           box-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
         }
 
-        :where(html.dark) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4,
-        :where(html.dark) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4:hover,
-        :where(html.dark) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4:active,
-        :where(html.dark) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4:focus,
-        :where(html.dark) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4:focus-visible,
-        :where(html.dark) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4:focus-within {
-          background-color: #18202b !important;
-          color: #e5e7eb;
-          border-color: #0f1924;
-          box-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
-        }
-
-        /* Calculadora: remover sombras/hover e manter contorno azul */
+        /* Calculator widget: blue border, no shadow */
         :where([aria-label="Calculator widget"]) .rounded-2xl.p-4 {
           box-shadow: none !important;
           border-color: #5c82ee !important;
         }
-        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:hover,
-        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:active,
-        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus,
-        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus-visible,
-        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus-within {
-          box-shadow: none !important;
-          border-color: #5c82ee !important;
-        }
-        :where(html:not(.dark)) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4,
-        :where(html:not(.dark)) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:hover,
-        :where(html:not(.dark)) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:active,
-        :where(html:not(.dark)) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus,
-        :where(html:not(.dark)) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus-visible,
-        :where(html:not(.dark)) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus-within {
+
+        :where(html:not(.dark)) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4 {
           background-color: rgba(255, 255, 255, 0.92) !important;
-          box-shadow: none !important;
-          border-color: #5c82ee !important;
-        }
-        :where(html.dark) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4,
-        :where(html.dark) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:hover,
-        :where(html.dark) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:active,
-        :where(html.dark) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus,
-        :where(html.dark) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus-visible,
-        :where(html.dark) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus-within {
-          background-color: rgba(31, 41, 55, 0.88) !important;
-          box-shadow: none !important;
-          border-color: #5c82ee !important;
         }
 
-        /* Typography: enforce <p> color per theme within this layout */
+        :where(html.dark) :where([aria-label="Calculator widget"]) .rounded-2xl.p-4 {
+          background-color: rgba(31, 41, 55, 0.88) !important;
+        }
+
+        /* Typography */
         :where(html:not(.dark)) :where(.skn-no-overflow) p {
           color: #000000 !important;
         }
+
         :where(html.dark) :where(.skn-no-overflow) p {
           color: #ffffff !important;
         }
-
-        /* Sentinelas de limite (invisíveis) */
-        .skn-top-bound, .skn-bottom-bound { height: 0; border: 0; }
-      `}
-    </style>
+      `}</style>
 
       {jsonLd ? (
         <script type="application/ld+json" suppressHydrationWarning>
@@ -233,7 +153,6 @@ export default function CalculatorUnifiedLayout({
         </script>
       ) : null}
 
-      {/* Root grid alinhado e ancorado à esquerda */}
       <div
         className="grid grid-cols-12 pb-10 items-start"
         style={{
@@ -278,19 +197,18 @@ export default function CalculatorUnifiedLayout({
               rowGap: gap,
             }}
           >
-            {/* Limite superior (sentinela) */}
-            <div className="col-span-12 skn-top-bound" aria-hidden />
-            <section className="col-span-12 lg:col-span-7 pl-4 sm:pl-6" aria-label="Calculator content">
+            <section className="col-span-12 lg:col-span-7" aria-label="Calculator content">
               {editorial}
             </section>
 
-            <FixedViewportPreserver maxWidth={420} stickyTopPx={stickyTopPx}>
+            <aside
+              aria-label="Calculator widget"
+              className="col-span-12 lg:col-span-5"
+              style={{ maxWidth: 420 }}
+            >
               {widget}
-            </FixedViewportPreserver>
+            </aside>
           </div>
-
-          {/* Limite inferior (sentinela) */}
-          <div className="skn-bottom-bound" aria-hidden />
 
           {/* Disclaimer + Share + Suggestion */}
           <div className="mt-8" role="note" aria-label="Important notice">
@@ -313,7 +231,7 @@ export default function CalculatorUnifiedLayout({
         </section>
 
         {/* Bottom Banner - AdSense 728x90 */}
-        <div className="mt-12 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-24 flex items-center justify-center text-gray-500 text-xs">
+        <div className="col-span-12 lg:col-span-9 mt-12 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-24 flex items-center justify-center text-gray-500 text-xs">
           ADSENSE - 728x90
         </div>
 
@@ -330,94 +248,3 @@ export default function CalculatorUnifiedLayout({
     </div>
   );
 }
-
-type FixedViewportProps = {
-  children: ReactNode;
-  maxWidth?: number;
-  stickyTopPx?: number;
-};
-
-function FixedViewportPreserver({ children, maxWidth = 420, stickyTopPx = 20 }: FixedViewportProps) {
-  const anchorRef = useRef<HTMLDivElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [fixed, setFixed] = useState(false);
-  const [metrics, setMetrics] = useState<{ top: number; left: number; width: number; height: number }>({ top: 0, left: 0, width: maxWidth, height: 0 });
-
-  useEffect(() => {
-    const mm = window.matchMedia("(min-width: 1024px)"); // lg breakpoint
-    const enable = mm.matches;
-
-    const unfix = () => setFixed(false);
-
-    const recalc = () => {
-      if (!anchorRef.current) return;
-      const anchorRect = anchorRef.current.getBoundingClientRect();
-      const containerRect = containerRef.current?.getBoundingClientRect();
-      const contentHeight = containerRect?.height ?? anchorRect.height;
-      const topEl = document.querySelector('.skn-top-bound');
-      const bottomEl = document.querySelector('.skn-bottom-bound') || document.querySelector('div[role="note"][aria-label="Important notice"]');
-      const topRect = topEl ? (topEl as HTMLElement).getBoundingClientRect() : null;
-      const stopRect = bottomEl ? (bottomEl as HTMLElement).getBoundingClientRect() : null;
-
-      // Limita o topo para que a base do widget não ultrapasse o limite (linha vermelha)
-      const margin = 16; // respiro visual acima da linha
-      let minTop = typeof stickyTopPx === 'number' ? stickyTopPx : 20;
-      if (topRect) {
-        minTop = Math.max(minTop, topRect.top + margin);
-      }
-      let top = minTop;
-      if (stopRect) {
-        const maxTop = Math.max(0, stopRect.top - contentHeight - margin);
-        // aplica clamp entre minTop e maxTop
-        if (minTop > maxTop) {
-          // Sem espaço: desfaz fixo e deixa fluxo normal
-          setFixed(false);
-          setMetrics({ top: 0, left: anchorRect.left, width: Math.min(anchorRect.width, maxWidth), height: contentHeight });
-          return;
-        }
-        top = Math.min(Math.max(minTop, stickyTopPx), maxTop);
-      }
-
-      setMetrics({
-        top,
-        left: anchorRect.left,
-        width: Math.min(anchorRect.width, maxWidth),
-        height: contentHeight,
-      });
-      setFixed(true);
-    };
-
-    if (enable) {
-      requestAnimationFrame(() => recalc());
-      window.addEventListener("scroll", recalc, { passive: true });
-      window.addEventListener("resize", recalc);
-    } else {
-      unfix();
-    }
-
-    return () => {
-      window.removeEventListener("scroll", recalc as any);
-      window.removeEventListener("resize", recalc as any);
-    };
-  }, [maxWidth, stickyTopPx]);
-
-  return (
-    <aside
-      aria-label="Calculator widget"
-      className="col-span-12 lg:col-span-5 justify-self-start"
-      style={{ maxWidth, width: "100%" }}
-    >
-      {/* Placeholder para não interferir no fluxo quando fixo */}
-      <div ref={anchorRef} style={{ minHeight: fixed ? Math.max(metrics.height, 0) : "auto" }} />
-
-      <div
-        className={`skn-fixed-container ${fixed ? "skn-fixed-active" : ""}`}
-        ref={containerRef}
-        style={fixed ? { position: "fixed", top: metrics.top, left: metrics.left, width: metrics.width, zIndex: 30 } : { position: "static", width: "100%" }}
-      >
-        {children}
-      </div>
-    </aside>
-  );
-}
-
