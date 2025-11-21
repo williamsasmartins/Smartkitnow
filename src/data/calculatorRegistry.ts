@@ -584,34 +584,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat",
   },
 
-  // SKN-AUTO-REGISTER: do not remove this line,
-  {
-  slug: "new-calculator",
-  title: "New Calculator",
-  category: "financial",
-  subcategory: "general",
-  description: "New Calculator — financial calculator",
-  loader: () => import("@/components/calculators/Financial/NewCalculator"),
-  urlStyle: "flat"
-},
-  {
-    slug: "car-loan-affordability",
-    title: "Car Loan Affordability Calculator",
-    category: "financial",
-    subcategory: "loans-mortgages-payments",
-    description: "Calculate how much car you can afford based on your budget, income, and loan terms. Get monthly payment estimates and total cost breakdown.",
-    loader: () => import("@/components/calculators/Financial/CarLoanAffordabilityCalculator"),
-    urlStyle: "flat"
-  },
-  {
-    slug: "auto-loan-budget",
-    title: "Auto Loan Budget Calculator",
-    category: "financial",
-    subcategory: "loans-mortgages-payments",
-    description: "Determine your auto loan budget based on income and expenses",
-    loader: () => import("@/components/calculators/Financial/AutoLoanBudgetCalculator"),
-    urlStyle: "flat"
-  }
+  // SKN-AUTO-REGISTER: do not remove this line
 ];
 
 // Backwards-compat alias expected by various pages/scripts
