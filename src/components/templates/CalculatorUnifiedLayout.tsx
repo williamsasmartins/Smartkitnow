@@ -44,6 +44,15 @@ export default function CalculatorUnifiedLayout({
       <style>{`
         .skn-no-overflow { overflow: visible !important; }
         
+        /* CRITICAL: Override root overflow-x-hidden that breaks sticky */
+        body,
+        #root,
+        #root > div,
+        .min-h-screen {
+          overflow-x: visible !important;
+          overflow-y: visible !important;
+        }
+        
         /* Mobile: disable sticky */
         @media (max-width: 1023px) {
           [aria-label="Calculator widget"] { 
