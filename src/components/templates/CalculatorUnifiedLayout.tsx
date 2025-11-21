@@ -17,6 +17,15 @@ type Props = {
   topBannerHeight?: number;
 };
 
+/**
+ * CalculatorUnifiedLayout — layout padrão único para todas as páginas de calculadora.
+ * Objetivos:
+ *  - Design limpo e organizado
+ *  - Espaçamento adequado e consistente
+ *  - Tipografia e cores padronizadas
+ *  - Sticky NATIVO CSS (sem JavaScript)
+ *  - BOXes auxiliares: disclaimer + share + suggestion
+ */
 export default function CalculatorUnifiedLayout({
   title,
   editorial,
@@ -37,10 +46,12 @@ export default function CalculatorUnifiedLayout({
         
         /* Mobile: disable sticky */
         @media (max-width: 1023px) {
-          [aria-label="Calculator widget"] { position: static !important; }
+          [aria-label="Calculator widget"] { 
+            position: static !important; 
+          }
         }
         
-        /* Desktop: enable sticky */
+        /* Desktop: enable native CSS sticky */
         @media (min-width: 1024px) {
           [aria-label="Calculator widget"] {
             position: sticky;
@@ -49,8 +60,9 @@ export default function CalculatorUnifiedLayout({
           }
         }
 
-        /* Evita pais com overflow/transform quebrarem o sticky */
-        [aria-label="Calculator content"], [aria-label="Calculator widget"] {
+        /* Prevent parent overflow/transform from breaking sticky */
+        [aria-label="Calculator content"], 
+        [aria-label="Calculator widget"] {
           overflow: visible !important;
           transform: none !important;
         }
@@ -86,7 +98,7 @@ export default function CalculatorUnifiedLayout({
           border-color: #1f2937;
         }
 
-        /* Light mode: content cards */
+        /* Light mode: content cards #c6c8ca */
         :where(html:not(.dark)) :where([aria-label="Calculator content"]) .rounded-2xl.p-4 {
           background-color: #c6c8ca !important;
           color: #111827;
@@ -100,7 +112,7 @@ export default function CalculatorUnifiedLayout({
           box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
         }
 
-        /* Light mode: Share box */
+        /* Light mode: Share box #9ea7a8 */
         :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:first-of-type) .rounded-2xl.p-4 {
           background-color: #9ea7a8 !important;
           color: #111827;
@@ -108,6 +120,7 @@ export default function CalculatorUnifiedLayout({
           box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
         }
 
+        /* Light mode: Suggestion box #c6c8ca */
         :where(html:not(.dark)) :where(.skn-eqgrid) :where(.skn-eqcard:nth-of-type(2)) .rounded-2xl.p-4 {
           background-color: #c6c8ca !important;
           color: #111827;
@@ -115,7 +128,7 @@ export default function CalculatorUnifiedLayout({
           box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
         }
 
-        /* Dark mode: Share & Suggestion boxes */
+        /* Dark mode: Share & Suggestion boxes #18202b */
         :where(html.dark) :where(.skn-eqgrid) .skn-eqcard .rounded-2xl.p-4 {
           background-color: #18202b !important;
           color: #e5e7eb;
@@ -123,8 +136,15 @@ export default function CalculatorUnifiedLayout({
           box-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
         }
 
-        /* Calculator widget: blue border, no shadow */
+        /* Calculator widget: blue border #5c82ee, no shadow */
         :where([aria-label="Calculator widget"]) .rounded-2xl.p-4 {
+          box-shadow: none !important;
+          border-color: #5c82ee !important;
+        }
+
+        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:hover,
+        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:active,
+        :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:focus {
           box-shadow: none !important;
           border-color: #5c82ee !important;
         }
@@ -137,7 +157,7 @@ export default function CalculatorUnifiedLayout({
           background-color: rgba(31, 41, 55, 0.88) !important;
         }
 
-        /* Typography */
+        /* Typography: enforce <p> color per theme */
         :where(html:not(.dark)) :where(.skn-no-overflow) p {
           color: #000000 !important;
         }
@@ -153,6 +173,7 @@ export default function CalculatorUnifiedLayout({
         </script>
       ) : null}
 
+      {/* Root grid */}
       <div
         className="grid grid-cols-12 pb-10 items-start"
         style={{
@@ -197,7 +218,10 @@ export default function CalculatorUnifiedLayout({
               rowGap: gap,
             }}
           >
-            <section className="col-span-12 lg:col-span-7" aria-label="Calculator content">
+            <section 
+              className="col-span-12 lg:col-span-7" 
+              aria-label="Calculator content"
+            >
               {editorial}
             </section>
 
@@ -222,10 +246,14 @@ export default function CalculatorUnifiedLayout({
 
           <div className="mt-4 grid grid-cols-12 gap-4 skn-eqgrid">
             <div className="col-span-12 md:col-span-6">
-              <div className="skn-eqcard h-full"><ShareThisPageBox /></div>
+              <div className="skn-eqcard h-full">
+                <ShareThisPageBox />
+              </div>
             </div>
             <div className="col-span-12 md:col-span-6">
-              <div className="skn-eqcard h-full"><SuggestionBox /></div>
+              <div className="skn-eqcard h-full">
+                <SuggestionBox />
+              </div>
             </div>
           </div>
         </section>
@@ -236,7 +264,10 @@ export default function CalculatorUnifiedLayout({
         </div>
 
         {/* RIGHT RAIL (3 col) */}
-        <aside className="col-span-12 mt-8 lg:col-span-3 lg:mt-0 pr-4 sm:pr-6 skn-no-overflow" aria-label="Right rail">
+        <aside 
+          className="col-span-12 mt-8 lg:col-span-3 lg:mt-0 pr-4 sm:pr-6 skn-no-overflow" 
+          aria-label="Right rail"
+        >
           {/* AdSense 300x600 */}
           <div className="mb-6 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-64 flex items-center justify-center text-gray-500 text-xs">
             ADSENSE - 300x600
