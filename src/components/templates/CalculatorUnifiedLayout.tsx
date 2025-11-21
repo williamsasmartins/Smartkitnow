@@ -64,9 +64,11 @@ export default function CalculatorUnifiedLayout({
         @media (min-width: 1024px) {
           [aria-label="Calculator widget"] {
             position: sticky !important;
-            top: ${stickyTopPx}px !important;
+            top: 80px !important; /* Just below header (70px) + small margin */
             align-self: start !important;
             z-index: 10 !important;
+            max-height: calc(100vh - 100px) !important; /* Prevent calculator from being taller than viewport */
+            overflow-y: auto !important; /* Allow scrolling within calculator if needed */
           }
         }
 
@@ -161,6 +163,30 @@ export default function CalculatorUnifiedLayout({
           box-shadow: none !important;
           border-color: #5c82ee !important;
         }
+        
+        /* Smooth scrolling inside calculator if content is too tall */
+        [aria-label="Calculator widget"] {
+          scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar for calculator */
+        [aria-label="Calculator widget"]::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        [aria-label="Calculator widget"]::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.1);
+          border-radius: 4px;
+        }
+        
+        [aria-label="Calculator widget"]::-webkit-scrollbar-thumb {
+          background: #5c82ee;
+          border-radius: 4px;
+        }
+        
+        [aria-label="Calculator widget"]::-webkit-scrollbar-thumb:hover {
+          background: #4a6fd8;
+        }
 
         :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:hover,
         :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:active,
@@ -236,7 +262,7 @@ export default function CalculatorUnifiedLayout({
               gridTemplateColumns: "repeat(12, minmax(0,1fr))",
               columnGap: gap,
               rowGap: gap,
-              alignItems: "start", // CRITICAL: start alignment for sticky to work
+              alignItems: "start",
             }}
           >
             <section 
@@ -244,26 +270,6 @@ export default function CalculatorUnifiedLayout({
               aria-label="Calculator content"
             >
               {editorial}
-              
-              {/* Disclaimer INSIDE content column */}
-              <div className="mt-8" role="note" aria-label="Important notice">
-                <LegalDisclaimer
-                  kind="financial"
-                  locale="en"
-                  note="Smart Kit Now is not responsible for actions taken based on these estimates."
-                  className="rounded-2xl border border-gray-200 bg-white/5 p-4 dark:border-gray-800"
-                />
-              </div>
-
-              {/* Share + Suggestion INSIDE content column */}
-              <div className="mt-4 grid grid-cols-12 gap-4 skn-eqgrid">
-                <div className="col-span-12 md:col-span-6">
-                  <div className="skn-eqcard h-full"><ShareThisPageBox /></div>
-                </div>
-                <div className="col-span-12 md:col-span-6">
-                  <div className="skn-eqcard h-full"><SuggestionBox /></div>
-                </div>
-              </div>
             </section>
 
             <aside
@@ -273,6 +279,25 @@ export default function CalculatorUnifiedLayout({
             >
               {widget}
             </aside>
+          </div>
+
+          {/* Disclaimer + Share + Suggestion - FULL WIDTH OUTSIDE GRID */}
+          <div className="mt-8" role="note" aria-label="Important notice">
+            <LegalDisclaimer
+              kind="financial"
+              locale="en"
+              note="Smart Kit Now is not responsible for actions taken based on these estimates."
+              className="rounded-2xl border border-gray-200 bg-white/5 p-4 dark:border-gray-800"
+            />
+          </div>
+
+          <div className="mt-4 grid grid-cols-12 gap-4 skn-eqgrid">
+            <div className="col-span-12 md:col-span-6">
+              <div className="skn-eqcard h-full"><ShareThisPageBox /></div>
+            </div>
+            <div className="col-span-12 md:col-span-6">
+              <div className="skn-eqcard h-full"><SuggestionBox /></div>
+            </div>
           </div>
         </section>
 
