@@ -602,6 +602,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     description: "Car Loan Affordability Calculator — financial calculator",
     loader: () => import("@/components/calculators/Financial/CarLoanAffordabilityCalculator"),
     urlStyle: "flat"
+  },
+  {
+    slug: "car-loan-affordability",
+    title: "Car Loan Affordability Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Car Loan Affordability Calculator — financial calculator",
+    loader: () => import("@/components/calculators/Financial/CarLoanAffordabilityCalculator"),
+    urlStyle: "flat"
   }
 ];
 
