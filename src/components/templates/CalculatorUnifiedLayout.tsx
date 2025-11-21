@@ -51,18 +51,29 @@ export default function CalculatorUnifiedLayout({
           }
         }
         
-        /* Desktop: enable native CSS sticky */
+        /* Desktop: enable native CSS sticky - FORCE with !important */
         @media (min-width: 1024px) {
           [aria-label="Calculator widget"] {
-            position: sticky;
-            top: ${stickyTopPx}px;
-            align-self: start;
+            position: sticky !important;
+            top: ${stickyTopPx}px !important;
+            align-self: start !important;
+            z-index: 10 !important;
           }
         }
 
-        /* Prevent parent overflow/transform from breaking sticky */
+        /* Prevent parent overflow/transform from breaking sticky - CRITICAL! */
         [aria-label="Calculator content"], 
-        [aria-label="Calculator widget"] {
+        [aria-label="Calculator widget"],
+        [data-role="calc-grid"] {
+          overflow: visible !important;
+          transform: none !important;
+          contain: none !important;
+        }
+        
+        /* Force parent containers to allow sticky */
+        .skn-no-overflow,
+        .skn-no-overflow > *,
+        .grid.skn-no-overflow {
           overflow: visible !important;
           transform: none !important;
         }
