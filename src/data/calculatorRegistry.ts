@@ -584,7 +584,16 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat",
   },
 
-  // SKN-AUTO-REGISTER: do not remove this line
+  // SKN-AUTO-REGISTER: do not remove this line,
+  {
+    slug: "car-loan-affordability",
+    title: "Car Loan Affordability Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Calculate how much car you can afford based on your income, existing debts, and loan terms",
+    loader: () => import("@/components/calculators/Financial/CarLoanAffordabilityCalculator"),
+    urlStyle: "flat"
+  }
 ];
 
 // Backwards-compat alias expected by various pages/scripts
