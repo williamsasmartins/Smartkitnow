@@ -17,15 +17,6 @@ type Props = {
   topBannerHeight?: number;
 };
 
-/**
- * CalculatorUnifiedLayout — layout padrão único para todas as páginas de calculadora.
- * Objetivos:
- *  - Design limpo e organizado
- *  - Espaçamento adequado e consistente
- *  - Tipografia e cores padronizadas
- *  - Sticky NATIVO CSS (sem JavaScript)
- *  - BOXes auxiliares: disclaimer + share + suggestion
- */
 export default function CalculatorUnifiedLayout({
   title,
   editorial,
@@ -53,29 +44,26 @@ export default function CalculatorUnifiedLayout({
           overflow-y: visible !important;
         }
         
-        /* Mobile: disable sticky */
+        /* OPTION A: STICKY DISABLED - Calculator scrolls normally */
         @media (max-width: 1023px) {
           [aria-label="Calculator widget"] { 
             position: static !important; 
           }
         }
         
-        /* Desktop: enable native CSS sticky - FORCE with !important */
         @media (min-width: 1024px) {
           [aria-label="Calculator widget"] {
-            position: sticky !important;
-            top: 20px !important; /* Small top margin - calculator can scroll within its container */
+            position: static !important; /* STICKY DISABLED */
             align-self: start !important;
             z-index: 10 !important;
           }
           
-          /* Allow calculator to be taller than viewport */
           [data-role="calc-grid"] {
             align-items: flex-start !important;
           }
         }
 
-        /* Prevent parent overflow/transform from breaking sticky - CRITICAL! */
+        /* Prevent parent overflow/transform from breaking layout */
         [aria-label="Calculator content"], 
         [aria-label="Calculator widget"],
         [data-role="calc-grid"] {
@@ -84,7 +72,7 @@ export default function CalculatorUnifiedLayout({
           contain: none !important;
         }
         
-        /* Force parent containers to allow sticky */
+        /* Force parent containers to allow proper layout */
         .skn-no-overflow,
         .skn-no-overflow > *,
         .grid.skn-no-overflow {
@@ -166,30 +154,6 @@ export default function CalculatorUnifiedLayout({
           box-shadow: none !important;
           border-color: #5c82ee !important;
         }
-        
-        /* Smooth scrolling inside calculator if content is too tall */
-        [aria-label="Calculator widget"] {
-          scroll-behavior: smooth;
-        }
-        
-        /* Custom scrollbar for calculator */
-        [aria-label="Calculator widget"]::-webkit-scrollbar {
-          width: 8px;
-        }
-        
-        [aria-label="Calculator widget"]::-webkit-scrollbar-track {
-          background: rgba(0, 0, 0, 0.1);
-          border-radius: 4px;
-        }
-        
-        [aria-label="Calculator widget"]::-webkit-scrollbar-thumb {
-          background: #5c82ee;
-          border-radius: 4px;
-        }
-        
-        [aria-label="Calculator widget"]::-webkit-scrollbar-thumb:hover {
-          background: #4a6fd8;
-        }
 
         :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:hover,
         :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:active,
@@ -222,7 +186,6 @@ export default function CalculatorUnifiedLayout({
         </script>
       ) : null}
 
-      {/* Root grid */}
       <div
         className="grid grid-cols-12 pb-10 items-start"
         style={{
@@ -235,7 +198,6 @@ export default function CalculatorUnifiedLayout({
           rowGap: gap,
         }}
       >
-        {/* MAIN (9 col) */}
         <section className="col-span-12 lg:col-span-9 pl-4 sm:pl-6 skn-no-overflow">
           {showTopBanner && (
             <div
@@ -256,7 +218,6 @@ export default function CalculatorUnifiedLayout({
             </h1>
           )}
 
-          {/* Editorial (7) + Widget (5 sticky) - SIDE BY SIDE */}
           <div
             data-role="calc-grid"
             className="grid skn-no-overflow"
@@ -284,7 +245,6 @@ export default function CalculatorUnifiedLayout({
             </aside>
           </div>
 
-          {/* Disclaimer + Share + Suggestion - FULL WIDTH OUTSIDE GRID */}
           <div className="mt-8" role="note" aria-label="Important notice">
             <LegalDisclaimer
               kind="financial"
@@ -304,17 +264,14 @@ export default function CalculatorUnifiedLayout({
           </div>
         </section>
 
-        {/* Bottom Banner - AdSense 728x90 */}
         <div className="col-span-12 lg:col-span-9 mt-12 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-24 flex items-center justify-center text-gray-500 text-xs">
           ADSENSE - 728x90
         </div>
 
-        {/* RIGHT RAIL (3 col) */}
         <aside 
           className="col-span-12 mt-8 lg:col-span-3 lg:mt-0 pr-4 sm:pr-6 skn-no-overflow" 
           aria-label="Right rail"
         >
-          {/* AdSense 300x600 */}
           <div className="mb-6 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-64 flex items-center justify-center text-gray-500 text-xs">
             ADSENSE - 300x600
           </div>
