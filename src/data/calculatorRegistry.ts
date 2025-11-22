@@ -8,17 +8,15 @@ export type UrlStyle = "nested" | "flat";
 export interface CalculatorEntry {
   slug: string;
   title: string;
-  category: string; // e.g., "financial", "health", "pets"
-  subcategory?: string; // e.g., "dogs", "cats"
+  category: string;
+  subcategory?: string;
   description?: string;
-  aliases?: string[]; // optional alternative search terms
-  loader: () => Promise<{ default: React.ComponentType<any> }>; // dynamic import to component
-  namedExport?: string; // optional named export if component is not default
-  /** NEW: if "flat", links will be /:category/:slug */
-  urlStyle?: UrlStyle; // "nested" (default) | "flat"
+  aliases?: string[];
+  loader: () => Promise<{ default: React.ComponentType<any> }>;
+  namedExport?: string;
+  urlStyle?: UrlStyle;
 }
 
-// Friendly category titles shown on hubs and index pages
 export const FRIENDLY_TITLES: Record<string, string> = {
   financial: "Financial Calculators",
   health: "Health Calculators",
@@ -37,7 +35,6 @@ export const FRIENDLY_TITLES: Record<string, string> = {
   recipes: "Recipe Collections",
 };
 
-// Optional friendlier titles per subcategory
 export const SUBCATEGORY_TITLES: Record<string, Record<string, string>> = {
   pets: {
     dogs: "Dog Care",
@@ -67,7 +64,6 @@ function normalize(v?: string) {
     .replace(/[^\w\-]/g, "");
 }
 
-// Emoji icons per category (used by CategoryCalculatorsTemplate header)
 export function categoryIcon(category?: string): string {
   const key = normalize(category);
   const MAP: Record<string, string> = {
@@ -90,7 +86,6 @@ export function categoryIcon(category?: string): string {
   return MAP[key] ?? "🧮";
 }
 
-// Emoji icons per subcategory — allows pages to avoid repeating the same icon
 export function subcategoryIcon(subcategory?: string, category?: string): string | undefined {
   const sub = normalize(subcategory);
   const cat = normalize(category);
@@ -107,7 +102,6 @@ export function subcategoryIcon(subcategory?: string, category?: string): string
   return GENERIC[sub] ?? undefined;
 }
 
-// The actual registry of calculators. Keep lightweight and focused.
 export const calculatorRegistry: CalculatorEntry[] = [
   {
     slug: "dog-water-intake",
@@ -131,6 +125,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "financial",
     subcategory: "loans-mortgages-payments",
     loader: () => import("@/components/calculators/Financial/LoanPaymentCalculator"),
+    urlStyle: "flat",
+  },
+  {
+    slug: "car-loan-affordability",
+    title: "Car Loan Affordability Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Calculate how much car you can afford based on your income, existing debts, down payment, loan term, and interest rate.",
+    loader: () => import("@/components/calculators/Financial/CarLoanAffordabilityCalculator"),
     urlStyle: "flat",
   },
   {
@@ -588,27 +591,22 @@ export const calculatorRegistry: CalculatorEntry[] = [
  
 ];
 
-// Backwards-compat alias expected by various pages/scripts
 export const REGISTRY: CalculatorEntry[] = calculatorRegistry;
 
-// Include aliases in lookup
 function allSlugs(entry: CalculatorEntry): string[] {
   return [entry.slug, ...(entry.aliases ?? [])];
 }
 
-// Lookup an entry by slug or alias
 export function getEntry(slugOrAlias?: string): CalculatorEntry | undefined {
   const s = (slugOrAlias || "").toLowerCase();
   return REGISTRY.find((e) => allSlugs(e).some((x) => (x || "").toLowerCase() === s));
 }
 
-// List calculators under a category
 export function listByCategory(category?: string): CalculatorEntry[] {
   const key = normalize(category);
   return REGISTRY.filter((e) => normalize(e.category) === key);
 }
 
-// List calculators under a specific category and subcategory
 export function listByCategorySubcategory(category?: string, subcategory?: string): CalculatorEntry[] {
   const cat = normalize(category);
   const sub = normalize(subcategory);
@@ -617,15 +615,12 @@ export function listByCategorySubcategory(category?: string, subcategory?: strin
   );
 }
 
-// List calculators by subcategory (dogs, cats, general, etc.)
 export function listBy(subcategory: CalculatorEntry["subcategory"]) {
   return REGISTRY.filter((e) => e.subcategory === subcategory);
 }
 
-// List subcategories that exist for a category, with friendly titles when available
 export function listSubcategoriesOfCategory(category?: string): Array<{ slug: string; title: string }> {
   const cat = normalize(category);
-  // Prefer dynamic discovery from registry
   const subs = new Set(
     REGISTRY
       .filter((e) => normalize(e.category) === cat)
@@ -634,14 +629,12 @@ export function listSubcategoriesOfCategory(category?: string): Array<{ slug: st
   );
   const titles = SUBCATEGORY_TITLES[cat] ?? {};
   const result = Array.from(subs).map((slug) => ({ slug, title: titles[slug] ?? slug.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase()) }));
-  // If no dynamic subs found, fall back to static map
   if (result.length === 0 && Object.keys(titles).length > 0) {
     return Object.entries(titles).map(([slug, title]) => ({ slug, title }));
   }
   return result;
 }
 
-/** Helper único para gerar a rota desejada de um entry */
 export function calcPath(e: CalculatorEntry): string {
   const style: UrlStyle = e.urlStyle ?? "nested";
   return style === "flat"
@@ -649,24 +642,18 @@ export function calcPath(e: CalculatorEntry): string {
     : `/${e.category}/${e.subcategory}/${e.slug}`;
 }
 
-// Backward compat: calcLink maps to calcPath
-// -------- Helper para montar o path correto a partir do entry --------
 export function calcLink(entry: CalculatorEntry): string {
-  // Suporta urlStyle: "flat"  => /:category/:slug
-  // e o padrão "nested"       => /:category/:subcategory/:slug
   const category = entry.category;
   const slug = entry.slug || (entry as any).name?.toLowerCase().replace(/\s+/g, "-") || "";
   const subcategory = entry.subcategory;
 
-  const style = (entry as any).urlStyle; // alguns entries já têm urlStyle: "flat"
+  const style = (entry as any).urlStyle;
   if (style === "flat") {
     return `/${category}/${slug}`;
   }
 
-  // fallback: nested
   if (subcategory) {
     return `/${category}/${subcategory}/${slug}`;
   }
-  // fallback extra: se não houver subcategory, retorna flat mesmo
   return `/${category}/${slug}`;
 }
