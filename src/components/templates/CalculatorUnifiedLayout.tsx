@@ -35,7 +35,7 @@ export default function CalculatorUnifiedLayout({
       <style>{`
         .skn-no-overflow { overflow: visible !important; }
         
-        /* CRITICAL: Override root overflow-x-hidden */
+        /* CRITICAL: Override root overflow-x-hidden that breaks sticky */
         body,
         #root,
         #root > div,
@@ -44,7 +44,7 @@ export default function CalculatorUnifiedLayout({
           overflow-y: visible !important;
         }
         
-        /* OPTION C: NO STICKY + SMOOTH AUTO-SCROLL */
+        /* OPTION A: STICKY DISABLED - Calculator scrolls normally */
         @media (max-width: 1023px) {
           [aria-label="Calculator widget"] { 
             position: static !important; 
@@ -53,7 +53,7 @@ export default function CalculatorUnifiedLayout({
         
         @media (min-width: 1024px) {
           [aria-label="Calculator widget"] {
-            position: static !important; /* NO STICKY - scrolls normally ✅ */
+            position: static !important; /* STICKY DISABLED */
             align-self: start !important;
             z-index: 10 !important;
           }
@@ -61,11 +61,6 @@ export default function CalculatorUnifiedLayout({
           [data-role="calc-grid"] {
             align-items: flex-start !important;
           }
-        }
-
-        /* Smooth scroll for entire page */
-        html {
-          scroll-behavior: smooth !important;
         }
 
         /* Prevent parent overflow/transform from breaking layout */
@@ -77,6 +72,7 @@ export default function CalculatorUnifiedLayout({
           contain: none !important;
         }
         
+        /* Force parent containers to allow proper layout */
         .skn-no-overflow,
         .skn-no-overflow > *,
         .grid.skn-no-overflow {
