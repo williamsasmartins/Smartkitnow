@@ -585,15 +585,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
 
   // SKN-AUTO-REGISTER: do not remove this line,
-  {
-    slug: "car-loan-affordability",
-    title: "Car Loan Affordability Calculator",
-    category: "financial",
-    subcategory: "loans-mortgages-payments",
-    description: "Car Loan Affordability Calculator — financial calculator",
-    loader: () => import("@/components/calculators/Financial/CarLoanAffordabilityCalculator"),
-    urlStyle: "flat"
-  }
+ 
 ];
 
 // Backwards-compat alias expected by various pages/scripts
