@@ -44,7 +44,7 @@ export default function CalculatorUnifiedLayout({
           overflow-y: visible !important;
         }
         
-        /* OPTION A: STICKY DISABLED - Calculator scrolls normally */
+        /* OPTION B: STICKY WITH MAX-HEIGHT AND INTERNAL SCROLL */
         @media (max-width: 1023px) {
           [aria-label="Calculator widget"] { 
             position: static !important; 
@@ -53,9 +53,12 @@ export default function CalculatorUnifiedLayout({
         
         @media (min-width: 1024px) {
           [aria-label="Calculator widget"] {
-            position: static !important; /* STICKY DISABLED */
+            position: sticky !important; /* STICKY ENABLED ✅ */
+            top: 20px !important;
             align-self: start !important;
             z-index: 10 !important;
+            max-height: calc(100vh - 40px) !important; /* LIMIT HEIGHT ✅ */
+            overflow-y: auto !important; /* INTERNAL SCROLL ✅ */
           }
           
           [data-role="calc-grid"] {
@@ -63,16 +66,15 @@ export default function CalculatorUnifiedLayout({
           }
         }
 
-        /* Prevent parent overflow/transform from breaking layout */
+        /* Prevent parent overflow/transform from breaking sticky - CRITICAL! */
         [aria-label="Calculator content"], 
-        [aria-label="Calculator widget"],
         [data-role="calc-grid"] {
           overflow: visible !important;
           transform: none !important;
           contain: none !important;
         }
         
-        /* Force parent containers to allow proper layout */
+        /* Force parent containers to allow sticky */
         .skn-no-overflow,
         .skn-no-overflow > *,
         .grid.skn-no-overflow {
@@ -153,6 +155,25 @@ export default function CalculatorUnifiedLayout({
         :where([aria-label="Calculator widget"]) .rounded-2xl.p-4 {
           box-shadow: none !important;
           border-color: #5c82ee !important;
+        }
+        
+        /* Custom scrollbar for calculator - OPTION B */
+        [aria-label="Calculator widget"]::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        [aria-label="Calculator widget"]::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.1);
+          border-radius: 4px;
+        }
+        
+        [aria-label="Calculator widget"]::-webkit-scrollbar-thumb {
+          background: #5c82ee;
+          border-radius: 4px;
+        }
+        
+        [aria-label="Calculator widget"]::-webkit-scrollbar-thumb:hover {
+          background: #4a6fd8;
         }
 
         :where([aria-label="Calculator widget"]) .rounded-2xl.p-4:hover,
