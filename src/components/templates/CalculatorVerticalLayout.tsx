@@ -196,12 +196,11 @@ export default function CalculatorVerticalLayout({
             </div>
           )}
 
-          {/* WIDGET NO TOPO - MAIS LARGO (max-w-3xl = 768px) */}
+          {/* WIDGET NO TOPO - 768px (max-w-3xl) - PERFEITO! NÃO MEXER! */}
           <section 
             className="mx-4 sm:mx-6 mb-8"
             aria-label="Calculator widget"
           >
-            {/* Widget largo até a linha vermelha */}
             <div className="max-w-3xl">
               <div className="skn-widget-card rounded-2xl border p-4">
                 {widget}
@@ -209,13 +208,12 @@ export default function CalculatorVerticalLayout({
             </div>
           </section>
 
-          {/* CONTEÚDO EDITORIAL ABAIXO - COM LIMITE DE LARGURA */}
+          {/* CONTEÚDO EDITORIAL - MESMA LARGURA DO WIDGET (max-w-3xl) */}
           <section 
             className="mx-4 sm:mx-6 mb-8"
             aria-label="Calculator content"
           >
-            {/* max-w-4xl para conteúdo não ultrapassar */}
-            <div className="max-w-4xl">
+            <div className="max-w-3xl">
               <div className="skn-content-card rounded-2xl border p-6">
                 <div className="skn-content-wrapper">
                   {editorial}
@@ -224,8 +222,8 @@ export default function CalculatorVerticalLayout({
             </div>
           </section>
 
-          {/* LEGAL DISCLAIMER */}
-          <div className="mx-4 sm:mx-6 mb-4 max-w-4xl" role="note" aria-label="Important notice">
+          {/* LEGAL DISCLAIMER - MESMA LARGURA DO WIDGET (max-w-3xl) */}
+          <div className="mx-4 sm:mx-6 mb-4 max-w-3xl" role="note" aria-label="Important notice">
             <LegalDisclaimer
               kind="financial"
               locale="en"
@@ -234,8 +232,8 @@ export default function CalculatorVerticalLayout({
             />
           </div>
 
-          {/* SHARE & SUGGESTION BOXES */}
-          <div className="mx-4 sm:mx-6 mb-8 max-w-4xl">
+          {/* SHARE & SUGGESTION BOXES - MESMA LARGURA DO WIDGET (max-w-3xl) */}
+          <div className="mx-4 sm:mx-6 mb-8 max-w-3xl">
             <div className="grid grid-cols-12 gap-4 skn-eqgrid">
               <div className="col-span-12 md:col-span-6">
                 <div className="skn-eqcard h-full">
@@ -254,25 +252,25 @@ export default function CalculatorVerticalLayout({
             </div>
           </div>
 
-          {/* ADSENSE 728x90 */}
-          <div className="mx-4 sm:mx-6 mb-8 max-w-4xl">
+          {/* ADSENSE 728x90 - MESMA LARGURA DO WIDGET (max-w-3xl) */}
+          <div className="mx-4 sm:mx-6 mb-8 max-w-3xl">
             <div className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-24 flex items-center justify-center text-gray-500 text-xs">
               ADSENSE - 728x90
             </div>
           </div>
 
-          {/* RIGHT RAIL (if provided) */}
+          {/* RIGHT RAIL (if provided) - MESMA LARGURA DO WIDGET (max-w-3xl) */}
           {railRight && (
             <aside 
-              className="mx-4 sm:mx-6 mb-8 max-w-4xl"
+              className="mx-4 sm:mx-6 mb-8 max-w-3xl"
               aria-label="Additional content"
             >
               {railRight}
             </aside>
           )}
 
-          {/* ADSENSE 300x600 */}
-          <div className="mx-4 sm:mx-6 max-w-4xl">
+          {/* ADSENSE 300x600 - MESMA LARGURA DO WIDGET (max-w-3xl) */}
+          <div className="mx-4 sm:mx-6 max-w-3xl">
             <div className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-64 flex items-center justify-center text-gray-500 text-xs">
               ADSENSE - 300x600
             </div>
