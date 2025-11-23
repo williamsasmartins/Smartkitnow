@@ -4,82 +4,93 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
+interface AmortizationRow {
+  month: number;
+  date: string;
+  payment: number;
+  principal: number;
+  interest: number;
+  balance: number;
+}
+
 export default function LoanPaymentCalculator() {
   const [inputs, setInputs] = useState({
-    loanAmount: "",
-    interestRate: "",
-    loanTerm: "",
+    principal: "5000",
+    interestRate: "6.5",
+    loanTerm: "60",
   });
 
   const resultsRef = useRef<HTMLDivElement>(null);
 
   const results = useMemo(() => {
-    const principal = parseFloat(inputs.loanAmount) || 0;
+    const p = parseFloat(inputs.principal) || 0;
     const annualRate = parseFloat(inputs.interestRate) || 0;
-    const months = parseFloat(inputs.loanTerm) || 0;
+    const n = parseFloat(inputs.loanTerm) || 0;
+    const r = annualRate / 100 / 12;
 
-    if (principal === 0 || annualRate === 0 || months === 0) {
+    if (p <= 0 || annualRate <= 0 || n <= 0) {
       return {
-        monthlyPayment: null,
-        totalPayment: null,
-        totalInterest: null,
-        principalPercent: 0,
-        interestPercent: 0,
+        monthlyPayment: 0,
+        totalPaid: 0,
+        totalInterest: 0,
+        payoffDate: "",
+        amortizationSchedule: [],
       };
     }
 
-    const monthlyRate = annualRate / 100 / 12;
-    
-    // Monthly payment formula: P * [r(1+r)^n] / [(1+r)^n - 1]
-    const monthlyPayment = 
-      principal * 
-      (monthlyRate * Math.pow(1 + monthlyRate, months)) / 
-      (Math.pow(1 + monthlyRate, months) - 1);
+    const monthlyPayment = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalPaid = monthlyPayment * n;
+    const totalInterest = totalPaid - p;
 
-    const totalPayment = monthlyPayment * months;
-    const totalInterest = totalPayment - principal;
-    const principalPercent = (principal / totalPayment) * 100;
-    const interestPercent = (totalInterest / totalPayment) * 100;
+    // Calculate payoff date
+    const today = new Date();
+    const payoffDate = new Date(today);
+    payoffDate.setMonth(payoffDate.getMonth() + n);
+    const payoffDateStr = payoffDate.toLocaleDateString("en-US", {
+      month: "short",
+      year: "numeric",
+    });
+
+    // Generate amortization schedule (first 12 months)
+    const schedule: AmortizationRow[] = [];
+    let balance = p;
+    
+    for (let i = 1; i <= Math.min(12, n); i++) {
+      const interestPayment = balance * r;
+      const principalPayment = monthlyPayment - interestPayment;
+      balance -= principalPayment;
+
+      const paymentDate = new Date(today);
+      paymentDate.setMonth(paymentDate.getMonth() + i);
+
+      schedule.push({
+        month: i,
+        date: paymentDate.toLocaleDateString("en-US", { month: "short", year: "numeric" }),
+        payment: monthlyPayment,
+        principal: principalPayment,
+        interest: interestPayment,
+        balance: Math.max(0, balance),
+      });
+    }
 
     return {
-      monthlyPayment,
-      totalPayment,
-      totalInterest,
-      principalPercent,
-      interestPercent,
+      monthlyPayment: isNaN(monthlyPayment) ? 0 : monthlyPayment,
+      totalPaid: isNaN(totalPaid) ? 0 : totalPaid,
+      totalInterest: isNaN(totalInterest) ? 0 : totalInterest,
+      payoffDate: `${payoffDateStr} (${n} payments)`,
+      amortizationSchedule: schedule,
     };
   }, [inputs]);
-
-  const formatCurrency = (value: number | null) => {
-    if (value === null) return "$0";
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(value);
-  };
 
   const handleCalculate = () => {
     setTimeout(() => {
       if (resultsRef.current) {
-        const resultsElement = resultsRef.current;
-        const rect = resultsElement.getBoundingClientRect();
-        const resultsHeight = resultsElement.offsetHeight;
-        const viewportHeight = window.innerHeight;
-        
+        const rect = resultsRef.current.getBoundingClientRect();
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const elementTop = rect.top + scrollTop;
         
-        let targetScroll;
-        if (resultsHeight > viewportHeight - 200) {
-          targetScroll = elementTop - 120;
-        } else {
-          targetScroll = elementTop - ((viewportHeight - resultsHeight) / 3);
-        }
-        
         window.scrollTo({
-          top: Math.max(0, targetScroll),
+          top: elementTop - 100,
           behavior: "smooth"
         });
       }
@@ -87,10 +98,13 @@ export default function LoanPaymentCalculator() {
   };
 
   const handleReset = () => {
-    setInputs({
-      loanAmount: "",
-      interestRate: "",
-      loanTerm: "",
+    setInputs({ principal: "", interestRate: "", loanTerm: "" });
+  };
+
+  const formatCurrency = (value: number) => {
+    return value.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     });
   };
 
@@ -100,298 +114,371 @@ export default function LoanPaymentCalculator() {
       maxWidth={1200}
       gap={32}
       showTopBanner
-      editorial={
-        <div className="skn-editorial">
-          <section className="mb-6">
-            <p className="text-base leading-relaxed mb-4">
-              Need to calculate your monthly loan payment? Whether you're considering a mortgage, auto loan, personal loan, or student loan, understanding your monthly payment obligations is crucial for financial planning. Our loan payment calculator provides instant, accurate calculations to help you make informed borrowing decisions. According to the Federal Reserve's 2024 Consumer Credit report, the average American carries $104,215 in debt across mortgages, auto loans, credit cards, and student loans, making payment planning essential.
-            </p>
-            
-            <p className="text-base leading-relaxed mb-4">
-              This calculator uses the standard amortization formula to determine your exact monthly payment based on loan amount (principal), annual interest rate (APR), and loan term in months. Beyond the basic monthly payment, we show you the total amount you'll pay over the life of the loan, total interest charges, and the percentage split between principal and interest. This comprehensive view helps you understand the true cost of borrowing and identify opportunities to save thousands in interest charges.
-            </p>
-            
-            <p className="mb-3">In this calculator and comprehensive guide, we will explain:</p>
-            <ul className="list-disc pl-6 space-y-2 mb-4">
-              <li>How loan payment calculations work using the amortization formula</li>
-              <li>The impact of interest rates on your total loan cost</li>
-              <li>How loan term length affects monthly payments and total interest</li>
-              <li>Strategies to reduce interest charges and pay off loans faster</li>
-              <li>The difference between fixed and variable rate loans</li>
-              <li>How to compare loan offers effectively</li>
-              <li>Real-world examples across different loan amounts and terms</li>
-            </ul>
-            
-            <p className="text-base leading-relaxed">
-              For mortgage-specific calculations including property taxes and insurance, try our <a href="/financial/mortgage-calculator" className="text-blue-600 hover:underline">Mortgage Calculator</a>. If you're buying a car, use our <a href="/financial/car-loan-affordability" className="text-blue-600 hover:underline">Car Loan Affordability Calculator</a>. To understand how much you can borrow, check our <a href="/financial/debt-to-income" className="text-blue-600 hover:underline">Debt-to-Income Calculator</a>.
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">How does the loan payment calculation work?</h2>
-            
-            <p className="text-base leading-relaxed mb-4">
-              Loan payments are calculated using an amortization formula that ensures you pay off both principal and interest over a fixed period through equal monthly installments. The formula accounts for compound interest, meaning interest accrues on the remaining balance each month. Early in the loan term, a larger portion of your payment goes toward interest; as the principal decreases, more of each payment reduces the loan balance.
-            </p>
-            
-            <p className="text-base leading-relaxed mb-4">
-              The mathematical formula is: M = P × [r(1+r)^n] / [(1+r)^n - 1], where M is the monthly payment, P is the principal loan amount, r is the monthly interest rate (annual rate divided by 12), and n is the number of monthly payments. For example, a $200,000 loan at 6.5% APR for 30 years (360 months) calculates as: Monthly rate = 6.5% / 12 = 0.00541667. The formula yields a monthly payment of $1,264.14.
-            </p>
-            
-            <p className="text-base leading-relaxed mb-4">
-              Understanding this calculation is crucial because small changes in any variable create significant long-term impacts. Reducing the interest rate by just 0.5% on that $200,000 mortgage (from 6.5% to 6.0%) saves $40 per month and $14,400 over 30 years. Similarly, choosing a 15-year term instead of 30 years increases the monthly payment to $1,743.81 but saves $142,745 in total interest—the loan costs $313,886 over 30 years versus $171,141 over 15 years.
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">How to use the loan payment calculator</h2>
-            
-            <p className="text-base leading-relaxed mb-4">
-              Our calculator requires three essential inputs to compute your loan payment. Gather your loan documentation or offer letter for accurate figures. The calculation takes seconds once you input these values, providing instant insight into your payment obligations and total loan cost.
-            </p>
-            
-            <p className="text-base leading-relaxed mb-3">Here's what each input means and how to determine it:</p>
-            
-            <div className="space-y-4 mb-4">
-              <p className="text-base leading-relaxed">
-                <strong>Loan Amount (Principal):</strong> The total amount you're borrowing before interest. For mortgages, this is the home price minus your down payment. For a $300,000 house with a 20% down payment ($60,000), your loan amount is $240,000. For auto loans, it's the vehicle price minus down payment and trade-in value. For personal loans, it's the amount the lender disburses to you.
-              </p>
-              
-              <p className="text-base leading-relaxed">
-                <strong>Annual Interest Rate (APR):</strong> Your yearly interest rate as a percentage. This appears prominently in loan offers and disclosure documents. Do not confuse APR with APY (Annual Percentage Yield)—use APR for this calculator. Mortgage rates in late 2024 range from 6.0% to 7.5% depending on credit score and loan type. Auto loans range from 4% (excellent credit) to 12% (fair credit). Personal loans span 6% to 36% based on creditworthiness.
-              </p>
-              
-              <p className="text-base leading-relaxed">
-                <strong>Loan Term (months):</strong> The repayment period in months. Common mortgage terms are 360 months (30 years) or 180 months (15 years). Auto loans typically run 36, 48, 60, or 72 months. Personal loans range from 12 to 84 months. Longer terms mean lower monthly payments but significantly higher total interest charges. A $25,000 auto loan at 6% costs $2,625 in interest over 36 months versus $4,906 over 72 months—nearly double.
-              </p>
-            </div>
-            
-            <p className="text-base leading-relaxed mb-4">
-              After entering these values, click Calculate and the page will scroll to display your results. You'll see your monthly payment amount, total amount paid over the loan life, total interest charges, and the percentage breakdown of principal versus interest. Use these figures to compare different loan scenarios—try adjusting the term length or interest rate to see how your payment and total cost change.
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">How can I reduce my loan interest charges?</h2>
-            
-            <p className="text-base leading-relaxed mb-4">
-              The single most effective strategy is making extra principal payments. Every dollar paid beyond your required monthly payment directly reduces the loan balance, which decreases future interest charges since interest is calculated on the remaining balance. On a $200,000 mortgage at 6.5% for 30 years, adding just $100 to each monthly payment saves $39,760 in interest and shortens the loan by 4 years and 11 months.
-            </p>
-            
-            <p className="text-base leading-relaxed mb-4">
-              Refinancing to a lower interest rate can yield substantial savings if rates have dropped since you borrowed or your credit score has improved significantly. Refinancing that same $200,000 mortgage from 6.5% to 5.5% after 5 years saves approximately $180 per month and $64,800 over the remaining 25 years. However, factor in refinancing costs (typically 2-5% of the loan amount or $4,000-$10,000 on a $200,000 loan). The savings must exceed these costs to make refinancing worthwhile.
-            </p>
-            
-            <p className="text-base leading-relaxed mb-4">
-              Bi-weekly payment strategies effectively add one extra monthly payment per year. Instead of 12 monthly payments, you make 26 half-payments (52 weeks / 2). This approach pays off a 30-year mortgage in about 25-26 years and saves significant interest. The same $200,000 mortgage paid bi-weekly saves approximately $34,000 in interest and retires the loan 4-5 years early. Some lenders charge fees for bi-weekly payment plans; alternatively, manually add 1/12 of your monthly payment to each regular payment to achieve similar results without fees.
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">What is the difference between fixed and variable rate loans?</h2>
-            
-            <p className="text-base leading-relaxed mb-4">
-              Fixed-rate loans maintain the same interest rate for the entire loan term, providing payment predictability and protection against rate increases. Your monthly payment never changes, making budgeting straightforward. This stability is valuable in rising interest rate environments. Most conventional mortgages, many auto loans, and some personal loans offer fixed rates. The downside is that if market rates drop, you're locked into the higher rate unless you refinance.
-            </p>
-            
-            <p className="text-base leading-relaxed mb-4">
-              Variable-rate loans (also called adjustable-rate or floating-rate loans) have interest rates that fluctuate based on a benchmark index like the Prime Rate or LIBOR. Initial rates on adjustable-rate mortgages (ARMs) are typically 0.5-1.5% lower than comparable fixed-rate mortgages, offering lower initial payments. However, after the initial fixed period (commonly 5, 7, or 10 years), the rate adjusts periodically—usually annually—based on market conditions plus a margin (typically 2-3%).
-            </p>
-            
-            <p className="text-base leading-relaxed mb-4">
-              ARMs include caps limiting how much the rate can increase: per-adjustment caps (typically 2%), lifetime caps (typically 5-6% above the initial rate), and sometimes initial adjustment caps. A 5/1 ARM starting at 5.5% with a 2/2/6 cap structure means: 5 years at the initial rate, annual adjustments thereafter, maximum 2% increase per adjustment, maximum 2% decrease per adjustment, maximum lifetime rate of 11.5% (5.5% + 6%). In a rising rate environment, this loan could reach 9.5% in year 7, dramatically increasing payments. Choose fixed rates for long-term holdings and payment certainty; consider ARMs only if you plan to sell or refinance before the adjustment period or if you're confident rates will remain stable or decline.
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Frequently asked questions</h2>
-            
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">What is an amortization schedule?</h3>
-                <p className="text-base leading-relaxed">
-                  An amortization schedule is a detailed table showing every payment over the loan's life, breaking down how much goes toward principal versus interest each month. Early payments consist mostly of interest; the principal portion gradually increases over time. For a $200,000 30-year mortgage at 6.5%, the first payment includes $1,083.33 interest and just $180.81 principal. The final payment is nearly reversed: $6.84 interest and $1,257.30 principal.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Should I choose a 15-year or 30-year mortgage?</h3>
-                <p className="text-base leading-relaxed">
-                  The decision depends on your financial situation and goals. A 15-year mortgage has higher monthly payments but saves massive amounts in interest and builds equity faster. On $200,000 at 6.0%, the 30-year payment is $1,199 versus $1,688 for 15 years—a $489 monthly difference. However, the 30-year loan costs $431,640 total versus $303,840 for 15 years, a $127,800 difference in interest. Choose 15 years if you can comfortably afford the higher payment and want to own your home faster. Choose 30 years if you need lower monthly obligations or want flexibility to invest the payment difference elsewhere.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2">How does my credit score affect my loan payment?</h3>
-                <p className="text-base leading-relaxed">
-                  Credit scores directly determine your interest rate, which dramatically impacts your payment and total cost. On a $250,000 30-year mortgage, excellent credit (760+) might qualify for 6.0% ($1,499/month), while fair credit (650-679) faces 7.2% ($1,700/month)—a $201 monthly difference or $72,360 over 30 years. Before applying for major loans, check your credit reports for errors, pay down credit card balances below 30% utilization, and avoid new credit inquiries. Even a 50-point score improvement can save tens of thousands.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2">What happens if I pay off my loan early?</h3>
-                <p className="text-base leading-relaxed">
-                  Paying off loans early saves substantial interest, especially on long-term loans where interest comprises the majority of early payments. A $200,000 30-year mortgage at 6.5% costs $255,094 in interest. Paying it off in 20 years instead (via extra payments) saves $84,682 in interest. However, check for prepayment penalties—some lenders charge fees (typically 2-5% of the remaining balance) if you pay off within the first 3-5 years. Most mortgages and auto loans today don't have prepayment penalties, but personal loans sometimes do. Review your loan documents or ask your lender before making large extra payments.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Can I deduct loan interest on my taxes?</h3>
-                <p className="text-base leading-relaxed">
-                  Mortgage interest is deductible on your primary residence and one second home for loans up to $750,000 ($375,000 if married filing separately) taken out after December 15, 2017. For loans originated before this date, the limit is $1 million ($500,000 married filing separately). Student loan interest up to $2,500 is deductible if you meet income requirements. Auto loan and personal loan interest are generally not tax-deductible unless used for business purposes. Home equity loan interest is deductible only if used to buy, build, or substantially improve your home. Consult a tax professional for your specific situation.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2">What is the difference between APR and interest rate?</h3>
-                <p className="text-base leading-relaxed">
-                  The interest rate is the cost of borrowing expressed as a yearly percentage of the loan amount. APR (Annual Percentage Rate) includes the interest rate plus additional costs like origination fees, discount points, and mortgage insurance, expressed as a yearly rate. APR is always higher than the interest rate and provides a more accurate picture of the loan's true cost. For example, a mortgage might have a 6.0% interest rate but a 6.25% APR once fees are factored in. Use APR to compare loan offers—a lower interest rate with high fees might have a higher APR than a slightly higher interest rate with minimal fees.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Should I consolidate multiple loans?</h3>
-                <p className="text-base leading-relaxed">
-                  Consolidation can simplify payments and potentially reduce interest costs, but requires careful analysis. Federal student loan consolidation maintains government protections and doesn't reduce your interest rate (it's the weighted average of your current loans). Private consolidation (refinancing) can lower your rate if your credit has improved but eliminates federal benefits like income-driven repayment and forgiveness options. Credit card consolidation via personal loan typically saves money if you qualify for rates below 12-15%. Avoid consolidating secured debt (mortgage, auto) with unsecured debt (credit cards) as you risk losing your home or car if unable to repay.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2">What is a good debt-to-income ratio?</h3>
-                <p className="text-base leading-relaxed">
-                  Lenders use your debt-to-income (DTI) ratio to assess loan approval and terms. DTI is your total monthly debt payments divided by gross monthly income. Mortgage lenders prefer DTI below 43%, with 36% or lower qualifying for best rates. Front-end ratio (housing costs only) should stay below 28%. For example, with $6,000 monthly gross income, total debts shouldn't exceed $2,580 (43%) and housing costs should stay under $1,680 (28%). To improve DTI, increase income, pay down debts, or reduce housing cost targets.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2">When should I consider refinancing?</h3>
-                <p className="text-base leading-relaxed">
-                  Refinance when you can reduce your interest rate by at least 0.5-1.0%, your credit score has improved by 50+ points, you want to switch from adjustable to fixed rate, or you need to change the loan term. Calculate the break-even point: divide refinancing costs by monthly savings. If costs are $4,000 and you save $200/month, you break even in 20 months. Refinancing makes sense if you plan to keep the loan beyond this point. Also consider cash-out refinancing to access home equity at lower rates than credit cards or personal loans, but avoid using it for consumables or vacations.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2">How does loan term affect total cost?</h3>
-                <p className="text-base leading-relaxed">
-                  Longer terms mean lower monthly payments but significantly higher total interest charges. A $25,000 auto loan at 6% costs $483/month for 60 months with $3,980 total interest. The same loan over 36 months costs $761/month but only $2,396 total interest—saving $1,584 despite the $278 higher payment. Similarly, a $200,000 mortgage at 6% for 30 years costs $1,199/month and $231,676 in interest. At 15 years, it's $1,688/month but only $103,788 in interest—saving $127,888. Choose shorter terms if you can afford higher payments and want to minimize interest costs and build equity faster.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">References and sources</h2>
-            <ul className="list-disc pl-6 space-y-2 text-sm">
-              <li>Federal Reserve - Consumer Credit Report, 2024</li>
-              <li>Consumer Financial Protection Bureau (CFPB) - Loan Estimate Explainer, 2024</li>
-              <li>Freddie Mac - Primary Mortgage Market Survey, 2024</li>
-              <li>U.S. Department of Housing and Urban Development - Mortgage Insurance Guide, 2024</li>
-              <li>Internal Revenue Service (IRS) - Publication 936: Home Mortgage Interest Deduction, 2024</li>
-              <li>Experian - State of the Automotive Finance Market Report, Q4 2024</li>
-              <li>Federal Student Aid - Loan Consolidation Information, 2024</li>
-              <li>National Foundation for Credit Counseling - Debt Management Guidelines, 2024</li>
-            </ul>
-          </section>
-        </div>
-      }
       widget={
-        <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-800 dark:bg-gray-900">
+        <div className="space-y-6">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Calculate the monthly payment for a loan using our simple loan calculator by entering the principal, interest rate, and term below.
+          </p>
+
+          {/* Input Fields */}
           <div className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="loanAmount">Loan Amount (Principal)</Label>
+            <div>
+              <Label htmlFor="principal" className="text-sm font-medium mb-1.5 block">
+                Loan Amount ($)
+              </Label>
               <Input
-                id="loanAmount"
+                id="principal"
                 type="number"
-                value={inputs.loanAmount}
+                placeholder="e.g., 5000"
+                value={inputs.principal}
                 onChange={(e) =>
-                  setInputs((prev) => ({ ...prev, loanAmount: e.target.value }))
+                  setInputs({ ...inputs, principal: e.target.value })
                 }
-                placeholder="e.g., 200000"
+                className="h-11"
               />
-              <p className="text-xs text-muted-foreground">Total amount you're borrowing</p>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="interestRate">Annual Interest Rate (%)</Label>
+            <div>
+              <Label htmlFor="interestRate" className="text-sm font-medium mb-1.5 block">
+                Annual Interest Rate (%)
+              </Label>
               <Input
                 id="interestRate"
                 type="number"
                 step="0.01"
+                placeholder="e.g., 6.5"
                 value={inputs.interestRate}
                 onChange={(e) =>
-                  setInputs((prev) => ({ ...prev, interestRate: e.target.value }))
+                  setInputs({ ...inputs, interestRate: e.target.value })
                 }
-                placeholder="e.g., 6.5"
+                className="h-11"
               />
-              <p className="text-xs text-muted-foreground">APR from your loan offer</p>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="loanTerm">Loan Term (months)</Label>
+            <div>
+              <Label htmlFor="loanTerm" className="text-sm font-medium mb-1.5 block">
+                Loan Term (months)
+              </Label>
               <Input
                 id="loanTerm"
                 type="number"
+                placeholder="e.g., 60"
                 value={inputs.loanTerm}
                 onChange={(e) =>
-                  setInputs((prev) => ({ ...prev, loanTerm: e.target.value }))
+                  setInputs({ ...inputs, loanTerm: e.target.value })
                 }
-                placeholder="e.g., 360 (30 years)"
+                className="h-11"
               />
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-gray-500 mt-1">
                 Common: 360 (30yr), 180 (15yr), 60 (5yr)
               </p>
             </div>
 
-            <div className="flex gap-2">
-              <Button variant="calculate" className="flex-1" onClick={handleCalculate}>
+            <div className="flex gap-3 pt-2">
+              <Button
+                onClick={handleCalculate}
+                className="flex-1 h-11 text-base font-semibold"
+              >
                 Calculate
               </Button>
-              <Button variant="reset" onClick={handleReset}>
+              <Button
+                onClick={handleReset}
+                variant="outline"
+                className="h-11 px-6 text-base font-semibold"
+              >
                 Reset
               </Button>
             </div>
+          </div>
 
-            <div ref={resultsRef} className="space-y-3 pt-4">
-              <div className="p-4 bg-primary/5 rounded-lg">
-                <p className="text-sm text-muted-foreground mb-1">
-                  Monthly Payment
-                </p>
-                <p className="text-3xl font-bold text-primary">
-                  {formatCurrency(results.monthlyPayment)}
-                </p>
-              </div>
-
-              <div className="p-3 bg-secondary/5 rounded-lg">
-                <p className="text-sm text-muted-foreground mb-1">
-                  Total Amount Paid
-                </p>
-                <p className="text-2xl font-semibold">
-                  {formatCurrency(results.totalPayment)}
-                </p>
-              </div>
-
-              <div className="p-3 bg-secondary/5 rounded-lg">
-                <p className="text-sm text-muted-foreground mb-1">Total Interest</p>
-                <p className="text-xl font-semibold">
-                  {formatCurrency(results.totalInterest)}
-                </p>
-              </div>
-
-              <div className="p-3 bg-secondary/5 rounded-lg">
-                <p className="text-sm text-muted-foreground mb-1">Payment Breakdown</p>
-                <div className="mt-2 space-y-1">
-                  <div className="flex justify-between text-sm">
-                    <span>Principal:</span>
-                    <span className="font-semibold">{results.principalPercent.toFixed(1)}%</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span>Interest:</span>
-                    <span className="font-semibold">{results.interestPercent.toFixed(1)}%</span>
-                  </div>
-                </div>
-              </div>
+          {/* Results Table */}
+          <div ref={resultsRef}>
+            <div className="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+              <table className="w-full">
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  <tr className="bg-blue-50 dark:bg-blue-950">
+                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">
+                      Monthly Payment:
+                    </td>
+                    <td className="px-4 py-3 text-right font-bold text-blue-600 dark:text-blue-400 text-lg">
+                      ${formatCurrency(results.monthlyPayment)}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">
+                      Total Interest:
+                    </td>
+                    <td className="px-4 py-3 text-right font-semibold text-gray-900 dark:text-gray-100">
+                      ${formatCurrency(results.totalInterest)}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">
+                      Total Payments:
+                    </td>
+                    <td className="px-4 py-3 text-right font-semibold text-gray-900 dark:text-gray-100">
+                      ${formatCurrency(results.totalPaid)}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">
+                      Payoff Date:
+                    </td>
+                    <td className="px-4 py-3 text-right font-semibold text-gray-900 dark:text-gray-100">
+                      {results.payoffDate || "—"}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
+
+          {/* Amortization Schedule */}
+          {results.amortizationSchedule.length > 0 && (
+            <div>
+              <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
+                Amortization Schedule:
+              </h3>
+              <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+                <table className="w-full text-sm">
+                  <thead className="bg-gray-50 dark:bg-gray-800">
+                    <tr>
+                      <th className="px-3 py-2 text-left font-semibold text-gray-900 dark:text-gray-100">
+                        Date
+                      </th>
+                      <th className="px-3 py-2 text-right font-semibold text-gray-900 dark:text-gray-100">
+                        Payment
+                      </th>
+                      <th className="px-3 py-2 text-right font-semibold text-gray-900 dark:text-gray-100">
+                        Principal
+                      </th>
+                      <th className="px-3 py-2 text-right font-semibold text-gray-900 dark:text-gray-100">
+                        Interest
+                      </th>
+                      <th className="px-3 py-2 text-right font-semibold text-gray-900 dark:text-gray-100">
+                        Balance
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                    {results.amortizationSchedule.map((row, idx) => (
+                      <tr key={idx} className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                        <td className="px-3 py-2 text-gray-900 dark:text-gray-100">
+                          {row.date}
+                        </td>
+                        <td className="px-3 py-2 text-right text-gray-900 dark:text-gray-100">
+                          ${formatCurrency(row.payment)}
+                        </td>
+                        <td className="px-3 py-2 text-right text-gray-900 dark:text-gray-100">
+                          ${formatCurrency(row.principal)}
+                        </td>
+                        <td className="px-3 py-2 text-right text-gray-900 dark:text-gray-100">
+                          ${formatCurrency(row.interest)}
+                        </td>
+                        <td className="px-3 py-2 text-right font-semibold text-gray-900 dark:text-gray-100">
+                          ${formatCurrency(row.balance)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {parseFloat(inputs.loanTerm) > 12 && (
+                <p className="text-xs text-gray-500 mt-2 text-center">
+                  Showing first 12 months of {inputs.loanTerm} total payments
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+      }
+      editorial={
+        <div className="prose prose-lg dark:prose-invert max-w-none">
+          <h2>How to Calculate a Loan Payment</h2>
+          <p>
+            Calculating the amount of a loan payment is an important first step for anyone considering taking out a loan. Whether you're financing a home, purchasing a vehicle, or consolidating debt, understanding your monthly payment obligations is crucial for sound financial planning. According to the Federal Reserve's latest Consumer Credit report, the average American household carries over $104,000 in debt across mortgages, auto loans, credit cards, and student loans, making payment planning more essential than ever.
+          </p>
+
+          <p>
+            You need to make sure that you will be able to pay back the loan comfortably within your budget. If the loan payments take up too much of an individual's income, it could become a major financial burden and potentially lead to default. Financial advisors typically recommend that your total monthly debt payments should not exceed 36% of your gross monthly income, with housing costs specifically staying under 28%. Our loan payment calculator helps you determine exactly what you can afford before making a commitment.
+          </p>
+
+          <h3>Loan Payment Formula</h3>
+          <p>
+            The loan payment formula uses a mathematical calculation to determine your exact monthly payment based on three key variables: the loan amount (principal), the annual interest rate (APR), and the total number of payments. This formula is derived from the amortization concept, which ensures that each payment includes both principal repayment and interest charges, with the loan fully paid off by the end of the term.
+          </p>
+
+          <div className="my-8 rounded-lg border-2 border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-950 p-6">
+            <div className="bg-white dark:bg-gray-900 rounded p-4 font-mono text-center">
+              <div className="text-xl font-semibold">
+                PMT = PV × [r(1 + r)ⁿ] / [(1 + r)ⁿ - 1]
+              </div>
+            </div>
+            <div className="mt-4 space-y-2 text-sm">
+              <p className="font-semibold">Where:</p>
+              <ul className="space-y-1 ml-4">
+                <li><strong>PMT</strong> = monthly payment amount</li>
+                <li><strong>PV</strong> = present value (remaining principal or loan amount)</li>
+                <li><strong>r</strong> = periodic interest rate (annual rate ÷ 12 months)</li>
+                <li><strong>n</strong> = total number of monthly payments</li>
+              </ul>
+            </div>
+          </div>
+
+          <p>
+            For example, let's say you're considering getting an auto loan with the following terms: $25,000 loan amount at 4% annual interest for 5 years. First, we need to adjust the numbers so they will work with the loan payment formula. The formula requires a periodic (monthly) interest rate, so we need to divide the 4% annual interest rate by 12 months to arrive at a periodic interest rate of 0.3333% (or 0.003333 in decimal form). Additionally, the number of payments is found by multiplying 5 years by 12 months, which equals 60 total monthly payments.
+          </p>
+
+          <p>
+            Let's plug these numbers into the loan payment formula: PMT = 25,000 × [0.003333(1 + 0.003333)⁶⁰] / [(1 + 0.003333)⁶⁰ - 1]. Working through the calculation, we get: PMT = 25,000 × [0.003333(1.221964)] / [1.221964 - 1] = 25,000 × 0.004074 / 0.221964 = $460.41. Under these circumstances, the monthly loan payment will be $460.41, with a total repayment of $27,624.60 over the life of the loan, meaning you'll pay $2,624.60 in interest charges.
+          </p>
+
+          <p>
+            You can also use an <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">amortization calculator</a> to find the monthly payment and see how much of each monthly payment goes toward principal and how much goes toward interest. Early in the loan term, a larger portion of your payment goes toward interest, while later payments contribute more to principal reduction. This is why making extra payments early in your loan can save you significant money in interest charges over time.
+          </p>
+
+          <h2>What Factors Affect Loan Payments</h2>
+          <p>
+            The three primary factors that affect loan payments are the loan balance, interest rate, and term of the loan. Understanding how each of these variables impacts your monthly payment allows you to make strategic decisions that can save you thousands of dollars over the life of your loan. Let's examine each of these factors in detail and explore how they interact to determine your total borrowing costs.
+          </p>
+
+          <h3>Loan Balance (Principal Amount)</h3>
+          <p>
+            The remaining principal of a loan, also known as the loan balance, is the foundation of your payment calculation. The higher the loan balance, the higher the monthly payment will be, assuming all other factors remain constant. For instance, a $200,000 mortgage at 6% for 30 years results in a monthly payment of approximately $1,199, while a $300,000 mortgage under the same terms would cost around $1,799 per month—a $600 difference solely due to the larger principal.
+          </p>
+
+          <p>
+            The reverse holds true for a lower principal amount. You should pay the largest down payment that you can reasonably afford on a loan in order to reduce both the monthly payment and the total interest paid over the life of the loan. Financial experts typically recommend a 20% down payment on homes to avoid private mortgage insurance (PMI) and secure better interest rates. For auto loans, putting down at least 20% can help ensure you don't end up owing more than the vehicle is worth due to depreciation.
+          </p>
+
+          <h3>Interest Rate</h3>
+          <p>
+            The interest rate is another critical factor for determining your loan payment. Similar to the loan balance, the higher the interest rate, the higher the payment will be. Even seemingly small differences in interest rates can have substantial impacts on your total cost of borrowing. For example, on a $250,000 30-year mortgage, the difference between a 6% rate ($1,499/month) and a 7% rate ($1,663/month) is $164 per month, or nearly $59,000 over the life of the loan.
+          </p>
+
+          <p>
+            Several factors affect the interest rate you'll be offered by lenders. Your credit score is perhaps the most significant determinant—borrowers with excellent credit (scores above 740) typically qualify for the lowest rates, while those with poor credit may face rates several percentage points higher. Your income and employment stability also play crucial roles, as lenders want assurance you can repay the loan. The loan term affects your rate as well, with shorter-term loans generally offering lower rates because the lender's money is at risk for less time. Finally, the broader economic environment and Federal Reserve policies influence baseline interest rates across all loan types.
+          </p>
+
+          <h3>Loan Term (Number of Payments)</h3>
+          <p>
+            The term, or total number of payments on the loan, is the final major factor affecting your monthly payment amount. In this case, the relationship is inverse: the higher the term (longer loan period), the lower the monthly payment will be. Conversely, the lower the term (shorter loan period), the higher the monthly payment. This might seem counterintuitive at first, but it makes sense when you consider that you're spreading the same loan amount over more or fewer payments.
+          </p>
+
+          <p>
+            For example, a $30,000 auto loan at 5% interest would have a monthly payment of $566 over 5 years (60 months), but only $472 over 6 years (72 months)—a difference of $94 per month. However, the longer term costs significantly more in total: $33,960 versus $33,936, with the 6-year loan accumulating an additional $1,224 in interest charges despite the lower monthly payment. This illustrates why shorter loan terms, while requiring higher monthly payments, save substantial money over time by reducing total interest paid.
+          </p>
+
+          <p>
+            With a lower term, more money will need to be paid each month to pay off the loan in a shorter amount of time, but you'll build equity faster and pay significantly less in total interest. The interest rate itself is also usually lower with a shorter-term loan because the lender is getting their money back sooner, reducing their risk exposure. For instance, 15-year mortgages typically have interest rates 0.5% to 0.75% lower than comparable 30-year mortgages. You can use our <a href="/financial/loan-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">loan payoff calculator</a> to see how long it would take to pay off a loan at different payment amounts and explore various payoff strategies.
+          </p>
+
+          <h2>Types of Loans</h2>
+          <p>
+            Understanding the different types of loans available helps you choose the right financing option for your specific needs. There are three main categories of loans: real estate loans, consumer loans, and business loans. Each category has distinct characteristics, typical terms, and interest rate ranges that reflect their purpose and risk profile.
+          </p>
+
+          <h3>Real Estate Loans</h3>
+          <p>
+            Real estate loans consist primarily of first mortgages and second mortgages (also called home equity loans or HELOCs). A first mortgage is the initial loan you obtain when purchasing a home, typically representing 80% or more of the property's value if you make a 20% down payment. These are usually the largest loans most people will ever take out, with terms commonly ranging from 15 to 30 years and current interest rates between 6% and 8% depending on creditworthiness and market conditions.
+          </p>
+
+          <p>
+            A second mortgage, home equity loan, or home equity line of credit (HELOC) is an additional loan secured against your house at a later point in time, after you've built up equity. Homeowners often use second mortgages by tapping into the equity of their home to make improvements on the property, consolidate higher-interest debt, or fund major expenses like college tuition. These typically have higher interest rates than first mortgages because they're in a subordinate position—if you default, the first mortgage lender gets paid before the second mortgage lender. Our <a href="/financial/heloc-payment" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC payment calculator</a> can help you estimate costs for home equity borrowing.
+          </p>
+
+          <h3>Consumer Loans</h3>
+          <p>
+            The second loan category is consumer loans, which encompass a wide variety of borrowing for personal use. Consumer loans may consist of credit cards (revolving credit with variable rates typically between 15% and 25%), auto loans (secured loans with terms of 3-7 years and rates from 4% to 10%), student loans (education financing with terms up to 25 years and rates from 4% to 12% depending on federal vs. private), and personal loans (unsecured loans for any purpose with terms of 2-7 years and rates from 6% to 36%).
+          </p>
+
+          <p>
+            Each type of consumer loan serves different purposes and has distinct features. Auto loans are secured by the vehicle itself, resulting in lower rates than unsecured personal loans. Federal student loans offer borrower protections and income-driven repayment options not available with private loans. Credit cards provide flexibility but charge the highest interest rates, making them expensive for long-term borrowing. Our <a href="/financial/auto-loan" className="text-blue-600 dark:text-blue-400 hover:underline">auto loan calculator</a> and <a href="/financial/student-loan" className="text-blue-600 dark:text-blue-400 hover:underline">student loan calculator</a> can help you plan for these specific types of consumer debt.
+          </p>
+
+          <h3>Business Loans</h3>
+          <p>
+            The final type of loan is a business or commercial loan. These are loans that an individual or company uses to start or grow a business, purchase equipment, finance inventory, or manage cash flow. Business loans come in many forms including term loans (lump sum repaid over set period), lines of credit (revolving access to funds), SBA loans (government-backed loans with favorable terms), and equipment financing (secured by the equipment purchased).
+          </p>
+
+          <p>
+            Interest rates on business loans vary widely based on the business's financial health, time in operation, creditworthiness, and the specific loan type. Established businesses with strong financials might secure rates as low as 5-7%, while startups or higher-risk ventures could face rates of 10-20% or more. The loan term also varies significantly, from short-term working capital loans of 6-18 months to long-term equipment or real estate loans extending 10-25 years. Understanding these loan types ensures you can select the right financing vehicle for your specific situation and negotiate the best possible terms.
+          </p>
+
+          <p>
+            Overall, it's important to understand how to calculate a loan payment and the different types of loans available to ensure you understand what type of loan is right for you and whether you can afford the monthly obligations. Taking time to shop around for the best rates and terms can save you tens of thousands of dollars over the life of your loan.
+          </p>
+
+          <h2>Frequently Asked Questions</h2>
+
+          <h3>Why is understanding the loan payment amount important?</h3>
+          <p>
+            Understanding what a loan payment will be is critical to ensure you are able to afford the loan without stretching your budget too thin. It's also important to understand any hidden costs or fees that factor into a loan payment, such as origination fees, closing costs, or mortgage insurance, so you understand the true cost of borrowing and whether it is worth it to you or not. Financial experts recommend that your total monthly debt obligations should not exceed 36% of your gross monthly income to maintain financial stability. Knowing your exact payment amount allows you to plan your budget accordingly, avoid overextending yourself financially, and make informed decisions about whether to proceed with the loan or look for alternatives.
+          </p>
+
+          <h3>What should you not do during the process of taking out a loan?</h3>
+          <p>
+            If you are currently awaiting approval on any type of loan, it's generally a good idea not to make any large purchases, not to switch jobs, and be sure to pay any current loan payments on time. Anything that can change your credit score or debt-to-income ratio is cautioned against during the process of obtaining a loan because lenders verify your financial information right up until closing. Opening new credit cards, financing furniture or appliances, or taking on any additional debt can jeopardize your loan approval even after you've received initial approval. Similarly, changing employers—especially if moving to a new field or starting your own business—can raise red flags for lenders concerned about income stability. Late payments during the approval process can also cause lenders to withdraw their offer or increase your interest rate substantially.
+          </p>
+
+          <h3>Are all types of loans equal?</h3>
+          <p>
+            All types of loans are definitely not equal, and understanding these differences can save you significant money. Mortgage loans typically have the lowest interest rates because they have substantial collateral backing them—if a borrower does not pay, the lender can take back the home and sell it to recover their funds. This security allows lenders to offer rates in the 6-8% range for qualified borrowers. Consumer loans tend to have higher interest rates because they have no collateral (like personal loans) or less valuable collateral (like auto loans where vehicles depreciate rapidly). These loans can range from 4% for prime auto loans to 25%+ for credit cards. Finally, business or commercial loans' interest rates tend to also be higher than mortgage loans due to greater risk, but the viability and financial strength of the business can significantly impact the interest rate offered. A well-established business with strong cash flow might secure rates comparable to consumer loans, while a startup might face double-digit rates reflecting the higher risk of business failure.
+          </p>
+
+          <h3>Can I pay off my loan early to save on interest?</h3>
+          <p>
+            In most cases, yes—paying off your loan early can save you substantial money in interest charges because interest accrues on the outstanding balance. However, some loans include prepayment penalties that charge fees if you pay off the loan before the scheduled term ends. These penalties are designed to compensate lenders for the interest income they'll lose. Before making extra payments or paying off a loan entirely, check your loan agreement for prepayment penalty clauses. Many mortgages originated after 2014 don't have prepayment penalties due to consumer protection regulations, but some commercial loans, auto loans, and personal loans may still include them. Even a small prepayment penalty might be worthwhile if you'll save significantly more in interest, but it's essential to do the math first.
+          </p>
+
+          <h3>How does my credit score affect my loan payment?</h3>
+          <p>
+            Your credit score has a profound impact on your loan payment through its effect on the interest rate you're offered. Lenders use credit scores to assess risk—borrowers with higher scores (740+) demonstrate a history of responsible credit management and qualify for the lowest interest rates available. Those with lower scores (below 640) are considered higher risk and face significantly higher rates, sometimes 2-4 percentage points higher than prime borrowers. On a $250,000 30-year mortgage, the difference between a 6% rate (excellent credit) and an 8% rate (fair credit) is $331 per month, or nearly $119,000 over the loan's lifetime. This demonstrates why improving your credit score before applying for a loan is one of the most valuable financial moves you can make. Even a 20-30 point improvement in your score can result in a better rate tier and substantial savings.
+          </p>
+
+          <h2>References</h2>
+          <ul className="space-y-2">
+            <li>
+              <a href="https://www.federalreserve.gov/releases/g19/current/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                Federal Reserve - Consumer Credit Statistics
+              </a>
+            </li>
+            <li>
+              <a href="https://www.consumerfinance.gov/owning-a-home/loan-options/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                Consumer Financial Protection Bureau - Loan Options
+              </a>
+            </li>
+            <li>
+              <a href="https://www.fdic.gov/consumers/consumer/moneysmart/pubs/borrowing/borrowing.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                FDIC - Money Smart Guide to Borrowing
+              </a>
+            </li>
+            <li>
+              <a href="https://www.irs.gov/publications/p936" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                IRS Publication 936 - Home Mortgage Interest Deduction
+              </a>
+            </li>
+            <li>
+              <a href="https://www.sba.gov/funding-programs/loans" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                U.S. Small Business Administration - Loan Programs
+              </a>
+            </li>
+            <li>
+              <a href="https://studentaid.gov/understand-aid/types/loans" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                Federal Student Aid - Types of Loans
+              </a>
+            </li>
+            <li>
+              <a href="https://www.occ.treas.gov/topics/consumers-and-communities/consumer-protection/index-consumer-protection.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                Office of the Comptroller of the Currency - Consumer Protection
+              </a>
+            </li>
+            <li>
+              <a href="https://www.bankrate.com/calculators/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                Bankrate - Financial Calculators and Tools
+              </a>
+            </li>
+          </ul>
         </div>
       }
     />
