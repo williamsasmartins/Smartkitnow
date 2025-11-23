@@ -182,21 +182,23 @@ export default function CalculatorVerticalLayout({
             />
           )}
 
-          {/* TÍTULO + DESCRIÇÃO SEO */}
+          {/* TÍTULO + DESCRIÇÃO SEO - COM LIMITE DE LARGURA */}
           {showTitle && (
             <div className="mx-4 sm:mx-6 mb-6">
-              <h1 className="text-3xl font-bold mb-3" style={{ color: "#5c82ee" }}>
-                {title}
-              </h1>
-              {description && (
-                <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                  {description}
-                </p>
-              )}
+              <div className="max-w-3xl">
+                <h1 className="text-3xl font-bold mb-3" style={{ color: "#5c82ee" }}>
+                  {title}
+                </h1>
+                {description && (
+                  <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {description}
+                  </p>
+                )}
+              </div>
             </div>
           )}
 
-          {/* WIDGET NO TOPO - 768px (max-w-3xl) - PERFEITO! NÃO MEXER! */}
+          {/* WIDGET NO TOPO - 768px (max-w-3xl) */}
           <section 
             className="mx-4 sm:mx-6 mb-8"
             aria-label="Calculator widget"
