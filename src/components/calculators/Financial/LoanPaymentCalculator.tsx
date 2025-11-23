@@ -111,15 +111,12 @@ export default function LoanPaymentCalculator() {
   return (
     <CalculatorVerticalLayout
       title="Loan Payment Calculator"
+      description="Calculate the monthly payment for a loan using our simple loan calculator by entering the principal, interest rate, and term below."
       maxWidth={1200}
       gap={32}
       showTopBanner
       widget={
         <div className="space-y-6">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Calculate the monthly payment for a loan using our simple loan calculator by entering the principal, interest rate, and term below.
-          </p>
-
           {/* Input Fields */}
           <div className="space-y-4">
             <div>
@@ -294,187 +291,280 @@ export default function LoanPaymentCalculator() {
       }
       editorial={
         <div className="prose prose-lg dark:prose-invert max-w-none">
-          <h2>How to Calculate a Loan Payment</h2>
-          <p>
+          {/* H2 MAIOR + ESPAÇAMENTO */}
+          <h2 className="text-3xl font-bold mb-6 mt-8">How to Calculate a Loan Payment</h2>
+          
+          <p className="mb-6 leading-relaxed">
             Calculating the amount of a loan payment is an important first step for anyone considering taking out a loan. Whether you're financing a home, purchasing a vehicle, or consolidating debt, understanding your monthly payment obligations is crucial for sound financial planning. According to the Federal Reserve's latest Consumer Credit report, the average American household carries over $104,000 in debt across mortgages, auto loans, credit cards, and student loans, making payment planning more essential than ever.
           </p>
 
-          <p>
-            You need to make sure that you will be able to pay back the loan comfortably within your budget. If the loan payments take up too much of an individual's income, it could become a major financial burden and potentially lead to default. Financial advisors typically recommend that your total monthly debt payments should not exceed 36% of your gross monthly income, with housing costs specifically staying under 28%. Our loan payment calculator helps you determine exactly what you can afford before making a commitment.
+          <p className="mb-8 leading-relaxed">
+            You need to make sure that you will be able to pay back the loan comfortably within your budget. If the loan payments take up too much of an individual's income, it could become a major financial burden and potentially lead to default. Financial advisors typically recommend that your total monthly debt payments should not exceed 36% of your gross monthly income, with housing costs specifically staying under 28%.
           </p>
 
-          <h3>Loan Payment Formula</h3>
-          <p>
-            The loan payment formula uses a mathematical calculation to determine your exact monthly payment based on three key variables: the loan amount (principal), the annual interest rate (APR), and the total number of payments. This formula is derived from the amortization concept, which ensures that each payment includes both principal repayment and interest charges, with the loan fully paid off by the end of the term.
+          {/* H3 MAIOR + ESPAÇAMENTO */}
+          <h3 className="text-xl font-bold mb-4 mt-8">Loan Payment Formula</h3>
+          
+          <p className="mb-6 leading-relaxed">
+            The loan payment formula uses a mathematical calculation to determine your exact monthly payment based on three key variables: the loan amount (principal), the annual interest rate (APR), and the total number of payments.
           </p>
 
-          <div className="my-8 rounded-lg border-2 border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-950 p-6">
-            <div className="bg-white dark:bg-gray-900 rounded p-4 font-mono text-center">
-              <div className="text-xl font-semibold">
-                PMT = PV × [r(1 + r)ⁿ] / [(1 + r)ⁿ - 1]
+          {/* FÓRMULA GRANDE E VISÍVEL - ESTILO IMAGEM */}
+          <div className="my-10 p-8 rounded-xl border-4 border-blue-500 dark:border-blue-400 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950">
+            <div className="text-center mb-6">
+              <div className="inline-block bg-white dark:bg-gray-900 rounded-lg px-8 py-6 shadow-lg">
+                <div className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                  Loan Payment Formula
+                </div>
+                <div className="h-1 w-32 bg-blue-500 mx-auto mb-6"></div>
+                <div className="text-2xl font-mono text-gray-900 dark:text-gray-100 leading-relaxed">
+                  PMT = PV × [r(1 + r)ⁿ] / [(1 + r)ⁿ - 1]
+                </div>
               </div>
             </div>
-            <div className="mt-4 space-y-2 text-sm">
-              <p className="font-semibold">Where:</p>
-              <ul className="space-y-1 ml-4">
-                <li><strong>PMT</strong> = monthly payment amount</li>
-                <li><strong>PV</strong> = present value (remaining principal or loan amount)</li>
-                <li><strong>r</strong> = periodic interest rate (annual rate ÷ 12 months)</li>
-                <li><strong>n</strong> = total number of monthly payments</li>
-              </ul>
+            
+            <div className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md">
+              <p className="font-bold text-lg mb-4 text-gray-900 dark:text-gray-100">Where:</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-base">
+                <div className="flex items-start">
+                  <span className="font-bold text-blue-600 dark:text-blue-400 mr-2">PMT =</span>
+                  <span className="text-gray-900 dark:text-gray-100">monthly payment amount</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="font-bold text-blue-600 dark:text-blue-400 mr-2">PV =</span>
+                  <span className="text-gray-900 dark:text-gray-100">present value (loan amount)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="font-bold text-blue-600 dark:text-blue-400 mr-2">r =</span>
+                  <span className="text-gray-900 dark:text-gray-100">periodic interest rate (annual rate ÷ 12)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="font-bold text-blue-600 dark:text-blue-400 mr-2">n =</span>
+                  <span className="text-gray-900 dark:text-gray-100">total number of monthly payments</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <p>
-            For example, let's say you're considering getting an auto loan with the following terms: $25,000 loan amount at 4% annual interest for 5 years. First, we need to adjust the numbers so they will work with the loan payment formula. The formula requires a periodic (monthly) interest rate, so we need to divide the 4% annual interest rate by 12 months to arrive at a periodic interest rate of 0.3333% (or 0.003333 in decimal form). Additionally, the number of payments is found by multiplying 5 years by 12 months, which equals 60 total monthly payments.
+          {/* EXEMPLO PASSO A PASSO BEM FORMATADO */}
+          <div className="my-10 p-6 rounded-xl border-2 border-green-500 dark:border-green-400 bg-green-50 dark:bg-green-950">
+            <div className="flex items-center mb-4">
+              <span className="text-3xl mr-3">💡</span>
+              <h4 className="text-xl font-bold text-gray-900 dark:text-gray-100">Example Calculation</h4>
+            </div>
+            
+            <p className="mb-4 text-gray-900 dark:text-gray-100 leading-relaxed">
+              For example, let's say someone is considering getting an auto loan with the following terms: <strong>$25,000 loan at 4% interest for 5 years</strong>.
+            </p>
+
+            <div className="bg-white dark:bg-gray-900 rounded-lg p-5 mb-4">
+              <p className="font-semibold mb-3 text-gray-900 dark:text-gray-100">Step 1: Convert annual rate to monthly rate</p>
+              <p className="text-gray-900 dark:text-gray-100 mb-2">
+                The formula requires a periodic (monthly) <strong>interest rate</strong>, so we need to divide the 4% interest rate by 12 months:
+              </p>
+              <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded font-mono text-center text-gray-900 dark:text-gray-100">
+                4% ÷ 12 = 0.3333% per month (or 0.003333 in decimal)
+              </div>
+            </div>
+
+            <div className="bg-white dark:bg-gray-900 rounded-lg p-5 mb-4">
+              <p className="font-semibold mb-3 text-gray-900 dark:text-gray-100">Step 2: Calculate total number of payments</p>
+              <p className="text-gray-900 dark:text-gray-100 mb-2">
+                Number of payments = 5 years × 12 months per year:
+              </p>
+              <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded font-mono text-center text-gray-900 dark:text-gray-100">
+                5 × 12 = 60 payments
+              </div>
+            </div>
+
+            <div className="bg-white dark:bg-gray-900 rounded-lg p-5 mb-4">
+              <p className="font-semibold mb-3 text-gray-900 dark:text-gray-100">Step 3: Plug into the formula</p>
+              <div className="space-y-2 text-gray-900 dark:text-gray-100">
+                <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded font-mono text-sm">
+                  PMT = $25,000 × [0.003333(1 + 0.003333)⁶⁰] / [(1 + 0.003333)⁶⁰ - 1]
+                </div>
+                <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded font-mono text-sm">
+                  PMT = $25,000 × [0.003333(1.221964)] / [1.221964 - 1]
+                </div>
+                <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded font-mono text-sm">
+                  PMT = $25,000 × 0.004074 / 0.221964
+                </div>
+                <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded font-mono text-sm">
+                  PMT = $101.85 / 0.221964
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 rounded-lg p-5 text-white">
+              <p className="font-semibold mb-2 text-lg">Result:</p>
+              <p className="text-2xl font-bold">
+                Monthly Payment = $460.41
+              </p>
+              <p className="mt-3 text-sm opacity-90">
+                Total repayment: $27,624.60 (you'll pay $2,624.60 in interest)
+              </p>
+            </div>
+          </div>
+
+          <p className="mb-8 leading-relaxed">
+            You can also use an <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">amortization calculator</a> to find the monthly payment and see how much of each monthly payment goes toward principal and how much goes toward interest.
           </p>
 
-          <p>
-            Let's plug these numbers into the loan payment formula: PMT = 25,000 × [0.003333(1 + 0.003333)⁶⁰] / [(1 + 0.003333)⁶⁰ - 1]. Working through the calculation, we get: PMT = 25,000 × [0.003333(1.221964)] / [1.221964 - 1] = 25,000 × 0.004074 / 0.221964 = $460.41. Under these circumstances, the monthly loan payment will be $460.41, with a total repayment of $27,624.60 over the life of the loan, meaning you'll pay $2,624.60 in interest charges.
+          {/* H2 MAIOR + ESPAÇAMENTO */}
+          <h2 className="text-3xl font-bold mb-6 mt-12">What Factors Affect Loan Payments</h2>
+          
+          <p className="mb-8 leading-relaxed">
+            The three primary factors that affect loan payments are the loan balance, interest rate, and term of the loan. Understanding how each of these variables impacts your monthly payment allows you to make strategic decisions that can save you thousands of dollars over the life of your loan.
           </p>
 
-          <p>
-            You can also use an <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">amortization calculator</a> to find the monthly payment and see how much of each monthly payment goes toward principal and how much goes toward interest. Early in the loan term, a larger portion of your payment goes toward interest, while later payments contribute more to principal reduction. This is why making extra payments early in your loan can save you significant money in interest charges over time.
-          </p>
-
-          <h2>What Factors Affect Loan Payments</h2>
-          <p>
-            The three primary factors that affect loan payments are the loan balance, interest rate, and term of the loan. Understanding how each of these variables impacts your monthly payment allows you to make strategic decisions that can save you thousands of dollars over the life of your loan. Let's examine each of these factors in detail and explore how they interact to determine your total borrowing costs.
-          </p>
-
-          <h3>Loan Balance (Principal Amount)</h3>
-          <p>
+          {/* H3 MAIOR + ESPAÇAMENTO */}
+          <h3 className="text-xl font-bold mb-4 mt-8">Loan Balance (Principal Amount)</h3>
+          
+          <p className="mb-6 leading-relaxed">
             The remaining principal of a loan, also known as the loan balance, is the foundation of your payment calculation. The higher the loan balance, the higher the monthly payment will be, assuming all other factors remain constant. For instance, a $200,000 mortgage at 6% for 30 years results in a monthly payment of approximately $1,199, while a $300,000 mortgage under the same terms would cost around $1,799 per month—a $600 difference solely due to the larger principal.
           </p>
 
-          <p>
-            The reverse holds true for a lower principal amount. You should pay the largest down payment that you can reasonably afford on a loan in order to reduce both the monthly payment and the total interest paid over the life of the loan. Financial experts typically recommend a 20% down payment on homes to avoid private mortgage insurance (PMI) and secure better interest rates. For auto loans, putting down at least 20% can help ensure you don't end up owing more than the vehicle is worth due to depreciation.
+          <p className="mb-8 leading-relaxed">
+            You should pay the largest down payment that you can reasonably afford on a loan in order to reduce both the monthly payment and the total interest paid over the life of the loan. Financial experts typically recommend a 20% down payment on homes to avoid private mortgage insurance (PMI) and secure better interest rates.
           </p>
 
-          <h3>Interest Rate</h3>
-          <p>
+          {/* H3 MAIOR + ESPAÇAMENTO */}
+          <h3 className="text-xl font-bold mb-4 mt-8">Interest Rate</h3>
+          
+          <p className="mb-6 leading-relaxed">
             The interest rate is another critical factor for determining your loan payment. Similar to the loan balance, the higher the interest rate, the higher the payment will be. Even seemingly small differences in interest rates can have substantial impacts on your total cost of borrowing. For example, on a $250,000 30-year mortgage, the difference between a 6% rate ($1,499/month) and a 7% rate ($1,663/month) is $164 per month, or nearly $59,000 over the life of the loan.
           </p>
 
-          <p>
-            Several factors affect the interest rate you'll be offered by lenders. Your credit score is perhaps the most significant determinant—borrowers with excellent credit (scores above 740) typically qualify for the lowest rates, while those with poor credit may face rates several percentage points higher. Your income and employment stability also play crucial roles, as lenders want assurance you can repay the loan. The loan term affects your rate as well, with shorter-term loans generally offering lower rates because the lender's money is at risk for less time. Finally, the broader economic environment and Federal Reserve policies influence baseline interest rates across all loan types.
+          <p className="mb-8 leading-relaxed">
+            Your credit score is perhaps the most significant determinant—borrowers with excellent credit (scores above 740) typically qualify for the lowest rates, while those with poor credit may face rates several percentage points higher. The broader economic environment and Federal Reserve policies also influence baseline interest rates across all loan types.
           </p>
 
-          <h3>Loan Term (Number of Payments)</h3>
-          <p>
-            The term, or total number of payments on the loan, is the final major factor affecting your monthly payment amount. In this case, the relationship is inverse: the higher the term (longer loan period), the lower the monthly payment will be. Conversely, the lower the term (shorter loan period), the higher the monthly payment. This might seem counterintuitive at first, but it makes sense when you consider that you're spreading the same loan amount over more or fewer payments.
+          {/* H3 MAIOR + ESPAÇAMENTO */}
+          <h3 className="text-xl font-bold mb-4 mt-8">Loan Term (Number of Payments)</h3>
+          
+          <p className="mb-6 leading-relaxed">
+            The term, or total number of payments on the loan, is the final major factor affecting your monthly payment amount. The relationship is inverse: the longer the loan period, the lower the monthly payment will be. For example, a $30,000 auto loan at 5% interest would have a monthly payment of $566 over 5 years (60 months), but only $472 over 6 years (72 months)—a difference of $94 per month.
           </p>
 
-          <p>
-            For example, a $30,000 auto loan at 5% interest would have a monthly payment of $566 over 5 years (60 months), but only $472 over 6 years (72 months)—a difference of $94 per month. However, the longer term costs significantly more in total: $33,960 versus $33,936, with the 6-year loan accumulating an additional $1,224 in interest charges despite the lower monthly payment. This illustrates why shorter loan terms, while requiring higher monthly payments, save substantial money over time by reducing total interest paid.
+          <p className="mb-8 leading-relaxed">
+            However, the longer term costs significantly more in total: $33,960 versus $33,936, with the 6-year loan accumulating an additional $1,224 in interest charges despite the lower monthly payment. You can use our <a href="/financial/loan-payoff" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">loan payoff calculator</a> to see how long it would take to pay off a loan at different payment amounts.
           </p>
 
-          <p>
-            With a lower term, more money will need to be paid each month to pay off the loan in a shorter amount of time, but you'll build equity faster and pay significantly less in total interest. The interest rate itself is also usually lower with a shorter-term loan because the lender is getting their money back sooner, reducing their risk exposure. For instance, 15-year mortgages typically have interest rates 0.5% to 0.75% lower than comparable 30-year mortgages. You can use our <a href="/financial/loan-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">loan payoff calculator</a> to see how long it would take to pay off a loan at different payment amounts and explore various payoff strategies.
+          {/* H2 MAIOR + ESPAÇAMENTO */}
+          <h2 className="text-3xl font-bold mb-6 mt-12">Types of Loans</h2>
+          
+          <p className="mb-8 leading-relaxed">
+            Understanding the different types of loans available helps you choose the right financing option for your specific needs. There are three main categories of loans: real estate loans, consumer loans, and business loans.
           </p>
 
-          <h2>Types of Loans</h2>
-          <p>
-            Understanding the different types of loans available helps you choose the right financing option for your specific needs. There are three main categories of loans: real estate loans, consumer loans, and business loans. Each category has distinct characteristics, typical terms, and interest rate ranges that reflect their purpose and risk profile.
+          {/* H3 MAIOR + ESPAÇAMENTO */}
+          <h3 className="text-xl font-bold mb-4 mt-8">Real Estate Loans</h3>
+          
+          <p className="mb-6 leading-relaxed">
+            Real estate loans consist primarily of first mortgages and second mortgages (also called home equity loans or HELOCs). A first mortgage is the initial loan you obtain when purchasing a home, typically representing 80% or more of the property's value if you make a 20% down payment.
           </p>
 
-          <h3>Real Estate Loans</h3>
-          <p>
-            Real estate loans consist primarily of first mortgages and second mortgages (also called home equity loans or HELOCs). A first mortgage is the initial loan you obtain when purchasing a home, typically representing 80% or more of the property's value if you make a 20% down payment. These are usually the largest loans most people will ever take out, with terms commonly ranging from 15 to 30 years and current interest rates between 6% and 8% depending on creditworthiness and market conditions.
+          <p className="mb-8 leading-relaxed">
+            A second mortgage or home equity line of credit (HELOC) is an additional loan secured against your house after you've built up equity. Homeowners often use these by tapping into the equity of their home to make improvements, consolidate higher-interest debt, or fund major expenses. Our <a href="/financial/heloc-payment" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">HELOC payment calculator</a> can help you estimate costs for home equity borrowing.
           </p>
 
-          <p>
-            A second mortgage, home equity loan, or home equity line of credit (HELOC) is an additional loan secured against your house at a later point in time, after you've built up equity. Homeowners often use second mortgages by tapping into the equity of their home to make improvements on the property, consolidate higher-interest debt, or fund major expenses like college tuition. These typically have higher interest rates than first mortgages because they're in a subordinate position—if you default, the first mortgage lender gets paid before the second mortgage lender. Our <a href="/financial/heloc-payment" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC payment calculator</a> can help you estimate costs for home equity borrowing.
+          {/* H3 MAIOR + ESPAÇAMENTO */}
+          <h3 className="text-xl font-bold mb-4 mt-8">Consumer Loans</h3>
+          
+          <p className="mb-6 leading-relaxed">
+            Consumer loans encompass a wide variety of borrowing for personal use, including credit cards (revolving credit with variable rates typically between 15-25%), auto loans (secured loans with terms of 3-7 years and rates from 4-10%), student loans (education financing with terms up to 25 years), and personal loans (unsecured loans for any purpose with terms of 2-7 years and rates from 6-36%).
           </p>
 
-          <h3>Consumer Loans</h3>
-          <p>
-            The second loan category is consumer loans, which encompass a wide variety of borrowing for personal use. Consumer loans may consist of credit cards (revolving credit with variable rates typically between 15% and 25%), auto loans (secured loans with terms of 3-7 years and rates from 4% to 10%), student loans (education financing with terms up to 25 years and rates from 4% to 12% depending on federal vs. private), and personal loans (unsecured loans for any purpose with terms of 2-7 years and rates from 6% to 36%).
+          <p className="mb-8 leading-relaxed">
+            Our <a href="/financial/auto-loan" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">auto loan calculator</a> and <a href="/financial/student-loan" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">student loan calculator</a> can help you plan for these specific types of consumer debt.
           </p>
 
-          <p>
-            Each type of consumer loan serves different purposes and has distinct features. Auto loans are secured by the vehicle itself, resulting in lower rates than unsecured personal loans. Federal student loans offer borrower protections and income-driven repayment options not available with private loans. Credit cards provide flexibility but charge the highest interest rates, making them expensive for long-term borrowing. Our <a href="/financial/auto-loan" className="text-blue-600 dark:text-blue-400 hover:underline">auto loan calculator</a> and <a href="/financial/student-loan" className="text-blue-600 dark:text-blue-400 hover:underline">student loan calculator</a> can help you plan for these specific types of consumer debt.
+          {/* H3 MAIOR + ESPAÇAMENTO */}
+          <h3 className="text-xl font-bold mb-4 mt-8">Business Loans</h3>
+          
+          <p className="mb-8 leading-relaxed">
+            Business or commercial loans are loans that an individual or company uses to start or grow a business, purchase equipment, finance inventory, or manage cash flow. Interest rates vary widely based on the business's financial health, time in operation, and creditworthiness. Established businesses with strong financials might secure rates as low as 5-7%, while startups or higher-risk ventures could face rates of 10-20% or more.
           </p>
 
-          <h3>Business Loans</h3>
-          <p>
-            The final type of loan is a business or commercial loan. These are loans that an individual or company uses to start or grow a business, purchase equipment, finance inventory, or manage cash flow. Business loans come in many forms including term loans (lump sum repaid over set period), lines of credit (revolving access to funds), SBA loans (government-backed loans with favorable terms), and equipment financing (secured by the equipment purchased).
+          {/* H2 MAIOR + ESPAÇAMENTO */}
+          <h2 className="text-3xl font-bold mb-6 mt-12">Frequently Asked Questions</h2>
+
+          {/* H3 MAIOR + ESPAÇAMENTO */}
+          <h3 className="text-xl font-bold mb-4 mt-8">Why is understanding the loan payment amount important?</h3>
+          
+          <p className="mb-8 leading-relaxed">
+            Understanding what a loan payment will be is critical to ensure you are able to afford the loan without stretching your budget too thin. Financial experts recommend that your total monthly debt obligations should not exceed 36% of your gross monthly income to maintain financial stability. Knowing your exact payment amount allows you to plan your budget accordingly and avoid overextending yourself financially.
           </p>
 
-          <p>
-            Interest rates on business loans vary widely based on the business's financial health, time in operation, creditworthiness, and the specific loan type. Established businesses with strong financials might secure rates as low as 5-7%, while startups or higher-risk ventures could face rates of 10-20% or more. The loan term also varies significantly, from short-term working capital loans of 6-18 months to long-term equipment or real estate loans extending 10-25 years. Understanding these loan types ensures you can select the right financing vehicle for your specific situation and negotiate the best possible terms.
+          {/* H3 MAIOR + ESPAÇAMENTO */}
+          <h3 className="text-xl font-bold mb-4 mt-8">What should you not do during the process of taking out a loan?</h3>
+          
+          <p className="mb-8 leading-relaxed">
+            If you are currently awaiting approval on any type of loan, avoid making large purchases, switching jobs, or opening new credit accounts. Anything that can change your credit score or debt-to-income ratio is cautioned against during the approval process because lenders verify your financial information right up until closing. Late payments during this period can also cause lenders to withdraw their offer or increase your interest rate substantially.
           </p>
 
-          <p>
-            Overall, it's important to understand how to calculate a loan payment and the different types of loans available to ensure you understand what type of loan is right for you and whether you can afford the monthly obligations. Taking time to shop around for the best rates and terms can save you tens of thousands of dollars over the life of your loan.
+          {/* H3 MAIOR + ESPAÇAMENTO */}
+          <h3 className="text-xl font-bold mb-4 mt-8">Are all types of loans equal?</h3>
+          
+          <p className="mb-8 leading-relaxed">
+            All types of loans are definitely not equal. Mortgage loans typically have the lowest interest rates (6-8% range) because they have substantial collateral backing them. Consumer loans tend to have higher interest rates because they have less collateral, ranging from 4% for prime auto loans to 25%+ for credit cards. Business loans' interest rates vary significantly based on the business's financial strength and risk profile.
           </p>
 
-          <h2>Frequently Asked Questions</h2>
-
-          <h3>Why is understanding the loan payment amount important?</h3>
-          <p>
-            Understanding what a loan payment will be is critical to ensure you are able to afford the loan without stretching your budget too thin. It's also important to understand any hidden costs or fees that factor into a loan payment, such as origination fees, closing costs, or mortgage insurance, so you understand the true cost of borrowing and whether it is worth it to you or not. Financial experts recommend that your total monthly debt obligations should not exceed 36% of your gross monthly income to maintain financial stability. Knowing your exact payment amount allows you to plan your budget accordingly, avoid overextending yourself financially, and make informed decisions about whether to proceed with the loan or look for alternatives.
+          {/* H3 MAIOR + ESPAÇAMENTO */}
+          <h3 className="text-xl font-bold mb-4 mt-8">Can I pay off my loan early to save on interest?</h3>
+          
+          <p className="mb-8 leading-relaxed">
+            In most cases, yes—paying off your loan early can save you substantial money in interest charges. However, some loans include prepayment penalties that charge fees if you pay off the loan before the scheduled term ends. Before making extra payments, check your loan agreement for prepayment penalty clauses. Many mortgages originated after 2014 don't have prepayment penalties due to consumer protection regulations.
           </p>
 
-          <h3>What should you not do during the process of taking out a loan?</h3>
-          <p>
-            If you are currently awaiting approval on any type of loan, it's generally a good idea not to make any large purchases, not to switch jobs, and be sure to pay any current loan payments on time. Anything that can change your credit score or debt-to-income ratio is cautioned against during the process of obtaining a loan because lenders verify your financial information right up until closing. Opening new credit cards, financing furniture or appliances, or taking on any additional debt can jeopardize your loan approval even after you've received initial approval. Similarly, changing employers—especially if moving to a new field or starting your own business—can raise red flags for lenders concerned about income stability. Late payments during the approval process can also cause lenders to withdraw their offer or increase your interest rate substantially.
+          {/* H3 MAIOR + ESPAÇAMENTO */}
+          <h3 className="text-xl font-bold mb-4 mt-8">How does my credit score affect my loan payment?</h3>
+          
+          <p className="mb-8 leading-relaxed">
+            Your credit score has a profound impact on your loan payment through its effect on the interest rate you're offered. Borrowers with higher scores (740+) qualify for the lowest interest rates, while those with lower scores (below 640) face significantly higher rates, sometimes 2-4 percentage points higher. On a $250,000 30-year mortgage, the difference between a 6% rate (excellent credit) and an 8% rate (fair credit) is $331 per month, or nearly $119,000 over the loan's lifetime.
           </p>
 
-          <h3>Are all types of loans equal?</h3>
-          <p>
-            All types of loans are definitely not equal, and understanding these differences can save you significant money. Mortgage loans typically have the lowest interest rates because they have substantial collateral backing them—if a borrower does not pay, the lender can take back the home and sell it to recover their funds. This security allows lenders to offer rates in the 6-8% range for qualified borrowers. Consumer loans tend to have higher interest rates because they have no collateral (like personal loans) or less valuable collateral (like auto loans where vehicles depreciate rapidly). These loans can range from 4% for prime auto loans to 25%+ for credit cards. Finally, business or commercial loans' interest rates tend to also be higher than mortgage loans due to greater risk, but the viability and financial strength of the business can significantly impact the interest rate offered. A well-established business with strong cash flow might secure rates comparable to consumer loans, while a startup might face double-digit rates reflecting the higher risk of business failure.
-          </p>
-
-          <h3>Can I pay off my loan early to save on interest?</h3>
-          <p>
-            In most cases, yes—paying off your loan early can save you substantial money in interest charges because interest accrues on the outstanding balance. However, some loans include prepayment penalties that charge fees if you pay off the loan before the scheduled term ends. These penalties are designed to compensate lenders for the interest income they'll lose. Before making extra payments or paying off a loan entirely, check your loan agreement for prepayment penalty clauses. Many mortgages originated after 2014 don't have prepayment penalties due to consumer protection regulations, but some commercial loans, auto loans, and personal loans may still include them. Even a small prepayment penalty might be worthwhile if you'll save significantly more in interest, but it's essential to do the math first.
-          </p>
-
-          <h3>How does my credit score affect my loan payment?</h3>
-          <p>
-            Your credit score has a profound impact on your loan payment through its effect on the interest rate you're offered. Lenders use credit scores to assess risk—borrowers with higher scores (740+) demonstrate a history of responsible credit management and qualify for the lowest interest rates available. Those with lower scores (below 640) are considered higher risk and face significantly higher rates, sometimes 2-4 percentage points higher than prime borrowers. On a $250,000 30-year mortgage, the difference between a 6% rate (excellent credit) and an 8% rate (fair credit) is $331 per month, or nearly $119,000 over the loan's lifetime. This demonstrates why improving your credit score before applying for a loan is one of the most valuable financial moves you can make. Even a 20-30 point improvement in your score can result in a better rate tier and substantial savings.
-          </p>
-
-          <h2>References</h2>
-          <ul className="space-y-2">
-            <li>
-              <a href="https://www.federalreserve.gov/releases/g19/current/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+          {/* REFERÊNCIAS */}
+          <h2 className="text-3xl font-bold mb-6 mt-12">References</h2>
+          
+          <ul className="space-y-3 mb-8">
+            <li className="leading-relaxed">
+              <a href="https://www.federalreserve.gov/releases/g19/current/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                 Federal Reserve - Consumer Credit Statistics
               </a>
             </li>
-            <li>
-              <a href="https://www.consumerfinance.gov/owning-a-home/loan-options/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <li className="leading-relaxed">
+              <a href="https://www.consumerfinance.gov/owning-a-home/loan-options/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                 Consumer Financial Protection Bureau - Loan Options
               </a>
             </li>
-            <li>
-              <a href="https://www.fdic.gov/consumers/consumer/moneysmart/pubs/borrowing/borrowing.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <li className="leading-relaxed">
+              <a href="https://www.fdic.gov/consumers/consumer/moneysmart/pubs/borrowing/borrowing.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                 FDIC - Money Smart Guide to Borrowing
               </a>
             </li>
-            <li>
-              <a href="https://www.irs.gov/publications/p936" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <li className="leading-relaxed">
+              <a href="https://www.irs.gov/publications/p936" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                 IRS Publication 936 - Home Mortgage Interest Deduction
               </a>
             </li>
-            <li>
-              <a href="https://www.sba.gov/funding-programs/loans" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <li className="leading-relaxed">
+              <a href="https://www.sba.gov/funding-programs/loans" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                 U.S. Small Business Administration - Loan Programs
               </a>
             </li>
-            <li>
-              <a href="https://studentaid.gov/understand-aid/types/loans" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <li className="leading-relaxed">
+              <a href="https://studentaid.gov/understand-aid/types/loans" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                 Federal Student Aid - Types of Loans
               </a>
             </li>
-            <li>
-              <a href="https://www.occ.treas.gov/topics/consumers-and-communities/consumer-protection/index-consumer-protection.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <li className="leading-relaxed">
+              <a href="https://www.occ.treas.gov/topics/consumers-and-communities/consumer-protection/index-consumer-protection.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                 Office of the Comptroller of the Currency - Consumer Protection
               </a>
             </li>
-            <li>
-              <a href="https://www.bankrate.com/calculators/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <li className="leading-relaxed">
+              <a href="https://www.bankrate.com/calculators/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                 Bankrate - Financial Calculators and Tools
               </a>
             </li>
