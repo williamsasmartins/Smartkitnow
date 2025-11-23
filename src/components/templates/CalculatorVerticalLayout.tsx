@@ -5,6 +5,7 @@ import LegalDisclaimer from "@/components/LegalDisclaimer";
 
 type Props = {
   title: string;
+  description?: string; // Nova prop para descrição SEO
   editorial: ReactNode;
   widget: ReactNode;
   railRight?: ReactNode | null;
@@ -18,6 +19,7 @@ type Props = {
 
 export default function CalculatorVerticalLayout({
   title,
+  description,
   editorial,
   widget,
   railRight = null,
@@ -164,22 +166,27 @@ export default function CalculatorVerticalLayout({
             />
           )}
 
-          {/* TÍTULO */}
+          {/* TÍTULO + DESCRIÇÃO SEO */}
           {showTitle && (
-            <h1 
-              className="text-3xl font-bold mb-6 mx-4 sm:mx-6" 
-              style={{ color: "#5c82ee" }}
-            >
-              {title}
-            </h1>
+            <div className="mx-4 sm:mx-6 mb-6">
+              <h1 className="text-3xl font-bold mb-3" style={{ color: "#5c82ee" }}>
+                {title}
+              </h1>
+              {description && (
+                <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                  {description}
+                </p>
+              )}
+            </div>
           )}
 
-          {/* WIDGET NO TOPO - MAIS ESTREITO (max-w-xl = 576px) */}
+          {/* WIDGET NO TOPO - MAIS LARGO (max-w-2xl = 672px) */}
           <section 
             className="mx-4 sm:mx-6 mb-8"
             aria-label="Calculator widget"
           >
-            <div className="max-w-xl mx-auto">
+            {/* Removido mx-auto para alinhar à esquerda */}
+            <div className="max-w-2xl">
               <div className="skn-widget-card rounded-2xl border p-4">
                 {widget}
               </div>
@@ -191,7 +198,7 @@ export default function CalculatorVerticalLayout({
             className="mx-4 sm:mx-6 mb-8"
             aria-label="Calculator content"
           >
-            <div className="skn-content-card rounded-2xl border p-4">
+            <div className="skn-content-card rounded-2xl border p-6">
               {editorial}
             </div>
           </section>
