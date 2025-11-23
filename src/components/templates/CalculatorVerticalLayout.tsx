@@ -174,12 +174,12 @@ export default function CalculatorVerticalLayout({
             </h1>
           )}
 
-          {/* WIDGET NO TOPO */}
+          {/* WIDGET NO TOPO - MAIS ESTREITO (max-w-xl = 576px) */}
           <section 
             className="mx-4 sm:mx-6 mb-8"
             aria-label="Calculator widget"
           >
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-xl mx-auto">
               <div className="skn-widget-card rounded-2xl border p-4">
                 {widget}
               </div>
