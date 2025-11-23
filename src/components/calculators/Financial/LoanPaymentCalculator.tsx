@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from "react";
-import CalculatorUnifiedLayout from "@/components/templates/CalculatorUnifiedLayout";
+import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -95,9 +95,8 @@ export default function LoanPaymentCalculator() {
   };
 
   return (
-    <CalculatorUnifiedLayout
+    <CalculatorVerticalLayout
       title="Loan Payment Calculator"
-      stickyTopPx={120}
       maxWidth={1200}
       gap={32}
       showTopBanner
@@ -395,7 +394,6 @@ export default function LoanPaymentCalculator() {
           </div>
         </div>
       }
-      railRight={null}
     />
   );
 }
