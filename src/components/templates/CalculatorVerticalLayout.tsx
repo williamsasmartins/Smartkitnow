@@ -13,6 +13,8 @@ type Props = {
   maxWidth?: number;
   gap?: number;
   jsonLd?: object | object[];
+  showTopBanner?: boolean;
+  topBannerHeight?: number;
 };
 
 export default function CalculatorVerticalLayout({
@@ -22,9 +24,11 @@ export default function CalculatorVerticalLayout({
   widget,
   railRight = null,
   showTitle = true,
-  maxWidth = 768,
+  maxWidth = 1200,
   gap = 32,
   jsonLd,
+  showTopBanner = true,
+  topBannerHeight = 90,
 }: Props) {
   return (
     <div className="w-full">
@@ -125,6 +129,11 @@ export default function CalculatorVerticalLayout({
           color: #ffffff !important;
         }
 
+        /* Equal height cards */
+        .skn-eqgrid { align-items: stretch; }
+        .skn-eqcard { display: flex; flex-direction: column; height: 100%; }
+        .skn-eqcard > * { height: 100%; }
+
         /* CRITICAL: Prevent content overflow */
         .skn-vertical-layout .skn-content-wrapper {
           max-width: 100%;
@@ -140,14 +149,6 @@ export default function CalculatorVerticalLayout({
         .skn-vertical-layout .prose * {
           max-width: 100%;
         }
-
-        /* Sidebar sticky */
-        @media (min-width: 1024px) {
-          .skn-sidebar-sticky {
-            position: sticky;
-            top: 100px;
-          }
-        }
       `}</style>
 
       {jsonLd ? (
@@ -157,157 +158,126 @@ export default function CalculatorVerticalLayout({
       ) : null}
 
       <div className="skn-vertical-layout">
-        {/* TOP BANNER AD - 728x90 - CENTRALIZADO */}
-        <div className="w-full pt-24 pb-6">
-          <div 
-            className="mx-auto"
-            style={{
-              maxWidth: 728,
-              height: 90,
-              borderRadius: 12,
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.06)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#6b7280",
-              fontSize: "0.75rem",
-            }}
+        {/* CONTAINER PRINCIPAL */}
+        <div
+          className="mx-auto pb-10"
+          style={{
+            maxWidth,
+            width: '100%',
+            paddingTop: showTopBanner ? 96 : 32,
+          }}
+        >
+          {/* TOP BANNER */}
+          {showTopBanner && (
+            <div
+              aria-hidden
+              className="mx-4 sm:mx-6"
+              style={{
+                height: topBannerHeight,
+                borderRadius: 12,
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.06)",
+                marginBottom: 24,
+              }}
+            />
+          )}
+
+          {/* TÍTULO + DESCRIÇÃO SEO - COM LIMITE DE LARGURA */}
+          {showTitle && (
+            <div className="mx-4 sm:mx-6 mb-6">
+              <div className="max-w-3xl">
+                <h1 className="text-3xl font-bold mb-3" style={{ color: "#5c82ee" }}>
+                  {title}
+                </h1>
+                {description && (
+                  <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {description}
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* WIDGET NO TOPO - 768px (max-w-3xl) */}
+          <section 
+            className="mx-4 sm:mx-6 mb-8"
+            aria-label="Calculator widget"
           >
-            ADSENSE - 728×90 (Top Banner)
+            <div className="max-w-3xl">
+              <div className="skn-widget-card rounded-2xl border p-4">
+                {widget}
+              </div>
+            </div>
+          </section>
+
+          {/* CONTEÚDO EDITORIAL - MESMA LARGURA DO WIDGET (max-w-3xl) */}
+          <section 
+            className="mx-4 sm:mx-6 mb-8"
+            aria-label="Calculator content"
+          >
+            <div className="max-w-3xl">
+              <div className="skn-content-card rounded-2xl border p-6">
+                <div className="skn-content-wrapper">
+                  {editorial}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* LEGAL DISCLAIMER - MESMA LARGURA DO WIDGET (max-w-3xl) */}
+          <div className="mx-4 sm:mx-6 mb-4 max-w-3xl" role="note" aria-label="Important notice">
+            <LegalDisclaimer
+              kind="financial"
+              locale="en"
+              note="Smart Kit Now is not responsible for actions taken based on these estimates."
+              className="rounded-2xl border border-gray-200 bg-white/5 p-4 dark:border-gray-800"
+            />
           </div>
-        </div>
 
-        {/* LAYOUT: Conteúdo (768px) + Sidebar (300px) */}
-        <div className="w-full max-w-[1200px] mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-6 items-start">
-            
-            {/* CONTEÚDO PRINCIPAL - 768px (max-w-3xl) */}
-            <div className="w-full lg:w-auto" style={{ maxWidth: 768 }}>
-              
-              {/* TÍTULO + DESCRIÇÃO SEO */}
-              {showTitle && (
-                <div className="mb-6">
-                  <h1 className="text-3xl font-bold mb-3" style={{ color: "#5c82ee" }}>
-                    {title}
-                  </h1>
-                  {description && (
-                    <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                      {description}
-                    </p>
-                  )}
-                </div>
-              )}
-
-              {/* WIDGET DA CALCULADORA */}
-              <section 
-                className="mb-6"
-                aria-label="Calculator widget"
-              >
-                <div className="skn-widget-card rounded-2xl border p-4">
-                  {widget}
-                </div>
-              </section>
-
-              {/* CONTEÚDO EDITORIAL */}
-              <section 
-                className="mb-6"
-                aria-label="Calculator content"
-              >
-                <div className="skn-content-card rounded-2xl border p-6">
-                  <div className="skn-content-wrapper">
-                    {editorial}
+          {/* SHARE & SUGGESTION BOXES - MESMA LARGURA DO WIDGET (max-w-3xl) */}
+          <div className="mx-4 sm:mx-6 mb-8 max-w-3xl">
+            <div className="grid grid-cols-12 gap-4 skn-eqgrid">
+              <div className="col-span-12 md:col-span-6">
+                <div className="skn-eqcard h-full">
+                  <div className="skn-share-card rounded-2xl border p-4">
+                    <ShareThisPageBox />
                   </div>
                 </div>
-              </section>
-
-              {/* LEGAL DISCLAIMER */}
-              <div className="mb-6" role="note" aria-label="Important notice">
-                <LegalDisclaimer
-                  kind="financial"
-                  locale="en"
-                  note="Smart Kit Now is not responsible for actions taken based on these estimates."
-                  className="rounded-2xl border border-gray-200 bg-white/5 p-4 dark:border-gray-800"
-                />
               </div>
-
-              {/* SHARE & SUGGESTION - GRID 2 COLUNAS */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                {/* SHARE BOX */}
-                <div className="skn-share-card rounded-2xl border p-4">
-                  <ShareThisPageBox />
-                </div>
-
-                {/* SUGGESTION BOX */}
-                <div className="skn-suggestion-card rounded-2xl border p-4">
-                  <SuggestionBox />
+              <div className="col-span-12 md:col-span-6">
+                <div className="skn-eqcard h-full">
+                  <div className="skn-suggestion-card rounded-2xl border p-4">
+                    <SuggestionBox />
+                  </div>
                 </div>
               </div>
-
-              {/* RIGHT RAIL CONTENT (if provided) */}
-              {railRight && (
-                <aside 
-                  className="mb-6"
-                  aria-label="Additional content"
-                >
-                  {railRight}
-                </aside>
-              )}
-
             </div>
+          </div>
 
-            {/* SIDEBAR DIREITA - 300px (hidden no mobile, visible no desktop) */}
-            <aside className="hidden lg:block w-[300px] flex-shrink-0">
-              <div className="skn-sidebar-sticky">
-                {/* SIDEBAR AD - 300x600 (sticky quando aprovado) */}
-                <div
-                  style={{
-                    width: 300,
-                    height: 600,
-                    borderRadius: 12,
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "#6b7280",
-                    fontSize: "0.75rem",
-                    textAlign: "center",
-                    padding: 16,
-                  }}
-                >
-                  <div>ADSENSE - 300×600</div>
-                  <div className="mt-2">(Sticky Sidebar)</div>
-                  <div className="mt-1">Will be sticky when approved</div>
-                </div>
-              </div>
+          {/* ADSENSE 728x90 - MESMA LARGURA DO WIDGET (max-w-3xl) */}
+          <div className="mx-4 sm:mx-6 mb-8 max-w-3xl">
+            <div className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-24 flex items-center justify-center text-gray-500 text-xs">
+              ADSENSE - 728x90
+            </div>
+          </div>
+
+          {/* RIGHT RAIL (if provided) - MESMA LARGURA DO WIDGET (max-w-3xl) */}
+          {railRight && (
+            <aside 
+              className="mx-4 sm:mx-6 mb-8 max-w-3xl"
+              aria-label="Additional content"
+            >
+              {railRight}
             </aside>
+          )}
 
+          {/* ADSENSE 300x600 - MESMA LARGURA DO WIDGET (max-w-3xl) */}
+          <div className="mx-4 sm:mx-6 max-w-3xl">
+            <div className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-64 flex items-center justify-center text-gray-500 text-xs">
+              ADSENSE - 300x600
+            </div>
           </div>
         </div>
-
-        {/* BOTTOM AD - 728x90 - CENTRALIZADO - ANTES DO RODAPÉ */}
-        <div className="w-full py-10">
-          <div 
-            className="mx-auto"
-            style={{
-              maxWidth: 728,
-              height: 90,
-              borderRadius: 12,
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.06)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#6b7280",
-              fontSize: "0.75rem",
-            }}
-          >
-            ADSENSE - 728×90 (Bottom - Before Footer)
-          </div>
-        </div>
-
       </div>
     </div>
   );
