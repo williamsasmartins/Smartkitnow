@@ -149,6 +149,17 @@ export default function CalculatorVerticalLayout({
         .skn-vertical-layout .prose * {
           max-width: 100%;
         }
+
+        /* Sidebar flutuante - NÃO afeta layout do conteúdo */
+        @media (min-width: 1280px) {
+          .skn-floating-sidebar {
+            position: fixed;
+            right: max(1rem, calc((100vw - 1200px) / 2 - 320px));
+            top: 200px;
+            width: 300px;
+            z-index: 10;
+          }
+        }
       `}</style>
 
       {jsonLd ? (
@@ -158,7 +169,19 @@ export default function CalculatorVerticalLayout({
       ) : null}
 
       <div className="skn-vertical-layout">
-        {/* CONTAINER PRINCIPAL */}
+        {/* SIDEBAR FLUTUANTE - NÃO EMPURRA O CONTEÚDO */}
+        <aside className="hidden xl:block skn-floating-sidebar">
+          <div 
+            className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl flex flex-col items-center justify-center text-gray-500 text-xs p-4"
+            style={{ width: 300, height: 600 }}
+          >
+            <div>ADSENSE - 300×600</div>
+            <div className="mt-2">(Sticky Sidebar)</div>
+            <div className="mt-1 text-center">Will be sticky when approved</div>
+          </div>
+        </aside>
+
+        {/* CONTAINER PRINCIPAL - CÓDIGO ORIGINAL 100% SEM ALTERAÇÕES */}
         <div
           className="mx-auto pb-10"
           style={{
@@ -179,7 +202,11 @@ export default function CalculatorVerticalLayout({
                 border: "1px solid rgba(255,255,255,0.06)",
                 marginBottom: 24,
               }}
-            />
+            >
+              <div className="w-full h-full flex items-center justify-center text-gray-500 text-xs">
+                ADSENSE - 728×90 (Top Banner)
+              </div>
+            </div>
           )}
 
           {/* TÍTULO + DESCRIÇÃO SEO - COM LIMITE DE LARGURA */}
@@ -257,7 +284,7 @@ export default function CalculatorVerticalLayout({
           {/* ADSENSE 728x90 - MESMA LARGURA DO WIDGET (max-w-3xl) */}
           <div className="mx-4 sm:mx-6 mb-8 max-w-3xl">
             <div className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-24 flex items-center justify-center text-gray-500 text-xs">
-              ADSENSE - 728x90
+              ADSENSE - 728×90 (Bottom - Before Footer)
             </div>
           </div>
 
@@ -270,13 +297,6 @@ export default function CalculatorVerticalLayout({
               {railRight}
             </aside>
           )}
-
-          {/* ADSENSE 300x600 - MESMA LARGURA DO WIDGET (max-w-3xl) */}
-          <div className="mx-4 sm:mx-6 max-w-3xl">
-            <div className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-64 flex items-center justify-center text-gray-500 text-xs">
-              ADSENSE - 300x600
-            </div>
-          </div>
         </div>
       </div>
     </div>
