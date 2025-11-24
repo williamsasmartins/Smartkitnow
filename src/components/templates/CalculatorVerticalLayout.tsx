@@ -150,7 +150,30 @@ export default function CalculatorVerticalLayout({
           max-width: 100%;
         }
 
-        /* Sidebar flutuante - NÃO afeta layout do conteúdo */
+        /* Top banner responsivo */
+        .skn-top-banner {
+          /* Mobile: 320×100 */
+          max-width: 320px;
+          height: 100px;
+        }
+
+        @media (min-width: 768px) {
+          .skn-top-banner {
+            /* Tablet/Desktop médio: 728×90 */
+            max-width: 728px;
+            height: 90px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .skn-top-banner {
+            /* Desktop grande: 970×90 */
+            max-width: 970px;
+            height: 90px;
+          }
+        }
+
+        /* Sidebar flutuante (SEM STICKY) */
         @media (min-width: 1280px) {
           .skn-floating-sidebar {
             position: fixed;
@@ -169,19 +192,18 @@ export default function CalculatorVerticalLayout({
       ) : null}
 
       <div className="skn-vertical-layout">
-        {/* SIDEBAR FLUTUANTE - NÃO EMPURRA O CONTEÚDO */}
+        {/* SIDEBAR FLUTUANTE (SEM STICKY) */}
         <aside className="hidden xl:block skn-floating-sidebar">
           <div 
             className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl flex flex-col items-center justify-center text-gray-500 text-xs p-4"
             style={{ width: 300, height: 600 }}
           >
             <div>ADSENSE - 300×600</div>
-            <div className="mt-2">(Sticky Sidebar)</div>
-            <div className="mt-1 text-center">Will be sticky when approved</div>
+            <div className="mt-2">(Sidebar)</div>
           </div>
         </aside>
 
-        {/* CONTAINER PRINCIPAL - CÓDIGO ORIGINAL 100% SEM ALTERAÇÕES */}
+        {/* CONTAINER PRINCIPAL */}
         <div
           className="mx-auto pb-10"
           style={{
@@ -190,21 +212,24 @@ export default function CalculatorVerticalLayout({
             paddingTop: showTopBanner ? 96 : 32,
           }}
         >
-          {/* TOP BANNER */}
+          {/* TOP BANNER RESPONSIVO: 970×90 / 728×90 / 320×100 */}
           {showTopBanner && (
-            <div
-              aria-hidden
-              className="mx-4 sm:mx-6"
-              style={{
-                height: topBannerHeight,
-                borderRadius: 12,
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.06)",
-                marginBottom: 24,
-              }}
-            >
-              <div className="w-full h-full flex items-center justify-center text-gray-500 text-xs">
-                ADSENSE - 728×90 (Top Banner)
+            <div className="mx-auto mb-6 px-4 sm:px-6">
+              <div
+                aria-hidden
+                className="skn-top-banner mx-auto"
+                style={{
+                  borderRadius: 12,
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                }}
+              >
+                <div className="w-full h-full flex items-center justify-center text-gray-500 text-xs">
+                  <div className="text-center">
+                    <div>Top Banner Ad</div>
+                    <div className="mt-1">(970×90 / 728×90 / 320×100)</div>
+                  </div>
+                </div>
               </div>
             </div>
           )}
@@ -281,7 +306,7 @@ export default function CalculatorVerticalLayout({
             </div>
           </div>
 
-          {/* ADSENSE 728x90 - MESMA LARGURA DO WIDGET (max-w-3xl) */}
+          {/* BOTTOM AD - 728x90 */}
           <div className="mx-4 sm:mx-6 mb-8 max-w-3xl">
             <div className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl h-24 flex items-center justify-center text-gray-500 text-xs">
               ADSENSE - 728×90 (Bottom - Before Footer)
