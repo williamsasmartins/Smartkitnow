@@ -207,6 +207,16 @@ export function subcategoryIcon(subcategory?: string, category?: string): string
 
 
 export const calculatorRegistry: CalculatorEntry[] = [
+  {
+    slug: "test-auto-loan-calculator",
+    title: "Test Auto Loan Calculator",
+    category: "financial",
+    subcategory: "loans",
+    description: "Calculate monthly auto loan payments based on car price, interest rate, and loan term.",
+    // IMPORTANTE: O caminho aqui usa @/components...
+    loader: () => import("@/components/calculators/Financial/TeTAutoLoanCalculatorCalculator"),
+    urlStyle: "flat"
+  },
 
   {
 
