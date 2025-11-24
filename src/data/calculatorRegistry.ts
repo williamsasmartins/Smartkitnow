@@ -122,6 +122,15 @@ export function subcategoryIcon(subcategory?: string, category?: string): string
 // The actual registry of calculators. Keep lightweight and focused.
 // N8N workflow will auto-inject new entries before the closing bracket.
 export const calculatorRegistry: CalculatorEntry[] = [
+  {
+    slug: "ethereum-gas-fee",
+    title: "Ethereum Gas Fee Calculator",
+    category: "financial",
+    subcategory: "cryptocurrency",
+    description: "Calculate the estimated gas fees for Ethereum transactions based on current Gwei prices.",
+    loader: () => import("@/components/calculators/Financial/EthereumGaFeeCalculator"),
+    urlStyle: "flat"
+  },
   // ================================================================
   // FINANCIAL CALCULATORS (Priority: HIGH CPC)
   // ================================================================
