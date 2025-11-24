@@ -1,1317 +1,518 @@
-// src/data/calculatorRegistry.ts
-
-// Centralized calculator registry and helpers used by pages and templates.
-
-
-
 import type React from "react";
-
-
 
 export type UrlStyle = "nested" | "flat";
 
-
-
 export interface CalculatorEntry {
-
   slug: string;
-
   title: string;
-
-  category: string;
-
-  subcategory?: string;
-
+  category: string; // e.g., "financial", "health", "pets"
+  subcategory?: string; // e.g., "dogs", "cats", "loans"
   description?: string;
-
-  aliases?: string[];
-
-  loader: () => Promise<{ default: React.ComponentType<any> }>;
-
-  namedExport?: string;
-
-  urlStyle?: UrlStyle;
-
+  aliases?: string[]; // optional alternative search terms
+  loader: () => Promise<{ default: React.ComponentType<any> }>; // dynamic import to component
+  namedExport?: string; // optional named export if component is not default
+  /** NEW: if "flat", links will be /:category/:slug */
+  urlStyle?: UrlStyle; // "nested" (default) | "flat"
 }
 
-
-
+// Friendly category titles shown on hubs and index pages
 export const FRIENDLY_TITLES: Record<string, string> = {
-
   financial: "Financial Calculators",
-
   health: "Health Calculators",
-
   cooking: "Cooking Calculators",
-
   pets: "Pets Calculators",
-
   math: "Math Calculators",
-
   conversion: "Conversion Calculators",
-
   science: "Science Calculators",
-
   time: "Time Calculators",
-
   "everyday-life": "Everyday Life Calculators",
-
   sports: "Sports Calculators",
-
   funny: "Funny Calculators",
-
   automotive: "Automotive Calculators",
-
   construction: "Construction Calculators",
-
   electrical: "Electrical Calculators",
-
   recipes: "Recipe Collections",
-
 };
 
-
-
+// Optional friendlier titles per subcategory
 export const SUBCATEGORY_TITLES: Record<string, Record<string, string>> = {
-
   pets: {
-
     dogs: "Dog Care",
-
     cats: "Cat Care",
-
     "pet-care-calculators": "Pet Care Tools",
-
     general: "General",
-
   },
-
   financial: {
-
+    loans: "Loans & Mortgages",
+    investments: "Investments & Savings",
+    retirement: "Retirement Planning",
+    debt: "Debt Management",
     general: "General",
-
   },
-
   health: {
-
     general: "General",
-
   },
-
   cooking: {
-
     general: "General",
-
   },
-
   math: {
-
     general: "General",
-
   },
-
 };
-
-
 
 function normalize(v?: string) {
-
   return String(v ?? "")
-
     .trim()
-
     .toLowerCase()
-
     .replace(/\s+/g, "-")
-
     .replace(/[^\w\-]/g, "");
-
 }
 
-
-
+// Emoji icons per category (used by CategoryCalculatorsTemplate header)
 export function categoryIcon(category?: string): string {
-
   const key = normalize(category);
-
   const MAP: Record<string, string> = {
-
     financial: "💰",
-
     health: "🩺",
-
     cooking: "🍳",
-
     pets: "🐾",
-
     math: "🧮",
-
     conversion: "🔁",
-
     science: "🔬",
-
     time: "⏱️",
-
     "everyday-life": "🏠",
-
     sports: "🏅",
-
     funny: "😄",
-
     automotive: "🚗",
-
     construction: "🏗️",
-
     electrical: "⚡",
-
     recipes: "📚",
-
   };
-
   return MAP[key] ?? "🧮";
-
 }
 
-
-
+// Emoji icons per subcategory — allows pages to avoid repeating the same icon
 export function subcategoryIcon(subcategory?: string, category?: string): string | undefined {
-
   const sub = normalize(subcategory);
-
   const cat = normalize(category);
-
   const PETS: Record<string, string> = {
-
     dogs: "🐶",
-
     cats: "🐈",
-
     "pet-care-calculators": "🐾",
-
     general: "📦",
-
   };
-
+  const FINANCIAL: Record<string, string> = {
+    loans: "🏠",
+    investments: "📈",
+    retirement: "🏖️",
+    debt: "💳",
+    general: "💰",
+  };
   const GENERIC: Record<string, string> = {
-
     general: "📦",
-
   };
-
   if (cat === "pets") return PETS[sub] ?? "🐾";
-
+  if (cat === "financial") return FINANCIAL[sub] ?? "💰";
   return GENERIC[sub] ?? undefined;
-
 }
 
-
-
+// ====================================================================
+// CALCULATOR REGISTRY
+// ====================================================================
+// The actual registry of calculators. Keep lightweight and focused.
+// N8N workflow will auto-inject new entries before the closing bracket.
 export const calculatorRegistry: CalculatorEntry[] = [
-
+  // ================================================================
+  // FINANCIAL CALCULATORS (Priority: HIGH CPC)
+  // ================================================================
   {
-
-    slug: "dog-water-intake",
-
-    title: "Dog Water Intake — Daily Hydration",
-
-    category: "pets",
-
-    subcategory: "dogs",
-
-    aliases: ["dog daily water intake", "dog hydration"],
-
-    loader: () => import("@/components/calculators/DogWaterIntakeCalculator"),
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    category: "financial",
-
-    subcategory: "income-budget-expenses",
-
-    title: "Absence Percentage Calculator",
-
-    slug: "absence-percentage-calculator",
-
-    loader: () => import("@/components/calculators/Financial/Budget/AbsencePercentageCalculator"),
-
-  },
-
-  {
-
     slug: "loan-payment",
-
-    title: "Loan Payment Calculator",
-
     category: "financial",
-
-    subcategory: "loans-mortgages-payments",
-
+    subcategory: "loans",
+    title: "Loan Payment Calculator (Principal, Rate, Term)",
+    description: "Calculate monthly loan payments, total interest, and amortization schedule for any loan amount, interest rate, and term.",
     loader: () => import("@/components/calculators/Financial/LoanPaymentCalculator"),
-
+    aliases: ["loan-calculator", "payment-calculator"],
     urlStyle: "flat",
-
   },
-
   {
-
-    slug: "car-loan-affordability",
-
-    title: "Car Loan Affordability Calculator",
-
+    slug: "mortgage-amortization",
     category: "financial",
-
-    subcategory: "loans-mortgages-payments",
-
-    description: "Calculate how much car you can afford based on your income, existing debts, down payment, loan term, and interest rate.",
-
-    loader: () => import("@/components/calculators/Financial/CarLoanAffordabilityCalculator"),
-
+    subcategory: "loans",
+    title: "Mortgage Payment & Amortization Calculator",
+    description: "Calculate your monthly mortgage payments and view detailed amortization schedule with principal and interest breakdown.",
+    loader: () => import("@/components/calculators/Financial/MortgageAmortizationCalculator"),
+    aliases: ["mortgage-calculator", "mortgage-payment"],
     urlStyle: "flat",
-
+  },
+  {
+    slug: "refinance-savings",
+    category: "financial",
+    subcategory: "loans",
+    title: "Refinance Savings Calculator",
+    description: "Calculate how much you can save by refinancing your mortgage with a lower interest rate, including break-even analysis.",
+    loader: () => import("@/components/calculators/Financial/RefinanceSavingsCalculator"),
+    aliases: ["refinance-calculator"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "heloc-payment-estimator",
+    category: "financial",
+    subcategory: "loans",
+    title: "HELOC Payment Estimator",
+    description: "Estimate your Home Equity Line of Credit payments during draw and repayment periods, including interest-only calculations.",
+    loader: () => import("@/components/calculators/Financial/HelocPaymentEstimator"),
+    aliases: ["heloc-calculator"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "house-affordability",
+    category: "financial",
+    subcategory: "loans",
+    title: "How Much House Can I Afford Calculator",
+    description: "Determine how much house you can afford based on your income, debts, down payment, and current mortgage rates.",
+    loader: () => import("@/components/calculators/Financial/HouseAffordabilityCalculator"),
+    aliases: ["home-affordability", "afford-house"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "roi-return-on-investment",
+    category: "financial",
+    subcategory: "investments",
+    title: "Investment Return (ROI) Calculator",
+    description: "Calculate return on investment for any asset including stocks, real estate, or business investments with detailed ROI percentage.",
+    loader: () => import("@/components/calculators/Financial/RoiReturnOnInvestmentCalculator"),
+    aliases: ["roi-calculator", "investment-return"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "retirement-savings-goal",
+    category: "financial",
+    subcategory: "retirement",
+    title: "Retirement Savings Goal Calculator",
+    description: "Calculate how much you need to save for retirement based on your desired lifestyle, expected expenses, and Social Security.",
+    loader: () => import("@/components/calculators/Financial/RetirementSavingsGoalCalculator"),
+    aliases: ["retirement-calculator", "retirement-planning"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "401k-retirement-savings-growth",
+    category: "financial",
+    subcategory: "retirement",
+    title: "401(k) Retirement Savings Growth Calculator",
+    description: "Project your 401(k) balance at retirement with employer matching contributions, annual increases, and compound interest.",
+    loader: () => import("@/components/calculators/Financial/FourZeroOneKRetirementSavingsGrowthCalculator"),
+    aliases: ["401k-calculator", "401k-growth"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "compound-interest",
+    category: "financial",
+    subcategory: "investments",
+    title: "Compound Interest Calculator",
+    description: "Calculate compound interest growth with regular contributions, showing how your money grows over time with different compounding frequencies.",
+    loader: () => import("@/components/calculators/Financial/CompoundInterestCalculator"),
+    aliases: ["compound-calculator", "interest-calculator"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "credit-card-payoff",
+    category: "financial",
+    subcategory: "debt",
+    title: "Credit Card Payoff Calculator",
+    description: "Calculate how long it will take to pay off credit card debt with different payment amounts, including total interest paid.",
+    loader: () => import("@/components/calculators/Financial/CreditCardPayoffCalculator"),
+    aliases: ["credit-card-calculator", "payoff-calculator"],
+    urlStyle: "flat",
+  },
+  {
+    slug: "debt-consolidation",
+    category: "financial",
+    subcategory: "debt",
+    title: "Debt Consolidation Calculator",
+    description: "Compare your current debts with a consolidation loan to see potential savings in monthly payments and total interest.",
+    loader: () => import("@/components/calculators/Financial/DebtConsolidationCalculator"),
+    aliases: ["consolidation-calculator"],
+    urlStyle: "flat",
   },
 
+  // ================================================================
+  // PETS CALCULATORS (Category: PETS)
+  // ================================================================
   {
-
-    slug: "cat-water-intake",
-
+    slug: "dog-age-to-human-years",
     category: "pets",
-
-    subcategory: "cats",
-
-    title: "Cat Water Intake Calculator",
-
-    description: "Estimate an educational daily water intake range for cats by weight and diet, and compare with your observation.",
-
-    loader: () => import("@/components/calculators/CatWaterIntakeCalculator"),
-
-    aliases: ["cat daily water intake", "cat hydration"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-daily-water-intake-checker",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Cat Daily Water Intake Checker",
-
-    description: "Estimate an educational daily water intake range for cats by weight and diet, and compare with your observation.",
-
-    loader: () => import("@/components/calculators/CatWaterIntakeCalculator"),
-
-    aliases: ["cat-water-intake", "cat-water-intake-calculator"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "dog-caffeine-toxicity-calculator",
-
-    category: "pets",
-
     subcategory: "dogs",
-
-    title: "Dog Caffeine Toxicity Calculator",
-
-    description: "Estimate educational risk bands from caffeine sources; includes mg/kg estimation and triage steps.",
-
-    loader: () => import("@/components/calculators/DogCaffeineToxicityCalculator"),
-
-    aliases: ["caffeine-dogs", "dog-caffeine-toxicity"],
-
-    urlStyle: "flat",
-
+    title: "Dog Age to Human Years Calculator",
+    description: "Convert your dog's age to human years using the latest veterinary science formula that accounts for breed size.",
+    loader: () => import("@/components/calculators/Pets/DogAgeCalculator"),
+    aliases: ["dog-age-calculator", "dog-years"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "dog-weight-loss-planner",
-
+    slug: "cat-age-to-human-years",
     category: "pets",
-
-    subcategory: "pet-care-calculators",
-
-    title: "Dog Weight Loss Planner",
-
-    description: "Plan an educational daily calorie target using 0.8×RER (target) or 70% of maintenance, plus weeks-to-goal estimate.",
-
-    loader: () => import("@/components/calculators/DogWeightLossPlanner"),
-
-    aliases: ["dog weight loss", "dog weight loss planner", "dog diet", "canine weight management"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-weight-loss-planner",
-
-    category: "pets",
-
-    subcategory: "pet-care-calculators",
-
-    title: "Cat Weight Loss Planner",
-
-    description: "Plan an educational daily calorie target using 0.8×RER (target) or 70% of maintenance, plus weeks-to-goal estimate.",
-
-    loader: () => import("@/components/calculators/CatWeightLossPlanner"),
-
-    aliases: ["cat weight loss", "cat weight loss planner", "feline weight management", "cat diet"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "dog-calorie-needs-rer-mer",
-
-    category: "pets",
-
-    subcategory: "general",
-
-    title: "Dog Calorie Needs (RER/MER) Calculator",
-
-    description: "Estimate dog RER and MER from weight and life stage/activity.",
-
-    loader: () => import("@/components/calculators/DogCalorieNeedsRerMer"),
-
-    aliases: ["dog calorie needs", "dog rer mer", "canine energy requirements"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "dog-chocolate-toxicity-calculator",
-
-    category: "pets",
-
-    subcategory: "dogs",
-
-    title: "Dog Chocolate Toxicity Calculator",
-
-    description: "Estimate educational dose bands (mg/kg) by chocolate type and amount; strong veterinarian disclaimer.",
-
-    loader: () => import("@/components/calculators/DogChocolateToxicityCalculator"),
-
-    aliases: ["dog-chocolate-toxicity", "dog-chocolate-toxicity-checker"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "dog-grape-raisin-exposure-risk",
-
-    category: "pets",
-
-    subcategory: "dogs",
-
-    title: "Dog Grape/Raisin Exposure Risk Calculator",
-
-    description: "Education-first triage for suspected grape/raisin ingestion — treat any ingestion as urgent and call your vet.",
-
-    loader: () => import("@/components/calculators/DogGrapeRaisinExposureCalculator"),
-
-    aliases: ["dog-grape-toxicity", "dog-raisins-toxicity", "grapes-for-dogs"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "dog-onion-garlic-exposure-risk",
-
-    category: "pets",
-
-    subcategory: "dogs",
-
-    title: "Dog Onion/Garlic (Allium) Exposure Risk Calculator",
-
-    description: "Converts intake to raw-onion-equivalent g/kg and classifies bands; educational guidance only.",
-
-    loader: () => import("@/components/calculators/DogAlliumExposureCalculator"),
-
-    aliases: ["dog-onion-toxicity", "dog-garlic-toxicity", "allium-exposure-dogs"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "dog-xylitol-exposure",
-
-    category: "pets",
-
-    subcategory: "dogs",
-
-    title: "Dog Xylitol Exposure Calculator",
-
-    description: "Estimate dose (mg/kg) from gum, mints, or foods; educational risk bands with urgent vet CTA.",
-
-    loader: () => import("@/components/calculators/DogXylitolExposureCalculator"),
-
-    aliases: ["dog-xylitol-toxicity", "xylitol-for-dogs"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-allium-toxicity",
-
-    category: "pets",
-
     subcategory: "cats",
-
-    title: "Cat Onion/Garlic Toxicity Calculator",
-
-    description: "Allium exposure bands in g/kg and supportive advice — vet CTA.",
-
-    loader: () => import("@/components/calculators/CatAlliumToxicityCalculator"),
-
-    aliases: ["cat-onion-garlic"],
-
-    urlStyle: "flat",
-
+    title: "Cat Age to Human Years Calculator",
+    description: "Convert your cat's age to human years using veterinary-approved calculations for accurate age equivalency.",
+    loader: () => import("@/components/calculators/Pets/CatAgeCalculator"),
+    aliases: ["cat-age-calculator", "cat-years"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-grape-raisin-education",
-
+    slug: "cat-feeding-schedule-by-age",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Cat Grape/Raisin Exposure Risk (education-first)",
-
-    description: "Educational guidance — immediate veterinary contact recommended.",
-
-    loader: () => import("@/components/calculators/CatGrapeRaisinEducation"),
-
-    aliases: ["cat-grapes-raisins"],
-
-    urlStyle: "flat",
-
+    title: "Cat Feeding Schedule by Age Calculator",
+    description: "Determine optimal feeding schedule and portion sizes for cats based on age (kitten/adult/senior) and weight.",
+    loader: () => import("@/components/calculators/Pets/CatFeedingScheduleByAge"),
+    aliases: ["cat-feeding", "cat-meal-schedule"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-xylitol-exposure",
-
+    slug: "cat-water-needs-per-day",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Xylitol Exposure Risk for Cats (rare but educational)",
-
-    description: "Rare exposure scenarios — educational overview and vet CTA.",
-
-    loader: () => import("@/components/calculators/CatXylitolExposure"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
+    title: "Daily Cat Water Intake Calculator",
+    description: "Calculate how much water your cat needs daily based on weight, diet type (dry/wet), and activity level.",
+    loader: () => import("@/components/calculators/Pets/CatWaterNeedsPerDay"),
+    aliases: ["cat-water-intake", "cat-hydration"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-caffeine-toxicity",
-
+    slug: "cat-calorie-needs-per-day",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Caffeine Toxicity Risk for Cats",
-
-    description: "Estimate caffeine dose (mg/kg) and educational guidance.",
-
-    loader: () => import("@/components/calculators/CatCaffeineToxicity"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
+    title: "Cat Daily Calorie Needs Calculator",
+    description: "Calculate your cat's daily calorie requirements based on weight, age, activity level, and health status.",
+    loader: () => import("@/components/calculators/Pets/CatCalorieNeedsPerDay"),
+    aliases: ["cat-calories", "cat-food-amount"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-essential-oils-exposure",
-
+    slug: "cat-litter-change-frequency",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Essential Oils Exposure Risk (diffuser/dermal)",
-
-    description: "Educational guidance for essential oil exposures in cats.",
-
-    loader: () => import("@/components/calculators/CatEssentialOilsExposure"),
-
-    aliases: ["cats-essential-oils"],
-
-    urlStyle: "flat",
-
+    title: "Litter Box Change Frequency Calculator",
+    description: "Determine how often to change cat litter based on number of cats, litter type, and box size for optimal hygiene.",
+    loader: () => import("@/components/calculators/Pets/CatLitterChangeFrequency"),
+    aliases: ["litter-box-schedule", "cat-litter-cleaning"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cats-lilies-risk",
-
+    slug: "cat-playtime-duration",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Lilies Poisoning Risk Guide (cats)",
-
-    description: "Education-first guidance on lily exposures (emergency).",
-
-    loader: () => import("@/components/calculators/CatsLiliesRiskGuide"),
-
-    aliases: ["cat-lilies-risk"],
-
-    urlStyle: "flat",
-
+    title: "Cat Daily Playtime Duration Calculator",
+    description: "Calculate recommended daily playtime for your cat based on age, energy level, and whether they're indoor or outdoor.",
+    loader: () => import("@/components/calculators/Pets/CatPlaytimeDuration"),
+    aliases: ["cat-exercise", "cat-play-schedule"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-human-meds-exposure",
-
+    slug: "cat-vaccination-schedule",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Acetaminophen/Ibuprofen Exposure Risk (human meds)",
-
-    description: "Educational triage for common human medications exposure in cats.",
-
-    loader: () => import("@/components/calculators/CatHumanMedsExposure"),
-
-    aliases: ["cat-human-meds"],
-
-    urlStyle: "flat",
-
+    title: "Cat Vaccination Schedule Calculator",
+    description: "Create a personalized vaccination schedule for your cat from kitten to senior, including core and non-core vaccines.",
+    loader: () => import("@/components/calculators/Pets/CatVaccinationSchedule"),
+    aliases: ["cat-vaccines", "cat-immunization"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-benadryl-dose",
-
+    slug: "cat-growth-predictor",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Benadryl (Diphenhydramine) Dose Calculator for Cats*",
-
-    description: "Educational dose calculator with strong veterinary disclaimer.",
-
-    loader: () => import("@/components/calculators/CatBenadrylDoseCalculator"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-cephalexin-dose",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Cephalexin Dose Calculator for Cats*",
-
-    description: "Educational cephalexin dosing helper — not a substitute for vet.",
-
-    loader: () => import("@/components/calculators/CatCephalexinDoseCalculator"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-meloxicam-dose",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Meloxicam Dose Calculator for Cats*",
-
-    description: "Educational NSAID dosing guidance for cats (vet oversight required).",
-
-    loader: () => import("@/components/calculators/CatMeloxicamDoseCalculator"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-gabapentin-dose",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Gabapentin Dose Calculator for Cats*",
-
-    description: "Educational gabapentin dose helper (consult your veterinarian).",
-
-    loader: () => import("@/components/calculators/CatGabapentinDoseCalculator"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-prednisolone-dose",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Prednisolone Dose Calculator for Cats*",
-
-    description: "Educational steroid dosing bands — strong vet disclaimer.",
-
-    loader: () => import("@/components/calculators/CatPrednisoloneDoseCalculator"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-omega3-supplement",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Omega-3 (EPA/DHA) Supplement Calculator for Cats*",
-
-    description: "Estimate EPA/DHA targets per weight and product label info.",
-
-    loader: () => import("@/components/calculators/CatOmega3Calculator"),
-
-    aliases: ["cat-omega-3"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-insulin-starter-info",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Insulin Starter Reference (info-only)*",
-
-    description: "Info-only insulin starter reference — educational, not diagnostic.",
-
-    loader: () => import("@/components/calculators/CatInsulinStarterInfo"),
-
-    aliases: ["cat-insulin-info"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "kitten-adult-weight-predictor",
-
-    category: "pets",
-
-    subcategory: "cats",
-
     title: "Kitten Adult Weight Predictor",
-
-    description: "Predict adult weight from age/weight data.",
-
-    loader: () => import("@/components/calculators/KittenAdultWeightPredictor"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
+    description: "Predict your kitten's adult weight based on current age, weight, and breed to plan for their full-grown size.",
+    loader: () => import("@/components/calculators/Pets/CatGrowthPredictor"),
+    aliases: ["kitten-weight-predictor", "cat-size-calculator"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-bcs-helper",
-
+    slug: "cat-ideal-weight-calculator",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Cat Body Condition Score Helper (BCS → Target Plan)",
-
-    description: "BCS helper with target plan and calorie adjustments.",
-
-    loader: () => import("@/components/calculators/CatBCSHelper"),
-
-    aliases: ["cat-body-condition-score"],
-
-    urlStyle: "flat",
-
+    title: "Cat Ideal Weight Calculator (BCS)",
+    description: "Calculate your cat's ideal weight using Body Condition Score (BCS) system to determine if they're underweight, ideal, or overweight.",
+    loader: () => import("@/components/calculators/Pets/CatIdealWeightCalculator"),
+    aliases: ["cat-weight-checker", "cat-bcs"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-bmi-index",
-
+    slug: "cat-medication-dosage",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Cat BMI/Body Index (educational)",
-
-    description: "Educational body index calculator for cats.",
-
-    loader: () => import("@/components/calculators/CatBMICalculator"),
-
-    aliases: ["cat-bmi"],
-
-    urlStyle: "flat",
-
+    title: "Cat Medication Dosage Calculator (by weight)",
+    description: "Calculate proper medication dosage for cats based on weight (kg or lbs) and prescribed mg/kg dose from your veterinarian.",
+    loader: () => import("@/components/calculators/Pets/CatMedicationDosage"),
+    aliases: ["cat-medicine-dose", "cat-drug-calculator"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-carrier-size",
-
+    slug: "cat-pregnancy-due-date",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Cat Carrier Size & Fit Guide",
-
-    description: "Find a suitable carrier size from body measures.",
-
-    loader: () => import("@/components/calculators/CatCarrierSizeGuide"),
-
-    aliases: ["carrier-size-cat"],
-
-    urlStyle: "flat",
-
+    title: "Cat Pregnancy Due Date Calculator (63-65 days)",
+    description: "Calculate your pregnant cat's due date based on mating date, with week-by-week pregnancy stages and preparation tips.",
+    loader: () => import("@/components/calculators/Pets/CatPregnancyDueDate"),
+    aliases: ["cat-gestation-calculator", "kitten-due-date"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-harness-size",
-
+    slug: "cat-heat-cycle-predictor",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Cat Harness Size & Fit Guide",
-
-    description: "Measure-and-fit helper for harness selection.",
-
-    loader: () => import("@/components/calculators/CatHarnessSizeGuide"),
-
-    aliases: ["harness-size-cat"],
-
-    urlStyle: "flat",
-
+    title: "Cat Heat Cycle Predictor",
+    description: "Predict when your cat will go into heat based on breed, age, and last heat cycle date for better planning.",
+    loader: () => import("@/components/calculators/Pets/CatHeatCyclePredictor"),
+    aliases: ["cat-estrus-calculator", "cat-breeding-calendar"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-activity-calorie-adjuster",
-
+    slug: "cat-annual-expense-estimator",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Indoor/Outdoor Activity Calorie Adjuster",
-
-    description: "Adjust calorie targets by indoor/outdoor activity level.",
-
-    loader: () => import("@/components/calculators/CatActivityCalorieAdjuster"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
+    title: "Annual Cat Care Cost Estimator",
+    description: "Estimate yearly cat expenses including food, litter, vet care, toys, and supplies based on your cat's needs.",
+    loader: () => import("@/components/calculators/Pets/CatAnnualExpenseEstimator"),
+    aliases: ["cat-cost-calculator", "cat-budget-planner"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-play-session-planner",
-
+    slug: "cat-travel-crate-size",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Play Session Planner (Feather/Chase Time Targets)",
-
-    description: "Plan play sessions and time targets for enrichment.",
-
-    loader: () => import("@/components/calculators/CatPlaySessionPlanner"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
+    title: "Cat Carrier/Crate Size Calculator",
+    description: "Find the right carrier or crate size for your cat based on their measurements for safe and comfortable travel.",
+    loader: () => import("@/components/calculators/Pets/CatTravelCrateSize"),
+    aliases: ["cat-carrier-size", "cat-crate-calculator"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-rest-active-balance",
-
+    slug: "cat-grooming-schedule-planner",
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Resting vs. Active Hours Balance Tracker",
-
-    description: "Track balance of resting vs. active hours (owner input).",
-
-    loader: () => import("@/components/calculators/CatRestActiveBalance"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
+    title: "Cat Grooming Schedule Planner (fur type based)",
+    description: "Create a grooming schedule for brushing, bathing, and nail trimming based on your cat's fur type and length.",
+    loader: () => import("@/components/calculators/Pets/CatGroomingSchedulePlanner"),
+    aliases: ["cat-grooming-calendar", "cat-care-schedule"],
+    urlStyle: "nested",
   },
-
   {
-
-    slug: "cat-age-human-years",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Cat Age in Human Years (Breed/Size Aware)",
-
-    description: "Convert cat age to human years with breed/size awareness.",
-
-    loader: () => import("@/components/calculators/CatAgeHumanYears"),
-
-    aliases: ["cat-age-in-human-years"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "senior-cat-readiness-checklist",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Senior Cat Care Readiness Checklist (scored)",
-
-    description: "Checklist-style helper to gauge senior cat care readiness.",
-
-    loader: () => import("@/components/calculators/SeniorCatReadinessChecklist"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-life-expectancy",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Life Expectancy Estimator (lifestyle factors; educational)",
-
-    description: "Educational estimator of life expectancy from lifestyle factors.",
-
-    loader: () => import("@/components/calculators/CatLifeExpectancyEstimator"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-litter-output-tracker",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Litter Box Output Tracker (Normal vs. Increased)",
-
-    description: "Track litter box output vs. intake for kidney/urinary awareness.",
-
-    loader: () => import("@/components/calculators/CatLitterOutputTracker"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-intake-vs-urine-balance",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Fluid Intake vs. Urine Output Balance Checker",
-
-    description: "Compare fluid intake vs. urine output for balance awareness.",
-
-    loader: () => import("@/components/calculators/CatIntakeUrineBalance"),
-
-    aliases: ["cat-intake-urine"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-phosphorus-per-meal",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Phosphorus per Meal Estimator (diet label helper)",
-
-    description: "Estimate phosphorus per meal using label data (owner helper).",
-
-    loader: () => import("@/components/calculators/CatPhosphorusPerMeal"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "cat-gestation-due-date",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Cat Pregnancy (Gestation) Due-Date Calculator",
-
-    description: "Estimate due date and stages across gestation.",
-
-    loader: () => import("@/components/calculators/CatGestationDueDate"),
-
-    aliases: ["cat-pregnancy-due-date"],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
-    slug: "kitten-weaning-timeline",
-
-    category: "pets",
-
-    subcategory: "cats",
-
-    title: "Kitten Weaning Timeline & Feeding Amounts",
-
-    description: "Timeline and amounts for weaning kittens.",
-
-    loader: () => import("@/components/calculators/KittenWeaningTimeline"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
-  },
-
-  {
-
     slug: "cat-shedding-combing-planner",
-
     category: "pets",
-
     subcategory: "cats",
-
-    title: "Shedding & Combing Time Planner",
-
-    description: "Plan combing time based on coat type and shedding.",
-
-    loader: () => import("@/components/calculators/CatSheddingCombingPlanner"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
+    title: "Cat Shedding & Combing Frequency Planner",
+    description: "Plan combing frequency during shedding season based on fur length, breed, and seasonal factors.",
+    loader: () => import("@/components/calculators/Pets/CatSheddingCombingPlanner"),
+    aliases: ["cat-brushing-schedule", "cat-fur-care"],
+    urlStyle: "nested",
   },
-
   {
-
     slug: "cat-nail-trim-interval",
-
     category: "pets",
-
     subcategory: "cats",
-
     title: "Nail Trim Interval Planner (activity/surface based)",
-
-    description: "Plan nail trimming interval from activity and surfaces.",
-
-    loader: () => import("@/components/calculators/CatNailTrimInterval"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
+    description: "Plan nail trimming interval based on your cat's activity level and the surfaces they use (carpet, wood, scratchers).",
+    loader: () => import("@/components/calculators/Pets/CatNailTrimInterval"),
+    aliases: ["cat-nail-care", "cat-claw-trimming"],
+    urlStyle: "nested",
   },
-
   {
-
     slug: "multi-cat-litterbox-count",
-
     category: "pets",
-
     subcategory: "cats",
-
     title: "Multi-Cat Litter Box Count Calculator",
-
-    description: "Recommended litter box count by number of cats and rooms.",
-
-    loader: () => import("@/components/calculators/MultiCatLitterboxCount"),
-
-    aliases: ["multi-cat-litterbox"],
-
-    urlStyle: "flat",
-
+    description: "Calculate recommended number of litter boxes based on number of cats and rooms using the N+1 rule.",
+    loader: () => import("@/components/calculators/Pets/MultiCatLitterboxCount"),
+    aliases: ["multi-cat-litterbox", "litter-box-calculator"],
+    urlStyle: "nested",
   },
-
   {
-
     slug: "cat-enrichment-planner",
-
     category: "pets",
-
     subcategory: "cats",
-
     title: "Environmental Enrichment Planner (per room)",
-
-    description: "Room-by-room enrichment planner for indoor cats.",
-
-    loader: () => import("@/components/calculators/CatEnrichmentPlanner"),
-
-    aliases: [],
-
-    urlStyle: "flat",
-
+    description: "Plan room-by-room enrichment for indoor cats including perches, scratchers, toys, and hiding spots.",
+    loader: () => import("@/components/calculators/Pets/CatEnrichmentPlanner"),
+    aliases: ["cat-environment-calculator", "indoor-cat-setup"],
+    urlStyle: "nested",
   },
-
   {
-
     slug: "cat-stress-score-playtime-offset",
-
     category: "pets",
-
     subcategory: "cats",
-
     title: "Stress Score & Playtime Offset Planner",
-
-    description: "Estimate stress score and offset with planned playtime.",
-
-    loader: () => import("@/components/calculators/CatStressScorePlaytimeOffset"),
-
-    aliases: ["cat-stress-score"],
-
-    urlStyle: "flat",
-
+    description: "Estimate your cat's stress score based on environment factors and calculate how much playtime can help reduce stress.",
+    loader: () => import("@/components/calculators/Pets/CatStressScorePlaytimeOffset"),
+    aliases: ["cat-stress-score", "cat-anxiety-calculator"],
+    urlStyle: "nested",
   },
 
-
-
-  // SKN-AUTO-REGISTER: do not remove this line,
-
- 
-
+  // ================================================================
+  // PLACEHOLDER FOR N8N AUTO-INJECTION
+  // ================================================================
+  // SKN-AUTO-REGISTER: do not remove this line
+  // N8N workflow will inject new calculator entries above this comment
 ];
 
-
+// ====================================================================
+// HELPER FUNCTIONS
+// ====================================================================
 
 export const REGISTRY: CalculatorEntry[] = calculatorRegistry;
 
-
-
 function allSlugs(entry: CalculatorEntry): string[] {
-
   return [entry.slug, ...(entry.aliases ?? [])];
-
 }
-
-
 
 export function getEntry(slugOrAlias?: string): CalculatorEntry | undefined {
-
   const s = (slugOrAlias || "").toLowerCase();
-
   return REGISTRY.find((e) => allSlugs(e).some((x) => (x || "").toLowerCase() === s));
-
 }
-
-
 
 export function listByCategory(category?: string): CalculatorEntry[] {
-
   const key = normalize(category);
-
   return REGISTRY.filter((e) => normalize(e.category) === key);
-
 }
-
-
 
 export function listByCategorySubcategory(category?: string, subcategory?: string): CalculatorEntry[] {
-
   const cat = normalize(category);
-
   const sub = normalize(subcategory);
-
   return REGISTRY.filter(
-
     (e) => normalize(e.category) === cat && normalize(e.subcategory) === sub
-
   );
-
 }
-
-
 
 export function listBy(subcategory: CalculatorEntry["subcategory"]) {
-
   return REGISTRY.filter((e) => e.subcategory === subcategory);
-
 }
-
-
 
 export function listSubcategoriesOfCategory(category?: string): Array<{ slug: string; title: string }> {
-
   const cat = normalize(category);
-
   const subs = new Set(
-
     REGISTRY
-
       .filter((e) => normalize(e.category) === cat)
-
       .map((e) => normalize(e.subcategory))
-
       .filter(Boolean)
-
   );
-
   const titles = SUBCATEGORY_TITLES[cat] ?? {};
-
-  const result = Array.from(subs).map((slug) => ({ slug, title: titles[slug] ?? slug.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase()) }));
-
-  if (result.length === 0 && Object.keys(titles).length > 0) {
-
-    return Object.entries(titles).map(([slug, title]) => ({ slug, title }));
-
-  }
-
-  return result;
-
+  return Array.from(subs).map((slug) => ({
+    slug,
+    title: titles[slug] || slug,
+  }));
 }
 
-
-
-export function calcPath(e: CalculatorEntry): string {
-
-  const style: UrlStyle = e.urlStyle ?? "nested";
-
-  return style === "flat"
-
-    ? `/${e.category}/${e.slug}`
-
-    : `/${e.category}/${e.subcategory}/${e.slug}`;
-
+export function getAllCategories(): string[] {
+  const cats = new Set(REGISTRY.map((e) => normalize(e.category)).filter(Boolean));
+  return Array.from(cats);
 }
 
+export function getTotalCalculatorCount(): number {
+  return REGISTRY.length;
+}
 
-
-export function calcLink(entry: CalculatorEntry): string {
-
-  const category = entry.category;
-
-  const slug = entry.slug || (entry as any).name?.toLowerCase().replace(/\s+/g, "-") || "";
-
-  const subcategory = entry.subcategory;
-
-
-
-  const style = (entry as any).urlStyle;
-
-  if (style === "flat") {
-
-    return `/${category}/${slug}`;
-
-  }
-
-
-
-  if (subcategory) {
-
-    return `/${category}/${subcategory}/${slug}`;
-
-  }
-
-  return `/${category}/${slug}`;
-
+export function getCalculatorCountByCategory(category: string): number {
+  return listByCategory(category).length;
 }
