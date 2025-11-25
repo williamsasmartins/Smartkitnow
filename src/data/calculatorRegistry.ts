@@ -139,7 +139,10 @@ export const calculatorRegistry: CalculatorEntry[] = [
     subcategory: "dogs",
     title: "Dog Age to Human Years Calculator",
     description: "Convert your dog's age to human years using the latest veterinary science formula that accounts for breed size.",
-    loader: () => import("@/components/calculators/DogAgeCalculator"),
+    loader: () =>
+      import("@/components/calculators/DogAgeCalculator").then((m) => ({
+        default: m.DogAgeCalculator as React.ComponentType<any>,
+      })),
     aliases: ["dog-age-calculator", "dog-years"],
     urlStyle: "nested",
   },
@@ -149,7 +152,10 @@ export const calculatorRegistry: CalculatorEntry[] = [
     subcategory: "cats",
     title: "Cat Age to Human Years Calculator",
     description: "Convert your cat's age to human years using veterinary-approved calculations for accurate age equivalency.",
-    loader: () => import("@/components/calculators/CatAgeCalculator"),
+    loader: () =>
+      import("@/components/calculators/CatAgeCalculator").then((m) => ({
+        default: m.CatAgeCalculator as React.ComponentType<any>,
+      })),
     aliases: ["cat-age-calculator", "cat-years"],
     urlStyle: "nested",
   },
