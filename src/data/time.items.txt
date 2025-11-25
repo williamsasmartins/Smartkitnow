@@ -1,0 +1,119 @@
+TITLE: Days Between Dates (date duration)
+SLUG: days-between-dates
+CATEGORY: time
+SUBCATEGORY: Dates & Durations
+
+TITLE: Add/Subtract Date (days/months/years)
+SLUG: add-subtract-date
+CATEGORY: time
+SUBCATEGORY: Dates & Durations
+
+TITLE: Add/Subtract Time (h/min/s)
+SLUG: add-subtract-time
+CATEGORY: time
+SUBCATEGORY: Dates & Durations
+
+TITLE: Business Days Calculator (exclude weekends/holidays)
+SLUG: business-days
+CATEGORY: time
+SUBCATEGORY: Dates & Durations
+
+TITLE: Week Number & ISO Week Finder
+SLUG: iso-week-number
+CATEGORY: time
+SUBCATEGORY: Dates & Durations
+
+TITLE: Age Calculator (years/months/days)
+SLUG: age-calculator
+CATEGORY: time
+SUBCATEGORY: Dates & Durations
+
+TITLE: Date Difference in Hours/Minutes/Seconds
+SLUG: date-difference-hms
+CATEGORY: time
+SUBCATEGORY: Dates & Durations
+
+TITLE: Julian Date/Day Calculator
+SLUG: julian-date-day-number
+CATEGORY: time
+SUBCATEGORY: Dates & Durations
+
+TITLE: Leap Year Checker
+SLUG: leap-year-checker
+CATEGORY: time
+SUBCATEGORY: Dates & Durations
+
+TITLE: Time Zone Converter (between cities)
+SLUG: time-zone-converter
+CATEGORY: time
+SUBCATEGORY: Time Zones & Clocks
+
+TITLE: World Clock (list of cities)
+SLUG: world-clock
+CATEGORY: time
+SUBCATEGORY: Time Zones & Clocks
+
+TITLE: Meeting Planner (common time across time zones)
+SLUG: meeting-planner-time-zones
+CATEGORY: time
+SUBCATEGORY: Time Zones & Clocks
+
+TITLE: UTC ↔ Local Time Converter
+SLUG: utc-local-time-converter
+CATEGORY: time
+SUBCATEGORY: Time Zones & Clocks
+
+TITLE: DST Change Checker (time changes)
+SLUG: dst-change-checker
+CATEGORY: time
+SUBCATEGORY: Time Zones & Clocks
+
+TITLE: Epoch/Unix Time Converter
+SLUG: epoch-unix-time-converter
+CATEGORY: time
+SUBCATEGORY: Time Zones & Clocks
+
+TITLE: Calendar Generator (month/year, export PDF)
+SLUG: calendar-generator-pdf
+CATEGORY: time
+SUBCATEGORY: Calendar & Extras
+
+TITLE: Workday/Workweek Planner (customized)
+SLUG: workday-workweek-planner
+CATEGORY: time
+SUBCATEGORY: Calendar & Extras
+
+TITLE: Countdown Timer (until a date/time)
+SLUG: countdown-timer
+CATEGORY: time
+SUBCATEGORY: Calendar & Extras
+
+TITLE: Stopwatch & Split Times (web tool)
+SLUG: stopwatch-split-times
+CATEGORY: time
+SUBCATEGORY: Calendar & Extras
+
+TITLE: Day of Week for Any Date (includes Doomsday rule)
+SLUG: day-of-week-for-date
+CATEGORY: time
+SUBCATEGORY: Calendar & Extras
+
+TITLE: Count Specific Weekdays Between Dates (e.g., all Fridays)
+SLUG: count-specific-weekdays
+CATEGORY: time
+SUBCATEGORY: Calendar & Extras
+
+TITLE: Sunrise and Sunset Times
+SLUG: sunrise-sunset-times
+CATEGORY: time
+SUBCATEGORY: Sun, Moon & Astronomy
+
+TITLE: Moon Phases
+SLUG: moon-phases
+CATEGORY: time
+SUBCATEGORY: Sun, Moon & Astronomy
+
+TITLE: Seasons Calculator
+SLUG: astronomical-seasons
+CATEGORY: time
+SUBCATEGORY: Sun, Moon & Astronomy
