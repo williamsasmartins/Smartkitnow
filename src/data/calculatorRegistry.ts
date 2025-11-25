@@ -122,6 +122,15 @@ export function subcategoryIcon(subcategory?: string, category?: string): string
 export const calculatorRegistry: CalculatorEntry[] = [
    
    
+    {
+    slug: "pizza-party-budget-v1",
+    title: "Pizza Party Budget Calculator",
+    category: "financial",
+    subcategory: "budget",
+    description: "Calculate exactly how many pizzas you need to order for your party and the total cost based on guest count and appetite.",
+    loader: () => import("@/components/calculators/Financial/PizzaPartyBudgetV1Calculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
