@@ -120,15 +120,7 @@ export function subcategoryIcon(subcategory?: string, category?: string): string
 // CALCULATOR REGISTRY (VAZIO E LIMPO)
 // ====================================================================
 export const calculatorRegistry: CalculatorEntry[] = [
-    {
-    slug: "v5-safety-test-calc",
-    title: "V5 Safety Protocol Test Calculator",
-    category: "financial",
-    subcategory: "savings",
-    description: "Calculadora de teste para validar a blindagem do registro na Vers�o 5 do workflow. Este teste garante que o arquivo mestre nao seja apagado.",
-    loader: () => import("@/components/calculators/Financial/V5SafetyTestCalcCalculator"),
-    urlStyle: "flat"
-  },
+   
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
