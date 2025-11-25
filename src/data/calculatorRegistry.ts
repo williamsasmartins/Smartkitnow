@@ -5,17 +5,16 @@ export type UrlStyle = "nested" | "flat";
 export interface CalculatorEntry {
   slug: string;
   title: string;
-  category: string; // e.g., "financial", "health", "pets"
-  subcategory?: string; // e.g., "dogs", "cats", "loans"
+  category: string;
+  subcategory?: string;
   description?: string;
-  aliases?: string[]; // optional alternative search terms
-  loader: () => Promise<{ default: React.ComponentType<any> }>; // dynamic import to component
-  namedExport?: string; // optional named export if component is not default
-  /** NEW: if "flat", links will be /:category/:slug */
-  urlStyle?: UrlStyle; // "nested" (default) | "flat"
+  aliases?: string[];
+  loader: () => Promise<{ default: React.ComponentType<any> }>;
+  namedExport?: string;
+  urlStyle?: UrlStyle;
 }
 
-// Friendly category titles shown on hubs and index pages
+// Friendly category titles
 export const FRIENDLY_TITLES: Record<string, string> = {
   financial: "Financial Calculators",
   health: "Health Calculators",
@@ -34,7 +33,6 @@ export const FRIENDLY_TITLES: Record<string, string> = {
   recipes: "Recipe Collections",
 };
 
-// Optional friendlier titles per subcategory
 export const SUBCATEGORY_TITLES: Record<string, Record<string, string>> = {
   pets: {
     dogs: "Dog Care",
@@ -68,7 +66,6 @@ function normalize(v?: string) {
     .replace(/[^\w\-]/g, "");
 }
 
-// Emoji icons per category (used by CategoryCalculatorsTemplate header)
 export function categoryIcon(category?: string): string {
   const key = normalize(category);
   const MAP: Record<string, string> = {
@@ -91,7 +88,6 @@ export function categoryIcon(category?: string): string {
   return MAP[key] ?? "🧮";
 }
 
-// Emoji icons per subcategory — allows pages to avoid repeating the same icon
 export function subcategoryIcon(subcategory?: string, category?: string): string | undefined {
   const sub = normalize(subcategory);
   const cat = normalize(category);
@@ -119,11 +115,9 @@ export function subcategoryIcon(subcategory?: string, category?: string): string
 // ====================================================================
 // CALCULATOR REGISTRY
 // ====================================================================
-// The actual registry of calculators. Keep lightweight and focused.
-// N8N workflow will auto-inject new entries before the closing bracket.
 export const calculatorRegistry: CalculatorEntry[] = [
   // ================================================================
-  // FINANCIAL CALCULATORS (Priority: HIGH CPC)
+  // FINANCIAL CALCULATORS
   // ================================================================
   {
     slug: "loan-payment",
@@ -135,109 +129,9 @@ export const calculatorRegistry: CalculatorEntry[] = [
     aliases: ["loan-calculator", "payment-calculator"],
     urlStyle: "flat",
   },
-  {
-    slug: "mortgage-amortization",
-    category: "financial",
-    subcategory: "loans",
-    title: "Mortgage Payment & Amortization Calculator",
-    description: "Calculate your monthly mortgage payments and view detailed amortization schedule with principal and interest breakdown.",
-    loader: () => import("@/components/calculators/Financial/MortgageAmortizationCalculator"),
-    aliases: ["mortgage-calculator", "mortgage-payment"],
-    urlStyle: "flat",
-  },
-  {
-    slug: "refinance-savings",
-    category: "financial",
-    subcategory: "loans",
-    title: "Refinance Savings Calculator",
-    description: "Calculate how much you can save by refinancing your mortgage with a lower interest rate, including break-even analysis.",
-    loader: () => import("@/components/calculators/Financial/RefinanceSavingsCalculator"),
-    aliases: ["refinance-calculator"],
-    urlStyle: "flat",
-  },
-  {
-    slug: "heloc-payment-estimator",
-    category: "financial",
-    subcategory: "loans",
-    title: "HELOC Payment Estimator",
-    description: "Estimate your Home Equity Line of Credit payments during draw and repayment periods, including interest-only calculations.",
-    loader: () => import("@/components/calculators/Financial/HelocPaymentEstimator"),
-    aliases: ["heloc-calculator"],
-    urlStyle: "flat",
-  },
-  {
-    slug: "house-affordability",
-    category: "financial",
-    subcategory: "loans",
-    title: "How Much House Can I Afford Calculator",
-    description: "Determine how much house you can afford based on your income, debts, down payment, and current mortgage rates.",
-    loader: () => import("@/components/calculators/Financial/HouseAffordabilityCalculator"),
-    aliases: ["home-affordability", "afford-house"],
-    urlStyle: "flat",
-  },
-  {
-    slug: "roi-return-on-investment",
-    category: "financial",
-    subcategory: "investments",
-    title: "Investment Return (ROI) Calculator",
-    description: "Calculate return on investment for any asset including stocks, real estate, or business investments with detailed ROI percentage.",
-    loader: () => import("@/components/calculators/Financial/RoiReturnOnInvestmentCalculator"),
-    aliases: ["roi-calculator", "investment-return"],
-    urlStyle: "flat",
-  },
-  {
-    slug: "retirement-savings-goal",
-    category: "financial",
-    subcategory: "retirement",
-    title: "Retirement Savings Goal Calculator",
-    description: "Calculate how much you need to save for retirement based on your desired lifestyle, expected expenses, and Social Security.",
-    loader: () => import("@/components/calculators/Financial/RetirementSavingsGoalCalculator"),
-    aliases: ["retirement-calculator", "retirement-planning"],
-    urlStyle: "flat",
-  },
-  {
-    slug: "401k-retirement-savings-growth",
-    category: "financial",
-    subcategory: "retirement",
-    title: "401(k) Retirement Savings Growth Calculator",
-    description: "Project your 401(k) balance at retirement with employer matching contributions, annual increases, and compound interest.",
-    loader: () => import("@/components/calculators/Financial/FourZeroOneKRetirementSavingsGrowthCalculator"),
-    aliases: ["401k-calculator", "401k-growth"],
-    urlStyle: "flat",
-  },
-  {
-    slug: "compound-interest",
-    category: "financial",
-    subcategory: "investments",
-    title: "Compound Interest Calculator",
-    description: "Calculate compound interest growth with regular contributions, showing how your money grows over time with different compounding frequencies.",
-    loader: () => import("@/components/calculators/Financial/CompoundInterestCalculator"),
-    aliases: ["compound-calculator", "interest-calculator"],
-    urlStyle: "flat",
-  },
-  {
-    slug: "credit-card-payoff",
-    category: "financial",
-    subcategory: "debt",
-    title: "Credit Card Payoff Calculator",
-    description: "Calculate how long it will take to pay off credit card debt with different payment amounts, including total interest paid.",
-    loader: () => import("@/components/calculators/Financial/CreditCardPayoffCalculator"),
-    aliases: ["credit-card-calculator", "payoff-calculator"],
-    urlStyle: "flat",
-  },
-  {
-    slug: "debt-consolidation",
-    category: "financial",
-    subcategory: "debt",
-    title: "Debt Consolidation Calculator",
-    description: "Compare your current debts with a consolidation loan to see potential savings in monthly payments and total interest.",
-    loader: () => import("@/components/calculators/Financial/DebtConsolidationCalculator"),
-    aliases: ["consolidation-calculator"],
-    urlStyle: "flat",
-  },
 
   // ================================================================
-  // PETS CALCULATORS (Category: PETS)
+  // PETS CALCULATORS
   // ================================================================
   {
     slug: "dog-age-to-human-years",
@@ -450,11 +344,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "nested",
   },
 
-  // ================================================================
-  // PLACEHOLDER FOR N8N AUTO-INJECTION
-  // ================================================================
   // SKN-AUTO-REGISTER: do not remove this line
-  // N8N workflow will inject new calculator entries above this comment
 ];
 
 // ====================================================================
@@ -515,4 +405,26 @@ export function getTotalCalculatorCount(): number {
 
 export function getCalculatorCountByCategory(category: string): number {
   return listByCategory(category).length;
+}
+
+// ====================================================================
+// CALC LINK FUNCTION (CRITICAL!)
+// ====================================================================
+export function calcLink(entry: CalculatorEntry): string {
+  const cat = normalize(entry.category);
+  const slug = normalize(entry.slug);
+  const sub = normalize(entry.subcategory);
+
+  // Flat style: /category/slug
+  if (entry.urlStyle === "flat") {
+    return `/${cat}/${slug}`;
+  }
+
+  // Nested style: /category/subcategory/slug
+  if (sub && sub !== "general") {
+    return `/${cat}/${sub}/${slug}`;
+  }
+
+  // Default: /category/slug
+  return `/${cat}/${slug}`;
 }
