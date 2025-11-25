@@ -140,6 +140,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/SimpleSavingsGoalCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "wedding-budget-planner",
+    title: "Wedding Budget Planner",
+    category: "financial",
+    subcategory: "budget",
+    description: "Plan your wedding expenses and track your budget across all categories.",
+    loader: () => import("@/components/calculators/Financial/WeddingBudgetPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
