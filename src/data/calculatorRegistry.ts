@@ -131,6 +131,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/PizzaPartyBudgetV1Calculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "simple-savings-goal",
+    title: "Simple Savings Goal Calculator",
+    category: "financial",
+    subcategory: "savings",
+    description: "Calculate exactly how much you need to save monthly to reach a specific financial goal by a target date.",
+    loader: () => import("@/components/calculators/Financial/SimpleSavingsGoalCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
