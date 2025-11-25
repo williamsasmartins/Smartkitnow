@@ -122,42 +122,7 @@ export function subcategoryIcon(subcategory?: string, category?: string): string
 export const calculatorRegistry: CalculatorEntry[] = [
    
    
-    {
-    slug: "pizza-party-budget-v1",
-    title: "Pizza Party Budget Calculator",
-    category: "financial",
-    subcategory: "budget",
-    description: "Calculate exactly how many pizzas you need to order for your party and the total cost based on guest count and appetite.",
-    loader: () => import("@/components/calculators/Financial/PizzaPartyBudgetV1Calculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "simple-savings-goal",
-    title: "Simple Savings Goal Calculator",
-    category: "financial",
-    subcategory: "savings",
-    description: "Calculate exactly how much you need to save monthly to reach a specific financial goal by a target date.",
-    loader: () => import("@/components/calculators/Financial/SimpleSavingsGoalCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "wedding-budget-planner",
-    title: "Wedding Budget Planner",
-    category: "financial",
-    subcategory: "budget",
-    description: "Plan your wedding expenses and track your budget across all categories.",
-    loader: () => import("@/components/calculators/Financial/WeddingBudgetPlannerCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "loan-payment",
-    title: "Loan Payment Calculator (Principal, Rate, Term)",
-    category: "financial",
-    subcategory: "loans-mortgages-payments",
-    description: "Calculate your monthly loan payments instantly. Enter principal, interest rate, and term to see your exact payment schedule.",
-    loader: () => import("@/components/calculators/Financial/LoanPaymentCalculator"),
-    urlStyle: "flat"
-  },
+   
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
