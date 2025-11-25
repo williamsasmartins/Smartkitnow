@@ -134,6 +134,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/LoanPaymentCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "coffee-savings-v2",
+    title: "Coffee Savings Calculator V2",
+    category: "financial",
+    subcategory: "savings",
+    description: "Calculate how much you save by making coffee at home.",
+    loader: () => import("@/components/calculators/Financial/CoffeeSavingsV2Calculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
