@@ -149,6 +149,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/WeddingBudgetPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "loan-payment",
+    title: "Loan Payment Calculator (Principal, Rate, Term)",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Calculate your monthly loan payments instantly. Enter principal, interest rate, and term to see your exact payment schedule.",
+    loader: () => import("@/components/calculators/Financial/LoanPaymentCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
