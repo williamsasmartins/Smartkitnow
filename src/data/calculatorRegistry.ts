@@ -1,5 +1,5 @@
 // src/data/calculatorRegistry.ts
-// Centralized calculator registry and helpers used by pages and templates.
+// REGISTRO LIMPO - PRONTO PARA AUTOMAÇÃO
 
 import type React from "react";
 
@@ -17,7 +17,7 @@ export interface CalculatorEntry {
   urlStyle?: UrlStyle;
 }
 
-// Friendly category titles
+// Títulos amigáveis para categorias
 export const FRIENDLY_TITLES: Record<string, string> = {
   financial: "Financial Calculators",
   health: "Health Calculators",
@@ -36,6 +36,7 @@ export const FRIENDLY_TITLES: Record<string, string> = {
   recipes: "Recipe Collections",
 };
 
+// Títulos amigáveis para subcategorias
 export const SUBCATEGORY_TITLES: Record<string, Record<string, string>> = {
   pets: {
     dogs: "Dog Care",
@@ -116,47 +117,9 @@ export function subcategoryIcon(subcategory?: string, category?: string): string
 }
 
 // ====================================================================
-// CALCULATOR REGISTRY
+// CALCULATOR REGISTRY (VAZIO E LIMPO)
 // ====================================================================
 export const calculatorRegistry: CalculatorEntry[] = [
-  // ================================================================
-  // FINANCIAL CALCULATORS
-  // ================================================================
-  {
-    slug: "loan-payment",
-    category: "financial",
-    subcategory: "loans",
-    title: "Loan Payment Calculator (Principal, Rate, Term)",
-    description: "Calculate monthly loan payments, total interest, and amortization schedule for any loan amount, interest rate, and term.",
-    loader: () => import("@/components/calculators/Financial/LoanPaymentCalculator"),
-    aliases: ["loan-calculator", "payment-calculator"],
-    urlStyle: "flat",
-  },
-
-  // ================================================================
-  // PETS CALCULATORS (Note: Adjusted paths to match /Pets/ folder structure)
-  // ================================================================
-  {
-    slug: "dog-age-to-human-years",
-    category: "pets",
-    subcategory: "dogs",
-    title: "Dog Age to Human Years Calculator",
-    description: "Convert your dog's age to human years using the latest veterinary science formula that accounts for breed size.",
-    loader: () => import("@/components/calculators/Pets/DogAgeCalculator"),
-    aliases: ["dog-age-calculator", "dog-years"],
-    urlStyle: "nested",
-  },
-  {
-    slug: "cat-age-to-human-years",
-    category: "pets",
-    subcategory: "cats",
-    title: "Cat Age to Human Years Calculator",
-    description: "Convert your cat's age to human years using veterinary-approved calculations for accurate age equivalency.",
-    loader: () => import("@/components/calculators/Pets/CatAgeCalculator"),
-    aliases: ["cat-age-calculator", "cat-years"],
-    urlStyle: "nested",
-  },
-
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
@@ -221,7 +184,7 @@ export function getCalculatorCountByCategory(category: string): number {
 }
 
 // ====================================================================
-// CALC LINK FUNCTION (CRITICAL!)
+// CALC LINK FUNCTION
 // ====================================================================
 export function calcLink(entry: CalculatorEntry): string {
   const cat = normalize(entry.category);
