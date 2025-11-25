@@ -121,6 +121,15 @@ export function subcategoryIcon(subcategory?: string, category?: string): string
 // ====================================================================
 export const calculatorRegistry: CalculatorEntry[] = [
    
+    {
+    slug: "coffee-savings-calculator",
+    title: "Coffee Savings Calculator",
+    category: "financial",
+    subcategory: "savings",
+    description: "Calculate how much money you could save over time by making coffee at home instead of buying it daily at a coffee shop.",
+    loader: () => import("@/components/calculators/Financial/CoffeeSavingsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
