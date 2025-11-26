@@ -66,7 +66,7 @@ export function Header() {
         </div>
       </div>
 
-      <nav className="container mx-auto px-4 pb-2 overflow-x-hidden">
+      <nav className="container mx-auto px-4 pb-2 overflow-x-auto">
         <ul className="skn-cat-menu flex items-center justify-start gap-4 text-sm whitespace-nowrap w-full">
                     <li className="flex items-center">
             <Link to="/construction" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
