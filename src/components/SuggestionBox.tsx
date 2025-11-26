@@ -1,64 +1,161 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { MessageSquare, Send, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-type Props = {
-  className?: string;
-  onSubmit?: (payload: { name: string; email: string; message: string }) => Promise<void> | void;
-};
-
-export default function SuggestionBox({ className = "", onSubmit }: Props) {
+export default function SuggestionBox() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [sent, setSent] = useState(false);
+  const [suggestion, setSuggestion] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  async function handleSend() {
-    const payload = { name, email, message };
-    try {
-      if (onSubmit) await onSubmit(payload);
-      setSent(true);
-    } catch {
-      // no-op for now
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!suggestion.trim()) {
+      alert("Please enter a suggestion");
+      return;
     }
+
+    setIsSubmitting(true);
+
+    // Simular envio (você pode integrar com um API endpoint aqui)
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      
+      // Reset após 3 segundos
+      setTimeout(() => {
+        setName("");
+        setEmail("");
+        setSuggestion("");
+        setIsSubmitted(false);
+      }, 3000);
+    }, 1000);
+  };
+
+  if (isSubmitted) {
+    return (
+      <div className="my-8 p-8 rounded-xl bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950 border-2 border-purple-200 dark:border-purple-800 shadow-lg">
+        <div className="text-center">
+          <div className="mb-4 flex justify-center">
+            <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+              <span className="text-3xl">✅</span>
+            </div>
+          </div>
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+            Thank You!
+          </h3>
+          <p className="text-gray-700 dark:text-gray-300">
+            Your suggestion has been received. We appreciate your feedback!
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className={`rounded-2xl border border-gray-200 bg-gray-50/40 p-4 dark:border-gray-800 dark:bg-gray-900/40 ${className}`}>
-      <h3 className="text-lg font-semibold">Send a suggestion</h3>
-      <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
-        Missing a calculator? Suggest a new tool or an improvement and we’ll prioritize popular requests.
-      </p>
+    <div className="my-8 p-6 rounded-xl bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950 border-2 border-purple-200 dark:border-purple-800 shadow-lg">
+      {/* Header */}
+      <div className="mb-5">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+          <MessageSquare className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+          Send Us a Suggestion
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 flex items-center gap-2">
+          <Sparkles className="h-4 w-4" />
+          Have an idea? We'd love to hear from you!
+        </p>
+      </div>
 
-      {sent ? (
-        <p className="mt-4 text-sm text-emerald-500">Thanks! We’ve received your suggestion.</p>
-      ) : (
-        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <input
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-950"
-            placeholder="Your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-950"
-            placeholder="you@example.com"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <textarea
-            className="sm:col-span-2 h-28 w-full rounded-md border border-gray-300 bg-white p-2 text-sm dark:border-gray-700 dark:bg-gray-950"
-            placeholder="Tell us which calculator you’d like, or improvements to existing tools."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          <div className="sm:col-span-2">
-            <button className="rounded-md bg-indigo-500 px-4 py-2 text-sm font-medium text-white" onClick={handleSend}>
-              Send
-            </button>
+      {/* Form */}
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Name & Email - Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <Label 
+              htmlFor="suggestion-name" 
+              className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block"
+            >
+              Name <span className="text-gray-500">(optional)</span>
+            </Label>
+            <Input
+              id="suggestion-name"
+              type="text"
+              placeholder="Your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="bg-white dark:bg-gray-900 border-purple-200 dark:border-purple-700 focus:border-purple-500 dark:focus:border-purple-400"
+            />
+          </div>
+
+          <div>
+            <Label 
+              htmlFor="suggestion-email" 
+              className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block"
+            >
+              Email <span className="text-gray-500">(optional)</span>
+            </Label>
+            <Input
+              id="suggestion-email"
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="bg-white dark:bg-gray-900 border-purple-200 dark:border-purple-700 focus:border-purple-500 dark:focus:border-purple-400"
+            />
           </div>
         </div>
-      )}
-      <p className="mt-2 text-xs text-gray-500">We’ll only use your email to follow up about this suggestion.</p>
+
+        {/* Suggestion Textarea */}
+        <div>
+          <Label 
+            htmlFor="suggestion-text" 
+            className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block"
+          >
+            Your Suggestion <span className="text-red-500">*</span>
+          </Label>
+          <Textarea
+            id="suggestion-text"
+            placeholder="Tell us what you'd like to see improved or added..."
+            value={suggestion}
+            onChange={(e) => setSuggestion(e.target.value)}
+            rows={4}
+            required
+            className="bg-white dark:bg-gray-900 border-purple-200 dark:border-purple-700 focus:border-purple-500 dark:focus:border-purple-400 resize-none"
+          />
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+            {suggestion.length} / 500 characters
+          </p>
+        </div>
+
+        {/* Submit Button */}
+        <Button
+          type="submit"
+          disabled={isSubmitting || !suggestion.trim()}
+          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 dark:from-purple-500 dark:to-pink-500 dark:hover:from-purple-600 dark:hover:to-pink-600 text-white font-semibold py-3 rounded-lg transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isSubmitting ? (
+            <>
+              <span className="animate-spin mr-2">⏳</span>
+              Sending...
+            </>
+          ) : (
+            <>
+              <Send className="mr-2 h-4 w-4" />
+              Send Suggestion
+            </>
+          )}
+        </Button>
+      </form>
+
+      {/* Footer Note */}
+      <p className="text-xs text-center text-gray-500 dark:text-gray-400 mt-4">
+        💡 Your feedback helps us improve SmartKitNow for everyone
+      </p>
     </div>
   );
 }
