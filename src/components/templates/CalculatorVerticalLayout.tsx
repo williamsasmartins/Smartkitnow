@@ -12,7 +12,7 @@ const SLOT_SIDEBAR = process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR || 'pending';
 const SLOT_BOTTOM_BANNER = process.env.NEXT_PUBLIC_ADSENSE_SLOT_BOTTOM_BANNER || 'pending';
 
 // ================================================================
-// COMPONENTE: "On This Page" Navigation (InchCalculator style)
+// COMPONENTE: "On This Page" Navigation - ÂNCORA CORRIGIDA
 // ================================================================
 interface OnThisPageSection {
   id: string;
@@ -20,6 +20,22 @@ interface OnThisPageSection {
 }
 
 function OnThisPageNav({ sections }: { sections: OnThisPageSection[] }) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    
+    const element = document.getElementById(id);
+    if (element) {
+      // Offset para compensar header fixo (120px)
+      const yOffset = -120;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      
+      // Atualizar URL sem recarregar
+      window.history.pushState(null, '', `#${id}`);
+    }
+  };
+
   return (
     <nav className="bg-blue-50 dark:bg-blue-950 border-l-4 border-blue-500 dark:border-blue-400 p-5 rounded-lg mb-8 shadow-sm">
       <p className="font-bold text-gray-900 dark:text-gray-100 mb-3 text-base">
@@ -30,7 +46,8 @@ function OnThisPageNav({ sections }: { sections: OnThisPageSection[] }) {
           <li key={section.id}>
             <a 
               href={`#${section.id}`}
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline text-sm font-medium transition-colors"
+              onClick={(e) => handleClick(e, section.id)}
+              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline text-sm font-medium transition-colors cursor-pointer"
             >
               {section.label}
             </a>
@@ -220,7 +237,7 @@ interface CalculatorVerticalLayoutProps {
 }
 
 // ================================================================
-// LAYOUT PRINCIPAL - VERSÃO PREMIUM CORRIGIDA
+// LAYOUT PRINCIPAL - VERSÃO PREMIUM SUPER CORRIGIDA
 // ================================================================
 export default function CalculatorVerticalLayout({
   title,
@@ -283,7 +300,7 @@ export default function CalculatorVerticalLayout({
               )}
             </header>
 
-            {/* ON THIS PAGE NAVIGATION */}
+            {/* ON THIS PAGE NAVIGATION - ÂNCORA CORRIGIDA */}
             {onThisPage && onThisPage.length > 0 && (
               <OnThisPageNav sections={onThisPage} />
             )}
@@ -321,7 +338,7 @@ export default function CalculatorVerticalLayout({
               id="content" 
               className="mb-8 prose prose-lg prose-blue max-w-none dark:prose-invert"
             >
-              <div className="text-gray-900 dark:text-gray-100 leading-relaxed">
+              <div className="text-gray-900 dark:text-gray-100 leading-relaxed skn-editorial-sections">
                 {editorial}
               </div>
             </article>
@@ -340,7 +357,7 @@ export default function CalculatorVerticalLayout({
               />
             )}
 
-            {/* DISCLAIMER LEGAL */}
+            {/* DISCLAIMER LEGAL (VISUAL MELHORADO) */}
             <LegalDisclaimer />
 
             {/* SHARE THIS PAGE (VISUAL MELHORADO) */}
@@ -353,9 +370,10 @@ export default function CalculatorVerticalLayout({
       </div>
 
       {/* ============================================================
-          CSS CUSTOMIZADO (Sidebar STICKY - Para no Footer!)
+          CSS CUSTOMIZADO
           ============================================================ */}
       <style jsx>{`
+        /* Sidebar STICKY - Para no Footer */
         .skn-sidebar-sticky {
           position: sticky;
           top: 120px;
@@ -386,6 +404,11 @@ export default function CalculatorVerticalLayout({
         /* Smooth scroll para navigation */
         html {
           scroll-behavior: smooth;
+        }
+
+        /* CORREÇÃO ÂNCORA: Scroll margin para sections */
+        .skn-editorial-sections section {
+          scroll-margin-top: 120px;
         }
 
         /* Garantir que sidebar não ultrapasse o footer */
