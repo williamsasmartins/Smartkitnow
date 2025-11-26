@@ -180,6 +180,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/HelocPaymentEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "car-loan-affordability",
+    title: "Car Loan Affordability Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Find out how much car you can afford. Input your monthly budget and down payment to determine your maximum vehicle price.",
+    loader: () => import("@/components/calculators/Financial/CarLoanAffordabilityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
