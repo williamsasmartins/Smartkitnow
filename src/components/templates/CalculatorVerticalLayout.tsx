@@ -25,13 +25,11 @@ function OnThisPageNav({ sections }: { sections: OnThisPageSection[] }) {
     
     const element = document.getElementById(id);
     if (element) {
-      // Offset para compensar header fixo (120px)
+      // Offset para compensar header fixo
       const yOffset = -120;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       
       window.scrollTo({ top: y, behavior: 'smooth' });
-      
-      // Atualizar URL sem recarregar
       window.history.pushState(null, '', `#${id}`);
     }
   };
@@ -59,7 +57,7 @@ function OnThisPageNav({ sections }: { sections: OnThisPageSection[] }) {
 }
 
 // ================================================================
-// COMPONENTE: Formula Box (InchCalculator + OmniCalculator style)
+// COMPONENTE: Formula Box
 // ================================================================
 interface FormulaVariable {
   symbol: string;
@@ -77,7 +75,6 @@ function FormulaBox({
 }) {
   return (
     <div className="my-10 p-8 rounded-2xl border-4 border-blue-500 dark:border-blue-400 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-950 dark:via-indigo-950 dark:to-purple-950 shadow-lg">
-      {/* Title */}
       <div className="text-center mb-6">
         <div className="inline-block bg-white dark:bg-gray-900 rounded-xl px-8 py-4 shadow-md">
           <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
@@ -85,15 +82,11 @@ function FormulaBox({
           </h3>
         </div>
       </div>
-
-      {/* Formula */}
       <div className="bg-white dark:bg-gray-900 rounded-xl p-6 mb-6 shadow-md">
         <p className="text-center text-3xl font-mono font-bold text-gray-900 dark:text-gray-100 break-words">
           {formula}
         </p>
       </div>
-
-      {/* Variables */}
       <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-md">
         <p className="font-semibold text-gray-900 dark:text-gray-100 mb-4 text-lg">
           Where:
@@ -116,7 +109,7 @@ function FormulaBox({
 }
 
 // ================================================================
-// COMPONENTE: Example Calculation (InchCalculator style)
+// COMPONENTE: Example Calculation
 // ================================================================
 interface ExampleStep {
   step: number;
@@ -140,11 +133,9 @@ function ExampleSection({
       <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
         {title}
       </h3>
-      
       <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
         {scenario}
       </p>
-
       <div className="space-y-4 mb-6">
         {steps.map((step) => (
           <div key={step.step} className="bg-white dark:bg-gray-900 p-4 rounded-lg">
@@ -159,7 +150,6 @@ function ExampleSection({
           </div>
         ))}
       </div>
-
       <div className="bg-green-50 dark:bg-green-950 border-l-4 border-green-500 p-4 rounded">
         <p className="font-bold text-lg text-gray-900 dark:text-gray-100">
           Result: {result}
@@ -170,7 +160,7 @@ function ExampleSection({
 }
 
 // ================================================================
-// COMPONENTE: Related Calculators (OmniCalculator style)
+// COMPONENTE: Related Calculators
 // ================================================================
 interface RelatedCalc {
   title: string;
@@ -205,18 +195,14 @@ function RelatedCalculators({ calculators }: { calculators: RelatedCalc[] }) {
 }
 
 // ================================================================
-// PROPS DO LAYOUT MELHORADO
+// PROPS DO LAYOUT
 // ================================================================
 interface CalculatorVerticalLayoutProps {
   title: string;
   description?: string;
   widget: ReactNode;
   editorial: ReactNode;
-  
-  // Navigation
   onThisPage?: OnThisPageSection[];
-  
-  // Optional Components
   formula?: {
     formula: string;
     variables: FormulaVariable[];
@@ -229,15 +215,13 @@ interface CalculatorVerticalLayoutProps {
     result: string;
   };
   relatedCalculators?: RelatedCalc[];
-  
-  // Ad Controls
   showTopBanner?: boolean;
   showSidebar?: boolean;
   showBottomBanner?: boolean;
 }
 
 // ================================================================
-// LAYOUT PRINCIPAL - VERSÃO PREMIUM SUPER CORRIGIDA
+// LAYOUT PRINCIPAL - MOBILE OTIMIZADO
 // ================================================================
 export default function CalculatorVerticalLayout({
   title,
@@ -255,14 +239,13 @@ export default function CalculatorVerticalLayout({
   return (
     <div className="skn-vertical-layout min-h-screen bg-white dark:bg-gray-900 transition-colors">
       {/* ============================================================
-          CONTAINER PRINCIPAL (Max 1200px, Centralizado)
+          CONTAINER PRINCIPAL - PADDING TOP RESPONSIVO
+          Mobile: pt-36 (header + search + menu = ~140px)
+          Desktop: pt-24 (header menor)
           ============================================================ */}
-      <div className="mx-auto pb-10 pt-24" style={{ maxWidth: 1200 }}>
+      <div className="mx-auto pb-10 pt-36 md:pt-24" style={{ maxWidth: 1200 }}>
         
-        {/* ========================================================
-            TOP BANNER AD (Responsivo: 970×90 / 728×90 / 320×100)
-            AGORA COM MARGIN-TOP PARA FICAR VISÍVEL
-            ======================================================== */}
+        {/* TOP BANNER AD */}
         {showTopBanner && (
           <AdUnit 
             slot={SLOT_TOP_BANNER}
@@ -271,11 +254,9 @@ export default function CalculatorVerticalLayout({
           />
         )}
 
-        {/* ========================================================
-            LAYOUT COM SIDEBAR + CONTEÚDO
-            ======================================================== */}
+        {/* LAYOUT COM SIDEBAR + CONTEÚDO */}
         <div className="relative">
-          {/* SIDEBAR FLUTUANTE (Desktop Only, STICKY AGORA) */}
+          {/* SIDEBAR STICKY (Desktop Only) */}
           {showSidebar && (
             <aside className="hidden xl:block skn-sidebar-sticky">
               <AdUnit 
@@ -285,7 +266,7 @@ export default function CalculatorVerticalLayout({
             </aside>
           )}
 
-          {/* CONTEÚDO CENTRALIZADO (Max 768px) */}
+          {/* CONTEÚDO CENTRALIZADO */}
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
             
             {/* TÍTULO */}
@@ -300,7 +281,7 @@ export default function CalculatorVerticalLayout({
               )}
             </header>
 
-            {/* ON THIS PAGE NAVIGATION - ÂNCORA CORRIGIDA */}
+            {/* ON THIS PAGE NAVIGATION */}
             {onThisPage && onThisPage.length > 0 && (
               <OnThisPageNav sections={onThisPage} />
             )}
@@ -314,7 +295,7 @@ export default function CalculatorVerticalLayout({
               </div>
             </section>
 
-            {/* FORMULA BOX (se fornecido) */}
+            {/* FORMULA BOX */}
             {formula && (
               <FormulaBox
                 formula={formula.formula}
@@ -323,7 +304,7 @@ export default function CalculatorVerticalLayout({
               />
             )}
 
-            {/* EXAMPLE CALCULATION (se fornecido) */}
+            {/* EXAMPLE CALCULATION */}
             {example && (
               <ExampleSection
                 title={example.title}
@@ -343,7 +324,7 @@ export default function CalculatorVerticalLayout({
               </div>
             </article>
 
-            {/* RELATED CALCULATORS (se fornecido) */}
+            {/* RELATED CALCULATORS */}
             {relatedCalculators && relatedCalculators.length > 0 && (
               <RelatedCalculators calculators={relatedCalculators} />
             )}
@@ -357,23 +338,21 @@ export default function CalculatorVerticalLayout({
               />
             )}
 
-            {/* DISCLAIMER LEGAL (VISUAL MELHORADO) */}
+            {/* DISCLAIMER LEGAL */}
             <LegalDisclaimer />
 
-            {/* SHARE THIS PAGE (VISUAL MELHORADO) */}
+            {/* SHARE THIS PAGE */}
             <ShareThisPageBox />
 
-            {/* SUGGESTION BOX (VISUAL MELHORADO) */}
+            {/* SUGGESTION BOX */}
             <SuggestionBox />
           </div>
         </div>
       </div>
 
-      {/* ============================================================
-          CSS CUSTOMIZADO
-          ============================================================ */}
+      {/* CSS CUSTOMIZADO */}
       <style jsx>{`
-        /* Sidebar STICKY - Para no Footer */
+        /* Sidebar STICKY - Para no Footer */}
         .skn-sidebar-sticky {
           position: sticky;
           top: 120px;
@@ -387,33 +366,26 @@ export default function CalculatorVerticalLayout({
           margin-right: calc((100vw - 1200px) / 2 - 320px);
         }
 
-        /* Ajustes para telas muito grandes */
         @media (min-width: 1600px) {
           .skn-sidebar-sticky {
             margin-right: calc((100vw - 1200px) / 2 - 320px);
           }
         }
 
-        /* Hide sidebar em telas menores */
         @media (max-width: 1279px) {
           .skn-sidebar-sticky {
             display: none;
           }
         }
 
-        /* Smooth scroll para navigation */
+        /* Smooth scroll */}
         html {
           scroll-behavior: smooth;
         }
 
-        /* CORREÇÃO ÂNCORA: Scroll margin para sections */
+        /* Scroll margin para sections (âncora funciona) */}
         .skn-editorial-sections section {
           scroll-margin-top: 120px;
-        }
-
-        /* Garantir que sidebar não ultrapasse o footer */
-        .skn-vertical-layout {
-          position: relative;
         }
       `}</style>
     </div>
