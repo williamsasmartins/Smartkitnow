@@ -198,6 +198,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/BalloonPaymentCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "house-affordability",
+    title: "How Much House Can I Afford? Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Determine your home buying budget based on income, debt, and down payment using this comprehensive affordability calculator.",
+    loader: () => import("@/components/calculators/Financial/HouseAffordabilityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
