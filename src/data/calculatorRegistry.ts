@@ -207,6 +207,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/HouseAffordabilityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "auto-loan",
+    title: "Auto Loan Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Calculate your auto loan payments accurately. Factor in trade-in value, sales tax, and fees to get a clear picture of your car purchase.",
+    loader: () => import("@/components/calculators/Financial/AutoLoanCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
