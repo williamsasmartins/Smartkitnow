@@ -136,24 +136,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
     
     
-    {
-    slug: "mortgage-amortization",
-    title: "Mortgage Payment & Amortization Calculator",
-    category: "financial",
-    subcategory: "loans-mortgages-payments",
-    description: "Estimate your monthly mortgage payments including interest. View the full amortization schedule to track your home equity growth over time.",
-    loader: () => import("@/components/calculators/Financial/MortgageAmortizationCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "extra-payments-payoff",
-    title: "Extra Payments & Payoff Time Calculator",
-    category: "financial",
-    subcategory: "loans-mortgages-payments",
-    description: "See how extra payments affect your loan payoff date. Save on interest by paying down your debt faster with this simple calculator.",
-    loader: () => import("@/components/calculators/Financial/ExtraPaymentsPayoffCalculator"),
-    urlStyle: "flat"
-  },
+   
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
