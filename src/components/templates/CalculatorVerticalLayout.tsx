@@ -220,7 +220,7 @@ interface CalculatorVerticalLayoutProps {
 }
 
 // ================================================================
-// LAYOUT PRINCIPAL - VERSÃO PREMIUM
+// LAYOUT PRINCIPAL - VERSÃO PREMIUM CORRIGIDA
 // ================================================================
 export default function CalculatorVerticalLayout({
   title,
@@ -238,24 +238,13 @@ export default function CalculatorVerticalLayout({
   return (
     <div className="skn-vertical-layout min-h-screen bg-white dark:bg-gray-900 transition-colors">
       {/* ============================================================
-          SIDEBAR FLUTUANTE (Desktop Only)
-          ============================================================ */}
-      {showSidebar && (
-        <aside className="hidden xl:block skn-floating-sidebar">
-          <AdUnit 
-            slot={SLOT_SIDEBAR}
-            type="sidebar"
-          />
-        </aside>
-      )}
-
-      {/* ============================================================
           CONTAINER PRINCIPAL (Max 1200px, Centralizado)
           ============================================================ */}
-      <div className="mx-auto pb-10" style={{ maxWidth: 1200 }}>
+      <div className="mx-auto pb-10 pt-24" style={{ maxWidth: 1200 }}>
         
         {/* ========================================================
             TOP BANNER AD (Responsivo: 970×90 / 728×90 / 320×100)
+            AGORA COM MARGIN-TOP PARA FICAR VISÍVEL
             ======================================================== */}
         {showTopBanner && (
           <AdUnit 
@@ -266,112 +255,130 @@ export default function CalculatorVerticalLayout({
         )}
 
         {/* ========================================================
-            CONTEÚDO CENTRALIZADO (Max 768px)
+            LAYOUT COM SIDEBAR + CONTEÚDO
             ======================================================== */}
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          
-          {/* TÍTULO */}
-          <header className="mb-6">
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">
-              {title}
-            </h1>
-            {description && (
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                {description}
-              </p>
+        <div className="relative">
+          {/* SIDEBAR FLUTUANTE (Desktop Only, STICKY AGORA) */}
+          {showSidebar && (
+            <aside className="hidden xl:block skn-sidebar-sticky">
+              <AdUnit 
+                slot={SLOT_SIDEBAR}
+                type="sidebar"
+              />
+            </aside>
+          )}
+
+          {/* CONTEÚDO CENTRALIZADO (Max 768px) */}
+          <div className="max-w-3xl mx-auto px-4 sm:px-6">
+            
+            {/* TÍTULO */}
+            <header className="mb-6">
+              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">
+                {title}
+              </h1>
+              {description && (
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {description}
+                </p>
+              )}
+            </header>
+
+            {/* ON THIS PAGE NAVIGATION */}
+            {onThisPage && onThisPage.length > 0 && (
+              <OnThisPageNav sections={onThisPage} />
             )}
-          </header>
 
-          {/* ON THIS PAGE NAVIGATION */}
-          {onThisPage && onThisPage.length > 0 && (
-            <OnThisPageNav sections={onThisPage} />
-          )}
+            {/* WIDGET DA CALCULADORA */}
+            <section 
+              className="mb-8 rounded-xl overflow-hidden border-2 border-blue-500 dark:border-blue-400 bg-white dark:bg-gray-800 shadow-lg transition-colors"
+            >
+              <div className="p-6">
+                {widget}
+              </div>
+            </section>
 
-          {/* WIDGET DA CALCULADORA */}
-          <section 
-            className="mb-8 rounded-xl overflow-hidden border-2 border-blue-500 dark:border-blue-400 bg-white dark:bg-gray-800 shadow-lg transition-colors"
-          >
-            <div className="p-6">
-              {widget}
-            </div>
-          </section>
+            {/* FORMULA BOX (se fornecido) */}
+            {formula && (
+              <FormulaBox
+                formula={formula.formula}
+                variables={formula.variables}
+                title={formula.title}
+              />
+            )}
 
-          {/* FORMULA BOX (se fornecido) */}
-          {formula && (
-            <FormulaBox
-              formula={formula.formula}
-              variables={formula.variables}
-              title={formula.title}
-            />
-          )}
+            {/* EXAMPLE CALCULATION (se fornecido) */}
+            {example && (
+              <ExampleSection
+                title={example.title}
+                scenario={example.scenario}
+                steps={example.steps}
+                result={example.result}
+              />
+            )}
 
-          {/* EXAMPLE CALCULATION (se fornecido) */}
-          {example && (
-            <ExampleSection
-              title={example.title}
-              scenario={example.scenario}
-              steps={example.steps}
-              result={example.result}
-            />
-          )}
+            {/* CONTEÚDO EDITORIAL */}
+            <article 
+              id="content" 
+              className="mb-8 prose prose-lg prose-blue max-w-none dark:prose-invert"
+            >
+              <div className="text-gray-900 dark:text-gray-100 leading-relaxed">
+                {editorial}
+              </div>
+            </article>
 
-          {/* CONTEÚDO EDITORIAL */}
-          <article 
-            id="content" 
-            className="mb-8 prose prose-lg prose-blue max-w-none dark:prose-invert"
-          >
-            <div className="text-gray-900 dark:text-gray-100 leading-relaxed">
-              {editorial}
-            </div>
-          </article>
+            {/* RELATED CALCULATORS (se fornecido) */}
+            {relatedCalculators && relatedCalculators.length > 0 && (
+              <RelatedCalculators calculators={relatedCalculators} />
+            )}
 
-          {/* RELATED CALCULATORS (se fornecido) */}
-          {relatedCalculators && relatedCalculators.length > 0 && (
-            <RelatedCalculators calculators={relatedCalculators} />
-          )}
+            {/* BOTTOM BANNER AD */}
+            {showBottomBanner && (
+              <AdUnit 
+                slot={SLOT_BOTTOM_BANNER}
+                type="bottom-banner"
+                className="mb-8"
+              />
+            )}
 
-          {/* BOTTOM BANNER AD */}
-          {showBottomBanner && (
-            <AdUnit 
-              slot={SLOT_BOTTOM_BANNER}
-              type="bottom-banner"
-              className="mb-8"
-            />
-          )}
+            {/* DISCLAIMER LEGAL */}
+            <LegalDisclaimer />
 
-          {/* DISCLAIMER LEGAL */}
-          <LegalDisclaimer />
+            {/* SHARE THIS PAGE (VISUAL MELHORADO) */}
+            <ShareThisPageBox />
 
-          {/* SHARE THIS PAGE */}
-          <ShareThisPageBox />
-
-          {/* SUGGESTION BOX */}
-          <SuggestionBox />
+            {/* SUGGESTION BOX (VISUAL MELHORADO) */}
+            <SuggestionBox />
+          </div>
         </div>
       </div>
 
       {/* ============================================================
-          CSS CUSTOMIZADO (Sidebar Flutuante)
+          CSS CUSTOMIZADO (Sidebar STICKY - Para no Footer!)
           ============================================================ */}
       <style jsx>{`
-        .skn-floating-sidebar {
-          position: fixed;
+        .skn-sidebar-sticky {
+          position: sticky;
+          top: 120px;
           right: max(1rem, calc((100vw - 1200px) / 2 - 320px));
-          top: 200px;
           width: 300px;
+          height: fit-content;
+          max-height: calc(100vh - 140px);
+          margin-left: auto;
           z-index: 10;
+          float: right;
+          margin-right: calc((100vw - 1200px) / 2 - 320px);
         }
 
         /* Ajustes para telas muito grandes */
         @media (min-width: 1600px) {
-          .skn-floating-sidebar {
-            right: calc((100vw - 1200px) / 2 - 320px);
+          .skn-sidebar-sticky {
+            margin-right: calc((100vw - 1200px) / 2 - 320px);
           }
         }
 
         /* Hide sidebar em telas menores */
         @media (max-width: 1279px) {
-          .skn-floating-sidebar {
+          .skn-sidebar-sticky {
             display: none;
           }
         }
@@ -379,6 +386,11 @@ export default function CalculatorVerticalLayout({
         /* Smooth scroll para navigation */
         html {
           scroll-behavior: smooth;
+        }
+
+        /* Garantir que sidebar não ultrapasse o footer */
+        .skn-vertical-layout {
+          position: relative;
         }
       `}</style>
     </div>
