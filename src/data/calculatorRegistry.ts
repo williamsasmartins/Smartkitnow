@@ -216,6 +216,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/AutoLoanCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "student-loan-repayment",
+    title: "Student Loan Repayment Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Plan your student loan repayment strategy. Estimate monthly payments and total interest costs under different repayment plans.",
+    loader: () => import("@/components/calculators/Financial/StudentLoanRepaymentCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
