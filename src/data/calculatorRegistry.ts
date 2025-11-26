@@ -189,6 +189,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CarLoanAffordabilityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "balloon-payment",
+    title: "Balloon Payment Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Calculate monthly payments and the final balloon payment amount. Essential for loans with a large lump-sum payoff at the end of the term.",
+    loader: () => import("@/components/calculators/Financial/BalloonPaymentCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
