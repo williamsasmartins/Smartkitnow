@@ -138,6 +138,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     
    
    
+    {
+    slug: "extra-payments-payoff",
+    title: "Extra Payments & Payoff Time Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "See how extra payments affect your loan payoff date. Save on interest by paying down your debt faster with this simple calculator.",
+    loader: () => import("@/components/calculators/Financial/ExtraPaymentsPayoffCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
