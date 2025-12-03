@@ -168,6 +168,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/ExtraPaymentsPayoffCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "interest-only-loan",
+    title: "Interest-Only Loan Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Calculate payments for interest-only loans. Compare the interest-only period versus the full amortization phase to plan your budget.",
+    loader: () => import("@/components/calculators/Financial/InterestOnlyLoanCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
