@@ -1,5 +1,5 @@
 import React from "react";
-import { Share2, Facebook, Twitter, Linkedin, MessageCircle, Mail, Link } from "lucide-react";
+import { Share2, Facebook, X, Linkedin, MessageCircle, Mail, Link } from "lucide-react";
 
 export default function ShareThisPageBox() {
   const currentUrl = typeof window !== "undefined" ? window.location.href : "";
@@ -14,11 +14,11 @@ export default function ShareThisPageBox() {
       iconColor: "text-blue-600 dark:text-blue-400"
     },
     {
-      name: "Twitter",
-      icon: Twitter,
+      name: "X",
+      icon: X,
       url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(pageTitle)}`,
-      color: "hover:bg-sky-100 dark:hover:bg-sky-900",
-      iconColor: "text-sky-500 dark:text-sky-400"
+      color: "hover:bg-gray-100 dark:hover:bg-gray-800",
+      iconColor: "text-gray-900 dark:text-gray-100"
     },
     {
       name: "LinkedIn",
