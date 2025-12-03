@@ -1,5 +1,5 @@
 import React from "react";
-import { Share2 } from "lucide-react";
+import { Share2, Facebook, Twitter, Linkedin, MessageCircle, Mail, Link } from "lucide-react";
 
 export default function ShareThisPageBox() {
   const currentUrl = typeof window !== "undefined" ? window.location.href : "";
@@ -8,33 +8,38 @@ export default function ShareThisPageBox() {
   const shareLinks = [
     {
       name: "Facebook",
-      icon: "📘",
+      icon: Facebook,
       url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`,
       color: "hover:bg-blue-100 dark:hover:bg-blue-900",
+      iconColor: "text-blue-600 dark:text-blue-400"
     },
     {
       name: "Twitter",
-      icon: "🐦",
+      icon: Twitter,
       url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(pageTitle)}`,
       color: "hover:bg-sky-100 dark:hover:bg-sky-900",
+      iconColor: "text-sky-500 dark:text-sky-400"
     },
     {
       name: "LinkedIn",
-      icon: "💼",
+      icon: Linkedin,
       url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`,
       color: "hover:bg-blue-100 dark:hover:bg-blue-900",
+      iconColor: "text-blue-700 dark:text-blue-500"
     },
     {
       name: "WhatsApp",
-      icon: "💬",
+      icon: MessageCircle,
       url: `https://wa.me/?text=${encodeURIComponent(pageTitle + " " + currentUrl)}`,
       color: "hover:bg-green-100 dark:hover:bg-green-900",
+      iconColor: "text-green-600 dark:text-green-400"
     },
     {
       name: "Email",
-      icon: "✉️",
+      icon: Mail,
       url: `mailto:?subject=${encodeURIComponent(pageTitle)}&body=${encodeURIComponent(currentUrl)}`,
       color: "hover:bg-gray-100 dark:hover:bg-gray-800",
+      iconColor: "text-gray-600 dark:text-gray-400"
     },
   ];
 
@@ -64,19 +69,22 @@ export default function ShareThisPageBox() {
 
       {/* Share Buttons */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-4">
-        {shareLinks.map((link) => (
-          <button
-            key={link.name}
-            onClick={() => handleShare(link.url)}
-            className={`flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-gray-900 rounded-lg transition-all hover:shadow-md ${link.color} group`}
-            aria-label={`Share on ${link.name}`}
-          >
-            <span className="text-3xl">{link.icon}</span>
-            <span className="text-xs font-medium text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">
-              {link.name}
-            </span>
-          </button>
-        ))}
+        {shareLinks.map((link) => {
+          const IconComponent = link.icon;
+          return (
+            <button
+              key={link.name}
+              onClick={() => handleShare(link.url)}
+              className={`flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-gray-900 rounded-lg transition-all hover:shadow-md ${link.color} group`}
+              aria-label={`Share on ${link.name}`}
+            >
+              <IconComponent className={`h-8 w-8 ${link.iconColor}`} />
+              <span className="text-xs font-medium text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                {link.name}
+              </span>
+            </button>
+          );
+        })}
       </div>
 
       {/* Copy Link */}
@@ -84,7 +92,7 @@ export default function ShareThisPageBox() {
         onClick={handleCopyLink}
         className="w-full flex items-center justify-center gap-2 p-3 bg-white dark:bg-gray-900 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900 transition-all border border-purple-200 dark:border-purple-700 group"
       >
-        <span className="text-lg">🔗</span>
+        <Link className="h-5 w-5 text-purple-600 dark:text-purple-400" />
         <span className="font-medium text-gray-700 dark:text-gray-300 group-hover:text-purple-700 dark:group-hover:text-purple-300">
           Copy Link to Clipboard
         </span>
