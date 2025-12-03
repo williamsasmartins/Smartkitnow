@@ -144,15 +144,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
   
     
    
-    {
-    slug: "mortgage-amortization",
-    title: "Mortgage Payment & Amortization Calculator",
-    category: "financial",
-    subcategory: "loans-mortgages-payments",
-    description: "Estimate your monthly mortgage payments including interest. View the full amortization schedule to track your home equity growth over time.",
-    loader: () => import("@/components/calculators/Financial/MortgageAmortizationCalculator"),
-    urlStyle: "flat"
-  },
+   
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
