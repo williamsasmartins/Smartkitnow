@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Calculator, DollarSign, TrendingUp } from "lucide-react";
 
 export default function MortgageAmortizationCalculator() {
-  const [inputs, setInputs] = useState({ principal: "", interestRate: "", termYears: "" });
+  const [inputs, setInputs] = useState({ principal: "", interestRate: "", term: "" });
   const [showFullSchedule, setShowFullSchedule] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -21,31 +21,33 @@ export default function MortgageAmortizationCalculator() {
   };
 
   const calculations = useMemo(() => {
-    const principal = parseFloat(inputs.principal) || 0;
-    const interestRate = parseFloat(inputs.interestRate) / 100 / 12 || 0;
-    const termMonths = parseFloat(inputs.termYears) * 12 || 0;
+    const principalValue = parseFloat(inputs.principal) || 0;
+    const interestRateValue = parseFloat(inputs.interestRate) || 0;
+    const termValue = parseFloat(inputs.term) || 0;
 
-    if (principal <= 0 || interestRate <= 0 || termMonths <= 0) return { monthlyPayment: 0, totalInterest: 0, totalPayment: 0, scheduleData: [] };
+    if (principalValue <= 0 || interestRateValue <= 0 || termValue <= 0) return { mainResult: 0, result2: 0, result3: 0, scheduleData: [] };
 
-    const monthlyPayment = (principal * interestRate) / (1 - Math.pow(1 + interestRate, -termMonths));
-    const totalPayment = monthlyPayment * termMonths;
-    const totalInterest = totalPayment - principal;
+    const monthlyInterestRate = interestRateValue / 100 / 12;
+    const numberOfPayments = termValue * 12;
+    const mainResult = (principalValue * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments));
+    const totalPayment = mainResult * numberOfPayments;
+    const totalInterest = totalPayment - principalValue;
 
-    const scheduleData = Array.from({ length: termMonths }, (_, i) => {
-      const interestPayment = principal * interestRate;
-      const principalPayment = monthlyPayment - interestPayment;
-      principal -= principalPayment;
-      return { month: i + 1, interestPayment, principalPayment, remainingBalance: principal };
+    const scheduleData = Array.from({ length: numberOfPayments }, (_, i) => {
+      const interestPayment = principalValue * monthlyInterestRate;
+      const principalPayment = mainResult - interestPayment;
+      principalValue -= principalPayment;
+      return { col1: `Month ${i + 1}`, col2: principalPayment };
     });
 
-    return { monthlyPayment, totalInterest, totalPayment, scheduleData };
+    return { mainResult, result2: totalPayment, result3: totalInterest, scheduleData };
   }, [inputs]);
 
   const handleCalculate = () => {
     resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const handleReset = () => setInputs({ principal: "", interestRate: "", termYears: "" });
+  const handleReset = () => setInputs({ principal: "", interestRate: "", term: "" });
 
   return (
     <CalculatorVerticalLayout
@@ -59,30 +61,30 @@ export default function MortgageAmortizationCalculator() {
       formula={{
         formula: "M = P[r(1+r)^n]/[(1+r)^n – 1]",
         variables: [
-          { symbol: "M", description: "Monthly mortgage payment" },
+          { symbol: "M", description: "Monthly payment" },
           { symbol: "P", description: "Principal loan amount" },
           { symbol: "r", description: "Monthly interest rate" },
           { symbol: "n", description: "Number of payments" },
         ],
-        title: "Formula for Calculating Mortgage Payment"
+        title: "Formula for Calculating Mortgage Payments"
       }}
       example={{
         title: "Example Calculation",
         scenario: "Imagine you have a $200,000 mortgage with a 5% annual interest rate over 30 years.",
         steps: [
-          { label: "Step 1", calculation: "5% annual interest = 0.004167 monthly interest", explanation: "Convert annual rate to monthly" },
-          { label: "Step 2", calculation: "30 years = 360 months", explanation: "Convert years to months" },
-          { label: "Step 3", calculation: "M = 200,000[0.004167(1+0.004167)^360]/[(1+0.004167)^360 – 1]", explanation: "Apply formula" },
+          { label: "Step 1", calculation: "5% annual interest = 0.004167 monthly interest", explanation: "Convert annual interest rate to monthly." },
+          { label: "Step 2", calculation: "30 years × 12 months = 360 payments", explanation: "Calculate the number of payments." },
+          { label: "Step 3", calculation: "M = 200,000[0.004167(1+0.004167)^360]/[(1+0.004167)^360 – 1]", explanation: "Apply the formula." },
         ],
         result: "The monthly payment is approximately $1,073.64"
       }}
       relatedCalculators={[
         { title: "Loan Payment Calculator", url: "/financial/loan-payment", icon: "📊" },
         { title: "Interest Rate Calculator", url: "/financial/interest-rate", icon: "💰" },
-        { title: "Savings Calculator", url: "/financial/savings", icon: "🏦" },
-        { title: "Retirement Calculator", url: "/financial/retirement", icon: "📈" },
-        { title: "Investment Calculator", url: "/financial/investment", icon: "💵" },
-        { title: "Debt Payoff Calculator", url: "/financial/debt-payoff", icon: "🔢" },
+        { title: "Amortization Schedule Calculator", url: "/financial/amortization-schedule", icon: "🏦" },
+        { title: "Refinance Calculator", url: "/financial/refinance", icon: "📈" },
+        { title: "Home Equity Calculator", url: "/financial/home-equity", icon: "💵" },
+        { title: "Debt-to-Income Ratio Calculator", url: "/financial/dti-ratio", icon: "🔢" },
       ]}
     >
       <Card className="p-6 bg-gray-800/50 border-gray-700">
@@ -91,7 +93,7 @@ export default function MortgageAmortizationCalculator() {
             <div className="space-y-2">
               <Label className="flex items-center gap-2">
                 <DollarSign className="w-4 h-4" />
-                Principal Amount
+                Loan Amount
               </Label>
               <Input
                 type="number"
@@ -120,8 +122,8 @@ export default function MortgageAmortizationCalculator() {
               <Input
                 type="number"
                 placeholder="e.g., 30"
-                value={inputs.termYears}
-                onChange={(e) => setInputs({ ...inputs, termYears: e.target.value })}
+                value={inputs.term}
+                onChange={(e) => setInputs({ ...inputs, term: e.target.value })}
               />
             </div>
           </div>
@@ -137,7 +139,7 @@ export default function MortgageAmortizationCalculator() {
         </div>
       </Card>
 
-      {calculations.monthlyPayment > 0 && (
+      {calculations.mainResult > 0 && (
         <div ref={resultsRef} className="space-y-6 mt-8">
           <h3 className="text-2xl font-bold">Results</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -146,7 +148,7 @@ export default function MortgageAmortizationCalculator() {
                 <div>
                   <p className="text-sm text-gray-600 dark:text-gray-300">Monthly Payment</p>
                   <p className="text-4xl font-bold text-blue-600 dark:text-blue-400 mt-2">
-                    {formatCurrency(calculations.monthlyPayment)}
+                    {formatCurrency(calculations.mainResult)}
                   </p>
                 </div>
                 <DollarSign className="w-12 h-12 text-blue-600 dark:text-blue-400 opacity-50" />
@@ -156,9 +158,9 @@ export default function MortgageAmortizationCalculator() {
             <Card className="p-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">Total Interest Paid</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Total Payment</p>
                   <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 mt-2">
-                    {formatCurrency(calculations.totalInterest)}
+                    {formatCurrency(calculations.result2)}
                   </p>
                 </div>
                 <TrendingUp className="w-8 h-8 text-gray-400" />
@@ -168,9 +170,9 @@ export default function MortgageAmortizationCalculator() {
             <Card className="p-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">Total Payment</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Total Interest</p>
                   <p className="text-2xl font-bold text-red-600 dark:text-red-400 mt-2">
-                    {formatCurrency(calculations.totalPayment)}
+                    {formatCurrency(calculations.result3)}
                   </p>
                 </div>
                 <Calculator className="w-8 h-8 text-gray-400" />
@@ -188,9 +190,7 @@ export default function MortgageAmortizationCalculator() {
               <thead>
                 <tr className="bg-gray-100 dark:bg-gray-800">
                   <th className="p-3 text-left">Month</th>
-                  <th className="p-3 text-left">Interest Payment</th>
                   <th className="p-3 text-left">Principal Payment</th>
-                  <th className="p-3 text-left">Remaining Balance</th>
                 </tr>
               </thead>
               <tbody>
@@ -198,10 +198,8 @@ export default function MortgageAmortizationCalculator() {
                   .slice(0, showFullSchedule ? undefined : 12)
                   .map((row, idx) => (
                     <tr key={idx} className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50">
-                      <td className="p-3">{row.month}</td>
-                      <td className="p-3">{formatCurrency(row.interestPayment)}</td>
-                      <td className="p-3">{formatCurrency(row.principalPayment)}</td>
-                      <td className="p-3">{formatCurrency(row.remainingBalance)}</td>
+                      <td className="p-3">{row.col1}</td>
+                      <td className="p-3">{formatCurrency(row.col2)}</td>
                     </tr>
                   ))}
               </tbody>
