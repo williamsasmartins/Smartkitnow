@@ -177,6 +177,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/InterestOnlyLoanCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "refinance-savings",
+    title: "Refinance Savings Calculator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Determine if refinancing is right for you. Compare current loan terms with new offers to calculate potential monthly and lifetime savings.",
+    loader: () => import("@/components/calculators/Financial/RefinanceSavingsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
