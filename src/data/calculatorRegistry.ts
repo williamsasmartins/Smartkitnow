@@ -186,6 +186,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/RefinanceSavingsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "heloc-payment-estimator",
+    title: "HELOC Payment Estimator",
+    category: "financial",
+    subcategory: "loans-mortgages-payments",
+    description: "Estimate monthly payments for a Home Equity Line of Credit (HELOC). Calculate costs during both the draw period and the repayment period.",
+    loader: () => import("@/components/calculators/Financial/HelocPaymentEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
