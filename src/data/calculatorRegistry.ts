@@ -231,24 +231,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/AutoLoanCalculator"),
     urlStyle: "flat"
   },
-    {
-    slug: "student-loan-repayment",
-    title: "Student Loan Repayment Calculator",
-    category: "financial",
-    subcategory: "loans-mortgages-payments",
-    description: "Plan your student loan repayment strategy. Estimate monthly payments and total interest costs under different repayment plans.",
-    loader: () => import("@/components/calculators/Financial/StudentLoanRepaymentCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "lease-vs-buy",
-    title: "Lease vs Buy Calculator",
-    category: "financial",
-    subcategory: "loans-mortgages-payments",
-    description: "Compare the costs of leasing versus buying a car. Analyze monthly payments and long-term value to make the smartest financial decision.",
-    loader: () => import("@/components/calculators/Financial/LeaseVsBuyCalculator"),
-    urlStyle: "flat"
-  },
+    
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
