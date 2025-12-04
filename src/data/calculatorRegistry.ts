@@ -377,6 +377,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoDcaStrategyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "stock-dca-return-estimator",
+    title: "Stock DCA Return Estimator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Estimate returns for stock market dollar cost averaging. Visualize long-term portfolio growth by investing consistent amounts over time.",
+    loader: () => import("@/components/calculators/Financial/StockDcaReturnEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
