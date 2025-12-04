@@ -674,6 +674,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/YieldFarmingApyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "staking-rewards-estimator",
+    title: "Staking Rewards Estimator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Estimate staking rewards for Proof-of-Stake coins. Calculate earnings based on staked amount and lock-up duration.",
+    loader: () => import("@/components/calculators/Financial/StakingRewardsEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
