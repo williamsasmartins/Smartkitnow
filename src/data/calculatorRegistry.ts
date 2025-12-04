@@ -278,6 +278,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/RoiReturnOnInvestmentCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sip-monthly-investment-planner",
+    title: "SIP/Monthly Investment Planner",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Plan your Systematic Investment Plan (SIP). Calculate the expected returns on your monthly mutual fund or stock market investments.",
+    loader: () => import("@/components/calculators/Financial/SipMonthlyInvestmentPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
