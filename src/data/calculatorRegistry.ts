@@ -800,6 +800,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/PositionSizeRiskManagementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "volatility-risk-assessment",
+    title: "Volatility & Risk Assessment Calculator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Assess crypto market volatility. Calculate risk metrics to inform your trading strategy and manage exposure.",
+    loader: () => import("@/components/calculators/Financial/VolatilityRiskAssessmentCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
