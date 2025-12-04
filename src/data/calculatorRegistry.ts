@@ -692,6 +692,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/InvestmentBreakEvenPointCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dca-strategy-analyzer-crypto",
+    title: "DCA Strategy Analyzer (Crypto)",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Analyze your Crypto Dollar Cost Averaging strategy. Evaluate historical performance and risk reduction of recurring buys.",
+    loader: () => import("@/components/calculators/Financial/DcaStrategyAnalyzerCryptoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
