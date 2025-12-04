@@ -332,6 +332,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/SocialSecurityBenefitEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "rule-of-72",
+    title: "Rule of 72 Calculator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Quickly estimate how long it will take to double your investment. Use the Rule of 72 formula for fast mental math on investment growth.",
+    loader: () => import("@/components/calculators/Financial/RuleOf72Calculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
