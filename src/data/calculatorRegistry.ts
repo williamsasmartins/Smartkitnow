@@ -602,6 +602,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoToCryptoExchangeRateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "live-price-checker",
+    title: "Live Price Checker (Real-Time Rates)",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Check real-time cryptocurrency prices. Monitor market movements for top coins instantly to stay updated on market trends.",
+    loader: () => import("@/components/calculators/Financial/LivePriceCheckerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
