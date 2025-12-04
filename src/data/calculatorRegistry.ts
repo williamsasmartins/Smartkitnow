@@ -782,6 +782,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CostBasisFifoLifoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "leverage-margin-profit",
+    title: "Leverage & Margin Profit Calculator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Calculate potential profits and losses with leverage. Assess risk and potential liquidation points for margin trading.",
+    loader: () => import("@/components/calculators/Financial/LeverageMarginProfitCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
