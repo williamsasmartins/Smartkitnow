@@ -746,6 +746,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/PoolFeeImpactCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "crypto-tax-liability",
+    title: "Crypto Tax Liability Calculator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Estimate your potential crypto tax liability. Prepare for tax season by calculating estimated gains and losses.",
+    loader: () => import("@/components/calculators/Financial/CryptoTaxLiabilityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
