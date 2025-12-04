@@ -476,6 +476,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CreditCardPayoffCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "debt-consolidation",
+    title: "Debt Consolidation Calculator",
+    category: "financial",
+    subcategory: "debt-management-credit",
+    description: "Determine if debt consolidation is right for you. Compare current payments versus a consolidated loan to see potential interest savings.",
+    loader: () => import("@/components/calculators/Financial/DebtConsolidationCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
