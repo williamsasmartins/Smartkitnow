@@ -548,6 +548,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CreditCardInterestCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "loan-comparison",
+    title: "Loan Comparison Calculator",
+    category: "financial",
+    subcategory: "debt-management-credit",
+    description: "Compare two different loans side-by-side. Analyze interest rates, terms, and total costs to choose the best financing option.",
+    loader: () => import("@/components/calculators/Financial/LoanComparisonCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
