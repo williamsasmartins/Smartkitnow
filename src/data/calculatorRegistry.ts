@@ -629,6 +629,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/FiatToCryptoPurchaseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "multi-currency-crypto-converter",
+    title: "Multi-Currency Crypto Converter",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Convert between multiple cryptocurrencies and fiat currencies simultaneously. A versatile tool for diverse portfolios.",
+    loader: () => import("@/components/calculators/Financial/MultiCurrencyCryptoConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
