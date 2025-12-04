@@ -359,6 +359,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/RothIraConversionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dca-simulator",
+    title: "Dollar Cost Averaging (DCA) Simulator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Simulate Dollar Cost Averaging strategies. See how regular investing compares to lump-sum investing and beats market timing volatility.",
+    loader: () => import("@/components/calculators/Financial/DcaSimulatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
