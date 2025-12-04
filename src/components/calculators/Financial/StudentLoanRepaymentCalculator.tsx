@@ -1,0 +1,687 @@
+import { useState, useMemo, useRef } from "react";
+import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+
+export default function StudentLoanRepaymentCalculator() {
+  // STATE
+  const [inputs, setInputs] = useState({ 
+    loanAmount: "", 
+    interestRate: "", 
+    loanTerm: "" 
+  });
+  const [showFullTable, setShowFullTable] = useState(false);
+  const resultsRef = useRef<HTMLDivElement>(null);
+
+  // HELPER FUNCTION (MANDATORY)
+  const formatCurrency = (value: number): string => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(value);
+  };
+
+  // CALCULATIONS
+  const results = useMemo(() => {
+    // Parse inputs (use 'let' for mutable variables)
+    let loanAmount = parseFloat(inputs.loanAmount) || 0;
+    const interestRate = parseFloat(inputs.interestRate) || 0;
+    const loanTerm = parseFloat(inputs.loanTerm) || 0;
+
+    // Validate
+    if (loanAmount <= 0 || interestRate <= 0 || loanTerm <= 0) {
+      return { 
+        monthlyPayment: 0, 
+        totalInterest: 0, 
+        totalPayment: 0, 
+        scheduleData: [] 
+      };
+    }
+
+    // Perform calculations here
+    const monthlyRate = interestRate / 100 / 12;
+    const numberOfPayments = loanTerm * 12;
+    const monthlyPayment = loanAmount * monthlyRate / (1 - Math.pow(1 + monthlyRate, -numberOfPayments));
+    const totalPayment = monthlyPayment * numberOfPayments;
+    const totalInterest = totalPayment - loanAmount;
+
+    // Generate schedule data if applicable (e.g., amortization)
+    const scheduleData = Array.from({ length: numberOfPayments }, (_, i) => {
+      const interestPayment = loanAmount * monthlyRate;
+      const principalPayment = monthlyPayment - interestPayment;
+      loanAmount -= principalPayment;
+      return {
+        month: i + 1,
+        payment: monthlyPayment,
+        principal: principalPayment,
+        interest: interestPayment,
+        balance: loanAmount > 0 ? loanAmount : 0
+      };
+    });
+
+    return { 
+      monthlyPayment, 
+      totalInterest, 
+      totalPayment, 
+      scheduleData 
+    };
+  }, [inputs]);
+
+  // HANDLERS
+  const handleCalculate = () => {
+    setTimeout(() => {
+      resultsRef.current?.scrollIntoView({ 
+        behavior: "smooth", 
+        block: "center" 
+      });
+    }, 100);
+  };
+
+  const handleReset = () => {
+    setInputs({ loanAmount: "", interestRate: "", loanTerm: "" });
+  };
+
+  // WIDGET JSX (200-250 LINES)
+  const widget = (
+    <Card className="p-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+      {/* INPUT SECTION */}
+      <div className="space-y-4">
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <DollarSign className="w-4 h-4 text-blue-600"/>
+              Loan Amount
+            </Label>
+            <Input
+              type="number"
+              placeholder="e.g., 30000"
+              value={inputs.loanAmount}
+              onChange={(e) => setInputs({ ...inputs, loanAmount: e.target.value })}
+              className="text-lg"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <TrendingUp className="w-4 h-4 text-green-600"/>
+              Interest Rate (%)
+            </Label>
+            <Input
+              type="number"
+              placeholder="e.g., 5.5"
+              value={inputs.interestRate}
+              onChange={(e) => setInputs({ ...inputs, interestRate: e.target.value })}
+              className="text-lg"
+            />
+          </div>
+
+          <div className="space-y-2 md:col-span-2">
+            <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <Calculator className="w-4 h-4 text-purple-600"/>
+              Loan Term (Years)
+            </Label>
+            <Input
+              type="number"
+              placeholder="e.g., 10"
+              value={inputs.loanTerm}
+              onChange={(e) => setInputs({ ...inputs, loanTerm: e.target.value })}
+              className="text-lg"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* BUTTONS */}
+      <div className="flex gap-4 mt-6">
+        <Button 
+          onClick={handleCalculate} 
+          className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+        >
+          <Calculator className="mr-2 h-4 w-4"/> 
+          Calculate
+        </Button>
+        <Button 
+          onClick={handleReset} 
+          variant="outline"
+          className="border-gray-300 dark:border-gray-600"
+        >
+          Reset
+        </Button>
+      </div>
+
+      {/* RESULTS SECTION - GRID 2x2 (MANDATORY) */}
+      {results.monthlyPayment > 0 && (
+        <div ref={resultsRef} className="space-y-6 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Your Results</h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* MAIN RESULT - Full Width Gradient (MANDATORY STYLE) */}
+            <Card className="col-span-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200 dark:border-blue-800 shadow-xl">
+              <CardContent className="pt-8 pb-8">
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                      Monthly Payment
+                    </p>
+                    <p className="text-5xl font-bold text-blue-600 dark:text-blue-400">
+                      {formatCurrency(results.monthlyPayment)}
+                    </p>
+                  </div>
+                  <DollarSign className="w-16 h-16 text-blue-600 dark:text-blue-400 opacity-20" />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* SECONDARY RESULT 1 */}
+            <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <CardContent className="pt-6 pb-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                      Total Interest
+                    </p>
+                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                      {formatCurrency(results.totalInterest)}
+                    </p>
+                  </div>
+                  <TrendingUp className="w-10 h-10 text-gray-400" />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* SECONDARY RESULT 2 */}
+            <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <CardContent className="pt-6 pb-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                      Total Payment
+                    </p>
+                    <p className="text-2xl font-bold text-red-600 dark:text-red-400">
+                      {formatCurrency(results.totalPayment)}
+                    </p>
+                  </div>
+                  <Calculator className="w-10 h-10 text-gray-400" />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* AMORTIZATION/SCHEDULE TABLE (if applicable) */}
+          {results.scheduleData && results.scheduleData.length > 0 && (
+            <Card className="mt-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+                <CardTitle className="flex justify-between items-center">
+                  <span className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                    Payment Schedule
+                  </span>
+                  {results.scheduleData.length > 12 && (
+                    <Button 
+                      onClick={() => setShowFullTable(!showFullTable)} 
+                      variant="outline"
+                      size="sm"
+                      className="border-gray-300 dark:border-gray-600"
+                    >
+                      {showFullTable 
+                        ? 'Show Less' 
+                        : `Show All ${results.scheduleData.length} Payments`}
+                    </Button>
+                  )}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="bg-gray-50 dark:bg-gray-900">
+                        <TableHead className="font-semibold">Month</TableHead>
+                        <TableHead className="font-semibold">Payment</TableHead>
+                        <TableHead className="font-semibold">Principal</TableHead>
+                        <TableHead className="font-semibold">Interest</TableHead>
+                        <TableHead className="font-semibold">Balance</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {results.scheduleData
+                        .slice(0, showFullTable ? undefined : 12)
+                        .map((row, idx) => (
+                          <TableRow 
+                            key={idx} 
+                            className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                          >
+                            <TableCell className="font-medium">{row.month}</TableCell>
+                            <TableCell>{formatCurrency(row.payment)}</TableCell>
+                            <TableCell className="text-green-600 dark:text-green-400">
+                              {formatCurrency(row.principal)}
+                            </TableCell>
+                            <TableCell className="text-red-600 dark:text-red-400">
+                              {formatCurrency(row.interest)}
+                            </TableCell>
+                            <TableCell className="font-semibold">
+                              {formatCurrency(row.balance)}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      )}
+    </Card>
+  );
+
+  // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
+  const editorial = (
+    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+      
+      {/* SECTION 1: INTRODUCTION (400-500 words) */}
+      <section id="introduction">
+        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          Understanding Student Loan Repayment Calculator
+        </h2>
+        
+        <p className="mb-6">
+          Student loans are a significant financial commitment, and understanding how to manage them effectively is crucial for financial stability. The Student Loan Repayment Calculator is a powerful tool designed to help borrowers plan their repayment strategy. By inputting your loan amount, interest rate, and loan term, this calculator provides an estimate of your monthly payments and total interest costs. It's particularly useful for students and graduates who want to understand the long-term financial implications of their loans and make informed decisions about their repayment options.
+        </p>
+        
+        <p className="mb-6">
+          Accurate calculations are essential in managing student loans because even small errors can lead to significant financial consequences over time. For instance, underestimating the interest rate or loan term can result in unexpected costs. This calculator helps mitigate such risks by providing precise estimates, allowing users to explore different repayment scenarios. According to recent studies, understanding these financial details can save borrowers thousands of dollars in interest payments. For more insights, explore our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
+        </p>
+        
+        <p className="mb-6">
+          To use this calculator effectively, gather all relevant information about your student loan, including the total amount borrowed, the interest rate, and the repayment term. Enter these details into the calculator to receive an accurate estimate of your monthly payments. It's important to double-check the accuracy of your inputs to ensure reliable results. For additional guidance, you might want to check out our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
+        </p>
+
+        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
+            <Info className="h-5 w-5"/> 
+            Key Insight
+          </h4>
+          <p className="text-blue-800 dark:text-blue-200">
+            Always review your loan documents for any changes in terms or interest rates. This calculator assumes fixed rates, but variable rates can alter your repayment strategy significantly. Stay informed to avoid surprises.
+          </p>
+        </div>
+        
+        <p className="mb-6">
+          Best practices for using the Student Loan Repayment Calculator include regularly updating your inputs as your financial situation changes. Consider factors such as potential salary increases or changes in living expenses that could affect your ability to repay the loan. Understanding these dynamics can help you optimize your repayment strategy and potentially reduce your overall interest costs.
+        </p>
+      </section>
+
+      {/* SECTION 2: FORMULA (300-400 words) */}
+      <section id="formula">
+        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          Student Loan Repayment Calculator Formula
+        </h2>
+        
+        <p className="mb-6">
+          The Student Loan Repayment Calculator uses a standard formula to estimate monthly payments, which is derived from the amortization formula used for calculating loan payments. This formula considers the principal amount, the interest rate, and the number of payments over the loan term. It's a widely accepted method for calculating loan repayments and provides a reliable estimate for borrowers.
+        </p>
+        
+        {/* FORMULA BOX - MANDATORY STYLING */}
+        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
+          M = P[r(1+r)^n]/[(1+r)^n – 1]
+          <div className="mt-4 text-base font-sans text-left">
+            <p className="mb-2"><strong>Where:</strong></p>
+            <ul className="space-y-1 pl-4">
+              <li>M = Monthly payment</li>
+              <li>P = Principal amount (loan balance)</li>
+              <li>r = Monthly interest rate (annual rate divided by 12 months)</li>
+              <li>n = Number of payments (loan term in months)</li>
+            </ul>
+          </div>
+        </div>
+        
+        <p className="mb-4">
+          Each variable in the formula plays a critical role in determining the monthly payment amount. The principal amount (P) is the initial loan balance, which decreases over time as payments are made. The interest rate (r) is the cost of borrowing the money, expressed as a monthly rate. The number of payments (n) is the total number of monthly payments over the loan term. Adjusting any of these variables will affect the monthly payment and total interest paid over the life of the loan.
+        </p>
+      </section>
+
+      {/* SECTION 3: FACTORS (600-800 words) */}
+      <section id="factors">
+        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          Key Factors That Affect Your Results
+        </h2>
+        
+        <p className="mb-6">
+          Understanding the factors that influence your student loan repayment is essential for effective financial planning. These factors can significantly impact your monthly payments and the total cost of your loan. By analyzing these elements, you can make informed decisions that align with your financial goals.
+        </p>
+        
+        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
+          Interest Rate
+        </h3>
+        <p className="mb-4">
+          The interest rate is a crucial factor in determining your loan's cost. A higher interest rate increases the total interest paid over the loan's life, while a lower rate reduces it. For example, a 1% increase in interest rate can add thousands of dollars to your total repayment amount.
+        </p>
+        <p className="mb-6">
+          To optimize your repayment strategy, consider refinancing options if interest rates drop significantly. Refinancing can lower your monthly payments and total interest costs. For more information, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
+        </p>
+        
+        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
+          Loan Term
+        </h3>
+        <p className="mb-4">
+          The loan term, or the length of time you have to repay the loan, affects both your monthly payments and total interest. A longer term results in lower monthly payments but higher total interest, while a shorter term increases monthly payments but reduces total interest.
+        </p>
+        <p className="mb-6">
+          Consider your financial situation and future income prospects when choosing a loan term. If you anticipate a higher income in the future, opting for a shorter term might save you money in the long run.
+        </p>
+        
+        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
+          Principal Amount
+        </h3>
+        <p className="mb-4">
+          The principal amount is the initial loan balance. Reducing this amount through extra payments or lump sum contributions can significantly decrease the total interest paid and shorten the loan term.
+        </p>
+        <p className="mb-6">
+          Consider making extra payments whenever possible. Even small additional payments can have a substantial impact over time. For strategies on extra payments, check out our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
+        </p>
+        
+        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
+          Repayment Plan
+        </h3>
+        <p className="mb-6">
+          Different repayment plans can affect your monthly payments and total interest. Standard, graduated, and income-driven plans offer varying benefits and drawbacks. Understanding these options can help you choose the plan that best fits your financial situation.
+        </p>
+
+        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
+          Economic Conditions
+        </h3>
+        <p className="mb-6">
+          Economic factors such as inflation and changes in federal interest rates can impact your loan. Stay informed about economic trends and consider how they might affect your repayment strategy. Adjusting your plan in response to economic changes can help you manage your loan more effectively.
+        </p>
+      </section>
+
+      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
+      <section id="faq">
+        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          Frequently Asked Questions
+        </h2>
+        
+        <div className="space-y-8">
+          {/* QUESTION 1 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              What is a student loan repayment calculator and why is it important?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              A student loan repayment calculator is a tool that helps borrowers estimate their monthly payments and total interest costs based on their loan amount, interest rate, and repayment term. It's important because it provides a clear picture of the financial commitment involved in repaying student loans, allowing borrowers to plan their finances effectively.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              Understanding your repayment obligations can prevent financial strain and help you make informed decisions about refinancing or choosing a repayment plan. For more tools, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
+            </p>
+          </div>
+
+          {/* QUESTION 2 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              How accurate is this calculator?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              This calculator provides estimates based on the inputs you provide. It assumes a fixed interest rate and does not account for changes in your financial situation or economic conditions. While it's a useful tool for planning, it's important to consult with a financial advisor for personalized advice.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              For best results, ensure your inputs are accurate and consider recalculating if your financial situation changes.
+            </p>
+          </div>
+
+          {/* QUESTION 3 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              What information do I need to use this calculator?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              To use this calculator, you'll need your loan amount, interest rate, and loan term. These details are typically found in your loan documents or statements. Ensure the interest rate is expressed as an annual percentage rate (APR) and the loan term is in years.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              Gathering accurate information is crucial for reliable results. If you're unsure about any details, contact your loan servicer for clarification.
+            </p>
+          </div>
+
+          {/* QUESTION 4 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              Can I use this calculator for refinancing scenarios?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              Yes, this calculator can be used to estimate payments for refinancing scenarios. By entering the new loan amount, interest rate, and term, you can compare the potential savings or costs of refinancing. Keep in mind that refinancing may involve fees or changes in loan terms.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              For a detailed analysis, consider using our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
+            </p>
+          </div>
+
+          {/* QUESTION 5 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              What are common mistakes people make with this calculation?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              Common mistakes include entering incorrect interest rates or loan terms, not accounting for variable rates, and neglecting to update inputs as financial situations change. These errors can lead to inaccurate estimates and poor financial planning.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              To avoid these mistakes, double-check your inputs and consider recalculating periodically. For more tips, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
+            </p>
+          </div>
+
+          {/* QUESTION 6 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              How often should I recalculate?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              Recalculate whenever there are changes in your financial situation, such as a change in income, interest rates, or loan terms. Regular recalculations ensure your repayment strategy remains aligned with your financial goals.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              As a rule of thumb, review your repayment plan annually or whenever significant financial changes occur.
+            </p>
+          </div>
+
+          {/* QUESTION 7 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              What should I do with these results?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              Use the results to plan your budget and repayment strategy. Consider setting up automatic payments to ensure timely repayments and avoid late fees. If the results indicate financial strain, explore options like refinancing or changing your repayment plan.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              For further guidance, consult a financial advisor or explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
+            </p>
+          </div>
+
+          {/* QUESTION 8 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              Are there alternatives to this calculation method?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              Alternatives include consulting with a financial advisor or using other financial planning tools. These methods can provide personalized advice and consider factors beyond the scope of this calculator, such as tax implications and investment opportunities.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              Consider these alternatives if you have complex financial needs or require a comprehensive financial plan.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
+      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          Official References & Resources
+        </h2>
+        <ul className="space-y-4">
+          <li className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <div>
+              <a 
+                href="https://www.federalreserve.gov" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              >
+                Federal Reserve - Interest Rates
+              </a>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Official data on interest rates and economic indicators that affect loan calculations.
+              </p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <div>
+              <a 
+                href="https://www.consumerfinance.gov" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              >
+                Consumer Financial Protection Bureau - Student Loans
+              </a>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Comprehensive consumer protection information and educational resources on student loans.
+              </p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <div>
+              <a 
+                href="https://www.fdic.gov" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              >
+                FDIC - Financial Education
+              </a>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Banking regulations and financial education resources to help manage loans effectively.
+              </p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <div>
+              <a 
+                href="https://www.irs.gov" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              >
+                Internal Revenue Service - Student Loan Interest Deduction
+              </a>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Official tax guidelines and deduction information related to student loan interest.
+              </p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <div>
+              <a 
+                href="https://www.investopedia.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              >
+                Investopedia - Loan Amortization
+              </a>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Detailed financial education on loan amortization and repayment strategies.
+              </p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <div>
+              <a 
+                href="https://www.nerdwallet.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              >
+                NerdWallet - Student Loan Guides
+              </a>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Personal finance guides and comparison tools for managing student loans.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  );
+
+  // RETURN STATEMENT
+  return (
+    <CalculatorVerticalLayout
+      title="Student Loan Repayment Calculator"
+      description="Plan your student loan repayment strategy. Estimate monthly payments and total interest costs under different repayment plans."
+      widget={widget}
+      editorial={editorial}
+      onThisPage={[
+        { id: "introduction", label: "Understanding Student Loan Repayment Calculator" },
+        { id: "formula", label: "Student Loan Repayment Calculator Formula" },
+        { id: "factors", label: "Key Factors That Affect Results" },
+        { id: "faq", label: "Frequently Asked Questions" },
+        { id: "references", label: "References & Resources" }
+      ]}
+      formula={{
+        formula: "M = P[r(1+r)^n]/[(1+r)^n – 1]",
+        variables: [
+          { symbol: "M", description: "Monthly payment" },
+          { symbol: "P", description: "Principal amount (loan balance)" },
+          { symbol: "r", description: "Monthly interest rate (annual rate divided by 12 months)" },
+          { symbol: "n", description: "Number of payments (loan term in months)" }
+        ],
+        title: "Calculation Formula"
+      }}
+      example={{
+        title: "Example Calculation",
+        scenario: "Imagine you have a student loan of $30,000 with an interest rate of 5% over a term of 10 years.",
+        steps: [
+          { 
+            label: "Step 1", 
+            calculation: "30,000 × 0.004167 = 125", 
+            explanation: "Calculate the monthly interest payment." 
+          },
+          { 
+            label: "Step 2", 
+            calculation: "125 × 120 = 15,000", 
+            explanation: "Determine the total interest over the loan term." 
+          },
+          { 
+            label: "Step 3", 
+            calculation: "30,000 + 15,000 = 45,000", 
+            explanation: "Final result shows the total repayment amount." 
+          }
+        ],
+        result: "The final result is $45,000, meaning you will pay $15,000 in interest over the life of the loan."
+      }}
+      relatedCalculators={[
+        { title: "Loan Payment Calculator (Principal, Rate, Term)", url: "/financial/loan-payment", icon: "💵" },
+        { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
+        { title: "Extra Payments & Payoff Time Calculator", url: "/financial/extra-payments-payoff", icon: "📈" },
+        { title: "Interest-Only Loan Calculator", url: "/financial/interest-only-loan", icon: "💳" },
+        { title: "Refinance Savings Calculator", url: "/financial/refinance-savings", icon: "💰" },
+        { title: "HELOC Payment Estimator", url: "/financial/heloc-payment-estimator", icon: "🏦" }
+      ]}
+    />
+  );
+}
