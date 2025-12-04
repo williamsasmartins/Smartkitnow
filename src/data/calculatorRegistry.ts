@@ -701,6 +701,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/DcaStrategyAnalyzerCryptoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "mining-profitability",
+    title: "Mining Profitability Calculator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Calculate crypto mining profitability. Factor in hashrate, power consumption, and electricity costs to estimate net earnings.",
+    loader: () => import("@/components/calculators/Financial/MiningProfitabilityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
