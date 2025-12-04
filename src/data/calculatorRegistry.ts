@@ -314,6 +314,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/EmergencyFundGoalCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "401k-retirement-savings-growth",
+    title: "401(k) / Retirement Savings Growth Calculator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Estimate your 401(k) growth over time. Factor in employer matching and annual contributions to visualize your retirement nest egg.",
+    loader: () => import("@/components/calculators/Financial/401kRetirementSavingsGrowthCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
