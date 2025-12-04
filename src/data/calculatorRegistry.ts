@@ -764,6 +764,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CapitalGainsTaxEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "transaction-fee-deduction",
+    title: "Transaction Fee Deduction Tool",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Calculate deductible transaction fees. Reduce your taxable gain by accounting for gas and exchange fees accurately.",
+    loader: () => import("@/components/calculators/Financial/TransactionFeeDeductionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
