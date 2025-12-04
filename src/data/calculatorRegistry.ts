@@ -431,6 +431,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/SavingsRateTrackerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "expense-splitter-shared-bills",
+    title: "Expense Splitter (Shared Bills) Calculator",
+    category: "financial",
+    subcategory: "income-budget-expenses",
+    description: "Split shared bills fairly among roommates or friends. Calculate exactly who owes what for rent, utilities, and groceries.",
+    loader: () => import("@/components/calculators/Financial/ExpenseSplitterSharedBillsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
