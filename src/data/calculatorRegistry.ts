@@ -494,6 +494,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/NetWorthCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "currency-converter-live",
+    title: "Currency Converter (Live Rates)",
+    category: "financial",
+    subcategory: "debt-management-credit",
+    description: "Convert currencies with real-time exchange rates. Essential tool for travel planning and international business transactions.",
+    loader: () => import("@/components/calculators/Financial/CurrencyConverterLiveCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
