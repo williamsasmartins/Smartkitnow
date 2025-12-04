@@ -449,6 +449,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/TakeHomePayCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "paycheck-calculator",
+    title: "Paycheck Calculator",
+    category: "financial",
+    subcategory: "income-budget-expenses",
+    description: "Calculate your paycheck based on hours worked, pay rate, and overtime. Get an accurate salary estimation for your next pay period.",
+    loader: () => import("@/components/calculators/Financial/PaycheckCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
