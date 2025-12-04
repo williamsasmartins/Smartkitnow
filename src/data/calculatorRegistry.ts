@@ -260,6 +260,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CompoundInterestCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "future-value-investment",
+    title: "Future Value of Investment Calculator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Estimate the future value of your investments. Calculate growth based on initial principal, periodic contributions, and expected interest rate.",
+    loader: () => import("@/components/calculators/Financial/FutureValueInvestmentCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
