@@ -440,6 +440,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/ExpenseSplitterSharedBillsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "take-home-pay",
+    title: "Take-Home Pay Calculator",
+    category: "financial",
+    subcategory: "income-budget-expenses",
+    description: "Estimate your paycheck after tax withholdings and deductions. See exactly what amount hits your bank account every payday.",
+    loader: () => import("@/components/calculators/Financial/TakeHomePayCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
