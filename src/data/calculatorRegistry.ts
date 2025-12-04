@@ -386,6 +386,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/StockDcaReturnEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "monthly-budget-planner",
+    title: "Monthly Budget Planner",
+    category: "financial",
+    subcategory: "income-budget-expenses",
+    description: "Manage your finances with this monthly budget planner. Track income and expenses to stay on target and reach your financial goals.",
+    loader: () => import("@/components/calculators/Financial/MonthlyBudgetPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
