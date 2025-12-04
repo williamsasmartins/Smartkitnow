@@ -656,6 +656,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoRoiCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "crypto-future-value-compound-growth",
+    title: "Future Value & Compound Growth Estimator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Estimate the future value of crypto assets with compound growth. Project long-term holding potential based on APY.",
+    loader: () => import("@/components/calculators/Financial/CryptoFutureValueCompoundGrowthCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
