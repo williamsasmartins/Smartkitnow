@@ -593,6 +593,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoToFiatCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "crypto-to-crypto-exchange-rate",
+    title: "Crypto to Crypto Exchange Rate Calculator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Calculate exchange rates between different cryptocurrencies. Determine swap ratios for altcoins and tokens quickly.",
+    loader: () => import("@/components/calculators/Financial/CryptoToCryptoExchangeRateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
