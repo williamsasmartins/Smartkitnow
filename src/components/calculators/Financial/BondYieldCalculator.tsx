@@ -1,0 +1,680 @@
+import { useState, useMemo, useRef } from "react";
+import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+
+export default function BondYieldCalculator() {
+  // STATE
+  const [inputs, setInputs] = useState({ 
+    faceValue: "", 
+    couponRate: "", 
+    marketPrice: "", 
+    yearsToMaturity: "" 
+  });
+  const [showFullTable, setShowFullTable] = useState(false);
+  const resultsRef = useRef<HTMLDivElement>(null);
+
+  // HELPER FUNCTION (MANDATORY)
+  const formatCurrency = (value: number): string => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(value);
+  };
+
+  // CALCULATIONS
+  const results = useMemo(() => {
+    // Parse inputs (use 'let' for mutable variables)
+    let faceValue = parseFloat(inputs.faceValue) || 0;
+    const couponRate = parseFloat(inputs.couponRate) || 0;
+    const marketPrice = parseFloat(inputs.marketPrice) || 0;
+    const yearsToMaturity = parseFloat(inputs.yearsToMaturity) || 0;
+
+    // Validate
+    if (faceValue <= 0 || couponRate <= 0 || marketPrice <= 0 || yearsToMaturity <= 0) {
+      return { 
+        currentYield: 0, 
+        yieldToMaturity: 0, 
+        scheduleData: [] 
+      };
+    }
+
+    // Perform calculations here
+    const currentYield = (couponRate * faceValue) / marketPrice;
+    const yieldToMaturity = ((couponRate * faceValue) + ((faceValue - marketPrice) / yearsToMaturity)) / ((faceValue + marketPrice) / 2);
+
+    // Generate schedule data if applicable (e.g., amortization)
+    const scheduleData = Array.from({ length: yearsToMaturity }, (_, i) => ({
+      year: i + 1,
+      couponPayment: (couponRate * faceValue),
+      principalPayment: (i === yearsToMaturity - 1) ? faceValue : 0,
+      balance: (i === yearsToMaturity - 1) ? 0 : faceValue
+    }));
+
+    return { 
+      currentYield, 
+      yieldToMaturity, 
+      scheduleData 
+    };
+  }, [inputs]);
+
+  // HANDLERS
+  const handleCalculate = () => {
+    setTimeout(() => {
+      resultsRef.current?.scrollIntoView({ 
+        behavior: "smooth", 
+        block: "center" 
+      });
+    }, 100);
+  };
+
+  const handleReset = () => {
+    setInputs({ faceValue: "", couponRate: "", marketPrice: "", yearsToMaturity: "" });
+  };
+
+  // WIDGET JSX (200-250 LINES)
+  const widget = (
+    <Card className="p-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+      {/* INPUT SECTION */}
+      <div className="space-y-4">
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <DollarSign className="w-4 h-4 text-blue-600"/>
+              Face Value
+            </Label>
+            <Input
+              type="number"
+              placeholder="e.g., 1000"
+              value={inputs.faceValue}
+              onChange={(e) => setInputs({ ...inputs, faceValue: e.target.value })}
+              className="text-lg"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <TrendingUp className="w-4 h-4 text-green-600"/>
+              Coupon Rate (%)
+            </Label>
+            <Input
+              type="number"
+              placeholder="e.g., 5"
+              value={inputs.couponRate}
+              onChange={(e) => setInputs({ ...inputs, couponRate: e.target.value })}
+              className="text-lg"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <Calculator className="w-4 h-4 text-purple-600"/>
+              Market Price
+            </Label>
+            <Input
+              type="number"
+              placeholder="e.g., 950"
+              value={inputs.marketPrice}
+              onChange={(e) => setInputs({ ...inputs, marketPrice: e.target.value })}
+              className="text-lg"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <Calculator className="w-4 h-4 text-purple-600"/>
+              Years to Maturity
+            </Label>
+            <Input
+              type="number"
+              placeholder="e.g., 10"
+              value={inputs.yearsToMaturity}
+              onChange={(e) => setInputs({ ...inputs, yearsToMaturity: e.target.value })}
+              className="text-lg"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* BUTTONS */}
+      <div className="flex gap-4 mt-6">
+        <Button 
+          onClick={handleCalculate} 
+          className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+        >
+          <Calculator className="mr-2 h-4 w-4"/> 
+          Calculate
+        </Button>
+        <Button 
+          onClick={handleReset} 
+          variant="outline"
+          className="border-gray-300 dark:border-gray-600"
+        >
+          Reset
+        </Button>
+      </div>
+
+      {/* RESULTS SECTION - GRID 2x2 (MANDATORY) */}
+      {results.currentYield > 0 && (
+        <div ref={resultsRef} className="space-y-6 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Your Results</h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* MAIN RESULT - Full Width Gradient (MANDATORY STYLE) */}
+            <Card className="col-span-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200 dark:border-blue-800 shadow-xl">
+              <CardContent className="pt-8 pb-8">
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                      Current Yield
+                    </p>
+                    <p className="text-5xl font-bold text-blue-600 dark:text-blue-400">
+                      {formatCurrency(results.currentYield)}
+                    </p>
+                  </div>
+                  <DollarSign className="w-16 h-16 text-blue-600 dark:text-blue-400 opacity-20" />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* SECONDARY RESULT 1 */}
+            <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <CardContent className="pt-6 pb-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                      Yield to Maturity
+                    </p>
+                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                      {formatCurrency(results.yieldToMaturity)}
+                    </p>
+                  </div>
+                  <TrendingUp className="w-10 h-10 text-gray-400" />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* AMORTIZATION/SCHEDULE TABLE (if applicable) */}
+          {results.scheduleData && results.scheduleData.length > 0 && (
+            <Card className="mt-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+              <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+                <CardTitle className="flex justify-between items-center">
+                  <span className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                    Payment Schedule
+                  </span>
+                  {results.scheduleData.length > 12 && (
+                    <Button 
+                      onClick={() => setShowFullTable(!showFullTable)} 
+                      variant="outline"
+                      size="sm"
+                      className="border-gray-300 dark:border-gray-600"
+                    >
+                      {showFullTable 
+                        ? 'Show Less' 
+                        : `Show All ${results.scheduleData.length} Years`}
+                    </Button>
+                  )}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="bg-gray-50 dark:bg-gray-900">
+                        <TableHead className="font-semibold">Year</TableHead>
+                        <TableHead className="font-semibold">Coupon Payment</TableHead>
+                        <TableHead className="font-semibold">Principal Payment</TableHead>
+                        <TableHead className="font-semibold">Balance</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {results.scheduleData
+                        .slice(0, showFullTable ? undefined : 12)
+                        .map((row, idx) => (
+                          <TableRow 
+                            key={idx} 
+                            className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                          >
+                            <TableCell className="font-medium">{row.year}</TableCell>
+                            <TableCell>{formatCurrency(row.couponPayment)}</TableCell>
+                            <TableCell className="text-green-600 dark:text-green-400">
+                              {formatCurrency(row.principalPayment)}
+                            </TableCell>
+                            <TableCell className="font-semibold">
+                              {formatCurrency(row.balance)}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      )}
+    </Card>
+  );
+
+  // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
+  const editorial = (
+    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+      
+      {/* SECTION 1: INTRODUCTION (400-500 words) */}
+      <section id="introduction">
+        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          Understanding Bond Yield Calculator
+        </h2>
+        
+        <p className="mb-6">
+          Investing in bonds can be a stable and rewarding addition to your financial portfolio, but understanding the yield on these investments is crucial for making informed decisions. The Bond Yield Calculator is designed to help you determine both the current yield and the yield to maturity (YTM) of your bond investments. This tool is essential for investors looking to assess the true performance of their fixed-income investments, allowing them to compare different bonds and make strategic decisions based on accurate yield calculations.
+        </p>
+        
+        <p className="mb-6">
+          Accurate bond yield calculations are vital because they directly impact your investment returns. Incorrect calculations can lead to misguided investment decisions, potentially resulting in financial losses. By using this calculator, you can ensure that your yield calculations are precise, helping you to optimize your investment strategy. This tool is particularly useful for comparing bonds with different coupon rates and maturities, allowing you to choose the best options for your financial goals. For more insights on financial calculations, you might find our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> helpful.
+        </p>
+        
+        <p className="mb-6">
+          To use the Bond Yield Calculator effectively, gather the necessary information about the bond, including its face value, coupon rate, market price, and years to maturity. Enter these values into the calculator to receive instant results. Each input field is clearly labeled to guide you through the process, ensuring that you enter the correct data. For additional guidance on using financial calculators, consider exploring our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
+        </p>
+
+        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
+            <Info className="h-5 w-5"/> 
+            Key Insight
+          </h4>
+          <p className="text-blue-800 dark:text-blue-200">
+            When using the Bond Yield Calculator, ensure that you have the most recent market price of the bond. Market prices can fluctuate, and using outdated information may lead to inaccurate yield calculations. Regularly updating your inputs will help you maintain a clear picture of your investment's performance.
+          </p>
+        </div>
+        
+        <p className="mb-6">
+          For optimal results, consider the impact of interest rate changes on your bond yields. As interest rates rise, the market price of existing bonds typically falls, affecting the yield to maturity. Understanding these dynamics can help you make more informed investment decisions. Additionally, be aware of any fees or taxes that may apply to your bond investments, as these can also influence your overall returns.
+        </p>
+      </section>
+
+      {/* SECTION 2: FORMULA (300-400 words) */}
+      <section id="formula">
+        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          Bond Yield Calculator Formula
+        </h2>
+        
+        <p className="mb-6">
+          The Bond Yield Calculator utilizes two primary formulas to determine the current yield and yield to maturity (YTM) of a bond. The current yield is calculated by dividing the annual coupon payment by the bond's market price. This formula provides a straightforward measure of the income generated by the bond relative to its current market value. The yield to maturity, on the other hand, is a more comprehensive measure that considers the total returns expected from the bond if held until maturity, accounting for both coupon payments and any capital gains or losses.
+        </p>
+        
+        {/* FORMULA BOX - MANDATORY STYLING */}
+        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
+          <div>
+            <p>Current Yield = (Coupon Payment / Market Price) × 100</p>
+            <p>Yield to Maturity ≈ [(Coupon Payment + (Face Value - Market Price) / Years to Maturity) / ((Face Value + Market Price) / 2)] × 100</p>
+          </div>
+          <div className="mt-4 text-base font-sans text-left">
+            <p className="mb-2"><strong>Where:</strong></p>
+            <ul className="space-y-1 pl-4">
+              <li>Coupon Payment = Annual interest payment from the bond</li>
+              <li>Market Price = Current trading price of the bond</li>
+              <li>Face Value = Original value of the bond at issuance</li>
+              <li>Years to Maturity = Number of years until the bond matures</li>
+            </ul>
+          </div>
+        </div>
+        
+        <p className="mb-4">
+          Each variable in these formulas plays a critical role in determining the bond's yield. The coupon payment reflects the bond's annual income, while the market price provides a snapshot of its current value in the market. The face value is essential for calculating the capital gain or loss expected at maturity, and the years to maturity help spread this gain or loss over the bond's remaining life. By understanding these variables, investors can better assess the potential returns from their bond investments and make more informed decisions.
+        </p>
+      </section>
+
+      {/* SECTION 3: FACTORS (600-800 words) */}
+      <section id="factors">
+        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          Key Factors That Affect Your Results
+        </h2>
+        
+        <p className="mb-6">
+          Understanding the factors that influence bond yields is crucial for making informed investment decisions. These factors can significantly impact the returns you receive from your bond investments, and being aware of them can help you optimize your portfolio.
+        </p>
+        
+        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
+          Interest Rates
+        </h3>
+        <p className="mb-4">
+          Interest rates are one of the most significant factors affecting bond yields. When interest rates rise, the market price of existing bonds typically falls, leading to higher yields. Conversely, when interest rates decline, bond prices increase, resulting in lower yields. This inverse relationship is crucial for bond investors to understand, as it affects both the current yield and the yield to maturity.
+        </p>
+        <p className="mb-6">
+          To optimize your bond investments, consider the current interest rate environment and how it might change in the future. By anticipating interest rate movements, you can adjust your bond portfolio to maximize returns. For more insights on managing interest rate risk, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
+        </p>
+        
+        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
+          Inflation
+        </h3>
+        <p className="mb-4">
+          Inflation erodes the purchasing power of fixed-income payments, making it a critical factor for bond investors. If inflation rises, the real value of a bond's coupon payments decreases, reducing the bond's attractiveness. Investors must consider the inflation outlook when evaluating bond yields, as higher inflation expectations can lead to higher required yields.
+        </p>
+        <p className="mb-6">
+          To mitigate inflation risk, consider investing in bonds with inflation protection, such as Treasury Inflation-Protected Securities (TIPS). These bonds adjust their principal value based on inflation, helping to preserve purchasing power. Understanding the impact of inflation on bond yields can help you make more informed investment decisions.
+        </p>
+        
+        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
+          Credit Risk
+        </h3>
+        <p className="mb-4">
+          Credit risk refers to the possibility that a bond issuer may default on its payments. Bonds with higher credit risk typically offer higher yields to compensate investors for the increased risk. Assessing the creditworthiness of a bond issuer is essential for understanding the potential risks and rewards of a bond investment.
+        </p>
+        <p className="mb-6">
+          To manage credit risk, consider diversifying your bond portfolio across issuers with varying credit ratings. This approach can help balance risk and return, providing a more stable investment experience. For more on managing credit risk, consult our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
+        </p>
+        
+        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
+          Bond Duration
+        </h3>
+        <p className="mb-6">
+          Bond duration measures the sensitivity of a bond's price to changes in interest rates. Bonds with longer durations are more sensitive to interest rate changes, leading to greater price volatility. Understanding a bond's duration can help investors assess the potential impact of interest rate fluctuations on their bond investments.
+        </p>
+        <p className="mb-6">
+          To manage duration risk, consider balancing your bond portfolio with a mix of short- and long-duration bonds. This strategy can help mitigate the impact of interest rate changes on your overall portfolio. By understanding bond duration, you can make more informed decisions about your bond investments.
+        </p>
+
+        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
+          Tax Considerations
+        </h3>
+        <p className="mb-6">
+          Taxes can significantly impact the returns from bond investments. Interest income from bonds is typically subject to federal and state taxes, which can reduce the effective yield. Investors should consider the tax implications of their bond investments and explore tax-advantaged options, such as municipal bonds, which may offer tax-free interest income.
+        </p>
+        <p className="mb-6">
+          Understanding the tax treatment of bond income can help investors optimize their after-tax returns. By considering tax implications, you can make more informed decisions about your bond investments and maximize your overall returns.
+        </p>
+      </section>
+
+      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
+      <section id="faq">
+        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          Frequently Asked Questions
+        </h2>
+        
+        <div className="space-y-8">
+          {/* QUESTION 1 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              What is bond yield calculator and why is it important?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              A bond yield calculator is a tool that helps investors determine the yield of a bond, including both the current yield and the yield to maturity (YTM). This calculation is crucial for evaluating the potential returns from a bond investment and comparing different bonds. Understanding bond yields allows investors to make informed decisions about which bonds to include in their portfolios.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              By using a bond yield calculator, investors can assess the income generated by a bond relative to its market price and evaluate the total returns expected if the bond is held until maturity. For more insights, check out our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
+            </p>
+          </div>
+
+          {/* QUESTION 2 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              How accurate is this calculator?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              The bond yield calculator provides accurate results based on the inputs provided. However, the accuracy of the results depends on the accuracy of the input data, such as the market price and coupon rate. It's important to use the most recent and reliable data to ensure accurate calculations.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              While the calculator is a valuable tool, it should be used in conjunction with professional financial advice, especially for complex investment decisions.
+            </p>
+          </div>
+
+          {/* QUESTION 3 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              What information do I need to use this calculator?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              To use the bond yield calculator, you need the bond's face value, coupon rate, market price, and years to maturity. The face value is the original value of the bond at issuance, while the coupon rate is the annual interest rate paid by the bond. The market price is the current trading price of the bond, and the years to maturity indicate the remaining time until the bond matures.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              You can typically find this information in the bond's prospectus or through financial data providers. Accurate data is essential for reliable yield calculations.
+            </p>
+          </div>
+
+          {/* QUESTION 4 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              Can I use this calculator for [specific scenario]?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              The bond yield calculator is versatile and can be used for various scenarios, including evaluating different types of bonds, such as corporate, municipal, and government bonds. However, it's important to note that the calculator assumes a constant coupon rate and does not account for callable or convertible bonds, which may have additional features affecting their yields.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              For bonds with complex features, additional analysis may be required. Consider consulting a financial advisor for guidance on specific scenarios.
+            </p>
+          </div>
+
+          {/* QUESTION 5 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              What are common mistakes people make with this calculation?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              Common mistakes include using outdated market prices, incorrect coupon rates, or not accounting for changes in interest rates. These errors can lead to inaccurate yield calculations and misguided investment decisions. It's crucial to verify all input data before performing calculations.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              Additionally, investors should be aware of any fees or taxes that may affect their bond returns, as these factors can also impact the effective yield.
+            </p>
+          </div>
+
+          {/* QUESTION 6 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              How often should I recalculate?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              It's advisable to recalculate bond yields whenever there are significant changes in market conditions, such as interest rate fluctuations or changes in the bond's market price. Regular recalculations ensure that you have an up-to-date understanding of your bond's performance.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              Consider recalculating at least quarterly or whenever you receive new financial statements or market updates.
+            </p>
+          </div>
+
+          {/* QUESTION 7 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              What should I do with these results?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              Once you have calculated the bond yields, use the results to compare different bonds and assess their potential returns. Consider how the yields align with your investment goals and risk tolerance. If the yields meet your criteria, you may decide to invest in the bond or hold it in your portfolio.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              If you're unsure about the results, consider consulting a financial advisor for personalized advice. For more tools, explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
+            </p>
+          </div>
+
+          {/* QUESTION 8 */}
+          <div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+              Are there alternatives to this calculation method?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+              While the bond yield calculator provides a standard method for calculating yields, alternative methods exist, such as using financial software or consulting with financial advisors. These alternatives may offer additional insights or account for more complex bond features.
+            </p>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+              Consider using alternative methods if you require more detailed analysis or have bonds with unique characteristics. Each method has its pros and cons, so choose the one that best suits your needs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
+      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          Official References & Resources
+        </h2>
+        <ul className="space-y-4">
+          <li className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <div>
+              <a 
+                href="https://www.federalreserve.gov" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              >
+                Federal Reserve - Bond Market Overview
+              </a>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Official data on the bond market and interest rate policies.
+              </p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <div>
+              <a 
+                href="https://www.consumerfinance.gov" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              >
+                Consumer Financial Protection Bureau - Investment Guides
+              </a>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Comprehensive consumer protection information and educational resources.
+              </p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <div>
+              <a 
+                href="https://www.fdic.gov" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              >
+                FDIC - Bond Investment Resources
+              </a>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Banking regulations and deposit insurance information.
+              </p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <div>
+              <a 
+                href="https://www.irs.gov" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              >
+                Internal Revenue Service - Tax Information
+              </a>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Official tax guidelines and deduction information.
+              </p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <div>
+              <a 
+                href="https://www.investopedia.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              >
+                Investopedia - Bond Yield Concepts
+              </a>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Detailed financial education and investment concepts explained.
+              </p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <div>
+              <a 
+                href="https://www.nerdwallet.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              >
+                NerdWallet - Bond Investment Tips
+              </a>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Personal finance guides and comparison tools for consumers.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  );
+
+  // RETURN STATEMENT
+  return (
+    <CalculatorVerticalLayout
+      title="Bond Yield Calculator"
+      description="Calculate current yield and yield to maturity (YTM) for bonds. Assess the true performance of your fixed-income investments."
+      widget={widget}
+      editorial={editorial}
+      onThisPage={[
+        { id: "introduction", label: "Understanding Bond Yield Calculator" },
+        { id: "formula", label: "Bond Yield Calculator Formula" },
+        { id: "factors", label: "Key Factors That Affect Results" },
+        { id: "faq", label: "Frequently Asked Questions" },
+        { id: "references", label: "References & Resources" }
+      ]}
+      formula={{
+        formula: "Current Yield = (Coupon Payment / Market Price) × 100; Yield to Maturity ≈ [(Coupon Payment + (Face Value - Market Price) / Years to Maturity) / ((Face Value + Market Price) / 2)] × 100",
+        variables: [
+          { symbol: "Coupon Payment", description: "Annual interest payment from the bond" },
+          { symbol: "Market Price", description: "Current trading price of the bond" },
+          { symbol: "Face Value", description: "Original value of the bond at issuance" },
+          { symbol: "Years to Maturity", description: "Number of years until the bond matures" }
+        ],
+        title: "Calculation Formula"
+      }}
+      example={{
+        title: "Example Calculation",
+        scenario: "Imagine you have a bond with a face value of $1,000, a coupon rate of 5%, a market price of $950, and 10 years to maturity.",
+        steps: [
+          { 
+            label: "Step 1", 
+            calculation: "Coupon Payment = $1,000 × 0.05 = $50", 
+            explanation: "Calculate the annual coupon payment." 
+          },
+          { 
+            label: "Step 2", 
+            calculation: "Current Yield = ($50 / $950) × 100 = 5.26%", 
+            explanation: "Determine the current yield based on the market price." 
+          },
+          { 
+            label: "Step 3", 
+            calculation: "Yield to Maturity ≈ [($50 + ($1,000 - $950) / 10) / (($1,000 + $950) / 2)] × 100 = 5.47%", 
+            explanation: "Calculate the yield to maturity considering the price difference and time to maturity." 
+          }
+        ],
+        result: "The final result is a current yield of 5.26% and a yield to maturity of 5.47%, indicating the bond's potential returns."
+      }}
+      relatedCalculators={[
+        {"title":"Loan Payment Calculator (Principal, Rate, Term)","url":"/financial/loan-payment","icon":"💵"},
+        {"title":"Mortgage Payment & Amortization Calculator","url":"/financial/mortgage-amortization","icon":"🏠"},
+        {"title":"Extra Payments & Payoff Time Calculator","url":"/financial/extra-payments-payoff","icon":"📈"},
+        {"title":"Interest-Only Loan Calculator","url":"/financial/interest-only-loan","icon":"💳"},
+        {"title":"Refinance Savings Calculator","url":"/financial/refinance-savings","icon":"💰"},
+        {"title":"HELOC Payment Estimator","url":"/financial/heloc-payment-estimator","icon":"🏦"}
+      ]}
+    />
+  );
+}
