@@ -683,6 +683,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/StakingRewardsEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "investment-break-even-point",
+    title: "Investment Break-Even Point Calculator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Find the break-even price for your crypto investments. Know exactly when your trade turns profitable after fees.",
+    loader: () => import("@/components/calculators/Financial/InvestmentBreakEvenPointCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
