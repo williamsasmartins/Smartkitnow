@@ -467,6 +467,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/AbsencePercentageCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "credit-card-payoff",
+    title: "Credit Card Payoff Calculator",
+    category: "financial",
+    subcategory: "debt-management-credit",
+    description: "Create a plan to pay off credit card debt. See how long it takes to become debt-free with different monthly payment amounts.",
+    loader: () => import("@/components/calculators/Financial/CreditCardPayoffCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
