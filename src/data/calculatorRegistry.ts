@@ -287,6 +287,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/SipMonthlyInvestmentPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "inflation-adjusted-value",
+    title: "Inflation Adjusted Value Calculator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Calculate the real value of money over time. Adjust for inflation to understand your future purchasing power accurately.",
+    loader: () => import("@/components/calculators/Financial/InflationAdjustedValueCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
