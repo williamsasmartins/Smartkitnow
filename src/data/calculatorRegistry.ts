@@ -530,6 +530,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/DebtSnowballCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "apr",
+    title: "APR Calculator",
+    category: "financial",
+    subcategory: "debt-management-credit",
+    description: "Calculate the Annual Percentage Rate (APR) for loans. Understand the true cost of borrowing including fees and interest.",
+    loader: () => import("@/components/calculators/Financial/AprCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
