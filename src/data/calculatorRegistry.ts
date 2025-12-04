@@ -395,6 +395,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/MonthlyBudgetPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "net-income-after-tax",
+    title: "Net Income after Tax Calculator",
+    category: "financial",
+    subcategory: "income-budget-expenses",
+    description: "Calculate your net income after taxes. Estimate your actual take-home pay based on your gross salary and location.",
+    loader: () => import("@/components/calculators/Financial/NetIncomeAfterTaxCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
