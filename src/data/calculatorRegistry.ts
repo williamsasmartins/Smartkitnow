@@ -512,6 +512,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/SalesTaxCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "vat-gst",
+    title: "VAT/GST Calculator",
+    category: "financial",
+    subcategory: "debt-management-credit",
+    description: "Calculate VAT or GST for goods and services. Add or remove tax from the gross amount easily for international pricing.",
+    loader: () => import("@/components/calculators/Financial/VatGstCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
