@@ -728,6 +728,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/ElectricityCostVsMiningRevenueCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "gpu-asic-mining-roi",
+    title: "GPU/ASIC Mining ROI Calculator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Calculate ROI for mining hardware. Estimate how long it takes to pay off GPUs or ASICs based on current profitability.",
+    loader: () => import("@/components/calculators/Financial/GpuAsicMiningRoiCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
