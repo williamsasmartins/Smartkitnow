@@ -251,6 +251,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/LeaseVsBuyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "compound-interest",
+    title: "Compound Interest Calculator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Calculate the power of compound interest. See how your investments grow over time with daily, monthly, or yearly compounding.",
+    loader: () => import("@/components/calculators/Financial/CompoundInterestCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
