@@ -422,6 +422,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/DebtToIncomeRatioCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "savings-rate-tracker",
+    title: "Savings Rate Tracker",
+    category: "financial",
+    subcategory: "income-budget-expenses",
+    description: "Track your personal savings rate. Determine exactly what percentage of your income you are saving for the future versus spending.",
+    loader: () => import("@/components/calculators/Financial/SavingsRateTrackerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
