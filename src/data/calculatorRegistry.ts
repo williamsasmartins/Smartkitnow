@@ -368,6 +368,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/DcaSimulatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "crypto-dca-strategy",
+    title: "Crypto DCA Strategy Calculator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Calculate potential returns from a Crypto DCA strategy. Analyze historical performance of recurring buys in volatile markets.",
+    loader: () => import("@/components/calculators/Financial/CryptoDcaStrategyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
