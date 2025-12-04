@@ -521,6 +521,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/VatGstCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "debt-snowball",
+    title: "Debt Snowball Calculator",
+    category: "financial",
+    subcategory: "debt-management-credit",
+    description: "Use the debt snowball method to pay off debts faster. Organize debts from smallest to largest balance to build momentum.",
+    loader: () => import("@/components/calculators/Financial/DebtSnowballCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
