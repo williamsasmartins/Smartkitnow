@@ -539,6 +539,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/AprCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "credit-card-interest",
+    title: "Credit Card Interest Calculator",
+    category: "financial",
+    subcategory: "debt-management-credit",
+    description: "Estimate how much interest you will pay on your credit card balance over time. See the cost of carrying debt.",
+    loader: () => import("@/components/calculators/Financial/CreditCardInterestCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
