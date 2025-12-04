@@ -665,6 +665,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoFutureValueCompoundGrowthCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "yield-farming-apy",
+    title: "Yield Farming APY Calculator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Calculate Annual Percentage Yield (APY) for yield farming. Estimate daily and yearly returns on your liquidity provider positions.",
+    loader: () => import("@/components/calculators/Financial/YieldFarmingApyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
