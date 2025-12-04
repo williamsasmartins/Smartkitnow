@@ -323,6 +323,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/401kRetirementSavingsGrowthCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "social-security-benefit-estimator",
+    title: "Social Security Benefit Estimator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Estimate your future Social Security benefits. Calculate potential monthly payments based on your earnings history and retirement age.",
+    loader: () => import("@/components/calculators/Financial/SocialSecurityBenefitEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
