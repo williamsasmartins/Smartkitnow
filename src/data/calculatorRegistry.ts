@@ -485,6 +485,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/DebtConsolidationCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "net-worth",
+    title: "Net Worth Calculator",
+    category: "financial",
+    subcategory: "debt-management-credit",
+    description: "Calculate your total net worth. Subtract liabilities from assets to understand your overall financial position and track wealth.",
+    loader: () => import("@/components/calculators/Financial/NetWorthCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
