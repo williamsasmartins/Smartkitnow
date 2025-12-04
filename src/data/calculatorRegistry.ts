@@ -404,6 +404,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/NetIncomeAfterTaxCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "hourly-to-annual-salary",
+    title: "Hourly to Annual Salary Converter",
+    category: "financial",
+    subcategory: "income-budget-expenses",
+    description: "Convert hourly wages to annual salary instantly. Calculate weekly, bi-weekly, monthly, and yearly earnings from your hourly rate.",
+    loader: () => import("@/components/calculators/Financial/HourlyToAnnualSalaryCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
