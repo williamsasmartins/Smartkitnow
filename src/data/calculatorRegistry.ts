@@ -611,6 +611,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/LivePriceCheckerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "portfolio-value-tracker",
+    title: "Portfolio Value Tracker",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Track the total value of your crypto portfolio. Monitor gains and losses across all your digital asset holdings in one place.",
+    loader: () => import("@/components/calculators/Financial/PortfolioValueTrackerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
