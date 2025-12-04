@@ -269,6 +269,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/FutureValueInvestmentCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "roi-return-on-investment",
+    title: "Investment Return (ROI) Calculator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Calculate your Return on Investment (ROI) percentage. Measure the profitability of your assets and portfolio performance easily.",
+    loader: () => import("@/components/calculators/Financial/RoiReturnOnInvestmentCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
