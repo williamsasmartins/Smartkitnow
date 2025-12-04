@@ -773,6 +773,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/TransactionFeeDeductionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cost-basis-fifo-lifo",
+    title: "Cost Basis Calculator (FIFO/LIFO)",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Calculate cost basis using FIFO or LIFO methods. Essential for accurate crypto tax reporting and portfolio tracking.",
+    loader: () => import("@/components/calculators/Financial/CostBasisFifoLifoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
