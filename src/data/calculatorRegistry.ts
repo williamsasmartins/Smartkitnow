@@ -305,6 +305,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/RetirementSavingsGoalCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "emergency-fund-goal",
+    title: "Emergency Fund Goal Calculator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Calculate the ideal size for your emergency fund. Plan for 3 to 6 months of expenses to ensure financial security against the unexpected.",
+    loader: () => import("@/components/calculators/Financial/EmergencyFundGoalCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
