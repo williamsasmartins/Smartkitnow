@@ -647,6 +647,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoProfitLossCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "crypto-roi",
+    title: "ROI (Return on Investment) Calculator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Calculate crypto Return on Investment. Measure the performance of your digital asset investments over specific timeframes.",
+    loader: () => import("@/components/calculators/Financial/CryptoRoiCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
