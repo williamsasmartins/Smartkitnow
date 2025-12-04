@@ -557,6 +557,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/LoanComparisonCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "college-savings",
+    title: "College Savings Calculator",
+    category: "financial",
+    subcategory: "debt-management-credit",
+    description: "Plan for college expenses. Estimate how much you need to save for tuition and education costs based on projected inflation.",
+    loader: () => import("@/components/calculators/Financial/CollegeSavingsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
