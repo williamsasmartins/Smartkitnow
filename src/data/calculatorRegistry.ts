@@ -413,6 +413,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/HourlyToAnnualSalaryCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "debt-to-income-ratio",
+    title: "Debt-to-Income Ratio Calculator",
+    category: "financial",
+    subcategory: "income-budget-expenses",
+    description: "Calculate your Debt-to-Income (DTI) ratio. Essential for assessing mortgage eligibility and understanding your overall financial health.",
+    loader: () => import("@/components/calculators/Financial/DebtToIncomeRatioCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
