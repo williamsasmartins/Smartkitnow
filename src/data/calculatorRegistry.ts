@@ -719,6 +719,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/HashRateToEarningsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "electricity-cost-vs-mining-revenue",
+    title: "Electricity Cost vs Mining Revenue",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Compare electricity costs against mining revenue. Ensure your mining operation remains profitable with this cost analysis tool.",
+    loader: () => import("@/components/calculators/Financial/ElectricityCostVsMiningRevenueCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
