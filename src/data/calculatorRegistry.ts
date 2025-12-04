@@ -575,6 +575,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/IrrNpvCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tax-bracket",
+    title: "Tax Bracket Calculator",
+    category: "financial",
+    subcategory: "debt-management-credit",
+    description: "Find your federal tax bracket. Estimate your effective tax rate based on taxable income and filing status to plan ahead.",
+    loader: () => import("@/components/calculators/Financial/TaxBracketCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
