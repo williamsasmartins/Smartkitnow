@@ -503,6 +503,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CurrencyConverterLiveCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sales-tax",
+    title: "Sales Tax Calculator",
+    category: "financial",
+    subcategory: "debt-management-credit",
+    description: "Calculate sales tax and total purchase price. Add local tax rates to net prices instantly for accurate budgeting.",
+    loader: () => import("@/components/calculators/Financial/SalesTaxCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
