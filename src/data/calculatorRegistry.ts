@@ -755,6 +755,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoTaxLiabilityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "capital-gains-tax-estimator",
+    title: "Capital Gains Tax Estimator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Calculate capital gains tax on crypto sales. Determine short-term vs long-term tax obligations based on holding period.",
+    loader: () => import("@/components/calculators/Financial/CapitalGainsTaxEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
