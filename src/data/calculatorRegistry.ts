@@ -791,6 +791,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/LeverageMarginProfitCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "position-size-risk-management",
+    title: "Position Size & Risk Management Tool",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Determine optimal position size. Manage risk by calculating stop-loss levels and appropriate trade amounts for your account.",
+    loader: () => import("@/components/calculators/Financial/PositionSizeRiskManagementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
