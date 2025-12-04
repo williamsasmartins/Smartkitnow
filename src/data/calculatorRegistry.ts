@@ -350,6 +350,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/BondYieldCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "roth-ira-conversion",
+    title: "Roth IRA Conversion Calculator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Analyze the tax implications of converting a traditional IRA to a Roth IRA. Determine if the tax cost now is worth the tax-free growth later.",
+    loader: () => import("@/components/calculators/Financial/RothIraConversionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
