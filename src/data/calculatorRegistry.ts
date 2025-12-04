@@ -566,6 +566,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CollegeSavingsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "irr-npv",
+    title: "IRR NPV Calculator",
+    category: "financial",
+    subcategory: "debt-management-credit",
+    description: "Calculate Internal Rate of Return (IRR) and Net Present Value (NPV) for financial project analysis and investment decisions.",
+    loader: () => import("@/components/calculators/Financial/IrrNpvCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
