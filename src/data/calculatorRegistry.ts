@@ -737,6 +737,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/GpuAsicMiningRoiCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pool-fee-impact",
+    title: "Pool Fee Impact Estimator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Estimate the impact of mining pool fees on your earnings. Compare different pools to maximize your mining profit.",
+    loader: () => import("@/components/calculators/Financial/PoolFeeImpactCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
