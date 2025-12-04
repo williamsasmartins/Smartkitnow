@@ -638,6 +638,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/MultiCurrencyCryptoConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "crypto-profit-loss",
+    title: "Crypto Profit/Loss Calculator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Calculate profit or loss on your crypto trades. Input buy and sell prices to see your exact Return on Investment.",
+    loader: () => import("@/components/calculators/Financial/CryptoProfitLossCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
