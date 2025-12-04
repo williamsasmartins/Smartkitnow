@@ -584,6 +584,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/TaxBracketCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "crypto-to-fiat",
+    title: "Crypto to Fiat Converter",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Convert cryptocurrency to fiat currency instantly. Get live exchange rates for BTC, ETH, and more to USD, EUR, and other currencies.",
+    loader: () => import("@/components/calculators/Financial/CryptoToFiatCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
