@@ -620,6 +620,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/PortfolioValueTrackerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fiat-to-crypto-purchase",
+    title: "Fiat to Crypto Purchase Calculator",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Calculate how much crypto you can buy with a specific amount of fiat currency. Plan your entry points accurately.",
+    loader: () => import("@/components/calculators/Financial/FiatToCryptoPurchaseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
