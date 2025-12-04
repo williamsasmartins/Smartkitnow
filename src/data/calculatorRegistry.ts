@@ -341,6 +341,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/RuleOf72Calculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bond-yield",
+    title: "Bond Yield Calculator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Calculate current yield and yield to maturity (YTM) for bonds. Assess the true performance of your fixed-income investments.",
+    loader: () => import("@/components/calculators/Financial/BondYieldCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
