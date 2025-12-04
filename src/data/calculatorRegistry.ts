@@ -710,6 +710,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/MiningProfitabilityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "hash-rate-to-earnings",
+    title: "Hash Rate to Earnings Converter",
+    category: "financial",
+    subcategory: "cryptocurrency-core-tools",
+    description: "Convert mining hashrate to estimated earnings. See how much your hardware can generate per day in current market conditions.",
+    loader: () => import("@/components/calculators/Financial/HashRateToEarningsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
