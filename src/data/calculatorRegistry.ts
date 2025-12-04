@@ -296,6 +296,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/InflationAdjustedValueCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "retirement-savings-goal",
+    title: "Retirement Savings Goal Calculator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Determine how much you need to save for retirement. Set clear goals based on your current age, income, and desired lifestyle.",
+    loader: () => import("@/components/calculators/Financial/RetirementSavingsGoalCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
