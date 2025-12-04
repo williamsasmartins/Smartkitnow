@@ -458,6 +458,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/PaycheckCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "absence-percentage-calculator",
+    title: "Absence Percentage Calculator",
+    category: "financial",
+    subcategory: "income-budget-expenses",
+    description: "Calculate employee absence percentage. Track attendance rates useful for HR metrics and workforce management analysis.",
+    loader: () => import("@/components/calculators/Financial/AbsencePercentageCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
