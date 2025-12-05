@@ -14,7 +14,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 223 77% 66%; /* #5c82ee */
+    /* Azul mais escuro para melhor contraste no tema claro */
+    --primary: 217 91% 60%; /* ~ Tailwind blue-600 (#2563eb) */
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -47,7 +48,8 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 223 77% 66%; /* #5c82ee */
+    /* Mantém contraste adequado também no tema escuro */
+    --primary: 217 91% 60%; /* ~ Tailwind blue-600 (#2563eb) */
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -62,7 +64,8 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
+    /* Borda mais visível em fundo escuro para separar rodapé/containers */
+    --border: 217.2 32.6% 26%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
@@ -108,6 +111,11 @@
     .skn-offset-header {
       padding-top: 160px; /* sm+: slightly larger header */
     }
+  }
+  /* Performance: delay rendering of offscreen sections */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
   }
 }
 

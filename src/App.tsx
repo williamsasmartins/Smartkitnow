@@ -1,49 +1,49 @@
 // src/App.tsx
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import ScrollToTop from "@/components/ScrollToTop";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
-import GlowCardDemo from "@/pages/GlowCardDemo";
-import FinancialCategory from "@/pages/categories/FinancialCategory";
-import HealthCategory from "@/pages/categories/HealthCategory";
-import CookingCategory from "@/pages/categories/CookingCategory";
-import ConversionCategory from "@/pages/categories/ConversionCategory";
-import MathCategory from "./pages/categories/MathCategory";
-import ScienceCategory from "./pages/categories/ScienceCategory";
-import TimeCategory from "@/pages/categories/TimeCategory";
-import AutomotiveCategory from "@/pages/categories/AutomotiveCategory";
-import PetsCategory from "@/pages/categories/PetsCategory";
-import ConstructionCategory from "@/pages/categories/ConstructionCategory";
-import ElectricalCategory from "@/pages/categories/ElectricalCategory";
-import EverydayCategory from "@/pages/categories/EverydayCategory";
-import SportsCategory from "@/pages/categories/SportsCategory";
-import FunnyCategory from "@/pages/categories/FunnyCategory";
-import VideoCategory from "@/pages/categories/VideoCategory";
+const GlowCardDemo = lazy(() => import("@/pages/GlowCardDemo"));
+const FinancialCategory = lazy(() => import("@/pages/categories/FinancialCategory"));
+const HealthCategory = lazy(() => import("@/pages/categories/HealthCategory"));
+const CookingCategory = lazy(() => import("@/pages/categories/CookingCategory"));
+const ConversionCategory = lazy(() => import("@/pages/categories/ConversionCategory"));
+const MathCategory = lazy(() => import("@/pages/categories/MathCategory"));
+const ScienceCategory = lazy(() => import("@/pages/categories/ScienceCategory"));
+const TimeCategory = lazy(() => import("@/pages/categories/TimeCategory"));
+const AutomotiveCategory = lazy(() => import("@/pages/categories/AutomotiveCategory"));
+const PetsCategory = lazy(() => import("@/pages/categories/PetsCategory"));
+const ConstructionCategory = lazy(() => import("@/pages/categories/ConstructionCategory"));
+const ElectricalCategory = lazy(() => import("@/pages/categories/ElectricalCategory"));
+const EverydayCategory = lazy(() => import("@/pages/categories/EverydayCategory"));
+const SportsCategory = lazy(() => import("@/pages/categories/SportsCategory"));
+const FunnyCategory = lazy(() => import("@/pages/categories/FunnyCategory"));
+const VideoCategory = lazy(() => import("@/pages/categories/VideoCategory"));
 
 // Páginas principais
-import Index from "@/pages/Index";
-import About from "@/pages/About";
-import ContactSuggestionPage from "@/pages/ContactSuggestionPage";
-import Cookies from "@/pages/Cookies";
-import CookieSettings from "@/pages/CookieSettings";
-import Privacy from "@/pages/Privacy";
-import Terms from "@/pages/Terms";
-import NotFound from "@/pages/NotFound";
-import Search from "@/pages/Search";
+const Index = lazy(() => import("@/pages/Index"));
+const About = lazy(() => import("@/pages/About"));
+const ContactSuggestionPage = lazy(() => import("@/pages/ContactSuggestionPage"));
+const Cookies = lazy(() => import("@/pages/Cookies"));
+const CookieSettings = lazy(() => import("@/pages/CookieSettings"));
+const Privacy = lazy(() => import("@/pages/Privacy"));
+const Terms = lazy(() => import("@/pages/Terms"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
+const Search = lazy(() => import("@/pages/Search"));
 
 // Smart Tips & Recipes
-import SmartTips from "@/pages/SmartTips";
-import SmartTipsSubCategory from "@/pages/SmartTipsSubCategory";
-import SmartTipDetail from "@/pages/SmartTipDetail";
-import RecipeSubCategory from "@/pages/RecipeSubCategory";
-import RecipesCategory from "@/pages/RecipesCategory";
-import DailyQuotesPage from "@/pages/DailyQuotesPage";
-import CategoryIndex from "@/pages/CategoryIndex";
-import CalculatorPage from "@/pages/CalculatorPage";
-import RecipeCuisinePage from "@/pages/RecipeCuisinePage";
-import RecipeDetailPage from "@/pages/RecipeDetailPage";
+const SmartTips = lazy(() => import("@/pages/SmartTips"));
+const SmartTipsSubCategory = lazy(() => import("@/pages/SmartTipsSubCategory"));
+const SmartTipDetail = lazy(() => import("@/pages/SmartTipDetail"));
+const RecipeSubCategory = lazy(() => import("@/pages/RecipeSubCategory"));
+const RecipesCategory = lazy(() => import("@/pages/RecipesCategory"));
+const DailyQuotesPage = lazy(() => import("@/pages/DailyQuotesPage"));
+const CategoryIndex = lazy(() => import("@/pages/CategoryIndex"));
+const CalculatorPage = lazy(() => import("@/pages/CalculatorPage"));
+const RecipeCuisinePage = lazy(() => import("@/pages/RecipeCuisinePage"));
+const RecipeDetailPage = lazy(() => import("@/pages/RecipeDetailPage"));
 
 export default function App() {
   return (

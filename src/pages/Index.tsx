@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import JsonLd from "@/components/seo/JsonLd";
-import SiteFeedbackForm from "@/components/forms/SiteFeedbackForm";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -1414,7 +1413,7 @@ const Index = () => {
       {/* Main Content Area - Add top padding to account for fixed header */}
       <main className="pt-20">
         {/* Categories Section */}
-        <section className="container mx-auto px-4 py-8 md:py-12">
+        <section className="container mx-auto px-4 py-8 md:py-12 cv-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 py-[10px] skn-home-title">
               Calculator Categories
@@ -1442,7 +1441,9 @@ const Index = () => {
             const isRecipes = category.name === "Recipes";
             const isSmartTips = category.name === "Smart Tips";
             const handleClick = () => {
-              console.log("Category clicked:", category.name);
+              if (import.meta.env.DEV) {
+                console.log("Category clicked:", category.name);
+              }
               // Prefer explicit path if provided on the category object
               if ((category as any).path) {
                 navigate((category as any).path);
@@ -1488,7 +1489,7 @@ const Index = () => {
         <div className="border-t border-gray-200 my-8" />
 
         {/* Featured Section */}
-        <section className="container mx-auto px-4 py-8 md:py-12">
+        <section className="container mx-auto px-4 py-8 md:py-12 cv-auto">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold skn-home-title mb-4">Featured Calculators</h3>
             <p className="text-muted-foreground text-lg">
@@ -1528,7 +1529,7 @@ const Index = () => {
         {/* removed per user request */}
 
         {/* About Us Section */}
-        <section className="container mx-auto px-4 py-8 md:py-12">
+        <section className="container mx-auto px-4 py-8 md:py-12 cv-auto">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold skn-home-title mb-4">About Smart Kit Now</h2>
@@ -1612,7 +1613,7 @@ const Index = () => {
         {/* Why Our Calculators Matter Section */}
         {/* removed per user request */}
 
-        <section className="container mx-auto px-4 py-8 md:py-12">
+        <section className="container mx-auto px-4 py-8 md:py-12 cv-auto">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center skn-home-title mb-12">
               Empowering Better Decisions Through Accurate Calculations
@@ -1692,20 +1693,20 @@ const Index = () => {
               standards to ensure you always have access to the best calculation resources.
             </p>
 
-            <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-3 gap-6">
               <div className="skn-card p-6">
                 <BookOpen className="h-8 w-8 mx-auto mb-3" style={{ color: '#34d399' }} />
-                <h4 className="font-semibold skn-title mb-2">Continuous Improvement</h4>
+                <h3 className="font-semibold skn-title mb-2">Continuous Improvement</h3>
                 <p className="text-sm text-muted-foreground">We continually refine our tools based on user feedback and industry standards.</p>
               </div>
               <div className="skn-card p-6">
                 <Star className="h-8 w-8 mx-auto mb-3" style={{ color: '#60a5fa' }} />
-                <h4 className="font-semibold skn-title mb-2">Accuracy & Transparency</h4>
+                <h3 className="font-semibold skn-title mb-2">Accuracy & Transparency</h3>
                 <p className="text-sm text-muted-foreground">Clear formulas and explanations ensure reliable, verifiable results.</p>
               </div>
               <div className="skn-card p-6">
                 <Zap className="h-8 w-8 mx-auto mb-3" style={{ color: '#f59e0b' }} />
-                <h4 className="font-semibold skn-title mb-2">Performance & UX</h4>
+                <h3 className="font-semibold skn-title mb-2">Performance & UX</h3>
                 <p className="text-sm text-muted-foreground">Fast, accessible and delightful experience across devices.</p>
               </div>
             </div>

@@ -100,7 +100,9 @@ export function initWebVitals(opts: Options = {}) {
   const finalize = () => {
     metrics.ts = Date.now();
     const payload = JSON.stringify(metrics);
-    if (opts.beaconUrl) {
+    const host = location.hostname;
+    const isLocalHost = host === 'localhost' || host === '127.0.0.1' || host.endsWith('.local');
+    if (opts.beaconUrl && !isLocalHost) {
       try {
         navigator.sendBeacon(opts.beaconUrl, payload);
       } catch (err) {

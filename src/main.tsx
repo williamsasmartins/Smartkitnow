@@ -6,7 +6,6 @@ import App from './App'
 import './index.css'
 import './styles/theme.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
-import { injectSpeedInsights } from '@vercel/speed-insights'
 import { HelmetProvider } from 'react-helmet-async'
 import { initWebVitals } from '@/lib/webvitals'
 
@@ -35,7 +34,12 @@ if (ENABLE_SENTRY && SENTRY_DSN && SENTRY_DSN !== "REPLACE_WITH_YOUR_SENTRY_DSN"
 // Injeta Speed Insights somente se explicitamente habilitado e fora de localhost
 const ENABLE_SPEED_INSIGHTS = (import.meta.env.VITE_ENABLE_SPEED_INSIGHTS?.trim() === 'true')
 if (ENABLE_SPEED_INSIGHTS && !IS_LOCAL && !IS_SMARTKIT_DOMAIN) {
-  injectSpeedInsights()
+  // Dynamic import to prevent bundling when disabled
+  import('@vercel/speed-insights')
+    .then(mod => {
+      try { mod.injectSpeedInsights?.() } catch {}
+    })
+    .catch(() => {})
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -53,7 +57,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 )
 
 // Inicializa Web Vitals unificado (CLS, LCP, INP) em produção
-if (import.meta.env.PROD) {
+// Inicializa Web Vitals somente em produção e fora de localhost
+if (import.meta.env.PROD && !IS_LOCAL) {
   initWebVitals({
     debug: false,
     beaconUrl: "/metrics/web-vitals",

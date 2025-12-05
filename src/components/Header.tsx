@@ -1,6 +1,7 @@
 import { ThemeToggle } from "./ThemeToggle";
 import { useNavigate, Link } from "react-router-dom";
 import logoImage from "@/assets/logo-skn.png";
+import { useAssetAvailable } from "@/hooks/useAssetAvailable";
 import { getCategoryIcon } from "@/lib/navigation";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
@@ -10,6 +11,7 @@ import { useState } from "react";
 export function Header() {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
+  const webpAvailable = useAssetAvailable("/logo-skn.webp");
 
   const PRIMARY_CATS = [
     { key: "financial", label: "Financial", to: "/financial" },
@@ -46,7 +48,28 @@ export function Header() {
           className="flex items-center cursor-pointer hover:opacity-80 transition-opacity justify-self-start"
           onClick={handleHomeClick}
         >
-          <img src={logoImage} alt="Smart Kit Now Logo" className="h-9 w-auto block" />
+          {webpAvailable ? (
+            <picture>
+              <source srcSet="/logo-skn.webp" type="image/webp" />
+              <img
+                src={logoImage}
+                alt="Smart Kit Now Logo"
+                width={1000}
+                height={300}
+                decoding="async"
+                className="h-9 w-auto block"
+              />
+            </picture>
+          ) : (
+            <img
+              src={logoImage}
+              alt="Smart Kit Now Logo"
+              width={1000}
+              height={300}
+              decoding="async"
+              className="h-9 w-auto block"
+            />
+          )}
         </div>
 
         <div className="w-full justify-self-center">
@@ -69,19 +92,19 @@ export function Header() {
       <nav className="container mx-auto px-4 pb-2 overflow-x-auto">
         <ul className="skn-cat-menu flex items-center justify-start gap-4 text-sm whitespace-nowrap w-full">
                     <li className="flex items-center">
-            <Link to="/construction" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
+            <Link to="/construction" className="text-primary hover:text-primary transition-colors inline-flex items-center">
               <span className="mr-1" aria-hidden>{getCategoryIcon("construction")}</span>
               Construction
             </Link>
           </li>
                     <li className="flex items-center">
-            <Link to="/electrical" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
+            <Link to="/electrical" className="text-primary hover:text-primary transition-colors inline-flex items-center">
               <span className="mr-1" aria-hidden>{getCategoryIcon("electrical")}</span>
               Electrical
             </Link>
           </li>
                     <li className="flex items-center">
-            <Link to="/automotive" className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
+            <Link to="/automotive" className="text-primary hover:text-primary transition-colors inline-flex items-center">
               <span className="mr-1" aria-hidden>{getCategoryIcon("automotive")}</span>
               Automotive
             </Link>
@@ -89,7 +112,7 @@ export function Header() {
 
           {PRIMARY_CATS.map((cat) => (
             <li key={cat.key} className="flex items-center">
-              <Link to={cat.to} className="text-primary hover:text-primary/80 transition-colors inline-flex items-center">
+              <Link to={cat.to} className="text-primary hover:text-primary transition-colors inline-flex items-center">
                 <span className="mr-1" aria-hidden>{getCategoryIcon(cat.key)}</span>
                 {cat.label}
               </Link>
@@ -99,7 +122,7 @@ export function Header() {
           <li className="flex items-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="text-primary hover:text-primary/80 transition-colors inline-flex items-center px-2">
+                <button className="text-primary hover:text-primary transition-colors inline-flex items-center px-2">
                   More
                 </button>
               </DropdownMenuTrigger>

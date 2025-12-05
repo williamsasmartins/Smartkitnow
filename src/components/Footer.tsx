@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import logoImage from "@/assets/logo-skn.png";
+import { useAssetAvailable } from "@/hooks/useAssetAvailable";
 import { siX, siInstagram, siWhatsapp, siFacebook } from "simple-icons";
 
 const year = new Date().getFullYear();
@@ -48,6 +49,7 @@ const COLS: Array<{ title: string; links: { label: string; to: string }[] }> = [
 ];
 
 export function Footer() {
+  const webpAvailable = useAssetAvailable("/logo-skn.webp");
   return (
     <footer className="mt-0 border-t border-border bg-background">
       <div className="mx-auto max-w-6xl px-4 md:px-6 py-10">
@@ -61,7 +63,30 @@ export function Footer() {
             </form>
           <div className="pt-3">
             <Link to="/" className="inline-flex items-center gap-3">
-              <img src={logoImage} alt="Smart Kit Now" className="h-8 w-auto" />
+              {webpAvailable ? (
+                <picture>
+                  <source srcSet="/logo-skn.webp" type="image/webp" />
+                  <img
+                    src={logoImage}
+                    alt="Smart Kit Now"
+                    width={1000}
+                    height={300}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-8 w-auto"
+                  />
+                </picture>
+              ) : (
+                <img
+                  src={logoImage}
+                  alt="Smart Kit Now"
+                  width={1000}
+                  height={300}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-8 w-auto"
+                />
+              )}
             </Link>
             <div className="mt-3 flex items-center gap-3">
               <a href="https://x.com" aria-label="X / Twitter" className="inline-flex h-8 w-8 items-center justify-center rounded-md text-white hover:opacity-85 transition" style={{ backgroundColor: `#${siX.hex}` }}>
@@ -82,11 +107,11 @@ export function Footer() {
 
           {COLS.map((col) => (
             <nav key={col.title} aria-label={col.title} className="space-y-3">
-              <h3 className="text-sm font-semibold tracking-wide text-primary">{col.title}</h3>
+              <h3 className="text-sm font-semibold tracking-wide text-foreground">{col.title}</h3>
               <ul className="space-y-2">
                 {col.links.map((l) => (
                   <li key={l.to}>
-                    <Link to={l.to} className="inline text-primary hover:underline underline-offset-2">
+                    <Link to={l.to} className="inline text-primary hover:text-primary underline-offset-2 hover:underline">
                       {l.label}
                     </Link>
                   </li>
