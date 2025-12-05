@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import logoImage from "@/assets/logo-skn.png";
 import { useAssetAvailable } from "@/hooks/useAssetAvailable";
-import { siX, siInstagram, siWhatsapp, siFacebook } from "simple-icons";
 
 const year = new Date().getFullYear();
 
@@ -48,8 +48,32 @@ const COLS: Array<{ title: string; links: { label: string; to: string }[] }> = [
   },
 ];
 
+type BrandIcon = { hex: string; path: string };
+
 export function Footer() {
-  const webpAvailable = useAssetAvailable("/logo-skn.webp");
+  const webpAvailable = useAssetAvailable("/logo-smartkitnow.webp");
+  const [icons, setIcons] = useState<{ x?: BrandIcon; instagram?: BrandIcon; whatsapp?: BrandIcon; facebook?: BrandIcon } | null>(null);
+
+  // Defer loading of brand SVG paths to idle time, keeping main bundle lighter
+  useEffect(() => {
+    const load = () => {
+      import("simple-icons").then((mod: any) => {
+        setIcons({
+          x: mod.siX,
+          instagram: mod.siInstagram,
+          whatsapp: mod.siWhatsapp,
+          facebook: mod.siFacebook,
+        });
+      }).catch(() => {
+        // silently ignore; fallback letters will render
+      });
+    };
+    if (typeof (window as any).requestIdleCallback === "function") {
+      (window as any).requestIdleCallback(load);
+    } else {
+      setTimeout(load, 250);
+    }
+  }, []);
   return (
     <footer className="mt-0 border-t border-border bg-background">
       <div className="mx-auto max-w-6xl px-4 md:px-6 py-10">
@@ -65,7 +89,7 @@ export function Footer() {
             <Link to="/" className="inline-flex items-center gap-3">
               {webpAvailable ? (
                 <picture>
-                  <source srcSet="/logo-skn.webp" type="image/webp" />
+                  <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
                   <img
                     src={logoImage}
                     alt="Smart Kit Now"
@@ -89,17 +113,33 @@ export function Footer() {
               )}
             </Link>
             <div className="mt-3 flex items-center gap-3">
-              <a href="https://x.com" aria-label="X / Twitter" className="inline-flex h-8 w-8 items-center justify-center rounded-md text-white hover:opacity-85 transition" style={{ backgroundColor: `#${siX.hex}` }}>
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d={siX.path} /></svg>
+              <a href="https://x.com" aria-label="X / Twitter" className="inline-flex h-8 w-8 items-center justify-center rounded-md text-white hover:opacity-85 transition" style={{ backgroundColor: icons?.x ? `#${icons.x.hex}` : '#111827' }}>
+                {icons?.x?.path ? (
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d={icons.x.path} /></svg>
+                ) : (
+                  <span className="text-xs font-bold" aria-hidden>X</span>
+                )}
               </a>
-              <a href="https://instagram.com" aria-label="Instagram" className="inline-flex h-8 w-8 items-center justify-center rounded-md text-white hover:opacity-85 transition" style={{ backgroundColor: `#${siInstagram.hex}` }}>
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d={siInstagram.path} /></svg>
+              <a href="https://instagram.com" aria-label="Instagram" className="inline-flex h-8 w-8 items-center justify-center rounded-md text-white hover:opacity-85 transition" style={{ backgroundColor: icons?.instagram ? `#${icons.instagram.hex}` : '#1f2937' }}>
+                {icons?.instagram?.path ? (
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d={icons.instagram.path} /></svg>
+                ) : (
+                  <span className="text-[11px] font-bold" aria-hidden>IG</span>
+                )}
               </a>
-              <a href="https://wa.me/" aria-label="WhatsApp" className="inline-flex h-8 w-8 items-center justify-center rounded-md text-white hover:opacity-85 transition" style={{ backgroundColor: `#${siWhatsapp.hex}` }}>
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d={siWhatsapp.path} /></svg>
+              <a href="https://wa.me/" aria-label="WhatsApp" className="inline-flex h-8 w-8 items-center justify-center rounded-md text-white hover:opacity-85 transition" style={{ backgroundColor: icons?.whatsapp ? `#${icons.whatsapp.hex}` : '#374151' }}>
+                {icons?.whatsapp?.path ? (
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d={icons.whatsapp.path} /></svg>
+                ) : (
+                  <span className="text-xs font-bold" aria-hidden>WA</span>
+                )}
               </a>
-              <a href="https://facebook.com" aria-label="Facebook" className="inline-flex h-8 w-8 items-center justify-center rounded-md text-white hover:opacity-85 transition" style={{ backgroundColor: `#${siFacebook.hex}` }}>
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d={siFacebook.path} /></svg>
+              <a href="https://facebook.com" aria-label="Facebook" className="inline-flex h-8 w-8 items-center justify-center rounded-md text-white hover:opacity-85 transition" style={{ backgroundColor: icons?.facebook ? `#${icons.facebook.hex}` : '#4b5563' }}>
+                {icons?.facebook?.path ? (
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d={icons.facebook.path} /></svg>
+                ) : (
+                  <span className="text-xs font-bold" aria-hidden>f</span>
+                )}
               </a>
             </div>
           </div>

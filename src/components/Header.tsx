@@ -11,7 +11,7 @@ import { useState } from "react";
 export function Header() {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
-  const webpAvailable = useAssetAvailable("/logo-skn.webp");
+  const webpAvailable = useAssetAvailable("/logo-smartkitnow.webp");
 
   const PRIMARY_CATS = [
     { key: "financial", label: "Financial", to: "/financial" },
@@ -50,7 +50,7 @@ export function Header() {
         >
           {webpAvailable ? (
             <picture>
-              <source srcSet="/logo-skn.webp" type="image/webp" />
+              <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
               <img
                 src={logoImage}
                 alt="Smart Kit Now Logo"

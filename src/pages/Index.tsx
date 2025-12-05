@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import JsonLd from "@/components/seo/JsonLd";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,6 +7,12 @@ import { Button } from "@/components/ui/button";
 import { getCategoryIcon } from "@/lib/navigation";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft } from "lucide-react";
+
+const FeaturedCalculatorsSection = lazy(() => import("@/components/home/FeaturedCalculatorsSection"));
+const AboutSection = lazy(() => import("@/components/home/AboutSection"));
+const EmpowermentSection = lazy(() => import("@/components/home/EmpowermentSection"));
+const CommitmentSection = lazy(() => import("@/components/home/CommitmentSection"));
+
 const Index = () => {
   const navigate = useNavigate();
 
@@ -1489,229 +1496,31 @@ const Index = () => {
         <div className="border-t border-gray-200 my-8" />
 
         {/* Featured Section */}
-        <section className="container mx-auto px-4 py-8 md:py-12 cv-auto">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold skn-home-title mb-4">Featured Calculators</h3>
-            <p className="text-muted-foreground text-lg">
-              Essential calculation tools trusted by millions of professionals, students, and DIY enthusiasts worldwide
-            </p>
-          </div>
-
-          {/* Featured Calculators Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredCalculators.map((calc, index) => {
-            const IconComponent = calc.icon;
-            return <GlowCard key={index} className="skn-card group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" customSize glowColor={calc.name.includes('BMI') || calc.name.includes('BMR') ? 'red' : calc.name.includes('Loan') || calc.name.includes('Mortgage') ? 'green' : calc.name.includes('Unit') || calc.name.includes('Conversion') ? 'blue' : calc.name.includes('Recipe') ? 'purple' : 'blue'}>
-                  <CardHeader>
-                    <div className="flex items-center space-x-3">
-                      <div className="p-2 rounded-lg bg-muted/50 skn-icon-badge">
-                        <IconComponent className="h-5 w-5" style={{ color: ['#ef4444','#f59e0b','#10b981','#06b6d4','#a855f7','#eab308','#0ea5e9','#14b8a6','#fb7185','#64748b'][index % 10] }} />
-                      </div>
-                      <div>
-                        <CardTitle className="text-base skn-title">
-                          {calc.name}
-                        </CardTitle>
-                        <CardDescription className="line-clamp-1">{calc.description}</CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="p-5">
-                    <Button variant="outline" className="w-full border-[#5c82ee] text-[#5c82ee] hover:bg-[#5c82ee] hover:text-white">
-                      Use Calculator
-                    </Button>
-                  </CardContent>
-                </GlowCard>;
-          })}
-          </div>
-        </section>
+        <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading Featured Calculators...</div>}>
+          <FeaturedCalculatorsSection featuredCalculators={featuredCalculators} />
+        </Suspense>
 
         {/* Gradient Divider Between Sections */}
         {/* removed per user request */}
 
         {/* About Us Section */}
-        <section className="container mx-auto px-4 py-8 md:py-12 cv-auto">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold skn-home-title mb-4">About Smart Kit Now</h2>
-              <p className="text-muted-foreground text-lg">
-                Your trusted companion for accurate calculations and conversions
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <Card className="skn-card">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 skn-title">
-                    <Calculator className="h-5 w-5 text-[var(--primary)]" style={{ color: '#10b981' }} />
-                    Precision & Reliability
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Every calculator on Smart Kit Now is built with precision in mind. Our formulas are extensively tested 
-                    and validated to ensure you get accurate results every time, whether you're planning a construction project, 
-                    managing finances, or converting units.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="skn-card">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 skn-title">
-                    <Lightbulb className="h-5 w-5 text-[var(--primary)]" style={{ color: '#f59e0b' }} />
-                    Easy to Use
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    We believe powerful tools should be simple to use. Our intuitive interface makes complex calculations 
-                    accessible to everyone, from professionals to DIY enthusiasts. No complicated software or downloads required.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="prose prose-slate max-w-none">
-              <h3 className="text-2xl font-semibold skn-title mb-4">Why Choose Smart Kit Now?</h3>
-              <p className="text-muted-foreground mb-6">
-                Smart Kit Now has become the go-to platform for millions of users worldwide who need reliable calculation tools. 
-                Our comprehensive suite of calculators covers everything from basic math operations to specialized industry calculations, 
-                making us your one-stop solution for all computational needs.
-              </p>
-
-              <div className="grid md:grid-cols-3 gap-6 mb-8">
-                <div className="text-center">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 skn-icon-badge">
-                    <Star className="h-6 w-6" style={{ color: "#eab308" }} />
-                  </div>
-                  <h4 className="font-semibold skn-title mb-2">Trusted by Millions</h4>
-                  <p className="text-sm text-muted-foreground">Over 5 million calculations performed monthly</p>
-                </div>
-                
-                <div className="text-center">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 skn-icon-badge">
-                    <Dumbbell className="h-6 w-6" style={{ color: "#f97316" }} />
-                  </div>
-                  <h4 className="font-semibold skn-title mb-2">Professional Grade</h4>
-                  <p className="text-sm text-muted-foreground">Used by engineers, contractors, and professionals</p>
-                </div>
-                
-                <div className="text-center">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 skn-icon-badge">
-                    <Heart className="h-6 w-6" style={{ color: "#ef4444" }} />
-                  </div>
-                  <h4 className="font-semibold skn-title mb-2">Always Free</h4>
-                  <p className="text-sm text-muted-foreground">No subscriptions, no hidden fees, completely free</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading About Section...</div>}>
+          <AboutSection />
+        </Suspense>
 
         <div className="border-t border-gray-200 my-8" />
 
         {/* Why Our Calculators Matter Section */}
         {/* removed per user request */}
 
-        <section className="container mx-auto px-4 py-8 md:py-12 cv-auto">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center skn-home-title mb-12">
-              Empowering Better Decisions Through Accurate Calculations
-            </h2>
-
-            <div className="space-y-8">
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold skn-title mb-4">For Professionals & Contractors</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Construction professionals rely on Smart Kit Now for accurate material estimates, cost calculations, 
-                    and project planning. Our construction calculators help you minimize waste, stay within budget, and 
-                    deliver projects on time. From concrete volume to lumber calculations, we've got you covered.
-                  </p>
-                  <ul className="text-muted-foreground space-y-2">
-                    <li>• Reduce material waste by up to 15% with accurate estimates</li>
-                    <li>• Save time on complex calculations</li>
-                    <li>• Improve project profitability through better planning</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold skn-title mb-4">For Health & Fitness Enthusiasts</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Take control of your health journey with our comprehensive health calculators. Whether you're tracking 
-                    your BMI, calculating daily calorie needs, or monitoring your fitness progress, our tools provide 
-                    the insights you need to make informed decisions about your health and wellness.
-                  </p>
-                  <ul className="text-muted-foreground space-y-2">
-                    <li>• Track your health metrics accurately</li>
-                    <li>• Set realistic fitness and nutrition goals</li>
-                    <li>• Monitor progress over time</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold skn-title mb-4">For Financial Planning</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Make smarter financial decisions with our suite of financial calculators. From loan payments and 
-                    mortgage calculations to investment returns and retirement planning, we help you understand the 
-                    financial impact of your decisions before you make them.
-                  </p>
-                  <ul className="text-muted-foreground space-y-2">
-                    <li>• Compare loan options and payment schedules</li>
-                    <li>• Plan for major purchases and investments</li>
-                    <li>• Understand compound interest and growth</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold skn-title mb-4">For Students & Educators</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Students and teachers use Smart Kit Now to verify homework answers, explore mathematical concepts, 
-                    and solve real-world problems. Our calculators serve as both learning tools and practical resources 
-                    for academic success across multiple subjects and grade levels.
-                  </p>
-                  <ul className="text-muted-foreground space-y-2">
-                    <li>• Verify calculations and check homework</li>
-                    <li>• Learn through interactive examples</li>
-                    <li>• Explore mathematical relationships</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading Empowerment Section...</div>}>
+          <EmpowermentSection />
+        </Suspense>
 
         {/* Our Commitment Section */}
-        <section className="container mx-auto px-4 py-8 md:py-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold skn-home-title mb-6">Our Commitment to Excellence</h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              At Smart Kit Now, we're committed to providing you with the most accurate, reliable, and user-friendly
-              calculators available online. We continuously update our tools based on user feedback and industry
-              standards to ensure you always have access to the best calculation resources.
-            </p>
-
-              <div className="grid md:grid-cols-3 gap-6">
-              <div className="skn-card p-6">
-                <BookOpen className="h-8 w-8 mx-auto mb-3" style={{ color: '#34d399' }} />
-                <h3 className="font-semibold skn-title mb-2">Continuous Improvement</h3>
-                <p className="text-sm text-muted-foreground">We continually refine our tools based on user feedback and industry standards.</p>
-              </div>
-              <div className="skn-card p-6">
-                <Star className="h-8 w-8 mx-auto mb-3" style={{ color: '#60a5fa' }} />
-                <h3 className="font-semibold skn-title mb-2">Accuracy & Transparency</h3>
-                <p className="text-sm text-muted-foreground">Clear formulas and explanations ensure reliable, verifiable results.</p>
-              </div>
-              <div className="skn-card p-6">
-                <Zap className="h-8 w-8 mx-auto mb-3" style={{ color: '#f59e0b' }} />
-                <h3 className="font-semibold skn-title mb-2">Performance & UX</h3>
-                <p className="text-sm text-muted-foreground">Fast, accessible and delightful experience across devices.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading Commitment Section...</div>}>
+          <CommitmentSection />
+        </Suspense>
 
         {/* removed per user request */}
 

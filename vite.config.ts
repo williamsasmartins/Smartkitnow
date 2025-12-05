@@ -2,10 +2,16 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
+import { partytownVite } from '@builder.io/partytown/utils';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    partytownVite({
+      dest: resolve(__dirname, 'dist', '~partytown'),
+    }),
+  ],
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
@@ -37,3 +43,4 @@ export default defineConfig({
     },
   },
 });
+
