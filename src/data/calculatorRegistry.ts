@@ -812,15 +812,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     
   
  
-    {
-    slug: "dog-calorie-needs-rer-mer",
-    title: "Dog Calorie Needs (RER/MER) Calculator",
-    category: "pets",
-    subcategory: "dogs-nutrition-weight",
-    description: "Calculate your dog's **Resting Energy Requirement (RER)** and **Maintenance Energy Requirement (MER)** to determine daily calorie needs.",
-    loader: () => import("@/components/calculators/Pets/DogCalorieNeedsRerMerCalculator"),
-    urlStyle: "flat"
-  },
+    
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
