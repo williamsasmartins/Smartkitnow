@@ -5,14 +5,14 @@ import SuggestionBox from "../SuggestionBox";
 import LegalDisclaimer from "../LegalDisclaimer";
 
 // ================================================================
-// CONFIGURAÇÃO DOS SLOTS (pegar no .env)
+// AD SLOTS CONFIGURATION
 // ================================================================
 const SLOT_TOP_BANNER = process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER || 'pending';
 const SLOT_SIDEBAR = process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR || 'pending';
 const SLOT_BOTTOM_BANNER = process.env.NEXT_PUBLIC_ADSENSE_SLOT_BOTTOM_BANNER || 'pending';
 
 // ================================================================
-// COMPONENTE: "On This Page" Navigation - ÂNCORA CORRIGIDA
+// "ON THIS PAGE" NAVIGATION - FINTECH STYLE
 // ================================================================
 interface OnThisPageSection {
   id: string;
@@ -22,32 +22,27 @@ interface OnThisPageSection {
 function OnThisPageNav({ sections }: { sections: OnThisPageSection[] }) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
-    
     const element = document.getElementById(id);
     if (element) {
-      // Offset para compensar header fixo (120px)
       const yOffset = -120;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      
       window.scrollTo({ top: y, behavior: 'smooth' });
-      
-      // Atualizar URL sem recarregar
       window.history.pushState(null, '', `#${id}`);
     }
   };
 
   return (
-    <nav className="bg-blue-50 dark:bg-blue-950 border-l-4 border-blue-500 dark:border-blue-400 p-5 rounded-lg mb-8 shadow-sm">
-      <p className="font-bold text-gray-900 dark:text-gray-100 mb-3 text-base">
+    <nav className="bg-white dark:bg-slate-900 border-l-4 border-indigo-500 dark:border-indigo-400 p-6 rounded-xl mb-8 shadow-lg shadow-indigo-500/10">
+      <p className="font-extrabold text-slate-900 dark:text-slate-100 mb-4 text-base tracking-tight">
         On this page:
       </p>
-      <ul className="space-y-2">
+      <ul className="space-y-2.5">
         {sections.map((section) => (
           <li key={section.id}>
             <a 
               href={`#${section.id}`}
               onClick={(e) => handleClick(e, section.id)}
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline text-sm font-medium transition-colors cursor-pointer"
+              className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 hover:underline text-sm font-semibold transition-all duration-200 cursor-pointer block"
             >
               {section.label}
             </a>
@@ -59,7 +54,7 @@ function OnThisPageNav({ sections }: { sections: OnThisPageSection[] }) {
 }
 
 // ================================================================
-// COMPONENTE: Formula Box (InchCalculator + OmniCalculator style)
+// FORMULA BOX - FINTECH STYLE
 // ================================================================
 interface FormulaVariable {
   symbol: string;
@@ -76,35 +71,35 @@ function FormulaBox({
   title?: string;
 }) {
   return (
-    <div className="my-10 p-8 rounded-2xl border-4 border-blue-500 dark:border-blue-400 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-950 dark:via-indigo-950 dark:to-purple-950 shadow-lg">
+    <div className="my-12 p-8 rounded-2xl border-2 border-indigo-200 dark:border-indigo-800 bg-gradient-to-br from-indigo-50 via-violet-50 to-purple-50 dark:from-slate-900 dark:via-indigo-950 dark:to-violet-950 shadow-xl shadow-indigo-500/10">
       {/* Title */}
-      <div className="text-center mb-6">
-        <div className="inline-block bg-white dark:bg-gray-900 rounded-xl px-8 py-4 shadow-md">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+      <div className="text-center mb-8">
+        <div className="inline-block bg-white dark:bg-slate-900 rounded-xl px-8 py-4 shadow-lg shadow-indigo-500/10 border border-indigo-100 dark:border-indigo-900">
+          <h3 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
             {title}
           </h3>
         </div>
       </div>
 
       {/* Formula */}
-      <div className="bg-white dark:bg-gray-900 rounded-xl p-6 mb-6 shadow-md">
-        <p className="text-center text-3xl font-mono font-bold text-gray-900 dark:text-gray-100 break-words">
+      <div className="bg-white dark:bg-slate-900 rounded-xl p-8 mb-8 shadow-lg border border-indigo-100 dark:border-indigo-900">
+        <p className="text-center text-3xl font-mono font-bold text-slate-900 dark:text-slate-100 break-words">
           {formula}
         </p>
       </div>
 
       {/* Variables */}
-      <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-md">
-        <p className="font-semibold text-gray-900 dark:text-gray-100 mb-4 text-lg">
+      <div className="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-lg border border-indigo-100 dark:border-indigo-900">
+        <p className="font-extrabold text-slate-900 dark:text-slate-100 mb-5 text-lg tracking-tight">
           Where:
         </p>
         <div className="space-y-3">
           {variables.map((variable) => (
-            <div key={variable.symbol} className="flex items-start gap-3">
-              <span className="font-mono font-bold text-blue-600 dark:text-blue-400 text-lg min-w-[3rem]">
+            <div key={variable.symbol} className="flex items-start gap-4">
+              <span className="font-mono font-bold text-indigo-600 dark:text-indigo-400 text-lg min-w-[3rem]">
                 {variable.symbol}
               </span>
-              <span className="text-gray-700 dark:text-gray-300">
+              <span className="text-slate-700 dark:text-slate-300">
                 = {variable.description}
               </span>
             </div>
@@ -116,7 +111,7 @@ function FormulaBox({
 }
 
 // ================================================================
-// COMPONENTE: Example Calculation (InchCalculator style)
+// EXAMPLE CALCULATION - FINTECH STYLE
 // ================================================================
 interface ExampleStep {
   step: number;
@@ -136,23 +131,23 @@ function ExampleSection({
   result: string;
 }) {
   return (
-    <div className="my-8 p-6 rounded-xl bg-gray-50 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700">
-      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+    <div className="my-10 p-8 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 shadow-xl">
+      <h3 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mb-5 tracking-tight">
         {title}
       </h3>
       
-      <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+      <p className="text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
         {scenario}
       </p>
 
-      <div className="space-y-4 mb-6">
+      <div className="space-y-5 mb-8">
         {steps.map((step) => (
-          <div key={step.step} className="bg-white dark:bg-gray-900 p-4 rounded-lg">
-            <p className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
+          <div key={step.step} className="bg-slate-50 dark:bg-slate-950 p-5 rounded-xl border border-slate-200 dark:border-slate-800 transition-all duration-200 hover:shadow-md">
+            <p className="font-bold text-slate-900 dark:text-slate-100 mb-3">
               Step {step.step}: {step.description}
             </p>
             {step.calculation && (
-              <p className="font-mono text-sm text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950 p-3 rounded">
+              <p className="font-mono text-sm text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
                 {step.calculation}
               </p>
             )}
@@ -160,8 +155,8 @@ function ExampleSection({
         ))}
       </div>
 
-      <div className="bg-green-50 dark:bg-green-950 border-l-4 border-green-500 p-4 rounded">
-        <p className="font-bold text-lg text-gray-900 dark:text-gray-100">
+      <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950 dark:to-teal-950 border-l-4 border-emerald-500 p-6 rounded-xl shadow-lg">
+        <p className="font-bold text-lg text-slate-900 dark:text-slate-100">
           Result: {result}
         </p>
       </div>
@@ -170,7 +165,7 @@ function ExampleSection({
 }
 
 // ================================================================
-// COMPONENTE: Related Calculators (OmniCalculator style)
+// RELATED CALCULATORS - FINTECH STYLE
 // ================================================================
 interface RelatedCalc {
   title: string;
@@ -182,19 +177,19 @@ function RelatedCalculators({ calculators }: { calculators: RelatedCalc[] }) {
   if (calculators.length === 0) return null;
 
   return (
-    <div className="my-8 p-6 rounded-xl bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950 border-2 border-purple-200 dark:border-purple-800">
-      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+    <div className="my-10 p-8 rounded-2xl bg-gradient-to-br from-violet-50 to-purple-50 dark:from-slate-900 dark:to-violet-950 border-2 border-violet-200 dark:border-violet-800 shadow-xl">
+      <h3 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mb-6 flex items-center gap-3 tracking-tight">
         <span>🔗</span> Related Calculators
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {calculators.map((calc) => (
           <a
             key={calc.url}
             href={calc.url}
-            className="flex items-center gap-3 p-4 bg-white dark:bg-gray-900 rounded-lg hover:shadow-md transition-shadow group"
+            className="flex items-center gap-4 p-5 bg-white dark:bg-slate-900 rounded-xl border border-violet-200 dark:border-violet-800 hover:shadow-xl hover:scale-[1.02] transition-all duration-200 group"
           >
-            {calc.icon && <span className="text-2xl">{calc.icon}</span>}
-            <span className="text-blue-600 dark:text-blue-400 group-hover:underline font-medium">
+            {calc.icon && <span className="text-3xl">{calc.icon}</span>}
+            <span className="text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-700 dark:group-hover:text-indigo-300 font-semibold">
               {calc.title}
             </span>
           </a>
@@ -205,18 +200,14 @@ function RelatedCalculators({ calculators }: { calculators: RelatedCalc[] }) {
 }
 
 // ================================================================
-// PROPS DO LAYOUT MELHORADO
+// PROPS INTERFACE
 // ================================================================
 interface CalculatorVerticalLayoutProps {
   title: string;
   description?: string;
   widget: ReactNode;
   editorial: ReactNode;
-  
-  // Navigation
   onThisPage?: OnThisPageSection[];
-  
-  // Optional Components
   formula?: {
     formula: string;
     variables: FormulaVariable[];
@@ -229,15 +220,13 @@ interface CalculatorVerticalLayoutProps {
     result: string;
   };
   relatedCalculators?: RelatedCalc[];
-  
-  // Ad Controls
   showTopBanner?: boolean;
   showSidebar?: boolean;
   showBottomBanner?: boolean;
 }
 
 // ================================================================
-// LAYOUT PRINCIPAL - VERSÃO PREMIUM SUPER CORRIGIDA
+// MAIN LAYOUT - HIGH-END FINTECH SAAS DESIGN
 // ================================================================
 export default function CalculatorVerticalLayout({
   title,
@@ -253,29 +242,22 @@ export default function CalculatorVerticalLayout({
   showBottomBanner = true,
 }: CalculatorVerticalLayoutProps) {
   return (
-    <div className="skn-vertical-layout min-h-screen bg-white dark:bg-gray-900 transition-colors">
-      {/* ============================================================
-          CONTAINER PRINCIPAL (Max 1200px, Centralizado)
-          ============================================================ */}
+    <div className="skn-vertical-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
+      {/* MAIN CONTAINER (Max 1200px, Centered) */}
       <div className="mx-auto pb-10 pt-24" style={{ maxWidth: 1200 }}>
         
-        {/* ========================================================
-            TOP BANNER AD (Responsivo: 970×90 / 728×90 / 320×100)
-            AGORA COM MARGIN-TOP PARA FICAR VISÍVEL
-            ======================================================== */}
+        {/* TOP BANNER AD */}
         {showTopBanner && (
           <AdUnit 
             slot={SLOT_TOP_BANNER}
             type="top-banner"
-            className="mb-6"
+            className="mb-8"
           />
         )}
 
-        {/* ========================================================
-            LAYOUT COM SIDEBAR + CONTEÚDO
-            ======================================================== */}
+        {/* LAYOUT WITH SIDEBAR + CONTENT */}
         <div className="relative">
-          {/* SIDEBAR FLUTUANTE (Desktop Only, STICKY AGORA) */}
+          {/* FLOATING SIDEBAR (Desktop Only, STICKY) */}
           {showSidebar && (
             <aside className="hidden xl:block skn-sidebar-sticky">
               <AdUnit 
@@ -285,36 +267,36 @@ export default function CalculatorVerticalLayout({
             </aside>
           )}
 
-          {/* CONTEÚDO CENTRALIZADO (Max 768px) */}
+          {/* CENTERED CONTENT (Max 768px) */}
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
             
-            {/* TÍTULO */}
-            <header className="mb-6">
-              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">
+            {/* TITLE SECTION */}
+            <header className="mb-8">
+              <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight tracking-tight">
                 {title}
               </h1>
               {description && (
-                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
                   {description}
                 </p>
               )}
             </header>
 
-            {/* ON THIS PAGE NAVIGATION - ÂNCORA CORRIGIDA */}
+            {/* ON THIS PAGE NAVIGATION */}
             {onThisPage && onThisPage.length > 0 && (
               <OnThisPageNav sections={onThisPage} />
             )}
 
-            {/* WIDGET DA CALCULADORA */}
+            {/* CALCULATOR WIDGET */}
             <section 
-              className="mb-8 rounded-xl overflow-hidden border-2 border-blue-500 dark:border-blue-400 bg-white dark:bg-gray-800 shadow-lg transition-colors"
+              className="mb-10 rounded-2xl overflow-hidden border-2 border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 shadow-2xl shadow-indigo-500/10 transition-all duration-200"
             >
-              <div className="p-6">
+              <div className="p-8">
                 {widget}
               </div>
             </section>
 
-            {/* FORMULA BOX (se fornecido) */}
+            {/* FORMULA BOX */}
             {formula && (
               <FormulaBox
                 formula={formula.formula}
@@ -323,7 +305,7 @@ export default function CalculatorVerticalLayout({
               />
             )}
 
-            {/* EXAMPLE CALCULATION (se fornecido) */}
+            {/* EXAMPLE CALCULATION */}
             {example && (
               <ExampleSection
                 title={example.title}
@@ -333,17 +315,17 @@ export default function CalculatorVerticalLayout({
               />
             )}
 
-            {/* CONTEÚDO EDITORIAL */}
+            {/* EDITORIAL CONTENT */}
             <article 
               id="content" 
-              className="mb-8 prose prose-lg prose-blue max-w-none dark:prose-invert"
+              className="mb-10 prose prose-lg prose-slate max-w-none dark:prose-invert"
             >
-              <div className="text-gray-900 dark:text-gray-100 leading-relaxed skn-editorial-sections">
+              <div className="text-slate-900 dark:text-slate-100 leading-relaxed skn-editorial-sections">
                 {editorial}
               </div>
             </article>
 
-            {/* RELATED CALCULATORS (se fornecido) */}
+            {/* RELATED CALCULATORS */}
             {relatedCalculators && relatedCalculators.length > 0 && (
               <RelatedCalculators calculators={relatedCalculators} />
             )}
@@ -353,27 +335,24 @@ export default function CalculatorVerticalLayout({
               <AdUnit 
                 slot={SLOT_BOTTOM_BANNER}
                 type="bottom-banner"
-                className="mb-8"
+                className="mb-10"
               />
             )}
 
-            {/* DISCLAIMER LEGAL (VISUAL MELHORADO) */}
+            {/* LEGAL DISCLAIMER */}
             <LegalDisclaimer />
 
-            {/* SHARE THIS PAGE (VISUAL MELHORADO) */}
+            {/* SHARE THIS PAGE */}
             <ShareThisPageBox />
 
-            {/* SUGGESTION BOX (VISUAL MELHORADO) */}
+            {/* SUGGESTION BOX */}
             <SuggestionBox />
           </div>
         </div>
       </div>
 
-      {/* ============================================================
-          CSS CUSTOMIZADO
-          ============================================================ */}
+      {/* CUSTOM CSS */}
       <style jsx>{`
-        /* Sidebar STICKY - Para no Footer */
         .skn-sidebar-sticky {
           position: sticky;
           top: 120px;
@@ -387,31 +366,26 @@ export default function CalculatorVerticalLayout({
           margin-right: calc((100vw - 1200px) / 2 - 320px);
         }
 
-        /* Ajustes para telas muito grandes */
         @media (min-width: 1600px) {
           .skn-sidebar-sticky {
             margin-right: calc((100vw - 1200px) / 2 - 320px);
           }
         }
 
-        /* Hide sidebar em telas menores */
         @media (max-width: 1279px) {
           .skn-sidebar-sticky {
             display: none;
           }
         }
 
-        /* Smooth scroll para navigation */
         html {
           scroll-behavior: smooth;
         }
 
-        /* CORREÇÃO ÂNCORA: Scroll margin para sections */
         .skn-editorial-sections section {
           scroll-margin-top: 120px;
         }
 
-        /* Garantir que sidebar não ultrapasse o footer */
         .skn-vertical-layout {
           position: relative;
         }
