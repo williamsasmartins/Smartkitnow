@@ -22,7 +22,7 @@ export default function About() {
 
 
 
-      <main className="pt-20">
+      <main className="pt-48 sm:pt-20">
         <div className="mx-auto max-w-3xl px-4 py-10 space-y-6">
           <div className="mb-2">
             <Button
@@ -95,3 +95,4 @@ export default function About() {
     </div>
   );
 }
+

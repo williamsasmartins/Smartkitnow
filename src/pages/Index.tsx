@@ -1421,7 +1421,7 @@ const Index = () => {
         }
       }} />
       {/* Main Content Area - Add top padding to account for fixed header */}
-      <main className="pt-20">
+      <main className="pt-48 sm:pt-20">
         {/* Categories Section */}
         <section className="container mx-auto px-4 py-8 md:py-12 cv-auto">
           <div className="text-center mb-12">

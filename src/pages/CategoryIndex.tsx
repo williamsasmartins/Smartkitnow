@@ -37,7 +37,7 @@ export default function CategoryIndex() {
 
   return (
     <div className="min-h-screen">
-      <main className="pt-20">
+      <main className="pt-48 sm:pt-20">
         <AdRailLayout
           titleBlock={
             <div className="text-left">
@@ -166,3 +166,4 @@ export default function CategoryIndex() {
     </div>
   );
 }
+
