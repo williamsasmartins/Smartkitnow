@@ -39,7 +39,7 @@ const SmartTips = lazy(() => import("@/pages/SmartTips"));
 const SmartTipsSubCategory = lazy(() => import("@/pages/SmartTipsSubCategory"));
 const SmartTipDetail = lazy(() => import("@/pages/SmartTipDetail"));
 const RecipeSubCategory = lazy(() => import("@/pages/RecipeSubCategory"));
-const RecipesCategory = lazy(() => import("@/pages/RecipesCategory"));
+const RecipesCategory = lazy(() => import("@/pages/categories/RecipesCategory"));
 const DailyQuotesPage = lazy(() => import("@/pages/DailyQuotesPage"));
 const CategoryIndex = lazy(() => import("@/pages/CategoryIndex"));
 const CalculatorPage = lazy(() => import("@/pages/CalculatorPage"));
@@ -152,4 +152,3 @@ export default function App() {
     </div>
   );
 }
-

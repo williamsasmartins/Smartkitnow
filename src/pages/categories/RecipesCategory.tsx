@@ -150,12 +150,8 @@ export default function RecipesCategory() {
                   </>
                 ) : (
                   <p className="line-clamp-3">
-                    Organized recipe hub mirroring Financials layout: BBQ & smoking, world cuisines, meal types, kitchen techniques, dietary needs, and child nutrition. Clean navigation, responsive two-column lists, and SEO-ready metadata.
+                    Organized recipe hub mirroring Financial’s layout: BBQ & smoking, world cuisines, meal types, kitchen techniques, dietary needs, and child nutrition. Clean navigation, responsive two-column lists, and SEO-ready metadata.
                   </p>
-                  <p className="line-clamp-3">
-                  <p className="line-clamp-3">
-                      Organized recipe hub mirroring Financial’s layout: BBQ & smoking, world cuisines, meal types, kitchen techniques, dietary needs, and child nutrition. Clean navigation, responsive two-column lists, and SEO-ready metadata.
-                   </p>
                 )}
                 {!descExpanded && (
                   <button
