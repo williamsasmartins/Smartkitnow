@@ -89,7 +89,7 @@ export default function RetirementSavingsGrowthCalculator() {
     let balance = initialBalance;
     let totalContributions = 0;
     let totalGrowth = 0;
-    const scheduleData = [];
+    const scheduleData: { year: number; contribution: string; growth: string; balance: string }[] = [];
 
     for (let year = 1; year <= yearsToGrow; year++) {
       const contribution = annualContribution + (annualContribution * employerMatch / 100);
@@ -608,7 +608,7 @@ export default function RetirementSavingsGrowthCalculator() {
       description="Estimate the future value of your 401(k) based on contributions, employer match, and growth."
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={faqJsonLd ?? undefined}
       onThisPage={[
         { id: "calculator", label: "Calculator" },
         { id: "editorial", label: "Editorial" },
@@ -630,19 +630,19 @@ export default function RetirementSavingsGrowthCalculator() {
         scenario: "Imagine you have a starting balance of $50,000, contribute $6,000 annually, receive a 5% employer match, and expect a 7% annual growth rate over 30 years.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "6000 × 1.05 = 6300", 
-            explanation: "Calculate the total annual contribution including employer match." 
+            description: "Calculate the total annual contribution including employer match." 
           },
           { 
-            label: "Step 2", 
+            step: 2, 
             calculation: "6300 × 30 = 189000", 
-            explanation: "Determine the total contributions over 30 years." 
+            description: "Determine the total contributions over 30 years." 
           },
           { 
-            label: "Step 3", 
+            step: 3, 
             calculation: "50000(1 + 0.07)^30 + 189000[((1 + 0.07)^30 - 1) / 0.07]", 
-            explanation: "Calculate the future value of the retirement savings." 
+            description: "Calculate the future value of the retirement savings." 
           }
         ],
         result: "The final result is approximately $1,000,000, meaning you will have a substantial retirement fund based on these assumptions."
