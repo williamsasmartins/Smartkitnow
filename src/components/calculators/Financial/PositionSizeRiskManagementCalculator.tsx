@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from "react";
-import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -594,19 +594,19 @@ export default function PositionSizeRiskManagementCalculator() {
         scenario: "Imagine you have an account size of $10,000, a risk percentage of 2%, and a stop loss of $50.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "10000 × 0.02 = 200", 
-            explanation: "Calculate the risk amount based on your account size and risk percentage." 
+            description: "Calculate the risk amount based on your account size and risk percentage." 
           },
           { 
-            label: "Step 2", 
+            step: 2, 
             calculation: "200 / 50 = 4", 
-            explanation: "Determine the position size by dividing the risk amount by the stop loss." 
+            description: "Determine the position size by dividing the risk amount by the stop loss." 
           },
           { 
-            label: "Step 3", 
+            step: 3, 
             calculation: "4 × 50 = 200", 
-            explanation: "The trade amount is the position size multiplied by the stop loss." 
+            description: "The trade amount is the position size multiplied by the stop loss." 
           }
         ],
         result: "The final result is a position size of 4, meaning you can trade 4 units with a total risk of $200."
