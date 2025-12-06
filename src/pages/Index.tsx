@@ -1437,6 +1437,7 @@ const Index = () => {
                     decoding="async"
                     // @ts-ignore
                     fetchpriority="high"
+                    sizes="(max-width: 768px) 100vw, 266px"
                     className="h-20 w-auto block"
                     style={{ height: "5rem", width: "auto", aspectRatio: "1000/300" }}
                   />
@@ -1450,6 +1451,7 @@ const Index = () => {
                   decoding="async"
                   // @ts-ignore
                   fetchpriority="high"
+                  sizes="(max-width: 768px) 100vw, 266px"
                   className="h-20 w-auto block"
                   style={{ height: "5rem", width: "auto", aspectRatio: "1000/300" }}
                 />
