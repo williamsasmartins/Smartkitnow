@@ -716,76 +716,75 @@ export default function DogCalorieNeedsRerMerCalculator() {
 
       {/* REFERENCES & RESOURCES */}
       <section id="references" className="space-y-4">
-  <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-sky-100">
+  <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
     References & additional resources
   </h2>
 
-  <div className="mt-6 space-y-6">
+  <ul className="mt-6 space-y-4">
     {/* WSAVA */}
-    <div className="flex items-start gap-3">
-      <div className="mt-1 h-7 w-7 flex items-center justify-center rounded-full bg-sky-900/40 text-sky-300 text-sm font-semibold">
-        i
-      </div>
+    <li className="flex items-start gap-3">
+      <BookOpen className="h-5 w-5 text-slate-500 dark:text-slate-400 mt-1 shrink-0" />
       <div>
-        <h3 className="text-base md:text-lg font-semibold text-sky-100">
-          <a
-            href="https://wsava.org/global-guidelines/global-nutrition-guidelines/"
-            target="_blank"
-            rel="noreferrer"
-            className="hover:underline text-sky-300"
-          >
-            WSAVA Global Nutrition Committee – Calorie and feeding guidelines
-          </a>
-        </h3>
-        <p className="mt-1 text-sm md:text-base text-slate-200/80 leading-relaxed">
-          International recommendations used by many veterinarians to estimate
-          Resting Energy Requirement (RER), Maintenance Energy Requirement (MER),
-          and safe weight-loss plans for dogs and cats.
+        <a
+          href="https://wsava.org/global-guidelines/global-nutrition-guidelines/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+        >
+          WSAVA Global Nutrition Committee – Calorie and feeding guidelines
+        </a>
+        <p className="text-sm md:text-base text-slate-700 dark:text-slate-300 mt-1 leading-relaxed">
+          International recommendations used by many veterinarians to estimate Resting Energy
+          Requirement (RER), Maintenance Energy Requirement (MER), and safe weight-loss plans.
         </p>
       </div>
-    </div>
+    </li>
 
     {/* Textbooks */}
-    <div className="flex items-start gap-3">
-      <div className="mt-1 h-7 w-7 flex items-center justify-center rounded-full bg-sky-900/40 text-sky-300 text-sm font-semibold">
-        i
-      </div>
+    <li className="flex items-start gap-3">
+      <BookOpen className="h-5 w-5 text-slate-500 dark:text-slate-400 mt-1 shrink-0" />
       <div>
-        <h3 className="text-base md:text-lg font-semibold text-sky-100">
-          Veterinary clinical nutrition textbooks
-        </h3>
-        <p className="mt-1 text-sm md:text-base text-slate-200/80 leading-relaxed">
-          Standard references such as the <span className="italic">Handbook of Small
-          Animal Clinical Nutrition</span> summarize calorie equations, body condition
-          scoring systems, and feeding strategies for different life stages and
-          common medical conditions.
+        <a
+          href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5522556/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+        >
+          Veterinary clinical nutrition textbooks & review articles
+        </a>
+        <p className="text-sm md:text-base text-slate-700 dark:text-slate-300 mt-1 leading-relaxed">
+          Standard references such as the <span className="italic">Handbook of Small Animal
+          Clinical Nutrition</span> and peer-reviewed nutrition papers summarize calorie equations,
+          body condition scoring, and feeding strategies for different life stages.
         </p>
       </div>
-    </div>
+    </li>
 
     {/* Primary vet */}
-    <div className="flex items-start gap-3">
-      <div className="mt-1 h-7 w-7 flex items-center justify-center rounded-full bg-sky-900/40 text-sky-300 text-sm font-semibold">
-        i
-      </div>
+    <li className="flex items-start gap-3">
+      <BookOpen className="h-5 w-5 text-slate-500 dark:text-slate-400 mt-1 shrink-0" />
       <div>
-        <h3 className="text-base md:text-lg font-semibold text-sky-100">
+        <a
+          href="https://www.avma.org/resources-tools/pet-owners/petcare/your-pets-nutrition"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+        >
           Your primary care veterinarian
-        </h3>
-        <p className="mt-1 text-sm md:text-base text-slate-200/80 leading-relaxed">
-          Nothing replaces hands-on evaluation. Bring your calorie report to your
-          vet visit and use it as a starting point for a personalized nutrition
-          discussion. Always follow the exact feeding plan prescribed by your vet
-          for dogs with medical conditions, special diets, or weight-loss programs.
+        </a>
+        <p className="text-sm md:text-base text-slate-700 dark:text-slate-300 mt-1 leading-relaxed">
+          Nothing replaces hands-on evaluation. Bring your calorie report to your vet visit and use
+          it as a starting point for a personalized nutrition discussion based on your dog&apos;s
+          medical history and body condition.
         </p>
       </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 
-  <p className="mt-6 text-xs md:text-sm text-slate-300/80 leading-relaxed">
-    This calculator and article are for <strong>informational purposes only</strong> and
-    do not replace professional veterinary care. Always consult a licensed
-    veterinarian before changing your dog&apos;s diet, medication, or exercise plan.
+  <p className="mt-6 text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+    This calculator and article are for <strong>informational purposes only</strong> and do not
+    replace professional veterinary care. Always consult a licensed veterinarian before changing
+    your dog&apos;s diet, medication, or exercise plan.
   </p>
 </section>
 
