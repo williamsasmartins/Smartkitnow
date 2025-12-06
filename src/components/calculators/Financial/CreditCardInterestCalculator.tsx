@@ -589,25 +589,25 @@ export default function CreditCardInterestCalculator() {
         scenario: "Imagine you have a $5,000 balance with an 18% annual interest rate, planning to pay it off over 12 months.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "5000 × (0.18 / 12) × 12 = 900", 
-            explanation: "Calculate the total interest paid over the period." 
+            description: "Calculate the total interest paid over the period." 
           },
           { 
-            label: "Step 2", 
+            step: 2, 
             calculation: "5000 + 900 = 5900", 
-            explanation: "Determine the total payment including interest." 
+            description: "Determine the total payment including interest." 
           },
           { 
-            label: "Step 3", 
+            step: 3, 
             calculation: "5900 / 12 = 491.67", 
-            explanation: "Calculate the monthly payment amount." 
+            description: "Calculate the monthly payment required." 
           }
         ],
-        result: "The final result is $5,900 total payment, meaning you pay $491.67 monthly."
+        result: "The total interest paid is $900, and the monthly payment required is approximately $491.67."
       }}
       relatedCalculators={[
-        {"title":"Loan Payment Calculator (Principal, Rate, Term)","url":"/financial/loan-payment","icon":"💵"},
+        { title: "Loan Payment Calculator (Principal, Rate, Term)", url: "/financial/loan-payment", icon: "💵" },
         {"title":"Mortgage Payment & Amortization Calculator","url":"/financial/mortgage-amortization","icon":"🏠"},
         {"title":"Extra Payments & Payoff Time Calculator","url":"/financial/extra-payments-payoff","icon":"📈"},
         {"title":"Interest-Only Loan Calculator","url":"/financial/interest-only-loan","icon":"💰"},

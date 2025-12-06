@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle, TrendingUp } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function ExtraPaymentsPayoffCalculator() {
@@ -95,8 +95,44 @@ export default function ExtraPaymentsPayoffCalculator() {
   };
 
   const handleReset = () => {
-    setInputs({ principal: "", interestRate: "", monthlyPayment: "", extraPayment: "" });
+    setInputs({ loanAmount: "", interestRate: "", extraPayment: "" });
   };
+
+  // FAQ DATA
+  const faqs = [
+    {
+      question: "How do extra payments affect my loan?",
+      answer: "Extra payments reduce your principal faster, lowering total interest and shortening your payoff time. Even small extra amounts monthly can save thousands over the life of the loan."
+    },
+    {
+      question: "Is it better to pay extra monthly or make a lump sum?",
+      answer: "Both help. Monthly extras steadily reduce interest accrual. Lump sums can cause a big principal drop at once. Choose based on cash flow and lender policies."
+    },
+    {
+      question: "Do lenders charge fees for extra payments?",
+      answer: "Some loans have prepayment penalties. Check your loan agreement and specify that extra payments go toward principal to maximize benefit."
+    },
+    {
+      question: "Where should I apply extra payments?",
+      answer: "Always request that extra payments be applied directly to principal. This prevents the payment from being treated as an early interest payment."
+    },
+    {
+      question: "Can extra payments change my monthly due?",
+      answer: "Typically, your scheduled payment stays the same unless you refinance. Extras only accelerate payoff and reduce interest."
+    },
+    {
+      question: "Should I build an emergency fund first?",
+      answer: "Prioritize an emergency fund before aggressive debt payoff. It prevents new debt when unexpected expenses arise and supports consistent payments."
+    },
+    {
+      question: "What if my interest rate changes?",
+      answer: "For variable-rate loans, the benefit of extra payments remains, but savings may vary with rate changes. Monitor statements and adjust as needed."
+    },
+    {
+      question: "Do bi-weekly payments help?",
+      answer: "Bi-weekly payments add a 13th monthly payment each year, subtly increasing principal reduction and shortening loan term without large extras."
+    }
+  ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -576,19 +612,19 @@ export default function ExtraPaymentsPayoffCalculator() {
         scenario: "Imagine you have a $300,000 loan at a 3.5% interest rate with a $200 extra monthly payment.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "Calculate the regular monthly payment without extra: $1,347.13", 
-            explanation: "This is the standard payment calculated using the amortization formula." 
+            description: "This is the standard payment calculated using the amortization formula." 
           },
           { 
-            label: "Step 2", 
+            step: 2, 
             calculation: "Add the extra payment: $1,347.13 + $200 = $1,547.13", 
-            explanation: "This is your new total monthly payment with the extra amount." 
+            description: "This is your new total monthly payment with the extra amount." 
           },
           { 
-            label: "Step 3", 
+            step: 3, 
             calculation: "Recalculate the payoff time and interest savings.", 
-            explanation: "Determine how much faster you'll pay off the loan and how much interest you'll save." 
+            description: "Determine how much faster you'll pay off the loan and how much interest you'll save." 
           }
         ],
         result: "The final result shows that you'll save $30,000 in interest and pay off the loan 5 years earlier."

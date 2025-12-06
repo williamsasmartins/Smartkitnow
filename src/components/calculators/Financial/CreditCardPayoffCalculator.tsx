@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle, TrendingUp } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CreditCardPayoffCalculator() {
@@ -606,19 +606,19 @@ export default function CreditCardPayoffCalculator() {
         scenario: "Imagine you have a credit card balance of $5,000 with an annual interest rate of 18% and you plan to pay $200 monthly.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "Monthly interest rate = 18% / 12 = 1.5%", 
-            explanation: "Calculate the monthly interest rate from the annual rate." 
+            description: "Calculate the monthly interest rate from the annual rate." 
           },
           { 
-            label: "Step 2", 
+            step: 2, 
             calculation: "Use the formula to find the monthly payment.", 
-            explanation: "Apply the formula to determine the monthly payment needed." 
+            description: "Apply the formula to determine the monthly payment needed." 
           },
           { 
-            label: "Step 3", 
+            step: 3, 
             calculation: "Calculate total interest and payoff time.", 
-            explanation: "Determine the total interest paid and the number of months to payoff." 
+            description: "Determine the total interest paid and the number of months to payoff." 
           }
         ],
         result: "The final result shows the total interest paid and the number of months required to pay off the debt."

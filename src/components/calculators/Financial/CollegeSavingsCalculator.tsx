@@ -661,19 +661,19 @@ export default function CollegeSavingsCalculator() {
         scenario: "Imagine you have $10,000 saved, contribute $500 monthly, expect a 5% annual return, and plan for college in 18 years.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "Calculate monthly return rate: 5% / 12 = 0.4167%", 
-            explanation: "Determine the monthly interest rate from the annual rate." 
+            description: "Determine the monthly interest rate from the annual rate." 
           },
           { 
-            label: "Step 2", 
+            step: 2, 
             calculation: "Compute future value: FV = $10,000 × (1 + 0.004167)^(18×12) + $500 × [((1 + 0.004167)^(18×12) - 1) / 0.004167]", 
-            explanation: "Calculate the future value of savings including contributions." 
+            description: "Calculate the future value of savings including contributions." 
           },
           { 
-            label: "Step 3", 
+            step: 3, 
             calculation: "Result: FV = $250,000", 
-            explanation: "The final result shows the projected savings amount." 
+            description: "The final result shows the projected savings amount." 
           }
         ],
         result: "The final result is $250,000, meaning you will have this amount saved for college expenses after 18 years."

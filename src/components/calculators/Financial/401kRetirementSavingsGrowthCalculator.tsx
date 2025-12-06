@@ -606,6 +606,8 @@ export default function RetirementSavingsGrowthCalculator() {
     <CalculatorVerticalLayout
       title="401(k) Retirement Savings Growth Calculator"
       description="Estimate the future value of your 401(k) based on contributions, employer match, and growth."
+      widget={widget}
+      editorial={editorial}
       jsonLd={faqJsonLd}
       onThisPage={[
         { id: "calculator", label: "Calculator" },

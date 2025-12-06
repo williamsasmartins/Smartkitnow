@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle, TrendingUp } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CompoundInterestCalculator() {
@@ -18,6 +18,42 @@ export default function CompoundInterestCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  // FAQ DATA
+  const faqs = [
+    {
+      question: "What is compound interest?",
+      answer: "Compound interest is the interest on a loan or deposit calculated based on both the initial principal and the accumulated interest from previous periods. It allows your money to grow faster over time compared to simple interest, as you earn interest on your interest."
+    },
+    {
+      question: "How does compounding frequency affect my investment?",
+      answer: "The more frequently interest is compounded, the more interest you earn. For example, interest compounded daily will yield a higher return than interest compounded yearly, because the interest is added to the principal more often, allowing it to start earning interest sooner."
+    },
+    {
+      question: "What is the formula for compound interest?",
+      answer: "The formula for compound interest is A = P(1 + r/n)^(nt), where A is the future value of the investment/loan, P is the principal investment amount, r is the annual interest rate (decimal), n is the number of times that interest is compounded per unit t, and t is the time the money is invested or borrowed for."
+    },
+    {
+      question: "Can I lose money with compound interest?",
+      answer: "Compound interest itself is a mechanism for growth, but if you are investing in assets that can lose value (like stocks), your principal can decrease. However, in a savings account or CD with a guaranteed rate, compound interest will only increase your balance."
+    },
+    {
+      question: "What is the difference between simple and compound interest?",
+      answer: "Simple interest is calculated only on the principal amount, whereas compound interest is calculated on the principal plus any accumulated interest. Over long periods, compound interest results in significantly higher returns."
+    },
+    {
+      question: "How can I maximize my compound interest earnings?",
+      answer: "To maximize earnings, start saving early, contribute regularly, choose accounts with higher interest rates, and opt for more frequent compounding intervals (e.g., daily or monthly instead of yearly)."
+    },
+    {
+      question: "Does inflation affect compound interest?",
+      answer: "Yes, inflation reduces the purchasing power of your money over time. While compound interest grows your nominal balance, it's important to consider the 'real' rate of return, which is the interest rate minus the inflation rate."
+    },
+    {
+      question: "Is compound interest relevant for loans?",
+      answer: "Yes, compound interest works against you when you have debt. Credit cards and loans often use compound interest, meaning you pay interest on the interest charged, which can cause debt to grow rapidly if not paid off."
+    }
+  ];
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -81,7 +117,7 @@ export default function CompoundInterestCalculator() {
   };
 
   const handleReset = () => {
-    setInputs({ principal: "", rate: "", time: "", frequency: "1" });
+    setInputs({ principal: "", rate: "", time: "", compoundingFrequency: "yearly" });
   };
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -574,19 +610,19 @@ export default function CompoundInterestCalculator() {
         scenario: "Imagine you have $10,000 to invest at an annual interest rate of 5%, compounded monthly for 10 years.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "10,000 × (1 + 0.05/12)^(12×10)", 
-            explanation: "Calculate the future value using the compound interest formula." 
+            description: "Calculate the future value using the compound interest formula." 
           },
           { 
-            label: "Step 2", 
+            step: 2, 
             calculation: "10,000 × (1 + 0.004167)^(120)", 
-            explanation: "Simplify the interest rate per period and the number of periods." 
+            description: "Simplify the interest rate per period and the number of periods." 
           },
           { 
-            label: "Step 3", 
+            step: 3, 
             calculation: "10,000 × 1.647009", 
-            explanation: "Calculate the compounded amount over the total periods." 
+            description: "Calculate the compounded amount over the total periods." 
           }
         ],
         result: "The final result is approximately $16,470.09, meaning your investment has grown by $6,470.09 over 10 years."
