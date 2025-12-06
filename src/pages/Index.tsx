@@ -1435,7 +1435,9 @@ const Index = () => {
                     width={1000}
                     height={300}
                     decoding="async"
+                    fetchPriority="high"
                     className="h-20 w-auto block"
+                    style={{ height: "5rem", width: "auto", aspectRatio: "1000/300" }}
                   />
                 </picture>
               ) : (
@@ -1445,11 +1447,13 @@ const Index = () => {
                   width={1000}
                   height={300}
                   decoding="async"
+                  fetchPriority="high"
                   className="h-20 w-auto block"
+                  style={{ height: "5rem", width: "auto", aspectRatio: "1000/300" }}
                 />
               )}
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Explore our comprehensive collection of calculators organized by category
             </p>
           </div>

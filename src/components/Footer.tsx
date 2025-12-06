@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 
+import { siX, siInstagram, siWhatsapp, siFacebook } from "simple-icons";
 import logoImage from "@/assets/logo-skn.png";
 import { useAssetAvailable } from "@/hooks/useAssetAvailable";
 
@@ -52,28 +52,14 @@ type BrandIcon = { hex: string; path: string };
 
 export function Footer() {
   const webpAvailable = useAssetAvailable("/logo-smartkitnow.webp");
-  const [icons, setIcons] = useState<{ x?: BrandIcon; instagram?: BrandIcon; whatsapp?: BrandIcon; facebook?: BrandIcon } | null>(null);
+  
+  const icons = {
+    x: siX,
+    instagram: siInstagram,
+    whatsapp: siWhatsapp,
+    facebook: siFacebook,
+  };
 
-  // Defer loading of brand SVG paths to idle time, keeping main bundle lighter
-  useEffect(() => {
-    const load = () => {
-      import("simple-icons").then((mod: any) => {
-        setIcons({
-          x: mod.siX,
-          instagram: mod.siInstagram,
-          whatsapp: mod.siWhatsapp,
-          facebook: mod.siFacebook,
-        });
-      }).catch(() => {
-        // silently ignore; fallback letters will render
-      });
-    };
-    if (typeof (window as any).requestIdleCallback === "function") {
-      (window as any).requestIdleCallback(load);
-    } else {
-      setTimeout(load, 250);
-    }
-  }, []);
   return (
     <footer className="mt-0 border-t border-border bg-background">
       <div className="mx-auto max-w-6xl px-4 md:px-6 py-10">
@@ -98,6 +84,7 @@ export function Footer() {
                     loading="lazy"
                     decoding="async"
                     className="h-8 w-auto"
+                    style={{ height: "2rem", width: "auto", aspectRatio: "1000/300" }}
                   />
                 </picture>
               ) : (
@@ -109,6 +96,7 @@ export function Footer() {
                   loading="lazy"
                   decoding="async"
                   className="h-8 w-auto"
+                  style={{ height: "2rem", width: "auto", aspectRatio: "1000/300" }}
                 />
               )}
             </Link>
@@ -175,3 +163,6 @@ export function Footer() {
 }
 
 export default Footer;
+
+
+

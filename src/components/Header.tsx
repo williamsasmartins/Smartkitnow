@@ -57,7 +57,9 @@ export function Header() {
                 width={1000}
                 height={300}
                 decoding="async"
+                fetchPriority="high"
                 className="h-9 w-auto block"
+                style={{ height: "2.25rem", width: "auto", aspectRatio: "1000/300" }}
               />
             </picture>
           ) : (
@@ -67,7 +69,9 @@ export function Header() {
               width={1000}
               height={300}
               decoding="async"
+              fetchPriority="high"
               className="h-9 w-auto block"
+              style={{ height: "2.25rem", width: "auto", aspectRatio: "1000/300" }}
             />
           )}
         </div>
@@ -143,5 +147,7 @@ export function Header() {
     </header>
   );
 }
+
+
 
 
