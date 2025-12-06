@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
-import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function SocialSecurityBenefitEstimatorCalculator() {
   // STATE
@@ -447,6 +447,8 @@ export default function SocialSecurityBenefitEstimatorCalculator() {
             </div>
           ))}
         </div>
+
+      </section>
 
       {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
       <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
-import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function SipMonthlyInvestmentPlannerCalculator() {
   // STATE
@@ -611,7 +611,6 @@ export default function SipMonthlyInvestmentPlannerCalculator() {
         {"title":"Refinance Savings Calculator","url":"/financial/refinance-savings","icon":"💰"},
         {"title":"HELOC Payment Estimator","url":"/financial/heloc-payment-estimator","icon":"🏦"}
       ]}
-      jsonLd={faqJsonLd}
     />
   );
 }
