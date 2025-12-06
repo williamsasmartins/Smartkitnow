@@ -114,9 +114,13 @@ function FormulaBox({
 // EXAMPLE CALCULATION - FINTECH STYLE
 // ================================================================
 interface ExampleStep {
-  step: number;
-  description: string;
+  // Preferred modern shape
+  step?: number;
+  description?: string;
   calculation?: string;
+  // Legacy shape fallback
+  label?: string;
+  explanation?: string;
 }
 
 function ExampleSection({ 
@@ -142,9 +146,11 @@ function ExampleSection({
 
       <div className="space-y-5 mb-8">
         {steps.map((step) => (
-          <div key={step.step} className="bg-slate-50 dark:bg-slate-950 p-5 rounded-xl border border-slate-200 dark:border-slate-800 transition-all duration-200 hover:shadow-md">
+          <div key={(step.step ?? step.label ?? Math.random()).toString()} className="bg-slate-50 dark:bg-slate-950 p-5 rounded-xl border border-slate-200 dark:border-slate-800 transition-all duration-200 hover:shadow-md">
             <p className="font-bold text-slate-900 dark:text-slate-100 mb-3">
-              Step {step.step}: {step.description}
+              {step.step != null
+                ? `Step ${step.step}: ${step.description ?? ''}`
+                : `${step.label ?? 'Step'}${step.explanation ? `: ${step.explanation}` : ''}`}
             </p>
             {step.calculation && (
               <p className="font-mono text-sm text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
@@ -223,7 +229,7 @@ interface CalculatorVerticalLayoutProps {
   showTopBanner?: boolean;
   showSidebar?: boolean;
   showBottomBanner?: boolean;
-  jsonLd?: object | object[];
+  jsonLd?: object | object[] | null | undefined;
 }
 
 // ================================================================
