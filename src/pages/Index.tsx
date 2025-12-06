@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import logoImage from "@/assets/logo-skn.png";
+import { useAssetAvailable } from "@/hooks/useAssetAvailable";
 import JsonLd from "@/components/seo/JsonLd";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,6 +17,7 @@ const CommitmentSection = lazy(() => import("@/components/home/CommitmentSection
 
 const Index = () => {
   const navigate = useNavigate();
+  const webpAvailable = useAssetAvailable("/logo-smartkitnow.webp");
 
   // Categories with detailed automotive and construction structures
   const categories = {
@@ -1422,8 +1425,29 @@ const Index = () => {
         {/* Categories Section */}
         <section className="container mx-auto px-4 py-8 md:py-12 cv-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 py-[10px] skn-home-title">
-              Calculator Categories
+            <h2 className="mb-4 py-[10px] skn-home-title flex justify-center items-center">
+              {webpAvailable ? (
+                <picture>
+                  <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
+                  <img
+                    src={logoImage}
+                    alt="Smart Kit Now Logo"
+                    width={1000}
+                    height={300}
+                    decoding="async"
+                    className="h-20 w-auto block"
+                  />
+                </picture>
+              ) : (
+                <img
+                  src={logoImage}
+                  alt="Smart Kit Now Logo"
+                  width={1000}
+                  height={300}
+                  decoding="async"
+                  className="h-20 w-auto block"
+                />
+              )}
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Explore our comprehensive collection of calculators organized by category
@@ -1486,19 +1510,22 @@ const Index = () => {
 
           {/* Discover More Button */}
           <div className="text-center">
-            <Button className="bg-[#5c82ee] hover:bg-[#4a6fe0] text-white shadow-soft transition-all duration-300 hover:shadow-glow">
+            <Button 
+              onClick={() => document.getElementById('featured-calculators')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-[#5c82ee] hover:bg-[#4a6fe0] text-white shadow-soft transition-all duration-300 hover:shadow-glow"
+            >
               <TrendingUp className="mr-2 h-4 w-4" />
               Discover More Calculators
             </Button>
           </div>
         </section>
 
-        <div className="border-t border-gray-200 my-8" />
-
         {/* Featured Section */}
-        <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading Featured Calculators...</div>}>
-          <FeaturedCalculatorsSection featuredCalculators={featuredCalculators} />
-        </Suspense>
+        <div id="featured-calculators">
+          <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading Featured Calculators...</div>}>
+            <FeaturedCalculatorsSection featuredCalculators={featuredCalculators} />
+          </Suspense>
+        </div>
 
         {/* Gradient Divider Between Sections */}
         {/* removed per user request */}
@@ -1507,8 +1534,6 @@ const Index = () => {
         <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading About Section...</div>}>
           <AboutSection />
         </Suspense>
-
-        <div className="border-t border-gray-200 my-8" />
 
         {/* Why Our Calculators Matter Section */}
         {/* removed per user request */}
