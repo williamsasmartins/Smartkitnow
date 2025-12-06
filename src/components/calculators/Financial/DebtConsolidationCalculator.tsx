@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
-import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function DebtConsolidationCalculator() {
   // STATE
@@ -91,7 +91,7 @@ export default function DebtConsolidationCalculator() {
     const totalInterest = totalPayment - totalDebtValue;
 
     // Generate table data
-    const scheduleData = [];
+    const scheduleData: { month: number; payment: number; principal: number; interest: number; balance: number }[] = [];
     let remainingBalance = totalDebtValue;
     for (let i = 1; i <= numberOfPayments; i++) {
       const interestPayment = remainingBalance * monthlyInterestRate;
@@ -129,15 +129,14 @@ export default function DebtConsolidationCalculator() {
         { id: 'references', label: 'References' }
       ]}
       formula={{
-        title: "Debt Consolidation Formula",
-        description: "The formula for calculating the monthly payment on a consolidated loan is based on the standard amortization formula.",
-        latex: "M = P \\frac{r(1+r)^n}{(1+r)^n - 1}",
+        formula: "M = P * r * (1 + r)^n / ((1 + r)^n - 1)",
         variables: [
-          { symbol: "M", definition: "Total monthly payment" },
-          { symbol: "P", definition: "Principal loan amount" },
-          { symbol: "r", definition: "Monthly interest rate (annual rate divided by 12)" },
-          { symbol: "n", definition: "Number of payments (months)" }
-        ]
+          { symbol: "M", description: "Total monthly payment" },
+          { symbol: "P", description: "Principal loan amount" },
+          { symbol: "r", description: "Monthly interest rate (annual rate / 12)" },
+          { symbol: "n", description: "Number of payments (months)" }
+        ],
+        title: "Debt Consolidation Formula"
       }}
     >
       {/* CALCULATOR WIDGET */}

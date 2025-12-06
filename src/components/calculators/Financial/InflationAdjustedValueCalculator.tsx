@@ -682,19 +682,19 @@ export default function InflationAdjustedValueCalculator() {
         scenario: "Imagine you have $10,000 and expect an annual inflation rate of 3% over 10 years.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "10,000 / (1 + 0.03)^10 = 7,441.48", 
-            explanation: "Calculate the adjusted value after 10 years" 
+            description: "Calculate the adjusted value after 10 years" 
           },
           { 
-            label: "Step 2", 
+            step: 2, 
             calculation: "10,000 - 7,441.48 = 2,558.52", 
-            explanation: "Determine the impact of inflation" 
+            description: "Determine the impact of inflation" 
           },
           { 
-            label: "Step 3", 
+            step: 3, 
             calculation: "10,000 * (1 + 0.03)^10 = 13,439.16", 
-            explanation: "Calculate the future value with inflation" 
+            description: "Calculate the future value with inflation" 
           }
         ],
         result: "The final adjusted value is $7,441.48, indicating the future purchasing power of your money."

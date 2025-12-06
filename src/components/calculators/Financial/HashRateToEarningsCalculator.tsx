@@ -116,7 +116,14 @@ export default function HashRateToEarningsCalculator() {
   };
 
   const handleReset = () => {
-    setInputs({ hashRate: "", powerConsumption: "", electricityCost: "" });
+    setInputs({
+      hashRate: "",
+      powerConsumption: "",
+      electricityCost: "",
+      networkDifficulty: inputs.networkDifficulty ?? "",
+      blockReward: inputs.blockReward ?? "",
+      poolFee: inputs.poolFee ?? ""
+    });
   };
 
   // WIDGET JSX (200-250 LINES)

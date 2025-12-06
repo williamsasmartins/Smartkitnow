@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
-import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function HouseAffordabilityCalculator() {
   // STATE
@@ -134,15 +134,14 @@ export default function HouseAffordabilityCalculator() {
         { id: 'references', label: 'References' }
       ]}
       formula={{
-        title: "Affordability Calculation",
-        description: "Affordability is calculated using the 28/36 rule, which considers both front-end and back-end debt-to-income ratios.",
-        latex: "\\text{Affordable Payment} = \\min(\\text{Income} \\times 0.28, (\\text{Income} \\times 0.36) - \\text{Debts})",
+        formula: "Affordable Payment = min(Income × 0.28, (Income × 0.36) − Debts)",
         variables: [
-          { symbol: "Income", definition: "Gross monthly income" },
-          { symbol: "Debts", definition: "Total monthly debt payments" },
-          { symbol: "0.28", definition: "Front-end ratio limit (28%)" },
-          { symbol: "0.36", definition: "Back-end ratio limit (36%)" }
-        ]
+          { symbol: "Income", description: "Gross monthly income" },
+          { symbol: "Debts", description: "Total monthly debt payments" },
+          { symbol: "0.28", description: "Front-end ratio limit (28%)" },
+          { symbol: "0.36", description: "Back-end ratio limit (36%)" }
+        ],
+        title: "Affordability Calculation"
       }}
     >
       {/* CALCULATOR WIDGET */}

@@ -534,7 +534,7 @@ export default function CurrencyConverterLiveCalculator() {
     <CalculatorVerticalLayout
       title="Currency Converter (Live Rates)"
       description="Convert currencies with real-time exchange rates. Essential tool for travel planning and international business transactions."
-      jsonLd={faqJsonLd}
+      jsonLd={faqJsonLd ?? undefined}
       widget={widget}
       editorial={editorial}
       onThisPage={[
@@ -557,9 +557,9 @@ export default function CurrencyConverterLiveCalculator() {
         scenario: "Imagine you want to convert 1000 USD to EUR with an exchange rate of 1.2.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "1000 × 1.2 = 1200", 
-            explanation: "Calculate the equivalent amount in EUR." 
+            description: "Calculate the equivalent amount in EUR." 
           }
         ],
         result: "The final result is €1,200, meaning you will receive 1,200 Euros for 1,000 US Dollars."

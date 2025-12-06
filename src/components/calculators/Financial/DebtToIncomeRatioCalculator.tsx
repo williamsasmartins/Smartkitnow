@@ -568,14 +568,14 @@ export default function DebtToIncomeRatioCalculator() {
         scenario: "Imagine you earn $5,000 per month and have $1,500 in monthly debt payments.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "1500 / 5000 = 0.3", 
-            explanation: "Calculate the ratio of debt payments to income." 
+            description: "Calculate the ratio of debt payments to income." 
           },
           { 
-            label: "Step 2", 
+            step: 2, 
             calculation: "0.3 × 100 = 30%", 
-            explanation: "Convert the ratio to a percentage." 
+            description: "Convert the ratio to a percentage." 
           }
         ],
         result: "The final result is 30%, indicating a moderate debt-to-income ratio."
