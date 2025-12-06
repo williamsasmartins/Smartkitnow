@@ -6,6 +6,7 @@ import AppErrorBoundary from "@/components/AppErrorBoundary";
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
+import BackToTopButton from "@/components/BackToTopButton";
 const GlowCardDemo = lazy(() => import("@/pages/GlowCardDemo"));
 const FinancialCategory = lazy(() => import("@/pages/categories/FinancialCategory"));
 const HealthCategory = lazy(() => import("@/pages/categories/HealthCategory"));
@@ -148,6 +149,7 @@ export default function App() {
         </AppErrorBoundary>
       </div>
       <Footer />
+      <BackToTopButton />
       <CookieConsentBanner />
     </div>
   );
