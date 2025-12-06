@@ -1,565 +1,827 @@
-import { useState, useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calculator, Dog, Activity, Info, HelpCircle, BookOpen } from "lucide-react";
+import {
+  Calculator,
+  Dog,
+  Activity,
+  Info,
+  HeartPulse,
+  Scale,
+  BookOpen,
+} from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+type WeightLossInputs = {
+  currentWeightKg: string;
+  targetWeightKg: string;
+  currentCalories: string;
+  weeksToGoal: string;
+};
+
+type WeightLossResults = {
+  idealRer: number;
+  weightLossCalories: number;
+  calorieReduction: number;
+  reductionPercent: number;
+  suggestedWeeklyLossKgMin: number;
+  suggestedWeeklyLossKgMax: number;
+  estimatedWeeklyLossFromDeficitKg: number | null;
+  isValid: boolean;
+};
+
+function calculateRerKg(weightKg: number): number {
+  if (!weightKg || weightKg <= 0) return 0;
+  return 70 * Math.pow(weightKg, 0.75);
+}
+
+function clampNumber(value: number, min: number, max: number): number {
+  if (Number.isNaN(value)) return min;
+  if (value < min) return min;
+  if (value > max) return max;
+  return value;
+}
 
 export default function DogWeightLossPlannerCalculator() {
-  // Input states
-  const [currentWeight, setCurrentWeight] = useState("");
-  const [goalWeight, setGoalWeight] = useState("");
-  const [weightUnit, setWeightUnit] = useState<"kg" | "lb">("kg");
-  const [activityLevel, setActivityLevel] = useState<"low" | "moderate" | "high">("moderate");
-  const [weeklyLossPercent, setWeeklyLossPercent] = useState("1.0");
+  const [inputs, setInputs] = useState<WeightLossInputs>({
+    currentWeightKg: "",
+    targetWeightKg: "",
+    currentCalories: "",
+    weeksToGoal: "",
+  });
 
-  // Result ref for scroll
-  const resultRef = useRef<HTMLDivElement | null>(null);
+  const [hasCalculated, setHasCalculated] = useState(false);
+  const resultsRef = useRef<HTMLDivElement | null>(null);
 
-  // Helper: convert lb to kg if needed
-  const parseWeight = (value: string) => {
-    const num = parseFloat(value);
-    if (isNaN(num) || num <= 0) return undefined;
-    return weightUnit === "kg" ? num : num * 0.453592;
-  };
+  const parsed = useMemo(() => {
+    const currentWeightKg = parseFloat(inputs.currentWeightKg.replace(",", "."));
+    const targetWeightKg = parseFloat(inputs.targetWeightKg.replace(",", "."));
+    const currentCalories = parseFloat(inputs.currentCalories.replace(",", "."));
+    const weeksToGoal = parseFloat(inputs.weeksToGoal.replace(",", "."));
 
-  // Activity factor for MER (maintenance energy requirement)
-  const activityFactor = useMemo(() => {
-    switch (activityLevel) {
-      case "low":
-        return 1.0; // sedentary/obese-prone
-      case "moderate":
-        return 1.2; // typical pet
-      case "high":
-        return 1.4; // active/young
-      default:
-        return 1.2;
-    }
-  }, [activityLevel]);
+    return {
+      currentWeightKg: Number.isFinite(currentWeightKg) ? currentWeightKg : NaN,
+      targetWeightKg: Number.isFinite(targetWeightKg) ? targetWeightKg : NaN,
+      currentCalories: Number.isFinite(currentCalories) ? currentCalories : NaN,
+      weeksToGoal: Number.isFinite(weeksToGoal) ? weeksToGoal : NaN,
+    };
+  }, [inputs]);
 
-  // Main calculations
-  const {
-    rer,
-    mer,
-    targetCal,
-    totalWeightToLose,
-    estimatedWeeks,
-    safeWeeklyLossKg,
-    safeWeeklyLossG,
-    currentWeightKg,
-    goalWeightKg,
-    weeklyLossPercentNum,
-  } = useMemo(() => {
-    const currentWeightKg = parseWeight(currentWeight);
-    const goalWeightKg = parseWeight(goalWeight);
-    const weeklyLossPercentNum = Math.max(0.5, Math.min(2.0, parseFloat(weeklyLossPercent) || 1.0)); // 0.5–2% safe range
+  const results: WeightLossResults = useMemo(() => {
+    const { currentWeightKg, targetWeightKg, currentCalories, weeksToGoal } =
+      parsed;
 
-    if (
-      currentWeightKg === undefined ||
-      goalWeightKg === undefined ||
-      currentWeightKg <= goalWeightKg ||
-      goalWeightKg <= 0
-    ) {
+    const validWeights =
+      currentWeightKg > 0 && targetWeightKg > 0 && targetWeightKg < currentWeightKg;
+    const hasCalories = currentCalories > 0;
+    const hasWeeks = weeksToGoal > 0;
+
+    if (!validWeights) {
       return {
-        rer: undefined,
-        mer: undefined,
-        targetCal: undefined,
-        totalWeightToLose: undefined,
-        estimatedWeeks: undefined,
-        safeWeeklyLossKg: undefined,
-        safeWeeklyLossG: undefined,
-        currentWeightKg,
-        goalWeightKg,
-        weeklyLossPercentNum,
+        idealRer: 0,
+        weightLossCalories: 0,
+        calorieReduction: 0,
+        reductionPercent: 0,
+        suggestedWeeklyLossKgMin: 0,
+        suggestedWeeklyLossKgMax: 0,
+        estimatedWeeklyLossFromDeficitKg: null,
+        isValid: false,
       };
     }
 
-    // RER = 70 × (ideal weight in kg)^0.75
-    const rer = 70 * Math.pow(goalWeightKg, 0.75);
+    const idealRer = calculateRerKg(targetWeightKg);
+    // Typical vet-guided weight loss range ~0.8–1.0 × RER(ideal).
+    // We’ll use 0.9 as a mid-point guideline.
+    const weightLossCalories = idealRer * 0.9;
 
-    // MER = RER × activity factor
-    const mer = rer * activityFactor;
+    let calorieReduction = 0;
+    let reductionPercent = 0;
+    if (hasCalories && currentCalories > weightLossCalories) {
+      calorieReduction = currentCalories - weightLossCalories;
+      reductionPercent = (calorieReduction / currentCalories) * 100;
+    }
 
-    // For weight loss, target calories = 80% of MER (typical vet recommendation)
-    const targetCal = mer * 0.8;
+    // Safe weight loss rate: ~1–2% of current body weight per week
+    const suggestedWeeklyLossKgMin = currentWeightKg * 0.01;
+    const suggestedWeeklyLossKgMax = currentWeightKg * 0.02;
 
-    // Total weight to lose
-    const totalWeightToLose = currentWeightKg - goalWeightKg;
-
-    // Safe weekly loss (kg): 0.5–2% of current weight per week
-    const safeWeeklyLossKg = (currentWeightKg * weeklyLossPercentNum) / 100;
-    const safeWeeklyLossG = safeWeeklyLossKg * 1000;
-
-    // Estimated weeks to goal
-    const estimatedWeeks = totalWeightToLose / safeWeeklyLossKg;
+    let estimatedWeeklyLossFromDeficitKg: number | null = null;
+    if (hasCalories && calorieReduction > 0 && hasWeeks) {
+      // Very rough estimate: 7,700 kcal ≈ 1 kg body fat (human approximation).
+      // For dogs this is only a conceptual guide, not a medical rule.
+      const kgPerWeek =
+        ((calorieReduction * 7) / 7700) * (currentWeightKg / currentWeightKg || 1);
+      estimatedWeeklyLossFromDeficitKg = kgPerWeek;
+    }
 
     return {
-      rer,
-      mer,
-      targetCal,
-      totalWeightToLose,
-      estimatedWeeks,
-      safeWeeklyLossKg,
-      safeWeeklyLossG,
-      currentWeightKg,
-      goalWeightKg,
-      weeklyLossPercentNum,
+      idealRer,
+      weightLossCalories,
+      calorieReduction,
+      reductionPercent,
+      suggestedWeeklyLossKgMin,
+      suggestedWeeklyLossKgMax,
+      estimatedWeeklyLossFromDeficitKg,
+      isValid: true,
     };
-  }, [currentWeight, goalWeight, weightUnit, activityFactor, weeklyLossPercent]);
+  }, [parsed]);
 
-  // Formatters
-  const nf0 = (n: number | undefined) =>
-    n === undefined ? "--" : Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(n);
-  const nf1 = (n: number | undefined) =>
-    n === undefined ? "--" : Intl.NumberFormat("en-US", { maximumFractionDigits: 1 }).format(n);
-  const nf2 = (n: number | undefined) =>
-    n === undefined ? "--" : Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(n);
-
-  // Handle calculate (scroll to results)
-  const handleCalculate = (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
-    setTimeout(() => {
-      if (resultRef.current) {
-        resultRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    }, 100);
+  const handleInputChange = (field: keyof WeightLossInputs, value: string) => {
+    setInputs((prev) => ({ ...prev, [field]: value }));
   };
 
-  // Handle reset
+  const handleCalculate = () => {
+    setHasCalculated(true);
+    setTimeout(() => {
+      resultsRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }, 120);
+  };
+
   const handleReset = () => {
-    setCurrentWeight("");
-    setGoalWeight("");
-    setWeightUnit("kg");
-    setActivityLevel("moderate");
-    setWeeklyLossPercent("1.0");
-    setTimeout(() => {
-      if (resultRef.current) {
-        resultRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    }, 100);
+    setInputs({
+      currentWeightKg: "",
+      targetWeightKg: "",
+      currentCalories: "",
+      weeksToGoal: "",
+    });
+    setHasCalculated(false);
   };
 
-  // Validation
-  const canCalculate =
-    !!currentWeight &&
-    !!goalWeight &&
-    parseWeight(currentWeight) !== undefined &&
-    parseWeight(goalWeight) !== undefined &&
-    parseWeight(currentWeight)! > parseWeight(goalWeight)! &&
-    parseWeight(goalWeight)! > 0;
+  const formatNumber = (value: number, decimals = 0): string => {
+    if (!Number.isFinite(value)) return "—";
+    return new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    }).format(value);
+  };
 
-  return (
-    <CalculatorVerticalLayout
-      title="Dog Weight Loss Planner"
-      description="Plan a safe and effective weight loss program for your dog. Calculates target calories and timeline for goal weight achievement."
-      widget={
-        <div className="space-y-6">
-          <Card>
+  const widget = (
+    <div className="space-y-6">
+      <Card className="border border-slate-800/5 dark:border-slate-100/5 shadow-sm">
+        <CardHeader className="pb-4">
+          <CardTitle className="flex items-center gap-2 text-lg font-semibold">
+            <Dog className="h-5 w-5 text-emerald-500" />
+            Dog Weight Loss Planner
+          </CardTitle>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Enter your dog&apos;s current and ideal weight, along with current
+            calories, to estimate a safe daily calorie target for a vet-guided
+            weight loss plan.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-4 pt-0">
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-1.5">
+              <Label htmlFor="currentWeightKg">Current weight (kg)</Label>
+              <Input
+                id="currentWeightKg"
+                inputMode="decimal"
+                placeholder="e.g. 28"
+                value={inputs.currentWeightKg}
+                onChange={(e) =>
+                  handleInputChange("currentWeightKg", e.target.value)
+                }
+              />
+              <p className="text-xs text-muted-foreground">
+                Use your dog&apos;s actual weight from a recent vet visit or
+                home scale.
+              </p>
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="targetWeightKg">Target (ideal) weight (kg)</Label>
+              <Input
+                id="targetWeightKg"
+                inputMode="decimal"
+                placeholder="e.g. 22"
+                value={inputs.targetWeightKg}
+                onChange={(e) =>
+                  handleInputChange("targetWeightKg", e.target.value)
+                }
+              />
+              <p className="text-xs text-muted-foreground">
+                Ask your veterinarian what a healthy goal weight is before you
+                start.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-1.5">
+              <Label htmlFor="currentCalories">
+                Current daily calories (optional)
+              </Label>
+              <Input
+                id="currentCalories"
+                inputMode="decimal"
+                placeholder="e.g. 900"
+                value={inputs.currentCalories}
+                onChange={(e) =>
+                  handleInputChange("currentCalories", e.target.value)
+                }
+              />
+              <p className="text-xs text-muted-foreground">
+                Add all food, treats and extras. This helps estimate the size of
+                the calorie reduction.
+              </p>
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="weeksToGoal">
+                Weeks to reach goal (optional)
+              </Label>
+              <Input
+                id="weeksToGoal"
+                inputMode="decimal"
+                placeholder="e.g. 16"
+                value={inputs.weeksToGoal}
+                onChange={(e) =>
+                  handleInputChange("weeksToGoal", e.target.value)
+                }
+              />
+              <p className="text-xs text-muted-foreground">
+                The calculator will compare this to typical safe weight loss
+                rates.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <Button
+          onClick={handleCalculate}
+          className="flex-1 gap-2 font-semibold"
+        >
+          <Calculator className="h-4 w-4" />
+          Calculate plan
+        </Button>
+        <Button
+          variant="outline"
+          onClick={handleReset}
+          className="flex-1 gap-2"
+        >
+          Reset
+        </Button>
+      </div>
+
+      {hasCalculated && results.isValid && (
+        <div ref={resultsRef} className="space-y-6">
+          <Card className="border border-emerald-500/20 bg-gradient-to-br from-emerald-50/70 via-teal-50/60 to-sky-50/70 dark:from-emerald-900/40 dark:via-teal-900/40 dark:to-slate-900/60">
             <CardHeader>
-              <CardTitle>
-                <Dog className="inline-block mr-2 text-blue-500" />
-                Dog Weight Loss Planner
+              <CardTitle className="flex items-center gap-2 text-xl">
+                <HeartPulse className="h-5 w-5 text-emerald-600 dark:text-emerald-300" />
+                Recommended daily calories for weight loss
               </CardTitle>
+              <p className="text-sm text-muted-foreground">
+                This is a guideline based on your dog&apos;s{" "}
+                <span className="font-semibold">target (ideal) weight</span>.
+                Always confirm with your veterinarian before changing diet.
+              </p>
             </CardHeader>
-            <CardContent>
-              <form
-                className="space-y-4"
-                onSubmit={e => {
-                  e.preventDefault();
-                  handleCalculate();
-                }}
-              >
-                <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
-                  <div className="flex-1">
-                    <Label htmlFor="currentWeight">
-                      Current weight
-                      <span className="ml-1 text-xs text-slate-500">(in {weightUnit})</span>
-                    </Label>
-                    <div className="flex items-center space-x-2">
-                      <Input
-                        id="currentWeight"
-                        type="number"
-                        min="0"
-                        step="0.1"
-                        placeholder={weightUnit === "kg" ? "e.g. 30" : "e.g. 66"}
-                        value={currentWeight}
-                        onChange={e => setCurrentWeight(e.target.value)}
-                        className="w-32"
-                        inputMode="decimal"
-                        required
-                      />
-                      <select
-                        className="border rounded px-2 py-1 text-sm bg-background"
-                        value={weightUnit}
-                        onChange={e => setWeightUnit(e.target.value as "kg" | "lb")}
-                        aria-label="Weight unit"
-                      >
-                        <option value="kg">kg</option>
-                        <option value="lb">lb</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <Label htmlFor="goalWeight">
-                      Goal weight
-                      <span className="ml-1 text-xs text-slate-500">(in {weightUnit})</span>
-                    </Label>
-                    <Input
-                      id="goalWeight"
-                      type="number"
-                      min="0"
-                      step="0.1"
-                      placeholder={weightUnit === "kg" ? "e.g. 25" : "e.g. 55"}
-                      value={goalWeight}
-                      onChange={e => setGoalWeight(e.target.value)}
-                      className="w-32"
-                      inputMode="decimal"
-                      required
-                    />
-                  </div>
-                </div>
+            <CardContent className="space-y-4">
+              <div className="flex flex-wrap items-baseline gap-4">
                 <div>
-                  <Label htmlFor="activityLevel">
-                    Activity level
-                    <span className="ml-1 text-xs text-slate-500">(choose best fit)</span>
-                  </Label>
-                  <div className="flex space-x-4 mt-1">
-                    <label className="flex items-center space-x-1">
-                      <Input
-                        type="radio"
-                        name="activityLevel"
-                        value="low"
-                        checked={activityLevel === "low"}
-                        onChange={() => setActivityLevel("low")}
-                      />
-                      <span className="text-sm">Low (sedentary/obese-prone)</span>
-                    </label>
-                    <label className="flex items-center space-x-1">
-                      <Input
-                        type="radio"
-                        name="activityLevel"
-                        value="moderate"
-                        checked={activityLevel === "moderate"}
-                        onChange={() => setActivityLevel("moderate")}
-                      />
-                      <span className="text-sm">Moderate (typical pet)</span>
-                    </label>
-                    <label className="flex items-center space-x-1">
-                      <Input
-                        type="radio"
-                        name="activityLevel"
-                        value="high"
-                        checked={activityLevel === "high"}
-                        onChange={() => setActivityLevel("high")}
-                      />
-                      <span className="text-sm">High (active/young)</span>
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <Label htmlFor="weeklyLossPercent">
-                    Weekly weight loss rate
-                    <span className="ml-1 text-xs text-slate-500">(as % of current weight)</span>
-                  </Label>
-                  <div className="flex items-center space-x-2">
-                    <Input
-                      id="weeklyLossPercent"
-                      type="number"
-                      min="0.5"
-                      max="2"
-                      step="0.1"
-                      placeholder="e.g. 1.0"
-                      value={weeklyLossPercent}
-                      onChange={e => setWeeklyLossPercent(e.target.value)}
-                      className="w-24"
-                      inputMode="decimal"
-                      required
-                    />
-                    <span className="text-sm text-slate-500">%</span>
-                  </div>
-                  <div className="text-xs text-slate-500 mt-1">
-                    Typical safe range: 0.5%–2% per week. Most dogs do best at 1% per week.
-                  </div>
-                </div>
-                <div className="flex space-x-2 mt-4">
-                  <Button
-                    type="submit"
-                    disabled={!canCalculate}
-                    onClick={handleCalculate}
-                  >
-                    <Calculator className="mr-2 h-4 w-4" />
-                    Calculate
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={handleReset}
-                  >
-                    Reset
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-          <div ref={resultRef} />
-          <Card className="bg-gradient-to-br from-blue-50/80 to-white dark:from-blue-900/40 dark:to-slate-900/60 border-blue-200 dark:border-blue-700 shadow-lg">
-            <CardHeader>
-              <CardTitle>
-                <Activity className="inline-block mr-2 text-green-600" />
-                Weight Loss Plan Results
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {!canCalculate ? (
-                <div className="text-slate-500 text-sm flex items-center">
-                  <Info className="mr-2 h-5 w-5" />
-                  Enter your dog's current and goal weight to see the plan.
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  <div className="text-lg font-semibold text-blue-700 dark:text-blue-200">
-                    Target daily calories:{" "}
-                    <span className="text-2xl font-bold">
-                      {nf0(targetCal)} kcal
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                    Daily calories for weight loss
+                  </p>
+                  <p className="text-3xl font-semibold">
+                    {formatNumber(results.weightLossCalories, 0)}{" "}
+                    <span className="text-base font-normal text-muted-foreground">
+                      kcal/day
                     </span>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-blue-100/60 dark:bg-blue-900/30 rounded p-3">
-                      <div className="font-medium text-slate-700 dark:text-slate-200">
-                        Estimated weeks to goal:
-                      </div>
-                      <div className="text-xl font-bold">
-                        {nf1(estimatedWeeks)} weeks
-                      </div>
-                    </div>
-                    <div className="bg-blue-100/60 dark:bg-blue-900/30 rounded p-3">
-                      <div className="font-medium text-slate-700 dark:text-slate-200">
-                        Safe weekly weight loss:
-                      </div>
-                      <div className="text-xl font-bold">
-                        {nf2(safeWeeklyLossKg)} kg (
-                        {nf0(safeWeeklyLossG)} g)
-                      </div>
-                    </div>
-                    <div className="bg-blue-100/60 dark:bg-blue-900/30 rounded p-3">
-                      <div className="font-medium text-slate-700 dark:text-slate-200">
-                        Total weight to lose:
-                      </div>
-                      <div className="text-xl font-bold">
-                        {nf2(totalWeightToLose)} kg
-                      </div>
-                    </div>
-                    <div className="bg-blue-100/60 dark:bg-blue-900/30 rounded p-3">
-                      <div className="font-medium text-slate-700 dark:text-slate-200">
-                        Calculated RER (Resting Energy Requirement):
-                      </div>
-                      <div className="text-xl font-bold">
-                        {nf0(rer)} kcal/day
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-xs text-slate-500 mt-2 flex items-start">
-                    <HelpCircle className="h-4 w-4 mr-1 mt-0.5" />
-                    <span>
-                      <strong>Note:</strong> This plan is for educational purposes only. Always consult a licensed veterinarian before making decisions about your dog’s diet, weight loss, or health care. Never restrict calories or change feeding without professional guidance.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-1 text-sm text-muted-foreground">
+                  <span>
+                    Ideal RER (target weight):{" "}
+                    <span className="font-medium">
+                      {formatNumber(results.idealRer, 0)} kcal/day
                     </span>
-                  </div>
+                  </span>
+                  <span>
+                    Weight loss factor used:{" "}
+                    <span className="font-medium">0.9 × RER(ideal)</span>
+                  </span>
+                </div>
+              </div>
+
+              {parsed.currentCalories > 0 && results.calorieReduction > 0 && (
+                <div className="grid gap-4 md:grid-cols-2">
+                  <Card className="border border-amber-200 bg-amber-50/60 dark:border-amber-900/50 dark:bg-amber-950/40">
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2 text-sm font-semibold">
+                        <Activity className="h-4 w-4 text-amber-600 dark:text-amber-300" />
+                        Suggested calorie reduction
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-1 text-sm">
+                      <p>
+                        From{" "}
+                        <span className="font-semibold">
+                          {formatNumber(parsed.currentCalories, 0)} kcal
+                        </span>{" "}
+                        down to{" "}
+                        <span className="font-semibold">
+                          {formatNumber(results.weightLossCalories, 0)} kcal
+                        </span>{" "}
+                        per day.
+                      </p>
+                      <p>
+                        That&apos;s a reduction of{" "}
+                        <span className="font-semibold">
+                          {formatNumber(results.calorieReduction, 0)} kcal
+                        </span>{" "}
+                        (
+                        <span className="font-semibold">
+                          {formatNumber(results.reductionPercent, 1)}%
+                        </span>
+                        ).
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border border-sky-200 bg-sky-50/60 dark:border-sky-900/50 dark:bg-sky-950/40">
+                    <CardHeader className="pb-2">
+                      <CardTitle className="flex items-center gap-2 text-sm font-semibold">
+                        <Scale className="h-4 w-4 text-sky-600 dark:text-sky-300" />
+                        Safe weekly weight loss range
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-1 text-sm">
+                      <p>
+                        Typical vet-guided weight loss for dogs is around{" "}
+                        <span className="font-semibold">1–2% body weight</span>{" "}
+                        per week.
+                      </p>
+                      <p>
+                        For your dog, that&apos;s approximately{" "}
+                        <span className="font-semibold">
+                          {formatNumber(results.suggestedWeeklyLossKgMin, 2)}–
+                          {formatNumber(results.suggestedWeeklyLossKgMax, 2)} kg
+                          per week
+                        </span>
+                        .
+                      </p>
+                    </CardContent>
+                  </Card>
                 </div>
               )}
             </CardContent>
           </Card>
+
+          <Card className="border border-slate-800/5 dark:border-slate-100/5">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-base font-semibold">
+                <Info className="h-4 w-4 text-indigo-500" />
+                Summary of your dog&apos;s weight loss plan
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-1/2">Parameter</TableHead>
+                    <TableHead>Value</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>Current weight</TableCell>
+                    <TableCell>
+                      {Number.isFinite(parsed.currentWeightKg)
+                        ? `${formatNumber(parsed.currentWeightKg, 1)} kg`
+                        : "—"}
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>Target (ideal) weight</TableCell>
+                    <TableCell>
+                      {Number.isFinite(parsed.targetWeightKg)
+                        ? `${formatNumber(parsed.targetWeightKg, 1)} kg`
+                        : "—"}
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>Daily calories for weight loss</TableCell>
+                    <TableCell>
+                      {formatNumber(results.weightLossCalories, 0)} kcal/day
+                    </TableCell>
+                  </TableRow>
+                  {parsed.currentCalories > 0 && (
+                    <TableRow>
+                      <TableCell>Current daily calories</TableCell>
+                      <TableCell>
+                        {formatNumber(parsed.currentCalories, 0)} kcal/day
+                      </TableCell>
+                    </TableRow>
+                  )}
+                  {parsed.currentCalories > 0 && results.calorieReduction > 0 && (
+                    <TableRow>
+                      <TableCell>Required calorie reduction</TableCell>
+                      <TableCell>
+                        {formatNumber(results.calorieReduction, 0)} kcal/day (
+                        {formatNumber(results.reductionPercent, 1)}%)
+                      </TableCell>
+                    </TableRow>
+                  )}
+                  {parsed.weeksToGoal > 0 && (
+                    <TableRow>
+                      <TableCell>Planned duration</TableCell>
+                      <TableCell>
+                        {formatNumber(parsed.weeksToGoal, 0)} weeks
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+
+              <p className="text-xs text-muted-foreground">
+                This planner is an educational tool and does not replace a
+                tailored weight loss program created by your veterinarian. Rapid
+                or unsupervised weight loss can be dangerous, especially for
+                small breeds or dogs with medical conditions.
+              </p>
+            </CardContent>
+          </Card>
         </div>
-      }
-      editorial={
-        <div>
-          <section id="how-to-calculate" className="mb-8">
-            <h2 className="text-xl font-bold mb-2">How the Dog Weight Loss Planner Works</h2>
-            <p>
-              The Dog Weight Loss Planner is a specialized tool designed to help pet owners and veterinary professionals estimate a safe, effective weight loss plan for dogs. By entering your dog’s current and goal weights, activity level, and desired weekly weight loss rate, the calculator provides a recommended daily calorie target and an estimated timeline to reach the goal weight.
+      )}
+    </div>
+  );
+
+  const editorial = (
+    <div className="space-y-10">
+      <section id="introduction" className="space-y-4">
+        <h2 className="text-2xl font-semibold">
+          Why a structured dog weight loss plan matters
+        </h2>
+        <p>
+          Extra body fat is one of the most common health problems in pet dogs.
+          Even a few extra kilograms can put strain on joints, increase the
+          risk of diabetes and arthritis, and shorten your dog&apos;s healthy
+          lifespan. At the same time, simply “feeding less” without a plan can
+          leave your dog hungry, undernourished or losing weight too quickly.
+        </p>
+        <p>
+          The Dog Weight Loss Planner on Smart Kit Now helps you turn vague
+          goals like “my dog should lose some weight” into clear,
+          numbers-based guidelines you can discuss with your veterinarian. By
+          combining your dog&apos;s{" "}
+          <strong>current weight, ideal weight and daily calories</strong>, the
+          calculator estimates a daily calorie target that aligns with
+          commonly-used veterinary weight loss formulas.
+        </p>
+        <p>
+          This doesn&apos;t replace a full veterinary exam or a prescription
+          weight loss diet, but it gives you a concrete starting point and a
+          way to track progress week by week.
+        </p>
+      </section>
+
+      <section id="how-to-use" className="space-y-4">
+        <h2 className="text-2xl font-semibold">
+          How to use the Dog Weight Loss Planner
+        </h2>
+        <p>
+          Before you change your dog&apos;s food, try to gather three key
+          pieces of information so the planner can give the most realistic
+          recommendations.
+        </p>
+        <ol className="list-decimal list-inside space-y-2">
+          <li>
+            <strong>Current weight:</strong> Use a recent weight from your vet
+            or weigh your dog at home. For home weighing, you can step on a
+            scale with and without your dog and subtract the values.
+          </li>
+          <li>
+            <strong>Target (ideal) weight:</strong> Ask your veterinarian what
+            a healthy weight range is for your dog&apos;s breed, size and body
+            condition score. Enter a specific target inside that range, such as
+            22 kg.
+          </li>
+          <li>
+            <strong>Current calories:</strong> Add up the calories from your
+            dog&apos;s main food, any toppers, table scraps and treats over a
+            typical day. Pet food labels, manufacturer websites and treat
+            packaging are useful for this step.
+          </li>
+        </ol>
+        <p>
+          Once you enter the values and click{" "}
+          <strong>&quot;Calculate plan&quot;</strong>, the calculator estimates
+          a safe daily calorie target for weight loss based on your dog&apos;s
+          ideal weight. If you also enter the number of weeks you have in mind,
+          you&apos;ll see how that timeline compares to common veterinary
+          guidelines for safe weight loss rates.
+        </p>
+      </section>
+
+      <section id="safety" className="space-y-4">
+        <h2 className="text-2xl font-semibold">
+          Safe weight loss rates and why supervision matters
+        </h2>
+        <p>
+          Most veterinarians aim for dogs to lose around{" "}
+          <strong>1–2% of their current body weight per week</strong>. This
+          pace is usually slow enough to protect lean muscle mass while still
+          making steady progress. For a 28 kg dog, that&apos;s roughly
+          0.28–0.56 kg per week.
+        </p>
+        <p>
+          Faster weight loss may look impressive on the scale but can increase
+          the risk of muscle loss, nutrient deficiencies and rebound weight
+          gain. In some species, like cats, rapid weight loss can even trigger
+          life-threatening liver disease. This is why any weight loss program
+          for your dog should be overseen by a veterinarian, especially if your
+          dog has arthritis, heart disease, endocrine disorders or is a senior.
+        </p>
+        <p>
+          Use the suggested calorie target and weekly loss range from this
+          planner as a conversation starter. Your vet may adjust the numbers,
+          recommend a specific therapeutic diet, or propose recheck visits
+          every 4–6 weeks to monitor weight and body condition score.
+        </p>
+      </section>
+
+      <section id="faq" className="space-y-4">
+        <h2 className="text-2xl font-semibold">Frequently asked questions</h2>
+
+        <div className="space-y-6">
+          <div>
+            <h3 className="font-semibold">
+              How accurate is this dog weight loss calculator?
+            </h3>
+            <p className="mt-1 text-sm text-muted-foreground">
+              The equations behind this calculator are based on widely used
+              veterinary energy requirement formulas. However, every dog has
+              their own metabolism, activity level and health background. Some
+              dogs lose weight easily on textbook calorie targets, while others
+              need more fine-tuning. Treat the results as a{" "}
+              <strong>starting estimate</strong>, then adjust together with
+              your veterinarian based on real weight changes over time.
             </p>
-            <p>
-              Weight management is a cornerstone of canine health. Overweight and obese dogs are at higher risk for joint problems, diabetes, heart disease, and reduced quality of life. However, weight loss must be approached carefully—losing weight too quickly can be dangerous, while losing too slowly may not yield health benefits. This planner uses evidence-based veterinary formulas to estimate safe calorie reductions and realistic timelines, supporting a gradual, sustainable approach.
+          </div>
+
+          <div>
+            <h3 className="font-semibold">
+              Do I need to switch to a special weight loss food?
+            </h3>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Many overweight dogs benefit from a dedicated weight management
+              diet. These formulas are designed to be{" "}
+              <strong>lower in calories but still complete and balanced</strong>
+              , often with higher protein and fiber to help maintain muscle and
+              keep dogs feeling full. Your vet can recommend an appropriate
+              diet based on your dog&apos;s medical history and budget. If you
+              keep using the current food, it&apos;s especially important to
+              confirm the calorie content and avoid over-restricting.
             </p>
-            <p>
-              The calculations are based on your dog’s ideal (goal) weight and take into account their activity level. The tool applies a safe weekly weight loss rate, typically between 0.5% and 2% of current body weight per week, as recommended by veterinary nutritionists. The result is a tailored plan that helps you and your veterinarian monitor progress and make informed decisions.
+          </div>
+
+          <div>
+            <h3 className="font-semibold">
+              What about treats during a weight loss program?
+            </h3>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Treats are perfectly compatible with a healthy weight loss plan—
+              as long as they are included in the total daily calories. Try to
+              keep treats to <strong>no more than 10% of daily calories</strong>{" "}
+              and choose lower-calorie options like crunchy vegetables or
+              specially formulated light treats. Avoid high-calorie extras like
+              cheese, fatty meats or large biscuits that can undo progress in a
+              few bites.
             </p>
-            <p>
-              Remember, this calculator is an educational resource. Every dog is unique, and factors such as age, breed, medical history, and metabolism can influence weight loss. Always consult your veterinarian before starting or modifying your dog’s weight loss program.
+          </div>
+
+          <div>
+            <h3 className="font-semibold">
+              How often should I weigh my dog while they are dieting?
+            </h3>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Weekly weighing works well for most dogs. Too frequent weighing
+              can be misleading due to normal day-to-day fluctuations in water
+              and gut contents. Record each weight in a notebook or app and
+              review the trend over 3–4 weeks. If weight isn&apos;t moving in
+              the desired direction, your vet may adjust calories, activity or
+              both.
             </p>
-          </section>
-          <section id="formula" className="mb-8">
-            <h2 className="text-xl font-bold mb-2">Formula Used in the Dog Weight Loss Planner</h2>
-            <p>
-              The Dog Weight Loss Planner uses a multi-step formula based on veterinary nutrition guidelines:
+          </div>
+
+          <div>
+            <h3 className="font-semibold">
+              What if my dog seems hungry all the time on the diet?
+            </h3>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Persistent hunger is a common concern. First, confirm with your
+              vet that the calorie target and food choice are appropriate.
+              Strategies such as splitting the daily calories into more meals,
+              using higher-fiber diets, or adding low-calorie vegetables can
+              help dogs feel more satisfied. Avoid increasing calories on your
+              own without adjusting the plan with your vet, or weight loss may
+              stall.
             </p>
-            <ul className="list-disc ml-6 mb-4">
-              <li>
-                <strong>Resting Energy Requirement (RER):</strong> <br />
-                <span className="bg-slate-100 dark:bg-slate-800 px-1 rounded">RER = 70 × (Ideal Weight in kg)<sup>0.75</sup></span>
-              </li>
-              <li>
-                <strong>Maintenance Energy Requirement (MER):</strong> <br />
-                <span className="bg-slate-100 dark:bg-slate-800 px-1 rounded">MER = RER × Activity Factor</span>
-                <br />
-                Activity Factor varies: 1.0 (low), 1.2 (moderate), 1.4 (high)
-              </li>
-              <li>
-                <strong>Target Calories for Weight Loss:</strong> <br />
-                <span className="bg-slate-100 dark:bg-slate-800 px-1 rounded">Target Calories = MER × 0.8</span>
-                <br />
-                (A 20% reduction is a typical starting point for safe weight loss.)
-              </li>
-              <li>
-                <strong>Safe Weekly Weight Loss:</strong> <br />
-                <span className="bg-slate-100 dark:bg-slate-800 px-1 rounded">Weekly Loss = Current Weight × (Weekly Loss % / 100)</span>
-                <br />
-                (Recommended: 0.5%–2% per week)
-              </li>
-              <li>
-                <strong>Estimated Weeks to Goal:</strong> <br />
-                <span className="bg-slate-100 dark:bg-slate-800 px-1 rounded">Weeks = (Current Weight – Goal Weight) / Weekly Loss</span>
-              </li>
-            </ul>
-            <p>
-              <strong>Variables:</strong>
-            </p>
-            <ul className="list-disc ml-6">
-              <li>
-                <strong>Current Weight:</strong> Your dog’s present body weight (kg or lb).
-              </li>
-              <li>
-                <strong>Goal Weight:</strong> The target healthy weight for your dog (kg or lb).
-              </li>
-              <li>
-                <strong>Activity Level:</strong> Sedentary, moderate, or high—affects calorie needs.
-              </li>
-              <li>
-                <strong>Weekly Loss %:</strong> The percentage of current weight to lose per week.
-              </li>
-            </ul>
-            <p>
-              <strong>Assumptions & Limitations:</strong> The formulas assume your dog is otherwise healthy, not a puppy, pregnant, or lactating. The calorie targets are estimates; individual needs may vary. Always consult a veterinarian for a personalized plan.
-            </p>
-          </section>
-          <section id="how-to-use" className="mb-8">
-            <h2 className="text-xl font-bold mb-2">How to Use the Dog Weight Loss Planner</h2>
-            <ol className="list-decimal ml-6 space-y-2">
-              <li>
-                <strong>Enter your dog’s current weight:</strong> Use kilograms (kg) or pounds (lb). If unsure, ask your veterinarian or use a pet scale.
-              </li>
-              <li>
-                <strong>Enter your dog’s goal weight:</strong> This is the healthy weight you and your vet have agreed upon. It should be less than the current weight.
-              </li>
-              <li>
-                <strong>Select the weight unit:</strong> Choose between kg and lb for your convenience. The calculator will handle conversions automatically.
-              </li>
-              <li>
-                <strong>Choose your dog’s activity level:</strong> Select “Low” for sedentary or obese-prone dogs, “Moderate” for typical pets, or “High” for very active or young dogs.
-              </li>
-              <li>
-                <strong>Set the weekly weight loss rate:</strong> Enter a value between 0.5% and 2%. Most dogs do best at 1% per week. Never exceed 2% without veterinary supervision.
-              </li>
-              <li>
-                <strong>Click “Calculate”:</strong> The planner will display your dog’s daily calorie target, safe weekly weight loss, estimated weeks to goal, and other supporting numbers.
-              </li>
-              <li>
-                <strong>Review the results:</strong> Use the plan as a starting point for discussion with your veterinarian. Adjust as needed based on your dog’s progress and health.
-              </li>
-            </ol>
-          </section>
-          <section id="understanding-results" className="mb-8">
-            <h2 className="text-xl font-bold mb-2">Understanding the Results</h2>
-            <p>
-              The Dog Weight Loss Planner provides several key numbers to guide your dog’s weight loss journey:
-            </p>
-            <ul className="list-disc ml-6 mb-2">
-              <li>
-                <strong>Target daily calories:</strong> The recommended daily caloric intake to promote safe weight loss. This is typically 80% of your dog’s maintenance needs at their goal weight and activity level.
-              </li>
-              <li>
-                <strong>Estimated weeks to goal:</strong> The projected time required to reach the goal weight, based on the chosen weekly loss rate. This helps set realistic expectations and track progress.
-              </li>
-              <li>
-                <strong>Safe weekly weight loss:</strong> The amount of weight (in kg and grams) your dog should lose each week. Staying within the 0.5%–2% range helps prevent health risks.
-              </li>
-              <li>
-                <strong>Total weight to lose:</strong> The difference between current and goal weight.
-              </li>
-              <li>
-                <strong>Calculated RER:</strong> The baseline energy requirement for your dog at their goal weight.
-              </li>
-            </ul>
-            <p>
-              <strong>Interpreting the numbers:</strong> A higher target calorie number means your dog needs more energy, usually due to higher activity or larger size. A lower number means stricter calorie control is needed. The estimated weeks to goal helps you plan and monitor progress—if your dog loses weight faster or slower than projected, adjust the plan with your veterinarian’s guidance.
-            </p>
-            <p>
-              <strong>Practical tips:</strong> Weigh your dog regularly (every 1–2 weeks), keep a feeding diary, and avoid excessive treats. If your dog seems hungry or lethargic, or if weight loss stalls, consult your veterinarian promptly. Never restrict calories below recommended levels without professional advice.
-            </p>
-          </section>
-          <section id="examples" className="mb-8">
-            <h2 className="text-xl font-bold mb-2">Example: Planning Weight Loss for a Labrador Retriever</h2>
-            <p>
-              Let’s walk through an example to illustrate how the Dog Weight Loss Planner can be used in practice.
-            </p>
-            <p>
-              <strong>Scenario:</strong> Bella is a 32 kg (70.5 lb) female Labrador Retriever. Her veterinarian recommends a goal weight of 27 kg (59.5 lb). Bella is moderately active, and her owner wants to aim for a 1% weekly weight loss rate.
-            </p>
-            <ol className="list-decimal ml-6 mb-2">
-              <li>
-                <strong>Current weight:</strong> 32 kg
-              </li>
-              <li>
-                <strong>Goal weight:</strong> 27 kg
-              </li>
-              <li>
-                <strong>Activity level:</strong> Moderate (factor 1.2)
-              </li>
-              <li>
-                <strong>Weekly loss rate:</strong> 1%
-              </li>
-            </ol>
-            <p>
-              <strong>Step 1: Calculate RER at goal weight</strong><br />
-              RER = 70 × (27)<sup>0.75</sup> ≈ 70 × 10.47 ≈ 733 kcal/day
-            </p>
-            <p>
-              <strong>Step 2: Calculate MER</strong><br />
-              MER = RER × 1.2 = 733 × 1.2 = 880 kcal/day
-            </p>
-            <p>
-              <strong>Step 3: Calculate target calories for weight loss</strong><br />
-              Target Calories = 880 × 0.8 = 704 kcal/day
-            </p>
-            <p>
-              <strong>Step 4: Calculate safe weekly weight loss</strong><br />
-              Weekly Loss = 32 kg × 1% = 0.32 kg (320 g) per week
-            </p>
-            <p>
-              <strong>Step 5: Estimate weeks to goal</strong><br />
-              Total weight to lose = 32 kg – 27 kg = 5 kg<br />
-              Weeks = 5 kg / 0.32 kg ≈ 15.6 weeks
-            </p>
-            <p>
-              <strong>Interpretation:</strong> Bella’s owner should feed about 704 kcal per day, expect a weight loss of 320 g per week, and anticipate reaching the goal weight in about 16 weeks. Regular check-ins with the veterinarian will help ensure Bella stays healthy and on track.
-            </p>
-          </section>
-          <section id="faq" className="mb-8">
-            <h2 className="text-xl font-bold mb-2">Frequently Asked Questions</h2>
-            <h3 className="font-semibold mt-4 mb-1">How do I determine my dog’s ideal (goal) weight?</h3>
-            <p>
-              Determining a dog’s ideal weight is best done in consultation with a veterinarian. Vets use body condition scoring, breed standards, and your dog’s age, size, and health status to recommend a healthy target. Online charts can provide rough estimates, but individual variation is significant. Never set a goal weight without professional input, as being underweight can be as harmful as being overweight.
-            </p>
-            <p>
-              If you’re unsure, schedule a wellness exam. Your vet can assess your dog’s body condition and help you set a realistic, safe goal.
-            </p>
-            <h3 className="font-semibold mt-4 mb-1">Is it safe to restrict my dog’s calories for weight loss?</h3>
-            <p>
-              Calorie restriction must be done carefully. Losing weight too quickly can cause muscle loss, nutritional deficiencies, or even life-threatening conditions like hepatic lipidosis (especially in small breeds). The safe rate is typically 0.5%–2% of current body weight per week. This calculator uses those guidelines, but individual needs may vary.
-            </p>
-            <p>
-              Always consult your veterinarian before starting a weight loss plan. They may recommend a prescription weight loss diet to ensure your dog gets all essential nutrients while reducing calories.
-            </p>
-            <h3 className="font-semibold mt-4 mb-1">
-                What if my dog seems hungry all the time on the diet?
-              </h3>
+          </div>
+        </div>
+      </section>
+
+      <section id="references" className="space-y-4">
+        <h2 className="text-2xl font-semibold">
+          References &amp; additional resources
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          These resources provide deeper background on canine nutrition,
+          obesity management and energy requirement formulas used by
+          veterinarians worldwide.
+        </p>
+
+        <div className="grid gap-3 md:grid-cols-2">
+          <a
+            href="https://wsava.org/global-guidelines/global-nutrition-guidelines/"
+            target="_blank"
+            rel="noreferrer"
+            className="group rounded-xl border border-slate-200 bg-card p-3 text-sm shadow-sm transition hover:border-emerald-400 hover:shadow-md dark:border-slate-700 dark:hover:border-emerald-400"
+          >
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 rounded-full bg-emerald-500/10 p-2 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-300">
+                <BookOpen className="h-4 w-4" />
+              </div>
+              <div>
+                <p className="font-semibold group-hover:text-emerald-600 dark:group-hover:text-emerald-300">
+                  WSAVA Global Nutrition Committee – Energy & feeding
+                  guidelines
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  International recommendations widely used to estimate energy
+                  requirements, body condition scoring and safe weight loss
+                  strategies in dogs and cats.
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://www.merckvetmanual.com"
+            target="_blank"
+            rel="noreferrer"
+            className="group rounded-xl border border-slate-200 bg-card p-3 text-sm shadow-sm transition hover:border-emerald-400 hover:shadow-md dark:border-slate-700 dark:hover:border-emerald-400"
+          >
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 rounded-full bg-sky-500/10 p-2 text-sky-600 dark:bg-sky-500/20 dark:text-sky-300">
+                <BookOpen className="h-4 w-4" />
+              </div>
+              <div>
+                <p className="font-semibold group-hover:text-sky-600 dark:group-hover:text-sky-300">
+                  Veterinary clinical nutrition & obesity chapters
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Textbook-style summaries covering energy equations, obesity
+                  risk factors and treatment plans for overweight dogs.
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://petnutritionalliance.org"
+            target="_blank"
+            rel="noreferrer"
+            className="group rounded-xl border border-slate-200 bg-card p-3 text-sm shadow-sm transition hover:border-emerald-400 hover:shadow-md dark:border-slate-700 dark:hover:border-emerald-400"
+          >
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 rounded-full bg-indigo-500/10 p-2 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-300">
+                <BookOpen className="h-4 w-4" />
+              </div>
+              <div>
+                <p className="font-semibold group-hover:text-indigo-600 dark:group-hover:text-indigo-300">
+                  Pet Nutrition Alliance – Obesity & weight management tools
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Educational tools and guidelines that help veterinarians and
+                  pet owners design safe, effective weight loss programs for
+                  companion animals.
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://www.avma.org/resources/pet-owners/petcare/obesity-your-pet"
+            target="_blank"
+            rel="noreferrer"
+            className="group rounded-xl border border-slate-200 bg-card p-3 text-sm shadow-sm transition hover:border-emerald-400 hover:shadow-md dark:border-slate-700 dark:hover:border-emerald-400"
+          >
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 rounded-full bg-rose-500/10 p-2 text-rose-600 dark:bg-rose-500/20 dark:text-rose-300">
+                <BookOpen className="h-4 w-4" />
+              </div>
+              <div>
+                <p className="font-semibold group-hover:text-rose-600 dark:group-hover:text-rose-300">
+                  Your primary care veterinarian
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  No online calculator can fully replace a hands-on exam. Bring
+                  your dog&apos;s weight loss plan and calorie targets to your
+                  vet visit for personalized review.
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
+  );
+
+  return (
+    <CalculatorVerticalLayout
+      title="Dog Weight Loss Planner"
+      description="Estimate a safe daily calorie target and weekly weight loss pace for your dog based on veterinary-style energy equations. Use this as a starting point for a supervised weight loss plan with your veterinarian."
+      widget={widget}
+      editorial={editorial}
+      onThisPage={[
+        { id: "introduction", label: "Why weight loss planning matters" },
+        { id: "how-to-use", label: "How to use this planner" },
+        { id: "safety", label: "Safe weight loss rates" },
+        { id: "faq", label: "Frequently asked questions" },
+        { id: "references", label: "References & resources" },
+      ]}
+      formula={{
+        title: "Weight loss calorie formula (educational)",
+        formula: "Weight loss calories ≈ 0.9 × RER(ideal weight)",
+        variables: [
+          {
+            symbol: "RER",
+            description:
+              "Resting Energy Requirement, calculated as 70 × (body weight in kg^0.75)",
+          },
+          {
+            symbol: "Ideal weight",
+            description:
+              "Target healthy body weight for your dog, as determined with your veterinarian",
+          },
+          {
+            symbol: "0.9",
+            description:
+              "Example factor within the typical veterinary weight loss range (~0.8–1.0 × RER)",
+          },
+        ],
+      }}
+      example={{
+        title: "Example calculation",
+        scenario:
+          "You have a 28 kg adult dog that your veterinarian says should ideally weigh 22 kg. Your dog currently eats about 900 kcal per day.",
+        steps: [
+          {
+            label: "Step 1",
+            calculation: "RER(ideal) = 70 × 22^0.75 ≈ 727 kcal/day",
+            explanation:
+              "First calculate your dog's resting energy requirement at the target weight using the standard RER formula.",
+          },
+          {
+            label: "Step 2",
+            calculation: "Weight loss calories ≈ 0.9 × 727 ≈ 654 kcal/day",
+            explanation:
+              "Multiply the ideal RER by 0.9 as a starting point within the common weight loss range.",
+          },
+          {
+            label: "Step 3",
+            calculation: "Calorie reduction = 900 – 654 ≈ 246 kcal/day",
+            explanation:
+              "Compare the target calories to your dog's current intake to estimate the daily reduction required.",
+          },
+        ],
+        result:
+          "In this example, your veterinarian might recommend feeding around 650 kcal per day using a complete weight management diet, then monitoring your dog's weight and body condition every 4–6 weeks and adjusting as needed.",
+      }}
+      relatedCalculators={[
+        {
+          title: "Dog Calorie Needs (RER/MER)",
+          url: "/pets/dog-calorie-needs-rer-mer",
+          icon: "🐶",
+        },
+        {
+          title: "Dog Healthy Weight Range Estimator",
+          url: "/pets/dog-healthy-weight-range",
+          icon: "⚖️",
+        },
+        {
+          title: "Dog Daily Feeding Portion Calculator",
+          url: "/pets/dog-feeding-portion",
+          icon: "🍖",
+        },
+      ]}
+    />
+  );
+}
