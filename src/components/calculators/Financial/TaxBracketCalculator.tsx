@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function TaxBracketCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is a tax bracket calculator and why is it important?",
+      answer: "A tax bracket calculator is a tool that helps you estimate your federal tax obligations based on your income, filing status, and deductions. It is important because it provides a clear picture of your tax liabilities, allowing you to plan your finances effectively. By understanding your tax bracket, you can make informed decisions about spending, saving, and investing. Additionally, knowing your tax bracket helps you anticipate changes in your tax situation due to income fluctuations or life events. For more insights, explore our Interest-Only Loan Calculator."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The calculator is designed to be highly accurate, using the latest federal tax brackets and rates. However, its accuracy depends on the accuracy of the data you input. Factors such as incorrect income figures or missed deductions can affect the results. It's always advisable to double-check your inputs and consult a tax professional for complex situations. For best results, ensure your financial records are up-to-date and complete. This will help you get the most accurate estimate of your tax obligations."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the Tax Bracket Calculator, you'll need your annual income, filing status, and any deductions you qualify for. Your income can typically be found on your pay stubs or tax returns. Filing status options include single, married filing jointly, married filing separately, and head of household. Deductions may include mortgage interest, student loan interest, and charitable contributions. Gathering this information beforehand ensures that you can input accurate data, leading to a more reliable estimate of your tax obligations."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, the calculator can be used for various scenarios, such as estimating taxes for different filing statuses or income levels. However, it is primarily designed for federal tax calculations. For state-specific taxes, you may need additional tools or resources. The calculator is also useful for planning around life events, such as marriage or retirement, which can impact your tax situation. If you have a complex tax situation, such as self-employment income or multiple deductions, consulting a tax professional is recommended to ensure comprehensive tax planning."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include entering incorrect income figures, selecting the wrong filing status, and overlooking eligible deductions. These errors can lead to inaccurate tax estimates, potentially resulting in underpayment or overpayment of taxes. It's important to review your inputs carefully and ensure all information is accurate and complete. Additionally, failing to update calculations after significant life changes, such as a change in income or marital status, can lead to outdated results. Regularly reviewing and updating your calculations is essential for accurate tax planning."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your taxes whenever there is a significant change in your financial situation, such as a change in income, filing status, or deductions. Additionally, recalculating annually is a good practice to ensure your tax planning is up-to-date with the latest tax laws and rates. Regular recalculations help you stay informed about your tax obligations and avoid surprises during tax season. Keeping track of these changes ensures you remain compliant and can take advantage of any new tax benefits."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Once you have your tax estimates, use them to plan your finances effectively. This might include setting aside funds for tax payments, adjusting your withholding, or exploring tax-saving strategies. Understanding your tax obligations can also inform decisions about spending, saving, and investing. If your results indicate a significant tax liability, consider consulting a tax professional for personalized advice. They can help you explore options for reducing your tax burden and optimizing your financial strategy. For more detailed planning, explore our Refinance Savings Calculator."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to this calculator include tax software programs and professional tax preparation services. These options may offer additional features, such as state tax calculations or personalized tax advice. However, they may also come with higher costs or require more detailed input. Consider your specific needs and budget when choosing an alternative method. For straightforward federal tax calculations, this calculator provides a convenient and cost-effective solution. For more complex tax situations, professional assistance may be beneficial."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -446,117 +484,28 @@ export default function TaxBracketCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is a tax bracket calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A tax bracket calculator is a tool that helps you estimate your federal tax obligations based on your income, filing status, and deductions. It is important because it provides a clear picture of your tax liabilities, allowing you to plan your finances effectively. By understanding your tax bracket, you can make informed decisions about spending, saving, and investing.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Additionally, knowing your tax bracket helps you anticipate changes in your tax situation due to income fluctuations or life events. For more insights, explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The calculator is designed to be highly accurate, using the latest federal tax brackets and rates. However, its accuracy depends on the accuracy of the data you input. Factors such as incorrect income figures or missed deductions can affect the results. It's always advisable to double-check your inputs and consult a tax professional for complex situations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For best results, ensure your financial records are up-to-date and complete. This will help you get the most accurate estimate of your tax obligations.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the Tax Bracket Calculator, you'll need your annual income, filing status, and any deductions you qualify for. Your income can typically be found on your pay stubs or tax returns. Filing status options include single, married filing jointly, married filing separately, and head of household. Deductions may include mortgage interest, student loan interest, and charitable contributions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Gathering this information beforehand ensures that you can input accurate data, leading to a more reliable estimate of your tax obligations.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the calculator can be used for various scenarios, such as estimating taxes for different filing statuses or income levels. However, it is primarily designed for federal tax calculations. For state-specific taxes, you may need additional tools or resources. The calculator is also useful for planning around life events, such as marriage or retirement, which can impact your tax situation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you have a complex tax situation, such as self-employment income or multiple deductions, consulting a tax professional is recommended to ensure comprehensive tax planning.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include entering incorrect income figures, selecting the wrong filing status, and overlooking eligible deductions. These errors can lead to inaccurate tax estimates, potentially resulting in underpayment or overpayment of taxes. It's important to review your inputs carefully and ensure all information is accurate and complete.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Additionally, failing to update calculations after significant life changes, such as a change in income or marital status, can lead to outdated results. Regularly reviewing and updating your calculations is essential for accurate tax planning.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your taxes whenever there is a significant change in your financial situation, such as a change in income, filing status, or deductions. Additionally, recalculating annually is a good practice to ensure your tax planning is up-to-date with the latest tax laws and rates.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Regular recalculations help you stay informed about your tax obligations and avoid surprises during tax season. Keeping track of these changes ensures you remain compliant and can take advantage of any new tax benefits.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Once you have your tax estimates, use them to plan your finances effectively. This might include setting aside funds for tax payments, adjusting your withholding, or exploring tax-saving strategies. Understanding your tax obligations can also inform decisions about spending, saving, and investing.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If your results indicate a significant tax liability, consider consulting a tax professional for personalized advice. They can help you explore options for reducing your tax burden and optimizing your financial strategy. For more detailed planning, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to this calculator include tax software programs and professional tax preparation services. These options may offer additional features, such as state tax calculations or personalized tax advice. However, they may also come with higher costs or require more detailed input.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider your specific needs and budget when choosing an alternative method. For straightforward federal tax calculations, this calculator provides a convenient and cost-effective solution. For more complex tax situations, professional assistance may be beneficial.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+                {faq.answer.split("For more insights, explore our Interest-Only Loan Calculator.")[0]}
+                {faq.answer.includes("Interest-Only Loan Calculator") && (
+                  <>
+                    For more insights, explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
+                  </>
+                )}
+                {faq.answer.split("For more detailed planning, explore our Refinance Savings Calculator.")[0] !== faq.answer && (
+                  <>
+                    {faq.answer.split("For more detailed planning, explore our Refinance Savings Calculator.")[0]}
+                    For more detailed planning, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
+                  </>
+                )}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -674,6 +623,7 @@ export default function TaxBracketCalculator() {
       description="Find your federal tax bracket. Estimate your effective tax rate based on taxable income and filing status to plan ahead."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Tax Bracket Calculator" },
         { id: "formula", label: "Tax Bracket Calculator Formula" },

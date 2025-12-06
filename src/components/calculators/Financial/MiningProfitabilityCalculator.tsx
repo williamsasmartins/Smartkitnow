@@ -6,6 +6,42 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+
+const faqs = [
+  {
+    question: "What is mining profitability calculator and why is it important?",
+    answer: "A mining profitability calculator is a tool that helps miners estimate their potential earnings by considering factors like hashrate, power consumption, and electricity costs. It's important because it allows miners to assess whether their operations are financially viable and make informed decisions about hardware investments and energy usage.\n\nBy using this calculator, miners can avoid costly mistakes and optimize their operations for better profitability. For more financial tools, explore our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a>."
+  },
+  {
+    question: "How accurate is this calculator?",
+    answer: "The accuracy of the mining profitability calculator depends on the accuracy of the input data. Factors such as fluctuating electricity rates and cryptocurrency market values can affect the results. It's important to regularly update the inputs to reflect current conditions for the most accurate estimates.\n\nFor precise calculations, consider consulting with financial experts or using additional resources to validate your data."
+  },
+  {
+    question: "What information do I need to use this calculator?",
+    answer: "To use the mining profitability calculator, you'll need to know your mining hardware's hashrate, power consumption, and the electricity cost in your area. These inputs are essential for calculating your potential earnings and expenses.\n\nYou can find this information in your hardware specifications and your electricity bill. Ensure that the data is up-to-date for the most accurate results."
+  },
+  {
+    question: "Can I use this calculator for different cryptocurrencies?",
+    answer: "Yes, the calculator can be used for different cryptocurrencies by adjusting the reward per hash based on the specific cryptocurrency's market value. However, you should be aware that each cryptocurrency may have different difficulty levels and rewards, which can affect profitability.\n\nIt's advisable to research the specific cryptocurrency you're interested in mining to ensure accurate calculations."
+  },
+  {
+    question: "What are common mistakes people make with this calculation?",
+    answer: "Common mistakes include using outdated electricity rates, not accounting for hardware depreciation, and ignoring market volatility. These errors can lead to inaccurate profitability estimates and poor financial decisions.\n\nTo avoid these pitfalls, regularly update your inputs and consider all relevant factors when calculating profitability."
+  },
+  {
+    question: "How often should I recalculate?",
+    answer: "It's recommended to recalculate your mining profitability whenever there are significant changes in electricity rates, cryptocurrency market values, or hardware performance. Regular recalculations help ensure that your operations remain profitable and allow you to make timely adjustments.\n\nA monthly review is a good practice, but more frequent updates may be necessary in volatile markets."
+  },
+  {
+    question: "What should I do with these results?",
+    answer: "Use the results to make informed decisions about your mining operations. If the profitability is low, consider optimizing your setup or exploring alternative cryptocurrencies. If the results are favorable, you might decide to scale up your operations.\n\nAlways consider consulting with financial advisors for personalized advice. For more financial insights, see our <a href=\"/financial/extra-payments-payoff\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Extra Payments & Payoff Time Calculator</a>."
+  },
+  {
+    question: "Are there alternatives to this calculation method?",
+    answer: "Alternatives include using more complex financial models that account for additional variables such as hardware depreciation and tax implications. These models can provide a more comprehensive view of profitability but may require more detailed data and expertise.\n\nFor most users, the standard calculator provides a sufficient estimate, but exploring alternatives can be beneficial for large-scale operations."
+  }
+];
 
 export default function MiningProfitabilityCalculator() {
   // STATE
@@ -16,6 +52,8 @@ export default function MiningProfitabilityCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+  
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -623,6 +661,7 @@ export default function MiningProfitabilityCalculator() {
       description="Calculate crypto mining profitability. Factor in hashrate, power consumption, and electricity costs to estimate net earnings."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Mining Profitability Calculator" },
         { id: "formula", label: "Mining Profitability Calculator Formula" },

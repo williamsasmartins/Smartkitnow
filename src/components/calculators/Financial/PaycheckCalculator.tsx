@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function PaycheckCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is paycheck calculator and why is it important?",
+      answer: "A paycheck calculator is a tool that helps you estimate your earnings based on your work hours, hourly rate, and overtime. It's important because it allows you to plan your finances accurately, ensuring you know how much money you'll have available for expenses, savings, and investments. Understanding your paycheck is crucial for effective budgeting and financial planning. For more insights, visit our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides a high level of accuracy for estimating gross pay based on the inputs provided. However, it does not account for taxes and other deductions, which can affect your net pay. For precise financial planning, consider these factors or consult with a financial advisor. Always ensure your input data is correct to maximize the calculator's accuracy."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "You need to know your total hours worked, your hourly rate, and any overtime hours. This information is typically found on your timesheet or work schedule. Ensure that you have the most recent and accurate data to input into the calculator for the best results. Having this information readily available will streamline your use of the calculator and improve the accuracy of your paycheck estimation."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, this calculator can be used for various scenarios, including part-time work, freelance projects, and jobs with irregular hours. However, it is designed to estimate gross pay and does not account for taxes or deductions, which should be considered separately. For specific scenarios involving complex deductions or benefits, consulting with a payroll specialist might be beneficial."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include entering incorrect hours or rates, not accounting for all overtime, and misunderstanding the impact of deductions. These errors can lead to inaccurate paycheck estimates and financial planning issues. Double-check your inputs and ensure you understand your pay structure to avoid these mistakes."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculate your paycheck whenever there is a change in your work hours, hourly rate, or overtime. Regular recalculations ensure that your financial planning remains accurate and up-to-date. Consider recalculating at the start of each pay period or when you receive a raise or change in job role."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to plan your budget, allocate funds for savings, and manage expenses. Understanding your paycheck allows you to make informed financial decisions and avoid overspending. If you're looking to optimize your savings, consider using our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using payroll software or consulting with a payroll specialist for more complex calculations. These methods may offer additional insights into deductions and benefits. For those with straightforward pay structures, this calculator provides a quick and efficient way to estimate earnings."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -388,123 +426,23 @@ export default function PaycheckCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
-        
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is paycheck calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A paycheck calculator is a tool that helps you estimate your earnings based on your work hours, hourly rate, and overtime. It's important because it allows you to plan your finances accurately, ensuring you know how much money you'll have available for expenses, savings, and investments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding your paycheck is crucial for effective budgeting and financial planning. For more insights, visit our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides a high level of accuracy for estimating gross pay based on the inputs provided. However, it does not account for taxes and other deductions, which can affect your net pay. For precise financial planning, consider these factors or consult with a financial advisor.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Always ensure your input data is correct to maximize the calculator's accuracy.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              You need to know your total hours worked, your hourly rate, and any overtime hours. This information is typically found on your timesheet or work schedule. Ensure that you have the most recent and accurate data to input into the calculator for the best results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Having this information readily available will streamline your use of the calculator and improve the accuracy of your paycheck estimation.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for [specific scenario]?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for various scenarios, including part-time work, freelance projects, and jobs with irregular hours. However, it is designed to estimate gross pay and does not account for taxes or deductions, which should be considered separately.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For specific scenarios involving complex deductions or benefits, consulting with a payroll specialist might be beneficial.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include entering incorrect hours or rates, not accounting for all overtime, and misunderstanding the impact of deductions. These errors can lead to inaccurate paycheck estimates and financial planning issues.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Double-check your inputs and ensure you understand your pay structure to avoid these mistakes.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculate your paycheck whenever there is a change in your work hours, hourly rate, or overtime. Regular recalculations ensure that your financial planning remains accurate and up-to-date.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider recalculating at the start of each pay period or when you receive a raise or change in job role.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to plan your budget, allocate funds for savings, and manage expenses. Understanding your paycheck allows you to make informed financial decisions and avoid overspending.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you're looking to optimize your savings, consider using our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using payroll software or consulting with a payroll specialist for more complex calculations. These methods may offer additional insights into deductions and benefits.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For those with straightforward pay structures, this calculator provides a quick and efficient way to estimate earnings.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -622,6 +560,7 @@ export default function PaycheckCalculator() {
       description="Calculate your paycheck based on hours worked, pay rate, and overtime. Get an accurate salary estimation for your next pay period."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Paycheck Calculator" },
         { id: "formula", label: "Paycheck Calculator Formula" },

@@ -567,6 +567,7 @@ export default function AprCalculator() {
       description="Calculate the Annual Percentage Rate (APR) for loans. Understand the true cost of borrowing including fees and interest."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding APR Calculator" },
         { id: "formula", label: "APR Calculator Formula" },

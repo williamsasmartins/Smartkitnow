@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function MonthlyBudgetPlannerCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is Monthly Budget Planner Calculator and why is it important?",
+      answer: "The Monthly Budget Planner Calculator is a financial tool designed to help individuals and families manage their finances by tracking income and expenses. It allows users to create a comprehensive budget, ensuring that spending aligns with financial goals. This calculator is important because it promotes financial discipline, helps identify areas for potential savings, and facilitates better financial decision-making. By providing a clear overview of financial health, it empowers users to take control of their money and plan for the future."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The accuracy of the Monthly Budget Planner Calculator depends on the precision of the data entered. Users must provide accurate income and expense figures to obtain reliable results. While the calculator offers a detailed analysis, it is essential to regularly update the information to reflect changes in financial circumstances. For complex financial situations, consulting a financial advisor is recommended to ensure the budget plan is robust and effective."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the Monthly Budget Planner Calculator effectively, you need detailed information about your monthly income sources and all expenses. This includes fixed costs like rent or mortgage, utilities, and insurance, as well as variable expenses such as groceries, entertainment, and transportation. having recent bank statements and bills on hand can help ensure that the data entered is accurate and comprehensive."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, the Monthly Budget Planner Calculator is versatile and can be adapted for various scenarios, such as planning for a major purchase, saving for a vacation, or managing debt repayment. By adjusting the income and expense inputs, users can simulate different financial situations and see how changes impact their overall budget. This flexibility makes it a valuable tool for both short-term and long-term financial planning."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include underestimating variable expenses, forgetting to account for irregular or annual costs, and not updating the budget regularly. These errors can lead to an unrealistic budget that is difficult to stick to. To avoid these pitfalls, users should be thorough in their expense tracking and review their budget frequently to ensure it remains relevant and achievable."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It is advisable to recalculate your budget monthly or whenever there is a significant change in income or expenses. Regular reviews help track progress towards financial goals and allow for adjustments to be made as needed. This proactive approach ensures that the budget remains a useful tool for financial management and adapts to evolving life circumstances."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "The results from the Monthly Budget Planner Calculator should be used to inform financial decisions and adjust spending habits. If the calculator shows a surplus, consider allocating funds to savings or investments. If there is a deficit, look for areas to cut costs or increase income. The insights gained should serve as a roadmap for achieving financial stability and growth."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "While the Monthly Budget Planner Calculator is a powerful tool, alternatives include the 50/30/20 rule, zero-based budgeting, and envelope budgeting. Each method offers a different approach to managing finances, and the best choice depends on individual preferences and financial goals. Exploring different methods can help users find the budgeting style that works best for them."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -622,6 +660,7 @@ export default function MonthlyBudgetPlannerCalculator() {
       description="Manage your finances with this monthly budget planner. Track income and expenses to stay on target and reach your financial goals."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Monthly Budget Planner" },
         { id: "formula", label: "Monthly Budget Planner Formula" },

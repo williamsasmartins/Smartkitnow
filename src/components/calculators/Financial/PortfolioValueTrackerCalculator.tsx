@@ -561,7 +561,7 @@ export default function PortfolioValueTrackerCalculator() {
       description="Track the total value of your crypto portfolio. Monitor gains and losses across all your digital asset holdings in one place."
       widget={widget}
       editorial={editorial}
-      faqJsonLd={faqJsonLd}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Portfolio Value Tracker" },
         { id: "formula", label: "Portfolio Value Tracker Formula" },

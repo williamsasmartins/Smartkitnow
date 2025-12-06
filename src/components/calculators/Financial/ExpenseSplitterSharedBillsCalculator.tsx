@@ -562,6 +562,7 @@ export default function ExpenseSplitterSharedBillsCalculator() {
       description="Split shared bills fairly among roommates or friends. Calculate exactly who owes what for rent, utilities, and groceries."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Expense Splitter (Shared Bills) Calculator" },
         { id: "formula", label: "Expense Splitter (Shared Bills) Calculator Formula" },

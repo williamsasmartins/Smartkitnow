@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,6 +16,43 @@ export default function RuleOf72Calculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is the Rule of 72?",
+      answer: "The Rule of 72 is a simple way to determine how long an investment will take to double given a fixed annual rate of interest. By dividing 72 by the annual rate of return, investors can get a rough estimate of how many years it will take for the initial investment to duplicate itself."
+    },
+    {
+      question: "How accurate is the Rule of 72?",
+      answer: "The Rule of 72 provides a reasonably accurate estimate for interest rates between 6% and 10%. However, as the rate of return increases or decreases significantly from this range, the accuracy of the rule diminishes. For very high or very low rates, other formulas like the Rule of 69.3 or 69 may be more precise."
+    },
+    {
+      question: "Can I use the Rule of 72 for debt?",
+      answer: "Yes, the Rule of 72 can also be applied to debt. If you have a credit card balance or a loan with a fixed interest rate, you can use the rule to estimate how long it will take for your debt to double if you don't make any payments."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "The Rule of 72 Calculator is versatile and can be used for various scenarios, including retirement planning, saving for a major purchase, or evaluating investment opportunities. However, it is important to remember that this calculator provides an approximation and may not account for all factors affecting your investment. For scenarios involving complex financial products or significant market volatility, consider using a more detailed financial model or consulting with a financial advisor. For more insights, check out our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a>."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using unrealistic interest rates, failing to account for taxes and fees, and ignoring the impact of inflation. These errors can lead to inaccurate results and poor investment decisions. It's important to use realistic figures and consider all relevant factors when using the Rule of 72 Calculator. To avoid these mistakes, regularly update your interest rate to reflect current market conditions and consult with a financial advisor if needed. For more tips, explore our <a href=\"/financial/extra-payments-payoff\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Extra Payments & Payoff Time Calculator</a>."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate whenever there are significant changes in market conditions, interest rates, or your financial goals. Regular recalculations ensure that your investment strategy remains aligned with your objectives and market realities. Consider setting a schedule for periodic reviews, such as quarterly or annually, to keep your financial plan up to date. For more guidance, check out our <a href=\"/financial/loan-payment\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Loan Payment Calculator</a>."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to inform your investment strategy and financial planning. The estimated time to double your investment can help you set realistic financial goals and timelines. Consider adjusting your investment strategy based on the results to optimize growth. If you're unsure how to interpret the results, consider consulting with a financial advisor for personalized advice. For more detailed planning, explore our <a href=\"/financial/mortgage-amortization\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Mortgage Payment & Amortization Calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Yes, there are alternative methods for estimating investment growth, such as using detailed financial models or software tools that account for a wider range of variables. These alternatives can provide more precise results, especially for complex financial scenarios. However, the Rule of 72 remains a popular choice for quick and easy estimates. Consider using it alongside other methods for a comprehensive understanding of your investment's potential. For more insights, check out our <a href=\"/financial/loan-payment\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Loan Payment Calculator</a>."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -349,123 +387,24 @@ export default function RuleOf72Calculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is rule of 72 calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Rule of 72 Calculator is a tool used to estimate the time required to double an investment at a fixed annual interest rate. It is important because it provides a quick and easy way to understand the potential growth of an investment without complex calculations. This tool is particularly useful for investors who want to make informed decisions about their financial future.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using the Rule of 72, investors can quickly assess the impact of different interest rates on their investment's growth, helping them to choose the best investment options. For more detailed calculations, consider using our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Rule of 72 Calculator provides an approximation of the time required to double an investment. It is most accurate for interest rates between 6% and 10%. For rates outside this range, the approximation may be less precise. Factors such as market volatility, inflation, and taxes can also affect the accuracy of the results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more precise calculations, consider using a detailed financial model or consulting with a financial advisor. Regularly updating the interest rate to reflect current market conditions can also improve accuracy.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the Rule of 72 Calculator, you need to know the initial amount of your investment and the expected annual interest rate. The initial investment is the amount of money you plan to invest, while the interest rate is the percentage return you expect to earn annually. 
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              It's important to use realistic figures to ensure accurate results. You can find the interest rate by reviewing historical performance data or consulting with a financial advisor. For more guidance, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Rule of 72 Calculator is versatile and can be used for various scenarios, including retirement planning, saving for a major purchase, or evaluating investment opportunities. However, it is important to remember that this calculator provides an approximation and may not account for all factors affecting your investment.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For scenarios involving complex financial products or significant market volatility, consider using a more detailed financial model or consulting with a financial advisor. For more insights, check out our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using unrealistic interest rates, failing to account for taxes and fees, and ignoring the impact of inflation. These errors can lead to inaccurate results and poor investment decisions. It's important to use realistic figures and consider all relevant factors when using the Rule of 72 Calculator.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, regularly update your interest rate to reflect current market conditions and consult with a financial advisor if needed. For more tips, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate whenever there are significant changes in market conditions, interest rates, or your financial goals. Regular recalculations ensure that your investment strategy remains aligned with your objectives and market realities.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider setting a schedule for periodic reviews, such as quarterly or annually, to keep your financial plan up to date. For more guidance, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to inform your investment strategy and financial planning. The estimated time to double your investment can help you set realistic financial goals and timelines. Consider adjusting your investment strategy based on the results to optimize growth.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you're unsure how to interpret the results, consider consulting with a financial advisor for personalized advice. For more detailed planning, explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, there are alternative methods for estimating investment growth, such as using detailed financial models or software tools that account for a wider range of variables. These alternatives can provide more precise results, especially for complex financial scenarios.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              However, the Rule of 72 remains a popular choice for quick and easy estimates. Consider using it alongside other methods for a comprehensive understanding of your investment's potential. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -583,6 +522,7 @@ export default function RuleOf72Calculator() {
       description="Quickly estimate how long it will take to double your investment. Use the Rule of 72 formula for fast mental math on investment growth."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Rule of 72 Calculator" },
         { id: "formula", label: "Rule of 72 Calculator Formula" },

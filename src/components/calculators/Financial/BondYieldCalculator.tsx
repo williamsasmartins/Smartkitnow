@@ -567,7 +567,7 @@ export default function BondYieldCalculator() {
       description="Calculate current yield and yield to maturity (YTM) for bonds. Assess the true performance of your fixed-income investments."
       widget={widget}
       editorial={editorial}
-      faqJsonLd={faqJsonLd}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Bond Yield Calculator" },
         { id: "formula", label: "Bond Yield Calculator Formula" },

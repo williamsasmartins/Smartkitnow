@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,6 +16,43 @@ export default function NetWorthCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is net worth and why is it important?",
+      answer: "Net worth is the total value of your assets minus your liabilities. It's a key indicator of your financial health, providing a snapshot of your wealth at a specific point in time. Tracking net worth helps you measure progress toward financial goals, assess your ability to weather financial setbacks, and make informed investment decisions. For more insights, check our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides a precise calculation based on the inputs you provide. However, the accuracy depends entirely on the completeness and accuracy of the data you enter. Ensure you include all assets and liabilities and use current market values for assets like real estate and investments. For complex financial portfolios, consider consulting a financial advisor."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the net worth calculator, gather details about your assets, including cash, investments, real estate, and personal property. Also, list all liabilities such as mortgages, loans, and credit card debts. Accurate and up-to-date information will ensure the most reliable results. Check financial statements, bank accounts, and loan documents to compile this data. For guidance on managing liabilities, see our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a>."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, the calculator can be used for various scenarios, such as planning for retirement, assessing the impact of a major purchase, or evaluating the effect of debt repayment strategies. However, for complex financial situations, consider consulting a financial advisor for personalized advice. The calculator provides a general overview, but specific scenarios may require additional considerations or calculations."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include omitting certain assets or liabilities, using outdated valuations, and not accounting for all debts. These errors can lead to inaccurate net worth calculations, affecting financial planning and decision-making. To avoid these mistakes, regularly update your financial information and ensure all relevant data is included in the calculation."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your net worth at least annually, or more frequently if there are significant changes in your financial situation. Major life events, such as buying a home, changing jobs, or receiving an inheritance, warrant a recalculation. Regular recalculations help you stay informed about your financial health and make timely adjustments to your financial strategies."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use your net worth calculation to inform financial decisions, set goals, and track progress. If your net worth is lower than desired, consider strategies to increase assets or reduce liabilities. For high net worth, explore investment opportunities to grow your wealth further. Consider consulting a financial advisor to develop a comprehensive financial plan. For additional resources, see our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to the basic net worth calculation include more detailed financial analyses, such as cash flow statements and balance sheets. These methods provide a more comprehensive view of financial health, considering income, expenses, and liquidity. For complex financial situations, consider using these alternatives alongside the net worth calculation to gain deeper insights into your financial position."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -357,123 +395,23 @@ export default function NetWorthCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
-        
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is net worth calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A net worth calculator helps you determine the total value of your assets minus your liabilities. It's an essential tool for assessing financial health, planning for the future, and setting financial goals. By understanding your net worth, you can make informed decisions about spending, saving, and investing.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Regularly calculating your net worth can help you track financial progress and make necessary adjustments to your financial strategy. For more insights, check out our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The accuracy of the net worth calculator depends on the accuracy of the data you input. Ensure all assets and liabilities are accounted for and valued correctly. While the calculator provides a reliable estimate, consulting with a financial advisor can offer additional insights and verification.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For best results, update your calculations regularly and after any significant financial changes.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the net worth calculator, gather details about your assets, including cash, investments, real estate, and personal property. Also, list all liabilities such as mortgages, loans, and credit card debts. Accurate and up-to-date information will ensure the most reliable results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Check financial statements, bank accounts, and loan documents to compile this data. For guidance on managing liabilities, see our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the calculator can be used for various scenarios, such as planning for retirement, assessing the impact of a major purchase, or evaluating the effect of debt repayment strategies. However, for complex financial situations, consider consulting a financial advisor for personalized advice.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              The calculator provides a general overview, but specific scenarios may require additional considerations or calculations.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include omitting certain assets or liabilities, using outdated valuations, and not accounting for all debts. These errors can lead to inaccurate net worth calculations, affecting financial planning and decision-making.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, regularly update your financial information and ensure all relevant data is included in the calculation.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your net worth at least annually, or more frequently if there are significant changes in your financial situation. Major life events, such as buying a home, changing jobs, or receiving an inheritance, warrant a recalculation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Regular recalculations help you stay informed about your financial health and make timely adjustments to your financial strategies.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use your net worth calculation to inform financial decisions, set goals, and track progress. If your net worth is lower than desired, consider strategies to increase assets or reduce liabilities. For high net worth, explore investment opportunities to grow your wealth further.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider consulting a financial advisor to develop a comprehensive financial plan. For additional resources, see our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to the basic net worth calculation include more detailed financial analyses, such as cash flow statements and balance sheets. These methods provide a more comprehensive view of financial health, considering income, expenses, and liquidity.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex financial situations, consider using these alternatives alongside the net worth calculation to gain deeper insights into your financial position.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -591,6 +529,7 @@ export default function NetWorthCalculator() {
       description="Calculate your total net worth. Subtract liabilities from assets to understand your overall financial position and track wealth."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Net Worth Calculator" },
         { id: "formula", label: "Net Worth Calculator Formula" },

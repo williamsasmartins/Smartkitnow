@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function HourlyToAnnualSalaryCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is hourly to annual salary calculator and why is it important?",
+      answer: "The Hourly to Annual Salary Calculator is a tool designed to convert your hourly wage into an annual salary equivalent. It's important because it helps you understand your total earnings potential over a year, which is crucial for budgeting, loan applications, and financial planning. By knowing your annual salary, you can better compare job offers and negotiate wages."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is highly accurate, provided you input correct data. Factors like variable work hours or unpaid leave can affect accuracy. It's designed to give a reliable estimate, but for precise financial planning, consider consulting a financial advisor, especially if your work schedule is irregular. Regularly update your inputs to maintain accuracy, especially when your work conditions change."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "You need your hourly wage, the average number of hours you work per week, and the number of weeks you work per year. This information is typically found on your pay stub or employment contract. Ensure your inputs reflect your usual work schedule for the most accurate results. If your hours or weeks vary, use an average to get a reliable estimate."
+    },
+    {
+      question: "Can I use this calculator for part-time jobs?",
+      answer: "Yes, this calculator is suitable for part-time jobs. Simply enter your part-time hourly rate, average weekly hours, and weeks worked per year. The calculator will provide an accurate annual salary estimate. However, consider any additional income sources or irregular hours that might affect your total earnings. For part-time workers, it's crucial to account for any fluctuations in hours or additional jobs when planning your finances."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include incorrect hourly rate input, not accounting for unpaid leave, and misestimating weekly hours. These errors can lead to inaccurate annual salary estimates. Always double-check your inputs and consider any variables that might affect your work schedule. To avoid these mistakes, regularly update your inputs and consider consulting a financial advisor for complex scenarios."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculate whenever there's a change in your hourly rate, work hours, or weeks worked per year. Regular recalculations ensure your financial planning remains accurate. It's advisable to update your calculations at least annually or whenever you experience significant changes in your employment status. Keeping your calculations current helps you make informed decisions about spending, saving, and investing."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to plan your budget, set savings goals, and evaluate job offers. Understanding your annual salary helps you allocate funds for expenses, investments, and savings. If your results are lower than expected, consider strategies to increase your income, such as seeking a raise or additional work."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using monthly or bi-weekly salary calculations, which might be more relevant for salaried employees. These methods consider different pay periods and can provide insights into cash flow management. However, for hourly workers, the hourly to annual conversion remains the most straightforward and accurate method. Choose the method that best suits your employment type and financial goals. For more complex scenarios, consulting with a financial advisor is recommended."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -410,7 +448,7 @@ export default function HourlyToAnnualSalaryCalculator() {
               How accurate is this calculator?
             </h3>
             <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is highly accurate, provided you input correct data. Factors like variable work hours or unpaid leave can affect accuracy. It's designed to give a reliable estimate, but for precise financial planning, consider consulting a financial advisor, especially if your work schedule is irregular.
+              This calculator is highly accurate, provided you input correct data. Factors like variable work hours or unpaid leave can affect accuracy. It's designed to give a reliable estimate, but for precise financial planning, consider consulting a financial advisor, especially if your work schedule is irregular. Regularly update your inputs to maintain accuracy, especially when your work conditions change.
             </p>
             <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
               Regularly update your inputs to maintain accuracy, especially when your work conditions change.
@@ -617,6 +655,7 @@ export default function HourlyToAnnualSalaryCalculator() {
       description="Convert hourly wages to annual salary instantly. Calculate weekly, bi-weekly, monthly, and yearly earnings from your hourly rate."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Hourly to Annual Salary Converter" },
         { id: "formula", label: "Hourly to Annual Salary Converter Formula" },

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 
 export default function VatGstCalculator() {
   // STATE
@@ -16,6 +17,43 @@ export default function VatGstCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is a VAT/GST calculator and why is it important?",
+      answer: "A VAT/GST calculator is a tool that helps determine the amount of value-added tax or goods and services tax applicable to a purchase. This is crucial for businesses to set accurate prices and for consumers to understand the total cost of goods or services. By calculating the tax component, users can ensure compliance with tax regulations and avoid financial discrepancies. For businesses, using a VAT/GST calculator can streamline accounting processes and improve financial accuracy. Consumers benefit by gaining transparency into the tax portion of their purchases."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is designed to provide highly accurate results based on the input data. However, its accuracy depends on the correctness of the data entered, such as the net amount and the applicable tax rate. Users should ensure they input the correct figures to achieve precise calculations. In cases of complex transactions, consulting a tax professional is recommended. For best results, double-check your inputs and stay informed about current tax rates. Regular updates to the calculator ensure it remains a reliable tool for financial planning."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need the net amount of the goods or services and the applicable tax rate. The net amount is the price before tax, and the tax rate is the percentage applied to this amount. Ensure you have the correct tax rate for your region or transaction type, as this can vary significantly. Additionally, decide whether the tax is included in the net amount or added on top. This affects the calculation and the final gross amount. Gathering accurate data is crucial for precise results."
+    },
+    {
+      question: "Can I use this calculator for international transactions?",
+      answer: "Yes, this calculator can be used for international transactions, provided you have the correct tax rate for the country or region involved. It's essential to be aware of currency exchange rates, as they can affect the final tax amount when converted to your local currency. Ensure you use the most current rates for accurate calculations. For international business operations, maintaining a database of tax rates for different regions can streamline the process. Consider consulting with a tax professional for complex transactions involving multiple jurisdictions."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using incorrect tax rates, not accounting for exemptions or reduced rates, and misunderstanding whether the tax is included in the net amount. These errors can lead to financial discrepancies and compliance issues. It's crucial to verify all inputs and understand the tax regulations applicable to your transaction. To avoid these mistakes, regularly update your knowledge of tax rates and regulations, and use reliable sources for your data."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculation should be done whenever there is a change in the tax rate, the net amount, or if there are regulatory updates. For businesses, recalculating regularly ensures compliance and accurate financial reporting. Consumers should recalculate when making significant purchases or when tax rates change. Establishing a routine for checking tax updates and recalculating as needed can prevent financial errors and ensure accurate budgeting and pricing."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to inform pricing strategies, budget planning, and financial reporting. For businesses, the gross amount can guide pricing decisions, while the tax amount helps in preparing accurate tax filings. Consumers can use the net and gross amounts to understand the true cost of purchases. If the results indicate discrepancies or unexpected values, consider consulting a financial advisor."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using accounting software with built-in tax calculation features or consulting with a tax professional for complex transactions. These methods can provide additional insights and ensure compliance with the latest regulations. While this calculator is a convenient tool for quick calculations, more comprehensive solutions may be necessary for businesses with complex financial needs. Evaluate your specific requirements to determine the best approach."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -389,123 +427,22 @@ export default function VatGstCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
-        
-        <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is a VAT/GST calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A VAT/GST calculator is a tool that helps determine the amount of value-added tax or goods and services tax applicable to a purchase. This is crucial for businesses to set accurate prices and for consumers to understand the total cost of goods or services. By calculating the tax component, users can ensure compliance with tax regulations and avoid financial discrepancies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For businesses, using a VAT/GST calculator can streamline accounting processes and improve financial accuracy. Consumers benefit by gaining transparency into the tax portion of their purchases. For more financial tools, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is designed to provide highly accurate results based on the input data. However, its accuracy depends on the correctness of the data entered, such as the net amount and the applicable tax rate. Users should ensure they input the correct figures to achieve precise calculations. In cases of complex transactions, consulting a tax professional is recommended.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For best results, double-check your inputs and stay informed about current tax rates. Regular updates to the calculator ensure it remains a reliable tool for financial planning.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need the net amount of the goods or services and the applicable tax rate. The net amount is the price before tax, and the tax rate is the percentage applied to this amount. Ensure you have the correct tax rate for your region or transaction type, as this can vary significantly.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Additionally, decide whether the tax is included in the net amount or added on top. This affects the calculation and the final gross amount. Gathering accurate data is crucial for precise results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for international transactions?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for international transactions, provided you have the correct tax rate for the country or region involved. It's essential to be aware of currency exchange rates, as they can affect the final tax amount when converted to your local currency. Ensure you use the most current rates for accurate calculations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For international business operations, maintaining a database of tax rates for different regions can streamline the process. Consider consulting with a tax professional for complex transactions involving multiple jurisdictions.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using incorrect tax rates, not accounting for exemptions or reduced rates, and misunderstanding whether the tax is included in the net amount. These errors can lead to financial discrepancies and compliance issues. It's crucial to verify all inputs and understand the tax regulations applicable to your transaction.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, regularly update your knowledge of tax rates and regulations, and use reliable sources for your data. For more financial insights, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculation should be done whenever there is a change in the tax rate, the net amount, or if there are regulatory updates. For businesses, recalculating regularly ensures compliance and accurate financial reporting. Consumers should recalculate when making significant purchases or when tax rates change.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Establishing a routine for checking tax updates and recalculating as needed can prevent financial errors and ensure accurate budgeting and pricing.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to inform pricing strategies, budget planning, and financial reporting. For businesses, the gross amount can guide pricing decisions, while the tax amount helps in preparing accurate tax filings. Consumers can use the net and gross amounts to understand the true cost of purchases.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If the results indicate discrepancies or unexpected values, consider consulting a financial advisor. For further financial planning tools, visit our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using accounting software with built-in tax calculation features or consulting with a tax professional for complex transactions. These methods can provide additional insights and ensure compliance with the latest regulations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              While this calculator is a convenient tool for quick calculations, more comprehensive solutions may be necessary for businesses with complex financial needs. Evaluate your specific requirements to determine the best approach.
-            </p>
-          </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0" />
+                {faq.question}
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+                {faq.answer}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -623,6 +560,7 @@ export default function VatGstCalculator() {
       description="Calculate VAT or GST for goods and services. Add or remove tax from the gross amount easily for international pricing."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding VAT/GST Calculator" },
         { id: "formula", label: "VAT/GST Calculator Formula" },

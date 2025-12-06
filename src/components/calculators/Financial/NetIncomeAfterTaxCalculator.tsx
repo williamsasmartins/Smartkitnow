@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function NetIncomeAfterTaxCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is net income after tax calculator and why is it important?",
+      answer: "The net income after tax calculator helps you determine your actual take-home pay after accounting for taxes and deductions. It's crucial for budgeting, saving, and financial planning, ensuring you have a clear understanding of your disposable income. By knowing your net income, you can make informed decisions about spending, saving, and investing. For more insights, visit our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides a high level of accuracy by using standard formulas and current tax rates. However, the accuracy depends on the accuracy of the input data, such as income, tax rates, and deductions. For precise results, ensure all inputs are up-to-date and reflect your current financial situation."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need your gross income, applicable tax rate, and any deductions you qualify for. Gross income includes all earnings before taxes, while deductions reduce your taxable income. Ensure you have accurate and up-to-date information for each input to get the most reliable results."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, this calculator can be used for various scenarios, such as estimating net income for a new job offer or planning for retirement. However, it may not account for complex tax situations or unique deductions. For complex scenarios, consider consulting a financial advisor or tax professional."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated tax rates, neglecting to include all deductions, and misreporting gross income. These errors can lead to inaccurate net income calculations. Double-check all inputs for accuracy and consult tax guidelines to avoid these pitfalls."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculate whenever there are changes in your income, tax rates, or deductions. Regular updates ensure your financial plans remain accurate and relevant. A good practice is to update your calculations annually or whenever significant financial changes occur."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to inform your budgeting, savings, and investment strategies. Understanding your net income helps you allocate resources effectively and plan for future financial goals. If needed, consult a financial advisor for personalized advice. For more tools, check our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include manual calculations using tax tables or consulting with a tax professional. Each method has its pros and cons, with manual calculations being more time-consuming but potentially more tailored to specific situations. Consider your needs and resources when choosing a method. For complex financial situations, professional advice may be beneficial."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -396,123 +434,23 @@ export default function NetIncomeAfterTaxCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
-        
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is net income after tax calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The net income after tax calculator helps you determine your actual take-home pay after accounting for taxes and deductions. It's crucial for budgeting, saving, and financial planning, ensuring you have a clear understanding of your disposable income.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By knowing your net income, you can make informed decisions about spending, saving, and investing. For more insights, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides a high level of accuracy by using standard formulas and current tax rates. However, the accuracy depends on the accuracy of the input data, such as income, tax rates, and deductions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For precise results, ensure all inputs are up-to-date and reflect your current financial situation.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need your gross income, applicable tax rate, and any deductions you qualify for. Gross income includes all earnings before taxes, while deductions reduce your taxable income.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure you have accurate and up-to-date information for each input to get the most reliable results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for various scenarios, such as estimating net income for a new job offer or planning for retirement. However, it may not account for complex tax situations or unique deductions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex scenarios, consider consulting a financial advisor or tax professional.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated tax rates, neglecting to include all deductions, and misreporting gross income. These errors can lead to inaccurate net income calculations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Double-check all inputs for accuracy and consult tax guidelines to avoid these pitfalls.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculate whenever there are changes in your income, tax rates, or deductions. Regular updates ensure your financial plans remain accurate and relevant.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              A good practice is to update your calculations annually or whenever significant financial changes occur.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to inform your budgeting, savings, and investment strategies. Understanding your net income helps you allocate resources effectively and plan for future financial goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If needed, consult a financial advisor for personalized advice. For more tools, check our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include manual calculations using tax tables or consulting with a tax professional. Each method has its pros and cons, with manual calculations being more time-consuming but potentially more tailored to specific situations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider your needs and resources when choosing a method. For complex financial situations, professional advice may be beneficial.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -630,6 +568,7 @@ export default function NetIncomeAfterTaxCalculator() {
       description="Calculate your net income after taxes. Estimate your actual take-home pay based on your gross salary and location."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Net Income after Tax Calculator" },
         { id: "formula", label: "Net Income after Tax Calculator Formula" },

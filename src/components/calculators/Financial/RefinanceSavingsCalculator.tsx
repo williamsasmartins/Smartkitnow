@@ -86,6 +86,41 @@ export default function RefinanceSavingsCalculator() {
     setInputs({ currentLoanAmount: "", currentInterestRate: "", currentLoanTerm: "", newInterestRate: "", newLoanTerm: "", closingCosts: "" });
   };
 
+  const faqs = [
+    {
+      question: "What is the Refinance Savings Calculator and why is it important?",
+      answer: "The Refinance Savings Calculator is a financial tool designed to help you determine if refinancing your loan is a beneficial decision. It calculates potential monthly and total savings by comparing your current loan terms with new loan offers. This calculator is important because it provides a clear picture of the financial impact of refinancing, allowing you to make informed decisions about your mortgage or loan. By understanding the potential savings, you can optimize your financial strategy and potentially save thousands of dollars over the life of your loan. For more insights into mortgage payments, check out our <a href=\"/financial/mortgage-amortization\" class=\"text-blue-600 dark:text-blue-400 hover:underline\">Mortgage Payment & Amortization Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides a high level of accuracy based on the inputs you provide. However, it's important to note that actual savings can vary due to factors such as closing costs, prepayment penalties, and fluctuating interest rates. While the calculator offers a reliable estimate, it should be used as a guide rather than a definitive answer. For a comprehensive analysis, consider consulting with a financial advisor who can take all variables into account."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the Refinance Savings Calculator effectively, you will need the following information: your current loan amount, current interest rate, remaining loan term, new interest rate, and new loan term. Additionally, knowing any closing costs associated with the new loan will help improve the accuracy of the calculation. Having this information on hand ensures that the calculator can provide the most precise estimate of your potential savings."
+    },
+    {
+      question: "Can I use this calculator for any type of loan?",
+      answer: "Yes, the Refinance Savings Calculator is versatile and can be used for various types of loans, including mortgages, auto loans, and personal loans. The core principle of refinancing remains the same across different loan types: replacing an existing loan with a new one that has better terms. However, be sure to adjust the inputs according to the specific loan type you are analyzing to ensure relevant results."
+    },
+    {
+      question: "What are common mistakes people make when refinancing?",
+      answer: "Common mistakes when refinancing include focusing solely on the interest rate without considering closing costs, extending the loan term which may increase total interest paid, and not shopping around for the best offers. It's also easy to overlook the break-even point, which is the time it takes for the monthly savings to offset the cost of refinancing. To avoid these pitfalls, use our calculator to see the full financial picture and consider all costs involved."
+    },
+    {
+      question: "How often should I consider refinancing?",
+      answer: "You should consider refinancing whenever interest rates drop significantly, your credit score improves, or your financial situation changes. It's generally recommended to review your loan terms annually to see if better options are available. However, frequent refinancing can lead to higher costs due to closing fees, so it's important to weigh the benefits against the costs each time."
+    },
+    {
+      question: "What should I do with the results from this calculator?",
+      answer: "Once you have the results from the Refinance Savings Calculator, use them to compare different loan offers and determine if refinancing aligns with your financial goals. If the calculator shows significant savings, you might proceed with applying for a new loan. Conversely, if the savings are minimal or negative, it may be better to stick with your current loan. Use the data to negotiate better terms with lenders and make a confident financial decision."
+    },
+    {
+      question: "Are there alternatives to refinancing?",
+      answer: "Yes, there are alternatives to refinancing, such as making extra payments on your current loan to pay it off faster and reduce total interest. You might also consider loan modification if you're struggling with payments. Each option has its pros and cons, so it's worth exploring all possibilities. Our <a href=\"/financial/extra-payments-payoff\" class=\"text-blue-600 dark:text-blue-400 hover:underline\">Extra Payments & Payoff Time Calculator</a> can help you analyze the impact of making additional payments."
+    }
+  ];
+
   const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
@@ -551,54 +586,138 @@ export default function RefinanceSavingsCalculator() {
   return (
     <CalculatorVerticalLayout
       title="Refinance Savings Calculator"
-      description="Determine if refinancing is right for you. Compare current loan terms with new offers to calculate potential monthly and lifetime savings."
-      widget={widget}
-      editorial={editorial}
+      description="Calculate potential savings from refinancing your loan."
+      jsonLd={faqJsonLd}
       onThisPage={[
-        { id: "introduction", label: "Understanding Refinance Savings Calculator" },
-        { id: "formula", label: "Refinance Savings Calculator Formula" },
-        { id: "factors", label: "Key Factors That Affect Results" },
-        { id: "faq", label: "Frequently Asked Questions" },
-        { id: "references", label: "References & Resources" }
+        { id: 'calculator', label: 'Calculator' },
+        { id: 'results', label: 'Results' },
+        { id: 'how-it-works', label: 'How It Works' },
+        { id: 'benefits', label: 'Benefits' },
+        { id: 'faq', label: 'FAQ' }
       ]}
-      formula={{
-        formula: "Monthly Savings = Current Monthly Payment - New Monthly Payment",
-        variables: [
-          { symbol: "Current Monthly Payment", description: "Calculated based on current loan terms" },
-          { symbol: "New Monthly Payment", description: "Calculated based on new loan terms" },
-        ],
-        title: "Calculation Formula"
-      }}
-      example={{
-        title: "Example Calculation",
-        scenario: "Imagine you have a current loan of $300,000 at a 4% interest rate, and you're considering refinancing to a 3% rate.",
-        steps: [
-          { 
-            label: "Step 1", 
-            calculation: "Calculate current monthly payment using current loan terms", 
-            explanation: "Use the formula to determine your current monthly payment." 
-          },
-          { 
-            label: "Step 2", 
-            calculation: "Calculate new monthly payment using new loan terms", 
-            explanation: "Use the formula to determine your new monthly payment." 
-          },
-          { 
-            label: "Step 3", 
-            calculation: "Subtract new payment from current payment to find monthly savings", 
-            explanation: "Determine the difference to find your monthly savings." 
-          }
-        ],
-        result: "The final result shows your monthly savings, which can be multiplied by the loan term to find total savings."
-      }}
-      relatedCalculators={[
-        { title: "Loan Payment Calculator (Principal, Rate, Term)", url: "/financial/loan-payment", icon: "💵" },
-        { title: "Mortgage Payment & Amortization Calculator", url: "/financial/mortgage-amortization", icon: "🏠" },
-        { title: "Extra Payments & Payoff Time Calculator", url: "/financial/extra-payments-payoff", icon: "📈" },
-        { title: "Interest-Only Loan Calculator", url: "/financial/interest-only-loan", icon: "💳" },
-        { title: "HELOC Payment Estimator", url: "/financial/heloc-payment-estimator", icon: "🏦" },
-        { title: "Car Loan Affordability Calculator", url: "/financial/car-loan-affordability", icon: "🚗" }
-      ]}
-    />
+    >
+      <div className="space-y-6">
+        {results.monthlySavings > 0 && (
+          <div ref={resultsRef} className="space-y-6 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Your Results</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* MAIN RESULT - Full Width Gradient (MANDATORY STYLE) */}
+              <Card className="col-span-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200 dark:border-blue-800 shadow-xl">
+                <CardContent className="pt-8 pb-8">
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                        Monthly Savings
+                      </p>
+                      <p className="text-5xl font-bold text-blue-600 dark:text-blue-400">
+                        {formatCurrency(results.monthlySavings)}
+                      </p>
+                    </div>
+                    <DollarSign className="w-16 h-16 text-blue-600 dark:text-blue-400 opacity-20" />
+                  </div>
+                </CardContent>
+              </Card>
+      
+              {/* SECONDARY RESULT 1 */}
+              <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                <CardContent className="pt-6 pb-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                        Total Savings Over Loan Term
+                      </p>
+                      <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                        {formatCurrency(results.totalSavings)}
+                      </p>
+                    </div>
+                    <TrendingUp className="w-10 h-10 text-gray-400" />
+                  </div>
+                </CardContent>
+              </Card>
+      
+              {/* SECONDARY RESULT 2 */}
+              <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                <CardContent className="pt-6 pb-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
+                        New Monthly Payment
+                      </p>
+                      <p className="text-2xl font-bold text-red-600 dark:text-red-400">
+                        {formatCurrency(results.newMonthlyPayment)}
+                      </p>
+                    </div>
+                    <Calculator className="w-10 h-10 text-gray-400" />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+      
+            {/* AMORTIZATION/SCHEDULE TABLE (if applicable) */}
+            {results.scheduleData && results.scheduleData.length > 0 && (
+              <Card className="mt-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                <CardHeader className="border-b border-gray-200 dark:border-gray-700">
+                  <CardTitle className="flex justify-between items-center">
+                    <span className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                      Payment Schedule
+                    </span>
+                    {results.scheduleData.length > 12 && (
+                      <Button 
+                        onClick={() => setShowFullTable(!showFullTable)} 
+                        variant="outline"
+                        size="sm"
+                        className="border-gray-300 dark:border-gray-600"
+                      >
+                        {showFullTable 
+                          ? 'Show Less' 
+                          : `Show All ${results.scheduleData.length} Payments`}
+                      </Button>
+                    )}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow className="bg-gray-50 dark:bg-gray-900">
+                          <TableHead className="font-semibold">Month</TableHead>
+                          <TableHead className="font-semibold">Payment</TableHead>
+                          <TableHead className="font-semibold">Principal</TableHead>
+                          <TableHead className="font-semibold">Interest</TableHead>
+                          <TableHead className="font-semibold">Balance</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {results.scheduleData
+                          .slice(0, showFullTable ? undefined : 12)
+                          .map((row, idx) => (
+                            <TableRow 
+                              key={idx} 
+                              className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                            >
+                              <TableCell className="font-medium">{row.month}</TableCell>
+                              <TableCell>{formatCurrency(row.payment)}</TableCell>
+                              <TableCell className="text-green-600 dark:text-green-400">
+                                {formatCurrency(row.principal)}
+                              </TableCell>
+                              <TableCell className="text-red-600 dark:text-red-400">
+                                {formatCurrency(row.interest)}
+                              </TableCell>
+                              <TableCell className="font-semibold">
+                                {formatCurrency(row.balance)}
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+        )}
+      </div>
+    )}
   );
 }

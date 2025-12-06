@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 
 export default function SipMonthlyInvestmentPlannerCalculator() {
   // STATE
@@ -16,6 +17,43 @@ export default function SipMonthlyInvestmentPlannerCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is SIP/Monthly Investment Planner and why is it important?",
+      answer: "The SIP/Monthly Investment Planner is a tool that helps investors calculate the future value of their monthly investments in mutual funds or stocks. It is important because it provides insights into how investments can grow over time, allowing individuals to plan their financial goals effectively. By understanding the potential returns, investors can make informed decisions and optimize their investment strategies. This planner is particularly useful for long-term financial planning, helping users set realistic expectations and adjust their investments as needed. For more tools, check out our <a href=\"/financial/interest-only-loan\" class=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The calculator is designed to provide accurate estimates based on the inputs provided. However, actual investment returns can vary due to market fluctuations, changes in interest rates, and other economic factors. It's important to use this tool as a guide rather than a guaranteed prediction of future returns. For precise financial planning, consider consulting with a financial advisor who can provide personalized advice based on your unique circumstances."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need to know your monthly investment amount, the expected annual interest rate, and the investment duration in years. These inputs will allow the calculator to estimate the future value of your investments. You can typically find interest rate information from your investment provider or financial institution. Ensure that the data you enter is as accurate as possible to get reliable results. Regularly updating these inputs can help you track your investment progress and make necessary adjustments."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, this calculator can be used for various scenarios, such as planning for retirement, saving for a child's education, or building a wealth portfolio. However, it's important to consider the specific details of each scenario, such as risk tolerance and investment goals, which may require additional analysis beyond what the calculator provides. For tailored advice, consider consulting with a financial advisor who can help align your investment strategy with your personal goals and circumstances."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include entering incorrect data, such as unrealistic interest rates or investment periods, which can skew the results. Additionally, failing to account for inflation or market volatility can lead to overestimating future returns. It's crucial to use realistic assumptions and regularly update your inputs to reflect current market conditions. Avoid these errors by double-checking your data and considering a range of scenarios to understand potential outcomes better."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your investment projections at least annually or whenever there are significant changes in your financial situation, such as a change in income, interest rates, or investment goals. Regular recalculations help ensure that your investment strategy remains aligned with your financial objectives. Keeping track of market trends and economic indicators can also inform your recalculations, allowing you to make timely adjustments to your investment plan."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to assess whether your current investment strategy aligns with your financial goals. If the projected returns fall short of your expectations, consider adjusting your investment amount, duration, or portfolio composition. The results can also guide discussions with financial advisors, helping you refine your investment approach. For further analysis, explore our <a href=\"/financial/refinance-savings\" class=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a> to evaluate potential savings from refinancing options."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to this calculation method include using financial software or consulting with financial advisors who can provide more personalized projections. These alternatives may offer additional features, such as risk analysis and scenario planning, which can enhance your investment strategy. Consider these options if you require more comprehensive planning tools or if your investment needs are complex and require expert guidance."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -400,117 +438,19 @@ export default function SipMonthlyInvestmentPlannerCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is SIP/Monthly Investment Planner and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The SIP/Monthly Investment Planner is a tool that helps investors calculate the future value of their monthly investments in mutual funds or stocks. It is important because it provides insights into how investments can grow over time, allowing individuals to plan their financial goals effectively. By understanding the potential returns, investors can make informed decisions and optimize their investment strategies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              This planner is particularly useful for long-term financial planning, helping users set realistic expectations and adjust their investments as needed. For more tools, check out our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The calculator is designed to provide accurate estimates based on the inputs provided. However, actual investment returns can vary due to market fluctuations, changes in interest rates, and other economic factors. It's important to use this tool as a guide rather than a guaranteed prediction of future returns.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For precise financial planning, consider consulting with a financial advisor who can provide personalized advice based on your unique circumstances.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need to know your monthly investment amount, the expected annual interest rate, and the investment duration in years. These inputs will allow the calculator to estimate the future value of your investments. You can typically find interest rate information from your investment provider or financial institution.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that the data you enter is as accurate as possible to get reliable results. Regularly updating these inputs can help you track your investment progress and make necessary adjustments.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for various scenarios, such as planning for retirement, saving for a child's education, or building a wealth portfolio. However, it's important to consider the specific details of each scenario, such as risk tolerance and investment goals, which may require additional analysis beyond what the calculator provides.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For tailored advice, consider consulting with a financial advisor who can help align your investment strategy with your personal goals and circumstances.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include entering incorrect data, such as unrealistic interest rates or investment periods, which can skew the results. Additionally, failing to account for inflation or market volatility can lead to overestimating future returns. It's crucial to use realistic assumptions and regularly update your inputs to reflect current market conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Avoid these errors by double-checking your data and considering a range of scenarios to understand potential outcomes better.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your investment projections at least annually or whenever there are significant changes in your financial situation, such as a change in income, interest rates, or investment goals. Regular recalculations help ensure that your investment strategy remains aligned with your financial objectives.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Keeping track of market trends and economic indicators can also inform your recalculations, allowing you to make timely adjustments to your investment plan.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to assess whether your current investment strategy aligns with your financial goals. If the projected returns fall short of your expectations, consider adjusting your investment amount, duration, or portfolio composition. The results can also guide discussions with financial advisors, helping you refine your investment approach.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further analysis, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> to evaluate potential savings from refinancing options.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to this calculation method include using financial software or consulting with financial advisors who can provide more personalized projections. These alternatives may offer additional features, such as risk analysis and scenario planning, which can enhance your investment strategy.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider these options if you require more comprehensive planning tools or if your investment needs are complex and require expert guidance.
-            </p>
-          </div>
+          {/* FAQ SECTION */}
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -628,6 +568,7 @@ export default function SipMonthlyInvestmentPlannerCalculator() {
       description="Plan your Systematic Investment Plan (SIP). Calculate the expected returns on your monthly mutual fund or stock market investments."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding SIP/Monthly Investment Planner" },
         { id: "formula", label: "SIP/Monthly Investment Planner Formula" },
@@ -670,6 +611,7 @@ export default function SipMonthlyInvestmentPlannerCalculator() {
         {"title":"Refinance Savings Calculator","url":"/financial/refinance-savings","icon":"💰"},
         {"title":"HELOC Payment Estimator","url":"/financial/heloc-payment-estimator","icon":"🏦"}
       ]}
+      jsonLd={faqJsonLd}
     />
   );
 }

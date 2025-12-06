@@ -557,7 +557,7 @@ export default function RothIraConversionCalculator() {
       description="Analyze the tax implications of converting a traditional IRA to a Roth IRA. Determine if the tax cost now is worth the tax-free growth later."
       widget={widget}
       editorial={editorial}
-      faqJsonLd={faqJsonLd}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Roth IRA Conversion Calculator" },
         { id: "formula", label: "Roth IRA Conversion Calculator Formula" },

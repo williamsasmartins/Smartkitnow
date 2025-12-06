@@ -574,7 +574,7 @@ export default function CapitalGainsTaxEstimatorCalculator() {
       description="Calculate capital gains tax on crypto sales. Determine short-term vs long-term tax obligations based on holding period."
       widget={widget}
       editorial={editorial}
-      faqJsonLd={faqJsonLd}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Capital Gains Tax Estimator" },
         { id: "formula", label: "Capital Gains Tax Estimator Formula" },

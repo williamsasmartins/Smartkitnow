@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function TransactionFeeDeductionCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is transaction fee deduction tool and why is it important?",
+      answer: "The transaction fee deduction tool is a calculator designed to help users accurately determine the net amount of a transaction after accounting for all associated fees. This tool is important because it provides a clear understanding of the actual financial outcome of a transaction, which is crucial for budgeting, financial planning, and tax reporting. By using this tool, users can avoid overestimating their net gains or underestimating their expenses. Understanding the impact of transaction fees is essential for making informed financial decisions. This tool helps users identify the true cost of transactions and optimize their strategies accordingly. For more on financial planning, check out our Extra Payments & Payoff Time Calculator."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is designed to provide highly accurate results based on the inputs provided. However, the accuracy of the results depends on the accuracy of the input data. Users should ensure that they enter precise transaction amounts and fee values to achieve the best results. It's also important to consider that fees can fluctuate, especially in volatile markets, which may affect the accuracy of the calculation. For complex transactions or when in doubt, consulting a financial advisor or tax professional is recommended. They can provide additional insights and help verify the calculations."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you will need the total transaction amount, the gas fee, and the exchange fee. The transaction amount is the total value of the transaction before any deductions. The gas fee is specific to blockchain transactions and represents the cost of processing the transaction on the network. The exchange fee is the fee charged by the platform for facilitating the transaction. You can find this information on the transaction receipt or by checking the fee schedule on the platform you are using. Ensure that you have the most up-to-date information to achieve accurate results."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, this calculator can be used for a variety of scenarios, including cryptocurrency transactions, stock trades, and other financial operations that involve fees. However, it's important to note that the calculator is designed to handle standard fee structures. For transactions with unique or complex fee arrangements, additional calculations may be necessary. If you encounter a scenario that the calculator cannot handle, consider consulting a financial advisor for tailored advice. They can help you navigate complex fee structures and ensure accurate financial reporting."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include entering incorrect fee amounts, failing to account for all fees, and using outdated fee data. These errors can lead to inaccurate results and financial misreporting. It's important to double-check all inputs and ensure that you have the most current fee information. Another mistake is not considering the impact of market conditions on fees. For example, gas fees can fluctuate significantly based on network congestion. Staying informed about market trends can help you avoid unexpected costs."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculation is necessary whenever there is a change in transaction amounts or fee structures. It's also advisable to recalculate periodically to ensure that your financial records are up-to-date. For frequent traders or investors, recalculating after each transaction can help maintain accurate financial reporting. Consider setting a regular schedule for recalculating, such as monthly or quarterly, depending on your transaction volume. This practice can help you stay organized and prepared for tax reporting."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "The results from this calculator can be used to update your financial records and ensure accurate tax reporting. They provide a clear picture of your net gains or losses, which is essential for budgeting and financial planning. Use the results to make informed decisions about future transactions and optimize your financial strategies. If you're unsure how to interpret the results, consider consulting a financial advisor. They can provide additional insights and help you develop a comprehensive financial plan. For more detailed analysis, explore our Refinance Savings Calculator."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "While this calculator provides a straightforward method for calculating transaction fees, there are alternative approaches. Some users may prefer using spreadsheet software for more complex calculations or to incorporate additional variables. Others may choose to use specialized financial software that offers advanced features and integration with financial accounts. Each method has its pros and cons, and the best choice depends on your specific needs and preferences. For simple transactions, this calculator is often sufficient. For more complex financial planning, consider exploring other tools and resources."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -399,117 +437,28 @@ export default function TransactionFeeDeductionCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is transaction fee deduction tool and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The transaction fee deduction tool is a calculator designed to help users accurately determine the net amount of a transaction after accounting for all associated fees. This tool is important because it provides a clear understanding of the actual financial outcome of a transaction, which is crucial for budgeting, financial planning, and tax reporting. By using this tool, users can avoid overestimating their net gains or underestimating their expenses.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding the impact of transaction fees is essential for making informed financial decisions. This tool helps users identify the true cost of transactions and optimize their strategies accordingly. For more on financial planning, check out our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is designed to provide highly accurate results based on the inputs provided. However, the accuracy of the results depends on the accuracy of the input data. Users should ensure that they enter precise transaction amounts and fee values to achieve the best results. It's also important to consider that fees can fluctuate, especially in volatile markets, which may affect the accuracy of the calculation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex transactions or when in doubt, consulting a financial advisor or tax professional is recommended. They can provide additional insights and help verify the calculations.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you will need the total transaction amount, the gas fee, and the exchange fee. The transaction amount is the total value of the transaction before any deductions. The gas fee is specific to blockchain transactions and represents the cost of processing the transaction on the network. The exchange fee is the fee charged by the platform for facilitating the transaction.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can find this information on the transaction receipt or by checking the fee schedule on the platform you are using. Ensure that you have the most up-to-date information to achieve accurate results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for a variety of scenarios, including cryptocurrency transactions, stock trades, and other financial operations that involve fees. However, it's important to note that the calculator is designed to handle standard fee structures. For transactions with unique or complex fee arrangements, additional calculations may be necessary.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you encounter a scenario that the calculator cannot handle, consider consulting a financial advisor for tailored advice. They can help you navigate complex fee structures and ensure accurate financial reporting.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include entering incorrect fee amounts, failing to account for all fees, and using outdated fee data. These errors can lead to inaccurate results and financial misreporting. It's important to double-check all inputs and ensure that you have the most current fee information.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Another mistake is not considering the impact of market conditions on fees. For example, gas fees can fluctuate significantly based on network congestion. Staying informed about market trends can help you avoid unexpected costs.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculation is necessary whenever there is a change in transaction amounts or fee structures. It's also advisable to recalculate periodically to ensure that your financial records are up-to-date. For frequent traders or investors, recalculating after each transaction can help maintain accurate financial reporting.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider setting a regular schedule for recalculating, such as monthly or quarterly, depending on your transaction volume. This practice can help you stay organized and prepared for tax reporting.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The results from this calculator can be used to update your financial records and ensure accurate tax reporting. They provide a clear picture of your net gains or losses, which is essential for budgeting and financial planning. Use the results to make informed decisions about future transactions and optimize your financial strategies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you're unsure how to interpret the results, consider consulting a financial advisor. They can provide additional insights and help you develop a comprehensive financial plan. For more detailed analysis, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While this calculator provides a straightforward method for calculating transaction fees, there are alternative approaches. Some users may prefer using spreadsheet software for more complex calculations or to incorporate additional variables. Others may choose to use specialized financial software that offers advanced features and integration with financial accounts.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Each method has its pros and cons, and the best choice depends on your specific needs and preferences. For simple transactions, this calculator is often sufficient. For more complex financial planning, consider exploring other tools and resources.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+                {faq.answer.split("For more on financial planning, check out our Extra Payments & Payoff Time Calculator.")[0]}
+                {faq.answer.includes("Extra Payments & Payoff Time Calculator") && (
+                  <>
+                    For more on financial planning, check out our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
+                  </>
+                )}
+                {faq.answer.split("For more detailed analysis, explore our Refinance Savings Calculator.")[0] !== faq.answer && (
+                  <>
+                    {faq.answer.split("For more detailed analysis, explore our Refinance Savings Calculator.")[0]}
+                    For more detailed analysis, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
+                  </>
+                )}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -627,6 +576,7 @@ export default function TransactionFeeDeductionCalculator() {
       description="Calculate deductible transaction fees. Reduce your taxable gain by accounting for gas and exchange fees accurately."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Transaction Fee Deduction Tool" },
         { id: "formula", label: "Transaction Fee Deduction Tool Formula" },

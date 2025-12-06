@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function LeverageMarginProfitCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is leverage & margin profit calculator and why is it important?",
+      answer: "The leverage & margin profit calculator is a tool designed to help traders assess the potential financial outcomes of their leveraged positions. It calculates the profit or loss based on leverage, margin, and price changes, providing insights into the risks and rewards of margin trading. This calculator is crucial for traders who want to manage their risk effectively and make informed decisions. By understanding the potential outcomes, traders can adjust their strategies to optimize returns and minimize losses. For more tools, visit our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides accurate estimates based on the inputs provided. However, its accuracy depends on the precision of the input data and market conditions. Factors such as market volatility and unexpected economic events can affect the accuracy of the results. Traders should use this tool as a guide and consider consulting financial professionals for more detailed analysis."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need information on the leverage amount, margin, and the expected price change. These inputs are essential for calculating potential profit or loss. You can find this information from your trading platform or by analyzing market trends. Ensure that the data is current and accurate for the best results."
+    },
+    {
+      question: "Can I use this calculator for different types of assets?",
+      answer: "Yes, this calculator is versatile and can be used for various types of assets, including stocks, cryptocurrencies, and forex. As long as you have the necessary inputs, you can calculate potential outcomes for different trading scenarios. However, keep in mind that each asset class may have unique characteristics that could affect the results."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include entering incorrect leverage or margin values, failing to account for fees, and overlooking market volatility. These errors can lead to inaccurate profit or loss calculations. To avoid these mistakes, double-check your inputs and consider all potential costs associated with your trades."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "You should recalculate whenever there are significant changes in market conditions or your trading strategy. Regular recalculation helps you stay informed about potential risks and rewards, allowing you to make timely adjustments to your positions. Consider recalculating before entering new trades or when market volatility increases."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to evaluate the potential risks and rewards of your trades. If the potential loss is too high, consider reducing your leverage or adjusting your position size. The results can also help you set stop-loss orders and take-profit levels. For more financial planning tools, visit our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Yes, there are other methods for calculating leverage and margin profits, such as using spreadsheet models or advanced trading software. These alternatives may offer more detailed analysis and customization options. However, this calculator provides a quick and easy way to estimate potential outcomes without the need for complex tools."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -622,6 +660,7 @@ export default function LeverageMarginProfitCalculator() {
       description="Calculate potential profits and losses with leverage. Assess risk and potential liquidation points for margin trading."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Leverage & Margin Profit Calculator" },
         { id: "formula", label: "Leverage & Margin Profit Calculator Formula" },

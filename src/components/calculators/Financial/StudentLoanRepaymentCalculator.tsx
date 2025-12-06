@@ -116,159 +116,139 @@ export default function StudentLoanRepaymentCalculator() {
     };
   }, [inputs]);
 
-  return (
-    <CalculatorVerticalLayout 
-      title="Student Loan Repayment Calculator"
-      description="Estimate your monthly student loan payments and total interest cost."
-      jsonLd={faqJsonLd}
-      onThisPage={[
-        { id: 'calculator', label: 'Calculator' },
-        { id: 'editorial', label: 'Editorial' },
-        { id: 'faq', label: 'Frequently Asked Questions' },
-        { id: 'references', label: 'References' }
-      ]}
-      formula={{
-        title: "Student Loan Repayment Formula",
-        description: "The formula for calculating the monthly payment on an amortizing loan is based on the standard amortization formula.",
-        latex: "M = P \\frac{r(1+r)^n}{(1+r)^n - 1}",
-        variables: [
-          { symbol: "M", definition: "Total monthly payment" },
-          { symbol: "P", definition: "Principal loan amount" },
-          { symbol: "r", definition: "Monthly interest rate (annual rate divided by 12)" },
-          { symbol: "n", definition: "Number of payments (months)" }
-        ]
-      }}
-    >
-      {/* CALCULATOR WIDGET */}
-      <div id="calculator" className="scroll-mt-24">
-        <Card className="border-slate-200 dark:border-slate-700 shadow-sm">
-          <CardHeader className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
-            <CardTitle className="flex items-center gap-2 text-slate-800 dark:text-slate-100">
-              <Calculator className="h-5 w-5 text-blue-500" />
-              Student Loan Repayment Calculator
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-6 grid gap-6 md:grid-cols-2">
-            {/* INPUTS */}
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="loanAmount">Loan Amount</Label>
-                <div className="relative">
-                  <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                  <Input
-                    id="loanAmount"
-                    type="number"
-                    placeholder="0"
-                    className="pl-9"
-                    value={inputs.loanAmount}
-                    onChange={(e) => setInputs({ ...inputs, loanAmount: e.target.value })}
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="interestRate">Interest Rate (%)</Label>
-                <div className="relative">
-                  <TrendingUp className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                  <Input
-                    id="interestRate"
-                    type="number"
-                    placeholder="0"
-                    className="pl-9"
-                    value={inputs.interestRate}
-                    onChange={(e) => setInputs({ ...inputs, interestRate: e.target.value })}
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="repaymentTerm">Repayment Term (Years)</Label>
+  const widget = (
+    <div id="calculator" className="scroll-mt-24">
+      <Card className="border-slate-200 dark:border-slate-700 shadow-sm">
+        <CardHeader className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
+          <CardTitle className="flex items-center gap-2 text-slate-800 dark:text-slate-100">
+            <Calculator className="h-5 w-5 text-blue-500" />
+            Student Loan Repayment Calculator
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-6 grid gap-6 md:grid-cols-2">
+          {/* INPUTS */}
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="loanAmount">Loan Amount</Label>
+              <div className="relative">
+                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <Input
-                  id="repaymentTerm"
+                  id="loanAmount"
                   type="number"
                   placeholder="0"
-                  value={inputs.repaymentTerm}
-                  onChange={(e) => setInputs({ ...inputs, repaymentTerm: e.target.value })}
+                  className="pl-9"
+                  value={inputs.loanAmount}
+                  onChange={(e) => setInputs({ ...inputs, loanAmount: e.target.value })}
                 />
               </div>
             </div>
-
-            {/* RESULTS */}
-            <div className="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-6 flex flex-col justify-center space-y-4 border border-slate-100 dark:border-slate-800">
-              <div className="text-center">
-                <p className="text-sm text-slate-500 dark:text-slate-400 font-medium mb-1">Monthly Payment</p>
-                <div ref={resultsRef} className="text-4xl font-bold text-blue-600 dark:text-blue-400">
-                  {formatCurrency(results.monthlyPayment)}
-                </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="interestRate">Interest Rate (%)</Label>
+              <div className="relative">
+                <TrendingUp className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                <Input
+                  id="interestRate"
+                  type="number"
+                  placeholder="0"
+                  className="pl-9"
+                  value={inputs.interestRate}
+                  onChange={(e) => setInputs({ ...inputs, interestRate: e.target.value })}
+                />
               </div>
-              
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200 dark:border-slate-700">
-                <div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Total Interest</p>
-                  <p className="text-lg font-semibold text-slate-700 dark:text-slate-200">
-                    {formatCurrency(results.totalInterest)}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Total Repayment</p>
-                  <p className="text-lg font-semibold text-slate-700 dark:text-slate-200">
-                    {formatCurrency(results.totalPayment)}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* RESULTS TABLE */}
-        {results.scheduleData.length > 0 && (
-          <div className="mt-8">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">Amortization Schedule</h3>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => setShowFullTable(!showFullTable)}
-              >
-                {showFullTable ? "Show Less" : "Show Full Schedule"}
-              </Button>
             </div>
             
-            <div className="border rounded-lg overflow-hidden">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Month</TableHead>
-                    <TableHead>Payment</TableHead>
-                    <TableHead>Principal</TableHead>
-                    <TableHead>Interest</TableHead>
-                    <TableHead className="text-right">Balance</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {results.scheduleData
-                    .slice(0, showFullTable ? undefined : 12)
-                    .map((row) => (
-                      <TableRow key={row.month}>
-                        <TableCell>{row.month}</TableCell>
-                        <TableCell>{formatCurrency(row.payment)}</TableCell>
-                        <TableCell>{formatCurrency(row.principal)}</TableCell>
-                        <TableCell>{formatCurrency(row.interest)}</TableCell>
-                        <TableCell className="text-right">{formatCurrency(row.balance)}</TableCell>
-                      </TableRow>
-                    ))}
-                </TableBody>
-              </Table>
-              {!showFullTable && results.scheduleData.length > 12 && (
-                <div className="p-4 text-center bg-slate-50 dark:bg-slate-800/50 border-t text-sm text-slate-500">
-                  Showing first 12 months. Click "Show Full Schedule" to see all payments.
-                </div>
-              )}
+            <div className="space-y-2">
+              <Label htmlFor="repaymentTerm">Repayment Term (Years)</Label>
+              <Input
+                id="repaymentTerm"
+                type="number"
+                placeholder="0"
+                value={inputs.repaymentTerm}
+                onChange={(e) => setInputs({ ...inputs, repaymentTerm: e.target.value })}
+              />
             </div>
           </div>
-        )}
-      </div>
 
+          {/* RESULTS */}
+          <div className="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-6 flex flex-col justify-center space-y-4 border border-slate-100 dark:border-slate-800">
+            <div className="text-center">
+              <p className="text-sm text-slate-500 dark:text-slate-400 font-medium mb-1">Monthly Payment</p>
+              <div ref={resultsRef} className="text-4xl font-bold text-blue-600 dark:text-blue-400">
+                {formatCurrency(results.monthlyPayment)}
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+              <div>
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Total Interest</p>
+                <p className="text-lg font-semibold text-slate-700 dark:text-slate-200">
+                  {formatCurrency(results.totalInterest)}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Total Repayment</p>
+                <p className="text-lg font-semibold text-slate-700 dark:text-slate-200">
+                  {formatCurrency(results.totalPayment)}
+                </p>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* RESULTS TABLE */}
+      {results.scheduleData.length > 0 && (
+        <div className="mt-8">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">Amortization Schedule</h3>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => setShowFullTable(!showFullTable)}
+            >
+              {showFullTable ? "Show Less" : "Show Full Schedule"}
+            </Button>
+          </div>
+          
+          <div className="border rounded-lg overflow-hidden">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Month</TableHead>
+                  <TableHead>Payment</TableHead>
+                  <TableHead>Principal</TableHead>
+                  <TableHead>Interest</TableHead>
+                  <TableHead className="text-right">Balance</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {results.scheduleData
+                  .slice(0, showFullTable ? undefined : 12)
+                  .map((row) => (
+                    <TableRow key={row.month}>
+                      <TableCell>{row.month}</TableCell>
+                      <TableCell>{formatCurrency(row.payment)}</TableCell>
+                      <TableCell>{formatCurrency(row.principal)}</TableCell>
+                      <TableCell>{formatCurrency(row.interest)}</TableCell>
+                      <TableCell className="text-right">{formatCurrency(row.balance)}</TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+            {!showFullTable && results.scheduleData.length > 12 && (
+              <div className="p-4 text-center bg-slate-50 dark:bg-slate-800/50 border-t text-sm text-slate-500">
+                Showing first 12 months. Click "Show Full Schedule" to see all payments.
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
+  const editorial = (
+    <div>
       {/* EDITORIAL CONTENT */}
       <section id="editorial" className="space-y-8 mt-12">
         <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100">
@@ -283,7 +263,7 @@ export default function StudentLoanRepaymentCalculator() {
       </section>
 
       {/* SECTION 4: FAQ */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
@@ -408,6 +388,32 @@ export default function StudentLoanRepaymentCalculator() {
           </li>
         </ul>
       </section>
-    </CalculatorVerticalLayout>
+    </div>
+  );
+
+  return (
+    <CalculatorVerticalLayout 
+      title="Student Loan Repayment Calculator"
+      description="Estimate your monthly student loan payments and total interest cost."
+      jsonLd={faqJsonLd}
+      widget={widget}
+      editorial={editorial}
+      onThisPage={[
+        { id: 'calculator', label: 'Calculator' },
+        { id: 'editorial', label: 'Editorial' },
+        { id: 'faq', label: 'Frequently Asked Questions' },
+        { id: 'references', label: 'References' }
+      ]}
+      formula={{
+        title: "Student Loan Repayment Formula",
+        formula: "M = P * (r * (1 + r)^n) / ((1 + r)^n - 1)",
+        variables: [
+          { symbol: "M", description: "Total monthly payment" },
+          { symbol: "P", description: "Principal loan amount" },
+          { symbol: "r", description: "Monthly interest rate (annual rate divided by 12)" },
+          { symbol: "n", description: "Number of payments (months)" }
+        ]
+      }}
+    />
   );
 }

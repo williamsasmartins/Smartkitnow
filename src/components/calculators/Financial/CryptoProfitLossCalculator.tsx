@@ -555,6 +555,7 @@ export default function CryptoProfitLossCalculator() {
       description="Calculate profit or loss on your crypto trades. Input buy and sell prices to see your exact Return on Investment."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Crypto Profit/Loss Calculator" },
         { id: "formula", label: "Crypto Profit/Loss Calculator Formula" },

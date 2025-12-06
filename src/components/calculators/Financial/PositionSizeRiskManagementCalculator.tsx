@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function PositionSizeRiskManagementCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is position size & risk management tool and why is it important?",
+      answer: "The Position Size & Risk Management Tool is a calculator designed to help traders determine the optimal size of their trades while managing risk effectively. It is important because it helps prevent excessive losses by ensuring that trades are aligned with the trader's risk tolerance and account size. By using this tool, traders can make informed decisions that protect their capital and enhance their trading strategy. For more insights, explore our <a href=\"/financial/extra-payments-payoff\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Extra Payments & Payoff Time Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is highly accurate when the input data is precise. However, its accuracy can be affected by factors such as incorrect data entry or rapidly changing market conditions. It is important to regularly update your inputs to reflect current market conditions and consult a financial advisor for complex decisions. Always double-check your inputs and consider external factors that may influence your trading strategy."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need to know your account size, the percentage of your account you are willing to risk per trade, and your stop-loss amount. These inputs are essential for calculating the optimal position size and managing your risk effectively. Ensure that you have accurate and up-to-date information for each of these inputs to achieve the best results."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, this calculator can be used for various trading scenarios, including stocks, forex, and commodities. It is versatile and can be adapted to different market conditions and trading strategies. However, it is important to consider the unique characteristics of each market when applying the results. For specific scenarios, adjust the inputs to reflect the market's volatility and your trading strategy. Consult a financial advisor if you are unsure about the appropriate adjustments."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include entering incorrect data, such as an inaccurate account size or risk percentage, and failing to update inputs to reflect current market conditions. These errors can lead to miscalculations and potentially significant financial losses. To avoid these mistakes, double-check your inputs and regularly review your trading strategy to ensure it aligns with your financial goals and market conditions."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It is recommended to recalculate your position size and risk management strategy whenever there are significant changes in your account size, risk tolerance, or market conditions. Regular recalculations help ensure that your trading strategy remains aligned with your financial goals. Consider setting a regular schedule for recalculations, such as monthly or quarterly, to maintain an up-to-date trading strategy."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results from this calculator to inform your trading decisions and adjust your strategy as needed. The position size and risk amount provide a framework for managing your trades and minimizing potential losses. Consider consulting a financial advisor for personalized advice. For more guidance on financial planning, check out our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Yes, there are alternative methods for calculating position size and managing risk, such as using fixed-dollar risk or percentage of equity models. Each method has its pros and cons, and the best choice depends on your trading goals and risk tolerance. Consider experimenting with different methods to find the one that best suits your trading style and financial objectives."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -399,123 +437,24 @@ export default function PositionSizeRiskManagementCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is position size & risk management tool and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Position Size & Risk Management Tool is a calculator designed to help traders determine the optimal size of their trades while managing risk effectively. It is important because it helps prevent excessive losses by ensuring that trades are aligned with the trader's risk tolerance and account size.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this tool, traders can make informed decisions that protect their capital and enhance their trading strategy. For more insights, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is highly accurate when the input data is precise. However, its accuracy can be affected by factors such as incorrect data entry or rapidly changing market conditions. It is important to regularly update your inputs to reflect current market conditions and consult a financial advisor for complex decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Always double-check your inputs and consider external factors that may influence your trading strategy.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need to know your account size, the percentage of your account you are willing to risk per trade, and your stop-loss amount. These inputs are essential for calculating the optimal position size and managing your risk effectively.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that you have accurate and up-to-date information for each of these inputs to achieve the best results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for various trading scenarios, including stocks, forex, and commodities. It is versatile and can be adapted to different market conditions and trading strategies. However, it is important to consider the unique characteristics of each market when applying the results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For specific scenarios, adjust the inputs to reflect the market's volatility and your trading strategy. Consult a financial advisor if you are unsure about the appropriate adjustments.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include entering incorrect data, such as an inaccurate account size or risk percentage, and failing to update inputs to reflect current market conditions. These errors can lead to miscalculations and potentially significant financial losses.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, double-check your inputs and regularly review your trading strategy to ensure it aligns with your financial goals and market conditions.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It is recommended to recalculate your position size and risk management strategy whenever there are significant changes in your account size, risk tolerance, or market conditions. Regular recalculations help ensure that your trading strategy remains aligned with your financial goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider setting a regular schedule for recalculations, such as monthly or quarterly, to maintain an up-to-date trading strategy.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results from this calculator to inform your trading decisions and adjust your strategy as needed. The position size and risk amount provide a framework for managing your trades and minimizing potential losses. Consider consulting a financial advisor for personalized advice.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more guidance on financial planning, check out our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, there are alternative methods for calculating position size and managing risk, such as using fixed-dollar risk or percentage of equity models. Each method has its pros and cons, and the best choice depends on your trading goals and risk tolerance.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider experimenting with different methods to find the one that best suits your trading style and financial objectives.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -633,6 +572,7 @@ export default function PositionSizeRiskManagementCalculator() {
       description="Determine optimal position size. Manage risk by calculating stop-loss levels and appropriate trade amounts for your account."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Position Size & Risk Management Tool" },
         { id: "formula", label: "Position Size & Risk Management Tool Formula" },

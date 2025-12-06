@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 
 export default function VolatilityRiskAssessmentCalculator() {
   // STATE
@@ -16,6 +17,43 @@ export default function VolatilityRiskAssessmentCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is volatility & risk assessment calculator and why is it important?",
+      answer: "The Volatility & Risk Assessment Calculator is a tool designed to help investors evaluate the potential risks and returns of their investments by considering market volatility. It is important because it provides insights into how market fluctuations can impact investment outcomes, allowing users to make informed decisions and manage their portfolios effectively. Understanding volatility is crucial for risk management and strategic planning."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is designed to provide accurate estimates based on the inputs provided. However, its accuracy depends on the precision of the input data and the assumptions made regarding market conditions. Users should be aware that actual investment outcomes may vary due to unforeseen market changes. For critical financial decisions, consulting with a financial advisor is recommended to complement the insights gained from this tool."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need to provide the initial investment amount, the expected annual return rate, and the estimated market volatility percentage. This information can typically be obtained from your investment portfolio details, financial statements, or market analysis reports. Ensure that the data you input is as accurate as possible to get reliable results."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, this calculator can be used for various scenarios, including assessing the impact of market volatility on different types of investments such as stocks, bonds, or cryptocurrencies. However, it is important to consider the unique characteristics of each asset class and adjust the inputs accordingly. For specialized scenarios, you may need to consult additional resources or financial experts to ensure comprehensive analysis."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated or inaccurate input data, failing to account for all relevant factors, and misunderstanding the implications of volatility. These errors can lead to incorrect assessments and misguided investment decisions. To avoid these pitfalls, double-check your inputs and consider consulting with a financial advisor for a more comprehensive analysis."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It is advisable to recalculate whenever there are significant changes in market conditions, economic policies, or your financial goals. Regular recalculations can help you stay informed and adjust your strategies as needed. Establish a routine for reviewing your investments, such as quarterly or semi-annually, to ensure your strategies remain aligned with your objectives."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to inform your investment decisions and risk management strategies. Consider adjusting your portfolio to align with your risk tolerance and financial goals. If the results indicate high volatility, you might explore diversification or hedging strategies."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternative methods include Monte Carlo simulations, which provide a range of possible outcomes based on different scenarios, and Value at Risk (VaR) models, which estimate the potential loss in value of an investment. Each method has its own strengths and limitations. Choose the method that best suits your needs and consider combining multiple approaches for a more comprehensive analysis."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -388,123 +426,22 @@ export default function VolatilityRiskAssessmentCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
-        
-        <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is volatility & risk assessment calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Volatility & Risk Assessment Calculator is a tool designed to help investors evaluate the potential risks and returns of their investments by considering market volatility. It is important because it provides insights into how market fluctuations can impact investment outcomes, allowing users to make informed decisions and manage their portfolios effectively.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding volatility is crucial for risk management and strategic planning. For more detailed financial analysis, consider using our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is designed to provide accurate estimates based on the inputs provided. However, its accuracy depends on the precision of the input data and the assumptions made regarding market conditions. Users should be aware that actual investment outcomes may vary due to unforeseen market changes.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For critical financial decisions, consulting with a financial advisor is recommended to complement the insights gained from this tool.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need to provide the initial investment amount, the expected annual return rate, and the estimated market volatility percentage. This information can typically be obtained from your investment portfolio details, financial statements, or market analysis reports.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that the data you input is as accurate as possible to get reliable results. For more comprehensive financial planning, consider our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for various scenarios, including assessing the impact of market volatility on different types of investments such as stocks, bonds, or cryptocurrencies. However, it is important to consider the unique characteristics of each asset class and adjust the inputs accordingly.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For specialized scenarios, you may need to consult additional resources or financial experts to ensure comprehensive analysis.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated or inaccurate input data, failing to account for all relevant factors, and misunderstanding the implications of volatility. These errors can lead to incorrect assessments and misguided investment decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these pitfalls, double-check your inputs and consider consulting with a financial advisor for a more comprehensive analysis.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It is advisable to recalculate whenever there are significant changes in market conditions, economic policies, or your financial goals. Regular recalculations can help you stay informed and adjust your strategies as needed.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Establish a routine for reviewing your investments, such as quarterly or semi-annually, to ensure your strategies remain aligned with your objectives.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to inform your investment decisions and risk management strategies. Consider adjusting your portfolio to align with your risk tolerance and financial goals. If the results indicate high volatility, you might explore diversification or hedging strategies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further guidance, our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> can provide insights into optimizing your financial plans.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternative methods include Monte Carlo simulations, which provide a range of possible outcomes based on different scenarios, and Value at Risk (VaR) models, which estimate the potential loss in value of an investment. Each method has its own strengths and limitations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Choose the method that best suits your needs and consider combining multiple approaches for a more comprehensive analysis.
-            </p>
-          </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0" />
+                {faq.question}
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+                {faq.answer}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -622,6 +559,7 @@ export default function VolatilityRiskAssessmentCalculator() {
       description="Assess crypto market volatility. Calculate risk metrics to inform your trading strategy and manage exposure."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Volatility & Risk Assessment Calculator" },
         { id: "formula", label: "Volatility & Risk Assessment Calculator Formula" },

@@ -6,6 +6,42 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+
+const faqs = [
+  {
+    question: "What is lease vs buy calculator and why is it important?",
+    answer: "The Lease vs Buy Calculator is a tool that helps users compare the financial implications of leasing versus buying a vehicle. It evaluates the total cost of both options, considering factors like purchase price, loan term, interest rate, lease term, monthly lease payments, and residual value. This calculator is important because it provides a clear comparison, enabling users to make informed decisions about which option is more cost-effective in the long run.\n\nBy understanding the total cost of ownership, users can avoid unexpected expenses and make better financial choices. For more information on related calculations, visit our <a href=\"/financial/extra-payments-payoff\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Extra Payments & Payoff Time Calculator</a>."
+  },
+  {
+    question: "How accurate is this calculator?",
+    answer: "The Lease vs Buy Calculator is designed to provide accurate estimates based on the inputs provided. However, the accuracy of the results depends on the accuracy of the input data. Factors such as fluctuating interest rates, changes in residual values, and additional fees can affect the final outcome. It's important to use the most current and accurate data available for the best results.\n\nFor complex financial decisions, consider consulting with a financial advisor to ensure all factors are considered. Regularly updating your inputs can also help maintain accuracy."
+  },
+  {
+    question: "What information do I need to use this calculator?",
+    answer: "To use the Lease vs Buy Calculator, you'll need the following information: the vehicle's purchase price, the loan term in years, the annual interest rate, the lease term in months, the monthly lease payment, and the residual value of the vehicle. This data allows the calculator to provide a comprehensive comparison of the total cost of leasing versus buying.\n\nYou can find this information in your loan or lease agreement, or by contacting your dealer or lender. Ensuring the accuracy of this data is crucial for obtaining reliable results."
+  },
+  {
+    question: "Can I use this calculator for specific scenarios?",
+    answer: "Yes, the Lease vs Buy Calculator can be used for various scenarios, such as comparing different vehicle models, evaluating the impact of different interest rates, or assessing the cost of leasing versus buying over different terms. However, it's important to note that the calculator provides estimates based on the inputs provided, and actual costs may vary due to factors like maintenance, insurance, and taxes.\n\nFor more complex scenarios, consider consulting with a financial advisor or using additional tools like our <a href=\"/financial/loan-payment\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Loan Payment Calculator</a> for more detailed analysis."
+  },
+  {
+    question: "What are common mistakes people make with this calculation?",
+    answer: "Common mistakes include using outdated or incorrect input data, not considering additional costs like maintenance and insurance, and failing to account for changes in interest rates or residual values. These errors can lead to inaccurate results and potentially costly financial decisions.\n\nTo avoid these mistakes, ensure all input data is current and accurate, and consider consulting with a financial advisor for complex decisions. Regularly updating your calculations can also help maintain accuracy."
+  },
+  {
+    question: "How often should I recalculate?",
+    answer: "It's recommended to recalculate whenever there are significant changes in your financial situation, such as changes in interest rates, vehicle prices, or lease terms. Additionally, if you're considering a new vehicle purchase or lease, updating your calculations can help ensure you're making the most informed decision.\n\nRegular recalculations can also help you stay on top of your financial goals and adjust your plans as needed. For more insights, explore our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+  },
+  {
+    question: "What should I do with these results?",
+    answer: "Once you've obtained the results from the Lease vs Buy Calculator, use them to compare the total cost of leasing versus buying. Consider how these costs align with your financial goals and budget. If leasing is more cost-effective, evaluate the terms and conditions of the lease agreement. If buying is preferable, consider the long-term benefits of ownership.\n\nFor further analysis, consult with a financial advisor or explore additional tools like our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a> to understand the broader financial implications."
+  },
+  {
+    question: "Are there alternatives to this calculation method?",
+    answer: "While the Lease vs Buy Calculator provides a comprehensive comparison, there are alternative methods for evaluating vehicle financing options. These include consulting with a financial advisor, using other online calculators, or conducting a detailed cost analysis based on your specific financial situation.\n\nEach method has its pros and cons, and the best approach depends on your individual needs and preferences. For a broader perspective, consider exploring our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a> for additional insights."
+  }
+];
 
 export default function LeaseVsBuyCalculator() {
   // STATE
@@ -19,6 +55,8 @@ export default function LeaseVsBuyCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+  
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -681,6 +719,7 @@ export default function LeaseVsBuyCalculator() {
       description="Compare the costs of leasing versus buying a car. Analyze monthly payments and long-term value to make the smartest financial decision."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Lease vs Buy Calculator" },
         { id: "formula", label: "Lease vs Buy Calculator Formula" },

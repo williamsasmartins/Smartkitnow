@@ -81,6 +81,29 @@ export default function InterestOnlyLoanCalculator() {
     setInputs({ loanAmount: "", interestRate: "", loanTerm: "" });
   };
 
+  const faqs = [
+    {
+      question: "What is an interest-only loan?",
+      answer: "An interest-only loan is a type of loan where the borrower is required to pay only the interest on the principal balance for a set period. During this period, the principal balance remains unchanged. After the interest-only period ends, the borrower must begin paying both principal and interest, or pay off the loan in a lump sum."
+    },
+    {
+      question: "How is the interest-only payment calculated?",
+      answer: "The interest-only payment is calculated by multiplying the loan amount by the annual interest rate and then dividing by 12. The formula is: (Loan Amount × Interest Rate) / 12. This gives you the monthly payment required to cover just the interest."
+    },
+    {
+      question: "What are the benefits of an interest-only loan?",
+      answer: "The main benefit of an interest-only loan is lower initial monthly payments, which can improve cash flow or allow borrowers to afford a more expensive property. It can also be beneficial for those who expect their income to increase in the future or who plan to sell the property before the principal payments begin."
+    },
+    {
+      question: "What are the risks of an interest-only loan?",
+      answer: "The primary risk is that you are not building equity in the property during the interest-only period, unless the property value appreciates. Additionally, once the interest-only period ends, monthly payments can increase significantly as you start paying down the principal. There is also the risk of owing more than the property is worth if values decline."
+    },
+    {
+      question: "Who should consider an interest-only loan?",
+      answer: "Interest-only loans may be suitable for disciplined borrowers with fluctuating income, real estate investors who want to maximize cash flow, or those who plan to move or refinance before the interest-only period ends. However, they require careful financial planning to handle the eventual increase in payments."
+    }
+  ];
+
   const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)

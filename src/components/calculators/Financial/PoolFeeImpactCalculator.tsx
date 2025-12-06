@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function PoolFeeImpactEstimator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is pool fee impact estimator and why is it important?",
+      answer: "The pool fee impact estimator calculates the effect of mining pool fees on your net earnings. It's important because it helps miners choose the most profitable pool, maximizing their returns by understanding the financial impact of pool fees. By using this tool, miners can make informed decisions and optimize their mining strategy. For more financial tools, visit our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is highly accurate when provided with precise input data. However, its accuracy can be affected by fluctuating market conditions and changes in pool fees or electricity costs. It's best used as a guideline rather than an absolute prediction. For critical financial decisions, consider consulting a professional. Regularly updating your inputs ensures the most accurate results."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you'll need your hash rate (in TH/s), the pool fee percentage, and your electricity costs. These inputs are crucial for calculating your net earnings after fees. Ensure that your data is up-to-date for the most accurate results. You can find your hash rate from your mining hardware specifications, and pool fees are usually listed on the pool's website. Electricity costs can be found on your utility bill."
+    },
+    {
+      question: "Can I use this calculator for different cryptocurrencies?",
+      answer: "Yes, this calculator can be used for different cryptocurrencies, provided you adjust the inputs accordingly. The hash rate, pool fee, and electricity cost should be specific to the cryptocurrency you are mining. Different cryptocurrencies may have different reward structures, so ensure your calculations reflect the specific coin's parameters."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated pool fee percentages or incorrect electricity costs. These errors can lead to inaccurate earnings estimates. Always verify your inputs before calculating. Another mistake is not accounting for market volatility, which can affect the value of mined coins. Regularly update your calculations to reflect current conditions."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculate whenever there is a change in your mining setup, pool fees, or electricity costs. Regular updates ensure that your earnings estimates remain accurate and relevant. As a rule of thumb, recalculate at least once a month or whenever significant changes occur in the market or your mining operations."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to assess the profitability of your current mining setup and make informed decisions about potential changes. If your earnings are lower than expected, consider switching pools or upgrading your hardware. For more financial insights, explore our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>. If necessary, consult a financial advisor for personalized advice."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using more complex financial models or consulting with mining experts. These methods can provide deeper insights but may require more time and resources. For a quick and reliable estimate, this calculator is an excellent tool. However, for strategic planning, consider combining it with other financial analyses."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -394,123 +432,24 @@ export default function PoolFeeImpactEstimator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is pool fee impact estimator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The pool fee impact estimator calculates the effect of mining pool fees on your net earnings. It's important because it helps miners choose the most profitable pool, maximizing their returns by understanding the financial impact of pool fees.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this tool, miners can make informed decisions and optimize their mining strategy. For more financial tools, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is highly accurate when provided with precise input data. However, its accuracy can be affected by fluctuating market conditions and changes in pool fees or electricity costs. It's best used as a guideline rather than an absolute prediction.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For critical financial decisions, consider consulting a professional. Regularly updating your inputs ensures the most accurate results.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need your hash rate (in TH/s), the pool fee percentage, and your electricity costs. These inputs are crucial for calculating your net earnings after fees. Ensure that your data is up-to-date for the most accurate results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can find your hash rate from your mining hardware specifications, and pool fees are usually listed on the pool's website. Electricity costs can be found on your utility bill.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for different cryptocurrencies?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for different cryptocurrencies, provided you adjust the inputs accordingly. The hash rate, pool fee, and electricity cost should be specific to the cryptocurrency you are mining.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Different cryptocurrencies may have different reward structures, so ensure your calculations reflect the specific coin's parameters.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated pool fee percentages or incorrect electricity costs. These errors can lead to inaccurate earnings estimates. Always verify your inputs before calculating.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Another mistake is not accounting for market volatility, which can affect the value of mined coins. Regularly update your calculations to reflect current conditions.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculate whenever there is a change in your mining setup, pool fees, or electricity costs. Regular updates ensure that your earnings estimates remain accurate and relevant.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              As a rule of thumb, recalculate at least once a month or whenever significant changes occur in the market or your mining operations.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to assess the profitability of your current mining setup and make informed decisions about potential changes. If your earnings are lower than expected, consider switching pools or upgrading your hardware.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more financial insights, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>. If necessary, consult a financial advisor for personalized advice.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using more complex financial models or consulting with mining experts. These methods can provide deeper insights but may require more time and resources.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For a quick and reliable estimate, this calculator is an excellent tool. However, for strategic planning, consider combining it with other financial analyses.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -628,6 +567,7 @@ export default function PoolFeeImpactEstimator() {
       description="Estimate the impact of mining pool fees on your earnings. Compare different pools to maximize your mining profit."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Pool Fee Impact Estimator" },
         { id: "formula", label: "Pool Fee Impact Estimator Formula" },

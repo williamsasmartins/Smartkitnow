@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function GpuAsicMiningRoiCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is GPU/ASIC Mining ROI Calculator and why is it important?",
+      answer: "The GPU/ASIC Mining ROI Calculator is a tool designed to help miners estimate the time required to recoup their investment in mining hardware. It calculates the return on investment based on current profitability metrics, providing insights into the financial viability of mining operations. Understanding ROI is crucial for making informed decisions about hardware purchases and operational strategies."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The accuracy of this calculator depends on the precision of the input data. Factors such as fluctuating cryptocurrency prices, network difficulty, and electricity costs can affect the results. It's important to regularly update your calculations to reflect current conditions. For best results, ensure that your input data is accurate and up-to-date. Consider consulting professionals for complex scenarios."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need to provide the cost of your mining hardware, the daily profit from mining activities, and the daily electricity cost. These inputs are essential for calculating the ROI and understanding the financial viability of your mining operations. Accurate data is crucial for reliable results. Gather information from reliable sources and update regularly to reflect current market conditions."
+    },
+    {
+      question: "Can I use this calculator for different mining scenarios?",
+      answer: "This calculator is versatile and can be used for various scenarios involving GPU or ASIC mining. Whether you're a small-scale miner or operating a large mining farm, the calculator can provide valuable insights into your ROI. For specific scenarios, ensure that your input data accurately reflects your operational conditions. Adjust the inputs as necessary to explore different outcomes and strategies."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated or inaccurate input data, neglecting to account for fluctuations in cryptocurrency prices, and underestimating electricity costs. These errors can lead to incorrect ROI estimates and poor decision-making. To avoid these mistakes, regularly update your input data and consider all relevant factors. Stay informed about market trends and adjust your calculations accordingly."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculation is necessary whenever there are significant changes in market conditions, such as fluctuations in cryptocurrency prices or electricity rates. Regular updates ensure that your ROI estimates remain accurate and relevant. As a best practice, consider recalculating at least once a month or whenever you make significant changes to your mining operations."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to make informed decisions about your mining operations. If the ROI is favorable, consider scaling up your operations or reinvesting profits into more efficient hardware. If the ROI is unfavorable, explore ways to optimize your setup or reduce costs."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "While this calculator provides a straightforward method for estimating ROI, alternative approaches include more complex financial models or consulting with financial advisors. These alternatives can offer deeper insights but may require more detailed data and analysis. Consider using alternatives if you require a more comprehensive analysis or are dealing with large-scale mining operations."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -615,11 +653,12 @@ export default function GpuAsicMiningRoiCalculator() {
   return (
     <CalculatorVerticalLayout
       title="GPU/ASIC Mining ROI Calculator"
-      description="Calculate ROI for mining hardware. Estimate how long it takes to pay off GPUs or ASICs based on current profitability."
+      description="Calculate the Return on Investment (ROI) for your GPU or ASIC mining hardware. Estimate the payback period based on hardware cost, daily profit, and electricity costs."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
-        { id: "introduction", label: "Understanding GPU/ASIC Mining ROI Calculator" },
+        { id: "introduction", label: "Understanding Mining ROI" },
         { id: "formula", label: "GPU/ASIC Mining ROI Calculator Formula" },
         { id: "factors", label: "Key Factors That Affect Results" },
         { id: "faq", label: "Frequently Asked Questions" },

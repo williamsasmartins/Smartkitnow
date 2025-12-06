@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function InflationAdjustedValueCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is inflation adjusted value calculator and why is it important?",
+      answer: "The Inflation Adjusted Value Calculator helps you understand the real value of money over time by accounting for inflation. It's crucial for financial planning as it provides insights into future purchasing power. For instance, if you're saving for retirement, knowing how inflation will affect your savings helps you set realistic goals. By using this calculator, you can make informed decisions about investments, savings, and expenditures."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The calculator provides a high level of accuracy based on the inputs you provide. However, it's important to note that inflation rates can vary due to economic conditions. For the most accurate results, use current and realistic inflation rates. In cases of significant financial decisions, consulting a financial advisor is recommended. Always ensure your input data is accurate and up-to-date to maximize the calculator's effectiveness."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you'll need the initial amount of money you wish to evaluate, the expected annual inflation rate, and the number of years you want to project into the future. The initial amount is the current value of your savings or investment. The inflation rate should be based on historical data or expert forecasts. The number of years represents your investment or savings horizon. Having accurate and realistic data ensures the most reliable results."
+    },
+    {
+      question: "Can I use this calculator for retirement planning?",
+      answer: "Yes, the Inflation Adjusted Value Calculator is ideal for retirement planning. It helps you understand how much your savings will be worth in the future, considering inflation. This insight is crucial for setting realistic retirement goals and ensuring you have enough funds to maintain your desired lifestyle. However, remember to periodically update your calculations with current inflation rates and adjust your savings strategy as needed."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "A common mistake is using outdated or unrealistic inflation rates, which can lead to inaccurate projections. Another error is not adjusting the number of years to reflect changes in financial goals or life circumstances. It's also crucial to consider all sources of income and expenses when planning for the future. To avoid these mistakes, regularly review and update your inputs, and consider consulting with a financial advisor for personalized advice."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your projections annually or whenever there are significant changes in economic conditions or your personal financial situation. Regular recalculations ensure your financial plans remain aligned with current realities and help you make timely adjustments. Keeping your calculations up-to-date is key to effective financial planning and achieving your long-term goals."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to inform your financial planning and decision-making. If the adjusted value indicates a shortfall in your savings, consider increasing your contributions or adjusting your investment strategy. The insights gained can guide you in setting realistic financial goals and timelines."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using financial advisors or investment software that incorporates more complex models and variables. These tools might offer additional insights, such as risk assessments and portfolio optimization. However, they may require more detailed data and incur additional costs. Consider these options if you need a more comprehensive analysis or if your financial situation involves complex variables."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -619,11 +657,12 @@ export default function InflationAdjustedValueCalculator() {
   return (
     <CalculatorVerticalLayout
       title="Inflation Adjusted Value Calculator"
-      description="Calculate the real value of money over time. Adjust for inflation to understand your future purchasing power accurately."
+      description="Calculate the real value of money over time by adjusting for inflation. Understand how purchasing power changes and plan for the future."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
-        { id: "introduction", label: "Understanding Inflation Adjusted Value Calculator" },
+        { id: "introduction", label: "Understanding Inflation Adjusted Value" },
         { id: "formula", label: "Inflation Adjusted Value Calculator Formula" },
         { id: "factors", label: "Key Factors That Affect Results" },
         { id: "faq", label: "Frequently Asked Questions" },

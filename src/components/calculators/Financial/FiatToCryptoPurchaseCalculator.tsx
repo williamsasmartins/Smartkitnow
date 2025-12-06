@@ -568,6 +568,7 @@ export default function FiatToCryptoPurchaseCalculator() {
       description="Calculate how much crypto you can buy with a specific amount of fiat currency. Plan your entry points accurately."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Fiat to Crypto Purchase Calculator" },
         { id: "formula", label: "Fiat to Crypto Purchase Calculator Formula" },

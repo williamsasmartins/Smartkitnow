@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 
 export default function YieldFarmingApyCalculator() {
   // STATE
@@ -16,6 +17,43 @@ export default function YieldFarmingApyCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is yield farming apy calculator and why is it important?",
+      answer: "The Yield Farming APY Calculator is a tool designed to estimate the annual percentage yield (APY) from yield farming activities. It helps investors understand potential returns based on their initial investment, interest rates, and compounding frequency. This calculator is crucial for making informed decisions in the volatile world of decentralized finance. By using this calculator, investors can plan their strategies more effectively, ensuring they maximize returns while managing risks."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The calculator provides a high level of accuracy based on the inputs provided. However, the accuracy can be affected by factors such as market volatility, platform fees, and changes in interest rates. It's important to regularly update your inputs to reflect current conditions. For critical financial decisions, consulting with a financial advisor is recommended to complement the insights gained from the calculator."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the Yield Farming APY Calculator, you need to know your initial investment amount, the expected daily interest rate, and the compounding frequency. This information is typically available from the yield farming platform or project you are investing in. Ensure that you gather accurate data to input into the calculator for the most reliable results. Double-check your sources and consider any fees that may apply."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "This calculator is versatile and can be used for various yield farming scenarios, including different cryptocurrencies and platforms. However, it may not account for specific conditions such as lock-up periods or unique platform rules. For scenarios with unique conditions, consider consulting the platform's documentation or support for more tailored advice. The calculator provides a general estimate based on standard inputs."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include entering incorrect interest rates, not accounting for platform fees, and failing to update inputs as market conditions change. These errors can lead to inaccurate estimates and misguided investment decisions. To avoid these mistakes, double-check all inputs and regularly review your investment strategy. Stay informed about market trends and platform updates to ensure your calculations remain relevant."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your yield farming returns whenever there are significant changes in market conditions, interest rates, or platform fees. Regular recalculations ensure that your investment strategy remains aligned with current realities. A monthly review is a good practice, but more frequent updates may be necessary in volatile markets. Use the calculator as a dynamic tool to guide your investment decisions."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results from the Yield Farming APY Calculator to inform your investment strategy. The estimated returns can help you decide whether to continue with your current strategy, adjust your investment, or explore new opportunities. If the results indicate potential issues, such as low returns or high risk, consider seeking advice from a financial advisor."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to this calculation method include using platform-specific calculators or consulting with financial advisors who specialize in cryptocurrency investments. These alternatives may offer more tailored insights based on specific platform rules and conditions. While the Yield Farming APY Calculator provides a general estimate, these alternatives can complement your analysis by offering additional perspectives and expert advice."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -392,123 +430,22 @@ export default function YieldFarmingApyCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
-        
-        <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is yield farming apy calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Yield Farming APY Calculator is a tool designed to estimate the annual percentage yield (APY) from yield farming activities. It helps investors understand potential returns based on their initial investment, interest rates, and compounding frequency. This calculator is crucial for making informed decisions in the volatile world of decentralized finance.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this calculator, investors can plan their strategies more effectively, ensuring they maximize returns while managing risks. For more tools, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The calculator provides a high level of accuracy based on the inputs provided. However, the accuracy can be affected by factors such as market volatility, platform fees, and changes in interest rates. It's important to regularly update your inputs to reflect current conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For critical financial decisions, consulting with a financial advisor is recommended to complement the insights gained from the calculator.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the Yield Farming APY Calculator, you need to know your initial investment amount, the expected daily interest rate, and the compounding frequency. This information is typically available from the yield farming platform or project you are investing in.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that you gather accurate data to input into the calculator for the most reliable results. Double-check your sources and consider any fees that may apply.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for [specific scenario]?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is versatile and can be used for various yield farming scenarios, including different cryptocurrencies and platforms. However, it may not account for specific conditions such as lock-up periods or unique platform rules.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For scenarios with unique conditions, consider consulting the platform's documentation or support for more tailored advice. The calculator provides a general estimate based on standard inputs.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include entering incorrect interest rates, not accounting for platform fees, and failing to update inputs as market conditions change. These errors can lead to inaccurate estimates and misguided investment decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, double-check all inputs and regularly review your investment strategy. Stay informed about market trends and platform updates to ensure your calculations remain relevant.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your yield farming returns whenever there are significant changes in market conditions, interest rates, or platform fees. Regular recalculations ensure that your investment strategy remains aligned with current realities.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              A monthly review is a good practice, but more frequent updates may be necessary in volatile markets. Use the calculator as a dynamic tool to guide your investment decisions.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results from the Yield Farming APY Calculator to inform your investment strategy. The estimated returns can help you decide whether to continue with your current strategy, adjust your investment, or explore new opportunities.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If the results indicate potential issues, such as low returns or high risk, consider seeking advice from a financial advisor. For more financial tools, check our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to this calculation method include using platform-specific calculators or consulting with financial advisors who specialize in cryptocurrency investments. These alternatives may offer more tailored insights based on specific platform rules and conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              While the Yield Farming APY Calculator provides a general estimate, these alternatives can complement your analysis by offering additional perspectives and expert advice.
-            </p>
-          </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0" />
+                {faq.question}
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+                {faq.answer}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -626,6 +563,7 @@ export default function YieldFarmingApyCalculator() {
       description="Calculate Annual Percentage Yield (APY) for yield farming. Estimate daily and yearly returns on your liquidity provider positions."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Yield Farming APY Calculator" },
         { id: "formula", label: "Yield Farming APY Calculator Formula" },

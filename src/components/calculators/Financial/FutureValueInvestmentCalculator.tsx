@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,6 +18,43 @@ export default function FutureValueInvestmentCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is the future value of investment calculator and why is it important?",
+      answer: "The future value of investment calculator is a tool that estimates the growth of your investments over time, considering factors like initial principal, interest rate, and contributions. It's important because it helps you understand the potential outcomes of your investment strategies, allowing you to make informed financial decisions. By projecting future value, you can set realistic financial goals and adjust your strategies to achieve them. For more insights, explore our <a href=\"/financial/extra-payments-payoff\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Extra Payments & Payoff Time Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides accurate estimates based on the inputs you provide. However, it's important to note that actual investment performance can vary due to market conditions and other factors. For precise financial planning, consider consulting with a financial advisor. To enhance accuracy, use realistic inputs and update them regularly to reflect changes in your financial situation or market conditions."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you'll need your initial investment amount, expected annual interest rate, investment duration in years, and any regular monthly contributions. Accurate data ensures reliable projections, so gather information from your financial statements or consult with your financial advisor. If you're unsure about the interest rate, consider using historical averages or consult with a financial expert to determine a realistic estimate."
+    },
+    {
+      question: "Can I use this calculator for retirement planning?",
+      answer: "Yes, this calculator is a valuable tool for retirement planning. By estimating the future value of your investments, you can determine if your current savings strategy will meet your retirement goals. Adjusting your contributions or investment duration can help you achieve the desired retirement fund. For more comprehensive retirement planning, consider using our <a href=\"/financial/related-calculator-7\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">related retirement calculator</a> to explore additional strategies and scenarios."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using unrealistic interest rates, neglecting to account for inflation, and not updating inputs regularly. These errors can lead to inaccurate projections and misguided financial decisions. It's crucial to use realistic figures and review your inputs periodically. Avoid these pitfalls by consulting with financial experts and using historical data to inform your inputs. For more tips, explore our <a href=\"/financial/related-calculator-8\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">related calculator</a>."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your investment's future value at least annually or whenever there are significant changes in your financial situation or market conditions. Regular recalculations ensure your projections remain accurate and aligned with your financial goals. Consider setting a reminder to review your investment strategy and update your inputs regularly. This proactive approach helps you stay on track to achieve your financial objectives."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to assess whether your current investment strategy aligns with your financial goals. If the projected future value falls short, consider increasing your contributions or extending the investment duration. Alternatively, explore higher-yielding investment options. For personalized advice, consult with a financial advisor who can help you interpret the results and make informed decisions. For more guidance, visit our <a href=\"/financial/related-calculator-9\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">related calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to this calculation method include using financial software or consulting with a financial advisor for personalized projections. These alternatives may offer more detailed analysis and consider additional factors like taxes and fees. While this calculator provides a solid estimate, exploring alternative methods can enhance your financial planning and provide a more comprehensive understanding of your investment's potential."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -419,123 +457,23 @@ export default function FutureValueInvestmentCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
-        
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is the future value of investment calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The future value of investment calculator is a tool that estimates the growth of your investments over time, considering factors like initial principal, interest rate, and contributions. It's important because it helps you understand the potential outcomes of your investment strategies, allowing you to make informed financial decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By projecting future value, you can set realistic financial goals and adjust your strategies to achieve them. For more insights, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides accurate estimates based on the inputs you provide. However, it's important to note that actual investment performance can vary due to market conditions and other factors. For precise financial planning, consider consulting with a financial advisor.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To enhance accuracy, use realistic inputs and update them regularly to reflect changes in your financial situation or market conditions.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need your initial investment amount, expected annual interest rate, investment duration in years, and any regular monthly contributions. Accurate data ensures reliable projections, so gather information from your financial statements or consult with your financial advisor.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you're unsure about the interest rate, consider using historical averages or consult with a financial expert to determine a realistic estimate.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for retirement planning?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator is a valuable tool for retirement planning. By estimating the future value of your investments, you can determine if your current savings strategy will meet your retirement goals. Adjusting your contributions or investment duration can help you achieve the desired retirement fund.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more comprehensive retirement planning, consider using our <a href="/financial/related-calculator-7" className="text-blue-600 dark:text-blue-400 hover:underline">related retirement calculator</a> to explore additional strategies and scenarios.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using unrealistic interest rates, neglecting to account for inflation, and not updating inputs regularly. These errors can lead to inaccurate projections and misguided financial decisions. It's crucial to use realistic figures and review your inputs periodically.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Avoid these pitfalls by consulting with financial experts and using historical data to inform your inputs. For more tips, explore our <a href="/financial/related-calculator-8" className="text-blue-600 dark:text-blue-400 hover:underline">related calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your investment's future value at least annually or whenever there are significant changes in your financial situation or market conditions. Regular recalculations ensure your projections remain accurate and aligned with your financial goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider setting a reminder to review your investment strategy and update your inputs regularly. This proactive approach helps you stay on track to achieve your financial objectives.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to assess whether your current investment strategy aligns with your financial goals. If the projected future value falls short, consider increasing your contributions or extending the investment duration. Alternatively, explore higher-yielding investment options.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For personalized advice, consult with a financial advisor who can help you interpret the results and make informed decisions. For more guidance, visit our <a href="/financial/related-calculator-9" className="text-blue-600 dark:text-blue-400 hover:underline">related calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to this calculation method include using financial software or consulting with a financial advisor for personalized projections. These alternatives may offer more detailed analysis and consider additional factors like taxes and fees.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              While this calculator provides a solid estimate, exploring alternative methods can enhance your financial planning and provide a more comprehensive understanding of your investment's potential.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -653,6 +591,7 @@ export default function FutureValueInvestmentCalculator() {
       description="Estimate the future value of your investments. Calculate growth based on initial principal, periodic contributions, and expected interest rate."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Future Value of Investment Calculator" },
         { id: "formula", label: "Future Value of Investment Calculator Formula" },

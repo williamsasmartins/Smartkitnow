@@ -552,6 +552,7 @@ export default function ExtraPaymentsPayoffCalculator() {
       description="See how extra payments affect your loan payoff date. Save on interest by paying down your debt faster with this simple calculator."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Extra Payments & Payoff Time Calculator" },
         { id: "formula", label: "Extra Payments & Payoff Time Calculator Formula" },

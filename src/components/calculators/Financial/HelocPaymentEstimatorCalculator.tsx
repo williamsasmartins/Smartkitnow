@@ -83,6 +83,29 @@ export default function HelocPaymentEstimatorCalculator() {
     setInputs({ loanAmount: "", interestRate: "", drawPeriod: "", repaymentPeriod: "" });
   };
 
+  const faqs = [
+    {
+      question: "What is a HELOC Payment Estimator?",
+      answer: "A HELOC Payment Estimator is a tool designed to help you calculate the monthly payments for a Home Equity Line of Credit (HELOC). It considers both the draw period, where you typically pay only interest, and the repayment period, where you pay both principal and interest. This calculator helps borrowers understand their future financial obligations and plan accordingly."
+    },
+    {
+      question: "How is the HELOC payment calculated?",
+      answer: "The HELOC payment is calculated differently for the draw period and the repayment period. During the draw period, the payment is usually interest-only, calculated as (Loan Balance × Interest Rate) / 12. During the repayment period, the payment includes both principal and interest, amortized over the remaining term. Our calculator uses these formulas to provide an accurate estimate of your monthly payments."
+    },
+    {
+      question: "What is the difference between the draw period and the repayment period?",
+      answer: "The draw period is the initial phase of a HELOC, typically lasting 5 to 10 years, during which you can borrow from the line of credit and make interest-only payments. The repayment period follows the draw period, usually lasting 10 to 20 years, during which you can no longer borrow and must repay the principal and interest. Understanding these phases is crucial for managing your HELOC effectively."
+    },
+    {
+      question: "Can I make extra payments on my HELOC?",
+      answer: "Yes, you can usually make extra payments on your HELOC during both the draw and repayment periods. Making extra payments during the draw period reduces your principal balance, which in turn reduces your interest payments. During the repayment period, extra payments can help you pay off the loan faster and save on total interest costs. Always check with your lender for any prepayment penalties."
+    },
+    {
+      question: "How do interest rate changes affect my HELOC payments?",
+      answer: "Most HELOCs have variable interest rates, meaning your rate can change based on market conditions. If interest rates rise, your monthly payments will increase, and if they fall, your payments will decrease. This variability introduces some risk, so it's important to budget for potential rate increases. Some lenders offer fixed-rate options for a portion of your balance, providing more stability."
+    }
+  ];
+
   const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)

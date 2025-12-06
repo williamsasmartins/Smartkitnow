@@ -567,6 +567,7 @@ export default function CreditCardInterestCalculator() {
       description="Estimate how much interest you will pay on your credit card balance over time. See the cost of carrying debt."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Credit Card Interest Calculator" },
         { id: "formula", label: "Credit Card Interest Calculator Formula" },

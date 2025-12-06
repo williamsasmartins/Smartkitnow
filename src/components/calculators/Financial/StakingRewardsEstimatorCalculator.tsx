@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function StakingRewardsEstimatorCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is staking rewards estimator and why is it important?",
+      answer: "A staking rewards estimator is a tool designed to calculate the potential earnings from staking cryptocurrencies. It helps investors understand how much they can earn based on their staked amount, interest rate, and lock-up duration. This is crucial for financial planning, as it allows users to make informed decisions about their investments. By using this estimator, you can project your future earnings and adjust your staking strategy accordingly. For more financial tools, explore our Refinance Savings Calculator."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The accuracy of this calculator depends on the precision of the input data. It uses standard financial formulas to provide reliable estimates, but external factors like market volatility and network performance can affect actual results. Users should consider these variables and consult financial advisors for critical decisions. For best results, ensure your input data is up-to-date and reflective of current market conditions."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need to know the amount of cryptocurrency you plan to stake, the annual interest rate offered by the staking platform, and the lock-up duration. This information is typically available on the platform's website or through their customer support. Ensure that the data you gather is accurate and reflects the latest rates and terms to get the most precise estimate of your potential rewards."
+    },
+    {
+      question: "Can I use this calculator for [specific scenario]?",
+      answer: "This calculator is versatile and can be used for various staking scenarios, including different cryptocurrencies and platforms. However, it's important to note that the calculator assumes a constant interest rate and does not account for potential changes in network conditions or platform policies. For scenarios involving variable rates or additional fees, you may need to adjust the inputs or consult additional resources for a more comprehensive analysis."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated interest rates, not accounting for platform fees, and misunderstanding the lock-up duration. These errors can lead to inaccurate projections and potentially affect financial planning. To avoid these pitfalls, double-check your inputs and stay informed about any changes in staking terms or market conditions."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your staking rewards whenever there are significant changes in interest rates, staking terms, or your financial situation. Regular recalculations can help you stay on track with your investment goals and adjust your strategy as needed. A monthly review is generally recommended, but you may need to do it more frequently if you're actively managing a large portfolio."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Once you have your estimated rewards, use the results to inform your investment decisions. Consider whether the projected earnings align with your financial goals and risk tolerance. If necessary, adjust your staking amount or duration to optimize returns. For further guidance, consult a financial advisor or explore our HELOC Payment Estimator for additional insights."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "While this calculator uses a standard compound interest formula, alternative methods include using platform-specific calculators or consulting with financial experts. These alternatives may offer more tailored insights based on unique platform features or market conditions. Consider these options if you require more detailed analysis or if you're dealing with complex staking scenarios."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -391,117 +429,28 @@ export default function StakingRewardsEstimatorCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is staking rewards estimator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A staking rewards estimator is a tool designed to calculate the potential earnings from staking cryptocurrencies. It helps investors understand how much they can earn based on their staked amount, interest rate, and lock-up duration. This is crucial for financial planning, as it allows users to make informed decisions about their investments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this estimator, you can project your future earnings and adjust your staking strategy accordingly. For more financial tools, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The accuracy of this calculator depends on the precision of the input data. It uses standard financial formulas to provide reliable estimates, but external factors like market volatility and network performance can affect actual results. Users should consider these variables and consult financial advisors for critical decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For best results, ensure your input data is up-to-date and reflective of current market conditions.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need to know the amount of cryptocurrency you plan to stake, the annual interest rate offered by the staking platform, and the lock-up duration. This information is typically available on the platform's website or through their customer support.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that the data you gather is accurate and reflects the latest rates and terms to get the most precise estimate of your potential rewards.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for [specific scenario]?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is versatile and can be used for various staking scenarios, including different cryptocurrencies and platforms. However, it's important to note that the calculator assumes a constant interest rate and does not account for potential changes in network conditions or platform policies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For scenarios involving variable rates or additional fees, you may need to adjust the inputs or consult additional resources for a more comprehensive analysis.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated interest rates, not accounting for platform fees, and misunderstanding the lock-up duration. These errors can lead to inaccurate projections and potentially affect financial planning.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these pitfalls, double-check your inputs and stay informed about any changes in staking terms or market conditions.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your staking rewards whenever there are significant changes in interest rates, staking terms, or your financial situation. Regular recalculations can help you stay on track with your investment goals and adjust your strategy as needed.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              A monthly review is generally recommended, but you may need to do it more frequently if you're actively managing a large portfolio.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Once you have your estimated rewards, use the results to inform your investment decisions. Consider whether the projected earnings align with your financial goals and risk tolerance. If necessary, adjust your staking amount or duration to optimize returns.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further guidance, consult a financial advisor or explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a> for additional insights.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While this calculator uses a standard compound interest formula, alternative methods include using platform-specific calculators or consulting with financial experts. These alternatives may offer more tailored insights based on unique platform features or market conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider these options if you require more detailed analysis or if you're dealing with complex staking scenarios.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+                {faq.answer.split("For more financial tools, explore our Refinance Savings Calculator.")[0]}
+                {faq.answer.includes("Refinance Savings Calculator") && (
+                  <>
+                    For more financial tools, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
+                  </>
+                )}
+                {faq.answer.split("For further guidance, consult a financial advisor or explore our HELOC Payment Estimator for additional insights.")[0] !== faq.answer && (
+                  <>
+                    {faq.answer.split("For further guidance, consult a financial advisor or explore our HELOC Payment Estimator for additional insights.")[0]}
+                    For further guidance, consult a financial advisor or explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a> for additional insights.
+                  </>
+                )}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -619,6 +568,7 @@ export default function StakingRewardsEstimatorCalculator() {
       description="Estimate staking rewards for Proof-of-Stake coins. Calculate earnings based on staked amount and lock-up duration."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Staking Rewards Estimator" },
         { id: "formula", label: "Staking Rewards Estimator Formula" },

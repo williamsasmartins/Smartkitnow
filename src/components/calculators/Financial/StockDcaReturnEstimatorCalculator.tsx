@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function StockDcaReturnEstimatorCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is stock DCA return estimator and why is it important?",
+      answer: "The Stock DCA Return Estimator is a tool that calculates the future value of investments made through dollar cost averaging. It helps investors understand the potential growth of their portfolio by consistently investing a fixed amount over time. This approach is important because it reduces the impact of market volatility and allows investors to benefit from compounding returns. By using this estimator, investors can make informed decisions about their investment strategy and plan for long-term financial goals. For more on investment strategies, check out our Interest-Only Loan Calculator."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The accuracy of the Stock DCA Return Estimator depends on the inputs provided by the user. While the calculator uses standard financial formulas to estimate future values, actual results may vary due to market conditions, economic factors, and changes in interest rates. It's important to use realistic assumptions and regularly update your inputs to reflect current conditions. For precise financial planning, consider consulting with a financial advisor who can provide personalized advice based on your unique situation."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the Stock DCA Return Estimator, you'll need to provide your monthly investment amount, the expected annual return rate, and the number of years you plan to invest. These inputs allow the calculator to estimate the future value of your investments, considering compound interest and regular contributions. Ensure that your inputs are accurate and reflect your current financial situation. You can find information about expected return rates from financial advisors or online resources that provide historical market data."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, the Stock DCA Return Estimator can be used for various investment scenarios, including retirement planning, saving for education, or building a nest egg. By adjusting the inputs, you can tailor the calculator to fit your specific goals and timeframes. However, keep in mind that the calculator provides estimates based on the information you provide. For more complex scenarios, such as tax implications or withdrawal strategies, consider consulting with a financial professional who can offer tailored advice."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "One common mistake is using unrealistic return rates, which can lead to overestimating future portfolio values. It's important to base your assumptions on historical data and current market conditions. Another mistake is not considering the impact of fees and taxes, which can reduce overall returns. To avoid these errors, ensure your inputs are accurate and consider consulting with a financial advisor for guidance on realistic assumptions and comprehensive financial planning."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your investment projections at least annually or whenever there are significant changes in your financial situation, such as a change in income, investment goals, or market conditions. Regular recalculations help ensure your strategy remains aligned with your objectives. By staying proactive and adjusting your strategy as needed, you can better navigate market fluctuations and optimize your investment outcomes."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results from the Stock DCA Return Estimator to inform your investment strategy and financial planning. The estimated future value can help you assess whether you're on track to meet your financial goals or if adjustments are needed. Consider discussing your results with a financial advisor to explore potential changes to your investment approach. For additional financial planning tools, explore our Refinance Savings Calculator to evaluate potential savings from refinancing existing loans."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to the Stock DCA Return Estimator include lump-sum investment calculators and portfolio management software that offer more comprehensive analysis and scenario planning. These tools can provide insights into different investment strategies and help you compare potential outcomes. While DCA is a popular strategy for mitigating risk, it's important to explore other methods that may better suit your risk tolerance and financial goals. Consulting with a financial advisor can provide personalized recommendations based on your unique circumstances."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -404,117 +442,28 @@ export default function StockDcaReturnEstimatorCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is stock DCA return estimator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Stock DCA Return Estimator is a tool that calculates the future value of investments made through dollar cost averaging. It helps investors understand the potential growth of their portfolio by consistently investing a fixed amount over time. This approach is important because it reduces the impact of market volatility and allows investors to benefit from compounding returns.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this estimator, investors can make informed decisions about their investment strategy and plan for long-term financial goals. For more on investment strategies, check out our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The accuracy of the Stock DCA Return Estimator depends on the inputs provided by the user. While the calculator uses standard financial formulas to estimate future values, actual results may vary due to market conditions, economic factors, and changes in interest rates. It's important to use realistic assumptions and regularly update your inputs to reflect current conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For precise financial planning, consider consulting with a financial advisor who can provide personalized advice based on your unique situation.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the Stock DCA Return Estimator, you'll need to provide your monthly investment amount, the expected annual return rate, and the number of years you plan to invest. These inputs allow the calculator to estimate the future value of your investments, considering compound interest and regular contributions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that your inputs are accurate and reflect your current financial situation. You can find information about expected return rates from financial advisors or online resources that provide historical market data.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the Stock DCA Return Estimator can be used for various investment scenarios, including retirement planning, saving for education, or building a nest egg. By adjusting the inputs, you can tailor the calculator to fit your specific goals and timeframes. However, keep in mind that the calculator provides estimates based on the information you provide.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more complex scenarios, such as tax implications or withdrawal strategies, consider consulting with a financial professional who can offer tailored advice.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              One common mistake is using unrealistic return rates, which can lead to overestimating future portfolio values. It's important to base your assumptions on historical data and current market conditions. Another mistake is not considering the impact of fees and taxes, which can reduce overall returns.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these errors, ensure your inputs are accurate and consider consulting with a financial advisor for guidance on realistic assumptions and comprehensive financial planning.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your investment projections at least annually or whenever there are significant changes in your financial situation, such as a change in income, investment goals, or market conditions. Regular recalculations help ensure your strategy remains aligned with your objectives.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By staying proactive and adjusting your strategy as needed, you can better navigate market fluctuations and optimize your investment outcomes.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results from the Stock DCA Return Estimator to inform your investment strategy and financial planning. The estimated future value can help you assess whether you're on track to meet your financial goals or if adjustments are needed. Consider discussing your results with a financial advisor to explore potential changes to your investment approach.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For additional financial planning tools, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> to evaluate potential savings from refinancing existing loans.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to the Stock DCA Return Estimator include lump-sum investment calculators and portfolio management software that offer more comprehensive analysis and scenario planning. These tools can provide insights into different investment strategies and help you compare potential outcomes.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              While DCA is a popular strategy for mitigating risk, it's important to explore other methods that may better suit your risk tolerance and financial goals. Consulting with a financial advisor can provide personalized recommendations based on your unique circumstances.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+                {faq.answer.split("For more on investment strategies, check out our Interest-Only Loan Calculator.")[0]}
+                {faq.answer.includes("Interest-Only Loan Calculator") && (
+                  <>
+                    For more on investment strategies, check out our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
+                  </>
+                )}
+                {faq.answer.split("For additional financial planning tools, explore our Refinance Savings Calculator to evaluate potential savings from refinancing existing loans.")[0] !== faq.answer && (
+                  <>
+                    {faq.answer.split("For additional financial planning tools, explore our Refinance Savings Calculator to evaluate potential savings from refinancing existing loans.")[0]}
+                    For additional financial planning tools, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> to evaluate potential savings from refinancing existing loans.
+                  </>
+                )}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -632,6 +581,7 @@ export default function StockDcaReturnEstimatorCalculator() {
       description="Estimate returns for stock market dollar cost averaging. Visualize long-term portfolio growth by investing consistent amounts over time."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Stock DCA Return Estimator" },
         { id: "formula", label: "Stock DCA Return Estimator Formula" },

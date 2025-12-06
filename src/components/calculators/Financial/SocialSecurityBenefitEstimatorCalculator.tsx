@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 
 export default function SocialSecurityBenefitEstimatorCalculator() {
   // STATE
@@ -16,6 +17,43 @@ export default function SocialSecurityBenefitEstimatorCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is social security benefit estimator and why is it important?",
+      answer: "The Social Security Benefit Estimator is a tool that helps individuals calculate their potential future Social Security benefits. It is important because it provides a clear estimate of what you can expect to receive, allowing for better financial planning and decision-making regarding retirement age and savings. Understanding your estimated benefits helps you plan for a secure retirement. For more tools, explore our <a href=\"/financial/refinance-savings\" class=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides estimates based on current laws and your provided data. While it is accurate for planning purposes, actual benefits may vary due to changes in legislation, inflation, and personal circumstances. It's advisable to regularly update your inputs and consult with a financial advisor for precise planning. Use this tool as a guide, but always verify with official sources or a financial professional."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need your average annual earnings, current age, and desired retirement age. These inputs allow the calculator to estimate your potential benefits based on your earnings history and retirement plans. Ensure that your earnings data is accurate and up-to-date for the best results. You can find your earnings history on your Social Security statement, available online through the Social Security Administration's website."
+    },
+    {
+      question: "Can I use this calculator for early retirement scenarios?",
+      answer: "Yes, this calculator can be used to estimate benefits for early retirement scenarios. By entering a retirement age earlier than your full retirement age, you can see how your benefits will be reduced. This is useful for understanding the trade-offs between retiring early and receiving lower monthly payments versus working longer for higher benefits. Consider the long-term financial implications of early retirement and explore alternative income sources if needed."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated earnings data, not considering the impact of inflation, and misunderstanding the effects of early or delayed retirement on benefits. These errors can lead to inaccurate estimates and poor retirement planning. To avoid these mistakes, regularly update your information and consult with a financial advisor to ensure your retirement strategy is sound."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your estimated benefits annually or whenever there are significant changes in your earnings, retirement plans, or legislation. Regular updates ensure that your retirement planning remains accurate and aligned with your financial goals. Set a reminder to review your Social Security statement and update your calculations each year."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the estimated benefits to inform your retirement planning. Consider how these benefits fit into your overall retirement income strategy, including savings, investments, and other income sources. If your estimated benefits are lower than expected, adjust your savings plan or retirement age accordingly. For more comprehensive planning, consult with a financial advisor and explore our <a href=\"/financial/heloc-payment-estimator\" class=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include consulting with a financial planner or using the Social Security Administration's official calculators. These options may provide more personalized advice and take into account additional factors such as spousal benefits and tax implications. Consider these alternatives if you have complex financial situations or need detailed retirement planning assistance."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -395,119 +433,20 @@ export default function SocialSecurityBenefitEstimatorCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is social security benefit estimator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Social Security Benefit Estimator is a tool that helps individuals calculate their potential future Social Security benefits. It is important because it provides a clear estimate of what you can expect to receive, allowing for better financial planning and decision-making regarding retirement age and savings.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding your estimated benefits helps you plan for a secure retirement. For more tools, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides estimates based on current laws and your provided data. While it is accurate for planning purposes, actual benefits may vary due to changes in legislation, inflation, and personal circumstances. It's advisable to regularly update your inputs and consult with a financial advisor for precise planning.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Use this tool as a guide, but always verify with official sources or a financial professional.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need your average annual earnings, current age, and desired retirement age. These inputs allow the calculator to estimate your potential benefits based on your earnings history and retirement plans. Ensure that your earnings data is accurate and up-to-date for the best results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can find your earnings history on your Social Security statement, available online through the Social Security Administration's website.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for early retirement scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used to estimate benefits for early retirement scenarios. By entering a retirement age earlier than your full retirement age, you can see how your benefits will be reduced. This is useful for understanding the trade-offs between retiring early and receiving lower monthly payments versus working longer for higher benefits.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider the long-term financial implications of early retirement and explore alternative income sources if needed.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated earnings data, not considering the impact of inflation, and misunderstanding the effects of early or delayed retirement on benefits. These errors can lead to inaccurate estimates and poor retirement planning.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, regularly update your information and consult with a financial advisor to ensure your retirement strategy is sound.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your estimated benefits annually or whenever there are significant changes in your earnings, retirement plans, or legislation. Regular updates ensure that your retirement planning remains accurate and aligned with your financial goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Set a reminder to review your Social Security statement and update your calculations each year.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the estimated benefits to inform your retirement planning. Consider how these benefits fit into your overall retirement income strategy, including savings, investments, and other income sources. If your estimated benefits are lower than expected, adjust your savings plan or retirement age accordingly.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more comprehensive planning, consult with a financial advisor and explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include consulting with a financial planner or using the Social Security Administration's official calculators. These options may provide more personalized advice and take into account additional factors such as spousal benefits and tax implications.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider these alternatives if you have complex financial situations or need detailed retirement planning assistance.
-            </p>
-          </div>
+          {/* FAQ SECTION */}
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
-      </section>
 
       {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
       <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
@@ -620,11 +559,12 @@ export default function SocialSecurityBenefitEstimatorCalculator() {
   return (
     <CalculatorVerticalLayout
       title="Social Security Benefit Estimator"
-      description="Estimate your future Social Security benefits. Calculate potential monthly payments based on your earnings history and retirement age."
+      description="Estimate your future Social Security retirement benefits. Plan your retirement age to maximize your monthly payments."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
-        { id: "introduction", label: "Understanding Social Security Benefit Estimator" },
+        { id: "introduction", label: "Understanding Social Security Benefits" },
         { id: "formula", label: "Social Security Benefit Estimator Formula" },
         { id: "factors", label: "Key Factors That Affect Results" },
         { id: "faq", label: "Frequently Asked Questions" },
@@ -668,6 +608,7 @@ export default function SocialSecurityBenefitEstimatorCalculator() {
         {"title":"Refinance Savings Calculator","url":"/financial/refinance-savings","icon":"🏦"},
         {"title":"HELOC Payment Estimator","url":"/financial/heloc-payment-estimator","icon":"💰"}
       ]}
+      jsonLd={faqJsonLd}
     />
   );
 }

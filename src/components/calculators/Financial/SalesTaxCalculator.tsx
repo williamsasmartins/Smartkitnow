@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function SalesTaxCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is a sales tax calculator and why is it important?",
+      answer: "A sales tax calculator is a tool that helps you determine the total cost of a purchase, including the sales tax. It is important because it allows consumers and businesses to accurately budget for purchases and ensure compliance with tax regulations. By knowing the total cost upfront, you can make informed financial decisions and avoid unexpected expenses. For businesses, using a sales tax calculator ensures that you are charging the correct amount of tax to your customers, which is crucial for maintaining compliance with tax laws. For more financial tools, check out our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is highly accurate as long as the correct inputs are provided. The accuracy depends on the precision of the price, tax rate, and quantity entered. However, it's important to note that tax rates can change, and there may be exemptions or special rates that apply to certain items. Always verify the current tax rate for your location to ensure accuracy. For best results, double-check your inputs and consult with a tax professional if you have any doubts or complex scenarios. This will help you avoid errors and ensure compliance with tax regulations."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you'll need the following information: the price of the item, the applicable sales tax rate, and the quantity of items being purchased. The price should be the cost of a single item before tax. The tax rate is the percentage of the price that is added as tax, which varies by location. The quantity is the number of items being purchased. You can typically find the tax rate on local government websites or by contacting your local tax authority. Ensure that the information you gather is up-to-date and specific to your location for the most accurate results."
+    },
+    {
+      question: "Can I use this calculator for online purchases?",
+      answer: "Yes, this calculator can be used for online purchases. However, it's important to note that the sales tax rate may vary depending on the seller's location and the buyer's location. Some online retailers may not charge sales tax if they do not have a nexus in the buyer's state. Always check the tax rate applicable to your purchase location to ensure accurate calculations. If you're unsure about the tax rate for an online purchase, contact the retailer or consult their website for more information. This will help you avoid surprises when it comes to the total cost of your purchase."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "One common mistake is using an outdated or incorrect tax rate, which can lead to inaccurate calculations. Another mistake is not accounting for exemptions or special rates that may apply to certain items. Additionally, failing to include all applicable fees and charges in the total price can result in an incorrect calculation. To avoid these errors, always verify the current tax rate for your location and ensure that you're including all relevant costs in your calculation. This will help you achieve the most accurate results possible."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "You should recalculate whenever there is a change in the tax rate, the price of the item, or the quantity being purchased. Additionally, if there are changes in tax legislation or exemptions that apply to your purchase, it's important to update your calculation to reflect these changes. Regularly reviewing and updating your calculations ensures that you are always working with the most accurate and up-to-date information, which is crucial for effective financial planning."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Once you have your results, use them to inform your budgeting and financial planning. The total amount, including tax, gives you a clear picture of the cost of your purchase, allowing you to allocate funds accordingly. If the results indicate a higher cost than expected, consider adjusting your purchase plans or exploring alternatives. If you're a business owner, use the results to ensure that you're charging the correct amount of tax to your customers. For more financial planning tools, explore our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "While this calculator provides a quick and accurate way to calculate sales tax, there are alternative methods. Some people prefer to use spreadsheet software to create custom formulas that account for specific variables or scenarios. Others may use financial software that integrates sales tax calculations with other financial planning tools. Each method has its pros and cons, and the best choice depends on your specific needs and preferences. For comprehensive financial planning, consider using a combination of tools to achieve the most accurate and effective results."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -397,123 +435,24 @@ export default function SalesTaxCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is a sales tax calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A sales tax calculator is a tool that helps you determine the total cost of a purchase, including the sales tax. It is important because it allows consumers and businesses to accurately budget for purchases and ensure compliance with tax regulations. By knowing the total cost upfront, you can make informed financial decisions and avoid unexpected expenses.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For businesses, using a sales tax calculator ensures that you are charging the correct amount of tax to your customers, which is crucial for maintaining compliance with tax laws. For more financial tools, check out our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is highly accurate as long as the correct inputs are provided. The accuracy depends on the precision of the price, tax rate, and quantity entered. However, it's important to note that tax rates can change, and there may be exemptions or special rates that apply to certain items. Always verify the current tax rate for your location to ensure accuracy.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For best results, double-check your inputs and consult with a tax professional if you have any doubts or complex scenarios. This will help you avoid errors and ensure compliance with tax regulations.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need the following information: the price of the item, the applicable sales tax rate, and the quantity of items being purchased. The price should be the cost of a single item before tax. The tax rate is the percentage of the price that is added as tax, which varies by location. The quantity is the number of items being purchased.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can typically find the tax rate on local government websites or by contacting your local tax authority. Ensure that the information you gather is up-to-date and specific to your location for the most accurate results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for online purchases?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for online purchases. However, it's important to note that the sales tax rate may vary depending on the seller's location and the buyer's location. Some online retailers may not charge sales tax if they do not have a nexus in the buyer's state. Always check the tax rate applicable to your purchase location to ensure accurate calculations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you're unsure about the tax rate for an online purchase, contact the retailer or consult their website for more information. This will help you avoid surprises when it comes to the total cost of your purchase.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              One common mistake is using an outdated or incorrect tax rate, which can lead to inaccurate calculations. Another mistake is not accounting for exemptions or special rates that may apply to certain items. Additionally, failing to include all applicable fees and charges in the total price can result in an incorrect calculation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these errors, always verify the current tax rate for your location and ensure that you're including all relevant costs in your calculation. This will help you achieve the most accurate results possible.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              You should recalculate whenever there is a change in the tax rate, the price of the item, or the quantity being purchased. Additionally, if there are changes in tax legislation or exemptions that apply to your purchase, it's important to update your calculation to reflect these changes.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Regularly reviewing and updating your calculations ensures that you are always working with the most accurate and up-to-date information, which is crucial for effective financial planning.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Once you have your results, use them to inform your budgeting and financial planning. The total amount, including tax, gives you a clear picture of the cost of your purchase, allowing you to allocate funds accordingly. If the results indicate a higher cost than expected, consider adjusting your purchase plans or exploring alternatives.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you're a business owner, use the results to ensure that you're charging the correct amount of tax to your customers. For more financial planning tools, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While this calculator provides a quick and accurate way to calculate sales tax, there are alternative methods. Some people prefer to use spreadsheet software to create custom formulas that account for specific variables or scenarios. Others may use financial software that integrates sales tax calculations with other financial planning tools.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Each method has its pros and cons, and the best choice depends on your specific needs and preferences. For comprehensive financial planning, consider using a combination of tools to achieve the most accurate and effective results.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -631,6 +570,7 @@ export default function SalesTaxCalculator() {
       description="Calculate sales tax and total purchase price. Add local tax rates to net prices instantly for accurate budgeting."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Sales Tax Calculator" },
         { id: "formula", label: "Sales Tax Calculator Formula" },

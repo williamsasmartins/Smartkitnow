@@ -550,6 +550,7 @@ export default function CompoundInterestCalculator() {
       description="Calculate the power of compound interest. See how your investments grow over time with daily, monthly, or yearly compounding."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Compound Interest Calculator" },
         { id: "formula", label: "Compound Interest Calculator Formula" },

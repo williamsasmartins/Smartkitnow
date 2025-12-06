@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function SavingsRateTrackerCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is savings rate tracker and why is it important?",
+      answer: "A savings rate tracker is a tool that calculates the percentage of your income that you save. It is important because it provides insight into your financial habits and helps you understand how much of your income is being set aside for future needs. By knowing your savings rate, you can make informed decisions about spending, saving, and investing. Understanding your savings rate is crucial for financial planning and achieving long-term goals. For more information, check out our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is designed to provide accurate results based on the inputs you provide. However, its accuracy depends on the accuracy of the data entered. Factors such as unreported income or expenses can affect the results. It is recommended to use this calculator as a guide and consult a financial advisor for personalized advice. For best results, ensure that all inputs are up-to-date and reflect your current financial situation."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need to know your total monthly income, monthly expenses, and the amount you save each month. Income includes all sources such as salary, bonuses, and any additional earnings. Expenses cover all monthly outgoings like rent, utilities, groceries, and other bills. Savings refer to the amount you set aside each month for future use. Gathering accurate data ensures that the calculator provides a reliable savings rate. Consider using financial statements or budgeting apps to track your finances."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, this calculator can be used for various scenarios, such as planning for retirement, saving for a large purchase, or simply understanding your current financial standing. However, it is important to consider any unique circumstances that may affect your savings rate, such as irregular income or unexpected expenses. For specific scenarios, it may be beneficial to consult with a financial advisor who can provide tailored advice and strategies."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include underestimating expenses, overestimating income, and not accounting for irregular expenses. These errors can lead to an inaccurate savings rate, which may affect financial planning. It is important to be thorough and honest when entering data into the calculator. To avoid these mistakes, regularly review and update your financial information, and consider using budgeting tools to track your spending habits."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It is advisable to recalculate your savings rate whenever there are significant changes in your income or expenses. Regular recalculations, such as quarterly or bi-annually, can help you stay on track with your financial goals and make necessary adjustments. Keeping your calculations up-to-date ensures that you have an accurate picture of your financial health and can make informed decisions."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to assess your current financial situation and make informed decisions about your spending and saving habits. A high savings rate indicates good financial health, while a low rate may suggest the need for adjustments. Consider setting new financial goals or revisiting existing ones based on your savings rate. For further guidance, explore our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a> to see how refinancing could impact your savings."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "While the savings rate calculation is a straightforward method, there are alternative approaches such as zero-based budgeting or the 50/30/20 rule. Each method has its pros and cons, and the best choice depends on your personal financial situation and goals. Consider experimenting with different methods to find the one that best suits your needs. Consulting with a financial advisor can also provide personalized recommendations."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -393,123 +431,24 @@ export default function SavingsRateTrackerCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is savings rate tracker and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A savings rate tracker is a tool that calculates the percentage of your income that you save. It is important because it provides insight into your financial habits and helps you understand how much of your income is being set aside for future needs. By knowing your savings rate, you can make informed decisions about spending, saving, and investing.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding your savings rate is crucial for financial planning and achieving long-term goals. For more information, check out our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is designed to provide accurate results based on the inputs you provide. However, its accuracy depends on the accuracy of the data entered. Factors such as unreported income or expenses can affect the results. It is recommended to use this calculator as a guide and consult a financial advisor for personalized advice.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For best results, ensure that all inputs are up-to-date and reflect your current financial situation.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need to know your total monthly income, monthly expenses, and the amount you save each month. Income includes all sources such as salary, bonuses, and any additional earnings. Expenses cover all monthly outgoings like rent, utilities, groceries, and other bills. Savings refer to the amount you set aside each month for future use.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Gathering accurate data ensures that the calculator provides a reliable savings rate. Consider using financial statements or budgeting apps to track your finances.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for [specific scenario]?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for various scenarios, such as planning for retirement, saving for a large purchase, or simply understanding your current financial standing. However, it is important to consider any unique circumstances that may affect your savings rate, such as irregular income or unexpected expenses.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For specific scenarios, it may be beneficial to consult with a financial advisor who can provide tailored advice and strategies.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include underestimating expenses, overestimating income, and not accounting for irregular expenses. These errors can lead to an inaccurate savings rate, which may affect financial planning. It is important to be thorough and honest when entering data into the calculator.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, regularly review and update your financial information, and consider using budgeting tools to track your spending habits.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It is advisable to recalculate your savings rate whenever there are significant changes in your income or expenses. Regular recalculations, such as quarterly or bi-annually, can help you stay on track with your financial goals and make necessary adjustments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Keeping your calculations up-to-date ensures that you have an accurate picture of your financial health and can make informed decisions.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to assess your current financial situation and make informed decisions about your spending and saving habits. A high savings rate indicates good financial health, while a low rate may suggest the need for adjustments. Consider setting new financial goals or revisiting existing ones based on your savings rate.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further guidance, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> to see how refinancing could impact your savings.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While the savings rate calculation is a straightforward method, there are alternative approaches such as zero-based budgeting or the 50/30/20 rule. Each method has its pros and cons, and the best choice depends on your personal financial situation and goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider experimenting with different methods to find the one that best suits your needs. Consulting with a financial advisor can also provide personalized recommendations.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -627,6 +566,7 @@ export default function SavingsRateTrackerCalculator() {
       description="Track your personal savings rate. Determine exactly what percentage of your income you are saving for the future versus spending."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Savings Rate Tracker" },
         { id: "formula", label: "Savings Rate Tracker Formula" },

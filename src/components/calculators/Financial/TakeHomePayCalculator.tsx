@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function TakeHomePayCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is take-home pay calculator and why is it important?",
+      answer: "A take-home pay calculator helps you determine the amount of money you receive after taxes and other deductions. It's important because it provides a clear picture of your actual earnings, allowing you to budget effectively and plan for expenses. Knowing your take-home pay helps you make informed financial decisions and avoid overspending. For more detailed financial planning, consider using our Interest-Only Loan Calculator to understand how loans impact your finances."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is designed to provide accurate estimates based on the inputs you provide. However, its accuracy depends on the accuracy of your inputs, such as your tax rate and deductions. It's important to use up-to-date and precise information for the best results. While the calculator is a helpful tool, consulting with a financial advisor can provide additional insights. Use this calculator as a guide and verify your results with official documents or professional advice when necessary."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you'll need your gross annual income, the tax rate applicable to your earnings, and any other deductions such as retirement contributions or healthcare premiums. This information is typically found on your pay stubs, tax documents, or financial statements. Ensure the data you input is current and reflects your actual financial situation for accurate results. Gathering accurate data is crucial for precise calculations. Double-check your sources and update the calculator inputs as needed."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, this calculator can be used for various scenarios, including salary negotiations, budgeting, and financial planning. However, it's important to consider any unique factors that may affect your situation, such as state-specific taxes or irregular income sources. For scenarios involving significant financial changes, consulting with a financial advisor can provide additional guidance. For more complex financial scenarios, our Refinance Savings Calculator can offer further insights."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated tax rates, neglecting to include all deductions, and entering incorrect income figures. These errors can lead to inaccurate take-home pay estimates, affecting your financial planning. To avoid these mistakes, double-check your inputs and ensure they reflect your current financial situation. Regularly update your calculator inputs and consult with financial professionals for complex scenarios or significant financial changes."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your take-home pay whenever there are changes in your income, tax rate, or deductions. This includes salary increases, changes in tax laws, or adjustments to retirement contributions. Regular recalculations help ensure your financial planning remains accurate and up-to-date. Consider setting a schedule to review your financial situation quarterly or annually, and adjust your calculations as needed."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results from this calculator to inform your budgeting and financial planning. Understanding your take-home pay allows you to allocate funds for savings, expenses, and investments effectively. If the results indicate a need for financial adjustments, consider consulting with a financial advisor for personalized advice. For further financial insights, explore our HELOC Payment Estimator."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to this calculation method include consulting with a financial advisor or using specialized software for comprehensive financial planning. These alternatives can provide more personalized insights and consider a broader range of financial factors. However, they may require more time and resources compared to a quick online calculator. Choose the method that best suits your needs and financial complexity. For straightforward scenarios, this calculator is a convenient and efficient tool."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -400,117 +438,34 @@ export default function TakeHomePayCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is take-home pay calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A take-home pay calculator helps you determine the amount of money you receive after taxes and other deductions. It's important because it provides a clear picture of your actual earnings, allowing you to budget effectively and plan for expenses. Knowing your take-home pay helps you make informed financial decisions and avoid overspending.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more detailed financial planning, consider using our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a> to understand how loans impact your finances.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is designed to provide accurate estimates based on the inputs you provide. However, its accuracy depends on the accuracy of your inputs, such as your tax rate and deductions. It's important to use up-to-date and precise information for the best results. While the calculator is a helpful tool, consulting with a financial advisor can provide additional insights.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Use this calculator as a guide and verify your results with official documents or professional advice when necessary.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need your gross annual income, the tax rate applicable to your earnings, and any other deductions such as retirement contributions or healthcare premiums. This information is typically found on your pay stubs, tax documents, or financial statements. Ensure the data you input is current and reflects your actual financial situation for accurate results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Gathering accurate data is crucial for precise calculations. Double-check your sources and update the calculator inputs as needed.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for various scenarios, including salary negotiations, budgeting, and financial planning. However, it's important to consider any unique factors that may affect your situation, such as state-specific taxes or irregular income sources. For scenarios involving significant financial changes, consulting with a financial advisor can provide additional guidance.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more complex financial scenarios, our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> can offer further insights.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated tax rates, neglecting to include all deductions, and entering incorrect income figures. These errors can lead to inaccurate take-home pay estimates, affecting your financial planning. To avoid these mistakes, double-check your inputs and ensure they reflect your current financial situation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Regularly update your calculator inputs and consult with financial professionals for complex scenarios or significant financial changes.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your take-home pay whenever there are changes in your income, tax rate, or deductions. This includes salary increases, changes in tax laws, or adjustments to retirement contributions. Regular recalculations help ensure your financial planning remains accurate and up-to-date.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider setting a schedule to review your financial situation quarterly or annually, and adjust your calculations as needed.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results from this calculator to inform your budgeting and financial planning. Understanding your take-home pay allows you to allocate funds for savings, expenses, and investments effectively. If the results indicate a need for financial adjustments, consider consulting with a financial advisor for personalized advice.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further financial insights, explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to this calculation method include consulting with a financial advisor or using specialized software for comprehensive financial planning. These alternatives can provide more personalized insights and consider a broader range of financial factors. However, they may require more time and resources compared to a quick online calculator.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Choose the method that best suits your needs and financial complexity. For straightforward scenarios, this calculator is a convenient and efficient tool.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+                {faq.answer.split("For more detailed financial planning, consider using our Interest-Only Loan Calculator to understand how loans impact your finances.")[0]}
+                {faq.answer.includes("Interest-Only Loan Calculator") && (
+                  <>
+                    For more detailed financial planning, consider using our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a> to understand how loans impact your finances.
+                  </>
+                )}
+                {faq.answer.split("For more complex financial scenarios, our Refinance Savings Calculator can offer further insights.")[0] !== faq.answer && (
+                  <>
+                    {faq.answer.split("For more complex financial scenarios, our Refinance Savings Calculator can offer further insights.")[0]}
+                    For more complex financial scenarios, our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> can offer further insights.
+                  </>
+                )}
+                {faq.answer.split("For further financial insights, explore our HELOC Payment Estimator.")[0] !== faq.answer && (
+                  <>
+                    {faq.answer.split("For further financial insights, explore our HELOC Payment Estimator.")[0]}
+                    For further financial insights, explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
+                  </>
+                )}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -628,6 +583,7 @@ export default function TakeHomePayCalculator() {
       description="Estimate your paycheck after tax withholdings and deductions. See exactly what amount hits your bank account every payday."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Take-Home Pay Calculator" },
         { id: "formula", label: "Take-Home Pay Calculator Formula" },

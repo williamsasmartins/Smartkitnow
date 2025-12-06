@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function MultiCurrencyCryptoConverterCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is multi-currency crypto converter and why is it important?",
+      answer: "A multi-currency crypto converter is a tool that allows users to convert cryptocurrency values into various fiat currencies simultaneously. This is important because it provides a comprehensive view of the value of crypto holdings in different currencies, aiding in better financial planning and decision-making. By using this converter, users can quickly assess the impact of market changes on their portfolio and make informed decisions about buying, selling, or holding assets. For more tools, check our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is highly accurate when using real-time exchange rates. However, its accuracy can be affected by rapid market fluctuations or outdated rate data. It's essential to ensure that the rates used are current to maintain precision in the results. For critical financial decisions, consider consulting with a financial advisor to complement the insights gained from this tool."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need the amount of cryptocurrency you own, the current exchange rate of that cryptocurrency in USD, and the conversion rate of USD to your desired fiat currency. This information is typically available on major cryptocurrency exchanges or financial news platforms. Ensure that the data you use is up-to-date to achieve accurate conversion results. Regularly checking exchange rates can help maintain the accuracy of your calculations."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, this calculator can be used for a variety of scenarios, including assessing the value of crypto holdings in different fiat currencies or planning for currency exchanges. However, it's important to note that the calculator does not account for transaction fees or taxes, which may affect the final value. For scenarios involving significant financial decisions, consider additional financial tools or professional advice to ensure comprehensive planning."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated exchange rates, neglecting transaction fees, and misunderstanding the impact of market volatility. These errors can lead to inaccurate conversion results and financial misjudgments. To avoid these pitfalls, always verify the accuracy of your data and consider potential costs associated with conversions. Staying informed about market trends can also help mitigate risks."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculation should be done whenever there are significant changes in exchange rates or market conditions. Regular updates ensure that your conversion values remain accurate and reflective of current market realities. Consider setting a schedule for regular checks, especially if you are actively trading or managing a large portfolio."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to make informed decisions about your cryptocurrency investments. Whether you're considering buying, selling, or holding, understanding the current value of your assets is crucial. If you're planning significant financial moves, consulting with a financial advisor can provide additional insights. For more financial tools, explore our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a> to understand potential savings from refinancing."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using dedicated financial software or consulting with financial advisors for personalized insights. These methods can offer more comprehensive analysis and account for additional factors like taxes and fees. While this calculator provides quick and accurate conversions, exploring other resources can enhance your financial planning and decision-making capabilities."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number, currency: string = "USD"): string => {
@@ -388,123 +426,23 @@ export default function MultiCurrencyCryptoConverterCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
-        
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is multi-currency crypto converter and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A multi-currency crypto converter is a tool that allows users to convert cryptocurrency values into various fiat currencies simultaneously. This is important because it provides a comprehensive view of the value of crypto holdings in different currencies, aiding in better financial planning and decision-making.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this converter, users can quickly assess the impact of market changes on their portfolio and make informed decisions about buying, selling, or holding assets. For more tools, check our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is highly accurate when using real-time exchange rates. However, its accuracy can be affected by rapid market fluctuations or outdated rate data. It's essential to ensure that the rates used are current to maintain precision in the results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For critical financial decisions, consider consulting with a financial advisor to complement the insights gained from this tool.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need the amount of cryptocurrency you own, the current exchange rate of that cryptocurrency in USD, and the conversion rate of USD to your desired fiat currency. This information is typically available on major cryptocurrency exchanges or financial news platforms.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that the data you use is up-to-date to achieve accurate conversion results. Regularly checking exchange rates can help maintain the accuracy of your calculations.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for a variety of scenarios, including assessing the value of crypto holdings in different fiat currencies or planning for currency exchanges. However, it's important to note that the calculator does not account for transaction fees or taxes, which may affect the final value.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For scenarios involving significant financial decisions, consider additional financial tools or professional advice to ensure comprehensive planning.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated exchange rates, neglecting transaction fees, and misunderstanding the impact of market volatility. These errors can lead to inaccurate conversion results and financial misjudgments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these pitfalls, always verify the accuracy of your data and consider potential costs associated with conversions. Staying informed about market trends can also help mitigate risks.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculation should be done whenever there are significant changes in exchange rates or market conditions. Regular updates ensure that your conversion values remain accurate and reflective of current market realities.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider setting a schedule for regular checks, especially if you are actively trading or managing a large portfolio.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to make informed decisions about your cryptocurrency investments. Whether you're considering buying, selling, or holding, understanding the current value of your assets is crucial. If you're planning significant financial moves, consulting with a financial advisor can provide additional insights.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more financial tools, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> to understand potential savings from refinancing.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using dedicated financial software or consulting with financial advisors for personalized insights. These methods can offer more comprehensive analysis and account for additional factors like taxes and fees.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              While this calculator provides quick and accurate conversions, exploring other resources can enhance your financial planning and decision-making capabilities.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -622,6 +560,7 @@ export default function MultiCurrencyCryptoConverterCalculator() {
       description="Convert between multiple cryptocurrencies and fiat currencies simultaneously. A versatile tool for diverse portfolios."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Multi-Currency Crypto Converter" },
         { id: "formula", label: "Multi-Currency Crypto Converter Formula" },
