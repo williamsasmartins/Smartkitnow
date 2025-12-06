@@ -244,7 +244,7 @@ export default function CalculatorVerticalLayout({
   return (
     <div className="skn-vertical-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
       {/* MAIN CONTAINER (Max 1200px, Centered) */}
-      <div className="mx-auto pb-10 pt-24" style={{ maxWidth: 1200 }}>
+      <div className="mx-auto pb-10 pt-32 lg:pt-40" style={{ maxWidth: 1200 }}>
         
         {/* TOP BANNER AD */}
         {showTopBanner && (
@@ -256,19 +256,10 @@ export default function CalculatorVerticalLayout({
         )}
 
         {/* LAYOUT WITH SIDEBAR + CONTENT */}
-        <div className="relative">
-          {/* FLOATING SIDEBAR (Desktop Only, STICKY) */}
-          {showSidebar && (
-            <aside className="hidden xl:block skn-sidebar-sticky">
-              <AdUnit 
-                slot={SLOT_SIDEBAR}
-                type="sidebar"
-              />
-            </aside>
-          )}
-
+        <div className="relative xl:flex xl:justify-center xl:gap-12">
+          
           {/* CENTERED CONTENT (Max 768px) */}
-          <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <div className="w-full max-w-3xl mx-auto xl:mx-0 px-4 sm:px-6 min-w-0">
             
             {/* TITLE SECTION */}
             <header className="mb-8">
@@ -348,36 +339,23 @@ export default function CalculatorVerticalLayout({
             {/* SUGGESTION BOX */}
             <SuggestionBox />
           </div>
+
+          {/* FLOATING SIDEBAR (Desktop Only, STICKY) */}
+          {showSidebar && (
+            <aside className="hidden xl:block w-[300px] flex-shrink-0">
+              <div className="sticky top-[120px]">
+                <AdUnit 
+                  slot={SLOT_SIDEBAR}
+                  type="sidebar"
+                />
+              </div>
+            </aside>
+          )}
         </div>
       </div>
 
       {/* CUSTOM CSS */}
-      <style jsx>{`
-        .skn-sidebar-sticky {
-          position: sticky;
-          top: 120px;
-          right: max(1rem, calc((100vw - 1200px) / 2 - 320px));
-          width: 300px;
-          height: fit-content;
-          max-height: calc(100vh - 140px);
-          margin-left: auto;
-          z-index: 10;
-          float: right;
-          margin-right: calc((100vw - 1200px) / 2 - 320px);
-        }
-
-        @media (min-width: 1600px) {
-          .skn-sidebar-sticky {
-            margin-right: calc((100vw - 1200px) / 2 - 320px);
-          }
-        }
-
-        @media (max-width: 1279px) {
-          .skn-sidebar-sticky {
-            display: none;
-          }
-        }
-
+      <style>{`
         html {
           scroll-behavior: smooth;
         }
