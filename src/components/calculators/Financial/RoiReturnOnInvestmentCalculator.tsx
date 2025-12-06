@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle, TrendingUp } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function RoiReturnOnInvestmentCalculator() {
@@ -76,8 +76,43 @@ export default function RoiReturnOnInvestmentCalculator() {
   };
 
   const handleReset = () => {
-    setInputs({ initialInvestment: "", finalValue: "", years: "" });
+    setInputs({ initialInvestment: "", finalValue: "", investmentDuration: "" });
   };
+
+  const faqs = [
+    {
+      question: "What is Return on Investment (ROI)?",
+      answer: "ROI measures the gain or loss generated on an investment relative to the amount of money invested. It helps compare the efficiency of different investments."
+    },
+    {
+      question: "How do I interpret ROI results?",
+      answer: "A positive ROI indicates profit, while a negative ROI indicates a loss. Higher ROI suggests better performance, but consider risk and time horizon."
+    },
+    {
+      question: "What is annualized return?",
+      answer: "Annualized return normalizes performance over a yearly basis, allowing fair comparison between investments with different durations."
+    },
+    {
+      question: "Does ROI include fees and taxes?",
+      answer: "Basic ROI typically excludes fees and taxes. For accuracy, subtract applicable costs from final value before calculating ROI."
+    },
+    {
+      question: "What inputs do I need?",
+      answer: "You need the initial investment, final value, and investment duration in years to compute ROI and annualized return."
+    },
+    {
+      question: "Can ROI be compared across assets?",
+      answer: "ROI is comparable, but consider volatility, liquidity, and risk. Annualized return helps normalize time differences."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculate when values change—after dividends, additional contributions, or market movements that update your final value."
+    },
+    {
+      question: "Are there alternatives to ROI?",
+      answer: "Alternatives include IRR, NPV, and risk-adjusted metrics like Sharpe ratio for more nuanced performance evaluation."
+    }
+  ];
 
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -546,19 +581,19 @@ export default function RoiReturnOnInvestmentCalculator() {
         scenario: "Imagine you invest $10,000 in a stock, and after 5 years, it's worth $15,000.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "$15,000 - $10,000 = $5,000", 
-            explanation: "Calculate the total gain from the investment." 
+            description: "Calculate the total gain from the investment." 
           },
           { 
-            label: "Step 2", 
+            step: 2, 
             calculation: "($5,000 / $10,000) × 100 = 50%", 
-            explanation: "Determine the ROI percentage." 
+            description: "Determine the ROI percentage." 
           },
           { 
-            label: "Step 3", 
+            step: 3, 
             calculation: "ROI is 50%", 
-            explanation: "The investment has grown by 50% over 5 years." 
+            description: "The investment has grown by 50% over 5 years." 
           }
         ],
         result: "The final result is a 50% ROI, indicating a profitable investment."
