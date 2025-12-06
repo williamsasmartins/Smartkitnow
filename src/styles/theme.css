@@ -42,7 +42,8 @@
   --skn-text-muted-light: #51607a;
   --skn-text-muted-dark:  #a9b7d9;
 
-  --skn-brand: #3c83f6; /* azul dos links/ícones */
+  /* Updated to match new accessible primary color (#2563eb) */
+  --skn-brand: #2563eb; /* azul dos links/ícones */
   --skn-link: var(--skn-brand);
 }
 
@@ -129,6 +130,7 @@ html{
     scroll-padding-top: var(--skn-header-h-md); 
   } 
 }
+
 
 
 
