@@ -29,8 +29,8 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          // 'vendor-ui' removed to allow better code splitting and reduce unused JS on initial load
+          'vendor-react': ['react', 'react-dom', 'react-router-dom', 'react-helmet-async'],
+          'vendor-ui': ['@radix-ui/react-slot', 'lucide-react', 'clsx', 'tailwind-merge', 'class-variance-authority'],
         }
       }
     }
@@ -51,6 +51,8 @@ export default defineConfig({
     },
   },
 });
+
+
 
 
 

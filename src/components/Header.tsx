@@ -2,10 +2,11 @@ import { ThemeToggle } from "./ThemeToggle";
 import { useNavigate, Link } from "react-router-dom";
 import logoImage from "@/assets/logo-skn.png";
 import { getCategoryIcon } from "@/lib/navigation";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
+
+const HeaderMoreMenu = lazy(() => import("./HeaderMoreMenu"));
 
 export function Header() {
   const navigate = useNavigate();
@@ -111,33 +112,13 @@ export function Header() {
           ))}
 
           <li className="flex items-center">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="text-primary hover:text-primary transition-colors inline-flex items-center px-2">
-                  More
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent side="bottom" align="start" className="min-w-[220px] animate-in fade-in-0 zoom-in-95 data-[side=bottom]:slide-in-from-top-2 duration-150 ease-out">
-                {MORE_CATS.map((cat) => (
-                  <DropdownMenuItem key={cat.key} asChild>
-                    <Link to={cat.to} className="inline-flex items-center gap-2">
-                      <span className="text-[16px]" aria-hidden>{getCategoryIcon(cat.key)}</span>
-                      <span>{cat.label}</span>
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Suspense fallback={<button className="text-primary hover:text-primary transition-colors inline-flex items-center px-2">More</button>}>
+              <HeaderMoreMenu categories={MORE_CATS} />
+            </Suspense>
           </li>
         </ul>
       </nav>
     </header>
   );
 }
-
-
-
-
-
-
 
