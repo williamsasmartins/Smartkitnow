@@ -560,4 +560,6 @@ export default function DogWeightLossPlannerCalculator() {
             <p>
               Always consult your veterinarian before starting a weight loss plan. They may recommend a prescription weight loss diet to ensure your dog gets all essential nutrients while reducing calories.
             </p>
-            <h3 className="font-semibold mt-4 mb-1">What
+            <h3 className="font-semibold mt-4 mb-1">
+                What if my dog seems hungry all the time on the diet?
+              </h3>
