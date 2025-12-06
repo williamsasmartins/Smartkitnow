@@ -1,7 +1,6 @@
 import { ThemeToggle } from "./ThemeToggle";
 import { useNavigate, Link } from "react-router-dom";
 import logoImage from "@/assets/logo-skn.png";
-import { useAssetAvailable } from "@/hooks/useAssetAvailable";
 import { getCategoryIcon } from "@/lib/navigation";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
@@ -11,7 +10,6 @@ import { useState } from "react";
 export function Header() {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
-  const webpAvailable = useAssetAvailable("/logo-smartkitnow.webp");
 
   const PRIMARY_CATS = [
     { key: "financial", label: "Financial", to: "/financial" },
@@ -48,23 +46,8 @@ export function Header() {
           className="flex items-center cursor-pointer hover:opacity-80 transition-opacity justify-self-start"
           onClick={handleHomeClick}
         >
-          {webpAvailable ? (
-            <picture>
-              <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
-              <img
-                src={logoImage}
-                alt="Smart Kit Now Logo"
-                width={1000}
-                height={300}
-                decoding="async"
-                // @ts-ignore
-                fetchpriority="high"
-                sizes="120px"
-                className="h-9 w-auto block"
-                style={{ height: "2.25rem", width: "auto", aspectRatio: "1000/300" }}
-              />
-            </picture>
-          ) : (
+          <picture>
+            <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
             <img
               src={logoImage}
               alt="Smart Kit Now Logo"
@@ -77,7 +60,7 @@ export function Header() {
               className="h-9 w-auto block"
               style={{ height: "2.25rem", width: "auto", aspectRatio: "1000/300" }}
             />
-          )}
+          </picture>
         </div>
 
         <div className="w-full justify-self-center">
@@ -151,6 +134,7 @@ export function Header() {
     </header>
   );
 }
+
 
 
 

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import logoImage from "@/assets/logo-skn.png";
-import { useAssetAvailable } from "@/hooks/useAssetAvailable";
 import JsonLd from "@/components/seo/JsonLd";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,7 +16,6 @@ const CommitmentSection = lazy(() => import("@/components/home/CommitmentSection
 
 const Index = () => {
   const navigate = useNavigate();
-  const webpAvailable = useAssetAvailable("/logo-smartkitnow.webp");
 
   // Categories with detailed automotive and construction structures
   const categories = {
@@ -1426,23 +1424,8 @@ const Index = () => {
         <section className="container mx-auto px-4 py-8 md:py-12 cv-auto">
           <div className="text-center mb-12">
             <h2 className="mb-4 py-[10px] skn-home-title flex justify-center items-center">
-              {webpAvailable ? (
-                <picture>
-                  <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
-                  <img
-                    src={logoImage}
-                    alt="Smart Kit Now Logo"
-                    width={1000}
-                    height={300}
-                    decoding="async"
-                    // @ts-ignore
-                    fetchpriority="high"
-                    sizes="(max-width: 768px) 100vw, 266px"
-                    className="h-20 w-auto block"
-                    style={{ height: "5rem", width: "auto", aspectRatio: "1000/300" }}
-                  />
-                </picture>
-              ) : (
+              <picture>
+                <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
                 <img
                   src={logoImage}
                   alt="Smart Kit Now Logo"
@@ -1455,7 +1438,7 @@ const Index = () => {
                   className="h-20 w-auto block"
                   style={{ height: "5rem", width: "auto", aspectRatio: "1000/300" }}
                 />
-              )}
+              </picture>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Explore our comprehensive collection of calculators organized by category

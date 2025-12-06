@@ -56,7 +56,7 @@ export default function App() {
         <AppErrorBoundary>
           <Suspense
             fallback={
-              <div className="fixed inset-0 flex items-center justify-center bg-background/80">
+              <div className="flex items-center justify-center min-h-screen w-full bg-background">
                 <div className="animate-spin rounded-full h-8 w-8 border-2 border-primary border-t-transparent" />
                 <span className="sr-only">Loading…</span>
               </div>

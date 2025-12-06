@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 import { siX, siInstagram, siWhatsapp, siFacebook } from "simple-icons";
 import logoImage from "@/assets/logo-skn.png";
-import { useAssetAvailable } from "@/hooks/useAssetAvailable";
 
 const year = new Date().getFullYear();
 
@@ -51,8 +50,6 @@ const COLS: Array<{ title: string; links: { label: string; to: string }[] }> = [
 type BrandIcon = { hex: string; path: string };
 
 export function Footer() {
-  const webpAvailable = useAssetAvailable("/logo-smartkitnow.webp");
-  
   const icons = {
     x: siX,
     instagram: siInstagram,
@@ -73,21 +70,8 @@ export function Footer() {
             </form>
           <div className="pt-3">
             <Link to="/" className="inline-flex items-center gap-3">
-              {webpAvailable ? (
-                <picture>
-                  <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
-                  <img
-                    src={logoImage}
-                    alt="Smart Kit Now"
-                    width={1000}
-                    height={300}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-8 w-auto"
-                    style={{ height: "2rem", width: "auto", aspectRatio: "1000/300" }}
-                  />
-                </picture>
-              ) : (
+              <picture>
+                <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
                 <img
                   src={logoImage}
                   alt="Smart Kit Now"
@@ -98,7 +82,7 @@ export function Footer() {
                   className="h-8 w-auto"
                   style={{ height: "2rem", width: "auto", aspectRatio: "1000/300" }}
                 />
-              )}
+              </picture>
             </Link>
             <div className="mt-3 flex items-center gap-3">
               <a href="https://x.com" aria-label="X / Twitter" className="inline-flex h-8 w-8 items-center justify-center rounded-md text-white hover:opacity-85 transition" style={{ backgroundColor: icons?.x ? `#${icons.x.hex}` : '#111827' }}>
@@ -163,6 +147,10 @@ export function Footer() {
 }
 
 export default Footer;
+
+
+
+
 
 
 
