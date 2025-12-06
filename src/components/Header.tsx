@@ -57,7 +57,8 @@ export function Header() {
                 width={1000}
                 height={300}
                 decoding="async"
-                fetchPriority="high"
+                // @ts-ignore
+                fetchpriority="high"
                 className="h-9 w-auto block"
                 style={{ height: "2.25rem", width: "auto", aspectRatio: "1000/300" }}
               />
@@ -69,7 +70,8 @@ export function Header() {
               width={1000}
               height={300}
               decoding="async"
-              fetchPriority="high"
+              // @ts-ignore
+              fetchpriority="high"
               className="h-9 w-auto block"
               style={{ height: "2.25rem", width: "auto", aspectRatio: "1000/300" }}
             />
@@ -147,6 +149,7 @@ export function Header() {
     </header>
   );
 }
+
 
 
 

@@ -28,8 +28,13 @@
   --skn-bg-light: #f7f9ff;
   --skn-bg-dark:  #0c1324;
 
-  --skn-card-light: #ffffff;
-  --skn-card-dark:  #0f1a33;
+  /* Updated to pleasant blue for both modes */
+  --skn-card-light: #f0f9ff; /* Light Blue 50-ish */
+  --skn-card-dark:  #1e293b; /* Slate 800 - Blue-ish Gray */
+
+  /* If user wants more vivid blue for dark mode, maybe #172554 (Blue 950) or #1e3a8a (Blue 900) */
+  /* Let's try a pleasant dark blue that isn't "black" */
+  --skn-card-dark: #112240; 
 
   --skn-text-main-light: #0b152b;
   --skn-text-main-dark:  #e6ecff;
@@ -88,6 +93,17 @@ html.dark .skn-text-muted {
   color: var(--skn-home-title);
 }
 
+/* Dynamic text color for category names in cards */
+.skn-card .skn-home-title {
+  /* Ensure smooth transition */
+  transition: color 300ms ease;
+}
+
+/* Dark mode specific override for category names on cards */
+html.dark .skn-card .skn-home-title {
+  color: #FFFFFF;
+}
+
 :root{ 
   /* ajuste os valores à altura real do seu header em cada breakpoint */ 
   --skn-header-h-sm: 64px; 
@@ -113,4 +129,6 @@ html{
     scroll-padding-top: var(--skn-header-h-md); 
   } 
 }
+
+
 
