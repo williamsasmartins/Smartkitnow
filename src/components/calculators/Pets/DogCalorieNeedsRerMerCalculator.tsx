@@ -19,7 +19,9 @@ import {
   Info,
   HeartPulse,
   Scale,
+  BookOpen,
 } from "lucide-react";
+
 
 // ---------------------------------------------------------------------
 // CONSTANTES DE FATORES (sempre arrays bem definidos → evita erro .map)
@@ -715,15 +717,14 @@ export default function DogCalorieNeedsRerMerCalculator() {
       </section>
 
       {/* REFERENCES & RESOURCES */}
-      <section id="references" className="space-y-4">
-  <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+     <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
+  <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
     References & additional resources
   </h2>
 
-  <ul className="mt-6 space-y-4">
-    {/* WSAVA */}
+  <ul className="space-y-4">
     <li className="flex items-start gap-3">
-      <BookOpen className="h-5 w-5 text-slate-500 dark:text-slate-400 mt-1 shrink-0" />
+      <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
       <div>
         <a
           href="https://wsava.org/global-guidelines/global-nutrition-guidelines/"
@@ -733,60 +734,52 @@ export default function DogCalorieNeedsRerMerCalculator() {
         >
           WSAVA Global Nutrition Committee – Calorie and feeding guidelines
         </a>
-        <p className="text-sm md:text-base text-slate-700 dark:text-slate-300 mt-1 leading-relaxed">
-          International recommendations used by many veterinarians to estimate Resting Energy
-          Requirement (RER), Maintenance Energy Requirement (MER), and safe weight-loss plans.
+        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+          International recommendations used by many veterinarians to estimate RER, MER
+          and safe weight-loss plans.
         </p>
       </div>
     </li>
 
-    {/* Textbooks */}
     <li className="flex items-start gap-3">
-      <BookOpen className="h-5 w-5 text-slate-500 dark:text-slate-400 mt-1 shrink-0" />
+      <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
       <div>
         <a
-          href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5522556/"
+          href="https://www.amazon.com/Handbook-Small-Animal-Clinical-Nutrition/dp/0975961434"
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
         >
-          Veterinary clinical nutrition textbooks & review articles
+          Veterinary clinical nutrition textbooks
         </a>
-        <p className="text-sm md:text-base text-slate-700 dark:text-slate-300 mt-1 leading-relaxed">
-          Standard references such as the <span className="italic">Handbook of Small Animal
-          Clinical Nutrition</span> and peer-reviewed nutrition papers summarize calorie equations,
-          body condition scoring, and feeding strategies for different life stages.
+        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+          Standard references such as the <em>Handbook of Small Animal Clinical Nutrition</em>
+          summarize calorie equations, body-condition scoring and feeding strategies for
+          different life stages.
         </p>
       </div>
     </li>
 
-    {/* Primary vet */}
     <li className="flex items-start gap-3">
-      <BookOpen className="h-5 w-5 text-slate-500 dark:text-slate-400 mt-1 shrink-0" />
+      <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
       <div>
         <a
-          href="https://www.avma.org/resources-tools/pet-owners/petcare/your-pets-nutrition"
+          href="https://avma.org/resources-tools/pet-owners/petcare/your-veterinarian"
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
         >
           Your primary care veterinarian
         </a>
-        <p className="text-sm md:text-base text-slate-700 dark:text-slate-300 mt-1 leading-relaxed">
-          Nothing replaces hands-on evaluation. Bring your calorie report to your vet visit and use
-          it as a starting point for a personalized nutrition discussion based on your dog&apos;s
-          medical history and body condition.
+        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+          Nothing replaces hands-on evaluation. Bring your calorie report to your vet visit
+          and use it as a starting point for a personalized nutrition discussion.
         </p>
       </div>
     </li>
   </ul>
-
-  <p className="mt-6 text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-    This calculator and article are for <strong>informational purposes only</strong> and do not
-    replace professional veterinary care. Always consult a licensed veterinarian before changing
-    your dog&apos;s diet, medication, or exercise plan.
-  </p>
 </section>
+
 
         
     </div>
