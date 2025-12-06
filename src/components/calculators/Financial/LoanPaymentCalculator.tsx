@@ -209,23 +209,19 @@ export default function LoanPaymentCalculator() {
         variables: [
           {
             symbol: "M",
-            label: "Monthly payment",
-            description: "The fixed amount you pay every month.",
+            description: "Monthly payment: the fixed amount you pay every month.",
           },
           {
             symbol: "P",
-            label: "Principal",
-            description: "The amount you borrow (loan amount).",
+            description: "Principal: the amount you borrow (loan amount).",
           },
           {
             symbol: "r",
-            label: "Monthly interest rate",
-            description: "Annual interest rate divided by 12 and by 100.",
+            description: "Monthly interest rate: annual rate divided by 12 and by 100.",
           },
           {
             symbol: "n",
-            label: "Number of payments",
-            description: "Total number of monthly payments over the term.",
+            description: "Number of payments: total monthly payments over the term.",
           },
         ],
       }}

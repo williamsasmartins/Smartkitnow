@@ -211,8 +211,8 @@ function RelatedCalculators({ calculators }: { calculators: RelatedCalc[] }) {
 interface CalculatorVerticalLayoutProps {
   title: string;
   description?: string;
-  widget: ReactNode;
-  editorial: ReactNode;
+  widget?: ReactNode;
+  editorial?: ReactNode;
   onThisPage?: OnThisPageSection[];
   formula?: {
     formula: string;
@@ -230,6 +230,7 @@ interface CalculatorVerticalLayoutProps {
   showSidebar?: boolean;
   showBottomBanner?: boolean;
   jsonLd?: object | object[] | null | undefined;
+  children?: ReactNode;
 }
 
 // ================================================================
@@ -248,6 +249,7 @@ export default function CalculatorVerticalLayout({
   showSidebar = true,
   showBottomBanner = true,
   jsonLd,
+  children,
 }: CalculatorVerticalLayoutProps) {
   return (
     <div className="skn-vertical-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
@@ -292,14 +294,20 @@ export default function CalculatorVerticalLayout({
               <OnThisPageNav sections={onThisPage} />
             )}
 
-            {/* CALCULATOR WIDGET */}
-            <section 
-              className="mb-10 rounded-2xl overflow-hidden border-2 border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 shadow-2xl shadow-indigo-500/10 transition-all duration-200"
-            >
-              <div className="p-8">
-                {widget}
+            {/* CALCULATOR WIDGET or Children */}
+            {children ? (
+              <div className="mb-10">
+                {children}
               </div>
-            </section>
+            ) : (
+              <section 
+                className="mb-10 rounded-2xl overflow-hidden border-2 border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 shadow-2xl shadow-indigo-500/10 transition-all duration-200"
+              >
+                <div className="p-8">
+                  {widget}
+                </div>
+              </section>
+            )}
 
             {/* FORMULA BOX */}
             {formula && (
@@ -320,15 +328,17 @@ export default function CalculatorVerticalLayout({
               />
             )}
 
-            {/* EDITORIAL CONTENT */}
-            <article 
-              id="content" 
-              className="mb-10 prose prose-lg prose-slate max-w-none dark:prose-invert"
-            >
-              <div className="text-slate-900 dark:text-slate-100 leading-relaxed skn-editorial-sections">
-                {editorial}
-              </div>
-            </article>
+            {/* EDITORIAL CONTENT (hidden if children provided) */}
+            {!children && (
+              <article 
+                id="content" 
+                className="mb-10 prose prose-lg prose-slate max-w-none dark:prose-invert"
+              >
+                <div className="text-slate-900 dark:text-slate-100 leading-relaxed skn-editorial-sections">
+                  {editorial}
+                </div>
+              </article>
+            )}
 
             {/* RELATED CALCULATORS */}
             {relatedCalculators && relatedCalculators.length > 0 && (

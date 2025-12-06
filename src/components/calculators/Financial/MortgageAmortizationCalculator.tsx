@@ -598,19 +598,19 @@ export default function MortgageAmortizationCalculator() {
         scenario: "Imagine you have a $300,000 loan with a 3.5% interest rate over 30 years.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "300000 × 0.0029167 = 875", 
-            explanation: "Calculate the monthly interest payment." 
+            description: "Calculate the monthly interest payment." 
           },
           { 
-            label: "Step 2", 
+            step: 2, 
             calculation: "875 × 360 = 315000", 
-            explanation: "Determine the total interest over the loan term." 
+            description: "Determine the total interest over the loan term." 
           },
           { 
-            label: "Step 3", 
+            step: 3, 
             calculation: "300000 + 315000 = 615000", 
-            explanation: "Final result shows the total payment over the loan term." 
+            description: "Final result shows the total payment over the loan term." 
           }
         ],
         result: "The final result is $615,000, meaning you will pay $315,000 in interest over the life of the loan."

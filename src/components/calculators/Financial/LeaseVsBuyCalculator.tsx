@@ -744,19 +744,19 @@ export default function LeaseVsBuyCalculator() {
         scenario: "Imagine you have a vehicle with a purchase price of $30,000, a loan term of 5 years, and an interest rate of 3.5%. The lease term is 36 months with a monthly lease payment of $400 and a residual value of $15,000.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "Monthly Interest Rate = 3.5 / 12 / 100 = 0.0029167", 
-            explanation: "Calculate the monthly interest rate from the annual rate." 
+            description: "Calculate the monthly interest rate from the annual rate." 
           },
           { 
-            label: "Step 2", 
+            step: 2, 
             calculation: "Total Loan Cost = (30000 × 0.0029167) / (1 - (1 + 0.0029167)^(-60))", 
-            explanation: "Determine the total cost of the loan using the formula." 
+            description: "Determine the total cost of the loan using the formula." 
           },
           { 
-            label: "Step 3", 
+            step: 3, 
             calculation: "Total Lease Cost = (400 × 36) + 15000 = $29,400", 
-            explanation: "Calculate the total cost of leasing the vehicle." 
+            description: "Calculate the total cost of leasing the vehicle." 
           }
         ],
         result: "The final result shows that the total loan cost is higher than the lease cost, indicating that leasing may be more cost-effective in this scenario."
