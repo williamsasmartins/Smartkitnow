@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function ExpenseSplitterSharedBillsCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is expense splitter (shared bills) calculator and why is it important?",
+      answer: "The Expense Splitter Calculator is a tool designed to help individuals fairly divide shared expenses among roommates or friends. It ensures that each person pays their fair share of bills, such as rent, utilities, and groceries, based on the total cost and number of people sharing the expenses. This calculator is important because it promotes transparency and helps prevent disputes over financial contributions. By using this calculator, you can easily manage shared finances and ensure that everyone is contributing equally. This is especially useful in shared living situations where expenses can vary. For more financial tools, explore our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The accuracy of the Expense Splitter Calculator depends on the accuracy of the inputs provided. As long as you enter the correct total amount, number of people, and additional costs, the calculator will provide precise results. However, it's important to note that any changes in these variables should be updated in the calculator to maintain accuracy. For complex financial situations, consider consulting a financial advisor to ensure that all factors are accounted for. Regularly updating the calculator with current data will help maintain its accuracy."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the Expense Splitter Calculator, you will need the total amount of the shared bills, the number of people sharing the expenses, and any additional costs that should be divided. The total amount includes the main bill, such as rent or utilities. Additional costs might include service fees, tips, or any other expenses that need to be shared. Ensure that all information is accurate and up-to-date to get the most precise results. You can find this information on your bills or by discussing with your roommates. Keeping a record of shared expenses can also help in managing this data effectively."
+    },
+    {
+      question: "Can I use this calculator for [specific scenario]?",
+      answer: "Yes, the Expense Splitter Calculator can be used for a variety of scenarios where shared expenses need to be divided. Whether you're splitting rent, utilities, or a group dinner bill, this calculator can help ensure everyone pays their fair share. However, it's important to consider any unique circumstances that might affect the calculation, such as different usage levels or special agreements among roommates. If your scenario involves complex financial arrangements, consider adjusting the inputs to reflect these nuances. For example, if one person uses more utilities, you might adjust their share accordingly. This flexibility makes the calculator versatile for many shared expense situations."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include entering incorrect amounts, miscounting the number of people sharing the expenses, and forgetting to include additional costs. These errors can lead to inaccurate results and potential disputes among roommates. It's crucial to double-check all inputs and ensure they reflect the current situation. To avoid these mistakes, keep a detailed record of shared expenses and regularly update the calculator with any changes. Clear communication with your roommates can also help ensure that everyone is on the same page regarding shared costs."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculation is necessary whenever there are changes in the total amount, number of people, or additional costs. This might occur monthly when bills are due or whenever someone moves in or out. Regular recalculation ensures that everyone pays their fair share based on the most current data. Consider setting a regular schedule for recalculating, such as at the beginning of each month. This practice can help maintain transparency and prevent any financial misunderstandings among roommates."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Once you have the results, communicate them clearly with everyone involved. Ensure that each person understands their share and is prepared to pay their portion. This can help prevent disputes and ensure that all bills are paid on time. If there are any discrepancies, discuss them openly to find a fair solution. If you're managing multiple shared expenses, consider using a financial app or spreadsheet to track payments and ensure accountability. For additional financial planning tools, visit our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "While the Expense Splitter Calculator provides a straightforward method for dividing shared expenses, there are alternative approaches. For example, some groups prefer to rotate bill payments, where each person takes turns paying the entire bill. Others might agree to split costs based on income levels or usage. Each method has its pros and cons, and the best approach depends on your specific situation and preferences. It's important to discuss these options with your roommates and choose a method that everyone agrees on. Flexibility and open communication are key to successfully managing shared expenses."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -390,123 +428,23 @@ export default function ExpenseSplitterSharedBillsCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
-        
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is expense splitter (shared bills) calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Expense Splitter Calculator is a tool designed to help individuals fairly divide shared expenses among roommates or friends. It ensures that each person pays their fair share of bills, such as rent, utilities, and groceries, based on the total cost and number of people sharing the expenses. This calculator is important because it promotes transparency and helps prevent disputes over financial contributions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this calculator, you can easily manage shared finances and ensure that everyone is contributing equally. This is especially useful in shared living situations where expenses can vary. For more financial tools, explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The accuracy of the Expense Splitter Calculator depends on the accuracy of the inputs provided. As long as you enter the correct total amount, number of people, and additional costs, the calculator will provide precise results. However, it's important to note that any changes in these variables should be updated in the calculator to maintain accuracy.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex financial situations, consider consulting a financial advisor to ensure that all factors are accounted for. Regularly updating the calculator with current data will help maintain its accuracy.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the Expense Splitter Calculator, you will need the total amount of the shared bills, the number of people sharing the expenses, and any additional costs that should be divided. The total amount includes the main bill, such as rent or utilities. Additional costs might include service fees, tips, or any other expenses that need to be shared.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that all information is accurate and up-to-date to get the most precise results. You can find this information on your bills or by discussing with your roommates. Keeping a record of shared expenses can also help in managing this data effectively.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for [specific scenario]?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the Expense Splitter Calculator can be used for a variety of scenarios where shared expenses need to be divided. Whether you're splitting rent, utilities, or a group dinner bill, this calculator can help ensure everyone pays their fair share. However, it's important to consider any unique circumstances that might affect the calculation, such as different usage levels or special agreements among roommates.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If your scenario involves complex financial arrangements, consider adjusting the inputs to reflect these nuances. For example, if one person uses more utilities, you might adjust their share accordingly. This flexibility makes the calculator versatile for many shared expense situations.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include entering incorrect amounts, miscounting the number of people sharing the expenses, and forgetting to include additional costs. These errors can lead to inaccurate results and potential disputes among roommates. It's crucial to double-check all inputs and ensure they reflect the current situation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, keep a detailed record of shared expenses and regularly update the calculator with any changes. Clear communication with your roommates can also help ensure that everyone is on the same page regarding shared costs.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculation is necessary whenever there are changes in the total amount, number of people, or additional costs. This might occur monthly when bills are due or whenever someone moves in or out. Regular recalculation ensures that everyone pays their fair share based on the most current data.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider setting a regular schedule for recalculating, such as at the beginning of each month. This practice can help maintain transparency and prevent any financial misunderstandings among roommates.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Once you have the results, communicate them clearly with everyone involved. Ensure that each person understands their share and is prepared to pay their portion. This can help prevent disputes and ensure that all bills are paid on time. If there are any discrepancies, discuss them openly to find a fair solution.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you're managing multiple shared expenses, consider using a financial app or spreadsheet to track payments and ensure accountability. For additional financial planning tools, visit our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While the Expense Splitter Calculator provides a straightforward method for dividing shared expenses, there are alternative approaches. For example, some groups prefer to rotate bill payments, where each person takes turns paying the entire bill. Others might agree to split costs based on income levels or usage.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Each method has its pros and cons, and the best approach depends on your specific situation and preferences. It's important to discuss these options with your roommates and choose a method that everyone agrees on. Flexibility and open communication are key to successfully managing shared expenses.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 

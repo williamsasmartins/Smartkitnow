@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function DebtToIncomeRatioCalculator() {
   // STATE
@@ -76,6 +77,43 @@ export default function DebtToIncomeRatioCalculator() {
   const handleReset = () => {
     setInputs({ monthlyIncome: "", monthlyDebt: "" });
   };
+
+  const faqs = [
+    {
+      question: "What is a debt-to-income ratio calculator and why is it important?",
+      answer: "A debt-to-income (DTI) ratio calculator measures the percentage of your gross monthly income that goes towards paying your monthly debt payments. It is a key indicator of your financial health and is widely used by lenders to assess your creditworthiness. A lower DTI ratio indicates a good balance between debt and income, making it easier to qualify for loans and credit cards. Understanding your DTI ratio helps you manage your finances better and plan for future financial goals. For more financial tools, visit our <a href=\"/financial/loan-payment\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Loan Payment Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides a highly accurate estimate of your DTI ratio based on the inputs you provide. However, the accuracy depends on the accuracy of the data entered. Ensure that all income and debt figures are current and correct to obtain the most reliable results. For complex financial situations, consider consulting a financial advisor for personalized advice."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you'll need to provide your gross monthly income and total monthly debt payments. Gross monthly income includes all sources of income before taxes and deductions, such as salary, bonuses, and rental income. Total monthly debt payments should cover all recurring obligations like loans, credit card payments, and other liabilities. Ensure that the figures are accurate and up-to-date to get the most reliable results."
+    },
+    {
+      question: "Can I use this calculator for mortgage applications?",
+      answer: "Yes, this calculator is particularly useful for mortgage applications. Lenders often use the DTI ratio to assess your ability to manage monthly payments and repay loans. A lower DTI ratio increases your chances of mortgage approval and may help you secure better interest rates. Ensure that all income and debt figures are accurate to get the most reliable results. For more mortgage-related calculations, explore our <a href=\"/financial/mortgage-amortization\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Mortgage Payment & Amortization Calculator</a>."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include underestimating debt payments, overestimating income, and not accounting for all sources of income and debt. These errors can lead to inaccurate DTI ratios and misinformed financial decisions. To avoid these mistakes, ensure that all figures are accurate and up-to-date. Regularly review and update your financial information to maintain a reliable DTI ratio."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your DTI ratio whenever there are significant changes in your income or debt levels. This includes changes in employment, salary adjustments, taking on new debt, or paying off existing debt. Regular recalculations help you stay informed about your financial health and make timely adjustments to your financial strategies."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to assess your financial health and make informed decisions about future financial commitments. A low DTI ratio suggests financial stability, while a high ratio may indicate the need for debt reduction or income enhancement strategies. For personalized advice, consider consulting a financial advisor. Explore our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a> for more strategies."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "While the DTI ratio is a standard measure of financial health, other metrics like the credit score and net worth can provide additional insights. Each method has its pros and cons, and the choice depends on your specific financial goals and circumstances. For a comprehensive financial assessment, consider using multiple metrics in conjunction with the DTI ratio."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -380,117 +418,18 @@ export default function DebtToIncomeRatioCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is debt-to-income ratio calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A debt-to-income (DTI) ratio calculator is a tool that helps you determine the percentage of your income that is used to pay off debts. This ratio is crucial for assessing your financial health and eligibility for loans. A lower DTI ratio indicates better financial stability and a higher likelihood of loan approval.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding your DTI ratio can help you make informed financial decisions and improve your creditworthiness. For more information, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides a highly accurate estimate of your DTI ratio based on the inputs you provide. However, the accuracy depends on the accuracy of the data entered. Ensure that all income and debt figures are current and correct to obtain the most reliable results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex financial situations, consider consulting a financial advisor for personalized advice.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need to provide your gross monthly income and total monthly debt payments. Gross monthly income includes all sources of income before taxes and deductions, such as salary, bonuses, and rental income. Total monthly debt payments should cover all recurring obligations like loans, credit card payments, and other liabilities.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that the figures are accurate and up-to-date to get the most reliable results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for mortgage applications?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator is particularly useful for mortgage applications. Lenders often use the DTI ratio to assess your ability to manage monthly payments and repay loans. A lower DTI ratio increases your chances of mortgage approval and may help you secure better interest rates.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that all income and debt figures are accurate to get the most reliable results. For more mortgage-related calculations, explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include underestimating debt payments, overestimating income, and not accounting for all sources of income and debt. These errors can lead to inaccurate DTI ratios and misinformed financial decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, ensure that all figures are accurate and up-to-date. Regularly review and update your financial information to maintain a reliable DTI ratio.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your DTI ratio whenever there are significant changes in your income or debt levels. This includes changes in employment, salary adjustments, taking on new debt, or paying off existing debt.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Regular recalculations help you stay informed about your financial health and make timely adjustments to your financial strategies.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to assess your financial health and make informed decisions about future financial commitments. A low DTI ratio suggests financial stability, while a high ratio may indicate the need for debt reduction or income enhancement strategies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For personalized advice, consider consulting a financial advisor. Explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> for more strategies.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While the DTI ratio is a standard measure of financial health, other metrics like the credit score and net worth can provide additional insights. Each method has its pros and cons, and the choice depends on your specific financial goals and circumstances.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For a comprehensive financial assessment, consider using multiple metrics in conjunction with the DTI ratio.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -608,6 +547,7 @@ export default function DebtToIncomeRatioCalculator() {
       description="Calculate your Debt-to-Income (DTI) ratio. Essential for assessing mortgage eligibility and understanding your overall financial health."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Debt-to-Income Ratio Calculator" },
         { id: "formula", label: "Debt-to-Income Ratio Calculator Formula" },

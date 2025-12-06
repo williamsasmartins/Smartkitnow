@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function RothIraConversionCalculator() {
   // STATE
@@ -76,6 +77,43 @@ export default function RothIraConversionCalculator() {
   const handleReset = () => {
     setInputs({ traditionalIraBalance: "", expectedTaxRate: "", yearsUntilRetirement: "" });
   };
+
+  const faqs = [
+    {
+      question: "What is a Roth IRA Conversion Calculator and why is it important?",
+      answer: "A Roth IRA Conversion Calculator is a tool designed to help individuals assess the financial implications of converting a traditional IRA into a Roth IRA. This conversion is important because it allows for tax-free withdrawals in retirement, potentially leading to significant long-term savings. By understanding the tax cost now, users can make informed decisions about their retirement planning. The calculator provides a detailed analysis of the conversion's impact, helping users weigh the immediate tax cost against future benefits. For more details, explore our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The Roth IRA Conversion Calculator is designed to provide accurate estimates based on the inputs provided. However, its accuracy depends on the accuracy of the input data, such as the expected tax rate and growth rate. External factors, such as changes in tax laws or market conditions, can also affect the results. For the most accurate results, ensure that your inputs are up-to-date and consult with a financial advisor for personalized advice."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the Roth IRA Conversion Calculator, you will need the current balance of your traditional IRA, your expected tax rate at the time of conversion, and the number of years until you plan to retire. This information will allow the calculator to estimate the tax cost of the conversion and the future value of your Roth IRA. You can find your traditional IRA balance on your account statement, and your expected tax rate can be estimated based on your current income and tax bracket. For more guidance, consult with a financial advisor."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, the Roth IRA Conversion Calculator can be used for various scenarios, such as converting a portion of your traditional IRA or evaluating the impact of different tax rates. However, it may not account for all factors, such as changes in tax laws or unique financial situations. For complex scenarios, consider consulting with a financial advisor to ensure that all relevant factors are considered. The calculator provides a general estimate, but personalized advice may be necessary for specific situations."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include underestimating the tax cost of the conversion, overestimating the expected growth rate, and failing to consider changes in tax laws. These errors can lead to inaccurate estimates and potentially costly financial decisions. To avoid these mistakes, ensure that your inputs are accurate and up-to-date. Regularly review your financial situation and consult with a financial advisor for personalized advice."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate whenever there are significant changes in your financial situation, such as changes in income, tax rates, or investment performance. Regular recalculations can help you stay on track with your retirement planning and adjust your strategy as needed. Consider recalculating annually or whenever you experience a major life event that could impact your retirement planning. Staying proactive can help you make informed decisions and optimize your financial future."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results of the Roth IRA Conversion Calculator to inform your retirement planning strategy. Consider the tax cost and future value of the conversion when making decisions about your retirement accounts. If the conversion is beneficial, plan for the tax cost and adjust your budget accordingly. If you're unsure about the results, consult with a financial advisor for personalized advice. They can help you interpret the results and develop a comprehensive retirement plan. For more insights, explore our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to the Roth IRA Conversion Calculator include consulting with a financial advisor or using other financial planning tools. These alternatives can provide a more personalized analysis, taking into account unique factors and scenarios that the calculator may not cover. Consider using multiple tools and consulting with professionals to gain a comprehensive understanding of your retirement planning options. Each method has its pros and cons, and a combination of approaches may provide the most accurate and useful insights."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -390,117 +428,18 @@ export default function RothIraConversionCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is a Roth IRA Conversion Calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A Roth IRA Conversion Calculator is a tool designed to help individuals assess the financial implications of converting a traditional IRA into a Roth IRA. This conversion is important because it allows for tax-free withdrawals in retirement, potentially leading to significant long-term savings. By understanding the tax cost now, users can make informed decisions about their retirement planning.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              The calculator provides a detailed analysis of the conversion's impact, helping users weigh the immediate tax cost against future benefits. For more details, explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Roth IRA Conversion Calculator is designed to provide accurate estimates based on the inputs provided. However, its accuracy depends on the accuracy of the input data, such as the expected tax rate and growth rate. External factors, such as changes in tax laws or market conditions, can also affect the results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For the most accurate results, ensure that your inputs are up-to-date and consult with a financial advisor for personalized advice.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the Roth IRA Conversion Calculator, you will need the current balance of your traditional IRA, your expected tax rate at the time of conversion, and the number of years until you plan to retire. This information will allow the calculator to estimate the tax cost of the conversion and the future value of your Roth IRA.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can find your traditional IRA balance on your account statement, and your expected tax rate can be estimated based on your current income and tax bracket. For more guidance, consult with a financial advisor.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the Roth IRA Conversion Calculator can be used for various scenarios, such as converting a portion of your traditional IRA or evaluating the impact of different tax rates. However, it may not account for all factors, such as changes in tax laws or unique financial situations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex scenarios, consider consulting with a financial advisor to ensure that all relevant factors are considered. The calculator provides a general estimate, but personalized advice may be necessary for specific situations.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include underestimating the tax cost of the conversion, overestimating the expected growth rate, and failing to consider changes in tax laws. These errors can lead to inaccurate estimates and potentially costly financial decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, ensure that your inputs are accurate and up-to-date. Regularly review your financial situation and consult with a financial advisor for personalized advice.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate whenever there are significant changes in your financial situation, such as changes in income, tax rates, or investment performance. Regular recalculations can help you stay on track with your retirement planning and adjust your strategy as needed.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider recalculating annually or whenever you experience a major life event that could impact your retirement planning. Staying proactive can help you make informed decisions and optimize your financial future.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results of the Roth IRA Conversion Calculator to inform your retirement planning strategy. Consider the tax cost and future value of the conversion when making decisions about your retirement accounts. If the conversion is beneficial, plan for the tax cost and adjust your budget accordingly.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you're unsure about the results, consult with a financial advisor for personalized advice. They can help you interpret the results and develop a comprehensive retirement plan. For more insights, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to the Roth IRA Conversion Calculator include consulting with a financial advisor or using other financial planning tools. These alternatives can provide a more personalized analysis, taking into account unique factors and scenarios that the calculator may not cover.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider using multiple tools and consulting with professionals to gain a comprehensive understanding of your retirement planning options. Each method has its pros and cons, and a combination of approaches may provide the most accurate and useful insights.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -618,6 +557,7 @@ export default function RothIraConversionCalculator() {
       description="Analyze the tax implications of converting a traditional IRA to a Roth IRA. Determine if the tax cost now is worth the tax-free growth later."
       widget={widget}
       editorial={editorial}
+      faqJsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Roth IRA Conversion Calculator" },
         { id: "formula", label: "Roth IRA Conversion Calculator Formula" },

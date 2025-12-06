@@ -93,6 +93,43 @@ export default function DebtSnowballCalculator() {
     setDebts(updatedDebts);
   };
 
+  const faqs = [
+    {
+      question: "What is the debt snowball method?",
+      answer: "The debt snowball method is a debt reduction strategy where you pay off debt in order of smallest to largest balance, regardless of interest rate. You make minimum payments on all debts except the smallest one, which you attack with as much extra money as possible. Once the smallest debt is paid off, you roll the money you were paying on it into the next smallest debt."
+    },
+    {
+      question: "Debt Snowball vs. Debt Avalanche: Which is better?",
+      answer: "The debt snowball method (smallest balance first) is better for motivation and psychological wins, as you see debts disappear quickly. The <a href='/financial/loan-comparison' class='text-blue-600 dark:text-blue-400 hover:underline'>debt avalanche method</a> (highest interest rate first) saves more money on interest mathematically. Choose snowball if you need motivation, and avalanche if you want to minimize costs."
+    },
+    {
+      question: "Does the debt snowball method really work?",
+      answer: "Yes, research has shown that the debt snowball method is highly effective because it focuses on behavior modification. The quick wins of paying off small debts build momentum and confidence, encouraging people to stick with their debt repayment plan longer than those using purely mathematical approaches."
+    },
+    {
+      question: "Should I close credit card accounts after paying them off?",
+      answer: "Generally, you should keep old credit card accounts open, especially if they have no annual fee. Closing them can lower your average account age and increase your credit utilization ratio, both of which can negatively impact your credit score. Just put the card away and don't use it if you want to avoid new debt."
+    },
+    {
+      question: "Can I use the debt snowball for student loans?",
+      answer: "Yes, you can apply the debt snowball method to student loans. List your loans individually (not as a consolidated group) from smallest balance to largest. Pay minimums on all but the smallest, and attack the smallest one with extra payments. Check our <a href='/financial/student-loan-repayment' class='text-blue-600 dark:text-blue-400 hover:underline'>Student Loan Repayment Calculator</a> for more specifics."
+    },
+    {
+      question: "What if I have a 0% interest debt?",
+      answer: "In the strict debt snowball method, you would still list the 0% debt based on its balance size. However, some people choose to modify the plan to pay off high-interest debts before 0% debts to avoid interest charges when the promotional period ends. It's a personal choice between motivation and optimization."
+    },
+    {
+      question: "How do I find extra money for the snowball?",
+      answer: "To fuel your debt snowball, look for ways to increase the gap between your income and expenses. This could mean cutting discretionary spending (eating out, subscriptions), selling unused items, or increasing income through a side hustle or overtime. Every extra dollar speeds up the process."
+    },
+    {
+      question: "Is debt consolidation better than the snowball method?",
+      answer: "Debt consolidation combines multiple debts into one loan, ideally with a lower interest rate. It simplifies payments but doesn't necessarily change spending habits. The snowball method addresses the behavior behind the debt. You can use our <a href='/financial/debt-consolidation' class='text-blue-600 dark:text-blue-400 hover:underline'>Debt Consolidation Calculator</a> to compare the math."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
+
   // WIDGET JSX (200-250 LINES)
   const widget = (
     <Card className="p-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">

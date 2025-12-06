@@ -91,6 +91,41 @@ export default function CreditCardPayoffCalculator() {
     setInputs({ balance: "", interestRate: "", monthlyPayment: "" });
   };
 
+  const faqs = [
+    {
+      question: "How does the credit card payoff calculator work?",
+      answer: "The credit card payoff calculator uses your current balance, interest rate, and monthly payment amount to estimate how long it will take to become debt-free. It also calculates the total interest you will pay over that period. This helps you visualize the impact of increasing your monthly payments. For more detailed planning, try our <a href=\"/financial/budget-planner\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Budget Planner</a>."
+    },
+    {
+      question: "Why should I pay more than the minimum monthly payment?",
+      answer: "Paying only the minimum monthly payment mainly covers the interest charges, with very little going towards the principal balance. This results in a much longer payoff time and significantly higher total interest costs. By paying more than the minimum, you reduce the principal faster, saving money and time. Even a small increase can make a big difference."
+    },
+    {
+      question: "How does interest affect my payoff time?",
+      answer: "Interest is the cost of borrowing money. A higher interest rate means more of your monthly payment goes towards interest rather than reducing the principal. This prolongs the time it takes to pay off the debt. Lowering your interest rate, if possible, can accelerate your payoff timeline."
+    },
+    {
+      question: "Can I use this calculator for multiple credit cards?",
+      answer: "This calculator is designed for a single credit card. However, you can use it for each card individually to see the payoff time for each. For managing multiple debts, consider using our <a href=\"/financial/debt-snowball\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Debt Snowball Calculator</a> which is specifically designed for multiple debts."
+    },
+    {
+      question: "What is the debt snowball method?",
+      answer: "The debt snowball method is a strategy where you pay off your debts in order from smallest to largest balance, regardless of interest rate. This creates a psychological win early on, motivating you to stick to the plan. As you pay off each debt, you roll the payment amount into the next debt, creating a 'snowball' effect."
+    },
+    {
+      question: "How can I lower my interest rate?",
+      answer: "You can try negotiating with your credit card issuer for a lower rate, especially if you have a good payment history. Alternatively, you might qualify for a balance transfer credit card with a 0% introductory APR period. This can temporarily stop interest accumulation, allowing your payments to go entirely towards the principal."
+    },
+    {
+      question: "What happens if I miss a payment?",
+      answer: "Missing a payment can result in late fees, a penalty APR (which is significantly higher than your regular rate), and damage to your credit score. It's crucial to make at least the minimum payment on time every month. setting up automatic payments can help ensure you never miss a due date."
+    },
+    {
+      question: "Is it better to consolidate my credit card debt?",
+      answer: "Debt consolidation involves taking out a new loan to pay off multiple credit cards. This can be beneficial if the new loan has a lower interest rate than your credit cards. It simplifies your finances by combining multiple payments into one. Use our <a href=\"/financial/debt-consolidation\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Debt Consolidation Calculator</a> to see if this option saves you money."
+    }
+  ];
+
   const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)

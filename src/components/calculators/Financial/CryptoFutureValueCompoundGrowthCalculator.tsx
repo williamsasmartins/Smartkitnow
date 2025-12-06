@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CryptoFutureValueCompoundGrowthCalculator() {
   // STATE
@@ -83,6 +84,43 @@ export default function CryptoFutureValueCompoundGrowthCalculator() {
   const handleReset = () => {
     setInputs({ initialInvestment: "", annualInterestRate: "", years: "" });
   };
+
+  const faqs = [
+    {
+      question: "What is future value & compound growth estimator and why is it important?",
+      answer: "The Future Value & Compound Growth Estimator is a tool that calculates the potential future value of an investment based on compound interest. It is crucial for investors looking to understand how their investments might grow over time, allowing them to make informed decisions about their financial strategies. By projecting future values, investors can plan for long-term goals such as retirement or major purchases. This estimator is particularly useful in volatile markets, where understanding potential outcomes can guide investment choices."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides a high level of accuracy based on the inputs provided, using a standard compound interest formula. However, the accuracy depends on the precision of the input values, such as the interest rate and investment duration. External factors like market changes and economic conditions can also affect the actual outcomes, so it's advisable to use this tool as a guide rather than a guarantee. For the best results, regularly update your inputs to reflect current market conditions and consult with financial advisors for personalized advice."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need the initial investment amount, the expected annual interest rate, and the number of years you plan to hold the investment. The initial investment is the starting amount you plan to invest. The annual interest rate should reflect realistic market conditions and can often be found in investment prospectuses or financial news. The investment duration is the period over which you expect to hold the investment. Ensure that these inputs are as accurate as possible to obtain reliable results."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, this calculator can be used for a variety of scenarios, including retirement planning, education savings, and long-term investment strategies. It is versatile and can accommodate different interest rates and investment durations. However, it may not account for specific factors such as taxes, fees, or inflation, which can affect the actual outcomes. For scenarios involving complex financial products or significant market volatility, consider consulting with a financial advisor to complement the insights provided by this tool."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using unrealistic interest rates, not accounting for fees or taxes, and ignoring inflation. These errors can lead to overestimating the future value of investments. Additionally, failing to update inputs regularly to reflect changes in market conditions or personal financial situations can result in inaccurate projections. To avoid these mistakes, ensure that your inputs are realistic and regularly reviewed. Consider external factors that might impact your investment and adjust your calculations accordingly."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculation should be done regularly, especially when there are significant changes in market conditions, interest rates, or personal financial goals. At a minimum, consider recalculating annually to ensure your projections remain accurate and relevant. Additionally, recalculate whenever you make changes to your investment strategy or when significant life events occur. Keeping your calculations up-to-date helps you stay informed and make timely adjustments to your investment plan, maximizing your financial outcomes."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to inform your investment strategy and financial planning. The projected future value can help you assess whether your current investment approach aligns with your long-term goals. If the results indicate that your investments may not meet your objectives, consider adjusting your strategy by increasing your investment amount, seeking higher interest rates, or extending your investment duration. For personalized advice, consult with a financial advisor who can provide tailored recommendations based on your unique financial situation."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to the compound interest calculation include using simple interest formulas or financial modeling software for more complex scenarios. Simple interest calculations may be appropriate for short-term investments or loans, where interest is not compounded. Financial modeling software can provide more detailed projections by incorporating variables such as taxes, fees, and inflation. Each method has its pros and cons, and the choice depends on the complexity of your financial situation and your specific needs."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -396,123 +434,23 @@ export default function CryptoFutureValueCompoundGrowthCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is future value & compound growth estimator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Future Value & Compound Growth Estimator is a tool that calculates the potential future value of an investment based on compound interest. It is crucial for investors looking to understand how their investments might grow over time, allowing them to make informed decisions about their financial strategies. By projecting future values, investors can plan for long-term goals such as retirement or major purchases.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              This estimator is particularly useful in volatile markets, where understanding potential outcomes can guide investment choices. For more on investment planning, see our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides a high level of accuracy based on the inputs provided, using a standard compound interest formula. However, the accuracy depends on the precision of the input values, such as the interest rate and investment duration. External factors like market changes and economic conditions can also affect the actual outcomes, so it's advisable to use this tool as a guide rather than a guarantee.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For the best results, regularly update your inputs to reflect current market conditions and consult with financial advisors for personalized advice.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need the initial investment amount, the expected annual interest rate, and the number of years you plan to hold the investment. The initial investment is the starting amount you plan to invest. The annual interest rate should reflect realistic market conditions and can often be found in investment prospectuses or financial news. The investment duration is the period over which you expect to hold the investment.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that these inputs are as accurate as possible to obtain reliable results. Regularly review and adjust these values to reflect any changes in your investment strategy or market conditions.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for a variety of scenarios, including retirement planning, education savings, and long-term investment strategies. It is versatile and can accommodate different interest rates and investment durations. However, it may not account for specific factors such as taxes, fees, or inflation, which can affect the actual outcomes.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For scenarios involving complex financial products or significant market volatility, consider consulting with a financial advisor to complement the insights provided by this tool.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using unrealistic interest rates, not accounting for fees or taxes, and ignoring inflation. These errors can lead to overestimating the future value of investments. Additionally, failing to update inputs regularly to reflect changes in market conditions or personal financial situations can result in inaccurate projections.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, ensure that your inputs are realistic and regularly reviewed. Consider external factors that might impact your investment and adjust your calculations accordingly.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculation should be done regularly, especially when there are significant changes in market conditions, interest rates, or personal financial goals. At a minimum, consider recalculating annually to ensure your projections remain accurate and relevant. Additionally, recalculate whenever you make changes to your investment strategy or when significant life events occur.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Keeping your calculations up-to-date helps you stay informed and make timely adjustments to your investment plan, maximizing your financial outcomes.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to inform your investment strategy and financial planning. The projected future value can help you assess whether your current investment approach aligns with your long-term goals. If the results indicate that your investments may not meet your objectives, consider adjusting your strategy by increasing your investment amount, seeking higher interest rates, or extending your investment duration.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For personalized advice, consult with a financial advisor who can provide tailored recommendations based on your unique financial situation. Explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a> for additional insights.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to the compound interest calculation include using simple interest formulas or financial modeling software for more complex scenarios. Simple interest calculations may be appropriate for short-term investments or loans, where interest is not compounded. Financial modeling software can provide more detailed projections by incorporating variables such as taxes, fees, and inflation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Each method has its pros and cons, and the choice depends on the complexity of your financial situation and your specific needs. For comprehensive financial planning, consider combining multiple methods to gain a holistic view of your investment potential.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+                {faq.answer}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -646,6 +584,7 @@ export default function CryptoFutureValueCompoundGrowthCalculator() {
         ],
         title: "Calculation Formula"
       }}
+      jsonLd={faqJsonLd}
       example={{
         title: "Example Calculation",
         scenario: "Imagine you have an initial investment of $5,000 with an annual interest rate of 5% over 10 years.",

@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function FiatToCryptoPurchaseCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is fiat to crypto purchase calculator and why is it important?",
+      answer: "The fiat to crypto purchase calculator is a tool designed to help users determine how much cryptocurrency they can buy with a specific amount of fiat currency. It is important because it provides a clear and accurate estimate, taking into account current market prices and transaction fees. This helps users plan their investments and make informed decisions. By using this calculator, you can avoid overpaying for crypto and ensure that your investment aligns with your financial goals. For more tools, visit our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is highly accurate, provided that the input values are current and precise. Factors such as real-time crypto prices and transaction fees are crucial for accuracy. However, market volatility can affect the final results, so it's advisable to verify the inputs before making any financial decisions. For best results, update the inputs regularly and cross-check with other financial tools if needed."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need the following information: the total amount of fiat currency you plan to spend, the current market price of the cryptocurrency you wish to purchase, and any transaction fees that may apply. This information can usually be found on the exchange or platform you plan to use for your purchase. Ensure that the data is up-to-date to get the most accurate results. If you're unsure about any values, consult with your financial advisor or the platform's support team."
+    },
+    {
+      question: "Can I use this calculator for [specific scenario]?",
+      answer: "Yes, this calculator can be used for various scenarios involving fiat to crypto purchases. Whether you're investing a small amount or planning a large-scale purchase, the calculator provides the necessary insights. However, for complex scenarios involving multiple currencies or exchanges, additional calculations may be required. For specific advice tailored to your situation, consider consulting with a financial advisor or using specialized financial software."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated crypto prices, neglecting to account for transaction fees, and entering incorrect fiat amounts. These errors can lead to inaccurate calculations and potentially costly investment decisions. Always verify your inputs and ensure they reflect the current market conditions. Double-checking your data and using multiple sources for verification can help avoid these pitfalls."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculation should be done whenever there are significant changes in the crypto market, such as price fluctuations or changes in transaction fees. Regular recalculations ensure that your investment strategy remains aligned with current market conditions. Consider setting a schedule for recalculations, such as weekly or monthly, depending on your investment goals and market activity."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to inform your investment decisions. The calculated crypto amount can help you determine whether to proceed with a purchase or adjust your strategy. If the results align with your financial goals, you can proceed confidently. Otherwise, consider revising your inputs or exploring alternative investment options. For further guidance, explore our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a> for additional financial insights."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using financial software or consulting with a financial advisor for personalized advice. These methods can provide more comprehensive insights, especially for complex investment scenarios. However, they may come with additional costs or require more time. Consider the pros and cons of each alternative and choose the one that best suits your needs and resources."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -396,123 +434,23 @@ export default function FiatToCryptoPurchaseCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
-        
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is fiat to crypto purchase calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The fiat to crypto purchase calculator is a tool designed to help users determine how much cryptocurrency they can buy with a specific amount of fiat currency. It is important because it provides a clear and accurate estimate, taking into account current market prices and transaction fees. This helps users plan their investments and make informed decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this calculator, you can avoid overpaying for crypto and ensure that your investment aligns with your financial goals. For more tools, visit our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is highly accurate, provided that the input values are current and precise. Factors such as real-time crypto prices and transaction fees are crucial for accuracy. However, market volatility can affect the final results, so it's advisable to verify the inputs before making any financial decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For best results, update the inputs regularly and cross-check with other financial tools if needed.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need the following information: the total amount of fiat currency you plan to spend, the current market price of the cryptocurrency you wish to purchase, and any transaction fees that may apply. This information can usually be found on the exchange or platform you plan to use for your purchase.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that the data is up-to-date to get the most accurate results. If you're unsure about any values, consult with your financial advisor or the platform's support team.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for [specific scenario]?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for various scenarios involving fiat to crypto purchases. Whether you're investing a small amount or planning a large-scale purchase, the calculator provides the necessary insights. However, for complex scenarios involving multiple currencies or exchanges, additional calculations may be required.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For specific advice tailored to your situation, consider consulting with a financial advisor or using specialized financial software.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated crypto prices, neglecting to account for transaction fees, and entering incorrect fiat amounts. These errors can lead to inaccurate calculations and potentially costly investment decisions. Always verify your inputs and ensure they reflect the current market conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Double-checking your data and using multiple sources for verification can help avoid these pitfalls.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculation should be done whenever there are significant changes in the crypto market, such as price fluctuations or changes in transaction fees. Regular recalculations ensure that your investment strategy remains aligned with current market conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider setting a schedule for recalculations, such as weekly or monthly, depending on your investment goals and market activity.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to inform your investment decisions. The calculated crypto amount can help you determine whether to proceed with a purchase or adjust your strategy. If the results align with your financial goals, you can proceed confidently. Otherwise, consider revising your inputs or exploring alternative investment options.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further guidance, explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a> for additional financial insights.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using financial software or consulting with a financial advisor for personalized advice. These methods can provide more comprehensive insights, especially for complex investment scenarios. However, they may come with additional costs or require more time.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider the pros and cons of each alternative and choose the one that best suits your needs and resources.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 

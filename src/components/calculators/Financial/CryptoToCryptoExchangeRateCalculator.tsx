@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CryptoToCryptoExchangeRateCalculator() {
   // STATE
@@ -26,6 +27,43 @@ export default function CryptoToCryptoExchangeRateCalculator() {
       maximumFractionDigits: 2,
     }).format(value);
   };
+
+  const faqs = [
+    {
+      question: "What is crypto to crypto exchange rate calculator and why is it important?",
+      answer: "A crypto to crypto exchange rate calculator is a tool that helps users determine the exchange rate between two different cryptocurrencies. This is important for traders and investors who need to know the value of one cryptocurrency in terms of another to make informed trading decisions. By providing accurate and up-to-date exchange rates, this calculator helps users optimize their trades and avoid financial losses. For more on financial tools, check out our <a href=\"/financial/interest-only-loan\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The calculator is designed to provide highly accurate results based on the latest exchange rates. However, the accuracy can be affected by market volatility, transaction fees, and the source of the exchange rate data. It's always a good idea to cross-check with multiple sources. For critical transactions, consider consulting with a financial advisor or using professional trading platforms that offer real-time data."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the calculator, you will need the amount of cryptocurrency you wish to exchange, the current exchange rate between the two cryptocurrencies, and any transaction fees that may apply. This information is typically available on the exchange platform you are using. Ensure that the exchange rate is up-to-date and that you account for all potential fees to get the most accurate results."
+    },
+    {
+      question: "Can I use this calculator for [specific scenario]?",
+      answer: "Yes, this calculator can be used for a variety of scenarios, including trading between major cryptocurrencies like Bitcoin and Ethereum, as well as less common altcoins. However, ensure that you have accurate exchange rate data and consider any specific conditions that might apply to your scenario. If you're dealing with highly volatile or illiquid cryptocurrencies, additional caution is advised."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated exchange rates, not accounting for transaction fees, and underestimating the impact of market volatility. These errors can lead to inaccurate calculations and potential financial losses. To avoid these mistakes, always verify your data and consider using multiple sources for exchange rates and fees."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculation is recommended whenever there is a significant change in the exchange rate or if you are planning a new transaction. In volatile markets, frequent recalculations can help you stay on top of price movements. Set alerts for major market changes and review your calculations regularly to ensure accuracy."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to make informed trading decisions. The net exchange value can help you determine if a trade is profitable after accounting for fees. If the results are not favorable, consider adjusting your strategy or waiting for better market conditions. For more financial planning tools, visit our <a href=\"/financial/refinance-savings\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using professional trading platforms that offer integrated calculators and real-time data. These platforms often provide additional features such as charting tools and market analysis. While these alternatives can be more expensive, they offer a comprehensive solution for active traders."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // CALCULATIONS
   const results = useMemo(() => {
@@ -399,117 +437,18 @@ export default function CryptoToCryptoExchangeRateCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is crypto to crypto exchange rate calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A crypto to crypto exchange rate calculator is a tool that helps users determine the exchange rate between two different cryptocurrencies. This is important for traders and investors who need to know the value of one cryptocurrency in terms of another to make informed trading decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By providing accurate and up-to-date exchange rates, this calculator helps users optimize their trades and avoid financial losses. For more on financial tools, check out our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The calculator is designed to provide highly accurate results based on the latest exchange rates. However, the accuracy can be affected by market volatility, transaction fees, and the source of the exchange rate data. It's always a good idea to cross-check with multiple sources.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For critical transactions, consider consulting with a financial advisor or using professional trading platforms that offer real-time data.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the calculator, you will need the amount of cryptocurrency you wish to exchange, the current exchange rate between the two cryptocurrencies, and any transaction fees that may apply. This information is typically available on the exchange platform you are using.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that the exchange rate is up-to-date and that you account for all potential fees to get the most accurate results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for [specific scenario]?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for a variety of scenarios, including trading between major cryptocurrencies like Bitcoin and Ethereum, as well as less common altcoins. However, ensure that you have accurate exchange rate data and consider any specific conditions that might apply to your scenario.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you're dealing with highly volatile or illiquid cryptocurrencies, additional caution is advised.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated exchange rates, not accounting for transaction fees, and underestimating the impact of market volatility. These errors can lead to inaccurate calculations and potential financial losses.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, always verify your data and consider using multiple sources for exchange rates and fees.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculation is recommended whenever there is a significant change in the exchange rate or if you are planning a new transaction. In volatile markets, frequent recalculations can help you stay on top of price movements.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Set alerts for major market changes and review your calculations regularly to ensure accuracy.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to make informed trading decisions. The net exchange value can help you determine if a trade is profitable after accounting for fees. If the results are not favorable, consider adjusting your strategy or waiting for better market conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more financial planning tools, visit our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using professional trading platforms that offer integrated calculators and real-time data. These platforms often provide additional features such as charting tools and market analysis.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              While these alternatives can be more expensive, they offer a comprehensive solution for active traders.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -625,6 +564,7 @@ export default function CryptoToCryptoExchangeRateCalculator() {
     <CalculatorVerticalLayout
       title="Crypto to Crypto Exchange Rate Calculator"
       description="Calculate exchange rates between different cryptocurrencies. Determine swap ratios for altcoins and tokens quickly."
+      jsonLd={faqJsonLd}
       widget={widget}
       editorial={editorial}
       onThisPage={[

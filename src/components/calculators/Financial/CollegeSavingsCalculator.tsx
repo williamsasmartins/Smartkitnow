@@ -634,7 +634,7 @@ export default function CollegeSavingsCalculator() {
     <CalculatorVerticalLayout
       title="College Savings Calculator"
       description="Plan for college expenses. Estimate how much you need to save for tuition and education costs based on projected inflation."
-      faqJsonLd={faqJsonLd}
+      jsonLd={faqJsonLd}
       widget={widget}
       editorial={editorial}
       onThisPage={[

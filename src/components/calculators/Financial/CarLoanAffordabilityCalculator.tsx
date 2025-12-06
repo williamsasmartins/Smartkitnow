@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "../../../hooks/useFaqJsonLd";
 
 export default function CarLoanAffordabilityCalculator() {
   // STATE
@@ -16,6 +17,43 @@ export default function CarLoanAffordabilityCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is car loan affordability calculator and why is it important?",
+      answer: "A car loan affordability calculator helps you determine the maximum car price you can afford based on your financial situation. It considers your monthly budget, down payment, and loan term to provide a realistic assessment of affordability. This tool is crucial for preventing financial overextension and ensuring that you can comfortably manage your car payments alongside other expenses.<br><br>Using this calculator, you can make informed decisions about car purchases, avoiding common pitfalls like overestimating your financial capacity. For more on financial planning, visit our <a href=\"/financial/financial-planning-guide\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Financial Planning Guide</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The calculator provides a high level of accuracy based on the inputs you provide. However, its accuracy depends on the precision of the data entered, such as your monthly budget and loan term. External factors like interest rate fluctuations and unexpected expenses can also affect the results.<br><br>For the most accurate results, regularly update your inputs to reflect any changes in your financial situation. Consider consulting a financial advisor for personalized advice."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need your monthly budget for car payments, the amount you can afford as a down payment, and the desired loan term in months. These inputs are crucial for calculating the maximum car price you can afford.<br><br>Gather this information from your financial records and ensure it's up-to-date. Accurate data leads to more reliable results, helping you make informed decisions about your car purchase."
+    },
+    {
+      question: "Can I use this calculator for leasing a car?",
+      answer: "This calculator is primarily designed for car purchases, not leases. Leasing involves different financial considerations, such as residual value and mileage limits, which are not accounted for in this tool. However, you can use it to estimate affordability if you consider the lease payments as part of your monthly budget.<br><br>For a more accurate assessment of lease affordability, consider using a dedicated lease calculator or consult a financial advisor. For more on leasing, visit our <a href=\"/financial/car-leasing-guide\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Car Leasing Guide</a>."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include underestimating additional costs like insurance and maintenance, overestimating monthly budgets, and choosing loan terms that are too long. These errors can lead to financial strain and difficulty in managing car payments.<br><br>To avoid these pitfalls, ensure your budget is realistic and consider all associated costs. Regularly review your financial situation to ensure your car loan remains affordable. For more tips, see our <a href=\"/financial/common-mistakes-guide\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Common Mistakes Guide</a>."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculate whenever there is a significant change in your financial situation, such as a change in income, expenses, or interest rates. Regular recalculations ensure that your car loan remains affordable and aligned with your financial goals.<br><br>As a general rule, review your calculations at least once a year or whenever you plan a major financial decision. For more on financial reviews, visit our <a href=\"/financial/financial-review-guide\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Financial Review Guide</a>."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to guide your car purchase decisions. Compare the maximum car price with the prices of cars you are interested in to ensure they fit within your budget. If the results indicate that a car is unaffordable, consider adjusting your budget, down payment, or loan term.<br><br>If you need further assistance, consult a financial advisor for personalized advice. For more on interpreting results, see our <a href=\"/financial/result-interpretation-guide\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Result Interpretation Guide</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include consulting with a financial advisor or using different financial models that consider additional variables like inflation or opportunity costs. Each method has its pros and cons, and the best choice depends on your specific needs and financial situation.<br><br>For a comprehensive analysis, consider combining multiple methods. For more on alternative methods, visit our <a href=\"/financial/alternative-methods-guide\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Alternative Methods Guide</a>."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -404,117 +442,18 @@ export default function CarLoanAffordabilityCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is car loan affordability calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A car loan affordability calculator helps you determine the maximum car price you can afford based on your financial situation. It considers your monthly budget, down payment, and loan term to provide a realistic assessment of affordability. This tool is crucial for preventing financial overextension and ensuring that you can comfortably manage your car payments alongside other expenses.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Using this calculator, you can make informed decisions about car purchases, avoiding common pitfalls like overestimating your financial capacity. For more on financial planning, visit our <a href="/financial/financial-planning-guide" className="text-blue-600 dark:text-blue-400 hover:underline">Financial Planning Guide</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The calculator provides a high level of accuracy based on the inputs you provide. However, its accuracy depends on the precision of the data entered, such as your monthly budget and loan term. External factors like interest rate fluctuations and unexpected expenses can also affect the results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For the most accurate results, regularly update your inputs to reflect any changes in your financial situation. Consider consulting a financial advisor for personalized advice.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need your monthly budget for car payments, the amount you can afford as a down payment, and the desired loan term in months. These inputs are crucial for calculating the maximum car price you can afford.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Gather this information from your financial records and ensure it's up-to-date. Accurate data leads to more reliable results, helping you make informed decisions about your car purchase.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for leasing a car?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is primarily designed for car purchases, not leases. Leasing involves different financial considerations, such as residual value and mileage limits, which are not accounted for in this tool. However, you can use it to estimate affordability if you consider the lease payments as part of your monthly budget.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For a more accurate assessment of lease affordability, consider using a dedicated lease calculator or consult a financial advisor. For more on leasing, visit our <a href="/financial/car-leasing-guide" className="text-blue-600 dark:text-blue-400 hover:underline">Car Leasing Guide</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include underestimating additional costs like insurance and maintenance, overestimating monthly budgets, and choosing loan terms that are too long. These errors can lead to financial strain and difficulty in managing car payments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these pitfalls, ensure your budget is realistic and consider all associated costs. Regularly review your financial situation to ensure your car loan remains affordable. For more tips, see our <a href="/financial/common-mistakes-guide" className="text-blue-600 dark:text-blue-400 hover:underline">Common Mistakes Guide</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculate whenever there is a significant change in your financial situation, such as a change in income, expenses, or interest rates. Regular recalculations ensure that your car loan remains affordable and aligned with your financial goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              As a general rule, review your calculations at least once a year or whenever you plan a major financial decision. For more on financial reviews, visit our <a href="/financial/financial-review-guide" className="text-blue-600 dark:text-blue-400 hover:underline">Financial Review Guide</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to guide your car purchase decisions. Compare the maximum car price with the prices of cars you are interested in to ensure they fit within your budget. If the results indicate that a car is unaffordable, consider adjusting your budget, down payment, or loan term.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you need further assistance, consult a financial advisor for personalized advice. For more on interpreting results, see our <a href="/financial/result-interpretation-guide" className="text-blue-600 dark:text-blue-400 hover:underline">Result Interpretation Guide</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include consulting with a financial advisor or using different financial models that consider additional variables like inflation or opportunity costs. Each method has its pros and cons, and the best choice depends on your specific needs and financial situation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For a comprehensive analysis, consider combining multiple methods. For more on alternative methods, visit our <a href="/financial/alternative-methods-guide" className="text-blue-600 dark:text-blue-400 hover:underline">Alternative Methods Guide</a>.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -632,6 +571,7 @@ export default function CarLoanAffordabilityCalculator() {
       description="Find out how much car you can afford. Input your monthly budget and down payment to determine your maximum vehicle price."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Car Loan Affordability Calculator" },
         { id: "formula", label: "Car Loan Affordability Calculator Formula" },

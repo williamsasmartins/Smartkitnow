@@ -20,6 +20,7 @@ import {
   HelpCircle,
   BookOpen,
 } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 interface AmortizationRow {
   month: number;
@@ -162,6 +163,27 @@ export default function LoanPaymentCalculator() {
     });
   };
 
+  const faqs = [
+    {
+      question: "Does this calculator include taxes, insurance, or fees?",
+      answer: "No. This tool focuses on the core <strong>principal and interest</strong> payment for a fixed-rate, fully amortizing loan. Real-world payments may also include taxes, insurance, origination fees, late fees, or other charges depending on the type of loan and your lender's policies."
+    },
+    {
+      question: "What happens if I make extra payments?",
+      answer: "Extra principal payments reduce your balance faster, which lowers the amount of interest that accrues each month. The result is an earlier payoff date and less total interest paid. This version of the calculator does not model extra payments, but you can still experiment by shortening the term or lowering the loan amount to approximate their impact."
+    },
+    {
+      question: "Can I use this for credit card debt?",
+      answer: "You can approximate revolving credit scenarios, but credit cards usually charge interest daily and payments may not be fixed. For precise projections, look for a credit card–specific payoff calculator, but this tool is still useful for rough planning and \"what if\" scenarios."
+    },
+    {
+      question: "Is this financial advice?",
+      answer: "No. The calculator is for educational and planning purposes only and does not replace professional financial advice. Always review loan documents carefully and consult a qualified financial professional or credit counselor if you are unsure which option is best for your situation."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
+
   const hasValidResult = results.monthlyPayment > 0 && results.amortizationSchedule.length > 0;
 
   const displaySchedule = showFullSchedule
@@ -171,6 +193,7 @@ export default function LoanPaymentCalculator() {
   return (
     <CalculatorVerticalLayout
       title="Loan Payment Calculator"
+      jsonLd={faqJsonLd}
       description="Estimate your monthly loan payment, total interest, and payoff date for personal loans, auto loans, or other amortizing debt. Enter the principal, interest rate, and term to see a full payment schedule."
       onThisPage={[
         { id: "how-to-use", label: "How to use this calculator" },
@@ -638,54 +661,17 @@ export default function LoanPaymentCalculator() {
             </h2>
 
             <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-                  Does this calculator include taxes, insurance, or fees?
-                </h3>
-                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                  No. This tool focuses on the core <strong>principal and interest</strong> payment
-                  for a fixed-rate, fully amortizing loan. Real-world payments may also include
-                  taxes, insurance, origination fees, late fees, or other charges depending on the
-                  type of loan and your lender&apos;s policies.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-                  What happens if I make extra payments?
-                </h3>
-                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                  Extra principal payments reduce your balance faster, which lowers the amount of
-                  interest that accrues each month. The result is an earlier payoff date and less
-                  total interest paid. This version of the calculator does not model extra
-                  payments, but you can still experiment by shortening the term or lowering the loan
-                  amount to approximate their impact.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-                  Can I use this for credit card debt?
-                </h3>
-                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                  You can approximate revolving credit scenarios, but credit cards usually charge
-                  interest daily and payments may not be fixed. For precise projections, look for a
-                  credit card–specific payoff calculator, but this tool is still useful for rough
-                  planning and &quot;what if&quot; scenarios.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-                  Is this financial advice?
-                </h3>
-                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                  No. The calculator is for educational and planning purposes only and does not
-                  replace professional financial advice. Always review loan documents carefully and
-                  consult a qualified financial professional or credit counselor if you are unsure
-                  which option is best for your situation.
-                </p>
-              </div>
+              {faqs.map((faq, index) => (
+                <div key={index}>
+                  <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
+                    {faq.question}
+                  </h3>
+                  <div 
+                    className="text-slate-700 dark:text-slate-300 leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: faq.answer }}
+                  />
+                </div>
+              ))}
             </div>
           </section>
 

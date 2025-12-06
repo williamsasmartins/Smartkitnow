@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CapitalGainsTaxEstimatorCalculator() {
   // STATE
@@ -84,6 +85,43 @@ export default function CapitalGainsTaxEstimatorCalculator() {
   const handleReset = () => {
     setInputs({ purchasePrice: "", salePrice: "", holdingPeriod: "" });
   };
+
+  const faqs = [
+    {
+      question: "What is capital gains tax estimator and why is it important?",
+      answer: "The capital gains tax estimator is a tool designed to calculate the tax liability arising from the sale of assets, such as stocks or cryptocurrencies. It distinguishes between short-term and long-term capital gains, applying the appropriate tax rates based on the holding period. This estimator is important because it helps investors understand their potential tax obligations, allowing for better financial planning and decision-making. By using this tool, you can avoid unexpected tax bills and optimize your investment strategy. For more financial tools, check out our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is designed to provide accurate estimates based on the inputs provided. However, its accuracy depends on the accuracy of the input data. Factors such as changes in tax laws or incorrect input values can affect the results. It's always advisable to consult a tax professional for personalized advice, especially for complex situations. Use this calculator as a guide, and ensure your inputs are precise to get the best results."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need the purchase price of the asset, the sale price, and the holding period in days. The purchase price is the amount you paid to acquire the asset, while the sale price is the amount you received from selling it. The holding period is the duration for which you held the asset before selling it. Ensure you have accurate records of these values to get precise results. This information is typically available in your transaction records or brokerage statements."
+    },
+    {
+      question: "Can I use this calculator for cryptocurrency transactions?",
+      answer: "Yes, this calculator can be used for cryptocurrency transactions. Cryptocurrencies are treated as property for tax purposes, and capital gains tax applies to their sale. Ensure you have accurate records of your purchase and sale prices, as well as the holding period, to use this calculator effectively. Keep in mind that tax regulations for cryptocurrencies can vary by jurisdiction, so it's important to stay informed about local laws."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using incorrect purchase or sale prices, miscalculating the holding period, and not accounting for changes in tax laws. These errors can lead to inaccurate tax estimates and potential compliance issues. To avoid these mistakes, double-check your records and stay updated on tax regulations. Consider consulting a tax professional for complex situations."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculate your capital gains tax whenever you sell an asset or when there are significant changes in tax laws. Regular recalculations ensure that you have up-to-date estimates and can plan your finances accordingly. It's also a good practice to review your tax situation annually, especially if you have a diverse investment portfolio."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to plan your tax payments and adjust your investment strategy. Understanding your tax liability helps you set aside the necessary funds and avoid surprises at tax time. If your results indicate a high tax liability, consider strategies to minimize it, such as holding assets longer or offsetting gains with losses. For more strategies on managing your finances, explore our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to this calculation method include using professional tax software or consulting with a tax advisor. These options can provide more personalized advice and handle complex scenarios that a basic calculator might not cover. Consider these alternatives if you have a large or complex portfolio, or if you're unsure about specific tax rules."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -407,117 +445,18 @@ export default function CapitalGainsTaxEstimatorCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is capital gains tax estimator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The capital gains tax estimator is a tool designed to calculate the tax liability arising from the sale of assets, such as stocks or cryptocurrencies. It distinguishes between short-term and long-term capital gains, applying the appropriate tax rates based on the holding period. This estimator is important because it helps investors understand their potential tax obligations, allowing for better financial planning and decision-making.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this tool, you can avoid unexpected tax bills and optimize your investment strategy. For more financial tools, check out our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is designed to provide accurate estimates based on the inputs provided. However, its accuracy depends on the accuracy of the input data. Factors such as changes in tax laws or incorrect input values can affect the results. It's always advisable to consult a tax professional for personalized advice, especially for complex situations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Use this calculator as a guide, and ensure your inputs are precise to get the best results.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need the purchase price of the asset, the sale price, and the holding period in days. The purchase price is the amount you paid to acquire the asset, while the sale price is the amount you received from selling it. The holding period is the duration for which you held the asset before selling it.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure you have accurate records of these values to get precise results. This information is typically available in your transaction records or brokerage statements.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for cryptocurrency transactions?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for cryptocurrency transactions. Cryptocurrencies are treated as property for tax purposes, and capital gains tax applies to their sale. Ensure you have accurate records of your purchase and sale prices, as well as the holding period, to use this calculator effectively.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Keep in mind that tax regulations for cryptocurrencies can vary by jurisdiction, so it's important to stay informed about local laws.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using incorrect purchase or sale prices, miscalculating the holding period, and not accounting for changes in tax laws. These errors can lead to inaccurate tax estimates and potential compliance issues.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, double-check your records and stay updated on tax regulations. Consider consulting a tax professional for complex situations.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculate your capital gains tax whenever you sell an asset or when there are significant changes in tax laws. Regular recalculations ensure that you have up-to-date estimates and can plan your finances accordingly.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              It's also a good practice to review your tax situation annually, especially if you have a diverse investment portfolio.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to plan your tax payments and adjust your investment strategy. Understanding your tax liability helps you set aside the necessary funds and avoid surprises at tax time. If your results indicate a high tax liability, consider strategies to minimize it, such as holding assets longer or offsetting gains with losses.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more strategies on managing your finances, explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to this calculation method include using professional tax software or consulting with a tax advisor. These options can provide more personalized advice and handle complex scenarios that a basic calculator might not cover.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider these alternatives if you have a large or complex portfolio, or if you're unsure about specific tax rules.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -635,6 +574,7 @@ export default function CapitalGainsTaxEstimatorCalculator() {
       description="Calculate capital gains tax on crypto sales. Determine short-term vs long-term tax obligations based on holding period."
       widget={widget}
       editorial={editorial}
+      faqJsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Capital Gains Tax Estimator" },
         { id: "formula", label: "Capital Gains Tax Estimator Formula" },

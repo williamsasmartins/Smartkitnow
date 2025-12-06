@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function DcaStrategyAnalyzerCryptoCalculator() {
   // STATE
@@ -26,6 +27,43 @@ export default function DcaStrategyAnalyzerCryptoCalculator() {
       maximumFractionDigits: 2,
     }).format(value);
   };
+
+  const faqs = [
+    {
+      question: "What is DCA Strategy Analyzer (Crypto) and why is it important?",
+      answer: "The DCA Strategy Analyzer (Crypto) is a tool designed to help investors evaluate the effectiveness of their Dollar Cost Averaging strategy in the cryptocurrency market. It provides insights into historical performance and potential risk reduction of recurring buys, allowing investors to make informed decisions about their investment plans. By using this analyzer, investors can optimize their DCA strategy, ensuring they are maximizing their investment potential while minimizing risks. For more information, explore our <a href=\"/financial/refinance-savings\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The DCA Strategy Analyzer is designed to provide accurate estimates based on the inputs provided. However, the accuracy of the results depends on the quality of the input data and the assumptions made about market conditions. It's important to note that past performance does not guarantee future results, and users should consider consulting a financial advisor for personalized advice. For best results, ensure your inputs are as accurate and realistic as possible. Regularly update your inputs to reflect any changes in your investment plan or market conditions."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the DCA Strategy Analyzer, you need to provide the following information: the amount you plan to invest regularly, the interval at which you will invest, and the total duration of your investment plan. This information helps the calculator estimate the potential outcomes of your DCA strategy. Ensure that the data you provide is accurate and up-to-date. You can find this information in your investment plan or financial records. For more guidance, consider using our <a href=\"/financial/heloc-payment-estimator\">HELOC Payment Estimator</a>."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, the DCA Strategy Analyzer can be used for various scenarios, including different investment amounts, intervals, and durations. However, it's important to note that the calculator is designed for general use and may not account for specific market conditions or individual circumstances. For personalized advice, consider consulting a financial advisor who can provide guidance based on your unique financial situation and goals."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include providing inaccurate input data, failing to update inputs regularly, and not considering market trends. These errors can lead to misleading results and suboptimal investment decisions. To avoid these mistakes, ensure your inputs are accurate and realistic, and regularly review your investment plan to account for any changes in market conditions or personal circumstances."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's recommended to recalculate your DCA strategy regularly, especially when there are significant changes in market conditions or your personal financial situation. Regular recalculations help ensure your strategy remains aligned with your investment goals and risk tolerance. Consider setting a schedule for recalculations, such as quarterly or annually, to keep your investment plan up-to-date and effective."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results from the DCA Strategy Analyzer to evaluate the effectiveness of your current investment plan. Consider adjusting your investment amount, interval, or duration based on the insights gained from the analysis. If necessary, consult a financial advisor for personalized advice. For further exploration, check out our <a href=\"/financial/loan-payment\">Loan Payment Calculator</a> to understand how regular payments can affect your financial planning."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to the DCA strategy include lump-sum investing and value averaging. Each method has its pros and cons, and the best choice depends on your financial goals, risk tolerance, and market conditions. Consider exploring different strategies and consulting a financial advisor to determine the most suitable approach for your investment plan."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // CALCULATIONS
   const results = useMemo(() => {
@@ -397,117 +435,18 @@ export default function DcaStrategyAnalyzerCryptoCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is DCA Strategy Analyzer (Crypto) and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The DCA Strategy Analyzer (Crypto) is a tool designed to help investors evaluate the effectiveness of their Dollar Cost Averaging strategy in the cryptocurrency market. It provides insights into historical performance and potential risk reduction of recurring buys, allowing investors to make informed decisions about their investment plans.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this analyzer, investors can optimize their DCA strategy, ensuring they are maximizing their investment potential while minimizing risks. For more information, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The DCA Strategy Analyzer is designed to provide accurate estimates based on the inputs provided. However, the accuracy of the results depends on the quality of the input data and the assumptions made about market conditions. It's important to note that past performance does not guarantee future results, and users should consider consulting a financial advisor for personalized advice.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For best results, ensure your inputs are as accurate and realistic as possible. Regularly update your inputs to reflect any changes in your investment plan or market conditions.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the DCA Strategy Analyzer, you need to provide the following information: the amount you plan to invest regularly, the interval at which you will invest, and the total duration of your investment plan. This information helps the calculator estimate the potential outcomes of your DCA strategy.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that the data you provide is accurate and up-to-date. You can find this information in your investment plan or financial records. For more guidance, consider using our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the DCA Strategy Analyzer can be used for various scenarios, including different investment amounts, intervals, and durations. However, it's important to note that the calculator is designed for general use and may not account for specific market conditions or individual circumstances.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For personalized advice, consider consulting a financial advisor who can provide guidance based on your unique financial situation and goals.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include providing inaccurate input data, failing to update inputs regularly, and not considering market trends. These errors can lead to misleading results and suboptimal investment decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, ensure your inputs are accurate and realistic, and regularly review your investment plan to account for any changes in market conditions or personal circumstances.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's recommended to recalculate your DCA strategy regularly, especially when there are significant changes in market conditions or your personal financial situation. Regular recalculations help ensure your strategy remains aligned with your investment goals and risk tolerance.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider setting a schedule for recalculations, such as quarterly or annually, to keep your investment plan up-to-date and effective.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results from the DCA Strategy Analyzer to evaluate the effectiveness of your current investment plan. Consider adjusting your investment amount, interval, or duration based on the insights gained from the analysis. If necessary, consult a financial advisor for personalized advice.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further exploration, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> to understand how regular payments can affect your financial planning.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to the DCA strategy include lump-sum investing and value averaging. Each method has its pros and cons, and the best choice depends on your financial goals, risk tolerance, and market conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider exploring different strategies and consulting a financial advisor to determine the most suitable approach for your investment plan.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -623,6 +562,7 @@ export default function DcaStrategyAnalyzerCryptoCalculator() {
     <CalculatorVerticalLayout
       title="DCA Strategy Analyzer (Crypto)"
       description="Analyze your Crypto Dollar Cost Averaging strategy. Evaluate historical performance and risk reduction of recurring buys."
+      jsonLd={faqJsonLd}
       widget={widget}
       editorial={editorial}
       onThisPage={[

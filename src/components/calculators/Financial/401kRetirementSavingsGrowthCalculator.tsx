@@ -6,9 +6,45 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle, AlertTriangle } from "lucide-react";
-import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+
+const faqs = [
+  {
+    question: "How does a 401(k) work?",
+    answer: "A 401(k) is a retirement savings plan sponsored by an employer. It lets workers save and invest a piece of their paycheck before taxes are taken out. Taxes aren't paid until the money is withdrawn from the account."
+  },
+  {
+    question: "What is an employer match?",
+    answer: "An employer match is essentially free money. Many employers will match a portion of your contributions to your 401(k), up to a certain percentage of your salary. Always try to contribute enough to get the full match."
+  },
+  {
+    question: "What is the contribution limit for 401(k)?",
+    answer: "The IRS sets annual contribution limits for 401(k) plans. For 2023, the limit is $22,500 for those under 50, and $30,000 for those 50 and older (including catch-up contributions). These limits are subject to change annually."
+  },
+  {
+    question: "How does compound interest help my 401(k) grow?",
+    answer: "Compound interest allows you to earn interest on your interest. Over time, this can significantly increase the value of your retirement savings, especially if you start early and contribute consistently."
+  },
+  {
+    question: "Should I max out my 401(k)?",
+    answer: "Maxing out your 401(k) is a great way to build retirement wealth and reduce your taxable income. However, you should also consider other financial goals, such as paying off high-interest debt or building an emergency fund."
+  },
+  {
+    question: "What happens to my 401(k) if I change jobs?",
+    answer: "If you change jobs, you can usually roll over your 401(k) into an IRA or your new employer's plan, or leave it with your old employer if allowed. Cashing it out is generally not recommended due to taxes and penalties."
+  },
+  {
+    question: "Can I withdraw from my 401(k) early?",
+    answer: "Generally, if you withdraw funds before age 59½, you will owe income taxes on the amount plus a 10% early withdrawal penalty. There are some exceptions, such as for certain hardships or first-time home purchases."
+  },
+  {
+    question: "How does the annual growth rate affect my savings?",
+    answer: "The annual growth rate is the estimated return on your investments. A higher growth rate leads to larger savings over time, but typically comes with higher risk. It's important to choose an investment mix that matches your risk tolerance."
+  }
+];
 
 export default function RetirementSavingsGrowthCalculator() {
+  const faqJsonLd = useFaqJsonLd(faqs);
   // STATE
   const [inputs, setInputs] = useState({ 
     initialBalance: "", 

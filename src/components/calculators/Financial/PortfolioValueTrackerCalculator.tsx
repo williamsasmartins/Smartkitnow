@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function PortfolioValueTrackerCalculator() {
   // STATE
@@ -78,6 +79,43 @@ export default function PortfolioValueTrackerCalculator() {
   const handleReset = () => {
     setInputs({ initialInvestment: "", currentValue: "", additionalInvestment: "" });
   };
+
+  const faqs = [
+    {
+      question: "What is portfolio value tracker and why is it important?",
+      answer: "A portfolio value tracker is a tool that helps investors monitor the total value of their investment portfolio. It provides insights into gains and losses, enabling users to make informed decisions about their investments. This tool is crucial for maintaining a clear understanding of your financial position and ensuring that your investment strategy aligns with your financial goals. By regularly tracking your portfolio's value, you can identify trends and adjust your strategy as needed. This proactive approach helps you capitalize on opportunities and mitigate risks. For more information, check out our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The Portfolio Value Tracker is designed to provide accurate and reliable results. However, its accuracy depends on the quality of the input data. Factors such as market volatility and changes in asset prices can affect the results. It's important to regularly update your data and consult with financial professionals if needed. To ensure the best results, double-check your inputs and consider using additional financial tools for comprehensive analysis."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the Portfolio Value Tracker, you'll need information about your initial investment, the current value of your assets, and any additional investments made. This data provides a comprehensive view of your portfolio's performance, allowing for accurate calculations. Ensure that the data you enter is up-to-date and reflects the latest market conditions. This will help you obtain the most accurate results and make informed decisions about your investments."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, the Portfolio Value Tracker can be used for a variety of scenarios, including tracking the performance of individual assets or entire portfolios. It is versatile and can accommodate different investment strategies and objectives. However, it's important to understand the limitations of the tool and consider consulting with financial professionals for complex scenarios. They can provide tailored advice and insights to help you achieve your financial goals."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "One common mistake is entering inaccurate or outdated data, which can lead to misleading results. It's crucial to ensure that your inputs reflect the latest market conditions and accurately represent your investments. Another mistake is failing to consider the impact of external factors, such as market volatility and economic indicators. By staying informed and regularly updating your data, you can avoid these pitfalls and make informed decisions."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's recommended to recalculate your portfolio's value regularly, especially after significant market events or changes in your investment strategy. This ensures that your data remains accurate and reflects the latest market conditions. Consider setting a schedule for recalculating, such as monthly or quarterly, to maintain a clear understanding of your financial position and make informed decisions."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results from the Portfolio Value Tracker to assess your investment strategy and make informed decisions. Consider whether your current strategy aligns with your financial goals and make adjustments as needed. If you're unsure about your next steps, consider consulting with a financial advisor for personalized advice. They can provide insights and recommendations tailored to your specific needs. For more tools, visit our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "There are alternative methods for tracking portfolio value, such as using financial software or consulting with investment professionals. These alternatives can provide additional insights and tools for managing your investments. Consider the pros and cons of each method and choose the one that best suits your needs and preferences. By exploring different options, you can find the most effective approach for achieving your financial goals."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -394,117 +432,18 @@ export default function PortfolioValueTrackerCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is portfolio value tracker and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A portfolio value tracker is a tool that helps investors monitor the total value of their investment portfolio. It provides insights into gains and losses, enabling users to make informed decisions about their investments. This tool is crucial for maintaining a clear understanding of your financial position and ensuring that your investment strategy aligns with your financial goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By regularly tracking your portfolio's value, you can identify trends and adjust your strategy as needed. This proactive approach helps you capitalize on opportunities and mitigate risks. For more information, check out our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Portfolio Value Tracker is designed to provide accurate and reliable results. However, its accuracy depends on the quality of the input data. Factors such as market volatility and changes in asset prices can affect the results. It's important to regularly update your data and consult with financial professionals if needed.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To ensure the best results, double-check your inputs and consider using additional financial tools for comprehensive analysis.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the Portfolio Value Tracker, you'll need information about your initial investment, the current value of your assets, and any additional investments made. This data provides a comprehensive view of your portfolio's performance, allowing for accurate calculations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that the data you enter is up-to-date and reflects the latest market conditions. This will help you obtain the most accurate results and make informed decisions about your investments.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the Portfolio Value Tracker can be used for a variety of scenarios, including tracking the performance of individual assets or entire portfolios. It is versatile and can accommodate different investment strategies and objectives.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              However, it's important to understand the limitations of the tool and consider consulting with financial professionals for complex scenarios. They can provide tailored advice and insights to help you achieve your financial goals.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              One common mistake is entering inaccurate or outdated data, which can lead to misleading results. It's crucial to ensure that your inputs reflect the latest market conditions and accurately represent your investments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Another mistake is failing to consider the impact of external factors, such as market volatility and economic indicators. By staying informed and regularly updating your data, you can avoid these pitfalls and make informed decisions.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's recommended to recalculate your portfolio's value regularly, especially after significant market events or changes in your investment strategy. This ensures that your data remains accurate and reflects the latest market conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider setting a schedule for recalculating, such as monthly or quarterly, to maintain a clear understanding of your financial position and make informed decisions.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results from the Portfolio Value Tracker to assess your investment strategy and make informed decisions. Consider whether your current strategy aligns with your financial goals and make adjustments as needed.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you're unsure about your next steps, consider consulting with a financial advisor for personalized advice. They can provide insights and recommendations tailored to your specific needs. For more tools, visit our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              There are alternative methods for tracking portfolio value, such as using financial software or consulting with investment professionals. These alternatives can provide additional insights and tools for managing your investments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider the pros and cons of each method and choose the one that best suits your needs and preferences. By exploring different options, you can find the most effective approach for achieving your financial goals.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -622,6 +561,7 @@ export default function PortfolioValueTrackerCalculator() {
       description="Track the total value of your crypto portfolio. Monitor gains and losses across all your digital asset holdings in one place."
       widget={widget}
       editorial={editorial}
+      faqJsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Portfolio Value Tracker" },
         { id: "formula", label: "Portfolio Value Tracker Formula" },

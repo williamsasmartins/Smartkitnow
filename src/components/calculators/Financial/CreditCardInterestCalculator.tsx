@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CreditCardInterestCalculator() {
   // STATE
@@ -80,6 +81,43 @@ export default function CreditCardInterestCalculator() {
   const handleReset = () => {
     setInputs({ balance: "", interestRate: "", months: "" });
   };
+
+  const faqs = [
+    {
+      question: "What is a credit card interest calculator and why is it important?",
+      answer: "A credit card interest calculator estimates the total interest you will pay on your credit card balance over a specified period. This tool is crucial for budgeting and financial planning, as it helps you understand the cost of carrying debt and make informed decisions about repayment strategies. By knowing the interest costs, you can prioritize debt repayment and avoid financial pitfalls. For more tools, explore our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides a reliable estimate based on the inputs you provide. However, actual interest costs may vary due to changes in interest rates, additional fees, or variations in your payment schedule. It's essential to use the most accurate and up-to-date information available. For precise financial planning, consider consulting with a financial advisor, especially for complex scenarios."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need your current credit card balance, the annual interest rate, and the repayment period in months. You can find this information on your latest credit card statement or by contacting your card issuer. Ensure the accuracy of these inputs for the most reliable results. If you're unsure about any details, reach out to your credit card provider for clarification."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios like balance transfers?",
+      answer: "Yes, this calculator can be used for scenarios like balance transfers, provided you know the new interest rate and any applicable fees. However, keep in mind that balance transfers often come with promotional rates that may change after a certain period. Always read the terms of the balance transfer offer carefully to understand all conditions and potential costs."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated interest rates, not accounting for additional fees, and underestimating the repayment period. These errors can lead to inaccurate estimates and financial mismanagement. To avoid these mistakes, double-check your inputs and consider potential changes in your financial situation."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculate whenever there are significant changes in your balance, interest rate, or repayment plan. Regular recalculations help you stay informed and adjust your strategy as needed. As a general rule, review your calculations at least quarterly or whenever you receive a new credit card statement."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to plan your repayment strategy. Consider increasing your monthly payments to reduce the total interest paid. If the interest costs are high, explore options like balance transfers or consolidating debt. For more strategies, visit our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using financial software or consulting with a financial advisor for personalized advice. These methods may offer more detailed insights but can be more complex or costly. Choose the method that best fits your needs and financial situation. For a quick estimate, this calculator is a convenient and effective tool."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -400,117 +438,18 @@ export default function CreditCardInterestCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is a credit card interest calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A credit card interest calculator estimates the total interest you will pay on your credit card balance over a specified period. This tool is crucial for budgeting and financial planning, as it helps you understand the cost of carrying debt and make informed decisions about repayment strategies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By knowing the interest costs, you can prioritize debt repayment and avoid financial pitfalls. For more tools, explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides a reliable estimate based on the inputs you provide. However, actual interest costs may vary due to changes in interest rates, additional fees, or variations in your payment schedule. It's essential to use the most accurate and up-to-date information available.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For precise financial planning, consider consulting with a financial advisor, especially for complex scenarios.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need your current credit card balance, the annual interest rate, and the repayment period in months. You can find this information on your latest credit card statement or by contacting your card issuer.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure the accuracy of these inputs for the most reliable results. If you're unsure about any details, reach out to your credit card provider for clarification.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios like balance transfers?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for scenarios like balance transfers, provided you know the new interest rate and any applicable fees. However, keep in mind that balance transfers often come with promotional rates that may change after a certain period.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Always read the terms of the balance transfer offer carefully to understand all conditions and potential costs.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated interest rates, not accounting for additional fees, and underestimating the repayment period. These errors can lead to inaccurate estimates and financial mismanagement.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, double-check your inputs and consider potential changes in your financial situation.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculate whenever there are significant changes in your balance, interest rate, or repayment plan. Regular recalculations help you stay informed and adjust your strategy as needed.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              As a general rule, review your calculations at least quarterly or whenever you receive a new credit card statement.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to plan your repayment strategy. Consider increasing your monthly payments to reduce the total interest paid. If the interest costs are high, explore options like balance transfers or consolidating debt.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more strategies, visit our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using financial software or consulting with a financial advisor for personalized advice. These methods may offer more detailed insights but can be more complex or costly.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Choose the method that best fits your needs and financial situation. For a quick estimate, this calculator is a convenient and effective tool.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 

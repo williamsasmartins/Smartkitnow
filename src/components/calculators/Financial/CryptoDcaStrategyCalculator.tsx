@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CryptoDcaStrategyCalculator() {
   // STATE
@@ -78,6 +79,43 @@ export default function CryptoDcaStrategyCalculator() {
   const handleReset = () => {
     setInputs({ investmentAmount: "", frequency: "", duration: "" });
   };
+
+  const faqs = [
+    {
+      question: "What is crypto DCA strategy calculator and why is it important?",
+      answer: "The Crypto DCA Strategy Calculator is a tool that helps investors plan and analyze the potential outcomes of a dollar-cost averaging strategy in the cryptocurrency market. This approach involves investing a fixed amount at regular intervals, which can help reduce the impact of market volatility and avoid the pitfalls of market timing. By using this calculator, investors can gain insights into how their investments might grow over time, making it an essential tool for long-term financial planning. Understanding the potential returns and risks associated with a DCA strategy can help investors make informed decisions and optimize their investment approach."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The accuracy of the Crypto DCA Strategy Calculator depends on the assumptions and inputs provided by the user, such as the growth rate and investment frequency. While the calculator uses historical data and standard financial formulas to estimate potential outcomes, it's important to remember that past performance is not indicative of future results. Market conditions can change, affecting the accuracy of projections. For the most accurate results, regularly update your inputs and assumptions to reflect current market conditions. Consider consulting a financial advisor for personalized advice."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the Crypto DCA Strategy Calculator, you need to provide the following information: the amount you plan to invest at each interval, the frequency of your investments (e.g., monthly, quarterly), and the duration of your investment plan in years. Additionally, an estimated annual growth rate for your investments can help project potential returns. This information can typically be found in your financial plan or investment strategy documents. Ensure that the data you enter is accurate and reflects your current financial situation and market expectations. This will help you obtain realistic projections and make informed investment decisions."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, the Crypto DCA Strategy Calculator can be used for various scenarios, such as planning regular investments in different cryptocurrencies or adjusting your strategy based on market conditions. However, it's important to consider the limitations of the calculator, such as the assumptions made about growth rates and market volatility. For more complex scenarios, you may need to adjust the inputs or consult with a financial advisor to ensure that your strategy aligns with your goals."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using unrealistic growth rate assumptions, failing to account for transaction fees, and not updating inputs to reflect changes in market conditions. These errors can lead to inaccurate projections and misguided investment decisions. It's important to regularly review and adjust your strategy based on current data and market trends. To avoid these mistakes, ensure that your inputs are realistic and based on thorough research. Consider consulting a financial advisor for additional guidance and support."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your investment projections whenever there are significant changes in market conditions, your financial situation, or your investment goals. Regular recalculation, such as quarterly or annually, can help ensure that your strategy remains aligned with your objectives and market realities. Establishing a regular schedule for reviewing and updating your investment strategy can help you stay on track and make informed decisions."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results from the Crypto DCA Strategy Calculator to evaluate your current investment strategy and make adjustments as needed. The projections can help you identify whether your strategy is on track to meet your financial goals or if changes are necessary. Consider consulting with a financial advisor to interpret the results and develop a comprehensive investment plan."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to the DCA strategy include lump-sum investing, where you invest a large amount at once, or tactical asset allocation, where you adjust your investments based on market conditions. Each method has its pros and cons, and the best approach depends on your financial goals, risk tolerance, and market outlook. Consider experimenting with different strategies or consulting a financial advisor to determine the best approach for your situation."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -389,123 +427,22 @@ export default function CryptoDcaStrategyCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
-        
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is crypto DCA strategy calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Crypto DCA Strategy Calculator is a tool that helps investors plan and analyze the potential outcomes of a dollar-cost averaging strategy in the cryptocurrency market. This approach involves investing a fixed amount at regular intervals, which can help reduce the impact of market volatility and avoid the pitfalls of market timing. By using this calculator, investors can gain insights into how their investments might grow over time, making it an essential tool for long-term financial planning.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding the potential returns and risks associated with a DCA strategy can help investors make informed decisions and optimize their investment approach. For more information on related financial strategies, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The accuracy of the Crypto DCA Strategy Calculator depends on the assumptions and inputs provided by the user, such as the growth rate and investment frequency. While the calculator uses historical data and standard financial formulas to estimate potential outcomes, it's important to remember that past performance is not indicative of future results. Market conditions can change, affecting the accuracy of projections.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For the most accurate results, regularly update your inputs and assumptions to reflect current market conditions. Consider consulting a financial advisor for personalized advice.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the Crypto DCA Strategy Calculator, you need to provide the following information: the amount you plan to invest at each interval, the frequency of your investments (e.g., monthly, quarterly), and the duration of your investment plan in years. Additionally, an estimated annual growth rate for your investments can help project potential returns. This information can typically be found in your financial plan or investment strategy documents.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that the data you enter is accurate and reflects your current financial situation and market expectations. This will help you obtain realistic projections and make informed investment decisions.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the Crypto DCA Strategy Calculator can be used for various scenarios, such as planning regular investments in different cryptocurrencies or adjusting your strategy based on market conditions. However, it's important to consider the limitations of the calculator, such as the assumptions made about growth rates and market volatility. For more complex scenarios, you may need to adjust the inputs or consult with a financial advisor to ensure that your strategy aligns with your goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For alternative approaches to investment planning, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using unrealistic growth rate assumptions, failing to account for transaction fees, and not updating inputs to reflect changes in market conditions. These errors can lead to inaccurate projections and misguided investment decisions. It's important to regularly review and adjust your strategy based on current data and market trends.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, ensure that your inputs are realistic and based on thorough research. Consider consulting a financial advisor for additional guidance and support.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your investment projections whenever there are significant changes in market conditions, your financial situation, or your investment goals. Regular recalculation, such as quarterly or annually, can help ensure that your strategy remains aligned with your objectives and market realities.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Establishing a regular schedule for reviewing and updating your investment strategy can help you stay on track and make informed decisions.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results from the Crypto DCA Strategy Calculator to evaluate your current investment strategy and make adjustments as needed. The projections can help you identify whether your strategy is on track to meet your financial goals or if changes are necessary. Consider consulting with a financial advisor to interpret the results and develop a comprehensive investment plan.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further guidance on financial planning, explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to the DCA strategy include lump-sum investing, where you invest a large amount at once, or tactical asset allocation, where you adjust your investments based on market conditions. Each method has its pros and cons, and the best approach depends on your financial goals, risk tolerance, and market outlook.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider experimenting with different strategies or consulting a financial advisor to determine the best approach for your situation.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+                {faq.answer}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -640,6 +577,7 @@ export default function CryptoDcaStrategyCalculator() {
         ],
         title: "Calculation Formula"
       }}
+      jsonLd={faqJsonLd}
       example={{
         title: "Example Calculation",
         scenario: "Imagine you invest $100 monthly for 5 years with an estimated annual growth rate of 7%.",

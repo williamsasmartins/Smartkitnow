@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 
 export default function CryptoTaxLiabilityCalculator() {
   // STATE
@@ -16,6 +17,43 @@ export default function CryptoTaxLiabilityCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is crypto tax liability calculator and why is it important?",
+      answer: "The crypto tax liability calculator is a tool designed to estimate your potential tax obligations from cryptocurrency transactions. It's important because it helps you understand your financial responsibilities and prepare for tax season. By using this calculator, you can avoid unexpected liabilities and ensure compliance with tax regulations. Understanding your tax liability is crucial for effective financial planning. It allows you to set aside funds for taxes and avoid penalties. For more tools, visit our Refinance Savings Calculator."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides estimates based on the information you input. While it uses standard formulas, the accuracy depends on the accuracy of your data. Factors such as market volatility and tax law changes can affect the results. It's always advisable to consult with a tax professional for precise calculations. To improve accuracy, ensure your inputs are current and reflect your actual financial situation. Regularly update your calculations to account for any changes."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you'll need to provide your total crypto gains, the applicable tax rate, and any additional income. Crypto gains refer to the profit from your cryptocurrency transactions. The tax rate is the percentage of tax that applies to your income bracket. Other income includes any additional earnings subject to taxation. Ensure you have accurate records of your transactions and consult with a tax advisor if you're unsure about your tax rate. Keeping detailed records will help you input the correct data and achieve accurate results."
+    },
+    {
+      question: "Can I use this calculator for [specific scenario]?",
+      answer: "Yes, this calculator can be used for various scenarios involving cryptocurrency transactions. Whether you're calculating taxes for a single transaction or multiple trades, the calculator can provide estimates. However, it's important to note that complex scenarios, such as those involving international transactions or multiple currencies, may require additional considerations. For complex situations, consulting with a tax professional is recommended. They can provide tailored advice and ensure compliance with all applicable regulations."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include inputting incorrect data, such as outdated crypto gains or tax rates. Failing to account for all transactions can also lead to inaccurate results. Additionally, not considering changes in tax laws or market conditions can affect your calculations. To avoid these errors, double-check your inputs and stay informed about any changes in tax regulations. Regularly update your calculations and consult with a tax advisor if needed."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your tax liability regularly, especially if you frequently trade cryptocurrencies. Market conditions and tax laws can change, affecting your liability. Recalculating quarterly or after significant transactions can help you stay on top of your financial obligations. Having a regular schedule for recalculations ensures that you're prepared for tax season and can make informed financial decisions throughout the year."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to plan for your tax payments and set aside the necessary funds. Understanding your tax liability helps you avoid surprises during tax season and ensures compliance with tax regulations. If your liability is significant, consider consulting with a tax advisor for personalized advice. For more financial planning tools, explore our HELOC Payment Estimator."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Yes, there are alternative methods for calculating crypto tax liability, such as using specialized tax software or consulting with a tax professional. These alternatives can provide more detailed insights and accommodate complex scenarios. While this calculator offers a convenient estimation, exploring other methods can enhance accuracy and provide a comprehensive view of your tax obligations."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -389,123 +427,20 @@ export default function CryptoTaxLiabilityCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is crypto tax liability calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The crypto tax liability calculator is a tool designed to estimate your potential tax obligations from cryptocurrency transactions. It's important because it helps you understand your financial responsibilities and prepare for tax season. By using this calculator, you can avoid unexpected liabilities and ensure compliance with tax regulations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding your tax liability is crucial for effective financial planning. It allows you to set aside funds for taxes and avoid penalties. For more tools, visit our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides estimates based on the information you input. While it uses standard formulas, the accuracy depends on the accuracy of your data. Factors such as market volatility and tax law changes can affect the results. It's always advisable to consult with a tax professional for precise calculations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To improve accuracy, ensure your inputs are current and reflect your actual financial situation. Regularly update your calculations to account for any changes.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need to provide your total crypto gains, the applicable tax rate, and any additional income. Crypto gains refer to the profit from your cryptocurrency transactions. The tax rate is the percentage of tax that applies to your income bracket. Other income includes any additional earnings subject to taxation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure you have accurate records of your transactions and consult with a tax advisor if you're unsure about your tax rate. Keeping detailed records will help you input the correct data and achieve accurate results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for [specific scenario]?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for various scenarios involving cryptocurrency transactions. Whether you're calculating taxes for a single transaction or multiple trades, the calculator can provide estimates. However, it's important to note that complex scenarios, such as those involving international transactions or multiple currencies, may require additional considerations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex situations, consulting with a tax professional is recommended. They can provide tailored advice and ensure compliance with all applicable regulations.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include inputting incorrect data, such as outdated crypto gains or tax rates. Failing to account for all transactions can also lead to inaccurate results. Additionally, not considering changes in tax laws or market conditions can affect your calculations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these errors, double-check your inputs and stay informed about any changes in tax regulations. Regularly update your calculations and consult with a tax advisor if needed.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your tax liability regularly, especially if you frequently trade cryptocurrencies. Market conditions and tax laws can change, affecting your liability. Recalculating quarterly or after significant transactions can help you stay on top of your financial obligations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Having a regular schedule for recalculations ensures that you're prepared for tax season and can make informed financial decisions throughout the year.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to plan for your tax payments and set aside the necessary funds. Understanding your tax liability helps you avoid surprises during tax season and ensures compliance with tax regulations. If your liability is significant, consider consulting with a tax advisor for personalized advice.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more financial planning tools, explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, there are alternative methods for calculating crypto tax liability, such as using specialized tax software or consulting with a tax professional. These alternatives can provide more detailed insights and accommodate complex scenarios.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              While this calculator offers a convenient estimation, exploring other methods can enhance accuracy and provide a comprehensive view of your tax obligations.
-            </p>
-          </div>
+      <section id="faq" className="mt-12 border-t border-slate-200 dark:border-slate-700 pt-10">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0" />
+                {faq.question}
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
+                {faq.answer}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -621,6 +556,7 @@ export default function CryptoTaxLiabilityCalculator() {
     <CalculatorVerticalLayout
       title="Crypto Tax Liability Calculator"
       description="Estimate your potential crypto tax liability. Prepare for tax season by calculating estimated gains and losses."
+      jsonLd={faqJsonLd}
       widget={widget}
       editorial={editorial}
       onThisPage={[

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "../../../hooks/useFaqJsonLd";
 
 export default function AbsencePercentageCalculator() {
   // STATE
@@ -15,6 +16,43 @@ export default function AbsencePercentageCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is absence percentage calculator and why is it important?",
+      answer: "An absence percentage calculator measures the proportion of days an employee is absent relative to the total working days. It is crucial for identifying attendance patterns and addressing potential issues early. This tool helps organizations maintain productivity and manage workforce effectively.<br><br>By understanding absence rates, companies can implement strategies to improve attendance and reduce costs associated with absenteeism. For more tools, visit our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The calculator is highly accurate when provided with correct input data. However, its accuracy depends on the precision of the data entered, such as the exact number of absent and total days. External factors like data entry errors can affect the results.<br><br>For critical decisions, consider consulting HR professionals to validate the findings and ensure comprehensive analysis."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "You need the total number of working days in the period and the number of days the employee was absent. This information is typically available from attendance records or HR databases. Ensure the data is current and accurately reflects the period being analyzed.<br><br>Accurate data collection is vital for reliable results. Double-check entries to avoid errors that could skew the absence percentage."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, the calculator can be used for various scenarios, such as analyzing absence patterns for specific departments or time periods. However, it is essential to ensure that the data used is relevant and specific to the scenario being analyzed.<br><br>For complex scenarios, consider additional analysis or consulting with HR experts to interpret the data accurately."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include entering incorrect data, such as miscounting total or absent days, and not considering external factors like holidays. These errors can lead to inaccurate absence percentages and misguided conclusions.<br><br>To avoid these mistakes, verify data accuracy and consider all relevant factors when interpreting results."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculate absence percentages regularly, such as monthly or quarterly, to monitor trends and address issues promptly. Frequent recalculations help in identifying patterns and making timely interventions.<br><br>Adjust the frequency based on organizational needs and the availability of new data."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to identify areas for improvement and implement strategies to reduce absenteeism. Share findings with management and HR teams to develop targeted interventions. Consider professional advice for comprehensive analysis.<br><br>For more on optimizing financial outcomes, see our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using advanced HR analytics software that offers more comprehensive insights into attendance patterns. These tools often integrate with other HR systems for a holistic view.<br><br>While these alternatives provide more detailed analysis, they may require significant investment and training."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatPercentage = (value: number): string => {
@@ -372,117 +410,18 @@ export default function AbsencePercentageCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is absence percentage calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              An absence percentage calculator measures the proportion of days an employee is absent relative to the total working days. It is crucial for identifying attendance patterns and addressing potential issues early. This tool helps organizations maintain productivity and manage workforce effectively.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By understanding absence rates, companies can implement strategies to improve attendance and reduce costs associated with absenteeism. For more tools, visit our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The calculator is highly accurate when provided with correct input data. However, its accuracy depends on the precision of the data entered, such as the exact number of absent and total days. External factors like data entry errors can affect the results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For critical decisions, consider consulting HR professionals to validate the findings and ensure comprehensive analysis.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              You need the total number of working days in the period and the number of days the employee was absent. This information is typically available from attendance records or HR databases. Ensure the data is current and accurately reflects the period being analyzed.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Accurate data collection is vital for reliable results. Double-check entries to avoid errors that could skew the absence percentage.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the calculator can be used for various scenarios, such as analyzing absence patterns for specific departments or time periods. However, it is essential to ensure that the data used is relevant and specific to the scenario being analyzed.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex scenarios, consider additional analysis or consulting with HR experts to interpret the data accurately.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include entering incorrect data, such as miscounting total or absent days, and not considering external factors like holidays. These errors can lead to inaccurate absence percentages and misguided conclusions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, verify data accuracy and consider all relevant factors when interpreting results.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculate absence percentages regularly, such as monthly or quarterly, to monitor trends and address issues promptly. Frequent recalculations help in identifying patterns and making timely interventions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Adjust the frequency based on organizational needs and the availability of new data.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to identify areas for improvement and implement strategies to reduce absenteeism. Share findings with management and HR teams to develop targeted interventions. Consider professional advice for comprehensive analysis.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more on optimizing financial outcomes, see our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using advanced HR analytics software that offers more comprehensive insights into attendance patterns. These tools often integrate with other HR systems for a holistic view.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              While these alternatives provide more detailed analysis, they may require significant investment and training.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -600,6 +539,7 @@ export default function AbsencePercentageCalculator() {
       description="Calculate employee absence percentage. Track attendance rates useful for HR metrics and workforce management analysis."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Absence Percentage Calculator" },
         { id: "formula", label: "Absence Percentage Calculator Formula" },

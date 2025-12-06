@@ -568,7 +568,7 @@ export default function EmergencyFundGoalCalculator() {
       description="Calculate the ideal size for your emergency fund. Plan for 3 to 6 months of expenses to ensure financial security against the unexpected."
       widget={widget}
       editorial={editorial}
-      faqJsonLd={faqJsonLd}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Emergency Fund Goal Calculator" },
         { id: "formula", label: "Emergency Fund Goal Calculator Formula" },

@@ -6,9 +6,45 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle, AlertTriangle } from "lucide-react";
-import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+
+const faqs = [
+  {
+    question: "How much do I need to retire?",
+    answer: "The amount you need to retire depends on your desired lifestyle, retirement age, and life expectancy. A common rule of thumb is to aim for 70-80% of your pre-retirement income annually. Our calculator helps you estimate the specific amount based on your personal inputs."
+  },
+  {
+    question: "What is the 4% rule?",
+    answer: "The 4% rule is a guideline that suggests you can withdraw 4% of your retirement portfolio in the first year of retirement and adjust that amount for inflation in subsequent years, with a high probability of not outliving your savings over a 30-year period."
+  },
+  {
+    question: "How does inflation affect my retirement savings?",
+    answer: "Inflation reduces the purchasing power of your money over time. This means you'll need more money in the future to buy the same goods and services as today. It's crucial to account for inflation when planning your retirement savings goal."
+  },
+  {
+    question: "When should I start saving for retirement?",
+    answer: "The best time to start saving for retirement is as early as possible. Thanks to compound interest, starting early allows your money to grow significantly over time, requiring smaller monthly contributions compared to starting later in life."
+  },
+  {
+    question: "How much should I contribute annually?",
+    answer: "Financial experts often recommend saving 10-15% of your annual income for retirement. However, if you started late or have ambitious retirement goals, you may need to contribute a higher percentage."
+  },
+  {
+    question: "What factors influence my retirement number?",
+    answer: "Key factors include your current age, expected retirement age, life expectancy, desired annual retirement income, current savings, annual contributions, expected rate of return, and inflation."
+  },
+  {
+    question: "How do I catch up if I'm behind on savings?",
+    answer: "If you're behind, consider increasing your contribution rate, taking advantage of catch-up contributions if you're over 50, delaying retirement to give your savings more time to grow, or adjusting your retirement lifestyle expectations."
+  },
+  {
+    question: "Is Social Security included in this calculation?",
+    answer: "This calculator focuses on your personal savings. You should consider Social Security benefits as a supplement to your savings. You can estimate your Social Security benefits using the official SSA website."
+  }
+];
 
 export default function RetirementSavingsGoalCalculator() {
+  const faqJsonLd = useFaqJsonLd(faqs);
   // STATE
   const [inputs, setInputs] = useState({ 
     currentAge: "", 
@@ -584,6 +620,7 @@ export default function RetirementSavingsGoalCalculator() {
     <CalculatorVerticalLayout
       title="Retirement Savings Goal Calculator"
       description="Determine how much you need to save for retirement. Set clear goals based on your current age, income, and desired lifestyle."
+      jsonLd={faqJsonLd}
       widget={widget}
       editorial={editorial}
       onThisPage={[

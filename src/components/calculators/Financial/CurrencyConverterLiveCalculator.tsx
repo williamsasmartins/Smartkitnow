@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CurrencyConverterLiveCalculator() {
   // STATE
@@ -27,6 +28,43 @@ export default function CurrencyConverterLiveCalculator() {
       maximumFractionDigits: 2,
     }).format(value);
   };
+
+  const faqs = [
+    {
+      question: "What is currency converter (live rates) and why is it important?",
+      answer: "A currency converter with live rates provides real-time exchange rates for converting one currency to another. This tool is crucial for anyone involved in international transactions, as it ensures you are using the most current rates, reducing the risk of financial discrepancies. Using live rates helps you make informed decisions, whether you're traveling, investing, or conducting business. For more on managing financial transactions, see our <a href=\"/financial/interest-only-loan\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is highly accurate, using live exchange rates sourced from reliable financial data providers. However, keep in mind that exchange rates can change rapidly, and there may be slight delays in updates. Always double-check rates before making significant financial decisions. For best results, use this tool in conjunction with professional financial advice, especially for large transactions."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need the amount you wish to convert, the currency you are converting from, and the currency you are converting to. Ensure you have the correct currency codes (e.g., USD for US Dollar, EUR for Euro) to get accurate results. You can find currency codes on financial websites or through your bank. Having this information ready will streamline the conversion process."
+    },
+    {
+      question: "Can I use this calculator for [specific scenario]?",
+      answer: "Yes, this calculator can be used for a variety of scenarios, including travel budgeting, international shopping, and investment planning. It is versatile and can handle any situation where currency conversion is needed. However, for complex financial transactions involving multiple currencies or large sums, consider consulting a financial advisor for tailored advice."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated exchange rates, entering incorrect currency codes, and not accounting for transaction fees. These errors can lead to inaccurate conversions and financial losses. To avoid these mistakes, always verify the information you enter and use live rates. Additionally, consider potential fees that may apply to your transactions."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculate whenever there is a significant change in exchange rates or before making a transaction. Regular recalculations ensure you are using the most current data, which is crucial for accurate financial planning. For ongoing transactions, set a schedule to check rates daily or weekly, depending on your needs."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to make informed financial decisions, such as budgeting for travel, comparing prices, or planning investments. The converted amount provides a clear picture of your purchasing power in the target currency. If you need further financial insights, explore our <a href=\"/financial/refinance-savings\">Refinance Savings Calculator</a> for additional planning tools."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using financial software or consulting with a currency exchange service. These options may offer additional features, such as historical data analysis or personalized advice. Each method has its pros and cons, so choose the one that best fits your needs and budget. For quick and straightforward conversions, this calculator is an excellent choice."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // CALCULATIONS
   const results = useMemo(() => {
@@ -369,117 +407,18 @@ export default function CurrencyConverterLiveCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is currency converter (live rates) and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A currency converter with live rates provides real-time exchange rates for converting one currency to another. This tool is crucial for anyone involved in international transactions, as it ensures you are using the most current rates, reducing the risk of financial discrepancies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Using live rates helps you make informed decisions, whether you're traveling, investing, or conducting business. For more on managing financial transactions, see our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is highly accurate, using live exchange rates sourced from reliable financial data providers. However, keep in mind that exchange rates can change rapidly, and there may be slight delays in updates. Always double-check rates before making significant financial decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For best results, use this tool in conjunction with professional financial advice, especially for large transactions.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need the amount you wish to convert, the currency you are converting from, and the currency you are converting to. Ensure you have the correct currency codes (e.g., USD for US Dollar, EUR for Euro) to get accurate results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can find currency codes on financial websites or through your bank. Having this information ready will streamline the conversion process.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for [specific scenario]?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for a variety of scenarios, including travel budgeting, international shopping, and investment planning. It is versatile and can handle any situation where currency conversion is needed.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              However, for complex financial transactions involving multiple currencies or large sums, consider consulting a financial advisor for tailored advice.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated exchange rates, entering incorrect currency codes, and not accounting for transaction fees. These errors can lead to inaccurate conversions and financial losses.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, always verify the information you enter and use live rates. Additionally, consider potential fees that may apply to your transactions.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculate whenever there is a significant change in exchange rates or before making a transaction. Regular recalculations ensure you are using the most current data, which is crucial for accurate financial planning.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For ongoing transactions, set a schedule to check rates daily or weekly, depending on your needs.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to make informed financial decisions, such as budgeting for travel, comparing prices, or planning investments. The converted amount provides a clear picture of your purchasing power in the target currency.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you need further financial insights, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> for additional planning tools.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using financial software or consulting with a currency exchange service. These options may offer additional features, such as historical data analysis or personalized advice.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Each method has its pros and cons, so choose the one that best fits your needs and budget. For quick and straightforward conversions, this calculator is an excellent choice.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -595,6 +534,7 @@ export default function CurrencyConverterLiveCalculator() {
     <CalculatorVerticalLayout
       title="Currency Converter (Live Rates)"
       description="Convert currencies with real-time exchange rates. Essential tool for travel planning and international business transactions."
+      jsonLd={faqJsonLd}
       widget={widget}
       editorial={editorial}
       onThisPage={[

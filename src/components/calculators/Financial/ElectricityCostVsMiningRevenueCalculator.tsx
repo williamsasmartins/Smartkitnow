@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function ElectricityCostVsMiningRevenueCalculator() {
   // STATE
@@ -26,6 +27,43 @@ export default function ElectricityCostVsMiningRevenueCalculator() {
       maximumFractionDigits: 2,
     }).format(value);
   };
+
+  const faqs = [
+    {
+      question: "What is electricity cost vs mining revenue and why is it important?",
+      answer: "Electricity cost vs mining revenue is a comparison of the expenses incurred from electricity consumption against the income generated from mining activities. This metric is crucial for determining the profitability of a mining operation. By understanding this balance, miners can make informed decisions about scaling operations, investing in new equipment, or adjusting their strategies to maximize profits. For more insights into managing financial aspects of mining, explore our <a href=\"/financial/interest-only-loan\">Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides a high level of accuracy by using industry-standard formulas and allowing for customizable inputs. However, the accuracy depends on the precision of the data entered, such as electricity rates and mining revenue estimates. External factors like market volatility and unexpected equipment downtime can also affect results. For critical financial decisions, consider consulting with a financial advisor to complement the insights gained from this tool."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need to know your daily electricity cost, which can be obtained from your utility bill. You also need an estimate of your daily mining revenue, which can be calculated based on your mining hardware's performance and the current market value of the cryptocurrency you're mining. Lastly, determine the number of operational days you plan to run your mining setup. Accurate data input is crucial for reliable results. Consider using historical data to refine your estimates."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "This calculator is versatile and can be used for various scenarios, including different types of mining operations and varying electricity rates. However, it may not account for all unique factors in specialized setups, such as renewable energy sources or fluctuating market conditions. For these cases, additional adjustments or professional advice may be necessary. For tailored financial planning, consider consulting with experts who understand the nuances of your specific situation."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated electricity rates, overestimating mining revenue, and neglecting to account for downtime or maintenance. These errors can lead to inaccurate profitability assessments. It's important to regularly update your inputs and consider all operational costs to ensure reliable results. For more guidance on avoiding financial pitfalls, explore our <a href=\"/financial/refinance-savings\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculation should occur whenever there are significant changes in electricity rates, mining revenue, or operational conditions. Regular updates ensure that your profitability assessments remain accurate. A monthly review is recommended, but more frequent checks may be necessary in volatile markets. Establishing a routine for reviewing your financial metrics can help you stay on top of your mining operation's performance."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to make informed decisions about scaling your mining operations, investing in new equipment, or adjusting your strategies. If the results indicate low profitability, consider optimizing your setup or exploring alternative energy sources. For comprehensive financial planning, consult with a financial advisor. For more tools to enhance your financial strategy, visit our <a href=\"/financial/heloc-payment-estimator\">HELOC Payment Estimator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using specialized software that accounts for more variables, such as hardware depreciation and market trends. These tools can provide a more comprehensive analysis but may require more detailed data input and technical expertise. Consider the complexity of your operation and the level of detail you need when choosing the right tool for your financial assessments."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // CALCULATIONS
   const results = useMemo(() => {
@@ -400,117 +438,18 @@ export default function ElectricityCostVsMiningRevenueCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is electricity cost vs mining revenue and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Electricity cost vs mining revenue is a comparison of the expenses incurred from electricity consumption against the income generated from mining activities. This metric is crucial for determining the profitability of a mining operation. By understanding this balance, miners can make informed decisions about scaling operations, investing in new equipment, or adjusting their strategies to maximize profits.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more insights into managing financial aspects of mining, explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides a high level of accuracy by using industry-standard formulas and allowing for customizable inputs. However, the accuracy depends on the precision of the data entered, such as electricity rates and mining revenue estimates. External factors like market volatility and unexpected equipment downtime can also affect results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For critical financial decisions, consider consulting with a financial advisor to complement the insights gained from this tool.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need to know your daily electricity cost, which can be obtained from your utility bill. You also need an estimate of your daily mining revenue, which can be calculated based on your mining hardware's performance and the current market value of the cryptocurrency you're mining. Lastly, determine the number of operational days you plan to run your mining setup.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Accurate data input is crucial for reliable results. Consider using historical data to refine your estimates.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is versatile and can be used for various scenarios, including different types of mining operations and varying electricity rates. However, it may not account for all unique factors in specialized setups, such as renewable energy sources or fluctuating market conditions. For these cases, additional adjustments or professional advice may be necessary.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For tailored financial planning, consider consulting with experts who understand the nuances of your specific situation.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated electricity rates, overestimating mining revenue, and neglecting to account for downtime or maintenance. These errors can lead to inaccurate profitability assessments. It's important to regularly update your inputs and consider all operational costs to ensure reliable results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more guidance on avoiding financial pitfalls, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculation should occur whenever there are significant changes in electricity rates, mining revenue, or operational conditions. Regular updates ensure that your profitability assessments remain accurate. A monthly review is recommended, but more frequent checks may be necessary in volatile markets.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Establishing a routine for reviewing your financial metrics can help you stay on top of your mining operation's performance.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to make informed decisions about scaling your mining operations, investing in new equipment, or adjusting your strategies. If the results indicate low profitability, consider optimizing your setup or exploring alternative energy sources. For comprehensive financial planning, consult with a financial advisor.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more tools to enhance your financial strategy, visit our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using specialized software that accounts for more variables, such as hardware depreciation and market trends. These tools can provide a more comprehensive analysis but may require more detailed data input and technical expertise.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider the complexity of your operation and the level of detail you need when choosing the right tool for your financial assessments.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -626,6 +565,7 @@ export default function ElectricityCostVsMiningRevenueCalculator() {
     <CalculatorVerticalLayout
       title="Electricity Cost vs Mining Revenue"
       description="Compare electricity costs against mining revenue. Ensure your mining operation remains profitable with this cost analysis tool."
+      jsonLd={faqJsonLd}
       widget={widget}
       editorial={editorial}
       onThisPage={[

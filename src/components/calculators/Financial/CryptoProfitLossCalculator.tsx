@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CryptoProfitLossCalculator() {
   // STATE
@@ -77,6 +78,43 @@ export default function CryptoProfitLossCalculator() {
   const handleReset = () => {
     setInputs({ buyPrice: "", sellPrice: "", quantity: "" });
   };
+
+  const faqs = [
+    {
+      question: "What is crypto profit/loss calculator and why is it important?",
+      answer: "The Crypto Profit/Loss Calculator is a tool designed to help investors determine the financial outcome of their cryptocurrency trades. By inputting the buy price, sell price, and quantity of coins, users can quickly calculate their net profit or loss. This tool is essential for managing a crypto portfolio, as it allows traders to track performance, assess risks, and make data-driven decisions. Understanding profit and loss is fundamental to successful trading, ensuring that investors are aware of their financial standing at all times."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator provides accurate results based on the inputs provided. However, its accuracy depends on the accuracy of the input data, such as buy and sell prices and transaction fees. External factors like market volatility and exchange rates can also affect the results. For critical decisions, consider consulting a financial advisor. Regularly update your inputs to reflect current market conditions for the best results."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you'll need the buy price, sell price, and the quantity of cryptocurrency traded. Ensure these values are accurate and reflect the actual transaction details. You may also want to consider transaction fees and taxes, as these can impact your net profit or loss. Gather this information from your trading platform or transaction records. Keeping detailed records will help you input accurate data and achieve reliable results."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, this calculator can be used for various scenarios, including day trading, long-term investments, and speculative trades. However, it may not account for complex scenarios involving multiple trades or currencies. In such cases, additional tools or professional advice might be necessary. For more complex calculations, consider using our HELOC Payment Estimator for detailed financial planning."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include using outdated prices, ignoring transaction fees, and miscalculating quantities. These errors can lead to inaccurate results and poor trading decisions. Always double-check your inputs and consider all relevant factors. Avoid these mistakes by maintaining accurate records and staying informed about market conditions. Regularly update your calculations to reflect current data."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculate whenever there are significant changes in market conditions, such as price fluctuations or regulatory updates. Regular recalculations help you stay informed and make timely decisions. Consider recalculating at least once a week or whenever you make a new trade. Establish a routine for recalculating, especially if you're actively trading. This practice will help you manage risks and optimize your trading strategy."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to assess your trading performance and adjust your strategy accordingly. If you're consistently making profits, consider scaling up your investments. If you're experiencing losses, analyze the reasons and make necessary adjustments. For further guidance, consult a financial advisor or explore our Loan Payment Calculator for more financial insights."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using financial software or consulting with a financial advisor for more complex scenarios. These methods can provide additional insights and help you make more informed decisions. However, they may come with additional costs or require more time. Consider using these alternatives if you're dealing with large sums or complex trading strategies. They can complement the basic calculations provided by this tool."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -273,7 +311,7 @@ export default function CryptoProfitLossCalculator() {
         </h2>
         
         <p className="mb-6">
-          The Crypto Profit/Loss Calculator is a powerful tool designed to help traders and investors determine the financial outcome of their cryptocurrency transactions. By inputting the buy and sell prices along with the quantity of the cryptocurrency traded, users can quickly see their profit or loss in monetary terms. This calculator is essential for anyone involved in the volatile world of crypto trading, where prices can fluctuate dramatically in a short period. Whether you're a seasoned trader or a novice investor, understanding your potential gains or losses is crucial for making informed decisions.
+          The Crypto Profit/Loss Calculator is a powerful tool designed to help traders and investors determine the financial outcome of their cryptocurrency transactions. By inputting the buy and sell prices and the quantity of the cryptocurrency traded, users can quickly see their profit or loss in monetary terms. This calculator is essential for anyone involved in the volatile world of crypto trading, where prices can fluctuate dramatically in a short period. Whether you're a seasoned trader or a novice investor, understanding your potential gains or losses is crucial for making informed decisions.
         </p>
         
         <p className="mb-6">
@@ -383,123 +421,23 @@ export default function CryptoProfitLossCalculator() {
       </section>
 
       {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is crypto profit/loss calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A crypto profit/loss calculator helps traders determine the financial outcome of their trades. By inputting the buy and sell prices and the quantity traded, users can see their profit or loss. This tool is crucial for making informed trading decisions and managing financial risks effectively.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding your potential gains or losses helps you strategize better and avoid costly mistakes. For more insights, check out our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides accurate results based on the inputs provided. However, its accuracy depends on the accuracy of the input data, such as buy and sell prices and transaction fees. External factors like market volatility and exchange rates can also affect the results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For critical decisions, consider consulting a financial advisor. Regularly update your inputs to reflect current market conditions for the best results.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need the buy price, sell price, and the quantity of cryptocurrency traded. Ensure these values are accurate and reflect the actual transaction details. You may also want to consider transaction fees and taxes, as these can impact your net profit or loss.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Gather this information from your trading platform or transaction records. Keeping detailed records will help you input accurate data and achieve reliable results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for various scenarios, including day trading, long-term investments, and speculative trades. However, it may not account for complex scenarios involving multiple trades or currencies. In such cases, additional tools or professional advice might be necessary.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more complex calculations, consider using our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a> for detailed financial planning.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated prices, ignoring transaction fees, and miscalculating quantities. These errors can lead to inaccurate results and poor trading decisions. Always double-check your inputs and consider all relevant factors.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Avoid these mistakes by maintaining accurate records and staying informed about market conditions. Regularly update your calculations to reflect current data.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculate whenever there are significant changes in market conditions, such as price fluctuations or regulatory updates. Regular recalculations help you stay informed and make timely decisions. Consider recalculating at least once a week or whenever you make a new trade.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Establish a routine for recalculating, especially if you're actively trading. This practice will help you manage risks and optimize your trading strategy.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to assess your trading performance and adjust your strategy accordingly. If you're consistently making profits, consider scaling up your investments. If you're experiencing losses, analyze the reasons and make necessary adjustments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further guidance, consult a financial advisor or explore our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> for more financial insights.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using financial software or consulting with a financial advisor for more complex scenarios. These methods can provide additional insights and help you make more informed decisions. However, they may come with additional costs or require more time.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider using these alternatives if you're dealing with large sums or complex trading strategies. They can complement the basic calculations provided by this tool.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
+                {faq.answer}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 

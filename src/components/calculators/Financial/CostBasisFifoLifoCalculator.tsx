@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CostBasisFifoLifoCalculator() {
   // STATE
@@ -26,6 +27,43 @@ export default function CostBasisFifoLifoCalculator() {
       maximumFractionDigits: 2,
     }).format(value);
   };
+
+  const faqs = [
+    {
+      question: "What is cost basis calculator (fifo/lifo) and why is it important?",
+      answer: "A cost basis calculator using FIFO or LIFO methods helps investors determine the cost basis of their assets, which is crucial for calculating capital gains or losses. This calculation is important for accurate tax reporting and financial planning, ensuring investors pay the correct amount of taxes on their investments. Understanding your cost basis also aids in making informed investment decisions, as it provides clarity on the profitability of your assets. For more insights, check our <a href=\"/financial/refinance-savings\">Refinance Savings Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "This calculator is designed to provide accurate results based on the inputs provided. However, its accuracy depends on the precision of the data entered, such as purchase prices and quantities. External factors like transaction fees and market conditions can also affect the results. For best results, ensure all data is current and double-check entries for errors. Consulting a financial advisor can provide additional assurance."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you need the purchase price of the asset, the quantity purchased, and the method (FIFO or LIFO) you wish to apply. The purchase price should include any transaction fees to ensure an accurate cost basis calculation. You can find this information in your transaction statements or brokerage account records. Keeping detailed records of all transactions helps in maintaining accuracy."
+    },
+    {
+      question: "Can I use this calculator for [specific scenario]?",
+      answer: "This calculator is versatile and can be used for various scenarios, including stocks, bonds, and cryptocurrencies. However, it is essential to ensure that the method chosen (FIFO or LIFO) aligns with your specific investment strategy and regulatory requirements. For complex scenarios involving multiple transactions or asset types, consulting a financial advisor may provide additional clarity and ensure compliance with tax regulations."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include incorrect data entry, such as wrong purchase prices or quantities, and failing to include transaction fees. Another frequent error is selecting the wrong method (FIFO or LIFO) for the intended investment strategy, which can lead to inaccurate tax reporting. To avoid these mistakes, double-check all inputs and ensure they reflect your current holdings. Regularly update your records and consult with a financial advisor if needed."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculation should occur after each transaction to ensure your records remain accurate. Additionally, consider recalculating at the end of each fiscal year or before filing taxes to verify your cost basis aligns with your financial statements. Regular updates help in maintaining compliance and optimizing your investment strategy. Set reminders to review your portfolio periodically."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to inform your investment decisions and tax reporting. Understanding your cost basis helps in evaluating the profitability of your assets and planning future trades. It also ensures you report accurate figures to tax authorities, avoiding potential penalties. If you're unsure about interpreting the results, consider seeking advice from a financial advisor. For more tools, visit our <a href=\"/financial/heloc-payment-estimator\">HELOC Payment Estimator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to FIFO and LIFO include the Average Cost Method, which calculates the cost basis by averaging the purchase prices of all units. This method can simplify calculations but may not always align with tax regulations or investment strategies. Choosing the right method depends on your specific financial goals and regulatory requirements. Consult with a tax professional to determine the best approach for your situation."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // CALCULATIONS
   const results = useMemo(() => {
@@ -405,117 +443,18 @@ export default function CostBasisFifoLifoCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is cost basis calculator (fifo/lifo) and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A cost basis calculator using FIFO or LIFO methods helps investors determine the cost basis of their assets, which is crucial for calculating capital gains or losses. This calculation is important for accurate tax reporting and financial planning, ensuring investors pay the correct amount of taxes on their investments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding your cost basis also aids in making informed investment decisions, as it provides clarity on the profitability of your assets. For more insights, check our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is designed to provide accurate results based on the inputs provided. However, its accuracy depends on the precision of the data entered, such as purchase prices and quantities. External factors like transaction fees and market conditions can also affect the results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For best results, ensure all data is current and double-check entries for errors. Consulting a financial advisor can provide additional assurance.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need the purchase price of the asset, the quantity purchased, and the method (FIFO or LIFO) you wish to apply. The purchase price should include any transaction fees to ensure an accurate cost basis calculation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can find this information in your transaction statements or brokerage account records. Keeping detailed records of all transactions helps in maintaining accuracy.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for [specific scenario]?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is versatile and can be used for various scenarios, including stocks, bonds, and cryptocurrencies. However, it is essential to ensure that the method chosen (FIFO or LIFO) aligns with your specific investment strategy and regulatory requirements.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex scenarios involving multiple transactions or asset types, consulting a financial advisor may provide additional clarity and ensure compliance with tax regulations.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include incorrect data entry, such as wrong purchase prices or quantities, and failing to include transaction fees. Another frequent error is selecting the wrong method (FIFO or LIFO) for the intended investment strategy, which can lead to inaccurate tax reporting.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, double-check all inputs and ensure they reflect your current holdings. Regularly update your records and consult with a financial advisor if needed.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculation should occur after each transaction to ensure your records remain accurate. Additionally, consider recalculating at the end of each fiscal year or before filing taxes to verify your cost basis aligns with your financial statements.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Regular updates help in maintaining compliance and optimizing your investment strategy. Set reminders to review your portfolio periodically.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to inform your investment decisions and tax reporting. Understanding your cost basis helps in evaluating the profitability of your assets and planning future trades. It also ensures you report accurate figures to tax authorities, avoiding potential penalties.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you're unsure about interpreting the results, consider seeking advice from a financial advisor. For more tools, visit our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to FIFO and LIFO include the Average Cost Method, which calculates the cost basis by averaging the purchase prices of all units. This method can simplify calculations but may not always align with tax regulations or investment strategies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Choosing the right method depends on your specific financial goals and regulatory requirements. Consult with a tax professional to determine the best approach for your situation.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -631,6 +570,7 @@ export default function CostBasisFifoLifoCalculator() {
     <CalculatorVerticalLayout
       title="Cost Basis Calculator (FIFO/LIFO)"
       description="Calculate cost basis using FIFO or LIFO methods. Essential for accurate crypto tax reporting and portfolio tracking."
+      jsonLd={faqJsonLd}
       widget={widget}
       editorial={editorial}
       onThisPage={[

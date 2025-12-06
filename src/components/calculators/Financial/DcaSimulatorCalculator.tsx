@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function DcaSimulatorCalculator() {
   // STATE
@@ -26,6 +27,43 @@ export default function DcaSimulatorCalculator() {
       maximumFractionDigits: 2,
     }).format(value);
   };
+
+  const faqs = [
+    {
+      question: "What is dollar cost averaging (DCA) simulator and why is it important?",
+      answer: "The Dollar Cost Averaging (DCA) Simulator is a tool designed to help investors understand the benefits of regular, fixed-amount investments over time. It demonstrates how investing consistently can reduce the impact of market volatility and potentially lead to better investment outcomes. By using the DCA Simulator, investors can visualize the growth of their investments and make informed decisions about their financial strategies. This simulator is important because it provides a clear picture of how DCA works in practice, allowing investors to compare it with other strategies like lump-sum investing. For more on investment strategies, check our <a href=\"/financial/investment-strategy-calculator\">Investment Strategy Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The DCA Simulator is designed to provide accurate projections based on the inputs you provide. However, it is important to note that the calculator uses assumptions about growth rates and market conditions, which can vary in reality. While the simulator offers valuable insights, it should be used as a guide rather than a definitive prediction. For precise financial planning, consider consulting with a financial advisor who can tailor advice to your specific situation. Always use the simulator in conjunction with professional guidance."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the DCA Simulator, you'll need to provide information about your initial investment amount, the amount you plan to contribute monthly, and the duration of your investment period in months. Additionally, having an understanding of your expected annual growth rate can help in making more accurate projections. Gathering accurate data is crucial for reliable results. Review your financial statements and consult with your financial advisor to ensure that the information you input reflects your actual financial situation."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, the DCA Simulator can be used for a variety of scenarios, including retirement planning, education savings, or general investment growth. By adjusting the inputs, you can explore different strategies and see how they might perform over time. It's a versatile tool that can be tailored to meet your specific financial goals. However, keep in mind that the simulator is based on assumptions and should be used as a guide. For more complex scenarios, consulting with a financial advisor is recommended."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "One common mistake is underestimating the impact of market volatility on investment growth. While DCA helps mitigate some risks, it's important to have realistic expectations about potential returns. Another mistake is failing to adjust contributions based on changing financial circumstances, which can lead to suboptimal investment outcomes. To avoid these errors, regularly review your investment strategy and adjust your inputs as needed. Stay informed about market conditions and consult with a financial advisor for personalized advice."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your investment strategy whenever there are significant changes in your financial situation, such as a change in income, expenses, or financial goals. Additionally, reviewing your strategy annually can help ensure that it remains aligned with your long-term objectives. Regular recalculations can help you stay on track and make necessary adjustments to optimize your investment outcomes. Consider setting a reminder to review your strategy at least once a year."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "The results from the DCA Simulator provide a projection of your investment's potential growth. Use these insights to evaluate your current strategy and make informed decisions about future investments. If the results align with your financial goals, you can continue with your current strategy. If not, consider adjusting your contributions or investment period. For further guidance, consult with a financial advisor who can provide personalized advice based on your unique situation. Explore our <a href=\"/financial/financial-advisor-calculator\">Financial Advisor Calculator</a> for more insights."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Yes, there are alternative investment strategies such as lump-sum investing, where you invest a large amount at once, or tactical asset allocation, which involves adjusting your portfolio based on market conditions. Each method has its pros and cons, and the best choice depends on your financial goals and risk tolerance. Consider exploring different strategies to find the one that best suits your needs. Consulting with a financial advisor can provide valuable insights into the most suitable approach for your situation."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // CALCULATIONS
   const results = useMemo(() => {
@@ -404,117 +442,18 @@ export default function DcaSimulatorCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is dollar cost averaging (DCA) simulator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Dollar Cost Averaging (DCA) Simulator is a tool designed to help investors understand the benefits of regular, fixed-amount investments over time. It demonstrates how investing consistently can reduce the impact of market volatility and potentially lead to better investment outcomes. By using the DCA Simulator, investors can visualize the growth of their investments and make informed decisions about their financial strategies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              This simulator is important because it provides a clear picture of how DCA works in practice, allowing investors to compare it with other strategies like lump-sum investing. For more on investment strategies, check our <a href="/financial/investment-strategy-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">Investment Strategy Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The DCA Simulator is designed to provide accurate projections based on the inputs you provide. However, it is important to note that the calculator uses assumptions about growth rates and market conditions, which can vary in reality. While the simulator offers valuable insights, it should be used as a guide rather than a definitive prediction.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For precise financial planning, consider consulting with a financial advisor who can tailor advice to your specific situation. Always use the simulator in conjunction with professional guidance.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the DCA Simulator, you'll need to provide information about your initial investment amount, the amount you plan to contribute monthly, and the duration of your investment period in months. Additionally, having an understanding of your expected annual growth rate can help in making more accurate projections.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Gathering accurate data is crucial for reliable results. Review your financial statements and consult with your financial advisor to ensure that the information you input reflects your actual financial situation.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the DCA Simulator can be used for a variety of scenarios, including retirement planning, education savings, or general investment growth. By adjusting the inputs, you can explore different strategies and see how they might perform over time. It's a versatile tool that can be tailored to meet your specific financial goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              However, keep in mind that the simulator is based on assumptions and should be used as a guide. For more complex scenarios, consulting with a financial advisor is recommended.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              One common mistake is underestimating the impact of market volatility on investment growth. While DCA helps mitigate some risks, it's important to have realistic expectations about potential returns. Another mistake is failing to adjust contributions based on changing financial circumstances, which can lead to suboptimal investment outcomes.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these errors, regularly review your investment strategy and adjust your inputs as needed. Stay informed about market conditions and consult with a financial advisor for personalized advice.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your investment strategy whenever there are significant changes in your financial situation, such as a change in income, expenses, or financial goals. Additionally, reviewing your strategy annually can help ensure that it remains aligned with your long-term objectives.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Regular recalculations can help you stay on track and make necessary adjustments to optimize your investment outcomes. Consider setting a reminder to review your strategy at least once a year.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The results from the DCA Simulator provide a projection of your investment's potential growth. Use these insights to evaluate your current strategy and make informed decisions about future investments. If the results align with your financial goals, you can continue with your current strategy. If not, consider adjusting your contributions or investment period.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further guidance, consult with a financial advisor who can provide personalized advice based on your unique situation. Explore our <a href="/financial/financial-advisor-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">Financial Advisor Calculator</a> for more insights.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, there are alternative investment strategies such as lump-sum investing, where you invest a large amount at once, or tactical asset allocation, which involves adjusting your portfolio based on market conditions. Each method has its pros and cons, and the best choice depends on your financial goals and risk tolerance.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider exploring different strategies to find the one that best suits your needs. Consulting with a financial advisor can provide valuable insights into the most suitable approach for your situation.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -630,6 +569,7 @@ export default function DcaSimulatorCalculator() {
     <CalculatorVerticalLayout
       title="Dollar Cost Averaging (DCA) Simulator"
       description="Simulate Dollar Cost Averaging strategies. See how regular investing compares to lump-sum investing and beats market timing volatility."
+      jsonLd={faqJsonLd}
       widget={widget}
       editorial={editorial}
       onThisPage={[
