@@ -562,7 +562,7 @@ export default function DcaStrategyAnalyzerCryptoCalculator() {
     <CalculatorVerticalLayout
       title="DCA Strategy Analyzer (Crypto)"
       description="Analyze your Crypto Dollar Cost Averaging strategy. Evaluate historical performance and risk reduction of recurring buys."
-      jsonLd={faqJsonLd}
+      jsonLd={faqJsonLd ?? undefined}
       widget={widget}
       editorial={editorial}
       onThisPage={[

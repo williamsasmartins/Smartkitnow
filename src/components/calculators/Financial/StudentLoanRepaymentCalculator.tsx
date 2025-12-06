@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
-import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function StudentLoanRepaymentCalculator() {
   // STATE
@@ -89,7 +89,7 @@ export default function StudentLoanRepaymentCalculator() {
     const totalInterest = totalPayment - loanAmount;
 
     // Generate schedule data
-    const scheduleData = [];
+    const scheduleData: { month: number; payment: number; principal: number; interest: number; balance: number }[] = [];
     let remainingBalance = loanAmount;
     
     for (let i = 1; i <= repaymentTerm; i++) {

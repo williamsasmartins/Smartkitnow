@@ -51,7 +51,7 @@ export default function CreditCardPayoffCalculator() {
     let totalPayment = 0;
     let currentBalance = balance;
     const monthlyInterestRate = interestRate / 100 / 12;
-    const scheduleData = [];
+    const scheduleData: { month: number; payment: number; principal: number; interest: number; balance: number }[] = [];
 
     while (currentBalance > 0) {
       const interestForMonth = currentBalance * monthlyInterestRate;

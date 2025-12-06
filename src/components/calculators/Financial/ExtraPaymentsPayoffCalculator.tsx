@@ -52,7 +52,7 @@ export default function ExtraPaymentsPayoffCalculator() {
     let remainingBalance = loanAmount;
     let totalInterestPaid = 0;
     let months = 0;
-    const scheduleData = [];
+    const scheduleData: { month: number; payment: number; principal: number; interest: number; balance: number }[] = [];
 
     while (remainingBalance > 0) {
       const interestPayment = remainingBalance * monthlyInterestRate;

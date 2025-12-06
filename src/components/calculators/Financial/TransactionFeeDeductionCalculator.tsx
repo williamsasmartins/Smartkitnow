@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from "react";
-import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";

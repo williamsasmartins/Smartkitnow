@@ -61,7 +61,7 @@ export default function DebtSnowballCalculator() {
         totalInterestPaid,
         months: month,
       };
-    }).filter(Boolean);
+    }).filter((x): x is { index: number; totalPayment: number; totalInterestPaid: number; months: number } => x !== null);
 
     return {
       totalDebt,

@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle, TrendingUp } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function AutoLoanCalculator() {
@@ -83,7 +83,7 @@ export default function AutoLoanCalculator() {
   };
 
   const handleReset = () => {
-    setInputs({ vehiclePrice: "", downPayment: "", tradeInValue: "", interestRate: "", loanTerm: "", salesTax: "", otherFees: "" });
+    setInputs({ loanAmount: "", interestRate: "", loanTerm: "" });
   };
 
   const faqs = [
