@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,15 +8,55 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
 
-export default function HashRateToEarningsConverter() {
+export default function HashRateToEarningsCalculator() {
   // STATE
   const [inputs, setInputs] = useState({ 
     hashRate: "", 
     powerConsumption: "", 
-    electricityCost: "" 
+    electricityCost: "", 
+    networkDifficulty: "", 
+    blockReward: "", 
+    poolFee: "" 
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is Hash Rate To Earnings Calculator and why is it important?",
+      answer: "The Hash Rate To Earnings Calculator is a tool used by cryptocurrency miners to estimate their potential earnings based on their mining hardware's hash rate. It is important because it helps miners understand the profitability of their operations by factoring in variables such as network difficulty, block rewards, and electricity costs. By using this calculator, miners can make informed decisions about hardware investments and operational strategies."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The accuracy of the Hash Rate To Earnings Calculator depends on the precision of the input data, such as hash rate, power consumption, and electricity costs. While it provides a good estimate of potential earnings, it cannot predict future changes in network difficulty or cryptocurrency prices. Therefore, the results should be viewed as an approximation rather than a guaranteed outcome. For the most accurate projections, update your inputs regularly to reflect current market conditions."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the Hash Rate To Earnings Calculator, you need to know your mining hardware's hash rate (e.g., TH/s or MH/s), power consumption in watts, and your electricity cost per kWh. Additionally, knowing the current network difficulty and block reward for the specific cryptocurrency you are mining is helpful. This information allows the calculator to compute your estimated daily, weekly, and monthly earnings."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, the Hash Rate To Earnings Calculator is designed to handle various mining scenarios. whether you are a hobbyist miner with a single GPU or a large-scale operation with multiple ASICs, this calculator can be adjusted to fit your specific setup. You can input different hash rates and power costs to see how they affect your potential earnings, helping you optimize your mining strategy."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include underestimating electricity costs, ignoring pool fees, and failing to account for hardware depreciation. These oversights can lead to overly optimistic earnings projections. To avoid these pitfalls, ensure that you include all associated costs in your calculation and consider the long-term viability of your mining equipment."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It is advisable to recalculate your earnings frequently, as cryptocurrency markets are highly volatile. Changes in network difficulty, coin price, and electricity rates can significantly impact profitability. A weekly or even daily check can help you stay on top of your mining performance and make necessary adjustments to your operations."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results from the Hash Rate To Earnings Calculator to evaluate the profitability of your mining activities. If the calculator shows a negative return, you may need to reconsider your hardware choices or electricity provider. Conversely, positive results can confirm the viability of your mining setup and help you plan for future expansion or upgrades."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives to using a dedicated Hash Rate To Earnings Calculator include manual calculations using mining formulas or using comprehensive mining management software that offers real-time profitability tracking. While manual calculations can be educational, they are time-consuming and prone to error. Dedicated software provides a more automated and accurate solution for serious miners."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -614,13 +655,14 @@ export default function HashRateToEarningsConverter() {
   // RETURN STATEMENT
   return (
     <CalculatorVerticalLayout
-      title="Hash Rate to Earnings Converter"
-      description="Convert mining hashrate to estimated earnings. See how much your hardware can generate per day in current market conditions."
+      title="Hash Rate to Earnings Calculator"
+      description="Estimate your cryptocurrency mining earnings based on hash rate, power consumption, and electricity costs."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
-        { id: "introduction", label: "Understanding Hash Rate to Earnings Converter" },
-        { id: "formula", label: "Hash Rate to Earnings Converter Formula" },
+        { id: "introduction", label: "Understanding Hash Rate to Earnings" },
+        { id: "formula", label: "Hash Rate to Earnings Formula" },
         { id: "factors", label: "Key Factors That Affect Results" },
         { id: "faq", label: "Frequently Asked Questions" },
         { id: "references", label: "References & Resources" }

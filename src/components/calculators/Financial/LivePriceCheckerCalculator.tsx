@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,43 @@ export default function LivePriceCheckerCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const faqs = [
+    {
+      question: "What is Live Price Checker Calculator and why is it important?",
+      answer: "The Live Price Checker Calculator is a tool that allows users to calculate the total value of their cryptocurrency holdings based on the current market price. It is important because it helps investors and traders quickly determine the worth of their assets in real-time. By inputting the quantity and current conversion rate, users can make informed decisions about buying, selling, or holding their investments. This tool is essential for managing a cryptocurrency portfolio effectively."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The accuracy of the Live Price Checker Calculator depends on the accuracy of the input data provided by the user. Since this version requires manual entry of the conversion rate, users must ensure they are using the most up-to-date market price. While the calculation itself is precise, the result is only as good as the data entered. For critical trading decisions, always verify the current price from a reliable exchange."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the Live Price Checker Calculator, you need to know the symbol of the cryptocurrency you are tracking (e.g., BTC), the amount of the asset you own, and the current conversion rate in USD. This information allows the calculator to compute the total value of your holdings. Having this data handy ensures a quick and accurate calculation."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, the Live Price Checker Calculator is versatile and can be used for various scenarios, such as calculating the value of a specific trade, estimating portfolio growth, or planning future investments. Whether you are a day trader looking for quick valuations or a long-term investor tracking portfolio performance, this calculator provides the necessary insights to manage your assets."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "A common mistake is using an outdated conversion rate, which can lead to inaccurate valuation of holdings. Another error is miscalculating the amount of cryptocurrency owned. To avoid these issues, always check the latest market prices before performing the calculation and double-check your asset quantities. Being precise with your inputs ensures reliable results."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Since cryptocurrency prices are highly volatile, it is recommended to recalculate whenever there is a significant price movement or when you make a new trade. For active traders, this might be multiple times a day. For long-term holders, a daily or weekly check may be sufficient. Regular recalculation keeps you informed about the current value of your investments."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results from the Live Price Checker Calculator to assess the performance of your investments. If the total value meets your profit targets, you might consider selling. If the value has dropped, you might evaluate whether to hold or buy more. The calculated value serves as a key metric for making strategic financial decisions regarding your cryptocurrency portfolio."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using automated portfolio tracking apps that connect directly to exchanges and wallets to provide real-time updates. Financial news websites and trading platforms also offer live price tracking features. However, a manual calculator like this one is useful for quick, ad-hoc calculations without the need for account integration or internet access for the calculation logic itself."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -620,6 +658,7 @@ export default function LivePriceCheckerCalculator() {
       description="Check real-time cryptocurrency prices. Monitor market movements for top coins instantly to stay updated on market trends."
       widget={widget}
       editorial={editorial}
+      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Live Price Checker (Real-Time Rates)" },
         { id: "formula", label: "Live Price Checker (Real-Time Rates) Formula" },
