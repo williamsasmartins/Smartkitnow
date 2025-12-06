@@ -415,40 +415,54 @@ export default function DogCalorieNeedsRerMerCalculator() {
           </section>
 
           <section id="faq">
-            <h2 className="text-3xl font-bold mb-4">
-              Frequently asked questions about dog calorie needs
-            </h2>
+  <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100">
+    Frequently Asked Questions
+  </h2>
 
-            <h3 className="text-xl font-semibold mt-4 mb-2">
-              Is this calculator a substitute for a vet visit?
-            </h3>
-            <p>
-              No. This tool is an educational guide that uses standard veterinary
-              formulas, but it cannot assess your dog&apos;s medical history, body
-              condition, laboratory tests, or special dietary needs. Always work with
-              your veterinarian before starting a weight-loss or weight-gain plan.
-            </p>
+  <div className="space-y-8">
+    <div>
+      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100">
+        Is this calculator a substitute for a vet visit?
+      </h3>
+      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+        No. This tool is an educational guide that uses standard veterinary formulas,
+        but it cannot assess your dog&apos;s medical history, body condition,
+        laboratory tests, or special dietary needs. Always work with your veterinarian
+        before starting a weight-loss or weight-gain plan, changing food, or adjusting
+        calories for a dog with chronic disease.
+      </p>
+    </div>
 
-            <h3 className="text-xl font-semibold mt-4 mb-2">
-              Should I use the current weight or ideal weight?
-            </h3>
-            <p>
-              For most healthy dogs, you can start with the current weight to estimate
-              daily calories. For overweight dogs, many vets prefer using an{" "}
-              <em>ideal body weight</em> instead. Your veterinarian can help you choose a
-              safe target weight and BCS score.
-            </p>
+    <div>
+      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100">
+        Should I use the current weight or ideal weight?
+      </h3>
+      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+        For most healthy dogs, you can start with the current weight to estimate daily
+        calories. For overweight dogs, many vets prefer using an{" "}
+        <em>ideal body weight</em> instead, because feeding based only on the current
+        weight can maintain the excess fat. Your veterinarian can help you choose a
+        safe target weight and body condition score, then you can plug that target
+        weight into this calculator.
+      </p>
+    </div>
 
-            <h3 className="text-xl font-semibold mt-4 mb-2">
-              What if my dog has a medical condition?
-            </h3>
-            <p>
-              Dogs with diabetes, kidney disease, heart disease, pancreatitis, or other
-              medical issues often need very specific nutrition plans. In those cases,
-              this calculator is only a rough reference. Follow the exact diet and
-              calorie plan recommended by your vet.
-            </p>
-          </section>
+    <div>
+      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100">
+        What if my dog has a medical condition?
+      </h3>
+      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+        Dogs with diabetes, kidney disease, heart disease, pancreatitis, cancer,
+        severe arthritis, or other medical problems often need very specific nutrition
+        plans. In those cases, this calculator is only a rough reference. The safest
+        approach is to follow the exact diet, calorie target, and treat limits
+        recommended by your vet, and schedule regular weigh-ins to make sure your dog
+        is responding well.
+      </p>
+    </div>
+  </div>
+</section>
+
         </div>
       }
     />
