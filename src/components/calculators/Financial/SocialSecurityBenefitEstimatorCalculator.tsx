@@ -610,7 +610,6 @@ export default function SocialSecurityBenefitEstimatorCalculator() {
         {"title":"Refinance Savings Calculator","url":"/financial/refinance-savings","icon":"🏦"},
         {"title":"HELOC Payment Estimator","url":"/financial/heloc-payment-estimator","icon":"💰"}
       ]}
-      jsonLd={faqJsonLd}
     />
   );
 }
