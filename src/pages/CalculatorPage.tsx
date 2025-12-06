@@ -15,9 +15,10 @@ function useLazyFromLoader(loader: () => Promise<any>, namedExport?: string) {
 export default function CalculatorPage() {
   const navigate = useNavigate();
   const { category, subcategory, calculator, slug } = useParams();
-  const isPets = (category ?? "").toLowerCase() === "pets";
   
   const calcSlug = (calculator ?? slug ?? "").toLowerCase();
+  const isPets = (category ?? "").toLowerCase() === "pets" && calcSlug !== "dog-calorie-needs-rer-mer";
+  
   const entry = calcSlug ? getEntry(calcSlug) : null;
 
   if (!entry) {
@@ -52,3 +53,4 @@ export default function CalculatorPage() {
   );
 }
 
+
