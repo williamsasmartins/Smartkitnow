@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CollegeSavingsCalculator() {
   // STATE
@@ -19,6 +20,44 @@ export default function CollegeSavingsCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  // FAQ DATA
+  const faqs = [
+    {
+      question: "What is a college savings calculator and why is it important?",
+      answer: "A college savings calculator is a tool that helps you estimate how much money you need to save to cover future college expenses. It takes into account factors like current savings, monthly contributions, expected returns, and inflation. This calculator is crucial for financial planning as it provides a clear picture of your savings trajectory, helping you avoid shortfalls. Understanding your financial needs for education allows you to make informed decisions and adjust your savings strategy as needed. For further insights, explore our <a href='/financial/interest-only-loan' class='text-blue-600 dark:text-blue-400 hover:underline'>Interest-Only Loan Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The calculator provides a high level of accuracy based on the inputs you provide. However, it assumes consistent returns and contributions, which may not reflect real-world fluctuations. Factors such as changes in inflation, unexpected expenses, or variations in investment returns can affect the accuracy of the projections. To enhance accuracy, regularly update your inputs and consult with financial professionals when making significant financial decisions."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use the calculator, you'll need your current savings balance, the amount you can contribute monthly, the expected annual return rate on your investments, the current cost of college tuition, and the inflation rate. This information helps the calculator project your future savings and determine if your current plan will meet your goals. Gather this data from your financial statements, investment accounts, and reliable sources for inflation and tuition costs."
+    },
+    {
+      question: "Can I use this calculator for different education levels?",
+      answer: "Yes, the calculator can be adapted for various education levels, including undergraduate, graduate, and vocational training. Adjust the inputs to reflect the specific costs and timeframes associated with each level. For example, graduate programs may have higher tuition but shorter durations compared to undergraduate studies. Ensure that the inflation rate and expected returns align with the specific education level's financial landscape."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include underestimating the inflation rate, overestimating investment returns, and failing to adjust contributions over time. These errors can lead to insufficient savings when college expenses arise. Additionally, not accounting for potential scholarships or financial aid can skew the savings target. To avoid these pitfalls, regularly review and update your inputs, and consider all potential sources of funding. For more detailed guidance, refer to our <a href='/financial/refinance-savings' class='text-blue-600 dark:text-blue-400 hover:underline'>Refinance Savings Calculator</a>."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "Recalculate your savings plan annually or whenever there are significant changes in your financial situation, such as a change in income, expenses, or investment returns. Regular recalculations help ensure your plan remains aligned with your goals and adjusts for any economic changes. Set a reminder to review your savings plan at the start of each year."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to assess whether your current savings plan will meet your future college expenses. If there's a shortfall, consider increasing your contributions, adjusting your investment strategy, or exploring additional funding sources. The results provide a roadmap for achieving your financial goals. Share your plan with a financial advisor for professional insights and recommendations. For more strategies, see our <a href='/financial/heloc-payment-estimator' class='text-blue-600 dark:text-blue-400 hover:underline'>HELOC Payment Estimator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using financial planning software or consulting with a financial advisor for personalized strategies. These methods can offer more tailored advice and account for complex financial situations. However, they may involve additional costs or require more time to implement. Consider these alternatives if you have unique financial circumstances or require a more comprehensive financial plan."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -468,117 +507,18 @@ export default function CollegeSavingsCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is a college savings calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A college savings calculator is a tool that helps you estimate how much money you need to save to cover future college expenses. It takes into account factors like current savings, monthly contributions, expected returns, and inflation. This calculator is crucial for financial planning as it provides a clear picture of your savings trajectory, helping you avoid shortfalls.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding your financial needs for education allows you to make informed decisions and adjust your savings strategy as needed. For further insights, explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The calculator provides a high level of accuracy based on the inputs you provide. However, it assumes consistent returns and contributions, which may not reflect real-world fluctuations. Factors such as changes in inflation, unexpected expenses, or variations in investment returns can affect the accuracy of the projections.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To enhance accuracy, regularly update your inputs and consult with financial professionals when making significant financial decisions.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the calculator, you'll need your current savings balance, the amount you can contribute monthly, the expected annual return rate on your investments, the current cost of college tuition, and the inflation rate. This information helps the calculator project your future savings and determine if your current plan will meet your goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Gather this data from your financial statements, investment accounts, and reliable sources for inflation and tuition costs. Accurate inputs lead to more reliable projections.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for different education levels?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the calculator can be adapted for various education levels, including undergraduate, graduate, and vocational training. Adjust the inputs to reflect the specific costs and timeframes associated with each level. For example, graduate programs may have higher tuition but shorter durations compared to undergraduate studies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that the inflation rate and expected returns align with the specific education level's financial landscape. This flexibility makes the calculator a versatile tool for diverse educational planning needs.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include underestimating the inflation rate, overestimating investment returns, and failing to adjust contributions over time. These errors can lead to insufficient savings when college expenses arise. Additionally, not accounting for potential scholarships or financial aid can skew the savings target.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these pitfalls, regularly review and update your inputs, and consider all potential sources of funding. For more detailed guidance, refer to our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculate your savings plan annually or whenever there are significant changes in your financial situation, such as a change in income, expenses, or investment returns. Regular recalculations help ensure your plan remains aligned with your goals and adjusts for any economic changes.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Set a reminder to review your savings plan at the start of each year. This proactive approach helps you stay on track and make necessary adjustments in a timely manner.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to assess whether your current savings plan will meet your future college expenses. If there's a shortfall, consider increasing your contributions, adjusting your investment strategy, or exploring additional funding sources. The results provide a roadmap for achieving your financial goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Share your plan with a financial advisor for professional insights and recommendations. For more strategies, see our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using financial planning software or consulting with a financial advisor for personalized strategies. These methods can offer more tailored advice and account for complex financial situations. However, they may involve additional costs or require more time to implement.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider these alternatives if you have unique financial circumstances or require a more comprehensive financial plan. They can complement the calculator's insights and provide a holistic view of your financial health.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -694,6 +634,7 @@ export default function CollegeSavingsCalculator() {
     <CalculatorVerticalLayout
       title="College Savings Calculator"
       description="Plan for college expenses. Estimate how much you need to save for tuition and education costs based on projected inflation."
+      faqJsonLd={faqJsonLd}
       widget={widget}
       editorial={editorial}
       onThisPage={[

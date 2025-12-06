@@ -5,7 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle, AlertTriangle } from "lucide-react";
+import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
 
 export default function RetirementSavingsGrowthCalculator() {
   // STATE
@@ -336,7 +337,7 @@ export default function RetirementSavingsGrowthCalculator() {
             Key Insight
           </h4>
           <p className="text-blue-800 dark:text-blue-200">
-            Remember, the earlier you start saving for retirement, the more time your money has to grow. Even small contributions can lead to significant savings over time due to the power of compound interest. Ensure you maximize your employer's matching contributions to boost your savings effectively.
+            Remember, the earlier you start saving for retirement, the more time your money has to grow. Even small contributions can lead to significant savings over time due to the power of compounding interest. Ensure you maximize your employer's matching contributions to boost your savings effectively.
           </p>
         </div>
         
@@ -442,117 +443,18 @@ export default function RetirementSavingsGrowthCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is 401(k) / retirement savings growth calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The 401(k) / Retirement Savings Growth Calculator is a tool designed to estimate the future value of your retirement savings based on current contributions, employer matches, and expected growth rates. It is important because it helps you plan effectively for retirement by providing a clear picture of how your savings will grow over time.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Using this calculator can help you make informed decisions about your savings strategy, ensuring you are on track to meet your retirement goals. For more tools to assist in financial planning, check out our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides estimates based on the inputs you provide. Its accuracy depends on the accuracy of these inputs, such as your growth rate and contribution amounts. While it offers a useful projection, actual results may vary due to market fluctuations and changes in your financial situation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For precise financial planning, consider consulting a financial advisor who can tailor advice to your specific circumstances.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need your current 401(k) balance, the amount you plan to contribute annually, the percentage your employer matches, the expected annual growth rate of your investments, and the number of years until you plan to retire. This information can typically be found on your 401(k) statements or by contacting your plan administrator.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure the data you use is up-to-date and reflects any recent changes in your financial situation for the most accurate results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for various scenarios, such as adjusting your contribution levels or simulating different growth rates. It can help you explore how changes in your savings strategy might impact your retirement fund. However, it may not account for all variables, such as tax implications or changes in employer match policies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex scenarios, consider using additional financial planning tools or consulting a professional. For more on scenario planning, visit our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include underestimating the impact of compound interest, failing to account for employer matches, and using unrealistic growth rates. These errors can lead to inaccurate projections and potentially insufficient retirement savings. It's crucial to use realistic assumptions and regularly update your inputs to reflect changes in your financial situation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Avoid these pitfalls by reviewing your calculations periodically and consulting with a financial advisor if needed.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your retirement savings growth at least annually or whenever there are significant changes in your financial situation, such as a salary increase, changes in employer match policies, or shifts in your investment strategy. Regular recalculations help ensure that your retirement plan remains on track.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Keeping your calculations up-to-date allows you to make informed adjustments to your savings strategy as needed.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to assess whether you are on track to meet your retirement goals. If the projected savings fall short, consider increasing your contributions or adjusting your investment strategy. The results can also guide discussions with a financial advisor, helping you refine your retirement plan.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further guidance on interpreting your results, explore our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to this calculation method include using financial planning software or consulting with a financial advisor for personalized advice. These alternatives can provide more comprehensive insights, taking into account factors like taxes, inflation, and changing market conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              While this calculator offers a solid foundation for retirement planning, exploring additional resources can enhance your financial strategy.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <p 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -666,16 +568,14 @@ export default function RetirementSavingsGrowthCalculator() {
   // RETURN STATEMENT
   return (
     <CalculatorVerticalLayout
-      title="401(k) / Retirement Savings Growth Calculator"
-      description="Estimate your 401(k) growth over time. Factor in employer matching and annual contributions to visualize your retirement nest egg."
-      widget={widget}
-      editorial={editorial}
+      title="401(k) Retirement Savings Growth Calculator"
+      description="Estimate the future value of your 401(k) based on contributions, employer match, and growth."
+      jsonLd={faqJsonLd}
       onThisPage={[
-        { id: "introduction", label: "Understanding 401(k) / Retirement Savings Growth Calculator" },
-        { id: "formula", label: "401(k) / Retirement Savings Growth Calculator Formula" },
-        { id: "factors", label: "Key Factors That Affect Results" },
+        { id: "calculator", label: "Calculator" },
+        { id: "editorial", label: "Editorial" },
         { id: "faq", label: "Frequently Asked Questions" },
-        { id: "references", label: "References & Resources" }
+        { id: "references", label: "References" }
       ]}
       formula={{
         formula: "FV = P(1 + r)^n + C[((1 + r)^n - 1) / r]",

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function EmergencyFundGoalCalculator() {
   // STATE
@@ -16,6 +17,44 @@ export default function EmergencyFundGoalCalculator() {
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  // FAQ DATA
+  const faqs = [
+    {
+      question: "What is an emergency fund goal calculator and why is it important?",
+      answer: "An emergency fund goal calculator helps you determine the amount of savings needed to cover your expenses during unforeseen circumstances. It's important because it provides a financial safety net, ensuring you can maintain your lifestyle without incurring debt during emergencies. This tool is crucial for financial planning, helping you prepare for unexpected events like job loss or medical emergencies. For more on financial preparedness, explore our <a href='/financial/extra-payments-payoff' class='text-blue-600 dark:text-blue-400 hover:underline'>Extra Payments & Payoff Time Calculator</a>."
+    },
+    {
+      question: "How accurate is this calculator?",
+      answer: "The calculator provides a reliable estimate based on the inputs you provide. However, its accuracy depends on the accuracy of your input data. Factors like fluctuating expenses or income changes can affect the results. It's advisable to regularly update your inputs to reflect your current financial situation for the most accurate results. For precise financial planning, consider consulting a financial advisor."
+    },
+    {
+      question: "What information do I need to use this calculator?",
+      answer: "To use this calculator, you'll need to know your average monthly expenses, the number of months you want your emergency fund to cover, and any additional buffer you wish to include. Monthly expenses should encompass all necessary costs such as rent, utilities, groceries, and transportation. The months to cover depend on your comfort level and financial stability. Gathering accurate data from your bank statements or budgeting apps can help ensure precise calculations."
+    },
+    {
+      question: "Can I use this calculator for specific scenarios?",
+      answer: "Yes, this calculator can be adapted for various scenarios, such as planning for a job transition, preparing for a new family member, or adjusting for seasonal income changes. However, it's essential to tailor the inputs to match the specific scenario you're planning for. Consider the unique expenses and timeframes associated with each situation. For more tailored financial planning, consult with a financial advisor who can provide personalized advice."
+    },
+    {
+      question: "What are common mistakes people make with this calculation?",
+      answer: "Common mistakes include underestimating monthly expenses, not accounting for irregular costs, and failing to update the fund as financial circumstances change. Additionally, some people forget to include a buffer for unexpected expenses, which can lead to insufficient savings during emergencies. To avoid these errors, regularly review and adjust your emergency fund based on current financial data and future projections."
+    },
+    {
+      question: "How often should I recalculate?",
+      answer: "It's advisable to recalculate your emergency fund at least once a year or whenever significant life changes occur, such as a new job, marriage, or the birth of a child. Regular recalculations ensure your fund remains aligned with your current financial needs and goals. Keeping your fund updated helps maintain financial security and preparedness for unexpected events."
+    },
+    {
+      question: "What should I do with these results?",
+      answer: "Use the results to set up or adjust your emergency fund. Transfer the calculated amount into a separate, easily accessible savings account dedicated to emergencies. This separation helps prevent the temptation to use the funds for non-emergencies. Regularly review your fund to ensure it remains adequate for your needs. For more on managing savings, explore our <a href='/financial/refinance-savings' class='text-blue-600 dark:text-blue-400 hover:underline'>Refinance Savings Calculator</a>."
+    },
+    {
+      question: "Are there alternatives to this calculation method?",
+      answer: "Alternatives include using a percentage of your income as a savings target or setting a fixed amount based on past emergency experiences. Each method has its pros and cons, and the best choice depends on your financial situation and risk tolerance. Consider consulting with a financial advisor to explore different strategies and find the one that best suits your needs."
+    }
+  ];
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
@@ -400,117 +439,18 @@ export default function EmergencyFundGoalCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is an emergency fund goal calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              An emergency fund goal calculator helps you determine the amount of savings needed to cover your expenses during unforeseen circumstances. It's important because it provides a financial safety net, ensuring you can maintain your lifestyle without incurring debt during emergencies. This tool is crucial for financial planning, helping you prepare for unexpected events like job loss or medical emergencies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more on financial preparedness, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The calculator provides a reliable estimate based on the inputs you provide. However, its accuracy depends on the accuracy of your input data. Factors like fluctuating expenses or income changes can affect the results. It's advisable to regularly update your inputs to reflect your current financial situation for the most accurate results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For precise financial planning, consider consulting a financial advisor.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need to know your average monthly expenses, the number of months you want your emergency fund to cover, and any additional buffer you wish to include. Monthly expenses should encompass all necessary costs such as rent, utilities, groceries, and transportation. The months to cover depend on your comfort level and financial stability.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Gathering accurate data from your bank statements or budgeting apps can help ensure precise calculations.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be adapted for various scenarios, such as planning for a job transition, preparing for a new family member, or adjusting for seasonal income changes. However, it's essential to tailor the inputs to match the specific scenario you're planning for. Consider the unique expenses and timeframes associated with each situation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more tailored financial planning, consult with a financial advisor who can provide personalized advice.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include underestimating monthly expenses, not accounting for irregular costs, and failing to update the fund as financial circumstances change. Additionally, some people forget to include a buffer for unexpected expenses, which can lead to insufficient savings during emergencies.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these errors, regularly review and adjust your emergency fund based on current financial data and future projections.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your emergency fund at least once a year or whenever significant life changes occur, such as a new job, marriage, or the birth of a child. Regular recalculations ensure your fund remains aligned with your current financial needs and goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Keeping your fund updated helps maintain financial security and preparedness for unexpected events.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to set up or adjust your emergency fund. Transfer the calculated amount into a separate, easily accessible savings account dedicated to emergencies. This separation helps prevent the temptation to use the funds for non-emergencies. Regularly review your fund to ensure it remains adequate for your needs.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more on managing savings, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using a percentage of your income as a savings target or setting a fixed amount based on past emergency experiences. Each method has its pros and cons, and the best choice depends on your financial situation and risk tolerance.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider consulting with a financial advisor to explore different strategies and find the one that best suits your needs.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -628,6 +568,7 @@ export default function EmergencyFundGoalCalculator() {
       description="Calculate the ideal size for your emergency fund. Plan for 3 to 6 months of expenses to ensure financial security against the unexpected."
       widget={widget}
       editorial={editorial}
+      faqJsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding Emergency Fund Goal Calculator" },
         { id: "formula", label: "Emergency Fund Goal Calculator Formula" },
