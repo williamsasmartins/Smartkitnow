@@ -6,6 +6,42 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+
+const faqs = [
+  {
+    question: "What is a loan comparison calculator and why is it important?",
+    answer: `A loan comparison calculator is a tool that allows you to evaluate two or more loan options side-by-side. It helps you understand the differences in monthly payments, total interest costs, and overall loan expenses. This is crucial for making informed financial decisions, as it enables you to choose the loan that best fits your budget and financial goals.<br><br>By using this calculator, you can avoid costly mistakes and ensure that you select the most cost-effective loan option. For more detailed analysis, consider using our <a href="/financial/loan-payment">Loan Payment Calculator</a>.`
+  },
+  {
+    question: "How accurate is this calculator?",
+    answer: `This calculator provides highly accurate estimates based on the data you input. However, the accuracy depends on the precision of the information you provide, such as the interest rate, loan amount, and term. It's important to use the most current and accurate data available to get the best results.<br><br>For complex financial situations, consider consulting with a financial advisor to ensure you're making the best decision. This tool is a great starting point for understanding your options.`
+  },
+  {
+    question: "What information do I need to use this calculator?",
+    answer: `To use this calculator, you'll need the loan amount, interest rate, and term for each loan option you're considering. The loan amount is the total amount you plan to borrow. The interest rate is the annual percentage rate (APR) charged by the lender. The term is the length of time you have to repay the loan, typically expressed in years.<br><br>You can find this information in your loan documents or by contacting your lender. Ensure the data is accurate to get the most reliable comparison results.`
+  },
+  {
+    question: "Can I use this calculator for comparing mortgages?",
+    answer: `Yes, this calculator is ideal for comparing different mortgage options. You can input the loan amount, interest rate, and term for each mortgage to see how they compare in terms of monthly payments and total costs. This is particularly useful when deciding between fixed-rate and adjustable-rate mortgages.<br><br>For a more detailed mortgage analysis, consider using our <a href="/financial/mortgage-amortization">Mortgage Payment & Amortization Calculator</a>.`
+  },
+  {
+    question: "What are common mistakes people make with this calculation?",
+    answer: `One common mistake is not considering all costs associated with the loan, such as fees and penalties. Another is using outdated or incorrect interest rates, which can lead to inaccurate comparisons. Additionally, some people focus solely on the monthly payment without considering the total cost over the life of the loan.<br><br>To avoid these mistakes, ensure you have accurate data and consider both the monthly payment and total cost. Use our <a href="/financial/extra-payments-payoff">Extra Payments & Payoff Time Calculator</a> for insights on how additional payments can affect your loan.`
+  },
+  {
+    question: "How often should I recalculate?",
+    answer: `It's a good idea to recalculate whenever there's a significant change in interest rates or your financial situation. Additionally, if you're considering refinancing, use this calculator to compare your current loan with potential new options.<br><br>Regular recalculations ensure you're always aware of the best loan options available to you. For more detailed scenarios, explore our <a href="/financial/refinance-savings">Refinance Savings Calculator</a>.`
+  },
+  {
+    question: "What should I do with these results?",
+    answer: `Use the results to compare your loan options and choose the one that best fits your financial goals. Consider both the monthly payment and total cost to make an informed decision. If you're unsure, consult with a financial advisor to discuss your options.<br><br>For further guidance, check out our <a href="/financial/heloc-payment-estimator">HELOC Payment Estimator</a> to explore how home equity lines of credit might fit into your financial strategy.`
+  },
+  {
+    question: "Are there alternatives to this calculation method?",
+    answer: `While this calculator provides a comprehensive comparison, you can also use spreadsheets or financial software for more detailed analysis. These tools allow for more customization and can handle complex scenarios.<br><br>However, for most users, this calculator offers a quick and easy way to compare loans. For more complex needs, consider consulting with a financial advisor or using advanced financial planning tools.`
+  }
+];
 
 export default function LoanComparisonCalculator() {
   // STATE
@@ -91,6 +127,8 @@ export default function LoanComparisonCalculator() {
   const handleReset = () => {
     setInputs({ loan1Amount: "", loan1Rate: "", loan1Term: "", loan2Amount: "", loan2Rate: "", loan2Term: "" });
   };
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -477,117 +515,18 @@ export default function LoanComparisonCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is a loan comparison calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A loan comparison calculator is a tool that allows you to evaluate two or more loan options side-by-side. It helps you understand the differences in monthly payments, total interest costs, and overall loan expenses. This is crucial for making informed financial decisions, as it enables you to choose the loan that best fits your budget and financial goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this calculator, you can avoid costly mistakes and ensure that you select the most cost-effective loan option. For more detailed analysis, consider using our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides highly accurate estimates based on the data you input. However, the accuracy depends on the precision of the information you provide, such as the interest rate, loan amount, and term. It's important to use the most current and accurate data available to get the best results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex financial situations, consider consulting with a financial advisor to ensure you're making the best decision. This tool is a great starting point for understanding your options.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need the loan amount, interest rate, and term for each loan option you're considering. The loan amount is the total amount you plan to borrow. The interest rate is the annual percentage rate (APR) charged by the lender. The term is the length of time you have to repay the loan, typically expressed in years.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can find this information in your loan documents or by contacting your lender. Ensure the data is accurate to get the most reliable comparison results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for comparing mortgages?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator is ideal for comparing different mortgage options. You can input the loan amount, interest rate, and term for each mortgage to see how they compare in terms of monthly payments and total costs. This is particularly useful when deciding between fixed-rate and adjustable-rate mortgages.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For a more detailed mortgage analysis, consider using our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              One common mistake is not considering all costs associated with the loan, such as fees and penalties. Another is using outdated or incorrect interest rates, which can lead to inaccurate comparisons. Additionally, some people focus solely on the monthly payment without considering the total cost over the life of the loan.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, ensure you have accurate data and consider both the monthly payment and total cost. Use our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a> for insights on how additional payments can affect your loan.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's a good idea to recalculate whenever there's a significant change in interest rates or your financial situation. Additionally, if you're considering refinancing, use this calculator to compare your current loan with potential new options.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Regular recalculations ensure you're always aware of the best loan options available to you. For more detailed scenarios, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to compare your loan options and choose the one that best fits your financial goals. Consider both the monthly payment and total cost to make an informed decision. If you're unsure, consult with a financial advisor to discuss your options.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further guidance, check out our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a> to explore how home equity lines of credit might fit into your financial strategy.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While this calculator provides a comprehensive comparison, you can also use spreadsheets or financial software for more detailed analysis. These tools allow for more customization and can handle complex scenarios.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              However, for most users, this calculator offers a quick and easy way to compare loans. For more complex needs, consider consulting with a financial advisor or using advanced financial planning tools.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -721,6 +660,7 @@ export default function LoanComparisonCalculator() {
         ],
         title: "Calculation Formula"
       }}
+      jsonLd={faqJsonLd}
       example={{
         title: "Example Calculation",
         scenario: "Imagine you have two loan options: Loan 1 with a principal of $200,000, an interest rate of 3.5%, and a term of 30 years; Loan 2 with a principal of $200,000, an interest rate of 3.0%, and a term of 30 years.",

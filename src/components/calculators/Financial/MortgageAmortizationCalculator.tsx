@@ -6,6 +6,42 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+
+const faqs = [
+  {
+    question: "What is mortgage payment & amortization calculator and why is it important?",
+    answer: `A mortgage payment & amortization calculator is a tool that helps you estimate your monthly mortgage payments, including principal and interest. It also provides an amortization schedule, showing how your payments are applied over time. This information is crucial for budgeting and financial planning, allowing you to understand your long-term financial commitments.<br><br>Understanding your mortgage payments helps you make informed decisions about homeownership and refinancing options. For more detailed calculations, explore our <a href="/financial/refinance-savings">Refinance Savings Calculator</a>.`
+  },
+  {
+    question: "How accurate is this calculator?",
+    answer: `This calculator provides a highly accurate estimate of your mortgage payments based on the inputs you provide. However, it's important to note that actual payments may vary due to factors like changes in interest rates, taxes, and insurance. For precise calculations, consult with a financial advisor or mortgage professional.<br><br>To ensure accuracy, double-check your inputs and update them if your financial situation changes. This tool is best used as a starting point for understanding your mortgage obligations.`
+  },
+  {
+    question: "What information do I need to use this calculator?",
+    answer: `To use this calculator, you'll need the loan amount, annual interest rate, and loan term in years. The loan amount is the total amount borrowed, the interest rate is the annual percentage charged by the lender, and the loan term is the duration over which the loan will be repaid.<br><br>You can find this information in your mortgage agreement or by consulting with your lender. Ensure that the data you enter is accurate to get the most reliable results.`
+  },
+  {
+    question: "Can I use this calculator for refinancing scenarios?",
+    answer: `Yes, this calculator can be used to estimate payments for refinancing scenarios. Simply enter the new loan amount, interest rate, and term to see how your payments will change. Refinancing can lower your monthly payments or reduce the total interest paid over the life of the loan.<br><br>Consider factors like closing costs and changes in interest rates when deciding to refinance. For more detailed analysis, use our <a href="/financial/refinance-savings">Refinance Savings Calculator</a>.`
+  },
+  {
+    question: "What are common mistakes people make with this calculation?",
+    answer: `Common mistakes include entering incorrect loan amounts, interest rates, or loan terms. These errors can lead to inaccurate payment estimates. Another mistake is not considering additional costs like taxes and insurance, which affect your overall payment.<br><br>To avoid these mistakes, verify your inputs and consider all costs associated with homeownership. Regularly update your calculations as your financial situation changes.`
+  },
+  {
+    question: "How often should I recalculate?",
+    answer: `Recalculate your mortgage payments whenever there are changes in your financial situation, such as a change in income, interest rates, or loan terms. Regular recalculations help you stay on top of your financial obligations and make informed decisions.<br><br>Consider recalculating annually or whenever you plan to make significant financial decisions, like refinancing or purchasing a new home.`
+  },
+  {
+    question: "What should I do with these results?",
+    answer: `Use the results to plan your budget and ensure you can comfortably afford your mortgage payments. The amortization schedule can help you understand how your payments are applied over time, allowing you to strategize additional payments to reduce interest costs.<br><br>If you're considering refinancing or making extra payments, consult with a financial advisor to explore your options. For further guidance, visit our <a href="/financial/extra-payments-payoff">Extra Payments & Payoff Time Calculator</a>.`
+  },
+  {
+    question: "Are there alternatives to this calculation method?",
+    answer: `Alternatives to this calculation method include using spreadsheets or financial software that can handle more complex scenarios, such as variable interest rates or additional fees. These tools can provide more detailed insights but may require more expertise to use effectively.<br><br>Consider using professional financial services for personalized advice and advanced calculations. For a simpler approach, our calculator offers a quick and easy way to estimate your payments.`
+  }
+];
 
 export default function MortgageAmortizationCalculator() {
   // STATE
@@ -87,6 +123,8 @@ export default function MortgageAmortizationCalculator() {
   const handleReset = () => {
     setInputs({ principal: "", interestRate: "", termYears: "" });
   };
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -408,117 +446,18 @@ export default function MortgageAmortizationCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is mortgage payment & amortization calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A mortgage payment & amortization calculator is a tool that helps you estimate your monthly mortgage payments, including principal and interest. It also provides an amortization schedule, showing how your payments are applied over time. This information is crucial for budgeting and financial planning, allowing you to understand your long-term financial commitments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding your mortgage payments helps you make informed decisions about homeownership and refinancing options. For more detailed calculations, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides a highly accurate estimate of your mortgage payments based on the inputs you provide. However, it's important to note that actual payments may vary due to factors like changes in interest rates, taxes, and insurance. For precise calculations, consult with a financial advisor or mortgage professional.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To ensure accuracy, double-check your inputs and update them if your financial situation changes. This tool is best used as a starting point for understanding your mortgage obligations.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need the loan amount, annual interest rate, and loan term in years. The loan amount is the total amount borrowed, the interest rate is the annual percentage charged by the lender, and the loan term is the duration over which the loan will be repaid.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can find this information in your mortgage agreement or by consulting with your lender. Ensure that the data you enter is accurate to get the most reliable results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for refinancing scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used to estimate payments for refinancing scenarios. Simply enter the new loan amount, interest rate, and term to see how your payments will change. Refinancing can lower your monthly payments or reduce the total interest paid over the life of the loan.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider factors like closing costs and changes in interest rates when deciding to refinance. For more detailed analysis, use our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include entering incorrect loan amounts, interest rates, or loan terms. These errors can lead to inaccurate payment estimates. Another mistake is not considering additional costs like taxes and insurance, which affect your overall payment.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, verify your inputs and consider all costs associated with homeownership. Regularly update your calculations as your financial situation changes.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculate your mortgage payments whenever there are changes in your financial situation, such as a change in income, interest rates, or loan terms. Regular recalculations help you stay on top of your financial obligations and make informed decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider recalculating annually or whenever you plan to make significant financial decisions, like refinancing or purchasing a new home.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to plan your budget and ensure you can comfortably afford your mortgage payments. The amortization schedule can help you understand how your payments are applied over time, allowing you to strategize additional payments to reduce interest costs.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you're considering refinancing or making extra payments, consult with a financial advisor to explore your options. For further guidance, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to this calculation method include using spreadsheets or financial software that can handle more complex scenarios, such as variable interest rates or additional fees. These tools can provide more detailed insights but may require more expertise to use effectively.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider using professional financial services for personalized advice and advanced calculations. For a simpler approach, our calculator offers a quick and easy way to estimate your payments.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -653,6 +592,7 @@ export default function MortgageAmortizationCalculator() {
         ],
         title: "Calculation Formula"
       }}
+      jsonLd={faqJsonLd}
       example={{
         title: "Example Calculation",
         scenario: "Imagine you have a $300,000 loan with a 3.5% interest rate over 30 years.",

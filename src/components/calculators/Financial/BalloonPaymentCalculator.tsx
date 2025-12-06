@@ -5,7 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function BalloonPaymentCalculator() {
   // STATE
@@ -81,8 +82,10 @@ export default function BalloonPaymentCalculator() {
   };
 
   const handleReset = () => {
-    setInputs({ loanAmount: "", interestRate: "", termYears: "", balloonPayment: "" });
+    setInputs({ loanAmount: "", interestRate: "", loanTerm: "", balloonAmount: "" });
   };
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -422,117 +425,18 @@ export default function BalloonPaymentCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is a balloon payment calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A balloon payment calculator is a tool that helps you determine the monthly payments and the final lump-sum payment required at the end of a balloon loan term. It is important because it provides a clear picture of your financial obligations, allowing you to plan and budget effectively.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By understanding your payment schedule and total costs, you can make informed decisions about your loan and avoid financial surprises. For more information, see our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is designed to provide accurate estimates based on the inputs you provide. However, its accuracy depends on the precision of your inputs, such as the interest rate and loan term. External factors, such as changes in interest rates or fees, can also affect the final results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For the most accurate results, ensure your inputs reflect current and realistic financial conditions. Consult a financial advisor for personalized advice.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need the loan amount, interest rate, loan term, and expected balloon payment. These inputs allow the calculator to determine your monthly payments and total loan cost. Ensure you have accurate and up-to-date information for the best results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can find this information in your loan agreement or by contacting your lender. Accurate data ensures precise calculations and effective financial planning.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for refinancing scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for refinancing scenarios by adjusting the loan amount, interest rate, and term to reflect the new loan conditions. This allows you to compare your current loan with potential refinancing options, helping you make informed decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider using our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> for a more detailed analysis of potential savings and costs associated with refinancing.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include entering incorrect interest rates, misjudging the loan term, or failing to account for additional fees. These errors can lead to inaccurate results, affecting your financial planning. Always double-check your inputs for accuracy.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Another mistake is not considering the impact of the balloon payment on your finances. Plan ahead to ensure you have the necessary funds when the payment is due.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculate whenever there are significant changes in your financial situation, such as changes in interest rates, loan terms, or if you make additional payments. Regular recalculations ensure your financial planning remains accurate and up-to-date.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              It's also advisable to recalculate annually to account for any changes in economic conditions or personal financial goals.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to plan your budget and ensure you can meet your financial obligations. The monthly payment and total cost provide a clear picture of your financial commitments, helping you make informed decisions about your loan.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If the results indicate financial strain, consider adjusting your loan terms or exploring refinancing options. For further guidance, visit our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include consulting with a financial advisor or using different financial software tools that offer more detailed analysis. These options can provide personalized advice and a comprehensive view of your financial situation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Each method has its pros and cons, so choose the one that best fits your needs and financial goals. For more complex scenarios, professional advice may be beneficial.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -658,16 +562,17 @@ export default function BalloonPaymentCalculator() {
         { id: "references", label: "References & Resources" }
       ]}
       formula={{
-        formula: "M = P[r(1+r)^n] / [(1+r)^n – 1] + B / (1+r)^n",
+        formula: "M = (P * i) / (1 - (1 + i)^-n) + B / (1 + i)^n",
         variables: [
-          { symbol: "M", description: "Monthly payment" },
-          { symbol: "P", description: "Loan principal (amount borrowed)" },
-          { symbol: "r", description: "Monthly interest rate (annual rate / 12)" },
-          { symbol: "n", description: "Number of payments (loan term in months)" },
-          { symbol: "B", description: "Balloon payment" }
+          { symbol: "M", description: "Monthly Payment" },
+          { symbol: "P", description: "Principal Amount" },
+          { symbol: "i", description: "Monthly Interest Rate" },
+          { symbol: "n", description: "Total Number of Payments" },
+          { symbol: "B", description: "Balloon Payment Amount" }
         ],
-        title: "Calculation Formula"
+        title: "Balloon Payment Formula"
       }}
+      jsonLd={faqJsonLd}
       example={{
         title: "Example Calculation",
         scenario: "Imagine you have a $200,000 loan with a 5% interest rate over 30 years, and a balloon payment of $50,000.",

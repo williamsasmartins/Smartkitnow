@@ -4,11 +4,12 @@ import { getCategoryIcon } from "@/lib/navigation";
 
 interface HeaderMoreMenuProps {
   categories: { key: string; label: string; to: string }[];
+  defaultOpen?: boolean;
 }
 
-export default function HeaderMoreMenu({ categories }: HeaderMoreMenuProps) {
+export default function HeaderMoreMenu({ categories, defaultOpen = false }: HeaderMoreMenuProps) {
   return (
-    <DropdownMenu>
+    <DropdownMenu defaultOpen={defaultOpen}>
       <DropdownMenuTrigger asChild>
         <button className="text-primary hover:text-primary transition-colors inline-flex items-center px-2">
           More
@@ -27,3 +28,4 @@ export default function HeaderMoreMenu({ categories }: HeaderMoreMenuProps) {
     </DropdownMenu>
   );
 }
+

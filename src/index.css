@@ -23,7 +23,9 @@
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Darker gray for better contrast on light background (WCAG AA) */
+    /* Was: 215.4 16.3% 46.9% (#64748b) -> New: 215 25% 40% (#475569) */
+    --muted-foreground: 215 25% 40%;
 
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
@@ -57,7 +59,9 @@
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    /* Lighter gray for better contrast on dark background (WCAG AA) */
+    /* Was: 215 20.2% 65.1% (#94a3b8) -> New: 213 27% 84% (#cbd5e1) */
+    --muted-foreground: 213 27% 84%;
 
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;

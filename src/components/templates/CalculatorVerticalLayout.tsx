@@ -223,6 +223,7 @@ interface CalculatorVerticalLayoutProps {
   showTopBanner?: boolean;
   showSidebar?: boolean;
   showBottomBanner?: boolean;
+  jsonLd?: object | object[];
 }
 
 // ================================================================
@@ -240,9 +241,16 @@ export default function CalculatorVerticalLayout({
   showTopBanner = true,
   showSidebar = true,
   showBottomBanner = true,
+  jsonLd,
 }: CalculatorVerticalLayoutProps) {
   return (
     <div className="skn-vertical-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
+      {jsonLd ? (
+        <script type="application/ld+json" suppressHydrationWarning>
+          {JSON.stringify(jsonLd)}
+        </script>
+      ) : null}
+
       {/* MAIN CONTAINER (Max 1200px, Centered) */}
       <div className="mx-auto pb-10 pt-32 lg:pt-40" style={{ maxWidth: 1200 }}>
         

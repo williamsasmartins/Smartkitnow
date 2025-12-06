@@ -5,7 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function RoiReturnOnInvestmentCalculator() {
   // STATE
@@ -75,8 +76,10 @@ export default function RoiReturnOnInvestmentCalculator() {
   };
 
   const handleReset = () => {
-    setInputs({ initialInvestment: "", finalValue: "", investmentDuration: "" });
+    setInputs({ initialInvestment: "", finalValue: "", years: "" });
   };
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -392,117 +395,18 @@ export default function RoiReturnOnInvestmentCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is investment return (ROI) calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              An Investment Return (ROI) Calculator is a tool used to evaluate the profitability of an investment. It calculates the percentage return on an investment relative to its initial cost, providing a clear measure of its performance. Understanding ROI is crucial for making informed investment decisions and optimizing your financial strategy.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using an ROI calculator, investors can compare different investments and assess their potential returns. This helps in identifying the most lucrative opportunities and avoiding investments that may not meet financial goals. For more insights, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The accuracy of the ROI Calculator depends on the precision of the input data. It's essential to use accurate and up-to-date figures for the initial investment, final value, and investment duration. External factors such as market volatility and economic changes can also affect the accuracy of the results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              While the calculator provides a reliable estimate, it's advisable to consult with a financial advisor for comprehensive financial planning. Regularly updating your calculations can also help maintain accuracy.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the ROI Calculator, you'll need the following information: the initial investment amount, the final value of the investment, and the duration of the investment in years. These inputs are crucial for calculating the ROI percentage accurately.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that the figures you use are precise and reflect any changes in market conditions or investment terms. This will help you obtain reliable results and make informed investment decisions.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the ROI Calculator can be used for a wide range of investment scenarios, including stocks, real estate, and business ventures. It provides a versatile tool for evaluating the profitability of various investments and comparing their performance.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              However, it's important to consider any unique factors or conditions that may apply to your specific investment. Consulting with a financial advisor can provide additional insights and guidance tailored to your situation.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              One common mistake is using inaccurate or outdated data, which can lead to misleading results. It's crucial to ensure that all input values are current and reflect any changes in market conditions or investment terms.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Another mistake is failing to account for fees and expenses, which can significantly impact the final value of the investment. Always consider these costs when calculating your ROI to obtain a more accurate measure of investment performance.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your ROI whenever there are significant changes in market conditions, investment terms, or financial goals. Regular updates ensure that your investment strategy remains aligned with your objectives and adapts to any new developments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider recalculating at least annually or whenever you make significant changes to your investment portfolio. This will help you stay informed and make timely adjustments to your strategy.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the ROI results to evaluate the performance of your investments and make informed decisions about future investments. A high ROI indicates a profitable investment, while a low ROI may suggest the need for reassessment or reallocation of resources.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider consulting with a financial advisor to interpret the results and develop a comprehensive investment strategy. For more tools, check out our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While ROI is a popular metric, there are other methods for evaluating investment performance, such as the Internal Rate of Return (IRR) and Net Present Value (NPV). These methods provide additional insights into the profitability and viability of investments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Each method has its pros and cons, and the choice depends on your specific investment goals and preferences. Consider using multiple metrics to gain a comprehensive understanding of your investment performance.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -636,6 +540,7 @@ export default function RoiReturnOnInvestmentCalculator() {
         ],
         title: "Calculation Formula"
       }}
+      jsonLd={faqJsonLd}
       example={{
         title: "Example Calculation",
         scenario: "Imagine you invest $10,000 in a stock, and after 5 years, it's worth $15,000.",

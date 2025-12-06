@@ -5,7 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function InterestOnlyLoanCalculator() {
   // STATE
@@ -79,6 +80,8 @@ export default function InterestOnlyLoanCalculator() {
   const handleReset = () => {
     setInputs({ loanAmount: "", interestRate: "", loanTerm: "" });
   };
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -405,117 +408,18 @@ export default function InterestOnlyLoanCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is an interest-only loan calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              An interest-only loan calculator is a tool that helps you determine the monthly payments required during the interest-only period of a loan. It's crucial because it provides insights into the financial commitment involved and helps you plan your budget accordingly. For example, if you're considering a $300,000 loan with a 3.5% interest rate, the calculator will show you that your monthly payment would be $875.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding these payments is vital for financial planning, as it allows you to assess whether an interest-only loan fits your budget. For more detailed loan planning, you might also consider our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides highly accurate results based on the inputs you provide. However, its accuracy depends on the correctness of the data entered. Factors such as fluctuating interest rates or changes in loan terms can affect the results. It's always a good idea to consult with a financial advisor for personalized advice.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For best results, ensure that all input values are accurate and up-to-date. Regularly revisiting your calculations can help you stay on track with your financial goals.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need the loan amount, the annual interest rate, and the loan term in years. The loan amount is the total sum you intend to borrow. The interest rate should be entered as a percentage, and the loan term is the duration over which you plan to repay the loan.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can find this information in your loan agreement or by consulting with your lender. Accurate data ensures precise calculations, helping you make informed financial decisions.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for refinancing scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used to evaluate refinancing scenarios. By inputting the new loan amount, interest rate, and term, you can compare the interest-only payments of the new loan against your current loan. This comparison helps you determine if refinancing is a financially beneficial option.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              However, keep in mind that refinancing involves additional costs such as closing fees. Consider these factors when evaluating the overall benefits of refinancing. For a more detailed analysis, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              One common mistake is underestimating the impact of interest rate changes. Even small fluctuations can significantly affect your payments. Another mistake is not accounting for the end of the interest-only period, which can lead to a sudden increase in monthly payments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these errors, regularly update your calculations and plan for the transition to principal and interest payments. Staying informed about market trends can also help you anticipate changes in your loan terms.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate whenever there are changes in your financial situation, such as a change in income, interest rates, or loan terms. Regular recalculations help you stay on top of your financial commitments and adjust your budget as needed.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              A good rule of thumb is to review your calculations annually or whenever you consider making significant financial decisions. This proactive approach ensures that your financial plans remain aligned with your goals.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to inform your financial planning. The monthly payment figure helps you budget for the interest-only period, while the total payment with principal provides a long-term view of your financial commitment. If the results indicate that the loan may strain your budget, consider adjusting the loan amount, term, or exploring other loan options.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              It's also wise to consult with a financial advisor to interpret the results in the context of your overall financial strategy. For more insights on managing loans, visit our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While this calculator provides a straightforward method for calculating interest-only payments, other methods include using financial software or consulting with a financial advisor. These alternatives can offer more personalized insights and account for complex financial scenarios.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Each method has its pros and cons. For example, financial software can automate calculations but may require a subscription. Consulting with an advisor provides tailored advice but can be costly. Choose the method that best fits your needs and budget.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -649,6 +553,7 @@ export default function InterestOnlyLoanCalculator() {
         ],
         title: "Calculation Formula"
       }}
+      jsonLd={faqJsonLd}
       example={{
         title: "Example Calculation",
         scenario: "Imagine you have a $300,000 loan with a 3.5% interest rate over a 30-year term.",

@@ -5,7 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function HelocPaymentEstimatorCalculator() {
   // STATE
@@ -81,6 +82,8 @@ export default function HelocPaymentEstimatorCalculator() {
   const handleReset = () => {
     setInputs({ loanAmount: "", interestRate: "", drawPeriod: "", repaymentPeriod: "" });
   };
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -415,117 +418,18 @@ export default function HelocPaymentEstimatorCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is a HELOC Payment Estimator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A HELOC Payment Estimator is a tool designed to calculate the monthly payments required for a Home Equity Line of Credit. It helps you understand the financial commitment involved in a HELOC by providing a detailed breakdown of payments during both the draw and repayment periods. This estimator is crucial for homeowners who want to manage their finances effectively and avoid unexpected financial burdens.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Using this estimator allows you to plan your budget accurately and make informed decisions about borrowing. For more information, check out our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The HELOC Payment Estimator is highly accurate, provided that you input correct and up-to-date information. However, it's important to note that the calculator's results are estimates and may not account for all variables, such as changes in interest rates or additional fees imposed by lenders. For precise financial planning, consider consulting with a financial advisor.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To ensure accuracy, double-check your inputs and update them regularly as your financial situation changes.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the HELOC Payment Estimator, you'll need the following information: the total loan amount, the annual interest rate, the length of the draw period, and the length of the repayment period. You can find these details in your loan agreement or by contacting your lender. Ensure that the interest rate is expressed as a percentage and the periods are in years.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Accurate data entry is crucial for obtaining reliable results, so take the time to gather and verify this information before using the calculator.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for refinancing my HELOC?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the HELOC Payment Estimator can be used to evaluate the potential impact of refinancing your HELOC. By adjusting the loan amount, interest rate, and repayment terms, you can compare different refinancing options and determine which one best suits your financial goals. Keep in mind that refinancing may involve additional costs, such as closing fees, which should be considered in your calculations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more detailed analysis, consider using our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include entering incorrect loan amounts or interest rates, failing to account for changes in interest rates, and not considering additional fees or charges. These errors can lead to inaccurate payment estimates and financial planning challenges. It's also important to update your inputs regularly to reflect any changes in your financial situation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, double-check your inputs and consult with a financial advisor if you're unsure about any aspect of the calculation.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your HELOC payments whenever there are significant changes in your financial situation, such as changes in interest rates, loan amounts, or repayment terms. Regular recalculation helps ensure that your financial planning remains accurate and up-to-date.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              As a general rule, consider recalculating at least once a year or whenever you receive new financial information from your lender.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results from the HELOC Payment Estimator to plan your monthly budget and ensure that you can comfortably meet your payment obligations. Consider setting aside additional funds to cover any unexpected expenses or changes in interest rates. If the estimated payments are higher than anticipated, explore options for reducing your loan amount or refinancing.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further guidance, consult with a financial advisor or explore our <a href="/financial/car-loan-affordability" className="text-blue-600 dark:text-blue-400 hover:underline">Car Loan Affordability Calculator</a> for additional budgeting tools.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While the HELOC Payment Estimator provides a reliable method for calculating payments, there are alternative approaches, such as consulting with a financial advisor or using spreadsheet software to create custom calculations. These alternatives can offer more personalized insights and account for unique financial situations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider exploring these options if you have complex financial needs or require a more detailed analysis of your HELOC payments.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -659,6 +563,7 @@ export default function HelocPaymentEstimatorCalculator() {
         ],
         title: "Calculation Formula"
       }}
+      jsonLd={faqJsonLd}
       example={{
         title: "Example Calculation",
         scenario: "Imagine you have a $100,000 HELOC with a 4.5% interest rate, a 10-year draw period, and a 20-year repayment period.",

@@ -5,7 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CreditCardPayoffCalculator() {
   // STATE
@@ -89,6 +90,8 @@ export default function CreditCardPayoffCalculator() {
   const handleReset = () => {
     setInputs({ balance: "", interestRate: "", monthlyPayment: "" });
   };
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -416,117 +419,18 @@ export default function CreditCardPayoffCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is a credit card payoff calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A credit card payoff calculator is a tool that helps you determine how long it will take to pay off your credit card debt based on your current balance, interest rate, and monthly payment. It provides a clear timeline and helps you understand the total interest you will pay over the life of the debt. This tool is crucial for effective financial planning as it allows you to create a realistic strategy to become debt-free.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this calculator, you can experiment with different payment scenarios to see how they affect your payoff timeline and total interest paid. This insight can motivate you to increase payments or make other financial adjustments. For more tools, check out our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides estimates based on the inputs you provide. While it is highly accurate for straightforward scenarios, its accuracy may be affected by variable interest rates, additional fees, or changes in your financial situation. It is important to update the calculator with any changes to your balance or interest rate to maintain accuracy.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex financial situations, consider consulting a financial advisor to ensure you have a comprehensive understanding of your debt repayment strategy.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need your current credit card balance, the annual interest rate, and the amount you plan to pay each month. You can find your balance and interest rate on your most recent credit card statement or online account. Ensure that the interest rate is expressed as an annual percentage rate (APR).
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Having accurate and up-to-date information is essential for precise calculations. If you're unsure about any details, contact your credit card issuer for clarification.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for multiple credit cards?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, you can use this calculator for multiple credit cards by entering the details for each card separately. However, it is important to note that the calculator does not consolidate multiple balances into a single calculation. You will need to calculate each card individually and then combine the results to understand your overall debt situation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For a comprehensive view of your total credit card debt, consider using a budgeting tool or spreadsheet to track all your balances and payments in one place.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              One common mistake is not updating the calculator with changes in interest rates or balances. This can lead to inaccurate results and a false sense of progress. Another mistake is underestimating the impact of fees and penalties, which can increase the total cost of debt repayment.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these errors, regularly review your credit card statements and adjust the calculator inputs as needed. Being proactive about changes in your financial situation ensures more accurate and actionable results.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It is advisable to recalculate your payoff plan whenever there is a significant change in your balance, interest rate, or financial situation. Regular recalculations, such as monthly or quarterly, can help you stay on track and adjust your strategy as needed.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Keeping your calculations up-to-date ensures that you are making informed decisions and maximizing your efforts to become debt-free.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to create a detailed repayment plan. Prioritize paying off high-interest debt first to minimize total interest paid. Consider setting up automatic payments to ensure consistency and avoid late fees. If your results indicate a long payoff period, explore options to increase your monthly payments or reduce your interest rate.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If you're unsure about the best course of action, consult a financial advisor for personalized advice. For more tools, visit our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to this calculation method include using a debt snowball or avalanche approach, which prioritize paying off debts based on balance size or interest rate, respectively. Each method has its pros and cons, depending on your financial goals and psychological preferences.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider these alternatives if you need a structured approach to debt repayment. Evaluate which method aligns best with your financial situation and personal motivation.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -661,6 +565,7 @@ export default function CreditCardPayoffCalculator() {
         ],
         title: "Calculation Formula"
       }}
+      jsonLd={faqJsonLd}
       example={{
         title: "Example Calculation",
         scenario: "Imagine you have a credit card balance of $5,000 with an annual interest rate of 18% and you plan to pay $200 monthly.",

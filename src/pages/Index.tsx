@@ -1404,7 +1404,7 @@ const Index = () => {
         "@type": "Organization",
         name: "Smart Kit Now",
         url: "https://www.smartkitnow.com",
-        logo: "https://www.smartkitnow.com/logo-512.png",
+        logo: "https://www.smartkitnow.com/logo-smartkitnow.webp",
         sameAs: []
       }} />
       <JsonLd data={{
@@ -1414,7 +1414,7 @@ const Index = () => {
         name: "Smart Kit Now",
         potentialAction: {
           "@type": "SearchAction",
-          target: "/search?q={q}",
+          target: "https://www.smartkitnow.com/search?q={q}",
           "query-input": "required name=q"
         }
       }} />

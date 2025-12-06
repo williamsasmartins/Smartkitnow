@@ -5,7 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CompoundInterestCalculator() {
   // STATE
@@ -80,8 +81,10 @@ export default function CompoundInterestCalculator() {
   };
 
   const handleReset = () => {
-    setInputs({ principal: "", rate: "", time: "", compoundingFrequency: "yearly" });
+    setInputs({ principal: "", rate: "", time: "", frequency: "1" });
   };
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -418,117 +421,18 @@ export default function CompoundInterestCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is compound interest calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A compound interest calculator is a tool that helps you calculate the future value of an investment based on periodic compounding. It is important because it allows you to see how your investments will grow over time, taking into account the effects of compound interest. This understanding is crucial for making informed financial decisions and maximizing your investment returns.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this calculator, you can plan your financial future more effectively, ensuring that your investments align with your long-term goals. For more insights, consider using the <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a> to explore different financial scenarios.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is designed to provide accurate estimates based on the inputs you provide. However, its accuracy depends on the precision of your inputs, such as the interest rate and compounding frequency. External factors like inflation and market volatility are not accounted for in the calculations, so it's important to consider these when interpreting the results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For the most accurate results, ensure that your inputs are as precise as possible and consider consulting a financial advisor for personalized advice.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need to know your initial investment amount (principal), the annual interest rate, the number of years you plan to invest, and the compounding frequency (yearly, monthly, or daily). This information is typically available from your investment account statements or financial advisor.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that you have accurate and up-to-date information to input into the calculator for the best results. If you're unsure about any of these values, consult your financial advisor or investment provider for guidance.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for a variety of scenarios, such as planning for retirement, saving for a major purchase, or evaluating the growth potential of different investment options. However, it's important to note that the calculator provides estimates based on the inputs you provide and does not account for external factors like inflation or market volatility.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more complex scenarios, consider consulting a financial advisor or using additional tools like the <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> to explore different financial strategies.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include entering incorrect interest rates, misunderstanding compounding frequency, and not accounting for additional contributions or withdrawals. These errors can lead to inaccurate estimates and potentially misguided financial decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, double-check your inputs, understand the terms of your investment, and consider consulting a financial advisor for personalized advice. Using the <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a> can also help you understand the impact of different financial scenarios.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's a good idea to recalculate your investment growth periodically, especially if there are changes in your financial situation, such as a change in interest rates, additional contributions, or withdrawals. Regular recalculations can help you stay on track with your financial goals and make necessary adjustments to your investment strategy.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider recalculating at least once a year or whenever significant changes occur. This will ensure that your investment strategy remains aligned with your financial goals.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results from this calculator to inform your financial planning and investment decisions. The future value and total interest earned can help you assess whether your current investment strategy aligns with your financial goals. If the results are not as expected, consider adjusting your investment amount, interest rate, or compounding frequency.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further guidance, consult a financial advisor or use additional tools like the <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a> to explore different financial strategies and optimize your investment growth.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While the compound interest formula is a standard method for calculating investment growth, there are alternative approaches, such as using financial software or consulting a financial advisor for personalized advice. These alternatives can provide more comprehensive analyses, taking into account factors like inflation, taxes, and market conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider using these alternatives if you require a more detailed analysis of your financial situation or if your investment strategy involves complex variables. Additionally, tools like the <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> can offer insights into specific financial scenarios and help you make informed decisions.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 

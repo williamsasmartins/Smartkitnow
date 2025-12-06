@@ -11,6 +11,14 @@ const HeaderMoreMenu = lazy(() => import("./HeaderMoreMenu"));
 export function Header() {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
+  const [isMenuLoaded, setIsMenuLoaded] = useState(false);
+  const [forceOpen, setForceOpen] = useState(false);
+
+  const prefetchMenu = () => setIsMenuLoaded(true);
+  const loadAndOpenMenu = () => {
+    setIsMenuLoaded(true);
+    setForceOpen(true);
+  };
 
   const PRIMARY_CATS = [
     { key: "financial", label: "Financial", to: "/financial" },
@@ -57,7 +65,7 @@ export function Header() {
               decoding="async"
               // @ts-ignore
               fetchpriority="high"
-              sizes="120px"
+              sizes="(max-width: 640px) 120px, 150px"
               className="h-9 w-auto block"
               style={{ height: "2.25rem", width: "auto", aspectRatio: "1000/300" }}
             />
@@ -110,15 +118,29 @@ export function Header() {
               </Link>
             </li>
           ))}
-
           <li className="flex items-center">
-            <Suspense fallback={<button className="text-primary hover:text-primary transition-colors inline-flex items-center px-2">More</button>}>
-              <HeaderMoreMenu categories={MORE_CATS} />
-            </Suspense>
+            {!isMenuLoaded ? (
+              <button
+                className="text-primary hover:text-primary transition-colors inline-flex items-center px-2"
+                onMouseEnter={prefetchMenu}
+                onClick={loadAndOpenMenu}
+              >
+                More
+              </button>
+            ) : (
+              <Suspense
+                fallback={
+                  <button className="text-primary hover:text-primary transition-colors inline-flex items-center px-2">
+                    More
+                  </button>
+                }
+              >
+                <HeaderMoreMenu categories={MORE_CATS} defaultOpen={forceOpen} />
+              </Suspense>
+            )}
           </li>
         </ul>
       </nav>
     </header>
   );
 }
-

@@ -6,6 +6,42 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+
+const faqs = [
+  {
+    question: "What is an APR calculator and why is it important?",
+    answer: `An APR calculator helps you determine the annual percentage rate of a loan, which includes both the interest rate and any additional fees. This is important because it provides a more comprehensive view of the loan's cost, allowing you to compare different loan offers effectively. For example, two loans with the same interest rate might have different APRs due to varying fees.<br><br>Understanding the APR can prevent costly surprises and help you choose the most cost-effective loan. For more details, see our <a href="/financial/refinance-savings">Refinance Savings Calculator</a>.`
+  },
+  {
+    question: "How accurate is this calculator?",
+    answer: `This calculator provides a highly accurate estimate of the APR based on the inputs you provide. However, the accuracy depends on the precision of the data entered. Factors such as unreported fees or changes in loan terms can affect the result. It's always a good idea to consult with a financial advisor for complex financial decisions.<br><br>To ensure accuracy, double-check all inputs and consider potential changes in fees or interest rates.`
+  },
+  {
+    question: "What information do I need to use this calculator?",
+    answer: `To use this calculator, you need the loan amount, the interest rate, and any associated fees. The loan amount is the principal you plan to borrow. The interest rate is the percentage charged by the lender for borrowing the principal. Fees can include origination fees, closing costs, and other charges related to the loan.<br><br>You can typically find this information in the loan agreement or by contacting your lender. Accurate data is crucial for precise calculations.`
+  },
+  {
+    question: "Can I use this calculator for different types of loans?",
+    answer: `Yes, this calculator can be used for various types of loans, including mortgages, auto loans, and personal loans. However, it's important to ensure that all relevant fees and terms are included in the calculation for each specific loan type. Some loans may have unique fees or terms that could affect the APR.<br><br>For specialized loan types, such as interest-only loans, consider using a dedicated calculator like our <a href="/financial/interest-only-loan">Interest-Only Loan Calculator</a>.`
+  },
+  {
+    question: "What are common mistakes people make with this calculation?",
+    answer: `Common mistakes include not accounting for all fees, using incorrect interest rates, or misunderstanding the loan terms. These errors can lead to inaccurate APR calculations, potentially resulting in poor financial decisions. For example, failing to include closing costs can significantly underestimate the APR.<br><br>To avoid these mistakes, carefully review all loan documents and verify that all data entered into the calculator is correct.`
+  },
+  {
+    question: "How often should I recalculate?",
+    answer: `Recalculation is necessary whenever there are changes in the loan terms, such as adjustments in interest rates or fees. It's also advisable to recalculate if your financial situation changes, affecting your ability to meet the loan terms. Regular recalculations can help you stay informed about your financial commitments.<br><br>As a best practice, review your loans annually or whenever you consider refinancing or making significant financial decisions.`
+  },
+  {
+    question: "What should I do with these results?",
+    answer: `Use the results to compare different loan offers and make informed decisions about borrowing. A lower APR indicates a cheaper loan in terms of total cost. If the APR seems high, consider negotiating with your lender or exploring other options. The results can also guide you in budgeting and financial planning.<br><br>For further guidance, consult a financial advisor or use our <a href="/financial/heloc-payment-estimator">HELOC Payment Estimator</a> for home equity loans.`
+  },
+  {
+    question: "Are there alternatives to this calculation method?",
+    answer: `Alternatives to the APR calculation include using the nominal interest rate or the effective annual rate (EAR). Each method has its pros and cons. The nominal rate is simpler but less comprehensive, while the EAR accounts for compounding but can be more complex to calculate.<br><br>Choose the method that best suits your needs. For a detailed comparison, consider consulting financial resources or professionals.`
+  }
+];
 
 export default function AprCalculator() {
   // STATE
@@ -79,6 +115,8 @@ export default function AprCalculator() {
   const handleReset = () => {
     setInputs({ loanAmount: "", interestRate: "", fees: "" });
   };
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -400,117 +438,18 @@ export default function AprCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is an APR calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              An APR calculator helps you determine the annual percentage rate of a loan, which includes both the interest rate and any additional fees. This is important because it provides a more comprehensive view of the loan's cost, allowing you to compare different loan offers effectively. For example, two loans with the same interest rate might have different APRs due to varying fees.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding the APR can prevent costly surprises and help you choose the most cost-effective loan. For more details, see our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides a highly accurate estimate of the APR based on the inputs you provide. However, the accuracy depends on the precision of the data entered. Factors such as unreported fees or changes in loan terms can affect the result. It's always a good idea to consult with a financial advisor for complex financial decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To ensure accuracy, double-check all inputs and consider potential changes in fees or interest rates.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need the loan amount, the interest rate, and any associated fees. The loan amount is the principal you plan to borrow. The interest rate is the percentage charged by the lender for borrowing the principal. Fees can include origination fees, closing costs, and other charges related to the loan. 
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can typically find this information in the loan agreement or by contacting your lender. Accurate data is crucial for precise calculations.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for different types of loans?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator can be used for various types of loans, including mortgages, auto loans, and personal loans. However, it's important to ensure that all relevant fees and terms are included in the calculation for each specific loan type. Some loans may have unique fees or terms that could affect the APR.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For specialized loan types, such as interest-only loans, consider using a dedicated calculator like our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include not accounting for all fees, using incorrect interest rates, or misunderstanding the loan terms. These errors can lead to inaccurate APR calculations, potentially resulting in poor financial decisions. For example, failing to include closing costs can significantly underestimate the APR.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, carefully review all loan documents and verify that all data entered into the calculator is correct.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculation is necessary whenever there are changes in the loan terms, such as adjustments in interest rates or fees. It's also advisable to recalculate if your financial situation changes, affecting your ability to meet the loan terms. Regular recalculations can help you stay informed about your financial commitments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              As a best practice, review your loans annually or whenever you consider refinancing or making significant financial decisions.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to compare different loan offers and make informed decisions about borrowing. A lower APR indicates a cheaper loan in terms of total cost. If the APR seems high, consider negotiating with your lender or exploring other options. The results can also guide you in budgeting and financial planning.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further guidance, consult a financial advisor or use our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a> for home equity loans.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to the APR calculation include using the nominal interest rate or the effective annual rate (EAR). Each method has its pros and cons. The nominal rate is simpler but less comprehensive, while the EAR accounts for compounding but can be more complex to calculate.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Choose the method that best suits your needs. For a detailed comparison, consider consulting financial resources or professionals.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 

@@ -5,7 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function RefinanceSavingsCalculator() {
   // STATE
@@ -82,8 +83,10 @@ export default function RefinanceSavingsCalculator() {
   };
 
   const handleReset = () => {
-    setInputs({ currentLoanAmount: "", currentInterestRate: "", newInterestRate: "", loanTerm: "" });
+    setInputs({ currentLoanAmount: "", currentInterestRate: "", currentLoanTerm: "", newInterestRate: "", newLoanTerm: "", closingCosts: "" });
   };
+
+  const faqJsonLd = useFaqJsonLd(faqs);
 
   // WIDGET JSX (200-250 LINES)
   const widget = (
@@ -422,117 +425,18 @@ export default function RefinanceSavingsCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is refinance savings calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A refinance savings calculator is a tool that helps you determine the potential savings from refinancing your mortgage. It calculates the difference between your current loan terms and new offers, providing insights into monthly and total savings. This tool is crucial for making informed refinancing decisions, ensuring that you understand the financial benefits and costs involved.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this calculator, you can compare different refinancing options and choose the one that best aligns with your financial goals. For more detailed calculations, consider using our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The accuracy of the refinance savings calculator depends on the precision of the input data. It uses standard financial formulas to estimate savings, which are generally reliable. However, factors such as fluctuating interest rates and unexpected fees can affect the accuracy. It's advisable to consult with a financial professional for a comprehensive analysis.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To enhance accuracy, ensure that all input values are current and reflect your financial situation accurately. Regularly update the inputs as market conditions change.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the refinance savings calculator, you'll need your current loan amount, current interest rate, and the remaining loan term. Additionally, gather details about the new loan offer, including the interest rate and loan term. This information is typically found in your mortgage statement or loan documents.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Ensure that all data is accurate and up-to-date to receive the most reliable results. If you're unsure about any details, contact your lender for clarification.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the refinance savings calculator can be used for various scenarios, such as switching from a fixed-rate to an adjustable-rate mortgage or vice versa. It can also accommodate different loan terms and interest rate structures. However, it's important to consider any unique factors that might affect your situation, such as prepayment penalties or changes in your financial circumstances.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex scenarios, consider consulting with a financial advisor to ensure that all relevant factors are considered. They can provide personalized advice and help you interpret the results accurately.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include underestimating closing costs, ignoring the break-even point, and failing to account for changes in interest rates. These errors can lead to inaccurate savings estimates and potentially costly refinancing decisions. It's crucial to consider all factors and use accurate data when performing these calculations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, double-check all inputs and consider potential future changes in your financial situation. Use our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a> for additional insights into your refinancing options.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate whenever there are significant changes in interest rates or your financial situation. Additionally, if you're considering refinancing, perform calculations with each new offer to compare potential savings. Regular recalculations ensure that you have the most current and accurate information for decision-making.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Set a schedule to review your mortgage terms annually or whenever major financial changes occur. This proactive approach helps you stay informed and ready to take advantage of favorable refinancing conditions.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to make informed decisions about refinancing. If the calculator indicates significant savings, consider proceeding with the refinancing process. However, if the savings are minimal, it might be better to wait for more favorable conditions. Always weigh the potential savings against the costs and risks involved.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further guidance, consult with a financial advisor or mortgage professional. They can provide personalized advice and help you explore other financial tools, such as our <a href="/financial/car-loan-affordability" className="text-blue-600 dark:text-blue-400 hover:underline">Car Loan Affordability Calculator</a>, to enhance your financial planning.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to this calculation method include consulting with a mortgage broker or financial advisor who can provide a more personalized analysis. They can offer insights into market trends and help you explore different loan products that might not be captured by the calculator. Additionally, some online platforms offer advanced tools with more variables and scenarios.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              While these alternatives can provide more comprehensive insights, the refinance savings calculator remains a valuable tool for initial assessments and comparisons. Use it as a starting point for your refinancing exploration.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div 
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
