@@ -715,61 +715,81 @@ export default function DogCalorieNeedsRerMerCalculator() {
       </section>
 
       {/* REFERENCES & RESOURCES */}
-      <section
-        id="references"
-        className="border-t border-slate-200 dark:border-slate-700 pt-10"
-      >
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          References & additional resources
-        </h2>
-        <ul className="space-y-4 text-slate-700 dark:text-slate-300">
-          <li className="flex items-start gap-3">
-            <Info className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <p className="font-semibold">
-                WSAVA Global Nutrition Committee – Calorie and feeding
-                guidelines
-              </p>
-              <p>
-                International recommendations used by many veterinarians to
-                estimate RER, MER and safe weight-loss plans.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <Info className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <p className="font-semibold">
-                Veterinary clinical nutrition textbooks
-              </p>
-              <p>
-                Standard references such as the{" "}
-                <em>Handbook of Small Animal Clinical Nutrition</em> summarize
-                calorie equations, body condition scoring and feeding strategies
-                for different life stages.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <Info className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
-            <div>
-              <p className="font-semibold">Your primary care veterinarian</p>
-              <p>
-                Nothing replaces hands-on evaluation. Bring your calorie report
-                to your vet visit and use it as a starting point for a
-                personalized nutrition discussion.
-              </p>
-            </div>
-          </li>
-        </ul>
+      <section id="references" className="space-y-4">
+  <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-sky-100">
+    References & additional resources
+  </h2>
 
-        <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
-          This calculator and article are for{" "}
-          <strong>informational purposes only</strong> and do not replace
-          professional veterinary care. Always consult a licensed veterinarian
-          before changing your dog&apos;s diet, medication or exercise plan.
+  <div className="mt-6 space-y-6">
+    {/* WSAVA */}
+    <div className="flex items-start gap-3">
+      <div className="mt-1 h-7 w-7 flex items-center justify-center rounded-full bg-sky-900/40 text-sky-300 text-sm font-semibold">
+        i
+      </div>
+      <div>
+        <h3 className="text-base md:text-lg font-semibold text-sky-100">
+          <a
+            href="https://wsava.org/global-guidelines/global-nutrition-guidelines/"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:underline text-sky-300"
+          >
+            WSAVA Global Nutrition Committee – Calorie and feeding guidelines
+          </a>
+        </h3>
+        <p className="mt-1 text-sm md:text-base text-slate-200/80 leading-relaxed">
+          International recommendations used by many veterinarians to estimate
+          Resting Energy Requirement (RER), Maintenance Energy Requirement (MER),
+          and safe weight-loss plans for dogs and cats.
         </p>
-      </section>
+      </div>
+    </div>
+
+    {/* Textbooks */}
+    <div className="flex items-start gap-3">
+      <div className="mt-1 h-7 w-7 flex items-center justify-center rounded-full bg-sky-900/40 text-sky-300 text-sm font-semibold">
+        i
+      </div>
+      <div>
+        <h3 className="text-base md:text-lg font-semibold text-sky-100">
+          Veterinary clinical nutrition textbooks
+        </h3>
+        <p className="mt-1 text-sm md:text-base text-slate-200/80 leading-relaxed">
+          Standard references such as the <span className="italic">Handbook of Small
+          Animal Clinical Nutrition</span> summarize calorie equations, body condition
+          scoring systems, and feeding strategies for different life stages and
+          common medical conditions.
+        </p>
+      </div>
+    </div>
+
+    {/* Primary vet */}
+    <div className="flex items-start gap-3">
+      <div className="mt-1 h-7 w-7 flex items-center justify-center rounded-full bg-sky-900/40 text-sky-300 text-sm font-semibold">
+        i
+      </div>
+      <div>
+        <h3 className="text-base md:text-lg font-semibold text-sky-100">
+          Your primary care veterinarian
+        </h3>
+        <p className="mt-1 text-sm md:text-base text-slate-200/80 leading-relaxed">
+          Nothing replaces hands-on evaluation. Bring your calorie report to your
+          vet visit and use it as a starting point for a personalized nutrition
+          discussion. Always follow the exact feeding plan prescribed by your vet
+          for dogs with medical conditions, special diets, or weight-loss programs.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <p className="mt-6 text-xs md:text-sm text-slate-300/80 leading-relaxed">
+    This calculator and article are for <strong>informational purposes only</strong> and
+    do not replace professional veterinary care. Always consult a licensed
+    veterinarian before changing your dog&apos;s diet, medication, or exercise plan.
+  </p>
+</section>
+
+        
     </div>
   );
 
