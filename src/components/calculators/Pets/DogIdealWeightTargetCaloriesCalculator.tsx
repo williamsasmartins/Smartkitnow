@@ -3,21 +3,25 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Calculator, Dog, Activity, HeartPulse, BookOpen, Info } from "lucide-react";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 
+// Se quiser usar ícones no futuro, importa de lucide-react
+// import { Calculator, Dog, Activity, HeartPulse } from "lucide-react";
+
 function DogIdealWeightTargetCaloriesCalculator() {
-  // State for inputs
+  // =========================
+  // STATE
+  // =========================
   const [currentWeight, setCurrentWeight] = useState<string>("");
   const [breedSize, setBreedSize] = useState<"small" | "medium" | "large" | "giant">("medium");
   const [activityLevel, setActivityLevel] = useState<"low" | "moderate" | "high">("moderate");
 
-  // Validation helpers
   const weightNum = parseFloat(currentWeight);
   const isWeightValid = !isNaN(weightNum) && weightNum > 0;
 
-  // Ideal weight ranges by breed size (kg)
-  // These are typical ideal weight ranges for adult dogs by size category
+  // =========================
+  // IDEAL WEIGHT RANGE
+  // =========================
   const idealWeightRange = useMemo(() => {
     switch (breedSize) {
       case "small":
@@ -33,88 +37,88 @@ function DogIdealWeightTargetCaloriesCalculator() {
     }
   }, [breedSize]);
 
-  // Calculate ideal weight as midpoint of range
-  const idealWeight = useMemo(() => {
-    return (idealWeightRange.min + idealWeightRange.max) / 2;
-  }, [idealWeightRange]);
+  const idealWeight = useMemo(
+    () => (idealWeightRange.min + idealWeightRange.max) / 2,
+    [idealWeightRange]
+  );
 
-  // Calculate Resting Energy Requirement (RER) = 70 * (weight in kg)^0.75
-  // Use ideal weight for calculation
+  // =========================
+  // RER & MER
+  // =========================
   const rer = useMemo(() => {
     return 70 * Math.pow(idealWeight, 0.75);
   }, [idealWeight]);
 
-  // Multipliers for Maintenance Energy Requirement (MER) based on activity level
-  // Source: typical veterinary nutrition guidelines
   const activityMultiplier = useMemo(() => {
     switch (activityLevel) {
       case "low":
-        return 1.2; // less active or older dogs
+        return 1.2;
       case "moderate":
-        return 1.6; // average adult dogs
+        return 1.6;
       case "high":
-        return 2.0; // very active or working dogs
+        return 2.0;
       default:
         return 1.6;
     }
   }, [activityLevel]);
 
-  // Calculate MER = RER * activity multiplier
   const mer = useMemo(() => {
     return rer * activityMultiplier;
   }, [rer, activityMultiplier]);
 
-  // Helper to format calories with no decimals
   const formatCalories = (cal: number) => Math.round(cal);
 
-  // Reset inputs handler
   const handleReset = () => {
     setCurrentWeight("");
     setBreedSize("medium");
     setActivityLevel("moderate");
   };
 
-  // SEO structured data FAQPage schema
+  // =========================
+  // FAQ / JSON-LD
+  // =========================
   const faqStructuredData = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
+    mainEntity: [
       {
         "@type": "Question",
-        "name": "How do I know my dog's ideal weight?",
-        "acceptedAnswer": {
+        name: "How do I know my dog's ideal weight?",
+        acceptedAnswer: {
           "@type": "Answer",
-          "text": "Your dog's ideal weight depends on its breed size and body condition. This calculator uses typical weight ranges for breed sizes to estimate a healthy target weight."
-        }
+          text: "Your dog's ideal weight depends on its breed size and body condition. This calculator uses typical weight ranges for breed sizes to estimate a healthy target weight.",
+        },
       },
       {
         "@type": "Question",
-        "name": "What is Resting Energy Requirement (RER)?",
-        "acceptedAnswer": {
+        name: "What is Resting Energy Requirement (RER)?",
+        acceptedAnswer: {
           "@type": "Answer",
-          "text": "RER is the amount of energy a dog needs at rest to maintain basic bodily functions. It is calculated based on the dog's weight."
-        }
+          text: "RER is the amount of energy a dog needs at rest to maintain basic bodily functions. It is calculated based on the dog's weight.",
+        },
       },
       {
         "@type": "Question",
-        "name": "How does activity level affect calorie needs?",
-        "acceptedAnswer": {
+        name: "How does activity level affect calorie needs?",
+        acceptedAnswer: {
           "@type": "Answer",
-          "text": "More active dogs require more calories to maintain their weight. This calculator adjusts calorie needs based on low, moderate, or high activity levels."
-        }
+          text: "More active dogs require more calories to maintain their weight. This calculator adjusts calorie needs based on low, moderate, or high activity levels.",
+        },
       },
       {
         "@type": "Question",
-        "name": "Can this calculator replace veterinary advice?",
-        "acceptedAnswer": {
+        name: "Can this calculator replace veterinary advice?",
+        acceptedAnswer: {
           "@type": "Answer",
-          "text": "No. This tool provides general estimates. Always consult your veterinarian for personalized nutrition and weight management advice."
-        }
-      }
-    ]
+          text: "No. This tool provides general estimates. Always consult your veterinarian for personalized nutrition and weight management advice.",
+        },
+      },
+    ],
   };
 
-  // Widget UI
+  // =========================
+  // WIDGET (FORM + RESULT)
+  // =========================
   const widget = (
     <Card>
       <CardHeader>
@@ -134,7 +138,10 @@ function DogIdealWeightTargetCaloriesCalculator() {
             aria-describedby="weight-helper"
           />
           {!isWeightValid && currentWeight !== "" && (
-            <p id="weight-helper" className="mt-1 text-sm text-red-600 dark:text-red-400">
+            <p
+              id="weight-helper"
+              className="mt-1 text-sm text-red-600 dark:text-red-400"
+            >
               Please enter a valid positive weight.
             </p>
           )}
@@ -181,16 +188,20 @@ function DogIdealWeightTargetCaloriesCalculator() {
               Results
             </h3>
             <p className="text-gray-700 dark:text-gray-300">
-              <strong>Ideal Weight:</strong> {idealWeight.toFixed(1)} kg (typical for a {breedSize} breed)
+              <strong>Ideal Weight:</strong> {idealWeight.toFixed(1)} kg (typical
+              for a {breedSize} breed)
             </p>
             <p className="text-gray-700 dark:text-gray-300">
-              <strong>Resting Energy Requirement (RER):</strong> {formatCalories(rer)} kcal/day
+              <strong>Resting Energy Requirement (RER):</strong>{" "}
+              {formatCalories(rer)} kcal/day
             </p>
             <p className="text-gray-700 dark:text-gray-300">
-              <strong>Maintenance Energy Requirement (MER):</strong> {formatCalories(mer)} kcal/day based on {activityLevel} activity
+              <strong>Maintenance Energy Requirement (MER):</strong>{" "}
+              {formatCalories(mer)} kcal/day based on {activityLevel} activity
             </p>
             <p className="text-sm italic text-gray-600 dark:text-gray-400">
-              These calorie needs are estimates to maintain your dog's ideal weight.
+              These calorie needs are estimates to maintain your dog's ideal
+              weight. Always confirm feeding plans with your veterinarian.
             </p>
           </div>
         )}
@@ -198,182 +209,164 @@ function DogIdealWeightTargetCaloriesCalculator() {
     </Card>
   );
 
-  // Formula section
+  // =========================
+  // FORMULA (FORMATO NOVO DO LAYOUT)
+  // =========================
   const formula = {
-    heading: "Key formulas",
-    items: [
+    title: "Key formulas for ideal weight calories",
+    formula: "MER = 70 × (Ideal Weight in kg)^0.75 × Activity Multiplier",
+    variables: [
       {
-        label: "Resting Energy Requirement (RER)",
-        formula: "RER = 70 × (Ideal Weight in kg)^0.75",
-        description:
-          "Calculates the energy your dog needs at rest to maintain vital functions."
+        symbol: "Ideal Weight",
+        description: "Estimated healthy target weight for your dog (kg).",
       },
       {
-        label: "Maintenance Energy Requirement (MER)",
-        formula: "MER = RER × Activity Multiplier",
+        symbol: "RER",
         description:
-          "Adjusts RER based on your dog's activity level to estimate daily calorie needs."
-      }
-    ]
-  };
-
-  // Examples section
-  const examples = {
-    heading: "Worked examples",
-    items: [
-      {
-        title: "Medium breed dog with moderate activity",
-        description:
-          "A 15 kg medium breed dog with moderate activity level.",
-        steps: [
-          "Ideal weight range for medium breed: 10–25 kg.",
-          "Ideal weight midpoint: (10 + 25) / 2 = 17.5 kg.",
-          "Calculate RER: 70 × 17.5^0.75 ≈ 70 × 8.36 = 585 kcal/day.",
-          "MER: 585 × 1.6 (moderate activity) = 936 kcal/day."
-        ],
-        resultSummary:
-          "The dog should consume approximately 936 kcal/day to maintain ideal weight."
+          "Resting Energy Requirement – base calories needed at rest.",
       },
       {
-        title: "Large breed dog with high activity",
+        symbol: "Activity Multiplier",
         description:
-          "A 40 kg large breed dog with high activity level.",
-        steps: [
-          "Ideal weight range for large breed: 25–45 kg.",
-          "Ideal weight midpoint: (25 + 45) / 2 = 35 kg.",
-          "Calculate RER: 70 × 35^0.75 ≈ 70 × 15.62 = 1093 kcal/day.",
-          "MER: 1093 × 2.0 (high activity) = 2186 kcal/day."
-        ],
-        resultSummary:
-          "The dog should consume approximately 2186 kcal/day to maintain ideal weight."
-      }
-    ]
+          "Factor based on how active your dog is (1.2 low, 1.6 moderate, 2.0 high).",
+      },
+      {
+        symbol: "MER",
+        description:
+          "Maintenance Energy Requirement – total daily calories to maintain ideal weight.",
+      },
+    ],
   };
 
-  // FAQ items
-  const faqItems = [
-    {
-      question: "Why is ideal weight important for my dog?",
-      answer:
-        "Maintaining an ideal weight helps reduce the risk of health problems and improves your dog's quality of life."
-    },
-    {
-      question: "Can I use this calculator for puppies or senior dogs?",
-      answer:
-        "This calculator is designed for adult dogs. Puppies and seniors have different nutritional needs; consult your veterinarian for guidance."
-    },
-    {
-      question: "What if my dog is underweight or overweight?",
-      answer:
-        "If your dog is outside the ideal weight range, consult your veterinarian for a tailored weight management plan."
-    },
-    {
-      question: "How often should I adjust my dog's calorie intake?",
-      answer:
-        "Adjust calorie intake based on changes in activity, age, health status, or weight. Regular monitoring and vet checkups are recommended."
-    },
-    {
-      question: "Does breed size affect calorie needs?",
-      answer:
-        "Yes, breed size influences ideal weight and energy requirements, which this calculator accounts for."
-    },
-    {
-      question: "Are these calorie estimates exact?",
-      answer:
-        "No, these are general estimates. Individual dogs may require more precise evaluation by a professional."
-    },
-    {
-      question: "Can I use this calculator for mixed breed dogs?",
-      answer:
-        "Yes, select the breed size that best matches your dog's size and body type."
-    },
-    {
-      question: "Is activity level the only factor affecting calorie needs?",
-      answer:
-        "No, factors like age, health, neuter status, and environment also affect calorie needs."
-    }
-  ];
+  // =========================
+  // EXAMPLE (FORMATO NOVO DO LAYOUT)
+  // =========================
+  const example = {
+    title: "Example: Medium breed dog with moderate activity",
+    scenario:
+      "You have a 15 kg medium breed adult dog that is moderately active. You want to estimate a healthy target weight and daily calories.",
+    steps: [
+      {
+        step: 1,
+        description: "Estimate ideal weight from the medium breed range (10–25 kg).",
+        calculation: "Ideal weight = (10 + 25) / 2 = 17.5 kg",
+      },
+      {
+        step: 2,
+        description: "Calculate Resting Energy Requirement (RER).",
+        calculation: "RER = 70 × 17.5^0.75 ≈ 70 × 8.36 ≈ 585 kcal/day",
+      },
+      {
+        step: 3,
+        description: "Apply the activity multiplier for moderate activity.",
+        calculation: "MER = 585 × 1.6 ≈ 936 kcal/day",
+      },
+      {
+        step: 4,
+        description: "Interpret the result.",
+        calculation:
+          "Your dog needs about 930–950 kcal/day to maintain its ideal weight.",
+      },
+    ],
+    result:
+      "A medium breed adult dog with moderate activity should receive roughly 940 kcal/day to maintain a healthy ideal weight.",
+  };
 
-  // References
-  const references = [
-    {
-      title: "National Research Council (NRC) Nutrient Requirements of Dogs and Cats",
-      href: "https://www.nap.edu/catalog/10668/nutrient-requirements-of-dogs-and-cats",
-      description:
-        "Authoritative resource on canine nutrition requirements, including energy needs and feeding guidelines.",
-      icon: BookOpen
-    },
-    {
-      title: "Merck Veterinary Manual: Canine Nutrition",
-      href: "https://www.merckvetmanual.com/digestive-system/nutrition/canine-nutrition",
-      description:
-        "Comprehensive overview of dog nutrition, energy requirements, and feeding recommendations.",
-      icon: Info
-    },
-    {
-      title: "WSAVA Global Nutrition Guidelines",
-      href: "https://www.wsava.org/WSAVA/media/Documents/Guidelines/Nutrition-Guidelines-WSAVA-2019.pdf",
-      description:
-        "Global guidelines for feeding dogs and cats, including energy calculations and life-stage nutrition.",
-      icon: BookOpen
-    }
-  ];
-
-  // Related calculators
+  // =========================
+  // RELATED CALCULATORS (FORMATO NOVO)
+  // =========================
   const relatedCalculators = [
     {
       title: "Dog Calorie Needs (RER/MER) Calculator",
-      href: "/pets/dog-calorie-needs-rer-mer",
-      icon: Activity,
-      category: "Pets – Dogs",
-      description: "Calculate your dog's daily calorie needs based on weight and activity."
+      url: "/pets/dog-calorie-needs-rer-mer",
+      icon: "🔥",
     },
     {
       title: "Dog Weight Loss Planner",
-      href: "/pets/dog-weight-loss-planner",
-      icon: HeartPulse,
-      category: "Pets – Dogs",
-      description: "Plan a safe and effective weight loss program for your overweight dog."
+      url: "/pets/dog-weight-loss-planner",
+      icon: "❤️",
     },
     {
       title: "Dog Food Portion Calculator",
-      href: "/pets/dog-food-portion-calculator",
-      icon: Dog,
-      category: "Pets – Dogs",
-      description: "Determine the right amount of food to feed your dog daily."
-    }
+      url: "/pets/dog-food-portion-calculator",
+      icon: "🍖",
+    },
   ];
 
+  // =========================
+  // EDITORIAL (TEXTO)
+  // =========================
+  const editorial = (
+    <>
+      <section id="how-it-works">
+        <h2>How this dog ideal weight & target calories calculator works</h2>
+        <p>
+          This tool estimates a healthy target weight range for your dog based
+          on general size categories (small, medium, large, giant) and then
+          calculates how many calories are needed per day to maintain that ideal
+          weight.
+        </p>
+        <p>
+          It uses standard veterinary formulas for Resting Energy Requirement
+          (RER) and Maintenance Energy Requirement (MER), combined with an
+          activity multiplier that reflects how active your dog is.
+        </p>
+      </section>
+
+      <section id="tips">
+        <h2>Important tips before changing your dog's diet</h2>
+        <ul>
+          <li>
+            Always confirm any weight-loss or weight-gain plan with your
+            veterinarian.
+          </li>
+          <li>
+            Make changes gradually so your dog's digestive system can adapt.
+          </li>
+          <li>
+            Monitor body condition score (BCS), not just the number on the
+            scale.
+          </li>
+          <li>
+            Keep fresh water available at all times and avoid drastic calorie
+            restrictions.
+          </li>
+        </ul>
+      </section>
+
+      <section id="disclaimer">
+        <h2>Disclaimer</h2>
+        <p>
+          This calculator is for educational purposes only and does not replace
+          professional veterinary advice. Always consult a licensed
+          veterinarian before making major changes to your dog's nutrition or
+          weight-management plan.
+        </p>
+      </section>
+    </>
+  );
+
+  // =========================
+  // RENDER
+  // =========================
   return (
     <CalculatorVerticalLayout
       title="Dog Ideal Weight & Target Calories Calculator"
-      description="Determine your dog's ideal healthy weight and the specific calorie intake needed to maintain it based on breed and size."
-      category="pets"
-      subcategory="Dogs — Nutrition & Weight"
-      seo={{
-        pageTitle: "Dog Ideal Weight & Target Calories Calculator - SmartKitNow",
-        metaDescription:
-          "Calculate your dog's ideal weight and daily calorie needs based on breed size and activity level. Maintain your dog's health with accurate nutrition estimates.",
-        keywords: [
-          "dog ideal weight",
-          "dog calorie calculator",
-          "dog nutrition",
-          "dog weight management",
-          "canine calorie needs",
-          "pet nutrition calculator",
-          "dog activity calorie needs"
-        ],
-        structuredData: faqStructuredData
-      }}
+      description="Estimate your dog's ideal weight and the daily calories needed to maintain it, based on breed size and activity level."
       widget={widget}
+      editorial={editorial}
       formula={formula}
-      examples={examples}
-      faqItems={faqItems}
-      references={references}
+      example={example}
       relatedCalculators={relatedCalculators}
+      jsonLd={faqStructuredData}
       showTopBanner={true}
       showBottomBanner={true}
-      showSidebarAds={true}
+      showSidebar={true}
+      onThisPage={[
+        { id: "how-it-works", label: "How this calculator works" },
+        { id: "tips", label: "Tips for safe weight management" },
+        { id: "disclaimer", label: "Important disclaimer" },
+      ]}
     />
   );
 }
