@@ -9,17 +9,29 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
-import { Calculator, Dog, Activity, Info, BookOpen } from "lucide-react";
+import {
+  Calculator,
+  Dog,
+  Activity,
+  Info,
+  BookOpen,
+  HeartPulse,
+  Scale,
+  AlertTriangle,
+} from "lucide-react";
 
 function PuppyCalorieNeedsAgeBreedSizeCalculator() {
-  // Inputs: age in weeks, predicted adult breed size (small, medium, large)
+  // --------------------------------------------------------------
+  // ESTADO: idade (semanas) + porte previsto do adulto
+  // --------------------------------------------------------------
   const [ageWeeks, setAgeWeeks] = useState<string>("");
   const [breedSize, setBreedSize] = useState<"small" | "medium" | "large">(
     "medium"
   );
-  const resultsRef = useRef<HTMLDivElement>(null);
 
-  // Clamp and parse inputs
+  const resultsRef = useRef<HTMLDivElement | null>(null);
+
+  // Clamp / parse idade
   const age = useMemo(() => {
     const val = Number(ageWeeks);
     if (isNaN(val) || val < 1) return 1;
@@ -27,8 +39,8 @@ function PuppyCalorieNeedsAgeBreedSizeCalculator() {
     return val;
   }, [ageWeeks]);
 
-  // Predicted adult weight (kg) by breed size category (approximate averages)
-  // Small: 5-10 kg, Medium: 15-25 kg, Large: 30-45 kg
+  // Peso adulto médio por categoria (aprox.)
+  // Small: 5–10 kg, Medium: 15–25 kg, Large: 30–45 kg
   const predictedAdultWeight = useMemo(() => {
     switch (breedSize) {
       case "small":
@@ -42,167 +54,184 @@ function PuppyCalorieNeedsAgeBreedSizeCalculator() {
     }
   }, [breedSize]);
 
-  // Puppy Energy Requirement (PER) calculation based on NRC and common veterinary nutrition sources:
-  // PER (kcal/day) = 3 × RER
-  // RER = 70 × (weight in kg)^0.75
-  // Puppy weight estimated by age and adult weight using growth curves:
-  // Approximate % adult weight by age in weeks:
-  // 4 weeks: 10%, 8 weeks: 25%, 12 weeks: 40%, 16 weeks: 55%, 20 weeks: 70%, 24 weeks: 85%, 52 weeks: 100%
-  // Linear interpolation between points for smooth estimate.
-
+  // Percentual de peso adulto por idade (curva de crescimento aproximada)
   const percentAdultWeightByAge = useMemo(() => {
-    // Age breakpoints and % adult weight
     const points = [
-      { w: 4, p: 0.10 },
+      { w: 4, p: 0.1 },
       { w: 8, p: 0.25 },
-      { w: 12, p: 0.40 },
+      { w: 12, p: 0.4 },
       { w: 16, p: 0.55 },
-      { w: 20, p: 0.70 },
+      { w: 20, p: 0.7 },
       { w: 24, p: 0.85 },
       { w: 52, p: 1.0 },
     ];
 
-    if (age <= 4) return 0.10;
+    if (age <= 4) return 0.1;
     if (age >= 52) return 1.0;
 
     for (let i = 0; i < points.length - 1; i++) {
       const p1 = points[i];
       const p2 = points[i + 1];
       if (age >= p1.w && age <= p2.w) {
-        // Linear interpolate
         const ratio = (age - p1.w) / (p2.w - p1.w);
         return p1.p + ratio * (p2.p - p1.p);
       }
     }
+
     return 1.0;
   }, [age]);
 
-  const estimatedPuppyWeight = useMemo(() => {
-    return predictedAdultWeight * percentAdultWeightByAge;
-  }, [predictedAdultWeight, percentAdultWeightByAge]);
+  const estimatedPuppyWeight = useMemo(
+    () => predictedAdultWeight * percentAdultWeightByAge,
+    [predictedAdultWeight, percentAdultWeightByAge]
+  );
 
   const RER = useMemo(() => {
     if (estimatedPuppyWeight <= 0) return 0;
     return 70 * Math.pow(estimatedPuppyWeight, 0.75);
   }, [estimatedPuppyWeight]);
 
-  const PER = useMemo(() => {
-    // NRC suggests 3x RER for growing puppies
-    return RER * 3;
-  }, [RER]);
+  // NRC: em muitos casos ≈ 3 × RER para filhotes em crescimento
+  const PER = useMemo(() => RER * 3, [RER]);
 
-  // Scroll to results on calculate
-  const onCalculate = () => {
-    if (resultsRef.current) {
-      resultsRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  // Format kcal with commas and no decimals
   const formatKcal = (val: number) => {
     if (val <= 0 || isNaN(val)) return "0";
     return Math.round(val).toLocaleString();
   };
 
-  // onThisPage anchors
+  const handleCalculate = () => {
+    setTimeout(() => {
+      resultsRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 80);
+  };
+
+  const handleReset = () => {
+    setAgeWeeks("");
+    setBreedSize("medium");
+  };
+
+  // --------------------------------------------------------------
+  // ON THIS PAGE
+  // --------------------------------------------------------------
   const onThisPage = [
-    { href: "#how-it-works", title: "How this calculator works" },
-    { href: "#domain-rules", title: "Key concepts & domain rules" },
-    { href: "#worked-example", title: "Worked example" },
-    { href: "#faq", title: "FAQ" },
-    { href: "#disclaimer", title: "Disclaimer" },
-    { href: "#references", title: "References & further reading" },
+    { id: "how-to-use", label: "How to Use This Calculator" },
+    { id: "growth-curves", label: "Puppy Growth & Energy Needs" },
+    { id: "example", label: "Worked Example" },
+    { id: "faq", label: "Frequently Asked Questions" },
+    { id: "disclaimer", label: "Disclaimer" },
+    { id: "references", label: "References & Resources" },
   ];
 
-  // Formula object
+  // --------------------------------------------------------------
+  // FORMULA (FORMATO COMPATÍVEL COM CalculatorVerticalLayout)
+  // --------------------------------------------------------------
   const formula = {
-    title: "Core formulas used in this calculator",
-    formulas: [
+    formula:
+      "RER = 70 × (body weight in kg)^0.75    |    PER ≈ 3 × RER for growing puppies",
+    title: "Puppy calorie equations used by this calculator",
+    variables: [
       {
-        formula: "RER = 70 × (weight in kg)^0.75",
+        symbol: "RER",
+        name: "Resting Energy Requirement",
         description:
-          "Resting Energy Requirement (RER) estimates the energy needed at rest.",
+          "Baseline calories needed each day for vital functions at rest.",
       },
       {
-        formula: "PER = 3 × RER",
+        symbol: "PER",
+        name: "Puppy Energy Requirement",
         description:
-          "Puppy Energy Requirement (PER) is approximately three times RER to support growth.",
+          "Estimated calories needed for growth and typical puppy activity (about 3 × RER).",
       },
       {
-        formula:
-          "Estimated Puppy Weight = Predicted Adult Weight × % Adult Weight by Age",
+        symbol: "kg",
+        name: "Body weight in kilograms",
         description:
-          "Puppy weight is estimated as a percentage of predicted adult weight based on age.",
+          "The calculator estimates current puppy weight from predicted adult weight and age.",
+      },
+      {
+        symbol: "% adult weight",
+        name: "Percent of predicted adult weight",
+        description:
+          "Growth curves are used to approximate what fraction of adult weight a puppy has at a given age.",
       },
     ],
   };
 
-  // Worked example object
+  // --------------------------------------------------------------
+  // EXAMPLE (MESMO PADRÃO DO DOG RER/MER)
+  // --------------------------------------------------------------
   const example = {
-    title: "Calculating calorie needs for a 10-week-old medium breed puppy",
+    title: "Example: 10-week-old medium-breed puppy",
     scenario:
-      "You have a 10-week-old puppy expected to grow into a medium-sized dog (~20 kg adult weight). You want to estimate daily calorie needs for optimal growth.",
+      "You have a 10-week-old puppy expected to grow into a medium-breed adult (~20 kg). You want to estimate daily calories for healthy growth.",
     steps: [
       {
         step: 1,
         description:
-          "Estimate puppy weight as a percentage of adult weight at 10 weeks. Between 8 weeks (25%) and 12 weeks (40%), interpolate:",
+          "Estimate the puppy's weight as a percentage of adult weight at 10 weeks.",
         calculation:
-          "≈ 25% + ((10 - 8) / (12 - 8)) × (40% - 25%) = 25% + 0.5 × 15% = 32.5%",
+          "Between 8 weeks (25%) and 12 weeks (40%): 25% + ((10 − 8) / (12 − 8)) × (40% − 25%) = 25% + 0.5 × 15% = 32.5%",
       },
       {
         step: 2,
         description:
-          "Calculate estimated puppy weight: 20 kg × 32.5% = 6.5 kg",
-        calculation: "20 × 0.325 = 6.5 kg",
+          "Convert that percentage into an estimated current weight.",
+        calculation: "Estimated puppy weight = 20 kg × 0.325 = 6.5 kg",
       },
       {
         step: 3,
         description:
-          "Calculate Resting Energy Requirement (RER): 70 × (6.5)^0.75",
-        calculation: "70 × 3.75 ≈ 262.5 kcal/day",
+          "Calculate Resting Energy Requirement (RER) using the standard formula.",
+        calculation: "RER = 70 × (6.5^0.75) ≈ 70 × 3.75 ≈ 263 kcal/day",
       },
       {
         step: 4,
         description:
-          "Calculate Puppy Energy Requirement (PER): 3 × RER = 3 × 262.5",
-        calculation: "3 × 262.5 = 787.5 kcal/day",
+          "Multiply RER by 3 to estimate Puppy Energy Requirement (PER).",
+        calculation: "PER ≈ 3 × 263 ≈ 789 kcal/day",
       },
     ],
     result:
-      "The puppy needs approximately 788 kcal per day to support healthy growth at 10 weeks old.",
+      "In this example, the puppy needs roughly 780–800 kcal per day to support healthy growth at 10 weeks of age, assuming a typical medium-breed and normal health. Your veterinarian may fine-tune this target based on body condition and growth rate.",
   };
 
-  // Related calculators
+  // --------------------------------------------------------------
+  // RELATED CALCULATORS (RELEVANTES PARA FILHOTES / CÃES)
+  // --------------------------------------------------------------
   const relatedCalculators = [
     {
-      title: "Dog Ideal Weight Calculator",
-      url: "/pets/dogs-nutrition-weight/dog-ideal-weight",
-      icon: "🐶",
+      title: "Dog Calorie Needs (RER/MER) Calculator",
+      url: "/pets/dog-calorie-needs-rer-mer",
+      icon: "🔥",
     },
     {
-      title: "Dog Treat Calories Daily Allowance Calculator",
-      url: "/pets/dogs-nutrition-weight/dog-treat-calories-daily-allowance",
+      title: "Puppy Growth & Feeding Guide",
+      url: "/pets/puppy-growth-feeding",
+      icon: "🐾",
+    },
+    {
+      title: "Dog Ideal Weight & Target Calories",
+      url: "/pets/dog-ideal-weight-target-calories",
+      icon: "🎯",
+    },
+    {
+      title: "Dog Treat Calories Daily Allowance",
+      url: "/pets/dog-treat-calories-daily-allowance",
       icon: "🍖",
     },
     {
-      title: "Dog Weight Loss Planner",
-      url: "/pets/dogs-nutrition-weight/dog-weight-loss-planner",
-      icon: "🐕‍🦺",
-    },
-    {
-      title: "Cat Calorie Needs Calculator",
-      url: "/pets/cats-nutrition-weight/cat-calorie-needs",
-      icon: "🐱",
-    },
-    {
-      title: "Puppy Growth Rate Calculator",
-      url: "/pets/dogs-nutrition-weight/puppy-growth-rate",
-      icon: "🐾",
+      title: "Dog Weight-Loss Planner",
+      url: "/pets/dog-weight-loss-planner",
+      icon: "📉",
     },
   ];
 
-  // JSON-LD FAQPage structured data
+  // --------------------------------------------------------------
+  // JSON-LD FAQ (SEO)
+  // --------------------------------------------------------------
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -213,16 +242,16 @@ function PuppyCalorieNeedsAgeBreedSizeCalculator() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Puppies have higher energy needs than adult dogs to support rapid growth and development. Calculating calorie needs helps ensure they receive adequate nutrition without overfeeding.",
+            "Puppies have much higher energy needs than adult dogs because they are growing rapidly and are usually very active. Estimating calorie requirements helps you avoid both underfeeding and overfeeding, supporting healthy growth and development.",
         },
       },
       {
         "@type": "Question",
-        name: "How does predicted adult breed size affect calorie needs?",
+        name: "How does predicted adult breed size affect puppy calorie needs?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Larger breed puppies grow for longer periods and require more calories overall. This calculator adjusts calorie needs based on predicted adult size to optimize growth.",
+            "Large-breed puppies grow over a longer period and can be more prone to orthopedic problems if they grow too fast. This calculator uses predicted adult size plus age to estimate weight and energy needs tailored to small, medium, or large breeds.",
         },
       },
       {
@@ -231,34 +260,40 @@ function PuppyCalorieNeedsAgeBreedSizeCalculator() {
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "This calculator is designed for puppies aged 4 weeks and older. For neonates younger than 4 weeks, specialized feeding guidelines from a veterinarian should be followed.",
+            "This tool is intended for puppies around 4 weeks of age and older. Very young neonate puppies require specialized feeding plans; always follow your veterinarian’s guidance for those age groups.",
         },
       },
       {
         "@type": "Question",
-        name: "What if my puppy’s growth rate differs from the estimate?",
+        name: "What if my puppy’s growth rate is faster or slower than average?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Individual puppies may grow faster or slower than average. Regular veterinary check-ups and weight monitoring are important to adjust feeding as needed.",
+            "Growth curves represent typical averages. Some puppies grow faster and some slower. Regular weigh-ins, body condition scoring, and veterinary check-ups are essential to adjust feeding amounts over time.",
         },
       },
     ],
   };
 
-  // Widget: form + results
+  // --------------------------------------------------------------
+  // WIDGET (FORM + RESULTADOS)
+  // --------------------------------------------------------------
   const widget = (
-    <>
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-slate-100">
+    <div className="space-y-6">
+      <Card className="border border-slate-200/70 dark:border-slate-700/80 shadow-lg">
+        <CardHeader className="pb-4">
+          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl font-semibold">
+            <Dog className="h-5 w-5 text-sky-500" />
             Puppy Calorie Needs Calculator
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-4">
           <div>
-            <Label htmlFor="ageWeeks" className="text-slate-700 dark:text-slate-300">
-              Puppy Age (weeks)
+            <Label
+              htmlFor="ageWeeks"
+              className="text-slate-700 dark:text-slate-300"
+            >
+              Puppy age (weeks)
             </Label>
             <Input
               id="ageWeeks"
@@ -266,19 +301,23 @@ function PuppyCalorieNeedsAgeBreedSizeCalculator() {
               min={1}
               max={52}
               step={1}
-              placeholder="Enter puppy age in weeks"
+              placeholder="e.g. 10"
               value={ageWeeks}
               onChange={(e) => setAgeWeeks(e.target.value)}
               className="mt-1"
             />
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-              Enter age between 1 and 52 weeks.
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+              Enter an age between 1 and 52 weeks. Very young neonates should be
+              fed strictly under veterinary guidance.
             </p>
           </div>
 
           <div>
-            <Label htmlFor="breedSize" className="text-slate-700 dark:text-slate-300">
-              Predicted Adult Breed Size
+            <Label
+              htmlFor="breedSize"
+              className="text-slate-700 dark:text-slate-300"
+            >
+              Predicted adult breed size
             </Label>
             <select
               id="breedSize"
@@ -286,189 +325,288 @@ function PuppyCalorieNeedsAgeBreedSizeCalculator() {
               onChange={(e) =>
                 setBreedSize(e.target.value as "small" | "medium" | "large")
               }
-              className="mt-1 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+              className="mt-1 w-full rounded-md border border-slate-300 bg-slate-50 px-3 py-2 text-sm text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
             >
-              <option value="small">Small (5-10 kg)</option>
-              <option value="medium">Medium (15-25 kg)</option>
-              <option value="large">Large (30-45 kg)</option>
+              <option value="small">Small (5–10 kg adult)</option>
+              <option value="medium">Medium (15–25 kg adult)</option>
+              <option value="large">Large (30–45 kg adult)</option>
             </select>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+              Choose the category that best matches your puppy&apos;s expected
+              adult size.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="flex gap-3">
+        <Button
+          onClick={handleCalculate}
+          className="flex-1"
+          type="button"
+        >
+          <Calculator className="mr-2 h-4 w-4" />
+          Estimate puppy calories
+        </Button>
+        <Button variant="outline" type="button" onClick={handleReset}>
+          Reset
+        </Button>
+      </div>
+
+      {RER > 0 && (
+        <div
+          ref={resultsRef}
+          className="space-y-6 mt-4 animate-in fade-in slide-in-from-bottom-4 duration-300"
+        >
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+            Estimated daily calories for your puppy
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="border border-slate-200 dark:border-slate-700">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Scale className="h-4 w-4 text-indigo-500" />
+                  Estimated puppy weight
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0 space-y-1">
+                <p className="text-3xl font-bold text-slate-900 dark:text-slate-100">
+                  {estimatedPuppyWeight.toFixed(2)} kg
+                </p>
+                <p className="text-xs text-slate-600 dark:text-slate-400">
+                  Based on predicted adult size and growth curves for age.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-slate-200 dark:border-slate-700">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <HeartPulse className="h-4 w-4 text-rose-500" />
+                  Resting Energy Requirement (RER)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0 space-y-1">
+                <p className="text-3xl font-bold text-slate-900 dark:text-slate-100">
+                  {formatKcal(RER)} kcal/day
+                </p>
+                <p className="text-xs text-slate-600 dark:text-slate-400">
+                  Energy needed at rest in a thermoneutral environment.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-slate-200 dark:border-slate-700 bg-gradient-to-br from-emerald-500/10 via-sky-500/10 to-blue-500/10">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Activity className="h-4 w-4 text-emerald-600" />
+                  Puppy Energy Requirement (PER)
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0 space-y-1">
+                <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-slate-100">
+                  {formatKcal(PER)} kcal/day
+                </p>
+                <p className="text-xs text-slate-600 dark:text-slate-400">
+                  Approximate daily calories to support healthy growth for this
+                  age and predicted adult size.
+                </p>
+              </CardContent>
+            </Card>
           </div>
 
-          <Button onClick={onCalculate} className="w-full" variant="default" size="lg" type="button">
-            Calculate
-          </Button>
-        </CardContent>
-      </Card>
-
-      <Card ref={resultsRef} className="mt-8">
-        <CardHeader>
-          <CardTitle className="text-xl sm:text-2xl font-semibold text-slate-900 dark:text-slate-100">
-            Estimated Daily Calorie Needs
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4 text-slate-700 dark:text-slate-300 text-base">
-          <p>
-            <strong>Estimated Puppy Weight:</strong>{" "}
-            {estimatedPuppyWeight.toFixed(2)} kg
-          </p>
-          <p>
-            <strong>Resting Energy Requirement (RER):</strong>{" "}
-            {formatKcal(RER)} kcal/day
-          </p>
-          <p>
-            <strong>Puppy Energy Requirement (PER):</strong>{" "}
-            {formatKcal(PER)} kcal/day
-          </p>
-          <p className="text-sm text-slate-500 dark:text-slate-400">
-            This is the estimated number of calories your puppy needs daily to
-            support healthy growth.
-          </p>
-        </CardContent>
-      </Card>
-    </>
+          <div className="flex gap-3 items-start p-4 rounded-xl bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800">
+            <AlertTriangle className="h-5 w-5 text-amber-600 mt-0.5" />
+            <p className="text-sm text-slate-800 dark:text-slate-100">
+              These numbers are educational estimates based on typical growth
+              curves. Puppies with medical conditions, unusual growth patterns
+              or special diets may need a customized plan. Always confirm
+              feeding decisions with your veterinarian.
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
   );
 
-  // Editorial content
+  // --------------------------------------------------------------
+  // EDITORIAL (CONTEÚDO RICO)
+  // --------------------------------------------------------------
   const editorial = (
     <div className="space-y-10">
-      <section id="how-it-works" className="prose prose-slate dark:prose-invert max-w-none">
-        <h2>How this calculator works</h2>
-        <p>
-          This calculator estimates the daily calorie needs of puppies based on their current age in weeks and predicted adult breed size. Puppies require more energy than adult dogs to support rapid growth, development, and increased activity levels. By estimating the puppy’s current weight as a percentage of their predicted adult weight, we calculate their Resting Energy Requirement (RER) and then multiply it by a factor to estimate the Puppy Energy Requirement (PER).
+      <section id="how-to-use">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          How to use the puppy calorie needs calculator
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 mb-3">
+          This calculator estimates daily calorie needs for growing puppies
+          using a combination of age, predicted adult size and established
+          veterinary formulas. It helps you understand whether your puppy is
+          likely getting enough energy to grow steadily without being
+          overfed.
         </p>
-        <p>
-          The inputs you provide—age and breed size—help tailor the calorie estimate to your puppy’s unique growth stage and expected adult size, ensuring optimal nutrition for healthy development.
+        <p className="text-slate-700 dark:text-slate-300 mb-3">
+          To get started, enter your puppy&apos;s age in weeks and choose the
+          adult size category that best matches their breed or expected adult
+          weight. The tool uses growth curves to estimate current weight,
+          calculates Resting Energy Requirement (RER), then multiplies by a
+          growth factor to estimate Puppy Energy Requirement (PER).
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-slate-700 dark:text-slate-300">
+          <li>
+            <strong>Age:</strong> helps determine what fraction of adult weight
+            your puppy has reached.
+          </li>
+          <li>
+            <strong>Predicted adult size:</strong> small, medium or large
+            categories change the estimated adult weight.
+          </li>
+          <li>
+            <strong>Estimated weight:</strong> used to calculate RER via a
+            metabolic body-weight formula.
+          </li>
+          <li>
+            <strong>PER:</strong> about three times RER for many healthy
+            puppies in active growth phases.
+          </li>
+        </ul>
+      </section>
+
+      <section
+        id="growth-curves"
+        className="border-t border-slate-200 dark:border-slate-700 pt-8"
+      >
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Puppy growth curves and energy needs
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 mb-3">
+          Unlike adult dogs, puppies gain weight rapidly and their calorie
+          needs change every few weeks. Veterinary nutrition references often
+          estimate puppy weight as a percentage of expected adult weight at
+          different ages. For example, many puppies are around 25% of adult
+          weight at 8 weeks and 40% at 12 weeks.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 mb-3">
+          This calculator uses a simple growth-curve approach: it approximates
+          the percentage of adult weight for your puppy&apos;s age and multiplies
+          it by the predicted adult weight. That estimated current weight then
+          feeds into the same metabolic equation used for adult dogs.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300">
+          Keep in mind that individual puppies may grow faster or slower than
+          these average curves. Regular weigh-ins at your veterinary clinic are
+          the best way to confirm that your puppy&apos;s growth is on track.
         </p>
       </section>
 
-      <section id="domain-rules" className="prose prose-slate dark:prose-invert max-w-none">
-        <h2>Key concepts & domain rules</h2>
-        <p>
-          <strong>Resting Energy Requirement (RER)</strong> is the baseline energy your puppy needs at rest to maintain vital body functions. It is calculated using the formula: <em>RER = 70 × (weight in kg)^0.75</em>.
+      <section
+        id="example"
+        className="border-t border-slate-200 dark:border-slate-700 pt-8"
+      >
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Worked example: medium-breed puppy
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 mb-3">
+          {example.scenario}
         </p>
-        <p>
-          <strong>Puppy Energy Requirement (PER)</strong> is higher than RER because puppies are growing and more active. Veterinary nutrition guidelines commonly use a multiplier of 3 times RER to estimate PER.
-        </p>
-        <p>
-          <strong>Growth curves</strong> estimate puppy weight as a percentage of their predicted adult weight at different ages. This calculator uses typical growth percentages to estimate current weight from predicted adult size and age.
-        </p>
-        <p>
-          Note that individual puppies may vary in growth rate and energy needs. Regular veterinary check-ups and weight monitoring are essential to adjust feeding amounts appropriately.
-        </p>
-      </section>
-
-      <section id="worked-example" className="prose prose-slate dark:prose-invert max-w-none">
-        <h2>Worked example</h2>
-        <p>{example.scenario}</p>
-        <ol className="list-decimal list-inside space-y-4">
-          {example.steps.map(({ step, description, calculation }) => (
-            <li key={step}>
-              <p>{description}</p>
-              <p className="font-mono bg-slate-100 dark:bg-slate-800 p-2 rounded text-sm">{calculation}</p>
+        <ol className="list-decimal pl-6 space-y-3 text-slate-700 dark:text-slate-300 mb-4">
+          {example.steps.map((s) => (
+            <li key={s.step}>
+              <p>{s.description}</p>
+              <p className="mt-1 font-mono bg-slate-100 dark:bg-slate-800 rounded px-3 py-2 text-sm">
+                {s.calculation}
+              </p>
             </li>
           ))}
         </ol>
-        <p className="font-semibold">{example.result}</p>
-      </section>
-
-      <section id="faq" className="prose prose-slate dark:prose-invert max-w-none">
-        <h2>FAQ</h2>
-        <dl className="space-y-6">
-          <div>
-            <dt className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100">
-              Why is it important to calculate calorie needs for puppies?
-            </dt>
-            <dd className="text-slate-700 dark:text-slate-300">
-              Puppies have higher energy needs than adult dogs to support rapid growth and development. Calculating calorie needs helps ensure they receive adequate nutrition without overfeeding.
-            </dd>
-          </div>
-          <div>
-            <dt className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100">
-              How does predicted adult breed size affect calorie needs?
-            </dt>
-            <dd className="text-slate-700 dark:text-slate-300">
-              Larger breed puppies grow for longer periods and require more calories overall. This calculator adjusts calorie needs based on predicted adult size to optimize growth.
-            </dd>
-          </div>
-          <div>
-            <dt className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100">
-              Can I use this calculator for puppies younger than 4 weeks?
-            </dt>
-            <dd className="text-slate-700 dark:text-slate-300">
-              This calculator is designed for puppies aged 4 weeks and older. For neonates younger than 4 weeks, specialized feeding guidelines from a veterinarian should be followed.
-            </dd>
-          </div>
-          <div>
-            <dt className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100">
-              What if my puppy’s growth rate differs from the estimate?
-            </dt>
-            <dd className="text-slate-700 dark:text-slate-300">
-              Individual puppies may grow faster or slower than average. Regular veterinary check-ups and weight monitoring are important to adjust feeding as needed.
-            </dd>
-          </div>
-        </dl>
-      </section>
-
-      <section id="disclaimer" className="prose prose-slate dark:prose-invert max-w-none">
-        <h2>Disclaimer</h2>
-        <p>
-          This calculator provides general estimates for puppy calorie needs based on typical growth patterns and breed sizes. It is intended for educational purposes only and does not replace professional veterinary advice. Always consult your veterinarian for personalized feeding recommendations and health assessments.
+        <p className="font-semibold text-slate-900 dark:text-slate-100">
+          {example.result}
         </p>
       </section>
 
-      <section id="references" className="prose prose-slate dark:prose-invert max-w-none">
-        <h2>References &amp; further reading</h2>
+      <section
+        id="faq"
+        className="border-t border-slate-200 dark:border-slate-700 pt-8"
+      >
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          Frequently asked questions
+        </h2>
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100 mb-1">
+              Why is it important to estimate puppy calorie needs?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300">
+              Too few calories can slow growth and impair immune function, while
+              too many calories may contribute to excessive weight gain and
+              orthopedic problems. Estimating calorie needs gives you a starting
+              target so you can monitor body condition and adjust thoughtfully.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100 mb-1">
+              Do all breeds follow the same growth curve?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300">
+              No. Toy breeds, giant breeds and mixed-breed puppies can all grow
+              at different rates. Growth-curve models are averages. Your vet
+              may recommend more frequent weight checks for very small or very
+              large breeds to keep growth on a safe path.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100 mb-1">
+              Should I change food type as my puppy grows?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300">
+              Many commercial diets are labeled for specific life stages such as
+              “growth” or “large-breed puppy.” These formulas are designed to
+              provide appropriate nutrients when fed at the recommended amount.
+              Your veterinarian can guide you on when to switch to an adult
+              formula based on age, breed and body condition.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100 mb-1">
+              How often should I re-calculate my puppy’s calories?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300">
+              During rapid growth, recalculating every 2–4 weeks is helpful.
+              Each time you update age and predicted adult size, compare the
+              estimate with your vet&apos;s records and adjust portions if your
+              puppy is gaining too slowly or too quickly.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="disclaimer"
+        className="border-t border-slate-200 dark:border-slate-700 pt-8"
+      >
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Important disclaimer
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300">
+          This calculator is an educational tool and cannot replace a full
+          veterinary nutrition assessment. It does not account for individual
+          medical conditions, congenital issues or special dietary needs.
+          Always consult your veterinarian before making major changes to your
+          puppy&apos;s diet or feeding plan.
+        </p>
+      </section>
+
+      <section
+        id="references"
+        className="border-t border-slate-200 dark:border-slate-700 pt-8"
+      >
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          References & additional resources
+        </h2>
         <ul className="space-y-4">
-          <li className="flex items-start space-x-2">
-            <BookOpen className="mt-1 h-5 w-5 flex-shrink-0 text-blue-600 dark:text-blue-400" />
-            <div>
-              <a
-                href="https://www.nal.usda.gov/legacy/fnic/growth-standards-puppies"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                USDA Nutrient Requirements of Dogs and Cats
-              </a>
-              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-                Official guidelines on nutrient requirements including energy needs for growing puppies.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start space-x-2">
-            <BookOpen className="mt-1 h-5 w-5 flex-shrink-0 text-blue-600 dark:text-blue-400" />
-            <div>
-              <a
-                href="https://www.aaha.org/globalassets/02-guidelines/nutrition/nutrition_guidelines_final.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                American Animal Hospital Association (AAHA) Canine Nutrition Guidelines
-              </a>
-              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-                Comprehensive nutrition recommendations for puppies and adult dogs.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start space-x-2">
-            <BookOpen className="mt-1 h-5 w-5 flex-shrink-0 text-blue-600 dark:text-blue-400" />
-            <div>
-              <a
-                href="https://vcahospitals.com/know-your-pet/nutrition-for-puppies"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                VCA Hospitals: Nutrition for Puppies
-              </a>
-              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-                Practical advice on feeding puppies for healthy growth and development.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start space-x-2">
-            <BookOpen className="mt-1 h-5 w-5 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+          <li className="flex items-start gap-3">
+            <BookOpen className="mt-1 h-5 w-5 text-blue-600 dark:text-blue-400" />
             <div>
               <a
                 href="https://www.merckvetmanual.com/nutrition/nutrition-of-the-growing-puppy"
@@ -476,10 +614,62 @@ function PuppyCalorieNeedsAgeBreedSizeCalculator() {
                 rel="noopener noreferrer"
                 className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
               >
-                Merck Veterinary Manual: Nutrition of the Growing Puppy
+                Merck Veterinary Manual – Nutrition of the Growing Puppy
               </a>
               <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-                Authoritative veterinary resource covering puppy nutritional needs and growth.
+                Detailed overview of nutritional requirements, growth and
+                feeding strategies for puppies of different sizes.
+              </p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <BookOpen className="mt-1 h-5 w-5 text-blue-600 dark:text-blue-400" />
+            <div>
+              <a
+                href="https://wsava.org/global-guidelines/global-nutrition-guidelines/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                WSAVA Global Nutrition Guidelines
+              </a>
+              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+                International guidelines that include recommendations for growth
+                feeding, calorie estimation and body-condition scoring.
+              </p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <BookOpen className="mt-1 h-5 w-5 text-blue-600 dark:text-blue-400" />
+            <div>
+              <a
+                href="https://www.aaha.org/globalassets/02-guidelines/nutrition/nutrition_guidelines_final.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                AAHA – Canine and Feline Nutritional Assessment Guidelines
+              </a>
+              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+                Practical framework used by many clinics to assess diet,
+                calories and body condition in growing and adult pets.
+              </p>
+            </div>
+          </li>
+          <li className="flex items-start gap-3">
+            <BookOpen className="mt-1 h-5 w-5 text-blue-600 dark:text-blue-400" />
+            <div>
+              <a
+                href="https://vcahospitals.com/know-your-pet/nutrition-for-growing-puppies"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                VCA Hospitals – Nutrition for Growing Puppies
+              </a>
+              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+                Owner-friendly article explaining how much and how often to feed
+                puppies, plus tips for monitoring growth at home.
               </p>
             </div>
           </li>
@@ -488,10 +678,13 @@ function PuppyCalorieNeedsAgeBreedSizeCalculator() {
     </div>
   );
 
+  // --------------------------------------------------------------
+  // RENDER PRINCIPAL
+  // --------------------------------------------------------------
   return (
     <CalculatorVerticalLayout
       title="Puppy Calorie Needs by Age/Breed Size Calculator"
-      description="Calculate the specific energy needs for puppies based on their current age and predicted adult breed size for optimal growth."
+      description="Estimate daily calorie needs for growing puppies using age, predicted adult size and veterinary energy equations, so you can support healthy growth without overfeeding."
       widget={widget}
       editorial={editorial}
       onThisPage={onThisPage}
