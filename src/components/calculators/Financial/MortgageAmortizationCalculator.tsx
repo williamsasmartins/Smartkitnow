@@ -549,8 +549,6 @@ export default function MonthlyBudgetPlannerCalculator() {
     <CalculatorVerticalLayout
       title="Monthly Budget Planner"
       description="Estimate your monthly surplus, savings rate, and how long it may take to reach a savings goal based on your income and expenses."
-      category="financial"
-      subcategory="Budgeting & planning"
       widget={widget}
       editorial={editorial}
       onThisPage={[
