@@ -124,17 +124,18 @@ interface ExampleStep {
   explanation?: string;
 }
 
-function ExampleSection({ 
-  title, 
-  scenario, 
-  steps, 
-  result 
-}: { 
+function ExampleSection({
+  title,
+  scenario,
+  steps = [],
+  result,
+}: {
   title: string;
   scenario: string;
-  steps: ExampleStep[];
+  steps?: ExampleStep[];
   result: string;
 }) {
+
   return (
     <div className="my-10 p-8 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 shadow-xl">
       <h3 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mb-5 tracking-tight">
@@ -312,22 +313,24 @@ export default function CalculatorVerticalLayout({
 
             {/* FORMULA BOX */}
             {formula && (
-              <FormulaBox
-                formula={formula.formula}
-                variables={formula.variables}
-                title={formula.title}
-              />
-            )}
+  <FormulaBox
+    formula={formula.formula}
+    variables={formula.variables ?? []}
+    title={formula.title}
+  />
+)}
+
 
             {/* EXAMPLE CALCULATION */}
-            {example && (
-              <ExampleSection
-                title={example.title}
-                scenario={example.scenario}
-                steps={example.steps}
-                result={example.result}
-              />
-            )}
+           {example && (
+  <ExampleSection
+    title={example.title}
+    scenario={example.scenario}
+    steps={example.steps ?? []}
+    result={example.result}
+  />
+)}
+
 
             {/* EDITORIAL CONTENT (hidden if children provided) */}
             {!children && (
