@@ -3,307 +3,343 @@ import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalL
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
-import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  Calculator,
+  DollarSign,
+  TrendingUp,
+  HelpCircle,
+  BookOpen,
+  Info,
+  CheckCircle,
+} from "lucide-react";
 
-const faqs = [
-  {
-    question: "What is mortgage payment & amortization calculator and why is it important?",
-    answer: `A mortgage payment & amortization calculator is a tool that helps you estimate your monthly mortgage payments, including principal and interest. It also provides an amortization schedule, showing how your payments are applied over time. This information is crucial for budgeting and financial planning, allowing you to understand your long-term financial commitments.<br><br>Understanding your mortgage payments helps you make informed decisions about homeownership and refinancing options. For more detailed calculations, explore our <a href="/financial/refinance-savings">Refinance Savings Calculator</a>.`
-  },
-  {
-    question: "How accurate is this calculator?",
-    answer: `This calculator provides a highly accurate estimate of your mortgage payments based on the inputs you provide. However, it's important to note that actual payments may vary due to factors like changes in interest rates, taxes, and insurance. For precise calculations, consult with a financial advisor or mortgage professional.<br><br>To ensure accuracy, double-check your inputs and update them if your financial situation changes. This tool is best used as a starting point for understanding your mortgage obligations.`
-  },
-  {
-    question: "What information do I need to use this calculator?",
-    answer: `To use this calculator, you'll need the loan amount, annual interest rate, and loan term in years. The loan amount is the total amount borrowed, the interest rate is the annual percentage charged by the lender, and the loan term is the duration over which the loan will be repaid.<br><br>You can find this information in your mortgage agreement or by consulting with your lender. Ensure that the data you enter is accurate to get the most reliable results.`
-  },
-  {
-    question: "Can I use this calculator for refinancing scenarios?",
-    answer: `Yes, this calculator can be used to estimate payments for refinancing scenarios. Simply enter the new loan amount, interest rate, and term to see how your payments will change. Refinancing can lower your monthly payments or reduce the total interest paid over the life of the loan.<br><br>Consider factors like closing costs and changes in interest rates when deciding to refinance. For more detailed analysis, use our <a href="/financial/refinance-savings">Refinance Savings Calculator</a>.`
-  },
-  {
-    question: "What are common mistakes people make with this calculation?",
-    answer: `Common mistakes include entering incorrect loan amounts, interest rates, or loan terms. These errors can lead to inaccurate payment estimates. Another mistake is not considering additional costs like taxes and insurance, which affect your overall payment.<br><br>To avoid these mistakes, verify your inputs and consider all costs associated with homeownership. Regularly update your calculations as your financial situation changes.`
-  },
-  {
-    question: "How often should I recalculate?",
-    answer: `Recalculate your mortgage payments whenever there are changes in your financial situation, such as a change in income, interest rates, or loan terms. Regular recalculations help you stay on top of your financial obligations and make informed decisions.<br><br>Consider recalculating annually or whenever you plan to make significant financial decisions, like refinancing or purchasing a new home.`
-  },
-  {
-    question: "What should I do with these results?",
-    answer: `Use the results to plan your budget and ensure you can comfortably afford your mortgage payments. The amortization schedule can help you understand how your payments are applied over time, allowing you to strategize additional payments to reduce interest costs.<br><br>If you're considering refinancing or making extra payments, consult with a financial advisor to explore your options. For further guidance, visit our <a href="/financial/extra-payments-payoff">Extra Payments & Payoff Time Calculator</a>.`
-  },
-  {
-    question: "Are there alternatives to this calculation method?",
-    answer: `Alternatives to this calculation method include using spreadsheets or financial software that can handle more complex scenarios, such as variable interest rates or additional fees. These tools can provide more detailed insights but may require more expertise to use effectively.<br><br>Consider using professional financial services for personalized advice and advanced calculations. For a simpler approach, our calculator offers a quick and easy way to estimate your payments.`
-  }
-];
+type InputsState = {
+  income: string;
+  expenses: string;
+  savingsGoal: string;
+};
 
-export default function MortgageAmortizationCalculator() {
+type ScheduleRow = {
+  month: number;
+  savings: number;
+  cumulativeSavings: number;
+  goalReached: boolean;
+};
+
+export default function MonthlyBudgetPlannerCalculator() {
   // STATE
-  const [inputs, setInputs] = useState({ 
-    principal: "", 
-    interestRate: "", 
-    termYears: "" 
+  const [inputs, setInputs] = useState<InputsState>({
+    income: "",
+    expenses: "",
+    savingsGoal: "",
   });
   const [showFullTable, setShowFullTable] = useState(false);
-  const resultsRef = useRef<HTMLDivElement>(null);
+  const resultsRef = useRef<HTMLDivElement | null>(null);
 
-  // HELPER FUNCTION (MANDATORY)
-  const formatCurrency = (value: number): string => {
-    return new Intl.NumberFormat("en-US", {
+  // HELPER: format currency
+  const formatCurrency = (value: number): string =>
+    new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(value);
-  };
 
   // CALCULATIONS
   const results = useMemo(() => {
-    // Parse inputs
-    let principal = parseFloat(inputs.principal) || 0;
-    const annualInterestRate = parseFloat(inputs.interestRate) || 0;
-    const termYears = parseFloat(inputs.termYears) || 0;
+    const incomeValue = parseFloat(inputs.income) || 0;
+    const expensesValue = parseFloat(inputs.expenses) || 0;
+    const savingsGoalValue = parseFloat(inputs.savingsGoal) || 0;
 
-    // Validate
-    if (principal <= 0 || annualInterestRate <= 0 || termYears <= 0) {
-      return { 
-        monthlyPayment: 0, 
-        totalInterest: 0, 
-        totalPayment: 0, 
-        scheduleData: [] 
+    if (incomeValue <= 0 || expensesValue < 0) {
+      return {
+        netIncome: 0,
+        savingsRate: 0,
+        monthsToGoal: 0,
+        scheduleData: [] as ScheduleRow[],
       };
     }
 
-    // Perform calculations
-    const monthlyInterestRate = annualInterestRate / 100 / 12;
-    const numberOfPayments = termYears * 12;
-    const monthlyPayment = principal * monthlyInterestRate / (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments));
-    const totalPayment = monthlyPayment * numberOfPayments;
-    const totalInterest = totalPayment - principal;
+    const netIncome = incomeValue - expensesValue;
+    const savingsRate =
+      incomeValue > 0 ? (netIncome / incomeValue) * 100 : 0;
+    const monthsToGoal =
+      savingsGoalValue > 0 && netIncome > 0
+        ? Math.ceil(savingsGoalValue / netIncome)
+        : 0;
 
-    // Generate amortization schedule
-    let balance = principal;
-    const scheduleData = Array.from({ length: numberOfPayments }, (_, i) => {
-      const interestPayment = balance * monthlyInterestRate;
-      const principalPayment = monthlyPayment - interestPayment;
-      balance -= principalPayment;
-      return {
-        month: i + 1,
-        payment: monthlyPayment,
-        principal: principalPayment,
-        interest: interestPayment,
-        balance: Math.max(balance, 0)
-      };
-    });
+    const scheduleData: ScheduleRow[] =
+      monthsToGoal > 0
+        ? Array.from({ length: monthsToGoal }, (_, i) => {
+            const month = i + 1;
+            const cumulativeSavings = netIncome * month;
+            return {
+              month,
+              savings: netIncome,
+              cumulativeSavings,
+              goalReached: cumulativeSavings >= savingsGoalValue,
+            };
+          })
+        : [];
 
-    return { 
-      monthlyPayment, 
-      totalInterest, 
-      totalPayment, 
-      scheduleData 
+    return {
+      netIncome,
+      savingsRate,
+      monthsToGoal,
+      scheduleData,
     };
   }, [inputs]);
 
   // HANDLERS
   const handleCalculate = () => {
+    // Apenas para scroll suave até os resultados
     setTimeout(() => {
-      resultsRef.current?.scrollIntoView({ 
-        behavior: "smooth", 
-        block: "center" 
+      resultsRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
       });
-    }, 100);
+    }, 120);
   };
 
   const handleReset = () => {
-    setInputs({ principal: "", interestRate: "", termYears: "" });
+    setInputs({
+      income: "",
+      expenses: "",
+      savingsGoal: "",
+    });
+    setShowFullTable(false);
   };
 
-  const faqJsonLd = useFaqJsonLd(faqs);
-
-  // WIDGET JSX (200-250 LINES)
+  // WIDGET (formulário + resultados)
   const widget = (
-    <Card className="p-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
-      {/* INPUT SECTION */}
+    <Card className="p-6 bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
+      {/* INPUTS */}
       <div className="space-y-4">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <DollarSign className="w-4 h-4 text-blue-600"/>
-              Loan Amount
+              <DollarSign className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              Monthly income (after tax)
             </Label>
             <Input
               type="number"
-              placeholder="e.g., 300000"
-              value={inputs.principal}
-              onChange={(e) => setInputs({ ...inputs, principal: e.target.value })}
+              inputMode="decimal"
+              placeholder="e.g., 5000"
+              value={inputs.income}
+              onChange={(e) =>
+                setInputs((prev) => ({
+                  ...prev,
+                  income: e.target.value,
+                }))
+              }
               className="text-lg"
             />
           </div>
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <TrendingUp className="w-4 h-4 text-green-600"/>
-              Annual Interest Rate (%)
+              <TrendingUp className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              Total monthly expenses
             </Label>
             <Input
               type="number"
-              placeholder="e.g., 3.5"
-              value={inputs.interestRate}
-              onChange={(e) => setInputs({ ...inputs, interestRate: e.target.value })}
+              inputMode="decimal"
+              placeholder="e.g., 3200"
+              value={inputs.expenses}
+              onChange={(e) =>
+                setInputs((prev) => ({
+                  ...prev,
+                  expenses: e.target.value,
+                }))
+              }
               className="text-lg"
             />
           </div>
 
           <div className="space-y-2 md:col-span-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <Calculator className="w-4 h-4 text-purple-600"/>
-              Loan Term (Years)
+              <Calculator className="w-4 h-4 text-violet-600 dark:text-violet-400" />
+              Savings goal (optional)
             </Label>
             <Input
               type="number"
-              placeholder="e.g., 30"
-              value={inputs.termYears}
-              onChange={(e) => setInputs({ ...inputs, termYears: e.target.value })}
+              inputMode="decimal"
+              placeholder="e.g., 20000"
+              value={inputs.savingsGoal}
+              onChange={(e) =>
+                setInputs((prev) => ({
+                  ...prev,
+                  savingsGoal: e.target.value,
+                }))
+              }
               className="text-lg"
             />
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+              If you enter a savings goal, the planner will estimate how many
+              months it would take to get there with your current budget.
+            </p>
           </div>
         </div>
       </div>
 
       {/* BUTTONS */}
       <div className="flex gap-4 mt-6">
-        <Button 
-          onClick={handleCalculate} 
+        <Button
+          onClick={handleCalculate}
           className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
         >
-          <Calculator className="mr-2 h-4 w-4"/> 
-          Calculate
+          <Calculator className="mr-2 h-4 w-4" />
+          Calculate budget
         </Button>
-        <Button 
-          onClick={handleReset} 
+        <Button
+          type="button"
           variant="outline"
-          className="border-gray-300 dark:border-gray-600"
+          onClick={handleReset}
+          className="border-gray-300 dark:border-gray-700"
         >
           Reset
         </Button>
       </div>
 
-      {/* RESULTS SECTION - GRID 2x2 (MANDATORY) */}
-      {results.monthlyPayment > 0 && (
-        <div ref={resultsRef} className="space-y-6 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Your Results</h3>
-          
+      {/* RESULTS */}
+      {results.netIncome > 0 && (
+        <div
+          ref={resultsRef}
+          className="space-y-6 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500"
+        >
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            Your monthly budget snapshot
+          </h3>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* MAIN RESULT - Full Width Gradient (MANDATORY STYLE) */}
-            <Card className="col-span-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200 dark:border-blue-800 shadow-xl">
-              <CardContent className="pt-8 pb-8">
-                <div className="flex items-center justify-between">
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
-                      Monthly Payment
-                    </p>
-                    <p className="text-5xl font-bold text-blue-600 dark:text-blue-400">
-                      {formatCurrency(results.monthlyPayment)}
-                    </p>
-                  </div>
-                  <DollarSign className="w-16 h-16 text-blue-600 dark:text-blue-400 opacity-20" />
+            {/* Net income */}
+            <Card className="col-span-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200 dark:border-blue-800 shadow-md">
+              <CardContent className="pt-6 pb-6 flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Net income after expenses
+                  </p>
+                  <p className="text-4xl font-bold text-blue-700 dark:text-blue-300">
+                    {formatCurrency(results.netIncome)}
+                  </p>
+                  <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+                    This is what&apos;s left each month after your current
+                    expenses.
+                  </p>
                 </div>
+                <DollarSign className="w-14 h-14 text-blue-600 dark:text-blue-300 opacity-20" />
               </CardContent>
             </Card>
 
-            {/* SECONDARY RESULT 1 */}
-            <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
-              <CardContent className="pt-6 pb-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
-                      Total Interest
-                    </p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                      {formatCurrency(results.totalInterest)}
-                    </p>
-                  </div>
-                  <TrendingUp className="w-10 h-10 text-gray-400" />
+            {/* Savings rate */}
+            <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
+              <CardContent className="pt-6 pb-6 flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Savings rate
+                  </p>
+                  <p className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
+                    {results.savingsRate.toFixed(1)}%
+                  </p>
+                  <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+                    The percentage of your income that could go to savings or
+                    extra debt payments.
+                  </p>
                 </div>
+                <TrendingUp className="w-10 h-10 text-emerald-500 dark:text-emerald-400 opacity-60" />
               </CardContent>
             </Card>
 
-            {/* SECONDARY RESULT 2 */}
-            <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
-              <CardContent className="pt-6 pb-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
-                      Total Payment
-                    </p>
-                    <p className="text-2xl font-bold text-red-600 dark:text-red-400">
-                      {formatCurrency(results.totalPayment)}
-                    </p>
-                  </div>
-                  <Calculator className="w-10 h-10 text-gray-400" />
+            {/* Months to goal */}
+            <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
+              <CardContent className="pt-6 pb-6 flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Months to reach your goal
+                  </p>
+                  <p className="text-3xl font-bold text-violet-600 dark:text-violet-400">
+                    {results.monthsToGoal > 0
+                      ? results.monthsToGoal
+                      : "—"}
+                  </p>
+                  <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+                    Based on your current surplus and savings goal.
+                  </p>
                 </div>
+                <Calculator className="w-10 h-10 text-violet-500 dark:text-violet-400 opacity-60" />
               </CardContent>
             </Card>
           </div>
 
-          {/* AMORTIZATION/SCHEDULE TABLE (if applicable) */}
-          {results.scheduleData && results.scheduleData.length > 0 && (
-            <Card className="mt-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
-              <CardHeader className="border-b border-gray-200 dark:border-gray-700">
-                <CardTitle className="flex justify-between items-center">
-                  <span className="text-xl font-bold text-gray-900 dark:text-gray-100">
-                    Payment Schedule
-                  </span>
-                  {results.scheduleData.length > 12 && (
-                    <Button 
-                      onClick={() => setShowFullTable(!showFullTable)} 
-                      variant="outline"
-                      size="sm"
-                      className="border-gray-300 dark:border-gray-600"
-                    >
-                      {showFullTable 
-                        ? 'Show Less' 
-                        : `Show All ${results.scheduleData.length} Payments`}
-                    </Button>
-                  )}
+          {/* Schedule table */}
+          {results.scheduleData.length > 0 && (
+            <Card className="mt-4 bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
+              <CardHeader className="flex flex-row items-center justify-between gap-4 border-b border-gray-200 dark:border-gray-800">
+                <CardTitle className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                  Savings schedule
                 </CardTitle>
+                {results.scheduleData.length > 12 && (
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    className="border-gray-300 dark:border-gray-700"
+                    onClick={() => setShowFullTable((prev) => !prev)}
+                  >
+                    {showFullTable
+                      ? "Show first 12 months"
+                      : `Show all ${results.scheduleData.length} months`}
+                  </Button>
+                )}
               </CardHeader>
               <CardContent className="p-0">
                 <div className="overflow-x-auto">
                   <Table>
                     <TableHeader>
-                      <TableRow className="bg-gray-50 dark:bg-gray-900">
-                        <TableHead className="font-semibold">Month</TableHead>
-                        <TableHead className="font-semibold">Payment</TableHead>
-                        <TableHead className="font-semibold">Principal</TableHead>
-                        <TableHead className="font-semibold">Interest</TableHead>
-                        <TableHead className="font-semibold">Balance</TableHead>
+                      <TableRow className="bg-gray-50 dark:bg-gray-950/40">
+                        <TableHead>Month</TableHead>
+                        <TableHead>Monthly savings</TableHead>
+                        <TableHead>Cumulative savings</TableHead>
+                        <TableHead>Goal reached?</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {results.scheduleData
                         .slice(0, showFullTable ? undefined : 12)
-                        .map((row, idx) => (
-                          <TableRow 
-                            key={idx} 
-                            className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                        .map((row) => (
+                          <TableRow
+                            key={row.month}
+                            className="hover:bg-gray-50 dark:hover:bg-gray-900/60"
                           >
-                            <TableCell className="font-medium">{row.month}</TableCell>
-                            <TableCell>{formatCurrency(row.payment)}</TableCell>
-                            <TableCell className="text-green-600 dark:text-green-400">
-                              {formatCurrency(row.principal)}
+                            <TableCell className="font-medium">
+                              {row.month}
                             </TableCell>
-                            <TableCell className="text-red-600 dark:text-red-400">
-                              {formatCurrency(row.interest)}
+                            <TableCell>
+                              {formatCurrency(row.savings)}
                             </TableCell>
-                            <TableCell className="font-semibold">
-                              {formatCurrency(row.balance)}
+                            <TableCell className="text-emerald-600 dark:text-emerald-400">
+                              {formatCurrency(row.cumulativeSavings)}
+                            </TableCell>
+                            <TableCell>
+                              {row.goalReached ? (
+                                <CheckCircle className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+                              ) : (
+                                "No"
+                              )}
                             </TableCell>
                           </TableRow>
                         ))}
@@ -318,310 +354,279 @@ export default function MortgageAmortizationCalculator() {
     </Card>
   );
 
-  // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
+  // EDITORIAL
   const editorial = (
-    <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
-      {/* SECTION 1: INTRODUCTION (400-500 words) */}
-      <section id="introduction">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Understanding Mortgage Payment & Amortization Calculator
+    <div className="skn-editorial space-y-10 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+      <section id="introduction" className="space-y-3">
+        <h2 className="flex items-center gap-2 text-2xl font-semibold text-slate-900 dark:text-slate-50">
+          <HelpCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          How this monthly budget planner works
         </h2>
-        
-        <p className="mb-6">
-          The Mortgage Payment & Amortization Calculator is an essential tool for anyone considering a home purchase or refinancing an existing mortgage. This calculator helps you estimate your monthly mortgage payments, including principal and interest, based on the loan amount, interest rate, and loan term. By understanding your monthly obligations, you can better manage your finances and make informed decisions about your home investment.
+        <p>
+          This calculator helps you understand how much money you really have
+          left at the end of the month. You enter your take-home income, your
+          total monthly expenses, and an optional savings goal. We estimate your
+          monthly surplus, savings rate, and how long it could take to reach
+          that goal.
         </p>
-        
-        <p className="mb-6">
-          Accurate calculations are crucial in the mortgage process because they directly impact your financial planning and budgeting. Incorrect calculations can lead to unexpected expenses, affecting your ability to meet other financial goals. This calculator provides a reliable estimate of your monthly payments, helping you avoid surprises and plan effectively. For more detailed insights, consider using our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
+        <p>
+          It&apos;s a simple planning tool meant for education and awareness,
+          not a full replacement for detailed financial planning. You can use
+          the results as a starting point to decide whether you need to cut
+          costs, increase income, or adjust your savings target.
         </p>
-        
-        <p className="mb-6">
-          To use this calculator effectively, gather information about your loan amount, interest rate, and loan term. Enter these values into the respective fields to calculate your monthly payment. It's important to use accurate figures to ensure the results reflect your actual financial situation. For additional guidance, explore our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-        </p>
+      </section>
 
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
-            Key Insight
-          </h4>
-          <p className="text-blue-800 dark:text-blue-200">
-            Always double-check your inputs for accuracy. Small errors in the loan amount or interest rate can lead to significant differences in your monthly payment calculations. Use this tool as a starting point and consult with a financial advisor for personalized advice.
+      <section id="formula" className="space-y-3">
+        <h2 className="flex items-center gap-2 text-2xl font-semibold text-slate-900 dark:text-slate-50">
+          <Calculator className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+          Core formula behind the planner
+        </h2>
+        <p>
+          The logic behind this calculator is intentionally straightforward so
+          you can follow each step:
+        </p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>
+            <strong>Net income</strong> = Monthly income − Monthly expenses
+          </li>
+          <li>
+            <strong>Savings rate</strong> = (Net income ÷ Monthly income) ×
+            100%
+          </li>
+          <li>
+            <strong>Months to goal</strong> = Savings goal ÷ Net income
+          </li>
+        </ul>
+        <p>
+          If your net income is negative or zero, the calculator will show that
+          there is no remaining money to save and you may need to revisit your
+          income or expense assumptions.
+        </p>
+      </section>
+
+      <section id="factors" className="space-y-3">
+        <h2 className="flex items-center gap-2 text-2xl font-semibold text-slate-900 dark:text-slate-50">
+          <Info className="w-5 h-5 text-violet-600 dark:text-violet-400" />
+          Key factors that affect your results
+        </h2>
+        <p>Several factors can change what this planner shows:</p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>
+            <strong>Income stability:</strong> If your income fluctuates from
+            month to month, use a conservative estimate rather than the best
+            month you ever had.
+          </li>
+          <li>
+            <strong>Irregular expenses:</strong> Annual insurance premiums,
+            car repairs, or one-off purchases can distort a single month. It
+            helps to spread those over 12 months to get a more realistic
+            average.
+          </li>
+          <li>
+            <strong>Debt payments:</strong> Minimum payments on credit cards or
+            loans are part of your regular expenses and reduce how much you can
+            save.
+          </li>
+          <li>
+            <strong>Saving priority:</strong> You might choose to split surplus
+            between savings, extra debt payments, and fun money. The calculator
+            assumes you direct the full surplus to your savings goal.
+          </li>
+        </ul>
+      </section>
+
+      <section id="faq" className="space-y-4">
+        <h2 className="flex items-center gap-2 text-2xl font-semibold text-slate-900 dark:text-slate-50">
+          <HelpCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          Frequently asked questions
+        </h2>
+
+        <div className="space-y-3">
+          <h3 className="font-semibold text-slate-900 dark:text-slate-100">
+            Is this planner giving me financial advice?
+          </h3>
+          <p>
+            No. This tool is for general education and budgeting awareness only.
+            It does not consider your full financial situation, risk tolerance,
+            or goals. For personalized advice, talk to a licensed financial
+            professional.
           </p>
         </div>
-        
-        <p className="mb-6">
-          Best practices for using this calculator include regularly updating your inputs if your financial situation changes. Consider factors such as changes in interest rates or additional payments, which can affect your overall loan cost. For more tips, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-        </p>
-      </section>
 
-      {/* SECTION 2: FORMULA (300-400 words) */}
-      <section id="formula">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Mortgage Payment & Amortization Calculator Formula
-        </h2>
-        
-        <p className="mb-6">
-          The formula used in this calculator is based on the standard mortgage payment calculation, which considers the principal amount, interest rate, and loan term. This formula is widely accepted in the financial industry for its accuracy in estimating monthly payments. Variations of this formula may be used in specific scenarios, such as interest-only loans or adjustable-rate mortgages.
-        </p>
-        
-        {/* FORMULA BOX - MANDATORY STYLING */}
-        <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
-          M = P[r(1+r)^n] / [(1+r)^n – 1]
-          <div className="mt-4 text-base font-sans text-left">
-            <p className="mb-2"><strong>Where:</strong></p>
-            <ul className="space-y-1 pl-4">
-              <li>M = Monthly payment</li>
-              <li>P = Principal loan amount</li>
-              <li>r = Monthly interest rate (annual rate / 12)</li>
-              <li>n = Number of payments (loan term in years × 12)</li>
-            </ul>
-          </div>
+        <div className="space-y-3">
+          <h3 className="font-semibold text-slate-900 dark:text-slate-100">
+            What if my net income is negative?
+          </h3>
+          <p>
+            A negative net income means your expenses are higher than your
+            income. In that case, you may need to reduce expenses, increase
+            income, or both. The calculator will not estimate months to goal
+            if there is no surplus to save.
+          </p>
         </div>
-        
-        <p className="mb-4">
-          Each variable in the formula plays a crucial role in determining the monthly payment. The principal amount (P) is the initial size of the loan. The interest rate (r) affects how much interest you will pay over the life of the loan. The number of payments (n) is determined by the loan term, which can vary based on your agreement with the lender. Adjusting any of these variables will impact the final monthly payment, so it's important to consider each carefully.
-        </p>
-      </section>
 
-      {/* SECTION 3: FACTORS (600-800 words) */}
-      <section id="factors">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Key Factors That Affect Your Results
-        </h2>
-        
-        <p className="mb-6">
-          Understanding the factors that affect your mortgage payment is crucial for effective financial planning. These factors interact in complex ways, influencing the total cost of your mortgage and your monthly payments.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Loan Amount
-        </h3>
-        <p className="mb-4">
-          The loan amount is the total amount borrowed from the lender. It directly influences the size of your monthly payments. Larger loans result in higher payments, while smaller loans are more manageable. It's important to borrow only what you need to keep your payments affordable.
-        </p>
-        <p className="mb-6">
-          To optimize your loan amount, consider making a larger down payment or choosing a less expensive property. This can reduce your monthly payments and the total interest paid over the life of the loan. For more strategies, check out our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Interest Rate
-        </h3>
-        <p className="mb-4">
-          The interest rate is a percentage of the loan amount charged by the lender for borrowing money. It significantly impacts the total cost of your mortgage. Even a small change in the interest rate can lead to substantial differences in your monthly payments and total interest paid.
-        </p>
-        <p className="mb-6">
-          Interest rates vary based on market conditions and your creditworthiness. To secure a lower rate, maintain a good credit score and shop around for the best offers. Consider locking in a rate when market conditions are favorable.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Loan Term
-        </h3>
-        <p className="mb-4">
-          The loan term is the length of time over which the loan is repaid. Common terms are 15, 20, or 30 years. Shorter terms typically have higher monthly payments but lower total interest costs, while longer terms have lower payments but higher interest costs.
-        </p>
-        <p className="mb-6">
-          Choose a loan term that aligns with your financial goals. If you can afford higher payments, a shorter term can save you money in the long run. For more insights, visit our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-        </p>
-        
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Down Payment
-        </h3>
-        <p className="mb-6">
-          The down payment is the initial amount paid upfront when purchasing a home. A larger down payment reduces the loan amount, resulting in lower monthly payments and less interest paid over time. It can also help you avoid private mortgage insurance (PMI).
-        </p>
+        <div className="space-y-3">
+          <h3 className="font-semibold text-slate-900 dark:text-slate-100">
+            How often should I update my budget?
+          </h3>
+          <p>
+            Many people review their budget monthly, but you can adjust it more
+            often during periods of change (new job, move, major purchase, or
+            big life event). Updating the calculator regularly helps you keep
+            your plan realistic.
+          </p>
+        </div>
 
-        <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
-          Additional Payments
-        </h3>
-        <p className="mb-6">
-          Making additional payments towards your principal can significantly reduce the total interest paid and shorten the loan term. Even small extra payments can have a big impact over time. Consider setting up bi-weekly payments or making lump-sum payments when possible.
-        </p>
-      </section>
-
-      {/* SECTION 4: FAQ (1000-1200 words with 8 questions) */}
-      <section id="faq">
-        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-                {faq.question}
-              </h3>
-              <div 
-                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </div>
-          ))}
+        <div className="space-y-3">
+          <h3 className="font-semibold text-slate-900 dark:text-slate-100">
+            Does this include investment returns or interest?
+          </h3>
+          <p>
+            No. The results assume you simply set money aside each month
+            without investment growth. If you plan to invest your savings, your
+            actual time to reach a goal could be shorter or longer depending on
+            market performance.
+          </p>
         </div>
       </section>
 
-      {/* SECTION 5: REFERENCES WITH DESCRIPTIONS (MANDATORY) */}
-      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-10 mt-12">
-        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
-          Official References & Resources
+      <section id="references" className="space-y-3">
+        <h2 className="flex items-center gap-2 text-2xl font-semibold text-slate-900 dark:text-slate-50">
+          <BookOpen className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+          References & further reading
         </h2>
-        <ul className="space-y-4">
+        <p>
+          These resources offer more detail on budgeting methods and practical
+          ways to organize your finances:
+        </p>
+        <ul className="space-y-3">
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <BookOpen className="w-5 h-5 mt-1 text-blue-600 dark:text-blue-400" />
             <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              <a
+                href="https://www.consumerfinance.gov/consumer-tools/budgeting/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
               >
-                Federal Reserve - Mortgage Rates
+                Consumer Financial Protection Bureau – Budgeting basics
               </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official data on mortgage rates and economic indicators affecting the housing market.
+              <p className="text-sm text-slate-700 dark:text-slate-300 mt-1">
+                Guidance on how to start a budget, track spending, and adjust
+                when life changes.
               </p>
             </div>
           </li>
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <Info className="w-5 h-5 mt-1 text-blue-600 dark:text-blue-400" />
             <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
+              <a
+                href="https://www.investor.gov/introduction-investing/investing-basics/why-save-when-youre-young"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
               >
-                Consumer Financial Protection Bureau - Home Buying Guide
+                Investor.gov – Why saving early matters
               </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Comprehensive consumer protection information and educational resources for home buyers.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                FDIC - Mortgage Loan Basics
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Banking regulations and deposit insurance information relevant to mortgage loans.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Internal Revenue Service - Mortgage Interest Deduction
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Official tax guidelines and deduction information for mortgage interest.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                Investopedia - Mortgage Basics
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Detailed financial education and investment concepts explained, focusing on mortgages.
-              </p>
-            </div>
-          </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
-            <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-              >
-                NerdWallet - Mortgage Calculator
-              </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                Personal finance guides and comparison tools for mortgage calculations and planning.
+              <p className="text-sm text-slate-700 dark:text-slate-300 mt-1">
+                Explains why building the habit of saving and budgeting early
+                can make a big difference over time.
               </p>
             </div>
           </li>
         </ul>
+
+        <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
+          This calculator is for informational and educational purposes only
+          and is not a substitute for professional financial advice.
+        </p>
       </section>
     </div>
   );
 
-  // RETURN STATEMENT
   return (
     <CalculatorVerticalLayout
-      title="Mortgage Payment & Amortization Calculator"
-      description="Estimate your monthly mortgage payments including interest. View the full amortization schedule to track your home equity growth over time."
+      title="Monthly Budget Planner"
+      description="Estimate your monthly surplus, savings rate, and how long it may take to reach a savings goal based on your income and expenses."
+      category="financial"
+      subcategory="Budgeting & planning"
       widget={widget}
       editorial={editorial}
       onThisPage={[
-        { id: "introduction", label: "Understanding Mortgage Payment & Amortization Calculator" },
-        { id: "formula", label: "Mortgage Payment & Amortization Calculator Formula" },
-        { id: "factors", label: "Key Factors That Affect Results" },
-        { id: "faq", label: "Frequently Asked Questions" },
-        { id: "references", label: "References & Resources" }
+        { id: "introduction", label: "How this planner works" },
+        { id: "formula", label: "Formula & calculations" },
+        { id: "factors", label: "What affects your budget" },
+        { id: "faq", label: "Frequently asked questions" },
+        { id: "references", label: "References & resources" },
       ]}
       formula={{
-        formula: "M = P[r(1+r)^n] / [(1+r)^n – 1]",
+        title: "Monthly budget formulas",
+        formula: "Net income = Income − Expenses",
         variables: [
-          { symbol: "M", description: "Monthly payment" },
-          { symbol: "P", description: "Principal loan amount" },
-          { symbol: "r", description: "Monthly interest rate (annual rate / 12)" },
-          { symbol: "n", description: "Number of payments (loan term in years × 12)" }
+          {
+            symbol: "Income",
+            description: "Your total take-home pay per month.",
+          },
+          {
+            symbol: "Expenses",
+            description: "All monthly bills, living costs, and debt payments.",
+          },
+          {
+            symbol: "Net income",
+            description:
+              "What is left after expenses and potentially available for savings.",
+          },
         ],
-        title: "Calculation Formula"
       }}
-      jsonLd={faqJsonLd}
       example={{
-        title: "Example Calculation",
-        scenario: "Imagine you have a $300,000 loan with a 3.5% interest rate over 30 years.",
+        title: "Example – planning a savings goal",
+        scenario:
+          "Imagine you bring home $5,000 per month after tax, your total monthly expenses are $3,200, and you want to save $18,000.",
         steps: [
-          { 
-            step: 1, 
-            calculation: "300000 × 0.0029167 = 875", 
-            description: "Calculate the monthly interest payment." 
+          {
+            label: "Step 1 – Net income",
+            calculation: "Net income = $5,000 − $3,200 = $1,800",
+            explanation:
+              "This is the amount you could allocate to savings, extra debt payments, or other goals.",
           },
-          { 
-            step: 2, 
-            calculation: "875 × 360 = 315000", 
-            description: "Determine the total interest over the loan term." 
+          {
+            label: "Step 2 – Savings rate",
+            calculation: "Savings rate = ($1,800 ÷ $5,000) × 100 = 36%",
+            explanation:
+              "You are setting aside about 36% of your take-home pay each month.",
           },
-          { 
-            step: 3, 
-            calculation: "300000 + 315000 = 615000", 
-            description: "Final result shows the total payment over the loan term." 
-          }
+          {
+            label: "Step 3 – Months to goal",
+            calculation: "Months to goal = $18,000 ÷ $1,800 = 10 months",
+            explanation:
+              "If you keep this budget, you could reach your $18,000 goal in about 10 months.",
+          },
         ],
-        result: "The final result is $615,000, meaning you will pay $315,000 in interest over the life of the loan."
+        result:
+          "In this scenario, maintaining the same income and expenses would let you reach your savings goal in roughly 10 months.",
       }}
       relatedCalculators={[
-        { title: "Loan Payment Calculator (Principal, Rate, Term)", url: "/financial/loan-payment", icon: "💵" },
-        { title: "Extra Payments & Payoff Time Calculator", url: "/financial/extra-payments-payoff", icon: "📈" },
-        { title: "Interest-Only Loan Calculator", url: "/financial/interest-only-loan", icon: "💰" },
-        { title: "Refinance Savings Calculator", url: "/financial/refinance-savings", icon: "🏦" },
-        { title: "HELOC Payment Estimator", url: "/financial/heloc-payment-estimator", icon: "🏠" },
-        { title: "Car Loan Affordability Calculator", url: "/financial/car-loan-affordability", icon: "🚗" }
+        {
+          title: "Loan payment calculator",
+          url: "/financial/loan-payment",
+          icon: "💳",
+        },
+        {
+          title: "Mortgage payment & amortization",
+          url: "/financial/mortgage-amortization",
+          icon: "🏠",
+        },
+        {
+          title: "Extra payments & payoff time",
+          url: "/financial/extra-payments-payoff",
+          icon: "📈",
+        },
+        {
+          title: "Debt payoff snowball planner",
+          url: "/financial/debt-snowball-planner",
+          icon: "❄️",
+        },
       ]}
     />
   );
