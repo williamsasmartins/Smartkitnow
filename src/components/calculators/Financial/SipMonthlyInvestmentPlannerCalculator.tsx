@@ -568,7 +568,6 @@ export default function SipMonthlyInvestmentPlannerCalculator() {
       description="Plan your Systematic Investment Plan (SIP). Calculate the expected returns on your monthly mutual fund or stock market investments."
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
       onThisPage={[
         { id: "introduction", label: "Understanding SIP/Monthly Investment Planner" },
         { id: "formula", label: "SIP/Monthly Investment Planner Formula" },
@@ -611,6 +610,7 @@ export default function SipMonthlyInvestmentPlannerCalculator() {
         {"title":"Refinance Savings Calculator","url":"/financial/refinance-savings","icon":"💰"},
         {"title":"HELOC Payment Estimator","url":"/financial/heloc-payment-estimator","icon":"🏦"}
       ]}
+      jsonLd={faqJsonLd ?? undefined}
     />
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from "react";
-import { useFaqJsonLd } from "@/hooks/useFaqJsonLd";
+import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -660,7 +660,7 @@ export default function MonthlyBudgetPlannerCalculator() {
       description="Manage your finances with this monthly budget planner. Track income and expenses to stay on target and reach your financial goals."
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={faqJsonLd ?? undefined}
       onThisPage={[
         { id: "introduction", label: "Understanding Monthly Budget Planner" },
         { id: "formula", label: "Monthly Budget Planner Formula" },
@@ -682,19 +682,19 @@ export default function MonthlyBudgetPlannerCalculator() {
         scenario: "Imagine you have a monthly income of $5,000, expenses totaling $3,000, and a savings goal of $20,000.",
         steps: [
           { 
-            label: "Step 1", 
+            step: 1, 
             calculation: "Net Income = $5,000 - $3,000 = $2,000", 
-            explanation: "Calculate net income by subtracting expenses from income." 
+            description: "Calculate net income by subtracting expenses from income." 
           },
           { 
-            label: "Step 2", 
+            step: 2, 
             calculation: "Savings Rate = ($2,000 / $5,000) × 100 = 40%", 
-            explanation: "Determine the savings rate as a percentage of income." 
+            description: "Determine the savings rate as a percentage of income." 
           },
           { 
-            label: "Step 3", 
+            step: 3, 
             calculation: "Months to Goal = $20,000 / $2,000 = 10", 
-            explanation: "Calculate the number of months needed to reach the savings goal." 
+            description: "Calculate the number of months needed to reach the savings goal." 
           }
         ],
         result: "The final result is 10 months, meaning you can reach your savings goal in 10 months if you maintain this budget."
