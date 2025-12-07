@@ -7,9 +7,10 @@ import LegalDisclaimer from "../LegalDisclaimer";
 // ================================================================
 // AD SLOTS CONFIGURATION
 // ================================================================
-const SLOT_TOP_BANNER = process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER || 'pending';
-const SLOT_SIDEBAR = process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR || 'pending';
-const SLOT_BOTTOM_BANNER = process.env.NEXT_PUBLIC_ADSENSE_SLOT_BOTTOM_BANNER || 'pending';
+const SLOT_TOP_BANNER = process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER || "pending";
+const SLOT_SIDEBAR = process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR || "pending";
+const SLOT_BOTTOM_BANNER =
+  process.env.NEXT_PUBLIC_ADSENSE_SLOT_BOTTOM_BANNER || "pending";
 
 // ================================================================
 // "ON THIS PAGE" NAVIGATION - FINTECH STYLE
@@ -26,8 +27,8 @@ function OnThisPageNav({ sections }: { sections: OnThisPageSection[] }) {
     if (element) {
       const yOffset = -120;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-      window.history.pushState(null, '', `#${id}`);
+      window.scrollTo({ top: y, behavior: "smooth" });
+      window.history.pushState(null, "", `#${id}`);
     }
   };
 
@@ -39,7 +40,7 @@ function OnThisPageNav({ sections }: { sections: OnThisPageSection[] }) {
       <ul className="space-y-2.5">
         {sections.map((section) => (
           <li key={section.id}>
-            <a 
+            <a
               href={`#${section.id}`}
               onClick={(e) => handleClick(e, section.id)}
               className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 hover:underline text-sm font-semibold transition-all duration-200 cursor-pointer block"
@@ -70,7 +71,6 @@ function FormulaBox({
   variables?: FormulaVariable[];
   title?: string;
 }) {
-
   return (
     <div className="my-12 p-8 rounded-2xl border-2 border-indigo-200 dark:border-indigo-800 bg-gradient-to-br from-indigo-50 via-violet-50 to-purple-50 dark:from-slate-900 dark:via-indigo-950 dark:to-violet-950 shadow-xl shadow-indigo-500/10">
       {/* Title */}
@@ -135,24 +135,30 @@ function ExampleSection({
   steps?: ExampleStep[];
   result: string;
 }) {
+  const hasResult = typeof result === "string" && result.trim().length > 0;
 
   return (
     <div className="my-10 p-8 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 shadow-xl">
       <h3 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mb-5 tracking-tight">
         {title}
       </h3>
-      
+
       <p className="text-slate-700 dark:text-slate-300 mb-8 leading-relaxed">
         {scenario}
       </p>
 
       <div className="space-y-5 mb-8">
         {steps.map((step) => (
-          <div key={(step.step ?? step.label ?? Math.random()).toString()} className="bg-slate-50 dark:bg-slate-950 p-5 rounded-xl border border-slate-200 dark:border-slate-800 transition-all duration-200 hover:shadow-md">
+          <div
+            key={(step.step ?? step.label ?? Math.random()).toString()}
+            className="bg-slate-50 dark:bg-slate-950 p-5 rounded-xl border border-slate-200 dark:border-slate-800 transition-all duration-200 hover:shadow-md"
+          >
             <p className="font-bold text-slate-900 dark:text-slate-100 mb-3">
               {step.step != null
-                ? `Step ${step.step}: ${step.description ?? ''}`
-                : `${step.label ?? 'Step'}${step.explanation ? `: ${step.explanation}` : ''}`}
+                ? `Step ${step.step}: ${step.description ?? ""}`
+                : `${step.label ?? "Step"}${
+                    step.explanation ? `: ${step.explanation}` : ""
+                  }`}
             </p>
             {step.calculation && (
               <p className="font-mono text-sm text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
@@ -163,11 +169,13 @@ function ExampleSection({
         ))}
       </div>
 
-      <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950 dark:to-teal-950 border-l-4 border-emerald-500 p-6 rounded-xl shadow-lg">
-        <p className="font-bold text-lg text-slate-900 dark:text-slate-100">
-          Result: {result}
-        </p>
-      </div>
+      {hasResult && (
+        <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950 dark:to-teal-950 border-l-4 border-emerald-500 p-6 rounded-xl shadow-lg">
+          <p className="font-bold text-lg text-slate-900 dark:text-slate-100">
+            Result: {result}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
@@ -182,7 +190,7 @@ interface RelatedCalc {
 }
 
 function RelatedCalculators({ calculators }: { calculators: RelatedCalc[] }) {
-  if (calculators.length === 0) return null;
+  if (!calculators || calculators.length === 0) return null;
 
   return (
     <div className="my-10 p-8 rounded-2xl bg-gradient-to-br from-violet-50 to-purple-50 dark:from-slate-900 dark:to-violet-950 border-2 border-violet-200 dark:border-violet-800 shadow-xl">
@@ -190,18 +198,21 @@ function RelatedCalculators({ calculators }: { calculators: RelatedCalc[] }) {
         <span>🔗</span> Related Calculators
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {calculators.map((calc) => (
-          <a
-            key={calc.url}
-            href={calc.url}
-            className="flex items-center gap-4 p-5 bg-white dark:bg-slate-900 rounded-xl border border-violet-200 dark:border-violet-800 hover:shadow-xl hover:scale-[1.02] transition-all duration-200 group"
-          >
-            {calc.icon && <span className="text-3xl">{calc.icon}</span>}
-            <span className="text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-700 dark:group-hover:text-indigo-300 font-semibold">
-              {calc.title}
-            </span>
-          </a>
-        ))}
+        {calculators.map((calc) => {
+          const icon = calc.icon && calc.icon.trim().length > 0 ? calc.icon : "🧮";
+          return (
+            <a
+              key={calc.url}
+              href={calc.url}
+              className="flex items-center gap-4 p-5 bg-white dark:bg-slate-900 rounded-xl border border-violet-200 dark:border-violet-800 hover:shadow-xl hover:scale-[1.02] transition-all duration-200 group"
+            >
+              <span className="text-3xl">{icon}</span>
+              <span className="text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-700 dark:group-hover:text-indigo-300 font-semibold">
+                {calc.title}
+              </span>
+            </a>
+          );
+        })}
       </div>
     </div>
   );
@@ -263,22 +274,15 @@ export default function CalculatorVerticalLayout({
 
       {/* MAIN CONTAINER (Max 1200px, Centered) */}
       <div className="mx-auto pb-10 pt-32 lg:pt-40" style={{ maxWidth: 1200 }}>
-        
         {/* TOP BANNER AD */}
         {showTopBanner && (
-          <AdUnit 
-            slot={SLOT_TOP_BANNER}
-            type="top-banner"
-            className="mb-8"
-          />
+          <AdUnit slot={SLOT_TOP_BANNER} type="top-banner" className="mb-8" />
         )}
 
         {/* LAYOUT WITH SIDEBAR + CONTENT */}
         <div className="relative xl:flex xl:justify-center xl:gap-12">
-          
           {/* CENTERED CONTENT (Max 768px) */}
           <div className="w-full max-w-3xl mx-auto xl:mx-0 px-4 sm:px-6 min-w-0">
-            
             {/* TITLE SECTION */}
             <header className="mb-8">
               <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight tracking-tight">
@@ -298,44 +302,36 @@ export default function CalculatorVerticalLayout({
 
             {/* CALCULATOR WIDGET or Children */}
             {children ? (
-              <div className="mb-10">
-                {children}
-              </div>
+              <div className="mb-10">{children}</div>
             ) : (
-              <section 
-                className="mb-10 rounded-2xl overflow-hidden border-2 border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 shadow-2xl shadow-indigo-500/10 transition-all duration-200"
-              >
-                <div className="p-8">
-                  {widget}
-                </div>
+              <section className="mb-10 rounded-2xl overflow-hidden border-2 border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 shadow-2xl shadow-indigo-500/10 transition-all duration-200">
+                <div className="p-8">{widget}</div>
               </section>
             )}
 
             {/* FORMULA BOX */}
             {formula && (
-  <FormulaBox
-    formula={formula.formula}
-    variables={formula.variables ?? []}
-    title={formula.title}
-  />
-)}
-
+              <FormulaBox
+                formula={formula.formula}
+                variables={formula.variables ?? []}
+                title={formula.title}
+              />
+            )}
 
             {/* EXAMPLE CALCULATION */}
-           {example && (
-  <ExampleSection
-    title={example.title}
-    scenario={example.scenario}
-    steps={example.steps ?? []}
-    result={example.result}
-  />
-)}
-
+            {example && (
+              <ExampleSection
+                title={example.title}
+                scenario={example.scenario}
+                steps={example.steps ?? []}
+                result={example.result}
+              />
+            )}
 
             {/* EDITORIAL CONTENT (hidden if children provided) */}
             {!children && (
-              <article 
-                id="content" 
+              <article
+                id="content"
                 className="mb-10 prose prose-lg prose-slate max-w-none dark:prose-invert"
               >
                 <div className="text-slate-900 dark:text-slate-100 leading-relaxed skn-editorial-sections">
@@ -351,11 +347,7 @@ export default function CalculatorVerticalLayout({
 
             {/* BOTTOM BANNER AD */}
             {showBottomBanner && (
-              <AdUnit 
-                slot={SLOT_BOTTOM_BANNER}
-                type="bottom-banner"
-                className="mb-10"
-              />
+              <AdUnit slot={SLOT_BOTTOM_BANNER} type="bottom-banner" className="mb-10" />
             )}
 
             {/* LEGAL DISCLAIMER */}
@@ -372,10 +364,7 @@ export default function CalculatorVerticalLayout({
           {showSidebar && (
             <aside className="hidden xl:block w-[300px] flex-shrink-0">
               <div className="sticky top-[120px]">
-                <AdUnit 
-                  slot={SLOT_SIDEBAR}
-                  type="sidebar"
-                />
+                <AdUnit slot={SLOT_SIDEBAR} type="sidebar" />
               </div>
             </aside>
           )}
