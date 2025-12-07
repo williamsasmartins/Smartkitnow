@@ -839,6 +839,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
    
    
+    
     {
     slug: "dog-ideal-weight-target-calories",
     title: "Dog Ideal Weight & Target Calories Calculator",
