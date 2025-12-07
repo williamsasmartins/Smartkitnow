@@ -61,15 +61,16 @@ interface FormulaVariable {
   description: string;
 }
 
-function FormulaBox({ 
-  formula, 
-  variables,
-  title = "Formula"
-}: { 
-  formula: string; 
-  variables: FormulaVariable[];
+function FormulaBox({
+  formula,
+  variables = [],
+  title = "Formula",
+}: {
+  formula: string;
+  variables?: FormulaVariable[];
   title?: string;
 }) {
+
   return (
     <div className="my-12 p-8 rounded-2xl border-2 border-indigo-200 dark:border-indigo-800 bg-gradient-to-br from-indigo-50 via-violet-50 to-purple-50 dark:from-slate-900 dark:via-indigo-950 dark:to-violet-950 shadow-xl shadow-indigo-500/10">
       {/* Title */}
