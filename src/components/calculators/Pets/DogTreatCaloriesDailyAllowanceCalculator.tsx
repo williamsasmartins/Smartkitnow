@@ -16,9 +16,6 @@ import {
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 
 function DogTreatCaloriesDailyAllowanceCalculator() {
-  // ------------------------------
-  // STATE
-  // ------------------------------
   const [weightValue, setWeightValue] = useState<string>("10");
   const [weightUnit, setWeightUnit] = useState<"kg" | "lb">("kg");
   const [treatCalories, setTreatCalories] = useState<string>("50");
@@ -26,9 +23,6 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
 
   const resultsRef = useRef<HTMLDivElement | null>(null);
 
-  // ------------------------------
-  // HELPERS
-  // ------------------------------
   const parseNumber = (value: string): number => {
     const v = parseFloat(value.replace(",", "."));
     if (isNaN(v) || v < 0) return 0;
@@ -44,66 +38,47 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
       maximumFractionDigits: digits,
     }).format(value);
 
-  // ------------------------------
-  // INPUTS NORMALIZADOS
-  // ------------------------------
-  const weightRaw = useMemo(
-    () => parseNumber(weightValue),
-    [weightValue]
-  );
+  const weightRaw = useMemo(() => parseNumber(weightValue), [weightValue]);
 
   const weightKg = useMemo(() => {
     const kg = toKg(weightRaw, weightUnit);
-    if (kg <= 0) return 0;
-    return kg;
+    return kg > 0 ? kg : 0;
   }, [weightRaw, weightUnit]);
 
-  const treatCal = useMemo(
-    () => parseNumber(treatCalories),
-    [treatCalories]
-  );
+  const treatCal = useMemo(() => parseNumber(treatCalories), [treatCalories]);
 
   const treatsCount = useMemo(() => {
     const t = parseInt(dailyTreats, 10);
-    if (isNaN(t) || t < 0) return 0;
-    return t;
+    return isNaN(t) || t < 0 ? 0 : t;
   }, [dailyTreats]);
 
-  // ------------------------------
-  // CÁLCULOS NUTRICIONAIS
-  // ------------------------------
-  // RER = 70 × (weight in kg)^0.75
   const RER = useMemo(() => {
     if (weightKg <= 0) return 0;
     return 70 * Math.pow(weightKg, 0.75);
   }, [weightKg]);
 
-  // MER = RER × fator de atividade (1.6 = cão adulto típico)
   const activityFactor = 1.6;
+
   const MER = useMemo(() => {
     if (RER <= 0) return 0;
     return RER * activityFactor;
   }, [RER]);
 
-  // Calorias de petisco consumidas por dia
   const totalTreatCalories = useMemo(() => {
     if (treatCal <= 0 || treatsCount <= 0) return 0;
     return treatCal * treatsCount;
   }, [treatCal, treatsCount]);
 
-  // Limite seguro de calorias em petiscos (10% do MER)
   const maxTreatCalories = useMemo(() => {
     if (MER <= 0) return 0;
     return MER * 0.1;
   }, [MER]);
 
-  // Porcentagem de calorias de petisco em relação ao MER
   const treatPercentOfMER = useMemo(() => {
     if (MER <= 0 || totalTreatCalories <= 0) return 0;
     return (totalTreatCalories / MER) * 100;
   }, [MER, totalTreatCalories]);
 
-  // Número máximo de petiscos baseado no limite seguro
   const maxTreatsAllowed = useMemo(() => {
     if (treatCal <= 0 || maxTreatCalories <= 0) return 0;
     return Math.floor(maxTreatCalories / treatCal);
@@ -111,9 +86,6 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
 
   const overLimit = totalTreatCalories > maxTreatCalories && maxTreatCalories > 0;
 
-  // ------------------------------
-  // HANDLERS
-  // ------------------------------
   const handleReset = () => {
     setWeightValue("10");
     setWeightUnit("kg");
@@ -122,7 +94,6 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
   };
 
   const handleCalculate = () => {
-    // apenas rolar para os resultados, os cálculos já são reativos
     setTimeout(() => {
       resultsRef.current?.scrollIntoView({
         behavior: "smooth",
@@ -131,74 +102,52 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
     }, 80);
   };
 
-  // ------------------------------
-  // FORMULA
-  // ------------------------------
   const formula = {
     title: "Core formulas used",
     formula:
       "RER = 70 × (Weight in kg)^0.75\nMER = RER × Activity Factor (1.6 for typical adult dogs)\nMax Treat Calories = 10% of MER\nTreat % of MER = (Treat Calories ÷ MER) × 100\nMax Treats Allowed = Max Treat Calories ÷ Calories per Treat",
     variables: [
-      {
-        symbol: "RER",
-        description: "Resting Energy Requirement (kcal/day)",
-      },
-      {
-        symbol: "MER",
-        description:
-          "Maintenance Energy Requirement (kcal/day) for a typical adult dog",
-      },
-      {
-        symbol: "Weight",
-        description: "Dog's body weight in kilograms (kg)",
-      },
-      {
-        symbol: "Activity Factor",
-        description:
-          "Multiplier to adjust RER for daily activity; 1.6 is common for average adult dogs",
-      },
-      {
-        symbol: "Max Treat Calories",
-        description:
-          "Maximum recommended daily calories from treats (10% of MER)",
-      },
-      {
-        symbol: "Treat % of MER",
-        description:
-          "Percentage of your dog's daily calorie needs currently coming from treats",
-      },
-      {
-        symbol: "Max Treats Allowed",
-        description:
-          "Maximum number of treats per day without exceeding 10% of MER",
-      },
-      {
-        symbol: "Calories per Treat",
-        description: "Energy content of one treat (kcal)",
-      },
+      { symbol: "RER", description: "Resting Energy Requirement (kcal/day)" },
+      { symbol: "MER", description: "Maintenance Energy Requirement (kcal/day)" },
+      { symbol: "Weight", description: "Dog’s weight in kilograms (kg)" },
+      { symbol: "Activity Factor", description: "Typical multiplier (1.6 for adult dogs)" },
+      { symbol: "Max Treat Calories", description: "10% of MER" },
+      { symbol: "Treat % of MER", description: "Percentage of daily calories from treats" },
+      { symbol: "Max Treats Allowed", description: "Treats allowed within the 10% guideline" },
+      { symbol: "Calories per Treat", description: "Energy content per treat (kcal)" },
     ],
   };
 
-  // ------------------------------
-  // EXAMPLE
-  // ------------------------------
   const example = {
     title: "Example: how many treats can a 15 kg dog have?",
     scenario:
-      "You share crunchy biscuits with your 15 kg adult dog. Each biscuit has 35 kcal, and you want to know a safe maximum number per day.",
+      "You share crunchy biscuits with your 15 kg adult dog. Each biscuit has 35 kcal, and you want to know the safe maximum number per day.",
     steps: [
-      "Estimate RER: 70 × 15^0.75 ≈ 70 × 7.62 ≈ 533 kcal/day.",
-      "Estimate MER for a typical adult dog: 533 × 1.6 ≈ 853 kcal/day.",
-      "Calculate the 10% treat limit: 10% of 853 ≈ 85 kcal/day from treats.",
-      "Divide by calories per treat: 85 ÷ 35 ≈ 2.4, so at most 2 biscuits per day.",
+      {
+        step: 1,
+        description: "Estimate the resting energy requirement (RER).",
+        calculation: "RER = 70 × 15^0.75 ≈ 533 kcal/day",
+      },
+      {
+        step: 2,
+        description: "Estimate daily maintenance energy requirement (MER).",
+        calculation: "MER = 533 × 1.6 ≈ 853 kcal/day",
+      },
+      {
+        step: 3,
+        description: "Apply the 10% treat guideline.",
+        calculation: "Max treat calories = 10% of 853 ≈ 85 kcal/day",
+      },
+      {
+        step: 4,
+        description: "Convert calorie limit into number of treats.",
+        calculation: "Max treats = 85 ÷ 35 ≈ 2 treats/day",
+      },
     ],
     result:
-      "In this example, up to 2 biscuits per day keeps treat calories at or below 10% of your dog's daily needs. Your vet may adjust this limit based on your dog's weight history, body condition and health.",
+      "In this example, up to 2 biscuits per day keeps treat calories within the recommended 10% of daily needs. Your vet may adjust this based on health and body condition.",
   };
 
-  // ------------------------------
-  // RELATED CALCULATORS
-  // ------------------------------
   const relatedCalculators = [
     {
       title: "Dog Calorie Needs (RER/MER) Calculator",
@@ -222,141 +171,89 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
     },
   ];
 
-  // ------------------------------
-  // FAQ JSON-LD
-  // ------------------------------
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: [
       {
         "@type": "Question",
-        name: "Why should my dog's treats be limited to about 10% of daily calories?",
+        name: "Why should my dog's treats stay under 10% of daily calories?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Using no more than about 10% of your dog's daily calories for treats helps prevent unwanted weight gain and keeps the main diet nutritionally balanced. If treats replace too much of the main food, your dog may miss important nutrients.",
+          text:
+            "Keeping treats under 10% of daily calorie intake helps avoid unwanted weight gain and keeps the main diet nutritionally balanced.",
         },
       },
       {
         "@type": "Question",
-        name: "What happens if my dog regularly gets more than 10% of calories from treats?",
+        name: "What happens if treat calories exceed this limit?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Regularly going above this guideline increases the risk of weight gain and obesity over time. Extra weight can stress joints, worsen arthritis, and increase the risk of certain diseases. Your veterinarian can help you design a safe, gradual weight-management plan.",
+          text:
+            "Exceeding the 10% guideline increases the risk of long-term weight gain, joint stress, and metabolic issues.",
         },
       },
       {
         "@type": "Question",
-        name: "Can I use this calculator for puppies or very active dogs?",
+        name: "Can I use this calculator for puppies or working dogs?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Puppies, working dogs and very active dogs often have higher energy needs than a typical adult pet. This calculator uses a standard adult activity factor, so you should discuss treat allowances and total calorie needs with your veterinarian for those dogs.",
+          text:
+            "Puppies and working dogs have higher calorie needs. Consult your vet for customized treat allowances.",
         },
       },
       {
         "@type": "Question",
-        name: "Does treat size or texture matter for calorie counting?",
+        name: "Do all treats have the same calories?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Crunchy biscuits, soft chews, training treats and human snacks can have very different calorie densities. Always check the label or ask the manufacturer so you can enter realistic 'calories per treat' in this calculator.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is this calculator a substitute for veterinary nutrition advice?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No. This tool is for education only. It helps you understand how treat calories fit into your dog's daily energy budget, but it does not replace personalized advice from your veterinarian, especially if your dog has health problems or is overweight.",
+          text:
+            "No. Calories vary widely by type of treat, brand, and size. Always check the packaging or manufacturer website.",
         },
       },
     ],
   };
 
-  // ------------------------------
-  // EDITORIAL
-  // ------------------------------
   const editorial = (
     <div className="space-y-10">
-      {/* HOW IT WORKS */}
       <section id="how-it-works">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 flex items-center gap-2">
           <Info className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-          How this dog treat calories calculator works
+          How this dog treat calorie calculator works
         </h2>
         <p className="text-slate-700 dark:text-slate-300 mb-3">
-          This calculator helps you estimate{" "}
-          <strong>how much of your dog&apos;s daily energy intake comes from treats</strong>{" "}
-          and whether that amount stays within a commonly recommended safety
-          guideline: keeping treats at or below{" "}
-          <strong>about 10% of daily calories</strong>.
+          This calculator estimates how many daily calories your dog receives from treats,
+          and whether that amount stays within the standard recommendation of keeping treats at or below 10% of total daily calories.
         </p>
         <p className="text-slate-700 dark:text-slate-300 mb-3">
-          You enter your dog&apos;s weight, the calories per treat and how many
-          treats you usually give in a day. The calculator then:
+          By entering your dog's weight, the calories per treat, and the number of treats you give daily,
+          the calculator determines whether you are within healthy limits or exceeding them.
         </p>
         <ul className="list-disc pl-6 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            Estimates your dog&apos;s <strong>Resting Energy Requirement (RER)</strong> using
-            body weight in kilograms.
-          </li>
-          <li>
-            Uses a standard adult <strong>activity factor</strong> to estimate{" "}
-            <strong>Maintenance Energy Requirement (MER)</strong>, or total daily calories.
-          </li>
-          <li>
-            Calculates your dog&apos;s <strong>treat calories per day</strong> and the{" "}
-            <strong>percentage of MER</strong> coming from treats.
-          </li>
-          <li>
-            Shows a <strong>maximum safe treat allowance</strong> based on the 10% rule.
-          </li>
+          <li>Calculates RER (Resting Energy Requirement)</li>
+          <li>Estimates MER (Maintenance Energy Requirement)</li>
+          <li>Calculates treat calories and % of total daily calories</li>
+          <li>Shows whether your dog's treat intake is safe or excessive</li>
         </ul>
-        <p className="mt-3 text-slate-700 dark:text-slate-300">
-          The formulas are widely used in veterinary nutrition, but your own
-          veterinarian may recommend slightly different limits based on health
-          conditions, age and body-condition score.
-        </p>
       </section>
 
-      {/* WHY 10% RULE */}
-      <section
-        id="ten-percent-rule"
-        className="border-t border-slate-200 dark:border-slate-700 pt-8"
-      >
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
+      <section id="ten-percent-rule" className="border-t border-slate-200 dark:border-slate-700 pt-8">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 flex items-center gap-2">
           <Percent className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
-          Why many vets recommend the “10% treat rule”
+          Why veterinarians recommend the “10% treat rule”
         </h2>
         <p className="text-slate-700 dark:text-slate-300 mb-3">
-          Treats are a great way to reward your dog, build training routines and
-          strengthen your bond. But they can also be a{" "}
-          <strong>hidden source of extra calories</strong>. Over months and
-          years, those extra calories can lead to weight gain and obesity.
+          Treats are enjoyable and useful for training, but they can quickly add extra calories.
+          Over time, excess treat calories can contribute to weight gain, obesity, and health complications.
         </p>
         <p className="text-slate-700 dark:text-slate-300 mb-3">
-          To reduce this risk, many veterinary nutrition guidelines suggest that
-          treats should make up <strong>no more than about 10% of your dog&apos;s
-          daily calories</strong>. That way:
+          Keeping treats under 10% of daily calories helps ensure your dog's primary diet remains nutritionally complete
+          while still letting you reward good behavior.
         </p>
-        <ul className="list-disc pl-6 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>The main diet (complete food) still provides most nutrients.</li>
-          <li>
-            You have room for training rewards without destabilizing their
-            calorie balance.
-          </li>
-          <li>
-            It&apos;s easier to maintain or reach a{" "}
-            <strong>healthy body-condition score</strong>.
-          </li>
-        </ul>
       </section>
 
-      {/* EXAMPLES */}
-      <section
-        id="examples"
-        className="border-t border-slate-200 dark:border-slate-700 pt-8"
-      >
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
+      <section id="examples" className="border-t border-slate-200 dark:border-slate-700 pt-8">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 flex items-center gap-2">
           <Calculator className="w-6 h-6 text-green-600 dark:text-green-400" />
           Worked example
         </h2>
@@ -364,12 +261,14 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
           <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
             {example.title}
           </h3>
-          <p className="text-slate-700 dark:text-slate-300 mb-2">
-            {example.scenario}
-          </p>
-          <ol className="list-decimal list-inside text-slate-700 dark:text-slate-300 mb-2 space-y-1">
-            {example.steps.map((step, i) => (
-              <li key={i}>{step}</li>
+          <p className="text-slate-700 dark:text-slate-300 mb-2">{example.scenario}</p>
+          <ol className="list-decimal list-inside text-slate-700 dark:text-slate-300 mb-4 space-y-1">
+            {example.steps.map((s) => (
+              <li key={s.step}>
+                <span className="font-semibold">Step {s.step} — </span>
+                {s.description}
+                <span className="block font-mono">{s.calculation}</span>
+              </li>
             ))}
           </ol>
           <p className="font-semibold text-slate-900 dark:text-slate-100">
@@ -378,102 +277,75 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
         </article>
       </section>
 
-      {/* FAQ */}
-      <section
-        id="faq"
-        className="border-t border-slate-200 dark:border-slate-700 pt-8"
-      >
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
+      <section id="faq" className="border-t border-slate-200 dark:border-slate-700 pt-8">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 flex items-center gap-2">
           <BookOpen className="w-6 h-6 text-purple-600 dark:text-purple-400" />
           Frequently asked questions
         </h2>
-        <dl className="space-y-4">
+        <dl className="space-y-6">
           <div>
-            <dt className="font-semibold text-slate-900 dark:text-slate-100">
+            <dt className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100">
               Why are high treat calories a problem?
             </dt>
             <dd className="text-slate-700 dark:text-slate-300">
-              Many dogs gain weight so slowly that it&apos;s hard to notice
-              month to month. Treats can sneak in hundreds of extra calories
-              each week, especially if several family members give snacks. Over
-              time, that can push your dog into an unhealthy weight range.
+              Treats often contain more calories than expected, and when given frequently,
+              they can easily exceed healthy daily limits, contributing to weight gain.
             </dd>
           </div>
           <div>
-            <dt className="font-semibold text-slate-900 dark:text-slate-100">
-              Does it matter what kind of treats I use?
+            <dt className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100">
+              Does treat size affect calorie content?
             </dt>
             <dd className="text-slate-700 dark:text-slate-300">
-              Yes. Low-calorie training treats, pieces of your dog&apos;s
-              regular kibble, or vet-recommended dental chews tend to fit better
-              into a weight-management plan than high-fat human foods or large,
-              calorie-dense snacks.
+              Yes. Treats vary widely in calorie density. Always check the package or manufacturer
+              to know exactly how many calories you are giving.
             </dd>
           </div>
           <div>
-            <dt className="font-semibold text-slate-900 dark:text-slate-100">
-              My dog is already overweight. How should I use this calculator?
+            <dt className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100">
+              What if my dog is overweight?
             </dt>
             <dd className="text-slate-700 dark:text-slate-300">
-              You can use the calculator to see how current treat habits compare
-              to the 10% guideline and to plan gradual reductions. But any
-              structured weight-loss plan should be supervised by your
-              veterinarian, who can also help you choose appropriate prescription
-              diets or weight-management formulas.
+              Use this calculator to reduce treat calories to safe levels. A veterinarian can help
+              create a complete weight-loss plan if needed.
             </dd>
           </div>
           <div>
-            <dt className="font-semibold text-slate-900 dark:text-slate-100">
-              Should I count chews, table scraps and lick-mats as treats?
+            <dt className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100">
+              Are human foods considered treats?
             </dt>
             <dd className="text-slate-700 dark:text-slate-300">
-              Yes. Anything that adds calories outside of your dog&apos;s main
-              complete food should be counted—this includes dental chews,
-              peanut-butter toys, lick-mats, bits of cheese or meat, and other
-              snacks offered between meals.
+              Yes. Cheese, peanut butter, chicken pieces, bread, and small snacks should all be counted
+              as treats when calculating daily treat calories.
             </dd>
           </div>
           <div>
-            <dt className="font-semibold text-slate-900 dark:text-slate-100">
-              How often should I revisit my dog&apos;s treat plan?
+            <dt className="text-lg sm:text-xl font-semibold text-slate-900 dark:text-slate-100">
+              How often should I recalculate treat allowances?
             </dt>
             <dd className="text-slate-700 dark:text-slate-300">
-              It&apos;s a good idea to recheck weight and treat habits at least
-              every few months, and more often if your vet is guiding a
-              weight-loss program. You can reuse this calculator whenever you
-              switch treats, change portions or adjust your dog&apos;s main diet.
+              Re-evaluate treat allowances whenever your dog’s weight changes, you switch treat brands,
+              or you start a new diet routine.
             </dd>
           </div>
         </dl>
       </section>
 
-      {/* DISCLAIMER */}
-      <section
-        id="disclaimer"
-        className="border-t border-slate-200 dark:border-slate-700 pt-8"
-      >
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
+      <section id="disclaimer" className="border-t border-slate-200 dark:border-slate-700 pt-8">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 flex items-center gap-2">
           <AlertTriangle className="w-6 h-6 text-red-600 dark:text-red-400" />
           Important disclaimer
         </h2>
         <p className="text-slate-700 dark:text-slate-300">
-          This calculator is intended for{" "}
-          <strong>educational purposes only</strong>. It cannot evaluate your
-          dog&apos;s medical history, endocrine diseases, joint problems or
-          medication effects. Always consult your veterinarian before making
-          major changes to your dog&apos;s diet, especially if your dog is
-          overweight, underweight or has other health concerns.
+          This calculator provides educational estimates only.
+          It does not replace personalized veterinary nutrition advice.
         </p>
       </section>
 
-      {/* REFERENCES */}
-      <section
-        id="references"
-        className="border-t border-slate-200 dark:border-slate-700 pt-8"
-      >
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6 flex items-center gap-2 text-slate-900 dark:text-slate-100">
+      <section id="references" className="border-t border-slate-200 dark:border-slate-700 pt-8">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 flex items-center gap-2">
           <BookOpen className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-          References &amp; further reading
+          References & further reading
         </h2>
         <ul className="space-y-4">
           <li className="flex items-start gap-3">
@@ -488,30 +360,12 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
                 WSAVA Global Nutrition Guidelines
               </a>
               <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-                International guidelines that discuss body-condition scoring,
-                calorie calculations and practical feeding advice for dogs and
-                cats, including how treats fit into daily energy needs.
+                Authoritative nutrition guidelines including calorie needs, feeding strategies,
+                and treat calorie recommendations.
               </p>
             </div>
           </li>
-          <li className="flex items-start gap-3">
-            <BookOpen className="mt-1 h-5 w-5 text-blue-500 dark:text-blue-400" />
-            <div>
-              <a
-                href="https://www.merckvetmanual.com/dog-owners/nutrition-and-feeding-of-dogs/feeding-mature-dogs"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                Merck Veterinary Manual – Feeding mature dogs
-              </a>
-              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-                Overview of calorie requirements and practical feeding
-                strategies for adult dogs, including weight control and obesity
-                prevention.
-              </p>
-            </div>
-          </li>
+
           <li className="flex items-start gap-3">
             <BookOpen className="mt-1 h-5 w-5 text-blue-500 dark:text-blue-400" />
             <div>
@@ -524,8 +378,7 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
                 PetMD – How Many Treats Can I Give My Dog?
               </a>
               <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-                Explains why treat calories matter and how to integrate them
-                into your dog&apos;s overall nutrition plan.
+                Helpful breakdown of calorie density in treats and guidance for healthy treat habits.
               </p>
             </div>
           </li>
@@ -534,32 +387,26 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
     </div>
   );
 
-  // ------------------------------
-  // ON THIS PAGE
-  // ------------------------------
   const onThisPage = [
     { label: "How this calculator works", href: "#how-it-works" },
-    { label: "Why the 10% rule?", href: "#ten-percent-rule" },
+    { label: "Why the 10% rule", href: "#ten-percent-rule" },
     { label: "Worked example", href: "#examples" },
     { label: "FAQ", href: "#faq" },
     { label: "Disclaimer", href: "#disclaimer" },
     { label: "References", href: "#references" },
   ];
 
-  // ------------------------------
-  // WIDGET (CALCULATOR UI)
-  // ------------------------------
   const widget = (
     <div className="space-y-6">
-      <Card className="border border-slate-200/80 dark:border-slate-700/80 shadow-lg">
-        <CardHeader className="pb-4">
+      <Card className="border border-slate-200 dark:border-slate-700 shadow-lg">
+        <CardHeader>
           <CardTitle className="flex items-center gap-2 text-lg sm:text-xl font-semibold">
             <Dog className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-            Enter your dog&apos;s details
+            Enter your dog’s details
           </CardTitle>
         </CardHeader>
+
         <CardContent className="space-y-4">
-          {/* Weight + unit */}
           <div className="grid grid-cols-3 gap-3">
             <div className="col-span-2">
               <Label htmlFor="dog-weight">Current weight</Label>
@@ -574,18 +421,17 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
                 placeholder="e.g. 10"
               />
               <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                Use your vet&apos;s last recorded weight or a reliable scale.
+                Use your vet’s last recorded weight or use a reliable scale.
               </p>
             </div>
+
             <div>
               <Label htmlFor="weight-unit">Unit</Label>
               <select
                 id="weight-unit"
-                className="mt-1 h-10 w-full rounded-md border border-slate-300 bg-slate-50 px-2 text-sm dark:border-slate-700 dark:bg-slate-900/60"
+                className="mt-1 h-10 w-full rounded-md border border-slate-300 bg-slate-50 px-2 text-sm dark:border-slate-700 dark:bg-slate-900"
                 value={weightUnit}
-                onChange={(e) =>
-                  setWeightUnit(e.target.value as "kg" | "lb")
-                }
+                onChange={(e) => setWeightUnit(e.target.value as "kg" | "lb")}
               >
                 <option value="kg">kg</option>
                 <option value="lb">lb</option>
@@ -593,7 +439,6 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
             </div>
           </div>
 
-          {/* Treat calories */}
           <div>
             <Label htmlFor="treat-calories">Calories per treat (kcal)</Label>
             <Input
@@ -606,17 +451,10 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
               onChange={(e) => setTreatCalories(e.target.value)}
               placeholder="e.g. 50"
             />
-            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-              Check the packaging or manufacturer&apos;s website for accurate
-              calorie information.
-            </p>
           </div>
 
-          {/* Treat count */}
           <div>
-            <Label htmlFor="daily-treats">
-              Number of treats you give per day
-            </Label>
+            <Label htmlFor="daily-treats">Number of treats per day</Label>
             <Input
               id="daily-treats"
               type="number"
@@ -627,14 +465,10 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
               onChange={(e) => setDailyTreats(e.target.value)}
               placeholder="e.g. 3"
             />
-            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-              Include all biscuits, chews and snacks, not just “formal” treats.
-            </p>
           </div>
         </CardContent>
       </Card>
 
-      {/* Buttons */}
       <div className="flex gap-3">
         <Button className="flex-1" onClick={handleCalculate}>
           <Calculator className="mr-2 h-4 w-4" />
@@ -645,7 +479,6 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
         </Button>
       </div>
 
-      {/* RESULTS */}
       {weightKg > 0 && MER > 0 && (
         <div
           ref={resultsRef}
@@ -656,7 +489,6 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Energy needs */}
             <Card className="border border-slate-200 dark:border-slate-700">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-base">
@@ -666,29 +498,18 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
               </CardHeader>
               <CardContent className="pt-0 space-y-1">
                 <p className="text-sm text-slate-700 dark:text-slate-300">
-                  RER:{" "}
-                  <span className="font-semibold">
-                    {formatNumber(RER, 0)} kcal/day
-                  </span>
+                  RER: <span className="font-semibold">{formatNumber(RER, 0)} kcal/day</span>
                 </p>
                 <p className="text-sm text-slate-700 dark:text-slate-300">
-                  MER (typical adult):{" "}
-                  <span className="font-semibold">
-                    {formatNumber(MER, 0)} kcal/day
-                  </span>
-                </p>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Based on a standard adult activity factor of 1.6. Your vet may
-                  adjust this for your dog.
+                  MER: <span className="font-semibold">{formatNumber(MER, 0)} kcal/day</span>
                 </p>
               </CardContent>
             </Card>
 
-            {/* Treat calories */}
             <Card className="border border-slate-200 dark:border-slate-700">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Activity className="h-4 w-4 text-emerald-500" />
+                  <Activity className="h-4 w-4 text-emerald-600" />
                   Treat calories
                 </CardTitle>
               </CardHeader>
@@ -700,7 +521,7 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
                   </span>
                 </p>
                 <p className="text-sm text-slate-700 dark:text-slate-300">
-                  Safe limit (10% of MER):{" "}
+                  Safe limit:{" "}
                   <span className="font-semibold">
                     {formatNumber(maxTreatCalories, 0)} kcal/day
                   </span>
@@ -712,18 +533,16 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
                       : "text-emerald-600 dark:text-emerald-400"
                   }`}
                 >
-                  Treats are{" "}
-                  {formatNumber(treatPercentOfMER || 0, 0)}% of daily calories.
+                  Treats are {formatNumber(treatPercentOfMER || 0, 0)}% of daily calories.
                 </p>
               </CardContent>
             </Card>
 
-            {/* Max treats allowed */}
             <Card className="border border-slate-200 dark:border-slate-700">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-base">
                   <Percent className="h-4 w-4 text-sky-500" />
-                  Maximum treats / day
+                  Maximum treats/day
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0 space-y-2">
@@ -731,25 +550,23 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
                   {maxTreatsAllowed}
                 </p>
                 <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Rounded down to keep treat calories at or below the 10% guideline.
+                  Rounded down to stay safely within the 10% guideline.
                 </p>
                 {overLimit && (
-                  <p className="text-xs text-red-600 dark:text-red-400">
-                    Your current treat plan is above this limit—consider
-                    reducing portion size or number of treats.
+                  <p className="text-xs text-red-600 dark:text-red-400 font-semibold">
+                    Your current treat intake exceeds recommended limits.
                   </p>
                 )}
               </CardContent>
             </Card>
           </div>
 
-          <div className="flex gap-3 items-start p-4 rounded-xl bg-amber-50 dark:bg-amber-950/60 border border-amber-300/70 dark:border-amber-800">
+          <div className="flex gap-3 items-start p-4 rounded-xl bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800">
             <AlertTriangle className="h-5 w-5 text-amber-600 mt-0.5" />
             <p className="text-sm text-slate-800 dark:text-slate-100">
-              These results are <strong>estimates only</strong>. For dogs that
-              are already overweight, underweight, growing, very active, or
-              managing medical conditions, always ask your veterinarian how to
-              tailor both main diet and treat allowance.
+              These results are estimates only. Dogs with medical conditions,
+              special diets, or weight concerns may require different treat limits.
+              Always consult your veterinarian for personalized advice.
             </p>
           </div>
         </div>
@@ -757,13 +574,10 @@ function DogTreatCaloriesDailyAllowanceCalculator() {
     </div>
   );
 
-  // ------------------------------
-  // RENDER
-  // ------------------------------
   return (
     <CalculatorVerticalLayout
       title="Dog Treat Calories & Daily Allowance Calculator"
-      description="Estimate how many calories your dog's treats contribute to their daily intake and find a safe maximum number of treats using the 10% guideline."
+      description="Estimate how many calories your dog's treats contribute to their daily intake and find a safe daily limit using the 10% guideline."
       widget={widget}
       editorial={editorial}
       onThisPage={onThisPage}
