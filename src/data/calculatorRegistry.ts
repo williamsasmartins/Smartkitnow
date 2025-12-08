@@ -832,33 +832,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
   
    
  
-    {
-    slug: "dog-weight-loss-planner",
-    title: "Dog Weight Loss Planner",
-    category: "pets",
-    subcategory: "dogs-nutrition-weight",
-    description: "Plan a safe and effective weight loss program for your dog. Calculates target calories and timeline for goal weight achievement.",
-    loader: () => import("@/components/calculators/Pets/DogWeightLossPlannerCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "dog-ideal-weight-target-calories",
-    title: "Dog Ideal Weight & Target Calories Calculator",
-    category: "pets",
-    subcategory: "dogs-nutrition-weight",
-    description: "Determine your dog's ideal healthy weight and the specific calorie intake needed to maintain it based on breed and size.",
-    loader: () => import("@/components/calculators/Pets/DogIdealWeightTargetCaloriesCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "dog-treat-calories-daily-allowance",
-    title: "Dog Treat Calories & Daily Allowance Calculator",
-    category: "pets",
-    subcategory: "dogs-nutrition-weight",
-    description: "Calculate the calorie content of treats and the maximum safe daily treat allowance to prevent weight gain.",
-    loader: () => import("@/components/calculators/Pets/DogTreatCaloriesDailyAllowanceCalculator"),
-    urlStyle: "flat"
-  },
+    
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
