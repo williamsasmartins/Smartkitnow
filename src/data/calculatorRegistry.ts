@@ -831,15 +831,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
    
   
    
-    {
-    slug: "dog-weight-loss-planner",
-    title: "Dog Weight Loss Planner",
-    category: "pets",
-    subcategory: "dogs-nutrition-weight",
-    description: "Plan a safe and effective weight loss program for your dog. Calculates target calories and timeline for goal weight achievement.",
-    loader: () => import("@/components/calculators/Pets/DogWeightLossPlannerCalculator"),
-    urlStyle: "flat"
-  },
+ 
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
