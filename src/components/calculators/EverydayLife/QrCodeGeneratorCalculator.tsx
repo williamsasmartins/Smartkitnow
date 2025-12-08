@@ -1,0 +1,437 @@
+import React, { useState, useEffect, useRef } from 'react';
+import QRCode from 'qrcode';
+import { CalculatorVerticalLayout } from '../../templates/CalculatorVerticalLayout';
+import { useFaqJsonLd } from '../../../hooks/useFaqJsonLd';
+
+const QrCodeGeneratorCalculator: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'url' | 'text' | 'contact'>('url');
+  const [qrData, setQrData] = useState('');
+  const [errorLevel, setErrorLevel] = useState<'L' | 'M' | 'Q' | 'H'>('M');
+  const [size, setSize] = useState(300);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Form states
+  const [urlInput, setUrlInput] = useState('');
+  const [textInput, setTextInput] = useState('');
+  const [contactInfo, setContactInfo] = useState({
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: '',
+    organization: '',
+    url: ''
+  });
+
+  const formatUrl = (url: string): string => {
+    if (!url.trim()) return '';
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      return 'https://' + url;
+    }
+    return url;
+  };
+
+  const generateVCard = (contact: typeof contactInfo): string => {
+    return `BEGIN:VCARD
+VERSION:3.0
+FN:${contact.firstName} ${contact.lastName}
+N:${contact.lastName};${contact.firstName};;;
+ORG:${contact.organization}
+TEL:${contact.phone}
+EMAIL:${contact.email}
+URL:${contact.url}
+END:VCARD`;
+  };
+
+  useEffect(() => {
+    let data = '';
+    
+    switch (activeTab) {
+      case 'url':
+        data = formatUrl(urlInput);
+        break;
+      case 'text':
+        data = textInput;
+        break;
+      case 'contact':
+        if (contactInfo.firstName || contactInfo.lastName || contactInfo.phone || contactInfo.email) {
+          data = generateVCard(contactInfo);
+        }
+        break;
+    }
+    
+    setQrData(data);
+    
+    if (data && canvasRef.current) {
+      QRCode.toCanvas(canvasRef.current, data, {
+        width: size,
+        margin: 2,
+        errorCorrectionLevel: errorLevel,
+        color: {
+          dark: '#000000',
+          light: '#FFFFFF'
+        }
+      }).catch(err => console.error('QR generation error:', err));
+    }
+  }, [activeTab, urlInput, textInput, contactInfo, size, errorLevel]);
+
+  const downloadPNG = () => {
+    if (!canvasRef.current || !qrData) return;
+    const link = document.createElement('a');
+    link.download = `qr-code-${activeTab}.png`;
+    link.href = canvasRef.current.toDataURL('image/png');
+    link.click();
+  };
+
+  const downloadSVG = async () => {
+    if (!qrData) return;
+    try {
+      const svg = await QRCode.toString(qrData, {
+        type: 'svg',
+        width: size,
+        margin: 2,
+        errorCorrectionLevel: errorLevel
+      });
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.download = `qr-code-${activeTab}.svg`;
+      link.href = url;
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('SVG download error:', err);
+    }
+  };
+
+  const resetForm = () => {
+    setUrlInput('');
+    setTextInput('');
+    setContactInfo({
+      firstName: '',
+      lastName: '',
+      phone: '',
+      email: '',
+      organization: '',
+      url: ''
+    });
+    setQrData('');
+  };
+
+  const faqs = [
+    {
+      question: "What is a QR code and how does it work?",
+      answer: "A QR (Quick Response) code is a two-dimensional barcode that can store various types of information like URLs, text, contact details, and more. When scanned with a smartphone camera or QR reader app, it instantly decodes the information and performs the corresponding action, such as opening a website or saving contact information."
+    },
+    {
+      question: "What types of information can I encode in a QR code?",
+      answer: "You can encode URLs/website links, plain text messages, contact information (vCard format), phone numbers, email addresses, WiFi credentials, geographic locations, and more. Our generator supports URLs, text, and contact information formats."
+    },
+    {
+      question: "What is error correction level and which should I choose?",
+      answer: "Error correction allows QR codes to remain readable even if partially damaged or obscured. Levels range from L (7% recovery), M (15% recovery), Q (25% recovery), to H (30% recovery). Use M for general purposes, or H if the code might be partially covered or printed on uneven surfaces."
+    },
+    {
+      question: "What size should my QR code be for printing?",
+      answer: "For printing, QR codes should be at least 2x2 cm (0.8x0.8 inches) for optimal scanning. For business cards use 2-3 cm, for posters 5-10 cm, and for billboards even larger. Our generator creates high-resolution codes (300x300 pixels default) suitable for most printing needs."
+    },
+    {
+      question: "Can QR codes expire or stop working?",
+      answer: "Static QR codes (like those generated by our tool) never expire. The information is encoded directly in the code itself. However, if the QR code links to a URL and that website goes offline or changes, the link will no longer work. The QR code itself remains functional."
+    },
+    {
+      question: "Are QR codes secure and safe to use?",
+      answer: "QR codes themselves are safe, but you should always be cautious about scanning unknown codes. Malicious actors could create codes linking to phishing sites or malware. Our generator creates standard, safe QR codes. When scanning codes from unknown sources, use a QR scanner that previews the URL before opening it."
+    },
+    {
+      question: "What's the difference between PNG and SVG downloads?",
+      answer: "PNG is a raster image format best for digital use (websites, presentations, social media). SVG is a vector format that can scale infinitely without quality loss, ideal for professional printing, large formats, and designs where you need to resize the QR code without pixelation."
+    },
+    {
+      question: "Do you store the QR codes or data I generate?",
+      answer: "No, we don't store any data. All QR code generation happens directly in your browser using client-side JavaScript. Your data never leaves your device, ensuring complete privacy. You can even use the tool offline once the page is loaded."
+    }
+  ];
+
+  useFaqJsonLd(faqs);
+
+  const inputSection = (
+    <div className="space-y-6">
+      {/* Tab Navigation */}
+      <div className="flex border-b border-gray-200">
+        <button
+          onClick={() => setActiveTab('url')}
+          className={`px-4 py-2 font-medium transition-colors ${
+            activeTab === 'url'
+              ? 'text-blue-600 border-b-2 border-blue-600'
+              : 'text-gray-600 hover:text-gray-800'
+          }`}
+        >
+          URL
+        </button>
+        <button
+          onClick={() => setActiveTab('text')}
+          className={`px-4 py-2 font-medium transition-colors ${
+            activeTab === 'text'
+              ? 'text-blue-600 border-b-2 border-blue-600'
+              : 'text-gray-600 hover:text-gray-800'
+          }`}
+        >
+          Text
+        </button>
+        <button
+          onClick={() => setActiveTab('contact')}
+          className={`px-4 py-2 font-medium transition-colors ${
+            activeTab === 'contact'
+              ? 'text-blue-600 border-b-2 border-blue-600'
+              : 'text-gray-600 hover:text-gray-800'
+          }`}
+        >
+          Contact
+        </button>
+      </div>
+
+      {/* URL Input */}
+      {activeTab === 'url' && (
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Website URL
+          </label>
+          <input
+            type="url"
+            value={urlInput}
+            onChange={(e) => setUrlInput(e.target.value)}
+            placeholder="example.com or https://example.com"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          <p className="text-xs text-gray-500 mt-1">
+            If you don't include http://, we'll add https:// automatically.
+          </p>
+        </div>
+      )}
+
+      {/* Text Input */}
+      {activeTab === 'text' && (
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Text Content
+          </label>
+          <textarea
+            value={textInput}
+            onChange={(e) => setTextInput(e.target.value)}
+            placeholder="Enter any text to encode..."
+            rows={4}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          />
+        </div>
+      )}
+
+      {/* Contact Input */}
+      {activeTab === 'contact' && (
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                First Name
+              </label>
+              <input
+                type="text"
+                value={contactInfo.firstName}
+                onChange={(e) => setContactInfo({...contactInfo, firstName: e.target.value})}
+                placeholder="John"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Last Name
+              </label>
+              <input
+                type="text"
+                value={contactInfo.lastName}
+                onChange={(e) => setContactInfo({...contactInfo, lastName: e.target.value})}
+                placeholder="Doe"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              value={contactInfo.phone}
+              onChange={(e) => setContactInfo({...contactInfo, phone: e.target.value})}
+              placeholder="+1 (555) 123-4567"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Email Address
+            </label>
+            <input
+              type="email"
+              value={contactInfo.email}
+              onChange={(e) => setContactInfo({...contactInfo, email: e.target.value})}
+              placeholder="john.doe@example.com"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Organization
+            </label>
+            <input
+              type="text"
+              value={contactInfo.organization}
+              onChange={(e) => setContactInfo({...contactInfo, organization: e.target.value})}
+              placeholder="Company Name"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Website
+            </label>
+            <input
+              type="url"
+              value={contactInfo.url}
+              onChange={(e) => setContactInfo({...contactInfo, url: e.target.value})}
+              placeholder="https://example.com"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Settings */}
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Error Correction
+          </label>
+          <select
+            value={errorLevel}
+            onChange={(e) => setErrorLevel(e.target.value as 'L' | 'M' | 'Q' | 'H')}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+            <option value="L">Low (7%)</option>
+            <option value="M">Medium (15%)</option>
+            <option value="Q">Quartile (25%)</option>
+            <option value="H">High (30%)</option>
+          </select>
+        </div>
+        
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Size (pixels)
+          </label>
+          <select
+            value={size}
+            onChange={(e) => setSize(Number(e.target.value))}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+            <option value="200">200x200</option>
+            <option value="300">300x300</option>
+            <option value="400">400x400</option>
+            <option value="500">500x500</option>
+          </select>
+        </div>
+      </div>
+
+      <button
+        onClick={resetForm}
+        className="w-full px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium"
+      >
+        Clear All Fields
+      </button>
+    </div>
+  );
+
+  const resultSection = (
+    <div className="space-y-6">
+      <div className="bg-gray-50 rounded-lg p-8 flex items-center justify-center min-h-[350px]">
+        {qrData ? (
+          <div className="text-center">
+            <canvas
+              ref={canvasRef}
+              className="mx-auto bg-white p-4 rounded-lg shadow-md"
+            />
+            <p className="text-sm text-gray-600 mt-4">
+              Scan this QR code with your device
+            </p>
+          </div>
+        ) : (
+          <div className="text-center">
+            <div className="w-16 h-16 bg-gray-200 rounded-lg mx-auto mb-4 flex items-center justify-center">
+              <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+              </svg>
+            </div>
+            <p className="text-gray-500">
+              Fill in the form to generate your QR code
+            </p>
+          </div>
+        )}
+      </div>
+
+      {qrData && (
+        <div className="flex gap-4">
+          <button
+            onClick={downloadPNG}
+            className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+          >
+            Download PNG
+          </button>
+          
+          <button
+            onClick={downloadSVG}
+            className="flex-1 px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
+          >
+            Download SVG
+          </button>
+        </div>
+      )}
+    </div>
+  );
+
+  const examples = [
+    {
+      step: "Choose QR Code Type",
+      description: "Select whether you want to create a QR code for a URL, plain text, or contact information (vCard)."
+    },
+    {
+      step: "Enter Your Information",
+      description: "Fill in the required fields. For URLs, you can enter with or without https://. For contacts, add name, phone, email, and organization."
+    },
+    {
+      step: "Adjust Settings",
+      description: "Choose your preferred error correction level (higher levels allow the code to work even if partially damaged) and select the output size."
+    },
+    {
+      step: "Generate and Download",
+      description: "Your QR code is generated instantly. Download it as PNG for digital use or SVG for printing and professional design work."
+    }
+  ];
+
+  return (
+    <CalculatorVerticalLayout
+      title="QR Code Generator"
+      description="Create custom QR codes instantly for URLs, text messages, and contact information. Free, fast, and secure - all processing happens in your browser."
+      inputSection={inputSection}
+      resultSection={resultSection}
+      faqs={faqs}
+      examples={examples}
+      metaTitle="Free QR Code Generator - Create Custom QR Codes Instantly"
+      metaDescription="Generate QR codes for URLs, text, and contact info in seconds. High-resolution PNG & SVG downloads. No signup required. Privacy-focused - all data stays on your device."
+      keywords="qr code generator, create qr code, free qr code, qr code maker, vcard qr code, url qr code, custom qr code"
+    />
+  );
+};
+
+export default QrCodeGeneratorCalculator;
