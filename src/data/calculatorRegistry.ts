@@ -831,7 +831,18 @@ export const calculatorRegistry: CalculatorEntry[] = [
    
   
    
- 
+ {
+  id: 'qr-code-generator',
+  title: 'QR Code Generator',
+  description: 'Create custom QR codes for URLs, text, and contact information',
+  category: 'Everyday',
+  path: '/everyday/qr-code-generator',
+  component: () => import('./components/calculators/Everyday/QrCodeGeneratorCalculator'),
+  keywords: ['qr', 'qr code', 'barcode', 'generator', 'url', 'vcard', 'contact'],
+  icon: 'qrcode', // ou o ícone que você usa no sistema
+  featured: true, // se quiser destacar
+  free: true
+}
    
     
   // SKN-AUTO-REGISTER: do not remove this line
