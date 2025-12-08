@@ -283,7 +283,7 @@ const QRCodeGenerator = () => {
       </div>
 
       {/* Inputs + Preview */}
-      <div className="grid lg:grid-cols-2 gap-8 p-6">
+      <div className="space-y-8 p-6">
         <div className="space-y-6">
           <h2 className="text-2xl font-semibold text-slate-800 dark:text-slate-100">
             {activeTab === 'url' && t('enterUrl')}
@@ -397,7 +397,7 @@ const QRCodeGenerator = () => {
 
         <div className="flex flex-col items-center space-y-6">
           <h2 className="text-2xl font-semibold text-slate-800 dark:text-slate-100">{t('generatedQrCode')}</h2>
-          <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 w-full max-w-sm">
+          <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 w-full">
             {qrData ? (
               <div className="text-center">
                 <div ref={qrContainerRef} className="flex justify-center"></div>
@@ -411,7 +411,7 @@ const QRCodeGenerator = () => {
             )}
           </div>
           {qrData && (
-            <div className="flex gap-4 w-full max-w-sm">
+            <div className="flex gap-4 w-full">
               <button onClick={downloadQRCode} className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-200 font-medium shadow-lg">
                 <Download className="w-4 h-4" /> {format === 'svg' ? 'Download SVG' : t('download')}
               </button>
@@ -421,7 +421,7 @@ const QRCodeGenerator = () => {
             </div>
           )}
           {qrData && (
-            <div className="w-full max-w-sm">
+            <div className="w-full">
               <h3 className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">{t('qrCodeData')}</h3>
               <div className="bg-slate-100 dark:bg-slate-800 rounded-lg p-3 text-xs text-slate-600 dark:text-slate-300 max-h-32 overflow-y-auto">
                 <pre className="whitespace-pre-wrap break-words">{qrData}</pre>
