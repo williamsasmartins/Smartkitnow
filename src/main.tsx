@@ -45,7 +45,7 @@ if (ENABLE_SPEED_INSIGHTS && !IS_LOCAL && !IS_SMARTKIT_DOMAIN) {
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     {/* Provider de tema no topo do app */}
-    <ThemeProvider attribute="class" defaultTheme="system">
+    <ThemeProvider attribute="class" defaultTheme="dark">
       <HelmetProvider>
         <BrowserRouter basename="/">
           {/* Renderiza o App diretamente (sem Sentry.ErrorBoundary em localhost) */}

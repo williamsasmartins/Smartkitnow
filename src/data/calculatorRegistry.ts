@@ -851,13 +851,22 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     
-    {
+  {
     slug: "dog-treat-calories-daily-allowance",
     title: "Dog Treat Calories & Daily Allowance Calculator",
     category: "pets",
     subcategory: "dogs-nutrition-weight",
     description: "Calculate the calorie content of treats and the maximum safe daily treat allowance to prevent weight gain.",
     loader: () => import("@/components/calculators/Pets/DogTreatCaloriesDailyAllowanceCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "qr-code-generator",
+    title: "QR Code Generator",
+    category: "everyday-life",
+    subcategory: "utilities",
+    description: "Gere QR Codes gratuitos para URLs e textos. Baixe em PNG ou SVG com tamanho, margem e correção de erro configuráveis.",
+    loader: () => import("@/components/calculators/EverydayLife/QrCodeGeneratorCalculator"),
     urlStyle: "flat"
   },
    

@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { getCategoryIcon } from "@/lib/navigation";
 import { GlowCard } from "@/components/ui/spotlight-card";
-import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft } from "lucide-react";
+import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft, QrCode } from "lucide-react";
 
 const FeaturedCalculatorsSection = lazy(() => import("@/components/home/FeaturedCalculatorsSection"));
 const AboutSection = lazy(() => import("@/components/home/AboutSection"));
@@ -1396,6 +1396,11 @@ const Index = () => {
     name: "Grade Calculator",
     description: "Calculate your GPA",
     icon: Star
+  }, {
+    name: "Free QR Code Generator",
+    description: "Generate QR Codes for URLs and text",
+    icon: QrCode,
+    path: "/everyday-life/qr-code-generator"
   }];
   return <div className="min-h-screen bg-[var(--skn-bg-soft)]">
       {/* JSON-LD: Organization and WebSite with Sitelinks Search */}
@@ -1514,7 +1519,7 @@ const Index = () => {
         {/* Featured Section */}
         <div id="featured-calculators">
           <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading Featured Calculators...</div>}>
-            <FeaturedCalculatorsSection featuredCalculators={featuredCalculators} />
+            <FeaturedCalculatorsSection title="Featured Calculators and More" featuredCalculators={featuredCalculators} />
           </Suspense>
         </div>
 
