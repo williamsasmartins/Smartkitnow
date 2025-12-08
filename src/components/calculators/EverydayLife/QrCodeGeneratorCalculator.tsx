@@ -71,6 +71,18 @@ const QRCodeGenerator = () => {
   const [ecc, setEcc] = useState<'L'|'M'|'Q'|'H'>('M');
   const [format, setFormat] = useState<'png'|'svg'>('png');
   const [svgMarkup, setSvgMarkup] = useState<string | null>(null);
+  const [autoColors, setAutoColors] = useState<boolean>(true);
+  const [moduleColor, setModuleColor] = useState<string>('#000000');
+  const [bgColor, setBgColor] = useState<string>('#ffffff');
+
+  // Sync colors with theme when auto mode is enabled
+  useEffect(() => {
+    if (autoColors) {
+      const isDark = resolvedTheme === 'dark' || document.documentElement.classList.contains('dark') || window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setModuleColor(isDark ? '#ffffff' : '#000000');
+      setBgColor(isDark ? '#0f172a' : '#ffffff');
+    }
+  }, [resolvedTheme, autoColors]);
 
   const generateQRCode = async (text: string) => {
     if (!text.trim()) {
@@ -86,8 +98,8 @@ const QRCodeGenerator = () => {
       canvasRef.current = canvas;
       qrContainerRef.current.appendChild(canvas);
       const isDark = resolvedTheme === 'dark' || document.documentElement.classList.contains('dark') || window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const darkColor = isDark ? '#ffffff' : '#000000';
-      const lightColor = isDark ? '#0f172a' : '#ffffff';
+      const darkColor = autoColors ? (isDark ? '#ffffff' : '#000000') : moduleColor;
+      const lightColor = autoColors ? (isDark ? '#0f172a' : '#ffffff') : bgColor;
       if (format === 'png') {
         await QRCode.toCanvas(canvas, text, {
           errorCorrectionLevel: ecc,
@@ -130,10 +142,12 @@ const QRCodeGenerator = () => {
     qrContainerRef.current.innerHTML = '';
     const img = document.createElement('img');
     const encodedData = encodeURIComponent(text);
-    const isDark = document.documentElement.classList.contains('dark') || window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const color = isDark ? 'ffffff' : '000000';
-    const bgcolor = isDark ? '0f172a' : 'ffffff';
-    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodedData}&format=png&margin=10&color=${color}&bgcolor=${bgcolor}`;
+    const isDark = resolvedTheme === 'dark' || document.documentElement.classList.contains('dark') || window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const effectiveModule = autoColors ? (isDark ? '#ffffff' : '#000000') : moduleColor;
+    const effectiveBg = autoColors ? (isDark ? '#0f172a' : '#ffffff') : bgColor;
+    const color = effectiveModule.replace('#', '');
+    const bgcolor = effectiveBg.replace('#', '');
+    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodedData}&format=png&margin=${margin}&color=${color}&bgcolor=${bgcolor}`;
     img.alt = t('qrCodeAlt');
     img.className = 'w-full h-auto rounded-xl shadow-lg bg-white dark:bg-slate-900 p-4';
     img.style.maxWidth = '300px';
@@ -174,7 +188,22 @@ const QRCodeGenerator = () => {
     setQrData(data);
     generateQRCode(data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab, urlInput, textInput, contactInfo, size, margin, ecc, format, resolvedTheme]);
+  }, [activeTab, urlInput, textInput, contactInfo, size, margin, ecc, format, resolvedTheme, autoColors, moduleColor, bgColor]);
+
+  const applyPreset = (preset: 'high' | 'brand-light' | 'brand-dark') => {
+    setAutoColors(false);
+    const brand = getComputedStyle(document.documentElement).getPropertyValue('--skn-brand').trim() || '#2563eb';
+    if (preset === 'high') {
+      setModuleColor('#000000');
+      setBgColor('#ffffff');
+    } else if (preset === 'brand-light') {
+      setModuleColor(brand);
+      setBgColor('#ffffff');
+    } else {
+      setModuleColor(brand);
+      setBgColor('#0f172a');
+    }
+  };
 
   const downloadQRCode = () => {
     if (!qrData) return;
@@ -334,6 +363,34 @@ const QRCodeGenerator = () => {
                 <option value="png">PNG</option>
                 <option value="svg">SVG</option>
               </select>
+            </div>
+            {/* Color controls */}
+            <div className="md:col-span-4 mt-2 space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">Module color</label>
+                  <input type="color" value={moduleColor} disabled={autoColors} onChange={(e) => setModuleColor(e.target.value)} className="w-full h-10 p-1 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">Background color</label>
+                  <input type="color" value={bgColor} disabled={autoColors} onChange={(e) => setBgColor(e.target.value)} className="w-full h-10 p-1 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900" />
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <input id="autoColors" type="checkbox" checked={autoColors} onChange={(e) => setAutoColors(e.target.checked)} />
+                <label htmlFor="autoColors" className="text-sm text-slate-700 dark:text-slate-200">Auto theme colors</label>
+                <button type="button" onClick={() => {
+                  const brand = getComputedStyle(document.documentElement).getPropertyValue('--skn-brand').trim();
+                  if (brand) { setAutoColors(false); setModuleColor(brand); }
+                }} className="ml-auto px-3 py-2 text-sm rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700">
+                  Use Brand Color
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <button type="button" onClick={() => applyPreset('high')} className="px-3 py-2 text-sm rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700">High Contrast</button>
+                <button type="button" onClick={() => applyPreset('brand-light')} className="px-3 py-2 text-sm rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700">Brand on Light</button>
+                <button type="button" onClick={() => applyPreset('brand-dark')} className="px-3 py-2 text-sm rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700">Brand on Dark</button>
+              </div>
             </div>
           </div>
         </div>
