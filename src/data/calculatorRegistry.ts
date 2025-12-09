@@ -842,6 +842,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
     
     
+    {
+    slug: "decibel-db-power-voltage-ratio",
+    title: "Decibel (dB) Power / Voltage Ratio",
+    category: "electrical",
+    subcategory: "ac-circuits-electronics",
+    description: "Calculate Decibel levels for power and voltage ratios. Used in electronics and telecommunications to measure signal strength.",
+    loader: () => import("@/components/calculators/Electrical/DecibelDbPowerVoltageRatioCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
