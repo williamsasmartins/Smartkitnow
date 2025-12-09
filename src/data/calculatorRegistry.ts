@@ -842,24 +842,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
     
     
-    {
-    slug: "decibel-db-power-voltage-ratio",
-    title: "Decibel (dB) Power / Voltage Ratio",
-    category: "electrical",
-    subcategory: "ac-circuits-electronics",
-    description: "Calculate Decibel levels for power and voltage ratios. Used in electronics and telecommunications to measure signal strength.",
-    loader: () => import("@/components/calculators/Electrical/DecibelDbPowerVoltageRatioCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "dog-weight-loss-planner",
-    title: "Dog Weight Loss Planner",
-    category: "pets",
-    subcategory: "dogs-nutrition-weight",
-    description: "Plan a safe and effective weight loss program for your dog. Calculates target calories and timeline for goal weight achievement.",
-    loader: () => import("@/components/calculators/Pets/DogWeightLossPlannerCalculator"),
-    urlStyle: "flat"
-  },
+  
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
