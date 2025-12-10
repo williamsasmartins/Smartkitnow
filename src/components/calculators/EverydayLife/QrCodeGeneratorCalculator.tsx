@@ -10,6 +10,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
 import { useTheme } from 'next-themes';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const TRANSLATIONS = {
   "en-US": {
