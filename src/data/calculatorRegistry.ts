@@ -866,15 +866,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
    
    
     
-    {
-    slug: "dog-treat-calories-daily-allowance",
-    title: "Dog Treat Calories & Daily Allowance Calculator",
-    category: "pets",
-    subcategory: "dogs-nutrition-weight",
-    description: "Calculate the calorie content of treats and the maximum safe daily treat allowance to prevent weight gain.",
-    loader: () => import("@/components/calculators/Pets/DogTreatCaloriesDailyAllowanceCalculator"),
-    urlStyle: "flat"
-  },
+   
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
