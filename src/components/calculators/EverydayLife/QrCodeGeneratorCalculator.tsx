@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
 import { useTheme } from 'next-themes';
 
 const TRANSLATIONS = {
@@ -116,7 +118,7 @@ const QRCodeGenerator = () => {
         });
         setSvgMarkup(null);
       } else {
-        const svg = await QRCode.toString(text, {
+        const svg = (await QRCode.toString(text, {
           errorCorrectionLevel: ecc,
           margin,
           width: size,
@@ -125,7 +127,7 @@ const QRCodeGenerator = () => {
             dark: darkColor,
             light: lightColor,
           },
-        } as any);
+        } as any)) as string;
         setSvgMarkup(svg);
         canvas.remove();
         const container = document.createElement('div');
@@ -308,7 +310,7 @@ const QRCodeGenerator = () => {
             {activeTab === 'text' && (
               <div>
                 <Label className="mb-2">{t('textContent')}</Label>
-                <textarea value={textInput} onChange={(e) => setTextInput(e.target.value)} placeholder={t('textPlaceholder')} rows={4} className="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900" />
+                <Textarea value={textInput} onChange={(e) => setTextInput(e.target.value)} placeholder={t('textPlaceholder')} rows={4} className="w-full" />
               </div>
             )}
 
@@ -355,19 +357,29 @@ const QRCodeGenerator = () => {
               </div>
               <div>
                 <Label className="mb-2">Error correction (ECC)</Label>
-                <select value={ecc} onChange={(e) => setEcc(e.target.value as any)} className="w-full h-11 px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900">
-                  <option value="L">L</option>
-                  <option value="M">M</option>
-                  <option value="Q">Q</option>
-                  <option value="H">H</option>
-                </select>
+                <Select value={ecc} onValueChange={(v) => setEcc(v as 'L'|'M'|'Q'|'H')}>
+                  <SelectTrigger className="w-full" aria-label="ECC">
+                    <SelectValue placeholder="Select ECC" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="L">L</SelectItem>
+                    <SelectItem value="M">M</SelectItem>
+                    <SelectItem value="Q">Q</SelectItem>
+                    <SelectItem value="H">H</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <Label className="mb-2">Format</Label>
-                <select value={format} onChange={(e) => setFormat(e.target.value as any)} className="w-full h-11 px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900">
-                  <option value="png">PNG</option>
-                  <option value="svg">SVG</option>
-                </select>
+                <Select value={format} onValueChange={(v) => setFormat(v as 'png'|'svg')}>
+                  <SelectTrigger className="w-full" aria-label="Format">
+                    <SelectValue placeholder="Select format" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="png">PNG</SelectItem>
+                    <SelectItem value="svg">SVG</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
 

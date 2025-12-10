@@ -14,12 +14,18 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
 
-    <!-- Partytown Config -->
+    <!-- Partytown Config (disable SW on localhost/insecure preview) -->
     <script nonce="SKN_NONCE">
-      partytown = {
-        forward: ['dataLayer.push', 'gtag', 'updateConsent'],
-        lib: '/~partytown/'
-      };
+      (function(){
+        const host = location.hostname;
+        const isLocal = host === 'localhost' || host === '127.0.0.1';
+        const isSecure = window.isSecureContext || isLocal;
+        // On local/insecure contexts, use a relative lib path to avoid SW registration
+        window.partytown = {
+          forward: ['dataLayer.push', 'gtag', 'updateConsent'],
+          lib: isSecure && !isLocal ? '/~partytown/' : './~partytown/'
+        };
+      })();
     </script>
     <!-- Partytown Snippet -->
     <script nonce="SKN_NONCE">
