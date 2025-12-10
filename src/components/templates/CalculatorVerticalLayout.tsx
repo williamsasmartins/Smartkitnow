@@ -7,10 +7,11 @@ import LegalDisclaimer from "../LegalDisclaimer";
 // ================================================================
 // AD SLOTS CONFIGURATION
 // ================================================================
-const SLOT_TOP_BANNER = process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER || "pending";
-const SLOT_SIDEBAR = process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR || "pending";
-const SLOT_BOTTOM_BANNER =
-  process.env.NEXT_PUBLIC_ADSENSE_SLOT_BOTTOM_BANNER || "pending";
+// Suporte seguro para Vite (import.meta.env) e compatibilidade com NEXT_PUBLIC_*
+const ENV: any = (typeof import.meta !== 'undefined' && (import.meta as any).env) || {};
+const SLOT_TOP_BANNER = ENV.VITE_ADSENSE_SLOT_TOP_BANNER ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER ?? "pending";
+const SLOT_SIDEBAR = ENV.VITE_ADSENSE_SLOT_SIDEBAR ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR ?? "pending";
+const SLOT_BOTTOM_BANNER = ENV.VITE_ADSENSE_SLOT_BOTTOM_BANNER ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_BOTTOM_BANNER ?? "pending";
 
 // ================================================================
 // "ON THIS PAGE" NAVIGATION - FINTECH STYLE

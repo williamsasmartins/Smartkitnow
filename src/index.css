@@ -172,6 +172,10 @@ html, body, #root {
   overflow-x: hidden;           /* nunca ultrapassar horizontalmente */
   padding-right: 5px;           /* margem de segurança mínima */
 }
+.calculator-safe-zone.balanced {
+  /* Variante opcional: padding simétrico nos dois lados */
+  padding-left: 5px;
+}
 .calculator-safe-zone * {
   min-width: 0;                 /* grids/flex não estourarem colunas */
   word-wrap: break-word;
@@ -194,15 +198,19 @@ html, body, #root {
   .calculator-safe-zone {
     padding-right: 6px; /* mobile: margem levemente maior para o zoom */
   }
+  .calculator-safe-zone.balanced { padding-left: 6px; }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
   .calculator-safe-zone { padding-right: 6px; }
+  .calculator-safe-zone.balanced { padding-left: 6px; }
 }
 @media (min-width: 1024px) and (max-width: 1439px) {
   .calculator-safe-zone { padding-right: 5px; }
+  .calculator-safe-zone.balanced { padding-left: 5px; }
 }
 @media (min-width: 1440px) {
   .calculator-safe-zone { padding-right: 5px; }
+  .calculator-safe-zone.balanced { padding-left: 5px; }
 }
 
 /* === SKN: Scroll + Right Rail control (desktop) === */

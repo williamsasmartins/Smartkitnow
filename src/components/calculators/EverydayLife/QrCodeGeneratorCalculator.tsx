@@ -268,7 +268,7 @@ const QRCodeGenerator = () => {
   ];
 
   const widget = (
-    <div className="calculator-safe-zone">
+    <div className="calculator-safe-zone balanced">
       {/* Tabs (shadcn) */}
       <div className="mb-4">
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)}>
@@ -485,6 +485,7 @@ const QRCodeGenerator = () => {
       widget={widget}
       editorial={editorial}
       jsonLd={faqJsonLd ?? undefined}
+      showSidebar={false}
       onThisPage={[
         { id: 'introduction', label: 'Getting started' },
         { id: 'faq', label: 'FAQs' },
