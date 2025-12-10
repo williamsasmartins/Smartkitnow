@@ -127,7 +127,7 @@ const QRCodeGenerator = () => {
             dark: darkColor,
             light: lightColor,
           },
-        } as any)) as string;
+        } as any)) as unknown as string;
         setSvgMarkup(svg);
         canvas.remove();
         const container = document.createElement('div');
@@ -268,24 +268,24 @@ const QRCodeGenerator = () => {
 
   const widget = (
     <div className="calculator-safe-zone">
-      {/* Tabs */}
-      <div className="flex border-b border-slate-200 dark:border-slate-800">
-        {tabs.map((tab) => {
-          const IconComponent = tab.icon as any;
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
-              className={`flex-1 flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium transition-all duration-200 ${
-                activeTab === tab.id
-                  ? 'text-purple-600 border-b-2 border-purple-600 bg-purple-50 dark:bg-purple-950/20'
-                  : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800'
-              }`}
-            >
-              <IconComponent className="w-4 h-4" /> {tab.label}
-            </button>
-          );
-        })}
+      {/* Tabs (shadcn) */}
+      <div className="mb-4">
+        <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)}>
+          <TabsList className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-1">
+            {tabs.map((tab) => {
+              const IconComponent = tab.icon as any;
+              return (
+                <TabsTrigger
+                  key={tab.id}
+                  value={tab.id as any}
+                  className="px-4 py-2 rounded-lg data-[state=active]:bg-slate-100 dark:data-[state=active]:bg-slate-800"
+                >
+                  <IconComponent className="w-4 h-4 mr-2" /> {tab.label}
+                </TabsTrigger>
+              );
+            })}
+          </TabsList>
+        </Tabs>
       </div>
 
       {/* Inputs + Preview */}
@@ -421,7 +421,7 @@ const QRCodeGenerator = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 w-full">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 w-full">
               {qrData ? (
                 <div className="text-center">
                   <div ref={qrContainerRef} className="flex justify-center"></div>
