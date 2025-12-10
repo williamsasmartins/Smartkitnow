@@ -868,16 +868,9 @@ export const calculatorRegistry: CalculatorEntry[] = [
     
    
   
+  
+   
     
-    {
-    slug: "dog-ideal-weight-target-calories",
-    title: "Dog Ideal Weight & Target Calories Calculator",
-    category: "pets",
-    subcategory: "dogs-nutrition-weight",
-    description: "Determine your dog's ideal healthy weight and the specific calorie intake needed to maintain it based on breed and size.",
-    loader: () => import("@/components/calculators/Pets/DogIdealWeightTargetCaloriesCalculator"),
-    urlStyle: "flat"
-  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
