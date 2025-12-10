@@ -49,6 +49,17 @@ const COLS: Array<{ title: string; links: { label: string; to: string }[] }> = [
 
 type BrandIcon = { hex: string; path: string };
 
+/**
+ * Footer
+ *
+ * Redesigned container to align with wide footer style used on
+ * financial calculators. The main content area now spans ~96% of the
+ * page width with 2% margins on each side, includes a minimum height
+ * for visual stability, and applies smooth resize transitions.
+ *
+ * Accessibility: keeps semantic regions and aria-labels. Responsive
+ * grid stacks vertically on small screens.
+ */
 export function Footer() {
   const icons = {
     x: siX,
@@ -59,7 +70,8 @@ export function Footer() {
 
   return (
     <footer className="mt-0 border-t border-border bg-background">
-      <div className="mx-auto max-w-6xl px-4 md:px-6 py-10">
+      {/* Wide container: 96% width, centered with smooth transitions */}
+      <div className="mx-auto w-[96%] max-w-[1920px] px-4 md:px-6 py-10 transition-all duration-300 ease-in-out">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <form action="https://formspree.io/f/xanpypnb" method="POST" className="flex items-center gap-2">
@@ -68,7 +80,7 @@ export function Footer() {
               <input type="hidden" name="_subject" value="Newsletter signup" />
               <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
             </form>
-          <div className="pt-3">
+          <div className="pt-3 min-h-[120px] transition-all duration-300 ease-in-out">
             <Link to="/" className="inline-flex items-center gap-3">
               <picture>
                 <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
@@ -135,7 +147,8 @@ export function Footer() {
       </div>
 
       <div className="border-t border-border">
-        <div className="mx-auto max-w-6xl px-4 md:px-6 py-4">
+        {/* Bottom bar uses same wide container for visual consistency */}
+        <div className="mx-auto w-[96%] max-w-[1920px] px-4 md:px-6 py-4 transition-all duration-300 ease-in-out">
           <div className="flex flex-col items-center gap-3">
             <p className="text-xs text-muted-foreground">© {year} Smart Kit Now. All rights reserved.</p>
             <a href="#top" className="text-primary hover:underline text-sm">Back to top ↑</a>
