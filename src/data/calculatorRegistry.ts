@@ -882,6 +882,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/BmiBodyMassIndexCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "length-m-ft-in",
+    title: "Length: m ↔ ft ↔ in",
+    category: "conversion",
+    subcategory: "core-units",
+    description: "Convert length units instantly. Quickly transform meters to feet, inches to centimeters, and handle both metric and imperial measurements with precision.",
+    loader: () => import("@/components/calculators/Conversion/LengthMFtInCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
