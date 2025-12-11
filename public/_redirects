@@ -39,8 +39,6 @@ https://smartkitnow.com/*        https://www.smartkitnow.com/:splat  301!
 /health/body-mass-index                     /health/bmi-calculator 301
 /health/bmr                                 /health/bmr-calculator 301
 /health/basal-metabolic-rate                /health/bmr-calculator 301
-/health/tdee                                /health/tdee-calculator 301
-/health/total-daily-energy-expenditure      /health/tdee-calculator 301
 /health/calorie-calculator                  /health/calorie-intake-calculator 301
 /health/daily-calories                      /health/calorie-intake-calculator 301
 /health/calories-to-kg                      /health/calories-to-kilograms 301

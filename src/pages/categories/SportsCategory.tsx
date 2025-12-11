@@ -35,7 +35,6 @@ const strengthConditioning: Item[] = [
   { name: "One-Rep Max (1RM) Calculator (Epley, Brzycki)", slug: "one-rep-max-1rm" },
   { name: "Training Weight Percentage Calculator", slug: "training-weight-percentage" },
   { name: "Target Heart Rate / RPE Zones", slug: "target-heart-rate-rpe-zones" },
-  { name: "TDEE (Total Daily Energy Expenditure) Calculator", slug: "tdee-calculator" },
   { name: "Plank / Hold Time Progression (educational)", slug: "plank-hold-progression" },
   { name: "Wilks Coefficient Calculator", slug: "wilks-coefficient" },
   { name: "Body Fat Percentage Calculator", slug: "body-fat-percentage" },

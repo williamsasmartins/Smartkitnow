@@ -85,29 +85,6 @@ export const recommendedResources: RecommendedResourcesMap = {
       sponsored: false,
     }
   ],
-  "tdee-calculator": [
-    {
-      title: "Heart Rate Monitors",
-      description: "Train in zones to optimize daily energy expenditure.",
-      link: "https://www.amazon.com/s?k=heart+rate+monitor",
-      cta: "Shop Monitors",
-      sponsored: true,
-    },
-    {
-      title: "TDEE & Training Guide",
-      description: "Use TDEE to plan sustainable fat loss and performance.",
-      link: "https://www.strongerbyscience.com/energy-balance/",
-      cta: "Read Guide",
-      sponsored: false,
-    },
-    {
-      title: "Activity Logging",
-      description: "Track workouts and daily steps for accurate TDEE.",
-      link: "https://www.myfitnesspal.com/",
-      cta: "Start Logging",
-      sponsored: false,
-    }
-  ],
   "calorie-intake-calculator": [
     {
       title: "Kitchen Food Scales",

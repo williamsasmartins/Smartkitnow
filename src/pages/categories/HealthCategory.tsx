@@ -12,7 +12,6 @@ type Item = { name: string; slug: string };
 const bodyMetrics: Item[] = [
   { name: "BMI — Body Mass Index Calculator", slug: "bmi-body-mass-index" },
   { name: "BMR — Basal Metabolic Rate (Mifflin-St Jeor)", slug: "bmr-mifflin-st-jeor" },
-  { name: "TDEE — Total Daily Energy Expenditure Calculator", slug: "tdee-daily-energy-expenditure" },
   { name: "Body Fat % (US Navy / 3-sites)", slug: "body-fat-us-navy-3-sites" },
   { name: "Ideal Weight Range (Hamwi/Devine/Miller)", slug: "ideal-weight-range-hamwi-devine-miller" },
   { name: "Waist-to-Height Ratio Checker", slug: "waist-to-height-ratio" },

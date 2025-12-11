@@ -86,8 +86,6 @@
     { "source": "/health/body-mass-index", "destination": "/health/bmi-calculator", "permanent": true },
     { "source": "/health/bmr", "destination": "/health/bmr-calculator", "permanent": true },
     { "source": "/health/basal-metabolic-rate", "destination": "/health/bmr-calculator", "permanent": true },
-    { "source": "/health/tdee", "destination": "/health/tdee-calculator", "permanent": true },
-    { "source": "/health/total-daily-energy-expenditure", "destination": "/health/tdee-calculator", "permanent": true },
     { "source": "/health/calorie-calculator", "destination": "/health/calorie-intake-calculator", "permanent": true },
     { "source": "/health/daily-calories", "destination": "/health/calorie-intake-calculator", "permanent": true },
     { "source": "/health/calories-to-kg", "destination": "/health/calories-to-kilograms", "permanent": true },

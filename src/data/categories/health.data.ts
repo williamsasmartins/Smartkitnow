@@ -12,7 +12,6 @@ export const HEALTH_SECTIONS: CategorySection[] = [
       { title: "BMI Calculator", to: "/health/bmi" },
       { title: "Body Fat Calculator", to: "/health/body-fat" },
       { title: "BMR Calculator", to: "/health/bmr" },
-      { title: "TDEE Calculator", to: "/health/tdee" },
       { title: "Ideal Weight Calculator", to: "/health/ideal-weight" },
       { title: "Calorie Calculator", to: "/health/calorie" },
     ],
