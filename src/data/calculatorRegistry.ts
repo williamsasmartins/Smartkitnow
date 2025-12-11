@@ -878,24 +878,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
    
     
  
-    {
-    slug: "tdee-daily-energy-expenditure",
-    title: "TDEE — Total Daily Energy Expenditure Calculator",
-    category: "health",
-    subcategory: "body-metrics-weight-management",
-    description: "Estimate your Total Daily Energy Expenditure (TDEE). Learn how many calories you need daily to maintain, lose, or gain weight.",
-    loader: () => import("@/components/calculators/Health/TdeeDailyEnergyExpenditureCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "body-fat-us-navy-3-sites",
-    title: "Body Fat % (US Navy / 3-sites)",
-    category: "health",
-    subcategory: "body-metrics-weight-management",
-    description: "Estimate your body fat percentage using the US Navy method. Track your body composition progress accurately without expensive equipment.",
-    loader: () => import("@/components/calculators/Health/BodyFatUsNavy3SitesCalculator"),
-    urlStyle: "flat"
-  },
+    
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
