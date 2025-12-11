@@ -873,24 +873,6 @@ export const calculatorRegistry: CalculatorEntry[] = [
     
    
    
-    {
-    slug: "bmi-body-mass-index",
-    title: "BMI — Body Mass Index Calculator",
-    category: "health",
-    subcategory: "body-metrics-weight-management",
-    description: "Calculate your Body Mass Index (BMI) instantly. Determine if you are in a healthy weight range based on your height and weight.",
-    loader: () => import("@/components/calculators/Health/BmiBodyMassIndexCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "length-m-ft-in",
-    title: "Length: m ↔ ft ↔ in",
-    category: "conversion",
-    subcategory: "core-units",
-    description: "Convert length units instantly. Quickly transform meters to feet, inches to centimeters, and handle both metric and imperial measurements with precision.",
-    loader: () => import("@/components/calculators/Conversion/LengthMFtInCalculator"),
-    urlStyle: "flat"
-  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
