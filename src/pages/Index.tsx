@@ -1244,6 +1244,9 @@ const Index = () => {
           key: "bmr",
           name: "BMR Calculator"
         }, {
+          key: "tdee",
+          name: "TDEE Calculator"
+        }, {
           key: "calorie-intake",
           name: "Calorie Intake Calculator"
         }, {

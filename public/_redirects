@@ -70,3 +70,6 @@ https://smartkitnow.com/*        https://www.smartkitnow.com/:splat  301!
 # 5) SPA fallback (deve ser a ÚLTIMA linha)
 # ================================
 /*   /index.html   200
+# Health aliases
+/health/tdee                                /health/tdee-calculator 301
+/health/total-daily-energy-expenditure      /health/tdee-calculator 301
