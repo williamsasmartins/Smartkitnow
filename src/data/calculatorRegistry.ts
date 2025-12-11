@@ -884,6 +884,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/BmiBodyMassIndexCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tdee-daily-energy-expenditure",
+    title: "TDEE — Total Daily Energy Expenditure Calculator",
+    category: "health",
+    subcategory: "body-metrics-weight-management",
+    description: "Estimate your Total Daily Energy Expenditure (TDEE). Learn how many calories you need daily to maintain, lose, or gain weight.",
+    loader: () => import("@/components/calculators/Health/TdeeDailyEnergyExpenditureCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
