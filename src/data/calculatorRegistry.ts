@@ -884,6 +884,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
 
    
  
+    {
+    slug: "bmr-mifflin-st-jeor",
+    title: "BMR — Basal Metabolic Rate (Mifflin-St Jeor)",
+    category: "health",
+    subcategory: "body-metrics-weight-management",
+    description: "Calculate your Basal Metabolic Rate (BMR) using the Mifflin-St Jeor equation. Find out exactly how many calories your body burns at rest.",
+    loader: () => import("@/components/calculators/Health/BmrMifflinStJeorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
