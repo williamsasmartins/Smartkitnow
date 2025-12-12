@@ -213,4 +213,3 @@ export default function BmrMifflinStJeorCalculator() {
 }
 
 
-This code implements a BMR calculator using the Mifflin-St Jeor equation, considering gender differences, and provides a detailed educational layout.
