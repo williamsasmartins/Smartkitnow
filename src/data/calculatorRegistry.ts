@@ -886,33 +886,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
  
 
   
-    {
-    slug: "bmi-body-mass-index",
-    title: "BMI — Body Mass Index Calculator",
-    category: "health",
-    subcategory: "body-metrics-weight-management",
-    description: "Calculate your Body Mass Index (BMI) instantly. Determine if you are in a healthy weight range based on your height and weight.",
-    loader: () => import("@/components/calculators/Health/BmiBodyMassIndexCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "bmr-mifflin-st-jeor",
-    title: "BMR — Basal Metabolic Rate (Mifflin-St Jeor)",
-    category: "health",
-    subcategory: "body-metrics-weight-management",
-    description: "Calculate your Basal Metabolic Rate (BMR) using the Mifflin-St Jeor equation. Find out exactly how many calories your body burns at rest.",
-    loader: () => import("@/components/calculators/Health/BmrMifflinStJeorCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "tdee-daily-energy-expenditure",
-    title: "TDEE — Total Daily Energy Expenditure Calculator",
-    category: "health",
-    subcategory: "body-metrics-weight-management",
-    description: "Estimate your Total Daily Energy Expenditure (TDEE). Learn how many calories you need daily to maintain, lose, or gain weight.",
-    loader: () => import("@/components/calculators/Health/TdeeDailyEnergyExpenditureCalculator"),
-    urlStyle: "flat"
-  },
+    
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
