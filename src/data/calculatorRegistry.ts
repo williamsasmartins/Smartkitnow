@@ -1106,6 +1106,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/StepsDistanceCaloriesConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ovulation-fertile-window",
+    title: "Ovulation & Fertile Window Estimator",
+    category: "health",
+    subcategory: "women-s-health",
+    description: "Predict your ovulation and fertile window accurately. Maximize your chances of conception by tracking your most fertile days.",
+    loader: () => import("@/components/calculators/Health/OvulationFertileWindowCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
