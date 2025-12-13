@@ -1345,6 +1345,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogCrateSizeFinderCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-harness-size-fit-guide",
+    title: "Dog Harness Size & Fit Guide",
+    category: "pets",
+    subcategory: "dogs-growth-body-measures",
+    description: "Guide to measure and select the correct harness size and style for comfort and escape prevention.",
+    loader: () => import("@/components/calculators/Pets/DogHarnessSizeFitGuideCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
