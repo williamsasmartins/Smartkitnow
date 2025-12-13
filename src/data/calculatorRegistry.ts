@@ -1309,6 +1309,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogOmega3EpaDhaSupplementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "puppy-adult-size-predictor-weight-curve",
+    title: "Puppy Adult Size Predictor (Weight Curve)",
+    category: "pets",
+    subcategory: "dogs-growth-body-measures",
+    description: "Predict your puppy's final adult weight and size based on current age, weight, and breed growth curves.",
+    loader: () => import("@/components/calculators/Pets/PuppyAdultSizePredictorWeightCurveCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
