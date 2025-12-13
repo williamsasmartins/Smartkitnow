@@ -953,6 +953,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/IdealWeightRangeHamwiDevineMillerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "waist-to-height-ratio",
+    title: "Waist-to-Height Ratio Checker",
+    category: "health",
+    subcategory: "body-metrics-weight-management",
+    description: "Calculate your Waist-to-Height Ratio (WHtR). Use this simple yet effective metric to assess central obesity and cardiovascular health risks.",
+    loader: () => import("@/components/calculators/Health/WaistToHeightRatioCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
