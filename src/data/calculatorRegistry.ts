@@ -917,6 +917,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
    
     
  
+    {
+    slug: "bmi-body-mass-index",
+    title: "BMI — Body Mass Index Calculator",
+    category: "health",
+    subcategory: "body-metrics-weight-management",
+    description: "Calculate your Body Mass Index (BMI) instantly. Determine if you are in a healthy weight range based on your height and weight.",
+    loader: () => import("@/components/calculators/Health/BmiBodyMassIndexCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
