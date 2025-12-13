@@ -998,6 +998,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/MacroSplitPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "protein-intake-by-goal",
+    title: "Protein Intake by Goal (cut/bulk/maintain)",
+    category: "health",
+    subcategory: "nutrition-macros",
+    description: "Calculate your optimal daily protein intake. Find out exactly how many grams you need to build muscle or preserve mass while dieting.",
+    loader: () => import("@/components/calculators/Health/ProteinIntakeByGoalCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
