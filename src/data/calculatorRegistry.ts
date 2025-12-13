@@ -1354,6 +1354,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogHarnessSizeFitGuideCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-walking-calories-burned",
+    title: "Dog Walking Calories Burned Calculator",
+    category: "pets",
+    subcategory: "dogs-activity-fitness",
+    description: "Estimate the number of calories your dog burns during walks based on distance, pace, and body weight.",
+    loader: () => import("@/components/calculators/Pets/DogWalkingCaloriesBurnedCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
