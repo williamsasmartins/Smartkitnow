@@ -1381,6 +1381,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogHeatRiskWalkSafetyWindowCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-age-human-years-breed-aware",
+    title: "Dog Age in Human Years (Breed-Aware)",
+    category: "pets",
+    subcategory: "dogs-age-longevity",
+    description: "Convert your dog's age to human years using a formula that accounts for their specific breed size and longevity.",
+    loader: () => import("@/components/calculators/Pets/DogAgeHumanYearsBreedAwareCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
