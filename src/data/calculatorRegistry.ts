@@ -1291,6 +1291,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogPrednisonePrednisoloneDoseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-tramadol-dose",
+    title: "Tramadol Dose Calculator for Dogs",
+    category: "pets",
+    subcategory: "dogs-medication-dosing",
+    description: "Calculate the appropriate pain relief dosage for **Tramadol** in dogs, considering weight and pain severity.",
+    loader: () => import("@/components/calculators/Pets/DogTramadolDoseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
