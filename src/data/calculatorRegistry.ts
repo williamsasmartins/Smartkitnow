@@ -1199,6 +1199,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogDailyWaterIntakeCheckerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-dehydration-risk-estimator",
+    title: "Dehydration Risk Estimator (Weight & Symptoms Aware)",
+    category: "pets",
+    subcategory: "dogs-hydration",
+    description: "Estimate the risk of dehydration by inputting weight changes and physical symptoms for veterinary attention.",
+    loader: () => import("@/components/calculators/Pets/DogDehydrationRiskEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
