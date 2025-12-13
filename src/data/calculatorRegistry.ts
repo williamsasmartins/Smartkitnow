@@ -1192,6 +1192,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogGrapeRaisinExposureRiskCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-onion-garlic-exposure-risk",
+    title: "Dog Onion/Garlic (Allium) Exposure Risk Calculator",
+    category: "pets",
+    subcategory: "dogs-toxicology-hazard",
+    description: "Determine the potential toxicity risk from consuming onions, garlic, chives, or leeks (Allium species).",
+    loader: () => import("@/components/calculators/Pets/DogOnionGarlicExposureRiskCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
