@@ -1372,6 +1372,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogStepGoalActivityTimePlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-heat-risk-walk-safety-window",
+    title: "Heat Risk/Walk Safety Window (Temp & Humidity)",
+    category: "pets",
+    subcategory: "dogs-activity-fitness",
+    description: "Calculates the **Heat Index Risk** based on ambient temperature and humidity to determine safe windows for dog walks.",
+    loader: () => import("@/components/calculators/Pets/DogHeatRiskWalkSafetyWindowCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
