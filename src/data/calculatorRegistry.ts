@@ -1079,6 +1079,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/HeartRateZonesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "vo2max-estimator-cooper-rockport",
+    title: "VO2max Estimator (Cooper/Rockport)",
+    category: "health",
+    subcategory: "training-performance",
+    description: "Estimate your VO2max aerobic capacity. Use Cooper or Rockport test results to assess your cardiovascular fitness level.",
+    loader: () => import("@/components/calculators/Health/Vo2maxEstimatorCooperRockportCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
