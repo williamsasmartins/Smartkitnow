@@ -1115,6 +1115,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/OvulationFertileWindowCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pregnancy-due-date-naegele",
+    title: "Pregnancy Due-Date (Naegele)",
+    category: "health",
+    subcategory: "women-s-health",
+    description: "Calculate your pregnancy due date using Naegele's rule. Estimate the arrival of your baby based on your last menstrual period.",
+    loader: () => import("@/components/calculators/Health/PregnancyDueDateNaegeleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
