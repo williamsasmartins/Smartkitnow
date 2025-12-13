@@ -1070,6 +1070,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/CaloriesBurnedMetCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "heart-rate-zones",
+    title: "Heart Rate Zones (Karvonen/percentages)",
+    category: "health",
+    subcategory: "training-performance",
+    description: "Calculate your training heart rate zones. Use the Karvonen method to find the optimal intensity for fat loss or cardio improvement.",
+    loader: () => import("@/components/calculators/Health/HeartRateZonesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
