@@ -1273,6 +1273,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogMeloxicamMetacamDoseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-gabapentin-dose",
+    title: "Gabapentin Dose Calculator for Dogs",
+    category: "pets",
+    subcategory: "dogs-medication-dosing",
+    description: "Calculate the proper dosage for the nerve pain and anxiety medication **Gabapentin** in dogs by weight.",
+    loader: () => import("@/components/calculators/Pets/DogGabapentinDoseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
