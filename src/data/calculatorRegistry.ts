@@ -1435,6 +1435,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogProteinFatIntakeGuideCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-daily-water-intake-checker",
+    title: "Dog Daily Water Intake Checker",
+    category: "pets",
+    subcategory: "dogs-hydration",
+    description: "Check if your dog is drinking enough water daily. Calculates the minimum required intake based on weight and diet type.",
+    loader: () => import("@/components/calculators/Pets/DogDailyWaterIntakeCheckerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
