@@ -1043,6 +1043,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/WaterIntakePerDayCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "meal-calories-split",
+    title: "Meal Calories Split (breakfast/lunch/dinner/snacks)",
+    category: "health",
+    subcategory: "nutrition-macros",
+    description: "Split your daily calories across meals efficiently. Plan balanced portions for breakfast, lunch, dinner, and snacks to control hunger.",
+    loader: () => import("@/components/calculators/Health/MealCaloriesSplitCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
