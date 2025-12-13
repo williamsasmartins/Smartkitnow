@@ -1399,6 +1399,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogLifeExpectancyEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-pregnancy-gestation-due-date",
+    title: "Dog Pregnancy (Gestation) Due-Date Calculator",
+    category: "pets",
+    subcategory: "dogs-reproduction",
+    description: "Calculate the expected **due date** for a pregnant dog based on the date of first or last breeding.",
+    loader: () => import("@/components/calculators/Pets/DogPregnancyGestationDueDateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
