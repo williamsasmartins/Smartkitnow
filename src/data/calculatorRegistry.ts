@@ -1052,6 +1052,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/MealCaloriesSplitCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "running-pace-speed-splits",
+    title: "Running Pace, Speed & Split Calculator",
+    category: "health",
+    subcategory: "training-performance",
+    description: "Calculate running pace, speed, and splits. An essential tool for runners to plan race times and monitor training performance.",
+    loader: () => import("@/components/calculators/Health/RunningPaceSpeedSplitsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
