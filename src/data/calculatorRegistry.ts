@@ -1390,6 +1390,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogAgeHumanYearsBreedAwareCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-life-expectancy-estimator",
+    title: "Dog Life Expectancy Estimator (lifestyle factors)",
+    category: "pets",
+    subcategory: "dogs-age-longevity",
+    description: "Estimate a dog's life expectancy based on breed, size, diet, exercise habits, and spay/neuter status.",
+    loader: () => import("@/components/calculators/Pets/DogLifeExpectancyEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
