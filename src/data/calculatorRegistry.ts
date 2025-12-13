@@ -1097,6 +1097,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/OneRepMax1rmEpleyBrzyckiCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "steps-distance-calories-converter",
+    title: "Steps ↔ Distance ↔ Calories Converter",
+    category: "health",
+    subcategory: "training-performance",
+    description: "Convert steps into distance and calories burned. Track your daily walking activity and visualize its impact on your fitness goals.",
+    loader: () => import("@/components/calculators/Health/StepsDistanceCaloriesConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
