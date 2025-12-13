@@ -1181,6 +1181,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/PuppyCalorieNeedsAgeBreedSizeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-protein-fat-intake-guide",
+    title: "Dog Protein/Fat Intake Guide (by Goal)",
+    category: "pets",
+    subcategory: "dogs-nutrition-weight",
+    description: "Guide for setting optimal **protein and fat ratios** in your dog's diet, tailored for growth, maintenance, or athletic performance.",
+    loader: () => import("@/components/calculators/Pets/DogProteinFatIntakeGuideCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
