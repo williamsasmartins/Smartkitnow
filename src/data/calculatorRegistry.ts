@@ -1210,6 +1210,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogXylitolExposureRiskCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-caffeine-toxicity",
+    title: "Dog Caffeine Toxicity Calculator",
+    category: "pets",
+    subcategory: "dogs-toxicology-hazard",
+    description: "Estimate the toxic level risk from accidental ingestion of coffee, tea, or caffeine-containing products.",
+    loader: () => import("@/components/calculators/Pets/DogCaffeineToxicityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
