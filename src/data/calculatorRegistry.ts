@@ -1264,6 +1264,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogCephalexinDoseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-meloxicam-metacam-dose",
+    title: "Meloxicam/Metacam Dose Calculator for Dogs",
+    category: "pets",
+    subcategory: "dogs-medication-dosing",
+    description: "Calculate the safe initial and maintenance dosages for the NSAID **Meloxicam (Metacam)** for pain relief in dogs.",
+    loader: () => import("@/components/calculators/Pets/DogMeloxicamMetacamDoseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
