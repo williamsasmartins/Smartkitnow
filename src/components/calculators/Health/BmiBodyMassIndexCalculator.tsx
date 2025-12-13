@@ -1,12 +1,12 @@
 import { useState, useMemo } from "react";
 import CalculatorVerticalLayout from '@/components/templates/CalculatorVerticalLayout';
 // ATOMIC IMPORTS
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Activity, HelpCircle, BookOpen, AlertCircle, Calculator, RotateCcw } from "lucide-react";
+import { Activity, AlertCircle, Calculator, RotateCcw } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function BmiBodyMassIndexCalculator() {
@@ -18,14 +18,12 @@ export default function BmiBodyMassIndexCalculator() {
     heightMetric: "", 
     heightFt: "", 
     heightIn: "",
-    activity: "1.2"
   });
 
   // --- LOGIC ENGINE ---
   const results = useMemo(() => {
     const age = parseFloat(inputs.age);
     const weightRaw = parseFloat(inputs.weight);
-    const activity = parseFloat(inputs.activity);
     
     // Height Conversion
     let heightCm = 0;
@@ -37,46 +35,56 @@ export default function BmiBodyMassIndexCalculator() {
        heightCm = ((ft * 12) + inch) * 2.54;
     }
 
-    // Weight Conversion
+    // Weight Conversion to Kg
     let weightKg = unit === "metric" ? weightRaw : weightRaw / 2.20462;
 
-    if (!age || !weightRaw || !heightCm || age < 0 || weightRaw < 0 || heightCm < 0) {
-       return { value: 0, label: "Enter your details..." };
+    // Validation
+    if (!weightRaw || !heightCm || weightRaw <= 0 || heightCm <= 0) {
+       return { value: 0, label: "Enter your details...", category: "" };
     }
 
-    // BMR Calculation (Mifflin-St Jeor)
-    let bmr = (10 * weightKg) + (6.25 * heightCm) - (5 * age);
-    bmr += (inputs.gender === "male" ? 5 : -161);
+    // BMI Calculation: kg / (m^2)
+    const heightM = heightCm / 100;
+    const bmi = weightKg / (heightM * heightM);
+    const bmiFinal = parseFloat(bmi.toFixed(1));
 
-    const tdee = bmr * activity;
+    // Determine Category
+    let category = "";
+    if (bmiFinal < 18.5) category = "Underweight";
+    else if (bmiFinal < 25) category = "Normal weight";
+    else if (bmiFinal < 30) category = "Overweight";
+    else if (bmiFinal < 35) category = "Obesity Class I";
+    else if (bmiFinal < 40) category = "Obesity Class II";
+    else category = "Obesity Class III";
 
     return { 
-      value: Math.round(tdee).toLocaleString(), 
-      label: "Calories / day (Maintenance)" 
+      value: bmiFinal, 
+      label: "BMI Score",
+      category: category
     };
   }, [inputs, unit]);
 
   // --- CONTENT DATA ---
   const faqs = [
     { 
-      question: "What exactly is TDEE?", 
-      answer: "Total Daily Energy Expenditure (TDEE) represents the total number of calories your body burns in a day, including all activities and bodily functions. It combines your Basal Metabolic Rate (BMR) with physical activity levels to estimate daily energy needs for maintenance." 
+      question: "What is BMI?", 
+      answer: "Body Mass Index (BMI) is a simple calculation using a person's height and weight. The formula is BMI = kg/m2 where kg is a person's weight in kilograms and m2 is their height in meters squared. It is used to screen for weight categories that may lead to health problems." 
     },
     { 
-      question: "Which formula is used here?", 
-      answer: "This calculator uses the Mifflin-St Jeor equation, a widely accepted formula for estimating Basal Metabolic Rate (BMR). It factors in weight, height, age, and gender, then multiplies by an activity factor to estimate Total Daily Energy Expenditure (TDEE)." 
+      question: "Is BMI accurate for athletes?", 
+      answer: "Not always. Because BMI does not distinguish between weight from fat and weight from muscle, muscular athletes may have a high BMI that classifies them as overweight or obese, even though their body fat percentage is low." 
     },
     { 
-      question: "Does muscle mass affect the result?", 
-      answer: "Yes, muscle mass significantly influences metabolic rate because muscle tissue burns more calories at rest than fat. Individuals with higher muscle mass typically have a higher BMR and thus a higher TDEE, which may not be fully captured by this formula alone." 
+      question: "What is a 'Normal' BMI?", 
+      answer: "For most adults, a BMI between 18.5 and 24.9 is considered to be within the healthy or normal weight range. A BMI below 18.5 is considered underweight, and a BMI of 25.0 or higher is considered overweight." 
     },
     { 
-      question: "How should I use this number?", 
-      answer: "Your TDEE is an estimate of how many calories you need daily to maintain your current weight. Use it as a baseline for adjusting calorie intake for weight loss, gain, or maintenance, combined with professional advice and monitoring." 
+      question: "Does age affect BMI interpretation?", 
+      answer: "Standard BMI categories are used for adults 20 years and older. For children and teens, BMI is interpreted differently using percentiles based on age and sex (BMI-for-age) because the amount of body fat changes with age." 
     },
     { 
-      question: "Why does age lower the result?", 
-      answer: "As we age, metabolic rate naturally slows due to loss of muscle mass and hormonal changes. The formula accounts for this by subtracting calories based on age, reflecting decreased energy requirements over time." 
+      question: "What are the health risks of high BMI?", 
+      answer: "People who are overweight or obese are at increased risk for many diseases and health conditions, including high blood pressure, Type 2 diabetes, coronary heart disease, stroke, and osteoarthritis." 
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -113,7 +121,8 @@ export default function BmiBodyMassIndexCalculator() {
           <Label className="mb-2 block text-slate-700 dark:text-slate-300">Age</Label>
           <Input 
             type="number" 
-            min="0" 
+            min="2" 
+            max="120"
             value={inputs.age} 
             onChange={(e) => setInputs({...inputs, age: e.target.value})} 
             placeholder="Years" 
@@ -124,7 +133,7 @@ export default function BmiBodyMassIndexCalculator() {
           <Label className="mb-2 block text-slate-700 dark:text-slate-300">Weight</Label>
           <Input 
             type="number" 
-            min="0" 
+            min="1" 
             value={inputs.weight} 
             onChange={(e) => setInputs({...inputs, weight: e.target.value})} 
             placeholder={unit === "metric" ? "kg" : "lbs"} 
@@ -139,7 +148,7 @@ export default function BmiBodyMassIndexCalculator() {
         {unit === "metric" ? (
           <Input 
             type="number" 
-            min="0" 
+            min="1" 
             value={inputs.heightMetric} 
             onChange={(e) => setInputs({...inputs, heightMetric: e.target.value})} 
             placeholder="Centimeters" 
@@ -158,6 +167,7 @@ export default function BmiBodyMassIndexCalculator() {
             <Input 
               type="number" 
               min="0" 
+              max="11"
               value={inputs.heightIn} 
               onChange={(e) => setInputs({...inputs, heightIn: e.target.value})} 
               placeholder="Inches" 
@@ -166,34 +176,19 @@ export default function BmiBodyMassIndexCalculator() {
           </div>
         )}
       </div>
-
-      {/* Activity Level */}
-      <div>
-         <Label className="mb-2 block text-slate-700 dark:text-slate-300">Activity Level</Label>
-         <Select value={inputs.activity} onValueChange={(v) => setInputs({...inputs, activity: v})}>
-            <SelectTrigger><SelectValue /></SelectTrigger>
-            <SelectContent>
-               <SelectItem value="1.2">Sedentary (Little or no exercise)</SelectItem>
-               <SelectItem value="1.375">Lightly Active (Exercise 1-3 days/week)</SelectItem>
-               <SelectItem value="1.55">Moderately Active (Exercise 3-5 days/week)</SelectItem>
-               <SelectItem value="1.725">Very Active (Hard exercise 6-7 days/week)</SelectItem>
-               <SelectItem value="1.9">Super Active (Physical job or training 2x/day)</SelectItem>
-            </SelectContent>
-         </Select>
-      </div>
       
-      {/* Buttons - FIXED RESET HOVER STYLE */}
+      {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button 
-          className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
-          onClick={() => { /* Calculation is automatic, no action needed */ }}
-          aria-label="Calculate TDEE"
+          className="flex-1 h-11 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-md"
+          onClick={() => {}}
+          aria-label="Calculate BMI"
         >
-          <Calculator className="mr-2 h-4 w-4" /> Calculate TDEE
+          <Calculator className="mr-2 h-4 w-4" /> Calculate BMI
         </Button>
         <Button 
           variant="outline" 
-          onClick={() => setInputs({age: "", weight: "", heightMetric: "", heightFt: "", heightIn: "", gender: "male", activity: "1.2"})} 
+          onClick={() => setInputs({age: "", weight: "", heightMetric: "", heightFt: "", heightIn: "", gender: "male"})} 
           className="flex-1 h-11 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800"
           aria-label="Reset inputs"
         >
@@ -204,16 +199,18 @@ export default function BmiBodyMassIndexCalculator() {
       {/* Results */}
       {results.value !== 0 && (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500" role="region" aria-live="polite" aria-atomic="true">
-           <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 border-blue-200 dark:border-indigo-900 shadow-lg">
+           <Card className="bg-gradient-to-br from-emerald-50 to-teal-100 dark:from-slate-900 dark:to-slate-800 border-emerald-200 dark:border-teal-900 shadow-lg">
               <CardContent className="p-8 text-center">
-                 <p className="text-sm font-bold text-blue-900 dark:text-blue-100 mb-3 uppercase tracking-wider">Your Estimated TDEE</p>
-                 <p className="text-5xl font-extrabold text-blue-900 dark:text-blue-50 leading-none">{results.value}</p>
-                 <p className="text-slate-600 dark:text-slate-300 mt-2 font-medium">{results.label}</p>
+                 <p className="text-sm font-bold text-emerald-900 dark:text-emerald-100 mb-3 uppercase tracking-wider">{results.label}</p>
+                 <p className="text-6xl font-extrabold text-emerald-900 dark:text-emerald-50 leading-none mb-2">{results.value}</p>
+                 <div className="inline-block px-4 py-1.5 rounded-full bg-white/60 dark:bg-slate-800 border border-emerald-200 dark:border-emerald-800">
+                    <p className="text-emerald-800 dark:text-emerald-300 font-bold text-lg">{results.category}</p>
+                 </div>
               </CardContent>
            </Card>
            <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 text-xs text-slate-500 flex gap-3 items-start">
-              <AlertCircle className="w-5 h-5 shrink-0 mt-0.5 text-blue-500" />
-              <p>This result is an estimate based on the Mifflin-St Jeor equation. Consult a healthcare professional for personalized advice.</p>
+              <AlertCircle className="w-5 h-5 shrink-0 mt-0.5 text-emerald-500" />
+              <p>This result is a screening tool, not a diagnosis. BMI does not account for muscle mass, bone density, or fat distribution. Consult a healthcare provider for a full assessment.</p>
            </div>
         </div>
       )}
@@ -225,54 +222,57 @@ export default function BmiBodyMassIndexCalculator() {
       <section id="how-to-use" className="scroll-mt-32">
          <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
          <p className="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
-            To accurately estimate your Total Daily Energy Expenditure (TDEE), input your age, biological sex, weight, height, and activity level. Choose between metric or imperial units for convenience. Age and sex influence your basal metabolic rate, while weight and height are essential for calculating your body's energy needs.
-         </p>
-         <p className="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
-            Select your activity level based on your typical daily routine, ranging from sedentary to super active. This factor adjusts your basal metabolic rate to reflect calories burned through physical activity. The calculator then provides an estimate of the calories you need daily to maintain your current weight.
+            To calculate your Body Mass Index (BMI), simply enter your weight and height. You can choose between Metric (kg/cm) or Imperial (lbs/feet) units. While age and gender are requested for context, the standard adult BMI calculation primarily relies on height and weight.
          </p>
          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-            Use the reset button to clear all inputs and start fresh. The calculation updates automatically as you enter your data, ensuring a seamless and interactive experience. Always consult a healthcare professional before making significant changes to your diet or exercise routine.
+            Once you click calculate, you will receive your BMI score along with a classification ranging from "Underweight" to "Obesity". Use this number as a starting point to understand your weight status, but remember it is a general indicator and not a direct measure of body fat or health.
          </p>
       </section>
 
       <section id="formula" className="scroll-mt-32">
          <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">The formula behind the math</h2>
          <p className="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
-            This calculator uses the Mifflin-St Jeor equation to estimate Basal Metabolic Rate (BMR), which is the number of calories your body needs at rest to maintain vital functions such as breathing, circulation, and cell production. The formula accounts for weight, height, age, and biological sex, providing a personalized estimate.
+            The Body Mass Index is calculated by dividing a person's weight in kilograms by the square of their height in meters. It is a widely used metric because it is non-invasive and easy to obtain.
          </p>
-         <p className="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
-            The Mifflin-St Jeor equation is expressed as: For men, BMR = (10 × weight in kg) + (6.25 × height in cm) - (5 × age in years) + 5. For women, BMR = (10 × weight in kg) + (6.25 × height in cm) - (5 × age in years) - 161. This difference reflects physiological variations between sexes.
-         </p>
+         <div className="bg-slate-100 dark:bg-slate-800 p-6 rounded-lg my-6 font-mono text-center">
+            <p className="text-lg font-bold mb-2">Metric Formula</p>
+            <p className="text-slate-600 dark:text-slate-400">BMI = weight (kg) / [height (m)]²</p>
+         </div>
          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-            To estimate Total Daily Energy Expenditure (TDEE), the BMR is multiplied by an activity factor representing your lifestyle and exercise habits. This multiplier ranges from 1.2 for sedentary individuals to 1.9 for highly active people, providing a comprehensive daily calorie requirement estimate.
+            For the imperial system (pounds and inches), the formula includes a conversion factor of 703: <strong>BMI = 703 × weight (lbs) / [height (in)]²</strong>. This calculator automatically handles the conversions for you regardless of which unit system you select.
          </p>
       </section>
 
+      <section id="categories" className="scroll-mt-32">
+         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">BMI Categories</h2>
+         <p className="text-slate-700 dark:text-slate-300 mb-4">The standard weight status categories associated with BMI ranges for adults are:</p>
+         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
+            <li><strong>Below 18.5:</strong> Underweight</li>
+            <li><strong>18.5 – 24.9:</strong> Normal weight</li>
+            <li><strong>25.0 – 29.9:</strong> Overweight</li>
+            <li><strong>30.0 and above:</strong> Obesity</li>
+         </ul>
+      </section>
+
       <section id="factors" className="scroll-mt-32">
-         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Factors affecting your result</h2>
+         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Limitations of BMI</h2>
          <ul className="list-none space-y-4 text-slate-700 dark:text-slate-300">
             <li className="flex gap-3">
-               <Activity className="w-6 h-6 text-blue-600 shrink-0" />
+               <Activity className="w-6 h-6 text-emerald-600 shrink-0" />
                <div>
-                 <strong>Muscle Mass:</strong> Muscle tissue burns more calories at rest than fat, so individuals with higher muscle mass typically have a higher metabolic rate. This calculator estimates average values and may not fully capture variations due to muscle mass.
+                 <strong>Muscle Mass:</strong> Athletes and bodybuilders may have a BMI in the "overweight" or "obese" range because muscle weighs more than fat by volume. In these cases, BMI may not accurately reflect health risks.
                </div>
             </li>
             <li className="flex gap-3">
-               <Activity className="w-6 h-6 text-blue-600 shrink-0" />
+               <Activity className="w-6 h-6 text-emerald-600 shrink-0" />
                <div>
-                 <strong>Age:</strong> Metabolic rate declines with age due to hormonal changes and loss of muscle mass. The formula adjusts for this by subtracting calories based on age, reflecting decreased energy needs over time.
+                 <strong>Bone Density & Age:</strong> Older adults often lose muscle and bone density, which may lower their BMI even if they have excess body fat. Conversely, dense bones can slightly elevate BMI.
                </div>
             </li>
             <li className="flex gap-3">
-               <Activity className="w-6 h-6 text-blue-600 shrink-0" />
+               <Activity className="w-6 h-6 text-emerald-600 shrink-0" />
                <div>
-                 <strong>Activity Level:</strong> Physical activity significantly increases daily calorie expenditure. Selecting an accurate activity multiplier is crucial for a realistic TDEE estimate.
-               </div>
-            </li>
-            <li className="flex gap-3">
-               <Activity className="w-6 h-6 text-blue-600 shrink-0" />
-               <div>
-                 <strong>Genetics and Health Conditions:</strong> Individual metabolic rates can vary due to genetics, thyroid function, and other health factors, which this formula cannot fully account for.
+                 <strong>Fat Distribution:</strong> BMI does not indicate where fat is stored. Visceral fat (around the abdomen) poses greater health risks than subcutaneous fat, yet two people with the same BMI could have very different fat distributions.
                </div>
             </li>
          </ul>
@@ -294,27 +294,19 @@ export default function BmiBodyMassIndexCalculator() {
          <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & additional resources</h2>
          <ul className="space-y-3">
            <li className="mb-4">
-             <a href="https://www.who.int/news-room/fact-sheets/detail/healthy-diet" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-semibold hover:underline block text-lg">
-               World Health Organization: Healthy Diet Fact Sheet
+             <a href="https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-semibold hover:underline block text-lg">
+               World Health Organization: Obesity and Overweight
              </a>
              <p className="text-slate-500 text-sm">
-               WHO provides guidelines on nutrition and energy requirements, emphasizing the importance of balanced calorie intake for health maintenance.
+               Global facts and data regarding obesity, its health consequences, and the definition of BMI standards.
              </p>
            </li>
            <li className="mb-4">
-             <a href="https://www.cdc.gov/healthyweight/assessing/bmi/index.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-semibold hover:underline block text-lg">
-               Centers for Disease Control and Prevention: About Adult BMI
+             <a href="https://www.cdc.gov/healthyweight/assessing/bmi/adult_bmi/index.html" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-semibold hover:underline block text-lg">
+               CDC: About Adult BMI
              </a>
              <p className="text-slate-500 text-sm">
-               CDC explains BMI and related metabolic calculations, highlighting their role in assessing health risks.
-             </p>
-           </li>
-           <li className="mb-4">
-             <a href="https://pubmed.ncbi.nlm.nih.gov/11882538/" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-semibold hover:underline block text-lg">
-               Mifflin MD et al. (1990). A new predictive equation for resting energy expenditure in healthy individuals.
-             </a>
-             <p className="text-slate-500 text-sm">
-               This seminal study introduces the Mifflin-St Jeor equation, demonstrating its accuracy compared to previous formulas.
+               The Centers for Disease Control and Prevention provides a comprehensive guide on interpreting BMI and its limitations.
              </p>
            </li>
          </ul>
@@ -325,41 +317,42 @@ export default function BmiBodyMassIndexCalculator() {
   return (
     <CalculatorVerticalLayout
       title="BMI — Body Mass Index Calculator"
-      description="Calculate your Total Daily Energy Expenditure (TDEE) using the scientifically validated Mifflin-St Jeor equation. Input your age, sex, weight, height, and activity level to get a personalized estimate of daily calories needed for maintenance. Ideal for health professionals and individuals seeking accurate metabolic insights."
+      description="Quickly calculate your Body Mass Index (BMI) to screen for potential weight-related health issues. Input your height and weight to see if you fall into the underweight, healthy, overweight, or obese category based on World Health Organization guidelines."
       widget={widget}
       editorial={editorial}
       jsonLd={faqJsonLd}
       formula={{ 
-        title: "Medical Formula", 
-        formula: "TDEE = BMR × Activity Factor", 
+        title: "Standard Formula", 
+        formula: "BMI = weight (kg) / height (m)²", 
         variables: [
-           { symbol: "BMR", description: "Basal Metabolic Rate calculated by Mifflin-St Jeor equation" },
-           { symbol: "Activity Factor", description: "Multiplier based on physical activity level" }
+           { symbol: "weight", description: "Body weight in kilograms" },
+           { symbol: "height", description: "Height in meters" }
         ] 
       }}
       example={{ 
-        title: "Clinical Example", 
-        scenario: "A 30-year-old male weighing 70 kg, 175 cm tall, with moderate activity level.",
+        title: "Calculation Example", 
+        scenario: "A person weighing 80 kg with a height of 1.80 meters.",
         steps: [
-           { label: "Step 1", explanation: "Calculate BMR: (10 × 70) + (6.25 × 175) - (5 × 30) + 5 = 1663.75 calories/day." },
-           { label: "Step 2", explanation: "Apply Activity Factor (1.55 for moderate activity): 1663.75 × 1.55 = 2578 calories/day." } 
+           { label: "Step 1", explanation: "Square the height: 1.80 × 1.80 = 3.24 m²" },
+           { label: "Step 2", explanation: "Divide weight by squared height: 80 / 3.24 = 24.69" } 
         ],
-        result: "Estimated TDEE is approximately 2578 calories per day."
+        result: "The BMI is 24.7, which falls into the 'Normal weight' category."
       }}
       relatedCalculators={[
-        {title:"BMR — Basal Metabolic Rate (Mifflin-St Jeor)",url:"/health/bmr-mifflin-st-jeor",icon:"⚖️"},
         {title:"TDEE — Total Daily Energy Expenditure Calculator",url:"/health/tdee-daily-energy-expenditure",icon:"🔥"},
+        {title:"BMR — Basal Metabolic Rate",url:"/health/bmr-mifflin-st-jeor",icon:"⚖️"},
         {title:"Body Fat % (US Navy / 3-sites)",url:"/health/body-fat-us-navy-3-sites",icon:"❤️"},
-        {title:"Ideal Weight Range (Hamwi/Devine/Miller)",url:"/health/ideal-weight-range-hamwi-devine-miller",icon:"💧"},
-        {title:"Waist-to-Height Ratio Checker",url:"/health/waist-to-height-ratio",icon:"🥗"},
-        {title:"Body Surface Area (BSA) Calculator",url:"/health/body-surface-area-bsa",icon:"😴"}
+        {title:"Ideal Weight Range",url:"/health/ideal-weight-range-hamwi-devine-miller",icon:"💧"},
+        {title:"Waist-to-Height Ratio",url:"/health/waist-to-height-ratio",icon:"🥗"},
+        {title:"Body Surface Area (BSA)",url:"/health/body-surface-area-bsa",icon:"😴"}
       ]}
       onThisPage={[ 
         {id: "how-to-use", label: "How to use this calculator"},
         {id: "formula", label: "The formula behind the math"},
-        {id: "factors", label: "Factors affecting your result"},
+        {id: "categories", label: "BMI Categories"},
+        {id: "factors", label: "Limitations of BMI"},
         {id: "faq", label: "Frequently asked questions"},
-        {id: "references", label: "References & additional resources"}
+        {id: "references", label: "References & resources"}
       ]}
       showTopBanner showSidebar showBottomBanner
     />
