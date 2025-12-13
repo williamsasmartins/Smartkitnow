@@ -1172,6 +1172,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogTreatCaloriesDailyAllowanceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "puppy-calorie-needs-age-breed-size",
+    title: "Puppy Calorie Needs by Age/Breed Size Calculator",
+    category: "pets",
+    subcategory: "dogs-nutrition-weight",
+    description: "Calculate the specific energy needs for puppies based on their current age and predicted adult breed size for optimal growth.",
+    loader: () => import("@/components/calculators/Pets/PuppyCalorieNeedsAgeBreedSizeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
