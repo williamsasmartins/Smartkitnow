@@ -1007,6 +1007,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/ProteinIntakeByGoalCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "carb-target-low-carb-keto",
+    title: "Carb Target (incl. low-carb/keto ranges)",
+    category: "health",
+    subcategory: "nutrition-macros",
+    description: "Set your daily carbohydrate target. Perfect for planning Low-Carb, Keto, or balanced diets to fuel your energy needs effectively.",
+    loader: () => import("@/components/calculators/Health/CarbTargetLowCarbKetoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
