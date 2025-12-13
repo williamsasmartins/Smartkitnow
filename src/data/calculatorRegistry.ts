@@ -1145,69 +1145,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
 
 
   
-    {
-    slug: "dog-weight-loss-planner",
-    title: "Dog Weight Loss Planner",
-    category: "pets",
-    subcategory: "dogs-nutrition-weight",
-    description: "Plan a safe and effective weight loss program for your dog. Calculates target calories and timeline for goal weight achievement.",
-    loader: () => import("@/components/calculators/Pets/DogWeightLossPlannerCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "dog-ideal-weight-target-calories",
-    title: "Dog Ideal Weight & Target Calories Calculator",
-    category: "pets",
-    subcategory: "dogs-nutrition-weight",
-    description: "Determine your dog's ideal healthy weight and the specific calorie intake needed to maintain it based on breed and size.",
-    loader: () => import("@/components/calculators/Pets/DogIdealWeightTargetCaloriesCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "dog-treat-calories-daily-allowance",
-    title: "Dog Treat Calories & Daily Allowance Calculator",
-    category: "pets",
-    subcategory: "dogs-nutrition-weight",
-    description: "Calculate the calorie content of treats and the maximum safe daily treat allowance to prevent weight gain.",
-    loader: () => import("@/components/calculators/Pets/DogTreatCaloriesDailyAllowanceCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "puppy-calorie-needs-age-breed-size",
-    title: "Puppy Calorie Needs by Age/Breed Size Calculator",
-    category: "pets",
-    subcategory: "dogs-nutrition-weight",
-    description: "Calculate the specific energy needs for puppies based on their current age and predicted adult breed size for optimal growth.",
-    loader: () => import("@/components/calculators/Pets/PuppyCalorieNeedsAgeBreedSizeCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "dog-protein-fat-intake-guide",
-    title: "Dog Protein/Fat Intake Guide (by Goal)",
-    category: "pets",
-    subcategory: "dogs-nutrition-weight",
-    description: "Guide for setting optimal **protein and fat ratios** in your dog's diet, tailored for growth, maintenance, or athletic performance.",
-    loader: () => import("@/components/calculators/Pets/DogProteinFatIntakeGuideCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "dog-daily-water-intake-checker",
-    title: "Dog Daily Water Intake Checker",
-    category: "pets",
-    subcategory: "dogs-hydration",
-    description: "Check if your dog is drinking enough water daily. Calculates the minimum required intake based on weight and diet type.",
-    loader: () => import("@/components/calculators/Pets/DogDailyWaterIntakeCheckerCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "dog-dehydration-risk-estimator",
-    title: "Dehydration Risk Estimator (Weight & Symptoms Aware)",
-    category: "pets",
-    subcategory: "dogs-hydration",
-    description: "Estimate the risk of dehydration by inputting weight changes and physical symptoms for veterinary attention.",
-    loader: () => import("@/components/calculators/Pets/DogDehydrationRiskEstimatorCalculator"),
-    urlStyle: "flat"
-  },
+  
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
