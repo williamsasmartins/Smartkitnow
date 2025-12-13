@@ -1363,6 +1363,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogWalkingCaloriesBurnedCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-step-goal-activity-time-planner",
+    title: "Dog Step-Goal & Activity Time Planner",
+    category: "pets",
+    subcategory: "dogs-activity-fitness",
+    description: "Plan and track daily step goals and active play time to ensure adequate exercise for your dog's needs.",
+    loader: () => import("@/components/calculators/Pets/DogStepGoalActivityTimePlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
