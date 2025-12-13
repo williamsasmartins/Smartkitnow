@@ -1174,6 +1174,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogTreatCaloriesDailyAllowanceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-chocolate-toxicity",
+    title: "Dog Chocolate Toxicity Calculator",
+    category: "pets",
+    subcategory: "dogs-toxicology-hazard",
+    description: "Calculate the risk and severity of **chocolate poisoning** in dogs based on weight, type of chocolate consumed, and amount.",
+    loader: () => import("@/components/calculators/Pets/DogChocolateToxicityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
