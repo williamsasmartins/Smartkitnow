@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MessageSquare, Send, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,10 +11,19 @@ export default function SuggestionBox() {
   const [suggestion, setSuggestion] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [page, setPage] = useState<string>("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setPage(window.location.pathname);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+    setError(null);
+
     if (!suggestion.trim()) {
       alert("Please enter a suggestion");
       return;
@@ -22,19 +31,39 @@ export default function SuggestionBox() {
 
     setIsSubmitting(true);
 
-    // Simular envio (você pode integrar com um API endpoint aqui)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      
-      // Reset após 3 segundos
-      setTimeout(() => {
+    // Envia para Formspree (mesmo endpoint usado nos outros formulários do site)
+    try {
+      const data = new FormData();
+      // Campos padrão
+      if (name.trim()) data.append("name", name.trim());
+      if (email.trim()) data.append("email", email.trim());
+      data.append("message", suggestion.trim());
+      // Contexto adicional
+      if (page) data.append("page", page);
+      data.append("_subject", "New calculator suggestion");
+
+      const res = await fetch("https://formspree.io/f/xanpypnb", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        setIsSubmitted(true);
         setName("");
         setEmail("");
         setSuggestion("");
-        setIsSubmitted(false);
-      }, 3000);
-    }, 1000);
+        // Oculta mensagem de sucesso após alguns segundos
+        setTimeout(() => setIsSubmitted(false), 4000);
+      } else {
+        const j = await res.json().catch(() => null);
+        setError(j?.errors?.[0]?.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -88,6 +117,7 @@ export default function SuggestionBox() {
               placeholder="Your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              name="name"
               className="bg-white dark:bg-gray-900 border-purple-200 dark:border-purple-700 focus:border-purple-500 dark:focus:border-purple-400"
             />
           </div>
@@ -105,6 +135,7 @@ export default function SuggestionBox() {
               placeholder="your@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              name="email"
               className="bg-white dark:bg-gray-900 border-purple-200 dark:border-purple-700 focus:border-purple-500 dark:focus:border-purple-400"
             />
           </div>
@@ -125,6 +156,7 @@ export default function SuggestionBox() {
             onChange={(e) => setSuggestion(e.target.value)}
             rows={4}
             required
+            name="message"
             className="bg-white dark:bg-gray-900 border-purple-200 dark:border-purple-700 focus:border-purple-500 dark:focus:border-purple-400 resize-none"
           />
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -150,6 +182,11 @@ export default function SuggestionBox() {
             </>
           )}
         </Button>
+        {error && (
+          <p className="text-xs text-center text-red-600 dark:text-red-400 mt-3" aria-live="polite">
+            {error}
+          </p>
+        )}
       </form>
 
       {/* Footer Note */}

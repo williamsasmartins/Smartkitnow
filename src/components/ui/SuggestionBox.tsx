@@ -15,18 +15,34 @@ export default function SuggestionBox() {
   const [status, setStatus] = React.useState<"idle" | "sending" | "ok" | "err">(
     "idle",
   );
+  const [page, setPage] = React.useState<string>("");
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      setPage(window.location.pathname);
+    }
+  }, []);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!data.name || !data.email || !data.message) return;
     setStatus("sending");
     try {
-      // Endpoint local/futuro — ajuste quando seu backend estiver pronto
-      await fetch("/api/send-suggestion", {
+      // Envio via Formspree (alinhado aos demais formulários do site)
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("message", data.message);
+      if (page) formData.append("page", page);
+      formData.append("_subject", "New calculator suggestion");
+
+      const res = await fetch("https://formspree.io/f/xanpypnb", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: formData,
+        headers: { Accept: "application/json" },
       });
+
+      if (!res.ok) throw new Error("Formspree submission failed");
       setStatus("ok");
       setData({ name: "", email: "", message: "" });
     } catch {
