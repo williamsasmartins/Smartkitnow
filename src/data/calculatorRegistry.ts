@@ -1246,6 +1246,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogHumanMedicationExposureAlertCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-benadryl-diphenhydramine-dose",
+    title: "Benadryl (Diphenhydramine) Dose Calculator for Dogs",
+    category: "pets",
+    subcategory: "dogs-medication-dosing",
+    description: "Calculate the safe, appropriate dosage of **Benadryl (Diphenhydramine)** for dogs based on body weight.",
+    loader: () => import("@/components/calculators/Pets/DogBenadrylDiphenhydramineDoseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
