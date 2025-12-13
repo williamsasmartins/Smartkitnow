@@ -1088,6 +1088,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/Vo2maxEstimatorCooperRockportCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "one-rep-max-1rm-epley-brzycki",
+    title: "1RM — One-Rep Max (Epley/Brzycki)",
+    category: "health",
+    subcategory: "training-performance",
+    description: "Calculate your One-Rep Max (1RM) safely. Estimate your maximum lifting strength using proven Epley and Brzycki formulas.",
+    loader: () => import("@/components/calculators/Health/OneRepMax1rmEpleyBrzyckiCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
