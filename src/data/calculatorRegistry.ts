@@ -1336,6 +1336,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogBmiBodyIndexEducationalCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-crate-size-finder",
+    title: "Dog Crate Size Finder",
+    category: "pets",
+    subcategory: "dogs-growth-body-measures",
+    description: "Find the correct and comfortable crate size for your dog based on their standing height and length.",
+    loader: () => import("@/components/calculators/Pets/DogCrateSizeFinderCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
