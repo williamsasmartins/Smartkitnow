@@ -980,6 +980,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/DailyCalorieNeedsGoalCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "weight-loss-date-deficit-planner",
+    title: "Weight Loss Date & Deficit Planner",
+    category: "health",
+    subcategory: "body-metrics-weight-management",
+    description: "Plan your weight loss journey timeline. Calculate the exact date you will reach your target weight based on your daily calorie deficit.",
+    loader: () => import("@/components/calculators/Health/WeightLossDateDeficitPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
