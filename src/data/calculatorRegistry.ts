@@ -1016,6 +1016,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/CarbTargetLowCarbKetoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fat-intake-range-amdr",
+    title: "Fat Intake Range (AMDR)",
+    category: "health",
+    subcategory: "nutrition-macros",
+    description: "Determine healthy fat intake ranges based on AMDR. Ensure hormonal health and satiety by consuming the right amount of dietary fats.",
+    loader: () => import("@/components/calculators/Health/FatIntakeRangeAmdrCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
