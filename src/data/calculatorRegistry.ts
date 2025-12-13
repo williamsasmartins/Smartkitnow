@@ -1133,6 +1133,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/PregnancyWeightGainRangeBmiAwareCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tdee-gestation-adjusted",
+    title: "Gestational TDEE (educational)",
+    category: "health",
+    subcategory: "women-s-health",
+    description: "Estimate energy needs during pregnancy. Calculate adjusted TDEE to ensure adequate nutrition for fetal development and maternal health.",
+    loader: () => import("@/components/calculators/Health/TdeeGestationAdjustedCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
