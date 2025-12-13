@@ -1025,6 +1025,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/FatIntakeRangeAmdrCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fiber-intake-target",
+    title: "Fiber Intake Target (by kcal/sexo)",
+    category: "health",
+    subcategory: "nutrition-macros",
+    description: "Calculate your recommended daily fiber intake. Improve digestion and gut health by hitting accurate fiber goals based on calorie intake.",
+    loader: () => import("@/components/calculators/Health/FiberIntakeTargetCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
