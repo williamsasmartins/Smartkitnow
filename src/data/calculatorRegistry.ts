@@ -1219,6 +1219,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogCaffeineToxicityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-macadamia-nut-toxicity",
+    title: "Dog Macadamia Nut Toxicity Calculator",
+    category: "pets",
+    subcategory: "dogs-toxicology-hazard",
+    description: "Assess the risk of macadamia nut poisoning, which causes severe weakness and elevated body temperature.",
+    loader: () => import("@/components/calculators/Pets/DogMacadamiaNutToxicityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
