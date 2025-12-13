@@ -935,6 +935,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/BmrMifflinStJeorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "body-fat-us-navy-3-sites",
+    title: "Body Fat % (US Navy / 3-sites)",
+    category: "health",
+    subcategory: "body-metrics-weight-management",
+    description: "Estimate your body fat percentage using the US Navy method. Track your body composition progress accurately without expensive equipment.",
+    loader: () => import("@/components/calculators/Health/BodyFatUsNavy3SitesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
