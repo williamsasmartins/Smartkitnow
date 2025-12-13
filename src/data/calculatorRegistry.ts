@@ -1228,6 +1228,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogMacadamiaNutToxicityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-alcohol-ethanol-exposure-risk",
+    title: "Dog Alcohol/Ethanol Exposure Risk Calculator",
+    category: "pets",
+    subcategory: "dogs-toxicology-hazard",
+    description: "Calculate the toxic risk of ethanol/alcohol exposure based on concentration and dog's body weight.",
+    loader: () => import("@/components/calculators/Pets/DogAlcoholEthanolExposureRiskCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
