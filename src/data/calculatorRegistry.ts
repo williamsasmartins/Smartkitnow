@@ -1124,6 +1124,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/PregnancyDueDateNaegeleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pregnancy-weight-gain-range-bmi-aware",
+    title: "Pregnancy Weight-Gain Range (BMI-aware)",
+    category: "health",
+    subcategory: "women-s-health",
+    description: "Monitor healthy pregnancy weight gain. Get recommended weight ranges based on your pre-pregnancy BMI for a healthy baby and mom.",
+    loader: () => import("@/components/calculators/Health/PregnancyWeightGainRangeBmiAwareCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
