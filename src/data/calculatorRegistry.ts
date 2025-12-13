@@ -1408,15 +1408,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogPregnancyGestationDueDateCalculator"),
     urlStyle: "flat"
   },
-    {
-    slug: "dog-whelping-countdown-stage-timeline",
-    title: "Whelping Countdown & Stage Timeline",
-    category: "pets",
-    subcategory: "dogs-reproduction",
-    description: "Track the countdown to whelping (birth) and estimate the timeline for each stage of labor.",
-    loader: () => import("@/components/calculators/Pets/DogWhelpingCountdownStageTimelineCalculator"),
-    urlStyle: "flat"
-  },
+    
     {
     slug: "puppy-calorie-needs-age-breed-size",
     title: "Puppy Calorie Needs by Age/Breed Size Calculator",
