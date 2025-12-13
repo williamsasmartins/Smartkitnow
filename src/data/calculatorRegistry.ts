@@ -1282,6 +1282,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogGabapentinDoseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-prednisone-prednisolone-dose",
+    title: "Prednisone/Prednisolone Dose Calculator for Dogs",
+    category: "pets",
+    subcategory: "dogs-medication-dosing",
+    description: "Calculate the correct dosage for the anti-inflammatory and immunosuppressant steroid **Prednisone/Prednisolone**.",
+    loader: () => import("@/components/calculators/Pets/DogPrednisonePrednisoloneDoseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
