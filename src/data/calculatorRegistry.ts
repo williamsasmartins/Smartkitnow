@@ -1300,6 +1300,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogTramadolDoseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-omega-3-epa-dha-supplement",
+    title: "Omega-3 (EPA/DHA) Supplement Calculator for Dogs",
+    category: "pets",
+    subcategory: "dogs-medication-dosing",
+    description: "Determine the correct daily supplement dosage of **Omega-3 fatty acids (EPA/DHA)** for joint and skin health.",
+    loader: () => import("@/components/calculators/Pets/DogOmega3EpaDhaSupplementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
