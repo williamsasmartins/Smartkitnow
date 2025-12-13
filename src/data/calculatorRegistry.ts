@@ -989,6 +989,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/WeightLossDateDeficitPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "macro-split-planner",
+    title: "Macro Split Planner (Protein/Carb/Fat)",
+    category: "health",
+    subcategory: "nutrition-macros",
+    description: "Optimize your diet with a macro split planner. Calculate the perfect ratio of proteins, carbohydrates, and fats for your fitness goals.",
+    loader: () => import("@/components/calculators/Health/MacroSplitPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
