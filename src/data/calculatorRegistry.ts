@@ -944,6 +944,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/BodyFatUsNavy3SitesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ideal-weight-range-hamwi-devine-miller",
+    title: "Ideal Weight Range (Hamwi/Devine/Miller)",
+    category: "health",
+    subcategory: "body-metrics-weight-management",
+    description: "Discover your ideal weight range. Compare results from Hamwi, Devine, and Miller formulas to set realistic and healthy weight goals.",
+    loader: () => import("@/components/calculators/Health/IdealWeightRangeHamwiDevineMillerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
