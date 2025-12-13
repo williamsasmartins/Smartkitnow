@@ -1318,6 +1318,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/PuppyAdultSizePredictorWeightCurveCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-body-condition-score-bcs-target",
+    title: "Dog Body Condition Score Helper (BCS → Target Plan)",
+    category: "pets",
+    subcategory: "dogs-growth-body-measures",
+    description: "Use the **Body Condition Score (BCS)** system to assess your dog's fat level and create a target weight plan.",
+    loader: () => import("@/components/calculators/Pets/DogBodyConditionScoreBcsTargetCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
