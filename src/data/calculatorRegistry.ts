@@ -1255,6 +1255,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogBenadrylDiphenhydramineDoseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-cephalexin-dose",
+    title: "Cephalexin Dose Calculator for Dogs",
+    category: "pets",
+    subcategory: "dogs-medication-dosing",
+    description: "Calculate the veterinarian-recommended dosage for the antibiotic **Cephalexin** in dogs based on body weight.",
+    loader: () => import("@/components/calculators/Pets/DogCephalexinDoseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
