@@ -1061,6 +1061,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/RunningPaceSpeedSplitsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "calories-burned-met",
+    title: "Calories Burned by Activity (MET-based)",
+    category: "health",
+    subcategory: "training-performance",
+    description: "Estimate calories burned during exercise. Use MET values to calculate energy expenditure for running, cycling, swimming, and more.",
+    loader: () => import("@/components/calculators/Health/CaloriesBurnedMetCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
