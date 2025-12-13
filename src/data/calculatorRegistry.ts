@@ -1201,6 +1201,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogOnionGarlicExposureRiskCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-xylitol-exposure-risk",
+    title: "Dog Xylitol Exposure Risk Calculator",
+    category: "pets",
+    subcategory: "dogs-toxicology-hazard",
+    description: "Calculate the severe toxic risk posed by the artificial sweetener **Xylitol** based on dog weight and ingested amount.",
+    loader: () => import("@/components/calculators/Pets/DogXylitolExposureRiskCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
