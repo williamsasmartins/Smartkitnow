@@ -962,6 +962,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/WaistToHeightRatioCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "body-surface-area-bsa",
+    title: "Body Surface Area (BSA) Calculator",
+    category: "health",
+    subcategory: "body-metrics-weight-management",
+    description: "Calculate Body Surface Area (BSA) accurately. Essential for determining medical dosages and assessing metabolic parameters.",
+    loader: () => import("@/components/calculators/Health/BodySurfaceAreaBsaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
