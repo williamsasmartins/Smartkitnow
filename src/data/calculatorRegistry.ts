@@ -1327,6 +1327,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogBodyConditionScoreBcsTargetCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-bmi-body-index-educational",
+    title: "Dog BMI/Body Index (educational)",
+    category: "pets",
+    subcategory: "dogs-growth-body-measures",
+    description: "Educational tool to understand the concept of a body mass index tailored for canine anatomy and health.",
+    loader: () => import("@/components/calculators/Pets/DogBmiBodyIndexEducationalCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
