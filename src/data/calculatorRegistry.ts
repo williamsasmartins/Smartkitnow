@@ -1183,6 +1183,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogChocolateToxicityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-grape-raisin-exposure-risk",
+    title: "Dog Grape/Raisin Exposure Risk Calculator",
+    category: "pets",
+    subcategory: "dogs-toxicology-hazard",
+    description: "Assess the toxic risk following accidental ingestion of grapes or raisins. Provides immediate action guidelines.",
+    loader: () => import("@/components/calculators/Pets/DogGrapeRaisinExposureRiskCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
