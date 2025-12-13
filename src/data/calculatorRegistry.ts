@@ -1034,6 +1034,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/FiberIntakeTargetCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "water-intake-per-day",
+    title: "Water Intake per Day (by weight/activity/climate)",
+    category: "health",
+    subcategory: "nutrition-macros",
+    description: "Calculate your daily water intake requirements. Stay hydrated by adjusting for body weight, activity level, and climate conditions.",
+    loader: () => import("@/components/calculators/Health/WaterIntakePerDayCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
