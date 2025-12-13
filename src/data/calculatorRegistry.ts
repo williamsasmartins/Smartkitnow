@@ -1237,6 +1237,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogAlcoholEthanolExposureRiskCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-human-medication-exposure-alert",
+    title: "Dog Human-Medication Exposure Alert (Ibuprofen/Acetaminophen)",
+    category: "pets",
+    subcategory: "dogs-toxicology-hazard",
+    description: "Alert tool for accidental exposure to common human pain relievers like **Ibuprofen** or **Acetaminophen (Tylenol)**.",
+    loader: () => import("@/components/calculators/Pets/DogHumanMedicationExposureAlertCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
