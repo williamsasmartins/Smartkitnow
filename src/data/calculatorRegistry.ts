@@ -971,6 +971,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/BodySurfaceAreaBsaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "daily-calorie-needs-goal",
+    title: "Daily Calorie Needs (Goal-based)",
+    category: "health",
+    subcategory: "body-metrics-weight-management",
+    description: "Determine daily calorie needs for your specific goal. Create a personalized nutrition plan for weight loss, maintenance, or muscle gain.",
+    loader: () => import("@/components/calculators/Health/DailyCalorieNeedsGoalCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
