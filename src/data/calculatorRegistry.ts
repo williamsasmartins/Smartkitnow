@@ -1481,6 +1481,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatIdealWeightTargetCaloriesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "kitten-calorie-needs-age-size",
+    title: "Kitten Calorie Needs by Age/Size",
+    category: "pets",
+    subcategory: "cats-nutrition-weight",
+    description: "Calculate the high energy requirements for growing kittens based on their age and projected adult size.",
+    loader: () => import("@/components/calculators/Pets/KittenCalorieNeedsAgeSizeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
