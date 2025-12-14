@@ -1825,6 +1825,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatSheddingCombingTimePlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-nail-trim-interval-planner",
+    title: "Nail Trim Interval Planner (activity/surface based)",
+    category: "pets",
+    subcategory: "cats-grooming-care",
+    description: "Determine the best frequency for nail trims based on the cat's activity level and available scratching surfaces.",
+    loader: () => import("@/components/calculators/Pets/CatNailTrimIntervalPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
