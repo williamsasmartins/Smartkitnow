@@ -1573,6 +1573,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatXylitolExposureRiskCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-caffeine-toxicity",
+    title: "Caffeine Toxicity Risk for Cats",
+    category: "pets",
+    subcategory: "cats-toxicology-hazard",
+    description: "Estimate the toxic exposure risk from caffeine in products like coffee grounds, tea, or energy drinks.",
+    loader: () => import("@/components/calculators/Pets/CatCaffeineToxicityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
