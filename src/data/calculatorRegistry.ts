@@ -1454,6 +1454,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogWhelpingCountdownStageTimelineCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-calorie-needs-rer-mer",
+    title: "Cat Calorie Needs (RER/MER) Calculator",
+    category: "pets",
+    subcategory: "cats-nutrition-weight",
+    description: "Calculate your cat's **Resting Energy Requirement (RER)** and **Maintenance Energy Requirement (MER)** for daily feeding.",
+    loader: () => import("@/components/calculators/Pets/CatCalorieNeedsRerMerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
