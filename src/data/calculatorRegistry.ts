@@ -1771,6 +1771,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatLifeExpectancyEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-litter-box-output-tracker",
+    title: "Litter Box Output Tracker (Normal vs. Increased)",
+    category: "pets",
+    subcategory: "cats-urinary-kidney",
+    description: "Tool to track and compare normal litter box output against potentially worrying increases or decreases in volume.",
+    loader: () => import("@/components/calculators/Pets/CatLitterBoxOutputTrackerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
