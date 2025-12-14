@@ -2059,6 +2059,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseElectrolytePowderMixingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-omega-3-supplement-planner",
+    title: "Omega-3 Supplement Planner (EPA/DHA per kg)",
+    category: "pets",
+    subcategory: "horses-medication-supplement",
+    description: "Determine the required supplement dosage of Omega-3 fatty acids based on the horse's weight (kg).",
+    loader: () => import("@/components/calculators/Pets/HorseOmega3SupplementPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
