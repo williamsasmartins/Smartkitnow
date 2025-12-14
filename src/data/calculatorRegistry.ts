@@ -1537,6 +1537,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatDehydrationRiskEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-chocolate-toxicity",
+    title: "Cat Chocolate Toxicity Calculator",
+    category: "pets",
+    subcategory: "cats-toxicology-hazard",
+    description: "Calculate the toxic dose of chocolate for cats (though less common than in dogs).",
+    loader: () => import("@/components/calculators/Pets/CatChocolateToxicityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
