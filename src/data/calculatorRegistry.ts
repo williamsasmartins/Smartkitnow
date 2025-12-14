@@ -1726,6 +1726,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatActivityCalorieAdjusterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-play-session-planner",
+    title: "Play Session Planner (Feather/Chase Time Targets)",
+    category: "pets",
+    subcategory: "cats-activity-lifestyle",
+    description: "Plan optimal daily playtime sessions (duration and intensity) to meet your cat's exercise and enrichment needs.",
+    loader: () => import("@/components/calculators/Pets/CatPlaySessionPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
