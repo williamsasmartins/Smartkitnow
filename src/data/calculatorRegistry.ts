@@ -1663,6 +1663,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatOmega3EpaDhaSupplementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-insulin-starter-reference",
+    title: "Insulin Starter Reference (info-only)",
+    category: "pets",
+    subcategory: "cats-medication-dosing",
+    description: "Reference guide for starting and monitoring insulin therapy in diabetic cats (information-only, not a dose calculator).",
+    loader: () => import("@/components/calculators/Pets/CatInsulinStarterReferenceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
