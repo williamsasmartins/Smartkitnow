@@ -2023,6 +2023,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseSeleniumToxicityThresholdCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-salt-mineral-balance-checker",
+    title: "Horse Salt & Mineral Balance Checker",
+    category: "pets",
+    subcategory: "horses-health-toxicology",
+    description: "Check the daily intake of salt and essential macro/micro-minerals against required nutritional levels.",
+    loader: () => import("@/components/calculators/Pets/HorseSaltMineralBalanceCheckerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
