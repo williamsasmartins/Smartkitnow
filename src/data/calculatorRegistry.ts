@@ -1463,6 +1463,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatCalorieNeedsRerMerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-weight-loss-planner",
+    title: "Cat Weight Loss Planner",
+    category: "pets",
+    subcategory: "cats-nutrition-weight",
+    description: "Plan a tailored weight loss program for your cat, calculating target calories, weight reduction, and duration.",
+    loader: () => import("@/components/calculators/Pets/CatWeightLossPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
