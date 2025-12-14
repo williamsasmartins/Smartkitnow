@@ -1699,6 +1699,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatBmiBodyIndexEducationalCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-carrier-size-fit-guide",
+    title: "Cat Carrier Size & Fit Guide",
+    category: "pets",
+    subcategory: "cats-growth-size-measures",
+    description: "Guide to select the proper carrier size for your cat, ensuring comfort and safety during travel.",
+    loader: () => import("@/components/calculators/Pets/CatCarrierSizeFitGuideCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
