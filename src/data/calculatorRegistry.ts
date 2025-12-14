@@ -1753,6 +1753,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatAgeHumanYearsBreedSizeAwareCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "senior-cat-care-readiness-checklist",
+    title: "Senior Cat Care Readiness Checklist (scored helper)",
+    category: "pets",
+    subcategory: "cats-age-longevity",
+    description: "Scored checklist to evaluate readiness for senior cat care, covering diet, environment, and health monitoring.",
+    loader: () => import("@/components/calculators/Pets/SeniorCatCareReadinessChecklistCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
