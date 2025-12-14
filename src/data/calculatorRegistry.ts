@@ -1609,6 +1609,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatAcetaminophenIbuprofenExposureRiskCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-benadryl-diphenhydramine-dose",
+    title: "Benadryl (Diphenhydramine) Dose Calculator for Cats",
+    category: "pets",
+    subcategory: "cats-medication-dosing",
+    description: "Calculate the safe, appropriate dosage of **Benadryl (Diphenhydramine)** for cats based on body weight.",
+    loader: () => import("@/components/calculators/Pets/CatBenadrylDiphenhydramineDoseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
