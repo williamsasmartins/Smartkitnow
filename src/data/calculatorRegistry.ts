@@ -2185,6 +2185,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdDehydrationSignsEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-antibiotic-dose-reference",
+    title: "Antibiotic Dose Reference (mg/kg)",
+    category: "pets",
+    subcategory: "birds-medication",
+    description: "Reference guide for common antibiotic dosages in birds by body weight (mg/kg).",
+    loader: () => import("@/components/calculators/Pets/BirdAntibioticDoseReferenceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
