@@ -1472,6 +1472,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatWeightLossPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-ideal-weight-target-calories",
+    title: "Ideal Weight & Target Calories for Cats",
+    category: "pets",
+    subcategory: "cats-nutrition-weight",
+    description: "Determine your cat's optimal weight and the necessary daily calorie intake for maintenance.",
+    loader: () => import("@/components/calculators/Pets/CatIdealWeightTargetCaloriesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
