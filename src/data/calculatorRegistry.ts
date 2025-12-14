@@ -1600,6 +1600,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatLiliesPoisoningRiskGuideCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-acetaminophen-ibuprofen-exposure-risk",
+    title: "Acetaminophen/Ibuprofen Exposure Risk (human meds)",
+    category: "pets",
+    subcategory: "cats-toxicology-hazard",
+    description: "Alert tool for accidental exposure to common human pain relievers, particularly dangerous **Acetaminophen (Tylenol)**.",
+    loader: () => import("@/components/calculators/Pets/CatAcetaminophenIbuprofenExposureRiskCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
