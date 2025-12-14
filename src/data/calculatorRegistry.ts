@@ -1654,6 +1654,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatPrednisoloneDoseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-omega-3-epa-dha-supplement",
+    title: "Omega-3 (EPA/DHA) Supplement Calculator for Cats",
+    category: "pets",
+    subcategory: "cats-medication-dosing",
+    description: "Determine the correct daily supplement dosage of **Omega-3 fatty acids (EPA/DHA)** for joint and skin health in cats.",
+    loader: () => import("@/components/calculators/Pets/CatOmega3EpaDhaSupplementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
