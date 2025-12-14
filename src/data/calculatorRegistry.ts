@@ -2104,6 +2104,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdVitaminARequirementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-calcium-supplement-dosage-breeding-females",
+    title: "Calcium Supplement Dosage (Breeding Females)",
+    category: "pets",
+    subcategory: "birds-nutrition-weight",
+    description: "Determine the appropriate calcium supplement dose for egg-laying and breeding female birds.",
+    loader: () => import("@/components/calculators/Pets/BirdCalciumSupplementDosageBreedingFemalesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
