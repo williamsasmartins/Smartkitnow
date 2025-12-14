@@ -1627,6 +1627,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatCephalexinDoseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-meloxicam-dose",
+    title: "Meloxicam Dose Calculator for Cats",
+    category: "pets",
+    subcategory: "cats-medication-dosing",
+    description: "Calculate the short-term analgesic dose for the NSAID **Meloxicam** in cats.",
+    loader: () => import("@/components/calculators/Pets/CatMeloxicamDoseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
