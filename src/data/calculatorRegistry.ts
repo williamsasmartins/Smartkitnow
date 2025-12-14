@@ -1843,6 +1843,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/MultiCatLitterBoxCountCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-environmental-enrichment-planner",
+    title: "Environmental Enrichment Planner (per room)",
+    category: "pets",
+    subcategory: "cats-behavior-environment",
+    description: "Plan specific enrichment items (scratch posts, perches, toys) for each room to improve feline well-being.",
+    loader: () => import("@/components/calculators/Pets/CatEnvironmentalEnrichmentPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
