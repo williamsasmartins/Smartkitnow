@@ -1960,6 +1960,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseBodyConditionScoreHennekeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-water-intake-temperature-weight",
+    title: "Horse Water Intake by Temperature & Weight",
+    category: "pets",
+    subcategory: "horses-hydration",
+    description: "Estimate the minimum daily water intake required for a horse based on its weight and ambient air temperature.",
+    loader: () => import("@/components/calculators/Pets/HorseWaterIntakeTemperatureWeightCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
