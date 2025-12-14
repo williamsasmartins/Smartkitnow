@@ -2149,6 +2149,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdFeatherPluckingStressRiskIndexCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-egg-binding-risk-estimator",
+    title: "Egg Binding Risk Estimator",
+    category: "pets",
+    subcategory: "birds-health-toxicology",
+    description: "Estimate the risk of a female bird suffering from **egg binding** based on nutrition and reproductive history.",
+    loader: () => import("@/components/calculators/Pets/BirdEggBindingRiskEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
