@@ -1807,6 +1807,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatPregnancyGestationDueDateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "kitten-weaning-timeline-feeding-amounts",
+    title: "Kitten Weaning Timeline & Feeding Amounts",
+    category: "pets",
+    subcategory: "cats-reproduction",
+    description: "Planner for the transition from mother's milk to solid food, calculating appropriate feeding amounts at each stage.",
+    loader: () => import("@/components/calculators/Pets/KittenWeaningTimelineFeedingAmountsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
