@@ -1546,6 +1546,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatChocolateToxicityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-onion-garlic-toxicity",
+    title: "Cat Onion/Garlic Toxicity Calculator",
+    category: "pets",
+    subcategory: "cats-toxicology-hazard",
+    description: "Determine the potential risk of red blood cell damage from ingesting Allium species (onions, garlic).",
+    loader: () => import("@/components/calculators/Pets/CatOnionGarlicToxicityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
