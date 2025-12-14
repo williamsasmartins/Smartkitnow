@@ -1780,6 +1780,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatLitterBoxOutputTrackerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-fluid-intake-urine-output-balance",
+    title: "Fluid Intake vs. Urine Output Balance Checker",
+    category: "pets",
+    subcategory: "cats-urinary-kidney",
+    description: "Check the balance between liquid consumed and liquid expelled, key for monitoring kidney function.",
+    loader: () => import("@/components/calculators/Pets/CatFluidIntakeUrineOutputBalanceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
