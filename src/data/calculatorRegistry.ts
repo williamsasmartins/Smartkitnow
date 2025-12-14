@@ -1978,6 +1978,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseDehydrationRiskEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-colic-risk-assessment",
+    title: "Horse Colic Risk Assessment (Feeding & Management)",
+    category: "pets",
+    subcategory: "horses-health-toxicology",
+    description: "Assess the risk of colic (abdominal pain) based on feeding practices, management, and health history.",
+    loader: () => import("@/components/calculators/Pets/HorseColicRiskAssessmentCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
