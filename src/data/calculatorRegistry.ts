@@ -1996,6 +1996,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseLaminitisRiskIndexCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-toxic-plant-exposure-risk",
+    title: "Horse Toxic Plant Exposure Risk (Ragwort, Yew, etc.)",
+    category: "pets",
+    subcategory: "horses-health-toxicology",
+    description: "Tool to evaluate the poisoning risk from common toxic pasture plants like **Ragwort** or **Yew**.",
+    loader: () => import("@/components/calculators/Pets/HorseToxicPlantExposureRiskCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
