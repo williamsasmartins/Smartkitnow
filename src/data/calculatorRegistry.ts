@@ -1526,6 +1526,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatDailyWaterIntakeCheckerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-dehydration-risk-estimator",
+    title: "Dehydration Risk Estimator (Symptoms + Intake)",
+    category: "pets",
+    subcategory: "cats-hydration",
+    description: "Estimate the risk of dehydration using clinical signs and tracking fluid intake, particularly in sick cats.",
+    loader: () => import("@/components/calculators/Pets/CatDehydrationRiskEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
