@@ -1517,6 +1517,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatProteinFatIntakeGuideCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-daily-water-intake-checker",
+    title: "Daily Water Intake Checker for Cats",
+    category: "pets",
+    subcategory: "cats-hydration",
+    description: "Check if your cat is meeting its daily fluid requirement, crucial for kidney health, especially with dry food diets.",
+    loader: () => import("@/components/calculators/Pets/CatDailyWaterIntakeCheckerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
