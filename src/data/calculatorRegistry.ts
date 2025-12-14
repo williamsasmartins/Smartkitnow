@@ -1789,6 +1789,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatFluidIntakeUrineOutputBalanceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-phosphorus-per-meal-estimator",
+    title: "Phosphorus per Meal Estimator (diet label helper)",
+    category: "pets",
+    subcategory: "cats-urinary-kidney",
+    description: "Calculate the phosphorus content per meal from food labels, essential for cats with kidney disease.",
+    loader: () => import("@/components/calculators/Pets/CatPhosphorusPerMealEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
