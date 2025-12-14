@@ -1861,6 +1861,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatStressScorePlaytimeOffsetPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-calorie-energy-requirement-de-tdn",
+    title: "Horse Calorie & Energy Requirement Calculator (DE / TDN)",
+    category: "pets",
+    subcategory: "horses-nutrition-weight",
+    description: "Calculate a horse's daily **Digestible Energy (DE)** and **Total Digestible Nutrients (TDN)** requirements.",
+    loader: () => import("@/components/calculators/Pets/HorseCalorieEnergyRequirementDeTdnCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
