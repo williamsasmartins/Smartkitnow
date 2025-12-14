@@ -1762,6 +1762,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SeniorCatCareReadinessChecklistCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-life-expectancy-estimator",
+    title: "Life Expectancy Estimator (lifestyle factors; educational)",
+    category: "pets",
+    subcategory: "cats-age-longevity",
+    description: "Educational tool to estimate a cat's life expectancy based on diet, activity, and preventative care.",
+    loader: () => import("@/components/calculators/Pets/CatLifeExpectancyEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
