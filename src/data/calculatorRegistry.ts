@@ -1508,6 +1508,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatTreatCaloriesDailyAllowanceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-protein-fat-intake-guide",
+    title: "Protein/Fat Intake Guide for Cats (by Goal)",
+    category: "pets",
+    subcategory: "cats-nutrition-weight",
+    description: "Guide for ensuring your cat meets its high protein requirements, adjusting fat ratios for health goals.",
+    loader: () => import("@/components/calculators/Pets/CatProteinFatIntakeGuideCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
