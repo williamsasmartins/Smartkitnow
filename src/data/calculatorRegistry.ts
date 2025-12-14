@@ -1618,6 +1618,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatBenadrylDiphenhydramineDoseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-cephalexin-dose",
+    title: "Cephalexin Dose Calculator for Cats",
+    category: "pets",
+    subcategory: "cats-medication-dosing",
+    description: "Calculate the veterinarian-recommended dosage for the antibiotic **Cephalexin** in cats based on body weight.",
+    loader: () => import("@/components/calculators/Pets/CatCephalexinDoseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
