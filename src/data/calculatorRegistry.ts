@@ -1906,6 +1906,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileUvbLightingDistanceDurationCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-basking-temperature-gradient-planner",
+    title: "Basking Temperature & Gradient Planner",
+    category: "pets",
+    subcategory: "reptiles-nutrition-environment",
+    description: "Plan the ideal basking spot temperature and the necessary temperature gradient for a reptile enclosure.",
+    loader: () => import("@/components/calculators/Pets/ReptileBaskingTemperatureGradientPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
