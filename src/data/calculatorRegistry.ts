@@ -1933,6 +1933,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseHayIntakeBodyweightPercentCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-protein-lysine-requirement",
+    title: "Horse Protein & Lysine Requirement Calculator",
+    category: "pets",
+    subcategory: "horses-nutrition-weight",
+    description: "Calculate the daily requirements for crude protein and the essential amino acid **Lysine** for horses.",
+    loader: () => import("@/components/calculators/Pets/HorseProteinLysineRequirementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
