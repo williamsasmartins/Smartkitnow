@@ -1951,6 +1951,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseElectrolyteNeedEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-body-condition-score-henneke",
+    title: "Horse Body Condition Score Helper (Henneke 1–9)",
+    category: "pets",
+    subcategory: "horses-nutrition-weight",
+    description: "Use the **Henneke 1-9 scale** to assess a horse's fat reserves and plan nutritional adjustments.",
+    loader: () => import("@/components/calculators/Pets/HorseBodyConditionScoreHennekeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
