@@ -1681,6 +1681,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/KittenAdultWeightPredictorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-body-condition-score-bcs-target",
+    title: "Cat Body Condition Score Helper (BCS → Target Plan)",
+    category: "pets",
+    subcategory: "cats-growth-size-measures",
+    description: "Use the **Body Condition Score (BCS)** system to assess your cat's fat level and formulate a target weight plan.",
+    loader: () => import("@/components/calculators/Pets/CatBodyConditionScoreBcsTargetCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
