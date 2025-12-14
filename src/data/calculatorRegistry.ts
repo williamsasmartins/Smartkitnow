@@ -1591,6 +1591,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatEssentialOilsExposureRiskCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-lilies-poisoning-risk-guide",
+    title: "Lilies Poisoning Risk Guide (cats)",
+    category: "pets",
+    subcategory: "cats-toxicology-hazard",
+    description: "Guide to the extreme and potentially fatal kidney toxicity risk posed by exposure to various types of lilies.",
+    loader: () => import("@/components/calculators/Pets/CatLiliesPoisoningRiskGuideCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
