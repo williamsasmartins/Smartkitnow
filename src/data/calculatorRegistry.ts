@@ -2194,6 +2194,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdAntibioticDoseReferenceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-omega-3-supplement-dose-parrots",
+    title: "Omega-3 Supplement Dose (for parrots)",
+    category: "pets",
+    subcategory: "birds-medication",
+    description: "Determine the correct daily supplement dosage of Omega-3s for parrots and other large pet birds.",
+    loader: () => import("@/components/calculators/Pets/BirdOmega3SupplementDoseParrotsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
