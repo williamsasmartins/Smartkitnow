@@ -1888,6 +1888,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdDailyCalorieNeedsBodyWeightCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-seed-to-pellet-conversion-planner",
+    title: "Seed-to-Pellet Conversion Planner",
+    category: "pets",
+    subcategory: "birds-nutrition-weight",
+    description: "Plan a gradual conversion schedule from a seed-based diet to a healthier, complete pellet diet.",
+    loader: () => import("@/components/calculators/Pets/BirdSeedToPelletConversionPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
