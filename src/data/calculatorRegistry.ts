@@ -1735,6 +1735,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatPlaySessionPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-resting-active-hours-balance-tracker",
+    title: "Resting vs. Active Hours Balance Tracker (owner input)",
+    category: "pets",
+    subcategory: "cats-activity-lifestyle",
+    description: "Tool for owners to track and assess the balance between their cat's resting and active hours.",
+    loader: () => import("@/components/calculators/Pets/CatRestingActiveHoursBalanceTrackerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
