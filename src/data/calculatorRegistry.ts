@@ -1690,6 +1690,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatBodyConditionScoreBcsTargetCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-bmi-body-index-educational",
+    title: "Cat BMI/Body Index (educational)",
+    category: "pets",
+    subcategory: "cats-growth-size-measures",
+    description: "Educational tool to understand the concept of a feline body mass index for health tracking.",
+    loader: () => import("@/components/calculators/Pets/CatBmiBodyIndexEducationalCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
