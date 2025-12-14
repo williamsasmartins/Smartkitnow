@@ -2113,6 +2113,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdCalciumSupplementDosageBreedingFemalesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-weight-trend-tracker-weekly",
+    title: "Weight Trend Tracker (Weekly Log)",
+    category: "pets",
+    subcategory: "birds-nutrition-weight",
+    description: "Tool to log and track a bird's weight weekly to catch subtle signs of illness or nutritional imbalance.",
+    loader: () => import("@/components/calculators/Pets/BirdWeightTrendTrackerWeeklyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
