@@ -1798,6 +1798,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatPhosphorusPerMealEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-pregnancy-gestation-due-date",
+    title: "Cat Pregnancy (Gestation) Due-Date Calculator",
+    category: "pets",
+    subcategory: "cats-reproduction",
+    description: "Calculate the expected **due date** for a pregnant cat (queen) based on the date of breeding.",
+    loader: () => import("@/components/calculators/Pets/CatPregnancyGestationDueDateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
