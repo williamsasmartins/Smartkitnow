@@ -2212,6 +2212,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdElectrolyteVitaminCWaterMixCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-daily-feeding-ratio-species-age",
+    title: "Daily Feeding Ratio (by Species & Age)",
+    category: "pets",
+    subcategory: "reptiles-nutrition-environment",
+    description: "Determine the optimal feeding frequency and ratio of prey/vegetables based on the reptile's species and age.",
+    loader: () => import("@/components/calculators/Pets/ReptileDailyFeedingRatioSpeciesAgeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
