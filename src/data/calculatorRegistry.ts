@@ -1816,6 +1816,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/KittenWeaningTimelineFeedingAmountsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-shedding-combing-time-planner",
+    title: "Shedding & Combing Time Planner",
+    category: "pets",
+    subcategory: "cats-grooming-care",
+    description: "Plan an optimal combing schedule to manage shedding based on coat type and season.",
+    loader: () => import("@/components/calculators/Pets/CatSheddingCombingTimePlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
