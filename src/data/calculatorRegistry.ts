@@ -1942,6 +1942,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseProteinLysineRequirementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-electrolyte-need-estimator",
+    title: "Horse Electrolyte Need Estimator (Exercise & Heat)",
+    category: "pets",
+    subcategory: "horses-nutrition-weight",
+    description: "Estimate necessary electrolyte supplementation based on ambient heat and intensity of exercise/sweating.",
+    loader: () => import("@/components/calculators/Pets/HorseElectrolyteNeedEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
