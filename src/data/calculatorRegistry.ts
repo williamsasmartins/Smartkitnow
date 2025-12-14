@@ -1969,6 +1969,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseWaterIntakeTemperatureWeightCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-dehydration-risk-estimator",
+    title: "Dehydration Risk Estimator (Skin Turgor + Mucous Check)",
+    category: "pets",
+    subcategory: "horses-hydration",
+    description: "Assess dehydration risk using the skin pinch (turgor) test and capillary refill time (mucous checks).",
+    loader: () => import("@/components/calculators/Pets/HorseDehydrationRiskEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
