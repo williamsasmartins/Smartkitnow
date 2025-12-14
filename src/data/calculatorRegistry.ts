@@ -2167,6 +2167,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdAmbientTemperatureSafeZoneCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-daily-water-requirement-per-weight",
+    title: "Daily Water Requirement per Weight",
+    category: "pets",
+    subcategory: "birds-hydration",
+    description: "Calculate the minimum daily water volume needed for a bird based on its weight.",
+    loader: () => import("@/components/calculators/Pets/BirdDailyWaterRequirementPerWeightCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
