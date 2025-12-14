@@ -1834,6 +1834,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatNailTrimIntervalPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "multi-cat-litter-box-count-calculator",
+    title: "Multi-Cat Litter Box Count Calculator",
+    category: "pets",
+    subcategory: "cats-behavior-environment",
+    description: "Calculate the correct number of litter boxes needed for a multi-cat household to minimize stress and accidents.",
+    loader: () => import("@/components/calculators/Pets/MultiCatLitterBoxCountCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
