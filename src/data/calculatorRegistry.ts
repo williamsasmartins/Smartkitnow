@@ -1987,6 +1987,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseColicRiskAssessmentCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-laminitis-risk-index",
+    title: "Laminitis Risk Index (BCS + NSC intake)",
+    category: "pets",
+    subcategory: "horses-health-toxicology",
+    description: "Calculate the risk of **Laminitis (Founder)** based on Body Condition Score and non-structural carbohydrate (NSC) intake.",
+    loader: () => import("@/components/calculators/Pets/HorseLaminitisRiskIndexCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
