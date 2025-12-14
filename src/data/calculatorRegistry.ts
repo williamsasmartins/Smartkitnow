@@ -1636,6 +1636,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatMeloxicamDoseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-gabapentin-dose",
+    title: "Gabapentin Dose Calculator for Cats",
+    category: "pets",
+    subcategory: "cats-medication-dosing",
+    description: "Calculate the proper dosage for the nerve pain and sedation medication **Gabapentin** in cats by weight.",
+    loader: () => import("@/components/calculators/Pets/CatGabapentinDoseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
