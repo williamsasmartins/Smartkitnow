@@ -1924,6 +1924,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseFeedingRateForageConcentrateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-hay-intake-bodyweight-percent",
+    title: "Horse Hay Intake Calculator (per body weight %)",
+    category: "pets",
+    subcategory: "horses-nutrition-weight",
+    description: "Determine the recommended minimum and maximum hay intake as a percentage of the horse's body weight.",
+    loader: () => import("@/components/calculators/Pets/HorseHayIntakeBodyweightPercentCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
