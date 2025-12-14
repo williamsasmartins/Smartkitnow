@@ -1744,6 +1744,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatRestingActiveHoursBalanceTrackerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-age-human-years-breed-size-aware",
+    title: "Cat Age in Human Years (Breed/Size Aware)",
+    category: "pets",
+    subcategory: "cats-age-longevity",
+    description: "Convert your cat's age to human years using a method that accounts for life stage and size.",
+    loader: () => import("@/components/calculators/Pets/CatAgeHumanYearsBreedSizeAwareCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
