@@ -1645,6 +1645,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatGabapentinDoseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-prednisolone-dose",
+    title: "Prednisolone Dose Calculator for Cats",
+    category: "pets",
+    subcategory: "cats-medication-dosing",
+    description: "Calculate the correct dosage for the anti-inflammatory steroid **Prednisolone** in cats.",
+    loader: () => import("@/components/calculators/Pets/CatPrednisoloneDoseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
