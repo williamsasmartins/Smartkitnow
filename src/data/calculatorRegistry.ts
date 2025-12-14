@@ -1708,6 +1708,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatCarrierSizeFitGuideCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-harness-size-fit-guide",
+    title: "Cat Harness Size & Fit Guide",
+    category: "pets",
+    subcategory: "cats-growth-size-measures",
+    description: "Guide to measure and select the correct harness size and fit for walking or outdoor time.",
+    loader: () => import("@/components/calculators/Pets/CatHarnessSizeFitGuideCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
