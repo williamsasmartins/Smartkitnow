@@ -1555,6 +1555,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatOnionGarlicToxicityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-grape-raisin-exposure-risk",
+    title: "Cat Grape/Raisin Exposure Risk (educational)",
+    category: "pets",
+    subcategory: "cats-toxicology-hazard",
+    description: "Educational tool on the potential, though rare, kidney toxicity risk from grapes and raisins in cats.",
+    loader: () => import("@/components/calculators/Pets/CatGrapeRaisinExposureRiskCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
