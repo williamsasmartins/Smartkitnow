@@ -2140,6 +2140,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdHeavyMetalExposureRiskCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-feather-plucking-stress-risk-index",
+    title: "Feather Plucking & Stress Risk Index",
+    category: "pets",
+    subcategory: "birds-health-toxicology",
+    description: "Index to assess the environmental and behavioral stress factors that may lead to feather plucking behavior.",
+    loader: () => import("@/components/calculators/Pets/BirdFeatherPluckingStressRiskIndexCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
