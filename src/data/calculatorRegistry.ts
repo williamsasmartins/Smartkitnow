@@ -2158,6 +2158,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdEggBindingRiskEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-ambient-temperature-safe-zone",
+    title: "Ambient Temperature Safe Zone Calculator",
+    category: "pets",
+    subcategory: "birds-health-toxicology",
+    description: "Determine the ideal ambient temperature range for the bird's enclosure to prevent heat stress or chill.",
+    loader: () => import("@/components/calculators/Pets/BirdAmbientTemperatureSafeZoneCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
