@@ -2068,6 +2068,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseOmega3SupplementPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-gestation-due-date",
+    title: "Horse Gestation (Due Date) Calculator",
+    category: "pets",
+    subcategory: "horses-reproduction",
+    description: "Calculate the expected **foaling (birth) date** for a pregnant mare.",
+    loader: () => import("@/components/calculators/Pets/HorseGestationDueDateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
