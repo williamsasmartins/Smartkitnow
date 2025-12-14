@@ -1897,6 +1897,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdSeedToPelletConversionPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-uvb-lighting-distance-duration",
+    title: "UVB Lighting Distance & Duration Calculator",
+    category: "pets",
+    subcategory: "reptiles-nutrition-environment",
+    description: "Calculate the correct distance and duration for **UVB lighting** to ensure proper Vitamin D3 synthesis.",
+    loader: () => import("@/components/calculators/Pets/ReptileUvbLightingDistanceDurationCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
