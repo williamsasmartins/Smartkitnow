@@ -1672,6 +1672,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatInsulinStarterReferenceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "kitten-adult-weight-predictor",
+    title: "Kitten Adult Weight Predictor",
+    category: "pets",
+    subcategory: "cats-growth-size-measures",
+    description: "Predict your kitten's final adult weight and size based on current age, weight, and growth metrics.",
+    loader: () => import("@/components/calculators/Pets/KittenAdultWeightPredictorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
