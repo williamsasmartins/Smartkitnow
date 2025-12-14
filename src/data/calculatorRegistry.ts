@@ -1852,6 +1852,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatEnvironmentalEnrichmentPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-stress-score-playtime-offset-planner",
+    title: "Stress Score & Playtime Offset Planner (owner input)",
+    category: "pets",
+    subcategory: "cats-behavior-environment",
+    description: "Tool to help owners assess their cat's stress levels and plan appropriate corrective playtime or environment changes.",
+    loader: () => import("@/components/calculators/Pets/CatStressScorePlaytimeOffsetPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
