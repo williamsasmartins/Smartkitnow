@@ -2032,6 +2032,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseSaltMineralBalanceCheckerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-dewormer-dose-calculator",
+    title: "Dewormer Dose Calculator (by Drug Class & Weight)",
+    category: "pets",
+    subcategory: "horses-medication-supplement",
+    description: "Calculate the correct dosage for various types of dewormers (anthelmintics) based on drug class and horse weight.",
+    loader: () => import("@/components/calculators/Pets/HorseDewormerDoseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
