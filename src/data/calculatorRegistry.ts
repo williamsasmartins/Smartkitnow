@@ -1490,6 +1490,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/KittenCalorieNeedsAgeSizeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "senior-cat-nutrition-calorie-adjuster",
+    title: "Senior Cat Nutrition & Calorie Adjuster",
+    category: "pets",
+    subcategory: "cats-nutrition-weight",
+    description: "Adjust feeding plans and calorie targets for older cats, accounting for changes in metabolism and activity.",
+    loader: () => import("@/components/calculators/Pets/SeniorCatNutritionCalorieAdjusterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
