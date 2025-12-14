@@ -1499,6 +1499,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SeniorCatNutritionCalorieAdjusterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-treat-calories-daily-allowance",
+    title: "Cat Treat Calories & Daily Allowance",
+    category: "pets",
+    subcategory: "cats-nutrition-weight",
+    description: "Calculate the caloric contribution of cat treats and set a safe daily limit to prevent excess weight gain.",
+    loader: () => import("@/components/calculators/Pets/CatTreatCaloriesDailyAllowanceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
