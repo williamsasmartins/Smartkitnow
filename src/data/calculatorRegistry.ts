@@ -1582,6 +1582,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatCaffeineToxicityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-essential-oils-exposure-risk",
+    title: "Essential Oils Exposure Risk (diffuser/dermal)",
+    category: "pets",
+    subcategory: "cats-toxicology-hazard",
+    description: "Assess the toxic risk from exposure to essential oils (e.g., concentrated tea tree oil) via diffusers or skin contact.",
+    loader: () => import("@/components/calculators/Pets/CatEssentialOilsExposureRiskCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
