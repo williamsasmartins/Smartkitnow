@@ -1879,6 +1879,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseWeightEstimatorGirthLengthCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-daily-calorie-needs-body-weight",
+    title: "Daily Calorie Needs by Body Weight",
+    category: "pets",
+    subcategory: "birds-nutrition-weight",
+    description: "Calculate the daily calorie and energy requirements for different species of birds based on body weight.",
+    loader: () => import("@/components/calculators/Pets/BirdDailyCalorieNeedsBodyWeightCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
