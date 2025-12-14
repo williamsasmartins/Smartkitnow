@@ -2095,6 +2095,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdHandFeedingFormulaAmountChicksCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-vitamin-a-requirement",
+    title: "Vitamin A Requirement Calculator",
+    category: "pets",
+    subcategory: "birds-nutrition-weight",
+    description: "Calculate the required daily intake of Vitamin A, deficiency of which is common in seed-fed birds.",
+    loader: () => import("@/components/calculators/Pets/BirdVitaminARequirementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
