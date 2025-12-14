@@ -1564,6 +1564,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatGrapeRaisinExposureRiskCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-xylitol-exposure-risk",
+    title: "Xylitol Exposure Risk for Cats (rare but educational)",
+    category: "pets",
+    subcategory: "cats-toxicology-hazard",
+    description: "Educational tool detailing the severe risk of Xylitol poisoning, even though cat exposure is less frequent.",
+    loader: () => import("@/components/calculators/Pets/CatXylitolExposureRiskCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
