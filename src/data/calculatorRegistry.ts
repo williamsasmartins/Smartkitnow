@@ -1717,6 +1717,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatHarnessSizeFitGuideCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-activity-calorie-adjuster",
+    title: "Indoor/Outdoor Activity Calorie Adjuster",
+    category: "pets",
+    subcategory: "cats-activity-lifestyle",
+    description: "Adjust daily calorie targets based on whether your cat is strictly indoor or has outdoor access.",
+    loader: () => import("@/components/calculators/Pets/CatActivityCalorieAdjusterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
