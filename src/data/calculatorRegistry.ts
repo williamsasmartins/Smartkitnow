@@ -1915,6 +1915,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileBaskingTemperatureGradientPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-feeding-rate-forage-concentrate",
+    title: "Horse Feeding Rate Calculator (Forage + Concentrate)",
+    category: "pets",
+    subcategory: "horses-nutrition-weight",
+    description: "Calculate the required daily feeding rate for both forage (hay/grass) and concentrated feeds.",
+    loader: () => import("@/components/calculators/Pets/HorseFeedingRateForageConcentrateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
