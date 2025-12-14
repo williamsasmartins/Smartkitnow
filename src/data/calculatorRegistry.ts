@@ -2203,6 +2203,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdOmega3SupplementDoseParrotsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-electrolyte-vitamin-c-water-mix",
+    title: "Electrolyte & Vitamin C Water Mix Calculator",
+    category: "pets",
+    subcategory: "birds-medication",
+    description: "Calculate the safe concentration for mixing electrolytes and Vitamin C into a bird's drinking water.",
+    loader: () => import("@/components/calculators/Pets/BirdElectrolyteVitaminCWaterMixCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
