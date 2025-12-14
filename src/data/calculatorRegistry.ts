@@ -1870,6 +1870,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseCalorieEnergyRequirementDeTdnCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-weight-estimator-girth-length",
+    title: "Horse Weight Estimator (Heart Girth & Length)",
+    category: "pets",
+    subcategory: "horses-nutrition-weight",
+    description: "Estimate your horse's body weight accurately using heart girth circumference and body length measurements.",
+    loader: () => import("@/components/calculators/Pets/HorseWeightEstimatorGirthLengthCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
