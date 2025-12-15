@@ -2510,6 +2510,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalCalciumIntakeLimitCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "rabbit-treat-calories-safe-portion",
+    title: "Rabbit Treat Calories & Safe Portion",
+    category: "pets",
+    subcategory: "small-mammals-nutrition-weight",
+    description: "Calculate the calorie content of treats and the safe maximum portion size for rabbits.",
+    loader: () => import("@/components/calculators/Pets/RabbitTreatCaloriesSafePortionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
