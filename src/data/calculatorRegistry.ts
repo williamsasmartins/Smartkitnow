@@ -2249,6 +2249,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileFeederInsectGutLoadingRatioCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-dehydration-shedding-risk-index",
+    title: "Dehydration & Shedding Risk Index",
+    category: "pets",
+    subcategory: "reptiles-health",
+    description: "Assess the risk of dehydration-related issues, such as poor or stuck shedding.",
+    loader: () => import("@/components/calculators/Pets/ReptileDehydrationSheddingRiskIndexCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
