@@ -2132,6 +2132,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdToxicFoodsExposureCheckerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-heavy-metal-exposure-risk",
+    title: "Heavy Metal (Lead/Zinc) Exposure Risk",
+    category: "pets",
+    subcategory: "birds-health-toxicology",
+    description: "Assess the risk of poisoning from exposure to heavy metals like **lead or zinc** (e.g., from cages or toys).",
+    loader: () => import("@/components/calculators/Pets/BirdHeavyMetalExposureRiskCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
