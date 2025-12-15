@@ -2610,6 +2610,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/LengthMFtInCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "area-m2-ft2",
+    title: "Area: m² ↔ ft²",
+    category: "conversion",
+    subcategory: "core-units",
+    description: "Calculate area conversions for real estate and land. Convert square meters to square feet (m² to sq ft) and other area units accurately.",
+    loader: () => import("@/components/calculators/Conversion/AreaM2Ft2Calculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
