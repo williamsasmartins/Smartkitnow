@@ -2573,6 +2573,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalParasiteTreatmentDoseReferenceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "small-mammal-cage-size-requirement",
+    title: "Cage Size Requirement Calculator",
+    category: "pets",
+    subcategory: "small-mammals-behavior-care",
+    description: "Calculate the minimum cage or enclosure size required for specific small mammal species (e.g., minimum cubic feet).",
+    loader: () => import("@/components/calculators/Pets/SmallMammalCageSizeRequirementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
