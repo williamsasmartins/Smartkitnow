@@ -2231,6 +2231,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileCalciumToPhosphorusRatioCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-vitamin-d3-requirement",
+    title: "Vitamin D3 Requirement (Supplemental)",
+    category: "pets",
+    subcategory: "reptiles-nutrition-environment",
+    description: "Determine the supplemental D3 dosage needed if UVB lighting is inadequate or unavailable.",
+    loader: () => import("@/components/calculators/Pets/ReptileVitaminD3RequirementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
