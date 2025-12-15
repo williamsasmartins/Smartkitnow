@@ -2636,6 +2636,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/MassKgLbOzCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "temperature-c-f-k",
+    title: "Temperature: °C ↔ °F ↔ K",
+    category: "conversion",
+    subcategory: "core-units",
+    description: "Convert temperature readings. Switch between Celsius (°C), Fahrenheit (°F), and Kelvin (K) for weather, science, and cooking applications.",
+    loader: () => import("@/components/calculators/Conversion/TemperatureCFKCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
