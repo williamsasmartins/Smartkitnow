@@ -2384,6 +2384,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumPhAdjustmentBufferCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "aquarium-ammonia-nitrite-cycle-time",
+    title: "Ammonia-to-Nitrite Cycle Time Estimator",
+    category: "pets",
+    subcategory: "fish-aquatic-water-chemistry-nutrition",
+    description: "Estimate the time needed for a new aquarium to complete its nitrogen cycle (converting ammonia to nitrite to nitrate).",
+    loader: () => import("@/components/calculators/Pets/AquariumAmmoniaNitriteCycleTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
