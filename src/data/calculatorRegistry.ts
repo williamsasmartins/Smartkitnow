@@ -2051,6 +2051,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorsePhenylbutazoneFlunixinDoseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-electrolyte-powder-mixing",
+    title: "Electrolyte Powder Mixing Calculator",
+    category: "pets",
+    subcategory: "horses-medication-supplement",
+    description: "Determine the correct ratio for mixing electrolyte powders into water or feed for performance horses.",
+    loader: () => import("@/components/calculators/Pets/HorseElectrolytePowderMixingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
