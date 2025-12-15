@@ -2303,6 +2303,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileDewormerAntibioticDoseReferenceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-calcium-d3-supplement",
+    title: "Calcium + D3 Supplement Calculator",
+    category: "pets",
+    subcategory: "reptiles-medication",
+    description: "Calculate the required dusting frequency and amount of Calcium and D3 supplement powder for feeders.",
+    loader: () => import("@/components/calculators/Pets/ReptileCalciumD3SupplementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
