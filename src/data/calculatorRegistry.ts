@@ -2645,6 +2645,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/TemperatureCFKCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "density-g-per-ml-kg-per-m3",
+    title: "Density: g/mL ↔ kg/m³",
+    category: "conversion",
+    subcategory: "core-units",
+    description: "Calculate density conversions. Transform grams per milliliter to kilograms per cubic meter for chemistry and physics calculations.",
+    loader: () => import("@/components/calculators/Conversion/DensityGPerMlKgPerM3Calculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
