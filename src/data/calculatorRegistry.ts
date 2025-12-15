@@ -2627,6 +2627,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/VolumeLMlGalOzCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "mass-kg-lb-oz",
+    title: "Mass: kg ↔ lb ↔ oz",
+    category: "conversion",
+    subcategory: "core-units",
+    description: "Convert weight and mass units. Instantly calculate kilograms to pounds (kg to lbs), ounces to grams, and more for fitness or shipping.",
+    loader: () => import("@/components/calculators/Conversion/MassKgLbOzCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
