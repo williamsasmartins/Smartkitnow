@@ -2591,6 +2591,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalExerciseTimePlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "small-mammal-bedding-replacement-frequency",
+    title: "Bedding Replacement Frequency Estimator",
+    category: "pets",
+    subcategory: "small-mammals-behavior-care",
+    description: "Estimate how often bedding needs to be fully replaced to maintain hygiene and prevent ammonia buildup.",
+    loader: () => import("@/components/calculators/Pets/SmallMammalBeddingReplacementFrequencyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
