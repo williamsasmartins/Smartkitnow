@@ -2555,6 +2555,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalCommonToxicFoodsReferenceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "small-mammal-safe-vegetables-fruits-portion",
+    title: "Safe Vegetables & Fruits Portion Calculator",
+    category: "pets",
+    subcategory: "small-mammals-health-toxicology",
+    description: "Calculate the maximum safe daily portion of various vegetables and fruits to prevent digestive upset.",
+    loader: () => import("@/components/calculators/Pets/SmallMammalSafeVegetablesFruitsPortionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
