@@ -2420,6 +2420,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/FishFoodFeedingRateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "oxygen-solubility-vs-temperature-table",
+    title: "Oxygen Solubility vs. Temperature Table",
+    category: "pets",
+    subcategory: "fish-aquatic-water-chemistry-nutrition",
+    description: "Reference table showing how the maximum solubility of dissolved oxygen changes with water temperature.",
+    loader: () => import("@/components/calculators/Pets/OxygenSolubilityVsTemperatureTableCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
