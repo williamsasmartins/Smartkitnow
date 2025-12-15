@@ -2438,6 +2438,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/PondVolumeLinerSizeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "koi-feed-planner-temp-weight",
+    title: "Koi Feed Planner (Temp + Weight)",
+    category: "pets",
+    subcategory: "fish-aquatic-pond-breeding",
+    description: "Plan the optimal feeding rate for Koi fish based on their body weight and the current water temperature.",
+    loader: () => import("@/components/calculators/Pets/KoiFeedPlannerTempWeightCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
