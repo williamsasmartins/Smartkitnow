@@ -2258,6 +2258,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileDehydrationSheddingRiskIndexCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-metabolic-bone-disease-risk",
+    title: "Metabolic Bone Disease Risk Estimator",
+    category: "pets",
+    subcategory: "reptiles-health",
+    description: "Estimate the risk of **Metabolic Bone Disease (MBD)** based on calcium/D3/UVB light availability.",
+    loader: () => import("@/components/calculators/Pets/ReptileMetabolicBoneDiseaseRiskCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
