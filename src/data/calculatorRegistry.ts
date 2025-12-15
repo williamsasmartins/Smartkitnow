@@ -2474,6 +2474,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalWeightMaintenanceGainLossPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "small-mammal-hay-pellet-intake",
+    title: "Hay & Pellet Intake Calculator",
+    category: "pets",
+    subcategory: "small-mammals-nutrition-weight",
+    description: "Calculate the ideal daily ratio and total amount of hay vs. pellets for herbivores like rabbits and guinea pigs.",
+    loader: () => import("@/components/calculators/Pets/SmallMammalHayPelletIntakeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
