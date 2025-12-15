@@ -2357,6 +2357,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumWaterChangeVolumePlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "aquarium-heater-wattage-requirement",
+    title: "Heater Wattage Requirement",
+    category: "pets",
+    subcategory: "fish-aquatic-volume-stocking",
+    description: "Determine the correct wattage heater needed to maintain the desired water temperature based on tank volume and room temperature.",
+    loader: () => import("@/components/calculators/Pets/AquariumHeaterWattageRequirementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
