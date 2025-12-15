@@ -2619,6 +2619,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/AreaM2Ft2Calculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "volume-l-ml-gal-oz",
+    title: "Volume: L ↔ mL ↔ gal ↔ oz",
+    category: "conversion",
+    subcategory: "core-units",
+    description: "Convert liquid volume units easily. Switch between liters, milliliters, gallons, and fluid ounces for cooking, science, or industrial needs.",
+    loader: () => import("@/components/calculators/Conversion/VolumeLMlGalOzCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
