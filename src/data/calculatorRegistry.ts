@@ -2339,6 +2339,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumSafeStockingDensityFishPerLitreCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "aquarium-filter-flow-rate",
+    title: "Filter Flow Rate Calculator",
+    category: "pets",
+    subcategory: "fish-aquatic-volume-stocking",
+    description: "Calculate the minimum required filter flow rate (LPH/GPH) to turn over the tank volume adequately.",
+    loader: () => import("@/components/calculators/Pets/AquariumFilterFlowRateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
