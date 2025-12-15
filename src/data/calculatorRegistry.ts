@@ -2321,6 +2321,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileFluidReplacementVolumeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "aquarium-volume-rectangular-cylindrical-bowfront",
+    title: "Aquarium Volume Calculator (Rectangular / Cylindrical / Bowfront)",
+    category: "pets",
+    subcategory: "fish-aquatic-volume-stocking",
+    description: "Calculate the accurate volume (in Liters or Gallons) of rectangular, cylindrical, or bowfront aquariums.",
+    loader: () => import("@/components/calculators/Pets/AquariumVolumeRectangularCylindricalBowfrontCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
