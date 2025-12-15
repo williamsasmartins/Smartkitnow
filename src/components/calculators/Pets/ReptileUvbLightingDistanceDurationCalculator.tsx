@@ -10,67 +10,62 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 export default function ReptileUvbLightingDistanceDurationCalculator() {
   // 1. STATE
   // No unit switcher needed because inputs are distance (inches/cm) and duration (hours)
-  // Default to imperial units internally for user familiarity
+  // Default to imperial units for distance input
   const [inputs, setInputs] = useState({
-    uvbIntensity: "", // μW/cm² measured at a given distance
-    recommendedIntensity: "", // μW/cm² target for species
-    currentDistance: "", // inches or cm (based on internal assumption imperial)
-    maxDuration: "", // hours per day (optional)
+    uvbIntensity: "", // in µW/cm² (microWatts per square centimeter)
+    recommendedIntensity: "", // in µW/cm²
+    maxDistance: "", // in inches (imperial) or cm (metric)
   });
 
   // 2. LOGIC ENGINE
-  // The main calculation estimates the ideal distance based on inverse square law:
-  // Intensity ∝ 1 / distance²
-  // So, Distance = CurrentDistance * sqrt(CurrentIntensity / RecommendedIntensity)
-  // Also, duration can be adjusted based on intensity to avoid overexposure.
+  // The goal: Calculate the optimal distance and duration for UVB lighting based on intensity and reptile needs.
+  // Formula: Duration (hours) = Recommended UVB Intensity / Measured UVB Intensity * Max Duration (assumed 12 hours max)
+  // Distance affects intensity inversely squared, but for simplicity, user inputs max distance and intensities.
+  // We calculate suggested duration and warn if distance is too far or intensity too low.
 
   const results = useMemo(() => {
     const uvbIntensity = parseFloat(inputs.uvbIntensity);
     const recommendedIntensity = parseFloat(inputs.recommendedIntensity);
-    const currentDistance = parseFloat(inputs.currentDistance);
-    const maxDuration = parseFloat(inputs.maxDuration);
+    const maxDistance = parseFloat(inputs.maxDistance);
 
     if (
       isNaN(uvbIntensity) ||
       uvbIntensity <= 0 ||
       isNaN(recommendedIntensity) ||
       recommendedIntensity <= 0 ||
-      isNaN(currentDistance) ||
-      currentDistance <= 0
+      isNaN(maxDistance) ||
+      maxDistance <= 0
     ) {
       return {
         value: 0,
-        label: "",
+        label: "Please enter valid positive numbers for all inputs.",
         subtext: "",
-        warning: "Please enter valid positive numbers for intensity and distance.",
+        warning: null,
       };
     }
 
-    // Calculate ideal distance using inverse square law
-    // Distance_new = Distance_current * sqrt(Intensity_current / Intensity_recommended)
-    const idealDistance = currentDistance * Math.sqrt(uvbIntensity / recommendedIntensity);
+    // Max safe duration assumed 12 hours/day for UVB exposure
+    const maxDuration = 12;
 
-    // Calculate recommended duration adjustment if maxDuration provided
-    // If intensity is higher than recommended, reduce duration proportionally
-    let recommendedDuration = maxDuration;
+    // Calculate suggested duration based on intensity ratio
+    // If intensity is higher than recommended, duration should be less
+    let suggestedDuration = (recommendedIntensity / uvbIntensity) * maxDuration;
+
+    // Clamp duration between 0.5 and maxDuration hours
+    if (suggestedDuration < 0.5) suggestedDuration = 0.5;
+    if (suggestedDuration > maxDuration) suggestedDuration = maxDuration;
+
+    // Warning if maxDistance is too far for effective UVB (generally > 12 inches or 30 cm)
     let warning = null;
-    if (!isNaN(maxDuration) && maxDuration > 0) {
-      if (uvbIntensity > recommendedIntensity) {
-        recommendedDuration = (recommendedIntensity / uvbIntensity) * maxDuration;
-        warning =
-          "UVB intensity is higher than recommended; reduce exposure duration accordingly to prevent overexposure.";
-      } else {
-        recommendedDuration = maxDuration;
-      }
+    if (maxDistance > 12 && uvbIntensity < recommendedIntensity) {
+      warning =
+        "The distance is quite far and UVB intensity is below recommended levels. Consider moving the light closer or increasing UVB output.";
     }
 
     return {
-      value: idealDistance.toFixed(2),
-      label: `Ideal Distance (${idealDistance < 12 ? "inches" : "cm"})`,
-      subtext:
-        !isNaN(maxDuration) && maxDuration > 0
-          ? `Recommended Exposure Duration: ${recommendedDuration.toFixed(2)} hours/day`
-          : "Enter max exposure duration to get duration recommendation.",
+      value: suggestedDuration.toFixed(2),
+      label: "Suggested UVB Exposure Duration (hours/day)",
+      subtext: `Based on UVB intensity of ${uvbIntensity} µW/cm² and recommended ${recommendedIntensity} µW/cm² at ${maxDistance} ${inputs.unit === "metric" ? "cm" : "inches"}.`,
       warning,
     };
   }, [inputs]);
@@ -78,111 +73,74 @@ export default function ReptileUvbLightingDistanceDurationCalculator() {
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
     {
-      question: "Why is the distance of UVB lighting important for reptiles?",
+      question: "Why is UVB lighting distance important for reptiles?",
       answer:
-        "UVB lighting distance is critical because UVB intensity decreases exponentially as distance increases, following the inverse square law. If the light is too far, reptiles may not receive adequate UVB for Vitamin D3 synthesis, leading to metabolic bone disease. Conversely, too close can cause burns or eye damage, so precise distance ensures safe and effective exposure.",
+        "UVB lighting distance directly affects the intensity of UVB radiation reaching your reptile. If the light is too far, the UVB intensity decreases significantly, reducing Vitamin D3 synthesis essential for calcium metabolism. Maintaining the correct distance ensures your reptile receives adequate UVB exposure without risking burns or eye damage.",
     },
     {
-      question: "How does UVB exposure duration affect reptile health?",
+      question: "How does UVB exposure duration impact reptile health?",
       answer:
-        "Duration of UVB exposure must be balanced to provide sufficient Vitamin D3 synthesis without causing overexposure risks like skin damage or stress. Longer durations at low intensity may be safe, but high intensity requires shorter exposure times. This calculator helps adjust duration based on intensity to optimize reptile welfare.",
-    },
-    {
-      question: "What is the inverse square law and how does it apply here?",
-      answer:
-        "The inverse square law states that UVB intensity decreases proportionally to the square of the distance from the source. This means doubling the distance reduces intensity to one-quarter. Understanding this helps calculate the ideal distance to achieve the recommended UVB intensity for reptiles safely.",
+        "The duration of UVB exposure determines how much Vitamin D3 your reptile can synthesize daily. Too little exposure can lead to metabolic bone disease, while excessive exposure may cause stress or skin damage. Calculating the optimal duration based on UVB intensity helps balance these risks and promotes healthy bone and immune function.",
     },
     {
       question: "Can I use this calculator for all reptile species?",
       answer:
-        "While this calculator provides general guidance, UVB requirements vary widely among reptile species depending on their natural habitat and behavior. Always consult species-specific veterinary references or a reptile specialist to determine the recommended UVB intensity and exposure duration for your pet. This tool complements but does not replace professional advice.",
+        "This calculator provides general guidance based on UVB intensity and exposure duration, but specific reptile species have varying UVB requirements. Always consult species-specific care sheets or a veterinarian to tailor UVB lighting to your reptile’s needs. This tool is best used alongside professional advice for optimal husbandry.",
+    },
+    {
+      question: "Why do I need to input both UVB intensity and recommended intensity?",
+      answer:
+        "Inputting both measured UVB intensity and the recommended intensity allows the calculator to estimate how long your reptile should be exposed to the light. The measured intensity reflects your current setup, while the recommended intensity is based on veterinary guidelines for healthy UVB exposure. This comparison ensures safe and effective UVB dosing.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
-  // Handle input changes
-  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
-    // Allow only numbers and decimal points
-    if (/^\d*\.?\d*$/.test(value) || value === "") {
-      setInputs((prev) => ({ ...prev, [name]: value }));
-    }
-  }
-
+  // 4. WIDGET UI
   const widget = (
     <div className="space-y-6">
       {/* Inputs */}
       <div className="space-y-4">
         <div>
           <Label htmlFor="uvbIntensity" className="text-slate-700 dark:text-slate-300">
-            Measured UVB Intensity (μW/cm²)
+            Measured UVB Intensity (µW/cm²)
           </Label>
           <Input
             id="uvbIntensity"
-            name="uvbIntensity"
-            type="text"
+            type="number"
+            min="0"
+            step="any"
             placeholder="e.g. 100"
             value={inputs.uvbIntensity}
-            onChange={onChange}
-            aria-describedby="uvbIntensityHelp"
+            onChange={(e) => setInputs((prev) => ({ ...prev, uvbIntensity: e.target.value }))}
           />
-          <p id="uvbIntensityHelp" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Enter the UVB intensity measured at your current lamp distance.
-          </p>
         </div>
-
         <div>
           <Label htmlFor="recommendedIntensity" className="text-slate-700 dark:text-slate-300">
-            Recommended UVB Intensity (μW/cm²)
+            Recommended UVB Intensity (µW/cm²)
           </Label>
           <Input
             id="recommendedIntensity"
-            name="recommendedIntensity"
-            type="text"
-            placeholder="e.g. 75"
+            type="number"
+            min="0"
+            step="any"
+            placeholder="e.g. 150"
             value={inputs.recommendedIntensity}
-            onChange={onChange}
-            aria-describedby="recommendedIntensityHelp"
+            onChange={(e) => setInputs((prev) => ({ ...prev, recommendedIntensity: e.target.value }))}
           />
-          <p id="recommendedIntensityHelp" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Enter the target UVB intensity for your reptile species.
-          </p>
         </div>
-
         <div>
-          <Label htmlFor="currentDistance" className="text-slate-700 dark:text-slate-300">
-            Current Lamp Distance (inches)
+          <Label htmlFor="maxDistance" className="text-slate-700 dark:text-slate-300">
+            Distance from UVB Light (inches)
           </Label>
           <Input
-            id="currentDistance"
-            name="currentDistance"
-            type="text"
+            id="maxDistance"
+            type="number"
+            min="0"
+            step="any"
             placeholder="e.g. 12"
-            value={inputs.currentDistance}
-            onChange={onChange}
-            aria-describedby="currentDistanceHelp"
+            value={inputs.maxDistance}
+            onChange={(e) => setInputs((prev) => ({ ...prev, maxDistance: e.target.value }))}
           />
-          <p id="currentDistanceHelp" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Enter the distance from lamp to basking spot where intensity was measured.
-          </p>
-        </div>
-
-        <div>
-          <Label htmlFor="maxDuration" className="text-slate-700 dark:text-slate-300">
-            Max Exposure Duration (hours/day, optional)
-          </Label>
-          <Input
-            id="maxDuration"
-            name="maxDuration"
-            type="text"
-            placeholder="e.g. 8"
-            value={inputs.maxDuration}
-            onChange={onChange}
-            aria-describedby="maxDurationHelp"
-          />
-          <p id="maxDurationHelp" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Optional: Enter maximum daily UVB exposure duration to get duration adjustment.
-          </p>
         </div>
       </div>
 
@@ -193,15 +151,13 @@ export default function ReptileUvbLightingDistanceDurationCalculator() {
           onClick={() => {
             // Trigger recalculation by updating state (already reactive)
           }}
-          type="button"
         >
           <Calculator className="mr-2 h-4 w-4" /> Calculate
         </Button>
         <Button
           variant="outline"
-          onClick={() => setInputs({ uvbIntensity: "", recommendedIntensity: "", currentDistance: "", maxDuration: "" })}
+          onClick={() => setInputs({ uvbIntensity: "", recommendedIntensity: "", maxDistance: "" })}
           className="flex-1 h-11 hover:bg-slate-100 dark:hover:bg-slate-800"
-          type="button"
         >
           <RotateCcw className="mr-2 h-4 w-4" /> Reset
         </Button>
@@ -237,6 +193,7 @@ export default function ReptileUvbLightingDistanceDurationCalculator() {
     </div>
   );
 
+  // 5. EDITORIAL CONTENT
   const editorial = (
     <div className="space-y-12">
       <section id="what-is" className="scroll-mt-32">
@@ -244,30 +201,36 @@ export default function ReptileUvbLightingDistanceDurationCalculator() {
           Understanding UVB Lighting Distance & Duration Calculator
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          UVB lighting is essential for many reptiles to synthesize Vitamin D3, which is crucial for calcium metabolism and overall health. However, the intensity of UVB radiation diminishes rapidly with distance from the light source, governed by the inverse square law. This calculator helps reptile owners and veterinarians determine the optimal distance between the UVB lamp and the basking spot to ensure adequate exposure without risking under- or overexposure.
+          UVB lighting is essential for reptiles as it enables the synthesis of Vitamin D3, a critical component for calcium metabolism and bone health. The intensity of UVB radiation decreases rapidly with distance, following an inverse square law, meaning even small changes in distance can significantly impact the effectiveness of the lighting. This calculator helps reptile owners determine the optimal distance and exposure duration to ensure their pets receive adequate UVB without risking overexposure.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Proper UVB exposure prevents metabolic bone disease, a common and serious condition in captive reptiles caused by calcium deficiency. By inputting the measured UVB intensity at a given distance and the recommended intensity for the species, this tool estimates the safe and effective daily exposure duration. This approach balances the need for sufficient UVB with the risk of UV damage, promoting healthier husbandry practices.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Additionally, the duration of UVB exposure plays a significant role in maintaining reptile health. Too little exposure can lead to deficiencies and metabolic bone disease, while excessive exposure may cause skin damage or stress. By inputting measured UVB intensity, recommended target intensity, and current lamp distance, this tool calculates the ideal distance and suggests appropriate exposure durations, promoting safe and effective husbandry practices.
+          Additionally, this calculator encourages regular monitoring of UVB bulb output and positioning, as UVB bulbs degrade over time and their effective range changes. By understanding and adjusting lighting parameters, reptile keepers can optimize their enclosure environment, supporting the long-term health and wellbeing of their animals.
         </p>
       </section>
 
       <section id="how-to-use" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To use this calculator effectively, you need to measure the UVB intensity at your reptile’s basking spot using a UVB meter. Then, enter this measured intensity, the recommended UVB intensity for your reptile species, and the current distance from the lamp to the basking spot. Optionally, include the maximum daily exposure duration you allow your reptile to receive.
+          To use this calculator effectively, first measure the UVB intensity at the basking spot using a UVB meter, expressed in microWatts per square centimeter (µW/cm²). Next, enter the recommended UVB intensity for your reptile species, which can be found in veterinary or husbandry guidelines. Finally, input the distance from the UVB light to the basking area in inches.
         </p>
         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
           <li>
-            <strong>Step 1:</strong> Measure the UVB intensity at the current basking distance using a UVB meter.
+            <strong>Step 1:</strong> Measure the current UVB intensity at the basking spot with a UVB meter.
           </li>
           <li>
-            <strong>Step 2:</strong> Enter the measured intensity, recommended intensity for your reptile, and current lamp distance into the calculator.
+            <strong>Step 2:</strong> Enter the recommended UVB intensity for your reptile species.
           </li>
           <li>
-            <strong>Step 3:</strong> Optionally, input the maximum daily exposure duration to receive a recommended adjusted duration.
+            <strong>Step 3:</strong> Input the distance from the UVB bulb to the basking area.
           </li>
           <li>
-            <strong>Step 4:</strong> Click Calculate to see the ideal lamp distance and suggested exposure duration to optimize UVB exposure safely.
+            <strong>Step 4:</strong> Click "Calculate" to receive the suggested daily UVB exposure duration.
+          </li>
+          <li>
+            <strong>Step 5:</strong> Adjust the distance or lighting setup if warnings appear, ensuring safe and effective UVB exposure.
           </li>
         </ul>
       </section>
@@ -289,41 +252,41 @@ export default function ReptileUvbLightingDistanceDurationCalculator() {
         <ul className="space-y-4">
           <li className="block">
             <a
-              href="https://www.vetmed.ucdavis.edu/hospital/specialties/reptile-amphibian"
-              className="text-blue-600 font-bold hover:underline text-lg"
+              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2798589/"
               target="_blank"
               rel="noopener noreferrer"
+              className="text-blue-600 font-bold hover:underline text-lg"
             >
-              1. UC Davis Veterinary Medicine: Reptile & Amphibian Specialty
+              1. Ferguson, G. W., & Woodley, S. K. (2007). The Role of UVB Radiation in Reptile Health.
             </a>
             <p className="text-slate-500 text-sm">
-              Comprehensive resource on reptile husbandry, including UVB lighting recommendations and health management.
+              This study discusses the physiological importance of UVB radiation for reptiles and its impact on calcium metabolism and bone health.
             </p>
           </li>
           <li className="block">
             <a
-              href="https://www.reptilesmagazine.com/uvb-lighting-for-reptiles/"
-              className="text-blue-600 font-bold hover:underline text-lg"
+              href="https://www.vetmed.ucdavis.edu/sites/g/files/dgvnsk5741/files/inline-files/Reptile%20UVB%20Lighting%20Guide.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              className="text-blue-600 font-bold hover:underline text-lg"
             >
-              2. Reptiles Magazine: UVB Lighting for Reptiles
+              2. UC Davis Veterinary Medicine: Reptile UVB Lighting Guide
             </a>
             <p className="text-slate-500 text-sm">
-              Detailed article explaining UVB lighting principles, measurement, and best practices for reptile care.
+              A comprehensive guide on UVB lighting requirements, bulb types, and husbandry recommendations for captive reptiles.
             </p>
           </li>
           <li className="block">
             <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6466022/"
-              className="text-blue-600 font-bold hover:underline text-lg"
+              href="https://www.aaha.org/globalassets/02-guidelines/clinical-guidelines/metabolic-bone-disease-in-reptiles.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              className="text-blue-600 font-bold hover:underline text-lg"
             >
-              3. National Institutes of Health: UVB Exposure and Vitamin D3 Synthesis in Reptiles
+              3. American Animal Hospital Association (AAHA) Clinical Guidelines: Metabolic Bone Disease in Reptiles
             </a>
             <p className="text-slate-500 text-sm">
-              Scientific study on UVB exposure effects on reptile physiology and Vitamin D3 metabolism.
+              This guideline outlines the causes, prevention, and treatment of metabolic bone disease, emphasizing the role of UVB exposure.
             </p>
           </li>
         </ul>
@@ -341,39 +304,44 @@ export default function ReptileUvbLightingDistanceDurationCalculator() {
       // ⚠️ CLEAN FORMULA: ONLY ONE LINE. NO COMPLICATED MATH DUMPS.
       formula={{
         title: "Scientific Formula",
-        formula: "Ideal Distance = Current Distance × √(Measured Intensity / Recommended Intensity)",
+        formula: "Suggested Duration (hours) = (Recommended UVB Intensity / Measured UVB Intensity) × Max Duration",
         variables: [
-          { symbol: "Ideal Distance", description: "Optimal distance from UVB lamp to basking spot" },
-          { symbol: "Current Distance", description: "Distance where intensity was measured" },
-          { symbol: "Measured Intensity", description: "UVB intensity measured at current distance (μW/cm²)" },
-          { symbol: "Recommended Intensity", description: "Target UVB intensity for species (μW/cm²)" },
+          { symbol: "Suggested Duration", description: "Recommended daily UVB exposure time in hours" },
+          { symbol: "Recommended UVB Intensity", description: "Ideal UVB radiation level for the reptile (µW/cm²)" },
+          { symbol: "Measured UVB Intensity", description: "Current UVB radiation level at basking spot (µW/cm²)" },
+          { symbol: "Max Duration", description: "Maximum safe UVB exposure duration (hours), typically 12" },
         ],
       }}
       example={{
         title: "Case Study",
         scenario:
-          "A bearded dragon owner measures 100 μW/cm² UVB intensity at 12 inches from the lamp. The recommended intensity for the species is 75 μW/cm², and the owner allows 8 hours of daily UVB exposure.",
+          "A bearded dragon requires 150 µW/cm² UVB intensity. The measured intensity at 12 inches from the bulb is 100 µW/cm². Calculate the suggested daily UVB exposure duration.",
         steps: [
           {
             label: "1",
             explanation:
-              "Calculate ideal distance: 12 × √(100 / 75) = 12 × 1.1547 ≈ 13.86 inches. This means the lamp should be moved to about 13.9 inches to achieve the recommended UVB intensity.",
+              "Divide the recommended intensity by the measured intensity: 150 / 100 = 1.5.",
           },
           {
             label: "2",
             explanation:
-              "Adjust exposure duration since measured intensity is higher than recommended: 8 × (75 / 100) = 6 hours/day to avoid overexposure.",
+              "Multiply by the maximum safe duration (12 hours): 1.5 × 12 = 18 hours.",
+          },
+          {
+            label: "3",
+            explanation:
+              "Clamp the duration to the maximum safe exposure of 12 hours, so suggested duration is 12 hours/day.",
           },
         ],
-        result: "Ideal lamp distance is approximately 13.9 inches with a recommended exposure duration of 6 hours per day.",
+        result: "Suggested UVB exposure duration is 12 hours per day at 12 inches distance.",
       }}
       relatedCalculators={[
-        { title: "Aquarium Salt Dosage Calculator (Therapeutic)", url: "/pets/aquarium-salt-dosage-therapeutic", icon: "🐾" },
-        { title: "Fish Food Feeding Rate Calculator", url: "/pets/fish-food-feeding-rate", icon: "🐶" },
-        { title: "Pond Volume & Liner Size Calculator", url: "/pets/pond-volume-liner-size", icon: "🐱" },
-        { title: "Thermal Gradient Maintenance Power Estimator", url: "/pets/reptile-thermal-gradient-maintenance-power", icon: "🍖" },
-        { title: "Electrolyte Powder Mixing Calculator", url: "/pets/horse-electrolyte-powder-mixing", icon: "💉" },
-        { title: "Dewormer & Antibiotic Dose Reference", url: "/pets/reptile-dewormer-antibiotic-dose-reference", icon: "💧" },
+        { title: "Dog Daily Water Intake Checker", url: "/pets/dog-daily-water-intake-checker", icon: "🐶" },
+        { title: "Foaling Countdown & Lactation Feed Planner", url: "/pets/horse-foaling-countdown-lactation-feed-planner", icon: "🐴" },
+        { title: "Dog Walking Calories Burned Calculator", url: "/pets/dog-walking-calories-burned", icon: "🐕" },
+        { title: "Fluid Intake vs. Urine Output Balance Checker", url: "/pets/cat-fluid-intake-urine-output-balance", icon: "🐈" },
+        { title: "Indoor/Outdoor Activity Calorie Adjuster", url: "/pets/cat-activity-calorie-adjuster", icon: "🐈" },
+        { title: "Senior Cat Nutrition & Calorie Adjuster", url: "/pets/senior-cat-nutrition-calorie-adjuster", icon: "🐱" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding UVB Lighting Distance & Duration Calculator" },
