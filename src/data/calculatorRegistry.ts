@@ -2042,6 +2042,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseDewormerDoseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-phenylbutazone-flunixin-dose",
+    title: "Phenylbutazone / Flunixin Dose Calculator",
+    category: "pets",
+    subcategory: "horses-medication-supplement",
+    description: "Calculate the safe dose for the NSAIDs **Phenylbutazone** and **Flunixin** for pain and fever management.",
+    loader: () => import("@/components/calculators/Pets/HorsePhenylbutazoneFlunixinDoseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
