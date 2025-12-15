@@ -2015,6 +2015,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseNsaidOverdoseRiskCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-selenium-toxicity-threshold",
+    title: "Horse Selenium Toxicity Threshold (ppm)",
+    category: "pets",
+    subcategory: "horses-health-toxicology",
+    description: "Calculate the safe upper limit and potential toxicity risk of **Selenium** intake in parts per million (ppm).",
+    loader: () => import("@/components/calculators/Pets/HorseSeleniumToxicityThresholdCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
