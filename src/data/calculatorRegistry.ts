@@ -2330,6 +2330,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumVolumeRectangularCylindricalBowfrontCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "aquarium-safe-stocking-density-fish-per-litre",
+    title: "Safe Stocking Density (Fish/cm per Litre)",
+    category: "pets",
+    subcategory: "fish-aquatic-volume-stocking",
+    description: "Determine the safe number or length of fish that can be kept in a tank, preventing overstocking and stress.",
+    loader: () => import("@/components/calculators/Pets/AquariumSafeStockingDensityFishPerLitreCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
