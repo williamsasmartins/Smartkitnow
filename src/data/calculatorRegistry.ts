@@ -2240,6 +2240,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileVitaminD3RequirementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-feeder-insect-gut-loading-ratio",
+    title: "Feeder Insect Gut-Loading Ratio",
+    category: "pets",
+    subcategory: "reptiles-nutrition-environment",
+    description: "Calculate the necessary gut-loading time and nutritional ratio for feeder insects before feeding them to reptiles.",
+    loader: () => import("@/components/calculators/Pets/ReptileFeederInsectGutLoadingRatioCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
