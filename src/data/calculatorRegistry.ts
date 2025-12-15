@@ -2123,6 +2123,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdWeightTrendTrackerWeeklyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-toxic-foods-exposure-checker",
+    title: "Toxic Foods Exposure Checker (Avocado, Chocolate, etc.)",
+    category: "pets",
+    subcategory: "birds-health-toxicology",
+    description: "Check the toxicity of common human foods like **Avocado, Chocolate, and fruit seeds** for pet birds.",
+    loader: () => import("@/components/calculators/Pets/BirdToxicFoodsExposureCheckerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
