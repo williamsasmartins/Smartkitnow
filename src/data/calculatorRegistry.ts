@@ -2375,6 +2375,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumCo2InjectionRatePlantedTankCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "aquarium-ph-adjustment-buffer",
+    title: "pH Adjustment (Acid/Base Buffer) Calculator",
+    category: "pets",
+    subcategory: "fish-aquatic-water-chemistry-nutrition",
+    description: "Calculate the required amount of acid or base (buffer) needed to safely adjust the aquarium water's pH level.",
+    loader: () => import("@/components/calculators/Pets/AquariumPhAdjustmentBufferCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
