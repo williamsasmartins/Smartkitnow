@@ -2447,6 +2447,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/KoiFeedPlannerTempWeightCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "breeding-tank-volume-planner",
+    title: "Breeding Tank Volume Planner",
+    category: "pets",
+    subcategory: "fish-aquatic-pond-breeding",
+    description: "Calculate the ideal volume and dimensions for a dedicated fish breeding or fry grow-out tank.",
+    loader: () => import("@/components/calculators/Pets/BreedingTankVolumePlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
