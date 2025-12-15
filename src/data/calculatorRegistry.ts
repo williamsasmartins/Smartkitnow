@@ -2654,6 +2654,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/DensityGPerMlKgPerM3Calculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "angle-deg-rad",
+    title: "Angle: deg ↔ rad",
+    category: "conversion",
+    subcategory: "core-units",
+    description: "Convert angles between degrees and radians. Essential tool for trigonometry, geometry, and engineering calculations.",
+    loader: () => import("@/components/calculators/Conversion/AngleDegRadCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
