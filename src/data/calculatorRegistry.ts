@@ -2465,6 +2465,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalDailyCalorieNeedsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "small-mammal-weight-maintenance-gain-loss-planner",
+    title: "Weight Maintenance vs. Gain/Loss Planner",
+    category: "pets",
+    subcategory: "small-mammals-nutrition-weight",
+    description: "Plan calorie targets for weight maintenance, controlled weight gain, or safe weight loss for small mammals.",
+    loader: () => import("@/components/calculators/Pets/SmallMammalWeightMaintenanceGainLossPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
