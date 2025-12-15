@@ -2294,6 +2294,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileThermalGradientMaintenancePowerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-dewormer-antibiotic-dose-reference",
+    title: "Dewormer & Antibiotic Dose Reference",
+    category: "pets",
+    subcategory: "reptiles-medication",
+    description: "Reference guide for common dewormer and antibiotic dosages in reptiles by body weight.",
+    loader: () => import("@/components/calculators/Pets/ReptileDewormerAntibioticDoseReferenceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
