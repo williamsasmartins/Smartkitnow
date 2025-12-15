@@ -2582,6 +2582,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalCageSizeRequirementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "small-mammal-exercise-time-planner",
+    title: "Exercise Time Planner (Run Time per Day)",
+    category: "pets",
+    subcategory: "small-mammals-behavior-care",
+    description: "Plan the necessary amount of daily free-roam or wheel/run time to ensure adequate exercise and enrichment.",
+    loader: () => import("@/components/calculators/Pets/SmallMammalExerciseTimePlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
