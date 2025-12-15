@@ -2267,6 +2267,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileMetabolicBoneDiseaseRiskCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-ideal-humidity-range",
+    title: "Ideal Humidity Range Calculator",
+    category: "pets",
+    subcategory: "reptiles-health",
+    description: "Calculate and maintain the correct humidity percentage for a specific reptile species to ensure respiratory health.",
+    loader: () => import("@/components/calculators/Pets/ReptileIdealHumidityRangeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
