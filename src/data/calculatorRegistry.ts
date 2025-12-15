@@ -2564,6 +2564,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalSafeVegetablesFruitsPortionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "small-mammal-parasite-treatment-dose-reference",
+    title: "Parasite Treatment Dose Reference",
+    category: "pets",
+    subcategory: "small-mammals-health-toxicology",
+    description: "Reference guide for common anti-parasitic medication dosages (e.g., for mites, fleas, or intestinal parasites).",
+    loader: () => import("@/components/calculators/Pets/SmallMammalParasiteTreatmentDoseReferenceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
