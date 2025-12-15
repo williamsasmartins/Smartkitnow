@@ -2528,6 +2528,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/FerretProteinFatRatioCheckerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "rabbit-temperature-stress-risk-heatstroke",
+    title: "Temperature Stress Risk (Rabbit Heatstroke)",
+    category: "pets",
+    subcategory: "small-mammals-health-toxicology",
+    description: "Assess the risk of heatstroke in rabbits based on ambient temperature and humidity.",
+    loader: () => import("@/components/calculators/Pets/RabbitTemperatureStressRiskHeatstrokeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
