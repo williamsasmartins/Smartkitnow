@@ -2276,6 +2276,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileIdealHumidityRangeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-growth-curve-python-bearded-dragon-gecko",
+    title: "Growth Curve by Species (Python, Bearded Dragon, Gecko)",
+    category: "pets",
+    subcategory: "reptiles-health",
+    description: "Track and compare the reptile's growth against standard growth curves for species like Pythons, Bearded Dragons, and Geckos.",
+    loader: () => import("@/components/calculators/Pets/ReptileGrowthCurvePythonBeardedDragonGeckoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
