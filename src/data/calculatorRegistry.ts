@@ -2492,6 +2492,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalFiberProteinRatioCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "guinea-pig-vitamin-c-requirement",
+    title: "Vitamin C Requirement (Guinea Pig)",
+    category: "pets",
+    subcategory: "small-mammals-nutrition-weight",
+    description: "Calculate the daily supplemental Vitamin C requirement, which guinea pigs cannot synthesize themselves.",
+    loader: () => import("@/components/calculators/Pets/GuineaPigVitaminCRequirementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
