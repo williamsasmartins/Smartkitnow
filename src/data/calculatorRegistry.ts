@@ -2519,6 +2519,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/RabbitTreatCaloriesSafePortionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ferret-protein-fat-ratio-checker",
+    title: "Ferret Protein/Fat Ratio Checker",
+    category: "pets",
+    subcategory: "small-mammals-nutrition-weight",
+    description: "Check the diet to ensure it meets the high protein and fat requirements for obligate carnivores like ferrets.",
+    loader: () => import("@/components/calculators/Pets/FerretProteinFatRatioCheckerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
