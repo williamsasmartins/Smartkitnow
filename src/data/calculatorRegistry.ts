@@ -2393,6 +2393,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumAmmoniaNitriteCycleTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "aquarium-salt-dosage-therapeutic",
+    title: "Aquarium Salt Dosage Calculator (Therapeutic)",
+    category: "pets",
+    subcategory: "fish-aquatic-water-chemistry-nutrition",
+    description: "Calculate the correct, safe dosage of aquarium salt for therapeutic treatment of fish diseases (e.g., Ich).",
+    loader: () => import("@/components/calculators/Pets/AquariumSaltDosageTherapeuticCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
