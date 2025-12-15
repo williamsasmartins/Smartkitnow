@@ -2411,6 +2411,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumNitrateReductionGoalPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fish-food-feeding-rate",
+    title: "Fish Food Feeding Rate Calculator",
+    category: "pets",
+    subcategory: "fish-aquatic-water-chemistry-nutrition",
+    description: "Calculate the optimal daily feeding amount based on the total biomass of fish in the tank.",
+    loader: () => import("@/components/calculators/Pets/FishFoodFeedingRateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
