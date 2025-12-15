@@ -2177,6 +2177,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdDailyWaterRequirementPerWeightCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-dehydration-signs-estimator",
+    title: "Dehydration Signs Estimator",
+    category: "pets",
+    subcategory: "birds-hydration",
+    description: "Tool to help owners identify early signs of dehydration in birds, which can be subtle.",
+    loader: () => import("@/components/calculators/Pets/BirdDehydrationSignsEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
