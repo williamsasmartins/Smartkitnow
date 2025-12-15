@@ -2348,6 +2348,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumFilterFlowRateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "aquarium-water-change-volume-planner",
+    title: "Water Change Volume Planner",
+    category: "pets",
+    subcategory: "fish-aquatic-volume-stocking",
+    description: "Plan the exact volume of water to be changed to achieve a target percentage reduction in nitrates or other parameters.",
+    loader: () => import("@/components/calculators/Pets/AquariumWaterChangeVolumePlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
