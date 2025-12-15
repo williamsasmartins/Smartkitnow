@@ -2078,6 +2078,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseGestationDueDateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horse-foaling-countdown-lactation-feed-planner",
+    title: "Foaling Countdown & Lactation Feed Planner",
+    category: "pets",
+    subcategory: "horses-reproduction",
+    description: "Track the final days before foaling and plan the increased feed/calorie requirements during the lactation period.",
+    loader: () => import("@/components/calculators/Pets/HorseFoalingCountdownLactationFeedPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
