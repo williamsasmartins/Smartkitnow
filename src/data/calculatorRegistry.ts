@@ -2537,6 +2537,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/RabbitTemperatureStressRiskHeatstrokeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "small-mammal-dehydration-risk-checker",
+    title: "Dehydration Risk Checker",
+    category: "pets",
+    subcategory: "small-mammals-health-toxicology",
+    description: "Tool to check for subtle signs of dehydration in small mammals, which can quickly become critical.",
+    loader: () => import("@/components/calculators/Pets/SmallMammalDehydrationRiskCheckerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
