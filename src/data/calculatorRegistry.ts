@@ -2546,6 +2546,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalDehydrationRiskCheckerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "small-mammal-common-toxic-foods-reference",
+    title: "Common Toxic Foods Reference",
+    category: "pets",
+    subcategory: "small-mammals-health-toxicology",
+    description: "Reference guide for common toxic or dangerous foods for small pets (e.g., certain seeds, nuts, or sugary items).",
+    loader: () => import("@/components/calculators/Pets/SmallMammalCommonToxicFoodsReferenceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
