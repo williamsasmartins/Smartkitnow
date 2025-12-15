@@ -2366,6 +2366,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumHeaterWattageRequirementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "aquarium-co2-injection-rate-planted-tank",
+    title: "CO₂ Injection Rate Calculator (Planted Tank)",
+    category: "pets",
+    subcategory: "fish-aquatic-volume-stocking",
+    description: "Calculate the target CO₂ bubble rate (BPS) and estimate the resulting CO₂ concentration (ppm) for planted aquariums.",
+    loader: () => import("@/components/calculators/Pets/AquariumCo2InjectionRatePlantedTankCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
