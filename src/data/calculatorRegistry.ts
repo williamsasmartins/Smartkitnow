@@ -2429,6 +2429,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/OxygenSolubilityVsTemperatureTableCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pond-volume-liner-size",
+    title: "Pond Volume & Liner Size Calculator",
+    category: "pets",
+    subcategory: "fish-aquatic-pond-breeding",
+    description: "Calculate the volume of water in a pond and the minimum required liner size based on length, width, and depth.",
+    loader: () => import("@/components/calculators/Pets/PondVolumeLinerSizeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
