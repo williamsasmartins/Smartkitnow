@@ -2402,6 +2402,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumSaltDosageTherapeuticCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "aquarium-nitrate-reduction-goal-planner",
+    title: "Nitrate Reduction Goal Planner (ppm → water change %)",
+    category: "pets",
+    subcategory: "fish-aquatic-water-chemistry-nutrition",
+    description: "Determine the necessary water change percentage to reduce nitrate levels from the current reading to a safe target level (ppm).",
+    loader: () => import("@/components/calculators/Pets/AquariumNitrateReductionGoalPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
