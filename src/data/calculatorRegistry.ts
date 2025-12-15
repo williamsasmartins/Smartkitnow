@@ -2006,6 +2006,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     
+    {
+    slug: "horse-nsaid-overdose-risk",
+    title: "Horse NSAID Overdose Risk (Phenylbutazone)",
+    category: "pets",
+    subcategory: "horses-health-toxicology",
+    description: "Assess the overdose and toxicity risk associated with common horse anti-inflammatories like **Phenylbutazone (Bute")**."",
+    loader: () => import("@/components/calculators/Pets/HorseNsaidOverdoseRiskCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
