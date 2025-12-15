@@ -2222,6 +2222,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileDailyFeedingRatioSpeciesAgeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-calcium-to-phosphorus-ratio",
+    title: "Calcium-to-Phosphorus Ratio Calculator",
+    category: "pets",
+    subcategory: "reptiles-nutrition-environment",
+    description: "Calculate the vital **Calcium-to-Phosphorus ratio** of a reptile's diet, which should be maintained above 1:1.",
+    loader: () => import("@/components/calculators/Pets/ReptileCalciumToPhosphorusRatioCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
