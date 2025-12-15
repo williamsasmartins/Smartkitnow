@@ -2087,6 +2087,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseFoalingCountdownLactationFeedPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bird-hand-feeding-formula-amount-chicks",
+    title: "Hand-Feeding Formula Amount (Chicks)",
+    category: "pets",
+    subcategory: "birds-nutrition-weight",
+    description: "Calculate the correct volume and frequency for hand-feeding formula for baby chicks and fledglings.",
+    loader: () => import("@/components/calculators/Pets/BirdHandFeedingFormulaAmountChicksCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
