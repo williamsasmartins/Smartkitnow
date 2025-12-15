@@ -2285,6 +2285,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileGrowthCurvePythonBeardedDragonGeckoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-thermal-gradient-maintenance-power",
+    title: "Thermal Gradient Maintenance Power Estimator",
+    category: "pets",
+    subcategory: "reptiles-health",
+    description: "Estimate the wattage (power) needed for heat lamps and heat mats to maintain the required thermal gradient.",
+    loader: () => import("@/components/calculators/Pets/ReptileThermalGradientMaintenancePowerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
