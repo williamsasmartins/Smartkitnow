@@ -2600,69 +2600,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalBeddingReplacementFrequencyCalculator"),
     urlStyle: "flat"
   },
-    {
-    slug: "length-m-ft-in",
-    title: "Length: m ↔ ft ↔ in",
-    category: "conversion",
-    subcategory: "core-units",
-    description: "Convert length units instantly. Quickly transform meters to feet, inches to centimeters, and handle both metric and imperial measurements with precision.",
-    loader: () => import("@/components/calculators/Conversion/LengthMFtInCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "area-m2-ft2",
-    title: "Area: m² ↔ ft²",
-    category: "conversion",
-    subcategory: "core-units",
-    description: "Calculate area conversions for real estate and land. Convert square meters to square feet (m² to sq ft) and other area units accurately.",
-    loader: () => import("@/components/calculators/Conversion/AreaM2Ft2Calculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "volume-l-ml-gal-oz",
-    title: "Volume: L ↔ mL ↔ gal ↔ oz",
-    category: "conversion",
-    subcategory: "core-units",
-    description: "Convert liquid volume units easily. Switch between liters, milliliters, gallons, and fluid ounces for cooking, science, or industrial needs.",
-    loader: () => import("@/components/calculators/Conversion/VolumeLMlGalOzCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "mass-kg-lb-oz",
-    title: "Mass: kg ↔ lb ↔ oz",
-    category: "conversion",
-    subcategory: "core-units",
-    description: "Convert weight and mass units. Instantly calculate kilograms to pounds (kg to lbs), ounces to grams, and more for fitness or shipping.",
-    loader: () => import("@/components/calculators/Conversion/MassKgLbOzCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "temperature-c-f-k",
-    title: "Temperature: °C ↔ °F ↔ K",
-    category: "conversion",
-    subcategory: "core-units",
-    description: "Convert temperature readings. Switch between Celsius (°C), Fahrenheit (°F), and Kelvin (K) for weather, science, and cooking applications.",
-    loader: () => import("@/components/calculators/Conversion/TemperatureCFKCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "density-g-per-ml-kg-per-m3",
-    title: "Density: g/mL ↔ kg/m³",
-    category: "conversion",
-    subcategory: "core-units",
-    description: "Calculate density conversions. Transform grams per milliliter to kilograms per cubic meter for chemistry and physics calculations.",
-    loader: () => import("@/components/calculators/Conversion/DensityGPerMlKgPerM3Calculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "angle-deg-rad",
-    title: "Angle: deg ↔ rad",
-    category: "conversion",
-    subcategory: "core-units",
-    description: "Convert angles between degrees and radians. Essential tool for trigonometry, geometry, and engineering calculations.",
-    loader: () => import("@/components/calculators/Conversion/AngleDegRadCalculator"),
-    urlStyle: "flat"
-  },
+    
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
