@@ -2501,6 +2501,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/GuineaPigVitaminCRequirementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "small-mammal-calcium-intake-limit",
+    title: "Calcium Intake Limit (Bladder Stone Prevention)",
+    category: "pets",
+    subcategory: "small-mammals-nutrition-weight",
+    description: "Determine the safe daily limit for calcium intake to reduce the risk of bladder stones in susceptible species.",
+    loader: () => import("@/components/calculators/Pets/SmallMammalCalciumIntakeLimitCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
