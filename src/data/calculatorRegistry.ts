@@ -2483,6 +2483,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalHayPelletIntakeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "small-mammal-fiber-protein-ratio",
+    title: "Fiber & Protein Ratio Calculator",
+    category: "pets",
+    subcategory: "small-mammals-nutrition-weight",
+    description: "Determine the appropriate ratio of fiber and protein in the diet, crucial for gut health in species like rabbits.",
+    loader: () => import("@/components/calculators/Pets/SmallMammalFiberProteinRatioCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
