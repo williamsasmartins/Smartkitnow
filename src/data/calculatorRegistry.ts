@@ -2456,6 +2456,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BreedingTankVolumePlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "small-mammal-daily-calorie-needs",
+    title: "Daily Calorie Needs (Species Specific)",
+    category: "pets",
+    subcategory: "small-mammals-nutrition-weight",
+    description: "Calculate the specific daily calorie and energy requirements for species like rabbits, guinea pigs, and hamsters.",
+    loader: () => import("@/components/calculators/Pets/SmallMammalDailyCalorieNeedsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
