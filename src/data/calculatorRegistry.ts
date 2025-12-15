@@ -2312,6 +2312,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileCalciumD3SupplementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reptile-fluid-replacement-volume",
+    title: "Fluid Replacement Volume Calculator",
+    category: "pets",
+    subcategory: "reptiles-medication",
+    description: "Calculate the necessary volume of subcutaneous fluids for a dehydrated reptile based on its weight and severity.",
+    loader: () => import("@/components/calculators/Pets/ReptileFluidReplacementVolumeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
