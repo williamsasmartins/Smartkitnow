@@ -2844,6 +2844,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/FuelEconomyLPer100kmMpgCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "currency-fx-quick-convert",
+    title: "Currency: FX quick convert",
+    category: "conversion",
+    subcategory: "everyday-mixed",
+    description: "Quick currency converter. Estimate values between major currencies for travel budgets and international shopping.",
+    loader: () => import("@/components/calculators/Conversion/CurrencyFxQuickConvertCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
