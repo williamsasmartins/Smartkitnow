@@ -3042,6 +3042,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/WholeChickenRoastCookTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "steak-doneness-time-resting",
+    title: "Steak Doneness Time & Resting Window",
+    category: "cooking",
+    subcategory: "meat-poultry-food-safety-times",
+    description: "Time your steak to perfection. Estimate cooking time for rare, medium, or well-done steaks and calculate the vital resting period.",
+    loader: () => import("@/components/calculators/Cooking/SteakDonenessTimeRestingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
