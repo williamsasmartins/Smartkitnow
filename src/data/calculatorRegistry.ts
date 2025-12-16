@@ -2718,6 +2718,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/TorqueNmLbfftCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "work-potential-energy",
+    title: "Work & Potential Energy",
+    category: "conversion",
+    subcategory: "mechanics-pressure",
+    description: "Calculate work and gravitational potential energy. Convert between related mechanical units to solve physics equations.",
+    loader: () => import("@/components/calculators/Conversion/WorkPotentialEnergyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
