@@ -3125,6 +3125,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     
+    {
+    slug: "percent-of-total",
+    title: "Percent of Total Calculator",
+    category: "math",
+    subcategory: "percent-ratio-fractions",
+    description: "Calculate the percentage of a total value. Quickly determine what part of the whole a specific number represents.",
+    loader: () => import("@/components/calculators/Math/PercentOfTotalCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
