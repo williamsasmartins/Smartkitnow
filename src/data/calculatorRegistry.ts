@@ -3006,6 +3006,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/FlourBlendSubstitutionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sugar-butter-flour-density-lookup",
+    title: "Sugar/Butter/Flour Density Lookup",
+    category: "cooking",
+    subcategory: "baking-essentials",
+    description: "Quickly look up ingredient densities. Convert cups of packed sugar, butter, or sifted flour to grams accurately.",
+    loader: () => import("@/components/calculators/Cooking/SugarButterFlourDensityLookupCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
