@@ -2826,6 +2826,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/ChecksumHashQuickToolsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cooking-tsp-tbsp-cup-ml",
+    title: "Cooking: tsp/tbsp/cup ↔ mL",
+    category: "conversion",
+    subcategory: "everyday-mixed",
+    description: "Convert kitchen measurements. Transform teaspoons, tablespoons, and cups into milliliters (mL) for precise baking and cooking.",
+    loader: () => import("@/components/calculators/Conversion/CookingTspTbspCupMlCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
