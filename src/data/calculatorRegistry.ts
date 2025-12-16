@@ -3283,6 +3283,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/GcfGcdCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "lcm-calculator",
+    title: "LCM Calculator",
+    category: "math",
+    subcategory: "number-theory-discrete",
+    description: "Calculate the Least Common Multiple (LCM). Find the smallest positive integer that is divisible by two or more numbers.",
+    loader: () => import("@/components/calculators/Math/LcmCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
