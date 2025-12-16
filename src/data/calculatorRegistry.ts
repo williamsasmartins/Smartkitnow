@@ -3096,6 +3096,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/PastaDryCookedYieldPortionsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "stock-broth-reduction-time-yield",
+    title: "Stock/Broth Reduction Time & Yield",
+    category: "cooking",
+    subcategory: "everyday-kitchen-ratios-yields",
+    description: "Estimate stock reduction yield. Calculate how much volume remains after reducing broth to a demi-glace or glaze.",
+    loader: () => import("@/components/calculators/Cooking/StockBrothReductionTimeYieldCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
