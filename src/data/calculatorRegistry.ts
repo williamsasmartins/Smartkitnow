@@ -3162,6 +3162,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/FractionDecimalConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fraction-reducer-simplifier",
+    title: "Fraction Reducer / Simplifier",
+    category: "math",
+    subcategory: "percent-ratio-fractions",
+    description: "Simplify fractions instantly. Reduce complex fractions to their lowest terms for easier math and clearer answers.",
+    loader: () => import("@/components/calculators/Math/FractionReducerSimplifierCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
