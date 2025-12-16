@@ -3292,6 +3292,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/LcmCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "prime-factorization-tool",
+    title: "Prime Factorization Tool",
+    category: "math",
+    subcategory: "number-theory-discrete",
+    description: "Find the prime factorization of any number. Break down composite numbers into their prime components (e.g., 12 = 2² × 3).",
+    loader: () => import("@/components/calculators/Math/PrimeFactorizationToolCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
