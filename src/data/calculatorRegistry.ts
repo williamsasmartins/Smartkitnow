@@ -2953,6 +2953,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
    
+    {
+    slug: "cake-pan-size-volume-converter",
+    title: "Cake Pan Size & Volume Converter",
+    category: "cooking",
+    subcategory: "baking-essentials",
+    description: "Convert cake pan sizes. Adjust recipes for different pan shapes and volumes (round vs square) without ruining your bake.",
+    loader: () => import("@/components/calculators/Cooking/CakePanSizeVolumeConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
