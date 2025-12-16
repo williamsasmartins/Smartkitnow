@@ -2853,6 +2853,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/CurrencyFxQuickConvertCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bmi-bsa-quick-estimators",
+    title: "BMI & BSA quick estimators",
+    category: "conversion",
+    subcategory: "everyday-mixed",
+    description: "Quickly estimate Body Mass Index (BMI) and Body Surface Area (BSA) using standard conversion formulas for health checks.",
+    loader: () => import("@/components/calculators/Conversion/BmiBsaQuickEstimatorsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
