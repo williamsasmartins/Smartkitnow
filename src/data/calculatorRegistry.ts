@@ -3105,6 +3105,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/StockBrothReductionTimeYieldCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "oil-for-frying-pan-depth-volume",
+    title: "Oil for Frying Calculator",
+    category: "cooking",
+    subcategory: "everyday-kitchen-ratios-yields",
+    description: "Calculate oil needed for deep frying. Determine the volume required to fill your pan or fryer to the safe depth level.",
+    loader: () => import("@/components/calculators/Cooking/OilForFryingPanDepthVolumeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
