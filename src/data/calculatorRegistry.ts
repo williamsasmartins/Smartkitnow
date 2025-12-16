@@ -3207,33 +3207,9 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/QuadraticEquationSolverCalculator"),
     urlStyle: "flat"
   },
-    {
-    slug: "linear-equation-solver-1-2-variables",
-    title: "Linear Equation Solver (1–2 variables)",
-    category: "math",
-    subcategory: "algebra-equations",
-    description: "Solve linear equations with one or two variables. Find the value of X (and Y) for simple algebraic problems and systems.",
-    loader: () => import("@/components/calculators/Math/LinearEquationSolver12VariablesCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "system-of-equations-substitution-elimination",
-    title: "System of Equations Solver (Substitution/Elimination)",
-    category: "math",
-    subcategory: "algebra-equations",
-    description: "Solve systems of linear equations. Use substitution or elimination methods to find the intersection point of two lines.",
-    loader: () => import("@/components/calculators/Math/SystemOfEquationsSubstitutionEliminationCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "exponent-power-calculator",
-    title: "Exponent & Power Calculator",
-    category: "math",
-    subcategory: "algebra-equations",
-    description: "Calculate exponents and powers. Raise any base number to a positive, negative, or fractional power instantly.",
-    loader: () => import("@/components/calculators/Math/ExponentPowerCalculator"),
-    urlStyle: "flat"
-  },
+    
+   
+   
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
