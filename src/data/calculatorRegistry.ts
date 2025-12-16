@@ -2943,6 +2943,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/SaltPercentBriningCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "alcohol-abv-dilution",
+    title: "Alcohol by Volume (ABV) Dilution",
+    category: "cooking",
+    subcategory: "ingredient-conversions-kitchen-math",
+    description: "Calculate alcohol dilution for cooking. Estimate the remaining Alcohol by Volume (ABV) in your dishes after simmering or baking.",
+    loader: () => import("@/components/calculators/Cooking/AlcoholAbvDilutionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
