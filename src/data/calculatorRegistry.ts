@@ -2709,6 +2709,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/PressurePaBarPsiCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "torque-nm-lbfft",
+    title: "Torque: N·m ↔ lbf·ft",
+    category: "conversion",
+    subcategory: "mechanics-pressure",
+    description: "Convert torque settings. Switch between Newton-meters (Nm) and pound-feet (lb-ft) for automotive and machinery mechanics.",
+    loader: () => import("@/components/calculators/Conversion/TorqueNmLbfftCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
