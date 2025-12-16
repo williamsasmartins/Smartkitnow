@@ -3135,6 +3135,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PercentOfTotalCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "percent-increase-decrease",
+    title: "Percent Increase/Decrease Calculator",
+    category: "math",
+    subcategory: "percent-ratio-fractions",
+    description: "Calculate the percentage increase or decrease between two numbers. Essential for tracking growth, discounts, or price changes.",
+    loader: () => import("@/components/calculators/Math/PercentIncreaseDecreaseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
