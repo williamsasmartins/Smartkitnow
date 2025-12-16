@@ -2727,6 +2727,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/WorkPotentialEnergyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "time-ms-s-min-hr",
+    title: "Time: ms ↔ s ↔ min ↔ hr",
+    category: "conversion",
+    subcategory: "time-frequency",
+    description: "Convert time durations easily. Transform milliseconds, seconds, minutes, and hours for scientific timing or project planning.",
+    loader: () => import("@/components/calculators/Conversion/TimeMsSMinHrCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
