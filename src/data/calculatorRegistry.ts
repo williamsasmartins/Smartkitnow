@@ -3087,6 +3087,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/RiceWaterRatioYieldCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pasta-dry-cooked-yield-portions",
+    title: "Pasta Dry ↔ Cooked Yield & Portions",
+    category: "cooking",
+    subcategory: "everyday-kitchen-ratios-yields",
+    description: "Convert dry pasta to cooked weight. Estimate how much pasta to boil to get the exact number of cooked servings you need.",
+    loader: () => import("@/components/calculators/Cooking/PastaDryCookedYieldPortionsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
