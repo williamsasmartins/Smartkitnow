@@ -3274,6 +3274,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/RootRadicalSimplifierCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "gcf-gcd-calculator",
+    title: "GCF / GCD Calculator",
+    category: "math",
+    subcategory: "number-theory-discrete",
+    description: "Find the Greatest Common Factor (GCF) or Greatest Common Divisor (GCD). Identify the largest number that divides two or more integers.",
+    loader: () => import("@/components/calculators/Math/GcfGcdCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
