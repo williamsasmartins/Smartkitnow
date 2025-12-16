@@ -3078,6 +3078,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/DefrostTimeFridgeColdWaterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "rice-water-ratio-yield",
+    title: "Rice:Water Ratio & Yield Calculator",
+    category: "cooking",
+    subcategory: "everyday-kitchen-ratios-yields",
+    description: "Get the perfect rice-to-water ratio. Calculate yield and liquid needs for Basmati, Jasmine, Brown, or Sushi rice.",
+    loader: () => import("@/components/calculators/Cooking/RiceWaterRatioYieldCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
