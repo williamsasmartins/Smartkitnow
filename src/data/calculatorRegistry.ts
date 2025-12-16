@@ -3328,6 +3328,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/RandomNumberGeneratorRangesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "triangle-solver-sss-sas-asa",
+    title: "Triangle Solver (SSS/SAS/ASA)",
+    category: "math",
+    subcategory: "geometry-trig",
+    description: "Solve triangles using SSS, SAS, or ASA methods. Calculate missing side lengths and angles using the Law of Sines and Cosines.",
+    loader: () => import("@/components/calculators/Math/TriangleSolverSssSasAsaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
