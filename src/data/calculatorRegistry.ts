@@ -2971,6 +2971,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/BakersPercentageCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dough-hydration-percent",
+    title: "Dough Hydration % Calculator",
+    category: "cooking",
+    subcategory: "baking-essentials",
+    description: "Calculate dough hydration percentage. Essential for sourdough and artisanal bread to achieve the perfect crumb and texture.",
+    loader: () => import("@/components/calculators/Cooking/DoughHydrationPercentCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
