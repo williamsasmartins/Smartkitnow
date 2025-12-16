@@ -2799,6 +2799,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/BinaryDecimalPrefixesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "transfer-speed-mbps-mbs",
+    title: "Transfer Speed: Mbps ↔ MB/s",
+    category: "conversion",
+    subcategory: "computing-data",
+    description: "Convert internet speed to file transfer rate. See how fast a file will download by converting Mbps (Megabits) to MB/s (Megabytes).",
+    loader: () => import("@/components/calculators/Conversion/TransferSpeedMbpsMbsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
