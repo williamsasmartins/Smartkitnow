@@ -3310,6 +3310,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/ModuloRemainderCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "permutations-combinations-npr-ncr",
+    title: "Permutations & Combinations (nPr / nCr)",
+    category: "math",
+    subcategory: "number-theory-discrete",
+    description: "Calculate permutations (nPr) and combinations (nCr). Determine the number of ways to arrange or select items from a set.",
+    loader: () => import("@/components/calculators/Math/PermutationsCombinationsNprNcrCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
