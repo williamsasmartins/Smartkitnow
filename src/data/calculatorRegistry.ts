@@ -3207,6 +3207,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/QuadraticEquationSolverCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "linear-equation-solver-1-2-variables",
+    title: "Linear Equation Solver (1–2 variables)",
+    category: "math",
+    subcategory: "algebra-equations",
+    description: "Solve linear equations with one or two variables. Find the value of X (and Y) for simple algebraic problems and systems.",
+    loader: () => import("@/components/calculators/Math/LinearEquationSolver12VariablesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
