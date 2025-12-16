@@ -3238,6 +3238,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/ExponentPowerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "log-antilog-base-10-e",
+    title: "Log / Antilog (base 10/e) Calculator",
+    category: "math",
+    subcategory: "algebra-equations",
+    description: "Calculate logarithms and antilogarithms. Solve for Log base 10 or Natural Log (ln) base e for advanced math and science.",
+    loader: () => import("@/components/calculators/Math/LogAntilogBase10ECalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
