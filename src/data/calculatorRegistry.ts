@@ -2808,6 +2808,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/TransferSpeedMbpsMbsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "compression-ratio-size",
+    title: "Compression Ratio & Size",
+    category: "conversion",
+    subcategory: "computing-data",
+    description: "Estimate file size reduction. Calculate the final file size based on original size and compression ratio.",
+    loader: () => import("@/components/calculators/Conversion/CompressionRatioSizeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
