@@ -2673,6 +2673,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/SpeedMpsKmphMphCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "force-n-lbf",
+    title: "Force: N ↔ lbf",
+    category: "conversion",
+    subcategory: "mechanics-pressure",
+    description: "Convert force units accurately. Transform Newtons (N) to pound-force (lbf) for engineering and mechanical physics problems.",
+    loader: () => import("@/components/calculators/Conversion/ForceNLbfCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
