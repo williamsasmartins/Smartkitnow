@@ -3153,6 +3153,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PercentChangeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fraction-decimal-converter",
+    title: "Fraction ⇄ Decimal Converter",
+    category: "math",
+    subcategory: "percent-ratio-fractions",
+    description: "Convert fractions to decimals and vice versa. Instantly transform 1/4 to 0.25 or any decimal back into its simplest fraction form.",
+    loader: () => import("@/components/calculators/Math/FractionDecimalConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
