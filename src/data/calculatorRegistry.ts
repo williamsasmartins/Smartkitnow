@@ -2980,6 +2980,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/DoughHydrationPercentCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sourdough-starter-ratio-feed-planner",
+    title: "Sourdough Starter Ratio & Feed Planner",
+    category: "cooking",
+    subcategory: "baking-essentials",
+    description: "Plan your sourdough starter feedings. Calculate the perfect ratio of starter, flour, and water to keep your wild yeast active.",
+    loader: () => import("@/components/calculators/Cooking/SourdoughStarterRatioFeedPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
