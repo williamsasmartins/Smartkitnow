@@ -2998,6 +2998,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/YeastConversionInstantActiveFreshCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "flour-blend-substitution",
+    title: "Flour Blend Substitution Helper",
+    category: "cooking",
+    subcategory: "baking-essentials",
+    description: "Create gluten-free flour blends. Calculate ratios for substituting all-purpose flour with almond, coconut, or rice flour mixes.",
+    loader: () => import("@/components/calculators/Cooking/FlourBlendSubstitutionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
