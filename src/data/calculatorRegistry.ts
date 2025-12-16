@@ -2916,6 +2916,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/TeaspoonTablespoonCupMlConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "recipe-scaler",
+    title: "Recipe Scaler (x0.5, x2, x3…)",
+    category: "cooking",
+    subcategory: "ingredient-conversions-kitchen-math",
+    description: "Scale your recipes up or down. Multiply or divide ingredient quantities to adjust serving sizes for parties or single meals.",
+    loader: () => import("@/components/calculators/Cooking/RecipeScalerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
