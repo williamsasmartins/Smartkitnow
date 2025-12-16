@@ -2754,6 +2754,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/PeriodFrequencyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "frame-rate-fps-hz",
+    title: "Frame Rate: fps ↔ Hz",
+    category: "conversion",
+    subcategory: "time-frequency",
+    description: "Convert video frame rates to refresh rates. Match FPS (Frames Per Second) with monitor Hz for smooth video playback.",
+    loader: () => import("@/components/calculators/Conversion/FrameRateFpsHzCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
