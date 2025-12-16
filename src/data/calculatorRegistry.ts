@@ -3061,6 +3061,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/PorkBeefSmokingTimePerLbCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "safe-internal-temperature-checker",
+    title: "Safe Internal Temperature Checker",
+    category: "cooking",
+    subcategory: "meat-poultry-food-safety-times",
+    description: "Check safe internal food temperatures. Reference USDA guidelines for meat, poultry, and fish to prevent foodborne illness.",
+    loader: () => import("@/components/calculators/Cooking/SafeInternalTemperatureCheckerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
