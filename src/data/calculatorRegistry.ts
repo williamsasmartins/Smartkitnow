@@ -3115,6 +3115,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/OilForFryingPanDepthVolumeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "icing-frosting-coverage-cake-size",
+    title: "Icing/Frosting Coverage by Cake Size",
+    category: "cooking",
+    subcategory: "everyday-kitchen-ratios-yields",
+    description: "Calculate icing and frosting amounts. Determine how much frosting you need to cover round or square cakes of various sizes.",
+    loader: () => import("@/components/calculators/Cooking/IcingFrostingCoverageCakeSizeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
