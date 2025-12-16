@@ -3144,6 +3144,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PercentIncreaseDecreaseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "percent-change",
+    title: "Percent Change Calculator",
+    category: "math",
+    subcategory: "percent-ratio-fractions",
+    description: "Find the percent change between an old value and a new value. Useful for analyzing financial data, statistics, and performance metrics.",
+    loader: () => import("@/components/calculators/Math/PercentChangeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
