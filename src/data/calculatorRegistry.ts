@@ -3052,6 +3052,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/SteakDonenessTimeRestingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pork-beef-smoking-time-per-lb",
+    title: "Pork/Beef Smoking Time per lb",
+    category: "cooking",
+    subcategory: "meat-poultry-food-safety-times",
+    description: "Plan your BBQ smoking session. Calculate cooking time per pound for pork shoulders or beef briskets at low temperatures.",
+    loader: () => import("@/components/calculators/Cooking/PorkBeefSmokingTimePerLbCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
