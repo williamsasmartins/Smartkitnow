@@ -2781,6 +2781,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/BytesBKbMbGbTbCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bits-b-kb-mb-gb",
+    title: "Bits: b ↔ kb ↔ Mb ↔ Gb",
+    category: "conversion",
+    subcategory: "computing-data",
+    description: "Convert network data units. Switch between bits, kilobits, megabits (Mb), and gigabits (Gb) to understand network speeds.",
+    loader: () => import("@/components/calculators/Conversion/BitsBKbMbGbCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
