@@ -3189,6 +3189,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PercentErrorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "proportion-solver",
+    title: "Proportion Solver (Cross-Multiplication)",
+    category: "math",
+    subcategory: "percent-ratio-fractions",
+    description: "Solve proportions using cross-multiplication. Find the value of X in any proportional equation quickly and accurately.",
+    loader: () => import("@/components/calculators/Math/ProportionSolverCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
