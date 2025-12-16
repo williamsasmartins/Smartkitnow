@@ -3070,6 +3070,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/SafeInternalTemperatureCheckerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "defrost-time-fridge-cold-water",
+    title: "Defrost Time Estimator",
+    category: "cooking",
+    subcategory: "meat-poultry-food-safety-times",
+    description: "Estimate defrosting times. Calculate how long meat needs to thaw in the fridge or cold water based on its weight.",
+    loader: () => import("@/components/calculators/Cooking/DefrostTimeFridgeColdWaterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
