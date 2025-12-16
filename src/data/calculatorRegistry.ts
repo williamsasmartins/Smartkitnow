@@ -2880,6 +2880,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/ShoeSizeEuUsUkCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cups-grams-ounces-by-ingredient",
+    title: "Cups ↔ Grams ↔ Ounces Converter",
+    category: "cooking",
+    subcategory: "ingredient-conversions-kitchen-math",
+    description: "Convert cooking ingredients from volume to weight. Switch between cups, grams, and ounces for flour, sugar, and more with density adjustments.",
+    loader: () => import("@/components/calculators/Cooking/CupsGramsOuncesByIngredientCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
