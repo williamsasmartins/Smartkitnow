@@ -2934,6 +2934,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/ServingSizeMultiplierCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "salt-percent-brining",
+    title: "Salt % for Brining Calculator",
+    category: "cooking",
+    subcategory: "ingredient-conversions-kitchen-math",
+    description: "Calculate the perfect brine ratio. Determine the exact amount of salt needed for wet brining meats to ensure flavor and moisture.",
+    loader: () => import("@/components/calculators/Cooking/SaltPercentBriningCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
