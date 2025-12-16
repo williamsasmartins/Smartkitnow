@@ -3225,6 +3225,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/SystemOfEquationsSubstitutionEliminationCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "exponent-power-calculator",
+    title: "Exponent & Power Calculator",
+    category: "math",
+    subcategory: "algebra-equations",
+    description: "Calculate exponents and powers. Raise any base number to a positive, negative, or fractional power instantly.",
+    loader: () => import("@/components/calculators/Math/ExponentPowerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
