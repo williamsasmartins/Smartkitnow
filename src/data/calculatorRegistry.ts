@@ -3319,6 +3319,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PermutationsCombinationsNprNcrCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "random-number-generator-ranges",
+    title: "Random Number Generator (ranges)",
+    category: "math",
+    subcategory: "number-theory-discrete",
+    description: "Generate random numbers within a specific range. Perfect for statistical sampling, games, or picking a random winner.",
+    loader: () => import("@/components/calculators/Math/RandomNumberGeneratorRangesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
