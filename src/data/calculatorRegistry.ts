@@ -3256,6 +3256,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/ScientificNotationStandardFormCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "polynomial-factorization-helper",
+    title: "Polynomial Factorization Helper",
+    category: "math",
+    subcategory: "algebra-equations",
+    description: "Factor polynomials efficiently. Break down algebraic expressions into their simplest factors to solve complex equations.",
+    loader: () => import("@/components/calculators/Math/PolynomialFactorizationHelperCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
