@@ -2682,6 +2682,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/ForceNLbfCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "energy-j-cal-kwh",
+    title: "Energy: J ↔ cal ↔ kWh",
+    category: "conversion",
+    subcategory: "mechanics-pressure",
+    description: "Convert energy units. Switch between Joules (J), calories (cal), and kilowatt-hours (kWh) for nutrition and electrical calculations.",
+    loader: () => import("@/components/calculators/Conversion/EnergyJCalKwhCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
