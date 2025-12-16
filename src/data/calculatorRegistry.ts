@@ -3016,6 +3016,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/SugarButterFlourDensityLookupCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chocolate-butter-tempering-temperature",
+    title: "Chocolate/Butter Tempering Temperature",
+    category: "cooking",
+    subcategory: "baking-essentials",
+    description: "Guide to chocolate tempering temperatures. Find the precise melting, cooling, and working points for dark, milk, and white chocolate.",
+    loader: () => import("@/components/calculators/Cooking/ChocolateButterTemperingTemperatureCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
