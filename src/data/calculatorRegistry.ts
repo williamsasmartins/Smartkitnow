@@ -3033,6 +3033,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/TurkeyThawCookTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "whole-chicken-roast-cook-time",
+    title: "Whole Chicken/Roast Cook Time Estimator",
+    category: "cooking",
+    subcategory: "meat-poultry-food-safety-times",
+    description: "Estimate roasting time for whole chickens. Ensure perfectly cooked poultry by calculating oven time based on weight.",
+    loader: () => import("@/components/calculators/Cooking/WholeChickenRoastCookTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
