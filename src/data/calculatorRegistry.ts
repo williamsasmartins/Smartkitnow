@@ -3220,6 +3220,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/LinearEquationSolver12VariablesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "system-of-equations-substitution-elimination",
+    title: "System of Equations Solver (Substitution/Elimination)",
+    category: "math",
+    subcategory: "algebra-equations",
+    description: "Solve systems of linear equations. Use substitution or elimination methods to find the intersection point of two lines.",
+    loader: () => import("@/components/calculators/Math/SystemOfEquationsSubstitutionEliminationCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
