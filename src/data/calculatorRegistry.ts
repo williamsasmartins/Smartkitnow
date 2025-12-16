@@ -3198,15 +3198,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/ProportionSolverCalculator"),
     urlStyle: "flat"
   },
-    {
-    slug: "quadratic-equation-solver",
-    title: "Quadratic Equation Solver (ax²+bx+c)",
-    category: "math",
-    subcategory: "algebra-equations",
-    description: "Solve quadratic equations instantly. Find the roots (x-intercepts), discriminant, and vertex of any parabola using the quadratic formula.",
-    loader: () => import("@/components/calculators/Math/QuadraticEquationSolverCalculator"),
-    urlStyle: "flat"
-  },
+    
     
    
    
