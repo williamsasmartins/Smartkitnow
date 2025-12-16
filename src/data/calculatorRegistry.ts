@@ -2961,6 +2961,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/CakePanSizeVolumeConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bakers-percentage",
+    title: "Baker’s Percentage Calculator",
+    category: "cooking",
+    subcategory: "baking-essentials",
+    description: "Master Baker's Math. Calculate ingredient ratios based on flour weight to create consistent and scalable bread recipes.",
+    loader: () => import("@/components/calculators/Cooking/BakersPercentageCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
