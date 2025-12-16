@@ -3171,6 +3171,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/FractionReducerSimplifierCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ratio-calculator",
+    title: "Ratio Calculator (A:B = C:D)",
+    category: "math",
+    subcategory: "percent-ratio-fractions",
+    description: "Solve ratio problems easily. Find the missing value in a proportion (A:B = C:D) to scale recipes, images, or designs.",
+    loader: () => import("@/components/calculators/Math/RatioCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
