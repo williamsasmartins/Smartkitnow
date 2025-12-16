@@ -2736,6 +2736,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/TimeMsSMinHrCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "frequency-hz-khz-mhz",
+    title: "Frequency: Hz ↔ kHz ↔ MHz",
+    category: "conversion",
+    subcategory: "time-frequency",
+    description: "Convert frequency units. Switch between Hertz (Hz), Kilohertz (kHz), and Megahertz (MHz) for audio and electronics.",
+    loader: () => import("@/components/calculators/Conversion/FrequencyHzKhzMhzCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
