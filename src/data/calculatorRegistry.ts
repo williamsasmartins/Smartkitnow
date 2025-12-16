@@ -2862,6 +2862,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/BmiBsaQuickEstimatorsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "paper-size-a-series-us",
+    title: "Paper Size: A-series ↔ US",
+    category: "conversion",
+    subcategory: "everyday-mixed",
+    description: "Compare international paper sizes. Convert between ISO A-series (A4, A3) and US Letter/Legal sizes for printing.",
+    loader: () => import("@/components/calculators/Conversion/PaperSizeASeriesUsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
