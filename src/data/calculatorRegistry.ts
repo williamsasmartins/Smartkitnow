@@ -2772,6 +2772,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/ClockTimeTimezoneShiftCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bytes-b-kb-mb-gb-tb",
+    title: "Bytes: B ↔ kB ↔ MB ↔ GB ↔ TB",
+    category: "conversion",
+    subcategory: "computing-data",
+    description: "Convert digital storage sizes. Transform Bytes to Kilobytes, Megabytes (MB), Gigabytes (GB), and Terabytes (TB) for data management.",
+    loader: () => import("@/components/calculators/Conversion/BytesBKbMbGbTbCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
