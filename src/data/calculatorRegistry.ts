@@ -3265,6 +3265,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PolynomialFactorizationHelperCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "root-radical-simplifier",
+    title: "Root/Radical Simplifier",
+    category: "math",
+    subcategory: "algebra-equations",
+    description: "Simplify square roots and radicals. Convert unsimplified radicals into their simplest mixed radical form (e.g., √8 to 2√2).",
+    loader: () => import("@/components/calculators/Math/RootRadicalSimplifierCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
