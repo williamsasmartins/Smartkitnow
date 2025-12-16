@@ -2907,6 +2907,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/FahrenheitCelsiusOvenInternalTempCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "teaspoon-tablespoon-cup-ml-converter",
+    title: "Teaspoon/Tablespoon/Cup ↔ mL Converter",
+    category: "cooking",
+    subcategory: "ingredient-conversions-kitchen-math",
+    description: "Convert small kitchen measurements. Transform teaspoons, tablespoons, and cups into milliliters (mL) for liquid ingredients.",
+    loader: () => import("@/components/calculators/Cooking/TeaspoonTablespoonCupMlConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
