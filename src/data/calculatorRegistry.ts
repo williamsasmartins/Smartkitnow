@@ -3180,6 +3180,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/RatioCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "percent-error-calculator",
+    title: "Percent Error Calculator",
+    category: "math",
+    subcategory: "percent-ratio-fractions",
+    description: "Calculate percent error in experimental measurements. Compare your observed value to the true theoretical value to check accuracy.",
+    loader: () => import("@/components/calculators/Math/PercentErrorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
