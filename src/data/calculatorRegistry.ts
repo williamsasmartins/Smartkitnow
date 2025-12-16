@@ -2745,6 +2745,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/FrequencyHzKhzMhzCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "period-frequency",
+    title: "Period ↔ Frequency",
+    category: "conversion",
+    subcategory: "time-frequency",
+    description: "Calculate the relationship between period and frequency. Convert time cycles (T) to frequency (f) and vice-versa instantly.",
+    loader: () => import("@/components/calculators/Conversion/PeriodFrequencyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
