@@ -2817,6 +2817,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/CompressionRatioSizeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "checksum-hash-quick-tools",
+    title: "Checksum & Hash Quick Tools",
+    category: "conversion",
+    subcategory: "computing-data",
+    description: "Verify data integrity. Quickly generate or compare checksums and hash values for files to ensure they are not corrupted.",
+    loader: () => import("@/components/calculators/Conversion/ChecksumHashQuickToolsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
