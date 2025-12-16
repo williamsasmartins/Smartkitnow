@@ -2700,6 +2700,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/PowerWHpCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pressure-pa-bar-psi",
+    title: "Pressure: Pa ↔ bar ↔ psi",
+    category: "conversion",
+    subcategory: "mechanics-pressure",
+    description: "Convert pressure units for tires and hydraulics. Transform Pascals (Pa), Bar, and PSI (pounds per square inch) accurately.",
+    loader: () => import("@/components/calculators/Conversion/PressurePaBarPsiCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
