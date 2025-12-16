@@ -2835,6 +2835,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/CookingTspTbspCupMlCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fuel-economy-l-per-100km-mpg",
+    title: "Fuel Economy: L/100km ↔ mpg",
+    category: "conversion",
+    subcategory: "everyday-mixed",
+    description: "Convert fuel consumption ratings. Switch between Liters per 100km (L/100km) and Miles Per Gallon (MPG) for vehicle efficiency.",
+    loader: () => import("@/components/calculators/Conversion/FuelEconomyLPer100kmMpgCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
