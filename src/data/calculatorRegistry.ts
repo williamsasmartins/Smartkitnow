@@ -3247,6 +3247,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/LogAntilogBase10ECalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "scientific-notation-standard-form",
+    title: "Scientific Notation ⇄ Standard Form",
+    category: "math",
+    subcategory: "algebra-equations",
+    description: "Convert numbers to Scientific Notation. Transform very large or small numbers into standard exponential form (e.g., 1.5 x 10^6).",
+    loader: () => import("@/components/calculators/Math/ScientificNotationStandardFormCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
