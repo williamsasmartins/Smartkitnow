@@ -2871,6 +2871,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/PaperSizeASeriesUsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "shoe-size-eu-us-uk",
+    title: "Shoe Size: EU ↔ US ↔ UK",
+    category: "conversion",
+    subcategory: "everyday-mixed",
+    description: "Convert international shoe sizes. Find the right fit by converting between European (EU), American (US), and British (UK) sizing charts.",
+    loader: () => import("@/components/calculators/Conversion/ShoeSizeEuUsUkCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
