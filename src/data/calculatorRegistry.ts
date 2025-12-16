@@ -3301,6 +3301,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PrimeFactorizationToolCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "modulo-remainder-calculator",
+    title: "Modulo (Remainder) Calculator",
+    category: "math",
+    subcategory: "number-theory-discrete",
+    description: "Calculate the modulo (remainder). Find the remainder of a division operation, essential for computer science and cryptography.",
+    loader: () => import("@/components/calculators/Math/ModuloRemainderCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
