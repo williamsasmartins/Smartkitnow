@@ -2763,6 +2763,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/FrameRateFpsHzCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "clock-time-timezone-shift",
+    title: "Clock Time & Timezone Shift",
+    category: "conversion",
+    subcategory: "time-frequency",
+    description: "Calculate time differences. Shift clock times across different time zones to plan meetings and travel effectively.",
+    loader: () => import("@/components/calculators/Conversion/ClockTimeTimezoneShiftCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
