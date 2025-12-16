@@ -2988,6 +2988,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/SourdoughStarterRatioFeedPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "yeast-conversion-instant-active-fresh",
+    title: "Yeast Conversion Calculator",
+    category: "cooking",
+    subcategory: "baking-essentials",
+    description: "Convert yeast types easily. Switch between instant, active dry, and fresh yeast quantities for any baking recipe.",
+    loader: () => import("@/components/calculators/Cooking/YeastConversionInstantActiveFreshCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
