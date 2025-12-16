@@ -3024,6 +3024,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/ChocolateButterTemperingTemperatureCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "turkey-thaw-cook-time",
+    title: "Turkey Size, Thaw & Cook Time Calculator",
+    category: "cooking",
+    subcategory: "meat-poultry-food-safety-times",
+    description: "Plan your Thanksgiving turkey. Calculate thawing time and cooking time based on bird weight for a safe and juicy roast.",
+    loader: () => import("@/components/calculators/Cooking/TurkeyThawCookTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
