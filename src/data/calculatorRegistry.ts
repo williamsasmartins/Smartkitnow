@@ -2664,6 +2664,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/AngleDegRadCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "speed-mps-kmph-mph",
+    title: "Speed: m/s ↔ km/h ↔ mph",
+    category: "conversion",
+    subcategory: "core-units",
+    description: "Convert speed and velocity units. Calculate meters per second, kilometers per hour, and miles per hour (mph) for travel and physics.",
+    loader: () => import("@/components/calculators/Conversion/SpeedMpsKmphMphCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
