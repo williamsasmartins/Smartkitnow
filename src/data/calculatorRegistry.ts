@@ -2691,6 +2691,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/EnergyJCalKwhCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "power-w-hp",
+    title: "Power: W ↔ hp",
+    category: "conversion",
+    subcategory: "mechanics-pressure",
+    description: "Convert power units instantly. Calculate Watts (W) to mechanical or metric Horsepower (hp) for engines and motors.",
+    loader: () => import("@/components/calculators/Conversion/PowerWHpCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
