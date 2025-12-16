@@ -2790,6 +2790,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/BitsBKbMbGbCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "binary-decimal-prefixes",
+    title: "Binary ↔ Decimal prefixes (KiB ↔ KB)",
+    category: "conversion",
+    subcategory: "computing-data",
+    description: "Understand storage definitions. Convert between binary prefixes (KiB, MiB - IEC) and decimal prefixes (KB, MB - SI).",
+    loader: () => import("@/components/calculators/Conversion/BinaryDecimalPrefixesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
