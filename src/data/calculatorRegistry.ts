@@ -2898,6 +2898,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/VolumeWeightFoodDensityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fahrenheit-celsius-oven-internal-temp",
+    title: "Fahrenheit ↔ Celsius Converter",
+    category: "cooking",
+    subcategory: "ingredient-conversions-kitchen-math",
+    description: "Convert oven temperatures instantly. Switch between Fahrenheit and Celsius for baking recipes and internal meat thermometers.",
+    loader: () => import("@/components/calculators/Cooking/FahrenheitCelsiusOvenInternalTempCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
