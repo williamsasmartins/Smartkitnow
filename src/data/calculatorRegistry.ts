@@ -2925,6 +2925,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/RecipeScalerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "serving-size-multiplier",
+    title: "Serving Size Multiplier",
+    category: "cooking",
+    subcategory: "ingredient-conversions-kitchen-math",
+    description: "Adjust recipes by serving size. Input your desired number of servings to automatically recalculate all ingredient amounts.",
+    loader: () => import("@/components/calculators/Cooking/ServingSizeMultiplierCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
