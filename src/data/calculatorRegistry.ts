@@ -2889,6 +2889,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/CupsGramsOuncesByIngredientCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "volume-weight-food-density",
+    title: "Volume ↔ Weight Converter",
+    category: "cooking",
+    subcategory: "ingredient-conversions-kitchen-math",
+    description: "Calculate food density conversions. Translate volume measurements to weight for precise cooking using common ingredient densities.",
+    loader: () => import("@/components/calculators/Cooking/VolumeWeightFoodDensityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
