@@ -3391,6 +3391,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/AngleConverterDegRadCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "mean-median-mode",
+    title: "Mean, Median, Mode Calculator",
+    category: "math",
+    subcategory: "statistics-probability",
+    description: "Calculate Mean, Median, and Mode. Find the average, middle value, and most frequent number in any data set.",
+    loader: () => import("@/components/calculators/Math/MeanMedianModeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
