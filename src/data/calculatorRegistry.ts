@@ -3688,6 +3688,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/MolarMassCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "percent-composition-by-mass",
+    title: "Percent Composition by Mass",
+    category: "science",
+    subcategory: "chemistry-composition-units",
+    description: "Calculate Percent Composition by Mass. Determine the percentage of each element within a chemical compound.",
+    loader: () => import("@/components/calculators/Science/PercentCompositionByMassCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
