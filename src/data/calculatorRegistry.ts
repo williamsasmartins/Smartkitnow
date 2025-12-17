@@ -3575,6 +3575,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/PhotonEnergyEHfCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "half-life-exponential-decay",
+    title: "Half-Life / Exponential Decay Calculator",
+    category: "science",
+    subcategory: "physics-electricity-modern",
+    description: "Calculate radioactive half-life. Solve exponential decay problems to determine remaining quantity or elapsed time.",
+    loader: () => import("@/components/calculators/Science/HalfLifeExponentialDecayCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
