@@ -3427,6 +3427,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/LinearInterpolationExtrapolationCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "binomial-probability-calculator",
+    title: "Binomial Probability Calculator",
+    category: "math",
+    subcategory: "statistics-probability",
+    description: "Calculate Binomial Probability. Determine the likelihood of a specific number of successes in a series of independent experiments.",
+    loader: () => import("@/components/calculators/Math/BinomialProbabilityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
