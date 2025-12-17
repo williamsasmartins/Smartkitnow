@@ -3593,6 +3593,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/RadioactiveActivityALambdaNCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reactance-capacitor-inductor-educational",
+    title: "Capacitor/Inductor Reactance Calculator",
+    category: "science",
+    subcategory: "physics-electricity-modern",
+    description: "Calculate reactance for AC circuits. Determine the opposition to current flow in capacitors and inductors at specific frequencies.",
+    loader: () => import("@/components/calculators/Science/ReactanceCapacitorInductorEducationalCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
