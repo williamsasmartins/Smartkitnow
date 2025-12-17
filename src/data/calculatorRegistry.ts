@@ -3418,6 +3418,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/ZScorePercentileFinderCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "linear-interpolation-extrapolation",
+    title: "Linear Interpolation / Extrapolation",
+    category: "math",
+    subcategory: "statistics-probability",
+    description: "Perform Linear Interpolation. Estimate unknown values that fall between two known data points on a line.",
+    loader: () => import("@/components/calculators/Math/LinearInterpolationExtrapolationCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
