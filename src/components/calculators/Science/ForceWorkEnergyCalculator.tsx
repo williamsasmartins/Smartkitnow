@@ -9,23 +9,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Atom, Zap, Scale, Info, RotateCcw, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
-const g = 9.81; // m/s^2 gravitational acceleration
-
 export default function ForceWorkEnergyCalculator() {
-  // Inputs:
-  // mode: "force", "work", "kineticEnergy", "potentialEnergy"
-  // For force: mass (kg), acceleration (m/s²)
-  // For work: force (N), displacement (m), angle (deg)
-  // For kinetic energy: mass (kg), velocity (m/s)
-  // For potential energy: mass (kg), height (m)
+  // Inputs: mass (kg), acceleration (m/s²), displacement (m), velocity (m/s)
+  // User can calculate Force, Work, Kinetic Energy, Potential Energy
+  // Select calculation type
 
   const [inputs, setInputs] = useState({
-    mode: "force",
+    calculationType: "force", // force, work, kineticEnergy, potentialEnergy
     mass: "",
     acceleration: "",
-    force: "",
     displacement: "",
-    angle: "0",
     velocity: "",
     height: "",
   });
@@ -34,291 +27,401 @@ export default function ForceWorkEnergyCalculator() {
     setInputs((prev) => ({ ...prev, [name]: value }));
   }, []);
 
+  // Constants
+  const g = 9.81; // m/s² gravitational acceleration
+
+  // Validation helper
+  const isPositiveNumber = (val: string) => {
+    if (!val) return false;
+    const num = Number(val);
+    return !isNaN(num) && num >= 0;
+  };
+
+  // Calculation logic in useMemo
   const results = useMemo(() => {
-    // Parse inputs as floats
-    const mass = parseFloat(inputs.mass);
-    const acceleration = parseFloat(inputs.acceleration);
-    const force = parseFloat(inputs.force);
-    const displacement = parseFloat(inputs.displacement);
-    const angle = parseFloat(inputs.angle);
-    const velocity = parseFloat(inputs.velocity);
-    const height = parseFloat(inputs.height);
+    const { calculationType, mass, acceleration, displacement, velocity, height } = inputs;
 
-    // Validation helper
-    const isValidNumber = (v: number) => !isNaN(v) && isFinite(v);
+    // Parse inputs to numbers
+    const m = Number(mass);
+    const a = Number(acceleration);
+    const d = Number(displacement);
+    const v = Number(velocity);
+    const h = Number(height);
 
-    // Result object template
-    const waiting = {
-      value: "Waiting...",
-      label: "Enter all required inputs",
-      subtext: "",
-      warning: null,
-      formulaUsed: null,
-    };
+    // Validation and warnings
+    let warning: string | null = null;
 
-    switch (inputs.mode) {
+    // Helper to format results with units and scientific notation if needed
+    function formatResult(val: number, unit: string) {
+      if (val === 0) return `0 ${unit}`;
+      if (Math.abs(val) >= 10000 || Math.abs(val) < 0.001) {
+        return `${val.toExponential(4)} ${unit}`;
+      }
+      return `${val.toFixed(4)} ${unit}`;
+    }
+
+    switch (calculationType) {
       case "force":
-        // F = m * a
-        if (!isValidNumber(mass) || !isValidNumber(acceleration)) return waiting;
-        if (mass < 0) return { ...waiting, warning: "Mass cannot be negative." };
-        // Calculate force
-        const forceCalc = mass * acceleration;
-        const forceDisplay =
-          Math.abs(forceCalc) > 10000 || Math.abs(forceCalc) < 0.001
-            ? forceCalc.toExponential(4)
-            : forceCalc.toFixed(4);
+        // Force = mass * acceleration
+        if (!isPositiveNumber(mass)) {
+          warning = "Mass must be a non-negative number.";
+          return {
+            value: "Waiting...",
+            label: "Enter valid mass",
+            subtext: "",
+            warning,
+            formulaUsed: "F = m × a",
+          };
+        }
+        if (acceleration === "") {
+          return {
+            value: "Waiting...",
+            label: "Enter acceleration",
+            subtext: "",
+            warning: null,
+            formulaUsed: "F = m × a",
+          };
+        }
+        if (isNaN(a)) {
+          warning = "Acceleration must be a number.";
+          return {
+            value: "Waiting...",
+            label: "Invalid acceleration",
+            subtext: "",
+            warning,
+            formulaUsed: "F = m × a",
+          };
+        }
+        const force = m * a;
         return {
-          value: `${forceDisplay} Newton${Math.abs(forceCalc) !== 1 ? "s" : ""}`,
+          value: formatResult(force, "Newtons (N)"),
           label: "Force",
-          subtext: `Calculated using mass (kg) and acceleration (m/s²)`,
+          subtext: `Force exerted by mass ${m} kg with acceleration ${a} m/s²`,
           warning: null,
           formulaUsed: "F = m × a",
         };
 
       case "work":
-        // W = F × d × cos(θ)
-        if (!isValidNumber(force) || !isValidNumber(displacement) || !isValidNumber(angle))
-          return waiting;
-        if (displacement < 0) return { ...waiting, warning: "Displacement cannot be negative." };
-        // Convert angle to radians
-        const angleRad = (angle * Math.PI) / 180;
-        const workCalc = force * displacement * Math.cos(angleRad);
-        const workDisplay =
-          Math.abs(workCalc) > 10000 || Math.abs(workCalc) < 0.001
-            ? workCalc.toExponential(4)
-            : workCalc.toFixed(4);
+        // Work = Force × displacement = m × a × d
+        if (!isPositiveNumber(mass)) {
+          warning = "Mass must be a non-negative number.";
+          return {
+            value: "Waiting...",
+            label: "Enter valid mass",
+            subtext: "",
+            warning,
+            formulaUsed: "W = F × d = m × a × d",
+          };
+        }
+        if (acceleration === "" || displacement === "") {
+          return {
+            value: "Waiting...",
+            label: "Enter acceleration and displacement",
+            subtext: "",
+            warning: null,
+            formulaUsed: "W = F × d = m × a × d",
+          };
+        }
+        if (isNaN(a) || isNaN(d)) {
+          warning = "Acceleration and displacement must be numbers.";
+          return {
+            value: "Waiting...",
+            label: "Invalid input",
+            subtext: "",
+            warning,
+            formulaUsed: "W = F × d = m × a × d",
+          };
+        }
+        const work = m * a * d;
         return {
-          value: `${workDisplay} Joules`,
+          value: formatResult(work, "Joules (J)"),
           label: "Work Done",
-          subtext: `Force (N), displacement (m), angle (°) used`,
+          subtext: `Work done moving mass ${m} kg with force from acceleration ${a} m/s² over displacement ${d} m`,
           warning: null,
-          formulaUsed: "W = F × d × cos(θ)",
+          formulaUsed: "W = F × d = m × a × d",
         };
 
       case "kineticEnergy":
         // KE = 1/2 m v²
-        if (!isValidNumber(mass) || !isValidNumber(velocity)) return waiting;
-        if (mass < 0) return { ...waiting, warning: "Mass cannot be negative." };
-        const keCalc = 0.5 * mass * velocity * velocity;
-        const keDisplay =
-          keCalc > 10000 || (keCalc !== 0 && keCalc < 0.001)
-            ? keCalc.toExponential(4)
-            : keCalc.toFixed(4);
+        if (!isPositiveNumber(mass)) {
+          warning = "Mass must be a non-negative number.";
+          return {
+            value: "Waiting...",
+            label: "Enter valid mass",
+            subtext: "",
+            warning,
+            formulaUsed: "KE = 1/2 m v²",
+          };
+        }
+        if (velocity === "") {
+          return {
+            value: "Waiting...",
+            label: "Enter velocity",
+            subtext: "",
+            warning: null,
+            formulaUsed: "KE = 1/2 m v²",
+          };
+        }
+        if (isNaN(v)) {
+          warning = "Velocity must be a number.";
+          return {
+            value: "Waiting...",
+            label: "Invalid velocity",
+            subtext: "",
+            warning,
+            formulaUsed: "KE = 1/2 m v²",
+          };
+        }
+        const kineticEnergy = 0.5 * m * v * v;
         return {
-          value: `${keDisplay} Joules`,
+          value: formatResult(kineticEnergy, "Joules (J)"),
           label: "Kinetic Energy",
-          subtext: "Mass (kg) and velocity (m/s) used",
+          subtext: `Energy of mass ${m} kg moving at velocity ${v} m/s`,
           warning: null,
-          formulaUsed: "Eₖ = 1/2 m v²",
+          formulaUsed: "KE = 1/2 m v²",
         };
 
       case "potentialEnergy":
         // PE = m g h
-        if (!isValidNumber(mass) || !isValidNumber(height)) return waiting;
-        if (mass < 0) return { ...waiting, warning: "Mass cannot be negative." };
-        const peCalc = mass * g * height;
-        const peDisplay =
-          peCalc > 10000 || (peCalc !== 0 && peCalc < 0.001)
-            ? peCalc.toExponential(4)
-            : peCalc.toFixed(4);
+        if (!isPositiveNumber(mass)) {
+          warning = "Mass must be a non-negative number.";
+          return {
+            value: "Waiting...",
+            label: "Enter valid mass",
+            subtext: "",
+            warning,
+            formulaUsed: "PE = m g h",
+          };
+        }
+        if (height === "") {
+          return {
+            value: "Waiting...",
+            label: "Enter height",
+            subtext: "",
+            warning: null,
+            formulaUsed: "PE = m g h",
+          };
+        }
+        if (isNaN(h)) {
+          warning = "Height must be a number.";
+          return {
+            value: "Waiting...",
+            label: "Invalid height",
+            subtext: "",
+            warning,
+            formulaUsed: "PE = m g h",
+          };
+        }
+        const potentialEnergy = m * g * h;
         return {
-          value: `${peDisplay} Joules`,
+          value: formatResult(potentialEnergy, "Joules (J)"),
           label: "Potential Energy",
-          subtext: `Mass (kg), height (m), and g = ${g} m/s² used`,
+          subtext: `Energy of mass ${m} kg at height ${h} m (g = ${g} m/s²)`,
           warning: null,
-          formulaUsed: "Eₚ = m g h",
+          formulaUsed: "PE = m g h",
         };
 
       default:
-        return waiting;
+        return {
+          value: "Waiting...",
+          label: "Select calculation type",
+          subtext: "",
+          warning: null,
+          formulaUsed: null,
+        };
     }
   }, [inputs]);
 
+  // FAQs
   const faqs = [
     {
       question: "What is the difference between work and energy?",
       answer:
-        "Work and energy are closely related concepts in physics. Work is the process of energy transfer when a force moves an object over a distance. Energy is the capacity to do work. For example, kinetic energy is the energy of motion, while work is done when a force causes displacement. Understanding both helps in analyzing physical systems and engineering applications.",
+        "Work and energy are closely related concepts in physics. Work is the process of energy transfer when a force moves an object over a distance. Energy is the capacity to do work. For example, when you lift an object, you do work on it, increasing its potential energy. Understanding this relationship is essential in fields like engineering and mechanics.",
     },
     {
-      question: "Why do we use cosine of the angle in work calculation?",
+      question: "Why do we use scientific notation for very large or small values?",
       answer:
-        "The cosine of the angle between the force and displacement vectors determines the effective component of force doing work. If the force is in the same direction as displacement, cos(0°) = 1, so all force contributes. If perpendicular, cos(90°) = 0, so no work is done. This is essential in mechanics to accurately calculate work done by forces at angles.",
+        "Scientific notation allows us to express very large or very small numbers compactly and clearly, avoiding errors and improving readability. In physics and chemistry, quantities like atomic masses or astronomical distances can be extremely large or small, making scientific notation essential for precise communication and calculation.",
     },
     {
-      question: "How is potential energy related to height?",
+      question: "How is force calculated using mass and acceleration?",
       answer:
-        "Potential energy in a gravitational field depends directly on the height of an object above a reference point. The higher the object, the more potential energy it stores, calculated as Eₚ = mgh. This principle is widely used in engineering, such as in hydroelectric power where water's height determines energy potential.",
+        "Force is calculated using Newton's second law of motion, which states that force equals mass times acceleration (F = m × a). This means the force applied to an object is proportional to its mass and the acceleration it experiences. This principle is fundamental in mechanics and is widely used in engineering and physics applications.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
+  // Widget UI
   const widget = (
     <div className="space-y-6">
-      {/* Mode Selection */}
+      {/* Calculation Type Selector */}
       <div>
-        <Label htmlFor="mode" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1">
-          <Zap className="w-5 h-5 text-yellow-500" /> Select Calculation Mode
+        <Label htmlFor="calculationType" className="mb-1 font-semibold text-slate-700 dark:text-slate-300">
+          Select Calculation
         </Label>
         <Select
-          value={inputs.mode}
-          onValueChange={(val) => setInputs((prev) => ({ ...prev, mode: val }))}
-          id="mode"
+          value={inputs.calculationType}
+          onValueChange={(val) => handleInputChange("calculationType", val)}
+          id="calculationType"
         >
           <SelectTrigger className="w-full">
-            <SelectValue />
+            <SelectValue placeholder="Choose calculation" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="force">Force (F = m × a)</SelectItem>
-            <SelectItem value="work">Work (W = F × d × cos(θ))</SelectItem>
-            <SelectItem value="kineticEnergy">Kinetic Energy (Eₖ = 1/2 m v²)</SelectItem>
-            <SelectItem value="potentialEnergy">Potential Energy (Eₚ = m g h)</SelectItem>
+            <SelectItem value="force">
+              <Zap className="mr-2 inline h-4 w-4" /> Force (F = m × a)
+            </SelectItem>
+            <SelectItem value="work">
+              <Scale className="mr-2 inline h-4 w-4" /> Work (W = F × d)
+            </SelectItem>
+            <SelectItem value="kineticEnergy">
+              <Atom className="mr-2 inline h-4 w-4" /> Kinetic Energy (KE = 1/2 m v²)
+            </SelectItem>
+            <SelectItem value="potentialEnergy">
+              <Zap className="mr-2 inline h-4 w-4" /> Potential Energy (PE = m g h)
+            </SelectItem>
           </SelectContent>
         </Select>
       </div>
 
-      {/* Inputs based on mode */}
-      {inputs.mode === "force" && (
+      {/* Inputs based on calculation type */}
+      {inputs.calculationType === "force" && (
         <>
           <div>
-            <Label htmlFor="mass" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1">
-              <Scale className="w-5 h-5 text-green-600" /> Mass (kg)
+            <Label htmlFor="mass" className="mb-1 font-semibold text-slate-700 dark:text-slate-300">
+              Mass (kg)
             </Label>
             <Input
-              type="number"
               id="mass"
-              value={inputs.mass}
-              onChange={(e) => handleInputChange("mass", e.target.value)}
-              placeholder="e.g. 10"
+              type="number"
               min="0"
               step="any"
+              value={inputs.mass}
+              onChange={(e) => handleInputChange("mass", e.target.value)}
+              placeholder="e.g., 10"
             />
           </div>
           <div>
-            <Label htmlFor="acceleration" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1">
-              <Zap className="w-5 h-5 text-yellow-500" /> Acceleration (m/s²)
+            <Label htmlFor="acceleration" className="mb-1 font-semibold text-slate-700 dark:text-slate-300">
+              Acceleration (m/s²)
             </Label>
             <Input
-              type="number"
               id="acceleration"
+              type="number"
+              step="any"
               value={inputs.acceleration}
               onChange={(e) => handleInputChange("acceleration", e.target.value)}
-              placeholder="e.g. 9.81"
-              step="any"
+              placeholder="e.g., 9.81"
             />
           </div>
         </>
       )}
 
-      {inputs.mode === "work" && (
+      {inputs.calculationType === "work" && (
         <>
           <div>
-            <Label htmlFor="force" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1">
-              <Zap className="w-5 h-5 text-yellow-500" /> Force (Newtons, N)
+            <Label htmlFor="mass" className="mb-1 font-semibold text-slate-700 dark:text-slate-300">
+              Mass (kg)
             </Label>
             <Input
+              id="mass"
               type="number"
-              id="force"
-              value={inputs.force}
-              onChange={(e) => handleInputChange("force", e.target.value)}
-              placeholder="e.g. 50"
+              min="0"
               step="any"
+              value={inputs.mass}
+              onChange={(e) => handleInputChange("mass", e.target.value)}
+              placeholder="e.g., 10"
             />
           </div>
           <div>
-            <Label htmlFor="displacement" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1">
-              <Scale className="w-5 h-5 text-green-600" /> Displacement (meters, m)
+            <Label htmlFor="acceleration" className="mb-1 font-semibold text-slate-700 dark:text-slate-300">
+              Acceleration (m/s²)
             </Label>
             <Input
+              id="acceleration"
               type="number"
+              step="any"
+              value={inputs.acceleration}
+              onChange={(e) => handleInputChange("acceleration", e.target.value)}
+              placeholder="e.g., 9.81"
+            />
+          </div>
+          <div>
+            <Label htmlFor="displacement" className="mb-1 font-semibold text-slate-700 dark:text-slate-300">
+              Displacement (m)
+            </Label>
+            <Input
               id="displacement"
+              type="number"
+              step="any"
               value={inputs.displacement}
               onChange={(e) => handleInputChange("displacement", e.target.value)}
-              placeholder="e.g. 10"
-              min="0"
-              step="any"
+              placeholder="e.g., 5"
             />
-          </div>
-          <div>
-            <Label htmlFor="angle" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1">
-              <RotateCcw className="w-5 h-5 text-blue-600" /> Angle (degrees, θ)
-            </Label>
-            <Input
-              type="number"
-              id="angle"
-              value={inputs.angle}
-              onChange={(e) => handleInputChange("angle", e.target.value)}
-              placeholder="0"
-              step="any"
-              min="0"
-              max="180"
-            />
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Angle between force and displacement vectors (0° ≤ θ ≤ 180°)
-            </p>
           </div>
         </>
       )}
 
-      {inputs.mode === "kineticEnergy" && (
+      {inputs.calculationType === "kineticEnergy" && (
         <>
           <div>
-            <Label htmlFor="mass" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1">
-              <Scale className="w-5 h-5 text-green-600" /> Mass (kg)
+            <Label htmlFor="mass" className="mb-1 font-semibold text-slate-700 dark:text-slate-300">
+              Mass (kg)
             </Label>
             <Input
-              type="number"
               id="mass"
-              value={inputs.mass}
-              onChange={(e) => handleInputChange("mass", e.target.value)}
-              placeholder="e.g. 5"
+              type="number"
               min="0"
               step="any"
+              value={inputs.mass}
+              onChange={(e) => handleInputChange("mass", e.target.value)}
+              placeholder="e.g., 10"
             />
           </div>
           <div>
-            <Label htmlFor="velocity" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1">
-              <Zap className="w-5 h-5 text-yellow-500" /> Velocity (m/s)
+            <Label htmlFor="velocity" className="mb-1 font-semibold text-slate-700 dark:text-slate-300">
+              Velocity (m/s)
             </Label>
             <Input
-              type="number"
               id="velocity"
+              type="number"
+              step="any"
               value={inputs.velocity}
               onChange={(e) => handleInputChange("velocity", e.target.value)}
-              placeholder="e.g. 12"
-              step="any"
+              placeholder="e.g., 15"
             />
           </div>
         </>
       )}
 
-      {inputs.mode === "potentialEnergy" && (
+      {inputs.calculationType === "potentialEnergy" && (
         <>
           <div>
-            <Label htmlFor="mass" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1">
-              <Scale className="w-5 h-5 text-green-600" /> Mass (kg)
+            <Label htmlFor="mass" className="mb-1 font-semibold text-slate-700 dark:text-slate-300">
+              Mass (kg)
             </Label>
             <Input
-              type="number"
               id="mass"
-              value={inputs.mass}
-              onChange={(e) => handleInputChange("mass", e.target.value)}
-              placeholder="e.g. 8"
+              type="number"
               min="0"
               step="any"
+              value={inputs.mass}
+              onChange={(e) => handleInputChange("mass", e.target.value)}
+              placeholder="e.g., 10"
             />
           </div>
           <div>
-            <Label htmlFor="height" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1">
-              <Zap className="w-5 h-5 text-yellow-500" /> Height (meters, m)
+            <Label htmlFor="height" className="mb-1 font-semibold text-slate-700 dark:text-slate-300">
+              Height (m)
             </Label>
             <Input
-              type="number"
               id="height"
+              type="number"
+              step="any"
               value={inputs.height}
               onChange={(e) => handleInputChange("height", e.target.value)}
-              placeholder="e.g. 15"
-              step="any"
+              placeholder="e.g., 20"
             />
           </div>
         </>
@@ -329,9 +432,9 @@ export default function ForceWorkEnergyCalculator() {
         <Button
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
           onClick={() => {
-            // No action needed, calculation is reactive
+            // Just trigger re-calculation by setting state to current inputs (no-op)
+            setInputs((prev) => ({ ...prev }));
           }}
-          type="button"
         >
           <Atom className="mr-2 h-4 w-4" /> Calculate
         </Button>
@@ -339,18 +442,15 @@ export default function ForceWorkEnergyCalculator() {
           variant="outline"
           onClick={() =>
             setInputs({
-              mode: "force",
+              calculationType: "force",
               mass: "",
               acceleration: "",
-              force: "",
               displacement: "",
-              angle: "0",
               velocity: "",
               height: "",
             })
           }
           className="flex-1 h-11 hover:bg-slate-100 dark:hover:bg-slate-800"
-          type="button"
         >
           <RotateCcw className="mr-2 h-4 w-4" /> Reset
         </Button>
@@ -379,7 +479,7 @@ export default function ForceWorkEnergyCalculator() {
           <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 flex gap-3">
             <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              <strong>Science Fact:</strong> Always check your units (e.g., convert grams to kg for physics formulas). Angles must be in degrees for work calculation.
+              <strong>Science Fact:</strong> Always check your units (e.g., convert grams to kg for physics formulas). Using consistent SI units ensures accurate calculations.
             </p>
           </div>
         </div>
@@ -394,13 +494,13 @@ export default function ForceWorkEnergyCalculator() {
           Understanding Force, Work & Energy Calculator
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator helps you compute fundamental physics quantities: force, work, kinetic energy, and potential energy. Force is the interaction that causes an object to accelerate, calculated by multiplying mass and acceleration. Work quantifies energy transfer when a force moves an object over a distance, factoring in the angle between force and displacement. Kinetic energy measures the energy of motion, while potential energy represents stored energy due to position in a gravitational field.
+          This calculator helps you compute fundamental physics quantities: force, work, kinetic energy, and potential energy. Force is the interaction that changes an object's motion, calculated as mass times acceleration (F = m × a). Work measures energy transfer when a force moves an object over a distance (W = F × d). Kinetic energy is the energy of motion (KE = 1/2 m v²), while potential energy is stored energy due to position (PE = m g h). These concepts are foundational in physics and engineering.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          These concepts are foundational in physics and engineering, used in designing machines, vehicles, and structures. For example, engineers calculate forces to ensure bridges withstand loads, while understanding work and energy is crucial in mechanical systems and energy conservation. This tool provides precise calculations with clear units and scientific notation for very large or small values.
+          Understanding these quantities is essential in many real-world applications, such as designing vehicles, calculating energy efficiency, and analyzing mechanical systems. For example, engineers use force calculations to ensure structures withstand loads, while work and energy principles help optimize machine performance.
         </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Always ensure your inputs are in correct SI units: mass in kilograms, distances in meters, forces in Newtons, and angles in degrees. This ensures accurate and meaningful results. Use this calculator to deepen your understanding or assist in solving physics problems.
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+          This tool provides an educational and precise way to explore these physics concepts interactively. Always ensure your inputs use consistent units (SI units) to get accurate results.
         </p>
       </section>
 
@@ -415,51 +515,46 @@ where
   a = Acceleration (meters per second squared, m/s²)
 
 Work:
-W = F × d × cos(θ)
+W = F × d = m × a × d
 where
   W = Work done (Joules, J)
   F = Force (Newtons, N)
   d = Displacement (meters, m)
-  θ = Angle between force and displacement (degrees, °)
 
 Kinetic Energy:
-Eₖ = 1/2 m v²
+KE = 1/2 m v²
 where
-  Eₖ = Kinetic Energy (Joules, J)
+  KE = Kinetic Energy (Joules, J)
   m = Mass (kilograms, kg)
   v = Velocity (meters per second, m/s)
 
 Potential Energy:
-Eₚ = m g h
+PE = m g h
 where
-  Eₚ = Potential Energy (Joules, J)
+  PE = Potential Energy (Joules, J)
   m = Mass (kilograms, kg)
   g = Gravitational acceleration (9.81 m/s²)
-  h = Height above reference point (meters, m)
-`}
+  h = Height (meters, m)`}
         </pre>
       </section>
 
       <section id="example" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Step-by-Step Example</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Let's solve a real-world problem calculating the work done by a force:
+          Let's solve a real-world problem using this calculator: Calculate the work done to move a 10 kg box with an acceleration of 2 m/s² over a displacement of 5 meters.
         </p>
         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
           <li>
-            <strong>Given:</strong> A force of 100 N is applied to push a box 5 meters across the floor at an angle of 30° to the direction of displacement.
+            <strong>Given:</strong> mass m = 10 kg, acceleration a = 2 m/s², displacement d = 5 m
           </li>
           <li>
-            <strong>Step 1:</strong> Calculate the work done using W = F × d × cos(θ).
+            <strong>Step 1:</strong> Calculate the force using F = m × a = 10 × 2 = 20 N
           </li>
           <li>
-            <strong>Step 2:</strong> Convert angle to radians or use cosine of 30° ≈ 0.866.
+            <strong>Step 2:</strong> Calculate the work done using W = F × d = 20 × 5 = 100 Joules
           </li>
           <li>
-            <strong>Step 3:</strong> Work = 100 N × 5 m × 0.866 = 433 Joules.
-          </li>
-          <li>
-            <strong>Result:</strong> The work done on the box is approximately 433 Joules.
+            <strong>Result:</strong> The work done to move the box is 100 Joules (J)
           </li>
         </ul>
       </section>
@@ -478,6 +573,39 @@ where
     </div>
   );
 
+  // Formula object for CalculatorVerticalLayout
+  const formula = {
+    title: "Scientific Formula",
+    formula: `Force: F = m × a
+Work: W = F × d = m × a × d
+Kinetic Energy: KE = 1/2 m v²
+Potential Energy: PE = m g h`,
+    variables: [
+      { symbol: "F", description: "Force (Newtons, N)" },
+      { symbol: "W", description: "Work done (Joules, J)" },
+      { symbol: "KE", description: "Kinetic Energy (Joules, J)" },
+      { symbol: "PE", description: "Potential Energy (Joules, J)" },
+      { symbol: "m", description: "Mass (kilograms, kg)" },
+      { symbol: "a", description: "Acceleration (meters per second squared, m/s²)" },
+      { symbol: "d", description: "Displacement (meters, m)" },
+      { symbol: "v", description: "Velocity (meters per second, m/s)" },
+      { symbol: "g", description: "Gravitational acceleration (9.81 m/s²)" },
+      { symbol: "h", description: "Height (meters, m)" },
+    ],
+  };
+
+  // Example object for CalculatorVerticalLayout
+  const example = {
+    title: "Example",
+    scenario:
+      "Calculate the work done to move a 10 kg box with an acceleration of 2 m/s² over a displacement of 5 meters.",
+    steps: [
+      { label: "1", explanation: "Calculate the force: F = m × a = 10 × 2 = 20 N" },
+      { label: "2", explanation: "Calculate the work done: W = F × d = 20 × 5 = 100 Joules" },
+    ],
+    result: "The work done to move the box is 100 Joules (J).",
+  };
+
   return (
     <CalculatorVerticalLayout
       title="Force, Work & Energy Calculator"
@@ -485,44 +613,15 @@ where
       widget={widget}
       editorial={editorial}
       jsonLd={faqJsonLd}
-      formula={{
-        title: "Scientific Formula",
-        formula: `Force: F = m × a
-Work: W = F × d × cos(θ)
-Kinetic Energy: Eₖ = 1/2 m v²
-Potential Energy: Eₚ = m g h`,
-        variables: [
-          { symbol: "F", description: "Force in Newtons (N)" },
-          { symbol: "m", description: "Mass in kilograms (kg)" },
-          { symbol: "a", description: "Acceleration in meters per second squared (m/s²)" },
-          { symbol: "W", description: "Work done in Joules (J)" },
-          { symbol: "d", description: "Displacement in meters (m)" },
-          { symbol: "θ", description: "Angle between force and displacement in degrees (°)" },
-          { symbol: "Eₖ", description: "Kinetic Energy in Joules (J)" },
-          { symbol: "v", description: "Velocity in meters per second (m/s)" },
-          { symbol: "Eₚ", description: "Potential Energy in Joules (J)" },
-          { symbol: "g", description: "Gravitational acceleration (9.81 m/s²)" },
-          { symbol: "h", description: "Height in meters (m)" },
-        ],
-      }}
-      example={{
-        title: "Example",
-        scenario:
-          "Calculate the work done by a 100 N force pushing a box 5 meters at an angle of 30° to the displacement.",
-        steps: [
-          { label: "1", explanation: "Identify given values: F = 100 N, d = 5 m, θ = 30°." },
-          { label: "2", explanation: "Calculate work using W = F × d × cos(θ)." },
-          { label: "3", explanation: "Compute cos(30°) ≈ 0.866 and multiply: 100 × 5 × 0.866 = 433 J." },
-        ],
-        result: "Work done is approximately 433 Joules.",
-      }}
+      formula={formula}
+      example={example}
       relatedCalculators={[
-        { title: "Orbital Period", url: "/science/orbital-period", icon: "Orbit" },
-        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "FlaskConical" },
-        { title: "Photon Energy", url: "/science/photon-energy", icon: "Zap" },
-        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "Zap" },
-        { title: "Snell's Law", url: "/science/snells-law", icon: "Waves" },
-        { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "Thermometer" },
+        { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
+        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
+        { title: "Photon Energy", url: "/science/photon-energy", icon: "⚡" },
+        { title: "Snell's Law", url: "/science/snells-law", icon: "🌈" },
+        { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "🎈" },
+        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "🚀" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },
