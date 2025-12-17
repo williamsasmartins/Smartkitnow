@@ -3634,6 +3634,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/MolalityNormalityConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ideal-gas-law-pv-nrt",
+    title: "Ideal Gas Law Calculator",
+    category: "science",
+    subcategory: "chemistry-solutions-stoichiometry",
+    description: "Solve Ideal Gas Law problems (PV = nRT). Calculate pressure, volume, temperature, or moles of a gas instantly.",
+    loader: () => import("@/components/calculators/Science/IdealGasLawPvNrtCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
