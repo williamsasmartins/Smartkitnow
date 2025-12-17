@@ -3670,6 +3670,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/PhPohHOhCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "buffer-henderson-hasselbalch-helper",
+    title: "Buffer (Henderson–Hasselbalch) Helper",
+    category: "science",
+    subcategory: "chemistry-solutions-stoichiometry",
+    description: "Design chemical buffers. Use the Henderson-Hasselbalch equation to calculate pH and ratio of conjugate base to acid.",
+    loader: () => import("@/components/calculators/Science/BufferHendersonHasselbalchHelperCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
