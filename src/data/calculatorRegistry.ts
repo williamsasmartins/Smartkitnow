@@ -3701,6 +3701,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/PercentCompositionByMassCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ppm-ppb-concentration-converter",
+    title: "ppm / ppb Concentration Converter",
+    category: "science",
+    subcategory: "chemistry-composition-units",
+    description: "Convert concentration units. Switch between parts per million (ppm), parts per billion (ppb), and molarity for trace analysis.",
+    loader: () => import("@/components/calculators/Science/PpmPpbConcentrationConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
