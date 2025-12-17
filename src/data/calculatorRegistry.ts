@@ -3545,6 +3545,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/SpecificHeatQMcDeltaTCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "heat-transfer-conduction",
+    title: "Heat Transfer (Conduction) Calculator",
+    category: "science",
+    subcategory: "physics-waves-optics-thermo",
+    description: "Calculate rate of heat transfer by conduction. Solve thermal conductivity problems using Fourier's law for engineering and physics.",
+    loader: () => import("@/components/calculators/Science/HeatTransferConductionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
