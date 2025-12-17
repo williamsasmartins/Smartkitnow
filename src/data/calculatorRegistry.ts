@@ -3472,6 +3472,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/ForceWorkEnergyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "momentum-impulse-calculator",
+    title: "Momentum & Impulse Calculator",
+    category: "science",
+    subcategory: "physics-mechanics-motion",
+    description: "Calculate Momentum and Impulse. Analyze collisions and the change in motion of objects using mass and velocity.",
+    loader: () => import("@/components/calculators/Science/MomentumImpulseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
