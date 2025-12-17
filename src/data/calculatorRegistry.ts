@@ -3355,6 +3355,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/RectangleParallelogramAreaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pythagorean-theorem-solver",
+    title: "Pythagorean Theorem Solver",
+    category: "math",
+    subcategory: "geometry-trig",
+    description: "Solve for the hypotenuse or legs of a right triangle. Use a² + b² = c² to find missing distances easily.",
+    loader: () => import("@/components/calculators/Math/PythagoreanTheoremSolverCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
