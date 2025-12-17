@@ -3661,6 +3661,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/PercentYieldTheoreticalYieldCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ph-poh-h-oh-calculator",
+    title: "pH / pOH / [H+] Calculator",
+    category: "science",
+    subcategory: "chemistry-solutions-stoichiometry",
+    description: "Calculate pH, pOH, and ion concentration. Convert between acidity metrics easily for chemistry and biology applications.",
+    loader: () => import("@/components/calculators/Science/PhPohHOhCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
