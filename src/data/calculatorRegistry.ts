@@ -3400,6 +3400,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/MeanMedianModeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "standard-deviation-variance-pop-sample",
+    title: "Standard Deviation & Variance (pop/sample)",
+    category: "math",
+    subcategory: "statistics-probability",
+    description: "Calculate Standard Deviation and Variance. Measure data dispersion and variability for population or sample datasets.",
+    loader: () => import("@/components/calculators/Math/StandardDeviationVariancePopSampleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
