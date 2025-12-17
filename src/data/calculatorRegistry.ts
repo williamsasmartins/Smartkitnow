@@ -3491,6 +3491,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/PowerEfficiencyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "uniform-circular-motion-centripetal",
+    title: "Uniform Circular Motion Calculator",
+    category: "science",
+    subcategory: "physics-mechanics-motion",
+    description: "Solve for centripetal force and acceleration. Calculate the velocity and period of objects in uniform circular motion.",
+    loader: () => import("@/components/calculators/Science/UniformCircularMotionCentripetalCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 

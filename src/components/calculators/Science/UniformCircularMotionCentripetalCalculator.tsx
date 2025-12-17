@@ -10,282 +10,195 @@ import { Atom, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function UniformCircularMotionCentripetalCalculator() {
-  // Inputs:
-  // User can calculate centripetal force (F_c), centripetal acceleration (a_c), velocity (v), or period (T)
-  // Given the other parameters.
-  // Variables:
-  // r = radius (m)
-  // m = mass (kg)
-  // v = velocity (m/s)
-  // T = period (s)
-  // F_c = centripetal force (N)
-  // a_c = centripetal acceleration (m/s²)
+  // Inputs: mass (kg), radius (m), velocity (m/s)
+  // Calculate centripetal force (F = m*v²/r), centripetal acceleration (a = v²/r), period (T = 2πr/v), angular velocity (ω = v/r)
+  // User can input any two of the three: velocity, period, angular velocity, but to keep simple, we ask for mass, radius, velocity.
+  // We'll validate inputs > 0.
 
-  // We allow user to select which variable to calculate, and input the others.
-
-  const [inputs, setInputs] = useState<{
-    calculateFor: "Fc" | "ac" | "v" | "T";
-    mass?: string;
-    radius?: string;
-    velocity?: string;
-    period?: string;
-  }>({
-    calculateFor: "Fc",
-    mass: "",
-    radius: "",
-    velocity: "",
-    period: "",
+  const [inputs, setInputs] = useState({
+    mass: "", // kg
+    radius: "", // m
+    velocity: "", // m/s
   });
 
   const handleInputChange = useCallback((name: string, value: string) => {
-    setInputs((prev) => ({ ...prev, [name]: value }));
+    // Allow only numbers and decimal points
+    if (/^\d*\.?\d*$/.test(value) || value === "") {
+      setInputs((prev) => ({ ...prev, [name]: value }));
+    }
   }, []);
 
-  // Constants
-  const g = 9.81; // m/s² (not directly needed here but for reference)
-
-  // Calculation logic in useMemo
   const results = useMemo(() => {
-    const { calculateFor, mass, radius, velocity, period } = inputs;
+    const mass = parseFloat(inputs.mass);
+    const radius = parseFloat(inputs.radius);
+    const velocity = parseFloat(inputs.velocity);
 
-    // Parse inputs to floats
-    const m = mass ? parseFloat(mass) : NaN;
-    const r = radius ? parseFloat(radius) : NaN;
-    const v = velocity ? parseFloat(velocity) : NaN;
-    const T = period ? parseFloat(period) : NaN;
-
-    // Validation helper
-    const isValidPositive = (x: number) => !isNaN(x) && x > 0;
-
-    // Prepare output object
-    let value = "Waiting...";
-    let label = "";
-    let subtext = "";
-    let warning: string | null = null;
-    let formulaUsed: string | null = null;
-
-    // Calculation and validation per case
-    if (calculateFor === "Fc") {
-      // Calculate centripetal force: F_c = m * v² / r
-      if (!isValidPositive(m)) {
-        warning = "Mass must be a positive number.";
-      } else if (!isValidPositive(v)) {
-        warning = "Velocity must be a positive number.";
-      } else if (!isValidPositive(r)) {
-        warning = "Radius must be a positive number.";
-      } else {
-        const Fc = (m * v * v) / r; // Newtons (N)
-        const displayVal =
-          Fc > 10000 || Fc < 0.001 ? Fc.toExponential(4) : Fc.toFixed(4);
-        value = `${displayVal} N`;
-        label = "Centripetal Force";
-        subtext = "Force required to keep the object moving in a circle";
-        formulaUsed = "F_c = m × v² / r";
-      }
-    } else if (calculateFor === "ac") {
-      // Calculate centripetal acceleration: a_c = v² / r
-      if (!isValidPositive(v)) {
-        warning = "Velocity must be a positive number.";
-      } else if (!isValidPositive(r)) {
-        warning = "Radius must be a positive number.";
-      } else {
-        const ac = (v * v) / r; // m/s²
-        const displayVal =
-          ac > 10000 || ac < 0.001 ? ac.toExponential(4) : ac.toFixed(4);
-        value = `${displayVal} m/s²`;
-        label = "Centripetal Acceleration";
-        subtext = "Acceleration directed towards the center of the circle";
-        formulaUsed = "a_c = v² / r";
-      }
-    } else if (calculateFor === "v") {
-      // Calculate velocity: v = 2πr / T or v = sqrt(F_c * r / m)
-      // We require radius and either period or force & mass
-      if (isValidPositive(r) && isValidPositive(T)) {
-        // Use v = 2πr / T
-        const velocityCalc = (2 * Math.PI * r) / T;
-        const displayVal =
-          velocityCalc > 10000 || velocityCalc < 0.001
-            ? velocityCalc.toExponential(4)
-            : velocityCalc.toFixed(4);
-        value = `${displayVal} m/s`;
-        label = "Velocity (from period)";
-        subtext = "Speed of the object along the circular path";
-        formulaUsed = "v = 2πr / T";
-      } else if (isValidPositive(r) && isValidPositive(m) && !isNaN(inputs.mass) && !isNaN(inputs.radius) && !isNaN(inputs.velocity) && !isNaN(inputs.period)) {
-        // If force is given (not input here), can't calculate velocity from force here
-        warning =
-          "To calculate velocity, provide radius and period (T).";
-      } else {
-        warning = "Radius and period (T) must be positive numbers.";
-      }
-    } else if (calculateFor === "T") {
-      // Calculate period: T = 2πr / v
-      if (!isValidPositive(r)) {
-        warning = "Radius must be a positive number.";
-      } else if (!isValidPositive(v)) {
-        warning = "Velocity must be a positive number.";
-      } else {
-        const periodCalc = (2 * Math.PI * r) / v; // seconds
-        const displayVal =
-          periodCalc > 10000 || periodCalc < 0.001
-            ? periodCalc.toExponential(4)
-            : periodCalc.toFixed(4);
-        value = `${displayVal} s`;
-        label = "Period";
-        subtext = "Time taken for one complete revolution";
-        formulaUsed = "T = 2πr / v";
-      }
-    } else {
-      warning = "Select a variable to calculate.";
+    // Validation
+    if (
+      isNaN(mass) ||
+      isNaN(radius) ||
+      isNaN(velocity) ||
+      mass <= 0 ||
+      radius <= 0 ||
+      velocity <= 0
+    ) {
+      return {
+        value: "Waiting...",
+        label: "Enter positive values for mass, radius, and velocity",
+        subtext: "",
+        warning: null,
+        formulaUsed: null,
+      };
     }
 
-    return { value, label, subtext, warning, formulaUsed };
-  }, [inputs]);
+    // Constants
+    // None needed here
 
-  // FAQs
+    // Calculations
+    // Centripetal Force: F = m * v² / r (N)
+    const centripetalForce = (mass * velocity * velocity) / radius;
+
+    // Centripetal Acceleration: a = v² / r (m/s²)
+    const centripetalAcceleration = (velocity * velocity) / radius;
+
+    // Period: T = 2πr / v (s)
+    const period = (2 * Math.PI * radius) / velocity;
+
+    // Angular Velocity: ω = v / r (rad/s)
+    const angularVelocity = velocity / radius;
+
+    // Formatting helper
+    function formatValue(val: number, unit: string) {
+      if (val === 0) return `0 ${unit}`;
+      if (Math.abs(val) >= 10000 || Math.abs(val) < 0.001) {
+        return `${val.toExponential(4)} ${unit}`;
+      }
+      return `${val.toFixed(4)} ${unit}`;
+    }
+
+    return {
+      value: (
+        <>
+          <p>
+            <strong>Centripetal Force:</strong>{" "}
+            {formatValue(centripetalForce, "N")}
+          </p>
+          <p>
+            <strong>Centripetal Acceleration:</strong>{" "}
+            {formatValue(centripetalAcceleration, "m/s²")}
+          </p>
+          <p>
+            <strong>Period:</strong> {formatValue(period, "s")}
+          </p>
+          <p>
+            <strong>Angular Velocity:</strong>{" "}
+            {formatValue(angularVelocity, "rad/s")}
+          </p>
+        </>
+      ),
+      label: "Results for Uniform Circular Motion",
+      subtext:
+        "Inputs: mass (kg), radius (m), velocity (m/s). Outputs: force (N), acceleration (m/s²), period (s), angular velocity (rad/s).",
+      warning: null,
+      formulaUsed:
+        "F = m × v² / r, a = v² / r, T = 2πr / v, ω = v / r",
+    };
+  }, [inputs.mass, inputs.radius, inputs.velocity]);
+
   const faqs = [
     {
-      question: "What is uniform circular motion and why is centripetal force important?",
+      question: "What is uniform circular motion?",
       answer:
-        "Uniform circular motion occurs when an object moves in a circle at a constant speed. Although the speed is constant, the direction changes continuously, causing acceleration towards the center of the circle. This acceleration requires a force called centripetal force, which keeps the object moving along the circular path instead of flying off tangentially.",
+        "Uniform circular motion describes the movement of an object traveling at a constant speed along a circular path. Despite the constant speed, the object's velocity vector continuously changes direction, resulting in acceleration towards the center of the circle called centripetal acceleration. This concept is fundamental in physics and engineering for analyzing rotational systems.",
     },
     {
-      question: "How is the period related to velocity and radius in circular motion?",
+      question: "Where is uniform circular motion applied in real life?",
       answer:
-        "The period (T) is the time taken for one complete revolution around the circle. It is related to velocity (v) and radius (r) by the formula T = 2πr / v. This means that for a fixed radius, increasing velocity decreases the period, making the object complete revolutions faster.",
+        "Uniform circular motion principles are applied in many real-world scenarios such as designing roller coasters, calculating the forces on satellites orbiting planets, and engineering rotating machinery like turbines and centrifuges. Understanding these forces ensures safety, efficiency, and functionality in mechanical and aerospace engineering.",
+    },
+    {
+      question: "Why is centripetal force necessary?",
+      answer:
+        "Centripetal force is the inward force required to keep an object moving in a circular path. Without this force, the object would move off in a straight line due to inertia. This force can be provided by tension, gravity, friction, or other forces depending on the system, and is essential for maintaining circular motion.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
-  // Widget JSX
   const widget = (
     <div className="space-y-6">
-      {/* Select variable to calculate */}
-      <div>
-        <Label htmlFor="calculateFor" className="mb-1 font-semibold">
-          Calculate for:
-        </Label>
-        <Select
-          value={inputs.calculateFor}
-          onValueChange={(val) => handleInputChange("calculateFor", val)}
-          id="calculateFor"
-        >
-          <SelectTrigger className="w-full">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="Fc">Centripetal Force (F_c)</SelectItem>
-            <SelectItem value="ac">Centripetal Acceleration (a_c)</SelectItem>
-            <SelectItem value="v">Velocity (v)</SelectItem>
-            <SelectItem value="T">Period (T)</SelectItem>
-          </SelectContent>
-        </Select>
+      {/* Inputs */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <Label htmlFor="mass" className="mb-1 font-semibold">
+            Mass (kg)
+          </Label>
+          <Input
+            id="mass"
+            type="text"
+            inputMode="decimal"
+            placeholder="e.g. 5"
+            value={inputs.mass}
+            onChange={(e) => handleInputChange("mass", e.target.value)}
+            aria-describedby="mass-desc"
+          />
+          <p id="mass-desc" className="text-xs text-slate-500 mt-1">
+            Mass of the object in kilograms (kg).
+          </p>
+        </div>
+        <div>
+          <Label htmlFor="radius" className="mb-1 font-semibold">
+            Radius (m)
+          </Label>
+          <Input
+            id="radius"
+            type="text"
+            inputMode="decimal"
+            placeholder="e.g. 2"
+            value={inputs.radius}
+            onChange={(e) => handleInputChange("radius", e.target.value)}
+            aria-describedby="radius-desc"
+          />
+          <p id="radius-desc" className="text-xs text-slate-500 mt-1">
+            Radius of the circular path in meters (m).
+          </p>
+        </div>
+        <div>
+          <Label htmlFor="velocity" className="mb-1 font-semibold">
+            Velocity (m/s)
+          </Label>
+          <Input
+            id="velocity"
+            type="text"
+            inputMode="decimal"
+            placeholder="e.g. 3"
+            value={inputs.velocity}
+            onChange={(e) => handleInputChange("velocity", e.target.value)}
+            aria-describedby="velocity-desc"
+          />
+          <p id="velocity-desc" className="text-xs text-slate-500 mt-1">
+            Tangential velocity in meters per second (m/s).
+          </p>
+        </div>
       </div>
-
-      {/* Inputs based on selection */}
-      {(inputs.calculateFor === "Fc" || inputs.calculateFor === "ac" || inputs.calculateFor === "v" || inputs.calculateFor === "T") && (
-        <>
-          {/* Mass input only if needed */}
-          {(inputs.calculateFor === "Fc" || inputs.calculateFor === "v") && (
-            <div>
-              <Label htmlFor="mass" className="mb-1 font-semibold">
-                Mass (kg)
-              </Label>
-              <Input
-                type="number"
-                id="mass"
-                placeholder="e.g. 5"
-                value={inputs.mass || ""}
-                onChange={(e) => handleInputChange("mass", e.target.value)}
-                min="0"
-                step="any"
-              />
-            </div>
-          )}
-
-          {/* Radius input always needed except for ac (needs radius) */}
-          {(inputs.calculateFor === "Fc" ||
-            inputs.calculateFor === "ac" ||
-            inputs.calculateFor === "v" ||
-            inputs.calculateFor === "T") && (
-            <div>
-              <Label htmlFor="radius" className="mb-1 font-semibold">
-                Radius (m)
-              </Label>
-              <Input
-                type="number"
-                id="radius"
-                placeholder="e.g. 2"
-                value={inputs.radius || ""}
-                onChange={(e) => handleInputChange("radius", e.target.value)}
-                min="0"
-                step="any"
-              />
-            </div>
-          )}
-
-          {/* Velocity input if needed */}
-          {(inputs.calculateFor === "Fc" ||
-            inputs.calculateFor === "ac" ||
-            inputs.calculateFor === "T") && (
-            <div>
-              <Label htmlFor="velocity" className="mb-1 font-semibold">
-                Velocity (m/s)
-              </Label>
-              <Input
-                type="number"
-                id="velocity"
-                placeholder="e.g. 10"
-                value={inputs.velocity || ""}
-                onChange={(e) => handleInputChange("velocity", e.target.value)}
-                min="0"
-                step="any"
-              />
-            </div>
-          )}
-
-          {/* Period input if needed */}
-          {inputs.calculateFor === "v" && (
-            <div>
-              <Label htmlFor="period" className="mb-1 font-semibold">
-                Period (s)
-              </Label>
-              <Input
-                type="number"
-                id="period"
-                placeholder="e.g. 4"
-                value={inputs.period || ""}
-                onChange={(e) => handleInputChange("period", e.target.value)}
-                min="0"
-                step="any"
-              />
-            </div>
-          )}
-        </>
-      )}
 
       {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
           onClick={() => {
-            // No action needed, calculation is reactive
+            // Just trigger recalculation, no extra logic needed
           }}
+          type="button"
+          aria-label="Calculate uniform circular motion results"
         >
           <Atom className="mr-2 h-4 w-4" /> Calculate
         </Button>
         <Button
           variant="outline"
-          onClick={() =>
-            setInputs({
-              calculateFor: "Fc",
-              mass: "",
-              radius: "",
-              velocity: "",
-              period: "",
-            })
-          }
+          onClick={() => setInputs({ mass: "", radius: "", velocity: "" })}
           className="flex-1 h-11 hover:bg-slate-100 dark:hover:bg-slate-800"
+          type="button"
+          aria-label="Reset inputs"
         >
           <RotateCcw className="mr-2 h-4 w-4" /> Reset
         </Button>
@@ -299,10 +212,10 @@ export default function UniformCircularMotionCentripetalCalculator() {
               <p className="text-sm font-bold text-blue-900 dark:text-blue-100 mb-3 uppercase tracking-wider">
                 {results.formulaUsed || "Calculated Result"}
               </p>
-              <p className="text-5xl font-extrabold text-blue-900 dark:text-white">
+              <div className="text-3xl font-extrabold text-blue-900 dark:text-white space-y-3">
                 {results.value}
-              </p>
-              <p className="text-slate-600 dark:text-slate-300 mt-2 font-medium">
+              </div>
+              <p className="text-slate-600 dark:text-slate-300 mt-4 font-medium">
                 {results.label}
               </p>
               {results.subtext && (
@@ -322,9 +235,9 @@ export default function UniformCircularMotionCentripetalCalculator() {
           <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 flex gap-3">
             <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              <strong>Science Fact:</strong> Always check your units (e.g., convert
-              grams to kg for physics formulas). Radius must be in meters, mass in
-              kilograms, velocity in meters per second, and period in seconds.
+              <strong>Science Fact:</strong> Always ensure units are consistent,
+              e.g., mass in kilograms, radius in meters, and velocity in meters
+              per second for accurate physics calculations.
             </p>
           </div>
         </div>
@@ -332,7 +245,6 @@ export default function UniformCircularMotionCentripetalCalculator() {
     </div>
   );
 
-  // Editorial content
   const editorial = (
     <div className="space-y-12">
       <section id="what-is" className="scroll-mt-32">
@@ -340,24 +252,26 @@ export default function UniformCircularMotionCentripetalCalculator() {
           Understanding Uniform Circular Motion Calculator
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Uniform circular motion describes the movement of an object traveling at a
-          constant speed along a circular path. Despite the constant speed, the
-          object's velocity vector continuously changes direction, resulting in a
-          centripetal acceleration directed towards the center of the circle. This
-          acceleration requires a centripetal force to maintain the circular motion.
-          This calculator helps you find key parameters such as centripetal force,
-          acceleration, velocity, and period based on known values.
+          Uniform circular motion occurs when an object moves along a circular
+          path with a constant speed. Although the speed remains constant, the
+          velocity vector changes direction continuously, resulting in an
+          acceleration directed towards the center of the circle, known as
+          centripetal acceleration. This acceleration requires a net inward
+          force called centripetal force to maintain the circular path.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The concept is fundamental in physics and engineering, applied in designing
-          roller coasters, vehicle turning dynamics, satellite orbits, and many
-          mechanical systems where objects follow curved paths. Understanding these
-          parameters ensures safety and efficiency in such applications.
+          This calculator helps you determine key parameters such as centripetal
+          force, centripetal acceleration, period, and angular velocity based
+          on the mass of the object, radius of the circular path, and its
+          tangential velocity. Understanding these quantities is essential in
+          fields like mechanical engineering, astrophysics, and everyday
+          applications involving rotational motion.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Always ensure your input values use consistent SI units: mass in kilograms,
-          radius in meters, velocity in meters per second, and time in seconds. This
-          consistency is crucial for accurate calculations.
+          Remember, all inputs must be positive real numbers. Use consistent
+          SI units: mass in kilograms (kg), radius in meters (m), and velocity
+          in meters per second (m/s). This ensures the results are accurate and
+          meaningful.
         </p>
       </section>
 
@@ -366,18 +280,19 @@ export default function UniformCircularMotionCentripetalCalculator() {
           Formula & Variables
         </h2>
         <pre className="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-x-auto font-mono text-slate-800 dark:text-slate-200">
-{`Centripetal Force: F_c = m × v² / r
-Centripetal Acceleration: a_c = v² / r
-Velocity: v = 2πr / T
-Period: T = 2πr / v
+{`Centripetal Force (F) = m × v² / r
+Centripetal Acceleration (a) = v² / r
+Period (T) = 2πr / v
+Angular Velocity (ω) = v / r
 
 Where:
-  F_c = centripetal force (Newtons, N)
-  m = mass (kilograms, kg)
-  v = velocity (meters per second, m/s)
-  r = radius of circular path (meters, m)
-  a_c = centripetal acceleration (meters per second squared, m/s²)
-  T = period (seconds, s)`}
+  m = mass of the object (kg)
+  v = tangential velocity (m/s)
+  r = radius of circular path (m)
+  F = centripetal force (Newtons, N)
+  a = centripetal acceleration (m/s²)
+  T = period of one revolution (seconds, s)
+  ω = angular velocity (radians per second, rad/s)`}
         </pre>
       </section>
 
@@ -386,26 +301,34 @@ Where:
           Step-by-Step Example
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Let's solve a real-world problem using the centripetal force formula.
-          Suppose a 2 kg object moves in a circle of radius 3 meters at a velocity of
-          4 m/s. We want to find the centripetal force acting on the object.
+          Let's solve a real-world problem using the uniform circular motion
+          formulas.
         </p>
         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
           <li>
-            <strong>Given:</strong> m = 2 kg, r = 3 m, v = 4 m/s
+            <strong>Given:</strong> A 2 kg object moves in a circle of radius 3
+            meters at a velocity of 4 m/s.
           </li>
           <li>
-            <strong>Step 1:</strong> Use the formula F_c = m × v² / r
+            <strong>Step 1:</strong> Calculate centripetal force using F = m ×
+            v² / r = 2 × 4² / 3 = 10.6667 N.
           </li>
           <li>
-            <strong>Step 2:</strong> Calculate v² = 4² = 16 m²/s²
+            <strong>Step 2:</strong> Calculate centripetal acceleration a = v²
+            / r = 16 / 3 = 5.3333 m/s².
           </li>
           <li>
-            <strong>Step 3:</strong> Calculate F_c = 2 × 16 / 3 = 32 / 3 ≈ 10.6667 N
+            <strong>Step 3:</strong> Calculate period T = 2πr / v ≈ 4.7124 s.
           </li>
           <li>
-            <strong>Result:</strong> The centripetal force is approximately 10.6667
-            Newtons.
+            <strong>Step 4:</strong> Calculate angular velocity ω = v / r =
+            4 / 3 = 1.3333 rad/s.
+          </li>
+          <li>
+            <strong>Result:</strong> The object experiences a centripetal force
+            of approximately 10.67 N, acceleration of 5.33 m/s², completes one
+            revolution in about 4.71 seconds, and has an angular velocity of
+            1.33 rad/s.
           </li>
         </ul>
       </section>
@@ -442,46 +365,54 @@ Where:
       jsonLd={faqJsonLd}
       formula={{
         title: "Scientific Formula",
-        formula: `F_c = m × v² / r
-a_c = v² / r
-v = 2πr / T
-T = 2πr / v`,
+        formula:
+          "F = m × v² / r, a = v² / r, T = 2πr / v, ω = v / r",
         variables: [
-          { symbol: "F_c", description: "Centripetal force (Newtons, N)" },
-          { symbol: "m", description: "Mass (kilograms, kg)" },
-          { symbol: "v", description: "Velocity (meters per second, m/s)" },
-          { symbol: "r", description: "Radius of circular path (meters, m)" },
-          { symbol: "a_c", description: "Centripetal acceleration (m/s²)" },
-          { symbol: "T", description: "Period (seconds, s)" },
+          { symbol: "m", description: "Mass of the object (kg)" },
+          { symbol: "v", description: "Tangential velocity (m/s)" },
+          { symbol: "r", description: "Radius of circular path (m)" },
+          { symbol: "F", description: "Centripetal force (N)" },
+          { symbol: "a", description: "Centripetal acceleration (m/s²)" },
+          { symbol: "T", description: "Period of revolution (s)" },
+          { symbol: "ω", description: "Angular velocity (rad/s)" },
         ],
       }}
       example={{
         title: "Example",
         scenario:
-          "Calculate the centripetal force on a 2 kg object moving at 4 m/s in a circle of radius 3 m.",
+          "A 2 kg object moves in a circle of radius 3 meters at a velocity of 4 m/s.",
         steps: [
           {
             label: "1",
-            explanation: "Identify known values: m = 2 kg, v = 4 m/s, r = 3 m.",
+            explanation:
+              "Calculate centripetal force: F = m × v² / r = 2 × 4² / 3 = 10.6667 N.",
           },
           {
             label: "2",
-            explanation: "Apply formula: F_c = m × v² / r = 2 × 16 / 3.",
+            explanation:
+              "Calculate centripetal acceleration: a = v² / r = 16 / 3 = 5.3333 m/s².",
           },
           {
             label: "3",
-            explanation: "Calculate: F_c ≈ 10.6667 N.",
+            explanation:
+              "Calculate period: T = 2πr / v ≈ 4.7124 seconds.",
+          },
+          {
+            label: "4",
+            explanation:
+              "Calculate angular velocity: ω = v / r = 4 / 3 = 1.3333 rad/s.",
           },
         ],
-        result: "Centripetal force is approximately 10.6667 Newtons.",
+        result:
+          "The object experiences a centripetal force of approximately 10.67 N, acceleration of 5.33 m/s², completes one revolution in about 4.71 seconds, and has an angular velocity of 1.33 rad/s.",
       }}
       relatedCalculators={[
-        { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
-        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
-        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "🚀" },
-        { title: "Photon Energy", url: "/science/photon-energy", icon: "⚡" },
-        { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "🎈" },
         { title: "Snell's Law", url: "/science/snells-law", icon: "🌈" },
+        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
+        { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "🎈" },
+        { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
+        { title: "Photon Energy", url: "/science/photon-energy", icon: "⚡" },
+        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "🚀" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },
