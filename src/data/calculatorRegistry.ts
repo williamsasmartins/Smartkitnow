@@ -3518,6 +3518,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/WaveSpeedFrequencyWavelengthCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "snells-law-critical-angle",
+    title: "Snell’s Law & Critical Angle Calculator",
+    category: "science",
+    subcategory: "physics-waves-optics-thermo",
+    description: "Solve optics problems using Snell's Law. Calculate the angle of refraction and the critical angle for total internal reflection.",
+    loader: () => import("@/components/calculators/Science/SnellsLawCriticalAngleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
