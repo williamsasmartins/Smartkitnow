@@ -3625,6 +3625,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/DilutionC1v1C2v2Calculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "molality-normality-converter",
+    title: "Molality & Normality Converter",
+    category: "science",
+    subcategory: "chemistry-solutions-stoichiometry",
+    description: "Convert concentration units. Calculate Molality and Normality for precise chemical solutions and acid-base titrations.",
+    loader: () => import("@/components/calculators/Science/MolalityNormalityConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
