@@ -3554,6 +3554,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/HeatTransferConductionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "blackbody-peak-wien-law-estimator",
+    title: "Blackbody Peak (Wien's Law) Estimator",
+    category: "science",
+    subcategory: "physics-waves-optics-thermo",
+    description: "Estimate peak wavelength of blackbody radiation. Use Wien's Displacement Law to find the temperature of stars and hot objects.",
+    loader: () => import("@/components/calculators/Science/BlackbodyPeakWienLawEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 

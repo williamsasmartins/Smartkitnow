@@ -6,191 +6,236 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 // ⚠️ SAFE ICONS ONLY
-import { Atom, Thermometer, Info, RotateCcw, AlertTriangle } from "lucide-react";
+import { Atom, Info, RotateCcw, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function BlackbodyPeakWienLawEstimatorCalculator() {
-  // Inputs: Temperature (K) or Wavelength (nm) - user chooses which to input
-  const [inputs, setInputs] = useState<{ mode: "temperature" | "wavelength"; temperature?: string; wavelength?: string }>({
-    mode: "temperature",
-    temperature: "",
-    wavelength: "",
+  // Inputs: User can input either Temperature (K) to get peak wavelength (m),
+  // or Peak Wavelength (nm or m) to get Temperature (K).
+  // We'll allow user to select input type and unit for wavelength.
+  const [inputs, setInputs] = useState({
+    inputType: "temperature", // "temperature" or "wavelength"
+    temperature: "", // in Kelvin
+    wavelength: "", // in nm or m depending on unit selected
+    wavelengthUnit: "nm", // "nm" or "m"
   });
 
-  const handleInputChange = useCallback((name: string, value: string) => {
+  const handleInputChange = useCallback((name, value) => {
     setInputs((prev) => ({ ...prev, [name]: value }));
   }, []);
 
   // Constants
-  const WIEN_CONSTANT = 2.8977729e-3; // Wien's displacement constant in meters kelvin (m·K)
+  // Wien's displacement constant b = 2.897771955 × 10⁻³ m·K (CODATA 2018)
+  const WIEN_DISPLACEMENT_CONSTANT = 2.897771955e-3; // meters kelvin
 
   // 2. LOGIC ENGINE
   const results = useMemo(() => {
-    const mode = inputs.mode;
-    const tempStr = inputs.temperature?.trim() || "";
-    const waveStr = inputs.wavelength?.trim() || "";
+    // Parse inputs safely
+    const temp = parseFloat(inputs.temperature);
+    const wlRaw = parseFloat(inputs.wavelength);
+    const wlUnit = inputs.wavelengthUnit;
 
-    // Validation helpers
-    const isPositiveNumber = (val: string) => {
-      const num = Number(val);
-      return !isNaN(num) && num > 0;
-    };
+    // Validation and warnings
+    let warning = null;
 
-    if (mode === "temperature") {
-      if (!isPositiveNumber(tempStr)) {
+    if (inputs.inputType === "temperature") {
+      if (isNaN(temp) || temp <= 0) {
         return {
           value: "Waiting...",
-          label: "Enter a valid temperature &gt; 0",
+          label: "Enter a valid temperature &gt; 0 K",
           subtext: "",
           warning: null,
           formulaUsed: null,
         };
       }
-      const T = Number(tempStr); // Kelvin
-      // Wien's Law: λ_peak = b / T
-      // λ_peak in meters, convert to nanometers (1 m = 1e9 nm)
-      const lambdaPeak_m = WIEN_CONSTANT / T;
-      const lambdaPeak_nm = lambdaPeak_m * 1e9;
+      // Calculate peak wavelength λ_peak = b / T
+      const lambdaPeakMeters = WIEN_DISPLACEMENT_CONSTANT / temp; // meters
 
-      // Format output: use scientific notation if very small or large
+      // Convert to nm if preferred
+      const lambdaPeakDisplay =
+        wlUnit === "nm" ? lambdaPeakMeters * 1e9 : lambdaPeakMeters;
+
+      // Format output: scientific notation if very small or large
       const displayVal =
-        lambdaPeak_nm < 0.001 || lambdaPeak_nm > 10000
-          ? lambdaPeak_nm.toExponential(4)
-          : lambdaPeak_nm.toFixed(4);
+        lambdaPeakDisplay < 0.001 || lambdaPeakDisplay > 10000
+          ? lambdaPeakDisplay.toExponential(4)
+          : lambdaPeakDisplay.toFixed(4);
+
+      const unitLabel = wlUnit === "nm" ? "nm" : "m";
 
       return {
-        value: `${displayVal} nm`,
-        label: "Peak Wavelength",
-        subtext: `Calculated using Wien's Displacement Law with temperature ${T} K`,
-        warning: null,
+        value: `${displayVal} ${unitLabel}`,
+        label: "Peak Wavelength of Blackbody Radiation",
+        subtext:
+          "Calculated using Wien's Displacement Law: λ_peak = b / T, where b = 2.897771955 × 10⁻³ m·K",
+        warning,
         formulaUsed: "λ_peak = b / T",
       };
-    } else {
-      // mode === "wavelength"
-      if (!isPositiveNumber(waveStr)) {
+    } else if (inputs.inputType === "wavelength") {
+      if (isNaN(wlRaw) || wlRaw <= 0) {
         return {
           value: "Waiting...",
-          label: "Enter a valid wavelength &gt; 0",
+          label: "Enter a valid peak wavelength &gt; 0",
           subtext: "",
           warning: null,
           formulaUsed: null,
         };
       }
-      const lambda_nm = Number(waveStr);
-      // Convert nm to meters
-      const lambda_m = lambda_nm / 1e9;
-      // Wien's Law rearranged: T = b / λ_peak
-      const T = WIEN_CONSTANT / lambda_m;
+      // Convert wavelength to meters if input is in nm
+      const lambdaMeters = wlUnit === "nm" ? wlRaw * 1e-9 : wlRaw;
 
-      // Format output: use scientific notation if very small or large
-      const displayVal = T < 0.001 || T > 10000 ? T.toExponential(4) : T.toFixed(2);
+      // Calculate temperature T = b / λ_peak
+      const temperatureKelvin = WIEN_DISPLACEMENT_CONSTANT / lambdaMeters;
+
+      if (temperatureKelvin <= 0) {
+        warning = "Calculated temperature is not physically valid.";
+      }
+
+      // Format output: scientific notation if very small or large
+      const displayVal =
+        temperatureKelvin < 0.001 || temperatureKelvin > 10000
+          ? temperatureKelvin.toExponential(4)
+          : temperatureKelvin.toFixed(2);
 
       return {
         value: `${displayVal} K`,
-        label: "Temperature",
-        subtext: `Calculated using Wien's Displacement Law with wavelength ${lambda_nm} nm`,
-        warning: null,
+        label: "Temperature of Blackbody",
+        subtext:
+          "Calculated using Wien's Displacement Law: T = b / λ_peak, where b = 2.897771955 × 10⁻³ m·K",
+        warning,
         formulaUsed: "T = b / λ_peak",
       };
     }
+
+    return {
+      value: "Waiting...",
+      label: "Select input type and enter value",
+      subtext: "",
+      warning: null,
+      formulaUsed: null,
+    };
   }, [inputs]);
 
   // 3. FAQS
   const faqs = [
     {
-      question: "What is Wien's Displacement Law used for?",
+      question: "What is Wien's Displacement Law?",
       answer:
-        "Wien's Displacement Law is fundamental in astrophysics and thermal physics. It allows scientists to determine the temperature of stars and other hot objects by measuring the peak wavelength of their emitted radiation. This law is also used in designing thermal cameras and understanding blackbody radiation in laboratory settings.",
+        "Wien's Displacement Law describes the relationship between the temperature of a blackbody and the wavelength at which it emits radiation most intensely. It states that the peak wavelength is inversely proportional to the temperature, allowing scientists to estimate temperature by measuring emitted light. This principle is fundamental in astrophysics and thermal physics.",
     },
     {
-      question: "Why must temperature be in Kelvin for Wien's Law?",
+      question: "Where is Wien's Law applied in real life?",
       answer:
-        "Temperature must be in Kelvin because Wien's Displacement Law is derived from absolute temperature scales. Using Celsius or Fahrenheit would yield incorrect results since these scales do not start at absolute zero. Kelvin ensures the physical accuracy of the relationship between temperature and peak wavelength.",
+        "Wien's Law is crucial in astronomy for determining the surface temperatures of stars by analyzing their emitted spectra. It is also used in thermal imaging, incandescent light bulb design, and understanding heat radiation in engineering. This law helps in non-contact temperature measurements and studying cosmic microwave background radiation.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
   const widget = (
     <div className="space-y-6">
-      {/* Mode Selector */}
+      {/* Inputs */}
       <div>
-        <Label htmlFor="mode" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
-          <Thermometer className="w-5 h-5 text-blue-600" /> Select Input Mode
+        <Label htmlFor="inputType" className="mb-1 font-semibold">
+          Select Input Type
         </Label>
         <Select
-          value={inputs.mode}
-          onValueChange={(val) => setInputs({ mode: val as "temperature" | "wavelength", temperature: "", wavelength: "" })}
-          id="mode"
+          value={inputs.inputType}
+          onValueChange={(val) => handleInputChange("inputType", val)}
         >
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Choose input mode" />
+          <SelectTrigger id="inputType" className="w-full">
+            <SelectValue placeholder="Select input type" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="temperature">Temperature (Kelvin)</SelectItem>
-            <SelectItem value="wavelength">Peak Wavelength (Nanometers)</SelectItem>
+            <SelectItem value="temperature">
+              Temperature (Kelvin)
+            </SelectItem>
+            <SelectItem value="wavelength">
+              Peak Wavelength
+            </SelectItem>
           </SelectContent>
         </Select>
       </div>
 
-      {/* Inputs */}
-      {inputs.mode === "temperature" && (
+      {inputs.inputType === "temperature" && (
         <div>
-          <Label htmlFor="temperature" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
-            <Thermometer className="w-5 h-5 text-red-600" /> Temperature (Kelvin)
+          <Label htmlFor="temperature" className="mb-1 font-semibold">
+            Temperature (Kelvin)
           </Label>
           <Input
             id="temperature"
             type="number"
             min="0"
             step="any"
-            placeholder="e.g., 5778"
-            value={inputs.temperature || ""}
+            placeholder="e.g. 5800"
+            value={inputs.temperature}
             onChange={(e) => handleInputChange("temperature", e.target.value)}
-            aria-describedby="temperature-help"
           />
-          <p id="temperature-help" className="text-xs text-slate-500 mt-1">
+          <p className="text-sm text-slate-500 mt-1">
             Enter temperature in Kelvin (K). Must be &gt; 0.
           </p>
         </div>
       )}
 
-      {inputs.mode === "wavelength" && (
-        <div>
-          <Label htmlFor="wavelength" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
-            <Waves className="w-5 h-5 text-purple-600" /> Peak Wavelength (Nanometers)
-          </Label>
-          <Input
-            id="wavelength"
-            type="number"
-            min="0"
-            step="any"
-            placeholder="e.g., 500"
-            value={inputs.wavelength || ""}
-            onChange={(e) => handleInputChange("wavelength", e.target.value)}
-            aria-describedby="wavelength-help"
-          />
-          <p id="wavelength-help" className="text-xs text-slate-500 mt-1">
-            Enter peak wavelength in nanometers (nm). Must be &gt; 0.
-          </p>
-        </div>
+      {inputs.inputType === "wavelength" && (
+        <>
+          <div>
+            <Label htmlFor="wavelength" className="mb-1 font-semibold">
+              Peak Wavelength
+            </Label>
+            <Input
+              id="wavelength"
+              type="number"
+              min="0"
+              step="any"
+              placeholder="e.g. 500"
+              value={inputs.wavelength}
+              onChange={(e) => handleInputChange("wavelength", e.target.value)}
+            />
+            <p className="text-sm text-slate-500 mt-1">
+              Enter peak wavelength value. Must be &gt; 0.
+            </p>
+          </div>
+          <div>
+            <Label htmlFor="wavelengthUnit" className="mb-1 font-semibold">
+              Unit
+            </Label>
+            <Select
+              value={inputs.wavelengthUnit}
+              onValueChange={(val) => handleInputChange("wavelengthUnit", val)}
+            >
+              <SelectTrigger id="wavelengthUnit" className="w-full">
+                <SelectValue placeholder="Select unit" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="nm">Nanometers (nm)</SelectItem>
+                <SelectItem value="m">Meters (m)</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </>
       )}
 
       {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button
-          className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
           onClick={() => {
-            // No explicit action needed; calculation is reactive
+            // No explicit calculation trigger needed; calculation is reactive
           }}
-          aria-label="Calculate Blackbody Peak or Temperature"
+          className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
         >
           <Atom className="mr-2 h-4 w-4" /> Calculate
         </Button>
         <Button
           variant="outline"
-          onClick={() => setInputs({ mode: inputs.mode, temperature: "", wavelength: "" })}
+          onClick={() =>
+            setInputs({
+              inputType: "temperature",
+              temperature: "",
+              wavelength: "",
+              wavelengthUnit: "nm",
+            })
+          }
           className="flex-1 h-11 hover:bg-slate-100 dark:hover:bg-slate-800"
-          aria-label="Reset inputs"
         >
           <RotateCcw className="mr-2 h-4 w-4" /> Reset
         </Button>
@@ -198,19 +243,27 @@ export default function BlackbodyPeakWienLawEstimatorCalculator() {
 
       {/* Results */}
       {results.value !== "Waiting..." && (
-        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4" role="region" aria-live="polite" aria-atomic="true">
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
           <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-950 border-blue-200 shadow-lg">
             <CardContent className="p-8 text-center">
               <p className="text-sm font-bold text-blue-900 dark:text-blue-100 mb-3 uppercase tracking-wider">
                 {results.formulaUsed || "Calculated Result"}
               </p>
-              <p className="text-5xl font-extrabold text-blue-900 dark:text-white">{results.value}</p>
-              <p className="text-slate-600 dark:text-slate-300 mt-2 font-medium">{results.label}</p>
-              {results.subtext && <p className="text-sm text-slate-500 mt-2">{results.subtext}</p>}
+              <p className="text-5xl font-extrabold text-blue-900 dark:text-white">
+                {results.value}
+              </p>
+              <p className="text-slate-600 dark:text-slate-300 mt-2 font-medium">
+                {results.label}
+              </p>
+              {results.subtext && (
+                <p className="text-sm text-slate-500 mt-2">{results.subtext}</p>
+              )}
               {results.warning && (
                 <div className="mt-4 p-3 bg-red-50 dark:bg-red-950 border border-red-200 rounded-lg flex items-start gap-3 text-left">
                   <AlertTriangle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
-                  <p className="text-sm text-red-800 dark:text-red-200">{results.warning}</p>
+                  <p className="text-sm text-red-800 dark:text-red-200">
+                    {results.warning}
+                  </p>
                 </div>
               )}
             </CardContent>
@@ -219,7 +272,9 @@ export default function BlackbodyPeakWienLawEstimatorCalculator() {
           <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 flex gap-3">
             <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              <strong>Science Fact:</strong> Wien's Law helps astronomers estimate star temperatures by measuring their color (peak wavelength). Always ensure temperature is in Kelvin and wavelength in nanometers for accurate results.
+              <strong>Science Fact:</strong> Wien's Law helps astronomers
+              determine star temperatures by measuring their color (peak
+              wavelength). Always ensure units are consistent when calculating.
             </p>
           </div>
         </div>
@@ -230,54 +285,94 @@ export default function BlackbodyPeakWienLawEstimatorCalculator() {
   const editorial = (
     <div className="space-y-12">
       <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Understanding Blackbody Peak (Wien&apos;s Law) Estimator</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Understanding Blackbody Peak (Wien's Law) Estimator
+        </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Wien&apos;s Displacement Law describes the relationship between the temperature of a blackbody and the wavelength at which it emits radiation most intensely. Specifically, the peak wavelength (&lambda;<sub>peak</sub>) is inversely proportional to the absolute temperature (T) of the object. This law is crucial in physics and astronomy for determining the temperature of stars and other hot objects by analyzing their emitted light spectrum.
+          Wien's Displacement Law is a fundamental principle in thermal physics
+          and astrophysics that relates the temperature of a blackbody to the
+          wavelength at which it emits radiation most intensely. A blackbody is
+          an idealized physical object that absorbs all incident radiation and
+          re-emits energy perfectly according to its temperature.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The law applies to idealized blackbodies, which absorb all incident radiation and emit a characteristic spectrum dependent only on temperature. Real objects approximate blackbody behavior, allowing practical applications in thermal imaging, astrophysics, and material science. Understanding this relationship helps scientists infer physical properties of distant celestial bodies without direct contact.
+          The law states that the peak wavelength (&lambda;<sub>peak</sub>)
+          of the emitted radiation is inversely proportional to the absolute
+          temperature (T) of the blackbody. This means hotter objects emit
+          radiation with shorter peak wavelengths, shifting towards the blue
+          end of the spectrum, while cooler objects peak at longer wavelengths,
+          towards the red or infrared.
         </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          In engineering, Wien&apos;s Law assists in designing sensors and instruments that detect thermal radiation. It also plays a role in climate science, where the Earth&apos;s radiation spectrum is analyzed. The estimator tool here allows users to input either temperature or peak wavelength to find the corresponding value using Wien&apos;s Law.
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          This estimator allows you to calculate either the peak wavelength if
+          you know the temperature, or the temperature if you know the peak
+          wavelength. It is widely used in astronomy to estimate star
+          temperatures and in engineering for thermal radiation analysis.
         </p>
       </section>
 
       <section id="formula" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Formula &amp; Variables</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Formula & Variables
+        </h2>
         <pre className="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-x-auto font-mono text-slate-800 dark:text-slate-200">
 {`λ_peak = b / T
 
-Where:
-  λ_peak = Peak wavelength of emitted radiation (meters)
-  b = Wien's displacement constant ≈ 2.8977729 × 10⁻³ m·K
-  T = Absolute temperature of the blackbody (Kelvin)
+or equivalently,
 
-Rearranged:
-  T = b / λ_peak`}
+T = b / λ_peak
+
+where:
+  λ_peak = Peak wavelength of blackbody radiation (meters, m)
+  T = Absolute temperature of the blackbody (Kelvin, K)
+  b = Wien's displacement constant = 2.897771955 × 10⁻³ m·K`}
         </pre>
       </section>
 
       <section id="example" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Step-by-Step Example</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Step-by-Step Example
+        </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Let&apos;s solve a real-world problem: Estimate the peak wavelength of radiation emitted by the Sun, which has an approximate surface temperature of 5778 K.
+          Let's solve a real-world problem using Wien's Law: Find the peak
+          wavelength emitted by the Sun, which has an approximate surface
+          temperature of 5778 K.
         </p>
         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li><strong>Given:</strong> Temperature, T = 5778 K</li>
-          <li><strong>Step 1:</strong> Use Wien&apos;s Law: λ_peak = b / T = 2.8977729×10⁻³ m·K / 5778 K</li>
-          <li><strong>Step 2:</strong> Calculate λ_peak ≈ 5.015 × 10⁻⁷ meters</li>
-          <li><strong>Step 3:</strong> Convert meters to nanometers: 5.015 × 10⁻⁷ m × 10⁹ nm/m = 501.5 nm</li>
-          <li><strong>Result:</strong> The Sun&apos;s peak emission wavelength is approximately 501.5 nm, which is in the visible light spectrum (green light).</li>
+          <li>
+            <strong>Given:</strong> T = 5778 K, b = 2.897771955 × 10⁻³ m·K
+          </li>
+          <li>
+            <strong>Step 1:</strong> Calculate λ_peak = b / T = 2.897771955 ×
+            10⁻³ / 5778 ≈ 5.013 × 10⁻⁷ m
+          </li>
+          <li>
+            <strong>Step 2:</strong> Convert meters to nanometers: 5.013 ×
+            10⁻⁷ m = 501.3 nm
+          </li>
+          <li>
+            <strong>Result:</strong> The Sun's peak emission wavelength is about
+            501 nm, which is in the visible green portion of the spectrum.
+          </li>
         </ul>
       </section>
 
       <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Frequently Asked Questions
+        </h2>
         <ul className="space-y-6">
           {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
+            <li
+              key={i}
+              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
+            >
+              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
+                {item.question}
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                {item.answer}
+              </p>
             </li>
           ))}
         </ul>
@@ -294,30 +389,52 @@ Rearranged:
       jsonLd={faqJsonLd}
       formula={{
         title: "Scientific Formula",
-        formula: "λ_peak = b / T",
+        formula: `λ_peak = b / T  or  T = b / λ_peak`,
         variables: [
-          { symbol: "λ_peak", description: "Peak wavelength of emitted radiation (meters)" },
-          { symbol: "b", description: "Wien's displacement constant ≈ 2.8977729 × 10⁻³ m·K" },
-          { symbol: "T", description: "Absolute temperature of the blackbody (Kelvin)" },
+          {
+            symbol: "λ_peak",
+            description: "Peak wavelength of blackbody radiation (meters, m)",
+          },
+          {
+            symbol: "T",
+            description: "Absolute temperature of the blackbody (Kelvin, K)",
+          },
+          {
+            symbol: "b",
+            description: "Wien's displacement constant = 2.897771955 × 10⁻³ m·K",
+          },
         ],
       }}
       example={{
         title: "Example",
-        scenario: "Estimating the peak wavelength of the Sun's radiation given its surface temperature.",
+        scenario:
+          "Calculate the peak wavelength emitted by the Sun with surface temperature 5778 K.",
         steps: [
-          { label: "1", explanation: "Identify the temperature: T = 5778 K." },
-          { label: "2", explanation: "Apply Wien's Law: λ_peak = b / T." },
-          { label: "3", explanation: "Calculate λ_peak and convert to nanometers." },
+          {
+            label: "1",
+            explanation:
+              "Use Wien's Law: λ_peak = b / T = 2.897771955 × 10⁻³ m·K / 5778 K",
+          },
+          {
+            label: "2",
+            explanation:
+              "Calculate λ_peak ≈ 5.013 × 10⁻⁷ meters, convert to 501.3 nm",
+          },
+          {
+            label: "3",
+            explanation:
+              "Interpret result: Sun's peak emission is in visible green light.",
+          },
         ],
-        result: "The Sun's peak wavelength is approximately 501.5 nm, in the visible spectrum.",
+        result: "Peak wavelength ≈ 501.3 nm",
       }}
       relatedCalculators={[
-        { title: "Orbital Period", url: "/science/orbital-period", icon: "Orbit" },
-        { title: "Snell's Law", url: "/science/snells-law", icon: "Waves" },
-        { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "FlaskConical" },
-        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "Zap" },
-        { title: "Photon Energy", url: "/science/photon-energy", icon: "Atom" },
-        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "FlaskConical" },
+        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
+        { title: "Snell's Law", url: "/science/snells-law", icon: "🌈" },
+        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "🚀" },
+        { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "🎈" },
+        { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
+        { title: "Photon Energy", url: "/science/photon-energy", icon: "⚡" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },
