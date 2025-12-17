@@ -3602,6 +3602,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/ReactanceCapacitorInductorEducationalCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "rc-time-constant-tau-rc",
+    title: "RC Time Constant Calculator",
+    category: "science",
+    subcategory: "physics-electricity-modern",
+    description: "Calculate the RC Time Constant (τ). Determine how fast a capacitor charges or discharges through a resistor in a circuit.",
+    loader: () => import("@/components/calculators/Science/RcTimeConstantTauRcCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
