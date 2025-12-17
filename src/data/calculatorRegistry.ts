@@ -3409,6 +3409,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/StandardDeviationVariancePopSampleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "z-score-percentile-finder",
+    title: "Z-Score & Percentile Finder",
+    category: "math",
+    subcategory: "statistics-probability",
+    description: "Find Z-Scores and Percentiles. Standardize data points to understand their position relative to the mean in a normal distribution.",
+    loader: () => import("@/components/calculators/Math/ZScorePercentileFinderCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
