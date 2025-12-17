@@ -3647,6 +3647,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/IdealGasLawPvNrtCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "stoichiometry-limiting-reagent",
+    title: "Stoichiometry & Limiting Reagent Solver",
+    category: "science",
+    subcategory: "chemistry-solutions-stoichiometry",
+    description: "Solve stoichiometry problems. Calculate the amounts of reactants and products and identify the limiting reagent in reactions.",
+    loader: () => import("@/components/calculators/Science/StoichiometryLimitingReagentCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
