@@ -11,110 +11,133 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function PowerEfficiencyCalculator() {
   // Inputs:
-  // Power calculation: Work done (Joules), Time (seconds)
-  // Efficiency calculation: Useful output energy (Joules), Input energy (Joules)
-  // User selects calculation type: "Power" or "Efficiency"
+  // Power (P) in Watts (W)
+  // Work done (W) in Joules (J)
+  // Time (t) in seconds (s)
+  // Efficiency (%) as percentage (0-100)
+  // User can calculate either Power or Efficiency based on inputs
+
+  // We'll let user select calculation type: "Power" or "Efficiency"
+  // For Power: inputs needed: Work done (J), Time (s)
+  // For Efficiency: inputs needed: Useful power output (W), Power input (W)
+
+  const [calcType, setCalcType] = useState("power"); // "power" or "efficiency"
   const [inputs, setInputs] = useState({
-    calculationType: "power", // "power" or "efficiency"
-    workDone: "", // in Joules
-    time: "", // in seconds
-    usefulEnergy: "", // in Joules
-    inputEnergy: "", // in Joules
+    workDone: "",
+    time: "",
+    powerOutput: "",
+    powerInput: "",
   });
 
-  const handleInputChange = useCallback((name: string, value: string) => {
-    setInputs((prev) => ({ ...prev, [name]: value }));
+  const handleInputChange = useCallback((name, value) => {
+    // Accept only numbers or empty string
+    if (value === "" || /^[0-9]*\.?[0-9]*$/.test(value)) {
+      setInputs((prev) => ({ ...prev, [name]: value }));
+    }
   }, []);
 
   const results = useMemo(() => {
-    // Parse inputs as floats
+    // Parse inputs to floats
     const workDone = parseFloat(inputs.workDone);
     const time = parseFloat(inputs.time);
-    const usefulEnergy = parseFloat(inputs.usefulEnergy);
-    const inputEnergy = parseFloat(inputs.inputEnergy);
+    const powerOutput = parseFloat(inputs.powerOutput);
+    const powerInput = parseFloat(inputs.powerInput);
 
-    // Validation helpers
-    const isPositiveNumber = (n: number) => !isNaN(n) && n > 0;
-
-    if (inputs.calculationType === "power") {
-      // Power = Work done / Time
-      if (!isPositiveNumber(workDone) || !isPositiveNumber(time)) {
+    // Validation and calculation
+    if (calcType === "power") {
+      // Calculate Power = Work done / Time
+      if (isNaN(workDone) || isNaN(time)) {
         return {
           value: "Waiting...",
-          label: "Enter valid positive numbers for Work done and Time",
+          label: "Enter Work done and Time",
           subtext: "",
           warning: null,
           formulaUsed: null,
         };
       }
-      const power = workDone / time; // Watts (J/s)
+      if (time <= 0) {
+        return {
+          value: "Invalid",
+          label: "Time must be &gt; 0 seconds",
+          subtext: "",
+          warning: "Time cannot be zero or negative.",
+          formulaUsed: "P = W / t",
+        };
+      }
+      const power = workDone / time; // Watts (W)
       const displayVal =
-        power > 10000 || power < 0.001
-          ? power.toExponential(4) + " Watts"
-          : power.toFixed(4) + " Watts";
-
+        power > 10000 || (power !== 0 && power < 0.001)
+          ? power.toExponential(4) + " W"
+          : power.toFixed(4) + " W";
       return {
         value: displayVal,
-        label: "Power (Rate of Work Done)",
-        subtext: "Power is the rate at which work is done, measured in Watts (Joules per second).",
+        label: "Power",
+        subtext: "Power is the rate of doing work, in Watts (W).",
         warning: null,
         formulaUsed: "P = W / t",
       };
-    } else if (inputs.calculationType === "efficiency") {
-      // Efficiency = (Useful output energy / Input energy) * 100%
-      if (!isPositiveNumber(usefulEnergy) || !isPositiveNumber(inputEnergy)) {
+    } else if (calcType === "efficiency") {
+      // Calculate Efficiency = (Power output / Power input) * 100%
+      if (isNaN(powerOutput) || isNaN(powerInput)) {
         return {
           value: "Waiting...",
-          label: "Enter valid positive numbers for Useful and Input Energy",
+          label: "Enter Power output and Power input",
           subtext: "",
           warning: null,
           formulaUsed: null,
         };
       }
-      if (usefulEnergy > inputEnergy) {
+      if (powerInput <= 0) {
         return {
           value: "Invalid",
-          label: "Useful energy cannot exceed input energy",
+          label: "Power input must be &gt; 0 Watts",
           subtext: "",
-          warning: "Efficiency cannot be greater than 100%. Please check your inputs.",
-          formulaUsed: "η = (Eₒ / Eᵢ) × 100%",
+          warning: "Power input cannot be zero or negative.",
+          formulaUsed: "η = (P_out / P_in) × 100%",
         };
       }
-      const efficiency = (usefulEnergy / inputEnergy) * 100; // percentage
+      if (powerOutput > powerInput) {
+        return {
+          value: "Invalid",
+          label: "Power output cannot exceed Power input",
+          subtext: "",
+          warning: "Efficiency cannot be greater than 100%.",
+          formulaUsed: "η = (P_out / P_in) × 100%",
+        };
+      }
+      const efficiency = (powerOutput / powerInput) * 100; // Percentage
       const displayVal =
-        efficiency < 0.001
+        efficiency > 10000 || (efficiency !== 0 && efficiency < 0.001)
           ? efficiency.toExponential(4) + " %"
           : efficiency.toFixed(4) + " %";
-
       return {
         value: displayVal,
         label: "Efficiency",
-        subtext: "Efficiency is the ratio of useful output energy to input energy, expressed as a percentage.",
+        subtext: "Efficiency is the ratio of useful power output to power input, expressed as a percentage.",
         warning: null,
-        formulaUsed: "η = (Eₒ / Eᵢ) × 100%",
+        formulaUsed: "η = (P_out / P_in) × 100%",
       };
     }
-
     return {
       value: "Waiting...",
-      label: "Select calculation type and enter inputs",
+      label: "Select calculation type",
       subtext: "",
       warning: null,
       formulaUsed: null,
     };
-  }, [inputs]);
+  }, [inputs, calcType]);
 
   // FAQs
   const faqs = [
     {
       question: "What is power in physics?",
       answer:
-        "Power is defined as the rate at which work is done or energy is transferred over time. It is measured in Watts (W), where 1 Watt equals 1 Joule per second. Power helps quantify how quickly energy is used or produced in systems such as engines, electrical devices, and mechanical machines.",
+        "Power is the rate at which work is done or energy is transferred over time. It is measured in Watts (W), where one Watt equals one Joule per second. Understanding power helps in analyzing how quickly machines or systems perform tasks in engineering and everyday applications.",
     },
     {
-      question: "How is efficiency calculated and why is it important?",
+      question: "Why is efficiency important in machines?",
       answer:
-        "Efficiency is the ratio of useful output energy to the total input energy, expressed as a percentage. It indicates how well a machine or process converts energy into useful work without losses. High efficiency means less wasted energy, which is crucial in engineering, energy conservation, and environmental sustainability.",
+        "Efficiency measures how well a machine converts input energy into useful output energy, expressed as a percentage. High efficiency means less energy is wasted, which is crucial for saving resources and reducing costs in engineering, automotive, and energy industries. It also impacts environmental sustainability.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -123,92 +146,108 @@ export default function PowerEfficiencyCalculator() {
     <div className="space-y-6">
       {/* Calculation Type Selector */}
       <div>
-        <Label htmlFor="calculationType" className="mb-1 flex items-center gap-2 font-semibold text-slate-700 dark:text-slate-300">
-          <Zap className="w-5 h-5 text-yellow-500" />
+        <Label htmlFor="calcType" className="mb-1 font-semibold flex items-center gap-2">
+          <Zap className="w-5 h-5 text-yellow-600" />
           Select Calculation
         </Label>
         <Select
-          value={inputs.calculationType}
-          onValueChange={(val) => handleInputChange("calculationType", val)}
-          id="calculationType"
+          value={calcType}
+          onValueChange={(val) => {
+            setCalcType(val);
+            setInputs({
+              workDone: "",
+              time: "",
+              powerOutput: "",
+              powerInput: "",
+            });
+          }}
+          id="calcType"
         >
           <SelectTrigger className="w-full">
             <SelectValue placeholder="Choose calculation" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="power">Power (Watts)</SelectItem>
-            <SelectItem value="efficiency">Efficiency (%)</SelectItem>
+            <SelectItem value="power">Calculate Power (P)</SelectItem>
+            <SelectItem value="efficiency">Calculate Efficiency (η)</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
       {/* Inputs */}
-      {inputs.calculationType === "power" && (
+      {calcType === "power" && (
         <>
           <div>
-            <Label htmlFor="workDone" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
-              <Scale className="w-5 h-5 text-green-600" />
-              Work Done (Joules)
+            <Label htmlFor="workDone" className="mb-1 flex items-center gap-2 font-semibold">
+              <Atom className="w-5 h-5 text-blue-600" />
+              Work done (W)
             </Label>
             <Input
               id="workDone"
-              type="number"
-              min="0"
-              step="any"
+              type="text"
+              placeholder="Enter work done in Joules (J)"
               value={inputs.workDone}
               onChange={(e) => handleInputChange("workDone", e.target.value)}
-              placeholder="e.g., 500"
+              aria-describedby="workDoneHelp"
             />
+            <p id="workDoneHelp" className="text-sm text-slate-500 mt-1">
+              Work done in Joules (J). Must be &ge; 0.
+            </p>
           </div>
           <div>
-            <Label htmlFor="time" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
-              <Waves className="w-5 h-5 text-blue-600" />
-              Time (seconds)
+            <Label htmlFor="time" className="mb-1 flex items-center gap-2 font-semibold">
+              <Zap className="w-5 h-5 text-red-600" />
+              Time (t)
             </Label>
             <Input
               id="time"
-              type="number"
-              min="0"
-              step="any"
+              type="text"
+              placeholder="Enter time in seconds (s)"
               value={inputs.time}
               onChange={(e) => handleInputChange("time", e.target.value)}
-              placeholder="e.g., 10"
+              aria-describedby="timeHelp"
             />
+            <p id="timeHelp" className="text-sm text-slate-500 mt-1">
+              Time in seconds (s). Must be &gt; 0.
+            </p>
           </div>
         </>
       )}
 
-      {inputs.calculationType === "efficiency" && (
+      {calcType === "efficiency" && (
         <>
           <div>
-            <Label htmlFor="usefulEnergy" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
-              <Zap className="w-5 h-5 text-yellow-600" />
-              Useful Output Energy (Joules)
+            <Label htmlFor="powerOutput" className="mb-1 flex items-center gap-2 font-semibold">
+              <Atom className="w-5 h-5 text-green-600" />
+              Useful Power Output (P_out)
             </Label>
             <Input
-              id="usefulEnergy"
-              type="number"
-              min="0"
-              step="any"
-              value={inputs.usefulEnergy}
-              onChange={(e) => handleInputChange("usefulEnergy", e.target.value)}
-              placeholder="e.g., 400"
+              id="powerOutput"
+              type="text"
+              placeholder="Enter useful power output in Watts (W)"
+              value={inputs.powerOutput}
+              onChange={(e) => handleInputChange("powerOutput", e.target.value)}
+              aria-describedby="powerOutputHelp"
             />
+            <p id="powerOutputHelp" className="text-sm text-slate-500 mt-1">
+              Useful power output in Watts (W). Must be &ge; 0.
+            </p>
           </div>
           <div>
-            <Label htmlFor="inputEnergy" className="mb-1 font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2">
-              <FlaskConical className="w-5 h-5 text-red-600" />
-              Input Energy (Joules)
+            <Label htmlFor="powerInput" className="mb-1 flex items-center gap-2 font-semibold">
+              <Atom className="w-5 h-5 text-purple-600" />
+              Power Input (P_in)
             </Label>
             <Input
-              id="inputEnergy"
-              type="number"
-              min="0"
-              step="any"
-              value={inputs.inputEnergy}
-              onChange={(e) => handleInputChange("inputEnergy", e.target.value)}
-              placeholder="e.g., 500"
+              id="powerInput"
+              type="text"
+              placeholder="Enter power input in Watts (W)"
+              value={inputs.powerInput}
+              onChange={(e) => handleInputChange("powerInput", e.target.value)}
+              aria-describedby="powerInputHelp"
             />
+            <p id="powerInputHelp" className="text-sm text-slate-500 mt-1">
+              Power input in Watts (W). Must be &gt; 0.
+            </p>
           </div>
         </>
       )}
@@ -216,26 +255,28 @@ export default function PowerEfficiencyCalculator() {
       {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button
-          onClick={() => {
-            // Just trigger recalculation by updating state with same values (no-op)
-            setInputs((prev) => ({ ...prev }));
-          }}
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
+          onClick={() => {
+            // No action needed, calculation is reactive
+          }}
+          type="button"
+          aria-label="Calculate"
         >
           <Atom className="mr-2 h-4 w-4" /> Calculate
         </Button>
         <Button
           variant="outline"
-          onClick={() =>
+          onClick={() => {
             setInputs({
-              calculationType: "power",
               workDone: "",
               time: "",
-              usefulEnergy: "",
-              inputEnergy: "",
-            })
-          }
+              powerOutput: "",
+              powerInput: "",
+            });
+          }}
           className="flex-1 h-11 hover:bg-slate-100 dark:hover:bg-slate-800"
+          type="button"
+          aria-label="Reset"
         >
           <RotateCcw className="mr-2 h-4 w-4" /> Reset
         </Button>
@@ -243,7 +284,7 @@ export default function PowerEfficiencyCalculator() {
 
       {/* Results */}
       {results.value !== "Waiting..." && (
-        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4" aria-live="polite">
           <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-950 border-blue-200 shadow-lg">
             <CardContent className="p-8 text-center">
               <p className="text-sm font-bold text-blue-900 dark:text-blue-100 mb-3 uppercase tracking-wider">
@@ -264,7 +305,7 @@ export default function PowerEfficiencyCalculator() {
           <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 flex gap-3">
             <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              <strong>Science Fact:</strong> Always ensure units are consistent. For example, work done and energy should be in Joules, and time in seconds for accurate power calculations.
+              <strong>Science Fact:</strong> Always ensure units are consistent. For example, time must be in seconds and work in Joules to calculate power in Watts correctly.
             </p>
           </div>
         </div>
@@ -275,15 +316,17 @@ export default function PowerEfficiencyCalculator() {
   const editorial = (
     <div className="space-y-12">
       <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Understanding Power &amp; Efficiency Calculator</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Understanding Power &amp; Efficiency Calculator
+        </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Power and efficiency are fundamental concepts in physics and engineering that describe how energy is transferred and utilized in systems. Power quantifies the rate at which work is done or energy is converted, measured in Watts (W), where 1 Watt equals 1 Joule per second. Efficiency, expressed as a percentage, measures how effectively a system converts input energy into useful output energy without losses.
+          Power is a fundamental concept in physics that describes the rate at which work is done or energy is transferred over time. It is measured in Watts (W), where 1 Watt equals 1 Joule per second. Efficiency, on the other hand, quantifies how effectively a machine or system converts input energy into useful output energy, expressed as a percentage. This calculator helps you determine either the power output of a system or its efficiency based on the inputs you provide.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator allows you to compute either the power given work done and time, or the efficiency given useful output and input energies. Understanding these concepts is essential in designing engines, electrical devices, and mechanical systems to optimize performance and reduce energy waste.
+          These calculations are essential in many real-world applications such as engineering, automotive design, and energy management. For example, engineers use power calculations to design engines and motors that meet specific performance criteria, while efficiency calculations help optimize energy use and reduce waste in mechanical and electrical systems.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Remember, power &lt; 0 or time &lt;= 0 is physically meaningless, and efficiency cannot exceed 100%. Always double-check your input units to ensure accurate results.
+          Understanding these concepts allows scientists and engineers to improve machine performance, reduce environmental impact, and innovate new technologies that rely on energy transfer and conversion.
         </p>
       </section>
 
@@ -293,34 +336,40 @@ export default function PowerEfficiencyCalculator() {
 {`Power (P) = Work done (W) / Time (t)
 P = W / t
 
-Variables:
-P = Power (Watts, W)
-W = Work done or energy transferred (Joules, J)
-t = Time taken (seconds, s)
+Efficiency (η) = (Useful Power Output (P_out) / Power Input (P_in)) × 100%
+η = (P_out / P_in) × 100%
 
-Efficiency (η) = (Useful output energy (Eₒ) / Input energy (Eᵢ)) × 100%
-η = (Eₒ / Eᵢ) × 100%
-
-Variables:
-η = Efficiency (%)
-Eₒ = Useful output energy (Joules, J)
-Eᵢ = Input energy (Joules, J)`}
+Where:
+P = Power in Watts (W)
+W = Work done in Joules (J)
+t = Time in seconds (s)
+η = Efficiency in percentage (%)
+P_out = Useful power output in Watts (W)
+P_in = Power input in Watts (W)`}
         </pre>
       </section>
 
       <section id="example" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Step-by-Step Example</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Let's solve a real-world problem using this calculator:
+          Let's solve a real-world problem using the power calculation:
         </p>
         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li><strong>Given:</strong> A machine does 1500 Joules of work in 30 seconds. Calculate the power output.</li>
-          <li><strong>Step 1:</strong> Enter Work done = 1500 J and Time = 30 s in the calculator.</li>
-          <li><strong>Step 2:</strong> Calculate power using P = W / t = 1500 J / 30 s = 50 Watts.</li>
-          <li><strong>Result:</strong> The machine's power output is 50 Watts, meaning it does 50 Joules of work every second.</li>
+          <li>
+            <strong>Given:</strong> A machine does 5000 Joules of work in 10 seconds.
+          </li>
+          <li>
+            <strong>Step 1:</strong> Use the formula P = W / t.
+          </li>
+          <li>
+            <strong>Step 2:</strong> Substitute values: P = 5000 J / 10 s = 500 W.
+          </li>
+          <li>
+            <strong>Result:</strong> The power output of the machine is 500 Watts.
+          </li>
         </ul>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          Similarly, you can calculate efficiency by entering the useful output and input energies to understand how effectively a system converts energy.
+          This calculation helps engineers understand how much power a machine produces, which is critical for designing systems that meet performance requirements.
         </p>
       </section>
 
@@ -347,35 +396,33 @@ Eᵢ = Input energy (Joules, J)`}
       jsonLd={faqJsonLd}
       formula={{
         title: "Scientific Formula",
-        formula: `Power: P = W / t
-Efficiency: η = (Eₒ / Eᵢ) × 100%`,
+        formula: `Power (P) = Work done (W) / Time (t)\nEfficiency (η) = (Useful Power Output (P_out) / Power Input (P_in)) × 100%`,
         variables: [
           { symbol: "P", description: "Power in Watts (W)" },
-          { symbol: "W", description: "Work done or energy transferred in Joules (J)" },
+          { symbol: "W", description: "Work done in Joules (J)" },
           { symbol: "t", description: "Time in seconds (s)" },
           { symbol: "η", description: "Efficiency in percentage (%)" },
-          { symbol: "Eₒ", description: "Useful output energy in Joules (J)" },
-          { symbol: "Eᵢ", description: "Input energy in Joules (J)" },
+          { symbol: "P_out", description: "Useful power output in Watts (W)" },
+          { symbol: "P_in", description: "Power input in Watts (W)" },
         ],
       }}
       example={{
         title: "Example",
-        scenario:
-          "A machine performs 1500 Joules of work in 30 seconds. Calculate its power output.",
+        scenario: "Calculate the power output of a machine that does 5000 Joules of work in 10 seconds.",
         steps: [
-          { label: "1", explanation: "Identify the given values: Work done W = 1500 J, Time t = 30 s." },
-          { label: "2", explanation: "Apply the power formula: P = W / t = 1500 J / 30 s." },
-          { label: "3", explanation: "Calculate: P = 50 Watts." },
+          { label: "1", explanation: "Identify the known values: Work done W = 5000 J, Time t = 10 s." },
+          { label: "2", explanation: "Apply the formula: P = W / t." },
+          { label: "3", explanation: "Calculate: P = 5000 J / 10 s = 500 W." },
         ],
-        result: "The machine's power output is 50 Watts, indicating it does 50 Joules of work every second.",
+        result: "The power output is 500 Watts.",
       }}
       relatedCalculators={[
-        { title: "Snell's Law", url: "/science/snells-law", icon: "🌈" },
-        { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
-        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "🚀" },
-        { title: "Photon Energy", url: "/science/photon-energy", icon: "⚡" },
-        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
         { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "🎈" },
+        { title: "Photon Energy", url: "/science/photon-energy", icon: "⚡" },
+        { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
+        { title: "Snell's Law", url: "/science/snells-law", icon: "🌈" },
+        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
+        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "🚀" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },
