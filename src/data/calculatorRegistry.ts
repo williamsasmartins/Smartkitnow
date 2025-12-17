@@ -3508,6 +3508,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/FreeFallTimeVelocityEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "wave-speed-frequency-wavelength",
+    title: "Wave Speed / Frequency / Wavelength",
+    category: "science",
+    subcategory: "physics-waves-optics-thermo",
+    description: "Calculate wave properties. Find the relationship between wave speed, frequency, and wavelength with the wave equation.",
+    loader: () => import("@/components/calculators/Science/WaveSpeedFrequencyWavelengthCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
