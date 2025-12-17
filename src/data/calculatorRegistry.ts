@@ -3382,6 +3382,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/ShapesAreaVolumePackCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "angle-converter-deg-rad",
+    title: "Angle Converter (deg ↔ rad)",
+    category: "math",
+    subcategory: "geometry-trig",
+    description: "Convert angles between Degrees and Radians. Essential for calculus and trigonometry calculations.",
+    loader: () => import("@/components/calculators/Math/AngleConverterDegRadCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
