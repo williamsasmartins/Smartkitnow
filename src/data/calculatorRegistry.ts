@@ -3346,6 +3346,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/CircleAreaCircumferenceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "rectangle-parallelogram-area",
+    title: "Rectangle & Parallelogram Area Calculator",
+    category: "math",
+    subcategory: "geometry-trig",
+    description: "Calculate the area of rectangles and parallelograms. Find the surface area and perimeter for construction or homework.",
+    loader: () => import("@/components/calculators/Math/RectangleParallelogramAreaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
