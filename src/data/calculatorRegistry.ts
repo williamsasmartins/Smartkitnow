@@ -3563,6 +3563,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/BlackbodyPeakWienLawEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "photon-energy-e-hf",
+    title: "Photon Energy Calculator",
+    category: "science",
+    subcategory: "physics-electricity-modern",
+    description: "Calculate the energy of a photon. Use Planck's constant and frequency (E=hf) to solve quantum physics problems.",
+    loader: () => import("@/components/calculators/Science/PhotonEnergyEHfCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
