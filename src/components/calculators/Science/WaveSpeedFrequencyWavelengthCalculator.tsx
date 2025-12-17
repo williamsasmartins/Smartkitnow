@@ -10,9 +10,8 @@ import { Atom, Waves, Info, RotateCcw, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function WaveSpeedFrequencyWavelengthCalculator() {
-  // Inputs: wave speed (v), frequency (f), wavelength (λ)
-  // User can input any two, calculate the third.
-  // Units: speed (m/s), frequency (Hz), wavelength (m)
+  // Inputs: waveSpeed (v), frequency (f), wavelength (λ)
+  // User must provide exactly two to calculate the third.
   const [inputs, setInputs] = useState({
     waveSpeed: "",
     frequency: "",
@@ -26,6 +25,7 @@ export default function WaveSpeedFrequencyWavelengthCalculator() {
     }
   }, []);
 
+  // 2. LOGIC ENGINE
   const results = useMemo(() => {
     const v = parseFloat(inputs.waveSpeed);
     const f = parseFloat(inputs.frequency);
@@ -33,124 +33,106 @@ export default function WaveSpeedFrequencyWavelengthCalculator() {
 
     // Count how many inputs are valid numbers
     const validInputs = [v, f, lambda].filter((x) => !isNaN(x));
-
-    // Validation: Need exactly two inputs to calculate the third
     if (validInputs.length < 2) {
       return {
         value: "Waiting...",
-        label: "Enter any two values to calculate the third",
-        subtext: "",
+        label: "Enter at least two values",
+        subtext: "Provide any two of wave speed, frequency, or wavelength to calculate the third.",
         warning: null,
         formulaUsed: null,
       };
     }
-    if (validInputs.length > 2) {
-      // Check consistency: v = f * λ
-      if (Math.abs(v - f * lambda) > 1e-6) {
+
+    // Validation: all positive numbers (wave properties cannot be zero or negative)
+    if (
+      (inputs.waveSpeed !== "" && (isNaN(v) || v <= 0)) ||
+      (inputs.frequency !== "" && (isNaN(f) || f <= 0)) ||
+      (inputs.wavelength !== "" && (isNaN(lambda) || lambda <= 0))
+    ) {
+      return {
+        value: "Invalid input",
+        label: "All inputs must be positive numbers",
+        subtext: "Wave speed, frequency, and wavelength must be &gt; 0.",
+        warning: "Please enter positive values only.",
+        formulaUsed: null,
+      };
+    }
+
+    // Calculate the missing value using v = f * λ
+    let calculatedValue = null;
+    let calculatedLabel = "";
+    let formulaUsed = "";
+    let displayVal = "";
+
+    if (isNaN(v)) {
+      // Calculate wave speed: v = f * λ
+      calculatedValue = f * lambda;
+      calculatedLabel = "Wave Speed (m/s)";
+      formulaUsed = "v = f × λ";
+    } else if (isNaN(f)) {
+      // Calculate frequency: f = v / λ
+      calculatedValue = v / lambda;
+      calculatedLabel = "Frequency (Hz)";
+      formulaUsed = "f = v ÷ λ";
+    } else if (isNaN(lambda)) {
+      // Calculate wavelength: λ = v / f
+      calculatedValue = v / f;
+      calculatedLabel = "Wavelength (m)";
+      formulaUsed = "λ = v ÷ f";
+    } else {
+      // All three provided, check consistency
+      const lhs = v;
+      const rhs = f * lambda;
+      const diff = Math.abs(lhs - rhs);
+      if (diff > 1e-6) {
         return {
-          value: "Error",
-          label: "Inconsistent inputs",
-          subtext: "Wave speed must equal frequency × wavelength",
-          warning:
-            "Inputs do not satisfy the wave equation: v = f × λ. Please check your values.",
+          value: "Inconsistent inputs",
+          label: "Inputs do not satisfy v = f × λ",
+          subtext: `Difference: ${diff.toExponential(4)}`,
+          warning: "Please check your inputs for consistency.",
           formulaUsed: "v = f × λ",
         };
       }
-      // All inputs consistent, no calculation needed
-      return {
-        value: `${v.toFixed(4)} m/s`,
-        label: "Wave Speed",
-        subtext: "All inputs consistent",
-        warning: null,
-        formulaUsed: "v = f × λ",
-      };
+      // If consistent, just show wave speed as result
+      calculatedValue = v;
+      calculatedLabel = "Wave Speed (m/s)";
+      formulaUsed = "v = f × λ";
     }
 
-    // Exactly two inputs: calculate the third
-    // Cases:
-    // 1) v and f given => λ = v / f
-    if (!isNaN(v) && !isNaN(f) && isNaN(lambda)) {
-      if (f === 0) {
-        return {
-          value: "Error",
-          label: "Frequency cannot be zero",
-          subtext: "",
-          warning: "Frequency must be greater than zero to calculate wavelength.",
-          formulaUsed: "λ = v / f",
-        };
+    // Format output: use scientific notation if very large or small
+    if (calculatedValue !== null) {
+      if (calculatedValue >= 10000 || calculatedValue < 0.001) {
+        displayVal = calculatedValue.toExponential(4);
+      } else {
+        displayVal = calculatedValue.toFixed(4);
       }
-      const res = v / f;
-      const displayVal =
-        res > 10000 || res < 0.001 ? res.toExponential(4) : res.toFixed(4);
-      return {
-        value: `${displayVal} m`,
-        label: "Wavelength",
-        subtext: "Calculated from wave speed and frequency",
-        warning: null,
-        formulaUsed: "λ = v / f",
-      };
-    }
-    // 2) v and λ given => f = v / λ
-    if (!isNaN(v) && !isNaN(lambda) && isNaN(f)) {
-      if (lambda === 0) {
-        return {
-          value: "Error",
-          label: "Wavelength cannot be zero",
-          subtext: "",
-          warning: "Wavelength must be greater than zero to calculate frequency.",
-          formulaUsed: "f = v / λ",
-        };
-      }
-      const res = v / lambda;
-      const displayVal =
-        res > 10000 || res < 0.001 ? res.toExponential(4) : res.toFixed(4);
-      return {
-        value: `${displayVal} Hz`,
-        label: "Frequency",
-        subtext: "Calculated from wave speed and wavelength",
-        warning: null,
-        formulaUsed: "f = v / λ",
-      };
-    }
-    // 3) f and λ given => v = f × λ
-    if (!isNaN(f) && !isNaN(lambda) && isNaN(v)) {
-      const res = f * lambda;
-      const displayVal =
-        res > 10000 || res < 0.001 ? res.toExponential(4) : res.toFixed(4);
-      return {
-        value: `${displayVal} m/s`,
-        label: "Wave Speed",
-        subtext: "Calculated from frequency and wavelength",
-        warning: null,
-        formulaUsed: "v = f × λ",
-      };
     }
 
-    // Fallback
     return {
-      value: "Waiting...",
-      label: "Enter any two values to calculate the third",
-      subtext: "",
+      value: displayVal,
+      label: calculatedLabel,
+      subtext: "Units: m/s for speed, Hz for frequency, meters for wavelength",
       warning: null,
-      formulaUsed: null,
+      formulaUsed,
     };
   }, [inputs]);
 
+  // 3. FAQS
   const faqs = [
     {
-      question: "What is the relationship between wave speed, frequency, and wavelength?",
+      question: "Why do wave speed, frequency, and wavelength relate as v = f × λ?",
       answer:
-        "Wave speed (v), frequency (f), and wavelength (λ) are related by the wave equation v = f × λ. This means the speed of a wave equals its frequency multiplied by its wavelength. Understanding this relationship helps in analyzing wave behavior in various media, such as sound waves in air or light waves in vacuum.",
+        "The wave equation v = f × λ expresses the fundamental relationship between how fast a wave travels (wave speed), how often the wave oscillates per second (frequency), and the distance between successive wave peaks (wavelength). This relationship holds for all types of waves, including sound, light, and water waves, and is essential for understanding wave behavior in physics and engineering.",
     },
     {
-      question: "Why must exactly two values be provided to calculate the third?",
+      question: "How is this calculation used in real-world applications?",
       answer:
-        "The wave equation involves three variables, so knowing any two allows calculation of the third. Providing fewer than two values leaves the system underdetermined, while providing all three requires consistency checks. This ensures accurate and meaningful results in wave analysis.",
+        "This calculation is crucial in many fields such as telecommunications, where engineers design antennas based on wavelength and frequency. In acoustics, it helps in tuning musical instruments and designing auditoriums. In oceanography, wave speed and wavelength calculations assist in predicting wave patterns and their impact on coastal structures.",
     },
     {
-      question: "Where is the wave speed / frequency / wavelength relationship applied in real life?",
+      question: "What units should I use when inputting values?",
       answer:
-        "This relationship is fundamental in fields like acoustics, optics, and telecommunications. Engineers use it to design musical instruments, optimize fiber optic cables, and analyze seismic waves. It also helps meteorologists understand atmospheric wave patterns and astronomers study electromagnetic waves from distant stars.",
+        "Always use meters per second (m/s) for wave speed, hertz (Hz) for frequency, and meters (m) for wavelength. Consistent units ensure accurate calculations. If you have values in other units, convert them before using this calculator to avoid errors.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -160,8 +142,8 @@ export default function WaveSpeedFrequencyWavelengthCalculator() {
       {/* Inputs */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div>
-          <Label htmlFor="waveSpeed" className="flex items-center gap-2 mb-1 font-semibold text-slate-700 dark:text-slate-300">
-            <Waves className="w-4 h-4 text-blue-600" /> Wave Speed (v)
+          <Label htmlFor="waveSpeed" className="flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300">
+            <Waves className="w-5 h-5 text-blue-600" /> Wave Speed (v)
           </Label>
           <Input
             id="waveSpeed"
@@ -171,13 +153,14 @@ export default function WaveSpeedFrequencyWavelengthCalculator() {
             onChange={(e) => handleInputChange("waveSpeed", e.target.value)}
             aria-describedby="waveSpeedHelp"
           />
-          <p id="waveSpeedHelp" className="text-xs text-slate-500 mt-1">
-            Enter wave speed in meters per second (m/s)
+          <p id="waveSpeedHelp" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Enter wave speed in meters per second (m/s).
           </p>
         </div>
+
         <div>
-          <Label htmlFor="frequency" className="flex items-center gap-2 mb-1 font-semibold text-slate-700 dark:text-slate-300">
-            <Waves className="w-4 h-4 text-green-600" /> Frequency (f)
+          <Label htmlFor="frequency" className="flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300">
+            <Zap className="w-5 h-5 text-yellow-600" /> Frequency (f)
           </Label>
           <Input
             id="frequency"
@@ -187,13 +170,14 @@ export default function WaveSpeedFrequencyWavelengthCalculator() {
             onChange={(e) => handleInputChange("frequency", e.target.value)}
             aria-describedby="frequencyHelp"
           />
-          <p id="frequencyHelp" className="text-xs text-slate-500 mt-1">
-            Enter frequency in Hertz (Hz)
+          <p id="frequencyHelp" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Enter frequency in hertz (Hz).
           </p>
         </div>
+
         <div>
-          <Label htmlFor="wavelength" className="flex items-center gap-2 mb-1 font-semibold text-slate-700 dark:text-slate-300">
-            <Waves className="w-4 h-4 text-purple-600" /> Wavelength (λ)
+          <Label htmlFor="wavelength" className="flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300">
+            <Orbit className="w-5 h-5 text-purple-600" /> Wavelength (λ)
           </Label>
           <Input
             id="wavelength"
@@ -203,8 +187,8 @@ export default function WaveSpeedFrequencyWavelengthCalculator() {
             onChange={(e) => handleInputChange("wavelength", e.target.value)}
             aria-describedby="wavelengthHelp"
           />
-          <p id="wavelengthHelp" className="text-xs text-slate-500 mt-1">
-            Enter wavelength in meters (m)
+          <p id="wavelengthHelp" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Enter wavelength in meters (m).
           </p>
         </div>
       </div>
@@ -213,8 +197,8 @@ export default function WaveSpeedFrequencyWavelengthCalculator() {
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button
           onClick={() => {
-            // No explicit calculation trigger needed; calculation is reactive
-            // But button is kept for UX consistency
+            // Just trigger recalculation by setting inputs to current values (no-op)
+            setInputs((prev) => ({ ...prev }));
           }}
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
           aria-label="Calculate wave property"
@@ -254,7 +238,7 @@ export default function WaveSpeedFrequencyWavelengthCalculator() {
           <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 flex gap-3">
             <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              <strong>Science Fact:</strong> Always ensure units are consistent (e.g., frequency in Hz, wavelength in meters) for accurate wave calculations.
+              <strong>Science Fact:</strong> The wave equation v = f × λ applies universally to all wave types, from sound waves traveling through air to electromagnetic waves in space.
             </p>
           </div>
         </div>
@@ -265,49 +249,46 @@ export default function WaveSpeedFrequencyWavelengthCalculator() {
   const editorial = (
     <div className="space-y-12">
       <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Wave Speed / Frequency / Wavelength
-        </h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Understanding Wave Speed / Frequency / Wavelength</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Waves are disturbances that transfer energy through a medium or space without the transport of matter. The fundamental properties of waves include wave speed (v), frequency (f), and wavelength (λ). Wave speed is how fast the wave propagates through the medium, frequency is how many wave cycles pass a point per second, and wavelength is the distance between successive wave crests.
+          Waves are disturbances that transfer energy through a medium or space without transporting matter. The <strong>wave speed</strong> (v) is how fast the wave propagates through the medium, measured in meters per second (m/s). The <strong>frequency</strong> (f) is the number of oscillations or cycles the wave completes per second, measured in hertz (Hz). The <strong>wavelength</strong> (λ) is the distance between two consecutive points in phase on the wave, such as crest to crest, measured in meters (m).
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          These properties are interconnected by the wave equation: <code>v = f × λ</code>. This means that if you know any two of these quantities, you can calculate the third. For example, sound waves in air travel at approximately 343 m/s at room temperature, so if you know the frequency of a sound, you can find its wavelength.
+          These three properties are intrinsically linked by the fundamental wave equation: <em>v = f × λ</em>. This means the wave speed equals the product of frequency and wavelength. If you know any two of these properties, you can calculate the third. This relationship holds true for all wave types, including sound waves, light waves, and water waves.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding this relationship is essential in many scientific and engineering fields, including acoustics, optics, telecommunications, and seismology. It helps in designing musical instruments, analyzing light spectra, and even studying waves on the ocean surface.
+          Understanding this relationship is essential in fields like acoustics, optics, telecommunications, and oceanography. For example, radio engineers use it to design antennas tuned to specific frequencies and wavelengths, while oceanographers use it to predict wave behavior in seas and oceans.
         </p>
       </section>
 
       <section id="formula" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Formula & Variables</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Formula &amp; Variables</h2>
         <pre className="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-x-auto font-mono text-slate-800 dark:text-slate-200">
 {`v = f × λ
 
 Where:
   v (wave speed) is in meters per second (m/s)
-  f (frequency) is in Hertz (Hz), cycles per second
+  f (frequency) is in hertz (Hz)
   λ (wavelength) is in meters (m)
 
-Note: Use consistent units to ensure correct calculations.`}
+Note: To calculate any one of these variables, rearrange the formula:
+  f = v ÷ λ
+  λ = v ÷ f
+
+All values must be positive numbers.`}
         </pre>
       </section>
 
       <section id="example" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Step-by-Step Example</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Let's solve a real-world problem involving sound waves:
+          Let's solve a real-world problem using the wave equation:
         </p>
         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Given:</strong> The frequency of a sound wave is 440 Hz (the musical note A4), and the speed of sound in air is approximately 343 m/s.
-          </li>
-          <li>
-            <strong>Step 1:</strong> Use the wave equation to find the wavelength: λ = v / f = 343 m/s ÷ 440 Hz ≈ 0.7795 m.
-          </li>
-          <li>
-            <strong>Result:</strong> The wavelength of the 440 Hz sound wave in air is approximately 0.7795 meters.
-          </li>
+          <li><strong>Given:</strong> A wave has a frequency of 500 Hz and a wavelength of 0.68 meters.</li>
+          <li><strong>Step 1:</strong> Use the formula v = f × λ to find the wave speed.</li>
+          <li><strong>Step 2:</strong> Calculate v = 500 Hz × 0.68 m = 340 m/s.</li>
+          <li><strong>Result:</strong> The wave speed is 340 meters per second, which matches the speed of sound in air at room temperature.</li>
         </ul>
       </section>
 
@@ -336,29 +317,28 @@ Note: Use consistent units to ensure correct calculations.`}
         title: "Scientific Formula",
         formula: "v = f × λ",
         variables: [
-          { symbol: "v", description: "Wave speed in meters per second (m/s)" },
-          { symbol: "f", description: "Frequency in Hertz (Hz)" },
-          { symbol: "λ", description: "Wavelength in meters (m)" },
+          { symbol: "v", description: "Wave speed (meters per second, m/s)" },
+          { symbol: "f", description: "Frequency (hertz, Hz)" },
+          { symbol: "λ", description: "Wavelength (meters, m)" },
         ],
       }}
       example={{
         title: "Example",
-        scenario:
-          "Calculate the wavelength of a 440 Hz sound wave traveling at 343 m/s in air.",
+        scenario: "Calculate the wave speed of a wave with frequency 500 Hz and wavelength 0.68 meters.",
         steps: [
-          { label: "1", explanation: "Identify known values: frequency f = 440 Hz, wave speed v = 343 m/s." },
-          { label: "2", explanation: "Apply the formula λ = v / f." },
-          { label: "3", explanation: "Calculate λ = 343 / 440 ≈ 0.7795 meters." },
+          { label: "1", explanation: "Identify given values: f = 500 Hz, λ = 0.68 m." },
+          { label: "2", explanation: "Apply the formula v = f × λ." },
+          { label: "3", explanation: "Calculate v = 500 × 0.68 = 340 m/s." },
         ],
-        result: "The wavelength of the sound wave is approximately 0.7795 meters.",
+        result: "The wave speed is 340 meters per second.",
       }}
       relatedCalculators={[
         { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "🚀" },
         { title: "Snell's Law", url: "/science/snells-law", icon: "🌈" },
-        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
         { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "🎈" },
-        { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
         { title: "Photon Energy", url: "/science/photon-energy", icon: "⚡" },
+        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
+        { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },
