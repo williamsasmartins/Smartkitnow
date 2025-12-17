@@ -3683,6 +3683,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/BufferHendersonHasselbalchHelperCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "molar-mass-calculator",
+    title: "Molar Mass Calculator",
+    category: "science",
+    subcategory: "chemistry-composition-units",
+    description: "Calculate Molar Mass. Find the molecular weight of any chemical compound by summing atomic masses from the periodic table.",
+    loader: () => import("@/components/calculators/Science/MolarMassCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
