@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 // ⚠️ SAFE ICONS ONLY
-import { Atom, Thermometer, Scale, Waves, Info, RotateCcw, AlertTriangle } from "lucide-react";
+import { Atom, Thermometer, Scale, Info, RotateCcw, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function HeatTransferConductionCalculator() {
@@ -25,7 +25,15 @@ export default function HeatTransferConductionCalculator() {
     }
   }, []);
 
-  // Calculation of heat transfer rate Q = k * A * ΔT / d
+  // Constants (for reference, not directly used here)
+  // g = 9.81 m/s²
+  // c = 2.998e8 m/s
+  // R = 8.314 J/(mol·K)
+
+  // Calculation using Fourier's Law of Heat Conduction:
+  // Q = (k * A * ΔT) / d
+  // Units: Watts (Joules per second)
+
   const results = useMemo(() => {
     const k = parseFloat(inputs.k);
     const A = parseFloat(inputs.A);
@@ -41,46 +49,46 @@ export default function HeatTransferConductionCalculator() {
     ) {
       return {
         value: "Waiting...",
-        label: "Enter valid positive inputs",
-        subtext: "All inputs must be positive numbers.",
+        label: "Enter valid positive numbers for all inputs",
+        subtext: "",
         warning: null,
         formulaUsed: null,
       };
     }
 
     // Calculation
-    const Q = (k * A * deltaT) / d; // Watts (Joules per second)
+    const Q = (k * A * deltaT) / d; // Watts (J/s)
 
-    // Formatting output: use scientific notation if very large or very small
+    // Formatting result: use scientific notation if very large or small
     const displayVal =
-      Q >= 10000 || Q < 0.001 ? Q.toExponential(4) : Q.toFixed(4);
+      Q > 10000 || Q < 0.001 ? Q.toExponential(4) : Q.toFixed(4);
 
     return {
       value: `${displayVal} W`,
-      label: "Heat Transfer Rate (Watts)",
+      label: "Rate of Heat Transfer (Q)",
       subtext:
-        "Rate of heat transfer by conduction through the material surface area.",
+        "Heat transfer rate by conduction in Watts (Joules per second).",
       warning: null,
-      formulaUsed: "Q = k × A × ΔT / d",
+      formulaUsed: "Q = (k × A × ΔT) / d",
     };
   }, [inputs]);
 
   // FAQs
   const faqs = [
     {
-      question: "What factors affect heat transfer by conduction?",
+      question: "What is heat conduction and where is it applied?",
       answer:
-        "Heat transfer by conduction depends primarily on the material's thermal conductivity (k), the surface area (A) through which heat is transferred, the temperature difference (ΔT) across the material, and the thickness (d) of the material. A higher thermal conductivity or temperature difference increases heat transfer, while a thicker material reduces it. These factors are critical in designing insulation and heat exchangers.",
+        "Heat conduction is the transfer of thermal energy through a material without the material itself moving. It occurs due to temperature differences within solids or between solids in contact. This principle is essential in engineering applications such as designing insulation for buildings, heat exchangers, and electronic devices to manage heat flow efficiently.",
     },
     {
-      question: "Why is the thickness of the material important in conduction?",
+      question: "Why must the thickness (d) be greater than zero in calculations?",
       answer:
-        "The thickness (d) of the material acts as a resistance to heat flow. According to Fourier's law, heat transfer rate is inversely proportional to thickness. Thicker materials reduce the rate of heat conduction, which is why insulation materials are designed to be thick enough to minimize heat loss or gain. This principle is widely applied in building construction and thermal engineering.",
+        "The thickness (d) represents the distance heat travels through the material. If d were zero or negative, it would imply no physical barrier or an invalid scenario, leading to infinite or undefined heat transfer rates. Ensuring d &gt; 0 maintains physical realism and mathematical correctness in the conduction formula.",
     },
     {
-      question: "Can this calculator be used for convection or radiation?",
+      question: "Can this calculator be used for convection or radiation heat transfer?",
       answer:
-        "No, this calculator specifically computes heat transfer by conduction using Fourier's law. Convection and radiation involve different physical mechanisms and require separate formulas and considerations. For example, convection depends on fluid motion and heat transfer coefficients, while radiation depends on emissivity and temperature to the fourth power.",
+        "No, this calculator specifically applies Fourier's law for conduction, which involves heat transfer through direct molecular interaction in solids. Convection and radiation involve different mechanisms and require other formulas and parameters, such as fluid velocity for convection or emissivity and temperature to the fourth power for radiation.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -90,77 +98,70 @@ export default function HeatTransferConductionCalculator() {
       {/* Inputs */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <Label htmlFor="k" className="flex items-center gap-1 font-semibold">
-            <Waves className="w-4 h-4 text-blue-600" />
-            Thermal Conductivity (k)
+          <Label htmlFor="k" className="flex items-center gap-1 mb-1 font-semibold text-slate-700 dark:text-slate-300">
+            <Thermometer className="w-4 h-4 text-blue-600" /> Thermal Conductivity (k)
           </Label>
           <Input
             id="k"
             type="text"
-            placeholder="e.g. 205"
+            placeholder="W/(m·K)"
             value={inputs.k}
             onChange={(e) => handleInputChange("k", e.target.value)}
-            aria-describedby="k-help"
+            aria-describedby="k-desc"
           />
-          <p id="k-help" className="text-xs text-slate-500 mt-1">
-            Watts per meter-Kelvin (W/(m·K))
+          <p id="k-desc" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Thermal conductivity in Watts per meter-Kelvin (W/(m·K)), e.g., 205 for copper.
           </p>
         </div>
 
         <div>
-          <Label htmlFor="A" className="flex items-center gap-1 font-semibold">
-            <Scale className="w-4 h-4 text-blue-600" />
-            Cross-sectional Area (A)
+          <Label htmlFor="A" className="flex items-center gap-1 mb-1 font-semibold text-slate-700 dark:text-slate-300">
+            <Scale className="w-4 h-4 text-blue-600" /> Cross-sectional Area (A)
           </Label>
           <Input
             id="A"
             type="text"
-            placeholder="e.g. 0.5"
+            placeholder="m²"
             value={inputs.A}
             onChange={(e) => handleInputChange("A", e.target.value)}
-            aria-describedby="A-help"
+            aria-describedby="A-desc"
           />
-          <p id="A-help" className="text-xs text-slate-500 mt-1">
-            Square meters (m²)
+          <p id="A-desc" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Area perpendicular to heat flow in square meters (m²).
           </p>
         </div>
 
         <div>
-          <Label
-            htmlFor="deltaT"
-            className="flex items-center gap-1 font-semibold"
-          >
-            <Thermometer className="w-4 h-4 text-blue-600" />
-            Temperature Difference (ΔT)
+          <Label htmlFor="deltaT" className="flex items-center gap-1 mb-1 font-semibold text-slate-700 dark:text-slate-300">
+            <Waves className="w-4 h-4 text-blue-600" /> Temperature Difference (ΔT)
           </Label>
           <Input
             id="deltaT"
             type="text"
-            placeholder="e.g. 30"
+            placeholder="K or °C"
             value={inputs.deltaT}
             onChange={(e) => handleInputChange("deltaT", e.target.value)}
-            aria-describedby="deltaT-help"
+            aria-describedby="deltaT-desc"
           />
-          <p id="deltaT-help" className="text-xs text-slate-500 mt-1">
-            Kelvin (K) or Celsius (°C) difference
+          <p id="deltaT-desc" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Temperature difference across the material in Kelvin or Celsius (K or °C).
           </p>
         </div>
 
         <div>
-          <Label htmlFor="d" className="flex items-center gap-1 font-semibold">
-            <Scale className="w-4 h-4 text-blue-600" />
-            Thickness (d)
+          <Label htmlFor="d" className="flex items-center gap-1 mb-1 font-semibold text-slate-700 dark:text-slate-300">
+            <Scale className="w-4 h-4 text-blue-600" /> Thickness (d)
           </Label>
           <Input
             id="d"
             type="text"
-            placeholder="e.g. 0.01"
+            placeholder="m"
             value={inputs.d}
             onChange={(e) => handleInputChange("d", e.target.value)}
-            aria-describedby="d-help"
+            aria-describedby="d-desc"
           />
-          <p id="d-help" className="text-xs text-slate-500 mt-1">
-            Meters (m)
+          <p id="d-desc" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Thickness of the material in meters (m), must be &gt; 0.
           </p>
         </div>
       </div>
@@ -168,25 +169,15 @@ export default function HeatTransferConductionCalculator() {
       {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button
+          onClick={() => {}}
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
-          onClick={() => {
-            // Just trigger re-render, calculation is in useMemo
-            setInputs((prev) => ({ ...prev }));
-          }}
           aria-label="Calculate heat transfer rate"
         >
           <Atom className="mr-2 h-4 w-4" /> Calculate
         </Button>
         <Button
           variant="outline"
-          onClick={() =>
-            setInputs({
-              k: "",
-              A: "",
-              deltaT: "",
-              d: "",
-            })
-          }
+          onClick={() => setInputs({ k: "", A: "", deltaT: "", d: "" })}
           className="flex-1 h-11 hover:bg-slate-100 dark:hover:bg-slate-800"
           aria-label="Reset inputs"
         >
@@ -196,27 +187,19 @@ export default function HeatTransferConductionCalculator() {
 
       {/* Results */}
       {results.value !== "Waiting..." && (
-        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4" role="region" aria-live="polite">
           <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-950 border-blue-200 shadow-lg">
             <CardContent className="p-8 text-center">
               <p className="text-sm font-bold text-blue-900 dark:text-blue-100 mb-3 uppercase tracking-wider">
                 {results.formulaUsed || "Calculated Result"}
               </p>
-              <p className="text-5xl font-extrabold text-blue-900 dark:text-white">
-                {results.value}
-              </p>
-              <p className="text-slate-600 dark:text-slate-300 mt-2 font-medium">
-                {results.label}
-              </p>
-              {results.subtext && (
-                <p className="text-sm text-slate-500 mt-2">{results.subtext}</p>
-              )}
+              <p className="text-5xl font-extrabold text-blue-900 dark:text-white">{results.value}</p>
+              <p className="text-slate-600 dark:text-slate-300 mt-2 font-medium">{results.label}</p>
+              {results.subtext && <p className="text-sm text-slate-500 mt-2">{results.subtext}</p>}
               {results.warning && (
                 <div className="mt-4 p-3 bg-red-50 dark:bg-red-950 border border-red-200 rounded-lg flex items-start gap-3 text-left">
                   <AlertTriangle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
-                  <p className="text-sm text-red-800 dark:text-red-200">
-                    {results.warning}
-                  </p>
+                  <p className="text-sm text-red-800 dark:text-red-200">{results.warning}</p>
                 </div>
               )}
             </CardContent>
@@ -225,9 +208,7 @@ export default function HeatTransferConductionCalculator() {
           <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 flex gap-3">
             <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              <strong>Science Fact:</strong> Always ensure units are consistent,
-              e.g., convert thickness from centimeters to meters before
-              calculating.
+              <strong>Science Fact:</strong> Always ensure units are consistent. For example, convert thickness from centimeters to meters before calculation.
             </p>
           </div>
         </div>
@@ -242,92 +223,55 @@ export default function HeatTransferConductionCalculator() {
           Understanding Heat Transfer (Conduction) Calculator
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Heat transfer by conduction is the process where thermal energy is
-          transferred through a material without the movement of the material
-          itself. This occurs due to collisions and vibrations of particles
-          within the substance. The rate of heat transfer depends on the
-          material's thermal conductivity, the temperature difference across the
-          material, the cross-sectional area, and the thickness of the material.
-          This calculator helps quantify the heat transfer rate, which is
-          essential in engineering applications such as designing insulation,
-          heat exchangers, and electronic cooling systems.
+          Heat transfer by conduction is the process where thermal energy moves through a solid material due to a temperature gradient. This occurs without any bulk movement of the material itself. The rate of heat transfer depends on the material's thermal conductivity, the cross-sectional area through which heat flows, the temperature difference across the material, and the thickness of the material. This calculator uses Fourier's law to quantify this rate precisely.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          In practical terms, conduction is why a metal spoon gets hot when its
-          end is placed in a hot liquid, or why buildings require proper
-          insulation to maintain temperature. Understanding and calculating
-          conduction heat transfer enables engineers and scientists to optimize
-          thermal management in various systems.
+          Understanding conduction is crucial in many real-world applications such as designing thermal insulation in buildings, managing heat in electronic devices, and engineering heat exchangers in industrial processes. Accurate calculations help engineers optimize materials and dimensions to achieve desired thermal performance.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This calculator assumes steady-state conditions and one-dimensional
-          heat flow, which is a common simplification in many engineering
-          problems. For more complex scenarios involving convection or radiation,
-          different models and calculations are required.
+          Remember, conduction is only one mode of heat transfer; convection and radiation involve different mechanisms and require separate analysis. This tool focuses solely on conduction through solids or stationary fluids.
         </p>
       </section>
 
       <section id="formula" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Formula & Variables
-        </h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Formula & Variables</h2>
         <pre className="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-x-auto font-mono text-slate-800 dark:text-slate-200">
-{`Q = \\frac{k \\times A \\times \\Delta T}{d}
+{`Q = (k × A × ΔT) / d
 
 Where:
-  Q       = Heat transfer rate (Watts, W)
-  k       = Thermal conductivity of the material (W/(m·K))
-  A       = Cross-sectional area perpendicular to heat flow (m²)
-  \\Delta T = Temperature difference across the material (K or °C)
-  d       = Thickness of the material (m)
+  Q     = Rate of heat transfer (Watts, W or Joules per second)
+  k     = Thermal conductivity of the material (W/(m·K))
+  A     = Cross-sectional area perpendicular to heat flow (m²)
+  ΔT    = Temperature difference across the material (Kelvin or °C)
+  d     = Thickness of the material (m)
 
-Note: Temperature difference \\Delta T can be in Kelvin or Celsius since it is a difference.`}
+Note:
+- Ensure all units are consistent.
+- ΔT can be in °C or K since it is a difference.`}
         </pre>
       </section>
 
       <section id="example" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Step-by-Step Example
-        </h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Step-by-Step Example</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Let's solve a real-world problem to find the heat transfer rate through
-          a copper plate.
+          Let's solve a real-world problem to find the heat transfer rate through a copper plate.
         </p>
         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Given:</strong> Thermal conductivity of copper k = 385 W/(m·K),
-            area A = 0.1 m², temperature difference ΔT = 50 K, thickness d = 0.005 m.
-          </li>
-          <li>
-            <strong>Step 1:</strong> Apply Fourier's law: Q = k × A × ΔT / d.
-          </li>
-          <li>
-            <strong>Step 2:</strong> Calculate Q = 385 × 0.1 × 50 / 0.005 = 385,000
-            W.
-          </li>
-          <li>
-            <strong>Result:</strong> The heat transfer rate is 3.85 × 10<sup>5</sup>{" "}
-            Watts.
-          </li>
+          <li><strong>Given:</strong> Thermal conductivity of copper, k = 205 W/(m·K); Area, A = 0.5 m²; Temperature difference, ΔT = 30 °C; Thickness, d = 0.01 m.</li>
+          <li><strong>Step 1:</strong> Substitute values into Fourier's law: Q = (205 × 0.5 × 30) / 0.01.</li>
+          <li><strong>Step 2:</strong> Calculate numerator: 205 × 0.5 × 30 = 3075.</li>
+          <li><strong>Step 3:</strong> Divide by thickness: 3075 / 0.01 = 307500 Watts.</li>
+          <li><strong>Result:</strong> The heat transfer rate Q is 307,500 W (or 3.075 × 10<sup>5</sup> W).</li>
         </ul>
       </section>
 
       <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <ul className="space-y-6">
           {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
+            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
+              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
             </li>
           ))}
         </ul>
@@ -343,56 +287,44 @@ Note: Temperature difference \\Delta T can be in Kelvin or Celsius since it is a
       editorial={editorial}
       jsonLd={faqJsonLd}
       formula={{
-        title: "Fourier's Law of Heat Conduction",
-        formula: "Q = \\frac{k \\times A \\times \\Delta T}{d}",
+        title: "Scientific Formula",
+        formula: "Q = (k × A × ΔT) / d",
         variables: [
-          { symbol: "Q", description: "Heat transfer rate (Watts, W)" },
-          {
-            symbol: "k",
-            description: "Thermal conductivity (W/(m·K))",
-          },
+          { symbol: "Q", description: "Rate of heat transfer (Watts, W)" },
+          { symbol: "k", description: "Thermal conductivity (W/(m·K))" },
           { symbol: "A", description: "Cross-sectional area (m²)" },
-          {
-            symbol: "ΔT",
-            description: "Temperature difference across the material (K or °C)",
-          },
-          { symbol: "d", description: "Thickness of the material (m)" },
+          { symbol: "ΔT", description: "Temperature difference (K or °C)" },
+          { symbol: "d", description: "Thickness of material (m)" },
         ],
       }}
       example={{
-        title: "Example: Heat Transfer through Copper Plate",
+        title: "Example",
         scenario:
-          "Calculate the heat transfer rate through a copper plate with k = 385 W/(m·K), A = 0.1 m², ΔT = 50 K, and d = 0.005 m.",
+          "Calculate the heat transfer rate through a copper plate with k = 205 W/(m·K), area = 0.5 m², ΔT = 30 °C, and thickness = 0.01 m.",
         steps: [
           {
             label: "1",
             explanation:
-              "Apply Fourier's law: Q = k × A × ΔT / d.",
+              "Substitute values into the formula: Q = (205 × 0.5 × 30) / 0.01.",
           },
           {
             label: "2",
-            explanation:
-              "Substitute values: Q = 385 × 0.1 × 50 / 0.005.",
+            explanation: "Calculate numerator: 205 × 0.5 × 30 = 3075.",
           },
           {
             label: "3",
-            explanation:
-              "Calculate Q = 385,000 W or 3.85 × 10⁵ Watts.",
+            explanation: "Divide by thickness: 3075 / 0.01 = 307500 Watts.",
           },
         ],
-        result: "Heat transfer rate Q = 3.85 × 10⁵ Watts.",
+        result: "The heat transfer rate Q is 307,500 W (or 3.075 × 10⁵ W).",
       }}
       relatedCalculators={[
+        { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
+        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
+        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "🚀" },
         { title: "Photon Energy", url: "/science/photon-energy", icon: "⚡" },
         { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "🎈" },
         { title: "Snell's Law", url: "/science/snells-law", icon: "🌈" },
-        { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
-        {
-          title: "Kinematics Equations (SUVAT)",
-          url: "/science/kinematics-equations",
-          icon: "🚀",
-        },
-        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },
