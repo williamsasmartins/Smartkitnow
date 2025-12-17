@@ -3535,6 +3535,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/ThinLensSolverCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "specific-heat-q-mc-delta-t",
+    title: "Specific Heat Calculator",
+    category: "science",
+    subcategory: "physics-waves-optics-thermo",
+    description: "Calculate heat energy (q=mcΔT). Determine the energy required to change the temperature of a substance based on specific heat capacity.",
+    loader: () => import("@/components/calculators/Science/SpecificHeatQMcDeltaTCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
