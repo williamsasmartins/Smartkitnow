@@ -3455,6 +3455,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/KinematicsSuvatSolverCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "projectile-motion-calculator",
+    title: "Projectile Motion Calculator",
+    category: "science",
+    subcategory: "physics-mechanics-motion",
+    description: "Analyze projectile motion. Calculate range, maximum height, and time of flight for objects launched at an angle under gravity.",
+    loader: () => import("@/components/calculators/Science/ProjectileMotionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
