@@ -3611,6 +3611,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/RcTimeConstantTauRcCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "molarity-moles-volume",
+    title: "Molarity / Moles / Volume Calculator",
+    category: "science",
+    subcategory: "chemistry-solutions-stoichiometry",
+    description: "Calculate Molarity, Moles, and Volume. The essential tool for preparing chemical solutions and performing lab calculations.",
+    loader: () => import("@/components/calculators/Science/MolarityMolesVolumeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
