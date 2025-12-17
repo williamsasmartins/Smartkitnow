@@ -3620,6 +3620,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/MolarityMolesVolumeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dilution-c1v1-c2v2",
+    title: "Dilution Calculator (C₁V₁ = C₂V₂)",
+    category: "science",
+    subcategory: "chemistry-solutions-stoichiometry",
+    description: "Solve dilution problems easily. Calculate the volume needed to dilute a stock solution to a desired concentration.",
+    loader: () => import("@/components/calculators/Science/DilutionC1v1C2v2Calculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
