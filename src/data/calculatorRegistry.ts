@@ -3500,6 +3500,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/UniformCircularMotionCentripetalCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "free-fall-time-velocity-estimator",
+    title: "Free-Fall Time/Velocity Estimator",
+    category: "science",
+    subcategory: "physics-mechanics-motion",
+    description: "Estimate free-fall parameters. Calculate how long an object takes to fall and its impact velocity under gravity.",
+    loader: () => import("@/components/calculators/Science/FreeFallTimeVelocityEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 

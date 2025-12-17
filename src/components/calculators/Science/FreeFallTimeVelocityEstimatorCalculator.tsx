@@ -11,7 +11,7 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function FreeFallTimeVelocityEstimatorCalculator() {
   // Inputs: height (m), initial velocity (m/s), gravity (m/s²)
-  // Gravity default 9.81 m/s², user can override for other planets or conditions
+  // Default gravity = 9.81 m/s² (Earth surface)
   const [inputs, setInputs] = useState({
     height: "",
     initialVelocity: "0",
@@ -25,11 +25,10 @@ export default function FreeFallTimeVelocityEstimatorCalculator() {
     }
   }, []);
 
-  // 2. LOGIC ENGINE
   const results = useMemo(() => {
+    const g = parseFloat(inputs.gravity);
     const h = parseFloat(inputs.height);
     const v0 = parseFloat(inputs.initialVelocity);
-    const g = parseFloat(inputs.gravity);
 
     // Validation
     if (isNaN(h) || h <= 0) {
@@ -61,65 +60,69 @@ export default function FreeFallTimeVelocityEstimatorCalculator() {
     }
 
     // Calculation:
-    // Free-fall time t = (v0 + sqrt(v0² + 2gh)) / g  (assuming downward positive)
+    // Free-fall time t = (v - v0) / g where v = sqrt(v0² + 2gh)
     // Impact velocity v = sqrt(v0² + 2gh)
-    // Here, height h is vertical distance fallen, g is acceleration due to gravity
-    // We consider downward direction positive for velocity and acceleration
+    // Time t = (v - v0) / g if v0 and v have same direction (assuming downward positive)
+    // Here, assume object is dropped or thrown downward (v0 positive downward)
+    // If v0 is upward (negative), time calculation differs; we use quadratic formula for time:
+    // Equation: h = v0 * t + 0.5 * g * t²
+    // Solve for t: 0.5 * g * t² + v0 * t - h = 0
+    // Use quadratic formula: t = [-v0 ± sqrt(v0² + 2gh)] / g
+    // Time must be positive, so take positive root.
 
-    // Compute impact velocity magnitude
-    const vImpact = Math.sqrt(v0 * v0 + 2 * g * h);
+    const discriminant = v0 * v0 + 2 * g * h;
+    if (discriminant < 0) {
+      return {
+        value: "Error",
+        label: "No real solution for given inputs",
+        subtext: "",
+        warning: "Discriminant is negative. Check inputs.",
+        formulaUsed: null,
+      };
+    }
+    const sqrtDisc = Math.sqrt(discriminant);
+    const t1 = (-v0 + sqrtDisc) / g;
+    const t2 = (-v0 - sqrtDisc) / g;
 
-    // Compute time of fall
-    // Time t = (vImpact - v0) / g if v0 is upward (negative), else (vImpact + v0)/g
-    // But since v0 can be positive or zero, formula t = (vImpact - v0)/g if v0 is downward (positive)
-    // To avoid confusion, use standard formula for time to fall from rest with initial velocity v0 downward:
-    // t = (vImpact - v0) / g if v0 is downward (positive)
-    // If v0 is upward (negative), t = (vImpact + |v0|)/g
-    // To unify, use t = (vImpact - v0) / g
-
-    // But if v0 is upward (negative), vImpact - v0 = vImpact + |v0|, so formula holds.
-
-    const tFall = (vImpact - v0) / g;
-
-    // Formatting results:
-    // Use scientific notation if value > 10000 or < 0.001
-    function formatVal(val: number, unit: string) {
-      if (val > 10000 || val < 0.001) {
-        return val.toExponential(4) + " " + unit;
-      }
-      return val.toFixed(4) + " " + unit;
+    // Choose positive time
+    const time = t1 > 0 ? t1 : t2 > 0 ? t2 : null;
+    if (time === null) {
+      return {
+        value: "Error",
+        label: "No positive time solution",
+        subtext: "",
+        warning: "Calculated time is negative. Check initial velocity direction.",
+        formulaUsed: null,
+      };
     }
 
-    const timeStr = formatVal(tFall, "seconds");
-    const velocityStr = formatVal(vImpact, "m/s");
+    const impactVelocity = v0 + g * time; // v = v0 + g*t
+
+    // Formatting results:
+    const formatNumber = (num: number) =>
+      num > 10000 || num < 0.001 ? num.toExponential(4) : num.toFixed(4);
 
     return {
-      value: (
-        <>
-          <span className="block font-semibold text-lg">Time of Fall: {timeStr}</span>
-          <span className="block font-semibold text-lg mt-2">Impact Velocity: {velocityStr}</span>
-        </>
-      ),
-      label: "Free-Fall Time & Impact Velocity",
+      value: `${formatNumber(time)} s / ${formatNumber(impactVelocity)} m/s`,
+      label: "Free-Fall Time / Impact Velocity",
       subtext:
-        "Assuming downward direction positive, no air resistance, constant gravity.",
+        "Time in seconds (s) and velocity in meters per second (m/s) assuming downward positive direction.",
       warning: null,
       formulaUsed:
-        "t = (√(v₀² + 2gh) - v₀) / g,  v = √(v₀² + 2gh)",
+        "t = [-v₀ ± √(v₀² + 2gh)] / g, v = v₀ + gt",
     };
   }, [inputs]);
 
-  // 3. FAQS
   const faqs = [
     {
-      question: "Why does the formula include the initial velocity squared term?",
+      question: "What factors affect free-fall time?",
       answer:
-        "The initial velocity squared term (v₀²) accounts for the object's starting speed before free fall begins. This is important because the total impact velocity depends on both the initial velocity and the acceleration due to gravity over the fall distance. Ignoring initial velocity assumes the object starts from rest, which is not always the case in real-world scenarios.",
+        "Free-fall time depends primarily on the height from which an object is dropped and the acceleration due to gravity. Initial velocity also affects the time if the object is thrown upwards or downwards. Air resistance is neglected in this idealized calculation, which assumes vacuum conditions.",
     },
     {
-      question: "How does air resistance affect free-fall calculations?",
+      question: "Why do we use the quadratic formula for time?",
       answer:
-        "This estimator assumes no air resistance, meaning the object falls freely under gravity alone. In reality, air resistance slows down falling objects, especially those with large surface areas or low mass. Including air resistance requires more complex modeling and often numerical methods, so this tool provides idealized estimates useful for basic physics and engineering calculations.",
+        "The motion equation h = v₀t + ½gt² is quadratic in time, so solving for t requires the quadratic formula. This accounts for both upward and downward initial velocities, ensuring we find the physically meaningful positive time when the object reaches the ground.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -129,56 +132,53 @@ export default function FreeFallTimeVelocityEstimatorCalculator() {
       {/* Inputs */}
       <div className="space-y-4">
         <div>
-          <Label htmlFor="height" className="flex items-center gap-2">
+          <Label htmlFor="height" className="flex items-center gap-2 font-semibold text-slate-700 dark:text-slate-300">
             <Atom className="w-5 h-5 text-blue-600" /> Height (meters)
           </Label>
           <Input
             id="height"
             type="text"
-            inputMode="decimal"
-            placeholder="e.g. 100"
+            placeholder="Enter height (m)"
             value={inputs.height}
             onChange={(e) => handleInputChange("height", e.target.value)}
             aria-describedby="height-desc"
           />
-          <p id="height-desc" className="text-xs text-slate-500 mt-1">
-            Enter the vertical drop height in meters (m). Must be &gt; 0.
+          <p id="height-desc" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Height from which the object is dropped or thrown. Must be &gt; 0.
           </p>
         </div>
 
         <div>
-          <Label htmlFor="initialVelocity" className="flex items-center gap-2">
+          <Label htmlFor="initialVelocity" className="flex items-center gap-2 font-semibold text-slate-700 dark:text-slate-300">
             <Atom className="w-5 h-5 text-green-600" /> Initial Velocity (m/s)
           </Label>
           <Input
             id="initialVelocity"
             type="text"
-            inputMode="decimal"
-            placeholder="e.g. 0"
+            placeholder="Enter initial velocity (m/s)"
             value={inputs.initialVelocity}
             onChange={(e) => handleInputChange("initialVelocity", e.target.value)}
-            aria-describedby="initialVelocity-desc"
+            aria-describedby="velocity-desc"
           />
-          <p id="initialVelocity-desc" className="text-xs text-slate-500 mt-1">
-            Enter initial velocity in meters per second (m/s). Positive is downward, negative is upward.
+          <p id="velocity-desc" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Positive means downward throw; zero means dropped; negative means thrown upward.
           </p>
         </div>
 
         <div>
-          <Label htmlFor="gravity" className="flex items-center gap-2">
+          <Label htmlFor="gravity" className="flex items-center gap-2 font-semibold text-slate-700 dark:text-slate-300">
             <Atom className="w-5 h-5 text-red-600" /> Gravity (m/s²)
           </Label>
           <Input
             id="gravity"
             type="text"
-            inputMode="decimal"
-            placeholder="e.g. 9.81"
+            placeholder="Acceleration due to gravity"
             value={inputs.gravity}
             onChange={(e) => handleInputChange("gravity", e.target.value)}
             aria-describedby="gravity-desc"
           />
-          <p id="gravity-desc" className="text-xs text-slate-500 mt-1">
-            Acceleration due to gravity. Default is Earth's gravity (9.81 m/s²). Must be &gt; 0.
+          <p id="gravity-desc" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Standard Earth gravity is 9.81 m/s². Change for other planets.
           </p>
         </div>
       </div>
@@ -186,10 +186,11 @@ export default function FreeFallTimeVelocityEstimatorCalculator() {
       {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button
-          className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
           onClick={() => {
             // No action needed, calculation is reactive
           }}
+          className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
+          type="button"
           aria-label="Calculate free-fall time and velocity"
         >
           <Atom className="mr-2 h-4 w-4" /> Calculate
@@ -204,6 +205,7 @@ export default function FreeFallTimeVelocityEstimatorCalculator() {
             })
           }
           className="flex-1 h-11 hover:bg-slate-100 dark:hover:bg-slate-800"
+          type="button"
           aria-label="Reset inputs"
         >
           <RotateCcw className="mr-2 h-4 w-4" /> Reset
@@ -212,15 +214,13 @@ export default function FreeFallTimeVelocityEstimatorCalculator() {
 
       {/* Results */}
       {results.value !== "Waiting..." && (
-        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4" role="region" aria-live="polite" aria-atomic="true">
           <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-950 border-blue-200 shadow-lg">
             <CardContent className="p-8 text-center">
               <p className="text-sm font-bold text-blue-900 dark:text-blue-100 mb-3 uppercase tracking-wider">
                 {results.formulaUsed || "Calculated Result"}
               </p>
-              <p className="text-5xl font-extrabold text-blue-900 dark:text-white">
-                {results.value}
-              </p>
+              <p className="text-5xl font-extrabold text-blue-900 dark:text-white">{results.value}</p>
               <p className="text-slate-600 dark:text-slate-300 mt-2 font-medium">{results.label}</p>
               {results.subtext && <p className="text-sm text-slate-500 mt-2">{results.subtext}</p>}
               {results.warning && (
@@ -235,7 +235,7 @@ export default function FreeFallTimeVelocityEstimatorCalculator() {
           <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 flex gap-3">
             <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              <strong>Science Fact:</strong> Always use consistent units (meters, seconds) and convert initial velocity to m/s. Positive velocity means downward direction.
+              <strong>Science Fact:</strong> Always ensure units are consistent. Height in meters, velocity in meters per second, and gravity in meters per second squared.
             </p>
           </div>
         </div>
@@ -250,42 +250,50 @@ export default function FreeFallTimeVelocityEstimatorCalculator() {
           Understanding Free-Fall Time/Velocity Estimator
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Free fall describes the motion of an object falling solely under the influence of gravity, without air resistance. This estimator calculates the time it takes for an object to fall from a given height and its velocity upon impact. The initial velocity can be zero (object dropped) or non-zero (object thrown downward or upward). Gravity is a constant acceleration that pulls objects toward the Earth or other celestial bodies.
+          Free-fall motion describes the movement of an object solely under the influence of gravity, neglecting air resistance. This estimator calculates how long an object takes to fall from a given height and its velocity upon impact. It accounts for initial velocity, which can be zero (dropped), positive (thrown downward), or negative (thrown upward).
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This tool is essential in physics education, engineering, and safety calculations. For example, engineers use free-fall time and velocity to design safe drop tests, while astronomers estimate fall times on other planets by adjusting gravity. Understanding these parameters helps predict impact forces and design protective measures.
+          Understanding free-fall is essential in physics, engineering, and many real-world applications such as calculating the impact speed of falling objects, designing safety equipment, or predicting trajectories in sports and aerospace. The acceleration due to gravity varies slightly depending on location and celestial body, which can be adjusted in this tool.
         </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The estimator assumes no air resistance and constant gravity, which is a good approximation for many practical scenarios near the Earth's surface. For more complex environments, additional factors must be considered.
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+          This tool assumes a uniform gravitational field and no air resistance, which is a good approximation for many practical scenarios near Earth's surface. For more complex cases, factors like drag and varying gravity must be considered.
         </p>
       </section>
 
       <section id="formula" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Formula &amp; Variables</h2>
         <pre className="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-x-auto font-mono text-slate-800 dark:text-slate-200">
-{`t = \\frac{\\sqrt{v_0^2 + 2gh} - v_0}{g}
+{`h = v₀ t + ½ g t²
 
-v = \\sqrt{v_0^2 + 2gh}
+Solve for time t using quadratic formula:
+
+t = [-v₀ ± √(v₀² + 2 g h)] / g
+
+Impact velocity:
+
+v = v₀ + g t
 
 Where:
+  h = height (meters)
+  v₀ = initial velocity (m/s)
+  g = acceleration due to gravity (m/s²)
   t = time of fall (seconds)
-  v = impact velocity (m/s)
-  v_0 = initial velocity (m/s), positive downward, negative upward
-  g = acceleration due to gravity (m/s²), positive
-  h = height (meters), vertical distance fallen`}
+  v = impact velocity (m/s)`}
         </pre>
       </section>
 
       <section id="example" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Step-by-Step Example</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Let's solve a real-world problem: Calculate the time and impact velocity of a ball dropped from 45 meters with no initial velocity on Earth.
+          Let's solve a real-world problem: An object is thrown upward from a 20-meter high cliff with an initial velocity of 5 m/s. Calculate the time it takes to hit the ground and its impact velocity. Use Earth's gravity (9.81 m/s²).
         </p>
         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li><strong>Given:</strong> Height h = 45 m, initial velocity v₀ = 0 m/s, gravity g = 9.81 m/s².</li>
-          <li><strong>Step 1:</strong> Calculate impact velocity: v = √(0² + 2 × 9.81 × 45) = √(882.9) ≈ 29.71 m/s.</li>
-          <li><strong>Step 2:</strong> Calculate time of fall: t = (29.71 - 0) / 9.81 ≈ 3.03 seconds.</li>
-          <li><strong>Result:</strong> The ball takes approximately 3.03 seconds to hit the ground with an impact velocity of about 29.71 m/s downward.</li>
+          <li><strong>Given:</strong> h = 20 m, v₀ = -5 m/s (upward), g = 9.81 m/s²</li>
+          <li><strong>Step 1:</strong> Calculate discriminant: v₀² + 2gh = (-5)² + 2×9.81×20 = 25 + 392.4 = 417.4</li>
+          <li><strong>Step 2:</strong> Calculate time: t = [-(-5) ± √417.4] / 9.81 = [5 ± 20.436] / 9.81</li>
+          <li><strong>Step 3:</strong> Positive root: t = (5 + 20.436) / 9.81 ≈ 2.58 s</li>
+          <li><strong>Step 4:</strong> Calculate impact velocity: v = v₀ + g t = -5 + 9.81 × 2.58 ≈ 20.3 m/s downward</li>
+          <li><strong>Result:</strong> Time to hit ground ≈ 2.58 s, Impact velocity ≈ 20.3 m/s downward</li>
         </ul>
       </section>
 
@@ -312,42 +320,45 @@ Where:
       jsonLd={faqJsonLd}
       formula={{
         title: "Scientific Formula",
-        formula:
-          "t = (√(v₀² + 2gh) - v₀) / g,  v = √(v₀² + 2gh)",
+        formula: `t = [-v₀ ± √(v₀² + 2 g h)] / g\nv = v₀ + g t`,
         variables: [
+          { symbol: "h", description: "Height (meters)" },
+          { symbol: "v₀", description: "Initial velocity (m/s)" },
+          { symbol: "g", description: "Acceleration due to gravity (m/s²)" },
           { symbol: "t", description: "Time of fall (seconds)" },
           { symbol: "v", description: "Impact velocity (m/s)" },
-          { symbol: "v₀", description: "Initial velocity (m/s), positive downward" },
-          { symbol: "g", description: "Acceleration due to gravity (m/s²)" },
-          { symbol: "h", description: "Height (meters)" },
         ],
       }}
       example={{
         title: "Example",
         scenario:
-          "Calculate the fall time and impact velocity of a ball dropped from 45 meters on Earth with zero initial velocity.",
+          "An object is thrown upward from a 20-meter cliff with an initial velocity of 5 m/s. Calculate the time to hit the ground and impact velocity using Earth's gravity.",
         steps: [
           {
             label: "1",
             explanation:
-              "Calculate impact velocity using v = √(v₀² + 2gh) = √(0 + 2 × 9.81 × 45) ≈ 29.71 m/s.",
+              "Calculate the discriminant v₀² + 2gh = 25 + 392.4 = 417.4",
           },
           {
             label: "2",
             explanation:
-              "Calculate time of fall using t = (v - v₀) / g = (29.71 - 0) / 9.81 ≈ 3.03 seconds.",
+              "Calculate time using quadratic formula: t = (5 + √417.4) / 9.81 ≈ 2.58 s",
+          },
+          {
+            label: "3",
+            explanation:
+              "Calculate impact velocity: v = v₀ + g t = -5 + 9.81 × 2.58 ≈ 20.3 m/s downward",
           },
         ],
-        result:
-          "The ball takes approximately 3.03 seconds to hit the ground with an impact velocity of about 29.71 m/s downward.",
+        result: "Time to hit ground ≈ 2.58 s, Impact velocity ≈ 20.3 m/s downward",
       }}
       relatedCalculators={[
-        { title: "Orbital Period", url: "/science/orbital-period", icon: "Orbit" },
-        { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "FlaskConical" },
-        { title: "Snell's Law", url: "/science/snells-law", icon: "Waves" },
-        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "Atom" },
-        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "Zap" },
-        { title: "Photon Energy", url: "/science/photon-energy", icon: "Zap" },
+        { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "🎈" },
+        { title: "Snell's Law", url: "/science/snells-law", icon: "🌈" },
+        { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
+        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
+        { title: "Photon Energy", url: "/science/photon-energy", icon: "⚡" },
+        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "🚀" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },
