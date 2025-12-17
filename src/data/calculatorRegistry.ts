@@ -3373,6 +3373,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/TrigFunctionsAngleSideFinderCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "shapes-area-volume-pack",
+    title: "2D/3D Shapes Area & Volume Pack",
+    category: "math",
+    subcategory: "geometry-trig",
+    description: "Calculate area and volume for 2D and 3D shapes. Comprehensive tool for cubes, cylinders, spheres, cones, and more.",
+    loader: () => import("@/components/calculators/Math/ShapesAreaVolumePackCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
