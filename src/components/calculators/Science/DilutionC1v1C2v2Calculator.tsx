@@ -4,7 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Atom, RotateCcw, AlertTriangle } from "lucide-react";
+// ⚠️ FIX: Adicionei FlaskConical, Scale e Waves que estavam faltando
+import { Atom, RotateCcw, AlertTriangle, FlaskConical, Scale, Waves } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function DilutionC1v1C2v2Calculator() {
@@ -59,7 +60,6 @@ export default function DilutionC1v1C2v2Calculator() {
     }
 
     // Determine which variable to calculate (the one empty)
-    // Calculate using C₁V₁ = C₂V₂ => missing = (product of knowns) / known
     try {
       if (inputs.c1 === "") {
         // c1 = (c2 * v2) / v1
