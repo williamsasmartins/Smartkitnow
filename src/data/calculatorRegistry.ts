@@ -3436,6 +3436,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/BinomialProbabilityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "normal-cdf-pdf-estimator",
+    title: "Normal CDF / PDF Quick Estimator",
+    category: "math",
+    subcategory: "statistics-probability",
+    description: "Estimate Normal Distribution values. Calculate Cumulative Distribution Function (CDF) and Probability Density Function (PDF) probabilities.",
+    loader: () => import("@/components/calculators/Math/NormalCdfPdfEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
