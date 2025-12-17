@@ -3446,33 +3446,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     
-    {
-    slug: "kinematics-suvat-solver",
-    title: "Kinematics Equations Solver (SUVAT)",
-    category: "science",
-    subcategory: "physics-mechanics-motion",
-    description: "Solve motion problems using SUVAT equations. Calculate displacement, initial/final velocity, acceleration, and time for uniform acceleration.",
-    loader: () => import("@/components/calculators/Science/KinematicsSuvatSolverCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "projectile-motion-calculator",
-    title: "Projectile Motion Calculator",
-    category: "science",
-    subcategory: "physics-mechanics-motion",
-    description: "Analyze projectile motion. Calculate range, maximum height, and time of flight for objects launched at an angle under gravity.",
-    loader: () => import("@/components/calculators/Science/ProjectileMotionCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "force-work-energy-calculator",
-    title: "Force, Work & Energy Calculator",
-    category: "science",
-    subcategory: "physics-mechanics-motion",
-    description: "Calculate Force, Work, and Energy. Solve physics problems involving Newton's laws, kinetic energy, and potential energy.",
-    loader: () => import("@/components/calculators/Science/ForceWorkEnergyCalculator"),
-    urlStyle: "flat"
-  },
+    
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
