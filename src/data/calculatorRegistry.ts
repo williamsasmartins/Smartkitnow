@@ -3526,6 +3526,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/SnellsLawCriticalAngleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "thin-lens-solver",
+    title: "Thin Lens Solver",
+    category: "science",
+    subcategory: "physics-waves-optics-thermo",
+    description: "Solve Thin Lens equation problems. Calculate focal length, object distance, and image distance for convex and concave lenses.",
+    loader: () => import("@/components/calculators/Science/ThinLensSolverCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
