@@ -5,19 +5,14 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-// ⚠️ SAFE ICONS ONLY
-import { Atom, RotateCcw, AlertTriangle, Orbit } from "lucide-react";
+// ⚠️ FIX: Adicionei 'Zap' e 'Waves' que estavam faltando
+import { Atom, RotateCcw, AlertTriangle, Orbit, Zap, Waves } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 const g = 9.81; // m/s², gravitational acceleration constant
 
 export default function UniformCircularMotionCentripetalCalculator() {
   // Inputs: mass (kg), radius (m), velocity (m/s), period (s)
-  // User can provide any two of velocity, period, radius + mass to calculate centripetal force and acceleration.
-  // We'll require mass and radius, and either velocity or period.
-  // If velocity is given, calculate acceleration and force.
-  // If period is given, calculate velocity first: v = 2πr / T
-
   const [inputs, setInputs] = useState({
     mass: "",
     radius: "",
@@ -25,7 +20,7 @@ export default function UniformCircularMotionCentripetalCalculator() {
     period: "",
   });
 
-  const handleInputChange = useCallback((name, value) => {
+  const handleInputChange = useCallback((name: string, value: string) => {
     // Allow only numbers and decimal points
     if (/^\d*\.?\d*$/.test(value) || value === "") {
       setInputs((prev) => ({ ...prev, [name]: value }));
@@ -38,7 +33,7 @@ export default function UniformCircularMotionCentripetalCalculator() {
     const v = parseFloat(inputs.velocity);
     const T = parseFloat(inputs.period);
 
-    // Validation and warnings
+    // Validation
     if (
       isNaN(m) ||
       isNaN(r) ||
@@ -86,7 +81,7 @@ export default function UniformCircularMotionCentripetalCalculator() {
       periodCalc = (2 * Math.PI * r) / v;
     }
 
-    // Format numbers with scientific notation if very large/small
+    // Format numbers
     const formatNum = (num: number, unit: string) => {
       if (num === 0) return `0 ${unit}`;
       if (Math.abs(num) < 0.001 || Math.abs(num) > 1e5) {
@@ -97,32 +92,26 @@ export default function UniformCircularMotionCentripetalCalculator() {
 
     // Compose result string
     const value = (
-      <>
+      <div className="flex flex-col gap-2 items-center">
         <div>
-          <strong>Centripetal Force (F):</strong> {formatNum(F, "N")}
+          <strong>Force (F):</strong> {formatNum(F, "N")}
         </div>
         <div>
-          <strong>Centripetal Acceleration (a):</strong> {formatNum(a, "m/s²")}
+          <strong>Acceleration (a):</strong> {formatNum(a, "m/s²")}
         </div>
-        <div>
-          <strong>Velocity (v):</strong> {formatNum(velocityCalc, "m/s")}{" "}
-          {velocityFromPeriod && <em>(calculated from period)</em>}
+        <div className="text-sm text-slate-500 mt-2">
+           v = {formatNum(velocityCalc, "m/s")} | T = {formatNum(periodCalc, "s")}
         </div>
-        {periodCalc !== undefined && !isNaN(periodCalc) && (
-          <div>
-            <strong>Period (T):</strong> {formatNum(periodCalc, "s")}
-          </div>
-        )}
-      </>
+      </div>
     );
 
     return {
       value,
-      label: "Results for uniform circular motion",
+      label: "Centripetal Results",
       subtext:
-        "F = m × a, a = v² / r, v = 2πr / T. Units: Newtons (N), meters per second squared (m/s²), meters per second (m/s), seconds (s).",
+        "F = m × a  |  a = v² / r",
       warning: null,
-      formulaUsed: "F = m × v² / r",
+      formulaUsed: "Uniform Circular Motion",
     };
   }, [inputs.mass, inputs.radius, inputs.velocity, inputs.period]);
 
@@ -151,81 +140,75 @@ export default function UniformCircularMotionCentripetalCalculator() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <Label htmlFor="mass" className="flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300">
-            <Atom className="w-4 h-4" /> Mass (m) in kilograms (kg)
+            <Atom className="w-4 h-4" /> Mass (m)
           </Label>
           <Input
             id="mass"
             type="text"
             inputMode="decimal"
-            placeholder="e.g. 5.0"
+            placeholder="kg"
             value={inputs.mass}
             onChange={(e) => handleInputChange("mass", e.target.value)}
-            aria-describedby="mass-desc"
           />
-          <p id="mass-desc" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Mass of the object in kilograms (kg). Must be &gt; 0.
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            kilograms (kg)
           </p>
         </div>
 
         <div>
           <Label htmlFor="radius" className="flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300">
-            <Orbit className="w-4 h-4" /> Radius (r) in meters (m)
+            <Orbit className="w-4 h-4" /> Radius (r)
           </Label>
           <Input
             id="radius"
             type="text"
             inputMode="decimal"
-            placeholder="e.g. 2.5"
+            placeholder="meters"
             value={inputs.radius}
             onChange={(e) => handleInputChange("radius", e.target.value)}
-            aria-describedby="radius-desc"
           />
-          <p id="radius-desc" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Radius of the circular path in meters (m). Must be &gt; 0.
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            meters (m)
           </p>
         </div>
 
         <div>
           <Label htmlFor="velocity" className="flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300">
-            <Zap className="w-4 h-4" /> Velocity (v) in meters per second (m/s)
+            <Zap className="w-4 h-4" /> Velocity (v)
           </Label>
           <Input
             id="velocity"
             type="text"
             inputMode="decimal"
-            placeholder="e.g. 10.0"
+            placeholder="m/s"
             value={inputs.velocity}
             onChange={(e) => {
               handleInputChange("velocity", e.target.value);
-              // Clear period if velocity is entered
               if (e.target.value !== "") setInputs((prev) => ({ ...prev, period: "" }));
             }}
-            aria-describedby="velocity-desc"
           />
-          <p id="velocity-desc" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Enter velocity if known. Leave blank to calculate from period.
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            m/s (Optional)
           </p>
         </div>
 
         <div>
           <Label htmlFor="period" className="flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300">
-            <Waves className="w-4 h-4" /> Period (T) in seconds (s)
+            <Waves className="w-4 h-4" /> Period (T)
           </Label>
           <Input
             id="period"
             type="text"
             inputMode="decimal"
-            placeholder="e.g. 1.57"
+            placeholder="seconds"
             value={inputs.period}
             onChange={(e) => {
               handleInputChange("period", e.target.value);
-              // Clear velocity if period is entered
               if (e.target.value !== "") setInputs((prev) => ({ ...prev, velocity: "" }));
             }}
-            aria-describedby="period-desc"
           />
-          <p id="period-desc" className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Enter period if known. Leave blank to use velocity.
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            seconds (Optional)
           </p>
         </div>
       </div>
@@ -234,11 +217,7 @@ export default function UniformCircularMotionCentripetalCalculator() {
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
-          onClick={() => {
-            // Just trigger recalculation by setting inputs to current values (no-op)
-            setInputs((prev) => ({ ...prev }));
-          }}
-          aria-label="Calculate uniform circular motion"
+          onClick={() => setInputs((prev) => ({ ...prev }))}
         >
           <Atom className="mr-2 h-4 w-4" /> Calculate
         </Button>
@@ -246,7 +225,6 @@ export default function UniformCircularMotionCentripetalCalculator() {
           variant="outline"
           onClick={() => setInputs({ mass: "", radius: "", velocity: "", period: "" })}
           className="flex-1 h-11 hover:bg-slate-100 dark:hover:bg-slate-800"
-          aria-label="Reset inputs"
         >
           <RotateCcw className="mr-2 h-4 w-4" /> Reset
         </Button>
@@ -282,10 +260,9 @@ export default function UniformCircularMotionCentripetalCalculator() {
     <div className="space-y-12">
       <section id="what-is" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Uniform Circular Motion Calculator
-        </h2>
+          Understanding Uniform Circular Motion         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Uniform circular motion occurs when an object moves along a circular path with a constant speed. Although the speed remains constant, the direction of the velocity vector continuously changes, resulting in an acceleration directed towards the center of the circle, known as centripetal acceleration. This acceleration is responsible for changing the direction of the velocity, keeping the object moving in a circle.
+          Uniform circular motion occurs when an object moves along a circular path with a constant speed. Although the speed remains constant, the velocity vector changes direction continuously, resulting in an acceleration directed towards the center of the circle, known as centripetal acceleration. This acceleration is responsible for changing the direction of the velocity, keeping the object moving in a circle.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
           The centripetal force is the net force required to keep the object moving in this circular path. It always points towards the center of the circle and is calculated based on the mass of the object, its velocity, and the radius of the circle. This calculator helps you find the centripetal force, acceleration, velocity, or period by inputting known values.
@@ -362,7 +339,6 @@ F = centripetal force (N)`}
         ],
         result: "The centripetal force is approximately 10.6667 N, and the centripetal acceleration is 5.3333 m/s².",
       }}
-      // USE THIS VARIABLE EXACTLY - NO MANUAL EDITS
       relatedCalculators={[
         { title: "Snell’s Law & Critical Angle Calculator", url: "/science/snells-law-critical-angle", icon: "🌈" },
         { title: "Dilution Calculator (C₁V₁ = C₂V₂)", url: "/science/dilution-c1v1-c2v2", icon: "🧪" },
