@@ -3706,6 +3706,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/PpmPpbConcentrationConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "density-specific-gravity-calculator",
+    title: "Density / Specific Gravity Calculator",
+    category: "science",
+    subcategory: "chemistry-composition-units",
+    description: "Calculate Density and Specific Gravity. Determine the mass-to-volume ratio of solids, liquids, and gases.",
+    loader: () => import("@/components/calculators/Science/DensitySpecificGravityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
