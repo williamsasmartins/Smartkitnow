@@ -3447,6 +3447,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
     
     
+    {
+    slug: "kinematics-suvat-solver",
+    title: "Kinematics Equations Solver (SUVAT)",
+    category: "science",
+    subcategory: "physics-mechanics-motion",
+    description: "Solve motion problems using SUVAT equations. Calculate displacement, initial/final velocity, acceleration, and time for uniform acceleration.",
+    loader: () => import("@/components/calculators/Science/KinematicsSuvatSolverCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
