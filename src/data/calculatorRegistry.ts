@@ -3364,6 +3364,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PythagoreanTheoremSolverCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "trig-functions-angle-side-finder",
+    title: "Trig Functions (sin/cos/tan) Angle/Side Finder",
+    category: "math",
+    subcategory: "geometry-trig",
+    description: "Calculate Trigonometric functions. Find Sine, Cosine, and Tangent values to determine unknown angles and sides in right triangles.",
+    loader: () => import("@/components/calculators/Math/TrigFunctionsAngleSideFinderCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
