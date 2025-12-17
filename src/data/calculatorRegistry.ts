@@ -3466,6 +3466,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/ProjectileMotionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "force-work-energy-calculator",
+    title: "Force, Work & Energy Calculator",
+    category: "science",
+    subcategory: "physics-mechanics-motion",
+    description: "Calculate Force, Work, and Energy. Solve physics problems involving Newton's laws, kinetic energy, and potential energy.",
+    loader: () => import("@/components/calculators/Science/ForceWorkEnergyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
