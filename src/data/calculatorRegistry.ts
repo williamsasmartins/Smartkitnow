@@ -3580,6 +3580,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/HalfLifeExponentialDecayCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "radioactive-activity-a-lambda-n",
+    title: "Radioactive Activity Calculator",
+    category: "science",
+    subcategory: "physics-electricity-modern",
+    description: "Calculate radioactive activity (A = λN). Determine the decay rate of a sample based on its decay constant.",
+    loader: () => import("@/components/calculators/Science/RadioactiveActivityALambdaNCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
