@@ -4,129 +4,133 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 // ⚠️ SAFE ICONS ONLY
-import { Atom, RotateCcw, Info, AlertTriangle } from "lucide-react";
+import {
+  Atom,
+  RotateCcw,
+  AlertTriangle,
+  Info,
+} from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
-const g = 9.81; // m/s², gravitational acceleration constant
+const SUVAT_VARIABLES = ["s", "u", "v", "a", "t"] as const;
+type SuvatVar = typeof SUVAT_VARIABLES[number];
 
-// SUVAT variables:
-// s = displacement (m)
-// u = initial velocity (m/s)
-// v = final velocity (m/s)
-// a = acceleration (m/s²)
-// t = time (s)
-
-// Equations:
+// SUVAT equations:
 // 1) v = u + at
-// 2) s = ut + 0.5at²
+// 2) s = ut + 1/2 a t²
 // 3) v² = u² + 2as
-// 4) s = ((u + v)/2) * t
-// 5) s = vt - 0.5at²
+// 4) s = vt - 1/2 a t²
+// 5) s = (u + v)/2 * t
 
-// The solver will allow user to input any 3 known variables and calculate the unknown 2.
-// To keep UI simple, user selects which variable to calculate, inputs the other 4.
-
-// We will validate inputs and calculate accordingly.
+// We will allow user to input any 3 known variables and solve for the 4th unknown (except t which is tricky).
+// For simplicity, user selects which variable to solve for, inputs the others, and we calculate the unknown.
 
 export default function KinematicsSuvatSolverCalculator() {
-  // Variables: s, u, v, a, t
-  // Calculate one of them based on the other four inputs.
+  // Inputs: which variable to solve for, and values for the others
+  const [solveFor, setSolveFor] = useState<SuvatVar>("s");
+  const [inputs, setInputs] = useState<Partial<Record<SuvatVar, string>>>({});
 
-  const [calculateFor, setCalculateFor] = useState<"s" | "u" | "v" | "a" | "t">("s");
-  const [inputs, setInputs] = useState<{
-    s?: string;
-    u?: string;
-    v?: string;
-    a?: string;
-    t?: string;
-  }>({});
+  const handleInputChange = useCallback(
+    (name: SuvatVar, value: string) => {
+      setInputs((prev) => ({ ...prev, [name]: value }));
+    },
+    []
+  );
 
-  const handleInputChange = useCallback((name: string, value: string) => {
-    setInputs((prev) => ({ ...prev, [name]: value }));
-  }, []);
+  // Parsing inputs to numbers or NaN
+  const parsedInputs = useMemo(() => {
+    const parsed: Partial<Record<SuvatVar, number>> = {};
+    SUVAT_VARIABLES.forEach((v) => {
+      const val = inputs[v];
+      if (val !== undefined && val.trim() !== "") {
+        const n = Number(val);
+        parsed[v] = isNaN(n) ? NaN : n;
+      }
+    });
+    return parsed;
+  }, [inputs]);
 
-  // Parsing helper
-  const parseInput = (val?: string): number | null => {
-    if (!val) return null;
-    const n = Number(val);
-    return isNaN(n) ? null : n;
-  };
+  // Validation helper: check if a number is valid (not NaN and finite)
+  const isValidNumber = (n: number | undefined) =>
+    typeof n === "number" && !isNaN(n) && isFinite(n);
 
   // Calculation logic in useMemo
   const results = useMemo(() => {
-    // Parse all inputs to numbers or null
-    const s = parseInput(inputs.s);
-    const u = parseInput(inputs.u);
-    const v = parseInput(inputs.v);
-    const a = parseInput(inputs.a);
-    const t = parseInput(inputs.t);
+    // We need at least 3 known variables (except the one to solve for)
+    const knownVars = SUVAT_VARIABLES.filter(
+      (v) => v !== solveFor && isValidNumber(parsedInputs[v])
+    );
 
-    // Validate inputs: For calculation, all except the one to calculate must be numbers
-    const vars = { s, u, v, a, t };
-    const missingVars = Object.entries(vars)
-      .filter(([key, val]) => key !== calculateFor && (val === null || val === undefined))
-      .map(([key]) => key);
-
-    if (missingVars.length > 0) {
+    if (knownVars.length < 3) {
       return {
         value: "Waiting...",
-        label: `Please enter values for: ${missingVars.join(", ")}`,
+        label: "Enter at least 3 known values",
         subtext: "",
         warning: null,
         formulaUsed: null,
       };
     }
 
-    // Calculation functions for each variable
-    // Each returns number | null if no solution or invalid
+    // Extract known values safely
+    const s = parsedInputs.s;
+    const u = parsedInputs.u;
+    const v = parsedInputs.v;
+    const a = parsedInputs.a;
+    const t = parsedInputs.t;
 
-    // Helper for formatting results with units
-    const formatResult = (val: number, unit: string) => {
-      const absVal = Math.abs(val);
-      const displayVal =
-        absVal !== 0 && (absVal >= 10000 || absVal < 0.001)
-          ? val.toExponential(4)
-          : val.toFixed(4);
-      return `${displayVal} ${unit}`;
-    };
+    // We'll try to solve for solveFor variable using SUVAT equations
+    // Return value with units and formula used
 
-    // Calculation implementations:
-    // We use the SUVAT equations and algebra to solve for the unknown.
+    // Helper to format output with units
+    function formatValue(val: number, unit: string) {
+      if (Math.abs(val) >= 10000 || (Math.abs(val) > 0 && Math.abs(val) < 0.001)) {
+        return val.toExponential(4) + " " + unit;
+      }
+      return val.toFixed(4) + " " + unit;
+    }
 
-    // Calculate s:
-    // Use s = ut + 0.5 a t² if u,a,t known
-    // Or s = ((u+v)/2)*t if u,v,t known
-    // Or s = (v² - u²)/(2a) if u,v,a known
-    if (calculateFor === "s") {
-      if (u !== null && a !== null && t !== null) {
-        // s = ut + 0.5 a t²
-        const val = u * t + 0.5 * a * t * t;
+    // Solve for s (displacement, meters)
+    if (solveFor === "s") {
+      // Use s = ut + 1/2 a t² if u,a,t known
+      if (isValidNumber(u) && isValidNumber(a) && isValidNumber(t)) {
+        const val = u! * t! + 0.5 * a! * t! * t!;
         return {
-          value: formatResult(val, "meters"),
+          value: formatValue(val, "meters"),
           label: "Displacement (s)",
-          subtext: "Using s = ut + 0.5at²",
+          subtext: "Using s = ut + 1/2 a t²",
           warning: null,
-          formulaUsed: "s = ut + 0.5at²",
+          formulaUsed: "s = ut + 1/2 a t²",
         };
       }
-      if (u !== null && v !== null && t !== null) {
-        // s = ((u+v)/2)*t
-        const val = ((u + v) / 2) * t;
+      // Use s = (u + v)/2 * t if u,v,t known
+      if (isValidNumber(u) && isValidNumber(v) && isValidNumber(t)) {
+        const val = ((u! + v!) / 2) * t!;
         return {
-          value: formatResult(val, "meters"),
+          value: formatValue(val, "meters"),
           label: "Displacement (s)",
-          subtext: "Using s = ((u + v)/2) × t",
+          subtext: "Using s = (u + v)/2 × t",
           warning: null,
-          formulaUsed: "s = ((u + v)/2) × t",
+          formulaUsed: "s = (u + v)/2 × t",
         };
       }
-      if (v !== null && u !== null && a !== null && a !== 0) {
-        // s = (v² - u²)/(2a)
-        const val = (v * v - u * u) / (2 * a);
+      // Use s = (v² - u²) / (2a) if v,u,a known and a ≠ 0
+      if (
+        isValidNumber(v) &&
+        isValidNumber(u) &&
+        isValidNumber(a) &&
+        a !== 0
+      ) {
+        const val = (v! * v! - u! * u!) / (2 * a!);
         return {
-          value: formatResult(val, "meters"),
+          value: formatValue(val, "meters"),
           label: "Displacement (s)",
           subtext: "Using s = (v² - u²) / 2a",
           warning: null,
@@ -134,353 +138,368 @@ export default function KinematicsSuvatSolverCalculator() {
         };
       }
       return {
-        value: "Waiting...",
-        label: "Insufficient or invalid inputs for s",
+        value: "Insufficient or incompatible inputs",
+        label: "Displacement (s)",
         subtext: "",
-        warning: "Please provide valid inputs for calculation.",
+        warning:
+          "Provide appropriate known variables to solve for displacement (s).",
         formulaUsed: null,
       };
     }
 
-    // Calculate u:
-    // From v = u + at => u = v - at
-    // From s = ut + 0.5 a t² => u = (s - 0.5 a t²)/t if t ≠ 0
-    // From v² = u² + 2as => u = sqrt(v² - 2as) or -sqrt(...) (choose positive root)
-    if (calculateFor === "u") {
-      if (v !== null && a !== null && t !== null) {
-        // u = v - at
-        const val = v - a * t;
+    // Solve for u (initial velocity, m/s)
+    if (solveFor === "u") {
+      // Use v = u + at => u = v - at if v,a,t known
+      if (isValidNumber(v) && isValidNumber(a) && isValidNumber(t)) {
+        const val = v! - a! * t!;
         return {
-          value: formatResult(val, "m/s"),
+          value: formatValue(val, "m/s"),
           label: "Initial Velocity (u)",
           subtext: "Using u = v - at",
           warning: null,
-          formulaUsed: "u = v - at",
+          formulaUsed: "v = u + at",
         };
       }
-      if (s !== null && a !== null && t !== null && t !== 0) {
-        // u = (s - 0.5 a t²)/t
-        const val = (s - 0.5 * a * t * t) / t;
+      // Use s = ut + 1/2 a t² => u = (s - 1/2 a t²)/t if s,a,t known and t ≠ 0
+      if (isValidNumber(s) && isValidNumber(a) && isValidNumber(t) && t !== 0) {
+        const val = (s! - 0.5 * a! * t! * t!) / t!;
         return {
-          value: formatResult(val, "m/s"),
+          value: formatValue(val, "m/s"),
           label: "Initial Velocity (u)",
-          subtext: "Using u = (s - 0.5at²) / t",
+          subtext: "Using s = ut + 1/2 a t²",
           warning: null,
-          formulaUsed: "u = (s - 0.5at²) / t",
+          formulaUsed: "s = ut + 1/2 a t²",
         };
       }
-      if (v !== null && s !== null && a !== null) {
-        // u = sqrt(v² - 2as) or -sqrt(...)
-        const underSqrt = v * v - 2 * a * s;
-        if (underSqrt < 0) {
-          return {
-            value: "No real solution",
-            label: "Initial Velocity (u)",
-            subtext: "",
-            warning: "v² - 2as &lt; 0, no real solution for u.",
-            formulaUsed: "u = ±√(v² - 2as)",
-          };
-        }
-        const valPos = Math.sqrt(underSqrt);
-        const valNeg = -valPos;
+      // Use v² = u² + 2as => u = sqrt(v² - 2as) if v,a,s known and inside sqrt ≥ 0
+      if (
+        isValidNumber(v) &&
+        isValidNumber(a) &&
+        isValidNumber(s) &&
+        v! * v! - 2 * a! * s! >= 0
+      ) {
+        const val = Math.sqrt(v! * v! - 2 * a! * s!);
         return {
-          value: `${formatResult(valPos, "m/s")} or ${formatResult(valNeg, "m/s")}`,
+          value: formatValue(val, "m/s"),
           label: "Initial Velocity (u)",
-          subtext: "Using u = ±√(v² - 2as)",
+          subtext: "Using v² = u² + 2as",
           warning: null,
-          formulaUsed: "u = ±√(v² - 2as)",
+          formulaUsed: "v² = u² + 2as",
         };
       }
       return {
-        value: "Waiting...",
-        label: "Insufficient or invalid inputs for u",
+        value: "Insufficient or incompatible inputs",
+        label: "Initial Velocity (u)",
         subtext: "",
-        warning: "Please provide valid inputs for calculation.",
+        warning:
+          "Provide appropriate known variables to solve for initial velocity (u).",
         formulaUsed: null,
       };
     }
 
-    // Calculate v:
-    // v = u + at
-    // v = sqrt(u² + 2as) (positive root)
-    // v = (2s / t) - u (from s = ((u+v)/2) t => v = (2s / t) - u)
-    if (calculateFor === "v") {
-      if (u !== null && a !== null && t !== null) {
-        // v = u + at
-        const val = u + a * t;
+    // Solve for v (final velocity, m/s)
+    if (solveFor === "v") {
+      // Use v = u + at if u,a,t known
+      if (isValidNumber(u) && isValidNumber(a) && isValidNumber(t)) {
+        const val = u! + a! * t!;
         return {
-          value: formatResult(val, "m/s"),
+          value: formatValue(val, "m/s"),
           label: "Final Velocity (v)",
           subtext: "Using v = u + at",
           warning: null,
           formulaUsed: "v = u + at",
         };
       }
-      if (u !== null && a !== null && s !== null) {
-        // v = sqrt(u² + 2as)
-        const underSqrt = u * u + 2 * a * s;
-        if (underSqrt < 0) {
+      // Use v² = u² + 2as if u,a,s known and inside sqrt ≥ 0
+      if (
+        isValidNumber(u) &&
+        isValidNumber(a) &&
+        isValidNumber(s) &&
+        u! * u! + 2 * a! * s! >= 0
+      ) {
+        const val = Math.sqrt(u! * u! + 2 * a! * s!);
+        return {
+          value: formatValue(val, "m/s"),
+          label: "Final Velocity (v)",
+          subtext: "Using v² = u² + 2as",
+          warning: null,
+          formulaUsed: "v² = u² + 2as",
+        };
+      }
+      // Use s = (u + v)/2 * t => v = (2s / t) - u if s,u,t known and t ≠ 0
+      if (isValidNumber(s) && isValidNumber(u) && isValidNumber(t) && t !== 0) {
+        const val = (2 * s!) / t! - u!;
+        return {
+          value: formatValue(val, "m/s"),
+          label: "Final Velocity (v)",
+          subtext: "Using s = (u + v)/2 × t",
+          warning: null,
+          formulaUsed: "s = (u + v)/2 × t",
+        };
+      }
+      return {
+        value: "Insufficient or incompatible inputs",
+        label: "Final Velocity (v)",
+        subtext: "",
+        warning:
+          "Provide appropriate known variables to solve for final velocity (v).",
+        formulaUsed: null,
+      };
+    }
+
+    // Solve for a (acceleration, m/s²)
+    if (solveFor === "a") {
+      // Use v = u + at => a = (v - u)/t if v,u,t known and t ≠ 0
+      if (isValidNumber(v) && isValidNumber(u) && isValidNumber(t) && t !== 0) {
+        const val = (v! - u!) / t!;
+        return {
+          value: formatValue(val, "m/s²"),
+          label: "Acceleration (a)",
+          subtext: "Using a = (v - u)/t",
+          warning: null,
+          formulaUsed: "v = u + at",
+        };
+      }
+      // Use s = ut + 1/2 a t² => a = 2(s - ut)/t² if s,u,t known and t ≠ 0
+      if (isValidNumber(s) && isValidNumber(u) && isValidNumber(t) && t !== 0) {
+        const val = (2 * (s! - u! * t!)) / (t! * t!);
+        return {
+          value: formatValue(val, "m/s²"),
+          label: "Acceleration (a)",
+          subtext: "Using s = ut + 1/2 a t²",
+          warning: null,
+          formulaUsed: "s = ut + 1/2 a t²",
+        };
+      }
+      // Use v² = u² + 2as => a = (v² - u²)/(2s) if v,u,s known and s ≠ 0
+      if (
+        isValidNumber(v) &&
+        isValidNumber(u) &&
+        isValidNumber(s) &&
+        s !== 0
+      ) {
+        const val = (v! * v! - u! * u!) / (2 * s!);
+        return {
+          value: formatValue(val, "m/s²"),
+          label: "Acceleration (a)",
+          subtext: "Using v² = u² + 2as",
+          warning: null,
+          formulaUsed: "v² = u² + 2as",
+        };
+      }
+      return {
+        value: "Insufficient or incompatible inputs",
+        label: "Acceleration (a)",
+        subtext: "",
+        warning:
+          "Provide appropriate known variables to solve for acceleration (a).",
+        formulaUsed: null,
+      };
+    }
+
+    // Solve for t (time, seconds)
+    if (solveFor === "t") {
+      // Use v = u + at => t = (v - u)/a if v,u,a known and a ≠ 0
+      if (isValidNumber(v) && isValidNumber(u) && isValidNumber(a) && a !== 0) {
+        const val = (v! - u!) / a!;
+        if (val < 0) {
           return {
-            value: "No real solution",
-            label: "Final Velocity (v)",
-            subtext: "",
-            warning: "u² + 2as &lt; 0, no real solution for v.",
-            formulaUsed: "v = ±√(u² + 2as)",
+            value: formatValue(val, "s"),
+            label: "Time (t)",
+            subtext: "Using t = (v - u)/a",
+            warning:
+              "Calculated time is negative; check input values for physical validity.",
+            formulaUsed: "v = u + at",
           };
         }
-        const valPos = Math.sqrt(underSqrt);
-        const valNeg = -valPos;
         return {
-          value: `${formatResult(valPos, "m/s")} or ${formatResult(valNeg, "m/s")}`,
-          label: "Final Velocity (v)",
-          subtext: "Using v = ±√(u² + 2as)",
-          warning: null,
-          formulaUsed: "v = ±√(u² + 2as)",
-        };
-      }
-      if (s !== null && t !== null && u !== null && t !== 0) {
-        // v = (2s / t) - u
-        const val = (2 * s) / t - u;
-        return {
-          value: formatResult(val, "m/s"),
-          label: "Final Velocity (v)",
-          subtext: "Using v = (2s / t) - u",
-          warning: null,
-          formulaUsed: "v = (2s / t) - u",
-        };
-      }
-      return {
-        value: "Waiting...",
-        label: "Insufficient or invalid inputs for v",
-        subtext: "",
-        warning: "Please provide valid inputs for calculation.",
-        formulaUsed: null,
-      };
-    }
-
-    // Calculate a:
-    // a = (v - u) / t if t ≠ 0
-    // a = (v² - u²) / (2s) if s ≠ 0
-    // a = (2 (s - ut)) / t² if t ≠ 0
-    if (calculateFor === "a") {
-      if (v !== null && u !== null && t !== null && t !== 0) {
-        // a = (v - u) / t
-        const val = (v - u) / t;
-        return {
-          value: formatResult(val, "m/s²"),
-          label: "Acceleration (a)",
-          subtext: "Using a = (v - u) / t",
-          warning: null,
-          formulaUsed: "a = (v - u) / t",
-        };
-      }
-      if (v !== null && u !== null && s !== null && s !== 0) {
-        // a = (v² - u²) / (2s)
-        const val = (v * v - u * u) / (2 * s);
-        return {
-          value: formatResult(val, "m/s²"),
-          label: "Acceleration (a)",
-          subtext: "Using a = (v² - u²) / 2s",
-          warning: null,
-          formulaUsed: "a = (v² - u²) / 2s",
-        };
-      }
-      if (s !== null && u !== null && t !== null && t !== 0) {
-        // a = (2 (s - ut)) / t²
-        const val = (2 * (s - u * t)) / (t * t);
-        return {
-          value: formatResult(val, "m/s²"),
-          label: "Acceleration (a)",
-          subtext: "Using a = 2(s - ut) / t²",
-          warning: null,
-          formulaUsed: "a = 2(s - ut) / t²",
-        };
-      }
-      return {
-        value: "Waiting...",
-        label: "Insufficient or invalid inputs for a",
-        subtext: "",
-        warning: "Please provide valid inputs for calculation.",
-        formulaUsed: null,
-      };
-    }
-
-    // Calculate t:
-    // From v = u + at => t = (v - u)/a if a ≠ 0
-    // From s = ut + 0.5 a t² => quadratic: 0.5 a t² + u t - s = 0
-    // From s = ((u + v)/2) t => t = 2s / (u + v) if (u + v) ≠ 0
-
-    if (calculateFor === "t") {
-      if (v !== null && u !== null && a !== null && a !== 0) {
-        // t = (v - u)/a
-        const val = (v - u) / a;
-        return {
-          value: formatResult(val, "seconds"),
+          value: formatValue(val, "s"),
           label: "Time (t)",
-          subtext: "Using t = (v - u) / a",
+          subtext: "Using t = (v - u)/a",
           warning: null,
-          formulaUsed: "t = (v - u) / a",
+          formulaUsed: "v = u + at",
         };
       }
-      if (s !== null && u !== null && a !== null) {
-        // Solve quadratic: 0.5 a t² + u t - s = 0
-        // a_quad = 0.5 a, b_quad = u, c_quad = -s
-        const a_quad = 0.5 * a;
-        const b_quad = u;
-        const c_quad = -s;
-        const discriminant = b_quad * b_quad - 4 * a_quad * c_quad;
+      // Use s = ut + 1/2 a t² => quadratic in t: 1/2 a t² + u t - s = 0
+      if (isValidNumber(s) && isValidNumber(u) && isValidNumber(a)) {
+        const A = 0.5 * a!;
+        const B = u!;
+        const C = -s!;
+        const discriminant = B * B - 4 * A * C;
         if (discriminant < 0) {
           return {
-            value: "No real solution",
+            value: "No real solution for time",
             label: "Time (t)",
             subtext: "",
-            warning: "Discriminant &lt; 0, no real solution for t.",
-            formulaUsed: "0.5 a t² + u t - s = 0",
+            warning:
+              "Discriminant is negative; no real time solution for given inputs.",
+            formulaUsed: "s = ut + 1/2 a t²",
           };
         }
-        const sqrtDisc = Math.sqrt(discriminant);
-        const t1 = (-b_quad + sqrtDisc) / (2 * a_quad);
-        const t2 = (-b_quad - sqrtDisc) / (2 * a_quad);
-        // Only positive times make physical sense
-        const validTimes = [t1, t2].filter((time) => time >= 0);
-        if (validTimes.length === 0) {
+        const sqrtD = Math.sqrt(discriminant);
+        const t1 = (-B + sqrtD) / (2 * A);
+        const t2 = (-B - sqrtD) / (2 * A);
+        // Choose positive time if possible
+        const val =
+          t1 >= 0 && t2 >= 0
+            ? Math.min(t1, t2)
+            : t1 >= 0
+            ? t1
+            : t2 >= 0
+            ? t2
+            : NaN;
+        if (isNaN(val)) {
           return {
-            value: "No positive real solution",
+            value: "No positive real solution for time",
             label: "Time (t)",
             subtext: "",
-            warning: "No positive real solution for t.",
-            formulaUsed: "0.5 a t² + u t - s = 0",
+            warning:
+              "Both solutions for time are negative; check input values.",
+            formulaUsed: "s = ut + 1/2 a t²",
           };
         }
-        const formattedTimes = validTimes
-          .map((time) => formatResult(time, "seconds"))
-          .join(" or ");
         return {
-          value: formattedTimes,
+          value: formatValue(val, "s"),
           label: "Time (t)",
-          subtext: "Using quadratic formula on 0.5 a t² + u t - s = 0",
+          subtext: "Using quadratic formula on s = ut + 1/2 a t²",
           warning: null,
-          formulaUsed: "0.5 a t² + u t - s = 0",
+          formulaUsed: "s = ut + 1/2 a t²",
         };
       }
-      if (s !== null && u !== null && v !== null && (u + v) !== 0) {
-        // t = 2s / (u + v)
-        const val = (2 * s) / (u + v);
+      // Use s = (u + v)/2 * t => t = 2s / (u + v) if s,u,v known and denominator ≠ 0
+      if (
+        isValidNumber(s) &&
+        isValidNumber(u) &&
+        isValidNumber(v) &&
+        u! + v! !== 0
+      ) {
+        const val = (2 * s!) / (u! + v!);
+        if (val < 0) {
+          return {
+            value: formatValue(val, "s"),
+            label: "Time (t)",
+            subtext: "Using t = 2s / (u + v)",
+            warning:
+              "Calculated time is negative; check input values for physical validity.",
+            formulaUsed: "s = (u + v)/2 × t",
+          };
+        }
         return {
-          value: formatResult(val, "seconds"),
+          value: formatValue(val, "s"),
           label: "Time (t)",
           subtext: "Using t = 2s / (u + v)",
           warning: null,
-          formulaUsed: "t = 2s / (u + v)",
+          formulaUsed: "s = (u + v)/2 × t",
         };
       }
       return {
-        value: "Waiting...",
-        label: "Insufficient or invalid inputs for t",
+        value: "Insufficient or incompatible inputs",
+        label: "Time (t)",
         subtext: "",
-        warning: "Please provide valid inputs for calculation.",
+        warning:
+          "Provide appropriate known variables to solve for time (t).",
         formulaUsed: null,
       };
     }
 
     return {
-      value: "Waiting...",
-      label: "Select variable to calculate and enter inputs",
+      value: "Unknown error",
+      label: "",
       subtext: "",
-      warning: null,
+      warning: "Unexpected error in calculation.",
       formulaUsed: null,
     };
-  }, [calculateFor, inputs]);
+  }, [parsedInputs, solveFor]);
 
   // FAQs
   const faqs = [
     {
       question: "What are SUVAT equations used for?",
       answer:
-        "SUVAT equations describe motion under constant acceleration, allowing calculation of displacement, velocity, acceleration, and time. They are essential in physics and engineering to analyze linear motion, such as vehicles accelerating or objects in free fall. Understanding these equations helps solve real-world problems involving uniform acceleration.",
+        "SUVAT equations describe motion under constant acceleration and are essential in physics to solve problems involving displacement, velocity, acceleration, and time. They are widely used in engineering, automotive design, and aerospace to predict object trajectories and optimize performance.",
     },
     {
       question: "Why must units be consistent in SUVAT calculations?",
       answer:
-        "Consistent units ensure accurate results in physics calculations. For SUVAT equations, displacement should be in meters, velocity in meters per second, acceleration in meters per second squared, and time in seconds. Mixing units like kilometers and seconds without conversion leads to incorrect answers and misunderstandings of physical phenomena.",
+        "Consistent units ensure accurate results when applying SUVAT equations. Mixing units like meters with kilometers or seconds with minutes leads to incorrect answers. Always convert all inputs to SI units (meters, seconds, meters per second squared) before calculating.",
     },
     {
-      question: "Can SUVAT equations be used for non-uniform acceleration?",
+      question: "Can SUVAT equations be used for non-constant acceleration?",
       answer:
-        "No, SUVAT equations assume constant acceleration throughout the motion. For variable acceleration, calculus-based methods or numerical techniques are required. Using SUVAT equations with changing acceleration yields inaccurate results and should be avoided in such scenarios.",
+        "No, SUVAT equations assume uniform (constant) acceleration. For variable acceleration, calculus-based methods or numerical simulations are required. SUVAT provides simplified solutions for many practical scenarios with steady acceleration.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
-  // Widget UI
+  // Widget JSX
   const widget = (
     <div className="space-y-6">
-      {/* Select variable to calculate */}
+      {/* Select variable to solve for */}
       <div>
-        <Label htmlFor="calculateFor" className="mb-1 font-semibold text-slate-700 dark:text-slate-300">
-          Select variable to calculate
+        <Label htmlFor="solveFor" className="mb-1 font-semibold">
+          Select variable to solve for:
         </Label>
         <Select
-          value={calculateFor}
+          value={solveFor}
           onValueChange={(val) => {
-            setCalculateFor(val as any);
-            setInputs({}); // reset inputs on variable change
+            setSolveFor(val as SuvatVar);
+            // Clear the solved variable input on change
+            setInputs((prev) => ({ ...prev, [val as SuvatVar]: "" }));
           }}
-          id="calculateFor"
+          id="solveFor"
         >
           <SelectTrigger className="w-full">
             <SelectValue placeholder="Select variable" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="s">Displacement (s)</SelectItem>
-            <SelectItem value="u">Initial Velocity (u)</SelectItem>
-            <SelectItem value="v">Final Velocity (v)</SelectItem>
-            <SelectItem value="a">Acceleration (a)</SelectItem>
-            <SelectItem value="t">Time (t)</SelectItem>
+            <SelectItem value="s">Displacement (s) - meters</SelectItem>
+            <SelectItem value="u">Initial Velocity (u) - m/s</SelectItem>
+            <SelectItem value="v">Final Velocity (v) - m/s</SelectItem>
+            <SelectItem value="a">Acceleration (a) - m/s²</SelectItem>
+            <SelectItem value="t">Time (t) - seconds</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
       {/* Inputs for other variables */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {["s", "u", "v", "a", "t"].map((variable) => {
-          if (variable === calculateFor) return null;
+        {SUVAT_VARIABLES.filter((v) => v !== solveFor).map((v) => {
           let label = "";
-          let unit = "";
-          switch (variable) {
+          let placeholder = "";
+          switch (v) {
             case "s":
-              label = "Displacement (s)";
-              unit = "meters (m)";
+              label = "Displacement (s) in meters";
+              placeholder = "e.g. 100";
               break;
             case "u":
-              label = "Initial Velocity (u)";
-              unit = "meters/second (m/s)";
+              label = "Initial Velocity (u) in m/s";
+              placeholder = "e.g. 0";
               break;
             case "v":
-              label = "Final Velocity (v)";
-              unit = "meters/second (m/s)";
+              label = "Final Velocity (v) in m/s";
+              placeholder = "e.g. 20";
               break;
             case "a":
-              label = "Acceleration (a)";
-              unit = "meters/second² (m/s²)";
+              label = "Acceleration (a) in m/s²";
+              placeholder = "e.g. 9.81";
               break;
             case "t":
-              label = "Time (t)";
-              unit = "seconds (s)";
+              label = "Time (t) in seconds";
+              placeholder = "e.g. 5";
               break;
           }
           return (
-            <div key={variable}>
-              <Label htmlFor={variable} className="mb-1 font-semibold text-slate-700 dark:text-slate-300">
+            <div key={v}>
+              <Label htmlFor={v} className="mb-1 font-semibold">
                 {label}
               </Label>
               <Input
-                id={variable}
+                id={v}
                 type="number"
                 step="any"
-                placeholder={`Enter ${label} in ${unit}`}
-                value={inputs[variable as keyof typeof inputs] || ""}
-                onChange={(e) => handleInputChange(variable, e.target.value)}
+                value={inputs[v] || ""}
+                placeholder={placeholder}
+                onChange={(e) => handleInputChange(v, e.target.value)}
                 aria-label={label}
               />
             </div>
@@ -495,14 +514,18 @@ export default function KinematicsSuvatSolverCalculator() {
           onClick={() => {
             // No action needed, calculation is reactive
           }}
+          type="button"
           aria-label="Calculate"
         >
           <Atom className="mr-2 h-4 w-4" /> Calculate
         </Button>
         <Button
           variant="outline"
-          onClick={() => setInputs({})}
+          onClick={() => {
+            setInputs({});
+          }}
           className="flex-1 h-11 hover:bg-slate-100 dark:hover:bg-slate-800"
+          type="button"
           aria-label="Reset inputs"
         >
           <RotateCcw className="mr-2 h-4 w-4" /> Reset
@@ -511,19 +534,27 @@ export default function KinematicsSuvatSolverCalculator() {
 
       {/* Results */}
       {results.value !== "Waiting..." && (
-        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4" aria-live="polite">
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
           <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-950 border-blue-200 shadow-lg">
             <CardContent className="p-8 text-center">
               <p className="text-sm font-bold text-blue-900 dark:text-blue-100 mb-3 uppercase tracking-wider">
                 {results.formulaUsed || "Calculated Result"}
               </p>
-              <p className="text-5xl font-extrabold text-blue-900 dark:text-white">{results.value}</p>
-              <p className="text-slate-600 dark:text-slate-300 mt-2 font-medium">{results.label}</p>
-              {results.subtext && <p className="text-sm text-slate-500 mt-2">{results.subtext}</p>}
+              <p className="text-5xl font-extrabold text-blue-900 dark:text-white">
+                {results.value}
+              </p>
+              <p className="text-slate-600 dark:text-slate-300 mt-2 font-medium">
+                {results.label}
+              </p>
+              {results.subtext && (
+                <p className="text-sm text-slate-500 mt-2">{results.subtext}</p>
+              )}
               {results.warning && (
                 <div className="mt-4 p-3 bg-red-50 dark:bg-red-950 border border-red-200 rounded-lg flex items-start gap-3 text-left">
                   <AlertTriangle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
-                  <p className="text-sm text-red-800 dark:text-red-200">{results.warning}</p>
+                  <p className="text-sm text-red-800 dark:text-red-200">
+                    {results.warning}
+                  </p>
                 </div>
               )}
             </CardContent>
@@ -532,7 +563,9 @@ export default function KinematicsSuvatSolverCalculator() {
           <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 flex gap-3">
             <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              <strong>Science Fact:</strong> Always ensure units are consistent (e.g., meters, seconds) when using SUVAT equations to avoid calculation errors.
+              <strong>Science Fact:</strong> Always check your units (e.g., convert
+              grams to kg for physics formulas). Use meters (m), seconds (s), and
+              meters per second squared (m/s²) for consistent results.
             </p>
           </div>
         </div>
@@ -547,54 +580,91 @@ export default function KinematicsSuvatSolverCalculator() {
           Understanding Kinematics Equations Solver (SUVAT)
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The SUVAT equations are a set of five fundamental formulas used in physics to describe the motion of objects moving with constant acceleration. The acronym SUVAT stands for displacement (s), initial velocity (u), final velocity (v), acceleration (a), and time (t). These equations allow us to calculate any one of these variables if the other three are known, making them essential tools for solving linear motion problems.
+          The SUVAT equations are a set of five fundamental formulas in classical
+          mechanics that describe the motion of objects under constant acceleration.
+          The acronym SUVAT stands for displacement (s), initial velocity (u), final
+          velocity (v), acceleration (a), and time (t). These equations allow you to
+          calculate any one of these variables if the other three are known.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          These equations are widely applied in fields such as engineering, automotive design, ballistics, and even sports science to predict and analyze the motion of objects. For example, engineers use SUVAT equations to calculate the stopping distance of vehicles, while physicists apply them to study free-falling bodies under gravity.
+          These equations are widely used in physics education and practical
+          engineering problems, such as calculating the trajectory of vehicles,
+          projectiles, or any object moving with uniform acceleration. They provide
+          a straightforward way to analyze linear motion without the need for
+          calculus.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          It is important to note that SUVAT equations are valid only when acceleration is constant. If acceleration varies with time, more advanced calculus-based methods are required. Additionally, always ensure that units are consistent (e.g., meters, seconds) to obtain accurate results.
+          Note that these equations apply only when acceleration is constant. For
+          motions where acceleration changes over time, more advanced methods are
+          required. Always ensure your input values use consistent units to avoid
+          errors.
         </p>
       </section>
 
       <section id="formula" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Formula & Variables</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Formula & Variables
+        </h2>
         <pre className="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-x-auto font-mono text-slate-800 dark:text-slate-200">
-{`1) v = u + a t
-2) s = u t + 0.5 a t²
-3) v² = u² + 2 a s
-4) s = ((u + v) / 2) × t
-5) s = v t - 0.5 a t²
+{`1) v = u + at
+2) s = ut + 1/2 a t²
+3) v² = u² + 2as
+4) s = vt - 1/2 a t²
+5) s = (u + v)/2 × t
 
 Where:
-  s = Displacement (meters, m)
-  u = Initial velocity (meters/second, m/s)
-  v = Final velocity (meters/second, m/s)
-  a = Acceleration (meters/second², m/s²)
-  t = Time (seconds, s)`}
+s = displacement (meters)
+u = initial velocity (meters/second)
+v = final velocity (meters/second)
+a = acceleration (meters/second²)
+t = time (seconds)`}
         </pre>
       </section>
 
       <section id="example" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Step-by-Step Example</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Step-by-Step Example
+        </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Let's solve a real-world problem using SUVAT equations. Suppose a car accelerates uniformly from rest to a speed of 20 m/s in 5 seconds. We want to find the displacement during this time.
+          Let's solve a real-world problem using the SUVAT equations:
         </p>
         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li><strong>Given:</strong> u = 0 m/s (starting from rest), v = 20 m/s, t = 5 s</li>
-          <li><strong>Step 1:</strong> Calculate acceleration using v = u + at → a = (v - u) / t = (20 - 0) / 5 = 4 m/s²</li>
-          <li><strong>Step 2:</strong> Calculate displacement using s = ut + 0.5 a t² → s = 0 × 5 + 0.5 × 4 × 5² = 50 meters</li>
-          <li><strong>Result:</strong> The car travels 50 meters during the acceleration period.</li>
+          <li>
+            <strong>Given:</strong> A car starts from rest (u = 0 m/s) and accelerates
+            uniformly at 3 m/s² for 5 seconds (t = 5 s). Find the displacement (s)
+            and final velocity (v).
+          </li>
+          <li>
+            <strong>Step 1:</strong> Calculate displacement using s = ut + 1/2 a t²:
+            s = 0 × 5 + 0.5 × 3 × 5² = 0 + 0.5 × 3 × 25 = 37.5 meters.
+          </li>
+          <li>
+            <strong>Step 2:</strong> Calculate final velocity using v = u + at:
+            v = 0 + 3 × 5 = 15 m/s.
+          </li>
+          <li>
+            <strong>Result:</strong> The car travels 37.5 meters and reaches a final
+            velocity of 15 m/s after 5 seconds.
+          </li>
         </ul>
       </section>
 
       <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Frequently Asked Questions
+        </h2>
         <ul className="space-y-6">
           {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
+            <li
+              key={i}
+              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
+            >
+              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
+                {item.question}
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                {item.answer}
+              </p>
             </li>
           ))}
         </ul>
@@ -611,36 +681,45 @@ Where:
       jsonLd={faqJsonLd}
       formula={{
         title: "Scientific Formula",
-        formula: `v = u + a t
-s = u t + 0.5 a t²
-v² = u² + 2 a s
-s = ((u + v) / 2) × t
-s = v t - 0.5 a t²`,
+        formula: `v = u + at
+s = ut + 1/2 a t²
+v² = u² + 2as
+s = vt - 1/2 a t²
+s = (u + v)/2 × t`,
         variables: [
-          { symbol: "s", description: "Displacement (meters, m)" },
-          { symbol: "u", description: "Initial velocity (meters/second, m/s)" },
-          { symbol: "v", description: "Final velocity (meters/second, m/s)" },
-          { symbol: "a", description: "Acceleration (meters/second², m/s²)" },
-          { symbol: "t", description: "Time (seconds, s)" },
+          { symbol: "s", description: "Displacement (meters)" },
+          { symbol: "u", description: "Initial velocity (meters/second)" },
+          { symbol: "v", description: "Final velocity (meters/second)" },
+          { symbol: "a", description: "Acceleration (meters/second²)" },
+          { symbol: "t", description: "Time (seconds)" },
         ],
       }}
       example={{
         title: "Example",
         scenario:
-          "A car accelerates uniformly from rest to 20 m/s in 5 seconds. Calculate the displacement during this time.",
+          "A car accelerates uniformly from rest at 3 m/s² for 5 seconds. Find displacement and final velocity.",
         steps: [
-          { label: "1", explanation: "Calculate acceleration: a = (v - u) / t = (20 - 0) / 5 = 4 m/s²" },
-          { label: "2", explanation: "Calculate displacement: s = ut + 0.5 a t² = 0 + 0.5 × 4 × 5² = 50 meters" },
+          {
+            label: "1",
+            explanation:
+              "Calculate displacement using s = ut + 1/2 a t²: s = 0 × 5 + 0.5 × 3 × 5² = 37.5 meters.",
+          },
+          {
+            label: "2",
+            explanation:
+              "Calculate final velocity using v = u + at: v = 0 + 3 × 5 = 15 m/s.",
+          },
         ],
-        result: "The car travels 50 meters during the acceleration period.",
+        result:
+          "The car travels 37.5 meters and reaches a final velocity of 15 m/s after 5 seconds.",
       }}
       relatedCalculators={[
-        { title: "Snell's Law", url: "/science/snells-law", icon: "🌈" },
-        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "🚀" },
-        { title: "Photon Energy", url: "/science/photon-energy", icon: "⚡" },
         { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "🎈" },
         { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
+        { title: "Photon Energy", url: "/science/photon-energy", icon: "⚡" },
         { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
+        { title: "Snell's Law", url: "/science/snells-law", icon: "🌈" },
+        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "🚀" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },
