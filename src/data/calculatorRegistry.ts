@@ -3482,6 +3482,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/MomentumImpulseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "power-efficiency-calculator",
+    title: "Power & Efficiency Calculator",
+    category: "science",
+    subcategory: "physics-mechanics-motion",
+    description: "Determine Power and Efficiency. Calculate the rate of work done and the energy efficiency of mechanical systems or engines.",
+    loader: () => import("@/components/calculators/Science/PowerEfficiencyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
