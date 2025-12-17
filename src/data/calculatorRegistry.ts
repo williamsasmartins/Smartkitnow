@@ -3656,6 +3656,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/StoichiometryLimitingReagentCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "percent-yield-theoretical-yield",
+    title: "Percent Yield & Theoretical Yield",
+    category: "science",
+    subcategory: "chemistry-solutions-stoichiometry",
+    description: "Calculate Percent Yield. Compare actual yield to theoretical yield to measure the efficiency of a chemical reaction.",
+    loader: () => import("@/components/calculators/Science/PercentYieldTheoreticalYieldCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
