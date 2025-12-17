@@ -3337,6 +3337,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/TriangleSolverSssSasAsaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "circle-area-circumference",
+    title: "Circle Area / Circumference Calculator",
+    category: "math",
+    subcategory: "geometry-trig",
+    description: "Calculate circle metrics. Find the area, circumference, radius, and diameter of a circle instantly.",
+    loader: () => import("@/components/calculators/Math/CircleAreaCircumferenceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
