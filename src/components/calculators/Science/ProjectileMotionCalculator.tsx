@@ -413,14 +413,7 @@ R = v_0 \\cos \\theta \\times t`,
         result:
           "Time of flight ≈ 3.57 seconds, Maximum height ≈ 17.3 meters, Horizontal range ≈ 68.3 meters.",
       }}
-      relatedCalculators={[
-        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "🚀" },
-        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
-        { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
-        { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "🎈" },
-        { title: "Photon Energy", url: "/science/photon-energy", icon: "⚡" },
-        { title: "Snell's Law", url: "/science/snells-law", icon: "🌈" },
-      ]}
+      relatedCalculators={[]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },
         { id: "formula", label: "Formula" },

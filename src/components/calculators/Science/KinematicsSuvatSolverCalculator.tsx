@@ -634,14 +634,7 @@ s = v t - 0.5 a t²`,
         ],
         result: "The car travels 50 meters during the acceleration period.",
       }}
-      relatedCalculators={[
-        { title: "Snell's Law", url: "/science/snells-law", icon: "🌈" },
-        { title: "Kinematics Equations (SUVAT)", url: "/science/kinematics-equations", icon: "🚀" },
-        { title: "Photon Energy", url: "/science/photon-energy", icon: "⚡" },
-        { title: "Ideal Gas Law", url: "/science/ideal-gas-law", icon: "🎈" },
-        { title: "Molarity Calculator", url: "/science/molarity-calculator", icon: "🧪" },
-        { title: "Orbital Period", url: "/science/orbital-period", icon: "🪐" },
-      ]}
+      relatedCalculators={[]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },
         { id: "formula", label: "Formula" },
