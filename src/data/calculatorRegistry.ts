@@ -3719,6 +3719,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/DensitySpecificGravityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "escape-velocity-calculator",
+    title: "Escape Velocity Calculator",
+    category: "science",
+    subcategory: "astronomy-earth-science",
+    description: "Calculate Escape Velocity. Determine the speed needed to break free from the gravitational pull of a planet or moon.",
+    loader: () => import("@/components/calculators/Science/EscapeVelocityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
