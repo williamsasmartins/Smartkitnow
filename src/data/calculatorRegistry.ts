@@ -3746,6 +3746,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/GravityOnOtherPlanetsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cleaning-dilution-ratio",
+    title: "Cleaning Dilution Ratio Calculator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Calculate the perfect cleaning dilution ratio. Mix chemicals and water safely and effectively for household cleaning tasks.",
+    loader: () => import("@/components/calculators/Misc/CleaningDilutionRatioCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
