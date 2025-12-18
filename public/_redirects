@@ -59,12 +59,46 @@ https://smartkitnow.com/*        https://www.smartkitnow.com/:splat  301!
 /financial/home-loan                        /financial/mortgage-calculator 301
 /financial/loan                             /financial/loan-calculator 301
 /financial/personal-loan                    /financial/loan-calculator 301
+/financial/income-budget-expenses/absence-percentage-calculator   /financial/absence-percentage-calculator 301
+/financial/income-budget-expenses/net-income-after-tax            /financial/net-income-after-tax 301
+/financial/tip-split-bill                                         /financial/expense-splitter-shared-bills 301
 
 # Math (percent)
 /math/percentage-of-total                   /math/percent-of-total 301
 /math/percentage-increase                   /math/percent-increase 301
 /math/percentage-decrease                   /math/percent-decrease 301
 /math/percentage-change                     /math/percent-change 301
+/math/percent-increase                      /math/percent-increase-decrease 301
+/math/percent-decrease                      /math/percent-increase-decrease 301
+/conversion/angle/rad-to-deg                /conversion/angle-converter-deg-rad 301
+/conversion/popular                         / 410!
+
+/smart-tips/wellbeing/sleep-debt-ideal-bedtime   /everyday/sleep-debt-ideal-bedtime 301
+/smart-tips/wellbeing/caffeine-max-per-day       /everyday/caffeine-max-per-day 301
+/smart-tips/caffeine-max-per-day                 /everyday/caffeine-max-per-day 301
+/smart-tips/sleep-debt-ideal-bedtime             /everyday/sleep-debt-ideal-bedtime 301
+/smart-tips/planning/commute-cost-time           /smart-tips 410!
+/smart-tips/eco-friendly-sustainability          /smart-tips 410!
+/smart-tips/remote-work-productivity             /smart-tips 410!
+
+/everyday/events/beverage-mix-planner            /everyday/beverage-mix-estimator 301
+/everyday/mulch-bags-needed                      /everyday/mulch-coverage-bag-count 301
+/home                                            / 301
+/discover                                        /smart-tips 301
+
+/pets/dog-caffeine-toxicity-calculator           /pets/dog-caffeine-toxicity 301
+/pets/cat-essential-oils-exposure                /pets/cat-essential-oils-exposure-risk 301
+/pets/cat-xylitol-exposure                       /pets/cat-xylitol-exposure-risk 301
+/pets/cat-grape-raisin-education                 /pets/cat-grape-raisin-exposure-risk 301
+/pets/cats-lilies-risk                           /pets/cat-lilies-poisoning-risk-guide 301
+/pets/dogs                                       /pets 301
+/pets/horse-water-intake                         /pets/horse-water-intake-temperature-weight 301
+/pets/aquarium-water-change                      /pets/aquarium-water-change-volume-planner 301
+/pets/reptile-basking-gradient                   /pets/reptile-basking-temperature-gradient-planner 301
+/pets/cats/kitten-adult-weight-predictor         /pets/kitten-adult-weight-predictor 301
+/pets/dry-matter-basis-converter                 / 410!
+
+/time/24-to-12-hour                              / 410!
 
 # ================================
 # 5) SPA fallback (deve ser a ÚLTIMA linha)
