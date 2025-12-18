@@ -3747,24 +3747,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     
-    {
-    slug: "cleaning-dilution-ratio",
-    title: "Cleaning Dilution Ratio Calculator",
-    category: "everyday",
-    subcategory: "home-maintenance",
-    description: "Calculate the perfect cleaning dilution ratio. Mix chemicals and water safely and effectively for household cleaning tasks.",
-    loader: () => import("@/components/calculators/Misc/CleaningDilutionRatioCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "laundry-detergent-dosage",
-    title: "Laundry Detergent Dosage by Load Size",
-    category: "everyday",
-    subcategory: "home-maintenance",
-    description: "Determine the right laundry detergent dosage. Calculate the exact amount needed per load size to save money and protect clothes.",
-    loader: () => import("@/components/calculators/Misc/LaundryDetergentDosageCalculator"),
-    urlStyle: "flat"
-  },
+   
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
