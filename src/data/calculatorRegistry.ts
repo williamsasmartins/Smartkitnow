@@ -3860,6 +3860,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BmiCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sleep-debt-ideal-bedtime",
+    title: "Sleep Debt & Ideal Bedtime Planner",
+    category: "everyday",
+    subcategory: "health-wellness-sleep",
+    description: "Calculate your sleep debt and recovery plan. Find out how much sleep you owe your body and determine your ideal bedtime.",
+    loader: () => import("@/components/calculators/Misc/SleepDebtIdealBedtimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
