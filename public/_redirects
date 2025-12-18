@@ -20,7 +20,7 @@ https://smartkitnow.com/*        https://www.smartkitnow.com/:splat  301!
 /pets/dogs/daily-water-intake                   /pets/dog-water-intake 301
 /pets/dogs/dog-calorie-needs                    /pets/dog-calorie-needs-rer-mer 301
 /pets/dog-calorie-needs                         /pets/dog-calorie-needs-rer-mer 301
--/pets/dogs/allium-exposure                      /pets/dog-onion-garlic-exposure-risk 301
+/pets/dogs/allium-exposure                      /pets/dog-onion-garlic-exposure-risk 301
 
 # =====================================
 # 3) Rotas legadas com /calculator/:slug
@@ -69,6 +69,17 @@ https://smartkitnow.com/*        https://www.smartkitnow.com/:splat  301!
 # ================================
 # 5) SPA fallback (deve ser a ÚLTIMA linha)
 # ================================
+#
+# Rotas legadas de i18n inexistentes: marcar como 410
+/nl/*  410!
+/pt-pt/*  410!
+/pt/*  410!
+/pl/*  410!
+/it/*  410!
+/de/*  410!
+/sv/*  410!
+/es/*  410!
+/fr/*  410!
 /*   /index.html   200
 # Health aliases
 /health/tdee                                /health/tdee-calculator 301

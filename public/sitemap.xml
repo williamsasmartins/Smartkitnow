@@ -26,6 +26,16 @@
     <priority>0.4</priority>
   </url>
   <url>
+    <loc>https://www.smartkitnow.com/cookies</loc>
+    <lastmod>2025-12-18</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/cookie-settings</loc>
+    <lastmod>2025-12-18</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://www.smartkitnow.com/pets</loc>
     <lastmod>2025-12-18</lastmod>
     <priority>0.4</priority>
@@ -66,7 +76,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/tv</loc>
+    <loc>https://www.smartkitnow.com/video</loc>
     <lastmod>2025-12-18</lastmod>
     <priority>0.4</priority>
   </url>

@@ -7,9 +7,9 @@ import { REGISTRY, calcLink } from "../src/data/calculatorRegistry.ts";
 const ORIGIN = "https://www.smartkitnow.com";
 
 const STATIC_URLS = [
-  "/", "/about", "/contact", "/privacy", "/terms",
+  "/", "/about", "/contact", "/privacy", "/terms", "/cookies", "/cookie-settings",
   "/pets", "/health", "/financial", "/cooking", "/math",
-  "/conversion", "/science", "/time", "/tv", "/smart-tips", "/recipes",
+  "/conversion", "/science", "/time", "/video", "/smart-tips", "/recipes",
 ];
 
 function today(): string {

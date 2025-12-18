@@ -44,24 +44,13 @@ const STATIC_ENTRIES = [
   { loc: `${HOST}/electrical`, lastmod: formatDate(), priority: 0.4 },
   { loc: `${HOST}/science`, lastmod: formatDate(), priority: 0.4 },
   { loc: `${HOST}/time`, lastmod: formatDate(), priority: 0.4 },
-  { loc: `${HOST}/tv`, lastmod: formatDate(), priority: 0.4 },
+  { loc: `${HOST}/video`, lastmod: formatDate(), priority: 0.4 },
   { loc: `${HOST}/pets`, lastmod: formatDate(), priority: 0.9 },
   { loc: `${HOST}/automotive`, lastmod: formatDate(), priority: 0.4 },
   { loc: `${HOST}/math`, lastmod: formatDate(), priority: 0.6 },
   // Hubs adicionais
   { loc: `${HOST}/smart-tips`, lastmod: formatDate(), priority: 0.4 },
   { loc: `${HOST}/recipes`, lastmod: formatDate(), priority: 0.4 },
-  // Subcategorias exemplares
-  { loc: `${HOST}/construction/wall-ceiling-calculators`, lastmod: formatDate(), priority: 0.5 },
-  { loc: `${HOST}/financial/mortgage-and-home-loan-calculators`, lastmod: formatDate(), priority: 0.5 },
-  { loc: `${HOST}/health/fitness-calculators`, lastmod: formatDate(), priority: 0.5 },
-  { loc: `${HOST}/cooking/cooking-baking-calculators`, lastmod: formatDate(), priority: 0.5 },
-  { loc: `${HOST}/conversion/common`, lastmod: formatDate(), priority: 0.5 },
-  { loc: `${HOST}/conversion/popular`, lastmod: formatDate(), priority: 0.5 },
-  { loc: `${HOST}/conversion/cooking-baking`, lastmod: formatDate(), priority: 0.5 },
-  { loc: `${HOST}/math/everyday-math`, lastmod: formatDate(), priority: 0.5 },
-  { loc: `${HOST}/math/everyday-math/percentages`, lastmod: formatDate(), priority: 0.5 },
-  { loc: `${HOST}/math/fractions`, lastmod: formatDate(), priority: 0.5 },
 ];
 
 // Coleta calculadoras do registry
