@@ -14,5 +14,11 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /admin/
+Disallow: /*?s=
+Disallow: /category/
+Disallow: /feed
+Disallow: /comments/feed
+Disallow: /*/feed
+Disallow: /*/comments/feed
 
 Sitemap: https://www.smartkitnow.com/sitemap.xml

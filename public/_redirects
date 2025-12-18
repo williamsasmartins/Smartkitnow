@@ -34,11 +34,11 @@ https://smartkitnow.com/*        https://www.smartkitnow.com/:splat  301!
 # =====================================
 # 4) Aliases do registry (exemplos reais do seu arquivo)
 # =====================================
-# Health
-/health/bmi                                 /health/bmi-calculator 301
-/health/body-mass-index                     /health/bmi-calculator 301
-/health/bmr                                 /health/bmr-calculator 301
-/health/basal-metabolic-rate                /health/bmr-calculator 301
+# Health (canônicos atuais)
+/health/bmi                                 /health/bmi-body-mass-index 301
+/health/body-mass-index                     /health/bmi-body-mass-index 301
+/health/bmr                                 /health/bmr-mifflin-st-jeor 301
+/health/basal-metabolic-rate                /health/bmr-mifflin-st-jeor 301
 /health/calorie-calculator                  /health/calorie-intake-calculator 301
 /health/daily-calories                      /health/calorie-intake-calculator 301
 /health/calories-to-kg                      /health/calories-to-kilograms 301
@@ -51,14 +51,14 @@ https://smartkitnow.com/*        https://www.smartkitnow.com/:splat  301!
 /construction/concrete-slab                 /construction/concrete-slab-volume-bags 301
 /construction/drywall                       /construction/drywall-area-sheets 301
 
-# Financial
-/financial/roi                              /financial/roi-calculator 301
-/financial/return-on-investment             /financial/roi-calculator 301
-/financial/compound-interest                /financial/compound-interest-calculator 301
-/financial/mortgage                         /financial/mortgage-calculator 301
-/financial/home-loan                        /financial/mortgage-calculator 301
-/financial/loan                             /financial/loan-calculator 301
-/financial/personal-loan                    /financial/loan-calculator 301
+# Financial (canônicos atuais)
+/financial/roi                              /financial/roi-return-on-investment 301
+/financial/return-on-investment             /financial/roi-return-on-investment 301
+/financial/compound-interest                /financial/compound-interest 301
+/financial/mortgage                         /financial/mortgage-amortization 301
+/financial/home-loan                        /financial/mortgage-amortization 301
+/financial/loan                             /financial/loan-payment 301
+/financial/personal-loan                    /financial/loan-payment 301
 /financial/income-budget-expenses/absence-percentage-calculator   /financial/absence-percentage-calculator 301
 /financial/income-budget-expenses/net-income-after-tax            /financial/net-income-after-tax 301
 /financial/tip-split-bill                                         /financial/expense-splitter-shared-bills 301
@@ -72,6 +72,8 @@ https://smartkitnow.com/*        https://www.smartkitnow.com/:splat  301!
 /math/percent-decrease                      /math/percent-increase-decrease 301
 /conversion/angle/rad-to-deg                /conversion/angle-converter-deg-rad 301
 /conversion/popular                         / 410!
+/# Rotas legadas de time inexistentes
+/time/military-time                         / 410!
 
 /smart-tips/wellbeing/sleep-debt-ideal-bedtime   /everyday/sleep-debt-ideal-bedtime 301
 /smart-tips/wellbeing/caffeine-max-per-day       /everyday/caffeine-max-per-day 301
@@ -99,6 +101,13 @@ https://smartkitnow.com/*        https://www.smartkitnow.com/:splat  301!
 /pets/dry-matter-basis-converter                 / 410!
 
 /time/24-to-12-hour                              / 410!
+
+# WordPress/legado
+/category/*  410!
+/feed  410!
+/comments/feed  410!
+/*/feed  410!
+/*/comments/feed  410!
 
 # ================================
 # 5) SPA fallback (deve ser a ÚLTIMA linha)
