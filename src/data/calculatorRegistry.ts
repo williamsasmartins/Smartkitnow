@@ -3737,6 +3737,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/OrbitalPeriodKeplerEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "gravity-on-other-planets-calculator",
+    title: "Gravity on Other Planets Calculator",
+    category: "science",
+    subcategory: "astronomy-earth-science",
+    description: "Calculate gravity on other planets. See how much you would weigh on Mars, Jupiter, or the Moon compared to Earth.",
+    loader: () => import("@/components/calculators/Science/GravityOnOtherPlanetsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
