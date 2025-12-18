@@ -3770,6 +3770,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LaundryDetergentDosageCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "home-paint-touch-up",
+    title: "Home Paint Touch-Up Estimator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Estimate paint needed for touch-ups. Calculate exactly how much paint covers scratches and small repairs on walls and trim.",
+    loader: () => import("@/components/calculators/Misc/HomePaintTouchUpCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
