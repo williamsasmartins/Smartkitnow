@@ -3728,6 +3728,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/EscapeVelocityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "orbital-period-kepler-estimator",
+    title: "Orbital Period (Kepler) Estimator",
+    category: "science",
+    subcategory: "astronomy-earth-science",
+    description: "Estimate Orbital Period using Kepler's Laws. Calculate the time it takes for a planet or satellite to orbit a massive body.",
+    loader: () => import("@/components/calculators/Science/OrbitalPeriodKeplerEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
