@@ -3761,6 +3761,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     
+    {
+    slug: "laundry-detergent-dosage",
+    title: "Laundry Detergent Dosage by Load Size",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Determine the right laundry detergent dosage. Calculate the exact amount needed per load size to save money and protect clothes.",
+    loader: () => import("@/components/calculators/Misc/LaundryDetergentDosageCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
