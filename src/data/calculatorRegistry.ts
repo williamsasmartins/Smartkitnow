@@ -3806,6 +3806,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RefrigeratorFreezerSafeZoneTimeWindowCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "light-bulb-cost-per-year",
+    title: "Light Bulb Cost per Year Calculator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Calculate electricity costs for light bulbs. Compare LED vs. incandescent usage to see how much you save on your energy bill.",
+    loader: () => import("@/components/calculators/Misc/LightBulbCostPerYearCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
