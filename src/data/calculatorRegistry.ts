@@ -3780,6 +3780,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HomePaintTouchUpCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "room-air-changes-ach",
+    title: "Room Air Changes per Hour (ACH) Calculator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Calculate Air Changes per Hour (ACH). Measure ventilation efficiency and air quality turnover rates for any room size.",
+    loader: () => import("@/components/calculators/Misc/RoomAirChangesAchCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
