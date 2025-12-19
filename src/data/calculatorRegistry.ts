@@ -4086,6 +4086,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PlantSpacingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fertilizer-application-calculator",
+    title: "Fertilizer Application Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Calculate fertilizer application rates. Determine the correct amount of nitrogen, phosphorus, and potassium for your lawn area.",
+    loader: () => import("@/components/calculators/Misc/FertilizerApplicationCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
