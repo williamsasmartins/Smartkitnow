@@ -3834,6 +3834,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HomeRenovationCostEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "appliance-energy-consumption",
+    title: "Appliance Energy Consumption Calculator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Calculate appliance energy consumption. Track how much electricity your fridge, TV, and washer use to manage your utility bill.",
+    loader: () => import("@/components/calculators/Misc/ApplianceEnergyConsumptionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
