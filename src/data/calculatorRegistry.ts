@@ -3905,6 +3905,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HydrationReminderIntervalCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "myplate-daily-calorie-nutrient",
+    title: "MyPlate Daily Calorie/Nutrient Planner",
+    category: "everyday",
+    subcategory: "health-wellness-sleep",
+    description: "Plan balanced meals with MyPlate guidelines. Calculate daily calorie and nutrient portions for a healthy lifestyle.",
+    loader: () => import("@/components/calculators/Misc/MyplateDailyCalorieNutrientCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
