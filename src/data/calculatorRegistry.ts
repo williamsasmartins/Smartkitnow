@@ -4446,6 +4446,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/TennisEloRatingProgressCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "rowing-split-500m-pace",
+    title: "Rowing Split (500m) ↔ Pace",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Convert rowing splits to pace. Calculate 500m split times based on total distance and duration for ergometer training.",
+    loader: () => import("@/components/calculators/Sports/RowingSplit500mPaceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
