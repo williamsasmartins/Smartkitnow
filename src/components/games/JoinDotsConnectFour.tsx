@@ -250,6 +250,9 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
   const [aiThinking, setAiThinking] = useState(false);
   const [aiInsights, setAiInsights] = useState<string[]>([]);
   const [aiTopMoves, setAiTopMoves] = useState<Array<{ col: number; score: number; reason: string }>>([]);
+  const [autoRestartSec, setAutoRestartSec] = useState(0);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const audioCtxRef = useRef<AudioContext | null>(null);
 
   const aiTimer = useRef<number | null>(null);
 
@@ -276,6 +279,68 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
     return "";
   }, [winner.winner]);
 
+  function playVictorySound(kind: "R" | "Y" | "draw") {
+    const ctx = audioCtxRef.current ?? new (window.AudioContext || (window as any).webkitAudioContext)();
+    audioCtxRef.current = ctx;
+    if (ctx.state === "suspended" && ctx.resume) ctx.resume();
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = "triangle";
+    o.frequency.value = kind === "R" ? 880 : kind === "Y" ? 660 : 520;
+    g.gain.value = 0.0001;
+    o.connect(g);
+    g.connect(ctx.destination);
+    o.start();
+    let t = 0;
+    const step = () => {
+      t += 1;
+      g.gain.exponentialRampToValueAtTime(0.0001 * Math.pow(1.25, t), ctx.currentTime + 0.05);
+      if (t > 10) {
+        o.stop();
+      } else {
+        requestAnimationFrame(step);
+      }
+    };
+    requestAnimationFrame(step);
+  }
+
+  useEffect(() => {
+    if (!winner.winner) return;
+    setShowConfetti(true);
+    setAutoRestartSec(8);
+    playVictorySound(winner.winner);
+    const id = window.setInterval(() => {
+      setAutoRestartSec((s) => {
+        if (s <= 1) {
+          window.clearInterval(id);
+          resetGame();
+          return 0;
+        }
+        return s - 1;
+      });
+    }, 1000);
+    return () => window.clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [winner.winner]);
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (winner.winner) return;
+      const map: Record<string, number> = {
+        Digit1: 0, Digit2: 1, Digit3: 2, Digit4: 3, Digit5: 4, Digit6: 5, Digit7: 6,
+        Numpad1: 0, Numpad2: 1, Numpad3: 2, Numpad4: 3, Numpad5: 4, Numpad6: 5, Numpad7: 6,
+      };
+      if (e.code in map) {
+        handleDrop(map[e.code]);
+      } else if (e.code === "KeyR") {
+        resetGame();
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [board, winner.winner, turn]);
+
   function resetGame(nextDifficulty?: Difficulty) {
     if (aiTimer.current) {
       window.clearTimeout(aiTimer.current);
@@ -289,6 +354,8 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
     setAiThinking(false);
     setAiInsights([]);
     setAiTopMoves([]);
+    setShowConfetti(false);
+    setAutoRestartSec(0);
     if (nextDifficulty) setDifficulty(nextDifficulty);
   }
 
@@ -592,8 +659,8 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
                   const isWinCell = winningSet.has(`${r}:${c}`);
                   const base = "h-10 w-10 rounded-full border transition-colors";
                   const empty = "border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800";
-                  const red = `border-red-400 bg-gradient-to-br from-red-400 to-red-600 ${isWinCell ? "ring-2 ring-red-300" : ""}`;
-                  const yellow = `border-yellow-400 bg-gradient-to-br from-yellow-300 to-yellow-500 ${isWinCell ? "ring-2 ring-yellow-300" : ""}`;
+                  const red = `border-red-400 bg-gradient-to-br from-red-400 to-red-600 ${isWinCell ? "ring-2 ring-red-300 animate-pulse" : ""}`;
+                  const yellow = `border-yellow-400 bg-gradient-to-br from-yellow-300 to-yellow-500 ${isWinCell ? "ring-2 ring-yellow-300 animate-pulse" : ""}`;
                   const cls = cell === "R" ? red : cell === "Y" ? yellow : empty;
                   return (
                     <div
@@ -613,7 +680,10 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
             aria-modal="true"
             aria-live="assertive"
           >
-            <div className="relative w-[min(92vw,560px)] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-8">
+            {showConfetti ? (
+              <ConfettiLayer kind={winner.winner as "R" | "Y" | "draw"} />
+            ) : null}
+            <div className="relative z-20 w-[min(92vw,560px)] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-8">
               <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[#5c82ee]/20 via-fuchsia-400/20 to-amber-300/20 blur-2xl" aria-hidden />
               <div className="relative">
                 <div className="mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs">
@@ -628,16 +698,96 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
                     ? "The board is full and nobody connected four. Click Restart to play again."
                     : "Four dots of the same color connected. Click Restart to play again."}
                 </p>
+                {autoRestartSec > 0 ? (
+                  <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">Auto restart in {autoRestartSec}s</p>
+                ) : null}
                 <div className="mt-6">
                   <Button type="button" className="w-full" onClick={() => resetGame()}>
                     Restart Game
                   </Button>
                 </div>
               </div>
+              {showConfetti ? (
+                <ConfettiLayer kind={winner.winner as "R" | "Y" | "draw"} />
+              ) : null}
             </div>
           </div>
         ) : null}
       </div>
     </GamePageLayout>
   );
+}
+
+function ConfettiLayer({ kind }: { kind: "R" | "Y" | "draw" }) {
+  const ref = useRef<HTMLCanvasElement | null>(null);
+  useEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const colors =
+      kind === "R"
+        ? ["#ef4444", "#fca5a5", "#f87171"]
+        : kind === "Y"
+        ? ["#f59e0b", "#fde68a", "#fbbf24"]
+        : ["#64748b", "#93c5fd", "#5c82ee"];
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    const resize = () => {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+    };
+    resize();
+    const onResize = () => {
+      resize();
+    };
+    window.addEventListener("resize", onResize);
+    const particles = Array.from({ length: 220 }).map(() => ({
+      x: Math.random() * w,
+      y: -40 - Math.random() * 220,
+      vx: -1.25 + Math.random() * 2.5,
+      vy: 2.25 + Math.random() * 2.75,
+      size: 2 + Math.random() * 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      life: 0,
+    }));
+    let running = true;
+    let start = performance.now();
+    function tick(now: number) {
+      if (!running) return;
+      const t = now - start;
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach((p) => {
+        p.vy += 0.02;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life += 1;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        if (p.y > h + 12 || p.x < -12 || p.x > w + 12) {
+          p.y = -40 - Math.random() * 220;
+          p.x = Math.random() * w;
+          p.vx = -1.25 + Math.random() * 2.5;
+          p.vy = 2.25 + Math.random() * 2.75;
+          p.size = 2 + Math.random() * 4;
+          p.life = 0;
+        }
+      });
+      if (t < 3000) requestAnimationFrame(tick);
+    }
+    const id = requestAnimationFrame(tick);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      cancelAnimationFrame(id);
+      running = false;
+    };
+  }, [kind]);
+  return <canvas ref={ref} className="pointer-events-none absolute inset-0 z-10" />;
 }
