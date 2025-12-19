@@ -3789,6 +3789,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RoomAirChangesAchCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "propane-tank-burn-time",
+    title: "Propane Tank Burn Time Estimator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Estimate propane tank burn time. Calculate how long your grill, heater, or generator will run based on tank size and BTU usage.",
+    loader: () => import("@/components/calculators/Misc/PropaneTankBurnTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
