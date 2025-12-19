@@ -4491,6 +4491,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BowlingScoreCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fina-points-calculator",
+    title: "FINA Points Calculator",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Calculate FINA swimming points. Convert race times into official FINA points for ranking comparison.",
+    loader: () => import("@/components/calculators/Sports/FinaPointsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
