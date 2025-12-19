@@ -3869,6 +3869,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SleepDebtIdealBedtimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "caffeine-max-per-day",
+    title: "Caffeine Max per Day Calculator",
+    category: "everyday",
+    subcategory: "health-wellness-sleep",
+    description: "Monitor your caffeine intake. Calculate your daily limit based on body weight to enjoy coffee safely without the jitters.",
+    loader: () => import("@/components/calculators/Misc/CaffeineMaxPerDayCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
