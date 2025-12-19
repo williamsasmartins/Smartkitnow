@@ -4050,6 +4050,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RainwaterBarrelDaysSupplyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "grass-seed-quantity",
+    title: "Grass Seed Quantity Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Calculate grass seed needed. Determine the pounds of seed required to overseed or plant a new lawn based on area.",
+    loader: () => import("@/components/calculators/Misc/GrassSeedQuantityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
