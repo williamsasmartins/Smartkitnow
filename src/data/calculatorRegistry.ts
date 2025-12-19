@@ -4104,6 +4104,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/RunningPaceSplitFinishTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "race-time-predictor-riegel",
+    title: "Race Time Predictor (Riegel Formula)",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Predict your race time for any distance. Use the Riegel formula to estimate performance based on a previous race result.",
+    loader: () => import("@/components/calculators/Sports/RaceTimePredictorRiegelCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
