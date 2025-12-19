@@ -4356,6 +4356,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BasketballEfgTsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "basketball-pace-ortg-drtg",
+    title: "Basketball Pace & ORtg/DRtg",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Calculate Basketball Pace and Ratings. Analyze possessions per game and offensive/defensive efficiency metrics.",
+    loader: () => import("@/components/calculators/Sports/BasketballPaceOrtgDrtgCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
