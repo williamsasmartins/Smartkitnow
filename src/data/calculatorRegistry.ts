@@ -4059,6 +4059,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GrassSeedQuantityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "square-footage-calculator",
+    title: "Square Footage Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Calculate square footage for lawns and gardens. Measure the total area of your outdoor space for landscaping projects.",
+    loader: () => import("@/components/calculators/Misc/SquareFootageCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
