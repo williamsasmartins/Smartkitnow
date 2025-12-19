@@ -1,129 +1,55 @@
-import React, { ReactNode } from "react";
-import AdUnit from "../AdUnit";
-import ShareThisPageBox from "../ShareThisPageBox";
-import SuggestionBox from "../SuggestionBox";
-import LegalDisclaimer from "../LegalDisclaimer";
+import React from "react";
 
-// ================================================================
-// AD SLOTS CONFIGURATION (same safe pattern as CalculatorVerticalLayout)
-// ================================================================
-const ENV: any = (typeof import.meta !== "undefined" && (import.meta as any).env) || {};
-const SLOT_TOP_BANNER = ENV.VITE_ADSENSE_SLOT_TOP_BANNER ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER ?? "pending";
-const SLOT_SIDEBAR = ENV.VITE_ADSENSE_SLOT_SIDEBAR ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR ?? "pending";
-const SLOT_BOTTOM_BANNER =
-  ENV.VITE_ADSENSE_SLOT_BOTTOM_BANNER ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_BOTTOM_BANNER ?? "pending";
-
-// ================================================================
-// "ON THIS PAGE" NAVIGATION
-// ================================================================
-export interface OnThisPageSection {
+type OnThisPageItem = {
   id: string;
   label: string;
-}
+};
 
-function OnThisPageNav({ sections }: { sections: OnThisPageSection[] }) {
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      const yOffset = -120;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
-      window.history.pushState(null, "", `#${id}`);
-    }
-  };
-
-  return (
-    <nav className="bg-white dark:bg-slate-900 border-l-4 border-indigo-500 dark:border-indigo-400 p-6 rounded-xl mb-8 shadow-lg shadow-indigo-500/10">
-      <p className="font-extrabold text-slate-900 dark:text-slate-100 mb-4 text-base tracking-tight">
-        On this page:
-      </p>
-      <ul className="space-y-2.5">
-        {sections.map((section) => (
-          <li key={section.id}>
-            <a
-              href={`#${section.id}`}
-              onClick={(e) => handleClick(e, section.id)}
-              className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 hover:underline text-sm font-semibold transition-all duration-200 cursor-pointer block"
-            >
-              {section.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-}
-
-// ================================================================
-// PROPS
-// ================================================================
-export interface GamePageLayoutProps {
+type Props = {
   title: string;
   description?: string;
 
-  /** If you don't pass it, defaults to [{ id: "how-to-play", label: "How to play" }] */
-  onThisPage?: OnThisPageSection[];
+  /** Optional “On This Page” anchors */
+  onThisPage?: OnThisPageItem[];
 
-  /** Main game content (board, panels, etc.) */
-  children: ReactNode;
+  /** Main content (your game UI) */
+  children: React.ReactNode;
 
-  /** Content for "How to play" section */
-  howToPlay?: ReactNode;
+  /** Optional sections rendered below the game (How to play, etc.) */
+  below?: React.ReactNode;
 
-  /** Optional: future SEO or structured data */
-  jsonLd?: object | object[] | null | undefined;
+  /** Future-proof placeholders (no ad network code) */
+  showTopBannerPlaceholder?: boolean;
+  showRightSidebarPlaceholder?: boolean;
+  showBottomBannerPlaceholder?: boolean;
+};
 
-  /** Ads toggles (keep false for now; enable later if you want) */
-  showTopBanner?: boolean;
-  showSidebar?: boolean;
-  showBottomBanner?: boolean;
-
-  /**
-   * Optional switches:
-   * - showFooterBlocks: disclaimer/share/suggestion (default true to match site behavior)
-   */
-  showFooterBlocks?: boolean;
-}
-
-// ================================================================
-// MAIN LAYOUT (aligned with CalculatorVerticalLayout width/padding/grid)
-// ================================================================
 export default function GamePageLayout({
   title,
   description,
-  onThisPage,
+  onThisPage = [],
   children,
-  howToPlay,
-  jsonLd,
-  showTopBanner = false,
-  showSidebar = false,
-  showBottomBanner = false,
-  showFooterBlocks = true,
-}: GamePageLayoutProps) {
-  const sections: OnThisPageSection[] =
-    onThisPage && onThisPage.length > 0 ? onThisPage : [{ id: "how-to-play", label: "How to play" }];
-
+  below,
+  showTopBannerPlaceholder = false,
+  showRightSidebarPlaceholder = false,
+  showBottomBannerPlaceholder = false,
+}: Props) {
   return (
-    <div className="skn-game-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
-      {jsonLd ? (
-        <script type="application/ld+json" suppressHydrationWarning>
-          {JSON.stringify(jsonLd)}
-        </script>
-      ) : null}
-
-      {/* MAIN CONTAINER (Max 1200px, Centered) */}
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
       <div className="mx-auto pb-10 pt-32 lg:pt-40" style={{ maxWidth: 1200 }}>
-        {/* TOP BANNER AD (optional) */}
-        {showTopBanner && <AdUnit slot={SLOT_TOP_BANNER} type="top-banner" className="mb-8" />}
+        {showTopBannerPlaceholder && (
+          <div className="mx-auto mb-8 px-4 sm:px-6">
+            <div className="h-[90px] w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-center text-sm text-slate-500 dark:text-slate-400">
+              Top Banner Placeholder (future)
+            </div>
+          </div>
+        )}
 
-        {/* LAYOUT WITH OPTIONAL SIDEBAR */}
         <div className="relative xl:flex xl:justify-center xl:gap-12">
-          {/* CENTER CONTENT (same as calculators) */}
-          <div className="w-full max-w-3xl mx-auto xl:mx-0 px-4 sm:px-6 min-w-0">
-            {/* TITLE SECTION */}
+          {/* Main */}
+          <div className="w-full max-w-5xl mx-auto xl:mx-0 px-4 sm:px-6 min-w-0">
             <header className="mb-8">
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight tracking-tight">
+              <h1 className="text-4xl sm:text-5xl font-extrabold text-[#5c82ee] mb-4 leading-tight tracking-tight">
                 {title}
               </h1>
               {description ? (
@@ -133,32 +59,51 @@ export default function GamePageLayout({
               ) : null}
             </header>
 
-            {/* ON THIS PAGE */}
-            {sections.length > 0 ? <OnThisPageNav sections={sections} /> : null}
-
-            {/* GAME CONTENT */}
-            <section className="mb-10">
-              {children}
-            </section>
-
-            {/* HOW TO PLAY */}
-            <section id="how-to-play" className="mb-10 scroll-mt-[120px]">
-              <div className="rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 shadow-xl p-6 sm:p-8">
-                <h2 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mb-4 tracking-tight">
-                  How to play
-                </h2>
-
-                {howToPlay ? (
-                  <div className="prose prose-slate max-w-none dark:prose-invert">
-                    {howToPlay}
-                  </div>
-                ) : (
-                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                    Instructions will appear here.
-                  </p>
-                )}
+            {onThisPage.length > 0 && (
+              <div className="mb-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
+                <p className="font-semibold text-slate-900 dark:text-slate-100 mb-3">On This Page</p>
+                <div className="flex flex-wrap gap-2">
+                  {onThisPage.map((item) => (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      className="text-sm px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-900 transition"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </section>
+            )}
 
-            {/* BOTTOM B
-::contentReference[oaicite:2]{index=2}
+            {/* Game surface */}
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl overflow-hidden">
+              <div className="p-4 sm:p-6">{children}</div>
+            </div>
+
+            {below ? <div className="mt-10">{below}</div> : null}
+
+            {showBottomBannerPlaceholder && (
+              <div className="mt-10">
+                <div className="h-[90px] w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-center text-sm text-slate-500 dark:text-slate-400">
+                  Bottom Banner Placeholder (future)
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Right sidebar placeholder */}
+          {showRightSidebarPlaceholder && (
+            <aside className="hidden xl:block w-[320px] shrink-0">
+              <div className="sticky top-32 space-y-4">
+                <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 text-sm text-slate-500 dark:text-slate-400">
+                  Right Sidebar Placeholder (future)
+                </div>
+              </div>
+            </aside>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
