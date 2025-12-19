@@ -37,9 +37,6 @@ const strengthConditioning: Item[] = [
   { name: "Target Heart Rate / RPE Zones", slug: "target-heart-rate-rpe-zones" },
   { name: "TDEE (Total Daily Energy Expenditure) Calculator", slug: "tdee-calculator" },
   { name: "Plank / Hold Time Progression (educational)", slug: "plank-hold-progression" },
-  { name: "Wilks Coefficient Calculator", slug: "wilks-coefficient" },
-  { name: "Body Fat Percentage Calculator", slug: "body-fat-percentage" },
-  { name: "Plate Loading Calculator", slug: "plate-loading" },
   { name: "Macronutrient Calculator", slug: "macronutrient-calculator" },
   { name: "Calorie Deficit / Surplus Calculator", slug: "calorie-deficit-surplus" },
   { name: "Fitness Age Calculator", slug: "fitness-age-calculator" },
@@ -86,15 +83,15 @@ export default function SportsCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
   return (
     <div className="min-h-screen">
-      <SEOHead
-        title="Sports Calculators"
-        description="Explore 49 sports calculators for endurance performance, strength training, ball sports analytics, and game management. Fast, accurate tools for athletes and coaches."
-        canonical="https://www.smartkitnow.com/sports"
-        robots="index,follow"
-        og={{ type: "website", url: "https://www.smartkitnow.com/sports", siteName: "Smart Kit Now" }}
-        twitter={{ card: "summary_large_image" }}
-        extra={[{ name: "keywords", content: "sports calculators, running pace calculator, race predictor, heart rate zones, VO2max, cycling power, FTP zones, swim pace, sweat rate, cadence, negative split, swimming points, pool converter, interval pace, 1RM, TDEE, Wilks, plate loading, macros, calorie deficit, fitness age, yoga calories, fantasy points, betting odds, soccer table, xG, eFG TS, ORtg DRtg, OPS SLG OBP, ERA WHIP, WPS, BABIP, GB FB, golf handicap, bowling score, FINA points, swim performance" }]}
-      />
+        <SEOHead
+          title="Sports Calculators"
+          description="Explore 49 sports calculators for endurance performance, strength training, ball sports analytics, and game management. Fast, accurate tools for athletes and coaches."
+          canonical="https://www.smartkitnow.com/sports"
+          robots="index,follow"
+          og={{ type: "website", url: "https://www.smartkitnow.com/sports", siteName: "Smart Kit Now" }}
+          twitter={{ card: "summary_large_image" }}
+          extra={[{ name: "keywords", content: "sports calculators, running pace calculator, race predictor, heart rate zones, VO2max, cycling power, FTP zones, swim pace, sweat rate, cadence, negative split, swimming points, pool converter, interval pace, 1RM, TDEE, macros, calorie deficit, fitness age, yoga calories, fantasy points, betting odds, soccer table, xG, eFG TS, ORtg DRtg, OPS SLG OBP, ERA WHIP, WPS, BABIP, GB FB, golf handicap, bowling score, FINA points, swim performance" }]}
+        />
       {/* offset below fixed header */}
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />
@@ -122,7 +119,7 @@ export default function SportsCategory() {
                       Endurance: running pace/splits/finish time, race predictor (Riegel), heart-rate zones (Karvonen), VO2max estimates (Cooper/Rockport), cycling power↔speed, FTP zones (Coggan), swim pace CSS & splits, T1/T2 triathlon transition impact, calories (MET), hydration/sweat rate, cycling cadence, negative split planner, swimming power points, pool length converters (SCY/SCM/LCM), and swim interval pacing.
                     </p>
                     <p>
-                      Strength: 1RM (Epley/Brzycki), training percent planner, target HR/RPE, TDEE, plank progression, Wilks coefficient, body-fat percentage, plate loading, macronutrient planner, calorie deficit/surplus, fitness age, and yoga calories.
+                      Strength: 1RM (Epley/Brzycki), training percent planner, target HR/RPE, TDEE, plank progression, macronutrient planner, calorie deficit/surplus, fitness age, and yoga calories.
                     </p>
                     <p>
                       Ball sports: fantasy points projections, odds & payout (decimal/fractional/moneyline), soccer table points & GD, xG reading helper, basketball eFG%/TS%, pace & ORtg/DRtg, baseball OPS/SLG/OBP, ERA/WHIP, win probability shift (WPS), BABIP, and GB/FB ratio.
@@ -133,7 +130,7 @@ export default function SportsCategory() {
                   </>
                 ) : (
                   <p className="line-clamp-3">
-                    {TOTAL} sports calculators for endurance, strength, ball-sport analytics, and management: running pace & race predictor, HR zones, VO2max, cycling power↔speed, FTP zones, swim CSS & splits, T1/T2 impact, MET calories, hydration/sweat, cadence, negative split, power points, pool converter, interval pace; 1RM, training %, HR/RPE, TDEE, plank progression, Wilks, body fat, plate loading, macros, calorie deficit/surplus, fitness age, yoga calories; fantasy points, betting odds, soccer points & GD, xG helper, eFG%/TS%, pace & ORtg/DRtg, OPS/SLG/OBP, ERA/WHIP, WPS, BABIP, GB/FB; golf handicap, putts per round, tennis serve speed & ELO, rowing split, climbing grades, brackets, bowling score, FINA points, swim performance.
+                    {TOTAL} sports calculators for endurance, strength, ball-sport analytics, and management: running pace & race predictor, HR zones, VO2max, cycling power↔speed, FTP zones, swim CSS & splits, T1/T2 impact, MET calories, hydration/sweat, cadence, negative split, power points, pool converter, interval pace; 1RM, training %, HR/RPE, TDEE, plank progression, macros, calorie deficit/surplus, fitness age, yoga calories; fantasy points, betting odds, soccer points & GD, xG helper, eFG%/TS%, pace & ORtg/DRtg, OPS/SLG/OBP, ERA/WHIP, WPS, BABIP, GB/FB; golf handicap, putts per round, tennis serve speed & ELO, rowing split, climbing grades, brackets, bowling score, FINA points, swim performance.
                   </p>
                 )}
                 {!descExpanded && (
