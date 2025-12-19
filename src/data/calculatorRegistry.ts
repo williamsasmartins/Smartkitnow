@@ -3798,6 +3798,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PropaneTankBurnTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "refrigerator-freezer-safe-zone-time-window",
+    title: "Refrigerator/Freezer Safe Zone Time Window",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Track food safety during power outages. Estimate how long food stays safe in your refrigerator or freezer without power.",
+    loader: () => import("@/components/calculators/Misc/RefrigeratorFreezerSafeZoneTimeWindowCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
