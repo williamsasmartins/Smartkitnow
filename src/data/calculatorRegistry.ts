@@ -3888,6 +3888,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ScreenTimePomodoroPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "steps-to-distance-converter",
+    title: "Steps → Distance Converter",
+    category: "everyday",
+    subcategory: "health-wellness-sleep",
+    description: "Convert daily steps to distance. See how many miles or kilometers you walked based on your step count and stride length.",
+    loader: () => import("@/components/calculators/Misc/StepsToDistanceConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
