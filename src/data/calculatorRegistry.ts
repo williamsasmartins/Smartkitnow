@@ -3951,6 +3951,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/IceQuantityBeveragesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "buffet-pan-capacity-count",
+    title: "Buffet Serving Pan Capacity & Count",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Plan buffet quantities. Calculate how much food fits in standard hotel pans to ensure you feed everyone without running out.",
+    loader: () => import("@/components/calculators/Misc/BuffetPanCapacityCountCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
