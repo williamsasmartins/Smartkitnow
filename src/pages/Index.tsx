@@ -1365,6 +1365,23 @@ const Index = () => {
       path: "/funny",
       description: "Lighthearted tools for fun estimations, playful math, and humorous calculations to share with friends."
     },
+    // New squares
+    {
+      key: "games",
+      name: "Free Games",
+      icon: Video,
+      color: "text-blue-600",
+      path: "/games",
+      description: "Play curated arcade, puzzle, word, board and more. Free."
+    },
+    {
+      key: "qr",
+      name: "Free QR Code Generator",
+      icon: QrCode,
+      color: "text-blue-600",
+      path: "/everyday-life/qr-code-generator",
+      description: "Generate QR codes for URLs and text in PNG/SVG."
+    },
     // Restored categories
     { ...categories.automotive, key: "automotive" },
     { ...categories.construction, key: "construction" },
@@ -1372,36 +1389,52 @@ const Index = () => {
   ];
 
   // Featured Calculators Data
-  const featuredCalculators = [{
-    name: "BMI Calculator",
-    description: "Calculate your Body Mass Index",
-    icon: Heart
-  }, {
-    name: "Loan Calculator",
-    description: "Calculate monthly payments",
-    icon: DollarSign
-  }, {
-    name: "Tip Calculator",
-    description: "Calculate tips and split bills",
-    icon: Calculator
-  }, {
-    name: "Unit Converter",
-    description: "Convert between units",
-    icon: RotateCcw
-  }, {
-    name: "Calorie Calculator",
-    description: "Calculate daily calories",
-    icon: ChefHat
-  }, {
-    name: "Grade Calculator",
-    description: "Calculate your GPA",
-    icon: Star
-  }, {
-    name: "Free QR Code Generator",
-    description: "Generate QR Codes for URLs and text",
-    icon: QrCode,
-    path: "/everyday-life/qr-code-generator"
-  }];
+  const featuredCalculators = [
+    {
+      name: "Free QR Code Generator",
+      description: "Generate QR Codes for URLs and text",
+      icon: QrCode,
+      path: "/everyday-life/qr-code-generator",
+      ctaLabel: "Generate QR Code"
+    },
+    {
+      name: "Free Games",
+      description: "Play curated arcade, puzzle, word, and board games",
+      icon: Video,
+      path: "/games",
+      ctaLabel: "Acessar Jogos"
+    },
+    {
+      name: "BMI Calculator",
+      description: "Calculate your Body Mass Index",
+      icon: Heart
+    },
+    {
+      name: "Loan Calculator",
+      description: "Calculate monthly payments",
+      icon: DollarSign
+    },
+    {
+      name: "Tip Calculator",
+      description: "Calculate tips and split bills",
+      icon: Calculator
+    },
+    {
+      name: "Unit Converter",
+      description: "Convert between units",
+      icon: RotateCcw
+    },
+    {
+      name: "Calorie Calculator",
+      description: "Calculate daily calories",
+      icon: ChefHat
+    },
+    {
+      name: "Grade Calculator",
+      description: "Calculate your GPA",
+      icon: Star
+    }
+  ];
   return <div className="min-h-screen bg-[var(--skn-bg-soft)]">
       {/* JSON-LD: Organization and WebSite with Sitelinks Search */}
       <JsonLd data={{

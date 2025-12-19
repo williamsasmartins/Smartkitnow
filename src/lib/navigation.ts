@@ -18,6 +18,11 @@ export const CATEGORY_ICON_EMOJI: Record<string, string> = {
   construction: "🏗️",
   electrical: "⚡",
   video: "📺",
+  games: "🎮",
+  "free-games": "🎮",
+  qr: "🔳",
+  "qr-code": "🔳",
+  "qr-code-generator": "🔳",
 
   // Synonyms (normalized by getCategoryIcon)
   pets: "🐶", // alias of pet
@@ -26,6 +31,8 @@ export const CATEGORY_ICON_EMOJI: Record<string, string> = {
   smarttips: "💡", // alias of tips
   dailyquotes: "💬", // alias of quotes
   everydaylife: "🏠", // alias of everyday
+  freegames: "🎮",
+  qrcode: "🔳",
 };
 
 /** Safe getter (falls back to calculator emoji) */

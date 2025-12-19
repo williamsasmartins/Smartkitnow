@@ -43,8 +43,8 @@ export default function FeaturedCalculatorsSection({ featuredCalculators, title 
                 </div>
               </CardHeader>
               <CardContent className="p-5">
-                <Button onClick={onUse} variant="outline" className="w-full border-[#5c82ee] text-[#5c82ee] hover:bg-[#5c82ee] hover:text-white">
-                  Use Calculator
+                <Button onClick={onUse} variant="outline" className="w-full border-[#5c82ee] text-[#5c82ee] hover:bg-[#5c82ee] hover:text-white" aria-label={calc.ctaLabel ?? "Use Calculator"}>
+                  {calc.ctaLabel ?? "Use Calculator"}
                 </Button>
               </CardContent>
             </GlowCard>

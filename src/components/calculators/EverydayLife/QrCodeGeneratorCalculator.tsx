@@ -15,7 +15,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 const TRANSLATIONS = {
   "en-US": {
     appTitle: "QR Code Generator",
-    appDescription: "Generate QR codes for URLs, text, and contact information",
+    appDescription: "Generate free QR codes for URLs, text, and contacts (vCard). Download PNG or SVG, choose error‑correction (ECC), margins, size and brand colors. Private: data never leaves your browser.",
     urlTab: "URL",
     textTab: "Text",
     contactTab: "Contact",
@@ -472,9 +472,47 @@ const QRCodeGenerator = () => {
   const faqJsonLd = useFaqJsonLd(faqs);
 
   const editorial = (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-semibold">How it works</h2>
-      <p>Enter a URL, text, or contact details. Adjust size, margin, error correction, and format. Download as PNG or SVG.</p>
+    <div className="space-y-8 skn-editorial-sections">
+      <section id="what-is">
+        <h2 className="text-2xl font-semibold">What is a QR Code?</h2>
+        <p className="mt-2">
+          A QR code is a matrix barcode that can store links, text or contact details. When scanned,
+          it decodes the information and triggers actions like opening a website, composing an email,
+          saving a vCard or sharing plain text.
+        </p>
+      </section>
+      <section id="how-to">
+        <h2 className="text-2xl font-semibold">How to Use this Generator</h2>
+        <ul className="list-disc ml-6 mt-2 space-y-2">
+          <li>Select one of the tabs: URL, Text or Contact (vCard).</li>
+          <li>Fill in the fields. For URLs, we auto‑prefix https:// when missing.</li>
+          <li>Customize options: size, margins, error‑correction level (ECC), PNG or SVG, and colors.</li>
+          <li>Download the generated code or copy the encoded data to clipboard.</li>
+        </ul>
+      </section>
+      <section id="features">
+        <h2 className="text-2xl font-semibold">Features & Options</h2>
+        <p className="mt-2">
+          Choose among ECC levels L/M/Q/H to increase scan robustness. SVG is ideal for print because it
+          scales without pixelation, while PNG is great for screens. Colors can follow your brand using
+          the “Use Brand Color” action or automatic theme mode (light/dark).
+        </p>
+      </section>
+      <section id="printing">
+        <h2 className="text-2xl font-semibold">Printing Best Practices</h2>
+        <p className="mt-2">
+          Keep sufficient contrast and quiet zone (margin). Avoid low resolution for large prints.
+          Test scanning under different lighting conditions. For business cards, 2×2 cm is a practical minimum;
+          for posters, increase size proportionally to viewing distance.
+        </p>
+      </section>
+      <section id="privacy">
+        <h2 className="text-2xl font-semibold">Privacy & Security</h2>
+        <p className="mt-2">
+          Generation happens locally in your browser. We do not store or send your data. Always verify
+          unknown QR sources and prefer H ECC for codes that might be partially covered or worn.
+        </p>
+      </section>
     </div>
   );
 
@@ -484,10 +522,31 @@ const QRCodeGenerator = () => {
       description={t('appDescription')}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd ?? undefined}
-      showSidebar={false}
+      jsonLd={[
+        faqJsonLd ?? undefined,
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Free QR Code Generator",
+          description: "Create free QR codes for URLs, text and vCard. Download PNG/SVG, choose ECC, margins, size and brand colors. Private, client‑side generator.",
+          url: "https://www.smartkitnow.com/everyday-life/qr-code-generator"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://www.smartkitnow.com/" },
+            { "@type": "ListItem", position: 2, name: "Everyday Life", item: "https://www.smartkitnow.com/everyday" },
+            { "@type": "ListItem", position: 3, name: "Free QR Code Generator", item: "https://www.smartkitnow.com/everyday-life/qr-code-generator" }
+          ]
+        }
+      ].filter(Boolean)}
       onThisPage={[
-        { id: 'introduction', label: 'Getting started' },
+        { id: 'what-is', label: 'What is a QR Code?' },
+        { id: 'how-to', label: 'How to Use' },
+        { id: 'features', label: 'Features & Options' },
+        { id: 'printing', label: 'Printing Tips' },
+        { id: 'privacy', label: 'Privacy' },
         { id: 'faq', label: 'FAQs' },
       ]}
       relatedCalculators={[
