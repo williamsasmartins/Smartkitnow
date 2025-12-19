@@ -4041,6 +4041,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HoseRuntimeFlowRateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "rainwater-barrel-days-supply",
+    title: "Rainwater Barrel Days of Supply",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Estimate rainwater supply duration. Calculate how long your rain barrel will last during dry spells based on garden usage.",
+    loader: () => import("@/components/calculators/Misc/RainwaterBarrelDaysSupplyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
