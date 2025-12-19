@@ -3897,6 +3897,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/StepsToDistanceConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "hydration-reminder-interval",
+    title: "Hydration Reminder Interval Planner",
+    category: "everyday",
+    subcategory: "health-wellness-sleep",
+    description: "Set up a hydration schedule. Calculate the best intervals to drink water throughout the day to meet your daily intake goals.",
+    loader: () => import("@/components/calculators/Misc/HydrationReminderIntervalCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
