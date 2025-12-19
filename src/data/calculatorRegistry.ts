@@ -4365,6 +4365,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BasketballPaceOrtgDrtgCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "baseball-ops-slg-obp",
+    title: "Baseball OPS / SLG / OBP Calculator",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Calculate baseball sabermetrics. Find On-Base Plus Slugging (OPS), Slugging percentage, and On-Base Percentage instantly.",
+    loader: () => import("@/components/calculators/Sports/BaseballOpsSlgObpCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
