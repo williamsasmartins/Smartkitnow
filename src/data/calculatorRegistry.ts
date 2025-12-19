@@ -4266,6 +4266,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/WilksCoefficientCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "plate-loading",
+    title: "Plate Loading Calculator",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Calculate barbell plate loading. Find the exact combination of plates needed to reach a specific target weight on the bar.",
+    loader: () => import("@/components/calculators/Sports/PlateLoadingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
