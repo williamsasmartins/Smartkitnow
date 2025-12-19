@@ -24,6 +24,7 @@ const SportsCategory = lazy(() => import("@/pages/categories/SportsCategory"));
 const FunnyCategory = lazy(() => import("@/pages/categories/FunnyCategory"));
 const VideoCategory = lazy(() => import("@/pages/categories/VideoCategory"));
 const GamesCategory = lazy(() => import("@/pages/categories/GamesCategory"));
+const GamePage = lazy(() => import("@/pages/GamePage"));
 
 // Páginas principais
 const Index = lazy(() => import("@/pages/Index"));
@@ -137,6 +138,8 @@ export default function App() {
               <Route path="/video" element={<VideoCategory />} />
               {/* Games dedicated route */}
               <Route path="/games" element={<GamesCategory />} />
+              {/* Game detail route */}
+              <Route path="/games/:slug" element={<GamePage />} />
 
               {/* Category index (generic) */}
               <Route path="/:category" element={<CategoryIndex />} />
