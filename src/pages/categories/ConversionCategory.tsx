@@ -64,9 +64,9 @@ export default function ConversionCategory() {
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />
 
-      <main className="mx-auto max-w-7xl px-4 pb-16 lg:pr-[65px]">
-        <div className="grid gap-8 lg:grid-cols-12">
-          <div className="lg:col-span-9 pr-[15px]">
+      <main className="mx-auto pb-16" style={{ maxWidth: 1200 }}>
+        <div className="relative xl:flex xl:justify-center xl:gap-12">
+          <div className="w-full max-w-3xl mx-auto xl:mx-0 px-4 sm:px-6 min-w-0">
             <header className="py-6 mb-8">
               <div className="flex items-center gap-3">
                 <EmojiIcon symbol="🌎" size={38} className="text-primary" label="Conversion" />
@@ -161,8 +161,8 @@ export default function ConversionCategory() {
             </div>
           </div>
 
-          <aside className="hidden lg:block lg:col-span-3">
-            <div className="sticky pr-[65px]" style={{ top: "var(--skn-rail-top)" }}>
+          <aside className="hidden xl:block w-[300px] flex-shrink-0">
+            <div className="sticky" style={{ top: "var(--skn-rail-top)" }}>
               <AdSidebarRight topOffset={0} />
             </div>
           </aside>
