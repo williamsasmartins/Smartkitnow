@@ -38,8 +38,11 @@ export default function NeonSnake({ title, description }: { title?: string; desc
   const [startLevel, setStartLevel] = useState<number>(1);
   const audioCtxRef = useRef<AudioContext | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const loopRef = useRef<number | null>(null);
   const lastTickRef = useRef<number>(0);
+  const [redrawTick, setRedrawTick] = useState(0);
+  const [isTouch, setIsTouch] = useState(false);
 
   const speedMs = useMemo(() => {
     const base = difficulty === "easy" ? 240 : difficulty === "medium" ? 140 : 90;
@@ -180,8 +183,15 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const cell = 22;
-      const padding = 16;
+      const padding = 12;
+      const cw = containerRef.current?.clientWidth ?? window.innerWidth - 24;
+      const chAvail = Math.max(240, window.innerHeight - 280);
+      const cell = Math.max(
+        10,
+        Math.floor(
+          Math.min((cw - padding * 2) / GRID_W, (chAvail - padding * 2) / GRID_H)
+        )
+      );
       const w = GRID_W * cell + padding * 2;
       const h = GRID_H * cell + padding * 2;
       canvas.width = Math.floor(w * dpr);
@@ -223,7 +233,21 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       ctx.fill();
     }
     draw();
-  }, [snake, food]);
+  }, [snake, food, redrawTick]);
+
+  useEffect(() => {
+    const onResize = () => setRedrawTick((t) => t + 1);
+    window.addEventListener("resize", onResize);
+    const coarse = window.matchMedia?.("(pointer: coarse)");
+    const touchPoints = (navigator as any).maxTouchPoints || 0;
+    setIsTouch(!!coarse?.matches || touchPoints > 0);
+    const onChange = () => setIsTouch(!!coarse?.matches || touchPoints > 0);
+    coarse?.addEventListener?.("change", onChange);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      coarse?.removeEventListener?.("change", onChange);
+    };
+  }, []);
 
   useEffect(() => {
     // Main game loop is only active once "started" is true.
@@ -353,13 +377,45 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       onThisPage={[{ id: "how-to-play", label: "How to play" }]}
     >
       <div className="flex flex-col items-center">
-        <canvas
+        <div ref={containerRef} className="w-full max-w-[min(92vw,600px)]">
+          <canvas
           ref={canvasRef}
           // Make canvas focusable so keyboard input works consistently across browsers
           tabIndex={0}
           onPointerDown={() => canvasRef.current?.focus()}
+          onTouchStart={(e) => {
+            const t = e.changedTouches[0];
+            (canvasRef.current as any).__sx = t.clientX;
+            (canvasRef.current as any).__sy = t.clientY;
+          }}
+          onTouchEnd={(e) => {
+            const t = e.changedTouches[0];
+            const sx = (canvasRef.current as any).__sx ?? t.clientX;
+            const sy = (canvasRef.current as any).__sy ?? t.clientY;
+            const dx = t.clientX - sx;
+            const dy = t.clientY - sy;
+            const ax = Math.abs(dx);
+            const ay = Math.abs(dy);
+            if (Math.max(ax, ay) < 24) return;
+            if (ax > ay) {
+              enqueueDir(dx > 0 ? "right" : "left");
+            } else {
+              enqueueDir(dy > 0 ? "down" : "up");
+            }
+          }}
           className="rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 bg-slate-950"
         />
+        </div>
+        {isTouch && started && !end ? (
+          <div className="mt-3 flex items-center justify-center gap-3">
+            <Button type="button" variant="outline" className="h-10 w-10" onClick={() => enqueueDir("up")}>↑</Button>
+            <div className="flex items-center gap-3">
+              <Button type="button" variant="outline" className="h-10 w-10" onClick={() => enqueueDir("left")}>←</Button>
+              <Button type="button" variant="outline" className="h-10 w-10" onClick={() => enqueueDir("right")}>→</Button>
+            </div>
+            <Button type="button" variant="outline" className="h-10 w-10" onClick={() => enqueueDir("down")}>↓</Button>
+          </div>
+        ) : null}
         {/* Start overlay: visible until the user clicks Start. */}
         {!started && !end ? (
           <div className="fixed inset-0 z-40 grid place-items-center bg-black/40" role="dialog" aria-modal="true">
