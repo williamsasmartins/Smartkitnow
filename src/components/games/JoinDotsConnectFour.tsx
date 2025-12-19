@@ -1,16 +1,14 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+// src/components/games/JoinDotsConnectFour.tsx
+import { useEffect, useMemo, useRef, useState } from "react";
 import GamePageLayout from "@/components/templates/GamePageLayout";
+import { Button } from "@/components/ui/button";
 import { Cpu, RotateCcw, Sparkles, User } from "lucide-react";
 
-type Cell = "red" | "yellow" | null;
+type Cell = "R" | "Y" | null;
 type Difficulty = "easy" | "medium" | "hard";
-type GameState = "menu" | "playing" | "gameOver";
-type Player = "human" | "ai";
 
-type Props = {
-  title?: string;
-  description?: string;
-};
+type Pos = { r: number; c: number };
+type WinnerResult = { winner: "R" | "Y" | "draw" | null; cells: Pos[] };
 
 const ROWS = 6;
 const COLS = 7;
@@ -19,706 +17,527 @@ function emptyBoard(): Cell[][] {
   return Array.from({ length: ROWS }, () => Array.from({ length: COLS }, () => null));
 }
 
-function cloneBoard(board: Cell[][]): Cell[][] {
-  return board.map((r) => [...r]);
+function cloneBoard(b: Cell[][]): Cell[][] {
+  return b.map((row) => row.slice());
 }
 
-function getAvailableRow(board: Cell[][], col: number): number {
+function getDropRow(b: Cell[][], col: number): number {
   for (let r = ROWS - 1; r >= 0; r--) {
-    if (board[r][col] === null) return r;
+    if (!b[r][col]) return r;
   }
   return -1;
 }
 
-function getValidMoves(board: Cell[][]): number[] {
+function validMoves(b: Cell[][]): number[] {
   const moves: number[] = [];
-  for (let c = 0; c < COLS; c++) if (getAvailableRow(board, c) !== -1) moves.push(c);
+  for (let c = 0; c < COLS; c++) if (getDropRow(b, c) !== -1) moves.push(c);
   return moves;
 }
 
-function isBoardFull(board: Cell[][]): boolean {
-  return board[0].every((c) => c !== null);
+function applyMove(b: Cell[][], col: number, piece: "R" | "Y"): { next: Cell[][]; row: number } | null {
+  const r = getDropRow(b, col);
+  if (r === -1) return null;
+  const next = cloneBoard(b);
+  next[r][col] = piece;
+  return { next, row: r };
 }
 
-function boardToASCII(board: Cell[][]): string {
-  return board
-    .map((row) => row.map((cell) => (cell === "red" ? "R" : cell === "yellow" ? "Y" : ".")).join(" "))
-    .join("\n");
+function isFull(b: Cell[][]): boolean {
+  return validMoves(b).length === 0;
 }
 
-function checkWinnerPure(board: Cell[][], row: number, col: number): { winner: Cell; cells: [number, number][] } {
-  const player = board[row][col];
-  if (!player) return { winner: null, cells: [] };
-
-  const dirs: Array<[[number, number], [number, number]]> = [
-    [
-      [0, 1],
-      [0, -1],
-    ],
-    [
-      [1, 0],
-      [-1, 0],
-    ],
-    [
-      [1, 1],
-      [-1, -1],
-    ],
-    [
-      [1, -1],
-      [-1, 1],
-    ],
+function winnerScan(b: Cell[][]): WinnerResult {
+  // Returns winner + the 4 cells (or more) of the winning line.
+  const dirs: Array<[number, number]> = [
+    [0, 1], // →
+    [1, 0], // ↓
+    [1, 1], // ↘
+    [1, -1], // ↙
   ];
 
-  for (const [d1, d2] of dirs) {
-    const cells: [number, number][] = [[row, col]];
-    for (const [dr, dc] of [d1, d2]) {
-      let r = row + dr;
-      let c = col + dc;
-      while (r >= 0 && r < ROWS && c >= 0 && c < COLS && board[r][c] === player) {
-        cells.push([r, c]);
-        r += dr;
-        c += dc;
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const p = b[r][c];
+      if (!p) continue;
+
+      for (const [dr, dc] of dirs) {
+        const cells: Pos[] = [{ r, c }];
+        let rr = r + dr;
+        let cc = c + dc;
+        while (rr >= 0 && rr < ROWS && cc >= 0 && cc < COLS && b[rr][cc] === p) {
+          cells.push({ r: rr, c: cc });
+          rr += dr;
+          cc += dc;
+        }
+        if (cells.length >= 4) {
+          return { winner: p, cells };
+        }
       }
     }
-    if (cells.length >= 4) return { winner: player, cells };
   }
 
+  if (isFull(b)) return { winner: "draw", cells: [] };
   return { winner: null, cells: [] };
 }
 
-function applyMove(board: Cell[][], col: number, player: Exclude<Cell, null>) {
-  const row = getAvailableRow(board, col);
-  if (row === -1) return null;
-  const next = cloneBoard(board);
-  next[row][col] = player;
-  return { next, row };
+function scoreWindow(window: Cell[], ai: "R" | "Y", human: "R" | "Y"): number {
+  const aiCount = window.filter((x) => x === ai).length;
+  const huCount = window.filter((x) => x === human).length;
+  const empties = window.filter((x) => x === null).length;
+
+  // Terminal-ish patterns
+  if (aiCount === 4) return 100000;
+  if (huCount === 4) return -100000;
+
+  // Strong threats & blocks
+  if (aiCount === 3 && empties === 1) return 120;
+  if (aiCount === 2 && empties === 2) return 18;
+  if (huCount === 3 && empties === 1) return -140;
+  if (huCount === 2 && empties === 2) return -22;
+
+  return 0;
 }
 
-function immediateWinningMoves(board: Cell[][], player: Exclude<Cell, null>): number[] {
-  return getValidMoves(board).filter((col) => {
-    const res = applyMove(board, col, player);
-    if (!res) return false;
-    return checkWinnerPure(res.next, res.row, col).winner === player;
-  });
-}
-
-function orderedMoves(moves: number[]): number[] {
-  const priority = [3, 2, 4, 1, 5, 0, 6];
-  return priority.filter((c) => moves.includes(c));
-}
-
-function evaluateBoard(board: Cell[][]): number {
-  // Positive favors Yellow (AI)
-  const AI: Exclude<Cell, null> = "yellow";
-  const HU: Exclude<Cell, null> = "red";
+function evaluateBoard(b: Cell[][], ai: "R" | "Y"): number {
+  const human: "R" | "Y" = ai === "R" ? "Y" : "R";
   let score = 0;
 
-  // Center preference
+  // Center control
   const centerCol = 3;
   let centerCount = 0;
-  for (let r = 0; r < ROWS; r++) if (board[r][centerCol] === AI) centerCount++;
-  score += centerCount * 6;
+  for (let r = 0; r < ROWS; r++) if (b[r][centerCol] === ai) centerCount++;
+  score += centerCount * 10;
 
-  const scoreWindow = (cells: Cell[]) => {
-    const a = cells.filter((c) => c === AI).length;
-    const h = cells.filter((c) => c === HU).length;
-    const e = cells.filter((c) => c === null).length;
-
-    if (a === 4) return 100000;
-    if (h === 4) return -100000;
-
-    if (a === 3 && e === 1) return 120;
-    if (a === 2 && e === 2) return 15;
-
-    if (h === 3 && e === 1) return -140;
-    if (h === 2 && e === 2) return -12;
-
-    return 0;
-  };
-
+  // Score all 4-windows
   // Horizontal
   for (let r = 0; r < ROWS; r++) {
     for (let c = 0; c <= COLS - 4; c++) {
-      score += scoreWindow([board[r][c], board[r][c + 1], board[r][c + 2], board[r][c + 3]]);
+      const w = [b[r][c], b[r][c + 1], b[r][c + 2], b[r][c + 3]];
+      score += scoreWindow(w, ai, human);
     }
   }
   // Vertical
   for (let c = 0; c < COLS; c++) {
     for (let r = 0; r <= ROWS - 4; r++) {
-      score += scoreWindow([board[r][c], board[r + 1][c], board[r + 2][c], board[r + 3][c]]);
+      const w = [b[r][c], b[r + 1][c], b[r + 2][c], b[r + 3][c]];
+      score += scoreWindow(w, ai, human);
     }
   }
-  // Diagonal down-right
+  // Diagonal ↘
   for (let r = 0; r <= ROWS - 4; r++) {
     for (let c = 0; c <= COLS - 4; c++) {
-      score += scoreWindow([board[r][c], board[r + 1][c + 1], board[r + 2][c + 2], board[r + 3][c + 3]]);
+      const w = [b[r][c], b[r + 1][c + 1], b[r + 2][c + 2], b[r + 3][c + 3]];
+      score += scoreWindow(w, ai, human);
     }
   }
-  // Diagonal up-right
-  for (let r = 3; r < ROWS; r++) {
-    for (let c = 0; c <= COLS - 4; c++) {
-      score += scoreWindow([board[r][c], board[r - 1][c + 1], board[r - 2][c + 2], board[r - 3][c + 3]]);
+  // Diagonal ↙
+  for (let r = 0; r <= ROWS - 4; r++) {
+    for (let c = 3; c < COLS; c++) {
+      const w = [b[r][c], b[r + 1][c - 1], b[r + 2][c - 2], b[r + 3][c - 3]];
+      score += scoreWindow(w, ai, human);
     }
   }
 
   return score;
 }
 
-function minimaxAlphaBeta(params: {
-  board: Cell[][];
-  depth: number;
-  alpha: number;
-  beta: number;
-  maximizing: boolean;
-  startMs: number;
-  timeLimitMs: number;
-  lastMove?: { row: number; col: number; player: Exclude<Cell, null> } | null;
-}): { col: number; score: number } {
-  const { board, depth, maximizing, startMs, timeLimitMs } = params;
-  let { alpha, beta } = params;
-
-  if (performance.now() - startMs > timeLimitMs) {
-    return { col: -1, score: evaluateBoard(board) };
+function findImmediateWinningMoves(b: Cell[][], piece: "R" | "Y"): number[] {
+  const moves = validMoves(b);
+  const wins: number[] = [];
+  for (const col of moves) {
+    const res = applyMove(b, col, piece);
+    if (!res) continue;
+    const w = winnerScan(res.next);
+    if (w.winner === piece) wins.push(col);
   }
-
-  if (params.lastMove) {
-    const w = checkWinnerPure(board, params.lastMove.row, params.lastMove.col).winner;
-    if (w === "yellow") return { col: -1, score: 1_000_000_000 };
-    if (w === "red") return { col: -1, score: -1_000_000_000 };
-  }
-
-  if (depth === 0 || isBoardFull(board)) {
-    return { col: -1, score: evaluateBoard(board) };
-  }
-
-  const moves = orderedMoves(getValidMoves(board));
-  if (!moves.length) return { col: -1, score: 0 };
-
-  const AI: Exclude<Cell, null> = "yellow";
-  const HU: Exclude<Cell, null> = "red";
-
-  if (maximizing) {
-    let best = { col: moves[0], score: -Infinity };
-    for (const col of moves) {
-      const res = applyMove(board, col, AI);
-      if (!res) continue;
-      const child = minimaxAlphaBeta({
-        board: res.next,
-        depth: depth - 1,
-        alpha,
-        beta,
-        maximizing: false,
-        startMs,
-        timeLimitMs,
-        lastMove: { row: res.row, col, player: AI },
-      });
-      if (child.score > best.score) best = { col, score: child.score };
-      alpha = Math.max(alpha, best.score);
-      if (alpha >= beta) break;
-      if (performance.now() - startMs > timeLimitMs) break;
-    }
-    return best;
-  } else {
-    let best = { col: moves[0], score: Infinity };
-    for (const col of moves) {
-      const res = applyMove(board, col, HU);
-      if (!res) continue;
-      const child = minimaxAlphaBeta({
-        board: res.next,
-        depth: depth - 1,
-        alpha,
-        beta,
-        maximizing: true,
-        startMs,
-        timeLimitMs,
-        lastMove: { row: res.row, col, player: HU },
-      });
-      if (child.score < best.score) best = { col, score: child.score };
-      beta = Math.min(beta, best.score);
-      if (alpha >= beta) break;
-      if (performance.now() - startMs > timeLimitMs) break;
-    }
-    return best;
-  }
+  return wins;
 }
 
-export default function JoinDotsConnectFour({
-  title = "Join Dots (Connect Four)",
-  description = "Play Connect Four against a smart local AI opponent. No external APIs, no per-play costs.",
-}: Props) {
-  const [gameState, setGameState] = useState<GameState>("menu");
-  const [difficulty, setDifficulty] = useState<Difficulty>("medium");
+function orderedMoves(moves: number[]): number[] {
+  // Prefer center-first ordering for better pruning
+  const preference = [3, 2, 4, 1, 5, 0, 6];
+  return moves.slice().sort((a, b) => preference.indexOf(a) - preference.indexOf(b));
+}
+
+type MinimaxResult = { col: number; score: number };
+
+function minimax(
+  b: Cell[][],
+  depth: number,
+  alpha: number,
+  beta: number,
+  maximizing: boolean,
+  ai: "R" | "Y",
+  memo: Map<string, MinimaxResult>
+): MinimaxResult {
+  const human: "R" | "Y" = ai === "R" ? "Y" : "R";
+  const key = `${depth}|${maximizing ? "1" : "0"}|${b.map((r) => r.map((c) => c ?? ".").join("")).join("/")}`;
+  const cached = memo.get(key);
+  if (cached) return cached;
+
+  const w = winnerScan(b);
+  if (w.winner === ai) return { col: -1, score: 1000000 + depth };
+  if (w.winner === human) return { col: -1, score: -1000000 - depth };
+  if (w.winner === "draw") return { col: -1, score: 0 };
+  if (depth === 0) return { col: -1, score: evaluateBoard(b, ai) };
+
+  const moves = orderedMoves(validMoves(b));
+  if (moves.length === 0) return { col: -1, score: 0 };
+
+  let best: MinimaxResult = { col: moves[0], score: maximizing ? -Infinity : Infinity };
+
+  for (const col of moves) {
+    const movePiece = maximizing ? ai : human;
+    const res = applyMove(b, col, movePiece);
+    if (!res) continue;
+
+    const child = minimax(res.next, depth - 1, alpha, beta, !maximizing, ai, memo);
+    const candidate: MinimaxResult = { col, score: child.score };
+
+    if (maximizing) {
+      if (candidate.score > best.score) best = candidate;
+      alpha = Math.max(alpha, best.score);
+      if (beta <= alpha) break;
+    } else {
+      if (candidate.score < best.score) best = candidate;
+      beta = Math.min(beta, best.score);
+      if (beta <= alpha) break;
+    }
+  }
+
+  memo.set(key, best);
+  return best;
+}
+
+function difficultyDepth(d: Difficulty): number {
+  if (d === "easy") return 1;
+  if (d === "medium") return 3;
+  return 5;
+}
+
+function labelDifficulty(d: Difficulty): string {
+  if (d === "easy") return "Easy";
+  if (d === "medium") return "Medium";
+  return "Hard";
+}
+
+function pieceLabel(p: "R" | "Y"): string {
+  return p === "R" ? "Red" : "Yellow";
+}
+
+function colLabel(c: number): string {
+  return `${c + 1}`;
+}
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+
+export default function JoinDotsConnectFour({ title, description }: Props) {
+  const pageTitle = title ?? "Join Dots (Connect Four)";
+  const pageDescription =
+    description ??
+    "Play Connect Four against a smart AI with three difficulty levels. Drop your dots, control the center, and connect four to win.";
+
   const [board, setBoard] = useState<Cell[][]>(() => emptyBoard());
-  const [currentPlayer, setCurrentPlayer] = useState<Player>("human");
-  const [winner, setWinner] = useState<Cell | "draw" | null>(null);
+  const [turn, setTurn] = useState<"human" | "ai">("human");
+  const [difficulty, setDifficulty] = useState<Difficulty>("medium");
+  const [winner, setWinner] = useState<WinnerResult>(() => ({ winner: null, cells: [] }));
+  const [hoverCol, setHoverCol] = useState<number | null>(null);
+  const [lastMove, setLastMove] = useState<Pos | null>(null);
 
-  const [isAIThinking, setIsAIThinking] = useState(false);
-  const [aiThoughts, setAiThoughts] = useState<Array<{ round: number; text: string }>>([]);
-  const [aiMoveHistory, setAiMoveHistory] = useState<Array<{ round: number; col: number; label: string }>>([]);
+  const [aiThinking, setAiThinking] = useState(false);
+  const [aiInsights, setAiInsights] = useState<string[]>([]);
+  const [aiTopMoves, setAiTopMoves] = useState<Array<{ col: number; score: number; reason: string }>>([]);
 
-  const [lastMove, setLastMove] = useState<{ row: number; col: number } | null>(null);
-  const [winningCells, setWinningCells] = useState<[number, number][]>([]);
-  const [hoveredCol, setHoveredCol] = useState<number | null>(null);
+  const aiTimer = useRef<number | null>(null);
 
-  const [animKey, setAnimKey] = useState<string | null>(null);
-  const aiTurnGuard = useRef(0);
+  const humanPiece: "R" | "Y" = "R";
+  const aiPiece: "R" | "Y" = "Y";
 
-  const moveCount = useMemo(() => board.flat().filter(Boolean).length, [board]);
-  const busy = gameState !== "playing" || isAIThinking || !!animKey;
+  const winningSet = useMemo(() => {
+    const s = new Set<string>();
+    for (const p of winner.cells) s.add(`${p.r}:${p.c}`);
+    return s;
+  }, [winner.cells]);
 
-  const howToPlay = (
-    <div className="space-y-3">
-      <p>
-        You play as <strong>Red</strong>. ChatGPT AI plays as <strong>Yellow</strong>. Connect four pieces in a row
-        (horizontal, vertical, or diagonal).
-      </p>
-      <ul className="list-disc pl-5 space-y-1">
-        <li>Click a column to drop your piece.</li>
-        <li>The last move is highlighted with a ring.</li>
-        <li>Winning pieces pulse.</li>
-        <li>
-          Difficulty:
-          <ul className="list-disc pl-5 mt-1 space-y-1">
-            <li><strong>Easy</strong>: casual + occasional random moves; may miss blocks.</li>
-            <li><strong>Medium</strong>: plays well but sometimes misses opportunities.</li>
-            <li><strong>Hard</strong>: win/block priority + deeper lookahead (minimax).</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  );
+  const statusText = useMemo(() => {
+    if (winner.winner === "draw") return "Draw — no more moves.";
+    if (winner.winner === "R") return "You win!";
+    if (winner.winner === "Y") return "AI wins!";
+    return turn === "human" ? "Your turn" : "AI is thinking…";
+  }, [winner.winner, turn]);
 
-  const startGame = (d: Difficulty) => {
-    setDifficulty(d);
-    setGameState("playing");
-    setBoard(emptyBoard());
-    setCurrentPlayer("human");
-    setWinner(null);
-    setAiThoughts([]);
-    setAiMoveHistory([]);
-    setLastMove(null);
-    setWinningCells([]);
-    setHoveredCol(null);
-    setAnimKey(null);
-    setIsAIThinking(false);
-    aiTurnGuard.current = 0;
-  };
-
-  const resetToMenu = () => {
-    setGameState("menu");
-    setBoard(emptyBoard());
-    setCurrentPlayer("human");
-    setWinner(null);
-    setAiThoughts([]);
-    setAiMoveHistory([]);
-    setLastMove(null);
-    setWinningCells([]);
-    setHoveredCol(null);
-    setAnimKey(null);
-    setIsAIThinking(false);
-    aiTurnGuard.current = 0;
-  };
-
-  const endIfTerminal = (nextBoard: Cell[][], last: { row: number; col: number }) => {
-    const w = checkWinnerPure(nextBoard, last.row, last.col);
-    if (w.winner) {
-      setWinner(w.winner);
-      setWinningCells(w.cells);
-      setGameState("gameOver");
-      return true;
+  function resetGame(nextDifficulty?: Difficulty) {
+    if (aiTimer.current) {
+      window.clearTimeout(aiTimer.current);
+      aiTimer.current = null;
     }
-    if (isBoardFull(nextBoard)) {
-      setWinner("draw");
-      setGameState("gameOver");
-      return true;
+    setBoard(emptyBoard());
+    setTurn("human");
+    setWinner({ winner: null, cells: [] });
+    setHoverCol(null);
+    setLastMove(null);
+    setAiThinking(false);
+    setAiInsights([]);
+    setAiTopMoves([]);
+    if (nextDifficulty) setDifficulty(nextDifficulty);
+  }
+
+  function handleDrop(col: number) {
+    if (winner.winner) return;
+    if (turn !== "human") return;
+
+    const res = applyMove(board, col, humanPiece);
+    if (!res) return;
+
+    const nextWinner = winnerScan(res.next);
+    setBoard(res.next);
+    setLastMove({ r: res.row, c: col });
+    setWinner(nextWinner);
+
+    if (!nextWinner.winner) setTurn("ai");
+  }
+
+  function computeAiMove(b: Cell[][], d: Difficulty): { col: number; insights: string[]; top: Array<{ col: number; score: number; reason: string }> } {
+    const moves = validMoves(b);
+
+    const aiWins = findImmediateWinningMoves(b, aiPiece);
+    const humanWins = findImmediateWinningMoves(b, humanPiece);
+
+    // Easy: always block immediate loss, often take immediate win, otherwise mildly center-biased random.
+    if (d === "easy") {
+      if (aiWins.length > 0) {
+        const chosen = orderedMoves(aiWins)[0];
+        return {
+          col: chosen,
+          insights: [`Immediate win available — playing column ${colLabel(chosen)}.`],
+          top: aiWins.map((c) => ({ col: c, score: 999999, reason: "Immediate win" })),
+        };
+      }
+
+      if (humanWins.length > 0) {
+        const chosen = orderedMoves(humanWins)[0];
+        return {
+          col: chosen,
+          insights: [`Must block your win — blocking column ${colLabel(chosen)}.`],
+          top: humanWins.map((c) => ({ col: c, score: 999998, reason: "Block immediate loss" })),
+        };
+      }
+
+      const preferred = orderedMoves(moves);
+      const centerBias = preferred.slice(0, Math.min(3, preferred.length));
+      const pickFrom = Math.random() < 0.7 ? centerBias : preferred;
+      const chosen = pickFrom[Math.floor(Math.random() * pickFrom.length)] ?? preferred[0] ?? 3;
+
+      return {
+        col: chosen,
+        insights: [
+          `No forced win/block. Choosing a reasonable move (center-biased).`,
+          `Selected column ${colLabel(chosen)}.`,
+        ],
+        top: preferred.slice(0, 3).map((c, i) => ({ col: c, score: 0 - i, reason: c === 3 ? "Center control" : "Playable move" })),
+      };
     }
-    return false;
-  };
 
-  const placePiece = (col: number, who: Exclude<Cell, null>, round: number) => {
-    const row = getAvailableRow(board, col);
-    if (row === -1) return false;
+    // Medium/Hard: minimax with alpha-beta + show top move candidates
+    // Always take immediate wins first, then blocks.
+    if (aiWins.length > 0) {
+      const chosen = orderedMoves(aiWins)[0];
+      return {
+        col: chosen,
+        insights: [`Immediate win available — playing column ${colLabel(chosen)}.`],
+        top: aiWins.map((c) => ({ col: c, score: 999999, reason: "Immediate win" })),
+      };
+    }
+    if (humanWins.length > 0) {
+      const chosen = orderedMoves(humanWins)[0];
+      return {
+        col: chosen,
+        insights: [`You have an immediate threat — blocking column ${colLabel(chosen)}.`],
+        top: humanWins.map((c) => ({ col: c, score: 999998, reason: "Block immediate loss" })),
+      };
+    }
 
-    // dynamic drop speed (faster later)
-    const speedScalar = Math.max(0.65, 1 - (moveCount * 0.01));
-    const dur = Math.round((180 + (row + 1) * 45) * speedScalar);
+    const depth = difficultyDepth(d);
+    const memo = new Map<string, MinimaxResult>();
+    const candidates = orderedMoves(moves).map((col) => {
+      const res = applyMove(b, col, aiPiece);
+      if (!res) return { col, score: -Infinity };
+      const r = minimax(res.next, depth - 1, -Infinity, Infinity, false, aiPiece, memo);
+      return { col, score: r.score };
+    });
 
-    const next = cloneBoard(board);
-    next[row][col] = who;
+    const sorted = candidates.slice().sort((a, b2) => b2.score - a.score);
+    const best = sorted[0] ?? { col: orderedMoves(moves)[0] ?? 3, score: 0 };
 
-    setAnimKey(`${row}-${col}-${who}-${round}`);
-    setBoard(next);
-    setLastMove({ row, col });
+    const top = sorted.slice(0, 4).map((x) => {
+      const reason =
+        x.col === 3 ? "Center control" : x.score > 150 ? "Creates strong threats" : x.score < -150 ? "Avoided if possible" : "Best evaluated line";
+      return { col: x.col, score: x.score, reason };
+    });
 
-    window.setTimeout(() => {
-      setAnimKey(null);
-      const ended = endIfTerminal(next, { row, col });
-      if (!ended) setCurrentPlayer(who === "red" ? "ai" : "human");
-    }, dur + 30);
+    const insights: string[] = [
+      `${labelDifficulty(d)} AI searches ahead ~${depth} ply (minimax).`,
+      `Candidate moves: ${top.map((t) => `${colLabel(t.col)} (${Math.round(t.score)})`).join(", ")}.`,
+      `Chosen move: column ${colLabel(best.col)}.`,
+    ];
 
-    return true;
-  };
-
-  const onHumanClick = (col: number) => {
-    if (busy) return;
-    if (currentPlayer !== "human") return;
-
-    const round = moveCount + 1;
-    const ok = placePiece(col, "red", round);
-    if (!ok) return;
-  };
+    return { col: best.col, insights, top };
+  }
 
   useEffect(() => {
-    if (gameState !== "playing") return;
-    if (currentPlayer !== "ai") return;
-    if (isAIThinking || animKey) return;
+    if (winner.winner) return;
+    if (turn !== "ai") return;
 
-    aiTurnGuard.current += 1;
-    const turnId = aiTurnGuard.current;
+    setAiThinking(true);
 
-    const run = async () => {
-      setIsAIThinking(true);
-      setAiThoughts([]);
+    // Simulate thinking for UX (and to avoid “instant” feel)
+    aiTimer.current = window.setTimeout(() => {
+      const { col, insights, top } = computeAiMove(board, difficulty);
 
-      const round = moveCount + 1;
-      const ascii = boardToASCII(board);
-      const valid = orderedMoves(getValidMoves(board));
-      const winNow = immediateWinningMoves(board, "yellow");
-      const blockNow = immediateWinningMoves(board, "red");
+      setAiInsights(insights);
+      setAiTopMoves(top);
 
-      const push = async (text: string, paceMs = 170) => {
-        setAiThoughts((prev) => [...prev, { round, text }]);
-        await new Promise((r) => setTimeout(r, paceMs));
-      };
-
-      await push(`Board (ASCII)\n${ascii}`, 140);
-      await push(`Valid moves: [${valid.join(", ")}]`, 140);
-      await push(`Immediate wins: [${winNow.length ? winNow.join(", ") : "none"}]`, 140);
-      await push(`Must block: [${blockNow.length ? blockNow.join(", ") : "none"}]`, 140);
-
-      // Decide move (LOCAL AI)
-      const decide = () => {
-        // mistake behavior
-        const missWinChance = difficulty === "easy" ? 0.22 : difficulty === "medium" ? 0.08 : 0;
-        const missBlockChance = difficulty === "easy" ? 0.30 : difficulty === "medium" ? 0.12 : 0;
-
-        if (winNow.length && Math.random() >= missWinChance) return { col: winNow[0], label: "Win now" };
-        if (blockNow.length && Math.random() >= missBlockChance) return { col: blockNow[0], label: "Block threat" };
-
-        if (difficulty === "easy") {
-          // casual/random often
-          if (Math.random() < 0.45) {
-            const rcol = valid[Math.floor(Math.random() * valid.length)];
-            return { col: rcol, label: "Casual random" };
+      const res = applyMove(board, col, aiPiece);
+      if (!res) {
+        // fallback: first valid move
+        const fallback = validMoves(board)[0];
+        if (typeof fallback === "number") {
+          const res2 = applyMove(board, fallback, aiPiece);
+          if (res2) {
+            const w2 = winnerScan(res2.next);
+            setBoard(res2.next);
+            setLastMove({ r: res2.row, c: fallback });
+            setWinner(w2);
+            setTurn(w2.winner ? "human" : "human");
           }
-          return { col: valid[0] ?? 3, label: "Center control" };
         }
-
-        // Medium/Hard: minimax with time budget
-        const startMs = performance.now();
-        const timeLimitMs = difficulty === "hard" ? 260 : 140;
-        const depth = difficulty === "hard" ? 7 : 4;
-
-        const scored: Array<{ col: number; score: number }> = [];
-        for (const c of valid) {
-          const a = applyMove(board, c, "yellow");
-          if (!a) continue;
-          const child = minimaxAlphaBeta({
-            board: a.next,
-            depth: depth - 1,
-            alpha: -Infinity,
-            beta: Infinity,
-            maximizing: false,
-            startMs,
-            timeLimitMs,
-            lastMove: { row: a.row, col: c, player: "yellow" },
-          });
-          scored.push({ col: c, score: child.score });
-          if (performance.now() - startMs > timeLimitMs) break;
-        }
-
-        scored.sort((x, y) => y.score - x.score);
-        const best = scored[0] ?? { col: valid[0] ?? 3, score: 0 };
-
-        // Medium sometimes picks #2/#3
-        if (difficulty === "medium" && scored.length > 1 && Math.random() < 0.16) {
-          const idx = 1 + Math.floor(Math.random() * Math.min(2, scored.length - 1));
-          return { col: scored[idx].col, label: "Slight imperfection" };
-        }
-
-        return { col: best.col, label: "Strategic search" };
-      };
-
-      const decision = decide();
-      await push(`Decision: column ${decision.col} (${decision.label})`, 220);
-
-      // Abort if state changed mid-think
-      if (turnId !== aiTurnGuard.current) {
-        setIsAIThinking(false);
+        setAiThinking(false);
+        setTurn("human");
         return;
       }
 
-      // Execute move
-      const ok = placePiece(decision.col, "yellow", round);
-      if (ok) setAiMoveHistory((prev) => [{ round, col: decision.col, label: decision.label }, ...prev]);
+      const w = winnerScan(res.next);
+      setBoard(res.next);
+      setLastMove({ r: res.row, c: col });
+      setWinner(w);
+      setAiThinking(false);
 
-      setIsAIThinking(false);
+      if (!w.winner) setTurn("human");
+    }, 450);
+
+    return () => {
+      if (aiTimer.current) {
+        window.clearTimeout(aiTimer.current);
+        aiTimer.current = null;
+      }
     };
-
-    run().catch(() => setIsAIThinking(false));
-    // Intentionally exclude "board" from deps to prevent double AI turns; guarded by turnId.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPlayer, gameState, difficulty, animKey]);
+  }, [turn, winner.winner, board, difficulty]);
 
-  return (
-    <GamePageLayout
-      title={title}
-      description={description}
-      onThisPage={[{ id: "how-to-play", label: "How to play" }]}
-      howToPlay={howToPlay}
-      showTopBanner={false}
-      showSidebar={false}
-      showBottomBanner={false}
-      showFooterBlocks={true}
-    >
-      <style>{`
-        .jd-drop { animation: jdDrop var(--dur, 320ms) cubic-bezier(.16,.84,.22,1.05) both; }
-        @keyframes jdDrop { from { transform: translateY(calc(var(--drop, 1) * -120%)); } to { transform: translateY(0%); } }
-        .jd-win { animation: jdWin 1.05s ease-in-out infinite; }
-        @keyframes jdWin { 0%,100% { transform: scale(1); filter: brightness(1); } 50% { transform: scale(1.05); filter: brightness(1.18); } }
-        .jd-ring { animation: jdRing 1.15s ease-out infinite; }
-        @keyframes jdRing { 0% { transform: scale(.92); opacity: .55; } 70% { transform: scale(1.22); opacity: 0; } 100% { transform: scale(1.22); opacity: 0; } }
-      `}</style>
+  const rightRail = (
+    <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-5">
+      <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Game controls</h3>
 
-      {/* GAME CARD */}
-      <div className="rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden">
-        <div className="p-5 sm:p-7">
-          {/* MENU */}
-          {gameState === "menu" && (
-            <div className="max-w-xl">
-              <h2 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mb-2">
-                Select difficulty
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400 mb-6">
-                Local AI runs in the browser. No external API calls.
-              </p>
+      <div className="mt-4 space-y-3">
+        <div className="flex items-center justify-between gap-3">
+          <div className="text-sm text-slate-700 dark:text-slate-300">Difficulty</div>
+          <div className="flex gap-2">
+            {(["easy", "medium", "hard"] as Difficulty[]).map((d) => (
+              <Button
+                key={d}
+                type="button"
+                variant={difficulty === d ? "default" : "outline"}
+                className="h-9 px-3"
+                onClick={() => resetGame(d)}
+              >
+                {labelDifficulty(d)}
+              </Button>
+            ))}
+          </div>
+        </div>
 
-              <div className="grid gap-3">
-                <button
-                  onClick={() => startGame("easy")}
-                  className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40 hover:bg-white dark:hover:bg-slate-950/60 transition px-4 py-3 text-left"
-                >
-                  <div className="font-semibold text-slate-900 dark:text-slate-100">Easy</div>
-                  <div className="text-sm text-slate-600 dark:text-slate-400">Casual play, sometimes random.</div>
-                </button>
+        <div className="flex flex-wrap items-center gap-2 text-sm">
+          <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-1 text-slate-700 dark:text-slate-300">
+            <User className="h-4 w-4" /> You: {pieceLabel(humanPiece)}
+          </span>
+          <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-1 text-slate-700 dark:text-slate-300">
+            <Cpu className="h-4 w-4" /> AI: {pieceLabel(aiPiece)}
+          </span>
+        </div>
 
-                <button
-                  onClick={() => startGame("medium")}
-                  className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40 hover:bg-white dark:hover:bg-slate-950/60 transition px-4 py-3 text-left"
-                >
-                  <div className="font-semibold text-slate-900 dark:text-slate-100">Medium</div>
-                  <div className="text-sm text-slate-600 dark:text-slate-400">Plays well, occasional mistakes.</div>
-                </button>
-
-                <button
-                  onClick={() => startGame("hard")}
-                  className="rounded-xl border border-slate-900 dark:border-slate-700 bg-slate-900 hover:bg-slate-800 text-white transition px-4 py-3 text-left"
-                >
-                  <div className="font-semibold">Hard</div>
-                  <div className="text-sm text-slate-200">Blocks wins and thinks ahead.</div>
-                </button>
-              </div>
+        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3">
+          <div className="text-xs font-semibold text-slate-800 dark:text-slate-200">Status</div>
+          <div className="mt-1 text-sm text-slate-700 dark:text-slate-300">{statusText}</div>
+          {lastMove ? (
+            <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">
+              Last move: row {lastMove.r + 1}, col {lastMove.c + 1}
             </div>
-          )}
+          ) : null}
+        </div>
 
-          {/* PLAY */}
-          {(gameState === "playing" || gameState === "gameOver") && (
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6">
-              {/* LEFT: BOARD */}
-              <div>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={[
-                        "px-3 py-1.5 rounded-full text-sm font-semibold border",
-                        currentPlayer === "human" && gameState === "playing"
-                          ? "bg-rose-500/15 border-rose-500/30 text-rose-600 dark:text-rose-300"
-                          : "bg-slate-100 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400",
-                      ].join(" ")}
-                    >
-                      <User className="inline h-4 w-4 mr-2" />
-                      Your turn
-                    </div>
+        <div className="flex gap-2">
+          <Button type="button" variant="outline" className="w-full" onClick={() => resetGame()}>
+            <RotateCcw className="mr-2 h-4 w-4" />
+            New game
+          </Button>
+        </div>
 
-                    <div
-                      className={[
-                        "px-3 py-1.5 rounded-full text-sm font-semibold border",
-                        currentPlayer === "ai" && gameState === "playing"
-                          ? "bg-amber-500/15 border-amber-500/30 text-amber-700 dark:text-amber-300"
-                          : "bg-slate-100 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400",
-                      ].join(" ")}
-                    >
-                      <Cpu className="inline h-4 w-4 mr-2" />
-                      AI turn
-                    </div>
-                  </div>
+        <div className="pt-2 border-t border-slate-200 dark:border-slate-800">
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200">
+            <Sparkles className="h-4 w-4 text-[#5c82ee]" />
+            AI analysis
+          </div>
 
-                  <div className="text-sm text-slate-600 dark:text-slate-400 capitalize">
-                    Mode: <span className="font-semibold">{difficulty}</span>
-                  </div>
+          {aiThinking ? (
+            <div className="mt-2 text-sm text-slate-600 dark:text-slate-300">Thinking…</div>
+          ) : aiInsights.length > 0 ? (
+            <div className="mt-2 space-y-2">
+              <ul className="list-disc pl-5 text-sm text-slate-700 dark:text-slate-300 space-y-1">
+                {aiInsights.map((t, idx) => (
+                  <li key={idx}>{t}</li>
+                ))}
+              </ul>
+
+              {aiTopMoves.length > 0 ? (
+                <div className="mt-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/40 p-3">
+                  <div className="text-xs font-semibold text-slate-800 dark:text-slate-200">Top candidates</div>
+                  <ul className="mt-2 space-y-1 text-sm text-slate-700 dark:text-slate-300">
+                    {aiTopMoves.map((m) => (
+                      <li key={m.col} className="flex items-center justify-between gap-2">
+                        <span>
+                          Col {colLabel(m.col)} — <span className="text-slate-500 dark:text-slate-400">{m.reason}</span>
+                        </span>
+                        <span className="text-xs tabular-nums text-slate-500 dark:text-slate-400">{Math.round(m.score)}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-
-                <div className="rounded-2xl bg-slate-950/40 dark:bg-slate-950/60 border border-slate-200/40 dark:border-slate-800/70 p-3 shadow-inner">
-                  <div className="grid grid-cols-7 gap-2 select-none">
-                    {Array.from({ length: COLS }).map((_, col) => {
-                      const hoverActive = hoveredCol === col && currentPlayer === "human" && !busy;
-                      const dropRow = getAvailableRow(board, col);
-
-                      return (
-                        <div
-                          key={col}
-                          className="relative rounded-xl p-1"
-                          onMouseEnter={() => setHoveredCol(col)}
-                          onMouseLeave={() => setHoveredCol(null)}
-                          onClick={() => onHumanClick(col)}
-                        >
-                          {hoverActive && <div className="absolute inset-0 rounded-xl bg-white/5 pointer-events-none" />}
-
-                          {/* Ghost indicator */}
-                          {hoverActive && dropRow !== -1 && (
-                            <div className="absolute -top-3 left-1/2 -translate-x-1/2 h-7 w-7 rounded-full border border-white/25 bg-rose-400/15 pointer-events-none" />
-                          )}
-
-                          {board.map((rowArr, rowIdx) => {
-                            const cell = rowArr[col];
-                            const isLast = lastMove?.row === rowIdx && lastMove?.col === col;
-                            const isWin = winningCells.some(([r, c]) => r === rowIdx && c === col);
-                            const isAnimating = !!animKey && animKey.startsWith(`${rowIdx}-${col}-`);
-
-                            const speedScalar = Math.max(0.65, 1 - (moveCount * 0.01));
-                            const dur = Math.round((180 + (rowIdx + 1) * 45) * speedScalar);
-                            const drop = rowIdx + 1;
-
-                            return (
-                              <div
-                                key={`${col}-${rowIdx}`}
-                                className="relative aspect-square rounded-full border-4 border-slate-700/70 bg-slate-900/40 overflow-hidden"
-                              >
-                                {cell && (
-                                  <div
-                                    className={[
-                                      "absolute inset-0",
-                                      cell === "red"
-                                        ? "bg-gradient-to-br from-rose-400 to-pink-500 shadow-[0_0_20px_rgba(244,63,94,0.35)]"
-                                        : "bg-gradient-to-br from-amber-300 to-orange-500 shadow-[0_0_20px_rgba(251,191,36,0.35)]",
-                                      isWin ? "jd-win" : "",
-                                      isAnimating ? "jd-drop" : "",
-                                    ].join(" ")}
-                                    style={
-                                      isAnimating
-                                        ? ({
-                                            ["--dur" as any]: `${dur}ms`,
-                                            ["--drop" as any]: drop,
-                                          } as React.CSSProperties)
-                                        : undefined
-                                    }
-                                  />
-                                )}
-
-                                {isLast && !isWin && <div className="absolute inset-0 rounded-full ring-4 ring-white/30 jd-ring" />}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {gameState === "gameOver" && (
-                  <div className="mt-6 flex flex-col items-center text-center gap-3">
-                    <div className="text-2xl font-extrabold text-slate-900 dark:text-slate-100">
-                      {winner === "draw" ? "It’s a draw!" : winner === "red" ? "You win!" : "AI wins!"}
-                    </div>
-
-                    <button
-                      onClick={resetToMenu}
-                      className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2.5 transition shadow-lg shadow-indigo-600/20"
-                    >
-                      <RotateCcw className="h-4 w-4" />
-                      Play again
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              {/* RIGHT: AI PANEL */}
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40 backdrop-blur p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <Sparkles className="h-5 w-5 text-amber-400" />
-                  <div className="font-extrabold text-slate-900 dark:text-slate-100">AI thoughts</div>
-                  <div className="ml-auto text-xs text-slate-600 dark:text-slate-400">
-                    Move {moveCount + (currentPlayer === "ai" ? 1 : 0)}
-                  </div>
-                </div>
-
-                {isAIThinking && (
-                  <div className="mb-3 rounded-lg border border-amber-500/25 bg-amber-500/10 px-3 py-2 text-sm text-amber-700 dark:text-amber-300 animate-pulse">
-                    Analyzing board…
-                  </div>
-                )}
-
-                <div className="max-h-[340px] overflow-y-auto space-y-2 pr-1">
-                  {aiThoughts.length === 0 && !isAIThinking ? (
-                    <div className="text-sm text-slate-600 dark:text-slate-400">
-                      AI analysis will appear here after the first computer move.
-                    </div>
-                  ) : (
-                    aiThoughts
-                      .slice()
-                      .reverse()
-                      .map((t, idx) => (
-                        <div
-                          key={`${t.round}-${idx}`}
-                          className="rounded-lg border border-slate-200/60 dark:border-slate-800/70 bg-white/70 dark:bg-slate-900/30 p-3"
-                          style={{ opacity: Math.max(0.42, 1 - idx * 0.12) }}
-                        >
-                          <div className="text-xs text-slate-500 dark:text-slate-400 mb-2">Move {t.round}</div>
-                          <pre className="whitespace-pre-wrap text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed">
-                            {t.text}
-                          </pre>
-                        </div>
-                      ))
-                  )}
-                </div>
-
-                <div className="mt-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/30 p-3">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Cpu className="h-4 w-4 text-slate-600 dark:text-slate-300" />
-                    <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">AI move history</div>
-                  </div>
-                  <div className="max-h-[180px] overflow-y-auto space-y-2 pr-1">
-                    {aiMoveHistory.length === 0 ? (
-                      <div className="text-sm text-slate-600 dark:text-slate-400">No AI moves yet.</div>
-                    ) : (
-                      aiMoveHistory.map((m) => (
-                        <div key={`m-${m.round}`} className="text-sm text-slate-700 dark:text-slate-300">
-                          <span className="font-semibold">#{m.round}</span> → column <span className="font-semibold">{m.col}</span>{" "}
-                          <span className="text-slate-500 dark:text-slate-400">({m.label})</span>
-                        </div>
-                      ))
-                    )}
-                  </div>
-                </div>
-
-                <div className="mt-4 text-xs text-slate-500 dark:text-slate-400">
-                  Local AI only. No APIs. No cost per play.
-                </div>
-              </div>
+              ) : null}
+            </div>
+          ) : (
+            <div className="mt-2 text-sm text-slate-600 dark:text-slate-300">
+              Make a move to see the AI’s evaluation.
             </div>
           )}
         </div>
       </div>
-    </GamePageLayout>
+    </div>
   );
-}
+
+  const below = (
+    <div>
+      <section id="how-to-play" className="scroll-mt-28">
+        <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">How to play</h2>
+        <div className="mt-3 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+          <p>
+            This is classic <strong>Connect Four</strong>. You (Red) and the AI (Yellow) take turns dropping a dot into a column.
+            The dot falls to the lowest available spot. The first player to connect four dots in a line wins.
+          </p>
+
+          <ul className="list-disc pl-6 space-y-2">
+            <li>Click a column to drop your dot.</li>
+            <li>Win by connecting four in a row: horizontal, vertical, or diagonal.</li>
+            <li>If the board fills up with no
