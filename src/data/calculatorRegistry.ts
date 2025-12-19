@@ -3996,6 +3996,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EventBudgetCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "event-capacity-calculator",
+    title: "Event Capacity Calculator",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Calculate venue capacity. Determine how many guests can safely fit in a room based on square footage and seating layout.",
+    loader: () => import("@/components/calculators/Misc/EventCapacityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
