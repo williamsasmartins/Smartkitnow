@@ -6,7 +6,27 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 // ⚠️ FULL ICON IMPORT
-import { Activity, Timer, TrendingUp, Dumbbell, Trophy, Medal, Flag, Flame, Zap, Heart, Scale, Calculator, Info, RotateCcw, AlertTriangle, BookOpen, ExternalLink, Waves, Gauge } from "lucide-react";
+import {
+  Activity,
+  Timer,
+  TrendingUp,
+  Dumbbell,
+  Trophy,
+  Medal,
+  Flag,
+  Flame,
+  Zap,
+  Heart,
+  Scale,
+  Calculator,
+  Info,
+  RotateCcw,
+  AlertTriangle,
+  BookOpen,
+  ExternalLink,
+  Waves,
+  Gauge,
+} from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 const activityLevels = [
@@ -15,110 +35,141 @@ const activityLevels = [
   { label: "Moderately active (moderate exercise 3-5 days/week)", value: 1.55 },
   { label: "Very active (hard exercise 6-7 days/week)", value: 1.725 },
   { label: "Extra active (very hard exercise & physical job)", value: 1.9 },
+  {
+    label: "Athlete (high volume training, multiple sessions/day)",
+    value: 2.0,
+  },
 ];
 
-const sportSpecificAdjustments = [
-  { label: "Endurance athlete (e.g., marathon, triathlon)", multiplier: 1.1 },
-  { label: "Strength athlete (e.g., weightlifting, bodybuilding)", multiplier: 1.05 },
-  { label: "Team sports (e.g., soccer, basketball)", multiplier: 1.08 },
-  { label: "Mixed training (crossfit, functional fitness)", multiplier: 1.07 },
-  { label: "None / General population", multiplier: 1.0 },
-];
+const formulas = {
+  miffinStJeor: (weightKg: number, heightCm: number, age: number, sex: string) => {
+    // Mifflin-St Jeor Equation for BMR
+    if (sex === "male") {
+      return 10 * weightKg + 6.25 * heightCm - 5 * age + 5;
+    } else {
+      return 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
+    }
+  },
+  // Cunningham Equation for athletes (more accurate for lean mass)
+  cunningham: (ffmKg: number) => {
+    // ffmKg = fat-free mass in kg
+    return 500 + 22 * ffmKg;
+  },
+};
 
 export default function TdeeCalculator() {
   const [inputs, setInputs] = useState({
-    age: "",
     sex: "",
+    age: "",
     weight: "",
     height: "",
+    bodyFat: "",
     activityLevel: "",
-    sportAdjustment: "",
+    formula: "miffinStJeor",
   });
 
-  const handleInputChange = useCallback((name, value) => {
+  const handleInputChange = useCallback((name: string, value: string) => {
     setInputs((prev) => ({ ...prev, [name]: value }));
   }, []);
 
-  // Basal Metabolic Rate (BMR) calculation using Mifflin-St Jeor Equation
-  // Male: BMR = 10*weight(kg) + 6.25*height(cm) - 5*age + 5
-  // Female: BMR = 10*weight(kg) + 6.25*height(cm) - 5*age - 161
-  // Then multiply by activity factor and sport-specific multiplier
-
-  const results = useMemo(() => {
+  // Parse inputs safely
+  const parsedInputs = useMemo(() => {
+    const sex = inputs.sex;
     const age = Number(inputs.age);
     const weight = Number(inputs.weight);
     const height = Number(inputs.height);
-    const sex = inputs.sex;
-    const activityFactor = Number(inputs.activityLevel);
-    const sportMultiplier = Number(inputs.sportAdjustment);
+    const bodyFat = Number(inputs.bodyFat);
+    const activityLevel = Number(inputs.activityLevel);
+    const formula = inputs.formula;
+
+    return { sex, age, weight, height, bodyFat, activityLevel, formula };
+  }, [inputs]);
+
+  const results = useMemo(() => {
+    const { sex, age, weight, height, bodyFat, activityLevel, formula } = parsedInputs;
 
     if (
-      !age ||
-      !weight ||
-      !height ||
       !sex ||
-      !activityFactor ||
-      !sportMultiplier ||
-      age < 10 ||
-      age > 80 ||
-      weight < 30 ||
-      weight > 300 ||
-      height < 100 ||
-      height > 250
+      !age ||
+      age <= 0 ||
+      !weight ||
+      weight <= 0 ||
+      !height ||
+      height <= 0 ||
+      !activityLevel ||
+      activityLevel <= 0
     ) {
       return {
-        value: null,
-        label: null,
-        subtext: "Please enter valid inputs within realistic ranges.",
-        warning: "Invalid or incomplete input detected.",
+        value: "",
+        label: "",
+        subtext: "Please fill in all required fields with valid values.",
+        warning: null,
         formulaUsed: "",
       };
     }
 
     let bmr = 0;
-    if (sex === "male") {
-      bmr = 10 * weight + 6.25 * height - 5 * age + 5;
-    } else if (sex === "female") {
-      bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+    let formulaUsed = "";
+    let warning = null;
+
+    if (formula === "miffinStJeor") {
+      bmr = formulas.miffinStJeor(weight, height, age, sex);
+      formulaUsed = "Mifflin-St Jeor Equation (BMR)";
+    } else if (formula === "cunningham") {
+      if (!bodyFat || bodyFat <= 0 || bodyFat >= 100) {
+        return {
+          value: "",
+          label: "",
+          subtext: "Body fat % is required and must be between 1 and 99 for Cunningham formula.",
+          warning: "Body fat % missing or invalid for Cunningham formula.",
+          formulaUsed: "",
+        };
+      }
+      const ffm = weight * (1 - bodyFat / 100);
+      bmr = formulas.cunningham(ffm);
+      formulaUsed = "Cunningham Equation (BMR)";
     } else {
       return {
-        value: null,
-        label: null,
-        subtext: "Sex must be selected as male or female.",
-        warning: "Invalid sex input.",
+        value: "",
+        label: "",
+        subtext: "Invalid formula selected.",
+        warning: "Invalid formula.",
         formulaUsed: "",
       };
     }
 
-    // Total Daily Energy Expenditure (TDEE)
-    const tdee = bmr * activityFactor * sportMultiplier;
+    // Calculate TDEE
+    const tdee = bmr * activityLevel;
+
+    // Round results
+    const tdeeRounded = Math.round(tdee);
+    const bmrRounded = Math.round(bmr);
 
     return {
-      value: `${Math.round(tdee)} kcal/day`,
-      label: "Estimated Total Daily Energy Expenditure",
-      subtext:
-        "This estimate accounts for basal metabolism, daily activity, and sport-specific training demands.",
-      warning: null,
-      formulaUsed:
-        "TDEE = BMR × Activity Factor × Sport-Specific Multiplier",
+      value: `${tdeeRounded} kcal/day`,
+      label: "Estimated Total Daily Energy Expenditure (TDEE)",
+      subtext: `Based on ${formulaUsed} and activity multiplier of ${activityLevel.toFixed(2)}.`,
+      warning,
+      formulaUsed,
+      bmr: `${bmrRounded} kcal/day (BMR)`,
     };
-  }, [inputs]);
+  }, [parsedInputs]);
 
   const faqs = [
     {
       question: "What is TDEE and why is it important for athletes?",
       answer:
-        "Total Daily Energy Expenditure (TDEE) represents the total calories an individual burns in a day, including basal metabolic rate, physical activity, and exercise. For athletes, accurately estimating TDEE is crucial to optimize nutrition, recovery, and performance by matching energy intake to expenditure.",
+        "Total Daily Energy Expenditure (TDEE) represents the total number of calories an individual burns in a day, including basal metabolic rate, physical activity, and digestion. For athletes, understanding TDEE is crucial to optimize energy intake for performance, recovery, and body composition goals. Accurately estimating TDEE helps prevent underfueling or overfeeding, which can impact training outcomes and health.",
     },
     {
-      question: "How does sport-specific training affect calorie needs?",
+      question: "Why are there different formulas for calculating BMR?",
       answer:
-        "Different sports impose varying metabolic demands. Endurance athletes typically require higher carbohydrate intake and slightly elevated calorie needs, while strength athletes may need more protein and moderate calorie increases. This calculator adjusts TDEE based on sport-specific multipliers to reflect these nuances.",
+        "Different formulas estimate Basal Metabolic Rate (BMR) based on varying assumptions and populations. The Mifflin-St Jeor equation is widely used for the general population, while the Cunningham equation is preferred for athletes because it incorporates fat-free mass, providing a more accurate estimate for individuals with higher muscle mass. Selecting the appropriate formula improves the accuracy of TDEE calculations.",
     },
     {
-      question: "Can I use this calculator if I have an irregular training schedule?",
+      question: "How do I choose the correct activity level multiplier?",
       answer:
-        "This calculator provides an average daily estimate based on typical activity levels. For irregular schedules, consider recalculating TDEE on training vs. rest days or consulting a sports nutritionist for personalized guidance.",
+        "Activity level multipliers reflect your average daily physical activity and training volume. Sedentary individuals use lower multipliers, while athletes with multiple intense training sessions per day use higher multipliers. Choosing the correct multiplier ensures your TDEE estimate matches your actual energy expenditure, helping tailor nutrition plans effectively.",
     },
   ];
 
@@ -130,27 +181,13 @@ export default function TdeeCalculator() {
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="age" className="flex items-center gap-1">
-                Age (years) <Activity className="w-4 h-4 text-blue-600" />
-              </Label>
-              <Input
-                id="age"
-                type="number"
-                min={10}
-                max={80}
-                placeholder="e.g. 25"
-                value={inputs.age}
-                onChange={(e) => handleInputChange("age", e.target.value)}
-              />
-            </div>
-            <div>
-              <Label htmlFor="sex" className="flex items-center gap-1">
-                Sex <Flag className="w-4 h-4 text-blue-600" />
+              <Label htmlFor="sex" className="mb-1 flex items-center gap-1">
+                Sex <Info className="w-4 h-4 text-blue-600" />
               </Label>
               <Select
-                onValueChange={(v) => handleInputChange("sex", v)}
                 value={inputs.sex}
-                id="sex"
+                onValueChange={(v) => handleInputChange("sex", v)}
+                aria-label="Sex"
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select sex" />
@@ -161,42 +198,79 @@ export default function TdeeCalculator() {
                 </SelectContent>
               </Select>
             </div>
+
             <div>
-              <Label htmlFor="weight" className="flex items-center gap-1">
+              <Label htmlFor="age" className="mb-1 flex items-center gap-1">
+                Age (years) <Timer className="w-4 h-4 text-blue-600" />
+              </Label>
+              <Input
+                id="age"
+                type="number"
+                min={1}
+                max={120}
+                placeholder="e.g. 25"
+                value={inputs.age}
+                onChange={(e) => handleInputChange("age", e.target.value)}
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="weight" className="mb-1 flex items-center gap-1">
                 Weight (kg) <Scale className="w-4 h-4 text-blue-600" />
               </Label>
               <Input
                 id="weight"
                 type="number"
-                min={30}
+                min={20}
                 max={300}
+                step={0.1}
                 placeholder="e.g. 70"
                 value={inputs.weight}
                 onChange={(e) => handleInputChange("weight", e.target.value)}
               />
             </div>
+
             <div>
-              <Label htmlFor="height" className="flex items-center gap-1">
-                Height (cm) <RulerIcon className="w-4 h-4 text-blue-600" />
+              <Label htmlFor="height" className="mb-1 flex items-center gap-1">
+                Height (cm) <Flag className="w-4 h-4 text-blue-600" />
               </Label>
               <Input
                 id="height"
                 type="number"
                 min={100}
                 max={250}
+                step={0.1}
                 placeholder="e.g. 175"
                 value={inputs.height}
                 onChange={(e) => handleInputChange("height", e.target.value)}
               />
             </div>
+
             <div>
-              <Label htmlFor="activityLevel" className="flex items-center gap-1">
-                Activity Level <Flame className="w-4 h-4 text-blue-600" />
+              <Label htmlFor="bodyFat" className="mb-1 flex items-center gap-1">
+                Body Fat % (optional) <Dumbbell className="w-4 h-4 text-blue-600" />
+              </Label>
+              <Input
+                id="bodyFat"
+                type="number"
+                min={1}
+                max={99}
+                step={0.1}
+                placeholder="e.g. 15"
+                value={inputs.bodyFat}
+                onChange={(e) => handleInputChange("bodyFat", e.target.value)}
+                disabled={inputs.formula !== "cunningham"}
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="activityLevel" className="mb-1 flex items-center gap-1">
+                Activity Level <Activity className="w-4 h-4 text-blue-600" />
               </Label>
               <Select
-                onValueChange={(v) => handleInputChange("activityLevel", v)}
                 value={inputs.activityLevel}
-                id="activityLevel"
+                onValueChange={(v) => handleInputChange("activityLevel", v)}
+                aria-label="Activity Level"
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select activity level" />
@@ -210,24 +284,22 @@ export default function TdeeCalculator() {
                 </SelectContent>
               </Select>
             </div>
+
             <div>
-              <Label htmlFor="sportAdjustment" className="flex items-center gap-1">
-                Sport-Specific Adjustment <Dumbbell className="w-4 h-4 text-blue-600" />
+              <Label htmlFor="formula" className="mb-1 flex items-center gap-1">
+                Formula <Calculator className="w-4 h-4 text-blue-600" />
               </Label>
               <Select
-                onValueChange={(v) => handleInputChange("sportAdjustment", v)}
-                value={inputs.sportAdjustment}
-                id="sportAdjustment"
+                value={inputs.formula}
+                onValueChange={(v) => handleInputChange("formula", v)}
+                aria-label="Formula"
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select sport type" />
+                  <SelectValue placeholder="Select formula" />
                 </SelectTrigger>
                 <SelectContent>
-                  {sportSpecificAdjustments.map(({ label, multiplier }) => (
-                    <SelectItem key={multiplier} value={multiplier.toString()}>
-                      {label}
-                    </SelectItem>
-                  ))}
+                  <SelectItem value="miffinStJeor">Mifflin-St Jeor (General Population)</SelectItem>
+                  <SelectItem value="cunningham">Cunningham (Athletes, uses Body Fat %)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -239,9 +311,10 @@ export default function TdeeCalculator() {
         <Button
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white shadow-md"
           onClick={() => {
-            // Just trigger re-render by setting inputs to current inputs
+            // Just triggers recalculation via state update, no extra action needed
             setInputs((p) => ({ ...p }));
           }}
+          aria-label="Calculate TDEE"
         >
           <Trophy className="mr-2 h-4 w-4" /> Calculate
         </Button>
@@ -249,15 +322,17 @@ export default function TdeeCalculator() {
           variant="outline"
           onClick={() =>
             setInputs({
-              age: "",
               sex: "",
+              age: "",
               weight: "",
               height: "",
+              bodyFat: "",
               activityLevel: "",
-              sportAdjustment: "",
+              formula: "miffinStJeor",
             })
           }
           className="flex-1 h-11"
+          aria-label="Reset inputs"
         >
           <RotateCcw className="mr-2 h-4 w-4" /> Reset
         </Button>
@@ -267,17 +342,12 @@ export default function TdeeCalculator() {
         <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-950 border-blue-200 shadow-lg">
           <CardContent className="p-8 text-center">
             <p className="text-5xl font-extrabold text-blue-900 dark:text-white">{results.value}</p>
-            <p className="mt-2 text-lg font-medium text-blue-700 dark:text-blue-300">{results.label}</p>
-            <p className="mt-1 text-sm text-blue-600 dark:text-blue-400">{results.subtext}</p>
+            <p className="mt-2 text-lg font-semibold text-blue-700 dark:text-blue-300">{results.label}</p>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{results.subtext}</p>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">BMR: {results.bmr}</p>
             {results.warning && (
               <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center justify-center gap-1">
                 <AlertTriangle className="w-4 h-4" /> {results.warning}
-              </p>
-            )}
-            {results.formulaUsed && (
-              <p className="mt-4 text-xs italic text-slate-600 dark:text-slate-400">
-                <Calculator className="inline w-4 h-4 mr-1" />
-                <strong>Formula used:</strong> {results.formulaUsed}
               </p>
             )}
           </CardContent>
@@ -293,63 +363,63 @@ export default function TdeeCalculator() {
           Understanding TDEE Calculator (Sports)
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Total Daily Energy Expenditure (TDEE) is the total number of calories an individual burns in a day,
-          encompassing basal metabolic rate (BMR), physical activity, and exercise. For athletes, understanding
-          TDEE is essential to tailor nutrition plans that support training demands, recovery, and performance
-          goals. This calculator uses the scientifically validated Mifflin-St Jeor equation to estimate BMR,
-          then adjusts for activity level and sport-specific energy demands to provide a precise calorie
-          requirement estimate.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The inclusion of sport-specific multipliers reflects the unique metabolic demands of different
-          athletic disciplines, such as endurance sports requiring sustained energy output or strength sports
-          emphasizing muscle repair and growth. By integrating these factors, this tool offers a comprehensive
-          and authoritative estimate of energy needs for athletes at various training intensities.
+          Total Daily Energy Expenditure (TDEE) is the total number of calories your body burns in a day,
+          encompassing basal metabolic rate (BMR), physical activity, and the thermic effect of food. For
+          athletes and highly active individuals, accurately estimating TDEE is essential to ensure adequate
+          energy intake for optimal performance, recovery, and body composition management. This calculator
+          integrates scientifically validated formulas tailored for both general populations and athletes,
+          allowing you to select the method that best fits your physiology and training demands. By considering
+          factors such as body fat percentage and activity level, it provides a comprehensive estimate of your
+          daily caloric needs.
         </p>
       </section>
 
       <section id="how-to" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To obtain an accurate TDEE estimate, input your age, sex, weight, and height using metric units.
-          Select your typical daily activity level based on your training frequency and intensity. Then,
-          choose the sport-specific adjustment that best matches your primary athletic discipline. This
-          adjustment accounts for the additional energy demands unique to your sport.
+          To obtain an accurate TDEE estimate, input your biological sex, age, weight, and height. If you
+          choose the Cunningham formula, also provide your body fat percentage, as it calculates BMR based on
+          fat-free mass. Select your typical activity level from the dropdown, which reflects your average
+          daily training volume and lifestyle activity. Finally, choose the formula that best suits your
+          profile—Mifflin-St Jeor for general use or Cunningham for athletes with known body composition.
+          Press Calculate to see your estimated TDEE and BMR values.
         </p>
         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
           <li>
-            <strong>Step 1:</strong> Enter your age in years (10-80), sex (male or female), weight in kilograms,
-            and height in centimeters.
+            <strong>Step 1:</strong> Select your sex (male or female) to account for physiological differences in
+            metabolism.
           </li>
           <li>
-            <strong>Step 2:</strong> Select your general activity level reflecting your daily exercise routine.
+            <strong>Step 2:</strong> Enter your age in years, as metabolic rate declines slightly with age.
           </li>
           <li>
-            <strong>Step 3:</strong> Choose the sport-specific multiplier that aligns with your primary training
-            focus to adjust for specialized energy needs.
+            <strong>Step 3:</strong> Input your current weight in kilograms and height in centimeters for accurate
+            basal metabolic calculations.
           </li>
           <li>
-            <strong>Step 4:</strong> Click "Calculate" to view your estimated Total Daily Energy Expenditure.
+            <strong>Step 4:</strong> If using the Cunningham formula, provide your body fat percentage to estimate
+            fat-free mass.
           </li>
           <li>
-            <strong>Step 5:</strong> Use this estimate to guide your daily calorie intake for optimal performance
-            and recovery.
+            <strong>Step 5:</strong> Choose your activity level that best represents your daily physical activity
+            and training intensity.
+          </li>
+          <li>
+            <strong>Step 6:</strong> Select the formula appropriate for your profile and click Calculate to view
+            results.
           </li>
         </ul>
       </section>
 
       <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Training Tips & Strategy</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Training Tips &amp; Strategy</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Monitoring your TDEE regularly is vital, especially during periods of increased training volume or
-          intensity. Adjust your calorie intake accordingly to avoid energy deficits that can impair recovery
-          and performance. Incorporate nutrient timing strategies, such as consuming carbohydrates before and
-          after training sessions, to maximize glycogen replenishment and muscle repair.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Additionally, consider consulting with a sports dietitian to personalize your nutrition plan based
-          on your specific goals, body composition, and metabolic responses. Remember that hydration, sleep,
-          and stress management also play critical roles in optimizing energy balance and athletic output.
+          Understanding your TDEE allows you to tailor your nutrition and training strategies effectively. For
+          athletes aiming to build muscle or improve performance, consuming a slight caloric surplus aligned
+          with your TDEE can support recovery and adaptation. Conversely, for fat loss, a moderate caloric
+          deficit while maintaining training intensity is recommended. Regularly reassess your TDEE as your
+          body composition and training volume change to ensure your energy intake remains optimal. Additionally,
+          prioritize nutrient timing around training sessions to maximize energy availability and recovery.
         </p>
       </section>
 
@@ -367,9 +437,12 @@ export default function TdeeCalculator() {
 
       {/* REFERENCES SECTION */}
       <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References &amp; Additional Resources
+        </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For more information on training science and nutrition guidelines, consult the following authoritative sources:
+          For more information on training science, energy expenditure, and nutrition for athletes, consult the
+          following authoritative sources:
         </p>
         <ul className="space-y-4">
           <li>
@@ -382,7 +455,8 @@ export default function TdeeCalculator() {
               American College of Sports Medicine <ExternalLink className="w-3 h-3" />
             </a>
             <p className="text-sm text-slate-500 mt-1">
-              The ACSM is a global leader in sports medicine and exercise science research, providing evidence-based guidelines for athletes.
+              Global leader in sports medicine and exercise science research, providing evidence-based guidelines
+              for athletes.
             </p>
           </li>
           <li>
@@ -395,57 +469,28 @@ export default function TdeeCalculator() {
               National Strength and Conditioning Association (NSCA) <ExternalLink className="w-3 h-3" />
             </a>
             <p className="text-sm text-slate-500 mt-1">
-              The NSCA offers comprehensive resources on strength training, conditioning, and athlete performance optimization.
+              Provides research and certification for strength and conditioning professionals, focusing on
+              athlete performance optimization.
             </p>
           </li>
           <li>
             <a
-              href="https://www.runnersworld.com/nutrition-weight-loss/a20865688/how-to-calculate-your-tdee/"
+              href="https://www.fifa.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-bold text-blue-600 hover:underline flex items-center gap-1"
             >
-              Runner's World: How to Calculate Your TDEE <ExternalLink className="w-3 h-3" />
+              Fédération Internationale de Football Association (FIFA) <ExternalLink className="w-3 h-3" />
             </a>
             <p className="text-sm text-slate-500 mt-1">
-              A practical guide explaining TDEE calculation with considerations for athletes and endurance training.
+              Offers insights into athlete conditioning and nutrition strategies used at the highest levels of
+              sport.
             </p>
           </li>
         </ul>
       </section>
     </div>
   );
-
-  // Example scenario demonstrating calculation
-  const example = {
-    title: "Real Life Example",
-    scenario:
-      "A 28-year-old male endurance runner, weighing 68 kg and 175 cm tall, trains 6 days a week with high intensity.",
-    steps: [
-      {
-        label: "Step 1",
-        explanation:
-          "Input age (28), sex (male), weight (68 kg), and height (175 cm).",
-      },
-      {
-        label: "Step 2",
-        explanation:
-          "Select 'Very active' for activity level (1.725) reflecting intense training frequency.",
-      },
-      {
-        label: "Step 3",
-        explanation:
-          "Choose 'Endurance athlete' sport adjustment multiplier (1.1) to account for increased metabolic demands.",
-      },
-      {
-        label: "Step 4",
-        explanation:
-          "Calculate: BMR = 10*68 + 6.25*175 - 5*28 + 5 = 1663 kcal. Then TDEE = 1663 × 1.725 × 1.1 ≈ 3158 kcal/day.",
-      },
-    ],
-    result:
-      "The athlete's estimated TDEE is approximately 3158 kcal/day, guiding appropriate daily calorie intake for performance and recovery.",
-  };
 
   return (
     <CalculatorVerticalLayout
@@ -455,46 +500,50 @@ export default function TdeeCalculator() {
       editorial={editorial}
       jsonLd={faqJsonLd}
       formula={{
-        title: "Formula",
-        formula: "TDEE = BMR × Activity Factor × Sport-Specific Multiplier",
+        title: "Formulas Used",
+        formula:
+          "BMR (Mifflin-St Jeor) = 10 × weight (kg) + 6.25 × height (cm) - 5 × age (years) + 5 (male) or -161 (female)\n" +
+          "BMR (Cunningham) = 500 + 22 × Fat-Free Mass (kg)\n" +
+          "TDEE = BMR × Activity Level Multiplier",
         variables: [
-          "BMR = Basal Metabolic Rate (Mifflin-St Jeor Equation)",
-          "Activity Factor = Multiplier based on daily activity level",
-          "Sport-Specific Multiplier = Adjustment for sport training demands",
+          { symbol: "weight", description: "Body weight in kilograms" },
+          { symbol: "height", description: "Height in centimeters" },
+          { symbol: "age", description: "Age in years" },
+          { symbol: "Fat-Free Mass", description: "Lean body mass in kilograms" },
+          { symbol: "Activity Level Multiplier", description: "Factor based on daily physical activity" },
         ],
       }}
-      example={example}
+      example={{
+        title: "Real Life Example",
+        scenario:
+          "A 28-year-old male athlete weighing 75 kg, 180 cm tall, with 12% body fat, training twice daily with very high activity.",
+        steps: [
+          {
+            label: "Step 1",
+            explanation:
+              "Select 'male' for sex, enter age as 28, weight as 75 kg, height as 180 cm, and body fat as 12%.",
+          },
+          {
+            label: "Step 2",
+            explanation:
+              "Choose 'Athlete (high volume training, multiple sessions/day)' for activity level (multiplier 2.0).",
+          },
+          {
+            label: "Step 3",
+            explanation:
+              "Select the Cunningham formula to calculate BMR based on fat-free mass, then click Calculate.",
+          },
+        ],
+        result:
+          "The calculator estimates a BMR of approximately 1,940 kcal/day and a TDEE of 3,880 kcal/day, reflecting the athlete's high energy demands.",
+      }}
       relatedCalculators={[
-        {
-          title: "Heart-Rate Zones Calculator (Karvonen Method)",
-          url: "/sports/heart-rate-zones-karvonen",
-          icon: "Flame",
-        },
-        {
-          title: "Race Time Predictor (Riegel Formula)",
-          url: "/sports/race-time-predictor-riegel",
-          icon: "Trophy",
-        },
-        {
-          title: "Swim Interval Pace Calculator",
-          url: "/sports/swim-interval-pace",
-          icon: "Activity",
-        },
-        {
-          title: "Target Heart Rate / RPE Zones",
-          url: "/sports/target-heart-rate-rpe-zones",
-          icon: "Trophy",
-        },
-        {
-          title: "FINA Points Calculator",
-          url: "/sports/fina-points-calculator",
-          icon: "Waves",
-        },
-        {
-          title: "Swimming Power Points Calculator",
-          url: "/sports/swimming-power-points",
-          icon: "Waves",
-        },
+        { title: "Running Pace / Split / Finish Time Calculator", url: "/sports/running-pace-split-finish-time", icon: "🏃" },
+        { title: "VO2max Estimator (Cooper/Rockport Test)", url: "/sports/vo2max-estimator-cooper-rockport", icon: "🏆" },
+        { title: "Calorie Deficit / Surplus Calculator", url: "/sports/calorie-deficit-surplus", icon: "🔥" },
+        { title: "Target Heart Rate / RPE Zones", url: "/sports/target-heart-rate-rpe-zones", icon: "🏆" },
+        { title: "Negative Split Race Planner", url: "/sports/negative-split", icon: "🏆" },
+        { title: "Swim Pace: CSS (Critical Swim Speed) & Splits", url: "/sports/swim-pace-css-splits", icon: "🏃" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },
@@ -507,23 +556,5 @@ export default function TdeeCalculator() {
       showSidebar
       showBottomBanner
     />
-  );
-}
-
-// Helper icon for height input (not in lucide-react, so create inline SVG)
-function RulerIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      viewBox="0 0 24 24"
-    >
-      <path d="M3 21v-18h18v18z" />
-      <path d="M7 7v10M11 7v10M15 7v10" />
-    </svg>
   );
 }
