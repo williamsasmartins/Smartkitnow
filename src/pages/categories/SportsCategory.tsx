@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import AdBannerTop from "../../components/ads/AdBannerTop";
 import AdSidebarRight from "../../components/ads/AdSidebarRight";
 import EmojiIcon from "../../components/ui/EmojiIcon";
-import ShareBox from "../../components/share/ShareBox";
-import SuggestBoxInline from "../../components/contact/SuggestBoxInline";
+import ShareThisPageBox from "@/components/ShareThisPageBox";
+import SuggestionBox from "@/components/SuggestionBox";
 import SEOHead from "@/components/SEOHead";
 
 // Mirror structure of FinancialCategory
@@ -182,9 +182,9 @@ export default function SportsCategory() {
             />
 
             {/* bottom boxes: Share + Suggest */}
-            <div className="mt-14 grid gap-6 md:grid-cols-2">
-              <ShareBox />
-              <SuggestBoxInline />
+            <div className="mt-14 space-y-6">
+              <ShareThisPageBox />
+              <SuggestionBox />
             </div>
           </div>
 
