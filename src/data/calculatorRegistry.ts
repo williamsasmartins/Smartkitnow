@@ -4248,6 +4248,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/TdeeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "plank-hold-progression",
+    title: "Plank / Hold Time Progression",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Track core strength progression. Log and plan plank hold times to gradually build abdominal endurance and stability.",
+    loader: () => import("@/components/calculators/Sports/PlankHoldProgressionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
