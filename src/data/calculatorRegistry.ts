@@ -3969,6 +3969,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BeverageMixEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "coffee-urn-yield-strength",
+    title: "Coffee Urn Yield & Strength Calculator",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Brew coffee for a crowd. Calculate the coffee grounds-to-water ratio for large urns to ensure the perfect strength.",
+    loader: () => import("@/components/calculators/Misc/CoffeeUrnYieldStrengthCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
