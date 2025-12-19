@@ -4320,6 +4320,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/FantasyTeamPointsProjectionsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "betting-odds-payout-calculator",
+    title: "Betting Odds & Payout Calculator",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Calculate potential betting payouts. Convert between Decimal, Fractional, and Moneyline odds to see your return.",
+    loader: () => import("@/components/calculators/Sports/BettingOddsPayoutCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
