@@ -4347,6 +4347,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/ExpectedGoalsXgHelperCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "basketball-efg-ts",
+    title: "Basketball eFG% & TS% Calculator",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Calculate Effective Field Goal and True Shooting percentage. Measure basketball scoring efficiency accurately.",
+    loader: () => import("@/components/calculators/Sports/BasketballEfgTsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
