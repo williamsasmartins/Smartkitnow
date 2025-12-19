@@ -9,7 +9,7 @@ export type GameRegistryEntry = {
   comingSoon?: boolean;
 };
 
-const DEFAULT_LOADER = () => import("@/components/games/ComingSoonGame");
+const DEFAULT_LOADER = () => import("../components/games/ComingSoonGame");
 
 // Manter como array facilita ordenar/listar na página /games
 const GAMES: GameRegistryEntry[] = [

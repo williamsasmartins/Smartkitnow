@@ -1,16 +1,16 @@
 // src/components/templates/GamePageLayout.tsx
-
 import { useCallback } from "react";
+import type { ReactNode } from "react";
 
 type OnThisPageItem = { id: string; label: string };
 
 type Props = {
   title: string;
   description?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   onThisPage?: OnThisPageItem[];
-  below?: React.ReactNode;
-  rightRail?: React.ReactNode;
+  below?: ReactNode;
+  rightRail?: ReactNode;
 
   showTopBannerPlaceholder?: boolean;
   showBottomBannerPlaceholder?: boolean;

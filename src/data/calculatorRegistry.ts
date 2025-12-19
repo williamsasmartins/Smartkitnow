@@ -3879,10 +3879,6 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CaffeineMaxPerDayCalculator"),
     urlStyle: "flat"
   },
-    {
-    slug: "screen-time-pomodoro-planner",
-    title: "Screen Time Budget / Pomodoro Planner",
-    category
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
