@@ -3924,6 +3924,186 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BmrCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "body-fat-percentage",
+    title: "Body Fat Percentage Calculator",
+    category: "everyday",
+    subcategory: "health-wellness-sleep",
+    description: "Estimate body fat percentage from home. Use simple tape measurements to track your fitness progress over time.",
+    loader: () => import("@/components/calculators/Misc/BodyFatPercentageCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "party-food-drinks-planner",
+    title: "Party Food & Drinks Planner",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Plan party food and drink quantities. Calculate exactly how many servings, pizzas, and beverages you need for your guest list.",
+    loader: () => import("@/components/calculators/Misc/PartyFoodDrinksPlannerCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "ice-quantity-beverages",
+    title: "Ice Quantity for Beverages Calculator",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Calculate ice needed for parties. Estimate bags of ice required for drinks and cooling based on guest count and duration.",
+    loader: () => import("@/components/calculators/Misc/IceQuantityBeveragesCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "buffet-pan-capacity-count",
+    title: "Buffet Serving Pan Capacity & Count",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Plan buffet quantities. Calculate how much food fits in standard hotel pans to ensure you feed everyone without running out.",
+    loader: () => import("@/components/calculators/Misc/BuffetPanCapacityCountCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "beverage-mix-estimator",
+    title: "Wine/Beer/Soft Drink Mix Estimator",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Estimate the beverage mix for events. Calculate the ratio of wine, beer, and soft drinks needed based on guest preferences.",
+    loader: () => import("@/components/calculators/Misc/BeverageMixEstimatorCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "coffee-urn-yield-strength",
+    title: "Coffee Urn Yield & Strength Calculator",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Brew coffee for a crowd. Calculate the coffee grounds-to-water ratio for large urns to ensure the perfect strength.",
+    loader: () => import("@/components/calculators/Misc/CoffeeUrnYieldStrengthCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "leftovers-cooling-reheat-time",
+    title: "Leftovers Cooling & Reheat Time",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Handle leftovers safely. Estimate cooling times and safe reheating duration to prevent food spoilage after big meals.",
+    loader: () => import("@/components/calculators/Misc/LeftoversCoolingReheatTimeCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "event-budget-calculator",
+    title: "Event Budget Calculator",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Create a comprehensive event budget. Track expenses for venue, food, and entertainment to keep your party planning on track.",
+    loader: () => import("@/components/calculators/Misc/EventBudgetCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "event-capacity-calculator",
+    title: "Event Capacity Calculator",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Calculate venue capacity. Determine how many guests can safely fit in a room based on square footage and seating layout.",
+    loader: () => import("@/components/calculators/Misc/EventCapacityCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "mulch-coverage-bag-count",
+    title: "Mulch Coverage & Bag Count Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Calculate mulch coverage and bags needed. Determine the cubic yards or bags of mulch required for your garden beds.",
+    loader: () => import("@/components/calculators/Misc/MulchCoverageBagCountCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "garden-soil-compost-volume",
+    title: "Garden Soil/Compost Volume Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Calculate soil volume for raised beds. Find out exactly how much topsoil or compost you need to fill your garden planters.",
+    loader: () => import("@/components/calculators/Misc/GardenSoilCompostVolumeCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "lawn-mowing-time-fuel",
+    title: "Lawn Mowing Time & Fuel Planner",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Estimate lawn mowing time. Calculate how long it takes to mow your yard and the fuel required based on mower size.",
+    loader: () => import("@/components/calculators/Misc/LawnMowingTimeFuelCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "hose-runtime-flow-rate",
+    title: "Hose Runtime vs Flow Rate Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Calculate hose runtime for watering. Determine how long to run your sprinkler to deliver a specific amount of water.",
+    loader: () => import("@/components/calculators/Misc/HoseRuntimeFlowRateCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "rainwater-barrel-days-supply",
+    title: "Rainwater Barrel Days of Supply",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Estimate rainwater supply duration. Calculate how long your rain barrel will last during dry spells based on garden usage.",
+    loader: () => import("@/components/calculators/Misc/RainwaterBarrelDaysSupplyCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "grass-seed-quantity",
+    title: "Grass Seed Quantity Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Calculate grass seed needed. Determine the pounds of seed required to overseed or plant a new lawn based on area.",
+    loader: () => import("@/components/calculators/Misc/GrassSeedQuantityCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "square-footage-calculator",
+    title: "Square Footage Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Calculate square footage for lawns and gardens. Measure the total area of your outdoor space for landscaping projects.",
+    loader: () => import("@/components/calculators/Misc/SquareFootageCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "planting-calendar-frost-date",
+    title: "Planting Calendar & Frost Date Finder",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Find your planting dates. Determine the best time to sow seeds based on local frost dates and your hardiness zone.",
+    loader: () => import("@/components/calculators/Misc/PlantingCalendarFrostDateCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "plant-spacing-calculator",
+    title: "Plant Spacing Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Optimize your garden layout. Calculate the ideal spacing between plants to maximize yield and prevent overcrowding.",
+    loader: () => import("@/components/calculators/Misc/PlantSpacingCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "fertilizer-application-calculator",
+    title: "Fertilizer Application Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Calculate fertilizer application rates. Determine the correct amount of nitrogen, phosphorus, and potassium for your lawn area.",
+    loader: () => import("@/components/calculators/Misc/FertilizerApplicationCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "running-pace-split-finish-time",
+    title: "Running Pace / Split / Finish Time Calculator",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Calculate your running pace and finish times. Determine the splits needed to achieve your marathon or 5K personal best.",
+    loader: () => import("@/components/calculators/Sports/RunningPaceSplitFinishTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
