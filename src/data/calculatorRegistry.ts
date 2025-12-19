@@ -3987,6 +3987,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LeftoversCoolingReheatTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "event-budget-calculator",
+    title: "Event Budget Calculator",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Create a comprehensive event budget. Track expenses for venue, food, and entertainment to keep your party planning on track.",
+    loader: () => import("@/components/calculators/Misc/EventBudgetCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
