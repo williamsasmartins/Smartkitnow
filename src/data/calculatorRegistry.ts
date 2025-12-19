@@ -4239,6 +4239,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/TargetHeartRateRpeZonesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tdee-calculator",
+    title: "TDEE Calculator (Sports)",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Calculate Total Daily Energy Expenditure for athletes. Estimate calorie needs based on high activity levels and training volume.",
+    loader: () => import("@/components/calculators/Sports/TdeeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
