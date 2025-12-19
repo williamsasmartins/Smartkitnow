@@ -4068,6 +4068,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SquareFootageCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "planting-calendar-frost-date",
+    title: "Planting Calendar & Frost Date Finder",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Find your planting dates. Determine the best time to sow seeds based on local frost dates and your hardiness zone.",
+    loader: () => import("@/components/calculators/Misc/PlantingCalendarFrostDateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
