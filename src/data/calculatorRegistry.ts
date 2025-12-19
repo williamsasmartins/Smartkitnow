@@ -4077,6 +4077,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PlantingCalendarFrostDateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "plant-spacing-calculator",
+    title: "Plant Spacing Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Optimize your garden layout. Calculate the ideal spacing between plants to maximize yield and prevent overcrowding.",
+    loader: () => import("@/components/calculators/Misc/PlantSpacingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
