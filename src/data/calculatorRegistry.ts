@@ -3924,15 +3924,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BmrCalculator"),
     urlStyle: "flat"
   },
-    {
-    slug: "body-fat-percentage",
-    title: "Body Fat Percentage Calculator",
-    category: "everyday",
-    subcategory: "health-wellness-sleep",
-    description: "Estimate body fat percentage from home. Use simple tape measurements to track your fitness progress over time.",
-    loader: () => import("@/components/calculators/Misc/BodyFatPercentageCalculator"),
-    urlStyle: "flat"
-  },
+    
     {
     slug: "party-food-drinks-planner",
     title: "Party Food & Drinks Planner",
@@ -4257,24 +4249,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/PlankHoldProgressionCalculator"),
     urlStyle: "flat"
   },
-    {
-    slug: "wilks-coefficient",
-    title: "Wilks Coefficient Calculator",
-    category: "sports",
-    subcategory: "strength-lifting-conditioning",
-    description: "Calculate your Wilks Score. Compare powerlifting strength across different body weight categories fairly.",
-    loader: () => import("@/components/calculators/Sports/WilksCoefficientCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "plate-loading",
-    title: "Plate Loading Calculator",
-    category: "sports",
-    subcategory: "strength-lifting-conditioning",
-    description: "Calculate barbell plate loading. Find the exact combination of plates needed to reach a specific target weight on the bar.",
-    loader: () => import("@/components/calculators/Sports/PlateLoadingCalculator"),
-    urlStyle: "flat"
-  },
+    
+    
     {
     slug: "macronutrient-calculator",
     title: "Macronutrient Calculator (Sports)",
