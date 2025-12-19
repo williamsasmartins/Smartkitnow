@@ -185,13 +185,15 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const padding = 12;
       const cw = containerRef.current?.clientWidth ?? window.innerWidth - 24;
-      const chAvail = Math.max(240, window.innerHeight - 280);
-      const cell = Math.max(
-        10,
-        Math.floor(
-          Math.min((cw - padding * 2) / GRID_W, (chAvail - padding * 2) / GRID_H)
-        )
-      );
+      const rect = containerRef.current?.getBoundingClientRect();
+      const vh =
+        window.visualViewport?.height ??
+        document.documentElement.clientHeight ??
+        window.innerHeight;
+      const top = rect?.top ?? 0;
+      const safeBottom = 140;
+      const chAvail = Math.max(240, vh - top - safeBottom);
+      const cell = Math.max(8, Math.floor(Math.min((cw - padding * 2) / GRID_W, (chAvail - padding * 2) / GRID_H)));
       const w = GRID_W * cell + padding * 2;
       const h = GRID_H * cell + padding * 2;
       canvas.width = Math.floor(w * dpr);
