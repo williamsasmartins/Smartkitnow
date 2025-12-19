@@ -491,7 +491,6 @@ export default function CyclingPowerSpeedEstimatorCalculator() {
       }}
       relatedCalculators={[
         { title: "Training Weight Percentage Calculator", url: "/sports/training-weight-percentage", icon: "🏆" },
-        { title: "Body Fat Percentage Calculator (Athletes)", url: "/sports/body-fat-percentage", icon: "🔥" },
         { title: "Cycling Cadence Calculator", url: "/sports/cycling-cadence", icon: "🏆" },
         { title: "Calorie Deficit / Surplus Calculator", url: "/sports/calorie-deficit-surplus", icon: "🔥" },
         { title: "Golf Expected Putts per Round", url: "/sports/golf-expected-putts-per-round", icon: "⛳" },

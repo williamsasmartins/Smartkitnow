@@ -512,7 +512,6 @@ export default function TargetHeartRateRpeZonesCalculator() {
         result: "The athlete should aim to keep their heart rate between 151 and 164 bpm during training, with a target around 158 bpm for RPE 11.",
       }}
       relatedCalculators={[
-        { title: "Plate Loading Calculator", url: "/sports/plate-loading", icon: "🏋️" },
         { title: "Pool Length Time Converter (SCY/SCM/LCM)", url: "/sports/pool-length-time-converter", icon: "🏊" },
         { title: "Tennis Serve Speed Calculator", url: "/sports/tennis-serve-speed", icon: "⚽" },
         { title: "Yoga Calories Burned Calculator", url: "/sports/yoga-calories-burned", icon: "🔥" },

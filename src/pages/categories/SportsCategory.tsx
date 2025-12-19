@@ -157,7 +157,7 @@ export default function SportsCategory() {
             <Section
               emoji="🏋️"
               title={`Strength, Lifting & Conditioning (${strengthConditioning.length})`}
-              description="1RM, training percentages, HR/RPE zones, TDEE, plank progression, Wilks, body fat, plate loading, macronutrients, calorie deficit/surplus, fitness age, yoga calories."
+              description="1RM, training percentages, HR/RPE zones, TDEE, plank progression, macronutrients, calorie deficit/surplus, fitness age, yoga calories."
               items={strengthConditioning}
               base="/sports"
             />
