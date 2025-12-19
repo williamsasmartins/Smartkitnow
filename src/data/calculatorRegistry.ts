@@ -3960,6 +3960,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BuffetPanCapacityCountCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "beverage-mix-estimator",
+    title: "Wine/Beer/Soft Drink Mix Estimator",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Estimate the beverage mix for events. Calculate the ratio of wine, beer, and soft drinks needed based on guest preferences.",
+    loader: () => import("@/components/calculators/Misc/BeverageMixEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
