@@ -4212,6 +4212,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/SwimIntervalPaceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "one-rep-max-1rm",
+    title: "One-Rep Max (1RM) Calculator",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Calculate your One-Rep Max (1RM). safely estimate your maximum lifting potential for bench press, squat, and deadlift.",
+    loader: () => import("@/components/calculators/Sports/OneRepMax1rmCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
