@@ -269,6 +269,13 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
     return turn === "human" ? "Your turn" : "AI is thinking…";
   }, [winner.winner, turn]);
 
+  const overlayText = useMemo(() => {
+    if (winner.winner === "R") return "You won!";
+    if (winner.winner === "Y") return "The AI won!";
+    if (winner.winner === "draw") return "Draw!";
+    return "";
+  }, [winner.winner]);
+
   function resetGame(nextDifficulty?: Difficulty) {
     if (aiTimer.current) {
       window.clearTimeout(aiTimer.current);
@@ -540,4 +547,97 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
           <ul className="list-disc pl-6 space-y-2">
             <li>Click a column to drop your dot.</li>
             <li>Win by connecting four in a row: horizontal, vertical, or diagonal.</li>
-            <li>If the board fills up with no
+            <li>If the board fills up with no winner, the game is a draw.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  );
+
+  return (
+    <GamePageLayout
+      title={pageTitle}
+      description={pageDescription}
+      rightRail={rightRail}
+      below={below}
+      onThisPage={[
+        { id: "how-to-play", label: "How to play" },
+      ]}
+    >
+      <div className="flex flex-col items-center">
+        <div className="mb-3 text-sm text-slate-700 dark:text-slate-300">
+          Click a column to drop your dot.
+        </div>
+        <div className="flex gap-2">
+          {Array.from({ length: COLS }).map((_, c) => {
+            const dropAvailable = getDropRow(board, c) !== -1;
+            const isHover = hoverCol === c && turn === "human" && dropAvailable && !winner.winner;
+            return (
+              <div
+                key={c}
+                className="flex flex-col items-center gap-2"
+                onMouseEnter={() => setHoverCol(c)}
+                onMouseLeave={() => setHoverCol(null)}
+              >
+                <button
+                  type="button"
+                  className={`h-8 w-8 rounded-full border ${isHover ? "border-[#5c82ee] bg-[#5c82ee]/10" : "border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950"}`}
+                  onClick={() => handleDrop(c)}
+                  aria-label={`Drop in column ${c + 1}`}
+                  disabled={!dropAvailable || !!winner.winner || turn !== "human"}
+                />
+                {Array.from({ length: ROWS }).map((_, r) => {
+                  const cell = board[r][c];
+                  const isLast = lastMove && lastMove.r === r && lastMove.c === c;
+                  const isWinCell = winningSet.has(`${r}:${c}`);
+                  const base = "h-10 w-10 rounded-full border transition-colors";
+                  const empty = "border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800";
+                  const red = `border-red-400 bg-gradient-to-br from-red-400 to-red-600 ${isWinCell ? "ring-2 ring-red-300" : ""}`;
+                  const yellow = `border-yellow-400 bg-gradient-to-br from-yellow-300 to-yellow-500 ${isWinCell ? "ring-2 ring-yellow-300" : ""}`;
+                  const cls = cell === "R" ? red : cell === "Y" ? yellow : empty;
+                  return (
+                    <div
+                      key={`${r}-${c}`}
+                      className={`${base} ${cls} ${isLast ? "outline outline-2 outline-[#5c82ee]" : ""}`}
+                    />
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+        {winner.winner ? (
+          <div
+            className="fixed inset-0 z-50 grid place-items-center bg-black/40"
+            role="alertdialog"
+            aria-modal="true"
+            aria-live="assertive"
+          >
+            <div className="relative w-[min(92vw,560px)] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-8">
+              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[#5c82ee]/20 via-fuchsia-400/20 to-amber-300/20 blur-2xl" aria-hidden />
+              <div className="relative">
+                <div className="mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs">
+                  <Sparkles className="h-4 w-4 text-[#5c82ee]" />
+                  Victory
+                </div>
+                <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                  {overlayText}
+                </h3>
+                <p className="mt-2 text-slate-600 dark:text-slate-300">
+                  {winner.winner === "draw"
+                    ? "The board is full and nobody connected four. Click Restart to play again."
+                    : "Four dots of the same color connected. Click Restart to play again."}
+                </p>
+                <div className="mt-6">
+                  <Button type="button" className="w-full" onClick={() => resetGame()}>
+                    Restart Game
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </GamePageLayout>
+  );
+}

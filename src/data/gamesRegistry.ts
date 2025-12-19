@@ -16,9 +16,9 @@ const GAMES: GameRegistryEntry[] = [
   {
     slug: "join-dots-connect-four",
     title: "Join Dots (Connect Four)",
-    description: "Play Connect Four in a clean UI. Full version coming soon.",
-    loader: DEFAULT_LOADER,
-    comingSoon: true,
+    description: "Play Connect Four in a clean UI with AI. Three difficulty levels.",
+    loader: () => import("../components/games/JoinDotsConnectFour"),
+    comingSoon: false,
   },
 
   { slug: "neon-snake", title: "Neon Snake", description: "Classic Snake with a neon feel. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
