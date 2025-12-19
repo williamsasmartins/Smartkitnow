@@ -3923,6 +3923,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BmrCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "body-fat-percentage",
+    title: "Body Fat Percentage Calculator",
+    category: "everyday",
+    subcategory: "health-wellness-sleep",
+    description: "Estimate body fat percentage from home. Use simple tape measurements to track your fitness progress over time.",
+    loader: () => import("@/components/calculators/Misc/BodyFatPercentageCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
