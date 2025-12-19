@@ -39,6 +39,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
   const audioCtxRef = useRef<AudioContext | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const swipeStartRef = useRef<{ x: number; y: number } | null>(null);
   const loopRef = useRef<number | null>(null);
   const lastTickRef = useRef<number>(0);
   const [redrawTick, setRedrawTick] = useState(0);
@@ -379,43 +380,42 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       onThisPage={[{ id: "how-to-play", label: "How to play" }]}
     >
       <div className="flex flex-col items-center">
-        <div ref={containerRef} className="w-full max-w-[min(92vw,600px)]">
+        <div ref={containerRef} className="w-full max-w-[420px]">
           <canvas
           ref={canvasRef}
           // Make canvas focusable so keyboard input works consistently across browsers
           tabIndex={0}
-          onPointerDown={() => canvasRef.current?.focus()}
-          onTouchStart={(e) => {
-            const t = e.changedTouches[0];
-            (canvasRef.current as any).__sx = t.clientX;
-            (canvasRef.current as any).__sy = t.clientY;
+          onPointerDown={(e) => {
+            canvasRef.current?.focus();
+            swipeStartRef.current = { x: e.clientX, y: e.clientY };
           }}
-          onTouchEnd={(e) => {
-            const t = e.changedTouches[0];
-            const sx = (canvasRef.current as any).__sx ?? t.clientX;
-            const sy = (canvasRef.current as any).__sy ?? t.clientY;
-            const dx = t.clientX - sx;
-            const dy = t.clientY - sy;
-            const ax = Math.abs(dx);
-            const ay = Math.abs(dy);
-            if (Math.max(ax, ay) < 24) return;
-            if (ax > ay) {
-              enqueueDir(dx > 0 ? "right" : "left");
-            } else {
-              enqueueDir(dy > 0 ? "down" : "up");
-            }
+          onPointerUp={(e) => {
+            const start = swipeStartRef.current;
+            swipeStartRef.current = null;
+            if (!start) return;
+            const dx = e.clientX - start.x;
+            const dy = e.clientY - start.y;
+            const adx = Math.abs(dx);
+            const ady = Math.abs(dy);
+            const TH = 24;
+            if (adx < TH && ady < TH) return;
+            if (adx > ady) enqueueDir(dx > 0 ? "right" : "left");
+            else enqueueDir(dy > 0 ? "down" : "up");
           }}
+          style={{ touchAction: "none" }}
           className="rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 bg-slate-950"
         />
         </div>
-        {isTouch && started && !end ? (
-          <div className="mt-3 flex items-center justify-center gap-3">
-            <Button type="button" variant="outline" className="h-10 w-10" onClick={() => enqueueDir("up")}>↑</Button>
-            <div className="flex items-center gap-3">
-              <Button type="button" variant="outline" className="h-10 w-10" onClick={() => enqueueDir("left")}>←</Button>
-              <Button type="button" variant="outline" className="h-10 w-10" onClick={() => enqueueDir("right")}>→</Button>
+        {started && !end ? (
+          <div className="mt-4 md:hidden w-full max-w-[420px]">
+            <div className="grid grid-cols-3 gap-2">
+              <div />
+              <Button type="button" variant="outline" className="h-12" onPointerDown={() => enqueueDir("up")}>↑</Button>
+              <div />
+              <Button type="button" variant="outline" className="h-12" onPointerDown={() => enqueueDir("left")}>←</Button>
+              <Button type="button" variant="outline" className="h-12" onPointerDown={() => enqueueDir("down")}>↓</Button>
+              <Button type="button" variant="outline" className="h-12" onPointerDown={() => enqueueDir("right")}>→</Button>
             </div>
-            <Button type="button" variant="outline" className="h-10 w-10" onClick={() => enqueueDir("down")}>↓</Button>
           </div>
         ) : null}
         {/* Start overlay: visible until the user clicks Start. */}
