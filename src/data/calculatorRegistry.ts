@@ -4473,6 +4473,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/TournamentBracketSeedingHelperCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "golf-handicap-calculator",
+    title: "Golf Handicap Calculator",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Calculate your official Golf Handicap. Enter your scores to track improvement and compete fairly with others.",
+    loader: () => import("@/components/calculators/Sports/GolfHandicapCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
