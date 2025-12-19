@@ -102,5 +102,7 @@ export function getGameEntry(slug: string): GameEntry {
     title,
     description: "Interactive game. Coming soon.",
     loader: () => import("@/components/games/ComingSoonGame"),
+    loader: () => import("@/components/games/JoinDotsConnectFour")
+
   };
 }
