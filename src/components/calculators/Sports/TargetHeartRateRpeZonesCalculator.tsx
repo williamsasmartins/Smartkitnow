@@ -6,142 +6,198 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 // ⚠️ FULL ICON IMPORT
-import { Activity, Timer, TrendingUp, Dumbbell, Trophy, Medal, Flag, Flame, Zap, Heart, Scale, Calculator, Info, RotateCcw, AlertTriangle, BookOpen, ExternalLink, Waves, Gauge } from "lucide-react";
+import {
+  Activity,
+  Timer,
+  TrendingUp,
+  Dumbbell,
+  Trophy,
+  Medal,
+  Flag,
+  Flame,
+  Zap,
+  Heart,
+  Scale,
+  Calculator,
+  Info,
+  RotateCcw,
+  AlertTriangle,
+  BookOpen,
+  ExternalLink,
+  Waves,
+  Gauge,
+} from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function TargetHeartRateRpeZonesCalculator() {
   const [inputs, setInputs] = useState({
     age: "",
     restingHeartRate: "",
+    maxHeartRateMethod: "ageBased",
     rpe: "",
   });
-  const handleInputChange = useCallback((n, v) => setInputs(p => ({ ...p, [n]: v })), []);
 
-  /**
-   * Calculates target heart rate zones using the Karvonen formula:
-   * Target HR = ((Max HR − Resting HR) × %Intensity) + Resting HR
-   * Max HR estimated as 220 - age.
-   * RPE zones mapped to %HRmax ranges based on ACSM guidelines.
-   */
-  const results = useMemo(() => {
-    const age = Number(inputs.age);
-    const restingHR = Number(inputs.restingHeartRate);
-    const rpe = Number(inputs.rpe);
+  const handleInputChange = useCallback((name, value) => {
+    setInputs((prev) => ({ ...prev, [name]: value }));
+  }, []);
 
-    if (!age || age < 10 || age > 100) {
-      return {
-        value: null,
-        label: null,
-        subtext: "Please enter a valid age between 10 and 100.",
-        warning: "Invalid age input.",
-        formulaUsed: null,
-      };
+  // Calculate Max Heart Rate based on selected method
+  const maxHeartRate = useMemo(() => {
+    const ageNum = Number(inputs.age);
+    if (!ageNum || ageNum <= 0) return null;
+
+    switch (inputs.maxHeartRateMethod) {
+      case "ageBased":
+        // Traditional formula: 220 - age
+        return 220 - ageNum;
+      case "tanaka":
+        // Tanaka formula: 208 - 0.7 * age
+        return 208 - 0.7 * ageNum;
+      case "gellish":
+        // Gellish formula: 207 - 0.7 * age
+        return 207 - 0.7 * ageNum;
+      default:
+        return 220 - ageNum;
     }
-    if (!restingHR || restingHR < 30 || restingHR > 100) {
+  }, [inputs.age, inputs.maxHeartRateMethod]);
+
+  // Calculate Heart Rate Reserve (HRR)
+  const heartRateReserve = useMemo(() => {
+    const rhr = Number(inputs.restingHeartRate);
+    if (!maxHeartRate || !rhr || rhr <= 0) return null;
+    if (rhr >= maxHeartRate) return null;
+    return maxHeartRate - rhr;
+  }, [maxHeartRate, inputs.restingHeartRate]);
+
+  // Calculate Target Heart Rate Zones based on HRR and RPE
+  // RPE zones mapped to %HRR ranges (approximate)
+  // RPE 6-7: 50-60% HRR (Light)
+  // RPE 8-9: 60-70% HRR (Moderate)
+  // RPE 10-11: 70-80% HRR (Hard)
+  // RPE 12-13: 80-90% HRR (Very Hard)
+  // RPE 14-15: 90-100% HRR (Max Effort)
+  // Source: Borg Scale and ACSM guidelines
+
+  const rpeZones = useMemo(() => {
+    if (!heartRateReserve || !maxHeartRate) return null;
+
+    // Define zones with RPE ranges and %HRR ranges
+    const zones = [
+      {
+        label: "Light",
+        rpeRange: "6-7",
+        hrrPercentRange: [0.50, 0.60],
+      },
+      {
+        label: "Moderate",
+        rpeRange: "8-9",
+        hrrPercentRange: [0.60, 0.70],
+      },
+      {
+        label: "Hard",
+        rpeRange: "10-11",
+        hrrPercentRange: [0.70, 0.80],
+      },
+      {
+        label: "Very Hard",
+        rpeRange: "12-13",
+        hrrPercentRange: [0.80, 0.90],
+      },
+      {
+        label: "Max Effort",
+        rpeRange: "14-15",
+        hrrPercentRange: [0.90, 1.00],
+      },
+    ];
+
+    // Calculate target HR ranges for each zone
+    const zonesWithHR = zones.map((zone) => {
+      const lower = Math.round(heartRateReserve * zone.hrrPercentRange[0] + Number(inputs.restingHeartRate));
+      const upper = Math.round(heartRateReserve * zone.hrrPercentRange[1] + Number(inputs.restingHeartRate));
       return {
-        value: null,
-        label: null,
-        subtext: "Please enter a valid resting heart rate between 30 and 100 bpm.",
-        warning: "Invalid resting heart rate input.",
-        formulaUsed: null,
+        ...zone,
+        targetHRRange: [lower, upper],
       };
+    });
+
+    return zonesWithHR;
+  }, [heartRateReserve, maxHeartRate, inputs.restingHeartRate]);
+
+  // Calculate target heart rate for specific RPE input if valid
+  const targetHeartRateForRPE = useMemo(() => {
+    const rpeNum = Number(inputs.rpe);
+    if (!heartRateReserve || !maxHeartRate) return null;
+    if (!rpeNum || rpeNum < 6 || rpeNum > 15) return null;
+
+    // Map RPE 6-15 linearly to 50%-100% HRR
+    // %HRR = 0.50 + ((RPE - 6) / 9) * 0.50
+    const percentHRR = 0.5 + ((rpeNum - 6) / 9) * 0.5;
+    const targetHR = Math.round(heartRateReserve * percentHRR + Number(inputs.restingHeartRate));
+    return targetHR;
+  }, [inputs.rpe, heartRateReserve, maxHeartRate, inputs.restingHeartRate]);
+
+  // Validation and warnings
+  const warnings = useMemo(() => {
+    const w = [];
+    const ageNum = Number(inputs.age);
+    const rhrNum = Number(inputs.restingHeartRate);
+    const rpeNum = Number(inputs.rpe);
+
+    if (inputs.age && (ageNum < 10 || ageNum > 100)) {
+      w.push("Age should be between 10 and 100 years for accurate calculations.");
     }
-    if (!rpe || rpe < 6 || rpe > 20) {
-      return {
-        value: null,
-        label: null,
-        subtext: "Please enter a valid RPE between 6 and 20.",
-        warning: "Invalid RPE input.",
-        formulaUsed: null,
-      };
+    if (inputs.restingHeartRate && (rhrNum < 30 || rhrNum > 100)) {
+      w.push("Resting Heart Rate should be between 30 and 100 bpm.");
     }
-
-    // Max HR estimate
-    const maxHR = 220 - age;
-
-    // RPE to %HRmax mapping based on Borg scale and ACSM guidelines:
-    // RPE 6-11: Light intensity (50-60% HRmax)
-    // RPE 12-13: Moderate intensity (60-70% HRmax)
-    // RPE 14-16: Hard intensity (70-85% HRmax)
-    // RPE 17-20: Very hard to maximal (85-95% HRmax)
-    let intensityMin, intensityMax, zoneLabel;
-
-    if (rpe >= 6 && rpe <= 11) {
-      intensityMin = 0.50;
-      intensityMax = 0.60;
-      zoneLabel = "Light Intensity Zone";
-    } else if (rpe >= 12 && rpe <= 13) {
-      intensityMin = 0.60;
-      intensityMax = 0.70;
-      zoneLabel = "Moderate Intensity Zone";
-    } else if (rpe >= 14 && rpe <= 16) {
-      intensityMin = 0.70;
-      intensityMax = 0.85;
-      zoneLabel = "Hard Intensity Zone";
-    } else if (rpe >= 17 && rpe <= 20) {
-      intensityMin = 0.85;
-      intensityMax = 0.95;
-      zoneLabel = "Very Hard to Maximal Intensity Zone";
-    } else {
-      return {
-        value: null,
-        label: null,
-        subtext: "RPE value out of expected range.",
-        warning: "Invalid RPE input.",
-        formulaUsed: null,
-      };
+    if (inputs.rpe && (rpeNum < 6 || rpeNum > 15)) {
+      w.push("RPE should be between 6 and 15 according to the Borg scale.");
     }
+    if (heartRateReserve !== null && heartRateReserve <= 0) {
+      w.push("Resting Heart Rate must be less than Max Heart Rate.");
+    }
+    return w.length > 0 ? w : null;
+  }, [inputs.age, inputs.restingHeartRate, inputs.rpe, heartRateReserve]);
 
-    // Karvonen formula for target HR range
-    const targetHRMin = Math.round(((maxHR - restingHR) * intensityMin) + restingHR);
-    const targetHRMax = Math.round(((maxHR - restingHR) * intensityMax) + restingHR);
-
-    return {
-      value: `${targetHRMin} - ${targetHRMax} bpm`,
-      label: zoneLabel,
-      subtext: `Based on your age (${age}), resting HR (${restingHR} bpm), and RPE (${rpe}), your target heart rate zone is estimated.`,
-      warning: null,
-      formulaUsed: `Target HR = ((220 - Age - Resting HR) × Intensity) + Resting HR`,
-    };
-  }, [inputs]);
-
+  // FAQ content
   const faqs = [
     {
-      question: "What is the difference between Target Heart Rate and RPE?",
+      question: "What is the Target Heart Rate and why is it important?",
       answer:
-        "Target Heart Rate (THR) is an objective measure of exercise intensity based on heartbeats per minute, while Rate of Perceived Exertion (RPE) is a subjective scale that reflects how hard you feel you are working during exercise. Combining both allows athletes to align physiological data with personal effort perception for optimized training.",
+        "Target Heart Rate (THR) represents the ideal heart rate range during exercise to achieve specific training goals such as fat burning, endurance, or high-intensity performance. Training within your THR zones ensures you are exercising at an intensity that is safe and effective, optimizing cardiovascular benefits without overexertion. It helps athletes and fitness enthusiasts monitor and adjust their effort levels accurately.",
     },
     {
-      question: "Why do I need to input my resting heart rate?",
+      question: "How does Rate of Perceived Exertion (RPE) relate to heart rate zones?",
       answer:
-        "Resting heart rate is crucial for calculating your heart rate reserve, which personalizes your target heart rate zones more accurately than using maximum heart rate alone. This accounts for individual cardiovascular fitness and improves training precision.",
+        "RPE is a subjective measure of exercise intensity based on how hard you feel your body is working, typically rated on a scale from 6 to 20 or 0 to 10. This calculator aligns RPE values with objective heart rate zones, allowing users to correlate their perceived effort with physiological data. This dual approach helps in self-regulating training intensity, especially when heart rate monitors are unavailable or unreliable.",
     },
     {
-      question: "How accurate is the 220 - age formula for max heart rate?",
+      question: "Why do different formulas exist for calculating Max Heart Rate?",
       answer:
-        "The 220 - age formula is a widely used estimate but can vary significantly between individuals. For more precise max heart rate, clinical testing or wearable device data is recommended. However, it remains a practical baseline for most recreational athletes.",
+        "Max Heart Rate (MHR) varies individually and can be estimated using different formulas based on population studies. The traditional formula (220 - age) is widely used but can be less accurate for some individuals. Alternatives like the Tanaka or Gellish formulas provide refined estimates based on more recent research. Selecting the appropriate formula can improve the accuracy of heart rate zone calculations.",
     },
   ];
+
   const faqJsonLd = useFaqJsonLd(faqs);
 
+  // Widget UI
   const widget = (
     <div className="space-y-6">
-      {/* Inputs */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <Label htmlFor="age" className="mb-1 flex items-center gap-1">
-            Age <Info className="w-4 h-4 text-blue-500" />
+            Age (years) <Info className="w-4 h-4 text-blue-500" />
           </Label>
           <Input
             id="age"
             type="number"
             min={10}
             max={100}
-            placeholder="Years"
+            placeholder="e.g. 30"
             value={inputs.age}
             onChange={(e) => handleInputChange("age", e.target.value)}
           />
         </div>
+
         <div>
           <Label htmlFor="restingHeartRate" className="mb-1 flex items-center gap-1">
             Resting Heart Rate (bpm) <Heart className="w-4 h-4 text-red-500" />
@@ -151,66 +207,146 @@ export default function TargetHeartRateRpeZonesCalculator() {
             type="number"
             min={30}
             max={100}
-            placeholder="Beats per minute"
+            placeholder="e.g. 60"
             value={inputs.restingHeartRate}
             onChange={(e) => handleInputChange("restingHeartRate", e.target.value)}
           />
         </div>
+
+        <div>
+          <Label htmlFor="maxHeartRateMethod" className="mb-1 flex items-center gap-1">
+            Max Heart Rate Formula <Calculator className="w-4 h-4 text-green-600" />
+          </Label>
+          <Select
+            value={inputs.maxHeartRateMethod}
+            onValueChange={(v) => handleInputChange("maxHeartRateMethod", v)}
+          >
+            <SelectTrigger id="maxHeartRateMethod" className="w-full">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="ageBased">220 - Age (Traditional)</SelectItem>
+              <SelectItem value="tanaka">208 - 0.7 × Age (Tanaka)</SelectItem>
+              <SelectItem value="gellish">207 - 0.7 × Age (Gellish)</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
         <div>
           <Label htmlFor="rpe" className="mb-1 flex items-center gap-1">
             Rate of Perceived Exertion (RPE) <Flame className="w-4 h-4 text-orange-500" />
           </Label>
-          <Select
-            onValueChange={(v) => handleInputChange("rpe", v)}
-            value={inputs.rpe}
+          <Input
             id="rpe"
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select RPE (6-20)" />
-            </SelectTrigger>
-            <SelectContent>
-              {[...Array(15)].map((_, i) => {
-                const val = i + 6;
-                return (
-                  <SelectItem key={val} value={val.toString()}>
-                    {val}
-                  </SelectItem>
-                );
-              })}
-            </SelectContent>
-          </Select>
+            type="number"
+            min={6}
+            max={15}
+            placeholder="6 to 15"
+            value={inputs.rpe}
+            onChange={(e) => handleInputChange("rpe", e.target.value)}
+          />
         </div>
       </div>
 
-      {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white shadow-md"
           onClick={() => {
-            // Trigger recalculation by updating state (already handled by useMemo)
+            // No explicit calculation trigger needed; useMemo handles updates
           }}
         >
           <Trophy className="mr-2 h-4 w-4" /> Calculate
         </Button>
         <Button
           variant="outline"
-          onClick={() => setInputs({ age: "", restingHeartRate: "", rpe: "" })}
+          onClick={() =>
+            setInputs({
+              age: "",
+              restingHeartRate: "",
+              maxHeartRateMethod: "ageBased",
+              rpe: "",
+            })
+          }
           className="flex-1 h-11"
         >
           <RotateCcw className="mr-2 h-4 w-4" /> Reset
         </Button>
       </div>
 
-      {/* Results */}
-      {results.value && (
+      {warnings && (
+        <Card className="bg-yellow-50 border-yellow-300 dark:bg-yellow-900 dark:border-yellow-700 border rounded-md p-4">
+          <CardContent>
+            <AlertTriangle className="inline-block mr-2 text-yellow-700 dark:text-yellow-400" />
+            <ul className="list-disc list-inside text-yellow-800 dark:text-yellow-300">
+              {warnings.map((w, i) => (
+                <li key={i}>{w}</li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      )}
+
+      {maxHeartRate && (
         <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-950 border-blue-200 shadow-lg">
-          <CardContent className="p-8 text-center">
-            <p className="text-2xl font-semibold text-blue-900 dark:text-white mb-2">{results.label}</p>
-            <p className="text-5xl font-extrabold text-blue-900 dark:text-white">{results.value}</p>
-            <p className="mt-3 text-sm text-blue-700 dark:text-blue-300">{results.subtext}</p>
-            {results.warning && (
-              <p className="mt-2 text-sm text-red-600 dark:text-red-400 font-semibold">{results.warning}</p>
-            )}
+          <CardContent className="p-6 text-center">
+            <p className="text-lg font-semibold text-blue-900 dark:text-white mb-2">Estimated Max Heart Rate</p>
+            <p className="text-4xl font-extrabold text-blue-900 dark:text-white">{Math.round(maxHeartRate)} bpm</p>
+            <p className="text-sm text-blue-700 dark:text-blue-300 mt-1 italic">
+              Formula used:{" "}
+              {inputs.maxHeartRateMethod === "ageBased"
+                ? "220 - Age"
+                : inputs.maxHeartRateMethod === "tanaka"
+                ? "208 - 0.7 × Age"
+                : "207 - 0.7 × Age"}
+            </p>
+          </CardContent>
+        </Card>
+      )}
+
+      {rpeZones && (
+        <Card className="border border-slate-300 dark:border-slate-700 rounded-md p-6">
+          <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
+            <Gauge className="w-5 h-5 text-indigo-600 dark:text-indigo-400" /> Target Heart Rate Zones (Based on HRR)
+          </h3>
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="border-b border-slate-300 dark:border-slate-700">
+                <th className="py-2 px-3">Zone</th>
+                <th className="py-2 px-3">RPE Range</th>
+                <th className="py-2 px-3">Target Heart Rate (bpm)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rpeZones.map((zone, i) => (
+                <tr
+                  key={i}
+                  className="odd:bg-slate-100 dark:odd:bg-slate-800 even:bg-transparent dark:even:bg-transparent"
+                >
+                  <td className="py-2 px-3 font-semibold text-slate-900 dark:text-slate-100">{zone.label}</td>
+                  <td className="py-2 px-3 text-slate-700 dark:text-slate-300">{zone.rpeRange}</td>
+                  <td className="py-2 px-3 text-slate-900 dark:text-slate-200">
+                    {zone.targetHRRange[0]} - {zone.targetHRRange[1]}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="mt-4 text-sm italic text-slate-600 dark:text-slate-400">
+            Note: Target heart rate zones are calculated using the Heart Rate Reserve (HRR) method, which accounts for resting heart rate for more individualized training zones.
+          </p>
+        </Card>
+      )}
+
+      {targetHeartRateForRPE && (
+        <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-slate-900 dark:to-slate-950 border-green-200 shadow-lg">
+          <CardContent className="p-6 text-center">
+            <p className="text-lg font-semibold text-green-900 dark:text-white mb-2">
+              Target Heart Rate for RPE {inputs.rpe}
+            </p>
+            <p className="text-5xl font-extrabold text-green-900 dark:text-white">{targetHeartRateForRPE} bpm</p>
+            <p className="text-sm text-green-700 dark:text-green-300 mt-1 italic">
+              Estimated from RPE to %HRR linear mapping.
+            </p>
           </CardContent>
         </Card>
       )}
@@ -222,34 +358,44 @@ export default function TargetHeartRateRpeZonesCalculator() {
       <section id="what-is" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Understanding Target Heart Rate / RPE Zones</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Target Heart Rate (THR) zones are personalized ranges of heartbeats per minute that correspond to different exercise intensities, helping athletes optimize cardiovascular training and improve fitness safely. These zones are often calculated using the Karvonen formula, which incorporates resting heart rate to better reflect individual fitness levels rather than relying solely on age-predicted maximum heart rate. The Rate of Perceived Exertion (RPE) scale, developed by Borg, is a subjective measure that allows athletes to rate their effort on a scale from 6 (no exertion) to 20 (maximal exertion), providing valuable insight into how hard the exercise feels.
+          Target Heart Rate (THR) zones are specific ranges of heartbeats per minute that correspond to different exercise intensities. These zones help athletes and fitness enthusiasts train effectively by aligning cardiovascular effort with desired outcomes such as fat burning, endurance building, or peak performance. The Rate of Perceived Exertion (RPE) scale complements heart rate data by providing a subjective measure of how hard an individual feels they are working, allowing for a holistic approach to training intensity. By combining objective heart rate zones with subjective RPE, users can better tailor their workouts to their fitness levels and goals.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Combining THR zones with RPE enables athletes and coaches to align objective physiological data with subjective effort, enhancing training precision and preventing overtraining or undertraining. This dual approach is widely endorsed by sports science authorities for its effectiveness in monitoring and adjusting training loads across various sports disciplines.
+          The Heart Rate Reserve (HRR) method, used in this calculator, adjusts target zones based on resting heart rate, offering a more personalized and accurate reflection of cardiovascular capacity than simple percentage of maximum heart rate. Different formulas exist to estimate maximum heart rate, reflecting variations in population data and individual physiology. Understanding these concepts empowers users to train smarter, avoid overtraining, and maximize performance gains.
         </p>
       </section>
 
       <section id="how-to" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately estimate your target heart rate zone based on your perceived exertion, input your age, resting heart rate, and current RPE value into the calculator. The calculator uses the Karvonen formula to provide a heart rate range that corresponds to your subjective effort level, helping you train within the optimal intensity zone for your fitness goals.
+          To use this calculator, input your age and resting heart rate, then select the formula you prefer for estimating your maximum heart rate. Optionally, enter your current Rate of Perceived Exertion (RPE) to find the corresponding target heart rate. The calculator will display your estimated maximum heart rate, heart rate reserve, and detailed target heart rate zones aligned with RPE ranges. These zones help you understand the intensity levels appropriate for different training goals.
         </p>
         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>Step 1: Enter your age in years. This helps estimate your maximum heart rate.</li>
-          <li>Step 2: Enter your resting heart rate in beats per minute (bpm). This personalizes your heart rate reserve.</li>
-          <li>Step 3: Select your current Rate of Perceived Exertion (RPE) on the 6-20 Borg scale.</li>
-          <li>Step 4: Click "Calculate" to see your target heart rate zone corresponding to your RPE.</li>
-          <li>Step 5: Use this heart rate zone to guide your training intensity, ensuring alignment between how hard you feel you are working and your physiological response.</li>
+          <li>
+            <strong>Step 1:</strong> Enter your age in years. This is essential for estimating your maximum heart rate using validated formulas.
+          </li>
+          <li>
+            <strong>Step 2:</strong> Input your resting heart rate, ideally measured first thing in the morning for accuracy.
+          </li>
+          <li>
+            <strong>Step 3:</strong> Choose the maximum heart rate formula that best suits your needs or preference.
+          </li>
+          <li>
+            <strong>Step 4:</strong> Optionally, enter your current RPE to see the target heart rate corresponding to your perceived effort.
+          </li>
+          <li>
+            <strong>Step 5:</strong> Review the calculated target heart rate zones and use them to guide your training intensity.
+          </li>
         </ul>
       </section>
 
       <section id="tips" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Training Tips & Strategy</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Monitoring both heart rate and RPE allows for a comprehensive understanding of training intensity, which is essential for effective periodization and recovery management. Beginners should focus on training within light to moderate zones (RPE 6-13) to build aerobic base fitness, while more advanced athletes can incorporate higher intensity zones (RPE 14-20) for anaerobic conditioning and performance gains. Always consider external factors such as hydration, temperature, and fatigue, which can affect heart rate and perceived exertion.
+          Training within your target heart rate zones ensures that you are exercising at an intensity that matches your fitness goals, whether it is fat burning, aerobic endurance, or high-intensity interval training. Use the RPE scale alongside heart rate data to listen to your body and adjust effort accordingly, especially when external factors like heat, fatigue, or hydration affect your performance. Consistent monitoring and gradual progression through zones can help prevent overtraining and reduce injury risk.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using wearable heart rate monitors in conjunction with subjective RPE feedback can help detect discrepancies that may indicate overtraining or illness. Adjust training loads accordingly to maintain optimal performance and reduce injury risk. Remember, consistency and gradual progression within your target zones are key to long-term success.
+          Remember to warm up and cool down properly, and consider periodic re-assessment of your resting heart rate and maximum heart rate estimates as your fitness improves. Combining objective data with subjective feedback creates a balanced and effective training regimen.
         </p>
       </section>
 
@@ -269,7 +415,7 @@ export default function TargetHeartRateRpeZonesCalculator() {
       <section id="references" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">References & Additional Resources</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-          For more information on training science and heart rate zone methodologies, consult the following authoritative sources:
+          For more information on training science and rules, consult the following sources:
         </p>
         <ul className="space-y-4">
           <li>
@@ -282,7 +428,7 @@ export default function TargetHeartRateRpeZonesCalculator() {
               American College of Sports Medicine <ExternalLink className="w-3 h-3" />
             </a>
             <p className="text-sm text-slate-500 mt-1">
-              The ACSM provides comprehensive guidelines on exercise testing and prescription, including heart rate training zones and RPE scales.
+              Global leader in sports medicine and exercise science research.
             </p>
           </li>
           <li>
@@ -295,20 +441,20 @@ export default function TargetHeartRateRpeZonesCalculator() {
               National Strength and Conditioning Association (NSCA) <ExternalLink className="w-3 h-3" />
             </a>
             <p className="text-sm text-slate-500 mt-1">
-              NSCA offers evidence-based resources on training intensity monitoring and periodization strategies for athletes.
+              Authoritative source for strength and conditioning standards and education.
             </p>
           </li>
           <li>
             <a
-              href="https://www.runnersworld.com/health-injuries/a20803156/understanding-the-borg-rpe-scale/"
+              href="https://www.fifa.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-bold text-blue-600 hover:underline flex items-center gap-1"
             >
-              Runner's World - Understanding the Borg RPE Scale <ExternalLink className="w-3 h-3" />
+              Fédération Internationale de Football Association (FIFA) <ExternalLink className="w-3 h-3" />
             </a>
             <p className="text-sm text-slate-500 mt-1">
-              A practical guide explaining how to use the Rate of Perceived Exertion scale to optimize training and prevent injury.
+              Provides guidelines on athlete monitoring and performance metrics in football.
             </p>
           </li>
         </ul>
@@ -324,46 +470,54 @@ export default function TargetHeartRateRpeZonesCalculator() {
       editorial={editorial}
       jsonLd={faqJsonLd}
       formula={{
-        title: "Karvonen Formula",
-        formula: "Target HR = ((220 - Age - Resting HR) × Intensity) + Resting HR",
+        title: "Formulas Used",
+        formula:
+          "Max Heart Rate (MHR) = 220 - Age (Traditional) OR 208 - 0.7 × Age (Tanaka) OR 207 - 0.7 × Age (Gellish)\n" +
+          "Heart Rate Reserve (HRR) = MHR - Resting Heart Rate\n" +
+          "Target HR = Resting Heart Rate + (%HRR × HRR)\n" +
+          "RPE mapped linearly from 6 (50% HRR) to 15 (100% HRR)",
         variables: [
-          { symbol: "Age", description: "Your age in years" },
-          { symbol: "Resting HR", description: "Your resting heart rate in beats per minute" },
-          { symbol: "Intensity", description: "Desired exercise intensity as a decimal (e.g., 0.7 for 70%)" },
+          { symbol: "MHR", description: "Maximum Heart Rate (beats per minute)" },
+          { symbol: "HRR", description: "Heart Rate Reserve (beats per minute)" },
+          { symbol: "RPE", description: "Rate of Perceived Exertion (6-15 scale)" },
+          { symbol: "%HRR", description: "Percentage of Heart Rate Reserve" },
         ],
       }}
       example={{
         title: "Real Life Example",
         scenario:
-          "A 30-year-old athlete with a resting heart rate of 60 bpm wants to train at an RPE of 14 (hard intensity).",
+          "A 30-year-old athlete with a resting heart rate of 60 bpm wants to train in the 'Hard' zone and knows their RPE is about 11.",
         steps: [
           {
             label: "Step 1",
-            explanation: "Calculate max HR: 220 - 30 = 190 bpm.",
+            explanation:
+              "Calculate Max Heart Rate using the traditional formula: 220 - 30 = 190 bpm.",
           },
           {
             label: "Step 2",
-            explanation: "Determine intensity range for RPE 14: 70% to 85% (0.70 - 0.85).",
+            explanation:
+              "Calculate Heart Rate Reserve: 190 - 60 = 130 bpm.",
           },
           {
             label: "Step 3",
             explanation:
-              "Calculate target HR range using Karvonen formula: ((190 - 60) × 0.70) + 60 = 151 bpm (min), ((190 - 60) × 0.85) + 60 = 170.5 bpm (max).",
+              "Determine target heart rate range for 'Hard' zone (70-80% HRR): 60 + (0.70 × 130) = 151 bpm to 60 + (0.80 × 130) = 164 bpm.",
           },
           {
             label: "Step 4",
-            explanation: "Train within 151 to 171 bpm to match your perceived exertion.",
+            explanation:
+              "For RPE 11, estimate target heart rate: linear mapping gives approximately 75% HRR, so target HR ≈ 60 + (0.75 × 130) = 158 bpm.",
           },
         ],
-        result: "Target Heart Rate Zone: 151 - 171 bpm",
+        result: "The athlete should aim to keep their heart rate between 151 and 164 bpm during training, with a target around 158 bpm for RPE 11.",
       }}
       relatedCalculators={[
         { title: "Plate Loading Calculator", url: "/sports/plate-loading", icon: "🏋️" },
-        { title: "Climbing Grade Converter", url: "/sports/climbing-grade-converter-yds-french-eu", icon: "🏆" },
-        { title: "Swim Performance Level Calculator", url: "/sports/swim-performance-level-calculator", icon: "🏊" },
-        { title: "T1/T2 Transition Time Impact (Triathlon)", url: "/sports/t1-t2-time-impact", icon: "🏆" },
-        { title: "Rowing Split (500m) ↔ Pace", url: "/sports/rowing-split-500m-pace", icon: "🏃" },
-        { title: "ERA & WHIP Calculator", url: "/sports/era-whip-calculator", icon: "🏆" },
+        { title: "Pool Length Time Converter (SCY/SCM/LCM)", url: "/sports/pool-length-time-converter", icon: "🏊" },
+        { title: "Tennis Serve Speed Calculator", url: "/sports/tennis-serve-speed", icon: "⚽" },
+        { title: "Yoga Calories Burned Calculator", url: "/sports/yoga-calories-burned", icon: "🔥" },
+        { title: "Swim Interval Pace Calculator", url: "/sports/swim-interval-pace", icon: "🏃" },
+        { title: "FINA Points Calculator", url: "/sports/fina-points-calculator", icon: "🏊" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },
