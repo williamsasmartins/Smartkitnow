@@ -3942,6 +3942,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PartyFoodDrinksPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ice-quantity-beverages",
+    title: "Ice Quantity for Beverages Calculator",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Calculate ice needed for parties. Estimate bags of ice required for drinks and cooling based on guest count and duration.",
+    loader: () => import("@/components/calculators/Misc/IceQuantityBeveragesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
