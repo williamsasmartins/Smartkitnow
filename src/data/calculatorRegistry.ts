@@ -3816,6 +3816,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LightBulbCostPerYearCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "water-heater-recovery-time",
+    title: "Water Heater Recovery Time Estimator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Estimate water heater recovery time. Calculate how long it takes for your tank to provide hot water again after depletion.",
+    loader: () => import("@/components/calculators/Misc/WaterHeaterRecoveryTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
