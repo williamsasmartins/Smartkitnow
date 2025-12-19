@@ -29,7 +29,7 @@ export function Header() {
     { key: "pets", label: "Pet Care", to: "/pets" },
     { key: "science", label: "Science", to: "/science" },
     { key: "time", label: "Time & Date", to: "/time" },
-    { key: "games", label: "Games", to: "/games" },
+    { key: "free-games", label: "Free Games", to: "/games" },
   ];
 
   const MORE_CATS = [    { key: "recipes", label: "Recipes", to: "/recipes" },
@@ -38,7 +38,6 @@ export function Header() {
     { key: "sports", label: "Sports", to: "/sports" },
     { key: "funny", label: "Funny", to: "/funny" },
     { key: "video", label: "Video", to: "/video" },
-    { key: "free-games", label: "Free Games", to: "/games" },
   ];
 
   const handleHomeClick = () => navigate("/");

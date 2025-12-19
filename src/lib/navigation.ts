@@ -1,6 +1,5 @@
 /** Category icon registry — used across header and pages. */
 export const CATEGORY_ICON_EMOJI: Record<string, string> = {
-  // Core
   financial: "💰",
   health: "❤️",
   cooking: "🍳",
@@ -24,13 +23,12 @@ export const CATEGORY_ICON_EMOJI: Record<string, string> = {
   "qr-code": "🔳",
   "qr-code-generator": "🔳",
 
-  // Synonyms (normalized by getCategoryIcon)
-  pets: "🐶", // alias of pet
+  pets: "🐶",
   pet: "🐶",
-  tv: "📺", // alias of video
-  smarttips: "💡", // alias of tips
-  dailyquotes: "💬", // alias of quotes
-  everydaylife: "🏠", // alias of everyday
+  tv: "📺",
+  smarttips: "💡",
+  dailyquotes: "💬",
+  everydaylife: "🏠",
   freegames: "🎮",
   qrcode: "🔳",
 };

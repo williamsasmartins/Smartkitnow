@@ -4236,7 +4236,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "sports",
     subcategory: "strength-lifting-conditioning",
     description: "Match heart rate to Perceived Exertion (RPE). Align subjective training intensity with objective heart rate data.",
-    loader: () => import("@/components/calculators/Sports/TargetHeartRateRpeZonesCalculator"),
+    loader: () => import("@/components/calculators/Sports/HeartRateZonesKarvonenCalculator"),
     urlStyle: "flat"
   },
     {
