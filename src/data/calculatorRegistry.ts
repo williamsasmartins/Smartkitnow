@@ -3933,6 +3933,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BodyFatPercentageCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "party-food-drinks-planner",
+    title: "Party Food & Drinks Planner",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Plan party food and drink quantities. Calculate exactly how many servings, pizzas, and beverages you need for your guest list.",
+    loader: () => import("@/components/calculators/Misc/PartyFoodDrinksPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
