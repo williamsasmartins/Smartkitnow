@@ -4374,6 +4374,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BaseballOpsSlgObpCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "era-whip-calculator",
+    title: "ERA & WHIP Calculator",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Calculate pitcher stats. Determine Earned Run Average (ERA) and Walks Plus Hits Per Inning Pitched (WHIP).",
+    loader: () => import("@/components/calculators/Sports/EraWhipCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
