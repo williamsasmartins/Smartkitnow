@@ -4194,6 +4194,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/SwimmingPowerPointsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pool-length-time-converter",
+    title: "Pool Length Time Converter (SCY/SCM/LCM)",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Convert swim times between pool lengths. Switch between Short Course Yards, Short Course Meters, and Long Course Meters accurately.",
+    loader: () => import("@/components/calculators/Sports/PoolLengthTimeConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
