@@ -4392,6 +4392,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/WinProbabilityShiftWpsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "babip-calculator",
+    title: "BABIP Calculator",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Calculate Batting Average on Balls in Play (BABIP). Assess whether a pitcher or hitter is lucky or skilled.",
+    loader: () => import("@/components/calculators/Sports/BabipCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
