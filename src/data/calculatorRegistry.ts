@@ -4401,6 +4401,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BabipCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ground-ball-to-fly-ball-ratio-gb-fb",
+    title: "Ground Ball to Fly Ball Ratio (GB/FB)",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Calculate GB/FB ratio. Analyze a pitcher's tendency to induce grounders versus fly balls.",
+    loader: () => import("@/components/calculators/Sports/GroundBallToFlyBallRatioGbFbCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
