@@ -4428,6 +4428,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/GolfExpectedPuttsPerRoundCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tennis-serve-speed",
+    title: "Tennis Serve Speed Calculator",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Calculate tennis serve speed. Estimate velocity based on the distance and time between impact and bounce.",
+    loader: () => import("@/components/calculators/Sports/TennisServeSpeedCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
