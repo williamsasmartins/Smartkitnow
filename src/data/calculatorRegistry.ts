@@ -3825,6 +3825,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/WaterHeaterRecoveryTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "home-renovation-cost-estimator",
+    title: "Home Renovation Cost Estimator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Estimate home renovation costs. Create a budget for your remodeling project by calculating material and labor expenses.",
+    loader: () => import("@/components/calculators/Misc/HomeRenovationCostEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
