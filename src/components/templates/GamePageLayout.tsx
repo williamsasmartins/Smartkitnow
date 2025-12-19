@@ -1,110 +1,115 @@
-import React from "react";
+// src/components/templates/GamePageLayout.tsx
 
-type OnThisPageItem = {
-  id: string;
-  label: string;
-};
+import { useCallback } from "react";
+
+type OnThisPageItem = { id: string; label: string };
 
 type Props = {
   title: string;
   description?: string;
-
-  /** Optional “On This Page” anchors */
-  onThisPage?: OnThisPageItem[];
-
-  /** Main content (your game UI) */
   children: React.ReactNode;
-
-  /** Optional sections rendered below the game (How to play, etc.) */
+  onThisPage?: OnThisPageItem[];
   below?: React.ReactNode;
+  rightRail?: React.ReactNode;
 
-  /** Future-proof placeholders (no ad network code) */
   showTopBannerPlaceholder?: boolean;
-  showRightSidebarPlaceholder?: boolean;
   showBottomBannerPlaceholder?: boolean;
 };
 
 export default function GamePageLayout({
   title,
   description,
-  onThisPage = [],
   children,
+  onThisPage = [],
   below,
-  showTopBannerPlaceholder = false,
-  showRightSidebarPlaceholder = false,
-  showBottomBannerPlaceholder = false,
+  rightRail,
+  showTopBannerPlaceholder = true,
+  showBottomBannerPlaceholder = true,
 }: Props) {
+  const handleAnchor = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + window.scrollY - 120; // header offset
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }, []);
+
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
-      <div className="mx-auto pb-10 pt-32 lg:pt-40" style={{ maxWidth: 1200 }}>
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+      <div className="mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-10 pb-10 pt-28">
+        {/* TOP BANNER PLACEHOLDER */}
         {showTopBannerPlaceholder && (
-          <div className="mx-auto mb-8 px-4 sm:px-6">
-            <div className="h-[90px] w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-center text-sm text-slate-500 dark:text-slate-400">
-              Top Banner Placeholder (future)
+          <div className="mb-8">
+            <div className="h-[90px] w-full rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 flex items-center justify-center text-sm text-slate-500 dark:text-slate-400">
+              Top Banner Placeholder (970×90 / 728×90 / 320×100)
             </div>
           </div>
         )}
 
-        <div className="relative xl:flex xl:justify-center xl:gap-12">
-          {/* Main */}
-          <div className="w-full max-w-5xl mx-auto xl:mx-0 px-4 sm:px-6 min-w-0">
-            <header className="mb-8">
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-[#5c82ee] mb-4 leading-tight tracking-tight">
-                {title}
-              </h1>
-              {description ? (
-                <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {description}
-                </p>
-              ) : null}
-            </header>
+        {/* HEADER */}
+        <header className="mb-6">
+          <h1 className="text-4xl font-extrabold tracking-tight text-[#5c82ee]">{title}</h1>
+          {description && (
+            <p className="mt-2 max-w-3xl text-base text-slate-600 dark:text-slate-300">
+              {description}
+            </p>
+          )}
+        </header>
 
-            {onThisPage.length > 0 && (
-              <div className="mb-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
-                <p className="font-semibold text-slate-900 dark:text-slate-100 mb-3">On This Page</p>
-                <div className="flex flex-wrap gap-2">
-                  {onThisPage.map((item) => (
-                    <a
-                      key={item.id}
-                      href={`#${item.id}`}
-                      className="text-sm px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-900 transition"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
+        {/* MAIN */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_320px]">
+          {/* CONTENT */}
+          <div className="space-y-8">
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-4 md:p-6">
+              {children}
+            </div>
+
+            {below && (
+              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6">
+                {below}
               </div>
             )}
 
-            {/* Game surface */}
-            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl overflow-hidden">
-              <div className="p-4 sm:p-6">{children}</div>
-            </div>
-
-            {below ? <div className="mt-10">{below}</div> : null}
-
+            {/* BOTTOM BANNER PLACEHOLDER */}
             {showBottomBannerPlaceholder && (
-              <div className="mt-10">
-                <div className="h-[90px] w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-center text-sm text-slate-500 dark:text-slate-400">
-                  Bottom Banner Placeholder (future)
+              <div className="mt-8">
+                <div className="h-[90px] w-full rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 flex items-center justify-center text-sm text-slate-500 dark:text-slate-400">
+                  Bottom Banner Placeholder (970×90 / 728×90 / 320×100)
                 </div>
               </div>
             )}
           </div>
 
-          {/* Right sidebar placeholder */}
-          {showRightSidebarPlaceholder && (
-            <aside className="hidden xl:block w-[320px] shrink-0">
-              <div className="sticky top-32 space-y-4">
-                <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 text-sm text-slate-500 dark:text-slate-400">
-                  Right Sidebar Placeholder (future)
-                </div>
+          {/* RIGHT SIDEBAR */}
+          <aside className="space-y-6">
+            {onThisPage.length > 0 && (
+              <div className="sticky top-28 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-5">
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                  On this page
+                </h3>
+                <ul className="mt-3 space-y-2 text-sm">
+                  {onThisPage.map((item) => (
+                    <li key={item.id}>
+                      <button
+                        type="button"
+                        onClick={() => handleAnchor(item.id)}
+                        className="text-left text-slate-700 dark:text-slate-300 hover:text-[#5c82ee] hover:underline"
+                      >
+                        {item.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </aside>
-          )}
+            )}
+
+            {rightRail ?? (
+              <div className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40 p-5 text-sm text-slate-500 dark:text-slate-400">
+                Right Rail Placeholder (ads / related games / tips)
+              </div>
+            )}
+          </aside>
         </div>
       </div>
     </div>
   );
 }
-
