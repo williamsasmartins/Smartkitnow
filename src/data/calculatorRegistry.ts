@@ -3852,6 +3852,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LifeExpectancyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bmi-calculator",
+    title: "Body Mass Index (BMI) Calculator",
+    category: "everyday",
+    subcategory: "health-wellness-sleep",
+    description: "Calculate Body Mass Index (BMI) quickly. A simple everyday tool to check if your weight falls within a healthy range.",
+    loader: () => import("@/components/calculators/Misc/BmiCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
