@@ -4014,6 +4014,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MulchCoverageBagCountCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "garden-soil-compost-volume",
+    title: "Garden Soil/Compost Volume Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Calculate soil volume for raised beds. Find out exactly how much topsoil or compost you need to fill your garden planters.",
+    loader: () => import("@/components/calculators/Misc/GardenSoilCompostVolumeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
