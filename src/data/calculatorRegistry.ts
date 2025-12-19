@@ -3882,39 +3882,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     {
     slug: "screen-time-pomodoro-planner",
     title: "Screen Time Budget / Pomodoro Planner",
-    category: "everyday",
-    subcategory: "health-wellness-sleep",
-    description: "Manage digital wellness with a screen time budget. Plan productive work intervals using the Pomodoro technique.",
-    loader: () => import("@/components/calculators/Misc/ScreenTimePomodoroPlannerCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "steps-to-distance-converter",
-    title: "Steps → Distance Converter",
-    category: "everyday",
-    subcategory: "health-wellness-sleep",
-    description: "Convert daily steps to distance. See how many miles or kilometers you walked based on your step count and stride length.",
-    loader: () => import("@/components/calculators/Misc/StepsToDistanceConverterCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "hydration-reminder-interval",
-    title: "Hydration Reminder Interval Planner",
-    category: "everyday",
-    subcategory: "health-wellness-sleep",
-    description: "Set up a hydration schedule. Calculate the best intervals to drink water throughout the day to meet your daily intake goals.",
-    loader: () => import("@/components/calculators/Misc/HydrationReminderIntervalCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "myplate-daily-calorie-nutrient",
-    title: "MyPlate Daily Calorie/Nutrient Planner",
-    category: "everyday",
-    subcategory: "health-wellness-sleep",
-    description: "Plan balanced meals with MyPlate guidelines. Calculate daily calorie and nutrient portions for a healthy lifestyle.",
-    loader: () => import("@/components/calculators/Misc/MyplateDailyCalorieNutrientCalculator"),
-    urlStyle: "flat"
-  },
+    category
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
