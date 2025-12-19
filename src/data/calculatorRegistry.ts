@@ -4485,6 +4485,35 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/SwimPerformanceLevelCalculator"),
     urlStyle: "flat"
   },
+
+  // --- SPORTS: Strength & Lifting ---
+  {
+    slug: "wilks-coefficient",
+    title: "Wilks Coefficient Calculator",
+    category: "Sports",
+    description: "Compare powerlifting strength across different body weights using the official Wilks formula.",
+    component: lazy(() => import("@/components/calculators/Sports/WilksCoefficientCalculator")),
+    keywords: ["powerlifting", "wilks score", "strength standards", "weightlifting", "ipf"],
+    icon: "Trophy",
+  },
+  {
+    slug: "body-fat-percentage",
+    title: "Body Fat Percentage Calculator",
+    category: "Sports",
+    description: "Estimate your body fat percentage using the US Navy Method with simple tape measurements.",
+    component: lazy(() => import("@/components/calculators/Sports/BodyFatPercentageCalculator")),
+    keywords: ["body fat", "navy method", "bmi", "fitness", "composition", "waist"],
+    icon: "Activity",
+  },
+  {
+    slug: "plate-loading",
+    title: "Barbell Plate Loading Calculator",
+    category: "Sports",
+    description: "Calculate exactly which plates to load on the bar for your target weight. Supports kg and lbs.",
+    component: lazy(() => import("@/components/calculators/Sports/PlateLoadingCalculator")),
+    keywords: ["gym math", "barbell", "plates", "lifting", "weightlifting", "loading"],
+    icon: "Dumbbell",
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
