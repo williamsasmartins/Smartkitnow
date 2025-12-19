@@ -4329,6 +4329,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BettingOddsPayoutCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "soccer-league-table-points-gd",
+    title: "Soccer League Table: Points & GD",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Calculate soccer league standings. Track points, goal differential, and ranking scenarios for your team.",
+    loader: () => import("@/components/calculators/Sports/SoccerLeagueTablePointsGdCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
