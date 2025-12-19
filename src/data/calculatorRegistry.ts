@@ -3843,6 +3843,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ApplianceEnergyConsumptionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "life-expectancy",
+    title: "Life Expectancy Calculator",
+    category: "everyday",
+    subcategory: "health-wellness-sleep",
+    description: "Estimate your life expectancy. Analyze lifestyle factors like diet and exercise to see statistical projections for longevity.",
+    loader: () => import("@/components/calculators/Misc/LifeExpectancyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
