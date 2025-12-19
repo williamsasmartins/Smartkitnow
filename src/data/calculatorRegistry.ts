@@ -4221,6 +4221,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/OneRepMax1rmCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "training-weight-percentage",
+    title: "Training Weight Percentage Calculator",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Calculate training weights. Determine specific percentages of your 1RM to plan hypertrophy, strength, or power workouts.",
+    loader: () => import("@/components/calculators/Sports/TrainingWeightPercentageCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
