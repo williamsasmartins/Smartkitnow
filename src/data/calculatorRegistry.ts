@@ -3816,6 +3816,33 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LightBulbCostPerYearCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "water-heater-recovery-time",
+    title: "Water Heater Recovery Time Estimator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Estimate water heater recovery time. Calculate how long it takes for your tank to provide hot water again after depletion.",
+    loader: () => import("@/components/calculators/Misc/WaterHeaterRecoveryTimeCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "home-renovation-cost-estimator",
+    title: "Home Renovation Cost Estimator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Estimate home renovation costs. Create a budget for your remodeling project by calculating material and labor expenses.",
+    loader: () => import("@/components/calculators/Misc/HomeRenovationCostEstimatorCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "appliance-energy-consumption",
+    title: "Appliance Energy Consumption Calculator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Calculate appliance energy consumption. Track how much electricity your fridge, TV, and washer use to manage your utility bill.",
+    loader: () => import("@/components/calculators/Misc/ApplianceEnergyConsumptionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
