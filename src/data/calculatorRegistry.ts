@@ -3915,6 +3915,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MyplateDailyCalorieNutrientCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bmr-calculator",
+    title: "Basal Metabolic Rate (BMR) Calculator",
+    category: "everyday",
+    subcategory: "health-wellness-sleep",
+    description: "Calculate everyday BMR. Find out the minimum calories your body needs to function before adding any physical activity.",
+    loader: () => import("@/components/calculators/Misc/BmrCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
