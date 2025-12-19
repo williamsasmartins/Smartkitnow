@@ -4023,6 +4023,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GardenSoilCompostVolumeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "lawn-mowing-time-fuel",
+    title: "Lawn Mowing Time & Fuel Planner",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Estimate lawn mowing time. Calculate how long it takes to mow your yard and the fuel required based on mower size.",
+    loader: () => import("@/components/calculators/Misc/LawnMowingTimeFuelCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
