@@ -102,7 +102,14 @@ export function getGameEntry(slug: string): GameEntry {
     title,
     description: "Interactive game. Coming soon.",
     loader: () => import("@/components/games/ComingSoonGame"),
-    loader: () => import("@/components/games/JoinDotsConnectFour")
 
   };
 }
+
+// join-dots-connect-four
+{
+  title: "Join Dots (Connect Four)",
+  description: "Play Connect Four against a smart AI with difficulty levels and live analysis.",
+  loader: () => import("@/components/games/JoinDotsConnectFour"),
+}
+
