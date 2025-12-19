@@ -3753,6 +3753,60 @@ export const calculatorRegistry: CalculatorEntry[] = [
     
    
     
+    {
+    slug: "cleaning-dilution-ratio",
+    title: "Cleaning Dilution Ratio Calculator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Calculate the perfect cleaning dilution ratio. Mix chemicals and water safely and effectively for household cleaning tasks.",
+    loader: () => import("@/components/calculators/Misc/CleaningDilutionRatioCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "laundry-detergent-dosage",
+    title: "Laundry Detergent Dosage by Load Size",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Determine the right laundry detergent dosage. Calculate the exact amount needed per load size to save money and protect clothes.",
+    loader: () => import("@/components/calculators/Misc/LaundryDetergentDosageCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "home-paint-touch-up",
+    title: "Home Paint Touch-Up Estimator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Estimate paint needed for touch-ups. Calculate exactly how much paint covers scratches and small repairs on walls and trim.",
+    loader: () => import("@/components/calculators/Misc/HomePaintTouchUpCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "room-air-changes-ach",
+    title: "Room Air Changes per Hour (ACH) Calculator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Calculate Air Changes per Hour (ACH). Measure ventilation efficiency and air quality turnover rates for any room size.",
+    loader: () => import("@/components/calculators/Misc/RoomAirChangesAchCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "propane-tank-burn-time",
+    title: "Propane Tank Burn Time Estimator",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Estimate propane tank burn time. Calculate how long your grill, heater, or generator will run based on tank size and BTU usage.",
+    loader: () => import("@/components/calculators/Misc/PropaneTankBurnTimeCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "refrigerator-freezer-safe-zone-time-window",
+    title: "Refrigerator/Freezer Safe Zone Time Window",
+    category: "everyday",
+    subcategory: "home-maintenance",
+    description: "Track food safety during power outages. Estimate how long food stays safe in your refrigerator or freezer without power.",
+    loader: () => import("@/components/calculators/Misc/RefrigeratorFreezerSafeZoneTimeWindowCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
