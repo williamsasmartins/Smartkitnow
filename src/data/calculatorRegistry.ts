@@ -4158,6 +4158,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/T1T2TimeImpactCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "hydration-sweat-rate",
+    title: "Hydration / Sweat Rate Calculator",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Calculate your sweat rate. Determine exactly how much fluid you need to drink to stay hydrated during endurance events.",
+    loader: () => import("@/components/calculators/Sports/HydrationSweatRateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
