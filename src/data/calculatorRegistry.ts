@@ -3978,6 +3978,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CoffeeUrnYieldStrengthCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "leftovers-cooling-reheat-time",
+    title: "Leftovers Cooling & Reheat Time",
+    category: "everyday",
+    subcategory: "events-party-culinary",
+    description: "Handle leftovers safely. Estimate cooling times and safe reheating duration to prevent food spoilage after big meals.",
+    loader: () => import("@/components/calculators/Misc/LeftoversCoolingReheatTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
