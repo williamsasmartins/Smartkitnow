@@ -4005,6 +4005,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EventCapacityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "mulch-coverage-bag-count",
+    title: "Mulch Coverage & Bag Count Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Calculate mulch coverage and bags needed. Determine the cubic yards or bags of mulch required for your garden beds.",
+    loader: () => import("@/components/calculators/Misc/MulchCoverageBagCountCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
