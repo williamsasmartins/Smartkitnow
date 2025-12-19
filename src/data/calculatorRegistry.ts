@@ -4482,6 +4482,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/GolfHandicapCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bowling-score-calculator",
+    title: "Bowling Score Calculator",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Calculate bowling scores. Simulate frames, strikes, and spares to predict your final game score.",
+    loader: () => import("@/components/calculators/Sports/BowlingScoreCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
