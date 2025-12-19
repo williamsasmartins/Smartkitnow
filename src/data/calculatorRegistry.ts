@@ -4293,6 +4293,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/CalorieDeficitSurplusCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fitness-age-calculator",
+    title: "Fitness Age Calculator",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Estimate your fitness age. Compare your cardiovascular health and VO2max against age-related norms.",
+    loader: () => import("@/components/calculators/Sports/FitnessAgeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
