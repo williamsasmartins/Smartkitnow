@@ -4032,6 +4032,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LawnMowingTimeFuelCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "hose-runtime-flow-rate",
+    title: "Hose Runtime vs Flow Rate Calculator",
+    category: "everyday",
+    subcategory: "garden-exterior",
+    description: "Calculate hose runtime for watering. Determine how long to run your sprinkler to deliver a specific amount of water.",
+    loader: () => import("@/components/calculators/Misc/HoseRuntimeFlowRateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
