@@ -4113,6 +4113,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/RaceTimePredictorRiegelCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "heart-rate-zones-karvonen",
+    title: "Heart-Rate Zones Calculator (Karvonen Method)",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Calculate accurate heart rate training zones. Use the Karvonen method to account for resting heart rate and optimize your cardio.",
+    loader: () => import("@/components/calculators/Sports/HeartRateZonesKarvonenCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
