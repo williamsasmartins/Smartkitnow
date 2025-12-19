@@ -4455,6 +4455,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/RowingSplit500mPaceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "climbing-grade-converter-yds-french-eu",
+    title: "Climbing Grade Converter",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Convert climbing grades. Switch between YDS, French, and European scales to understand route difficulty worldwide.",
+    loader: () => import("@/components/calculators/Sports/ClimbingGradeConverterYdsFrenchEuCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
