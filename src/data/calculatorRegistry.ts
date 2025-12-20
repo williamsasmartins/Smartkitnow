@@ -4342,6 +4342,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/SoccerLeagueTablePointsGdCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "expected-goals-xg-helper",
+    title: "xG (Expected Goals) Reading Helper",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Understand Expected Goals (xG). Interpret match statistics to analyze team performance beyond the final score.",
+    loader: () => import("@/components/calculators/Sports/ExpectedGoalsXgHelperCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
