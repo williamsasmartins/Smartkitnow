@@ -49,6 +49,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
   const lastTickRef = useRef<number>(0);
   const [redrawTick, setRedrawTick] = useState(0);
   const [isTouch, setIsTouch] = useState(false);
+  const dprRef = useRef<number>(1);
 
   const speedMs = useMemo(() => {
     const base = difficulty === "easy" ? 240 : difficulty === "medium" ? 140 : 90;
@@ -194,21 +195,13 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       const ctx2 = ctx as CanvasRenderingContext2D;
       const padding = 16;
 
-      const viewportH = window.visualViewport?.height ?? window.innerHeight;
-
-      // largura disponível no card (use actual container width; if theater use viewport width minus padding)
-      const parentWidth = theater
-        ? Math.floor(Math.max(320, window.innerWidth - 64))
-        : Math.floor(containerRef.current?.clientWidth ?? Math.max(320, window.innerWidth - 32));
-
-      // stable sizing (not dependent on element scroll)
-      const safeBottom = isTouch ? 120 : 140; // slightly smaller on touch devices
-      const maxW = Math.min(1100, parentWidth);
-      const maxH = Math.min(680, Math.floor(viewportH * 0.68) - safeBottom);
+      // Use the canvas's computed CSS size (set by the resize effect) as the layout source.
+      const clientW = canvas.clientWidth || Math.max(320, window.innerWidth - 32);
+      const clientH = canvas.clientHeight || Math.floor((window.visualViewport?.height ?? window.innerHeight) * 0.68) - (isTouch ? 120 : 140);
 
       // calcula o tamanho da célula para preencher a largura, e depois limita pela altura
-      let cell = Math.floor((maxW - padding * 2) / GRID_W);
-      cell = Math.min(cell, Math.floor((maxH - padding * 2) / GRID_H));
+      let cell = Math.floor((clientW - padding * 2) / GRID_W);
+      cell = Math.min(cell, Math.floor((clientH - padding * 2) / GRID_H));
 
       // clamp (para não ficar minúsculo em telas pequenas)
       cell = Math.max(14, Math.min(28, cell));
@@ -216,12 +209,10 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       const w = GRID_W * cell + padding * 2;
       const h = GRID_H * cell + padding * 2;
 
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = dprRef.current ?? Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.floor(w * dpr);
       canvas.height = Math.floor(h * dpr);
-      // Prevent the canvas from overflowing its container on very small screens
-      const finalW = Math.min(w, parentWidth);
-      canvas.style.width = `${finalW}px`;
+      canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
       ctx2.setTransform(1, 0, 0, 1, 0, 0);
       ctx2.scale(dpr, dpr);
@@ -273,6 +264,53 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       coarse?.removeEventListener?.("change", onChange);
     };
   }, []);
+
+  // Resize handling: scale canvas to wrap/container similar to AstroBreakout
+  useEffect(() => {
+    const el = wrapRef.current ?? containerRef.current;
+    const canvas = canvasRef.current;
+    if (!el || !canvas) return;
+
+    const resize = () => {
+      const rect = el.getBoundingClientRect();
+      const padX = 48; // horizontal padding so UI chrome remains visible
+      const padY = isTouch ? 120 : 140; // vertical padding to keep mobile controls visible
+      const availableW = Math.max(320, rect.width - padX);
+      const availableH = Math.max(240, rect.height - padY);
+      const aspect = GRID_W / GRID_H;
+
+      const maxW_by_height = Math.floor(availableH * aspect);
+      const maxW = Math.min(1100, availableW, maxW_by_height);
+      const h = Math.max(240, Math.floor(maxW / aspect));
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dprRef.current = dpr;
+
+      // internal padding used by drawing logic
+      const padding = 16;
+      let cell = Math.floor((maxW - padding * 2) / GRID_W);
+      cell = Math.min(cell, Math.floor((h - padding * 2) / GRID_H));
+      cell = Math.max(14, Math.min(28, cell));
+      const w = GRID_W * cell + padding * 2;
+
+      canvas.style.width = `${Math.min(w, maxW)}px`;
+      canvas.style.height = `${h}px`;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+
+      // trigger a redraw
+      setRedrawTick((t) => t + 1);
+    };
+
+    resize();
+    const ro = new ResizeObserver(() => resize());
+    ro.observe(el);
+    window.addEventListener("resize", resize);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", resize);
+    };
+  }, [theater, isTouch]);
 
   // Fullscreen / theater helpers
   function toggleFullscreen() {
