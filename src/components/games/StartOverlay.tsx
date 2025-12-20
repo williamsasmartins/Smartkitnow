@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function StartOverlay({
@@ -47,15 +46,7 @@ export default function StartOverlay({
       >
         <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[#5c82ee]/20 via-fuchsia-400/20 to-amber-300/20 blur-2xl" aria-hidden />
 
-        <button
-          type="button"
-          className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/60 text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-950"
-          onClick={onClose}
-          aria-label="Close"
-          title="Close"
-        >
-          <X className="h-4 w-4" />
-        </button>
+        {/* Top-right X removed per request; use the Close button below */}
 
         <div className="relative">{children}</div>
 
