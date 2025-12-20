@@ -4562,6 +4562,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/HotDogBunMismatchSolverCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sugar-in-my-tea-dramatic",
+    title: "How Much Sugar Is in My Tea? (Dramatic)",
+    category: "funny",
+    subcategory: "food-social-life",
+    description: "Visualize your sugar intake. See a dramatic representation of exactly how many sugar cubes you are drinking in your daily tea.",
+    loader: () => import("@/components/calculators/Funny/SugarInMyTeaDramaticCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
