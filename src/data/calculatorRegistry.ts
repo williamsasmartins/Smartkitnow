@@ -4423,6 +4423,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/GolfHandicapDifferentialIndexCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "golf-expected-putts-per-round",
+    title: "Golf Expected Putts per Round",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Estimate expected putts per round. Track putting performance against benchmarks to improve your short game.",
+    loader: () => import("@/components/calculators/Sports/GolfExpectedPuttsPerRoundCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
