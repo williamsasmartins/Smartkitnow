@@ -4225,6 +4225,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/TrainingWeightPercentageCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "target-heart-rate-rpe-zones",
+    title: "Target Heart Rate / RPE Zones",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Match heart rate to Perceived Exertion (RPE). Align subjective training intensity with objective heart rate data.",
+    loader: () => import("@/components/calculators/Sports/TargetHeartRateRpeZonesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
