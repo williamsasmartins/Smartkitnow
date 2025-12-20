@@ -4652,6 +4652,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/TabOverloadAnxietyScoreCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "commit-message-quality-judge",
+    title: "Commit Message Quality Judge",
+    category: "funny",
+    subcategory: "tech-work-life",
+    description: "Rate your git commit messages. Are you writing useful descriptions or just 'wip' and 'fix'? Get a fun quality score.",
+    loader: () => import("@/components/calculators/Funny/CommitMessageQualityJudgeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
