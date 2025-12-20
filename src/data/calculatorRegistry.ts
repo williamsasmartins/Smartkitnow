@@ -4598,6 +4598,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/IdealEggBoilingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "coffee-addiction-meter",
+    title: "Coffee Addiction Meter",
+    category: "funny",
+    subcategory: "food-social-life",
+    description: "Assess your coffee dependency level. Answer fun questions to see if you run on caffeine or actual sleep.",
+    loader: () => import("@/components/calculators/Funny/CoffeeAddictionMeterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
