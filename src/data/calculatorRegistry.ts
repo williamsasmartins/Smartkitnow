@@ -4670,6 +4670,87 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/KeyboardClicksPerDayCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "meme-virality-calculator",
+    title: "Meme Virality Calculator",
+    category: "funny",
+    subcategory: "tech-work-life",
+    description: "Predict meme success. A tongue-in-cheek calculator to estimate the viral potential of your latest internet creation.",
+    loader: () => import("@/components/calculators/Funny/MemeViralityCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "calculator-word-generator-upside-down",
+    title: "Calculator Word Generator (Upside-Down)",
+    category: "funny",
+    subcategory: "tech-work-life",
+    description: "Write words on a calculator. Generate the numbers needed to spell 'HELLO', 'ZOMBIE', and other classics when turned upside down.",
+    loader: () => import("@/components/calculators/Funny/CalculatorWordGeneratorUpsideDownCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "lost-socks-calculator",
+    title: "Lost Socks Calculator",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Solve the laundry mystery. Estimate the probability of losing a sock based on wash frequency and dryer portal theories.",
+    loader: () => import("@/components/calculators/Funny/LostSocksCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "dog-zoomies-energy-meter",
+    title: "Dog Zoomies Energy Release Meter",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Measure dog energy bursts. Calculate the kinetic energy of your dog's 3 AM zoomies based on speed and destruction level.",
+    loader: () => import("@/components/calculators/Funny/DogZoomiesEnergyMeterCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "cat-ignore-o-meter",
+    title: "Cat 'Ignore-o-Meter'",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Predict cat acknowledgement. Calculate the extremely low probability that your cat will actually respond when you call its name.",
+    loader: () => import("@/components/calculators/Funny/CatIgnoreOMeterCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "plant-watering-procrastination-index",
+    title: "Plant Watering Procrastination Index",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Track plant neglect. Calculate how long you can 'procrastinate' watering your plants before they officially give up on you.",
+    loader: () => import("@/components/calculators/Funny/PlantWateringProcrastinationIndexCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "netflix-one-more-episode-timer",
+    title: "Netflix 'Just One More Episode' Timer",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Manage binge-watching risks. Calculate how much of your life will be consumed if you watch 'just one more episode' tonight.",
+    loader: () => import("@/components/calculators/Funny/NetflixOneMoreEpisodeTimerCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "death-by-caffeine",
+    title: "Death by Caffeine (Max Safe Intake)",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Calculate your caffeine limit. Find out exactly how many cups of coffee would be lethal (so you can stop safely before that).",
+    loader: () => import("@/components/calculators/Funny/DeathByCaffeineCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "social-media-time-alternatives",
+    title: "Social Media Time Alternatives",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Reclaim your time. See what new skills or hobbies you could have mastered in the time spent scrolling social media this year.",
+    loader: () => import("@/components/calculators/Funny/SocialMediaTimeAlternativesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
