@@ -4544,6 +4544,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/BbqCharcoalSplitterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "coffee-strength-vs-productivity-meme",
+    title: "Coffee Strength vs Productivity Score",
+    category: "funny",
+    subcategory: "food-social-life",
+    description: "Chart your caffeine intake against work output. Find the sweet spot between 'peak productivity' and 'jittery chaos'.",
+    loader: () => import("@/components/calculators/Funny/CoffeeStrengthVsProductivityMemeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
