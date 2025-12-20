@@ -4133,6 +4133,52 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/FtpZonesPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "swim-pace-css-splits",
+    title: "Swim Pace: CSS (Critical Swim Speed) & Splits",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Calculate your Critical Swim Speed (CSS). Determine optimal pacing for swim training and monitor aerobic threshold improvements.",
+    loader: () => import("@/components/calculators/Sports/SwimPaceCssSplitsCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "t1-t2-time-impact",
+    title: "T1/T2 Transition Time Impact (Triathlon)",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Analyze triathlon transition times. See how T1 and T2 durations impact your overall race finish time and ranking.",
+    loader: () => import("@/components/calculators/Sports/T1T2TimeImpactCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "hydration-sweat-rate",
+    title: "Hydration / Sweat Rate Calculator",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Calculate your sweat rate. Determine exactly how much fluid you need to drink to stay hydrated during endurance events.",
+    loader: () => import("@/components/calculators/Sports/HydrationSweatRateCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "cycling-cadence",
+    title: "Cycling Cadence Calculator",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Calculate cycling cadence. Measure your RPM (revolutions per minute) based on gear ratio and speed to improve pedaling efficiency.",
+    loader: () => import("@/components/calculators/Sports/CyclingCadenceCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "negative-split",
+    title: "Negative Split Race Planner",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Plan a negative split strategy. Calculate the pace required for the second half of your race to finish stronger than you started.",
+    loader: () => import("@/components/calculators/Sports/NegativeSplitCalculator"),
+    urlStyle: "flat"
+  },
+    
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
