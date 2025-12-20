@@ -2,7 +2,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import GamePageLayout from "@/components/templates/GamePageLayout";
 import { Button } from "@/components/ui/button";
-import { Cpu, RotateCcw, Sparkles, User } from "lucide-react";
+import { Cpu, RotateCcw, Sparkles, User, X } from "lucide-react";
+import StartOverlay from "./StartOverlay";
 
 type Cell = "R" | "Y" | null;
 type Difficulty = "easy" | "medium" | "hard";
@@ -247,6 +248,9 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
   const [hoverCol, setHoverCol] = useState<number | null>(null);
   const [lastMove, setLastMove] = useState<Pos | null>(null);
 
+  const [started, setStarted] = useState(false);
+  const [startOverlayOpen, setStartOverlayOpen] = useState(true);
+
   const [aiThinking, setAiThinking] = useState(false);
   const [aiInsights, setAiInsights] = useState<string[]>([]);
   const [aiTopMoves, setAiTopMoves] = useState<Array<{ col: number; score: number; reason: string }>>([]);
@@ -356,7 +360,15 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
     setAiTopMoves([]);
     setShowConfetti(false);
     setAutoRestartSec(0);
+    // Return to not-started so user must click Start again
+    setStarted(false);
+    setStartOverlayOpen(true);
     if (nextDifficulty) setDifficulty(nextDifficulty);
+  }
+
+  function startGame() {
+    setStarted(true);
+    setStartOverlayOpen(false);
   }
 
   function handleDrop(col: number) {
@@ -533,6 +545,48 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
           </div>
         </div>
 
+        {!started && !winner.winner && !startOverlayOpen ? (
+          <div className="mt-4 flex justify-center">
+            <Button type="button" onClick={() => setStartOverlayOpen(true)}>
+              Start Game
+            </Button>
+          </div>
+        ) : null}
+
+        <StartOverlay open={startOverlayOpen && !started && !winner.winner} onClose={() => setStartOverlayOpen(false)}>
+          <div>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs">
+              <Sparkles className="h-4 w-4 text-[#5c82ee]" />
+              Join Dots
+            </div>
+            <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Ready to play</h3>
+            <p className="mt-2 text-slate-600 dark:text-slate-300">Choose difficulty and press Start to begin.</p>
+            <div className="mt-5 grid grid-cols-1 gap-4">
+              <div>
+                <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 mb-2">Difficulty</div>
+                <div className="flex gap-2">
+                  {(["easy", "medium", "hard"] as Difficulty[]).map((d) => (
+                    <Button
+                      key={d}
+                      type="button"
+                      variant={difficulty === d ? "default" : "outline"}
+                      className="h-9 px-3"
+                      onClick={() => setDifficulty(d)}
+                    >
+                      {d[0].toUpperCase() + d.slice(1)}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="mt-6">
+              <Button type="button" className="w-full" onClick={startGame}>
+                Start Game
+              </Button>
+            </div>
+          </div>
+        </StartOverlay>
+
         <div className="flex flex-wrap items-center gap-2 text-sm">
           <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-1 text-slate-700 dark:text-slate-300">
             <User className="h-4 w-4" /> You: {pieceLabel(humanPiece)}
@@ -669,7 +723,7 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
                     />
                   );
                 })}
-              </div>
+                </div>
             );
           })}
         </div>
@@ -725,6 +779,7 @@ function ConfettiLayer({ kind }: { kind: "R" | "Y" | "draw" }) {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+    const ctx2 = ctx as CanvasRenderingContext2D;
     const colors =
       kind === "R"
         ? ["#ef4444", "#fca5a5", "#f87171"]
@@ -761,16 +816,16 @@ function ConfettiLayer({ kind }: { kind: "R" | "Y" | "draw" }) {
     function tick(now: number) {
       if (!running) return;
       const t = now - start;
-      ctx.clearRect(0, 0, w, h);
+      ctx2.clearRect(0, 0, w, h);
       particles.forEach((p) => {
         p.vy += 0.02;
         p.x += p.vx;
         p.y += p.vy;
         p.life += 1;
-        ctx.fillStyle = p.color;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
+        ctx2.fillStyle = p.color;
+        ctx2.beginPath();
+        ctx2.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx2.fill();
         if (p.y > h + 12 || p.x < -12 || p.x > w + 12) {
           p.y = -40 - Math.random() * 220;
           p.x = Math.random() * w;

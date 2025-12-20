@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import GamePageLayout from "@/components/templates/GamePageLayout";
 import { Button } from "@/components/ui/button";
-import { Cpu, RotateCcw, Sparkles, User, Gauge } from "lucide-react";
+import { Cpu, RotateCcw, Sparkles, User, Gauge, X } from "lucide-react";
+import StartOverlay from "./StartOverlay";
 import type { Dir, Pos } from "./neonSnake/engine";
 import { step, spawnFood } from "./neonSnake/engine";
 import { keyToDir } from "./neonSnake/input";
@@ -33,6 +34,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
   // Added: explicit "started" flag so the game does NOT auto-start on page load.
   // The main loop is gated by this flag and only begins after clicking Start.
   const [started, setStarted] = useState(false);
+  const [startOverlayOpen, setStartOverlayOpen] = useState(true);
   // Allow choosing difficulty and starting level before starting
   const [startDifficulty, setStartDifficulty] = useState<Difficulty>("medium");
   const [startLevel, setStartLevel] = useState<number>(1);
@@ -99,6 +101,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
     setPaused(false);
     // Ensure: resetting returns to "not started" so user must click Start.
     setStarted(false);
+    setStartOverlayOpen(true);
     if (nextDifficulty) {
       setDifficulty(nextDifficulty);
       setStartDifficulty(nextDifficulty);
@@ -110,6 +113,8 @@ export default function NeonSnake({ title, description }: { title?: string; desc
     setStarted(true);
     setDifficulty(startDifficulty);
     setLevel(startLevel);
+    // Close start overlay when starting
+    setStartOverlayOpen(false);
     lastTickRef.current = 0;
     // Focus canvas so keyboard input is captured immediately after Start
     requestAnimationFrame(() => {
@@ -175,7 +180,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
     const opts: AddEventListenerOptions = { passive: false, capture: true };
     window.addEventListener("keydown", onKey, opts);
     return () => window.removeEventListener("keydown", onKey, opts);
-  }, [enqueueDir, resetGame, started]);
+  }, [enqueueDir, resetGame, started, end]);
 
   useEffect(() => {
     function draw() {
@@ -183,6 +188,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       if (!canvas) return;
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
+      const ctx2 = ctx as CanvasRenderingContext2D;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const padding = 12;
       const cw = containerRef.current?.clientWidth ?? window.innerWidth - 24;
@@ -201,39 +207,39 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       canvas.height = Math.floor(h * dpr);
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(dpr, dpr);
-      ctx.fillStyle = "#0b1220";
-      ctx.fillRect(0, 0, w, h);
+      ctx2.setTransform(1, 0, 0, 1, 0, 0);
+      ctx2.scale(dpr, dpr);
+      ctx2.fillStyle = "#0b1220";
+      ctx2.fillRect(0, 0, w, h);
       for (let y = 0; y < GRID_H; y++) {
         for (let x = 0; x < GRID_W; x++) {
           const gx = padding + x * cell;
           const gy = padding + y * cell;
-          ctx.fillStyle = "rgba(92,130,238,0.06)";
-          ctx.fillRect(gx, gy, cell - 1, cell - 1);
+          ctx2.fillStyle = "rgba(92,130,238,0.06)";
+          ctx2.fillRect(gx, gy, cell - 1, cell - 1);
         }
       }
       const drawDot = (p: Pos, i: number) => {
         const gx = padding + p.x * cell;
         const gy = padding + p.y * cell;
-        const grad = ctx.createLinearGradient(gx, gy, gx + cell, gy + cell);
+        const grad = ctx2.createLinearGradient(gx, gy, gx + cell, gy + cell);
         const isHead = i === 0;
         grad.addColorStop(0, isHead ? "#5c82ee" : "#4f46e5");
         grad.addColorStop(1, isHead ? "#a855f7" : "#7c3aed");
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.roundRect(gx + 2, gy + 2, cell - 4, cell - 4, 8);
-        ctx.fill();
-        ctx.strokeStyle = "rgba(92,130,238,0.6)";
-        ctx.strokeRect(gx + 2, gy + 2, cell - 4, cell - 4);
+        ctx2.fillStyle = grad;
+        ctx2.beginPath();
+        ctx2.roundRect(gx + 2, gy + 2, cell - 4, cell - 4, 8);
+        ctx2.fill();
+        ctx2.strokeStyle = "rgba(92,130,238,0.6)";
+        ctx2.strokeRect(gx + 2, gy + 2, cell - 4, cell - 4);
       };
       snake.forEach((p, i) => drawDot(p, i));
       const fgx = padding + food.x * cell;
       const fgy = padding + food.y * cell;
-      ctx.fillStyle = "#f59e0b";
-      ctx.beginPath();
-      ctx.roundRect(fgx + 3, fgy + 3, cell - 6, cell - 6, 8);
-      ctx.fill();
+      ctx2.fillStyle = "#f59e0b";
+      ctx2.beginPath();
+      ctx2.roundRect(fgx + 3, fgy + 3, cell - 6, cell - 6, 8);
+      ctx2.fill();
     }
     draw();
   }, [snake, food, redrawTick]);
@@ -406,6 +412,14 @@ export default function NeonSnake({ title, description }: { title?: string; desc
           className="rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 bg-slate-950"
         />
         </div>
+        {!started && !end && !startOverlayOpen ? (
+          <div className="mt-4 flex justify-center">
+            <Button type="button" onClick={() => setStartOverlayOpen(true)}>
+              Start Game
+            </Button>
+          </div>
+        ) : null}
+
         {started && !end ? (
           <div className="mt-4 md:hidden w-full max-w-[420px]">
             <div className="grid grid-cols-3 gap-2">
@@ -419,62 +433,57 @@ export default function NeonSnake({ title, description }: { title?: string; desc
           </div>
         ) : null}
         {/* Start overlay: visible until the user clicks Start. */}
-        {!started && !end ? (
-          <div className="fixed inset-0 z-40 grid place-items-center bg-black/40" role="dialog" aria-modal="true">
-            <div className="relative z-20 w-[min(92vw,560px)] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-8">
-              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[#5c82ee]/20 via-fuchsia-400/20 to-amber-300/20 blur-2xl" aria-hidden />
-              <div className="relative">
-                <div className="mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs">
-                  <Sparkles className="h-4 w-4 text-[#5c82ee]" />
-                  Neon Snake
+        <StartOverlay open={startOverlayOpen && !started && !end} onClose={() => setStartOverlayOpen(false)}>
+          <div>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs">
+              <Sparkles className="h-4 w-4 text-[#5c82ee]" />
+              Neon Snake
+            </div>
+            <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Ready to play</h3>
+            <p className="mt-2 text-slate-600 dark:text-slate-300">
+              Click Start to begin. Use Arrow Keys or WASD to move. Reach length {WIN_TARGET} to win.
+            </p>
+            <div className="mt-5 grid grid-cols-1 gap-4">
+              <div>
+                <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 mb-2">Difficulty</div>
+                <div className="flex gap-2">
+                  {(["easy", "medium", "hard"] as Difficulty[]).map((d) => (
+                    <Button
+                      key={d}
+                      type="button"
+                      variant={startDifficulty === d ? "default" : "outline"}
+                      className="h-9 px-3"
+                      onClick={() => setStartDifficulty(d)}
+                    >
+                      {d[0].toUpperCase() + d.slice(1)}
+                    </Button>
+                  ))}
                 </div>
-                <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Ready to play</h3>
-                <p className="mt-2 text-slate-600 dark:text-slate-300">
-                  Click Start to begin. Use Arrow Keys or WASD to move. Reach length {WIN_TARGET} to win.
-                </p>
-                <div className="mt-5 grid grid-cols-1 gap-4">
-                  <div>
-                    <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 mb-2">Difficulty</div>
-                    <div className="flex gap-2">
-                      {(["easy", "medium", "hard"] as Difficulty[]).map((d) => (
-                        <Button
-                          key={d}
-                          type="button"
-                          variant={startDifficulty === d ? "default" : "outline"}
-                          className="h-9 px-3"
-                          onClick={() => setStartDifficulty(d)}
-                        >
-                          {d[0].toUpperCase() + d.slice(1)}
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 mb-2">Start level</div>
-                    <div className="flex flex-wrap gap-2">
-                      {[1, 2, 3, 4, 5].map((lv) => (
-                        <Button
-                          key={lv}
-                          type="button"
-                          variant={startLevel === lv ? "default" : "outline"}
-                          className="h-9 px-3"
-                          onClick={() => setStartLevel(lv)}
-                        >
-                          {lv}
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-6">
-                  <Button type="button" className="w-full" onClick={startGame}>
-                    Start Game
-                  </Button>
+              </div>
+              <div>
+                <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 mb-2">Start level</div>
+                <div className="flex flex-wrap gap-2">
+                  {[1, 2, 3, 4, 5].map((lv) => (
+                    <Button
+                      key={lv}
+                      type="button"
+                      variant={startLevel === lv ? "default" : "outline"}
+                      className="h-9 px-3"
+                      onClick={() => setStartLevel(lv)}
+                    >
+                      {lv}
+                    </Button>
+                  ))}
                 </div>
               </div>
             </div>
+            <div className="mt-6">
+              <Button type="button" className="w-full" onClick={startGame}>
+                Start Game
+              </Button>
+            </div>
           </div>
-        ) : null}
+        </StartOverlay>
         {end ? (
           <div className="fixed inset-0 z-50 grid place-items-center bg-black/40" role="alertdialog" aria-modal="true" aria-live="assertive">
             {showConfetti ? <ConfettiLayer kind={end === "win" ? "R" : "draw"} /> : null}
@@ -517,6 +526,7 @@ function ConfettiLayer({ kind }: { kind: "R" | "draw" }) {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+    const ctx2 = ctx as CanvasRenderingContext2D;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let w = window.innerWidth;
     let h = window.innerHeight;
@@ -545,15 +555,15 @@ function ConfettiLayer({ kind }: { kind: "R" | "draw" }) {
     function tick(now: number) {
       if (!running) return;
       const t = now - start;
-      ctx.clearRect(0, 0, w, h);
+      ctx2.clearRect(0, 0, w, h);
       for (const p of particles) {
         p.vy += 0.02;
         p.x += p.vx;
         p.y += p.vy;
-        ctx.fillStyle = p.color;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
+        ctx2.fillStyle = p.color;
+        ctx2.beginPath();
+        ctx2.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx2.fill();
         if (p.y > h + 12 || p.x < -12 || p.x > w + 12) {
           p.y = -40 - Math.random() * 220;
           p.x = Math.random() * w;
