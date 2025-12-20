@@ -4607,6 +4607,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/CoffeeAddictionMeterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "zombie-survival-calculator",
+    title: "Zombie Survival Calculator",
+    category: "funny",
+    subcategory: "food-social-life",
+    description: "Estimate your survival odds. Calculate how long you would last in a zombie apocalypse based on cardio, skills, and weapon choice.",
+    loader: () => import("@/components/calculators/Funny/ZombieSurvivalCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
