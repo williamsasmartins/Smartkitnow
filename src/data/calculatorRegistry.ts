@@ -4526,6 +4526,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/PizzaSizePriceComparisonCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pizza-slices-per-person-regret-index",
+    title: "Pizza Slices per Person & Regret Index",
+    category: "funny",
+    subcategory: "food-social-life",
+    description: "Plan your pizza party perfectly. Estimate slices per person and calculate the potential 'regret index' for overeating.",
+    loader: () => import("@/components/calculators/Funny/PizzaSlicesPerPersonRegretIndexCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
