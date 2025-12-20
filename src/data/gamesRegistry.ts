@@ -22,7 +22,7 @@ const GAMES: GameRegistryEntry[] = [
   },
 
   { slug: "neon-snake", title: "Neon Snake", description: "Classic Snake in a neon grid. Eat, grow, avoid collisions.", loader: () => import("../components/games/NeonSnake"), comingSoon: false },
-  { slug: "astro-breakout", title: "Astro Breakout", description: "Breakout-style arcade. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
+  { slug: "astro-breakout", title: "Astro Breakout", description: "Breakout-style arcade. Power-ups and sectors.", loader: () => import("../components/games/AstroBreakout"), comingSoon: false },
   { slug: "orb-runner", title: "Orb Runner", description: "Endless runner reflex game. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "pixel-tetris", title: "Pixel Tetris", description: "Tetris-inspired block puzzler. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "memory-flux", title: "Memory Flux", description: "Memory cards and patterns. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
