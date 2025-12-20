@@ -4306,6 +4306,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/FitnessAgeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "yoga-calories-burned",
+    title: "Yoga Calories Burned Calculator",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Estimate calories burned during yoga. Calculate energy expenditure for Hatha, Vinyasa, or Bikram yoga sessions.",
+    loader: () => import("@/components/calculators/Sports/YogaCaloriesBurnedCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
