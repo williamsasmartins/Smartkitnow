@@ -4697,6 +4697,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/LostSocksCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dog-zoomies-energy-meter",
+    title: "Dog Zoomies Energy Release Meter",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Measure dog energy bursts. Calculate the kinetic energy of your dog's 3 AM zoomies based on speed and destruction level.",
+    loader: () => import("@/components/calculators/Funny/DogZoomiesEnergyMeterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
