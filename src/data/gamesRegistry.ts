@@ -20,17 +20,6 @@ const GAMES: GameRegistryEntry[] = [
     loader: () => import("../components/games/JoinDotsConnectFour"),
     comingSoon: false,
   },
-
-
-"astro-breakout": {
-  title: "Astro Breakout",
-  description: "A premium Breakout experience: power-ups, multi-ball, smooth physics, mobile controls, and full-screen theater mode.",
-  loader: () => import("../components/games/AstroBreakout"),
-  comingSoon: false,
-},
-
-  
-
   { slug: "neon-snake", title: "Neon Snake", description: "Classic Snake in a neon grid. Eat, grow, avoid collisions.", loader: () => import("../components/games/NeonSnake"), comingSoon: false },
   { slug: "astro-breakout", title: "Astro Breakout", description: "Breakout-style arcade. Power-ups and sectors.", loader: () => import("../components/games/AstroBreakout"), comingSoon: false },
   { slug: "orb-runner", title: "Orb Runner", description: "Endless runner reflex game. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
