@@ -4288,6 +4288,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/MacronutrientCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "calorie-deficit-surplus",
+    title: "Calorie Deficit / Surplus Calculator",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Plan calorie deficits or surpluses. Adjust energy intake precisely for weight cutting or mass gaining cycles.",
+    loader: () => import("@/components/calculators/Sports/CalorieDeficitSurplusCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
