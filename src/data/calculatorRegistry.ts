@@ -4616,6 +4616,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/ZombieSurvivalCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "love-meter",
+    title: "Love Meter (Name Compatibility)",
+    category: "funny",
+    subcategory: "food-social-life",
+    description: "Test name compatibility. A classic fun algorithm to see if you and your crush are a 100% match or destined for doom.",
+    loader: () => import("@/components/calculators/Funny/LoveMeterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
