@@ -567,6 +567,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
             </div>
           </div>
         ) : null}
+        </div>
       </div>
     </GamePageLayout>
   );
