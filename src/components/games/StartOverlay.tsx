@@ -5,10 +5,12 @@ export default function StartOverlay({
   open,
   onClose,
   children,
+  hideFooterClose,
 }: {
   open: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  hideFooterClose?: boolean;
 }) {
   const panelRef = useRef<HTMLDivElement | null>(null);
 
@@ -50,11 +52,13 @@ export default function StartOverlay({
 
         <div className="relative">{children}</div>
 
-        <div className="relative mt-6 flex justify-end">
-          <Button type="button" variant="outline" onClick={onClose}>
-            Close
-          </Button>
-        </div>
+        {!hideFooterClose ? (
+          <div className="relative mt-6 flex justify-end">
+            <Button type="button" variant="outline" onClick={onClose}>
+              Close
+            </Button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

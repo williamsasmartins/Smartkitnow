@@ -478,7 +478,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
           </div>
         ) : null}
         {/* Start overlay: visible until the user clicks Start. */}
-        <StartOverlay open={startOverlayOpen && !started && !end} onClose={() => setStartOverlayOpen(false)}>
+        <StartOverlay open={startOverlayOpen && !started && !end} onClose={() => setStartOverlayOpen(false)} hideFooterClose>
           {/* Add a Close button in the top-right of the overlay for NeonSnake */}
           <button
             type="button"
@@ -511,6 +511,18 @@ export default function NeonSnake({ title, description }: { title?: string; desc
                       {d[0].toUpperCase() + d.slice(1)}
                     </Button>
                   ))}
+                </div>
+              </div>
+              <div>
+                <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 mb-2">Display</div>
+                <div className="flex gap-2 items-center">
+                  <Button type="button" variant={theater ? "default" : "outline"} className="h-9 px-3" onClick={() => { toggleFullscreen(); }}>
+                    {theater ? <>
+                      <Minimize2 className="mr-2 h-4 w-4" /> Exit Theater
+                    </> : <>
+                      <Maximize2 className="mr-2 h-4 w-4" /> Theater
+                    </>}
+                  </Button>
                 </div>
               </div>
               <div>
