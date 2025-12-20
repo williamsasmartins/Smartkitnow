@@ -130,6 +130,10 @@ export default function AstroBreakout({ title, description }: { title?: string; 
   const [overlayOpen, setOverlayOpen] = useState(true); // ready/pause/win/lose overlay
   const overlayOpenRef = useRef(true);
 
+  // Overlay start options: starting difficulty and palette
+  const [startDifficulty, setStartDifficulty] = useState<Difficulty>("medium");
+  const [palette, setPalette] = useState<"default" | "neon" | "purple">("neon");
+
   const [touchControls, setTouchControls] = useState(true);
 
   // Power-up timers
@@ -159,7 +163,7 @@ export default function AstroBreakout({ title, description }: { title?: string; 
 
   const speedConfig = useMemo(() => {
     // base speed depends on difficulty
-    if (difficulty === "easy") return { ball: 540, brickHpBias: 0, lives: 4 };
+    if (difficulty === "easy") return { ball: 420, brickHpBias: 0, lives: 4 };
     if (difficulty === "hard") return { ball: 760, brickHpBias: 1, lives: 2 };
     return { ball: 640, brickHpBias: 0, lives: 3 };
   }, [difficulty]);
@@ -413,10 +417,17 @@ export default function AstroBreakout({ title, description }: { title?: string; 
 
     const resize = () => {
       const rect = el.getBoundingClientRect();
-      // Use width-first sizing with a stable aspect ratio
-      const maxW = Math.min(rect.width, 1100);
+      // Use width/height to determine the largest canvas that fits inside the container
+      const padX = 48; // horizontal padding so UI chrome remains visible
+      const padY = 120; // vertical padding to keep paddle in view
+      const availableW = Math.max(320, rect.width - padX);
+      const availableH = Math.max(240, rect.height - padY);
       const aspect = WORLD_W / WORLD_H;
-      const h = maxW / aspect;
+
+      // compute max width constrained by both available width and height (so game always fits)
+      const maxW_by_height = availableH * aspect;
+      const maxW = Math.min(1100, availableW, maxW_by_height);
+      const h = Math.max(240, Math.floor(maxW / aspect));
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       dprRef.current = dpr;
@@ -426,7 +437,9 @@ export default function AstroBreakout({ title, description }: { title?: string; 
       canvas.width = Math.floor(maxW * dpr);
       canvas.height = Math.floor(h * dpr);
 
-      scaleRef.current = maxW / WORLD_W;
+      // keep scale reasonable so elements remain visible
+      const scale = maxW / WORLD_W;
+      scaleRef.current = Math.max(0.4, Math.min(scale, 1.0));
     };
 
     resize();
@@ -634,8 +647,9 @@ export default function AstroBreakout({ title, description }: { title?: string; 
       rafRef.current = null;
       lastRef.current = 0;
     };
+    // re-run loop when difficulty or palette or theater changes so render closure uses latest palette
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [difficulty]);
+  }, [difficulty, palette, theater]);
 
   function simulate(dt: number, nowMs: number) {
     const paddle = paddleRef.current;
@@ -905,15 +919,30 @@ export default function AstroBreakout({ title, description }: { title?: string; 
     // Bricks
     for (const br of bricksRef.current) {
       const hpRatio = br.hp / br.maxHp;
-      const hue = 210 + (1 - hpRatio) * 70; // blue -> violet
-      ctx.fillStyle = `hsla(${hue}, 90%, 60%, 0.95)`;
-      ctx.strokeStyle = "rgba(15,23,42,0.6)";
-      ctx.lineWidth = 2;
-
       const bx = wx(br.x);
       const by = wy(br.y);
       const bw = ww(br.w);
       const bh = ww(br.h);
+
+      // palette-aware brick coloring
+      if (palette === "neon") {
+        const g = ctx.createLinearGradient(bx, by, bx + bw, by + bh);
+        g.addColorStop(0, "#5c82ee");
+        g.addColorStop(0.5, "#a855f7");
+        g.addColorStop(1, "#f59e0b");
+        ctx.fillStyle = g;
+      } else if (palette === "purple") {
+        const g = ctx.createLinearGradient(bx, by, bx + bw, by + bh);
+        g.addColorStop(0, "#7c3aed");
+        g.addColorStop(1, "#a78bfa");
+        ctx.fillStyle = g;
+      } else {
+        const hue = 210 + (1 - hpRatio) * 70; // blue -> violet
+        ctx.fillStyle = `hsla(${hue}, 90%, 60%, 0.95)`;
+      }
+
+      ctx.strokeStyle = "rgba(15,23,42,0.6)";
+      ctx.lineWidth = 2;
 
       drawRoundRect(ctx, bx, by, bw, bh, 10);
       ctx.fill();
@@ -1223,6 +1252,12 @@ export default function AstroBreakout({ title, description }: { title?: string; 
     status === "ready" ? "Start Game" : status === "paused" ? "Resume" : status === "win" ? "Next Level" : "Restart";
 
   function onPrimary() {
+    if (status === "ready") {
+      // apply chosen start difficulty
+      resetGame(startDifficulty);
+      startOrResume();
+      return;
+    }
     if (status === "win") {
       // next level
       resetLevel(level + 1, true);
@@ -1322,10 +1357,27 @@ export default function AstroBreakout({ title, description }: { title?: string; 
                         </h3>
                         <p className="mt-2 text-slate-600 dark:text-slate-300">{overlayBody}</p>
                       </div>
+                      {/* Start options: level and palette */}
+                      <div className="ml-4">
+                        <div className="text-xs text-slate-500 mb-2">Difficulty</div>
+                        <div className="flex gap-2 mb-3">
+                          {(["easy", "medium", "hard"] as Difficulty[]).map((d) => (
+                            <Button key={d} type="button" variant={startDifficulty === d ? "default" : "outline"} className="h-8 px-3" onClick={() => setStartDifficulty(d)}>
+                              {d[0].toUpperCase() + d.slice(1)}
+                            </Button>
+                          ))}
+                        </div>
+                        <div className="text-xs text-slate-500 mb-2">Brick colors</div>
+                        <div className="flex gap-2">
+                          <Button type="button" variant={palette === "neon" ? "default" : "outline"} className="h-8 px-2" onClick={() => setPalette("neon")}>Neon</Button>
+                          <Button type="button" variant={palette === "purple" ? "default" : "outline"} className="h-8 px-2" onClick={() => setPalette("purple")}>Purple</Button>
+                          <Button type="button" variant={palette === "default" ? "default" : "outline"} className="h-8 px-2" onClick={() => setPalette("default")}>Default</Button>
+                        </div>
+                      </div>
 
-                      {/* Close button (requested for ALL games) */}
-                      <Button type="button" variant="outline" className="h-10 w-10 p-0" onClick={exitOverlay} aria-label="Close">
-                        <X className="h-4 w-4" />
+                      {/* Replace 'X' with textual Close button */}
+                      <Button type="button" variant="outline" className="h-10 px-3" onClick={exitOverlay} aria-label="Close">
+                        Close
                       </Button>
                     </div>
 

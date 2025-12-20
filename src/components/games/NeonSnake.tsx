@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Maximize2, Minimize2 } from "lucide-react";
 import GamePageLayout from "@/components/templates/GamePageLayout";
 import { Button } from "@/components/ui/button";
 import { Cpu, RotateCcw, Sparkles, User, Gauge, X } from "lucide-react";
@@ -41,6 +42,8 @@ export default function NeonSnake({ title, description }: { title?: string; desc
   const audioCtxRef = useRef<AudioContext | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const [theater, setTheater] = useState(false);
   const swipeStartRef = useRef<{ x: number; y: number } | null>(null);
   const loopRef = useRef<number | null>(null);
   const lastTickRef = useRef<number>(0);
@@ -269,6 +272,31 @@ export default function NeonSnake({ title, description }: { title?: string; desc
     };
   }, []);
 
+  // Fullscreen / theater helpers
+  function toggleFullscreen() {
+    const el = wrapRef.current ?? containerRef.current;
+    if (!el) return;
+    const doc: any = document;
+    const isFs = !!doc.fullscreenElement;
+    if (!isFs) {
+      el.requestFullscreen?.().catch(() => {});
+      setTheater(true);
+    } else {
+      doc.exitFullscreen?.().catch(() => {});
+      setTheater(false);
+    }
+  }
+
+  useEffect(() => {
+    const onFs = () => {
+      const doc: any = document;
+      const isFs = !!doc.fullscreenElement;
+      if (!isFs) setTheater(false);
+    };
+    document.addEventListener("fullscreenchange", onFs);
+    return () => document.removeEventListener("fullscreenchange", onFs);
+  }, []);
+
   useEffect(() => {
     // Main game loop is only active once "started" is true.
     if (!started) return;
@@ -362,6 +390,11 @@ export default function NeonSnake({ title, description }: { title?: string; desc
             New game
           </Button>
         </div>
+        <div className="mt-3">
+          <Button type="button" variant="outline" className="w-full" onClick={toggleFullscreen}>
+            {theater ? <Minimize2 className="mr-2 h-4 w-4" /> : <Maximize2 className="mr-2 h-4 w-4" />}Theater
+          </Button>
+        </div>
         <div className="text-xs text-slate-500 dark:text-slate-400">
           Use Arrow Keys or WASD. Press R to restart. 1/2/3 to set difficulty, P to pause.
         </div>
@@ -397,7 +430,8 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       onThisPage={[{ id: "how-to-play", label: "How to play" }]}
     >
       <div className="flex flex-col items-center">
-        <div ref={containerRef} className="mx-auto max-w-[1100px] w-full">
+        <div ref={wrapRef} className={"w-full " + (theater ? "fixed inset-0 z-50 bg-slate-950/95 p-6" : "") }>
+          <div ref={containerRef} className="mx-auto max-w-[1100px] w-full">
           <canvas
           ref={canvasRef}
           // Make canvas focusable so keyboard input works consistently across browsers
@@ -445,6 +479,14 @@ export default function NeonSnake({ title, description }: { title?: string; desc
         ) : null}
         {/* Start overlay: visible until the user clicks Start. */}
         <StartOverlay open={startOverlayOpen && !started && !end} onClose={() => setStartOverlayOpen(false)}>
+          {/* Add a Close button in the top-right of the overlay for NeonSnake */}
+          <button
+            type="button"
+            className="absolute right-4 top-4 inline-flex h-9 items-center justify-center rounded-md border px-3 py-1 text-sm bg-white/10"
+            onClick={() => setStartOverlayOpen(false)}
+          >
+            Close
+          </button>
           <div>
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs">
               <Sparkles className="h-4 w-4 text-[#5c82ee]" />
