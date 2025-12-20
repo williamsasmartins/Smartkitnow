@@ -4634,6 +4634,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/MeetingsWastedTimeCounterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "email-cost-estimator-energy",
+    title: "Cost to Send This Email (Energy/kWh)",
+    category: "funny",
+    subcategory: "tech-work-life",
+    description: "Estimate the environmental cost of your emails. Calculate the energy usage and carbon footprint of sending that 'Reply All' message.",
+    loader: () => import("@/components/calculators/Funny/EmailCostEstimatorEnergyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
