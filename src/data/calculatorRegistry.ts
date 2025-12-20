@@ -4216,6 +4216,33 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/OneRepMax1rmCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "training-weight-percentage",
+    title: "Training Weight Percentage Calculator",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Calculate training weights. Determine specific percentages of your 1RM to plan hypertrophy, strength, or power workouts.",
+    loader: () => import("@/components/calculators/Sports/TrainingWeightPercentageCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "target-heart-rate-rpe-zones",
+    title: "Target Heart Rate / RPE Zones",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Match heart rate to Perceived Exertion (RPE). Align subjective training intensity with objective heart rate data.",
+    loader: () => import("@/components/calculators/Sports/TargetHeartRateRpeZonesCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "tdee-calculator",
+    title: "TDEE Calculator (Sports)",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Calculate Total Daily Energy Expenditure for athletes. Estimate calorie needs based on high activity levels and training volume.",
+    loader: () => import("@/components/calculators/Sports/TdeeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
