@@ -4535,6 +4535,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/PizzaSlicesPerPersonRegretIndexCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bbq-charcoal-splitter",
+    title: "BBQ 'Who Brings the Charcoal?' Splitter",
+    category: "funny",
+    subcategory: "food-social-life",
+    description: "Settle BBQ disputes fairly. A randomizer tool to decide who buys the charcoal, who brings the meat, and who just brings the vibes.",
+    loader: () => import("@/components/calculators/Funny/BbqCharcoalSplitterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
