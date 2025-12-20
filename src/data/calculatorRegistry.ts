@@ -4088,6 +4088,33 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
    
+    {
+    slug: "running-pace-split-finish-time",
+    title: "Running Pace / Split / Finish Time Calculator",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Calculate your running pace and finish times. Determine the splits needed to achieve your marathon or 5K personal best.",
+    loader: () => import("@/components/calculators/Sports/RunningPaceSplitFinishTimeCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "race-time-predictor-riegel",
+    title: "Race Time Predictor (Riegel Formula)",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Predict your race time for any distance. Use the Riegel formula to estimate performance based on a previous race result.",
+    loader: () => import("@/components/calculators/Sports/RaceTimePredictorRiegelCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "heart-rate-zones-karvonen",
+    title: "Heart-Rate Zones Calculator (Karvonen Method)",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Calculate accurate heart rate training zones. Use the Karvonen method to account for resting heart rate and optimize your cardio.",
+    loader: () => import("@/components/calculators/Sports/HeartRateZonesKarvonenCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
