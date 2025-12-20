@@ -20,15 +20,27 @@ const GAMES: GameRegistryEntry[] = [
     loader: () => import("../components/games/JoinDotsConnectFour"),
     comingSoon: false,
   },
-
-  "brick-dash": {
-  title: "Brick Dash",
-  description: "Dodge falling brick walls and dash through tight gaps. Desktop + mobile controls, fullscreen, combos, and power-ups.",
-  loader: () => import("@/components/games/BrickDash"),
-},
-
-  { slug: "neon-snake", title: "Neon Snake", description: "Classic Snake in a neon grid. Eat, grow, avoid collisions.", loader: () => import("../components/games/NeonSnake"), comingSoon: false },
-  { slug: "astro-breakout", title: "Astro Breakout", description: "Breakout-style arcade. Power-ups and sectors.", loader: () => import("../components/games/AstroBreakout"), comingSoon: false },
+  {
+    slug: "brick-dash",
+    title: "Brick Dash",
+    description: "Dodge falling brick walls and dash through tight gaps. Desktop + mobile controls, fullscreen, combos, and power-ups.",
+    loader: () => import("@/components/games/BrickDash"),
+    comingSoon: false,
+  },
+  {
+    slug: "neon-snake",
+    title: "Neon Snake",
+    description: "Classic Snake in a neon grid. Eat, grow, avoid collisions.",
+    loader: () => import("../components/games/NeonSnake"),
+    comingSoon: false,
+  },
+  {
+    slug: "astro-breakout",
+    title: "Astro Breakout",
+    description: "Breakout-style arcade. Power-ups and sectors.",
+    loader: () => import("../components/games/AstroBreakout"),
+    comingSoon: false,
+  },
   { slug: "orb-runner", title: "Orb Runner", description: "Endless runner reflex game. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "pixel-tetris", title: "Pixel Tetris", description: "Tetris-inspired block puzzler. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "memory-flux", title: "Memory Flux", description: "Memory cards and patterns. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
@@ -43,7 +55,6 @@ const GAMES: GameRegistryEntry[] = [
   { slug: "sliding-puzzle-deluxe", title: "Sliding Puzzle Deluxe", description: "Sliding tiles puzzle. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "match-3-aurora", title: "Match-3 Aurora", description: "Match-3 puzzle game. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "bubble-pop-nova", title: "Bubble Pop Nova", description: "Bubble pop arcade. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
-  { slug: "brick-dash", title: "Brick Dash", description: "Brick-busting dash arcade. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "tower-stack", title: "Tower Stack", description: "Timing-based stacking game. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "tap-reflex", title: "Tap Reflex", description: "Reaction and reflex mini-game. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "rhythm-tiles", title: "Rhythm Tiles", description: "Rhythm tile tapping. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
@@ -52,12 +63,10 @@ const GAMES: GameRegistryEntry[] = [
   { slug: "mini-golf-orbit", title: "Mini Golf Orbit", description: "Mini golf with simple physics. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "air-hockey-neon", title: "Air Hockey Neon", description: "Air hockey arcade match. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "pong-recharged", title: "Pong Recharged", description: "Pong with modern polish. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
-
   { slug: "checkers-royale", title: "Checkers Royale", description: "Checkers game. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "tic-tac-toe-prime", title: "Tic-Tac-Toe Prime", description: "Tic-tac-toe with style. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "reversi-eclipse", title: "Reversi Eclipse", description: "Reversi / Othello board game. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "chess-puzzles-daily", title: "Chess Puzzles Daily", description: "Chess puzzles and tactics. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
-
   { slug: "word-search-premium", title: "Word Search", description: "Word search puzzle. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "hangman-noir", title: "Hangman Noir", description: "Hangman word game. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
   { slug: "guess-the-number-pro", title: "Guess the Number", description: "Guess-the-number logic game. Coming soon.", loader: DEFAULT_LOADER, comingSoon: true },
