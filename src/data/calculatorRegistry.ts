@@ -4169,6 +4169,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/CyclingCadenceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "negative-split",
+    title: "Negative Split Race Planner",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Plan a negative split strategy. Calculate the pace required for the second half of your race to finish stronger than you started.",
+    loader: () => import("@/components/calculators/Sports/NegativeSplitCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
