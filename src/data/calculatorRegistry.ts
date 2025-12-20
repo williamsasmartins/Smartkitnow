@@ -4571,6 +4571,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/SugarInMyTeaDramaticCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "first-date-awkwardness-meter",
+    title: "First-Date Awkwardness Meter",
+    category: "funny",
+    subcategory: "food-social-life",
+    description: "Rate your date's potential awkwardness. Input variables like 'talks about ex' or 'forgot wallet' to predict the night's outcome.",
+    loader: () => import("@/components/calculators/Funny/FirstDateAwkwardnessMeterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
