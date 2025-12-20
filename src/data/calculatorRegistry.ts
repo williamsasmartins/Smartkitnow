@@ -4115,6 +4115,24 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/HeartRateZonesKarvonenCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cycling-power-speed-estimator",
+    title: "Cycling Power ↔ Speed Estimator (flat/wind)",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Estimate cycling power vs speed. Calculate how much wattage is required to maintain speed against wind resistance and flat terrain.",
+    loader: () => import("@/components/calculators/Sports/CyclingPowerSpeedEstimatorCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "ftp-zones-planner",
+    title: "FTP (Functional Threshold Power) Zones Planner",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Plan your cycling training zones. Calculate power zones based on your Functional Threshold Power (FTP) for structured workouts.",
+    loader: () => import("@/components/calculators/Sports/FtpZonesPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
