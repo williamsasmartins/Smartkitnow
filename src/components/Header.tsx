@@ -5,6 +5,7 @@ import { getCategoryIcon } from "@/lib/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState, lazy, Suspense } from "react";
+import { CATEGORIES } from "@/data/categoryMeta";
 
 const HeaderMoreMenu = lazy(() => import("./HeaderMoreMenu"));
 
@@ -25,20 +26,29 @@ export function Header() {
     { key: "health", label: "Health", to: "/health" },
     { key: "cooking", label: "Cooking", to: "/cooking" },
     { key: "conversion", label: "Conversion", to: "/conversion" },
-    { key: "math", label: "Math & Algebra", to: "/math" },
+    { key: "math", label: "Math", to: "/math" },
     { key: "pets", label: "Pet Care", to: "/pets" },
-    { key: "science", label: "Science", to: "/science" },
-    { key: "time", label: "Time & Date", to: "/time" },
-    { key: "free-games", label: "Free Games", to: "/games" },
+    { key: "games", label: "Free Games", to: "/games" },
+    { key: "qr-code", label: "Free QR Code Generator", to: "/everyday-life/qr-code-generator" },
+    { key: "sports", label: "Sports", to: "/sports" },
   ];
 
-  const MORE_CATS = [    { key: "recipes", label: "Recipes", to: "/recipes" },
-    { key: "smart-tips", label: "Smart Tips", to: "/smart-tips" },
-    { key: "daily-quotes", label: "Daily Quotes", to: "/daily-quotes" },{ key: "everyday", label: "Everyday Life", to: "/everyday" },
-    { key: "sports", label: "Sports", to: "/sports" },
-    { key: "funny", label: "Funny", to: "/funny" },
-    { key: "video", label: "Video", to: "/video" },
-  ];
+  // Compute visible keys (those already shown in the header) so "More" only contains the rest
+  const PRE_RENDERED_KEYS = ["construction", "automotive"];
+  const VISIBLE_KEYS = [...PRE_RENDERED_KEYS, ...PRIMARY_CATS.map((c) => c.key)];
+
+  // All known category keys (from CATEGORIES) plus some expected extras
+  const EXTRA_KEYS = ["games", "smart-tips", "daily-quotes", "everyday"];
+  const ALL_KEYS = Array.from(new Set([...Object.keys(CATEGORIES), ...EXTRA_KEYS]));
+
+  const MORE_CATS = ALL_KEYS
+    .filter((k) => !VISIBLE_KEYS.includes(k))
+    .map((k) => {
+      const meta = CATEGORIES[k];
+      const label = meta?.display ?? k.replace(/-/g, " ").replace(/\b\w/g, (s) => s.toUpperCase());
+      const to = `/${meta?.path ?? k}`;
+      return { key: k, label, to };
+    });
 
   const handleHomeClick = () => navigate("/");
 
@@ -90,27 +100,20 @@ export function Header() {
         </div>
       </div>
 
-      <nav className="container mx-auto px-4 pb-2 overflow-x-auto">
-        <ul className="skn-cat-menu flex items-center justify-start gap-4 text-sm whitespace-nowrap w-full">
-                    <li className="flex items-center">
+      <nav className="container mx-auto px-4 pb-2">
+        <ul className="skn-cat-menu flex flex-nowrap items-center justify-start gap-3 text-sm whitespace-nowrap w-full overflow-x-auto">
+          <li className="flex items-center">
             <Link to="/construction" className="text-primary hover:text-primary transition-colors inline-flex items-center">
               <span className="mr-1" aria-hidden>{getCategoryIcon("construction")}</span>
               Construction
             </Link>
           </li>
-                    <li className="flex items-center">
-            <Link to="/electrical" className="text-primary hover:text-primary transition-colors inline-flex items-center">
-              <span className="mr-1" aria-hidden>{getCategoryIcon("electrical")}</span>
-              Electrical
-            </Link>
-          </li>
-                    <li className="flex items-center">
+          <li className="flex items-center">
             <Link to="/automotive" className="text-primary hover:text-primary transition-colors inline-flex items-center">
               <span className="mr-1" aria-hidden>{getCategoryIcon("automotive")}</span>
               Automotive
             </Link>
           </li>
-
           {PRIMARY_CATS.map((cat) => (
             <li key={cat.key} className="flex items-center">
               <Link to={cat.to} className="text-primary hover:text-primary transition-colors inline-flex items-center">
