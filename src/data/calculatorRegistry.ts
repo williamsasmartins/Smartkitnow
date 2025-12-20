@@ -4369,6 +4369,51 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BasketballPaceOrtgDrtgCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "baseball-ops-slg-obp",
+    title: "Baseball OPS / SLG / OBP Calculator",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Calculate baseball sabermetrics. Find On-Base Plus Slugging (OPS), Slugging percentage, and On-Base Percentage instantly.",
+    loader: () => import("@/components/calculators/Sports/BaseballOpsSlgObpCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "era-whip-calculator",
+    title: "ERA & WHIP Calculator",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Calculate pitcher stats. Determine Earned Run Average (ERA) and Walks Plus Hits Per Inning Pitched (WHIP).",
+    loader: () => import("@/components/calculators/Sports/EraWhipCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "win-probability-shift-wps",
+    title: "Win Probability Shift (WPS) Estimator",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Estimate Win Probability Shift. Analyze how specific plays impact the likelihood of winning a game in real-time.",
+    loader: () => import("@/components/calculators/Sports/WinProbabilityShiftWpsCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "babip-calculator",
+    title: "BABIP Calculator",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Calculate Batting Average on Balls in Play (BABIP). Assess whether a pitcher or hitter is lucky or skilled.",
+    loader: () => import("@/components/calculators/Sports/BabipCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "ground-ball-to-fly-ball-ratio-gb-fb",
+    title: "Ground Ball to Fly Ball Ratio (GB/FB)",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Calculate GB/FB ratio. Analyze a pitcher's tendency to induce grounders versus fly balls.",
+    loader: () => import("@/components/calculators/Sports/GroundBallToFlyBallRatioGbFbCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
