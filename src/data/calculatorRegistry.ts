@@ -4160,6 +4160,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/HydrationSweatRateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cycling-cadence",
+    title: "Cycling Cadence Calculator",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Calculate cycling cadence. Measure your RPM (revolutions per minute) based on gear ratio and speed to improve pedaling efficiency.",
+    loader: () => import("@/components/calculators/Sports/CyclingCadenceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
