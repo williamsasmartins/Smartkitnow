@@ -2,13 +2,15 @@ import { useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-type Props = {
+export default function StartOverlay({
+  open,
+  onClose,
+  children,
+}: {
   open: boolean;
   onClose: () => void;
   children: React.ReactNode;
-};
-
-export default function StartOverlay({ open, onClose, children }: Props) {
+}) {
   const panelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -19,52 +21,49 @@ export default function StartOverlay({ open, onClose, children }: Props) {
     };
 
     window.addEventListener("keydown", onKey);
+    // Focus first time so keyboard works predictably
+    requestAnimationFrame(() => panelRef.current?.focus());
+
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
-
-  useEffect(() => {
-    if (!open) return;
-    requestAnimationFrame(() => {
-      const btn = panelRef.current?.querySelector<HTMLButtonElement>("[data-close]");
-      btn?.focus();
-    });
-  }, [open]);
 
   if (!open) return null;
 
   return (
     <div
-      className="fixed inset-0 z-50 grid place-items-center p-4"
+      className="fixed inset-0 z-[70] grid place-items-center bg-black/50 p-4"
       role="dialog"
       aria-modal="true"
       onMouseDown={(e) => {
-        // clicar fora do painel fecha
+        // clicking the backdrop closes
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
-
       <div
         ref={panelRef}
-        className="relative z-10 w-[min(92vw,720px)] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-6 md:p-8"
+        tabIndex={-1}
+        className="relative w-[min(92vw,760px)] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-6 md:p-8 outline-none"
+        onMouseDown={(e) => e.stopPropagation()}
       >
-        <div
-          className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[#5c82ee]/20 via-fuchsia-400/20 to-amber-300/20 blur-2xl pointer-events-none"
-          aria-hidden="true"
-        />
+        <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[#5c82ee]/20 via-fuchsia-400/20 to-amber-300/20 blur-2xl" aria-hidden />
 
-        <Button
-          data-close
+        <button
           type="button"
-          variant="outline"
-          className="absolute right-4 top-4 h-9 w-9 p-0"
+          className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/60 text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-950"
           onClick={onClose}
           aria-label="Close"
+          title="Close"
         >
           <X className="h-4 w-4" />
-        </Button>
+        </button>
 
         <div className="relative">{children}</div>
+
+        <div className="relative mt-6 flex justify-end">
+          <Button type="button" variant="outline" onClick={onClose}>
+            Close
+          </Button>
+        </div>
       </div>
     </div>
   );
