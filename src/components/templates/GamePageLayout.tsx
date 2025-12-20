@@ -1,6 +1,8 @@
 // src/components/templates/GamePageLayout.tsx
 import { useCallback } from "react";
 import type { ReactNode } from "react";
+import ShareThisPageBox from "@/components/ShareThisPageBox";
+import SuggestionBox from "@/components/SuggestionBox";
 
 type OnThisPageItem = { id: string; label: string };
 
@@ -68,6 +70,12 @@ export default function GamePageLayout({
                 {below}
               </div>
             )}
+
+            {/* Share + Suggest boxes (appear on all game pages) */}
+            <div className="mt-8 space-y-6">
+              <ShareThisPageBox />
+              <SuggestionBox />
+            </div>
 
             {/* BOTTOM BANNER PLACEHOLDER */}
             {showBottomBannerPlaceholder && (
