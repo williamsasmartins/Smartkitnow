@@ -31,7 +31,7 @@ export default function CryptoProfitLossCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let buyPrice = parseFloat(inputs.buyPrice) || 0;
+    const buyPrice = parseFloat(inputs.buyPrice) || 0;
     const sellPrice = parseFloat(inputs.sellPrice) || 0;
     const quantity = parseFloat(inputs.quantity) || 0;
 

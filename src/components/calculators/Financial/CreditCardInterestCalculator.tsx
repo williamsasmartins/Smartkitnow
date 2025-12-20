@@ -31,7 +31,7 @@ export default function CreditCardInterestCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let balanceValue = parseFloat(inputs.balance) || 0;
+    const balanceValue = parseFloat(inputs.balance) || 0;
     const interestRateValue = parseFloat(inputs.interestRate) / 100 || 0;
     const monthsValue = parseInt(inputs.months, 10) || 0;
 

@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getEntry } from "@/data/calculatorRegistry";
 
-function useLazyFromLoader(loader: () => Promise<any>, namedExport?: string) {
+function createLazyFromLoader(loader: () => Promise<any>, namedExport?: string) {
   const Lazy = React.lazy(async () => {
     const mod = await loader();
     return { default: namedExport ? mod[namedExport] : (mod.default ?? Object.values(mod)[0]) };
@@ -32,7 +32,7 @@ export default function CalculatorPage() {
     );
   }
 
-  const LazyCalc = useLazyFromLoader(entry.loader, entry.namedExport);
+  const LazyCalc = createLazyFromLoader(entry.loader, entry.namedExport);
 
   // Container Classes: Sempre usamos o padrão simétrico (Wide)
   // O controle de margem superior (padding-top) agora é responsabilidade exclusiva 

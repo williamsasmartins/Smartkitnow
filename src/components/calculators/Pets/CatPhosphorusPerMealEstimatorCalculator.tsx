@@ -42,7 +42,7 @@ export default function CatPhosphorusPerMealEstimatorCalculator() {
     const phosphorusPerMealMg = (phosphorusMgPer100g * servingSize) / 100;
 
     // Contextual subtext
-    let subtext = `This is the estimated phosphorus content in milligrams for the given serving size.`;
+    const subtext = `This is the estimated phosphorus content in milligrams for the given serving size.`;
 
     // Warning if phosphorus is high (> 150 mg per meal is often considered high for CKD cats)
     let warning = null;

@@ -68,7 +68,7 @@ export default function CostBasisFifoLifoCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let purchasePriceValue = parseFloat(inputs.purchasePrice) || 0;
+    const purchasePriceValue = parseFloat(inputs.purchasePrice) || 0;
     const quantityValue = parseFloat(inputs.quantity) || 0;
 
     // Validate

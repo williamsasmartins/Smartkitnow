@@ -69,7 +69,7 @@ export default function DebtConsolidationCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let totalDebtValue = parseFloat(inputs.totalDebt) || 0;
+    const totalDebtValue = parseFloat(inputs.totalDebt) || 0;
     const interestRateValue = parseFloat(inputs.interestRate) || 0;
     const termValue = parseFloat(inputs.term) || 0;
 

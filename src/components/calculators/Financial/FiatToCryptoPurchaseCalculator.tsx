@@ -68,7 +68,7 @@ export default function FiatToCryptoPurchaseCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let fiatAmount = parseFloat(inputs.fiatAmount) || 0;
+    const fiatAmount = parseFloat(inputs.fiatAmount) || 0;
     const cryptoPrice = parseFloat(inputs.cryptoPrice) || 0;
     const feePercentage = parseFloat(inputs.feePercentage) || 0;
 

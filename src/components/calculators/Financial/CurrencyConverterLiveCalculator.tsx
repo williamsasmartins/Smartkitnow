@@ -69,7 +69,7 @@ export default function CurrencyConverterLiveCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs
-    let amountValue = parseFloat(inputs.amount) || 0;
+    const amountValue = parseFloat(inputs.amount) || 0;
 
     // Validate
     if (amountValue <= 0 || exchangeRate <= 0) {

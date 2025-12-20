@@ -68,7 +68,7 @@ export default function YieldFarmingApyCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let initialInvestment = parseFloat(inputs.initialInvestment) || 0;
+    const initialInvestment = parseFloat(inputs.initialInvestment) || 0;
     const dailyInterestRate = parseFloat(inputs.dailyInterestRate) || 0;
     const compoundingFrequency = parseInt(inputs.compoundingFrequency) || 0;
 

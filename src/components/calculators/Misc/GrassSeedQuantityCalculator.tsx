@@ -71,7 +71,7 @@ export default function GrassSeedQuantityCalculator() {
     const seedingRateLbs = seedingRatesLbsPer1000Sqft[seedType] || 5;
 
     // Convert area to sqft if needed
-    let areaSqft = inputs.unit === "sqm" ? sqmToSqft(areaNum) : areaNum;
+    const areaSqft = inputs.unit === "sqm" ? sqmToSqft(areaNum) : areaNum;
 
     // Calculate total seed needed in lbs
     // Formula: (area in sqft / 1000) * seeding rate (lbs per 1000 sqft)

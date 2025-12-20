@@ -67,7 +67,7 @@ function normalize(v?: string) {
     .trim()
     .toLowerCase()
     .replace(/\s+/g, "-")
-    .replace(/[^\w\-]/g, "");
+    .replace(/[^\w-]/g, "");
 }
 
 export function categoryIcon(category?: string): string {

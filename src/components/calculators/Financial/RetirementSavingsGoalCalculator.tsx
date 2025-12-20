@@ -70,7 +70,7 @@ export default function RetirementSavingsGoalCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let currentAge = parseFloat(inputs.currentAge) || 0;
+    const currentAge = parseFloat(inputs.currentAge) || 0;
     const retirementAge = parseFloat(inputs.retirementAge) || 0;
     const currentSavings = parseFloat(inputs.currentSavings) || 0;
     const annualContribution = parseFloat(inputs.annualContribution) || 0;

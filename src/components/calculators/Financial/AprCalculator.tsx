@@ -66,7 +66,7 @@ export default function AprCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let loanAmount = parseFloat(inputs.loanAmount) || 0;
+    const loanAmount = parseFloat(inputs.loanAmount) || 0;
     const interestRate = parseFloat(inputs.interestRate) || 0;
     const fees = parseFloat(inputs.fees) || 0;
 

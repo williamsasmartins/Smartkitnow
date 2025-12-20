@@ -62,7 +62,7 @@ export default function AbsencePercentageCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let totalDaysValue = parseFloat(inputs.totalDays) || 0;
+    const totalDaysValue = parseFloat(inputs.totalDays) || 0;
     const absentDaysValue = parseFloat(inputs.absentDays) || 0;
 
     // Validate

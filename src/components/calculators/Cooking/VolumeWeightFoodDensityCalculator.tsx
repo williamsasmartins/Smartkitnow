@@ -117,7 +117,7 @@ export default function VolumeWeightFoodDensityCalculator() {
     let resultValue = 0;
     let resultLabel = "";
     let subtext = null;
-    let warning = null;
+    const warning = null;
 
     // From volume to weight
     if (fromUnit === "volume" && toUnit === "weight") {

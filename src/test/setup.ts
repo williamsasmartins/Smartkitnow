@@ -23,7 +23,7 @@ class MockIntersectionObserver {
   unobserve() {}
   disconnect() {}
 }
-// @ts-ignore
+// @ts-expect-error Polyfill for IntersectionObserver
 (globalThis as any).IntersectionObserver = (globalThis as any).IntersectionObserver || MockIntersectionObserver;
 
 // Polyfill ResizeObserver used by UI components
@@ -32,13 +32,13 @@ class MockResizeObserver {
   unobserve() {}
   disconnect() {}
 }
-// @ts-ignore
+// @ts-expect-error Polyfill for ResizeObserver
 (globalThis as any).ResizeObserver = (globalThis as any).ResizeObserver || MockResizeObserver;
 
 // Ensure scrollTo and scrollIntoView exist in JSDOM
-// @ts-ignore
+// @ts-expect-error Mocking window.scrollTo
 window.scrollTo = vi.fn();
-// @ts-ignore
+// @ts-expect-error Mocking scrollIntoView
 (HTMLElement.prototype as any).scrollIntoView = (HTMLElement.prototype as any).scrollIntoView || vi.fn();
 
 // Optional: Silence console.error noise from React Router during tests to focus on assertions

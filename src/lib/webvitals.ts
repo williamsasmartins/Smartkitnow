@@ -70,7 +70,9 @@ export function initWebVitals(opts: Options = {}) {
       }
     });
     poCLS.observe({ type: "layout-shift", buffered: true as any });
-  } catch {}
+  } catch {
+    // ignore
+  }
 
   // ---- LCP ----
   try {
@@ -83,7 +85,9 @@ export function initWebVitals(opts: Options = {}) {
       log("LCP", (metrics.LCP || 0) / 1000, opts.debug);
     });
     poLCP.observe({ type: "largest-contentful-paint", buffered: true as any });
-  } catch {}
+  } catch {
+    // ignore
+  }
 
   // ---- INP ----
   try {
@@ -94,7 +98,9 @@ export function initWebVitals(opts: Options = {}) {
       }
     });
     poINP.observe({ type: "event", buffered: true as any });
-  } catch {}
+  } catch {
+    // ignore
+  }
 
   // ---- Finalize ----
   const finalize = () => {

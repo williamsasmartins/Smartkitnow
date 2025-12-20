@@ -8,14 +8,18 @@ function readHidden(): Set<string> {
     if (!raw) return new Set<string>();
     const arr = JSON.parse(raw);
     if (Array.isArray(arr)) return new Set<string>(arr as string[]);
-  } catch {}
+  } catch {
+    // ignore
+  }
   return new Set<string>();
 }
 
 function writeHidden(set: Set<string>) {
   try {
     localStorage.setItem(LS_KEY, JSON.stringify([...set]));
-  } catch {}
+  } catch {
+    // ignore
+  }
 }
 
 export function useHiddenCuisines() {

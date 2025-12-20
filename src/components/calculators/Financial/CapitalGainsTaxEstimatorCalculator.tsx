@@ -31,7 +31,7 @@ export default function CapitalGainsTaxEstimatorCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let purchasePriceValue = parseFloat(inputs.purchasePrice) || 0;
+    const purchasePriceValue = parseFloat(inputs.purchasePrice) || 0;
     const salePriceValue = parseFloat(inputs.salePrice) || 0;
     const holdingPeriodValue = parseFloat(inputs.holdingPeriod) || 0;
 

@@ -69,7 +69,7 @@ export default function StudentLoanRepaymentCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let loanAmount = parseFloat(inputs.loanAmount) || 0;
+    const loanAmount = parseFloat(inputs.loanAmount) || 0;
     const interestRate = parseFloat(inputs.interestRate) / 100 / 12 || 0;
     const repaymentTerm = parseInt(inputs.repaymentTerm) * 12 || 0;
 

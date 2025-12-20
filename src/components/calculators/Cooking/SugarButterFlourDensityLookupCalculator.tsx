@@ -80,7 +80,7 @@ export default function SugarButterFlourDensityLookupCalculator() {
     let resultValue = 0;
     let resultLabel = "";
     let subtext = "";
-    let warningMsg: string | null = null;
+    const warningMsg: string | null = null;
 
     if (unit === "imperial") {
       // Imperial system: volume in cups, weight in ounces

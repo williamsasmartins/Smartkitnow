@@ -69,7 +69,7 @@ export default function RetirementSavingsGrowthCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let initialBalance = parseFloat(inputs.initialBalance) || 0;
+    const initialBalance = parseFloat(inputs.initialBalance) || 0;
     const annualContribution = parseFloat(inputs.annualContribution) || 0;
     const employerMatch = parseFloat(inputs.employerMatch) || 0;
     const annualGrowthRate = parseFloat(inputs.annualGrowthRate) / 100 || 0;

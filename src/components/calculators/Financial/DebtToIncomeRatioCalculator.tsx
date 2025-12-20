@@ -30,7 +30,7 @@ export default function DebtToIncomeRatioCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs
-    let monthlyIncomeValue = parseFloat(inputs.monthlyIncome) || 0;
+    const monthlyIncomeValue = parseFloat(inputs.monthlyIncome) || 0;
     const monthlyDebtValue = parseFloat(inputs.monthlyDebt) || 0;
 
     // Validate

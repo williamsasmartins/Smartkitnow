@@ -68,7 +68,7 @@ export default function SocialSecurityBenefitEstimatorCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let averageEarnings = parseFloat(inputs.averageEarnings) || 0;
+    const averageEarnings = parseFloat(inputs.averageEarnings) || 0;
     const retirementAge = parseInt(inputs.retirementAge) || 0;
     const currentAge = parseInt(inputs.currentAge) || 0;
 

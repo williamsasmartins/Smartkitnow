@@ -68,7 +68,7 @@ export default function InflationAdjustedValueCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let initialAmount = parseFloat(inputs.initialAmount) || 0;
+    const initialAmount = parseFloat(inputs.initialAmount) || 0;
     const annualInflationRate = parseFloat(inputs.annualInflationRate) || 0;
     const years = parseFloat(inputs.years) || 0;
 

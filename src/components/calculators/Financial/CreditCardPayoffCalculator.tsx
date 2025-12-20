@@ -31,7 +31,7 @@ export default function CreditCardPayoffCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let balance = parseFloat(inputs.balance) || 0;
+    const balance = parseFloat(inputs.balance) || 0;
     const interestRate = parseFloat(inputs.interestRate) || 0;
     const monthlyPayment = parseFloat(inputs.monthlyPayment) || 0;
 

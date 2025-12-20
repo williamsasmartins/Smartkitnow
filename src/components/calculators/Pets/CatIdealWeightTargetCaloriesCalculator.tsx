@@ -73,7 +73,7 @@ export default function CatIdealWeightTargetCaloriesCalculator() {
     let idealMinDisplay = idealWeightMin;
     let idealMaxDisplay = idealWeightMax;
     let weightUnitLabel = "kg";
-    let caloriesDisplay = Math.round(MER);
+    const caloriesDisplay = Math.round(MER);
 
     if (unit === "imperial") {
       idealMinDisplay = +(idealWeightMin / 0.453592).toFixed(2);

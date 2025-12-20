@@ -31,7 +31,7 @@ export default function CryptoFutureValueCompoundGrowthCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let principal = parseFloat(inputs.initialInvestment) || 0;
+    const principal = parseFloat(inputs.initialInvestment) || 0;
     const annualRate = parseFloat(inputs.annualInterestRate) / 100 || 0;
     const time = parseFloat(inputs.years) || 0;
 

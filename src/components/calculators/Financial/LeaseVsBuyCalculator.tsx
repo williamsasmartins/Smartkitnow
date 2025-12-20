@@ -71,7 +71,7 @@ export default function LeaseVsBuyCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs
-    let purchasePrice = parseFloat(inputs.purchasePrice) || 0;
+    const purchasePrice = parseFloat(inputs.purchasePrice) || 0;
     const loanTerm = parseFloat(inputs.loanTerm) || 0;
     const interestRate = parseFloat(inputs.interestRate) || 0;
     const leaseTerm = parseFloat(inputs.leaseTerm) || 0;

@@ -68,7 +68,7 @@ export default function MultiCurrencyCryptoConverterCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let cryptoAmountValue = parseFloat(inputs.cryptoAmount) || 0;
+    const cryptoAmountValue = parseFloat(inputs.cryptoAmount) || 0;
     const cryptoRateValue = parseFloat(inputs.cryptoRate) || 0;
     const fiatRateValue = parseFloat(inputs.fiatRate) || 0;
 

@@ -82,7 +82,7 @@ export default function ExponentPowerCalculator() {
     let label = `Result of ${base} raised to the power ${exponent}`;
     let subtext = "";
     let warning: string | null = null;
-    let formulaUsed = "xʸ (Power Function)";
+    const formulaUsed = "xʸ (Power Function)";
 
     if (base < 0 && !isExponentInteger) {
       // Complex result: use Euler's formula

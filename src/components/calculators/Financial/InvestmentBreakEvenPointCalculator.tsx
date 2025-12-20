@@ -69,7 +69,7 @@ export default function InvestmentBreakEvenPointCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let initialInvestmentValue = parseFloat(inputs.initialInvestment) || 0;
+    const initialInvestmentValue = parseFloat(inputs.initialInvestment) || 0;
     const currentPriceValue = parseFloat(inputs.currentPrice) || 0;
     const feesValue = parseFloat(inputs.fees) || 0;
 

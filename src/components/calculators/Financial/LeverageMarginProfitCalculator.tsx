@@ -68,7 +68,7 @@ export default function LeverageMarginProfitCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let leverageValue = parseFloat(inputs.leverage) || 0;
+    const leverageValue = parseFloat(inputs.leverage) || 0;
     const marginValue = parseFloat(inputs.margin) || 0;
     const priceChangeValue = parseFloat(inputs.priceChange) || 0;
 

@@ -68,7 +68,7 @@ export default function IrrNpvCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let cashFlows = inputs.cashFlows.split(',').map(Number).filter(n => !isNaN(n));
+    const cashFlows = inputs.cashFlows.split(',').map(Number).filter(n => !isNaN(n));
     const discountRate = parseFloat(inputs.discountRate) || 0;
     const periods = parseInt(inputs.periods) || cashFlows.length;
 

@@ -69,11 +69,11 @@ export default function LoanComparisonCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs
-    let loan1Amount = parseFloat(inputs.loan1Amount) || 0;
+    const loan1Amount = parseFloat(inputs.loan1Amount) || 0;
     const loan1Rate = parseFloat(inputs.loan1Rate) / 100 / 12 || 0;
     const loan1Term = parseFloat(inputs.loan1Term) * 12 || 0;
 
-    let loan2Amount = parseFloat(inputs.loan2Amount) || 0;
+    const loan2Amount = parseFloat(inputs.loan2Amount) || 0;
     const loan2Rate = parseFloat(inputs.loan2Rate) / 100 / 12 || 0;
     const loan2Term = parseFloat(inputs.loan2Term) * 12 || 0;
 

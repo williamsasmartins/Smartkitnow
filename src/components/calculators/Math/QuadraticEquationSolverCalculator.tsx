@@ -58,7 +58,7 @@ export default function QuadraticEquationSolverCalculator() {
     let root1: string;
     let root2: string;
     let label = "";
-    let subtext = `Discriminant (Δ) = ${discriminant.toFixed(4)}`;
+    const subtext = `Discriminant (Δ) = ${discriminant.toFixed(4)}`;
 
     if (discriminant > 0) {
       // Two distinct real roots

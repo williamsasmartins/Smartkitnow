@@ -68,7 +68,7 @@ export default function SalesTaxCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let priceValue = parseFloat(inputs.price) || 0;
+    const priceValue = parseFloat(inputs.price) || 0;
     const taxRateValue = parseFloat(inputs.taxRate) || 0;
     const quantityValue = parseInt(inputs.quantity) || 1;
 

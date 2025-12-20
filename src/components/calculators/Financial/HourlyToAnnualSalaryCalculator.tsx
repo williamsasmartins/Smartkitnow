@@ -68,7 +68,7 @@ export default function HourlyToAnnualSalaryCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let hourlyRateValue = parseFloat(inputs.hourlyRate) || 0;
+    const hourlyRateValue = parseFloat(inputs.hourlyRate) || 0;
     const hoursPerWeekValue = parseFloat(inputs.hoursPerWeek) || 0;
     const weeksPerYearValue = parseFloat(inputs.weeksPerYear) || 0;
 

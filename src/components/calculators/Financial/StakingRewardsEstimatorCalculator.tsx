@@ -68,7 +68,7 @@ export default function StakingRewardsEstimatorCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let stakedAmountValue = parseFloat(inputs.stakedAmount) || 0;
+    const stakedAmountValue = parseFloat(inputs.stakedAmount) || 0;
     const annualInterestRateValue = parseFloat(inputs.annualInterestRate) || 0;
     const lockupDurationValue = parseFloat(inputs.lockupDuration) || 0;
 

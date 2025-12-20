@@ -73,7 +73,7 @@ export default function ReptileGrowthCurvePythonBeardedDragonGeckoCalculator() {
   const results = useMemo(() => {
     const species = inputs.species.toLowerCase();
     const ageWeeks = parseInt(inputs.ageWeeks);
-    let weightInput = parseFloat(inputs.weight);
+    const weightInput = parseFloat(inputs.weight);
 
     if (!species || !ageWeeks || !weightInput || !(species in growthCurves)) {
       return {
@@ -86,7 +86,7 @@ export default function ReptileGrowthCurvePythonBeardedDragonGeckoCalculator() {
 
     // Convert weight to grams for comparison
     // 1 lb = 453.592 grams
-    let weightGrams = unit === "imperial" ? weightInput * 453.592 : weightInput * 1000;
+    const weightGrams = unit === "imperial" ? weightInput * 453.592 : weightInput * 1000;
 
     // Find closest age key in growth curve data (round down to nearest 4 weeks)
     const ageKey = Math.floor(ageWeeks / 4) * 4;

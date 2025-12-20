@@ -75,7 +75,7 @@ export default function CaffeineMaxPerDayCalculator() {
     // Base max caffeine mg per kg body weight (general safe limit)
     // According to FDA and other sources, 3-5 mg/kg is safe for most adults.
     // We'll use 4 mg/kg as a balanced average.
-    let baseMaxMg = weightKg * 4;
+    const baseMaxMg = weightKg * 4;
 
     // Adjust max caffeine for special conditions:
     // Pregnancy: max 200 mg/day recommended by ACOG

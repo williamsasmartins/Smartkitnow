@@ -71,7 +71,7 @@ export default function HorseFoalingCountdownLactationFeedPlannerCalculator() {
     // Format results
     let label = "";
     let subtext = "";
-    let warning = null;
+    const warning = null;
 
     if (daysUntilFoaling > 0) {
       label = `Days until foaling: ${daysUntilFoaling}`;

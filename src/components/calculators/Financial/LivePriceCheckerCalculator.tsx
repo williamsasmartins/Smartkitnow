@@ -68,7 +68,7 @@ export default function LivePriceCheckerCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let amountValue = parseFloat(inputs.amount) || 0;
+    const amountValue = parseFloat(inputs.amount) || 0;
     const conversionRateValue = parseFloat(inputs.conversionRate) || 0;
 
     // Validate

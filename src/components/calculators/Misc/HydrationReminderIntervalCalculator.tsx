@@ -90,7 +90,7 @@ export default function HydrationReminderIntervalCalculator() {
     const awakeMinutes = awakeHours * 60;
 
     // Calculate raw interval in minutes between drinks
-    let intervalMinutes = awakeMinutes / numberOfDrinks;
+    const intervalMinutes = awakeMinutes / numberOfDrinks;
 
     // Adjust interval by subtracting reminder lead time and duration to avoid overlap
     const adjustedInterval = intervalMinutes - reminderLeadTimeMinutes - reminderDurationMinutes;

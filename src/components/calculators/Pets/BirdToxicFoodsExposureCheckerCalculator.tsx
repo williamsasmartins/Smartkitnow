@@ -68,7 +68,7 @@ export default function BirdToxicFoodsExposureCheckerCalculator() {
     }
 
     const food = inputs.foodType;
-    let toxicDoseThreshold = TOXICITY_THRESHOLDS[food];
+    const toxicDoseThreshold = TOXICITY_THRESHOLDS[food];
     if (!toxicDoseThreshold) {
       return {
         value: 0,

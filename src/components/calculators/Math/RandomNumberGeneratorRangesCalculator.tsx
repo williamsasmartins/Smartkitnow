@@ -29,9 +29,9 @@ export default function RandomNumberGeneratorRangesCalculator() {
 
     let warning: string | null = null;
     let value: string | number = "";
-    let label = "Random Number";
+    const label = "Random Number";
     let subtext = "";
-    let formulaUsed = "Random Number Generation Formula";
+    const formulaUsed = "Random Number Generation Formula";
 
     if (
       Number.isNaN(minNum) ||
@@ -137,7 +137,7 @@ export default function RandomNumberGeneratorRangesCalculator() {
             value={inputs.decimals}
             onChange={(e) => {
               // Clamp decimals between 0 and 10
-              let val = e.target.value;
+              const val = e.target.value;
               if (val === "") {
                 handleInputChange("decimals", "");
                 return;

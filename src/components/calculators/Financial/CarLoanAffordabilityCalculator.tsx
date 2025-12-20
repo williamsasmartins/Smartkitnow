@@ -68,7 +68,7 @@ export default function CarLoanAffordabilityCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let monthlyBudgetValue = parseFloat(inputs.monthlyBudget) || 0;
+    const monthlyBudgetValue = parseFloat(inputs.monthlyBudget) || 0;
     const downPaymentValue = parseFloat(inputs.downPayment) || 0;
     const loanTermValue = parseFloat(inputs.loanTerm) || 0;
 

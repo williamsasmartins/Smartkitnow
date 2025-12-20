@@ -68,7 +68,7 @@ export default function PaycheckCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let hoursWorked = parseFloat(inputs.hoursWorked) || 0;
+    const hoursWorked = parseFloat(inputs.hoursWorked) || 0;
     const hourlyRate = parseFloat(inputs.hourlyRate) || 0;
     const overtimeHours = parseFloat(inputs.overtimeHours) || 0;
 

@@ -52,7 +52,7 @@ export default function SmallMammalExerciseTimePlannerCalculator() {
     }
 
     // Adjust base time by activity level
-    let baseTime = speciesBaseTimes[inputs.species];
+    const baseTime = speciesBaseTimes[inputs.species];
     const multiplier = activityLevelMultipliers[inputs.activityLevel];
     let runTime = baseTime * multiplier;
 

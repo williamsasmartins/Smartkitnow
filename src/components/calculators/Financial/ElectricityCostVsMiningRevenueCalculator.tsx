@@ -68,7 +68,7 @@ export default function ElectricityCostVsMiningRevenueCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let electricityCostValue = parseFloat(inputs.electricityCost) || 0;
+    const electricityCostValue = parseFloat(inputs.electricityCost) || 0;
     const miningRevenueValue = parseFloat(inputs.miningRevenue) || 0;
     const operationalDaysValue = parseFloat(inputs.operationalDays) || 0;
 

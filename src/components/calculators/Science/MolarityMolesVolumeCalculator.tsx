@@ -38,7 +38,7 @@ export default function MolarityMolesVolumeCalculator() {
     // Result object template
     let value = "Waiting...";
     let label = "";
-    let subtext = "";
+    const subtext = "";
     let warning = null;
     let formulaUsed = "";
 

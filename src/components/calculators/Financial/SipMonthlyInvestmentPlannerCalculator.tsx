@@ -68,7 +68,7 @@ export default function SipMonthlyInvestmentPlannerCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let monthlyInvestmentValue = parseFloat(inputs.monthlyInvestment) || 0;
+    const monthlyInvestmentValue = parseFloat(inputs.monthlyInvestment) || 0;
     const annualInterestRateValue = parseFloat(inputs.annualInterestRate) || 0;
     const investmentPeriodValue = parseFloat(inputs.investmentPeriod) || 0;
 

@@ -97,7 +97,7 @@ import { REGISTRY as calculatorRegistry, subcategoryIcon } from './calculatorReg
      .trim()
      .toLowerCase()
      .replace(/\s+/g, '-')
-     .replace(/[^\w\-]/g, '');
+     .replace(/[^\w-]/g, '');
  }
  
  function defaultSubcategoryTitle(subKey: string): string {

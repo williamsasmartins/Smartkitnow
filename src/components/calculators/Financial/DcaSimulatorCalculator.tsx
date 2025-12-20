@@ -68,7 +68,7 @@ export default function DcaSimulatorCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let initialInvestmentValue = parseFloat(inputs.initialInvestment) || 0;
+    const initialInvestmentValue = parseFloat(inputs.initialInvestment) || 0;
     const monthlyContributionValue = parseFloat(inputs.monthlyContribution) || 0;
     const investmentPeriodValue = parseFloat(inputs.investmentPeriod) || 0;
 

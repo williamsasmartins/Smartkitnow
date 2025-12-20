@@ -68,7 +68,7 @@ export default function CryptoTaxLiabilityCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let cryptoGainsValue = parseFloat(inputs.cryptoGains) || 0;
+    const cryptoGainsValue = parseFloat(inputs.cryptoGains) || 0;
     const taxRateValue = parseFloat(inputs.taxRate) || 0;
     const otherIncomeValue = parseFloat(inputs.otherIncome) || 0;
 

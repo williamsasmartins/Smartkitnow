@@ -38,7 +38,7 @@ export default function TdeeDailyEnergyExpenditureCalculator() {
     }
 
     // Weight Conversion
-    let weightKg = unit === "metric" ? weightRaw : weightRaw / 2.20462;
+    const weightKg = unit === "metric" ? weightRaw : weightRaw / 2.20462;
 
     if (!age || !weightRaw || !heightCm || age <= 0 || weightRaw <= 0 || heightCm <= 0) {
        return { value: 0, label: "Enter your details..." };

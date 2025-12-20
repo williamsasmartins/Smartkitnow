@@ -69,7 +69,7 @@ export default function FutureValueInvestmentCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let principalValue = parseFloat(inputs.principal) || 0;
+    const principalValue = parseFloat(inputs.principal) || 0;
     const rateValue = parseFloat(inputs.rate) / 100 || 0;
     const yearsValue = parseFloat(inputs.years) || 0;
     const contributionValue = parseFloat(inputs.contribution) || 0;

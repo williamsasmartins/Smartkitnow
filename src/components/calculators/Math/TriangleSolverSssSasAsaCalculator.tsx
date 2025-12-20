@@ -187,8 +187,8 @@ export default function TriangleSolverSssSasAsaCalculator() {
         // Calculate angles A and B using Law of Sines
         // sin(A)/a = sin(C)/c
         // A = arcsin(a * sin(C) / c)
-        let Acalc = Math.asin((a * Math.sin(Crad)) / cCalc);
-        let Bcalc = Math.asin((b * Math.sin(Crad)) / cCalc);
+        const Acalc = Math.asin((a * Math.sin(Crad)) / cCalc);
+        const Bcalc = Math.asin((b * Math.sin(Crad)) / cCalc);
 
         // Check for ambiguous case (not possible here because angle is included)
         if (isNaN(Acalc) || isNaN(Bcalc)) {
@@ -225,8 +225,8 @@ export default function TriangleSolverSssSasAsaCalculator() {
           a * a + c * c - 2 * a * c * Math.cos(Brad)
         );
 
-        let Acalc = Math.asin((a * Math.sin(Brad)) / bCalc);
-        let Ccalc = Math.asin((c * Math.sin(Brad)) / bCalc);
+        const Acalc = Math.asin((a * Math.sin(Brad)) / bCalc);
+        const Ccalc = Math.asin((c * Math.sin(Brad)) / bCalc);
 
         if (isNaN(Acalc) || isNaN(Ccalc)) {
           warning =
@@ -262,8 +262,8 @@ export default function TriangleSolverSssSasAsaCalculator() {
           b * b + c * c - 2 * b * c * Math.cos(Arad)
         );
 
-        let Bcalc = Math.asin((b * Math.sin(Arad)) / aCalc);
-        let Ccalc = Math.asin((c * Math.sin(Arad)) / aCalc);
+        const Bcalc = Math.asin((b * Math.sin(Arad)) / aCalc);
+        const Ccalc = Math.asin((c * Math.sin(Arad)) / aCalc);
 
         if (isNaN(Bcalc) || isNaN(Ccalc)) {
           warning =

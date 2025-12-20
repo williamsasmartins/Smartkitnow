@@ -68,7 +68,7 @@ export default function TaxBracketCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let incomeValue = parseFloat(inputs.income) || 0;
+    const incomeValue = parseFloat(inputs.income) || 0;
     const filingStatusValue = inputs.filingStatus;
     const deductionsValue = parseFloat(inputs.deductions) || 0;
 

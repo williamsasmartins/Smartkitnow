@@ -70,7 +70,7 @@ export default function HouseAffordabilityCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let annualIncome = parseFloat(inputs.annualIncome) || 0;
+    const annualIncome = parseFloat(inputs.annualIncome) || 0;
     const monthlyDebts = parseFloat(inputs.monthlyDebts) || 0;
     const downPayment = parseFloat(inputs.downPayment) || 0;
     const interestRate = parseFloat(inputs.interestRate) / 100 / 12 || 0;

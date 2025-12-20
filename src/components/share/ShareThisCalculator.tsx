@@ -19,7 +19,9 @@ export default function ShareThisCalculator() {
     if (navigator.share) {
       try {
         await navigator.share({ title, url });
-      } catch {}
+      } catch {
+        // ignore
+      }
     } else {
       await navigator.clipboard.writeText(url);
       setCopied(true);

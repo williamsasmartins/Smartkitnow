@@ -68,7 +68,7 @@ export default function ExpenseSplitterSharedBillsCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let totalAmountValue = parseFloat(inputs.totalAmount) || 0;
+    const totalAmountValue = parseFloat(inputs.totalAmount) || 0;
     const numberOfPeopleValue = parseInt(inputs.numberOfPeople) || 0;
     const additionalCostsValue = parseFloat(inputs.additionalCosts) || 0;
 

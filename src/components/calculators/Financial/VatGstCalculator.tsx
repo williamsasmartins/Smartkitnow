@@ -68,7 +68,7 @@ export default function VatGstCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs
-    let netAmountValue = parseFloat(inputs.netAmount) || 0;
+    const netAmountValue = parseFloat(inputs.netAmount) || 0;
     const taxRateValue = parseFloat(inputs.taxRate) || 0;
 
     // Validate

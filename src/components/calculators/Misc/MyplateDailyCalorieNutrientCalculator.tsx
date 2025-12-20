@@ -89,8 +89,8 @@ export default function MyplateDailyCalorieNutrientCalculator() {
       };
     }
 
-    let bmrMale = 10 * weight + 6.25 * height - 5 * age + 5;
-    let bmrFemale = 10 * weight + 6.25 * height - 5 * age - 161;
+    const bmrMale = 10 * weight + 6.25 * height - 5 * age + 5;
+    const bmrFemale = 10 * weight + 6.25 * height - 5 * age - 161;
     let bmr = 0;
 
     if (gender === "male") {

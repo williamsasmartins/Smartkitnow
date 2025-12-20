@@ -64,7 +64,8 @@ export default function ShareBox({
   title?: string;
   url?: string;
 }) {
-  const pageUrl = url ?? usePageUrl("");
+  const currentUrl = usePageUrl("");
+  const pageUrl = url ?? currentUrl;
   const encoded = encodeURIComponent(pageUrl);
 
   const shareTargets = [
@@ -81,13 +82,17 @@ export default function ShareBox({
       if (navigator.share) {
         await navigator.share({ title: document.title, url: pageUrl });
       }
-    } catch {}
+    } catch {
+      // ignore
+    }
   };
 
   const copy = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-    } catch {}
+    } catch {
+      // ignore
+    }
   };
 
   const embedCode = `<iframe src="${pageUrl}" title="Calculator" style="width:100%;min-height:650px;border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;

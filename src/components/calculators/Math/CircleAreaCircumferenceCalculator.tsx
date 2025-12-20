@@ -100,7 +100,7 @@ export default function CircleAreaCircumferenceCalculator() {
     let mainValue = "";
     let mainLabel = "";
     let formulaUsed = "";
-    let subtext = (
+    const subtext = (
       <>
         Diameter: {fmt(calcDiameter)} units<br />
         Circumference: {fmt(calcCircumference)} units<br />

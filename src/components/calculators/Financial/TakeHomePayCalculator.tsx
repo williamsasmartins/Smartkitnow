@@ -68,7 +68,7 @@ export default function TakeHomePayCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let grossIncomeValue = parseFloat(inputs.grossIncome) || 0;
+    const grossIncomeValue = parseFloat(inputs.grossIncome) || 0;
     const taxRateValue = parseFloat(inputs.taxRate) || 0;
     const otherDeductionsValue = parseFloat(inputs.otherDeductions) || 0;
 

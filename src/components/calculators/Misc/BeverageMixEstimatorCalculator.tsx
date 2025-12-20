@@ -28,9 +28,9 @@ export default function BeverageMixEstimatorCalculator() {
       setInputs((prev) => {
         const otherKeys = ["winePreference", "beerPreference", "softDrinkPreference"].filter(k => k !== name);
         // Adjust others proportionally if sum > 100
-        let othersSum = otherKeys.reduce((acc, k) => acc + Number(prev[k]), 0);
-        let newSum = val + othersSum;
-        let newState = { ...prev, [name]: val.toString() };
+        const othersSum = otherKeys.reduce((acc, k) => acc + Number(prev[k]), 0);
+        const newSum = val + othersSum;
+        const newState = { ...prev, [name]: val.toString() };
         if (newSum > 100) {
           // Reduce others proportionally
           const scale = (100 - val) / othersSum;
@@ -42,7 +42,7 @@ export default function BeverageMixEstimatorCalculator() {
       });
     } else if (name === "guests") {
       // Only allow positive integers
-      let val = value.replace(/\D/g, "");
+      const val = value.replace(/\D/g, "");
       setInputs((prev) => ({ ...prev, [name]: val }));
     } else if (name === "averageConsumptionPerGuest") {
       // Allow decimal numbers, min 0.1 max 10

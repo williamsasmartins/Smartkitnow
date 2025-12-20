@@ -68,7 +68,7 @@ export default function DcaStrategyAnalyzerCryptoCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let investmentAmount = parseFloat(inputs.investmentAmount) || 0;
+    const investmentAmount = parseFloat(inputs.investmentAmount) || 0;
     const interval = parseFloat(inputs.interval) || 0;
     const duration = parseFloat(inputs.duration) || 0;
 

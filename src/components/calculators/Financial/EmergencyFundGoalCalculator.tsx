@@ -69,7 +69,7 @@ export default function EmergencyFundGoalCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let monthlyExpensesValue = parseFloat(inputs.monthlyExpenses) || 0;
+    const monthlyExpensesValue = parseFloat(inputs.monthlyExpenses) || 0;
     const monthsToCoverValue = parseFloat(inputs.monthsToCover) || 0;
     const additionalBufferValue = parseFloat(inputs.additionalBuffer) || 0;
 

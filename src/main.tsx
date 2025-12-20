@@ -37,9 +37,9 @@ if (ENABLE_SPEED_INSIGHTS && !IS_LOCAL && !IS_SMARTKIT_DOMAIN) {
   // Dynamic import to prevent bundling when disabled
   import('@vercel/speed-insights')
     .then(mod => {
-      try { mod.injectSpeedInsights?.() } catch {}
+      try { mod.injectSpeedInsights?.() } catch { /* ignore */ }
     })
-    .catch(() => {})
+    .catch(() => { /* ignore */ })
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -64,27 +64,27 @@ if (import.meta.env.PROD && !IS_LOCAL) {
     beaconUrl: "/metrics/web-vitals",
     onFinal: (m) => {
       console.log("[WebVitals]", m)
-      // @ts-ignore
-      window.gtag?.("event", "web_vital", {
-        event_category: "Web Vitals",
-        event_label: "CLS",
-        value: Math.round((m.CLS ?? 0) * 1000),
-        non_interaction: true,
-      })
-      // @ts-ignore
-      window.gtag?.("event", "web_vital", {
-        event_category: "Web Vitals",
-        event_label: "LCP",
-        value: Math.round((m.LCP ?? 0)),
-        non_interaction: true,
-      })
-      // @ts-ignore
-      window.gtag?.("event", "web_vital", {
-        event_category: "Web Vitals",
-        event_label: "INP",
-        value: Math.round((m.INP ?? 0)),
-        non_interaction: true,
-      })
+      const g = (window as any).gtag;
+      if (typeof g === 'function') {
+        g("event", "web_vital", {
+          event_category: "Web Vitals",
+          event_label: "CLS",
+          value: Math.round((m.CLS ?? 0) * 1000),
+          non_interaction: true,
+        })
+        g("event", "web_vital", {
+          event_category: "Web Vitals",
+          event_label: "LCP",
+          value: Math.round((m.LCP ?? 0)),
+          non_interaction: true,
+        })
+        g("event", "web_vital", {
+          event_category: "Web Vitals",
+          event_label: "INP",
+          value: Math.round((m.INP ?? 0)),
+          non_interaction: true,
+        })
+      }
     },
   })
 }

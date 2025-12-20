@@ -31,7 +31,7 @@ export default function RothIraConversionCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let traditionalIraBalance = parseFloat(inputs.traditionalIraBalance) || 0;
+    const traditionalIraBalance = parseFloat(inputs.traditionalIraBalance) || 0;
     const expectedTaxRate = parseFloat(inputs.expectedTaxRate) || 0;
     const yearsUntilRetirement = parseFloat(inputs.yearsUntilRetirement) || 0;
 

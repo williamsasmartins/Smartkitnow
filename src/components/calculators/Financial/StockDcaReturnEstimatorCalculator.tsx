@@ -68,7 +68,7 @@ export default function StockDcaReturnEstimatorCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let monthlyInvestment = parseFloat(inputs.monthlyInvestment) || 0;
+    const monthlyInvestment = parseFloat(inputs.monthlyInvestment) || 0;
     const annualReturn = parseFloat(inputs.annualReturn) || 0;
     const years = parseFloat(inputs.years) || 0;
 

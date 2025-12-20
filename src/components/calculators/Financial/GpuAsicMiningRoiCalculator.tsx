@@ -68,7 +68,7 @@ export default function GpuAsicMiningRoiCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let hardwareCostValue = parseFloat(inputs.hardwareCost) || 0;
+    const hardwareCostValue = parseFloat(inputs.hardwareCost) || 0;
     const dailyProfitValue = parseFloat(inputs.dailyProfit) || 0;
     const electricityCostValue = parseFloat(inputs.electricityCost) || 0;
 

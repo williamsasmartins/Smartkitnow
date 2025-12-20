@@ -31,7 +31,7 @@ export default function RoiReturnOnInvestmentCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let initialInvestment = parseFloat(inputs.initialInvestment) || 0;
+    const initialInvestment = parseFloat(inputs.initialInvestment) || 0;
     const finalValue = parseFloat(inputs.finalValue) || 0;
     const investmentDuration = parseFloat(inputs.investmentDuration) || 0;
 

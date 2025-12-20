@@ -2,12 +2,12 @@ import React, { Suspense } from "react";
 import { useParams } from "react-router-dom";
 import { getGameEntry } from "@/data/gamesRegistry";
 
-function useLazyFromLoader(loader: () => Promise<any>) {
+function createLazyFromLoader<P = any>(loader: () => Promise<any>) {
   const Lazy = React.lazy(async () => {
     const mod = await loader();
-    return { default: mod.default ?? Object.values(mod)[0] };
+    return { default: (mod.default ?? Object.values(mod)[0]) as React.ComponentType<P> };
   });
-  return Lazy;
+  return Lazy as React.LazyExoticComponent<React.ComponentType<P>>;
 }
 
 export default function GamePage() {
@@ -24,7 +24,7 @@ export default function GamePage() {
     );
   }
 
-  const LazyGame = useLazyFromLoader(entry.loader);
+  const LazyGame = createLazyFromLoader<{ title?: string; description?: string }>(entry.loader);
 
   return (
     <div className="w-full px-4 md:px-8 lg:px-10">

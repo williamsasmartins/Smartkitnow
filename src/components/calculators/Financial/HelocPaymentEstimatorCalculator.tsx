@@ -32,7 +32,7 @@ export default function HelocPaymentEstimatorCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs
-    let loanAmount = parseFloat(inputs.loanAmount) || 0;
+    const loanAmount = parseFloat(inputs.loanAmount) || 0;
     const interestRate = parseFloat(inputs.interestRate) / 100 || 0;
     const drawPeriod = parseInt(inputs.drawPeriod) || 0;
     const repaymentPeriod = parseInt(inputs.repaymentPeriod) || 0;

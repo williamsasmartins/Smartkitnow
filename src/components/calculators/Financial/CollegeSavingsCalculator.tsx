@@ -72,7 +72,7 @@ export default function CollegeSavingsCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs
-    let currentSavings = parseFloat(inputs.currentSavings) || 0;
+    const currentSavings = parseFloat(inputs.currentSavings) || 0;
     const monthlyContribution = parseFloat(inputs.monthlyContribution) || 0;
     const yearsUntilCollege = parseFloat(inputs.yearsUntilCollege) || 0;
     const annualReturn = parseFloat(inputs.annualReturn) || 0;

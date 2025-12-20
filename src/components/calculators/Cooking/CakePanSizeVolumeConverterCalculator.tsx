@@ -86,7 +86,7 @@ export default function CakePanSizeVolumeConverterCalculator() {
     const convertTo = inputs.convertTo;
 
     // Validation
-    let warningMsg: string | null = null;
+    const warningMsg: string | null = null;
     if (!depth) {
       return {
         value: 0,

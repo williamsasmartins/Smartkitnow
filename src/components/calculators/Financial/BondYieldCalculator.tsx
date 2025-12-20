@@ -32,7 +32,7 @@ export default function BondYieldCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let faceValue = parseFloat(inputs.faceValue) || 0;
+    const faceValue = parseFloat(inputs.faceValue) || 0;
     const couponRate = parseFloat(inputs.couponRate) || 0;
     const marketPrice = parseFloat(inputs.marketPrice) || 0;
     const yearsToMaturity = parseFloat(inputs.yearsToMaturity) || 0;

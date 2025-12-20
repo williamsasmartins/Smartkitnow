@@ -30,7 +30,7 @@ export default function CryptoRoiCalculator() {
 
   // CALCULATIONS
   const results = useMemo(() => {
-    let initialInvestmentValue = parseFloat(inputs.initialInvestment) || 0;
+    const initialInvestmentValue = parseFloat(inputs.initialInvestment) || 0;
     const finalValueValue = parseFloat(inputs.finalValue) || 0;
     const timePeriodValue = parseFloat(inputs.timePeriod) || 0;
 

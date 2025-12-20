@@ -68,7 +68,7 @@ export default function PositionSizeRiskManagementCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let accountSizeValue = parseFloat(inputs.accountSize) || 0;
+    const accountSizeValue = parseFloat(inputs.accountSize) || 0;
     const riskPercentageValue = parseFloat(inputs.riskPercentage) || 0;
     const stopLossValue = parseFloat(inputs.stopLoss) || 0;
 

@@ -68,7 +68,7 @@ export default function TransactionFeeDeductionCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let transactionAmountValue = parseFloat(inputs.transactionAmount) || 0;
+    const transactionAmountValue = parseFloat(inputs.transactionAmount) || 0;
     const gasFeeValue = parseFloat(inputs.gasFee) || 0;
     const exchangeFeeValue = parseFloat(inputs.exchangeFee) || 0;
 

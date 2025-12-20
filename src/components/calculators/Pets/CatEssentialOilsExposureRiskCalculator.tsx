@@ -60,7 +60,7 @@ export default function CatEssentialOilsExposureRiskCalculator() {
     const rawRisk = (c * d * exposureFactor) / weightKg;
 
     // Normalize risk to 0-100 scale (arbitrary max risk threshold = 10)
-    let riskScore = Math.min(100, Math.round((rawRisk / 10) * 100));
+    const riskScore = Math.min(100, Math.round((rawRisk / 10) * 100));
 
     let label = "";
     let warning = null;

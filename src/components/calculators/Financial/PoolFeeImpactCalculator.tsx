@@ -68,7 +68,7 @@ export default function PoolFeeImpactEstimator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let hashRateValue = parseFloat(inputs.hashRate) || 0;
+    const hashRateValue = parseFloat(inputs.hashRate) || 0;
     const poolFeeValue = parseFloat(inputs.poolFee) || 0;
     const electricityCostValue = parseFloat(inputs.electricityCost) || 0;
 

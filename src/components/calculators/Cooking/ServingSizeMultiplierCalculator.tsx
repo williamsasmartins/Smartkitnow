@@ -226,7 +226,7 @@ export default function ServingSizeMultiplierCalculator() {
 
       // Convert weight to lbs or kg depending on unit system
       let weightDisplay = weightNum;
-      let weightUnit = unit === "imperial" ? "lbs" : "kg";
+      const weightUnit = unit === "imperial" ? "lbs" : "kg";
       if (unit === "imperial" && fromUnit === "metric") {
         // Not used here, but just in case
         weightDisplay = weightNum * 2.20462;

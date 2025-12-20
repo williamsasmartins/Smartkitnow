@@ -1470,7 +1470,7 @@ const Index = () => {
                   width={1000}
                   height={300}
                   decoding="async"
-                  // @ts-ignore
+                  // @ts-expect-error fetchpriority is not yet in React types
                   fetchpriority="high"
                   sizes="(max-width: 768px) 100vw, 266px"
                   className="h-20 w-auto block"

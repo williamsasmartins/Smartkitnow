@@ -32,7 +32,7 @@ export default function BalloonPaymentCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let loanAmount = parseFloat(inputs.loanAmount) || 0;
+    const loanAmount = parseFloat(inputs.loanAmount) || 0;
     const interestRate = parseFloat(inputs.interestRate) / 100 || 0;
     const termYears = parseFloat(inputs.termYears) || 0;
     const balloonPayment = parseFloat(inputs.balloonPayment) || 0;

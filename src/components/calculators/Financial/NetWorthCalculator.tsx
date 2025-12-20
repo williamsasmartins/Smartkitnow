@@ -67,7 +67,7 @@ export default function NetWorthCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let assetsValue = parseFloat(inputs.assets) || 0;
+    const assetsValue = parseFloat(inputs.assets) || 0;
     const liabilitiesValue = parseFloat(inputs.liabilities) || 0;
 
     // Validate

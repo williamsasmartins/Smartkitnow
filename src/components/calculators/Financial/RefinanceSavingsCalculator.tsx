@@ -32,7 +32,7 @@ export default function RefinanceSavingsCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let currentLoanAmount = parseFloat(inputs.currentLoanAmount) || 0;
+    const currentLoanAmount = parseFloat(inputs.currentLoanAmount) || 0;
     const currentInterestRate = parseFloat(inputs.currentInterestRate) / 100 || 0;
     const newInterestRate = parseFloat(inputs.newInterestRate) / 100 || 0;
     const loanTerm = parseInt(inputs.loanTerm) || 0;

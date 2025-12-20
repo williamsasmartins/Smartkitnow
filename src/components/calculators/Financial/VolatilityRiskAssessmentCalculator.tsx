@@ -67,7 +67,7 @@ export default function VolatilityRiskAssessmentCalculator() {
 
   // CALCULATIONS
   const results = useMemo(() => {
-    let initialInvestmentValue = parseFloat(inputs.initialInvestment) || 0;
+    const initialInvestmentValue = parseFloat(inputs.initialInvestment) || 0;
     const expectedReturnValue = parseFloat(inputs.expectedReturn) || 0;
     const volatilityValue = parseFloat(inputs.volatility) || 0;
 

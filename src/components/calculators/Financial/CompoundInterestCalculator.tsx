@@ -68,7 +68,7 @@ export default function CompoundInterestCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let principal = parseFloat(inputs.principal) || 0;
+    const principal = parseFloat(inputs.principal) || 0;
     const rate = parseFloat(inputs.rate) / 100 || 0;
     const time = parseFloat(inputs.time) || 0;
     const n = inputs.compoundingFrequency === "yearly" ? 1 : inputs.compoundingFrequency === "monthly" ? 12 : 365;

@@ -51,7 +51,7 @@ export default function HorseDehydrationRiskEstimatorCalculator() {
     else if (st >= 6) skinTurgorScore = 6;
 
     // Mucous Membrane CRT Score
-    let mucousScore = muc <= 2 ? 0 : 3;
+    const mucousScore = muc <= 2 ? 0 : 3;
 
     const totalScore = skinTurgorScore + mucousScore;
 

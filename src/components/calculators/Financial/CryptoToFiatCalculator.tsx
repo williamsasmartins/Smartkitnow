@@ -31,7 +31,7 @@ export default function CryptoToFiatConverter() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let cryptoAmountValue = parseFloat(inputs.cryptoAmount) || 0;
+    const cryptoAmountValue = parseFloat(inputs.cryptoAmount) || 0;
     const exchangeRateValue = parseFloat(inputs.exchangeRate) || 0;
     const feePercentageValue = parseFloat(inputs.feePercentage) || 0;
 

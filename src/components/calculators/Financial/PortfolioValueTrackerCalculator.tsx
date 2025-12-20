@@ -31,7 +31,7 @@ export default function PortfolioValueTrackerCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs
-    let initialInvestment = parseFloat(inputs.initialInvestment) || 0;
+    const initialInvestment = parseFloat(inputs.initialInvestment) || 0;
     const currentValue = parseFloat(inputs.currentValue) || 0;
     const additionalInvestment = parseFloat(inputs.additionalInvestment) || 0;
 

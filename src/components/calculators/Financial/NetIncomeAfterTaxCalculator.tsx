@@ -68,7 +68,7 @@ export default function NetIncomeAfterTaxCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let grossIncomeValue = parseFloat(inputs.grossIncome) || 0;
+    const grossIncomeValue = parseFloat(inputs.grossIncome) || 0;
     const taxRateValue = parseFloat(inputs.taxRate) || 0;
     const deductionsValue = parseFloat(inputs.deductions) || 0;
 

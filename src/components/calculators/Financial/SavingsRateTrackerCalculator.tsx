@@ -68,7 +68,7 @@ export default function SavingsRateTrackerCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let incomeValue = parseFloat(inputs.income) || 0;
+    const incomeValue = parseFloat(inputs.income) || 0;
     const expensesValue = parseFloat(inputs.expenses) || 0;
     const savingsValue = parseFloat(inputs.savings) || 0;
 

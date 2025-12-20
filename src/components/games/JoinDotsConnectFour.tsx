@@ -320,7 +320,7 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
       });
     }, 1000);
     return () => window.clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [winner.winner]);
 
   useEffect(() => {
@@ -508,7 +508,7 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
         aiTimer.current = null;
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [turn, winner.winner, board, difficulty]);
 
   const rightRail = (
@@ -757,7 +757,7 @@ function ConfettiLayer({ kind }: { kind: "R" | "Y" | "draw" }) {
       life: 0,
     }));
     let running = true;
-    let start = performance.now();
+    const start = performance.now();
     function tick(now: number) {
       if (!running) return;
       const t = now - start;

@@ -68,7 +68,7 @@ export default function MiningProfitabilityCalculator() {
   // CALCULATIONS
   const results = useMemo(() => {
     // Parse inputs (use 'let' for mutable variables)
-    let hashrateValue = parseFloat(inputs.hashrate) || 0;
+    const hashrateValue = parseFloat(inputs.hashrate) || 0;
     const powerConsumptionValue = parseFloat(inputs.powerConsumption) || 0;
     const electricityCostValue = parseFloat(inputs.electricityCost) || 0;
 
