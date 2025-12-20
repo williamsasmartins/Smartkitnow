@@ -4688,6 +4688,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/CalculatorWordGeneratorUpsideDownCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "lost-socks-calculator",
+    title: "Lost Socks Calculator",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Solve the laundry mystery. Estimate the probability of losing a sock based on wash frequency and dryer portal theories.",
+    loader: () => import("@/components/calculators/Funny/LostSocksCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
