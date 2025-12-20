@@ -4180,6 +4180,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
     
    
+    {
+    slug: "swimming-power-points",
+    title: "Swimming Power Points Calculator",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Calculate swimming power points. Compare performances across different events and distances using standardized scoring tables.",
+    loader: () => import("@/components/calculators/Sports/SwimmingPowerPointsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
