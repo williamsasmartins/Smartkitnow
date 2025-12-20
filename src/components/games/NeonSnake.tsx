@@ -189,20 +189,28 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       const ctx2 = ctx as CanvasRenderingContext2D;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const padding = 12;
-      const cw = containerRef.current?.clientWidth ?? window.innerWidth - 24;
-      const rect = containerRef.current?.getBoundingClientRect();
-      const vh =
-        window.visualViewport?.height ??
-        document.documentElement.clientHeight ??
-        window.innerHeight;
-      const top = rect?.top ?? 0;
-      const safeBottom = 140;
-      const chAvail = Math.max(240, vh - top - safeBottom);
-      const cell = Math.max(8, Math.floor(Math.min((cw - padding * 2) / GRID_W, (chAvail - padding * 2) / GRID_H)));
+      const padding = 16;
+
+      const viewportH = window.visualViewport?.height ?? window.innerHeight;
+
+      // largura disponível no card
+      const cw = Math.max(320, Math.floor(containerRef.current?.clientWidth ?? 720));
+
+      // limites para não ficar gigante nem pequeno demais
+      const maxW = Math.min(980, cw);
+      const maxH = Math.min(740, Math.floor(viewportH * 0.62));
+
+      // calcula o tamanho da célula para preencher a largura, e depois limita pela altura
+      let cell = Math.floor((maxW - padding * 2) / GRID_W);
+      cell = Math.min(cell, Math.floor((maxH - padding * 2) / GRID_H));
+
+      // clamp (para não ficar minúsculo em telas pequenas)
+      cell = Math.max(14, Math.min(28, cell));
+
       const w = GRID_W * cell + padding * 2;
       const h = GRID_H * cell + padding * 2;
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.floor(w * dpr);
       canvas.height = Math.floor(h * dpr);
       canvas.style.width = `${w}px`;
@@ -386,7 +394,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       onThisPage={[{ id: "how-to-play", label: "How to play" }]}
     >
       <div className="flex flex-col items-center">
-        <div ref={containerRef} className="w-full max-w-[720px]">
+        <div ref={containerRef} className="w-full max-w-[980px]">
           <canvas
           ref={canvasRef}
           // Make canvas focusable so keyboard input works consistently across browsers
