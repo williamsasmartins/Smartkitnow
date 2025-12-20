@@ -4580,6 +4580,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/FirstDateAwkwardnessMeterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "donut-calculator",
+    title: "Donut Calculator",
+    category: "funny",
+    subcategory: "food-social-life",
+    description: "Calculate the optimal number of donuts for the office. Adjust for team size, hunger levels, and the 'it is Friday' factor.",
+    loader: () => import("@/components/calculators/Funny/DonutCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
