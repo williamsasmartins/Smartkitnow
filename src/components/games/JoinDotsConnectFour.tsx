@@ -738,7 +738,7 @@ export default function JoinDotsConnectFour({ title, description }: Props) {
               <ConfettiLayer kind={winner.winner as "R" | "Y" | "draw"} />
             ) : null}
             <div className="relative z-20 w-[min(92vw,560px)] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-8">
-              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[#5c82ee]/20 via-fuchsia-400/20 to-amber-300/20 blur-2xl" aria-hidden />
+              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[#5c82ee]/20 via-fuchsia-400/20 to-amber-300/20 blur-2xl pointer-events-none" aria-hidden />
               <div className="relative">
                 <div className="mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs">
                   <Sparkles className="h-4 w-4 text-[#5c82ee]" />

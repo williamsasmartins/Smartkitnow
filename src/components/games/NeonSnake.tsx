@@ -386,7 +386,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       onThisPage={[{ id: "how-to-play", label: "How to play" }]}
     >
       <div className="flex flex-col items-center">
-        <div ref={containerRef} className="w-full max-w-[420px]">
+        <div ref={containerRef} className="w-full max-w-[720px]">
           <canvas
           ref={canvasRef}
           // Make canvas focusable so keyboard input works consistently across browsers
@@ -488,7 +488,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
           <div className="fixed inset-0 z-50 grid place-items-center bg-black/40" role="alertdialog" aria-modal="true" aria-live="assertive">
             {showConfetti ? <ConfettiLayer kind={end === "win" ? "R" : "draw"} /> : null}
             <div className="relative z-20 w-[min(92vw,560px)] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-8">
-              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[#5c82ee]/20 via-fuchsia-400/20 to-amber-300/20 blur-2xl" aria-hidden />
+              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[#5c82ee]/20 via-fuchsia-400/20 to-amber-300/20 blur-2xl pointer-events-none" aria-hidden />
               <div className="relative">
                 <div className="mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs">
                   <Sparkles className="h-4 w-4 text-[#5c82ee]" />
