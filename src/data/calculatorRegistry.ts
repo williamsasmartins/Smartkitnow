@@ -4414,6 +4414,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/GroundBallToFlyBallRatioGbFbCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "golf-handicap-differential-index",
+    title: "Golf Handicap Differential & Index",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Calculate Golf Handicap Differential. Determine your index based on course rating and slope difficulty.",
+    loader: () => import("@/components/calculators/Sports/GolfHandicapDifferentialIndexCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
