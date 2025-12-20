@@ -37,6 +37,7 @@ const strengthConditioning: Item[] = [
   { name: "Target Heart Rate / RPE Zones", slug: "target-heart-rate-rpe-zones" },
   { name: "TDEE (Total Daily Energy Expenditure) Calculator", slug: "tdee-calculator" },
   { name: "Plank / Hold Time Progression (educational)", slug: "plank-hold-progression" },
+  { name: "Wilks Coefficient Calculator", slug: "wilks-coefficient" },
   { name: "Macronutrient Calculator", slug: "macronutrient-calculator" },
   { name: "Calorie Deficit / Surplus Calculator", slug: "calorie-deficit-surplus" },
   { name: "Fitness Age Calculator", slug: "fitness-age-calculator" },
