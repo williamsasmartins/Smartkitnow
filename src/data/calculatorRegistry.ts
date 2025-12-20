@@ -4643,6 +4643,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/EmailCostEstimatorEnergyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tab-overload-anxiety-score",
+    title: "Tab Overload Anxiety Score",
+    category: "funny",
+    subcategory: "tech-work-life",
+    description: "Measure your browser tab anxiety. Calculate a stress score based on the number of open tabs you are too afraid to close.",
+    loader: () => import("@/components/calculators/Funny/TabOverloadAnxietyScoreCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
