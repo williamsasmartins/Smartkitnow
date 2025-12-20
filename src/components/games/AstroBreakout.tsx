@@ -417,17 +417,24 @@ export default function AstroBreakout({ title, description }: { title?: string; 
 
     const resize = () => {
       const rect = el.getBoundingClientRect();
+      const isMobile = window.innerWidth < 768;
+      
       // Use width/height to determine the largest canvas that fits inside the container
-      const padX = 48; // horizontal padding so UI chrome remains visible
-      const padY = 120; // vertical padding to keep paddle in view
-      const availableW = Math.max(320, rect.width - padX);
-      const availableH = Math.max(240, rect.height - padY);
+      // On mobile, use less padding to maximize game area
+      const padX = isMobile ? 0 : 48; 
+      const padY = isMobile ? 20 : 120; 
+      
+      const availableW = Math.max(300, rect.width - padX);
+      // On mobile, don't constrain height as strictly by container (let it scroll if needed), 
+      // but keep it reasonable.
+      const availableH = isMobile ? 800 : Math.max(240, rect.height - padY);
+      
       const aspect = WORLD_W / WORLD_H;
 
       // compute max width constrained by both available width and height (so game always fits)
       const maxW_by_height = availableH * aspect;
       const maxW = Math.min(1100, availableW, maxW_by_height);
-      const h = Math.max(240, Math.floor(maxW / aspect));
+      const h = Math.max(200, Math.floor(maxW / aspect));
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       dprRef.current = dpr;
@@ -556,14 +563,14 @@ export default function AstroBreakout({ title, description }: { title?: string; 
     if (!canvas) return;
 
     function toWorldX(clientX: number) {
-      const rect = canvas.getBoundingClientRect();
+      const rect = canvas!.getBoundingClientRect();
       const px = clientX - rect.left;
       const sx = px / rect.width;
       return sx * WORLD_W;
     }
 
     const onPointerDown = (e: PointerEvent) => {
-      canvas.focus();
+      canvas!.focus();
       pointerTargetXRef.current = toWorldX(e.clientX);
       // If user taps while playing: launch stuck ball
       if (statusRef.current === "playing") launchBallIfStuck();
@@ -1087,98 +1094,93 @@ export default function AstroBreakout({ title, description }: { title?: string; 
     return out;
   }
 
-  const rightRail = (
-    <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-5">
-      <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Game controls</h3>
-
-      <div className="mt-4 space-y-3">
-        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3">
-          <div className="text-xs font-semibold text-slate-800 dark:text-slate-200">Status</div>
-          <div className="mt-1 text-sm text-slate-700 dark:text-slate-300">{status}</div>
-          <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
-            <span className="inline-flex items-center gap-2">
-              <Gauge className="h-4 w-4" /> Level {level}
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <Trophy className="h-4 w-4" /> Score {score}
-            </span>
-            <span>Lives {lives}</span>
-          </div>
-        </div>
-
-        <div className="flex items-center justify-between gap-3">
-          <div className="text-sm text-slate-700 dark:text-slate-300">Difficulty</div>
-          <div className="flex gap-2">
-            {(["easy", "medium", "hard"] as Difficulty[]).map((d) => (
-              <Button
-                key={d}
-                type="button"
-                variant={difficulty === d ? "default" : "outline"}
-                className="h-9 px-3"
-                onClick={() => resetGame(d)}
-              >
-                {d[0].toUpperCase() + d.slice(1)}
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex gap-2">
-          <Button type="button" variant="outline" className="w-full" onClick={startOrResume}>
-            {status === "playing" ? "Playing" : status === "paused" ? "Resume" : "Start"}
-          </Button>
-          <Button type="button" variant="outline" className="w-full" onClick={pauseToggle}>
-            {status === "paused" ? "Unpause" : "Pause"}
-          </Button>
-        </div>
-
-        <div className="flex gap-2">
-          <Button type="button" variant="outline" className="w-full" onClick={() => resetGame()}>
-            <RotateCcw className="mr-2 h-4 w-4" />
-            New game
-          </Button>
-          <Button type="button" variant="outline" className="w-full" onClick={hardStop}>
-            Stop
-          </Button>
-        </div>
-
-        <div className="flex gap-2">
-          <Button
-            type="button"
-            variant="outline"
-            className="w-full"
-            onClick={() => {
-              setSoundOn((s) => !s);
-              soundOnRef.current = !soundOnRef.current;
-            }}
-          >
-            {soundOn ? <Volume2 className="mr-2 h-4 w-4" /> : <VolumeX className="mr-2 h-4 w-4" />}
-            Sound
-          </Button>
-
-          <Button type="button" variant="outline" className="w-full" onClick={toggleFullscreen}>
-            {theater ? <Minimize2 className="mr-2 h-4 w-4" /> : <Maximize2 className="mr-2 h-4 w-4" />}
-            Theater
-          </Button>
-        </div>
-
-        <div className="flex items-center justify-between gap-3">
-          <div className="text-sm text-slate-700 dark:text-slate-300">Mobile buttons</div>
-          <Button
-            type="button"
-            variant={touchControls ? "default" : "outline"}
-            className="h-9 px-3"
-            onClick={() => setTouchControls((v) => !v)}
-          >
-            {touchControls ? "On" : "Off"}
-          </Button>
-        </div>
-
-        <div className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-          Controls: Arrow keys or A/D. Space to launch. P pause, R restart, F fullscreen. On mobile, drag on the
-          game area or use the buttons.
+  const controlsContent = (
+    <div className="space-y-3">
+      <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3">
+        <div className="text-xs font-semibold text-slate-800 dark:text-slate-200">Status</div>
+        <div className="mt-1 text-sm text-slate-700 dark:text-slate-300">{status}</div>
+        <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+          <span className="inline-flex items-center gap-2">
+            <Gauge className="h-4 w-4" /> Level {level}
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <Trophy className="h-4 w-4" /> Score {score}
+          </span>
+          <span>Lives {lives}</span>
         </div>
       </div>
+
+      <div className="flex items-center justify-between gap-3">
+        <div className="text-sm text-slate-700 dark:text-slate-300">Difficulty</div>
+        <div className="flex gap-2">
+          {(["easy", "medium", "hard"] as Difficulty[]).map((d) => (
+            <Button
+              key={d}
+              type="button"
+              variant={difficulty === d ? "default" : "outline"}
+              className="h-9 px-3"
+              onClick={() => resetGame(d)}
+            >
+              {d[0].toUpperCase() + d.slice(1)}
+            </Button>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex gap-2">
+        <Button type="button" variant="outline" className="w-full" onClick={startOrResume}>
+          {status === "playing" ? "Playing" : status === "paused" ? "Resume" : "Start"}
+        </Button>
+        <Button type="button" variant="outline" className="w-full" onClick={pauseToggle}>
+          {status === "paused" ? "Unpause" : "Pause"}
+        </Button>
+      </div>
+
+      <div className="flex gap-2">
+        <Button type="button" variant="outline" className="w-full" onClick={() => resetGame()}>
+          <RotateCcw className="mr-2 h-4 w-4" />
+          New game
+        </Button>
+        <Button type="button" variant="outline" className="w-full" onClick={hardStop}>
+          Stop
+        </Button>
+      </div>
+
+      <div className="flex gap-2">
+        <Button
+          type="button"
+          variant="outline"
+          className="w-full"
+          onClick={() => {
+            setSoundOn((s) => !s);
+            soundOnRef.current = !soundOnRef.current;
+          }}
+        >
+          {soundOn ? <Volume2 className="mr-2 h-4 w-4" /> : <VolumeX className="mr-2 h-4 w-4" />}
+          Sound
+        </Button>
+
+        <Button
+          type="button"
+          variant={touchControls ? "default" : "outline"}
+          className="h-9 px-3"
+          onClick={() => setTouchControls((v) => !v)}
+        >
+          {touchControls ? "Touch" : "Off"}
+        </Button>
+      </div>
+
+      <div className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+        Controls: Arrow keys or A/D. Space to launch. P pause, R restart, F fullscreen. On mobile, drag on the
+        game area or use the buttons.
+      </div>
+    </div>
+  );
+
+  const rightRail = (
+    <div className="hidden lg:block rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-5">
+      <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100 mb-4">Game controls</h3>
+      {controlsContent}
     </div>
   );
 
@@ -1410,6 +1412,12 @@ export default function AstroBreakout({ title, description }: { title?: string; 
               </div>
             ) : null}
           </div>
+        </div>
+
+        {/* Mobile Controls */}
+        <div className="lg:hidden mt-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-4">
+          <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100 mb-4">Game controls</h3>
+          {controlsContent}
         </div>
       </div>
     </GamePageLayout>
