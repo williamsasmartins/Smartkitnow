@@ -4504,6 +4504,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/FinaPointsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "swim-performance-level-calculator",
+    title: "Swim Performance Level Calculator",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Assess swim performance level. Compare your times against age-group standards to see where you rank.",
+    loader: () => import("@/components/calculators/Sports/SwimPerformanceLevelCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
