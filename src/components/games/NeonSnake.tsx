@@ -196,8 +196,10 @@ export default function NeonSnake({ title, description }: { title?: string; desc
 
       const viewportH = window.visualViewport?.height ?? window.innerHeight;
 
-      // largura disponível no card (use actual container width; fallback to viewport minus padding)
-      const parentWidth = Math.floor(containerRef.current?.clientWidth ?? Math.max(320, window.innerWidth - 32));
+      // largura disponível no card (use actual container width; if theater use viewport width minus padding)
+      const parentWidth = theater
+        ? Math.floor(Math.max(320, window.innerWidth - 64))
+        : Math.floor(containerRef.current?.clientWidth ?? Math.max(320, window.innerWidth - 32));
 
       // stable sizing (not dependent on element scroll)
       const safeBottom = isTouch ? 120 : 140; // slightly smaller on touch devices
@@ -256,7 +258,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       ctx2.fill();
     }
     draw();
-  }, [snake, food, redrawTick]);
+  }, [snake, food, redrawTick, theater, isTouch]);
 
   useEffect(() => {
     const onResize = () => setRedrawTick((t) => t + 1);
@@ -430,7 +432,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       onThisPage={[{ id: "how-to-play", label: "How to play" }]}
     >
       <div className="flex flex-col items-center">
-        <div ref={wrapRef} className={"w-full " + (theater ? "fixed inset-0 z-50 bg-slate-950/95 p-6" : "") }>
+        <div ref={wrapRef} className={"w-full " + (theater ? "fixed inset-0 z-50 bg-slate-950/95 p-6 flex items-center justify-center" : "") }>
           <div ref={containerRef} className="mx-auto max-w-[1100px] w-full">
           <canvas
           ref={canvasRef}
