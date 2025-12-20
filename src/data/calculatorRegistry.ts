@@ -4670,6 +4670,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/KeyboardClicksPerDayCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "meme-virality-calculator",
+    title: "Meme Virality Calculator",
+    category: "funny",
+    subcategory: "tech-work-life",
+    description: "Predict meme success. A tongue-in-cheek calculator to estimate the viral potential of your latest internet creation.",
+    loader: () => import("@/components/calculators/Funny/MemeViralityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
