@@ -4589,6 +4589,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/DonutCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ideal-egg-boiling-calculator",
+    title: "Ideal Egg Boiling Calculator",
+    category: "funny",
+    subcategory: "food-social-life",
+    description: "Boil the perfect egg every time. Calculate the exact cooking time for soft, medium, or hard-boiled eggs based on altitude and size.",
+    loader: () => import("@/components/calculators/Funny/IdealEggBoilingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
