@@ -4261,6 +4261,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/WilksCoefficientCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "body-fat-percentage",
+    title: "Body Fat Percentage Calculator (Athletes)",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Estimate body fat percentage for athletes. Track body composition changes during cutting or bulking phases.",
+    loader: () => import("@/components/calculators/Sports/BodyFatPercentageCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
