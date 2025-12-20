@@ -4553,6 +4553,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/CoffeeStrengthVsProductivityMemeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "hot-dog-bun-mismatch-solver",
+    title: "Hot-Dog to Bun Mismatch Solver",
+    category: "funny",
+    subcategory: "food-social-life",
+    description: "Solve the supermarket conspiracy. Calculate exactly how many packs of hot dogs and buns you need to buy to have zero leftovers.",
+    loader: () => import("@/components/calculators/Funny/HotDogBunMismatchSolverCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
