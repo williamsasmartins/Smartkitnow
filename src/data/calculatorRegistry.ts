@@ -4706,6 +4706,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/DogZoomiesEnergyMeterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cat-ignore-o-meter",
+    title: "Cat 'Ignore-o-Meter'",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Predict cat acknowledgement. Calculate the extremely low probability that your cat will actually respond when you call its name.",
+    loader: () => import("@/components/calculators/Funny/CatIgnoreOMeterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
