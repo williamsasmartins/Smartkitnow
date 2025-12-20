@@ -4441,6 +4441,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/TennisServeSpeedCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tennis-elo-rating-progress",
+    title: "Tennis ELO / Rating Progress",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Track Tennis ELO rating progress. Understand how match wins and losses affect your player ranking.",
+    loader: () => import("@/components/calculators/Sports/TennisEloRatingProgressCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
