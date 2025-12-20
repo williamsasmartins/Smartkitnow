@@ -4279,6 +4279,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/PlateLoadingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "macronutrient-calculator",
+    title: "Macronutrient Calculator (Sports)",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Calculate athlete macronutrient needs. Optimize protein, carb, and fat intake for performance recovery and muscle growth.",
+    loader: () => import("@/components/calculators/Sports/MacronutrientCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
