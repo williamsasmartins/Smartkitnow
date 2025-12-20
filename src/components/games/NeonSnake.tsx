@@ -196,9 +196,10 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       // largura disponível no card
       const cw = Math.max(320, Math.floor(containerRef.current?.clientWidth ?? 720));
 
-      // limites para não ficar gigante nem pequeno demais
-      const maxW = Math.min(980, cw);
-      const maxH = Math.min(740, Math.floor(viewportH * 0.62));
+      // stable sizing (not dependent on element scroll)
+      const safeBottom = 140; // space for controls
+      const maxW = Math.min(1100, cw);
+      const maxH = Math.min(680, Math.floor(viewportH * 0.68) - safeBottom);
 
       // calcula o tamanho da célula para preencher a largura, e depois limita pela altura
       let cell = Math.floor((maxW - padding * 2) / GRID_W);
@@ -394,7 +395,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       onThisPage={[{ id: "how-to-play", label: "How to play" }]}
     >
       <div className="flex flex-col items-center">
-        <div ref={containerRef} className="w-full max-w-[980px]">
+        <div ref={containerRef} className="mx-auto max-w-[1100px] w-full">
           <canvas
           ref={canvasRef}
           // Make canvas focusable so keyboard input works consistently across browsers
