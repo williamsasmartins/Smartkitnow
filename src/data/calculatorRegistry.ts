@@ -4315,6 +4315,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/YogaCaloriesBurnedCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fantasy-team-points-projections",
+    title: "Fantasy Team Points Projections Calculator",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Project fantasy sports points. Estimate team scores based on player stats for football, basketball, or soccer leagues.",
+    loader: () => import("@/components/calculators/Sports/FantasyTeamPointsProjectionsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
