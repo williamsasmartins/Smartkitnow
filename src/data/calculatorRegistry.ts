@@ -4468,6 +4468,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/ClimbingGradeConverterYdsFrenchEuCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tournament-bracket-seeding-helper",
+    title: "Tournament Bracket Seeding Helper",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Organize tournament brackets. Seed players or teams correctly to ensure fair matchups in knockout rounds.",
+    loader: () => import("@/components/calculators/Sports/TournamentBracketSeedingHelperCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
