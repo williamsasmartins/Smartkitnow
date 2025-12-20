@@ -4133,6 +4133,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/FtpZonesPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "swim-pace-css-splits",
+    title: "Swim Pace: CSS (Critical Swim Speed) & Splits",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Calculate your Critical Swim Speed (CSS). Determine optimal pacing for swim training and monitor aerobic threshold improvements.",
+    loader: () => import("@/components/calculators/Sports/SwimPaceCssSplitsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
