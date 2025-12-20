@@ -4477,6 +4477,42 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/TournamentBracketSeedingHelperCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "golf-handicap-calculator",
+    title: "Golf Handicap Calculator",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Calculate your official Golf Handicap. Enter your scores to track improvement and compete fairly with others.",
+    loader: () => import("@/components/calculators/Sports/GolfHandicapCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "bowling-score-calculator",
+    title: "Bowling Score Calculator",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Calculate bowling scores. Simulate frames, strikes, and spares to predict your final game score.",
+    loader: () => import("@/components/calculators/Sports/BowlingScoreCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "fina-points-calculator",
+    title: "FINA Points Calculator",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Calculate FINA swimming points. Convert race times into official FINA points for ranking comparison.",
+    loader: () => import("@/components/calculators/Sports/FinaPointsCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "swim-performance-level-calculator",
+    title: "Swim Performance Level Calculator",
+    category: "sports",
+    subcategory: "individual-game-management",
+    description: "Assess swim performance level. Compare your times against age-group standards to see where you rank.",
+    loader: () => import("@/components/calculators/Sports/SwimPerformanceLevelCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
