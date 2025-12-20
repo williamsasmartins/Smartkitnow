@@ -4142,6 +4142,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/SwimPaceCssSplitsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "t1-t2-time-impact",
+    title: "T1/T2 Transition Time Impact (Triathlon)",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Analyze triathlon transition times. See how T1 and T2 durations impact your overall race finish time and ranking.",
+    loader: () => import("@/components/calculators/Sports/T1T2TimeImpactCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
