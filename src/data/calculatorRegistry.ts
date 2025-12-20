@@ -4387,6 +4387,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/EraWhipCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "win-probability-shift-wps",
+    title: "Win Probability Shift (WPS) Estimator",
+    category: "sports",
+    subcategory: "ball-sports-advanced-metrics",
+    description: "Estimate Win Probability Shift. Analyze how specific plays impact the likelihood of winning a game in real-time.",
+    loader: () => import("@/components/calculators/Sports/WinProbabilityShiftWpsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
