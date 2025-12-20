@@ -4198,6 +4198,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/PoolLengthTimeConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "swim-interval-pace",
+    title: "Swim Interval Pace Calculator",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Calculate swim interval pacing. Set target times for 100m or 50m repeats to improve speed and endurance in the pool.",
+    loader: () => import("@/components/calculators/Sports/SwimIntervalPaceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
