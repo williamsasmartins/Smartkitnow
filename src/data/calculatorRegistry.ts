@@ -4088,6 +4088,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
    
+    {
+    slug: "running-pace-split-finish-time",
+    title: "Running Pace / Split / Finish Time Calculator",
+    category: "sports",
+    subcategory: "running-cycling-triathlon-performance",
+    description: "Calculate your running pace and finish times. Determine the splits needed to achieve your marathon or 5K personal best.",
+    loader: () => import("@/components/calculators/Sports/RunningPaceSplitFinishTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
