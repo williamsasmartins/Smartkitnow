@@ -20,10 +20,7 @@ export function Header() {
     setForceOpen(true);
   };
 
-  const ALL_CATS = [
-    { key: "construction", label: "Construction", to: "/construction" },
-    { key: "electrical", label: "Electrical", to: "/electrical" },
-    { key: "automotive", label: "Automotive", to: "/automotive" },
+  const PRIMARY_CATS = [
     { key: "financial", label: "Financial", to: "/financial" },
     { key: "health", label: "Health", to: "/health" },
     { key: "cooking", label: "Cooking", to: "/cooking" },
@@ -33,20 +30,15 @@ export function Header() {
     { key: "science", label: "Science", to: "/science" },
     { key: "time", label: "Time & Date", to: "/time" },
     { key: "free-games", label: "Free Games", to: "/games" },
-    { key: "recipes", label: "Recipes", to: "/recipes" },
+  ];
+
+  const MORE_CATS = [    { key: "recipes", label: "Recipes", to: "/recipes" },
     { key: "smart-tips", label: "Smart Tips", to: "/smart-tips" },
-    { key: "daily-quotes", label: "Daily Quotes", to: "/daily-quotes" },
-    { key: "everyday", label: "Everyday Life", to: "/everyday" },
+    { key: "daily-quotes", label: "Daily Quotes", to: "/daily-quotes" },{ key: "everyday", label: "Everyday Life", to: "/everyday" },
     { key: "sports", label: "Sports", to: "/sports" },
     { key: "funny", label: "Funny", to: "/funny" },
     { key: "video", label: "Video", to: "/video" },
   ];
-
-  // Adjust this limit to prevent horizontal scrolling
-  const DISPLAY_LIMIT = 6;
-
-  const visibleCats = ALL_CATS.slice(0, DISPLAY_LIMIT);
-  const moreCats = ALL_CATS.slice(DISPLAY_LIMIT);
 
   const handleHomeClick = () => navigate("/");
 
@@ -98,9 +90,28 @@ export function Header() {
         </div>
       </div>
 
-      <nav className="container mx-auto px-4 pb-2">
-        <ul className="skn-cat-menu flex items-center justify-start gap-4 text-sm whitespace-nowrap w-full flex-wrap md:flex-nowrap">
-          {visibleCats.map((cat) => (
+      <nav className="container mx-auto px-4 pb-2 overflow-x-auto">
+        <ul className="skn-cat-menu flex items-center justify-start gap-4 text-sm whitespace-nowrap w-full">
+                    <li className="flex items-center">
+            <Link to="/construction" className="text-primary hover:text-primary transition-colors inline-flex items-center">
+              <span className="mr-1" aria-hidden>{getCategoryIcon("construction")}</span>
+              Construction
+            </Link>
+          </li>
+                    <li className="flex items-center">
+            <Link to="/electrical" className="text-primary hover:text-primary transition-colors inline-flex items-center">
+              <span className="mr-1" aria-hidden>{getCategoryIcon("electrical")}</span>
+              Electrical
+            </Link>
+          </li>
+                    <li className="flex items-center">
+            <Link to="/automotive" className="text-primary hover:text-primary transition-colors inline-flex items-center">
+              <span className="mr-1" aria-hidden>{getCategoryIcon("automotive")}</span>
+              Automotive
+            </Link>
+          </li>
+
+          {PRIMARY_CATS.map((cat) => (
             <li key={cat.key} className="flex items-center">
               <Link to={cat.to} className="text-primary hover:text-primary transition-colors inline-flex items-center">
                 <span className="mr-1" aria-hidden>{getCategoryIcon(cat.key)}</span>
@@ -108,7 +119,6 @@ export function Header() {
               </Link>
             </li>
           ))}
-
           <li className="flex items-center">
             {!isMenuLoaded ? (
               <button
@@ -126,7 +136,7 @@ export function Header() {
                   </button>
                 }
               >
-                <HeaderMoreMenu categories={moreCats} defaultOpen={forceOpen} />
+                <HeaderMoreMenu categories={MORE_CATS} defaultOpen={forceOpen} />
               </Suspense>
             )}
           </li>
