@@ -4252,6 +4252,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/PlankHoldProgressionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "wilks-coefficient",
+    title: "Wilks Coefficient Calculator",
+    category: "sports",
+    subcategory: "strength-lifting-conditioning",
+    description: "Calculate your Wilks Score. Compare powerlifting strength across different body weight categories fairly.",
+    loader: () => import("@/components/calculators/Sports/WilksCoefficientCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
