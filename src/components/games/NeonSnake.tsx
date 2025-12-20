@@ -193,12 +193,12 @@ export default function NeonSnake({ title, description }: { title?: string; desc
 
       const viewportH = window.visualViewport?.height ?? window.innerHeight;
 
-      // largura disponível no card
-      const cw = Math.max(320, Math.floor(containerRef.current?.clientWidth ?? 720));
+      // largura disponível no card (use actual container width; fallback to viewport minus padding)
+      const parentWidth = Math.floor(containerRef.current?.clientWidth ?? Math.max(320, window.innerWidth - 32));
 
       // stable sizing (not dependent on element scroll)
-      const safeBottom = 140; // space for controls
-      const maxW = Math.min(1100, cw);
+      const safeBottom = isTouch ? 120 : 140; // slightly smaller on touch devices
+      const maxW = Math.min(1100, parentWidth);
       const maxH = Math.min(680, Math.floor(viewportH * 0.68) - safeBottom);
 
       // calcula o tamanho da célula para preencher a largura, e depois limita pela altura
@@ -214,7 +214,9 @@ export default function NeonSnake({ title, description }: { title?: string; desc
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.floor(w * dpr);
       canvas.height = Math.floor(h * dpr);
-      canvas.style.width = `${w}px`;
+      // Prevent the canvas from overflowing its container on very small screens
+      const finalW = Math.min(w, parentWidth);
+      canvas.style.width = `${finalW}px`;
       canvas.style.height = `${h}px`;
       ctx2.setTransform(1, 0, 0, 1, 0, 0);
       ctx2.scale(dpr, dpr);
@@ -418,7 +420,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
             else enqueueDir(dy > 0 ? "down" : "up");
           }}
           style={{ touchAction: "none" }}
-          className="rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 bg-slate-950"
+          className="rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 bg-slate-950 block max-w-full"
         />
         </div>
         {!started && !end && !startOverlayOpen ? (
@@ -430,7 +432,7 @@ export default function NeonSnake({ title, description }: { title?: string; desc
         ) : null}
 
         {started && !end ? (
-          <div className="mt-4 md:hidden w-full max-w-[420px]">
+          <div className="mt-4 md:hidden w-full max-w-[420px] mx-auto">
             <div className="grid grid-cols-3 gap-2">
               <div />
               <Button type="button" variant="outline" className="h-12" onPointerDown={() => enqueueDir("up")}>↑</Button>
