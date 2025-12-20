@@ -1,1069 +1,730 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import GamePageLayout from "@/components/templates/GamePageLayout";
 import { Button } from "@/components/ui/button";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Maximize2,
-  Minimize2,
-  Pause,
-  Play,
-  RotateCcw,
-  Sparkles,
-  Volume2,
-  VolumeX,
-  X,
-  Zap,
-  Heart,
-  Trophy,
-} from "lucide-react";
+import { Expand, Minimize, Pause, Play, RotateCcw, X } from "lucide-react";
 
 type Difficulty = "easy" | "medium" | "hard";
-type GamePhase = "menu" | "playing" | "paused" | "gameover";
-
-type Vec = { x: number; y: number };
+type GameState = "menu" | "playing" | "paused" | "gameover";
 
 type Brick = {
   id: string;
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-  hp: number;
-  hue: number;
+  lane: number;
+  y: number; // px
+  kind: "normal" | "heavy";
 };
 
-type Orb = {
+type Pickup = {
   id: string;
-  x: number;
-  y: number;
-  r: number;
-  kind: "energy" | "score";
+  lane: number;
+  y: number; // px
+  kind: "star" | "shield" | "slow";
 };
 
-type Particle = {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  life: number;
-  maxLife: number;
-  r: number;
-  hue: number;
-  a: number;
+const LANES = 6;
+
+const DIFF: Record<
+  Difficulty,
+  {
+    spawnEveryMs: number;
+    baseSpeedPxPerSec: number;
+    rampPerSec: number;
+  }
+> = {
+  easy: { spawnEveryMs: 820, baseSpeedPxPerSec: 230, rampPerSec: 7 },
+  medium: { spawnEveryMs: 680, baseSpeedPxPerSec: 270, rampPerSec: 10 },
+  hard: { spawnEveryMs: 560, baseSpeedPxPerSec: 315, rampPerSec: 13 },
 };
 
-const LS_BEST = "skn_game_brick_dash_best_v1";
-
-function clamp(v: number, a: number, b: number) {
-  return Math.max(a, Math.min(b, v));
+function clamp(n: number, a: number, b: number) {
+  return Math.max(a, Math.min(b, n));
 }
-
-function rand(min: number, max: number) {
-  return min + Math.random() * (max - min);
+function randInt(min: number, max: number) {
+  return Math.floor(min + Math.random() * (max - min + 1));
 }
-
+function pick<T>(arr: T[]) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 function uid(prefix: string) {
   return `${prefix}_${Math.random().toString(16).slice(2)}_${Date.now().toString(16)}`;
 }
 
-function aabb(ax: number, ay: number, aw: number, ah: number, bx: number, by: number, bw: number, bh: number) {
-  return ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by;
-}
-
-function roundRectPath(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
-  const rr = Math.min(r, w / 2, h / 2);
-  ctx.beginPath();
-  ctx.moveTo(x + rr, y);
-  ctx.arcTo(x + w, y, x + w, y + h, rr);
-  ctx.arcTo(x + w, y + h, x, y + h, rr);
-  ctx.arcTo(x, y + h, x, y, rr);
-  ctx.arcTo(x, y, x + w, y, rr);
-  ctx.closePath();
-}
-
-function safeRequestFullscreen(el: HTMLElement | null) {
-  if (!el) return false;
-  const anyEl = el as any;
-  if (anyEl.requestFullscreen) {
-    anyEl.requestFullscreen();
-    return true;
-  }
-  if (anyEl.webkitRequestFullscreen) {
-    anyEl.webkitRequestFullscreen();
-    return true;
-  }
-  return false;
-}
-
-function safeExitFullscreen() {
-  const d: any = document;
-  if (document.fullscreenElement) return document.exitFullscreen();
-  if (d.webkitFullscreenElement && d.webkitExitFullscreen) return d.webkitExitFullscreen();
-}
-
 export default function BrickDash({ title, description }: { title?: string; description?: string }) {
+  const navigate = useNavigate();
+
   const pageTitle = title ?? "Brick Dash";
   const pageDescription =
     description ??
-    "Dodge falling brick walls and dash through tight gaps. Build combos, collect energy orbs, and survive as the speed ramps up. Fully playable on desktop and mobile.";
+    "Dash between lanes, dodge falling bricks, grab power-ups, and chase a new high score. Built for keyboard and mobile touch controls.";
 
-  // World dimensions (fixed). We scale/letterbox into the canvas.
-  const WORLD_W = 900;
-  const WORLD_H = 560;
-
-  const COLS = 14;
-  const CELL_W = WORLD_W / COLS;
-  const ROW_H = 34;
-
-  const DASH_COST = 35;
-  const DASH_TIME = 0.22; // seconds
-  const IFRAME_TIME = 1.0; // seconds
-
-  const stageWrapRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  const audioRef = useRef<AudioContext | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const lastTsRef = useRef<number>(0);
 
-  const inputRef = useRef({
-    left: false,
-    right: false,
-    dash: false,
-    pointerActive: false,
-    pointerTargetX: 0,
-  });
+  const difficultyRef = useRef<Difficulty>("medium");
 
-  const viewRef = useRef({
-    cssW: 900,
-    cssH: 560,
-    dpr: 1,
-    scale: 1,
-    offX: 0,
-    offY: 0,
-  });
+  // World refs (avoid rerender 60fps)
+  const stateRef = useRef<GameState>("menu");
+  const startedAtRef = useRef<number>(0);
+  const elapsedRef = useRef<number>(0);
 
+  const playerLaneRef = useRef<number>(Math.floor(LANES / 2));
+  const playerXRef = useRef<number>(0);
+  const playerTargetXRef = useRef<number>(0);
+
+  const bricksRef = useRef<Brick[]>([]);
+  const pickupsRef = useRef<Pickup[]>([]);
+
+  const spawnAccRef = useRef<number>(0);
+  const speedRef = useRef<number>(DIFF.medium.baseSpeedPxPerSec);
+
+  const scoreRef = useRef<number>(0);
+  const bestRef = useRef<number>(0);
+
+  const shieldHitsRef = useRef<number>(0);
+  const slowUntilRef = useRef<number>(0);
+
+  const shakeRef = useRef<number>(0);
+
+  // UI state (throttled)
   const [difficulty, setDifficulty] = useState<Difficulty>("medium");
-  const [phase, setPhase] = useState<GamePhase>("menu");
-  const [menuOpen, setMenuOpen] = useState(true);
+  const [gameState, setGameState] = useState<GameState>("menu");
+  const [score, setScore] = useState(0);
+  const [best, setBest] = useState(0);
+  const [shieldHits, setShieldHits] = useState(0);
   const [theater, setTheater] = useState(false);
+  const [isFs, setIsFs] = useState(false);
 
-  const [soundOn, setSoundOn] = useState(true);
+  const stageSizeRef = useRef({ w: 0, h: 0, dpr: 1 });
 
-  const [scoreUI, setScoreUI] = useState(0);
-  const [bestUI, setBestUI] = useState(0);
-  const [livesUI, setLivesUI] = useState(3);
-  const [levelUI, setLevelUI] = useState(1);
-  const [energyUI, setEnergyUI] = useState(100);
-  const [comboUI, setComboUI] = useState(1);
+  const controlsHint = useMemo(
+    () => "Keyboard: ←/→ or A/D. Pause: P. Restart: R. Mobile: swipe or tap buttons.",
+    []
+  );
 
-  const [hint, setHint] = useState<string | null>(null);
-
-  const best = useMemo(() => {
-    const raw = typeof window !== "undefined" ? window.localStorage.getItem(LS_BEST) : null;
-    const n = raw ? Number(raw) : 0;
-    return Number.isFinite(n) ? n : 0;
+  // Load best score
+  useEffect(() => {
+    const k = "skn_game_brick_dash_best";
+    const v = Number(localStorage.getItem(k) || "0");
+    bestRef.current = Number.isFinite(v) ? v : 0;
+    setBest(bestRef.current);
   }, []);
 
+  // Resize observer: update internal render resolution ONLY
   useEffect(() => {
-    setBestUI(best);
-  }, [best]);
+    const el = stageRef.current;
+    if (!el) return;
 
-  const cfg = useMemo(() => {
-    // tuning per difficulty
-    if (difficulty === "easy") {
-      return {
-        baseSpeed: 150,
-        speedRamp: 10,
-        orbRate: 0.16,
-        energyRegen: 26,
-        comboDecay: 0.65,
-        lives: 4,
-      };
-    }
-    if (difficulty === "hard") {
-      return {
-        baseSpeed: 210,
-        speedRamp: 16,
-        orbRate: 0.10,
-        energyRegen: 18,
-        comboDecay: 0.9,
-        lives: 3,
-      };
-    }
-    return {
-      baseSpeed: 180,
-      speedRamp: 13,
-      orbRate: 0.13,
-      energyRegen: 22,
-      comboDecay: 0.75,
-      lives: 3,
+    const ro = new ResizeObserver(() => {
+      const rect = el.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      const w = Math.max(1, Math.floor(rect.width));
+      const h = Math.max(1, Math.floor(rect.height));
+
+      // Guard (avoid resize loops)
+      if (stageSizeRef.current.w === w && stageSizeRef.current.h === h && stageSizeRef.current.dpr === dpr) return;
+      stageSizeRef.current = { w, h, dpr };
+    });
+
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // Fullscreen listeners
+  useEffect(() => {
+    const onFs = () => {
+      const fsEl = document.fullscreenElement;
+      setIsFs(Boolean(fsEl));
     };
-  }, [difficulty]);
+    document.addEventListener("fullscreenchange", onFs);
+    return () => document.removeEventListener("fullscreenchange", onFs);
+  }, []);
 
-  const gameRef = useRef({
-    t: 0,
-    speed: 180,
-    score: 0,
-    best: best,
-    level: 1,
-    lives: 3,
-
-    combo: 1,
-    comboHold: 0, // seconds remaining before combo decays
-
-    energy: 100,
-    dashT: 0,
-    iframes: 0,
-
-    player: {
-      x: WORLD_W / 2,
-      y: WORLD_H - 70,
-      w: 54,
-      h: 22,
-      vx: 0,
-    },
-
-    bricks: [] as Brick[],
-    orbs: [] as Orb[],
-    particles: [] as Particle[],
-
-    spawnY: -200,
-    nextRowAt: 0,
-    starfield: Array.from({ length: 80 }).map(() => ({
-      x: Math.random() * WORLD_W,
-      y: Math.random() * WORLD_H,
-      s: 0.6 + Math.random() * 1.8,
-      a: 0.25 + Math.random() * 0.6,
-    })),
-
-    lastSafeGapCol: 6,
-  });
-
-  function ensureAudio() {
-    if (!soundOn) return null;
-    const Ctx = (window.AudioContext || (window as any).webkitAudioContext) as any;
-    if (!Ctx) return null;
-    const ctx = audioRef.current ?? new Ctx();
-    audioRef.current = ctx;
-    if (ctx.state === "suspended" && ctx.resume) ctx.resume();
-    return ctx as AudioContext;
+  function setState(next: GameState) {
+    stateRef.current = next;
+    setGameState(next);
   }
 
-  function beep(freq: number, ms: number, type: OscillatorType = "sine", gain = 0.16) {
-    const ctx = ensureAudio();
-    if (!ctx) return;
-    const o = ctx.createOscillator();
-    const g = ctx.createGain();
-    o.type = type;
-    o.frequency.value = freq;
-    g.gain.value = 0.0001;
-    o.connect(g);
-    g.connect(ctx.destination);
-    o.start();
-    const t0 = ctx.currentTime;
-    g.gain.exponentialRampToValueAtTime(gain, t0 + 0.02);
-    g.gain.exponentialRampToValueAtTime(0.0001, t0 + ms / 1000);
-    o.stop(t0 + ms / 1000);
-  }
+  function resetWorld(nextDifficulty?: Difficulty) {
+    const d = nextDifficulty ?? difficultyRef.current;
 
-  function setHintTemp(text: string, ms = 1400) {
-    setHint(text);
-    window.setTimeout(() => setHint(null), ms);
-  }
+    difficultyRef.current = d;
+    setDifficulty(d);
 
-  function resetGame(nextDifficulty?: Difficulty) {
-    const g = gameRef.current;
-    if (nextDifficulty) setDifficulty(nextDifficulty);
+    playerLaneRef.current = Math.floor(LANES / 2);
+    playerXRef.current = 0;
+    playerTargetXRef.current = 0;
 
-    g.t = 0;
-    g.speed = cfg.baseSpeed;
-    g.score = 0;
-    g.best = bestUI || g.best || 0;
-    g.level = 1;
-    g.lives = cfg.lives;
+    bricksRef.current = [];
+    pickupsRef.current = [];
 
-    g.combo = 1;
-    g.comboHold = 0;
+    spawnAccRef.current = 0;
+    speedRef.current = DIFF[d].baseSpeedPxPerSec;
 
-    g.energy = 100;
-    g.dashT = 0;
-    g.iframes = 0;
+    scoreRef.current = 0;
+    shieldHitsRef.current = 0;
+    slowUntilRef.current = 0;
+    shakeRef.current = 0;
 
-    g.player.x = WORLD_W / 2;
-    g.player.y = WORLD_H - 70;
-    g.player.vx = 0;
+    startedAtRef.current = performance.now();
+    elapsedRef.current = 0;
 
-    g.bricks = [];
-    g.orbs = [];
-    g.particles = [];
+    setScore(0);
+    setShieldHits(0);
 
-    g.spawnY = -220;
-    g.nextRowAt = 0;
-    g.lastSafeGapCol = 6;
-
-    setScoreUI(0);
-    setLivesUI(cfg.lives);
-    setLevelUI(1);
-    setEnergyUI(100);
-    setComboUI(1);
-
-    setPhase("menu");
-    setMenuOpen(true);
+    setState("menu");
   }
 
   function startGame() {
-    const g = gameRef.current;
-    g.lives = cfg.lives;
-    setLivesUI(cfg.lives);
+    // Initialize target X based on current stage width
+    const { w } = stageSizeRef.current;
+    const laneW = w / LANES;
+    const lane = playerLaneRef.current;
+    const x = laneW * (lane + 0.5);
 
-    setPhase("playing");
-    setMenuOpen(false);
+    playerXRef.current = x;
+    playerTargetXRef.current = x;
 
-    // user gesture -> unlock audio
-    beep(660, 60, "triangle", 0.12);
+    startedAtRef.current = performance.now();
+    elapsedRef.current = 0;
 
-    setHintTemp("Tip: Drag on the playfield on mobile. Space / W / ↑ to dash.", 1700);
+    setState("playing");
   }
 
-  function pauseToggle() {
-    setPhase((p) => (p === "playing" ? "paused" : p === "paused" ? "playing" : p));
-  }
+  function gameOver() {
+    setState("gameover");
 
-  function tryDash() {
-    const g = gameRef.current;
-    if (phase !== "playing") return;
-    if (g.dashT > 0) return;
-    if (g.energy < DASH_COST) {
-      setHintTemp("Not enough energy for dash.", 900);
-      beep(180, 70, "sine", 0.08);
-      return;
+    // best score persist
+    if (scoreRef.current > bestRef.current) {
+      bestRef.current = scoreRef.current;
+      setBest(bestRef.current);
+      localStorage.setItem("skn_game_brick_dash_best", String(bestRef.current));
     }
-    g.energy = clamp(g.energy - DASH_COST, 0, 100);
-    g.dashT = DASH_TIME;
-
-    // Dash boosts combo timer too
-    g.comboHold = Math.max(g.comboHold, 0.7);
-
-    beep(880, 90, "square", 0.14);
   }
 
-  function updateCanvasSize() {
-    const stage = stageRef.current;
-    const canvas = canvasRef.current;
-    if (!stage || !canvas) return;
+  function moveLane(delta: -1 | 1) {
+    if (stateRef.current !== "playing") return;
 
-    const rect = stage.getBoundingClientRect();
-    const cssW = Math.max(320, rect.width);
-    const cssH = Math.max(300, rect.height);
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const lane = clamp(playerLaneRef.current + delta, 0, LANES - 1);
+    playerLaneRef.current = lane;
 
-    canvas.width = Math.floor(cssW * dpr);
-    canvas.height = Math.floor(cssH * dpr);
-    canvas.style.width = `${cssW}px`;
-    canvas.style.height = `${cssH}px`;
-
-    // compute world scale + letterbox
-    const s = Math.min(cssW / WORLD_W, cssH / WORLD_H);
-    const offX = (cssW - WORLD_W * s) / 2;
-    const offY = (cssH - WORLD_H * s) / 2;
-
-    viewRef.current = { cssW, cssH, dpr, scale: s, offX, offY };
+    const { w } = stageSizeRef.current;
+    const laneW = w / LANES;
+    playerTargetXRef.current = laneW * (lane + 0.5);
   }
 
-  useEffect(() => {
-    updateCanvasSize();
-    const ro = new ResizeObserver(() => updateCanvasSize());
-    if (stageRef.current) ro.observe(stageRef.current);
-    const onResize = () => updateCanvasSize();
-    window.addEventListener("resize", onResize);
-    window.addEventListener("orientationchange", onResize);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", onResize);
-      window.removeEventListener("orientationchange", onResize);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theater]);
+  async function toggleFullscreen() {
+    const el = stageRef.current;
+    if (!el) return;
 
-  useEffect(() => {
-    function onFsChange() {
-      const fs = Boolean(document.fullscreenElement || (document as any).webkitFullscreenElement);
-      if (!fs && theater) {
-        // if user exits fullscreen via system UI, keep theater false as well
-        setTheater(false);
+    try {
+      if (!document.fullscreenElement) {
+        await el.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
       }
-      updateCanvasSize();
+    } catch {
+      // If fullscreen fails (iOS/Safari limitations), user still has Theater mode
+      setTheater(true);
     }
-    document.addEventListener("fullscreenchange", onFsChange);
-    document.addEventListener("webkitfullscreenchange" as any, onFsChange);
-    return () => {
-      document.removeEventListener("fullscreenchange", onFsChange);
-      document.removeEventListener("webkitfullscreenchange" as any, onFsChange);
-    };
-  }, [theater]);
-
-  function toggleFullscreen() {
-    const wrap = stageWrapRef.current;
-    const fs = Boolean(document.fullscreenElement || (document as any).webkitFullscreenElement);
-
-    // Prefer native Fullscreen API when available
-    if (!fs) {
-      const ok = safeRequestFullscreen(wrap);
-      if (!ok) {
-        // fallback: theater mode CSS
-        setTheater(true);
-      }
-    } else {
-      safeExitFullscreen();
-      setTheater(false);
-    }
-
-    window.setTimeout(() => updateCanvasSize(), 60);
   }
 
   // Keyboard input
   useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      const key = (e.key || "").toLowerCase();
-      const code = e.code;
+    function onKey(e: KeyboardEvent) {
+      const st = stateRef.current;
 
-      const using =
-        code === "ArrowLeft" ||
-        code === "ArrowRight" ||
-        code === "ArrowUp" ||
-        code === "Space" ||
-        code === "KeyA" ||
-        code === "KeyD" ||
-        code === "KeyW" ||
-        key === "a" ||
-        key === "d" ||
-        key === "w" ||
-        key === " " ||
-        key === "arrowleft" ||
-        key === "arrowright" ||
-        key === "arrowup";
-
-      if (using) e.preventDefault();
-
-      if (code === "ArrowLeft" || code === "KeyA" || key === "a" || key === "arrowleft") inputRef.current.left = true;
-      if (code === "ArrowRight" || code === "KeyD" || key === "d" || key === "arrowright") inputRef.current.right = true;
-
-      if (code === "Space" || code === "ArrowUp" || code === "KeyW" || key === "w" || key === "arrowup") {
-        if (!e.repeat) tryDash();
-      }
-
-      if (code === "KeyP" || key === "p") {
-        e.preventDefault();
-        if (phase === "playing" || phase === "paused") pauseToggle();
-      }
-
-      if (code === "Escape") {
-        // Close overlays / exit theater
-        if (menuOpen) setMenuOpen(false);
-        if (phase === "gameover") {
-          setMenuOpen(true);
-          setPhase("menu");
-        }
-        const fs = Boolean(document.fullscreenElement || (document as any).webkitFullscreenElement);
-        if (fs) safeExitFullscreen();
-        setTheater(false);
-      }
-
-      if (code === "Enter") {
-        if (phase === "menu") startGame();
-        if (phase === "gameover") {
-          resetGame();
-        }
-      }
-
-      if (code === "KeyR" || key === "r") {
-        if (phase === "playing" || phase === "paused" || phase === "gameover") {
-          e.preventDefault();
-          resetGame();
-        }
-      }
-    }
-
-    function onKeyUp(e: KeyboardEvent) {
-      const key = (e.key || "").toLowerCase();
-      const code = e.code;
-
-      if (code === "ArrowLeft" || code === "KeyA" || key === "a" || key === "arrowleft") inputRef.current.left = false;
-      if (code === "ArrowRight" || code === "KeyD" || key === "d" || key === "arrowright") inputRef.current.right = false;
-    }
-
-    window.addEventListener("keydown", onKeyDown, { passive: false });
-    window.addEventListener("keyup", onKeyUp);
-    return () => {
-      window.removeEventListener("keydown", onKeyDown as any);
-      window.removeEventListener("keyup", onKeyUp as any);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, menuOpen, soundOn, difficulty]);
-
-  function spawnRow(y: number) {
-    const g = gameRef.current;
-
-    // Create a row with a guaranteed safe gap (2-3 cells)
-    const gapW = Math.random() < 0.65 ? 2 : 3;
-    const gapCenterBias = 0.7; // pull gaps toward last safe gap
-    const target = g.lastSafeGapCol + (Math.random() < 0.5 ? -1 : 1) * Math.floor(rand(0, 2));
-    let gapStart = Math.round(clamp(target * gapCenterBias + rand(2, COLS - 3) * (1 - gapCenterBias), 1, COLS - gapW - 1));
-
-    // occasionally force a tighter gap for excitement (still doable with dash)
-    if (Math.random() < 0.18) gapW === 3 ? (gapStart += 0) : (gapStart += 0);
-
-    g.lastSafeGapCol = gapStart + Math.floor(gapW / 2);
-
-    const hueBase = rand(210, 300);
-    const bricks: Brick[] = [];
-    for (let c = 0; c < COLS; c++) {
-      if (c >= gapStart && c < gapStart + gapW) continue;
-
-      // sparsify corners sometimes
-      const keep = Math.random() < 0.92;
-      if (!keep) continue;
-
-      const x = c * CELL_W + 2;
-      const w = CELL_W - 4;
-      bricks.push({
-        id: uid("b"),
-        x,
-        y,
-        w,
-        h: ROW_H,
-        hp: Math.random() < 0.08 ? 2 : 1,
-        hue: hueBase + rand(-18, 18),
-      });
-    }
-    g.bricks.push(...bricks);
-
-    // spawn an orb sometimes (energy / score) inside the gap corridor or nearby
-    if (Math.random() < cfg.orbRate) {
-      const kind: Orb["kind"] = Math.random() < 0.7 ? "energy" : "score";
-      const cx = (gapStart + gapW / 2) * CELL_W + CELL_W / 2 + rand(-CELL_W * 0.35, CELL_W * 0.35);
-      const orb: Orb = { id: uid("o"), x: clamp(cx, 22, WORLD_W - 22), y: y + ROW_H / 2, r: kind === "energy" ? 11 : 10, kind };
-      g.orbs.push(orb);
-    }
-  }
-
-  function addParticles(x: number, y: number, hue: number, count: number, strength = 1) {
-    const g = gameRef.current;
-    for (let i = 0; i < count; i++) {
-      g.particles.push({
-        x,
-        y,
-        vx: rand(-180, 180) * strength,
-        vy: rand(-240, 120) * strength,
-        life: rand(0.35, 0.75),
-        maxLife: 1,
-        r: rand(1.2, 3.2),
-        hue: hue + rand(-20, 20),
-        a: rand(0.65, 0.95),
-      });
-    }
-  }
-
-  function step(dt: number) {
-    const g = gameRef.current;
-
-    if (phase !== "playing") return;
-
-    g.t += dt;
-
-    // speed & level
-    g.level = 1 + Math.floor(g.score / 650);
-    g.speed = cfg.baseSpeed + g.level * cfg.speedRamp;
-
-    // combo timer (soft decay)
-    g.comboHold = Math.max(0, g.comboHold - dt * cfg.comboDecay);
-    if (g.comboHold <= 0 && g.combo > 1) {
-      g.combo = Math.max(1, g.combo - 1);
-      g.comboHold = 0.35;
-    }
-
-    // dash / iframes
-    g.dashT = Math.max(0, g.dashT - dt);
-    g.iframes = Math.max(0, g.iframes - dt);
-
-    // energy regen
-    const regen = g.dashT > 0 ? cfg.energyRegen * 0.2 : cfg.energyRegen;
-    g.energy = clamp(g.energy + regen * dt, 0, 100);
-
-    // player movement
-    const maxSpeed = 420;
-    const accel = 2200;
-    const friction = 1600;
-
-    let axis = 0;
-    if (inputRef.current.left) axis -= 1;
-    if (inputRef.current.right) axis += 1;
-
-    // pointer control has priority when active
-    if (inputRef.current.pointerActive) {
-      const targetX = inputRef.current.pointerTargetX;
-      const dx = targetX - g.player.x;
-      axis = clamp(dx / 120, -1, 1);
-    }
-
-    if (axis !== 0) {
-      g.player.vx += axis * accel * dt;
-    } else {
-      // friction toward 0
-      const s = Math.sign(g.player.vx);
-      const m = Math.abs(g.player.vx);
-      const nm = Math.max(0, m - friction * dt);
-      g.player.vx = nm * s;
-    }
-
-    g.player.vx = clamp(g.player.vx, -maxSpeed, maxSpeed);
-    g.player.x += g.player.vx * dt;
-
-    const pxMin = 18;
-    const pxMax = WORLD_W - g.player.w - 18;
-    g.player.x = clamp(g.player.x, pxMin, pxMax);
-
-    // spawn brick rows
-    g.nextRowAt -= dt * g.speed;
-    if (g.nextRowAt <= 0) {
-      const y = -ROW_H - rand(0, 60);
-      spawnRow(y);
-      g.nextRowAt = ROW_H + rand(10, 30);
-    }
-
-    // move bricks/orbs down
-    const dy = g.speed * dt;
-    for (const b of g.bricks) b.y += dy;
-    for (const o of g.orbs) o.y += dy;
-    for (const p of g.particles) {
-      p.vy += 520 * dt;
-      p.x += p.vx * dt;
-      p.y += p.vy * dt;
-      p.life -= dt;
-    }
-
-    g.particles = g.particles.filter((p) => p.life > 0);
-
-    // scoring: time + bonus for higher level
-    g.score += (18 + g.level * 2) * dt;
-
-    // collisions
-    const player = g.player;
-    const dashOn = g.dashT > 0;
-
-    // Orbs
-    for (let i = g.orbs.length - 1; i >= 0; i--) {
-      const o = g.orbs[i];
-      const hit = aabb(player.x, player.y, player.w, player.h, o.x - o.r, o.y - o.r, o.r * 2, o.r * 2);
-      if (hit) {
-        if (o.kind === "energy") {
-          g.energy = clamp(g.energy + 45, 0, 100);
-          g.score += 40 * g.combo;
-          g.combo = clamp(g.combo + 1, 1, 6);
-          g.comboHold = 1.0;
-          beep(1046, 70, "triangle", 0.14);
-        } else {
-          g.score += 120 * g.combo;
-          g.combo = clamp(g.combo + 1, 1, 8);
-          g.comboHold = 1.1;
-          beep(1318, 70, "sine", 0.14);
-        }
-        addParticles(o.x, o.y, o.kind === "energy" ? 55 : 200, 18, 1.2);
-        g.orbs.splice(i, 1);
-      }
-    }
-
-    // Bricks
-    let hitNonDash = false;
-    for (let i = g.bricks.length - 1; i >= 0; i--) {
-      const b = g.bricks[i];
-      const hit = aabb(player.x, player.y, player.w, player.h, b.x, b.y, b.w, b.h);
-      if (!hit) continue;
-
-      if (dashOn) {
-        b.hp -= 1;
-        g.score += 35 * g.combo;
-        g.combo = clamp(g.combo + 1, 1, 10);
-        g.comboHold = 1.2;
-        addParticles(player.x + player.w / 2, player.y + player.h / 2, b.hue, 22, 1.35);
-        beep(520 + b.hue, 45, "square", 0.10);
-        if (b.hp <= 0) g.bricks.splice(i, 1);
-      } else if (g.iframes <= 0) {
-        hitNonDash = true;
-        g.iframes = IFRAME_TIME;
-        g.lives -= 1;
-        g.combo = 1;
-        g.comboHold = 0;
-        addParticles(player.x + player.w / 2, player.y + player.h / 2, 0, 28, 1.6);
-        beep(140, 120, "sawtooth", 0.14);
-        break;
-      }
-    }
-
-    if (hitNonDash) {
-      if (g.lives <= 0) {
-        // game over
-        setPhase("gameover");
-        setMenuOpen(true);
-
-        const finalScore = Math.floor(g.score);
-        if (finalScore > (bestUI || 0)) {
-          window.localStorage.setItem(LS_BEST, String(finalScore));
-          setBestUI(finalScore);
-        }
+      // Let user always exit overlays safely
+      if (e.code === "Escape") {
+        if (theater) setTheater(false);
+        if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
         return;
       }
-    }
 
-    // cleanup offscreen
-    g.bricks = g.bricks.filter((b) => b.y < WORLD_H + 120);
-    g.orbs = g.orbs.filter((o) => o.y < WORLD_H + 120);
-
-    // UI snapshot (lightweight)
-    setScoreUI(Math.floor(g.score));
-    setLivesUI(g.lives);
-    setLevelUI(g.level);
-    setEnergyUI(Math.floor(g.energy));
-    setComboUI(g.combo);
-  }
-
-  function draw() {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const v = viewRef.current;
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.scale(v.dpr, v.dpr);
-
-    // background
-    const bg = ctx.createLinearGradient(0, 0, v.cssW, v.cssH);
-    bg.addColorStop(0, "rgba(10, 18, 32, 1)");
-    bg.addColorStop(1, "rgba(9, 10, 20, 1)");
-    ctx.fillStyle = bg;
-    ctx.fillRect(0, 0, v.cssW, v.cssH);
-
-    // subtle glow blobs
-    ctx.save();
-    ctx.globalAlpha = 0.35;
-    const g1 = ctx.createRadialGradient(v.cssW * 0.18, v.cssH * 0.15, 10, v.cssW * 0.18, v.cssH * 0.15, v.cssW * 0.42);
-    g1.addColorStop(0, "rgba(92,130,238,0.30)");
-    g1.addColorStop(1, "rgba(92,130,238,0)");
-    ctx.fillStyle = g1;
-    ctx.fillRect(0, 0, v.cssW, v.cssH);
-
-    const g2 = ctx.createRadialGradient(v.cssW * 0.78, v.cssH * 0.2, 10, v.cssW * 0.78, v.cssH * 0.2, v.cssW * 0.46);
-    g2.addColorStop(0, "rgba(168,85,247,0.24)");
-    g2.addColorStop(1, "rgba(168,85,247,0)");
-    ctx.fillStyle = g2;
-    ctx.fillRect(0, 0, v.cssW, v.cssH);
-    ctx.restore();
-
-    // world transform
-    ctx.save();
-    ctx.translate(v.offX, v.offY);
-    ctx.scale(v.scale, v.scale);
-
-    const g = gameRef.current;
-
-    // starfield
-    for (const s of g.starfield) {
-      s.y += (g.speed * 0.18 + s.s * 22) * (1 / 60);
-      if (s.y > WORLD_H) {
-        s.y = -10;
-        s.x = Math.random() * WORLD_W;
+      // Pause/Resume
+      if (e.code === "KeyP") {
+        e.preventDefault();
+        if (st === "playing") setState("paused");
+        else if (st === "paused") setState("playing");
+        return;
       }
-      ctx.fillStyle = `rgba(255,255,255,${s.a})`;
-      ctx.fillRect(s.x, s.y, s.s, s.s);
-    }
 
-    // playfield frame
-    ctx.globalAlpha = 0.9;
-    ctx.strokeStyle = "rgba(92,130,238,0.35)";
-    ctx.lineWidth = 2;
-    roundRectPath(ctx, 10, 10, WORLD_W - 20, WORLD_H - 20, 18);
-    ctx.stroke();
+      // Restart
+      if (e.code === "KeyR") {
+        e.preventDefault();
+        resetWorld();
+        return;
+      }
 
-    // orbs
-    for (const o of g.orbs) {
-      const hue = o.kind === "energy" ? 55 : 200;
-      ctx.save();
-      ctx.shadowBlur = 16;
-      ctx.shadowColor = `hsla(${hue}, 95%, 60%, 0.6)`;
-      ctx.fillStyle = `hsla(${hue}, 95%, 60%, 0.95)`;
-      ctx.beginPath();
-      ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
+      // Start from menu
+      if (st === "menu" && (e.code === "Space" || e.code === "Enter")) {
+        e.preventDefault();
+        startGame();
+        return;
+      }
 
-      ctx.globalAlpha = 0.9;
-      ctx.strokeStyle = `hsla(${hue}, 95%, 70%, 0.55)`;
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(o.x, o.y, o.r + 3, 0, Math.PI * 2);
-      ctx.stroke();
-    }
+      if (st !== "playing") return;
 
-    // bricks
-    for (const b of g.bricks) {
-      const glow = b.hp > 1 ? 0.85 : 0.55;
-      ctx.save();
-      ctx.shadowBlur = 16;
-      ctx.shadowColor = `hsla(${b.hue}, 90%, 60%, ${glow})`;
-      const grad = ctx.createLinearGradient(b.x, b.y, b.x + b.w, b.y + b.h);
-      grad.addColorStop(0, `hsla(${b.hue}, 95%, 55%, 0.95)`);
-      grad.addColorStop(1, `hsla(${b.hue + 25}, 95%, 50%, 0.92)`);
-      ctx.fillStyle = grad;
-      roundRectPath(ctx, b.x, b.y, b.w, b.h, 10);
-      ctx.fill();
-      ctx.restore();
+      // Movement (arrow + WASD)
+      const code = e.code;
 
-      ctx.strokeStyle = "rgba(255,255,255,0.08)";
-      ctx.lineWidth = 2;
-      roundRectPath(ctx, b.x + 1, b.y + 1, b.w - 2, b.h - 2, 9);
-      ctx.stroke();
-
-      if (b.hp > 1) {
-        ctx.fillStyle = "rgba(255,255,255,0.16)";
-        ctx.fillRect(b.x + 10, b.y + 8, b.w - 20, 4);
+      if (code === "ArrowLeft" || code === "KeyA") {
+        e.preventDefault();
+        moveLane(-1);
+      } else if (code === "ArrowRight" || code === "KeyD") {
+        e.preventDefault();
+        moveLane(1);
       }
     }
 
-    // particles
-    for (const p of g.particles) {
-      const t = clamp(p.life / p.maxLife, 0, 1);
-      ctx.globalAlpha = t * p.a;
-      ctx.fillStyle = `hsla(${p.hue}, 95%, 65%, 1)`;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    ctx.globalAlpha = 1;
+    window.addEventListener("keydown", onKey, { passive: false });
+    return () => window.removeEventListener("keydown", onKey as any);
+  }, [theater]);
 
-    // player
-    const dashOn = g.dashT > 0;
-    const blink = g.iframes > 0 && Math.floor(g.t * 16) % 2 === 0;
-    if (!blink) {
-      if (dashOn) {
-        // trail
-        ctx.save();
-        ctx.globalAlpha = 0.35;
-        for (let i = 1; i <= 5; i++) {
-          const tx = g.player.x - g.player.vx * (i * 0.012);
-          const ty = g.player.y + i * 2.2;
-          const hue = 225 + i * 8;
-          ctx.fillStyle = `hsla(${hue}, 95%, 62%, 0.9)`;
-          roundRectPath(ctx, tx, ty, g.player.w, g.player.h, 12);
-          ctx.fill();
-        }
-        ctx.restore();
-      }
-
-      ctx.save();
-      ctx.shadowBlur = dashOn ? 26 : 18;
-      ctx.shadowColor = dashOn ? "rgba(92,130,238,0.95)" : "rgba(92,130,238,0.65)";
-      const pg = ctx.createLinearGradient(g.player.x, g.player.y, g.player.x + g.player.w, g.player.y + g.player.h);
-      pg.addColorStop(0, dashOn ? "rgba(168,85,247,0.95)" : "rgba(92,130,238,0.95)");
-      pg.addColorStop(1, dashOn ? "rgba(245,158,11,0.95)" : "rgba(168,85,247,0.85)");
-      ctx.fillStyle = pg;
-      roundRectPath(ctx, g.player.x, g.player.y, g.player.w, g.player.h, 12);
-      ctx.fill();
-
-      ctx.strokeStyle = "rgba(255,255,255,0.12)";
-      ctx.lineWidth = 2;
-      roundRectPath(ctx, g.player.x + 1, g.player.y + 1, g.player.w - 2, g.player.h - 2, 11);
-      ctx.stroke();
-      ctx.restore();
-
-      // dash aura
-      if (dashOn) {
-        ctx.save();
-        ctx.globalAlpha = 0.7;
-        ctx.strokeStyle = "rgba(245,158,11,0.65)";
-        ctx.lineWidth = 3;
-        roundRectPath(ctx, g.player.x - 6, g.player.y - 6, g.player.w + 12, g.player.h + 12, 16);
-        ctx.stroke();
-        ctx.restore();
-      }
-    }
-
-    ctx.restore();
-  }
-
-  // Animation loop: always draw, only step when playing.
+  // Touch controls: swipe on stage
   useEffect(() => {
-    let raf = 0;
-    let last = performance.now();
+    const el = stageRef.current;
+    if (!el) return;
 
-    const loop = (now: number) => {
-      const dt = clamp((now - last) / 1000, 0, 0.033);
-      last = now;
+    let startX = 0;
+    let active = false;
 
-      if (phase === "playing") step(dt);
-
-      // keep tiny "idle motion" even in menu (stars)
-      gameRef.current.t += dt * 0.25;
-
-      draw();
-      raf = requestAnimationFrame(loop);
+    const onDown = (ev: PointerEvent) => {
+      active = true;
+      startX = ev.clientX;
+      (ev.target as HTMLElement)?.setPointerCapture?.(ev.pointerId);
     };
 
-    raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, difficulty, soundOn]);
+    const onMove = (ev: PointerEvent) => {
+      if (!active) return;
+      const dx = ev.clientX - startX;
+      if (Math.abs(dx) < 26) return;
 
-  // Pointer controls (mobile-friendly): drag inside stage
-  function pointerToWorldX(clientX: number) {
-    const stage = stageRef.current;
-    if (!stage) return WORLD_W / 2;
-    const r = stage.getBoundingClientRect();
-    const v = viewRef.current;
-    const x = clientX - r.left;
-    const wx = (x - v.offX) / v.scale;
-    return clamp(wx - gameRef.current.player.w / 2, 18, WORLD_W - gameRef.current.player.w - 18);
-  }
+      if (dx > 0) moveLane(1);
+      else moveLane(-1);
 
-  function onPointerDown(e: React.PointerEvent) {
-    if (phase !== "playing") return;
-    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
-    inputRef.current.pointerActive = true;
-    inputRef.current.pointerTargetX = pointerToWorldX(e.clientX);
-  }
-  function onPointerMove(e: React.PointerEvent) {
-    if (!inputRef.current.pointerActive) return;
-    inputRef.current.pointerTargetX = pointerToWorldX(e.clientX);
-  }
-  function onPointerUp(e: React.PointerEvent) {
-    try {
-      (e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
-    } catch {}
-    inputRef.current.pointerActive = false;
-  }
+      startX = ev.clientX; // allow multiple lane steps in one swipe
+    };
 
-  // Right rail
+    const onUp = () => {
+      active = false;
+    };
+
+    el.addEventListener("pointerdown", onDown);
+    el.addEventListener("pointermove", onMove);
+    el.addEventListener("pointerup", onUp);
+    el.addEventListener("pointercancel", onUp);
+
+    return () => {
+      el.removeEventListener("pointerdown", onDown);
+      el.removeEventListener("pointermove", onMove);
+      el.removeEventListener("pointerup", onUp);
+      el.removeEventListener("pointercancel", onUp);
+    };
+  }, []);
+
+  // Main loop
+  useEffect(() => {
+    function ensureCanvasResolution() {
+      const canvas = canvasRef.current;
+      if (!canvas) return null;
+
+      const { w, h, dpr } = stageSizeRef.current;
+      if (!w || !h) return null;
+
+      const nextW = Math.max(1, Math.floor(w * dpr));
+      const nextH = Math.max(1, Math.floor(h * dpr));
+
+      if (canvas.width !== nextW) canvas.width = nextW;
+      if (canvas.height !== nextH) canvas.height = nextH;
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return null;
+
+      // Set transform for drawing in CSS pixels
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+
+      return { ctx, w, h };
+    }
+
+    function drawScene(ctx: CanvasRenderingContext2D, w: number, h: number) {
+      // Background
+      ctx.clearRect(0, 0, w, h);
+
+      // subtle vignette
+      ctx.fillStyle = "#050816";
+      ctx.fillRect(0, 0, w, h);
+
+      // stars
+      const t = elapsedRef.current;
+      for (let i = 0; i < 60; i++) {
+        const x = (i * 173) % w;
+        const y = ((i * 97 + t * 60) % h + h) % h;
+        ctx.fillStyle = "rgba(255,255,255,0.12)";
+        ctx.fillRect(x, y, 2, 2);
+      }
+
+      // lanes grid
+      const laneW = w / LANES;
+      for (let i = 1; i < LANES; i++) {
+        const x = i * laneW;
+        ctx.strokeStyle = "rgba(92,130,238,0.10)";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+
+      // bricks
+      const bricks = bricksRef.current;
+      for (const b of bricks) {
+        const x = b.lane * laneW + laneW * 0.12;
+        const bw = laneW * 0.76;
+        const bh = b.kind === "heavy" ? 34 : 28;
+
+        const y = b.y;
+        const grad = ctx.createLinearGradient(x, y, x + bw, y + bh);
+        if (b.kind === "heavy") {
+          grad.addColorStop(0, "rgba(245,158,11,0.95)");
+          grad.addColorStop(1, "rgba(249,115,22,0.95)");
+        } else {
+          grad.addColorStop(0, "rgba(92,130,238,0.95)");
+          grad.addColorStop(1, "rgba(168,85,247,0.95)");
+        }
+        ctx.fillStyle = grad;
+        roundRect(ctx, x, y, bw, bh, 10);
+        ctx.fill();
+
+        ctx.strokeStyle = "rgba(255,255,255,0.18)";
+        ctx.lineWidth = 1;
+        roundRect(ctx, x + 0.5, y + 0.5, bw - 1, bh - 1, 10);
+        ctx.stroke();
+      }
+
+      // pickups
+      const pickups = pickupsRef.current;
+      for (const p of pickups) {
+        const cx = p.lane * laneW + laneW * 0.5;
+        const cy = p.y;
+
+        if (p.kind === "star") {
+          ctx.fillStyle = "rgba(245,158,11,0.95)";
+          glowCircle(ctx, cx, cy, 10, "rgba(245,158,11,0.25)");
+          ctx.beginPath();
+          ctx.arc(cx, cy, 8, 0, Math.PI * 2);
+          ctx.fill();
+        } else if (p.kind === "shield") {
+          ctx.fillStyle = "rgba(59,130,246,0.95)";
+          glowCircle(ctx, cx, cy, 11, "rgba(59,130,246,0.25)");
+          ctx.beginPath();
+          ctx.arc(cx, cy, 9, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          // slow
+          ctx.fillStyle = "rgba(236,72,153,0.95)";
+          glowCircle(ctx, cx, cy, 11, "rgba(236,72,153,0.25)");
+          ctx.beginPath();
+          ctx.arc(cx, cy, 9, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // Player
+      const py = h - Math.max(58, h * 0.14);
+      const px = playerXRef.current || (playerTargetXRef.current || w / 2);
+
+      // shake
+      const shake = shakeRef.current;
+      const sx = shake ? (Math.random() - 0.5) * shake : 0;
+      const sy = shake ? (Math.random() - 0.5) * shake : 0;
+
+      const shipW = Math.max(34, laneW * 0.42);
+      const shipH = 22;
+
+      const shipX = px - shipW / 2 + sx;
+      const shipY = py - shipH / 2 + sy;
+
+      const shipGrad = ctx.createLinearGradient(shipX, shipY, shipX + shipW, shipY + shipH);
+      shipGrad.addColorStop(0, "#5c82ee");
+      shipGrad.addColorStop(1, "#a855f7");
+      ctx.fillStyle = shipGrad;
+      roundRect(ctx, shipX, shipY, shipW, shipH, 12);
+      ctx.fill();
+
+      ctx.strokeStyle = "rgba(255,255,255,0.25)";
+      ctx.lineWidth = 1;
+      roundRect(ctx, shipX + 0.5, shipY + 0.5, shipW - 1, shipH - 1, 12);
+      ctx.stroke();
+
+      // shield halo
+      if (shieldHitsRef.current > 0) {
+        ctx.strokeStyle = "rgba(59,130,246,0.40)";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(px + sx, py + sy, Math.max(26, shipW * 0.55), 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // HUD (inside canvas)
+      ctx.fillStyle = "rgba(255,255,255,0.86)";
+      ctx.font = "600 13px system-ui, -apple-system, Segoe UI, Roboto, Arial";
+      ctx.fillText(`Score: ${scoreRef.current}`, 14, 22);
+      ctx.fillStyle = "rgba(255,255,255,0.55)";
+      ctx.fillText(`Best: ${bestRef.current}`, 14, 40);
+
+      if (slowUntilRef.current > performance.now()) {
+        ctx.fillStyle = "rgba(236,72,153,0.80)";
+        ctx.fillText("SLOW-MO", 14, 58);
+      }
+    }
+
+    function stepWorld(dt: number, w: number, h: number) {
+      const st = stateRef.current;
+      if (st !== "playing") return;
+
+      elapsedRef.current += dt;
+
+      const now = performance.now();
+      const slow = slowUntilRef.current > now;
+
+      const d = difficultyRef.current;
+      const cfg = DIFF[d];
+
+      // speed ramps over time
+      speedRef.current = cfg.baseSpeedPxPerSec + cfg.rampPerSec * elapsedRef.current;
+
+      const laneW = w / LANES;
+      const py = h - Math.max(58, h * 0.14);
+
+      // Smooth player
+      if (!playerXRef.current) {
+        playerXRef.current = laneW * (playerLaneRef.current + 0.5);
+        playerTargetXRef.current = playerXRef.current;
+      }
+      const tx = playerTargetXRef.current || laneW * (playerLaneRef.current + 0.5);
+      playerXRef.current += (tx - playerXRef.current) * clamp(12 * dt, 0, 1);
+
+      // Spawn
+      spawnAccRef.current += dt * 1000;
+      while (spawnAccRef.current >= cfg.spawnEveryMs) {
+        spawnAccRef.current -= cfg.spawnEveryMs;
+
+        const lane = randInt(0, LANES - 1);
+        const heavy = Math.random() < 0.12;
+        bricksRef.current.push({
+          id: uid("b"),
+          lane,
+          y: -40,
+          kind: heavy ? "heavy" : "normal",
+        });
+
+        // pickups: rarer, and not always same lane
+        const roll = Math.random();
+        if (roll < 0.10) {
+          const kind = roll < 0.06 ? "star" : roll < 0.085 ? "shield" : "slow";
+          pickupsRef.current.push({
+            id: uid("p"),
+            lane: clamp(lane + pick([-1, 1]), 0, LANES - 1),
+            y: -24,
+            kind,
+          });
+        }
+      }
+
+      const speed = speedRef.current * (slow ? 0.55 : 1);
+
+      // Move bricks
+      for (const b of bricksRef.current) b.y += speed * dt;
+
+      // Move pickups
+      for (const p of pickupsRef.current) p.y += (speed * 0.92) * dt;
+
+      // Collisions
+      const px = playerXRef.current;
+      const shipW = Math.max(34, laneW * 0.42);
+      const shipH = 22;
+      const shipX = px - shipW / 2;
+      const shipY = py - shipH / 2;
+
+      // Bricks collision only if same lane and overlaps
+      const newBricks: Brick[] = [];
+      for (const b of bricksRef.current) {
+        const x = b.lane * laneW + laneW * 0.12;
+        const bw = laneW * 0.76;
+        const bh = b.kind === "heavy" ? 34 : 28;
+        const y = b.y;
+
+        const overlaps =
+          rectsOverlap(shipX, shipY, shipW, shipH, x, y, bw, bh);
+
+        if (overlaps) {
+          if (shieldHitsRef.current > 0) {
+            shieldHitsRef.current -= 1;
+            shakeRef.current = 9;
+            // remove brick, keep playing
+          } else {
+            shakeRef.current = 14;
+            gameOver();
+            break;
+          }
+        } else if (b.y < h + 60) {
+          newBricks.push(b);
+        } else {
+          // brick passed: score small
+          scoreRef.current += b.kind === "heavy" ? 3 : 2;
+        }
+      }
+      bricksRef.current = newBricks;
+
+      // Pickup collision
+      const newPickups: Pickup[] = [];
+      for (const p of pickupsRef.current) {
+        const cx = p.lane * laneW + laneW * 0.5;
+        const cy = p.y;
+        const rr = 14;
+
+        const hit =
+          cx > shipX - rr &&
+          cx < shipX + shipW + rr &&
+          cy > shipY - rr &&
+          cy < shipY + shipH + rr;
+
+        if (hit) {
+          if (p.kind === "star") scoreRef.current += 35;
+          if (p.kind === "shield") shieldHitsRef.current = Math.min(shieldHitsRef.current + 1, 3);
+          if (p.kind === "slow") slowUntilRef.current = performance.now() + 3500;
+        } else if (p.y < h + 60) {
+          newPickups.push(p);
+        }
+      }
+      pickupsRef.current = newPickups;
+
+      // Decay shake
+      if (shakeRef.current > 0) shakeRef.current = Math.max(0, shakeRef.current - 22 * dt);
+
+      // Throttle UI updates (about ~10/s)
+      if (Math.floor(elapsedRef.current * 10) !== Math.floor((elapsedRef.current - dt) * 10)) {
+        setScore(scoreRef.current);
+        setShieldHits(shieldHitsRef.current);
+      }
+    }
+
+    function tick(ts: number) {
+      const out = ensureCanvasResolution();
+      if (!out) {
+        rafRef.current = requestAnimationFrame(tick);
+        return;
+      }
+      const { ctx, w, h } = out;
+
+      if (!lastTsRef.current) lastTsRef.current = ts;
+      const dt = clamp((ts - lastTsRef.current) / 1000, 0, 0.05);
+      lastTsRef.current = ts;
+
+      stepWorld(dt, w, h);
+      drawScene(ctx, w, h);
+
+      rafRef.current = requestAnimationFrame(tick);
+    }
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+      lastTsRef.current = 0;
+    };
+  }, []);
+
+  // Keep refs in sync with UI state
+  useEffect(() => {
+    difficultyRef.current = difficulty;
+  }, [difficulty]);
+
+  useEffect(() => {
+    // Sync gameState ref is done via setState(), but ensure initial sync too
+    stateRef.current = gameState;
+  }, [gameState]);
+
+  // UI: right rail
   const rightRail = (
     <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-5">
-      <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Game controls</h3>
+      <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Controls</h3>
 
-      <div className="mt-4 space-y-4">
+      <div className="mt-4 space-y-3">
         <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3">
-          <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-            <span className="inline-flex items-center gap-2">
-              <Trophy className="h-4 w-4" />
-              Score
-            </span>
-            <span className="font-semibold text-slate-800 dark:text-slate-200 tabular-nums">{scoreUI}</span>
-          </div>
-
-          <div className="mt-2 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-            <span className="inline-flex items-center gap-2">
-              <Trophy className="h-4 w-4 text-[#5c82ee]" />
-              Best
-            </span>
-            <span className="font-semibold text-slate-800 dark:text-slate-200 tabular-nums">{bestUI}</span>
-          </div>
-
-          <div className="mt-2 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-            <span className="inline-flex items-center gap-2">
-              <Heart className="h-4 w-4 text-rose-500" />
-              Lives
-            </span>
-            <span className="font-semibold text-slate-800 dark:text-slate-200 tabular-nums">{livesUI}</span>
-          </div>
-
-          <div className="mt-2 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-            <span className="inline-flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-amber-400" />
-              Level
-            </span>
-            <span className="font-semibold text-slate-800 dark:text-slate-200 tabular-nums">{levelUI}</span>
-          </div>
-
-          <div className="mt-3">
-            <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-              <span className="inline-flex items-center gap-2">
-                <Zap className="h-4 w-4 text-amber-500" />
-                Dash Energy
-              </span>
-              <span className="font-semibold text-slate-800 dark:text-slate-200 tabular-nums">{energyUI}%</span>
-            </div>
-            <div className="mt-2 h-2 w-full rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-[#5c82ee] via-fuchsia-500 to-amber-400"
-                style={{ width: `${energyUI}%` }}
-              />
-            </div>
-          </div>
-
-          <div className="mt-3 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-            <span>Combo</span>
-            <span className="font-semibold text-slate-800 dark:text-slate-200 tabular-nums">×{comboUI}</span>
+          <div className="text-xs font-semibold text-slate-800 dark:text-slate-200">Status</div>
+          <div className="mt-1 text-sm text-slate-700 dark:text-slate-300 capitalize">{gameState}</div>
+          <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+            <span>Score {score}</span>
+            <span>Best {best}</span>
+            <span>Shield {shieldHits}</span>
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <Button type="button" variant="outline" onClick={() => setSoundOn((s) => !s)} className="justify-start">
-            {soundOn ? <Volume2 className="mr-2 h-4 w-4" /> : <VolumeX className="mr-2 h-4 w-4" />}
-            {soundOn ? "Sound: On" : "Sound: Off"}
-          </Button>
+        <div className="flex flex-wrap gap-2">
+          {(["easy", "medium", "hard"] as Difficulty[]).map((d) => (
+            <Button
+              key={d}
+              type="button"
+              variant={difficulty === d ? "default" : "outline"}
+              className="h-9 px-3"
+              onClick={() => {
+                resetWorld(d);
+                difficultyRef.current = d;
+              }}
+            >
+              {d[0].toUpperCase() + d.slice(1)}
+            </Button>
+          ))}
+        </div>
 
-          <Button type="button" variant="outline" onClick={toggleFullscreen} className="justify-start">
-            {document.fullscreenElement || (document as any).webkitFullscreenElement || theater ? (
-              <Minimize2 className="mr-2 h-4 w-4" />
-            ) : (
-              <Maximize2 className="mr-2 h-4 w-4" />
-            )}
-            Fullscreen / Theater
-          </Button>
-
-          <div className="flex gap-2">
+        <div className="flex gap-2">
+          {gameState === "playing" ? (
+            <Button type="button" variant="outline" className="w-full" onClick={() => setState("paused")}>
+              <Pause className="mr-2 h-4 w-4" />
+              Pause
+            </Button>
+          ) : (
             <Button
               type="button"
               variant="outline"
               className="w-full"
               onClick={() => {
-                if (phase === "playing" || phase === "paused") pauseToggle();
+                if (gameState === "menu") startGame();
+                else if (gameState === "paused") setState("playing");
+                else if (gameState === "gameover") {
+                  resetWorld();
+                }
               }}
-              disabled={phase !== "playing" && phase !== "paused"}
             >
-              {phase === "paused" ? <Play className="mr-2 h-4 w-4" /> : <Pause className="mr-2 h-4 w-4" />}
-              {phase === "paused" ? "Resume" : "Pause"}
+              <Play className="mr-2 h-4 w-4" />
+              {gameState === "menu" ? "Start" : gameState === "paused" ? "Resume" : "New"}
             </Button>
+          )}
 
-            <Button type="button" variant="outline" className="w-full" onClick={() => resetGame()}>
-              <RotateCcw className="mr-2 h-4 w-4" />
-              Reset
-            </Button>
-          </div>
-
-          <Button
-            type="button"
-            className="w-full"
-            onClick={() => {
-              if (phase === "menu") startGame();
-              if (phase === "gameover") resetGame();
-              if (phase === "paused") setPhase("playing");
-            }}
-          >
-            {phase === "menu" ? "Start Game" : phase === "gameover" ? "New Game" : phase === "paused" ? "Resume" : "Playing"}
+          <Button type="button" variant="outline" className="w-full" onClick={() => resetWorld()}>
+            <RotateCcw className="mr-2 h-4 w-4" />
+            Restart
           </Button>
         </div>
 
-        <div className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-          <div className="font-semibold text-slate-700 dark:text-slate-300 mb-1">Keyboard</div>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Move: Arrow Left/Right or A/D</li>
-            <li>Dash: Space or W or ↑</li>
-            <li>Pause: P</li>
-            <li>Reset: R</li>
-          </ul>
-          <div className="mt-2 font-semibold text-slate-700 dark:text-slate-300 mb-1">Mobile</div>
-          <div>Drag inside the playfield, or use the on-screen buttons.</div>
+        <div className="flex gap-2">
+          <Button type="button" variant="outline" className="w-full" onClick={() => setTheater((v) => !v)}>
+            {theater ? <Minimize className="mr-2 h-4 w-4" /> : <Expand className="mr-2 h-4 w-4" />}
+            Theater
+          </Button>
+          <Button type="button" variant="outline" className="w-full" onClick={toggleFullscreen}>
+            {isFs ? <Minimize className="mr-2 h-4 w-4" /> : <Expand className="mr-2 h-4 w-4" />}
+            Fullscreen
+          </Button>
         </div>
+
+        <div className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{controlsHint}</div>
       </div>
     </div>
   );
@@ -1074,33 +735,31 @@ export default function BrickDash({ title, description }: { title?: string; desc
         <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">How to play</h2>
         <div className="mt-3 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
           <p>
-            Brick walls fall from above. Your goal is to survive as the speed increases. You can <strong>dash</strong> through bricks when you have enough energy.
+            Move left/right between lanes to dodge bricks. Grab stars for points and power-ups to survive longer.
           </p>
           <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Move</strong> left/right to line up with the gap.</li>
-            <li><strong>Dash</strong> (Space / W / ↑) to break through tight spots and score combo points.</li>
-            <li>Collect <strong>energy orbs</strong> to refill dash energy and boost combos.</li>
-            <li>Hitting a brick without dashing costs a life. Lose all lives = game over.</li>
+            <li>Arrow keys or A/D to switch lanes.</li>
+            <li>Press P to pause/resume. Press R to restart.</li>
+            <li>Shield blocks a hit (max 3). Slow-mo lasts a few seconds.</li>
+            <li>On mobile, swipe or use the on-screen buttons.</li>
           </ul>
-        </div>
-      </section>
-
-      <section id="tips" className="scroll-mt-28 mt-10">
-        <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">Tips</h2>
-        <div className="mt-3 space-y-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-          <p>
-            Save your dash for when the gap shifts suddenly. Dashing through bricks increases your combo multiplier fast — but energy is limited, so collect orbs.
-          </p>
-          <p>
-            On mobile, drag your finger across the playfield to position precisely. Fullscreen/Theater mode is recommended for the best experience.
-          </p>
         </div>
       </section>
     </div>
   );
 
-  const isFs = Boolean(document.fullscreenElement || (document as any).webkitFullscreenElement);
-  const showTheater = theater && !isFs;
+  // Overlays (menu + gameover)
+  const showMenu = gameState === "menu";
+  const showGameOver = gameState === "gameover";
+
+  // IMPORTANT: This container prevents any horizontal growth/overflow loops
+  const stageWrapClass = theater
+    ? "fixed inset-0 z-[60] bg-black/70 p-4 md:p-8 overflow-auto"
+    : "";
+
+  const stageCardClass = theater
+    ? "mx-auto w-full max-w-[1100px]"
+    : "mx-auto w-full max-w-[980px]";
 
   return (
     <GamePageLayout
@@ -1108,288 +767,236 @@ export default function BrickDash({ title, description }: { title?: string; desc
       description={pageDescription}
       rightRail={rightRail}
       below={below}
-      onThisPage={[
-        { id: "how-to-play", label: "How to play" },
-        { id: "tips", label: "Tips" },
-      ]}
+      onThisPage={[{ id: "how-to-play", label: "How to play" }]}
     >
-      <div
-        ref={stageWrapRef}
-        className={[
-          "relative",
-          showTheater ? "fixed inset-0 z-[60] bg-black/95 p-3 md:p-6" : "",
-        ].join(" ")}
-      >
-        {/* Top mini toolbar (inside the play card) */}
-        <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 px-3 py-1 text-xs text-slate-700 dark:text-slate-200">
-              <Sparkles className="h-4 w-4 text-amber-400" />
-              {difficulty.toUpperCase()} · Level {levelUI}
-            </span>
+      <div className={stageWrapClass}>
+        <div className={stageCardClass}>
+          {theater && (
+            <div className="mb-3 flex items-center justify-between">
+              <div className="text-sm text-white/80">
+                Theater mode (ESC to close)
+              </div>
+              <Button type="button" variant="outline" onClick={() => setTheater(false)} className="bg-white/10 text-white border-white/20 hover:bg-white/15">
+                <X className="mr-2 h-4 w-4" />
+                Exit
+              </Button>
+            </div>
+          )}
 
-            {hint ? (
-              <span className="hidden md:inline-flex rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 px-3 py-1 text-xs text-slate-600 dark:text-slate-300">
-                {hint}
-              </span>
-            ) : null}
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Button type="button" variant="outline" className="h-9 px-3" onClick={() => setSoundOn((s) => !s)}>
-              {soundOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-            </Button>
-
-            <Button type="button" variant="outline" className="h-9 px-3" onClick={toggleFullscreen}>
-              {isFs || showTheater ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-            </Button>
-
-            <Button
-              type="button"
-              variant="outline"
-              className="h-9 px-3"
-              onClick={() => {
-                if (phase === "playing" || phase === "paused") pauseToggle();
-              }}
-              disabled={phase !== "playing" && phase !== "paused"}
-              title="Pause (P)"
+          <div
+            className="w-full overflow-hidden"
+            // Safety: never allow horizontal expansion
+            style={{ maxWidth: "100%" }}
+          >
+            <div
+              ref={stageRef}
+              tabIndex={0}
+              className="relative w-full aspect-[16/9] md:aspect-[3/2] rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-hidden touch-none"
             >
-              {phase === "paused" ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
-            </Button>
+              <canvas ref={canvasRef} className="absolute inset-0 block w-full h-full" />
 
-            <Button type="button" variant="outline" className="h-9 px-3" onClick={() => resetGame()} title="Reset (R)">
-              <RotateCcw className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
+              {/* Top HUD (HTML) */}
+              <div className="absolute left-3 top-3 z-10 flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-black/40 text-white/90 text-xs px-3 py-1 border border-white/10">
+                  Score <span className="font-semibold">{score}</span>
+                </span>
+                <span className="rounded-full bg-black/40 text-white/70 text-xs px-3 py-1 border border-white/10">
+                  Best <span className="font-semibold">{best}</span>
+                </span>
+                <span className="rounded-full bg-black/40 text-white/70 text-xs px-3 py-1 border border-white/10">
+                  Shield <span className="font-semibold">{shieldHits}</span>
+                </span>
+              </div>
 
-        {/* Playfield */}
-        <div
-          ref={stageRef}
-          className={[
-            "relative w-full",
-            // Make it big on desktop and mobile
-            "h-[min(72vh,640px)] min-h-[360px]",
-            "rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-950 shadow-lg overflow-hidden",
-            "touch-none", // important for mobile drag
-          ].join(" ")}
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          onPointerCancel={onPointerUp}
-        >
-          <canvas ref={canvasRef} className="block w-full h-full" />
-
-          {/* HUD overlay */}
-          <div className="pointer-events-none absolute left-3 top-3 flex flex-col gap-2">
-            <div className="inline-flex items-center gap-2 rounded-xl bg-black/40 px-3 py-2 text-xs text-white backdrop-blur">
-              <Trophy className="h-4 w-4" />
-              <span className="tabular-nums">{scoreUI}</span>
-              <span className="mx-1 text-white/40">•</span>
-              <Heart className="h-4 w-4 text-rose-400" />
-              <span className="tabular-nums">{livesUI}</span>
-              <span className="mx-1 text-white/40">•</span>
-              <Zap className="h-4 w-4 text-amber-300" />
-              <span className="tabular-nums">{energyUI}%</span>
-              <span className="mx-1 text-white/40">•</span>
-              <span className="tabular-nums">×{comboUI}</span>
-            </div>
-          </div>
-
-          {/* Mobile controls */}
-          <div className="absolute inset-x-0 bottom-3 px-3 md:hidden">
-            <div className="grid grid-cols-3 gap-2">
-              <Button
-                type="button"
-                variant="outline"
-                className="h-12 bg-white/80"
-                onPointerDown={() => (inputRef.current.left = true)}
-                onPointerUp={() => (inputRef.current.left = false)}
-                onPointerCancel={() => (inputRef.current.left = false)}
-              >
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Left
-              </Button>
-
-              <Button type="button" className="h-12" onClick={tryDash}>
-                <Zap className="mr-2 h-4 w-4" />
-                Dash
-              </Button>
-
-              <Button
-                type="button"
-                variant="outline"
-                className="h-12 bg-white/80"
-                onPointerDown={() => (inputRef.current.right = true)}
-                onPointerUp={() => (inputRef.current.right = false)}
-                onPointerCancel={() => (inputRef.current.right = false)}
-              >
-                Right
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-
-          {/* MENU / GAMEOVER overlay (closable) */}
-          {menuOpen ? (
-            <div className="absolute inset-0 z-40 grid place-items-center bg-black/45 backdrop-blur-[2px]" role="dialog" aria-modal="true">
-              <div className="relative w-[min(92vw,720px)] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-7 md:p-9">
-                <button
-                  type="button"
-                  onClick={() => setMenuOpen(false)}
-                  className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-800"
-                  aria-label="Close"
-                  title="Close"
+              {/* Menu overlay */}
+              {showMenu && (
+                <div
+                  className="absolute inset-0 z-20 grid place-items-center bg-black/45"
+                  role="dialog"
+                  aria-modal="true"
                 >
-                  <X className="h-4 w-4" />
-                </button>
+                  <div className="relative w-[min(92vw,560px)] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-8">
+                    <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[#5c82ee]/20 via-fuchsia-400/20 to-amber-300/20 blur-2xl" aria-hidden />
+                    <div className="relative">
+                      <div className="flex items-center justify-between gap-3">
+                        <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                          Ready to dash
+                        </h3>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          onClick={() => navigate("/games")}
+                          className="shrink-0"
+                        >
+                          <X className="mr-2 h-4 w-4" />
+                          Exit
+                        </Button>
+                      </div>
 
-                <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[#5c82ee]/20 via-fuchsia-400/20 to-amber-300/20 blur-2xl" aria-hidden />
+                      <p className="mt-2 text-slate-600 dark:text-slate-300">
+                        Choose a difficulty, then press Start. Swipe or use A/D to dodge bricks.
+                      </p>
 
-                <div className="relative">
-                  <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 px-3 py-1 text-xs text-slate-700 dark:text-slate-200">
-                    <Sparkles className="h-4 w-4 text-amber-400" />
-                    Brick Dash
-                  </div>
+                      <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        {(["easy", "medium", "hard"] as Difficulty[]).map((d) => (
+                          <Button
+                            key={d}
+                            type="button"
+                            variant={difficulty === d ? "default" : "outline"}
+                            onClick={() => setDifficulty(d)}
+                            className="h-11"
+                          >
+                            {d[0].toUpperCase() + d.slice(1)}
+                          </Button>
+                        ))}
+                      </div>
 
-                  <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                    {phase === "gameover" ? "Game Over" : "Ready to play"}
-                  </h3>
+                      <div className="mt-4 flex gap-2">
+                        <Button
+                          type="button"
+                          className="w-full h-11"
+                          onClick={() => {
+                            resetWorld(difficulty);
+                            startGame();
+                          }}
+                        >
+                          Start Game
+                        </Button>
+                      </div>
 
-                  <p className="mt-2 text-slate-600 dark:text-slate-300">
-                    {phase === "gameover"
-                      ? "Pick a difficulty and start again. Tip: Save dash for emergencies."
-                      : "Choose your difficulty. Arrow keys or A/D to move. Space/W/↑ to dash. Drag on mobile."}
-                  </p>
-
-                  <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-3">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setDifficulty("easy");
-                        setHintTemp("Easy: slower walls, more forgiveness.");
-                        beep(520, 50, "triangle", 0.10);
-                      }}
-                      className={[
-                        "w-full rounded-xl px-5 py-4 text-left transition-all",
-                        "border border-slate-200 dark:border-slate-800",
-                        "bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg",
-                        difficulty === "easy" ? "ring-2 ring-emerald-300" : "opacity-90 hover:opacity-100",
-                      ].join(" ")}
-                    >
-                      <div className="text-sm font-semibold">Easy</div>
-                      <div className="text-xs text-white/90 mt-1">Smooth ramp, extra life</div>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setDifficulty("medium");
-                        setHintTemp("Medium: balanced speed and scoring.");
-                        beep(660, 50, "triangle", 0.10);
-                      }}
-                      className={[
-                        "w-full rounded-xl px-5 py-4 text-left transition-all",
-                        "border border-slate-200 dark:border-slate-800",
-                        "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg",
-                        difficulty === "medium" ? "ring-2 ring-amber-300" : "opacity-90 hover:opacity-100",
-                      ].join(" ")}
-                    >
-                      <div className="text-sm font-semibold">Medium</div>
-                      <div className="text-xs text-white/90 mt-1">Classic Brick Dash</div>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setDifficulty("hard");
-                        setHintTemp("Hard: faster walls, tighter energy.");
-                        beep(820, 50, "triangle", 0.10);
-                      }}
-                      className={[
-                        "w-full rounded-xl px-5 py-4 text-left transition-all",
-                        "border border-slate-200 dark:border-slate-800",
-                        "bg-gradient-to-r from-rose-500 to-fuchsia-500 text-white shadow-lg",
-                        difficulty === "hard" ? "ring-2 ring-rose-300" : "opacity-90 hover:opacity-100",
-                      ].join(" ")}
-                    >
-                      <div className="text-sm font-semibold">Hard</div>
-                      <div className="text-xs text-white/90 mt-1">High risk, high score</div>
-                    </button>
-                  </div>
-
-                  <div className="mt-6 flex flex-col md:flex-row gap-2">
-                    <Button
-                      type="button"
-                      className="w-full"
-                      onClick={() => {
-                        // Ensure a clean state for current difficulty
-                        resetGame(difficulty);
-                        startGame();
-                      }}
-                    >
-                      {phase === "gameover" ? "Play Again" : "Start Game"}
-                    </Button>
-
-                    <Button
-                      type="button"
-                      variant="outline"
-                      className="w-full"
-                      onClick={() => {
-                        setMenuOpen(false);
-                        if (phase === "menu") {
-                          setHintTemp("Menu closed. Click Start on the sidebar to begin.");
-                        }
-                      }}
-                    >
-                      Close menu
-                    </Button>
-                  </div>
-
-                  <div className="mt-4 text-xs text-slate-500 dark:text-slate-400">
-                    Best score: <span className="font-semibold tabular-nums">{bestUI}</span>
+                      <div className="mt-3 text-xs text-slate-500 dark:text-slate-400">
+                        Tip: Press P to pause. Press R to restart.
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ) : null}
+              )}
 
-          {/* Quick “start” hint if menu is closed but not playing */}
-          {phase === "menu" && !menuOpen ? (
-            <div className="absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black/40 px-5 py-3 text-sm text-white backdrop-blur">
-              Menu closed. Use the sidebar “Start Game”.
-            </div>
-          ) : null}
+              {/* Paused overlay */}
+              {gameState === "paused" && (
+                <div className="absolute inset-0 z-20 grid place-items-center bg-black/45" role="dialog" aria-modal="true">
+                  <div className="w-[min(92vw,520px)] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-7">
+                    <div className="flex items-center justify-between gap-3">
+                      <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">Paused</h3>
+                      <Button type="button" variant="outline" onClick={() => navigate("/games")}>
+                        <X className="mr-2 h-4 w-4" />
+                        Exit
+                      </Button>
+                    </div>
+                    <div className="mt-4 flex gap-2">
+                      <Button type="button" className="w-full" onClick={() => setState("playing")}>
+                        Resume
+                      </Button>
+                      <Button type="button" variant="outline" className="w-full" onClick={() => resetWorld()}>
+                        Restart
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
 
-          {/* If paused, show a subtle overlay */}
-          {phase === "paused" ? (
-            <div className="absolute inset-0 z-20 grid place-items-center bg-black/35">
-              <div className="rounded-2xl bg-white/10 px-6 py-4 text-white backdrop-blur">
-                <div className="text-lg font-semibold">Paused</div>
-                <div className="mt-1 text-xs text-white/80">Press P to resume</div>
-              </div>
-            </div>
-          ) : null}
-        </div>
+              {/* Game over overlay */}
+              {showGameOver && (
+                <div className="absolute inset-0 z-30 grid place-items-center bg-black/45" role="dialog" aria-modal="true">
+                  <div className="relative w-[min(92vw,560px)] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-8">
+                    <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-[#5c82ee]/20 via-fuchsia-400/20 to-amber-300/20 blur-2xl" aria-hidden />
+                    <div className="relative">
+                      <div className="flex items-center justify-between gap-3">
+                        <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                          Game Over
+                        </h3>
+                        <Button type="button" variant="outline" onClick={() => navigate("/games")}>
+                          <X className="mr-2 h-4 w-4" />
+                          Exit
+                        </Button>
+                      </div>
 
-        {/* For theater fallback: show a close button */}
-        {showTheater ? (
-          <div className="mt-3 flex justify-end">
-            <Button
-              type="button"
-              variant="outline"
-              className="bg-white/90"
-              onClick={() => {
-                setTheater(false);
-                updateCanvasSize();
-              }}
-            >
-              <Minimize2 className="mr-2 h-4 w-4" />
-              Exit Theater
-            </Button>
+                      <p className="mt-2 text-slate-600 dark:text-slate-300">
+                        Final score: <span className="font-semibold">{score}</span>. Best:{" "}
+                        <span className="font-semibold">{best}</span>.
+                      </p>
+
+                      <div className="mt-6 flex gap-2">
+                        <Button
+                          type="button"
+                          className="w-full"
+                          onClick={() => {
+                            resetWorld(difficulty);
+                            startGame();
+                          }}
+                        >
+                          Play Again
+                        </Button>
+                        <Button type="button" variant="outline" className="w-full" onClick={() => resetWorld()}>
+                          Restart
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Mobile controls */}
+            <div className="mt-4 grid grid-cols-3 gap-2 md:hidden">
+              <Button type="button" variant="outline" onClick={() => moveLane(-1)} className="h-12">
+                ←
+              </Button>
+              <Button
+                type="button"
+                onClick={() => {
+                  if (gameState === "menu") {
+                    resetWorld(difficulty);
+                    startGame();
+                  } else if (gameState === "paused") {
+                    setState("playing");
+                  } else if (gameState === "playing") {
+                    setState("paused");
+                  } else {
+                    resetWorld(difficulty);
+                    startGame();
+                  }
+                }}
+                className="h-12"
+              >
+                {gameState === "playing" ? "Pause" : gameState === "paused" ? "Resume" : gameState === "menu" ? "Start" : "Play"}
+              </Button>
+              <Button type="button" variant="outline" onClick={() => moveLane(1)} className="h-12">
+                →
+              </Button>
+            </div>
+
+            <div className="mt-3 text-xs text-slate-500 dark:text-slate-400">
+              {controlsHint}
+            </div>
           </div>
-        ) : null}
+        </div>
       </div>
     </GamePageLayout>
   );
+}
+
+/** Helpers */
+function rectsOverlap(ax: number, ay: number, aw: number, ah: number, bx: number, by: number, bw: number, bh: number) {
+  return ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by;
+}
+
+function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
+  const rr = Math.min(r, w / 2, h / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + rr, y);
+  ctx.arcTo(x + w, y, x + w, y + h, rr);
+  ctx.arcTo(x + w, y + h, x, y + h, rr);
+  ctx.arcTo(x, y + h, x, y, rr);
+  ctx.arcTo(x, y, x + w, y, rr);
+  ctx.closePath();
+}
+
+function glowCircle(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, glow: string) {
+  ctx.save();
+  ctx.fillStyle = glow;
+  ctx.beginPath();
+  ctx.arc(x, y, r * 1.8, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
 }
