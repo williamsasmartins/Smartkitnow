@@ -4513,15 +4513,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/SwimPerformanceLevelCalculator"),
     urlStyle: "flat"
   },
-    {
-    slug: "pizza-size-price-comparison",
-    title: "Pizza Size/Price Comparison Calculator",
-    category: "funny",
-    subcategory: "food-social-life",
-    description: "Solve the ultimate dinner dilemma. Calculate price per square inch to see if two medium pizzas are a better deal than one large.",
-    loader: () => import("@/components/calculators/Funny/PizzaSizePriceComparisonCalculator"),
-    urlStyle: "flat"
-  },
+   
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
