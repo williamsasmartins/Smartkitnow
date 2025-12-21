@@ -4662,6 +4662,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/CommitMessageQualityJudgeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "keyboard-clicks-per-day",
+    title: "Keyboard Clicks per Day Estimator",
+    category: "funny",
+    subcategory: "tech-work-life",
+    description: "Estimate your daily typing volume. Calculate how many millions of times you click your keyboard over a lifetime of work.",
+    loader: () => import("@/components/calculators/Funny/KeyboardClicksPerDayCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
