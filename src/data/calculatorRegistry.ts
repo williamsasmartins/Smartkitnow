@@ -4752,6 +4752,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/SocialMediaTimeAlternativesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pokemon-go-weight-loss",
+    title: "Pokémon GO Weight Loss Calculator",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Gamify your fitness. Estimate how many calories you burn while walking to hatch eggs and catch Pokémon.",
+    loader: () => import("@/components/calculators/Funny/PokemonGoWeightLossCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
