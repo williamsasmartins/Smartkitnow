@@ -4778,6 +4778,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/DrakeEquationCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "vacation-budget-reality-check",
+    title: "Vacation Budget Reality Check",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Budget your dream trip vs reality. A fun tool to see how far your actual savings will get you (maybe just to the backyard?).",
+    loader: () => import("@/components/calculators/Funny/VacationBudgetRealityCheckCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
