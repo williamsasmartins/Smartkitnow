@@ -16,7 +16,8 @@ import {
   ArrowLeft,
   ArrowRight,
 } from "lucide-react";
-import StartOverlay from "./StartOverlay";
+// ⚠️ CORRECT IMPORT PATH
+import StartOverlay from "@/components/games/StartOverlay";
 
 type Difficulty = "easy" | "medium" | "hard";
 type GameState = "ready" | "playing" | "paused" | "gameover";
@@ -24,23 +25,17 @@ type GameState = "ready" | "playing" | "paused" | "gameover";
 type Point = { x: number; y: number };
 type Direction = "up" | "down" | "left" | "right";
 
-const CELL_SIZE = 20; // pixels per grid cell
-const GRID_WIDTH = 30; // number of cells horizontally
-const GRID_HEIGHT = 20; // number of cells vertically
+const CELL_SIZE = 20; // px
+const CANVAS_WIDTH = 480; // px
+const CANVAS_HEIGHT = 270; // px
+const COLS = CANVAS_WIDTH / CELL_SIZE;
+const ROWS = CANVAS_HEIGHT / CELL_SIZE;
 
-// Colors for neon theme
-const COLORS = {
-  bgLight: "#f0f0f0",
-  bgDark: "#0f172a",
-  snakeHead: "#0ff", // cyan neon
-  snakeBody: "#06b6d4", // blue neon
-  pellet: "#f0f", // magenta neon
-  gridLight: "#ddd",
-  gridDark: "#1e293b",
-  borderLight: "#ccc",
-  borderDark: "#334155",
-  textLight: "#111827",
-  textDark: "#f8fafc",
+const DIRECTIONS: Record<Direction, Point> = {
+  up: { x: 0, y: -1 },
+  down: { x: 0, y: 1 },
+  left: { x: -1, y: 0 },
+  right: { x: 1, y: 0 },
 };
 
 export default function NeonSnakeCalculator() {
@@ -49,7 +44,7 @@ export default function NeonSnakeCalculator() {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(() => {
     if (typeof window !== "undefined") {
-      return Number(localStorage.getItem("neon-snake-highscore") ?? 0);
+      return Number(localStorage.getItem("neon-snake-highscore") || "0");
     }
     return 0;
   });
@@ -58,18 +53,13 @@ export default function NeonSnakeCalculator() {
   const snakeRef = useRef<Point[]>([]);
   const directionRef = useRef<Direction>("right");
   const nextDirectionRef = useRef<Direction>("right");
-  const pelletRef = useRef<Point>({ x: 0, y: 0 });
-  const lastUpdateTimeRef = useRef(0);
-  const speedRef = useRef(0);
-  const growingRef = useRef(0);
-  const animationFrameIdRef = useRef<number | null>(null);
-
-  // Canvas ref
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const foodRef = useRef<Point>({ x: 0, y: 0 });
+  const animationFrameId = useRef<number>();
+  const lastFrameTimeRef = useRef<number>(0);
 
   // Difficulty Config
+  // speed = moves per second
   const config = useMemo(() => {
-    // Speed is updates per second
     return difficulty === "easy"
       ? { speed: 5 }
       : difficulty === "medium"
@@ -77,284 +67,195 @@ export default function NeonSnakeCalculator() {
       : { speed: 12 };
   }, [difficulty]);
 
-  // Play sound effects (simple beeps)
-  const playSound = useCallback((type: "score" | "hit" | "win") => {
-    if (typeof window === "undefined") return;
-    try {
-      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-      const ctx = new AudioContext();
-      const o = ctx.createOscillator();
-      const g = ctx.createGain();
-      o.connect(g);
-      g.connect(ctx.destination);
-
-      switch (type) {
-        case "score":
-          o.frequency.value = 880;
-          g.gain.setValueAtTime(0.1, ctx.currentTime);
-          o.start();
-          o.stop(ctx.currentTime + 0.1);
-          break;
-        case "hit":
-          o.frequency.value = 220;
-          g.gain.setValueAtTime(0.2, ctx.currentTime);
-          o.start();
-          o.stop(ctx.currentTime + 0.3);
-          break;
-        case "win":
-          o.frequency.value = 1320;
-          g.gain.setValueAtTime(0.15, ctx.currentTime);
-          o.start();
-          o.stop(ctx.currentTime + 0.2);
-          break;
-      }
-    } catch {
-      // AudioContext might be blocked or unavailable
-    }
-  }, []);
+  // Audio Helper (stub)
+  const playSound = (type: "score" | "hit" | "win") => {
+    // Could integrate Web Audio API or play audio files here
+  };
 
   // Initialize game state
-  const resetGame = useCallback(() => {
-    // Start snake in middle, length 3, moving right
-    const startX = Math.floor(GRID_WIDTH / 2);
-    const startY = Math.floor(GRID_HEIGHT / 2);
-    snakeRef.current = [
-      { x: startX, y: startY },
-      { x: startX - 1, y: startY },
-      { x: startX - 2, y: startY },
-    ];
+  const initGame = useCallback(() => {
+    // Start snake in center, length 5, moving right
+    const startX = Math.floor(COLS / 2);
+    const startY = Math.floor(ROWS / 2);
+    snakeRef.current = [];
+    for (let i = 4; i >= 0; i--) {
+      snakeRef.current.push({ x: startX - i, y: startY });
+    }
     directionRef.current = "right";
     nextDirectionRef.current = "right";
-    growingRef.current = 0;
+    placeFood();
     setScore(0);
-    spawnPellet();
   }, []);
 
-  // Spawn pellet in random position not occupied by snake
-  const spawnPellet = useCallback(() => {
-    let pellet: Point;
+  // Place food in random empty cell
+  const placeFood = useCallback(() => {
+    let newFood: Point;
     const snake = snakeRef.current;
     do {
-      pellet = {
-        x: Math.floor(Math.random() * GRID_WIDTH),
-        y: Math.floor(Math.random() * GRID_HEIGHT),
+      newFood = {
+        x: Math.floor(Math.random() * COLS),
+        y: Math.floor(Math.random() * ROWS),
       };
-    } while (snake.some((s) => s.x === pellet.x && s.y === pellet.y));
-    pelletRef.current = pellet;
+    } while (snake.some((s) => s.x === newFood.x && s.y === newFood.y));
+    foodRef.current = newFood;
   }, []);
 
   // Check collision with walls or self
   const checkCollision = useCallback((head: Point, snake: Point[]) => {
-    // Wall collision
-    if (head.x < 0 || head.x >= GRID_WIDTH || head.y < 0 || head.y >= GRID_HEIGHT) {
+    // Walls
+    if (head.x < 0 || head.x >= COLS || head.y < 0 || head.y >= ROWS) {
       return true;
     }
-    // Self collision (ignore head)
-    for (let i = 1; i < snake.length; i++) {
+    // Self collision (skip last segment because it moves forward)
+    for (let i = 0; i < snake.length - 1; i++) {
       if (snake[i].x === head.x && snake[i].y === head.y) return true;
     }
     return false;
   }, []);
 
-  // Update snake position
-  const updateSnake = useCallback(() => {
-    const snake = snakeRef.current;
-    const dir = nextDirectionRef.current;
-    directionRef.current = dir;
-
-    // Calculate new head position
-    const head = snake[0];
-    let newHead: Point;
-    switch (dir) {
-      case "up":
-        newHead = { x: head.x, y: head.y - 1 };
-        break;
-      case "down":
-        newHead = { x: head.x, y: head.y + 1 };
-        break;
-      case "left":
-        newHead = { x: head.x - 1, y: head.y };
-        break;
-      case "right":
-        newHead = { x: head.x + 1, y: head.y };
-        break;
-    }
-
-    // Check collision
-    if (checkCollision(newHead, snake)) {
-      playSound("hit");
-      setGameState("gameover");
-      return;
-    }
-
-    // Add new head
-    snake.unshift(newHead);
-
-    // Check pellet eaten
-    if (newHead.x === pelletRef.current.x && newHead.y === pelletRef.current.y) {
-      playSound("score");
-      setScore((s) => {
-        const newScore = s + 1;
-        if (newScore > highScore) {
-          setHighScore(newScore);
-          if (typeof window !== "undefined") {
-            localStorage.setItem("neon-snake-highscore", newScore.toString());
-          }
-        }
-        return newScore;
-      });
-      growingRef.current += 1;
-      spawnPellet();
-    }
-
-    // Remove tail if not growing
-    if (growingRef.current > 0) {
-      growingRef.current -= 1;
-    } else {
-      snake.pop();
-    }
-  }, [checkCollision, playSound, setGameState, spawnPellet, highScore]);
-
-  // Draw grid, snake, pellet
-  const draw = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Determine dark mode from body class (tailwind adds 'dark' class)
-    const isDark = document.documentElement.classList.contains("dark");
-
-    // Background
-    ctx.fillStyle = isDark ? COLORS.bgDark : COLORS.bgLight;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw grid lines (optional subtle)
-    ctx.strokeStyle = isDark ? COLORS.gridDark : COLORS.gridLight;
-    ctx.lineWidth = 0.5;
-    for (let x = 0; x <= GRID_WIDTH; x++) {
-      ctx.beginPath();
-      ctx.moveTo(x * CELL_SIZE, 0);
-      ctx.lineTo(x * CELL_SIZE, GRID_HEIGHT * CELL_SIZE);
-      ctx.stroke();
-    }
-    for (let y = 0; y <= GRID_HEIGHT; y++) {
-      ctx.beginPath();
-      ctx.moveTo(0, y * CELL_SIZE);
-      ctx.lineTo(GRID_WIDTH * CELL_SIZE, y * CELL_SIZE);
-      ctx.stroke();
-    }
-
-    // Draw pellet
-    const pellet = pelletRef.current;
-    ctx.fillStyle = COLORS.pellet;
-    ctx.shadowColor = COLORS.pellet;
-    ctx.shadowBlur = 10;
-    ctx.beginPath();
-    ctx.arc(
-      pellet.x * CELL_SIZE + CELL_SIZE / 2,
-      pellet.y * CELL_SIZE + CELL_SIZE / 2,
-      CELL_SIZE / 3,
-      0,
-      Math.PI * 2
-    );
-    ctx.fill();
-    ctx.shadowBlur = 0;
-
-    // Draw snake
-    const snake = snakeRef.current;
-    snake.forEach((segment, i) => {
-      if (i === 0) {
-        // Head
-        ctx.fillStyle = COLORS.snakeHead;
-        ctx.shadowColor = COLORS.snakeHead;
-        ctx.shadowBlur = 15;
-      } else {
-        ctx.fillStyle = COLORS.snakeBody;
-        ctx.shadowColor = COLORS.snakeBody;
-        ctx.shadowBlur = 10;
-      }
-      ctx.fillRect(
-        segment.x * CELL_SIZE + 1,
-        segment.y * CELL_SIZE + 1,
-        CELL_SIZE - 2,
-        CELL_SIZE - 2
-      );
-      ctx.shadowBlur = 0;
-    });
-  }, []);
-
-  // Game loop with requestAnimationFrame
+  // Game Loop
   useEffect(() => {
     if (gameState !== "playing") return;
 
-    speedRef.current = config.speed;
-    lastUpdateTimeRef.current = performance.now();
+    if (snakeRef.current.length === 0) {
+      initGame();
+    }
 
-    const step = (time: number) => {
-      if (gameState !== "playing") return;
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
 
-      const elapsed = time - lastUpdateTimeRef.current;
-      const interval = 1000 / speedRef.current;
+    const speed = config.speed;
+    const frameDuration = 1000 / speed;
 
-      if (elapsed > interval) {
-        updateSnake();
-        draw();
-        lastUpdateTimeRef.current = time;
-      }
+    const drawCell = (x: number, y: number, color: string) => {
+      const px = x * CELL_SIZE;
+      const py = y * CELL_SIZE;
 
-      animationFrameIdRef.current = requestAnimationFrame(step);
+      // Neon glow effect
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 8;
+      ctx.fillStyle = color;
+      ctx.fillRect(px + 1, py + 1, CELL_SIZE - 2, CELL_SIZE - 2);
+
+      // Reset shadow for next draw
+      ctx.shadowBlur = 0;
     };
 
-    animationFrameIdRef.current = requestAnimationFrame(step);
+    const clearCanvas = () => {
+      // Background with dark/light mode compatible color
+      ctx.fillStyle = getComputedStyle(canvas).backgroundColor || "#111";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    };
+
+    const render = (time: number) => {
+      if (!lastFrameTimeRef.current) lastFrameTimeRef.current = time;
+      const delta = time - lastFrameTimeRef.current;
+
+      if (delta > frameDuration) {
+        lastFrameTimeRef.current = time - (delta % frameDuration);
+
+        // Update direction from nextDirectionRef if valid
+        const currentDir = directionRef.current;
+        const nextDir = nextDirectionRef.current;
+
+        // Prevent reversing direction
+        if (
+          (currentDir === "up" && nextDir !== "down") ||
+          (currentDir === "down" && nextDir !== "up") ||
+          (currentDir === "left" && nextDir !== "right") ||
+          (currentDir === "right" && nextDir !== "left")
+        ) {
+          directionRef.current = nextDir;
+        }
+
+        // Move snake
+        const snake = [...snakeRef.current];
+        const head = snake[snake.length - 1];
+        const move = DIRECTIONS[directionRef.current];
+        const newHead = { x: head.x + move.x, y: head.y + move.y };
+
+        // Check collision
+        if (checkCollision(newHead, snake)) {
+          playSound("hit");
+          setGameState("gameover");
+          // Update high score if needed
+          setHighScore((prev) => {
+            if (score > prev) {
+              if (typeof window !== "undefined") {
+                localStorage.setItem("neon-snake-highscore", score.toString());
+              }
+              return score;
+            }
+            return prev;
+          });
+          return;
+        }
+
+        snake.push(newHead);
+
+        // Check if food eaten
+        if (newHead.x === foodRef.current.x && newHead.y === foodRef.current.y) {
+          setScore((s) => s + 1);
+          playSound("score");
+          placeFood();
+          // Don't remove tail to grow snake
+        } else {
+          // Remove tail
+          snake.shift();
+        }
+
+        snakeRef.current = snake;
+      }
+
+      // Draw
+      clearCanvas();
+
+      // Draw food (neon pink)
+      drawCell(foodRef.current.x, foodRef.current.y, "#FF2D95");
+
+      // Draw snake (neon cyan)
+      snakeRef.current.forEach((segment, i) => {
+        // Head brighter
+        const color = i === snakeRef.current.length - 1 ? "#00FFF7" : "#00B8B8";
+        drawCell(segment.x, segment.y, color);
+      });
+
+      animationFrameId.current = requestAnimationFrame(render);
+    };
+
+    animationFrameId.current = requestAnimationFrame(render);
 
     return () => {
-      if (animationFrameIdRef.current) {
-        cancelAnimationFrame(animationFrameIdRef.current);
-      }
+      if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current);
     };
-  }, [gameState, config.speed, updateSnake, draw]);
-
-  // Reset game when entering ready state
-  useEffect(() => {
-    if (gameState === "ready") {
-      resetGame();
-      draw();
-    }
-  }, [gameState, resetGame, draw]);
+  }, [gameState, config, checkCollision, initGame, placeFood, playSound, score]);
 
   // Keyboard controls
   useEffect(() => {
     if (gameState !== "playing") return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      const dir = directionRef.current;
       switch (e.key) {
         case "ArrowUp":
         case "w":
         case "W":
-          if (dir !== "down") nextDirectionRef.current = "up";
+          nextDirectionRef.current = "up";
           break;
         case "ArrowDown":
         case "s":
         case "S":
-          if (dir !== "up") nextDirectionRef.current = "down";
+          nextDirectionRef.current = "down";
           break;
         case "ArrowLeft":
         case "a":
         case "A":
-          if (dir !== "right") nextDirectionRef.current = "left";
+          nextDirectionRef.current = "left";
           break;
         case "ArrowRight":
         case "d":
         case "D":
-          if (dir !== "left") nextDirectionRef.current = "right";
-          break;
-        case "Escape":
-          setGameState("paused");
+          nextDirectionRef.current = "right";
           break;
       }
     };
@@ -362,63 +263,39 @@ export default function NeonSnakeCalculator() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [gameState]);
 
-  // Mobile touch controls (D-Pad)
-  const handleDirectionChange = useCallback(
-    (dir: Direction) => {
-      const currentDir = directionRef.current;
-      // Prevent reversing direction
-      if (
-        (dir === "up" && currentDir === "down") ||
-        (dir === "down" && currentDir === "up") ||
-        (dir === "left" && currentDir === "right") ||
-        (dir === "right" && currentDir === "left")
-      ) {
-        return;
-      }
+  // Touch controls for mobile (D-Pad)
+  const onTouchDirection = (dir: Direction) => {
+    if (gameState === "playing") {
       nextDirectionRef.current = dir;
-    },
-    []
-  );
+    }
+  };
 
   // Handle gameover overlay
   const GameOverOverlay = () => (
-    <div className="absolute inset-0 bg-white/90 dark:bg-black/90 flex items-center justify-center backdrop-blur-sm z-50">
-      <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 text-center shadow-2xl max-w-xs mx-4">
-        <h2 className="text-3xl font-extrabold text-rose-600 dark:text-rose-400 mb-4">Game Over</h2>
-        <p className="mb-6 text-slate-700 dark:text-slate-300">
-          Your score: <span className="font-bold">{score}</span>
-        </p>
+    <div className="absolute inset-0 bg-black/80 flex items-center justify-center backdrop-blur-sm z-50">
+      <div className="bg-slate-900 p-6 rounded-xl border border-slate-700 text-center shadow-2xl max-w-xs mx-4">
+        <h2 className="text-3xl font-extrabold text-emerald-400 mb-4 flex items-center justify-center gap-2">
+          <Trophy className="w-6 h-6" /> Game Over
+        </h2>
+        <p className="text-slate-300 mb-4">Your score: <span className="font-bold text-white">{score}</span></p>
+        <p className="text-slate-400 mb-6">High score: <span className="font-bold text-emerald-400">{highScore}</span></p>
         <Button
           size="lg"
           onClick={() => {
-            resetGame();
             setGameState("ready");
           }}
           className="w-full"
         >
-          Restart
+          Play Again
         </Button>
       </div>
     </div>
   );
 
-  // Canvas size setup (responsive)
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    // Set canvas pixel size based on grid and cell size
-    canvas.width = GRID_WIDTH * CELL_SIZE;
-    canvas.height = GRID_HEIGHT * CELL_SIZE;
-
-    // Style canvas to fill container (aspect ratio 16:9)
-    // This is handled by CSS class "w-full h-full block"
-  }, []);
-
-  // Right Rail UI
+  // UI Components
   const rightRail = (
     <div className="space-y-6">
-      {/* Stats Card - Dark/Light Responsive */}
+      {/* Stats Card */}
       <div className="p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm transition-colors">
         <div className="flex justify-between items-center mb-4">
           <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Score</span>
@@ -433,6 +310,7 @@ export default function NeonSnakeCalculator() {
           <Button
             variant={gameState === "playing" ? "outline" : "default"}
             onClick={() => setGameState(gameState === "playing" ? "paused" : "playing")}
+            disabled={gameState === "ready" || gameState === "gameover"}
           >
             {gameState === "playing" ? (
               <>
@@ -444,19 +322,13 @@ export default function NeonSnakeCalculator() {
               </>
             )}
           </Button>
-          <Button
-            variant="destructive"
-            onClick={() => {
-              resetGame();
-              setGameState("ready");
-            }}
-          >
+          <Button variant="destructive" onClick={() => setGameState("ready")}>
             <RotateCcw className="mr-2 h-4 w-4" /> Reset
           </Button>
         </div>
       </div>
 
-      {/* Share & Suggestion - Dark/Light Responsive */}
+      {/* Share & Suggestion */}
       <div className="space-y-3">
         <Button
           variant="outline"
@@ -481,6 +353,8 @@ export default function NeonSnakeCalculator() {
     </div>
   );
 
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
   return (
     <GamePageLayout
       title="Neon Snake"
@@ -490,18 +364,24 @@ export default function NeonSnakeCalculator() {
         <div className="prose dark:prose-invert mt-8 max-w-none text-slate-700 dark:text-slate-300">
           <h3>How to Play</h3>
           <p>
-            Use arrow keys (or WASD) on desktop, or the on-screen D-Pad on mobile, to control the snake.
-            Eat the glowing pellets to grow longer and increase your score.
-            Avoid hitting the walls or your own tail.
-            Select difficulty before starting for different speeds.
+            Use arrow keys or WASD on desktop, or the on-screen D-Pad on mobile to control the snake. Eat the neon pink pellets to grow longer. Avoid hitting the walls or yourself. Select difficulty before starting.
           </p>
         </div>
       }
     >
-      <div className="relative w-full max-w-3xl mx-auto aspect-[16/9] bg-slate-100 dark:bg-slate-950 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl">
-        <canvas ref={canvasRef} className="w-full h-full block touch-none" />
+      <div
+        className="relative w-full max-w-3xl mx-auto aspect-[16/9] bg-slate-100 dark:bg-slate-950 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl select-none"
+        style={{ touchAction: "none" }}
+      >
+        <canvas
+          ref={canvasRef}
+          width={CANVAS_WIDTH}
+          height={CANVAS_HEIGHT}
+          className="w-full h-full block touch-none"
+          aria-label="Neon Snake game canvas"
+          role="img"
+        />
 
-        {/* Start Overlay (Supports Dark/Light) */}
         <StartOverlay open={gameState === "ready"} onClose={() => setGameState("playing")} title="Neon Snake">
           <div className="space-y-4">
             <p className="text-slate-600 dark:text-slate-300">Select Difficulty:</p>
@@ -523,7 +403,6 @@ export default function NeonSnakeCalculator() {
           </div>
         </StartOverlay>
 
-        {/* Paused Overlay */}
         {gameState === "paused" && (
           <div className="absolute inset-0 bg-white/60 dark:bg-black/60 flex items-center justify-center backdrop-blur-sm z-50">
             <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 text-center shadow-2xl">
@@ -535,54 +414,58 @@ export default function NeonSnakeCalculator() {
           </div>
         )}
 
-        {/* Game Over Overlay */}
         {gameState === "gameover" && <GameOverOverlay />}
       </div>
 
-      {/* Mobile Controls (Visible only on touch) */}
+      {/* Mobile D-Pad Controls */}
       <div className="md:hidden mt-6 flex justify-center gap-4 select-none">
-        {gameState === "playing" && (
-          <>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => handleDirectionChange("up")}
-              aria-label="Move Up"
-              className="rounded-full p-3"
-            >
-              <ArrowUp className="h-6 w-6" />
-            </Button>
-            <div className="flex gap-4">
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => handleDirectionChange("left")}
-                aria-label="Move Left"
-                className="rounded-full p-3"
-              >
-                <ArrowLeft className="h-6 w-6" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => handleDirectionChange("down")}
-                aria-label="Move Down"
-                className="rounded-full p-3"
-              >
-                <ArrowDown className="h-6 w-6" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => handleDirectionChange("right")}
-                aria-label="Move Right"
-                className="rounded-full p-3"
-              >
-                <ArrowRight className="h-6 w-6" />
-              </Button>
-            </div>
-          </>
-        )}
+        <div className="grid grid-cols-3 gap-2 w-48">
+          <div />
+          <Button
+            variant="outline"
+            size="icon"
+            aria-label="Move Up"
+            onTouchStart={() => onTouchDirection("up")}
+            onMouseDown={() => onTouchDirection("up")}
+            className="bg-slate-200 dark:bg-slate-800"
+          >
+            <ArrowUp className="w-6 h-6" />
+          </Button>
+          <div />
+          <Button
+            variant="outline"
+            size="icon"
+            aria-label="Move Left"
+            onTouchStart={() => onTouchDirection("left")}
+            onMouseDown={() => onTouchDirection("left")}
+            className="bg-slate-200 dark:bg-slate-800"
+          >
+            <ArrowLeft className="w-6 h-6" />
+          </Button>
+          <div />
+          <Button
+            variant="outline"
+            size="icon"
+            aria-label="Move Right"
+            onTouchStart={() => onTouchDirection("right")}
+            onMouseDown={() => onTouchDirection("right")}
+            className="bg-slate-200 dark:bg-slate-800"
+          >
+            <ArrowRight className="w-6 h-6" />
+          </Button>
+          <div />
+          <Button
+            variant="outline"
+            size="icon"
+            aria-label="Move Down"
+            onTouchStart={() => onTouchDirection("down")}
+            onMouseDown={() => onTouchDirection("down")}
+            className="bg-slate-200 dark:bg-slate-800"
+          >
+            <ArrowDown className="w-6 h-6" />
+          </Button>
+          <div />
+        </div>
       </div>
     </GamePageLayout>
   );
