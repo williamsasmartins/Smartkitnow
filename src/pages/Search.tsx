@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { REGISTRY } from "@/data/calculatorRegistry";
 import { GAMES } from "@/data/gamesRegistry";
+import { getCategoryMeta, getDisplaySubcategory } from "@/data/categoryMeta";
 import AdBannerTop from "@/components/ads/AdBannerTop";
 import AdSidebarRight from "@/components/ads/AdSidebarRight";
 import CalculatorCard from "@/components/cards/CalculatorCard";
@@ -34,13 +35,16 @@ export default function Search() {
     const needle = q.toLowerCase();
     
     const calcMatches: SearchResult[] = REGISTRY.filter((e) => {
+      const displayCat = getCategoryMeta(e.category)?.display || "";
+      const displaySub = e.subcategory ? getDisplaySubcategory(e.category, e.subcategory) : "";
+
       const hay = [
         e.title || "",
         e.slug || "",
         e.category || "",
         e.subcategory || "",
-        e.displayCategory || "",
-        e.displaySubcategory || "",
+        displayCat,
+        displaySub,
       ]
         .join(" ")
         .toLowerCase();
