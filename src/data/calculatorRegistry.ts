@@ -4716,6 +4716,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/CatIgnoreOMeterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "plant-watering-procrastination-index",
+    title: "Plant Watering Procrastination Index",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Track plant neglect. Calculate how long you can 'procrastinate' watering your plants before they officially give up on you.",
+    loader: () => import("@/components/calculators/Funny/PlantWateringProcrastinationIndexCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
