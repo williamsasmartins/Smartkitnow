@@ -10,8 +10,26 @@ export default class AppErrorBoundary extends React.Component<React.PropsWithChi
   }
 
   componentDidCatch(error: unknown, info: unknown) {
-     
     console.error('App crashed:', error, info)
+
+    // Handle chunk load failures (version mismatch after deployment)
+    const msg = String(error || '');
+    const isChunkError = 
+      msg.includes("Failed to fetch dynamically imported module") || 
+      msg.includes("Importing a module script failed") ||
+      msg.includes("error loading dynamically imported module");
+
+    if (isChunkError) {
+      const lastReload = sessionStorage.getItem('skn-chunk-reload');
+      const now = Date.now();
+      
+      // Reload if we haven't reloaded recently (e.g. within 10 seconds)
+      if (!lastReload || (now - parseInt(lastReload, 10) > 10000)) {
+          sessionStorage.setItem('skn-chunk-reload', String(now));
+          window.location.reload();
+          return;
+      }
+    }
   }
 
   render() {
