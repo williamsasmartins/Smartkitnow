@@ -16,7 +16,7 @@ export const DEFAULT_GAME_LOADER = () => import("../components/games/ComingSoonG
 export const GAMES: GameRegistryEntry[] = [
   
   // Coming soon placeholders (keep these as you add real components)
-   { slug: "brick-dash", title: "Brick Dash", description: "...", loader: DEFAULT_GAME_LOADER, comingSoon: true },
+
   { slug: "orb-runner", title: "Orb Runner", description: "Arcade runner game. Coming soon.", loader: DEFAULT_GAME_LOADER, comingSoon: true },
   { slug: "pixel-tetris", title: "Pixel Tetris", description: "Classic block-stacking puzzle. Coming soon.", loader: DEFAULT_GAME_LOADER, comingSoon: true },
   { slug: "memory-flux", title: "Memory Flux", description: "Memory challenge game. Coming soon.", loader: DEFAULT_GAME_LOADER, comingSoon: true },
