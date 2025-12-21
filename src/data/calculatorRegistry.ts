@@ -4752,6 +4752,69 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/SocialMediaTimeAlternativesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pokemon-go-weight-loss",
+    title: "Pokémon GO Weight Loss Calculator",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Gamify your fitness. Estimate how many calories you burn while walking to hatch eggs and catch Pokémon.",
+    loader: () => import("@/components/calculators/Funny/PokemonGoWeightLossCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "life-value-in-tacos",
+    title: "Life Value Estimator (Worth in Tacos)",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Convert your net worth to tacos. See how rich you truly are by measuring your assets in units of delicious tacos.",
+    loader: () => import("@/components/calculators/Funny/LifeValueInTacosCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "drake-equation-calculator",
+    title: "Drake Equation Calculator",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Estimate alien life. Use the famous Drake Equation to calculate the number of active, communicative extraterrestrial civilizations.",
+    loader: () => import("@/components/calculators/Funny/DrakeEquationCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "vacation-budget-reality-check",
+    title: "Vacation Budget Reality Check",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Budget your dream trip vs reality. A fun tool to see how far your actual savings will get you (maybe just to the backyard?).",
+    loader: () => import("@/components/calculators/Funny/VacationBudgetRealityCheckCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "loop-the-loop-speed-calculator",
+    title: "Loop-the-Loop Speed Calculator",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Physics for fun. Calculate the minimum speed a car needs to successfully drive through a vertical loop-the-loop without falling.",
+    loader: () => import("@/components/calculators/Funny/LoopTheLoopSpeedCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "rocks-to-flood-country",
+    title: "Rocks to Flood a Country Estimator",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Absurd physics scenario. Calculate how many rocks you would need to throw into the ocean to theoretically flood a specific country.",
+    loader: () => import("@/components/calculators/Funny/RocksToFloodCountryCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "penguin-slap-power",
+    title: "Penguin Slap Power Calculator",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Calculate slap physics. Estimate the thermodynamic energy converted if you theoretically slapped a penguin (strictly hypothetical).",
+    loader: () => import("@/components/calculators/Funny/PenguinSlapPowerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
