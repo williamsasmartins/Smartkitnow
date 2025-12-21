@@ -4626,6 +4626,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     
+    {
+    slug: "meetings-wasted-time-counter",
+    title: "Meetings Wasted-Time Counter",
+    category: "funny",
+    subcategory: "tech-work-life",
+    description: "Calculate the cost of useless meetings. Input attendees and average salary to see how much money is burning while you talk.",
+    loader: () => import("@/components/calculators/Funny/MeetingsWastedTimeCounterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
