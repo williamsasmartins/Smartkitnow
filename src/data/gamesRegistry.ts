@@ -13,7 +13,7 @@ export type GameRegistryEntry = {
 
 export const DEFAULT_GAME_LOADER = () => import("../components/games/ComingSoonGame");
 
-const GAMES: GameRegistryEntry[] = [
+export const GAMES: GameRegistryEntry[] = [
   {
     slug: "join-dots-connect-four",
     title: "Join Dots (Connect Four)",

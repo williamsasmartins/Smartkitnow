@@ -1,21 +1,39 @@
-import React, { useMemo } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
-import { REGISTRY, type RegistryEntry } from "@/data/calculatorRegistry";
+import React, { useMemo, useState, useEffect } from "react";
+import { useSearchParams, useNavigate, Link } from "react-router-dom";
+import { REGISTRY } from "@/data/calculatorRegistry";
+import { GAMES } from "@/data/gamesRegistry";
 import AdBannerTop from "@/components/ads/AdBannerTop";
 import AdSidebarRight from "@/components/ads/AdSidebarRight";
 import CalculatorCard from "@/components/cards/CalculatorCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+type SearchResult = {
+  type: "calculator" | "game";
+  title: string;
+  slug: string;
+  category: string;
+  subcategory?: string;
+  description?: string;
+};
+
 export default function Search() {
   const [params, setParams] = useSearchParams();
   const navigate = useNavigate();
   const q = (params.get("q") || "").trim();
+  
+  // Controlled input state
+  const [localQuery, setLocalQuery] = useState(q);
 
-  const matches: RegistryEntry[] = useMemo(() => {
+  useEffect(() => {
+    setLocalQuery(q);
+  }, [q]);
+
+  const matches: SearchResult[] = useMemo(() => {
     if (!q) return [];
     const needle = q.toLowerCase();
-    return REGISTRY.filter((e) => {
+    
+    const calcMatches: SearchResult[] = REGISTRY.filter((e) => {
       const hay = [
         e.title || "",
         e.slug || "",
@@ -27,14 +45,32 @@ export default function Search() {
         .join(" ")
         .toLowerCase();
       return hay.includes(needle);
-    }).sort((a, b) => (a.title || "").localeCompare(b.title || ""));
+    }).map(e => ({
+      type: "calculator",
+      title: e.title,
+      slug: e.slug,
+      category: e.category,
+      subcategory: e.subcategory,
+      description: e.description
+    }));
+
+    const gameMatches: SearchResult[] = GAMES.filter((g) => {
+      const hay = [g.title, g.slug, g.description, "game", "play"].join(" ").toLowerCase();
+      return hay.includes(needle);
+    }).map(g => ({
+      type: "game",
+      title: g.title,
+      slug: g.slug,
+      category: "games",
+      description: g.description
+    }));
+
+    return [...calcMatches, ...gameMatches].sort((a, b) => (a.title || "").localeCompare(b.title || ""));
   }, [q]);
 
   const handleSubmit = (ev: React.FormEvent) => {
     ev.preventDefault();
-    const form = ev.target as HTMLFormElement;
-    const data = new FormData(form);
-    const value = String(data.get("q") || "").trim();
+    const value = localQuery.trim();
     if (!value) return;
     setParams({ q: value });
   };
@@ -48,14 +84,23 @@ export default function Search() {
         <header className="py-6 border-b mb-6">
           <h1 className="text-2xl md:text-3xl font-semibold text-primary">Search</h1>
           <p className="mt-2 max-w-3xl text-sm md:text-base text-muted-foreground">
-            Find calculators and smart tips by title, category, or keywords.
+            Find calculators, games, and smart tips by title, category, or keywords.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-4 flex gap-2 max-w-xl">
-            <Input name="q" defaultValue={q} placeholder="Search calculators, tips, recipes…" className="h-9" />
+            <Input 
+               name="q" 
+               value={localQuery} 
+               onChange={(e) => setLocalQuery(e.target.value)}
+               placeholder="Search calculators, games, tips…" 
+               className="h-9" 
+            />
             <Button type="submit" className="h-9">Search</Button>
             {q && (
-              <Button type="button" variant="ghost" className="h-9" onClick={() => navigate("/search")}>Clear</Button>
+              <Button type="button" variant="ghost" className="h-9" onClick={() => {
+                setLocalQuery("");
+                navigate("/search");
+              }}>Clear</Button>
             )}
           </form>
         </header>
@@ -77,15 +122,37 @@ export default function Search() {
                   {matches.length} result{matches.length === 1 ? "" : "s"} for "{q}"
                 </h2>
                 <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                  {matches.map((e) => (
-                    <CalculatorCard
-                      key={e.slug}
-                      category={e.category}
-                      subcategory={e.subcategory}
-                      slug={e.slug}
-                      name={e.title}
-                    />
-                  ))}
+                  {matches.map((e) => {
+                    if (e.type === "game") {
+                       return (
+                         <article key={e.slug} className="border rounded-xl p-4 bg-card hover:shadow-md transition-shadow duration-300">
+                           <header className="flex items-center gap-2 mb-2">
+                             <span className="inline-grid place-items-center h-8 w-8 rounded-lg border bg-card text-xs">🎮</span>
+                             <h3 className="text-lg font-semibold leading-tight">
+                               <Link to={`/games/${e.slug}`} className="hover:underline">
+                                 {e.title}
+                               </Link>
+                             </h3>
+                           </header>
+                           <p className="line-clamp-3 text-sm text-muted-foreground">
+                             {e.description}
+                           </p>
+                           <footer className="mt-3 text-xs opacity-70">
+                             Games
+                           </footer>
+                         </article>
+                       );
+                    }
+                    return (
+                      <CalculatorCard
+                        key={e.slug}
+                        category={e.category}
+                        subcategory={e.subcategory || "general"}
+                        slug={e.slug}
+                        name={e.title}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             )}

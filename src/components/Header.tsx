@@ -1,19 +1,25 @@
 import { ThemeToggle } from "./ThemeToggle";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import logoImage from "@/assets/logo-skn.png";
 import { getCategoryIcon } from "@/lib/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense, useEffect } from "react";
 import { CATEGORIES } from "@/data/categoryMeta";
 
 const HeaderMoreMenu = lazy(() => import("./HeaderMoreMenu"));
 
 export function Header() {
   const navigate = useNavigate();
-  const [query, setQuery] = useState("");
+  const [searchParams] = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get("q") || "");
   const [isMenuLoaded, setIsMenuLoaded] = useState(false);
   const [forceOpen, setForceOpen] = useState(false);
+
+  // Sync query with URL params
+  useEffect(() => {
+    setQuery(searchParams.get("q") || "");
+  }, [searchParams]);
 
   const prefetchMenu = () => setIsMenuLoaded(true);
   const loadAndOpenMenu = () => {
