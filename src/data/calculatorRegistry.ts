@@ -4743,6 +4743,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/DeathByCaffeineCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "social-media-time-alternatives",
+    title: "Social Media Time Alternatives",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Reclaim your time. See what new skills or hobbies you could have mastered in the time spent scrolling social media this year.",
+    loader: () => import("@/components/calculators/Funny/SocialMediaTimeAlternativesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
