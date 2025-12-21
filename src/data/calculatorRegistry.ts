@@ -4806,6 +4806,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/RocksToFloodCountryCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "penguin-slap-power",
+    title: "Penguin Slap Power Calculator",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Calculate slap physics. Estimate the thermodynamic energy converted if you theoretically slapped a penguin (strictly hypothetical).",
+    loader: () => import("@/components/calculators/Funny/PenguinSlapPowerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
