@@ -4861,6 +4861,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     
+    {
+    slug: "neon-snake",
+    title: "Neon Snake",
+    category: "games",
+    subcategory: "arcade-classics",
+    description: "A modern neon twist on the classic Snake game. Eat pellets, grow longer, and avoid hitting the walls or yourself.",
+    loader: () => import("@/components/calculators/Misc/NeonSnakeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
