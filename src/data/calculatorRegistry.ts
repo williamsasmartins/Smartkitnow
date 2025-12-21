@@ -4761,6 +4761,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/PokemonGoWeightLossCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "life-value-in-tacos",
+    title: "Life Value Estimator (Worth in Tacos)",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Convert your net worth to tacos. See how rich you truly are by measuring your assets in units of delicious tacos.",
+    loader: () => import("@/components/calculators/Funny/LifeValueInTacosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
