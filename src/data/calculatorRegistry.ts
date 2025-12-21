@@ -4797,6 +4797,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/LoopTheLoopSpeedCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "rocks-to-flood-country",
+    title: "Rocks to Flood a Country Estimator",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Absurd physics scenario. Calculate how many rocks you would need to throw into the ocean to theoretically flood a specific country.",
+    loader: () => import("@/components/calculators/Funny/RocksToFloodCountryCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
