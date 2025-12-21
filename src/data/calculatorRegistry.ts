@@ -4824,6 +4824,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/NickelsToCrushCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "black-hole-sun-impact",
+    title: "Black Hole Sun Impact Calculator",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Apocalypse calculator. What would happen to Earth's orbit if the sun instantly turned into a black hole of the same mass?",
+    loader: () => import("@/components/calculators/Funny/BlackHoleSunImpactCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
