@@ -4815,6 +4815,51 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/PenguinSlapPowerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "nickels-to-crush-calculator",
+    title: "Nickels to Crush Calculator",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Hydraulic press simulator. Calculate how many nickels stacked on top of an object would be heavy enough to crush it.",
+    loader: () => import("@/components/calculators/Funny/NickelsToCrushCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "black-hole-sun-impact",
+    title: "Black Hole Sun Impact Calculator",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Apocalypse calculator. What would happen to Earth's orbit if the sun instantly turned into a black hole of the same mass?",
+    loader: () => import("@/components/calculators/Funny/BlackHoleSunImpactCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "time-travel-energy-requirement",
+    title: "Time Travel Energy Requirement",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Sci-fi physics. Estimate the immense energy required to travel back in time based on theoretical warp drive metrics.",
+    loader: () => import("@/components/calculators/Funny/TimeTravelEnergyRequirementCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "medical-tourism-cost-saver",
+    title: "Medical Tourism Cost Saver",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Calculate savings on medical procedures. Compare the cost of surgery abroad versus domestic prices (plus a recovery vacation).",
+    loader: () => import("@/components/calculators/Funny/MedicalTourismCostSaverCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "crinkle-crankle-wall-brick-saver",
+    title: "Crinkle Crankle Wall Brick Saver",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Optimize brick usage. Calculate how many bricks you save by building a wavy 'crinkle crankle' wall instead of a straight one.",
+    loader: () => import("@/components/calculators/Funny/CrinkleCrankleWallBrickSaverCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
