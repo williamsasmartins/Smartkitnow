@@ -4680,6 +4680,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/MemeViralityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "calculator-word-generator-upside-down",
+    title: "Calculator Word Generator (Upside-Down)",
+    category: "funny",
+    subcategory: "tech-work-life",
+    description: "Write words on a calculator. Generate the numbers needed to spell 'HELLO', 'ZOMBIE', and other classics when turned upside down.",
+    loader: () => import("@/components/calculators/Funny/CalculatorWordGeneratorUpsideDownCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
