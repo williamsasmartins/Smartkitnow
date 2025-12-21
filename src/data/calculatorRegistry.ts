@@ -4734,6 +4734,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/NetflixOneMoreEpisodeTimerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "death-by-caffeine",
+    title: "Death by Caffeine (Max Safe Intake)",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Calculate your caffeine limit. Find out exactly how many cups of coffee would be lethal (so you can stop safely before that).",
+    loader: () => import("@/components/calculators/Funny/DeathByCaffeineCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
