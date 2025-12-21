@@ -4788,6 +4788,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/VacationBudgetRealityCheckCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "loop-the-loop-speed-calculator",
+    title: "Loop-the-Loop Speed Calculator",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Physics for fun. Calculate the minimum speed a car needs to successfully drive through a vertical loop-the-loop without falling.",
+    loader: () => import("@/components/calculators/Funny/LoopTheLoopSpeedCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
