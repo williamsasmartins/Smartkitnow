@@ -4851,6 +4851,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/MedicalTourismCostSaverCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "crinkle-crankle-wall-brick-saver",
+    title: "Crinkle Crankle Wall Brick Saver",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Optimize brick usage. Calculate how many bricks you save by building a wavy 'crinkle crankle' wall instead of a straight one.",
+    loader: () => import("@/components/calculators/Funny/CrinkleCrankleWallBrickSaverCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
