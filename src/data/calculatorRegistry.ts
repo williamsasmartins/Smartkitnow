@@ -4770,6 +4770,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/LifeValueInTacosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "drake-equation-calculator",
+    title: "Drake Equation Calculator",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Estimate alien life. Use the famous Drake Equation to calculate the number of active, communicative extraterrestrial civilizations.",
+    loader: () => import("@/components/calculators/Funny/DrakeEquationCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
