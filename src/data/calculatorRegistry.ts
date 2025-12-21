@@ -4842,6 +4842,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/TimeTravelEnergyRequirementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "medical-tourism-cost-saver",
+    title: "Medical Tourism Cost Saver",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Calculate savings on medical procedures. Compare the cost of surgery abroad versus domestic prices (plus a recovery vacation).",
+    loader: () => import("@/components/calculators/Funny/MedicalTourismCostSaverCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
