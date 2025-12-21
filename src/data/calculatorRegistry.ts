@@ -4725,6 +4725,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/PlantWateringProcrastinationIndexCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "netflix-one-more-episode-timer",
+    title: "Netflix 'Just One More Episode' Timer",
+    category: "funny",
+    subcategory: "home-pets-pop-culture",
+    description: "Manage binge-watching risks. Calculate how much of your life will be consumed if you watch 'just one more episode' tonight.",
+    loader: () => import("@/components/calculators/Funny/NetflixOneMoreEpisodeTimerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
