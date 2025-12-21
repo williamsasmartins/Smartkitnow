@@ -4833,6 +4833,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/BlackHoleSunImpactCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "time-travel-energy-requirement",
+    title: "Time Travel Energy Requirement",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Sci-fi physics. Estimate the immense energy required to travel back in time based on theoretical warp drive metrics.",
+    loader: () => import("@/components/calculators/Funny/TimeTravelEnergyRequirementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
