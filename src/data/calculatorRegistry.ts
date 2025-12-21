@@ -4862,15 +4862,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
     
     
-    {
-    slug: "astro-breakout",
-    title: "Astro Breakout",
-    category: "games",
-    subcategory: "arcade-classics",
-    description: "Classic brick-breaking action set in space. Smash through formations of blocks using your paddle and ball.",
-    loader: () => import("@/components/calculators/Misc/AstroBreakoutCalculator"),
-    urlStyle: "flat"
-  },
+  
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
