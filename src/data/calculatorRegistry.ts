@@ -4815,6 +4815,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/PenguinSlapPowerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "nickels-to-crush-calculator",
+    title: "Nickels to Crush Calculator",
+    category: "funny",
+    subcategory: "absurd-travel-adventure",
+    description: "Hydraulic press simulator. Calculate how many nickels stacked on top of an object would be heavy enough to crush it.",
+    loader: () => import("@/components/calculators/Funny/NickelsToCrushCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
