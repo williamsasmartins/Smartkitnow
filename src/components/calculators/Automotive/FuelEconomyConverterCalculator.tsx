@@ -29,22 +29,24 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function FuelEconomyConverterCalculator() {
   // State: unit system and input value
-  // val1: Fuel Economy input (mpg or L/100km)
-  // unit: "imperial" (mpg) or "metric" (L/100km)
+  // val1: input fuel economy (mpg or L/100km depending on unit)
+  // val2: not used here but kept for extensibility
   const [inputs, setInputs] = useState({ unit: "imperial", val1: "" });
   const handleInputChange = useCallback(
-    (n: string, v: string) =>
-      setInputs((p) => ({
-        ...p,
-        [n]: v,
-      })),
+    (n: string, v: string) => setInputs((p) => ({ ...p, [n]: v })),
     []
   );
 
-  // Conversion formulas:
-  // mpg (US) to L/100km: L/100km = 235.214583 / mpg
-  // L/100km to mpg (US): mpg = 235.214583 / L/100km
-  // Use US gallon and miles for imperial base
+  /**
+   * Conversion formulas:
+   * mpg (US) to L/100km: L/100km = 235.214583 / mpg
+   * L/100km to mpg (US): mpg = 235.214583 / L/100km
+   *
+   * Why 235.214583? Because:
+   * 1 gallon (US) = 3.785411784 liters
+   * 1 mile = 1.609344 kilometers
+   * So, mpg to L/100km = (100 * 3.785411784) / 1.609344 / mpg = 235.214583 / mpg
+   */
 
   const results = useMemo(() => {
     const val = parseFloat(inputs.val1);
@@ -52,54 +54,52 @@ export default function FuelEconomyConverterCalculator() {
       return {
         value: null,
         label: "",
-        subtext: "",
-        color: "",
-        icon: null,
+        subtext: "Please enter a valid positive number.",
+        color: "text-red-600",
+        icon: <Fuel />,
       };
     }
 
     if (inputs.unit === "imperial") {
-      // Input is mpg (US)
-      // Convert mpg to L/100km
+      // Input is mpg (US), convert to L/100km
       const lPer100km = 235.214583 / val;
       return {
         value: lPer100km.toFixed(2),
         label: "Liters per 100 kilometers (L/100 km)",
         subtext:
-          "L/100 km is a metric measure of fuel consumption indicating how many liters of fuel are used to travel 100 kilometers. Lower values mean better fuel efficiency.",
+          "Lower values mean better fuel efficiency in metric units. This conversion helps international travelers understand fuel consumption globally.",
         color: "text-green-700",
-        icon: <Fuel className="mx-auto h-10 w-10 text-green-700" />,
+        icon: <Gauge />,
       };
     } else {
-      // Input is L/100km
-      // Convert L/100km to mpg (US)
+      // Input is L/100km, convert to mpg (US)
       const mpg = 235.214583 / val;
       return {
         value: mpg.toFixed(2),
-        label: "Miles per Gallon (mpg US)",
+        label: "Miles per Gallon (MPG, US)",
         subtext:
-          "MPG measures how many miles a vehicle can travel per gallon of fuel. Higher MPG means better fuel economy.",
+          "Higher values mean better fuel efficiency in imperial units. This conversion is essential for comparing vehicles across regions.",
         color: "text-blue-600",
-        icon: <Gauge className="mx-auto h-10 w-10 text-blue-600" />,
+        icon: <Car />,
       };
     }
   }, [inputs]);
 
   const faqs = [
     {
-      question: "Why do fuel economy units differ between countries?",
+      question: "Why is fuel economy measured differently in the US and Europe?",
       answer:
-        "Fuel economy units vary due to historical measurement systems. The US uses miles per gallon (mpg) based on the imperial system, while most other countries use liters per 100 kilometers (L/100 km) based on the metric system. This difference reflects regional preferences and standards.",
+        "The US uses miles per gallon (mpg) because it follows the imperial system, while Europe uses liters per 100 kilometers (L/100 km) based on the metric system. Both units express fuel efficiency but from different perspectives: mpg shows distance per fuel volume, L/100 km shows fuel volume per distance.",
     },
     {
-      question: "Why is L/100 km inversely related to mpg?",
+      question: "Can I convert UK mpg with this calculator?",
       answer:
-        "L/100 km measures fuel consumed per distance, while mpg measures distance per fuel volume. Hence, they are inversely related: as mpg increases, L/100 km decreases, indicating better fuel efficiency.",
+        "This calculator uses US mpg, which differs slightly from UK mpg due to different gallon sizes. UK gallon is larger (4.546 L), so UK mpg values will be higher for the same fuel consumption. Use a dedicated UK mpg converter for precise conversions.",
     },
     {
-      question: "Is mpg always based on US gallons?",
+      question: "Why does the formula use 235.214583?",
       answer:
-        "No, mpg can refer to US gallons or imperial gallons. This calculator uses US gallons (1 US gallon = 3.78541 liters) as it is the most common standard for mpg in automotive contexts.",
+        "The constant 235.214583 is derived from unit conversions between gallons, liters, miles, and kilometers. It ensures accurate conversion between mpg (US) and L/100 km using real engineering standards.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -116,12 +116,12 @@ export default function FuelEconomyConverterCalculator() {
             <Settings className="mr-2 h-4 w-4" />{" "}
             <SelectValue>
               {inputs.unit === "imperial"
-                ? "Imperial (mpg US)"
+                ? "Imperial (MPG, US)"
                 : "Metric (L/100 km)"}
             </SelectValue>
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="imperial">Imperial (mpg US)</SelectItem>
+            <SelectItem value="imperial">Imperial (MPG, US)</SelectItem>
             <SelectItem value="metric">Metric (L/100 km)</SelectItem>
           </SelectContent>
         </Select>
@@ -130,9 +130,9 @@ export default function FuelEconomyConverterCalculator() {
       {/* Input */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <Label htmlFor="fuelEconomyInput" className="mb-1 flex items-center gap-1">
-            <Fuel className="h-4 w-4 text-yellow-600" />
-            Enter Fuel Economy ({inputs.unit === "imperial" ? "mpg" : "L/100 km"})
+          <Label htmlFor="fuelEconomyInput" className="mb-1 flex items-center gap-2">
+            <Fuel className="w-4 h-4 text-yellow-600" />
+            Fuel Economy ({inputs.unit === "imperial" ? "MPG (US)" : "L/100 km"})
           </Label>
           <Input
             id="fuelEconomyInput"
@@ -141,8 +141,8 @@ export default function FuelEconomyConverterCalculator() {
             step="any"
             placeholder={
               inputs.unit === "imperial"
-                ? "e.g. 25 (mpg)"
-                : "e.g. 8.5 (L/100 km)"
+                ? "e.g., 30"
+                : "e.g., 7.8"
             }
             value={inputs.val1}
             onChange={(e) => handleInputChange("val1", e.target.value)}
@@ -150,6 +150,7 @@ export default function FuelEconomyConverterCalculator() {
         </div>
       </div>
 
+      {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white shadow-md"
@@ -161,13 +162,14 @@ export default function FuelEconomyConverterCalculator() {
         </Button>
         <Button
           variant="outline"
-          onClick={() => setInputs({ unit: inputs.unit, val1: "" })}
+          onClick={() => setInputs({ ...inputs, val1: "" })}
           className="flex-1 h-11"
         >
           <RotateCcw className="mr-2 h-4 w-4" /> Reset
         </Button>
       </div>
 
+      {/* Result */}
       {results.value && (
         <Card className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950 border-slate-200 shadow-lg animate-in fade-in slide-in-from-bottom-4">
           <CardContent className="p-8 text-center">
@@ -192,13 +194,7 @@ export default function FuelEconomyConverterCalculator() {
           Understanding Fuel Economy Converter (mpg ↔ L/100 km)
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Fuel economy is a critical measure of how efficiently a vehicle uses fuel.
-          In the United States and a few other countries, fuel economy is commonly
-          expressed as miles per gallon (mpg), which indicates how many miles a vehicle
-          can travel on one gallon of fuel. Most other countries use liters per 100 kilometers
-          (L/100 km), which measures how many liters of fuel are consumed to travel 100 kilometers.
-          This converter allows you to switch between these two units easily, helping drivers
-          understand and compare fuel efficiency globally.
+          Fuel economy is a critical metric that indicates how efficiently a vehicle uses fuel. In the United States, fuel economy is commonly expressed as miles per gallon (mpg), which measures how many miles a vehicle can travel on one gallon of fuel. Conversely, many countries use liters per 100 kilometers (L/100 km), which measures how many liters of fuel are consumed to travel 100 kilometers. This converter allows users to switch between these units, facilitating international comparisons and helping drivers understand their vehicle's efficiency regardless of location.
         </p>
 
         {/* TRIVIA BOX */}
@@ -210,26 +206,30 @@ export default function FuelEconomyConverterCalculator() {
             </h3>
           </div>
           <p className="text-slate-700 dark:text-slate-300">
-            The formula 235.214583 used in fuel economy conversions comes from the exact
-            relationship between miles, gallons, liters, and kilometers. It ensures precise
-            conversions between mpg (US) and L/100 km, reflecting real-world engineering standards.
+            The first fuel economy standards were introduced in the United States in the 1970s following the oil crisis, aiming to reduce fuel consumption and dependence on foreign oil. Since then, fuel economy has become a key factor in automotive engineering, influencing vehicle design, engine technology, and environmental regulations worldwide.
           </p>
         </div>
       </section>
 
+      {/* How to Use */}
       <section id="how-to" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           How to Use
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Select the unit system you want to input: Imperial (mpg US) or Metric (L/100 km).
-          Enter the fuel economy value in the input box. Click "Calculate" to see the converted
-          value instantly. Use the reset button to clear the input and start over.
+          1. Select the unit system of your input fuel economy: Imperial (MPG, US) or Metric (L/100 km).<br />
+          2. Enter the fuel economy value in the input box.<br />
+          3. Click "Calculate" to see the converted fuel economy in the other unit.<br />
+          4. Use the reset button to clear the input and start a new conversion.<br />
+          This tool helps you understand and compare fuel consumption values globally.
         </p>
       </section>
 
+      {/* FAQ */}
       <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">FAQ</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          FAQ
+        </h2>
         <ul className="space-y-6">
           {faqs.map((item, i) => (
             <li
@@ -258,40 +258,35 @@ export default function FuelEconomyConverterCalculator() {
       jsonLd={faqJsonLd}
       formula={{
         title: "The Formula",
-        formula:
-          "L/100 km = 235.214583 ÷ mpg (US)  |  mpg (US) = 235.214583 ÷ L/100 km",
+        formula: "L/100 km = 235.214583 ÷ MPG (US)",
         variables: [
           {
-            symbol: "mpg (US)",
-            description: "Miles per US gallon, imperial unit of fuel economy",
+            symbol: "MPG (US)",
+            description: "Miles per gallon (US gallon)",
           },
           {
             symbol: "L/100 km",
-            description: "Liters of fuel consumed per 100 kilometers, metric unit",
+            description: "Liters per 100 kilometers",
           },
         ],
       }}
       example={{
         title: "Example",
         scenario:
-          "You have a car that runs at 30 mpg (US) and want to know its fuel consumption in L/100 km.",
+          "You have a car that runs at 30 MPG (US) and want to know its fuel consumption in L/100 km.",
         steps: [
           {
             label: "1",
             explanation:
-              "Use the formula: L/100 km = 235.214583 ÷ mpg = 235.214583 ÷ 30",
+              "Use the formula L/100 km = 235.214583 ÷ 30 = 7.84 L/100 km.",
           },
           {
             label: "2",
-            explanation: "Calculate: 235.214583 ÷ 30 ≈ 7.84 L/100 km",
-          },
-          {
-            label: "3",
             explanation:
-              "This means the car consumes approximately 7.84 liters of fuel to travel 100 kilometers.",
+              "This means your car consumes approximately 7.84 liters of fuel to travel 100 kilometers.",
           },
         ],
-        result: "Fuel consumption = 7.84 L/100 km",
+        result: "7.84 L/100 km",
       }}
       relatedCalculators={[
         { title: "Trip Fuel Cost", url: "/automotive/trip-fuel-cost-calculator", icon: "⛽" },
