@@ -4872,24 +4872,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/NeonSnakeCalculator"),
     urlStyle: "flat"
   },
-    {
-    slug: "fuel-economy-converter",
-    title: "Fuel Economy Converter (mpg ↔ L/100 km)",
-    category: "automotive",
-    subcategory: "consumption-costs-travel",
-    description: "Convert fuel consumption instantly. Switch between Miles Per Gallon (MPG) and Liters per 100 kilometers (L/100 km) for international travel.",
-    loader: () => import("@/components/calculators/Automotive/FuelEconomyConverterCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "fuel-cost-calculator",
-    title: "Fuel Cost Calculator",
-    category: "automotive",
-    subcategory: "consumption-costs-travel",
-    description: "Estimate your total fuel costs for any trip. Input distance and your car's mileage to budget for gas expenses accurately.",
-    loader: () => import("@/components/calculators/Automotive/FuelCostCalculator"),
-    urlStyle: "flat"
-  },
+   
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
