@@ -400,7 +400,7 @@ export default function FuelCostCalculator() {
         result: "Estimated fuel cost for the trip is $17.40.",
       }}
       relatedCalculators={[
-        { title: "Trip Fuel Cost", url: "/automotive/trip-fuel-cost-calculator", icon: "⛽" },
+        { title: "Fuel Economy Converter", url: "/automotive/fuel-economy-converter", icon: "🔄" },
         { title: "Tire Size Comparison", url: "/automotive/tire-size-comparison", icon: "🚗" },
         { title: "Car Loan Amortization", url: "/automotive/car-loan-payment-amortization-calculator", icon: "💰" },
         { title: "EV Charging Cost", url: "/automotive/ev-charging-cost-time-estimator", icon: "⚡" },
