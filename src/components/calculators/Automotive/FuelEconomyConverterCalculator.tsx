@@ -289,7 +289,7 @@ export default function FuelEconomyConverterCalculator() {
         result: "7.84 L/100 km",
       }}
       relatedCalculators={[
-        { title: "Fuel Cost", url: "/automotive/fuel-cost-calculator", icon: "⛽" },
+        { title: "Fuel Cost Calculator", url: "/automotive/fuel-cost-calculator", icon: "⛽" },
         { title: "Tire Size Comparison", url: "/automotive/tire-size-comparison", icon: "🚗" },
         { title: "Car Loan Amortization", url: "/automotive/car-loan-payment-amortization-calculator", icon: "💰" },
         { title: "EV Charging Cost", url: "/automotive/ev-charging-cost-time-estimator", icon: "⚡" },
