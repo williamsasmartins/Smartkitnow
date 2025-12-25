@@ -4864,15 +4864,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     
   
    
-    {
-    slug: "drywall-sheet-count",
-    title: "Drywall Sheet Count Calculator",
-    category: "construction",
-    subcategory: "wood-framing-drywall",
-    description: "Calculate the number of standard drywall sheets needed to cover walls and ceilings based on room dimensions.",
-    loader: () => import("@/components/calculators/Construction/DrywallSheetCountCalculator"),
-    urlStyle: "flat"
-  },
+   
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
