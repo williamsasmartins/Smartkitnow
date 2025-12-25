@@ -13,20 +13,7 @@ export const DEFAULT_GAME_LOADER = () => import("../components/games/ComingSoonG
 
 export const GAMES: GameRegistryEntry[] = [
   // --- JOGOS (Atualmente apontando para Coming Soon para evitar erro de build) ---
-  { 
-    slug: "neon-snake", 
-    title: "Neon Snake", 
-    description: "Classic Snake in a neon grid. Eat, grow, avoid collisions.", 
-    loader: DEFAULT_GAME_LOADER, // <--- REVERTIDO PARA EVITAR ERRO
-    comingSoon: true 
-  },
-  { 
-    slug: "brick-dash", 
-    title: "Brick Dash", 
-    description: "Dash between lanes, dodge falling bricks, grab power-ups.", 
-    loader: DEFAULT_GAME_LOADER, // <--- REVERTIDO PARA EVITAR ERRO
-    comingSoon: true 
-  },
+ 
 
   // --- OUTROS JOGOS ---
   { slug: "astro-breakout", title: "Astro Breakout", description: "Breakout-style arcade.", loader: DEFAULT_GAME_LOADER, comingSoon: true },
