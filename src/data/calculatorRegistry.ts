@@ -5046,6 +5046,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/ConcreteBlockCmuWallCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "rebar-spacing-quantity",
+    title: "Rebar Spacing & Quantity Calculator",
+    category: "construction",
+    subcategory: "concrete-masonry-foundations",
+    description: "Calculate the concrete volume required to fill fence post or deck support holes based on depth and diameter.",
+    loader: () => import("@/components/calculators/Construction/RebarSpacingQuantityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
