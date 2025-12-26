@@ -5370,6 +5370,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/HvacBtuRequirementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "duct-size-airflow",
+    title: "Duct Size & Airflow Calculator",
+    category: "construction",
+    subcategory: "insulation-hvac-energy",
+    description: "Estimate duct size for efficient airflow.",
+    loader: () => import("@/components/calculators/Construction/DuctSizeAirflowCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
