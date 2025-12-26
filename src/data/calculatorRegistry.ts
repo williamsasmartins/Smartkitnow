@@ -4874,6 +4874,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/DeckBoardJoistSpacingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "drywall-area-sheets",
+    title: "Drywall Area & Sheets Calculator",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Calculate number of drywall sheets for walls/ceilings.",
+    loader: () => import("@/components/calculators/Construction/DrywallAreaSheetsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
