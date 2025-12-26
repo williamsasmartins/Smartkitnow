@@ -5163,6 +5163,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/CarpetRollWasteCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "board-foot",
+    title: "Board Foot Calculator",
+    category: "construction",
+    subcategory: "lumber-decking-fencing",
+    description: "Calculate lumber volume in board feet for pricing.",
+    loader: () => import("@/components/calculators/Construction/BoardFootCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
