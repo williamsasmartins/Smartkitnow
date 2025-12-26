@@ -5118,6 +5118,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/DeckBoardJoistSpacingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "stair-tread-riser-dimensions",
+    title: "Stair Tread & Riser Dimensions Calculator",
+    category: "construction",
+    subcategory: "lumber-decking-fencing",
+    description: "Calculate riser height, tread depth, and stringer length.",
+    loader: () => import("@/components/calculators/Construction/StairTreadRiserDimensionsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
