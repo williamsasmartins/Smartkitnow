@@ -5280,6 +5280,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/RoofPitchSlopeAngleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "roof-shingle-bundle",
+    title: "Roof Shingle & Bundle Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Estimate bundles of shingles for roof coverage.",
+    loader: () => import("@/components/calculators/Construction/RoofShingleBundleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
