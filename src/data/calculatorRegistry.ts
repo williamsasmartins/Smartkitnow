@@ -5208,6 +5208,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/BalusterSpacingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "paint-coverage-gallons",
+    title: "Paint Coverage & Gallons Needed Calculator",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Estimate gallons of paint required for room coverage.",
+    loader: () => import("@/components/calculators/Construction/PaintCoverageGallonsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
