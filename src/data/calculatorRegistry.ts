@@ -5181,6 +5181,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/FencePostMaterialLinearFeetCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tile-area-grout",
+    title: "Tile Area & Grout Calculator",
+    category: "construction",
+    subcategory: "lumber-decking-fencing",
+    description: "Calculate tiles and grout needed for floor/wall areas.",
+    loader: () => import("@/components/calculators/Construction/TileAreaGroutCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
