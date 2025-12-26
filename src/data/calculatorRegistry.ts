@@ -5289,6 +5289,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/RoofShingleBundleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "metal-roof-panel-coverage",
+    title: "Metal Roofing Panel Coverage Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Calculate metal panels needed for roofing projects.",
+    loader: () => import("@/components/calculators/Construction/MetalRoofPanelCoverageCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
