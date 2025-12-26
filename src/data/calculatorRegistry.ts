@@ -5055,6 +5055,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/RebarSpacingQuantityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "mortar-mix-ratio-bag",
+    title: "Mortar Mix Ratio & Bag Calculator",
+    category: "construction",
+    subcategory: "concrete-masonry-foundations",
+    description: "Estimate the concrete curing time. Determine how long your slab needs to set before it can be walked on or support heavy loads.",
+    loader: () => import("@/components/calculators/Construction/MortarMixRatioBagCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
