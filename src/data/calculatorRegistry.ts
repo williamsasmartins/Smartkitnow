@@ -5190,6 +5190,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/TileAreaGroutCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "flooring-material-cost",
+    title: "Flooring Material Cost Estimator",
+    category: "construction",
+    subcategory: "lumber-decking-fencing",
+    description: "Estimate total cost of flooring materials.",
+    loader: () => import("@/components/calculators/Construction/FlooringMaterialCostCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
