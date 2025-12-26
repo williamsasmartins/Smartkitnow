@@ -5325,6 +5325,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/GutterSizeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "hip-roof-calculator",
+    title: "Hip Roof Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Calculate area and materials for hip roof designs.",
+    loader: () => import("@/components/calculators/Construction/HipRoofCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
