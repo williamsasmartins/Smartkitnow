@@ -5271,6 +5271,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/PlywoodCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "roof-pitch-slope-angle",
+    title: "Roof Pitch & Slope Angle Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Calculate roof pitch, slope angle, and rafter length.",
+    loader: () => import("@/components/calculators/Construction/RoofPitchSlopeAngleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
