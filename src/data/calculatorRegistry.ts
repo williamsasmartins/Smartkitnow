@@ -5307,6 +5307,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/RoofUnderlaymentRollCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "siding-panel-coverage",
+    title: "Siding Panel Coverage Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Calculate siding panels required for exterior walls.",
+    loader: () => import("@/components/calculators/Construction/SidingPanelCoverageCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
