@@ -5343,6 +5343,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/GableRoofCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "excavation-calculator",
+    title: "Excavation Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Estimate soil volume to be removed for excavation.",
+    loader: () => import("@/components/calculators/Construction/ExcavationCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
