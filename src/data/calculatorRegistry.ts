@@ -5244,6 +5244,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/PlasterVolumeBagCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "acoustic-panel-area",
+    title: "Acoustic Panel Area Planner",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Calculate acoustic panel coverage for soundproofing.",
+    loader: () => import("@/components/calculators/Construction/AcousticPanelAreaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
