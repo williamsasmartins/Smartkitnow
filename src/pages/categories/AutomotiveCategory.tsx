@@ -54,11 +54,32 @@ const maintenanceCapacity: Item[] = [
   { name: "Payload & GVWR Utilization Helper", slug: "payload-gvwr-utilization" },
 ];
 
+// Electric Vehicles & Comparisons (16)
+const electricVehiclesComparisons: Item[] = [
+  { name: "EV Home vs Public Charging Cost & Time Calculator", slug: "ev-home-public-charging-cost-time" },
+  { name: "EV Cost Per Mile Calculator", slug: "ev-cost-per-mile" },
+  { name: "EV Real-World Range Estimator", slug: "ev-real-world-range" },
+  { name: "EV vs Hybrid vs Gas TCO Calculator", slug: "ev-hybrid-gas-tco" },
+  { name: "EV vs Hybrid Break-Even Point Calculator", slug: "ev-hybrid-break-even" },
+  { name: "Annual Fuel/Electricity Cost: EV vs Hybrid", slug: "annual-ev-hybrid-cost" },
+  { name: "EV Trip Cost & Charging Planner", slug: "ev-trip-cost-planner" },
+  { name: "CO2 Emissions Savings: EV vs Hybrid", slug: "ev-hybrid-co2-savings" },
+  { name: "EV Battery Degradation & Long-Term Range Estimator", slug: "ev-battery-degradation" },
+  { name: "Home Charger Installation Cost & Payback Calculator", slug: "ev-home-charger-payback" },
+  { name: "EV Incentives & Tax Credits Estimator", slug: "ev-incentives-estimator" },
+  { name: "EV Maintenance Savings vs Hybrid Calculator", slug: "ev-hybrid-maintenance-savings" },
+  { name: "EV Fast Charging Impact on Battery Life Calculator", slug: "ev-fast-charging-degradation" },
+  { name: "EV Solar Charging Savings Calculator", slug: "ev-solar-charging-savings" },
+  { name: "PHEV Electric vs Gas Mode Cost Calculator", slug: "phev-electric-gas-mode-cost" },
+  { name: "EV Preconditioning Energy & Cost Estimator", slug: "ev-preconditioning-cost" },
+];
+
 const TOTAL =
   consumptionCostsTravel.length +
   tiresWheelsSpeedometer.length +
   financingLeasingValue.length +
-  maintenanceCapacity.length; // 28
+  maintenanceCapacity.length +
+  electricVehiclesComparisons.length; // 44
 
 export default function AutomotiveCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
@@ -147,6 +168,14 @@ export default function AutomotiveCategory() {
               title={`Maintenance & Capacity (${maintenanceCapacity.length})`}
               description="Oil change interval planner, brake pad/rotor wear estimation, towing capacity safety margin (educational), and payload/GVWR utilization helper."
               items={maintenanceCapacity}
+              base="/automotive"
+            />
+
+            <Section
+              emoji="⚡"
+              title={`Electric Vehicles & Comparisons (${electricVehiclesComparisons.length})`}
+              description="EV charging cost/time, cost per mile, real-world range, TCO vs gas/hybrid, break-even point, CO2 savings, battery degradation, home charger payback, incentives, and solar charging savings."
+              items={electricVehiclesComparisons}
               base="/automotive"
             />
 

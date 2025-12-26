@@ -4875,6 +4875,150 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/DrywallAreaSheetsCalculator"),
     urlStyle: "flat"
   },
+  {
+    slug: "ev-home-public-charging-cost-time",
+    title: "EV Home vs Public Charging Cost & Time Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Estimate charging time and cost at home (Level 2) versus public stations, including electricity rates and charger power.",
+    loader: () => import("@/components/calculators/Automotive/EvHomePublicChargingCostTimeCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-cost-per-mile",
+    title: "EV Cost Per Mile Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Calculate the exact cost per mile or km for an EV based on efficiency (kWh/100mi) and local electricity prices.",
+    loader: () => import("@/components/calculators/Automotive/EvCostPerMileCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-real-world-range",
+    title: "EV Real-World Range Estimator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Adjust official EV range for real-world factors like temperature, speed, AC use, and driving style.",
+    loader: () => import("@/components/calculators/Automotive/EvRealWorldRangeEstimatorCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-hybrid-gas-tco",
+    title: "EV vs Hybrid vs Gas TCO Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Compare total cost of ownership over 5-10 years, including purchase price, fuel/electricity, maintenance, incentives, and depreciation.",
+    loader: () => import("@/components/calculators/Automotive/EvHybridGasTcoCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-hybrid-break-even",
+    title: "EV vs Hybrid Break-Even Point Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Determine how many miles or years needed for an EV to become cheaper than a hybrid or gas car.",
+    loader: () => import("@/components/calculators/Automotive/EvHybridBreakEvenCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "annual-ev-hybrid-cost",
+    title: "Annual Fuel/Electricity Cost: EV vs Hybrid",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Compare yearly operating costs for EV, hybrid, and gas vehicles based on annual mileage and local rates.",
+    loader: () => import("@/components/calculators/Automotive/AnnualEvHybridCostCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-trip-cost-planner",
+    title: "EV Trip Cost & Charging Planner",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Calculate total cost and required charging stops for a specific road trip in an EV.",
+    loader: () => import("@/components/calculators/Automotive/EvTripCostPlannerCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-hybrid-co2-savings",
+    title: "CO2 Emissions Savings: EV vs Hybrid",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Estimate carbon emissions reduction when switching from hybrid/gas to EV, based on mileage and grid cleanliness.",
+    loader: () => import("@/components/calculators/Automotive/EvHybridCo2SavingsCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-battery-degradation",
+    title: "EV Battery Degradation & Long-Term Range Estimator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Predict battery capacity loss over years and impact on range, based on usage and charging habits.",
+    loader: () => import("@/components/calculators/Automotive/EvBatteryDegradationCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-home-charger-payback",
+    title: "Home Charger Installation Cost & Payback Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Estimate installation cost for a Level 2 charger and payback period through savings vs public charging.",
+    loader: () => import("@/components/calculators/Automotive/EvHomeChargerPaybackCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-incentives-estimator",
+    title: "EV Incentives & Tax Credits Estimator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Calculate available federal/state rebates, tax credits, and net purchase price for specific EV models.",
+    loader: () => import("@/components/calculators/Automotive/EvIncentivesEstimatorCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-hybrid-maintenance-savings",
+    title: "EV Maintenance Savings vs Hybrid Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Compare long-term maintenance and repair costs between EVs and hybrids, factoring in fewer moving parts, brake regeneration, and no oil changes.",
+    loader: () => import("@/components/calculators/Automotive/EvHybridMaintenanceSavingsCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-fast-charging-degradation",
+    title: "EV Fast Charging Impact on Battery Life Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Estimate battery degradation acceleration from frequent DC fast charging vs slower AC charging, based on usage patterns and temperature.",
+    loader: () => import("@/components/calculators/Automotive/EvFastChargingDegradationCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-solar-charging-savings",
+    title: "EV Solar Charging Savings Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Calculate cost savings and payback when charging an EV with home solar panels, including excess energy credits and reduced grid reliance.",
+    loader: () => import("@/components/calculators/Automotive/EvSolarChargingSavingsCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "phev-electric-gas-mode-cost",
+    title: "PHEV Electric vs Gas Mode Cost Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "For plug-in hybrids: Compare costs of driving in electric-only mode vs gas mode for daily commutes or trips.",
+    loader: () => import("@/components/calculators/Automotive/PhevElectricGasModeCostCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-preconditioning-cost",
+    title: "EV Preconditioning Energy & Cost Estimator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Estimate battery energy used and cost for preconditioning (heating/cooling) the cabin while plugged in, vs doing it while driving.",
+    loader: () => import("@/components/calculators/Automotive/EvPreconditioningCostCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
