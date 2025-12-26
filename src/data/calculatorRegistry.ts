@@ -5406,6 +5406,114 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/CfmCalculator"),
     urlStyle: "flat"
   },
+  {
+    slug: "hp-from-quarter-mile-et",
+    title: "Horsepower from Quarter Mile ET Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Estimate engine horsepower based on vehicle weight and quarter-mile elapsed time (ET).",
+    loader: () => import("@/components/calculators/Automotive/HpFromQuarterMileEtCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "quarter-mile-et-mph-from-hp",
+    title: "Quarter Mile ET & MPH from HP Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Predict quarter-mile elapsed time (ET) and trap speed (MPH) from horsepower and vehicle weight.",
+    loader: () => import("@/components/calculators/Automotive/QuarterMileEtMphFromHpCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "zero-to-sixty-time",
+    title: "0-60 mph Acceleration Time Estimator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Calculate 0-60 mph time based on horsepower, torque, weight, and drivetrain type.",
+    loader: () => import("@/components/calculators/Automotive/ZeroToSixtyTimeCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "hp-to-torque-converter",
+    title: "Horsepower to Torque Converter",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Convert between horsepower and torque at a given RPM (using the standard formula).",
+    loader: () => import("@/components/calculators/Automotive/HpToTorqueConverterCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "engine-displacement",
+    title: "Engine Displacement Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Calculate engine size (cc or cubic inches) from bore, stroke, and number of cylinders.",
+    loader: () => import("@/components/calculators/Automotive/EngineDisplacementCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "compression-ratio",
+    title: "Compression Ratio Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Determine engine compression ratio based on chamber volume, piston dome/dish, and deck height.",
+    loader: () => import("@/components/calculators/Automotive/CompressionRatioCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "carb-cfm-sizing",
+    title: "Carburetor CFM Sizing Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Estimate required carburetor airflow (CFM) for your engine based on RPM and volumetric efficiency.",
+    loader: () => import("@/components/calculators/Automotive/CarbCfmSizingCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "camshaft-duration-overlap",
+    title: "Camshaft Duration & Overlap Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Calculate intake/exhaust duration, overlap, and lobe separation angle for cam selection.",
+    loader: () => import("@/components/calculators/Automotive/CamshaftDurationOverlapCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "header-tube-length-diameter",
+    title: "Header Primary Tube Length & Diameter Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Optimize exhaust header dimensions for peak torque RPM and engine specs.",
+    loader: () => import("@/components/calculators/Automotive/HeaderTubeLengthDiameterCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "mod-power-gains-estimator",
+    title: "Power Gains from Modifications Estimator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Estimate horsepower and torque gains from common mods like intake, exhaust, cam, or turbo.",
+    loader: () => import("@/components/calculators/Automotive/ModPowerGainsEstimatorCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ev-acceleration-torque",
+    title: "EV Acceleration & Torque Delivery Estimator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Calculate 0-60 time and effective torque for electric vehicles based on motor power, battery output, and weight.",
+    loader: () => import("@/components/calculators/Automotive/EvAccelerationTorqueCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "dyno-correction-factor",
+    title: "Dyno Correction Factor Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Adjust dyno-measured horsepower and torque for standard atmospheric conditions (SAE, DIN, etc.).",
+    loader: () => import("@/components/calculators/Automotive/DynoCorrectionFactorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 

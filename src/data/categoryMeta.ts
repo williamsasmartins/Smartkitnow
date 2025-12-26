@@ -32,6 +32,9 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
 
 // Optional: subcategory display normalization for sections where you want short keys in routes
 export const SUBCATEGORY_DISPLAY: Record<string, Record<string, string>> = {
+  "automotive": {
+    "performance-tuning": "Performance & Tuning",
+  },
   "everyday": {
     "home": "Home & Routine",
     "events": "Events & Hosting",
