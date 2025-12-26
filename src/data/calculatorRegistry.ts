@@ -5361,6 +5361,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/InsulationRValueRequirementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "hvac-btu-requirement",
+    title: "HVAC BTU Requirement Calculator",
+    category: "construction",
+    subcategory: "insulation-hvac-energy",
+    description: "Calculate BTU output needed for heating/cooling.",
+    loader: () => import("@/components/calculators/Construction/HvacBtuRequirementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
