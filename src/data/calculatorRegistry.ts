@@ -5091,6 +5091,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/ConcreteCuringTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brick-calculator",
+    title: "Brick Calculator",
+    category: "construction",
+    subcategory: "concrete-masonry-foundations",
+    description: "Brick Calculator Calculate the number of bricks and amount of mortar needed for your wall project. Enter wall dimensions and brick size to get precise material estimates and minimize waste.",
+    loader: () => import("@/components/calculators/Construction/BrickCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
