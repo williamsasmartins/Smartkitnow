@@ -5073,6 +5073,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/CementSandAggregateRatioCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "concrete-weight-yield",
+    title: "Concrete Weight & Yield Calculator",
+    category: "construction",
+    subcategory: "concrete-masonry-foundations",
+    description: "Estimate the volume of mortar required for laying concrete block walls. Minimize waste and ensure enough material is on hand.",
+    loader: () => import("@/components/calculators/Construction/ConcreteWeightYieldCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
