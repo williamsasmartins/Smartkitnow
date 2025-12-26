@@ -5028,6 +5028,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/ConcreteSlabVolumeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "concrete-footing-foundation",
+    title: "Concrete Footing & Foundation Calculator",
+    category: "construction",
+    subcategory: "concrete-masonry-foundations",
+    description: "Estimate concrete volume for footings and foundations. Calculate the amount of rebar needed for structural reinforcement.",
+    loader: () => import("@/components/calculators/Construction/ConcreteFootingFoundationCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
