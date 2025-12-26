@@ -5253,6 +5253,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/AcousticPanelAreaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "joint-compound-amount",
+    title: "Joint Compound Amount Calculator",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Estimate joint compound needed for drywall finishing.",
+    loader: () => import("@/components/calculators/Construction/JointCompoundAmountCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
