@@ -74,12 +74,29 @@ const electricVehiclesComparisons: Item[] = [
   { name: "EV Preconditioning Energy & Cost Estimator", slug: "ev-preconditioning-cost" },
 ];
 
+// Performance & Tuning (12)
+const performanceTuning: Item[] = [
+  { name: "Horsepower from Quarter Mile ET Calculator", slug: "hp-from-quarter-mile-et" },
+  { name: "Quarter Mile ET & MPH from HP Calculator", slug: "quarter-mile-et-mph-from-hp" },
+  { name: "0-60 mph Acceleration Time Estimator", slug: "zero-to-sixty-time" },
+  { name: "Horsepower to Torque Converter", slug: "hp-to-torque-converter" },
+  { name: "Engine Displacement Calculator", slug: "engine-displacement" },
+  { name: "Compression Ratio Calculator", slug: "compression-ratio" },
+  { name: "Carburetor CFM Sizing Calculator", slug: "carb-cfm-sizing" },
+  { name: "Camshaft Duration & Overlap Calculator", slug: "camshaft-duration-overlap" },
+  { name: "Header Primary Tube Length & Diameter Calculator", slug: "header-tube-length-diameter" },
+  { name: "Power Gains from Modifications Estimator", slug: "mod-power-gains-estimator" },
+  { name: "EV Acceleration & Torque Delivery Estimator", slug: "ev-acceleration-torque" },
+  { name: "Dyno Correction Factor Calculator", slug: "dyno-correction-factor" },
+];
+
 const TOTAL =
   consumptionCostsTravel.length +
   tiresWheelsSpeedometer.length +
   financingLeasingValue.length +
   maintenanceCapacity.length +
-  electricVehiclesComparisons.length; // 44
+  electricVehiclesComparisons.length +
+  performanceTuning.length; // 56
 
 export default function AutomotiveCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
@@ -176,6 +193,14 @@ export default function AutomotiveCategory() {
               title={`Electric Vehicles & Comparisons (${electricVehiclesComparisons.length})`}
               description="EV charging cost/time, cost per mile, real-world range, TCO vs gas/hybrid, break-even point, CO2 savings, battery degradation, home charger payback, incentives, and solar charging savings."
               items={electricVehiclesComparisons}
+              base="/automotive"
+            />
+
+            <Section
+              emoji="🏎️"
+              title={`Performance & Tuning (${performanceTuning.length})`}
+              description="Estimate horsepower, quarter-mile times, 0-60 acceleration, compression ratio, engine displacement, carburetor sizing, and more."
+              items={performanceTuning}
               base="/automotive"
             />
 
