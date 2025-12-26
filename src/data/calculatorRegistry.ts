@@ -5397,6 +5397,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/EnergyEfficiencySavingsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cfm-calculator",
+    title: "CFM Calculator",
+    category: "construction",
+    subcategory: "insulation-hvac-energy",
+    description: "Calculate Cubic Feet per Minute (CFM) for ventilation.",
+    loader: () => import("@/components/calculators/Construction/CfmCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
