@@ -5262,6 +5262,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/JointCompoundAmountCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "plywood-calculator",
+    title: "Plywood Calculator",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Calculate number of plywood sheets for subfloors/sheathing.",
+    loader: () => import("@/components/calculators/Construction/PlywoodCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
