@@ -5208,6 +5208,204 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/BalusterSpacingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "paint-coverage-gallons",
+    title: "Paint Coverage & Gallons Needed Calculator",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Estimate gallons of paint required for room coverage.",
+    loader: () => import("@/components/calculators/Construction/PaintCoverageGallonsCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "wallpaper-roll-coverage",
+    title: "Wallpaper Roll Coverage Calculator",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Calculate number of wallpaper rolls needed for a room.",
+    loader: () => import("@/components/calculators/Construction/WallpaperRollCoverageCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "ceiling-tile-quantity",
+    title: "Ceiling Tile Quantity Calculator",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Estimate tiles needed for drop ceilings.",
+    loader: () => import("@/components/calculators/Construction/CeilingTileQuantityCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "plaster-volume-bag",
+    title: "Plaster Volume & Bag Estimator",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Calculate plaster volume and bags for wall repairs.",
+    loader: () => import("@/components/calculators/Construction/PlasterVolumeBagCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "acoustic-panel-area",
+    title: "Acoustic Panel Area Planner",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Calculate acoustic panel coverage for soundproofing.",
+    loader: () => import("@/components/calculators/Construction/AcousticPanelAreaCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "joint-compound-amount",
+    title: "Joint Compound Amount Calculator",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Estimate joint compound needed for drywall finishing.",
+    loader: () => import("@/components/calculators/Construction/JointCompoundAmountCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "plywood-calculator",
+    title: "Plywood Calculator",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Calculate number of plywood sheets for subfloors/sheathing.",
+    loader: () => import("@/components/calculators/Construction/PlywoodCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "roof-pitch-slope-angle",
+    title: "Roof Pitch & Slope Angle Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Calculate roof pitch, slope angle, and rafter length.",
+    loader: () => import("@/components/calculators/Construction/RoofPitchSlopeAngleCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "roof-shingle-bundle",
+    title: "Roof Shingle & Bundle Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Estimate bundles of shingles for roof coverage.",
+    loader: () => import("@/components/calculators/Construction/RoofShingleBundleCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "metal-roof-panel-coverage",
+    title: "Metal Roofing Panel Coverage Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Calculate metal panels needed for roofing projects.",
+    loader: () => import("@/components/calculators/Construction/MetalRoofPanelCoverageCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "roof-underlayment-roll",
+    title: "Roof Underlayment Roll Estimator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Estimate rolls of underlayment for roof protection.",
+    loader: () => import("@/components/calculators/Construction/RoofUnderlaymentRollCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "siding-panel-coverage",
+    title: "Siding Panel Coverage Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Calculate siding panels required for exterior walls.",
+    loader: () => import("@/components/calculators/Construction/SidingPanelCoverageCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "gutter-size",
+    title: "Roof Drainage (Gutter Size) Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Determine appropriate gutter size based on roof area.",
+    loader: () => import("@/components/calculators/Construction/GutterSizeCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "hip-roof-calculator",
+    title: "Hip Roof Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Calculate area and materials for hip roof designs.",
+    loader: () => import("@/components/calculators/Construction/HipRoofCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "gable-roof-calculator",
+    title: "Gable Roof Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Calculate area and materials for gable roof designs.",
+    loader: () => import("@/components/calculators/Construction/GableRoofCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "excavation-calculator",
+    title: "Excavation Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Estimate soil volume to be removed for excavation.",
+    loader: () => import("@/components/calculators/Construction/ExcavationCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "insulation-r-value-requirement",
+    title: "Insulation R-Value Requirement Calculator",
+    category: "construction",
+    subcategory: "insulation-hvac-energy",
+    description: "Determine recommended insulation R-values by zone.",
+    loader: () => import("@/components/calculators/Construction/InsulationRValueRequirementCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "hvac-btu-requirement",
+    title: "HVAC BTU Requirement Calculator",
+    category: "construction",
+    subcategory: "insulation-hvac-energy",
+    description: "Calculate BTU output needed for heating/cooling.",
+    loader: () => import("@/components/calculators/Construction/HvacBtuRequirementCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "duct-size-airflow",
+    title: "Duct Size & Airflow Calculator",
+    category: "construction",
+    subcategory: "insulation-hvac-energy",
+    description: "Estimate duct size for efficient airflow.",
+    loader: () => import("@/components/calculators/Construction/DuctSizeAirflowCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "heating-cost-per-square-foot",
+    title: "Heating Cost per Square Foot Estimator",
+    category: "construction",
+    subcategory: "insulation-hvac-energy",
+    description: "Estimate heating costs based on area and fuel type.",
+    loader: () => import("@/components/calculators/Construction/HeatingCostPerSquareFootCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "energy-efficiency-savings",
+    title: "Energy Efficiency Savings Estimator",
+    category: "construction",
+    subcategory: "insulation-hvac-energy",
+    description: "Calculate potential savings from energy upgrades.",
+    loader: () => import("@/components/calculators/Construction/EnergyEfficiencySavingsCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "cfm-calculator",
+    title: "CFM Calculator",
+    category: "construction",
+    subcategory: "insulation-hvac-energy",
+    description: "Calculate Cubic Feet per Minute (CFM) for ventilation.",
+    loader: () => import("@/components/calculators/Construction/CfmCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
