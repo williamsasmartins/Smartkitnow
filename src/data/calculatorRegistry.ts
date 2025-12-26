@@ -5172,6 +5172,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/BoardFootCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fence-post-material-linear-feet",
+    title: "Fence Post & Material Calculator",
+    category: "construction",
+    subcategory: "lumber-decking-fencing",
+    description: "Estimate posts, rails, and pickets for fencing.",
+    loader: () => import("@/components/calculators/Construction/FencePostMaterialLinearFeetCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
