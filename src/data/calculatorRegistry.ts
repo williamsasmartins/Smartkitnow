@@ -5379,6 +5379,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/DuctSizeAirflowCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "heating-cost-per-square-foot",
+    title: "Heating Cost per Square Foot Estimator",
+    category: "construction",
+    subcategory: "insulation-hvac-energy",
+    description: "Estimate heating costs based on area and fuel type.",
+    loader: () => import("@/components/calculators/Construction/HeatingCostPerSquareFootCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
