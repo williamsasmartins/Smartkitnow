@@ -5100,6 +5100,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/BrickCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "retaining-wall-calculator",
+    title: "Retaining Wall Calculator",
+    category: "construction",
+    subcategory: "concrete-masonry-foundations",
+    description: "Retaining Wall Calculator Plan your retaining wall project with precision. Calculate the number of retaining blocks, gravel backing, and drainage materials needed to build a stable and long-lasting structure.",
+    loader: () => import("@/components/calculators/Construction/RetainingWallCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
