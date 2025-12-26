@@ -4875,33 +4875,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/DrywallAreaSheetsCalculator"),
     urlStyle: "flat"
   },
-    {
-    slug: "concrete-slab-volume",
-    title: "Concrete Slab Volume Calculator",
-    category: "construction",
-    subcategory: "concrete-masonry-foundations",
-    description: "Calculate the exact volume of concrete needed for slabs, patios, or driveways. Avoid over-ordering and minimize material waste.",
-    loader: () => import("@/components/calculators/Construction/ConcreteSlabVolumeCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "concrete-footing-foundation",
-    title: "Concrete Footing & Foundation Calculator",
-    category: "construction",
-    subcategory: "concrete-masonry-foundations",
-    description: "Estimate concrete volume for footings and foundations. Calculate the amount of rebar needed for structural reinforcement.",
-    loader: () => import("@/components/calculators/Construction/ConcreteFootingFoundationCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "concrete-block-cmu-wall",
-    title: "Concrete Block (CMU) Wall Calculator",
-    category: "construction",
-    subcategory: "concrete-masonry-foundations",
-    description: "Determine the perfect concrete mix ratio (cement, sand, gravel). Essential for strong, durable, and professional-grade DIY concrete projects.",
-    loader: () => import("@/components/calculators/Construction/ConcreteBlockCmuWallCalculator"),
-    urlStyle: "flat"
-  },
+    
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
