@@ -5127,6 +5127,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/StairTreadRiserDimensionsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "trim-baseboard-length-estimator",
+    title: "Trim & Baseboard Length Estimator",
+    category: "construction",
+    subcategory: "lumber-decking-fencing",
+    description: "Estimate total linear feet of trim or baseboard needed.",
+    loader: () => import("@/components/calculators/Construction/TrimBaseboardLengthEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
