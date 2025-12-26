@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, Navigate } from "react-router-dom";
 import { useState } from "react";
 
 import { ArrowLeft } from "lucide-react";
@@ -6,6 +6,7 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/component
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import AdRailLayout from "@/components/layouts/AdRailLayout";
 import AdSlot from "@/components/ads/AdSlot";
+import SEOHead from "@/components/SEOHead";
 import {
   FRIENDLY_TITLES,
   listSubcategoriesOfCategory,
