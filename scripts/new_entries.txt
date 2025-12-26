@@ -1,0 +1,225 @@
+  {
+    slug: "trip-fuel-cost",
+    title: "Trip Fuel Cost Calculator",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Calculate fuel cost for a trip based on distance, fuel economy (mpg or L/100km), and fuel price.",
+    loader: () => import("@/components/calculators/Automotive/TripFuelCostCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "fuel-economy-converter",
+    title: "Fuel Economy Converter",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Convert between MPG (US/UK) and L/100km easily.",
+    loader: () => import("@/components/calculators/Automotive/FuelEconomyConverterCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "annual-fuel-cost-break-even",
+    title: "Annual Fuel Cost & Break-Even",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Compare annual fuel costs between gas, electric, and E85 vehicles to find your break-even point.",
+    loader: () => import("@/components/calculators/Automotive/AnnualFuelCostBreakEvenCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ice-vs-ev-ownership-cost",
+    title: "ICE vs EV Ownership Cost",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Compare the 5-year ownership cost of Internal Combustion Engine (ICE) vs Electric Vehicles (EV).",
+    loader: () => import("@/components/calculators/Automotive/IceVsEvOwnershipCostCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "carbon-emissions-per-trip",
+    title: "Carbon Emissions per Trip",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Estimate the carbon footprint of your car trips based on vehicle type and distance.",
+    loader: () => import("@/components/calculators/Automotive/CarbonEmissionsPerTripCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "total-cost-of-ownership",
+    title: "Total Cost of Ownership (TCO) Calculator",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Calculate the comprehensive Total Cost of Ownership (TCO) for any vehicle.",
+    loader: () => import("@/components/calculators/Automotive/TotalCostOfOwnershipCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "tire-size-comparison",
+    title: "Tire Size Comparison",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Compare two tire sizes visually and see differences in diameter, width, and sidewall.",
+    loader: () => import("@/components/calculators/Automotive/TireSizeComparisonCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "speedometer-error",
+    title: "Speedometer Error",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Calculate speedometer error caused by changing tire sizes.",
+    loader: () => import("@/components/calculators/Automotive/SpeedometerErrorCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "wheel-offset-backspacing",
+    title: "Wheel Offset/Backspacing Calculator",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Convert between wheel offset and backspacing to ensure proper fitment.",
+    loader: () => import("@/components/calculators/Automotive/WheelOffsetBackspacingCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "tire-revolutions-per-mile",
+    title: "Tire Revolutions per Mile & RPM @ Speed",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Calculate tire revolutions per mile and estimate engine RPM at a given speed.",
+    loader: () => import("@/components/calculators/Automotive/TireRevolutionsPerMileCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "final-drive-gear-ratio-speed",
+    title: "Final Drive & Gear Ratio Speed Calculator",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Determine vehicle speed based on gear ratio, final drive, tire size, and RPM.",
+    loader: () => import("@/components/calculators/Automotive/FinalDriveGearRatioSpeedCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "shift-point-rpm-drop",
+    title: "Shift Point RPM Drop Estimator",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Estimate the RPM drop after shifting gears to keep the engine in its power band.",
+    loader: () => import("@/components/calculators/Automotive/ShiftPointRpmDropCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "zero-to-sixty-speed-gear-rpm",
+    title: "0–60 Speed vs Gear/RPM",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Educational estimator for 0-60 times based on power, weight, and gearing.",
+    loader: () => import("@/components/calculators/Automotive/ZeroToSixtySpeedGearRpmCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "car-loan-payment-amortization",
+    title: "Car Loan Payment & Amortization Calculator",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "Calculate monthly car loan payments and view the full amortization schedule.",
+    loader: () => import("@/components/calculators/Automotive/CarLoanPaymentAmortizationCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "lease-vs-buy",
+    title: "Lease vs Buy Calculator",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "Compare the financial impact of leasing versus buying a car over a set period.",
+    loader: () => import("@/components/calculators/Automotive/LeaseVsBuyCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "down-payment-impact-payoff-time",
+    title: "Down Payment Impact & Payoff Time",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "See how increasing your down payment affects monthly payments and total interest paid.",
+    loader: () => import("@/components/calculators/Automotive/DownPaymentImpactPayoffTimeCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "depreciation-curve-estimator",
+    title: "Depreciation Curve Estimator",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "Estimate how much value a car loses over time based on segment and age.",
+    loader: () => import("@/components/calculators/Automotive/DepreciationCurveEstimatorCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "insurance-cost-per-year",
+    title: "Insurance Cost per Year",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "Get a simple estimation of annual car insurance costs based on typical factors.",
+    loader: () => import("@/components/calculators/Automotive/InsuranceCostPerYearCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "sales-tax-title-fees",
+    title: "Sales Tax, Title & Fees Out-the-Door Estimator",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "Estimate the total out-the-door price including sales tax, title, and registration fees.",
+    loader: () => import("@/components/calculators/Automotive/SalesTaxTitleFeesCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "used-car-value-estimator",
+    title: "Used Car Value Estimator",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "Estimate the fair market value of a used car for trade-in or private party sale.",
+    loader: () => import("@/components/calculators/Automotive/UsedCarValueEstimatorCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "low-apr-vs-cash-back",
+    title: "Low APR vs. Cash Back Incentive Calculator",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "Decide between a low interest rate loan or a cash rebate upfront.",
+    loader: () => import("@/components/calculators/Automotive/LowAprVsCashBackCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "oil-change-interval-planner",
+    title: "Oil Change Interval Planner",
+    category: "automotive",
+    subcategory: "maintenance-capacity",
+    description: "Plan your next oil change based on mileage, time, and driving conditions.",
+    loader: () => import("@/components/calculators/Automotive/OilChangeIntervalPlannerCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "brake-pad-rotor-wear",
+    title: "Brake Pad/Rotors Wear Estimator",
+    category: "automotive",
+    subcategory: "maintenance-capacity",
+    description: "Estimate the remaining life of your brake pads and rotors.",
+    loader: () => import("@/components/calculators/Automotive/BrakePadRotorWearCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "towing-capacity-safety-margin",
+    title: "Towing Capacity Safety Margin Checker",
+    category: "automotive",
+    subcategory: "maintenance-capacity",
+    description: "Check if your load is within a safe towing margin for your vehicle.",
+    loader: () => import("@/components/calculators/Automotive/TowingCapacitySafetyMarginCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "payload-gvwr-utilization",
+    title: "Payload & GVWR Utilization Helper",
+    category: "automotive",
+    subcategory: "maintenance-capacity",
+    description: "Calculate payload utilization to ensure you don't exceed your vehicle's GVWR.",
+    loader: () => import("@/components/calculators/Automotive/PayloadGvwrUtilizationCalculator"),
+    urlStyle: "flat"
+  },
