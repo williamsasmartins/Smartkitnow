@@ -5154,6 +5154,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/LaminateFlooringWasteAllowanceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "carpet-roll-waste",
+    title: "Carpet Roll & Waste Calculator",
+    category: "construction",
+    subcategory: "lumber-decking-fencing",
+    description: "Calculate carpet rolls required including installation waste.",
+    loader: () => import("@/components/calculators/Construction/CarpetRollWasteCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
