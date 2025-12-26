@@ -4865,6 +4865,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
   
    
   
+    {
+    slug: "deck-board-joist-spacing",
+    title: "Deck Board & Joist Spacing Calculator",
+    category: "construction",
+    subcategory: "lumber-decking-fencing",
+    description: "Calculate deck board quantity and joist spacing.",
+    loader: () => import("@/components/calculators/Construction/DeckBoardJoistSpacingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
