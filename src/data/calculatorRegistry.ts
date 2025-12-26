@@ -5145,6 +5145,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/HardwoodPlankQuantityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "laminate-flooring-waste-allowance",
+    title: "Laminate Flooring Waste Allowance Calculator",
+    category: "construction",
+    subcategory: "lumber-decking-fencing",
+    description: "Estimate extra laminate flooring needed for cuts/waste.",
+    loader: () => import("@/components/calculators/Construction/LaminateFlooringWasteAllowanceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
