@@ -5388,6 +5388,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/HeatingCostPerSquareFootCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "energy-efficiency-savings",
+    title: "Energy Efficiency Savings Estimator",
+    category: "construction",
+    subcategory: "insulation-hvac-energy",
+    description: "Calculate potential savings from energy upgrades.",
+    loader: () => import("@/components/calculators/Construction/EnergyEfficiencySavingsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
