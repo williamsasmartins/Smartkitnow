@@ -5217,6 +5217,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/PaintCoverageGallonsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "wallpaper-roll-coverage",
+    title: "Wallpaper Roll Coverage Calculator",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Calculate number of wallpaper rolls needed for a room.",
+    loader: () => import("@/components/calculators/Construction/WallpaperRollCoverageCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
