@@ -5235,6 +5235,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/CeilingTileQuantityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "plaster-volume-bag",
+    title: "Plaster Volume & Bag Estimator",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Calculate plaster volume and bags for wall repairs.",
+    loader: () => import("@/components/calculators/Construction/PlasterVolumeBagCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
