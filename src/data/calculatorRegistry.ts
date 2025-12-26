@@ -5064,6 +5064,33 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/MortarMixRatioBagCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cement-sand-aggregate-ratio",
+    title: "Cement, Sand & Aggregate Ratio Calculator",
+    category: "construction",
+    subcategory: "concrete-masonry-foundations",
+    description: "Calculate the number of concrete masonry units (CMU) or cinder blocks needed for walls and structures.",
+    loader: () => import("@/components/calculators/Construction/CementSandAggregateRatioCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "concrete-weight-yield",
+    title: "Concrete Weight & Yield Calculator",
+    category: "construction",
+    subcategory: "concrete-masonry-foundations",
+    description: "Estimate the volume of mortar required for laying concrete block walls. Minimize waste and ensure enough material is on hand.",
+    loader: () => import("@/components/calculators/Construction/ConcreteWeightYieldCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "concrete-curing-time",
+    title: "Concrete Curing Time Estimator",
+    category: "construction",
+    subcategory: "concrete-masonry-foundations",
+    description: "Concrete Curing Time Estimator Estimate the time required for concrete to reach its full strength. Factors in ambient temperature, mix type, and curing methods to ensure durability and safety before removing forms or applying loads.",
+    loader: () => import("@/components/calculators/Construction/ConcreteCuringTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
