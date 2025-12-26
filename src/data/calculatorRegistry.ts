@@ -5352,6 +5352,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/ExcavationCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "insulation-r-value-requirement",
+    title: "Insulation R-Value Requirement Calculator",
+    category: "construction",
+    subcategory: "insulation-hvac-energy",
+    description: "Determine recommended insulation R-values by zone.",
+    loader: () => import("@/components/calculators/Construction/InsulationRValueRequirementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
