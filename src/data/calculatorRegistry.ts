@@ -5064,6 +5064,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/MortarMixRatioBagCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cement-sand-aggregate-ratio",
+    title: "Cement, Sand & Aggregate Ratio Calculator",
+    category: "construction",
+    subcategory: "concrete-masonry-foundations",
+    description: "Calculate the number of concrete masonry units (CMU) or cinder blocks needed for walls and structures.",
+    loader: () => import("@/components/calculators/Construction/CementSandAggregateRatioCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
