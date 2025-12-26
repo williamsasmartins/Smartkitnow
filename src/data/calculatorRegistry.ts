@@ -5316,6 +5316,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/SidingPanelCoverageCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "gutter-size",
+    title: "Roof Drainage (Gutter Size) Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Determine appropriate gutter size based on roof area.",
+    loader: () => import("@/components/calculators/Construction/GutterSizeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
