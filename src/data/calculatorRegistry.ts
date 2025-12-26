@@ -5082,6 +5082,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/ConcreteWeightYieldCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "concrete-curing-time",
+    title: "Concrete Curing Time Estimator",
+    category: "construction",
+    subcategory: "concrete-masonry-foundations",
+    description: "Concrete Curing Time Estimator Estimate the time required for concrete to reach its full strength. Factors in ambient temperature, mix type, and curing methods to ensure durability and safety before removing forms or applying loads.",
+    loader: () => import("@/components/calculators/Construction/ConcreteCuringTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
