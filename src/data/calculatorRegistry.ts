@@ -5334,6 +5334,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/HipRoofCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "gable-roof-calculator",
+    title: "Gable Roof Calculator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Calculate area and materials for gable roof designs.",
+    loader: () => import("@/components/calculators/Construction/GableRoofCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
