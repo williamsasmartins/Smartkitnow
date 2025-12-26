@@ -5226,6 +5226,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/WallpaperRollCoverageCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ceiling-tile-quantity",
+    title: "Ceiling Tile Quantity Calculator",
+    category: "construction",
+    subcategory: "interior-surfaces-finishes",
+    description: "Estimate tiles needed for drop ceilings.",
+    loader: () => import("@/components/calculators/Construction/CeilingTileQuantityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
