@@ -5298,6 +5298,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/MetalRoofPanelCoverageCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "roof-underlayment-roll",
+    title: "Roof Underlayment Roll Estimator",
+    category: "construction",
+    subcategory: "roofing-siding-site-prep",
+    description: "Estimate rolls of underlayment for roof protection.",
+    loader: () => import("@/components/calculators/Construction/RoofUnderlaymentRollCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
