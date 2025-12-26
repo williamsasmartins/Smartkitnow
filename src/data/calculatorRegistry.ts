@@ -5267,7 +5267,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
 
    
   // SKN-AUTO-REGISTER: do not remove this line
-  },
+  ];
 
 // ====================================================================
 // HELPER FUNCTIONS
