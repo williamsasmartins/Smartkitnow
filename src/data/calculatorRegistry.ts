@@ -4876,6 +4876,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     
+    {
+    slug: "concrete-slab-volume",
+    title: "Concrete Slab Volume Calculator",
+    category: "construction",
+    subcategory: "concrete-masonry-foundations",
+    description: "Calculate the exact volume of concrete needed for slabs, patios, or driveways. Avoid over-ordering and minimize material waste.",
+    loader: () => import("@/components/calculators/Construction/ConcreteSlabVolumeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
