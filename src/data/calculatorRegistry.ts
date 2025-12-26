@@ -5136,6 +5136,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/TrimBaseboardLengthEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "hardwood-plank-quantity",
+    title: "Hardwood Plank Quantity Calculator",
+    category: "construction",
+    subcategory: "lumber-decking-fencing",
+    description: "Calculate number of hardwood planks for flooring.",
+    loader: () => import("@/components/calculators/Construction/HardwoodPlankQuantityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
