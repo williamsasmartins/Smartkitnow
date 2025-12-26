@@ -23,20 +23,38 @@ export default function CategoryIndex() {
   const navigate = useNavigate();
   const { category = "" } = useParams<{ category: string }>();
 
-  const title =
-    FRIENDLY_TITLES[category] ??
-    category.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
-  const subcats = listSubcategoriesOfCategory(category);
+  // Normalize category to handle case sensitivity
+  const normalizedCategory = category.toLowerCase();
+
+  // Redirect invalid or generic pages that cause SEO issues
+  if (normalizedCategory === 'home' || normalizedCategory === 'discover') {
+    return <Navigate to="/" replace />;
+  }
+
+  // If category is not in our registry, redirect to home (or 404)
+  if (!FRIENDLY_TITLES[normalizedCategory]) {
+    return <Navigate to="/" replace />;
+  }
+
+  const title = FRIENDLY_TITLES[normalizedCategory];
+  const subcats = listSubcategoriesOfCategory(normalizedCategory);
 
   // Estado para controlar o comportamento "Read more" da copy em Health
   const [healthCopyOpen, setHealthCopyOpen] = useState(false);
   // Estado para controlar o comportamento "Read more" da copy em Financial
   const [financialCopyOpen, setFinancialCopyOpen] = useState(false);
 
-  const totalInCategory = listByCategory(category).length;
+  const totalInCategory = listByCategory(normalizedCategory).length;
+  const canonicalUrl = `https://smartkitnow.com/${normalizedCategory}`;
+  const description = `Explore practical ${title.replace(/ Calculators$/, "").toLowerCase()} calculators designed to help you plan, measure, and make better decisions.`;
 
   return (
     <div className="min-h-screen">
+      <SEOHead
+        title={`${title} - Smart Kit Now`}
+        description={description}
+        canonical={canonicalUrl}
+      />
       <main className="pt-48 sm:pt-20">
         <AdRailLayout
           titleBlock={
@@ -55,17 +73,17 @@ export default function CategoryIndex() {
                 <span className="text-[26px] leading-none select-none" aria-hidden="true">🏷️</span>
                 {title}
               </h1>
-              {category !== "financial" && (
+              {normalizedCategory !== "financial" && (
                 <p className="text-lg max-w-2xl" style={{ color: PALETTE.brand.text }}>
-                  Explore practical {title.replace(/ Calculators$/, "").toLowerCase()} calculators designed to help you plan, measure, and make better decisions.
+                  {description}
                 </p>
               )}
-              {category === "financial" && (
+              {normalizedCategory === "financial" && (
                 <>
                   <p className="text-lg max-w-2xl" style={{ color: PALETTE.brand.text }}>
-                    Explore practical {title.replace(/ Calculators$/, "").toLowerCase()} calculators designed to help you plan, measure, and make better decisions.
+                    {description}
                   </p>
-                  {category === "financial" && (
+                  {normalizedCategory === "financial" && (
                     <div className="mt-2">
                       <p className="text-sm text-muted-foreground">{totalInCategory} calculators</p>
                       <div className="mt-2">
@@ -97,21 +115,21 @@ export default function CategoryIndex() {
               No subcategories found.
             </p>
           ) : (
-            category === "financial" ? (
+            normalizedCategory === "financial" ? (
               // Grid com introdução à direita e listas à esquerda
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Listas de calculadoras (duas colunas) */}
                 <div className="lg:col-span-2">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {subcats.map((sc) => {
-                      const calculators = listByCategorySubcategory(category, sc.slug);
+                      const calculators = listByCategorySubcategory(normalizedCategory, sc.slug);
                       return (
                         <section
                           key={sc.slug}
                           className="bg-card/40 border border-border/50 rounded-lg p-4 shadow-sm"
                         >
                           <h2 className="text-xl font-semibold flex items-center gap-2" style={{ color: PALETTE.brand.title }}>
-                            <span aria-hidden="true">{subcategoryIcon(sc.slug, category)}</span>
+                            <span aria-hidden="true">{subcategoryIcon(sc.slug, normalizedCategory)}</span>
                             {sc.title}
                           </h2>
                           <div className="mt-3">
@@ -131,14 +149,14 @@ export default function CategoryIndex() {
               // Layout padrão para demais categorias
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {subcats.map((sc) => {
-                  const calculators = listByCategorySubcategory(category, sc.slug);
+                  const calculators = listByCategorySubcategory(normalizedCategory, sc.slug);
                   return (
                     <section
                       key={sc.slug}
                       className="bg-card/40 border border-border/50 rounded-lg p-4 shadow-sm"
                     >
                       <h2 className="text-xl font-semibold flex items-center gap-2" style={{ color: PALETTE.brand.title }}>
-                        <span aria-hidden="true">{subcategoryIcon(sc.slug, category)}</span>
+                        <span aria-hidden="true">{subcategoryIcon(sc.slug, normalizedCategory)}</span>
                         {sc.title}
                       </h2>
                       <div className="mt-3">
@@ -166,4 +184,4 @@ export default function CategoryIndex() {
     </div>
   );
 }
-
+
