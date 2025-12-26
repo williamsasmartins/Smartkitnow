@@ -4865,24 +4865,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
   
    
   
-    {
-    slug: "deck-board-joist-spacing",
-    title: "Deck Board & Joist Spacing Calculator",
-    category: "construction",
-    subcategory: "lumber-decking-fencing",
-    description: "Calculate deck board quantity and joist spacing.",
-    loader: () => import("@/components/calculators/Construction/DeckBoardJoistSpacingCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "drywall-area-sheets",
-    title: "Drywall Area & Sheets Calculator",
-    category: "construction",
-    subcategory: "interior-surfaces-finishes",
-    description: "Calculate number of drywall sheets for walls/ceilings.",
-    loader: () => import("@/components/calculators/Construction/DrywallAreaSheetsCalculator"),
-    urlStyle: "flat"
-  },
+   
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
