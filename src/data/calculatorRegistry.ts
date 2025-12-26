@@ -5199,6 +5199,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/FlooringMaterialCostCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "baluster-spacing-calculator",
+    title: "Baluster Spacing Calculator",
+    category: "construction",
+    subcategory: "lumber-decking-fencing",
+    description: "Calculate even spacing for railing balusters/spindles.",
+    loader: () => import("@/components/calculators/Construction/BalusterSpacingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
