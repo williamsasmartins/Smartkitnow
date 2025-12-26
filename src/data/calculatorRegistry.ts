@@ -5037,6 +5037,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/ConcreteFootingFoundationCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "concrete-block-cmu-wall",
+    title: "Concrete Block (CMU) Wall Calculator",
+    category: "construction",
+    subcategory: "concrete-masonry-foundations",
+    description: "Determine the perfect concrete mix ratio (cement, sand, gravel). Essential for strong, durable, and professional-grade DIY concrete projects.",
+    loader: () => import("@/components/calculators/Construction/ConcreteBlockCmuWallCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
