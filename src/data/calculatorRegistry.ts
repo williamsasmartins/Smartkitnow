@@ -5284,6 +5284,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/FuelEconomyConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "annual-fuel-cost-break-even",
+    title: "Annual Fuel Cost & Break-Even",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Compare annual fuel costs for gas, electric, and E85 vehicles.",
+    loader: () => import("@/components/calculators/Automotive/AnnualFuelCostBreakEvenCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
