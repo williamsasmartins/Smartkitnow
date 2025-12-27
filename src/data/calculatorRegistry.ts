@@ -5275,6 +5275,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/TripFuelCostCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fuel-economy-converter",
+    title: "Fuel Economy Converter",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Convert fuel economy between MPG and L/100km.",
+    loader: () => import("@/components/calculators/Automotive/FuelEconomyConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
