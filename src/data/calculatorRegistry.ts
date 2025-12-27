@@ -5613,6 +5613,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvHybridMaintenanceSavingsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-fast-charging-degradation",
+    title: "EV Fast Charging Impact on Battery Life Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Estimate battery degradation acceleration from frequent DC fast charging vs slower AC charging, based on usage patterns and temperature.",
+    loader: () => import("@/components/calculators/Automotive/EvFastChargingDegradationCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
