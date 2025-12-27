@@ -5487,6 +5487,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/BrakePadWearEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "towing-capacity-safety-margin",
+    title: "Towing Capacity Safety Margin Checker",
+    category: "automotive",
+    subcategory: "maintenance-capacity",
+    description: "Check if your load is within safe towing limits.",
+    loader: () => import("@/components/calculators/Automotive/TowingCapacitySafetyMarginCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
