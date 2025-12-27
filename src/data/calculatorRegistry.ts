@@ -5330,6 +5330,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/CarbonEmissionsPerTripCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tco-calculator",
+    title: "Total Cost of Ownership (TCO) Calculator",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Calculate the true long-term cost of owning a vehicle.",
+    loader: () => import("@/components/calculators/Automotive/TcoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
