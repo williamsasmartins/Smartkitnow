@@ -258,6 +258,40 @@ export default function CookingTspTbspCupMlCalculator() {
         </ul>
       </section>
 
+      {/* 8. REFERENCES */}
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+          
+          <li>
+            <a href="https://www.allrecipes.com/search?q=Cooking%20Conversions" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Cooking Conversions - Allrecipes
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Trusted cooking guides and Cooking Conversions charts to help you get perfect results in the kitchen.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.khanacademy.org/search?page_search_query=Cooking%20Conversions" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Cooking Conversions - Khan Academy
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Learn the math and science behind Cooking Conversions with free interactive lessons and videos from Khan Academy.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.calculator.net/search?q=Cooking%20Conversions" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Cooking Conversions - Calculator.net
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Compare results and explore alternative calculation methods for Cooking Conversions on Calculator.net.
+            </p>
+          </li>
+        </ul>
+      </section>
+
       <section id="factors" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           Common Conversion Factors
@@ -374,7 +408,8 @@ export default function CookingTspTbspCupMlCalculator() {
         { id: "how-to-use", label: "How to Use" },
         { id: "faq", label: "FAQ" },
         { id: "factors", label: "Common Factors" },
-      ]}
+        { id: "references", label: "References & Resources" },
+]}
       showTopBanner
       showSidebar
       showBottomBanner

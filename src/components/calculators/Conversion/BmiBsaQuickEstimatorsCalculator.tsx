@@ -384,6 +384,40 @@ export default function BmiBsaQuickEstimatorsCalculator() {
         </ul>
       </section>
 
+      {/* 8. REFERENCES */}
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+          
+          <li>
+            <a href="https://www.cdc.gov/healthyweight/assessing/bmi/index.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              BMI and BSA - CDC
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Official health information and BMI and BSA calculators from the Centers for Disease Control and Prevention.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.khanacademy.org/search?page_search_query=BMI%20and%20BSA" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              BMI and BSA - Khan Academy
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Learn the math and science behind BMI and BSA with free interactive lessons and videos from Khan Academy.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.calculator.net/search?q=BMI%20and%20BSA" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              BMI and BSA - Calculator.net
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Compare results and explore alternative calculation methods for BMI and BSA on Calculator.net.
+            </p>
+          </li>
+        </ul>
+      </section>
+
       <section id="factors" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           Common Conversion Factors
@@ -493,7 +527,8 @@ export default function BmiBsaQuickEstimatorsCalculator() {
         { id: "how-to-use", label: "How to Use" },
         { id: "faq", label: "FAQ" },
         { id: "factors", label: "Common Factors" },
-      ]}
+        { id: "references", label: "References & Resources" },
+]}
       showTopBanner
       showSidebar
       showBottomBanner

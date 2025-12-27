@@ -264,6 +264,48 @@ export default function BinaryDecimalPrefixesCalculator() {
         </ul>
       </section>
 
+      {/* 8. REFERENCES */}
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+          
+          <li>
+            <a href="https://www.computerhope.com/search.htm?q=Binary%20Prefixes" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Binary Prefixes - Computer Hope
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Clear explanations, examples, and history of Binary Prefixes from Computer Hope's extensive tech dictionary.
+            </p>
+          </li>
+          <li>
+            <a href="https://search.techtarget.com/search/query?q=Binary%20Prefixes" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Binary Prefixes - TechTarget
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              In-depth technical definitions and enterprise context for Binary Prefixes from TechTarget.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.calculator.net/search?q=Binary%20Prefixes" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Binary Prefixes - Calculator.net
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Compare results and explore alternative calculation methods for Binary Prefixes on Calculator.net.
+            </p>
+          </li>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Special:Search?search=Binary%20Prefixes" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Binary Prefixes - Wikipedia
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Detailed encyclopedia article covering the history, standards, and usage of Binary Prefixes.
+            </p>
+          </li>
+        </ul>
+      </section>
+
       <section id="factors" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           Common Conversion Factors
@@ -388,7 +430,8 @@ export default function BinaryDecimalPrefixesCalculator() {
         { id: "how-to-use", label: "How to Use" },
         { id: "faq", label: "FAQ" },
         { id: "factors", label: "Common Factors" },
-      ]}
+        { id: "references", label: "References & Resources" },
+]}
       showTopBanner
       showSidebar
       showBottomBanner

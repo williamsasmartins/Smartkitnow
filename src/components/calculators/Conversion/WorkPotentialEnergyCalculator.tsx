@@ -228,6 +228,48 @@ export default function WorkPotentialEnergyCalculator() {
         </ul>
       </section>
 
+      {/* 8. REFERENCES */}
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+          
+          <li>
+            <a href="https://www.engineeringtoolbox.com/index.html?q=Work%20and%20Energy" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Work and Energy - Engineering ToolBox
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Comprehensive technical resources, formulas, and data for Work and Energy from the Engineering ToolBox.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.khanacademy.org/search?page_search_query=Work%20and%20Energy" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Work and Energy - Khan Academy
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Learn the math and science behind Work and Energy with free interactive lessons and videos from Khan Academy.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.calculator.net/search?q=Work%20and%20Energy" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Work and Energy - Calculator.net
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Compare results and explore alternative calculation methods for Work and Energy on Calculator.net.
+            </p>
+          </li>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Special:Search?search=Work%20and%20Energy" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Work and Energy - Wikipedia
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Detailed encyclopedia article covering the history, standards, and usage of Work and Energy.
+            </p>
+          </li>
+        </ul>
+      </section>
+
       <section id="factors" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Common Conversion Factors</h2>
         <ul className="space-y-4">
@@ -303,7 +345,8 @@ export default function WorkPotentialEnergyCalculator() {
         { id: "how-to-use", label: "How to Use" },
         { id: "faq", label: "FAQ" },
         { id: "factors", label: "Common Factors" },
-      ]}
+        { id: "references", label: "References & Resources" },
+]}
       showTopBanner
       showSidebar
       showBottomBanner

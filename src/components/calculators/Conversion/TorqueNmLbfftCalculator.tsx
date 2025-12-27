@@ -231,6 +231,48 @@ export default function TorqueNmLbfftCalculator() {
         </ul>
       </section>
 
+      {/* 8. REFERENCES */}
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+          
+          <li>
+            <a href="https://www.engineeringtoolbox.com/index.html?q=Torque%20Conversion" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Torque Conversion - Engineering ToolBox
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Comprehensive technical resources, formulas, and data for Torque Conversion from the Engineering ToolBox.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.khanacademy.org/search?page_search_query=Torque%20Conversion" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Torque Conversion - Khan Academy
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Learn the math and science behind Torque Conversion with free interactive lessons and videos from Khan Academy.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.calculator.net/search?q=Torque%20Conversion" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Torque Conversion - Calculator.net
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Compare results and explore alternative calculation methods for Torque Conversion on Calculator.net.
+            </p>
+          </li>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Special:Search?search=Torque%20Conversion" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Torque Conversion - Wikipedia
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Detailed encyclopedia article covering the history, standards, and usage of Torque Conversion.
+            </p>
+          </li>
+        </ul>
+      </section>
+
       <section id="factors" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Common Conversion Factors</h2>
         <ul className="space-y-4">
@@ -337,7 +379,8 @@ export default function TorqueNmLbfftCalculator() {
         { id: "how-to-use", label: "How to Use" },
         { id: "faq", label: "FAQ" },
         { id: "factors", label: "Common Factors" },
-      ]}
+        { id: "references", label: "References & Resources" },
+]}
       showTopBanner
       showSidebar
       showBottomBanner
