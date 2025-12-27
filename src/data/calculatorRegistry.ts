@@ -5622,6 +5622,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvFastChargingDegradationCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-solar-charging-savings",
+    title: "EV Solar Charging Savings Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Calculate cost savings and payback when charging an EV with home solar panels, including excess energy credits and reduced grid reliance.",
+    loader: () => import("@/components/calculators/Automotive/EvSolarChargingSavingsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
