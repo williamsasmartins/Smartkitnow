@@ -5409,7 +5409,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "automotive",
     subcategory: "tires-wheels-speedometer",
     description: "Educational tool to estimate 0-60 times based on power/weight.",
-    loader: () => import("@/components/calculators/Automotive/060SpeedVsGearRpmCalculator"),
+    loader: () => import("@/components/calculators/Automotive/060SpeedVsGearRpmCalculator"), // The filename can stay 060... if the file exists, but the component inside MUST be valid.
     urlStyle: "flat"
   },
     {
