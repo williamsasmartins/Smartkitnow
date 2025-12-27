@@ -5405,6 +5405,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
    
     
+    {
+    slug: "down-payment-impact-payoff",
+    title: "Down Payment Impact & Payoff Time",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "See how down payments affect monthly costs and payoff time.",
+    loader: () => import("@/components/calculators/Automotive/DownPaymentImpactPayoffCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
