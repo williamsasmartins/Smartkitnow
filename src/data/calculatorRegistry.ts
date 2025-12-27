@@ -5367,6 +5367,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/SpeedometerErrorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "wheel-offset-backspacing",
+    title: "Wheel Offset/Backspacing Calculator",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Calculate wheel position changes with different offsets.",
+    loader: () => import("@/components/calculators/Automotive/WheelOffsetBackspacingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
