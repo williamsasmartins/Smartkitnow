@@ -5649,6 +5649,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvPreconditioningCostCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "hp-from-quarter-mile-et",
+    title: "Horsepower from Quarter Mile ET Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Estimate engine horsepower based on vehicle weight and quarter-mile elapsed time (ET).",
+    loader: () => import("@/components/calculators/Automotive/HpFromQuarterMileEtCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
