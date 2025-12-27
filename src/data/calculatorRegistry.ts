@@ -5294,6 +5294,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/AnnualFuelCostBreakEvenCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-kwh-cost-per-mile",
+    title: "EV kWh per 100 mi ↔ Cost per Mile",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Convert EV efficiency to cost per mile driven.",
+    loader: () => import("@/components/calculators/Automotive/EvKwhCostPerMileCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
