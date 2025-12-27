@@ -5377,7 +5377,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     {
-    slug: "tire-revs-per-mile-rpm",
+    slug: "tire-revs-per-mile-rpm-speed",
     title: "Tire Revolutions per Mile & RPM @ Speed",
     category: "automotive",
     subcategory: "tires-wheels-speedometer",
@@ -5406,7 +5406,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
    
     
     {
-    slug: "down-payment-impact-payoff",
+    slug: "down-payment-impact-payoff-time",
     title: "Down Payment Impact & Payoff Time",
     category: "automotive",
     subcategory: "financing-leasing-value",
@@ -5433,7 +5433,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     {
-    slug: "out-the-door-estimator",
+    slug: "out-the-door-tax-title-fees",
     title: "Sales Tax, Title & Fees Out-the-Door Estimator",
     category: "automotive",
     subcategory: "financing-leasing-value",
