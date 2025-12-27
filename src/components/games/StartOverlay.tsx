@@ -22,22 +22,22 @@ export default function StartOverlay({
   if (!open) return null;
 
   return (
-    <div className="absolute inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-      <div className="relative w-full max-w-md rounded-2xl border border-slate-800 bg-slate-900/95 p-8 shadow-2xl text-center">
+    <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/90 dark:bg-slate-950/90 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+      <div className="relative w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 p-8 shadow-2xl text-center">
         
         {/* Decorative Icon */}
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-blue-500/10 ring-1 ring-blue-500/50">
-          <Sparkles className="h-8 w-8 text-blue-500" />
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-500/10 ring-1 ring-blue-500/50">
+          <Sparkles className="h-8 w-8 text-blue-600 dark:text-blue-500" />
         </div>
 
         {/* Title & Desc */}
         {title && (
-          <h2 className="text-3xl font-extrabold tracking-tight text-white mb-2">
+          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2">
             {title}
           </h2>
         )}
         {description && (
-          <p className="text-slate-400 mb-6 leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
             {description}
           </p>
         )}
