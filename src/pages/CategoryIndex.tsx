@@ -24,6 +24,11 @@ export default function CategoryIndex() {
   const navigate = useNavigate();
   const { category = "" } = useParams<{ category: string }>();
 
+  // Estado para controlar o comportamento "Read more" da copy em Health
+  const [healthCopyOpen, setHealthCopyOpen] = useState(false);
+  // Estado para controlar o comportamento "Read more" da copy em Financial
+  const [financialCopyOpen, setFinancialCopyOpen] = useState(false);
+
   // Normalize category to handle case sensitivity
   const normalizedCategory = category.toLowerCase();
 
@@ -38,12 +43,6 @@ export default function CategoryIndex() {
   }
 
   const title = FRIENDLY_TITLES[normalizedCategory];
-  const subcats = listSubcategoriesOfCategory(normalizedCategory);
-
-  // Estado para controlar o comportamento "Read more" da copy em Health
-  const [healthCopyOpen, setHealthCopyOpen] = useState(false);
-  // Estado para controlar o comportamento "Read more" da copy em Financial
-  const [financialCopyOpen, setFinancialCopyOpen] = useState(false);
 
   const totalInCategory = listByCategory(normalizedCategory).length;
   const canonicalUrl = `https://smartkitnow.com/${normalizedCategory}`;

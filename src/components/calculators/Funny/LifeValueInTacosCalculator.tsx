@@ -54,7 +54,7 @@ export default function LifeValueInTacosCalculator() {
     // Determine color and icon based on tacos count
     let color = "text-green-600";
     let icon = <Sparkles className="h-12 w-12 text-green-600 mx-auto" />;
-    let label = "Your Life Value in Tacos";
+    const label = "Your Life Value in Tacos";
     let subtext = `Based on a taco price of ${tacoPriceFormatted}`;
 
     if (tacos < 100) {

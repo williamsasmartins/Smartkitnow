@@ -90,7 +90,7 @@ export default function ConcreteWeightYieldCalculator() {
     // Calculate volume
     // Metric: m x m x m = m³
     // Imperial: ft x ft x ft = ft³
-    let volume = length * width * depth;
+    const volume = length * width * depth;
 
     // Add waste margin
     const volumeWithWaste = volume * (1 + wastePercent / 100);

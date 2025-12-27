@@ -103,7 +103,7 @@ export default function FitnessAgeCalculator() {
 
     // Find normative VO2max for user's age and gender
     const norms = vo2maxNorms[gender];
-    let normVO2max = norms.find((n) => ageNum <= n.ageMax)?.vo2max ?? norms[norms.length - 1].vo2max;
+    const normVO2max = norms.find((n) => ageNum <= n.ageMax)?.vo2max ?? norms[norms.length - 1].vo2max;
 
     // Calculate VO2max difference ratio
     // If user VO2max is higher than norm, fitness age is younger, else older

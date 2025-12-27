@@ -261,7 +261,7 @@ function CrossyStreetBoard({
       
       let type: LaneType = "safe";
       let speed = 0;
-      let objects: GameObject[] = [];
+      const objects: GameObject[] = [];
       
       // Fixed layout pattern
       if ((i >= 9 && i <= 12) || (i >= 0 && i <= 2)) {

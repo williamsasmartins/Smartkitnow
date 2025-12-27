@@ -94,8 +94,8 @@ export default function BalusterSpacingCalculator() {
     }
 
     // Convert spacing and balusterWidth to cm if imperial
-    let spacingCm = inputs.unit === "imperial" ? spacingNum * 2.54 : spacingNum;
-    let balusterWidthCm = inputs.unit === "imperial" ? balusterWidthNum * 2.54 : balusterWidthNum;
+    const spacingCm = inputs.unit === "imperial" ? spacingNum * 2.54 : spacingNum;
+    const balusterWidthCm = inputs.unit === "imperial" ? balusterWidthNum * 2.54 : balusterWidthNum;
 
     // Calculate number of balusters needed:
     // Formula: count = floor(length / (spacing + balusterWidth)) + 1

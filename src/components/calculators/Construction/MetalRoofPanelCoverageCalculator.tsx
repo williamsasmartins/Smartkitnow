@@ -134,7 +134,7 @@ export default function MetalRoofPanelCoverageCalculator() {
     }
 
     // Calculate panels needed = roof width / panel coverage width
-    let panelsNeededRaw = widthNum / panelCoverageWidthNum;
+    const panelsNeededRaw = widthNum / panelCoverageWidthNum;
 
     // Add waste margin
     const panelsWithWaste = panelsNeededRaw * (1 + wasteNum / 100);

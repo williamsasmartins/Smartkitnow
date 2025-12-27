@@ -70,8 +70,8 @@ export default function TireRevsPerMileRpmCalculator() {
     // Convert metric inputs to inches if metric selected
     // Width in mm, diameter in inches, aspect ratio in %
     // 1 inch = 25.4 mm
-    let tire1_dia_in = d1;
-    let tire2_dia_in = d2;
+    const tire1_dia_in = d1;
+    const tire2_dia_in = d2;
     let tire1_width_mm = w1;
     let tire2_width_mm = w2;
 

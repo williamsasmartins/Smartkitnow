@@ -29,6 +29,7 @@ const REGISTRY: Entry[] = (await import(pathToFileURL(registryPath).href) as any
 const COMPONENTS_ROOT = path.resolve(projectRoot, "src", "components", "calculators");
 
 // Extract the import path strings from loader.toString()
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 function extractImportPathFromLoader(fn: Function): string | null {
   const s = fn.toString();
   // Matches: () => import("...") or () => import('...')

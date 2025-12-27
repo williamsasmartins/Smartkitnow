@@ -82,7 +82,7 @@ export default function PlasterVolumeBagCalculator() {
     // For imperial: inputs assumed in feet
     // Depth is thickness of plaster layer
 
-    let volume = length * width * depth; // m³ or ft³
+    const volume = length * width * depth; // m³ or ft³
 
     // Add waste margin
     const volumeWithWaste = volume * (1 + wastePercent / 100);

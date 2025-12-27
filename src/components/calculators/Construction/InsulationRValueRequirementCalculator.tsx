@@ -150,7 +150,7 @@ export default function InsulationRValueRequirementCalculator() {
 
     // Calculate number of sheets needed (area / sheet area)
     const sheetArea = materialSheetSizeSqm[materialSize];
-    let baseUnits = area / sheetArea;
+    const baseUnits = area / sheetArea;
 
     // Add waste margin
     const totalUnits = Math.ceil(baseUnits * (1 + wastePercent / 100));

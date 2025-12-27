@@ -7,7 +7,7 @@ const __DIR = path.dirname(fileURLToPath(import.meta.url));
 
 function resolveFromLoader(e: any): string | null {
   const src = (e.loader as any)?.toString?.() || "";
-  const m = src.match(/import\(\s*['"]([^'\"]+)['"]\s*\)/);
+  const m = src.match(/import\(\s*['"]([^'"]+)['"]\s*\)/);
   const spec = m?.[1];
   if (!spec) return null;
   if (spec.startsWith("@/")) {
@@ -23,7 +23,7 @@ function resolveFromLoader(e: any): string | null {
 }
 
 const DEFAULT_EXPORT_RE = new RegExp(
-  '(export\\s+default\\s+)|(export\\s*\\{\\s*default\\s*\\}\\s*from\\s*[\\\"\']([^\\\"\']+)[\\\"\'])',
+  '(export\\s+default\\s+)|(export\\s*\\{\\s*default\\s*\\}\\s*from\\s*["\']([^"\']+)["\'])',
   'm'
 );
 

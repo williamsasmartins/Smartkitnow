@@ -80,7 +80,7 @@ export function Header() {
               width={1000}
               height={300}
               decoding="async"
-              // @ts-ignore
+              // @ts-expect-error fetchpriority is a new attribute
               fetchpriority="high"
               sizes="(max-width: 640px) 120px, 150px"
               className="h-9 w-auto block"

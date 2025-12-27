@@ -277,7 +277,7 @@ export default function ExponentPowerCalculator() {
           Formula
         </h2>
         <pre className="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-x-auto font-mono text-slate-800 dark:text-slate-200">
-{`xʸ = e^{y \cdot \ln(x)}
+{`xʸ = e^{y \\cdot \\ln(x)}
 
 Where:
 - x is the base
@@ -286,7 +286,7 @@ Where:
 - ln is the natural logarithm
 
 For negative base x and fractional exponent y:
-xʸ = e^{y \cdot (\ln|x| + i\pi)} = e^{y \cdot \ln|x|} \cdot (\cos(y\pi) + i \sin(y\pi))`}
+xʸ = e^{y \\cdot (\\ln|x| + i\\pi)} = e^{y \\cdot \\ln|x|} \\cdot (\\cos(y\\pi) + i \\sin(y\\pi))`}
         </pre>
       </section>
 
@@ -322,7 +322,7 @@ xʸ = e^{y \cdot (\ln|x| + i\pi)} = e^{y \cdot \ln|x|} \cdot (\cos(y\pi) + i \si
       jsonLd={faqJsonLd}
       formula={{
         title: "Key Formula",
-        formula: `xʸ = e^{y \cdot \ln(x)}`,
+        formula: `xʸ = e^{y \\cdot \\ln(x)}`,
         variables: [
           { symbol: "x", description: "Base number" },
           { symbol: "y", description: "Exponent (power)" },

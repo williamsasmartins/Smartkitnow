@@ -38,16 +38,16 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
     // Basic input validation
     if (testType === "cooper") {
       if (!isNumber(distanceNum) || distanceNum <= 0) {
-        return { value: null, label: null, subtext: "Please enter a valid distance &gt; 0 meters.", warning: null, formulaUsed: "" };
+        return { value: null, label: null, subtext: "Please enter a valid distance > 0 meters.", warning: null, formulaUsed: "" };
       }
     } else if (testType === "rockport") {
-      if (!isNumber(ageNum) || ageNum &lt; 13 || ageNum &gt; 80) {
+      if (!isNumber(ageNum) || ageNum < 13 || ageNum > 80) {
         return { value: null, label: null, subtext: "Please enter a valid age between 13 and 80 years.", warning: null, formulaUsed: "" };
       }
-      if (!isNumber(weightNum) || weightNum &lt; 30 || weightNum &gt; 200) {
+      if (!isNumber(weightNum) || weightNum < 30 || weightNum > 200) {
         return { value: null, label: null, subtext: "Please enter a valid weight between 30 and 200 kg.", warning: null, formulaUsed: "" };
       }
-      if (!isNumber(timeNum) || timeNum &lt; 6 || timeNum &gt; 20) {
+      if (!isNumber(timeNum) || timeNum < 6 || timeNum > 20) {
         return { value: null, label: null, subtext: "Please enter a valid time between 6 and 20 minutes.", warning: null, formulaUsed: "" };
       }
     } else {
@@ -60,7 +60,7 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
       // Cooper test is a 12-minute run test, distance in meters
       // Validate distance and calculate
       const vo2max = (distanceNum - 504.9) / 44.73;
-      if (vo2max &lt; 10 || vo2max &gt; 80) {
+      if (vo2max < 10 || vo2max > 80) {
         return {
           value: vo2max.toFixed(2),
           label: "Estimated VO2max (ml/kg/min)",
@@ -97,7 +97,7 @@ export default function Vo2maxEstimatorCooperRockportCalculator() {
         0.3877 * ageNum +
         6.315 * genderNum -
         3.2649 * timeNum;
-      if (vo2max &lt; 10 || vo2max &gt; 80) {
+      if (vo2max < 10 || vo2max > 80) {
         return {
           value: vo2max.toFixed(2),
           label: "Estimated VO2max (ml/kg/min)",

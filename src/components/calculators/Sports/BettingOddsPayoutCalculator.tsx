@@ -49,9 +49,9 @@ function formatFraction(decimal) {
   let bestDen = 1;
   let bestError = Math.abs(decimal - 1 - bestNum / bestDen);
   for (let den = 1; den <= 100; den++) {
-    let num = Math.round((decimal - 1) * den);
+    const num = Math.round((decimal - 1) * den);
     if (num < 1) continue;
-    let error = Math.abs(decimal - 1 - num / den);
+    const error = Math.abs(decimal - 1 - num / den);
     if (error < bestError) {
       bestError = error;
       bestNum = num;

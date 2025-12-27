@@ -156,10 +156,10 @@ export default function ZScorePercentileFinderCalculator() {
         }
         // Rational approximation for central region
         q = p - 0.5;
-        r = q * q;
+        const rValue = q * q;
         return (
-          (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q) /
-          (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+          (((((a[0] * rValue + a[1]) * rValue + a[2]) * rValue + a[3]) * rValue + a[4]) * rValue + a[5]) * q) /
+          (((((b[0] * rValue + b[1]) * rValue + b[2]) * rValue + b[3]) * rValue + b[4]) * rValue + 1);
       }
 
       const z = inverseStandardNormalCDF(p);

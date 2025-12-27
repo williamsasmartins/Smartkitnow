@@ -17,7 +17,7 @@ function generateSeedOrder(numTeams) {
     if (n === 1) return [1];
     const prev = helper(n / 2);
     const result = [];
-    for (let seed of prev) {
+    for (const seed of prev) {
       result.push(seed);
       result.push(n + 1 - seed);
     }

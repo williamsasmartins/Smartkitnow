@@ -10,12 +10,12 @@ function normalize(v?: string) {
     .trim()
     .toLowerCase()
     .replace(/\s+/g, "-")
-    .replace(/[^\w\-]/g, "");
+    .replace(/[^\w-]/g, "");
 }
 
 function extractLoaderSpec(e: CalculatorEntry): string | null {
   const src = (e.loader as any)?.toString?.() || "";
-  const m = src.match(/import\(\s*['"]([^'\"]+)['"]\s*\)/);
+  const m = src.match(/import\(\s*['"]([^'"]+)['"]\s*\)/);
   return m?.[1] ?? null;
 }
 

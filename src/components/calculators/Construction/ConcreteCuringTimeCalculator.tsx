@@ -94,7 +94,7 @@ export default function ConcreteCuringTimeCalculator() {
 
     // Calculate volume in cubic meters or cubic feet
     // Metric inputs assumed meters, imperial feet
-    let volume = length * width * depth;
+    const volume = length * width * depth;
 
     // Add waste margin
     const volumeWithWaste = volume * (1 + wastePercent / 100);

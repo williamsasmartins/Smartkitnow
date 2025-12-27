@@ -117,7 +117,7 @@ export default function FinaPointsCalculator() {
     const points = 1000 * Math.pow(baseTime / totalSeconds, 3);
     const roundedPoints = Math.round(points);
 
-    let subtext = `Based on base time ${baseTime.toFixed(2)} seconds for ${events.find(e => e.value === inputs.event)?.label}.`;
+    const subtext = `Based on base time ${baseTime.toFixed(2)} seconds for ${events.find(e => e.value === inputs.event)?.label}.`;
     let warning = null;
     if (points < 100) {
       warning = "Points below 100 indicate a performance far from world-class standards.";

@@ -33,7 +33,7 @@ function calculateCompatibility(name1: string, name2: string) {
   const uniqueLetters = new Set(combined).size;
   const uniquenessBonus = (uniqueLetters / combined.length) * 10;
 
-  let finalScore = Math.min(100, Math.max(0, baseScore + uniquenessBonus));
+  const finalScore = Math.min(100, Math.max(0, baseScore + uniquenessBonus));
 
   return Math.round(finalScore);
 }
