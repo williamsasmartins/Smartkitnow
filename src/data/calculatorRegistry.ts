@@ -5631,6 +5631,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvSolarChargingSavingsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "phev-electric-gas-mode-cost",
+    title: "PHEV Electric vs Gas Mode Cost Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "For plug-in hybrids: Compare costs of driving in electric-only mode vs gas mode for daily commutes or trips.",
+    loader: () => import("@/components/calculators/Automotive/PhevElectricGasModeCostCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
