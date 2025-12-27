@@ -5295,7 +5295,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     {
-    slug: "ev-kwh-cost-per-mile",
+    slug: "ev-kwh-per-100mi-cost-per-mile",
     title: "EV kWh per 100 mi ↔ Cost per Mile",
     category: "automotive",
     subcategory: "consumption-costs-travel",
