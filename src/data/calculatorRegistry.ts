@@ -5450,6 +5450,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/UsedCarValueEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "low-apr-vs-cash-back",
+    title: "Low APR vs. Cash Back Incentive Calculator",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "Decide between low interest rates or cash rebates.",
+    loader: () => import("@/components/calculators/Automotive/LowAprVsCashBackCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
