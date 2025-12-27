@@ -5479,7 +5479,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
    
     {
-    slug: "brake-pad-wear-estimator",
+    slug: "brake-wear-estimator",
     title: "Brake Pad/Rotors Wear Estimator",
     category: "automotive",
     subcategory: "maintenance-capacity",
