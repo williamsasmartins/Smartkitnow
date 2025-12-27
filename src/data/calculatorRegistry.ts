@@ -5658,6 +5658,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/HpFromQuarterMileEtCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "quarter-mile-et-mph-from-hp",
+    title: "Quarter Mile ET & MPH from HP Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Predict quarter-mile elapsed time (ET) and trap speed (MPH) from horsepower and vehicle weight.",
+    loader: () => import("@/components/calculators/Automotive/QuarterMileEtMphFromHpCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
