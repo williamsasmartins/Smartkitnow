@@ -5404,6 +5404,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
    
+    {
+    slug: "0-60-speed-vs-gear-rpm",
+    title: "0–60 Speed vs Gear/RPM",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Educational tool to estimate 0-60 times based on power/weight.",
+    loader: () => import("@/components/calculators/Automotive/060SpeedVsGearRpmCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
