@@ -5341,7 +5341,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     {
-    slug: "cost-per-mile-calculator",
+    slug: "cost-per-mile-km",
     title: "Cost Per Mile (Per Kilometer) Calculator",
     category: "automotive",
     subcategory: "consumption-costs-travel",
