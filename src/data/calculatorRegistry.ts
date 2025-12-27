@@ -5348,6 +5348,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/CostPerMileCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tire-size-comparison",
+    title: "Tire Size Comparison",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Compare dimensions and differences between two tire sizes.",
+    loader: () => import("@/components/calculators/Automotive/TireSizeComparisonCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
