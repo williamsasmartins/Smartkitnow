@@ -5514,6 +5514,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvHomePublicChargingCostTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-cost-per-mile",
+    title: "EV Cost Per Mile Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Calculate the exact cost per mile or km for an EV based on efficiency (kWh/100mi) and local electricity prices.",
+    loader: () => import("@/components/calculators/Automotive/EvCostPerMileCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
