@@ -5468,6 +5468,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/OilChangeIntervalPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "car-loan-payment-amortization",
+    title: "Car Loan Payment & Amortization Calculator",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "Calculate monthly car loan payments and interest.",
+    loader: () => import("@/components/calculators/Automotive/CarLoanPaymentAmortizationCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 

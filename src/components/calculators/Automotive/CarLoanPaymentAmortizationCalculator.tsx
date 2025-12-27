@@ -21,23 +21,22 @@ export default function CarLoanPaymentAmortizationCalculator() {
     setInputs(prev => ({ ...prev, [field]: value }));
   };
 
-  // Calculate monthly payment using amortization formula:
-  // P = (r * PV) / (1 - (1 + r)^-n)
-  // where:
-  // P = monthly payment
-  // PV = loan amount (price)
-  // r = monthly interest rate (annual rate / 12 / 100)
-  // n = total number of payments (term in months)
+  /**
+   * Calculates the monthly payment and amortization details for a car loan.
+   * Formula:
+   *   M = P * (r(1+r)^n) / ((1+r)^n - 1)
+   * where:
+   *   M = monthly payment
+   *   P = loan principal (price)
+   *   r = monthly interest rate (annual rate / 12 / 100)
+   *   n = total number of payments (term in months)
+   */
   const results = useMemo(() => {
-    const price = parseFloat(inputs.price);
+    const P = parseFloat(inputs.price);
     const annualRate = parseFloat(inputs.rate);
-    const termYears = parseFloat(inputs.term);
+    const termMonths = parseInt(inputs.term);
 
-    if (
-      isNaN(price) || price <= 0 ||
-      isNaN(annualRate) || annualRate < 0 ||
-      isNaN(termYears) || termYears <= 0
-    ) {
+    if (isNaN(P) || P <= 0 || isNaN(annualRate) || annualRate < 0 || isNaN(termMonths) || termMonths <= 0) {
       return {
         primary: "0",
         secondary: "$0.00",
@@ -46,57 +45,55 @@ export default function CarLoanPaymentAmortizationCalculator() {
       };
     }
 
-    const n = termYears * 12; // total months
     const r = annualRate / 100 / 12; // monthly interest rate
 
     let monthlyPayment: number;
-
     if (r === 0) {
       // No interest loan
-      monthlyPayment = price / n;
+      monthlyPayment = P / termMonths;
     } else {
-      monthlyPayment = (r * price) / (1 - Math.pow(1 + r, -n));
+      const numerator = r * Math.pow(1 + r, termMonths);
+      const denominator = Math.pow(1 + r, termMonths) - 1;
+      monthlyPayment = P * (numerator / denominator);
     }
 
-    // Total payment over the loan term
-    const totalPayment = monthlyPayment * n;
-    // Total interest paid
-    const totalInterest = totalPayment - price;
+    const totalPayment = monthlyPayment * termMonths;
+    const totalInterest = totalPayment - P;
 
     return {
       primary: monthlyPayment.toFixed(2),
-      secondary: `$${monthlyPayment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} / month`,
-      details: `Loan Amount: $${price.toLocaleString()} | Interest Rate: ${annualRate}% APR | Term: ${termYears} years | Total Interest: $${totalInterest.toFixed(2)}`,
-      feedback: "Calculated monthly payment"
+      secondary: `$${monthlyPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+      details: `Total Interest Paid: $${totalInterest.toFixed(2)} over ${termMonths} months`,
+      feedback: "Calculation successful"
     };
   }, [inputs]);
 
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "How is the monthly car loan payment calculated?",
+      question: "What is a car loan amortization?",
       answer:
-        "The monthly car loan payment is calculated using the amortization formula, which takes into account the loan amount, the annual interest rate, and the loan term in years. The formula converts the annual interest rate to a monthly rate and calculates payments so that the loan is fully paid off by the end of the term. This ensures consistent monthly payments covering both principal and interest."
+        "Car loan amortization is the process of spreading out your loan payments over a set period, typically monthly, so that each payment covers both principal and interest. This ensures the loan is fully paid off by the end of the term. Understanding amortization helps you see how much interest you pay over time and how your loan balance decreases."
     },
     {
-      question: "What happens if the interest rate is zero?",
+      question: "How does the interest rate affect my monthly payment?",
       answer:
-        "If the interest rate is zero, the loan is considered interest-free. In this case, the monthly payment is simply the loan amount divided evenly by the total number of months in the loan term. This means you pay back only the principal amount without any additional interest charges."
+        "The interest rate directly impacts your monthly payment amount. A higher interest rate means you pay more interest over the loan term, increasing your monthly payments. Conversely, a lower rate reduces your monthly cost. Even a small change in rate can significantly affect total interest paid."
     },
     {
-      question: "Can I use this calculator for loans with different compounding periods?",
+      question: "Can I pay off my car loan early?",
       answer:
-        "This calculator assumes monthly compounding, which is standard for most car loans. If your loan uses a different compounding period, such as daily or quarterly, the results may vary slightly. For precise calculations, consult your lender or use a calculator tailored to your loan's compounding frequency."
+        "Yes, most lenders allow early repayment of car loans, which can save you money on interest. However, some loans may have prepayment penalties or fees. Always check your loan agreement before making extra payments to avoid unexpected charges."
+    },
+    {
+      question: "What is the difference between term and loan duration?",
+      answer:
+        "The term or loan duration refers to the total length of time you have to repay your car loan, usually expressed in months or years. It determines how many payments you will make. Longer terms reduce monthly payments but increase total interest paid, while shorter terms increase monthly payments but reduce interest."
     },
     {
       question: "Why is it important to know the total interest paid?",
       answer:
-        "Knowing the total interest paid over the life of the loan helps you understand the true cost of financing your vehicle. It allows you to compare different loan offers, evaluate refinancing options, and make informed decisions about your budget and financial planning."
-    },
-    {
-      question: "Can I use this calculator to estimate affordability?",
-      answer:
-        "Yes, this calculator helps estimate your monthly payment based on the loan amount, interest rate, and term. By knowing your expected monthly payment, you can assess whether the loan fits within your budget and plan accordingly before committing to a car purchase."
+        "Knowing the total interest paid helps you understand the true cost of your loan beyond the car's price. It allows you to compare loan offers, evaluate refinancing options, and make informed financial decisions. Being aware of interest costs can motivate you to pay off your loan faster."
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -104,58 +101,61 @@ export default function CarLoanPaymentAmortizationCalculator() {
   // --- 2. EXAMPLE SCENARIO ---
   const example = {
     title: "Real World Example",
-    scenario:
-      "Financing a $35,000 SUV with a 5.5% annual interest rate over a 6-year term.",
+    scenario: "Financing a $35,000 SUV with a 5% annual interest rate over a 60-month term.",
     steps: [
       {
-        label: "Step 1: Identify Inputs",
-        explanation:
-          "Loan Amount (Price) = $35,000, Annual Interest Rate = 5.5%, Term = 6 years."
+        label: "Step 1: Identify inputs",
+        explanation: "Principal (P) = $35,000, Annual Interest Rate = 5%, Term = 60 months."
       },
       {
-        label: "Step 2: Convert Annual Rate to Monthly Rate",
-        explanation:
-          "Monthly Interest Rate (r) = 5.5% / 12 / 100 = 0.0045833."
+        label: "Step 2: Calculate monthly interest rate",
+        explanation: "Monthly interest rate (r) = 5% / 12 = 0.004167."
       },
       {
-        label: "Step 3: Calculate Total Number of Payments",
+        label: "Step 3: Apply amortization formula",
         explanation:
-          "Total Payments (n) = 6 years × 12 months = 72 months."
+          "Monthly payment M = P * (r(1+r)^n) / ((1+r)^n - 1) = 35000 * (0.004167 * (1.004167)^60) / ((1.004167)^60 - 1)."
       },
       {
-        label: "Step 4: Apply Amortization Formula",
+        label: "Step 4: Calculate powers",
         explanation:
-          "Monthly Payment (P) = (r × PV) / (1 - (1 + r)^-n) = (0.0045833 × 35000) / (1 - (1 + 0.0045833)^-72) ≈ $599.42."
+          "(1.004167)^60 ≈ 1.28336."
       },
       {
-        label: "Step 5: Calculate Total Interest Paid",
+        label: "Step 5: Calculate numerator and denominator",
         explanation:
-          "Total Payment = $599.42 × 72 = $43,156.24; Total Interest = $43,156.24 - $35,000 = $8,156.24."
+          "Numerator = 0.004167 * 1.28336 = 0.005347, Denominator = 1.28336 - 1 = 0.28336."
+      },
+      {
+        label: "Step 6: Calculate monthly payment",
+        explanation:
+          "M = 35000 * (0.005347 / 0.28336) ≈ 35000 * 0.01887 = $660.45."
+      },
+      {
+        label: "Step 7: Calculate total payment and interest",
+        explanation:
+          "Total payment = $660.45 * 60 = $39,627. Total interest = $39,627 - $35,000 = $4,627."
       }
     ],
-    result:
-      "The monthly payment is approximately $599.42, and the total interest paid over 6 years will be about $8,156.24."
+    result: "Final monthly payment is approximately $660.45, with total interest paid of $4,627 over 5 years."
   };
 
   // --- 3. REFERENCES ---
   const references = [
     {
       title: "Investopedia - Amortization",
-      description:
-        "Comprehensive explanation of amortization and loan payment calculations.",
+      description: "Comprehensive explanation of amortization and loan calculations.",
       url: "https://www.investopedia.com/terms/a/amortization.asp"
     },
     {
       title: "Consumer Financial Protection Bureau - Car Loans",
-      description:
-        "Official guidance on car loans, financing, and understanding loan terms.",
+      description: "Official guidance on car loans and financing options.",
       url: "https://www.consumerfinance.gov/consumer-tools/auto-loans/"
     },
     {
-      title: "Edmunds - Car Loan Calculator",
-      description:
-        "Trusted automotive site offering loan calculators and buying advice.",
-      url: "https://www.edmunds.com/calculators/car-loan.html"
+      title: "Bankrate - Auto Loan Calculator",
+      description: "Interactive calculator and tips for auto loans.",
+      url: "https://www.bankrate.com/calculators/auto/auto-loan-calculator.aspx"
     }
   ];
 
@@ -192,18 +192,18 @@ export default function CarLoanPaymentAmortizationCalculator() {
             type="number"
             min="0"
             step="0.01"
-            placeholder="e.g. 5.5"
+            placeholder="e.g. 5"
             value={inputs.rate}
             onChange={(e) => handleInputChange("rate", e.target.value)}
           />
         </div>
         <div className="space-y-2">
-          <Label>Loan Term (years)</Label>
+          <Label>Loan Term (months)</Label>
           <Input
             type="number"
-            min="0"
+            min="1"
             step="1"
-            placeholder="e.g. 6"
+            placeholder="e.g. 60"
             value={inputs.term}
             onChange={(e) => handleInputChange("term", e.target.value)}
           />
@@ -219,8 +219,8 @@ export default function CarLoanPaymentAmortizationCalculator() {
           <CardContent className="p-6 text-center">
             <span className="text-sm font-semibold text-slate-500 uppercase">Estimated Monthly Payment</span>
             <div className="text-5xl font-extrabold text-blue-600 my-3">${results.primary}</div>
-            <div className="text-xl font-bold mt-2">{results.secondary}</div>
-            <p className="text-xs text-slate-500 mt-2">{results.details}</p>
+            <div className="text-xl font-bold mt-2">{results.details}</div>
+            <p className="text-xs text-slate-500 mt-2">{results.feedback}</p>
           </CardContent>
         </Card>
       )}
@@ -234,19 +234,19 @@ export default function CarLoanPaymentAmortizationCalculator() {
         <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
         <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
           <li>
-            <strong>Step 1:</strong> Enter the total price of the car you intend to finance in the "Car Price" field.
+            <strong>Step 1:</strong> Enter the total price of the car you want to finance in the "Car Price" field.
           </li>
           <li>
             <strong>Step 2:</strong> Input the annual interest rate (APR) offered by your lender in the "Annual Interest Rate" field.
           </li>
           <li>
-            <strong>Step 3:</strong> Specify the loan term in years in the "Loan Term" field.
+            <strong>Step 3:</strong> Specify the loan term in months (e.g., 60 for 5 years) in the "Loan Term" field.
           </li>
           <li>
-            <strong>Step 4:</strong> Click the "Calculate" button to compute your estimated monthly payment and view detailed loan information.
+            <strong>Step 4:</strong> Click the "Calculate" button to see your estimated monthly payment and total interest paid over the loan term.
           </li>
           <li>
-            <strong>Step 5:</strong> Review the results to understand your monthly financial commitment and total interest paid over the loan term.
+            <strong>Step 5:</strong> Review the results and adjust inputs if needed to explore different financing scenarios.
           </li>
         </ol>
       </section>
@@ -258,16 +258,13 @@ export default function CarLoanPaymentAmortizationCalculator() {
         </h2>
         <div className="prose prose-slate dark:prose-invert">
           <p>
-            Financing a vehicle is a significant financial decision that requires a clear understanding of your monthly obligations and the overall cost of the loan. This calculator uses the amortization formula to provide an accurate estimate of your monthly car loan payment based on the loan amount, interest rate, and loan term. The amortization process breaks down each payment into principal and interest components, ensuring the loan is fully paid off by the end of the term.
+            Financing a car is a significant financial commitment that requires careful planning and understanding of loan terms. This calculator helps you estimate your monthly payments based on the car price, interest rate, and loan term. The core of the calculation is the amortization formula, which breaks down each payment into principal and interest components, ensuring the loan is fully paid off by the end of the term.
           </p>
           <p>
-            To use the calculator effectively, input the total price of the car you plan to finance, the annual percentage rate (APR) your lender offers, and the length of the loan in years. The calculator converts the APR to a monthly interest rate and determines the total number of monthly payments. It then applies the amortization formula to compute the fixed monthly payment amount. This payment covers both the interest accrued and the principal repayment, allowing you to budget accurately.
+            The interest rate you enter is annual, but the calculator converts it to a monthly rate to accurately compute monthly payments. The loan term is the total number of months you plan to repay the loan. By adjusting these inputs, you can see how different scenarios affect your monthly budget and total interest paid. For example, a longer term reduces monthly payments but increases total interest, while a shorter term does the opposite.
           </p>
           <p>
-            Understanding your monthly payment helps you assess affordability and compare different loan offers. Additionally, the calculator provides insights into the total interest paid over the life of the loan, highlighting the true cost of financing. This information empowers you to make informed decisions, whether negotiating loan terms, considering a shorter loan duration to save interest, or evaluating refinancing options.
-          </p>
-          <p>
-            Remember, while this calculator assumes monthly compounding and fixed interest rates, actual loan terms may vary. Always consult your lender for precise loan details and disclosures. Using this tool as a guide will help you plan your vehicle purchase with confidence and financial clarity.
+            Understanding amortization schedules can empower you to make informed decisions, such as whether to refinance or pay extra toward your loan principal. This calculator provides a quick and reliable way to visualize your car loan payments and plan your finances accordingly.
           </p>
         </div>
       </section>
@@ -279,19 +276,19 @@ export default function CarLoanPaymentAmortizationCalculator() {
         </h3>
         <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
           <p>
-            <strong>1. Ignoring Additional Costs:</strong> Many users forget to account for taxes, fees, insurance, and maintenance costs, which can significantly increase monthly expenses beyond the loan payment.
+            <strong>1. Ignoring additional fees:</strong> Many buyers forget to account for taxes, registration, and dealer fees, which can increase the total loan amount and monthly payments.
           </p>
           <p>
-            <strong>2. Using Incorrect Interest Rates:</strong> Inputting the nominal interest rate instead of the APR or vice versa can lead to inaccurate payment estimates. Always use the APR provided by your lender.
+            <strong>2. Using the wrong interest rate:</strong> Ensure you use the annual percentage rate (APR) and not just the nominal rate, as APR includes fees and gives a more accurate cost.
           </p>
           <p>
-            <strong>3. Misunderstanding Loan Term:</strong> Confusing months and years or entering an unrealistic loan term can distort results. Ensure the loan term is entered in years as specified.
+            <strong>3. Confusing loan term units:</strong> Always enter the loan term in months, not years, to avoid miscalculations.
           </p>
           <p>
-            <strong>4. Assuming Zero Interest:</strong> Some may assume zero interest loans are common; however, most car loans include interest, and ignoring it will underestimate payments.
+            <strong>4. Overlooking prepayment penalties:</strong> Some loans charge fees for early repayment, which can affect your decision to pay off the loan faster.
           </p>
           <p>
-            <strong>5. Not Considering Credit Impact:</strong> Loan terms and interest rates depend on creditworthiness. This calculator does not factor in credit scores or lender-specific conditions.
+            <strong>5. Not verifying input accuracy:</strong> Double-check all inputs for typos or unrealistic values to get reliable results.
           </p>
         </div>
       </section>
