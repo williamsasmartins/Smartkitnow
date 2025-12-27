@@ -5451,7 +5451,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     {
-    slug: "low-apr-vs-cash-back",
+    slug: "low-apr-vs-cashback-incentive",
     title: "Low APR vs. Cash Back Incentive Calculator",
     category: "automotive",
     subcategory: "financing-leasing-value",
