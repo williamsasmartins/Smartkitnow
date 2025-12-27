@@ -5568,6 +5568,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvTripCostPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-hybrid-co2-savings",
+    title: "CO2 Emissions Savings: EV vs Hybrid",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Estimate carbon emissions reduction when switching from hybrid/gas to EV, based on mileage and grid cleanliness.",
+    loader: () => import("@/components/calculators/Automotive/EvHybridCo2SavingsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
