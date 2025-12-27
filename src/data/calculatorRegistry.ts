@@ -5559,6 +5559,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/AnnualEvHybridCostCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-trip-cost-planner",
+    title: "EV Trip Cost & Charging Planner",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Calculate total cost and required charging stops for a specific road trip in an EV.",
+    loader: () => import("@/components/calculators/Automotive/EvTripCostPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
