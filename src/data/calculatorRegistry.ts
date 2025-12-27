@@ -5595,6 +5595,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvHomeChargerPaybackCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-incentives-estimator",
+    title: "EV Incentives & Tax Credits Estimator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Calculate available federal/state rebates, tax credits, and net purchase price for specific EV models.",
+    loader: () => import("@/components/calculators/Automotive/EvIncentivesEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
