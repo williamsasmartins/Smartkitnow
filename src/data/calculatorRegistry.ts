@@ -5523,6 +5523,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvCostPerMileCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-real-world-range",
+    title: "EV Real-World Range Estimator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Adjust official EV range for real-world factors like temperature, speed, AC use, and driving style.",
+    loader: () => import("@/components/calculators/Automotive/EvRealWorldRangeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
