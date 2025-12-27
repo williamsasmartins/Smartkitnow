@@ -5358,6 +5358,51 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/TireSizeComparisonCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "speedometer-error",
+    title: "Speedometer Error",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Calculate speedometer reading error due to tire size changes.",
+    loader: () => import("@/components/calculators/Automotive/SpeedometerErrorCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "wheel-offset-backspacing",
+    title: "Wheel Offset/Backspacing Calculator",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Calculate wheel position changes with different offsets.",
+    loader: () => import("@/components/calculators/Automotive/WheelOffsetBackspacingCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "tire-revs-per-mile-rpm",
+    title: "Tire Revolutions per Mile & RPM @ Speed",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Estimate engine RPM at specific speeds based on tire size.",
+    loader: () => import("@/components/calculators/Automotive/TireRevsPerMileRpmCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "final-drive-gear-ratio-speed",
+    title: "Final Drive & Gear Ratio Speed Calculator",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Calculate vehicle speed based on gear ratios and tire size.",
+    loader: () => import("@/components/calculators/Automotive/FinalDriveGearRatioSpeedCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "shift-point-rpm-drop",
+    title: "Shift Point RPM Drop Estimator",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Estimate RPM drop when shifting gears.",
+    loader: () => import("@/components/calculators/Automotive/ShiftPointRpmDropCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
