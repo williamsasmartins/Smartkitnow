@@ -9,13 +9,13 @@ import { Separator } from "@/components/ui/separator";
 import { Car, Fuel, DollarSign, Info, CheckCircle2, AlertTriangle, BookOpen, ExternalLink, Settings, Zap } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
-export default function ZeroToSixtySpeedVsGearRpmCalculator() { // ✅ Valid
+export default function 060SpeedVsGearRpmCalculator() {
   const [inputs, setInputs] = useState({
     unit: "imperial",
-    gearRatio: "",
-    finalDriveRatio: "",
-    tireDiameter: "",
-    rpm: ""
+    gearRatio: "", // Gear ratio of selected gear
+    finalDriveRatio: "", // Final drive ratio
+    tireDiameter: "", // Tire diameter (inches or cm)
+    rpm: "", // Engine RPM at which speed is measured
   });
 
   const handleInputChange = (field: string, value: string) => {
@@ -24,90 +24,90 @@ export default function ZeroToSixtySpeedVsGearRpmCalculator() { // ✅ Valid
 
   /**
    * Calculation logic:
-   * 0-60 speed (mph or km/h) at given gear and RPM can be estimated by:
-   * Speed = (RPM × Tire Circumference × 60) / (Gear Ratio × Final Drive Ratio × 63360)
-   * For imperial units (mph):
-   * - Tire circumference in inches = π × tire diameter (inches)
-   * - 63360 = inches per mile
-   * For metric units (km/h):
-   * - Tire circumference in meters = π × tire diameter (meters)
-   * - 1000 meters per km, 3600 seconds per hour
-   * 
-   * We will calculate speed at given RPM and gear ratios.
+   * Speed (mph) = (RPM × Tire Circumference (inches)) / (Gear Ratio × Final Drive Ratio × 1056)
+   * 1056 is a constant to convert inches per minute to mph.
+   * For metric: Speed (km/h) = (RPM × Tire Circumference (cm)) / (Gear Ratio × Final Drive Ratio × 336)
+   * 336 converts cm/min to km/h.
    */
 
   const results = useMemo(() => {
     const gearRatio = parseFloat(inputs.gearRatio);
     const finalDriveRatio = parseFloat(inputs.finalDriveRatio);
-    const tireDiameter = parseFloat(inputs.tireDiameter);
     const rpm = parseFloat(inputs.rpm);
+    let tireDiameter = parseFloat(inputs.tireDiameter);
 
     if (
       isNaN(gearRatio) || gearRatio <= 0 ||
       isNaN(finalDriveRatio) || finalDriveRatio <= 0 ||
-      isNaN(tireDiameter) || tireDiameter <= 0 ||
-      isNaN(rpm) || rpm <= 0
+      isNaN(rpm) || rpm <= 0 ||
+      isNaN(tireDiameter) || tireDiameter <= 0
     ) {
       return {
-        primary: "Invalid input",
+        primary: "—",
         secondary: "",
-        details: "Please enter positive numeric values for all inputs.",
-        feedback: "Input error"
+        details: "Please enter valid positive numbers for all inputs.",
+        feedback: "Invalid input"
       };
     }
 
-    let speed = 0;
-    let details = "";
-
+    // Calculate tire circumference
+    // circumference = π × diameter
+    let tireCircumference;
     if (inputs.unit === "imperial") {
-      // Tire circumference in inches
-      const tireCircumferenceInches = Math.PI * tireDiameter;
+      // diameter in inches, circumference in inches
+      tireCircumference = Math.PI * tireDiameter;
       // Speed in mph
-      speed = (rpm * tireCircumferenceInches * 60) / (gearRatio * finalDriveRatio * 63360);
-      details = `Speed (mph) = (RPM × Tire Circumference × 60) / (Gear Ratio × Final Drive Ratio × 63360) = (${rpm} × ${tireCircumferenceInches.toFixed(2)} × 60) / (${gearRatio} × ${finalDriveRatio} × 63360)`;
+      // speed = (RPM × tireCircumference) / (gearRatio × finalDriveRatio × 1056)
+      // 1056 = 12 (inches/ft) * 88 (ft/min per mph)
+      const speedMph = (rpm * tireCircumference) / (gearRatio * finalDriveRatio * 1056);
+      return {
+        primary: speedMph.toFixed(2) + " mph",
+        secondary: `At ${rpm} RPM in gear ratio ${gearRatio} with final drive ${finalDriveRatio}`,
+        details: `Tire circumference: ${tireCircumference.toFixed(2)} inches`,
+        feedback: "Calculated speed based on inputs"
+      };
     } else {
-      // Metric units: tireDiameter in meters
-      // Tire circumference in meters
-      const tireCircumferenceMeters = Math.PI * tireDiameter;
+      // metric: diameter in cm, circumference in cm
+      tireCircumference = Math.PI * tireDiameter;
       // Speed in km/h
-      speed = (rpm * tireCircumferenceMeters * 60) / (gearRatio * finalDriveRatio * 1000);
-      details = `Speed (km/h) = (RPM × Tire Circumference × 60) / (Gear Ratio × Final Drive Ratio × 1000) = (${rpm} × ${tireCircumferenceMeters.toFixed(2)} × 60) / (${gearRatio} × ${finalDriveRatio} × 1000)`;
+      // speed = (RPM × tireCircumference) / (gearRatio × finalDriveRatio × 336)
+      // 336 converts cm/min to km/h
+      const speedKph = (rpm * tireCircumference) / (gearRatio * finalDriveRatio * 336);
+      return {
+        primary: speedKph.toFixed(2) + " km/h",
+        secondary: `At ${rpm} RPM in gear ratio ${gearRatio} with final drive ${finalDriveRatio}`,
+        details: `Tire circumference: ${tireCircumference.toFixed(2)} cm`,
+        feedback: "Calculated speed based on inputs"
+      };
     }
-
-    return {
-      primary: speed.toFixed(2),
-      secondary: inputs.unit === "imperial" ? "mph" : "km/h",
-      details,
-      feedback: "Calculated speed at given gear and RPM"
-    };
   }, [inputs]);
 
   // --- 1. LONG-FORM FAQ ---
   const faqs = [
     {
-      question: "How does gear ratio affect the 0-60 speed calculation?",
+      question: "How does gear ratio affect the 0–60 speed calculation?",
       answer:
-        "The gear ratio directly influences the vehicle's speed at a given engine RPM. A higher gear ratio means the engine turns more times for each wheel rotation, resulting in lower speed at the same RPM. Conversely, a lower gear ratio increases speed but reduces torque. This calculator uses gear ratio along with final drive and tire size to estimate speed accurately."
+        "Gear ratio directly influences the speed at a given engine RPM. A lower gear ratio means the wheels turn faster per engine revolution, increasing speed. Conversely, a higher gear ratio reduces speed but increases torque. This calculator uses gear ratio along with final drive and tire size to estimate vehicle speed at a specific RPM."
     },
     {
       question: "Why is tire diameter important in this calculation?",
       answer:
-        "Tire diameter determines the circumference, which affects how far the vehicle travels per wheel revolution. Larger tires cover more ground per rotation, increasing speed at a given RPM and gear ratio. Ignoring tire size can lead to inaccurate speed estimations, so it is crucial to input the correct tire diameter."
+        "Tire diameter determines the circumference, which affects how far the vehicle travels per wheel revolution. Larger tires cover more ground per revolution, increasing speed at the same RPM and gear ratio. Accurately inputting tire diameter ensures precise speed estimation."
     },
     {
-      question: "Can this calculator estimate 0-60 acceleration time?",
+      question: "Can I use this calculator for both manual and automatic transmissions?",
       answer:
-        "No, this calculator estimates vehicle speed at a specific gear and RPM, not acceleration time. 0-60 acceleration depends on many factors including engine power, vehicle weight, traction, and aerodynamics. This tool helps understand speed potential at given engine speeds and gearing."
+        "Yes, this calculator works for any transmission type as long as you know the gear ratio for the gear in question and the final drive ratio. These values are essential to relate engine RPM to wheel speed, regardless of transmission type."
     },
     {
       question: "What units should I use for tire diameter?",
       answer:
-        "Use inches for tire diameter if you select Imperial units, and meters if you select Metric units. Ensure consistency between the unit system and tire diameter input to get accurate results. Typical passenger car tires range from about 22 to 30 inches in diameter."
+        "Use inches if you select the Imperial unit system or centimeters for Metric. Consistency in units is crucial because the calculation constants differ between unit systems to convert circumference and RPM into speed."
     },
     {
-      question: "How do final drive ratios influence vehicle speed?",
+      question: "Does this calculator estimate 0–60 mph time?",
       answer:
-        "The final drive ratio is the last gear reduction before power reaches the wheels. A higher final drive ratio reduces speed but increases torque, improving acceleration. A lower final drive ratio increases top speed but can reduce acceleration. This calculator factors in final drive ratio to provide realistic speed estimates."
+        "No, this calculator estimates the vehicle speed at a given gear and RPM, not the acceleration time from 0 to 60 mph. However, understanding speed at certain RPMs and gears can help analyze performance characteristics and gear effectiveness."
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -116,40 +116,52 @@ export default function ZeroToSixtySpeedVsGearRpmCalculator() { // ✅ Valid
   const example = {
     title: "Real World Example",
     scenario:
-      "Calculating the speed of a car in 3rd gear at 4000 RPM with known gear ratios and tire size.",
+      "Calculating the speed at 3000 RPM in 3rd gear for a car with a 3.5:1 gear ratio, a 3.91 final drive ratio, and 26-inch diameter tires (Imperial units).",
     steps: [
       {
-        label: "Step 1: Gather inputs",
-        explanation:
-          "Assume the 3rd gear ratio is 1.5, final drive ratio is 3.9, tire diameter is 26 inches, and engine speed is 4000 RPM."
+        label: "Step 1: Calculate tire circumference",
+        explanation: `Tire circumference = π × diameter = 3.1416 × 26 = 81.68 inches`
       },
       {
-        label: "Step 2: Calculate tire circumference",
+        label: "Step 2: Apply speed formula",
         explanation:
-          "Tire circumference = π × tire diameter = 3.1416 × 26 = 81.68 inches."
+          "Speed (mph) = (RPM × Tire Circumference) / (Gear Ratio × Final Drive Ratio × 1056) = (3000 × 81.68) / (3.5 × 3.91 × 1056)"
       },
       {
-        label: "Step 3: Apply speed formula (Imperial units)",
-        explanation:
-          "Speed (mph) = (RPM × Tire Circumference × 60) / (Gear Ratio × Final Drive Ratio × 63360) = (4000 × 81.68 × 60) / (1.5 × 3.9 × 63360) ≈ 53.1 mph."
+        label: "Step 3: Calculate denominator",
+        explanation: "3.5 × 3.91 × 1056 = 14472.96"
+      },
+      {
+        label: "Step 4: Calculate numerator",
+        explanation: "3000 × 81.68 = 245040"
+      },
+      {
+        label: "Step 5: Calculate speed",
+        explanation: "Speed = 245040 / 14472.96 ≈ 16.93 mph"
       }
     ],
-    result: "Final Result: The vehicle speed at 4000 RPM in 3rd gear is approximately 53.1 mph."
+    result: "Final Result: At 3000 RPM in 3rd gear, the vehicle speed is approximately 16.93 mph."
   };
 
   // --- 3. REFERENCES ---
   const references = [
     {
-      title: "How Gear Ratios Affect Performance",
-      description: "Detailed explanation of gear ratios and their impact on vehicle speed and acceleration."
+      title: "How Gear Ratios Affect Vehicle Speed and Performance",
+      description:
+        "An in-depth article explaining the relationship between gear ratios, engine RPM, and vehicle speed.",
+      url: "https://www.engineeringtoolbox.com/gear-ratio-d_1840.html"
     },
     {
-      title: "Tire Size and Its Effect on Speedometer Accuracy",
-      description: "Understanding how tire diameter influences speed and distance measurements."
+      title: "Tire Size and Circumference Calculator",
+      description:
+        "Tool and explanation for calculating tire circumference based on diameter and width.",
+      url: "https://tiresize.com/calculator/"
     },
     {
-      title: "Automotive Engineering Fundamentals",
-      description: "Comprehensive resource on vehicle dynamics, gearing, and powertrain."
+      title: "Understanding Final Drive Ratios",
+      description:
+        "Comprehensive guide on how final drive ratios impact vehicle dynamics and speed.",
+      url: "https://www.motortrend.com/how-to/understanding-final-drive-ratios/"
     }
   ];
 
@@ -162,55 +174,57 @@ export default function ZeroToSixtySpeedVsGearRpmCalculator() { // ✅ Valid
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="imperial">Imperial (US)</SelectItem>
-            <SelectItem value="metric">Metric</SelectItem>
+            <SelectItem value="imperial">Imperial (inches, mph)</SelectItem>
+            <SelectItem value="metric">Metric (cm, km/h)</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label>Gear Ratio</Label>
+          <Label>Gear Ratio (e.g., 3.5)</Label>
           <Input
             type="number"
             step="0.01"
             min="0"
             value={inputs.gearRatio}
             onChange={(e) => handleInputChange("gearRatio", e.target.value)}
-            placeholder="e.g. 1.5"
+            placeholder="Enter gear ratio"
           />
         </div>
         <div className="space-y-2">
-          <Label>Final Drive Ratio</Label>
+          <Label>Final Drive Ratio (e.g., 3.91)</Label>
           <Input
             type="number"
             step="0.01"
             min="0"
             value={inputs.finalDriveRatio}
             onChange={(e) => handleInputChange("finalDriveRatio", e.target.value)}
-            placeholder="e.g. 3.9"
+            placeholder="Enter final drive ratio"
           />
         </div>
         <div className="space-y-2">
-          <Label>Tire Diameter ({inputs.unit === "imperial" ? "inches" : "meters"})</Label>
+          <Label>
+            Tire Diameter ({inputs.unit === "imperial" ? "inches" : "cm"})
+          </Label>
           <Input
             type="number"
-            step="0.01"
+            step="0.1"
             min="0"
             value={inputs.tireDiameter}
             onChange={(e) => handleInputChange("tireDiameter", e.target.value)}
-            placeholder={inputs.unit === "imperial" ? "e.g. 26" : "e.g. 0.66"}
+            placeholder={`Enter tire diameter in ${inputs.unit === "imperial" ? "inches" : "cm"}`}
           />
         </div>
         <div className="space-y-2">
           <Label>Engine RPM</Label>
           <Input
             type="number"
-            step="1"
+            step="10"
             min="0"
             value={inputs.rpm}
             onChange={(e) => handleInputChange("rpm", e.target.value)}
-            placeholder="e.g. 4000"
+            placeholder="Enter engine RPM"
           />
         </div>
       </div>
@@ -239,22 +253,22 @@ export default function ZeroToSixtySpeedVsGearRpmCalculator() { // ✅ Valid
         <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
         <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
           <li>
-            <strong>Step 1:</strong> Select your preferred unit system: Imperial (miles, inches) or Metric (kilometers, meters).
+            <strong>Step 1:</strong> Select your preferred unit system: Imperial (inches and mph) or Metric (centimeters and km/h).
           </li>
           <li>
-            <strong>Step 2:</strong> Enter the gear ratio of the gear you want to analyze (e.g., 1.5 for 3rd gear).
+            <strong>Step 2:</strong> Enter the gear ratio for the gear you want to analyze (e.g., 3.5 for 3rd gear).
           </li>
           <li>
-            <strong>Step 3:</strong> Input the final drive ratio of your vehicle’s differential (e.g., 3.9).
+            <strong>Step 3:</strong> Input the final drive ratio of your vehicle’s differential (e.g., 3.91).
           </li>
           <li>
-            <strong>Step 4:</strong> Provide the tire diameter in the selected units (inches for Imperial, meters for Metric).
+            <strong>Step 4:</strong> Provide the tire diameter in the selected unit (inches or centimeters).
           </li>
           <li>
-            <strong>Step 5:</strong> Enter the engine speed in RPM at which you want to calculate the vehicle speed.
+            <strong>Step 5:</strong> Enter the engine RPM at which you want to calculate the vehicle speed.
           </li>
           <li>
-            <strong>Step 6:</strong> Click the Calculate button to see the estimated vehicle speed at the given gear and RPM.
+            <strong>Step 6:</strong> Click the Calculate button to see the estimated speed at the given RPM and gear.
           </li>
         </ol>
       </section>
@@ -266,16 +280,16 @@ export default function ZeroToSixtySpeedVsGearRpmCalculator() { // ✅ Valid
         </h2>
         <div className="prose prose-slate dark:prose-invert">
           <p>
-            Understanding the relationship between vehicle speed, gear ratios, and engine RPM is fundamental for automotive engineers and enthusiasts alike. The speed a vehicle achieves at a given engine RPM depends on the gear ratio selected, the final drive ratio, and the size of the tires. Each gear ratio determines how many times the engine turns for one rotation of the wheels, while the final drive ratio further reduces this rotation before power reaches the wheels. Tire diameter affects how far the vehicle travels with each wheel revolution.
+            Understanding the relationship between engine RPM, gear ratios, and vehicle speed is fundamental in automotive engineering and performance tuning. The gear ratio of a transmission gear determines how many times the engine turns for one revolution of the wheels. Combined with the final drive ratio, which further reduces or increases rotational speed, these ratios dictate the speed output at the wheels for a given engine speed.
           </p>
           <p>
-            This calculator estimates the vehicle speed at a specific gear and engine RPM by combining these factors. The formula used takes the engine RPM, multiplies it by the tire circumference and converts it into distance traveled per minute, then divides by the product of gear and final drive ratios to find the actual wheel speed. This speed is then converted into miles per hour or kilometers per hour depending on the unit system selected.
+            Tire diameter plays a crucial role because it translates rotational speed into linear speed. Larger tires cover more distance per revolution, increasing vehicle speed at the same RPM and gear ratio. This calculator uses these inputs to estimate the vehicle’s speed at a specific engine RPM and gear, providing valuable insights for gear selection, performance tuning, and understanding vehicle dynamics.
           </p>
           <p>
-            While this tool does not calculate acceleration times like 0-60 mph, it provides valuable insight into how gearing and tire size influence vehicle speed at various engine speeds. This information is crucial when tuning transmissions, selecting tires, or optimizing performance for specific driving conditions.
+            While this tool does not calculate acceleration times like 0–60 mph, it helps visualize how gear ratios and RPM affect speed. For example, lower gears with higher ratios provide more torque but lower speed, while higher gears with lower ratios allow higher speeds at lower engine RPMs. This balance is critical for optimizing performance and fuel efficiency.
           </p>
           <p>
-            Always ensure accurate inputs for gear ratios, final drive ratios, tire diameter, and RPM to get reliable results. Remember that real-world factors such as drivetrain losses, tire slip, and aerodynamic drag are not accounted for in this simplified calculation.
+            Always ensure accurate input values, especially tire diameter, as variations can significantly affect results. Tire wear, inflation, and aftermarket modifications can change effective diameter. Use manufacturer specifications or measure tires directly for best accuracy.
           </p>
         </div>
       </section>
@@ -287,19 +301,19 @@ export default function ZeroToSixtySpeedVsGearRpmCalculator() { // ✅ Valid
         </h3>
         <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
           <p>
-            <strong>1. Mixing Units:</strong> Entering tire diameter in inches while using metric units or vice versa will cause incorrect speed calculations. Always match tire diameter units with the selected measurement system.
+            <strong>1. Incorrect units:</strong> Mixing imperial and metric units for tire diameter or speed constants leads to inaccurate results. Always select the correct unit system and input consistent values.
           </p>
           <p>
-            <strong>2. Incorrect Gear Ratios:</strong> Using approximate or incorrect gear ratios can lead to misleading results. Verify gear and final drive ratios from reliable sources such as vehicle manuals or manufacturer specifications.
+            <strong>2. Using nominal tire size instead of actual diameter:</strong> Tire sizes on sidewalls (e.g., 225/45R17) require conversion to diameter. Using nominal sizes without conversion causes errors.
           </p>
           <p>
-            <strong>3. Ignoring Tire Wear or Modifications:</strong> Tire diameter can change due to wear or aftermarket modifications, affecting speed calculations. Measure actual tire diameter for best accuracy.
+            <strong>3. Ignoring final drive ratio:</strong> Omitting or misentering the final drive ratio will skew speed calculations since it significantly affects wheel speed.
           </p>
           <p>
-            <strong>4. Assuming This Calculates Acceleration:</strong> This calculator estimates speed at a given RPM and gear, not acceleration times. Acceleration depends on many other factors including engine torque, vehicle mass, and traction.
+            <strong>4. Inputting unrealistic RPM or gear ratios:</strong> Values outside typical automotive ranges can produce nonsensical speeds. Verify inputs against manufacturer specs.
           </p>
           <p>
-            <strong>5. Overlooking Drivetrain Losses:</strong> Real-world speed may be slightly less due to drivetrain losses and tire slip, which are not accounted for in this simplified model.
+            <strong>5. Expecting acceleration times:</strong> This calculator estimates speed at a given RPM, not acceleration or 0–60 times. Use specialized tools for acceleration metrics.
           </p>
         </div>
       </section>
@@ -325,7 +339,12 @@ export default function ZeroToSixtySpeedVsGearRpmCalculator() { // ✅ Valid
         <div className="space-y-4">
           {references.map((ref, i) => (
             <div key={i}>
-              <a href="#" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1">
+              <a
+                href={ref.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
+              >
                 {ref.title} <ExternalLink className="w-3 h-3" />
               </a>
               <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
