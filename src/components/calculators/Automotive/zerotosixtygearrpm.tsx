@@ -338,7 +338,7 @@ export default function ZeroToSixtySpeedVsGearRpmCalculator() { // ✅ Valid
 
   return (
     <CalculatorVerticalLayout
-      title="0–60 Speed vs Gear/RPM"
+      title="zero-to-sixty-gear-rpm"
       description="Professional automotive calculator: 0–60 Speed vs Gear/RPM. Get accurate estimates, expert advice, and financial insights."
       widget={widget}
       editorial={editorial}
