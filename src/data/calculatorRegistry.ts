@@ -5394,6 +5394,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/FinalDriveGearRatioSpeedCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "shift-point-rpm-drop",
+    title: "Shift Point RPM Drop Estimator",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Estimate RPM drop when shifting gears.",
+    loader: () => import("@/components/calculators/Automotive/ShiftPointRpmDropCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
