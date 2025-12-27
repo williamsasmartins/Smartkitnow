@@ -5423,6 +5423,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/DepreciationCurveEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "insurance-cost-per-year",
+    title: "Insurance Cost per Year",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "Estimate annual insurance premiums based on simple factors.",
+    loader: () => import("@/components/calculators/Automotive/InsuranceCostPerYearCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
