@@ -5265,7 +5265,16 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
 // --- AUTOMOTIVE CALCULATORS ---
 
-  
+  // Consumption, Costs & Travel
+    {
+    slug: "trip-fuel-cost",
+    title: "Trip Fuel Cost Calculator",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Calculate trip cost based on distance, fuel efficiency, and price.",
+    loader: () => import("@/components/calculators/Automotive/TripFuelCostCalculator"),
+    urlStyle: "flat"
+  },
    
    
   // SKN-AUTO-REGISTER: do not remove this line
