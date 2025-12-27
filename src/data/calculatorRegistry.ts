@@ -5541,6 +5541,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvHybridGasTcoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-hybrid-break-even",
+    title: "EV vs Hybrid Break-Even Point Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Determine how many miles or years needed for an EV to become cheaper than a hybrid or gas car.",
+    loader: () => import("@/components/calculators/Automotive/EvHybridBreakEvenCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
