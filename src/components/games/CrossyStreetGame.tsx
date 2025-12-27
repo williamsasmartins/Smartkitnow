@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Gamepad2 } from "lucide-react";
-import StartOverlay from "./StartOverlay";
+import { Gamepad2, Maximize2, Minimize2 } from "lucide-react";
+import GameStartOverlay from "./GameStartOverlay";
 import CalculatorVerticalLayout from "../templates/CalculatorVerticalLayout";
 import useFaqJsonLd from "../../hooks/useFaqJsonLd";
 import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
 
 // --- Game Constants ---
 const CANVAS_WIDTH = 600;
@@ -55,19 +56,24 @@ function CrossyStreetBoard({
   const [difficulty, setDifficulty] = useState<Difficulty>("medium");
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Game Logic Refs
   const playerRef = useRef({ x: 7, y: 14 }); // Grid coordinates
   const lanesRef = useRef<Lane[]>([]);
   const animationFrameRef = useRef<number | null>(null);
-  const scrollOffsetRef = useRef(0);
 
   // --- Effects ---
 
-  // Load High Score
+  // Load High Score and Init Level
   useEffect(() => {
     const saved = localStorage.getItem("crossy-street-highscore");
     if (saved) setHighScore(parseInt(saved, 10));
+    
+    // Generate initial level for background
+    generateLevel("medium");
+    // Force a draw
+    setTimeout(() => draw(), 50);
   }, []);
 
   // Update High Score
@@ -82,23 +88,49 @@ function CrossyStreetBoard({
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current && canvasRef.current) {
+        if (document.fullscreenElement && containerRef.current === document.fullscreenElement) {
+           canvasRef.current.style.width = "100%";
+           canvasRef.current.style.height = "100%";
+           return;
+        }
+
         const { clientWidth } = containerRef.current;
         const width = Math.min(clientWidth, 600);
         const height = width; // Square
         
         canvasRef.current.style.width = `${width}px`;
         canvasRef.current.style.height = `${height}px`;
-        canvasRef.current.width = CANVAS_WIDTH;
-        canvasRef.current.height = CANVAS_HEIGHT;
-        draw();
       }
     };
 
     window.addEventListener("resize", handleResize);
     handleResize();
+    setTimeout(handleResize, 100);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [gameState, theme]);
+  }, [gameState, theme, isFullscreen]);
+
+  const toggleFullscreen = () => {
+    if (!containerRef.current) return;
+
+    if (!document.fullscreenElement) {
+      containerRef.current.requestFullscreen().catch((err) => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullscreen(false);
+    }
+  };
+
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
 
   // Game Loop
   useEffect(() => {
@@ -212,8 +244,8 @@ function CrossyStreetBoard({
     setDifficulty(diff);
     setScore(0);
     playerRef.current = { x: 7, y: 14 };
+    generateLevel(diff); // Generate before setting state
     setGameState("PLAYING");
-    generateLevel(diff);
   };
 
   const generateLevel = (diff: Difficulty) => {
@@ -227,25 +259,11 @@ function CrossyStreetBoard({
         continue;
       }
       
-      // Randomly assign types
-      // 0-4: Water
-      // 5: Safe
-      // 6-10: Road
-      // 11-12: Safe
-      
-      // Fixed layout for consistency or random? Let's do fixed pattern
-      // 14: Safe (Start)
-      // 13: Safe
-      // 9-12: Road
-      // 8: Safe
-      // 4-7: Water
-      // 3: Safe
-      // 0-2: Road
-      
       let type: LaneType = "safe";
       let speed = 0;
       let objects: GameObject[] = [];
       
+      // Fixed layout pattern
       if ((i >= 9 && i <= 12) || (i >= 0 && i <= 2)) {
         type = "road";
         speed = (baseSpeed + Math.random() * 2) * (i % 2 === 0 ? 1 : 1.5);
@@ -257,13 +275,11 @@ function CrossyStreetBoard({
       const direction = i % 2 === 0 ? 1 : -1;
       
       if (type === "road") {
-        // Add cars
         const numCars = 2 + Math.floor(Math.random() * 2);
         for (let j = 0; j < numCars; j++) {
            objects.push({ x: j * 200 + Math.random() * 50, width: 40, type: "car" });
         }
       } else if (type === "water") {
-        // Add logs
         const numLogs = 2 + Math.floor(Math.random() * 2);
         for (let j = 0; j < numLogs; j++) {
            objects.push({ x: j * 220 + Math.random() * 50, width: 80 + Math.random() * 40, type: "log" });
@@ -287,15 +303,9 @@ function CrossyStreetBoard({
     
     // Check Win (Top reached)
     if (player.y < 0) {
-      // Just respawn at bottom for infinite loop or win?
-      // Let's do infinite scrolling style but simplistic: Reset to bottom, increase score, harder?
-      // Or just win.
-      // Let's just win for now.
-      setGameState("MENU"); // Actually maybe just "WON" overlay?
-      // Re-using start overlay, let's just trigger high score update and reset
       setScore(s => s + 50); // Bonus
-      player.y = 14; // Reset
-      // Ideally we generate new terrain but static for now
+      player.y = 14; // Reset to bottom
+      // Increase difficulty slightly?
     }
 
     // Move Objects
@@ -376,62 +386,93 @@ function CrossyStreetBoard({
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     // Draw Lanes
-    lanesRef.current.forEach(lane => {
-      ctx.fillStyle = lane.type === "safe" ? colors.safe : lane.type === "road" ? colors.road : colors.water;
-      ctx.fillRect(0, lane.y * GRID_SIZE, CANVAS_WIDTH, GRID_SIZE);
-      
-      // Draw Objects
-      lane.objects.forEach(obj => {
-        ctx.fillStyle = obj.type === "car" ? colors.car : colors.log;
-        // Simple shadows
-        ctx.shadowColor = "rgba(0,0,0,0.2)";
-        ctx.shadowBlur = 4;
-        ctx.fillRect(obj.x, lane.y * GRID_SIZE + 5, obj.width, GRID_SIZE - 10);
-        ctx.shadowBlur = 0;
+    if (lanesRef.current.length > 0) {
+      lanesRef.current.forEach(lane => {
+        ctx.fillStyle = lane.type === "safe" ? colors.safe : lane.type === "road" ? colors.road : colors.water;
+        ctx.fillRect(0, lane.y * GRID_SIZE, CANVAS_WIDTH, GRID_SIZE);
+        
+        // Draw Objects
+        lane.objects.forEach(obj => {
+          ctx.fillStyle = obj.type === "car" ? colors.car : colors.log;
+          // Simple shadows
+          ctx.shadowColor = "rgba(0,0,0,0.2)";
+          ctx.shadowBlur = 4;
+          ctx.fillRect(obj.x, lane.y * GRID_SIZE + 5, obj.width, GRID_SIZE - 10);
+          ctx.shadowBlur = 0;
+        });
       });
-    });
+    }
 
     // Draw Player
-    ctx.fillStyle = colors.player;
-    ctx.shadowColor = colors.player;
-    ctx.shadowBlur = 10;
-    const px = playerRef.current.x * GRID_SIZE;
-    const py = playerRef.current.y * GRID_SIZE;
-    ctx.fillRect(px + 5, py + 5, GRID_SIZE - 10, GRID_SIZE - 10);
-    ctx.shadowBlur = 0;
+    if (gameState !== "MENU") {
+        ctx.fillStyle = colors.player;
+        ctx.shadowColor = colors.player;
+        ctx.shadowBlur = 10;
+        const px = playerRef.current.x * GRID_SIZE;
+        const py = playerRef.current.y * GRID_SIZE;
+        ctx.fillRect(px + 5, py + 5, GRID_SIZE - 10, GRID_SIZE - 10);
+        ctx.shadowBlur = 0;
+    }
 
     // Draw UI
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 20px Arial";
-    ctx.strokeStyle = "#000000";
-    ctx.lineWidth = 3;
-    ctx.strokeText(`Score: ${score}`, 20, 30);
-    ctx.fillText(`Score: ${score}`, 20, 30);
+    if (gameState === "PLAYING") {
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 20px Arial";
+        ctx.strokeStyle = "#000000";
+        ctx.lineWidth = 3;
+        ctx.strokeText(`Score: ${score}`, 20, 30);
+        ctx.fillText(`Score: ${score}`, 20, 30);
+    }
   };
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-[600px] mx-auto aspect-square bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none"
+      className={`relative w-full max-w-[600px] mx-auto bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none ${
+        isFullscreen ? "flex items-center justify-center h-screen max-w-none rounded-none border-0" : "aspect-square"
+      }`}
       tabIndex={0}
     >
       <canvas
         ref={canvasRef}
+        width={CANVAS_WIDTH}
+        height={CANVAS_HEIGHT}
         className="block w-full h-full touch-none"
       />
       
-      {/* Overlays */}
-      {(gameState === "MENU" || gameState === "GAME_OVER") && (
-        <StartOverlay
-          onStart={initGame}
-          currentDifficulty={difficulty}
-          onDifficultyChange={setDifficulty}
-          score={score}
-          highScore={highScore}
-          title={title}
-          isGameOver={gameState === "GAME_OVER"}
-        />
+      {/* Fullscreen Toggle */}
+      {!isFullscreen && (
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute top-2 right-2 z-10 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+          onClick={toggleFullscreen}
+        >
+          <Maximize2 className="w-6 h-6" />
+        </Button>
       )}
+
+      {isFullscreen && (
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute top-4 right-4 z-10 text-white/50 hover:text-white hover:bg-white/10"
+          onClick={toggleFullscreen}
+        >
+          <Minimize2 className="w-8 h-8" />
+        </Button>
+      )}
+      
+      {/* Overlays */}
+      <GameStartOverlay
+        isPlaying={gameState === "PLAYING"}
+        isGameOver={gameState === "GAME_OVER"}
+        score={score}
+        highScore={highScore}
+        onStart={initGame}
+        onRestart={initGame}
+        gameName={title}
+      />
     </div>
   );
 }

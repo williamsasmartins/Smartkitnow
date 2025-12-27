@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Gamepad2 } from "lucide-react";
-import StartOverlay from "./StartOverlay";
+import { Gamepad2, Maximize2, Minimize2 } from "lucide-react";
+import GameStartOverlay from "./GameStartOverlay";
 import CalculatorVerticalLayout from "../templates/CalculatorVerticalLayout";
 import useFaqJsonLd from "../../hooks/useFaqJsonLd";
 import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
 
 // --- Game Constants ---
 const CANVAS_WIDTH = 800;
@@ -77,6 +78,7 @@ function MissileCommandBoard({
   const [highScore, setHighScore] = useState(0);
   const [ammo, setAmmo] = useState(0);
   const [level, setLevel] = useState(1);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Game Logic Refs
   const missilesRef = useRef<Missile[]>([]);
@@ -88,10 +90,24 @@ function MissileCommandBoard({
 
   // --- Effects ---
 
-  // Load High Score
+  // Load High Score and Init
   useEffect(() => {
     const saved = localStorage.getItem("missile-command-highscore");
     if (saved) setHighScore(parseInt(saved, 10));
+
+    // Init Cities for background view
+    const citySpacing = CANVAS_WIDTH / 7;
+    const newCities: City[] = [];
+    for (let i = 1; i <= 6; i++) {
+       newCities.push({
+         x: i * citySpacing - CITY_WIDTH / 2,
+         y: CANVAS_HEIGHT - GROUND_HEIGHT - CITY_HEIGHT,
+         active: true
+       });
+    }
+    citiesRef.current = newCities;
+    // Force draw
+    setTimeout(() => draw(), 50);
   }, []);
 
   // Update High Score
@@ -106,6 +122,14 @@ function MissileCommandBoard({
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current && canvasRef.current) {
+        // If fullscreen, use window dimensions directly
+        if (document.fullscreenElement && containerRef.current === document.fullscreenElement) {
+           canvasRef.current.style.width = "100%";
+           canvasRef.current.style.height = "100%";
+           // Note: We keep internal resolution fixed (CANVAS_WIDTH/HEIGHT) and let CSS scale it
+           return;
+        }
+
         const { clientWidth } = containerRef.current;
         const width = Math.min(clientWidth, 800);
         const height = width * (CANVAS_HEIGHT / CANVAS_WIDTH);
@@ -122,7 +146,29 @@ function MissileCommandBoard({
     handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [gameState, theme]);
+  }, [gameState, theme, isFullscreen]);
+
+  const toggleFullscreen = () => {
+    if (!containerRef.current) return;
+
+    if (!document.fullscreenElement) {
+      containerRef.current.requestFullscreen().catch((err) => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullscreen(false);
+    }
+  };
+
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
 
   // Game Loop
   useEffect(() => {
@@ -185,7 +231,7 @@ function MissileCommandBoard({
 
   // --- Game Logic ---
 
-  const initGame = (diff: Difficulty) => {
+  const initGame = (diff: Difficulty = "medium") => {
     setDifficulty(diff);
     setScore(0);
     setLevel(1);
@@ -432,26 +478,51 @@ function MissileCommandBoard({
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-[800px] mx-auto aspect-[4/3] bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none"
+      className={`relative w-full max-w-[800px] mx-auto bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none ${
+        isFullscreen ? "flex items-center justify-center h-screen max-w-none rounded-none border-0" : "aspect-[4/3]"
+      }`}
       tabIndex={0}
     >
       <canvas
         ref={canvasRef}
+        width={CANVAS_WIDTH}
+        height={CANVAS_HEIGHT}
         className="block w-full h-full touch-none cursor-crosshair"
       />
       
-      {/* Overlays */}
-      {(gameState === "MENU" || gameState === "GAME_OVER") && (
-        <StartOverlay
-          onStart={initGame}
-          currentDifficulty={difficulty}
-          onDifficultyChange={setDifficulty}
-          score={score}
-          highScore={highScore}
-          title={title}
-          isGameOver={gameState === "GAME_OVER"}
-        />
+      {/* Fullscreen Toggle */}
+      {!isFullscreen && (
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute top-2 right-2 z-10 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+          onClick={toggleFullscreen}
+        >
+          <Maximize2 className="w-6 h-6" />
+        </Button>
       )}
+
+      {isFullscreen && (
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute top-4 right-4 z-10 text-white/50 hover:text-white hover:bg-white/10"
+          onClick={toggleFullscreen}
+        >
+          <Minimize2 className="w-8 h-8" />
+        </Button>
+      )}
+      
+      {/* Overlays */}
+      <GameStartOverlay
+        isPlaying={gameState === "PLAYING"}
+        isGameOver={gameState === "GAME_OVER"}
+        score={score}
+        highScore={highScore}
+        onStart={initGame}
+        onRestart={initGame}
+        gameName={title}
+      />
     </div>
   );
 }

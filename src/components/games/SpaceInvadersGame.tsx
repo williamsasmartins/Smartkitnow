@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Gamepad2 } from "lucide-react";
-import StartOverlay from "./StartOverlay";
+import { Gamepad2, Maximize2, Minimize2 } from "lucide-react";
+import GameStartOverlay from "./GameStartOverlay";
 import CalculatorVerticalLayout from "../templates/CalculatorVerticalLayout";
 import useFaqJsonLd from "../../hooks/useFaqJsonLd";
 import { useTheme } from "next-themes";
+import { Button } from "../ui/button";
 
 // --- Game Constants ---
 const CANVAS_WIDTH = 600;
@@ -55,6 +56,7 @@ function SpaceInvadersBoard({
   const { theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // --- State ---
   const [gameState, setGameState] = useState<GameState>("MENU");
@@ -62,6 +64,7 @@ function SpaceInvadersBoard({
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [lives, setLives] = useState(3);
+  const livesRef = useRef(3);
 
   // Game Logic Refs
   const playerRef = useRef({ x: CANVAS_WIDTH / 2 - PLAYER_WIDTH / 2, y: CANVAS_HEIGHT - 40, active: true });
@@ -73,6 +76,29 @@ function SpaceInvadersBoard({
   const animationFrameRef = useRef<number | null>(null);
 
   // --- Effects ---
+
+  const toggleFullscreen = () => {
+    if (!containerRef.current) return;
+
+    if (!document.fullscreenElement) {
+      containerRef.current.requestFullscreen().catch((err) => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullscreen(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, []);
 
   // Load High Score
   useEffect(() => {
@@ -410,24 +436,37 @@ function SpaceInvadersBoard({
       className="relative w-full max-w-[600px] mx-auto aspect-square bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none"
       tabIndex={0}
     >
+      {/* Fullscreen Button */}
+      <div className="absolute top-4 right-4 z-20">
+        <Button
+          variant="secondary"
+          size="icon"
+          className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-800"
+          onClick={toggleFullscreen}
+        >
+          {isFullscreen ? (
+            <Minimize2 className="h-5 w-5" />
+          ) : (
+            <Maximize2 className="h-5 w-5" />
+          )}
+        </Button>
+      </div>
+
       <canvas
         ref={canvasRef}
         className="block w-full h-full touch-none"
       />
       
       {/* Overlays */}
-      {(gameState === "MENU" || gameState === "GAME_OVER" || gameState === "WON") && (
-        <StartOverlay
-          onStart={initGame}
-          currentDifficulty={difficulty}
-          onDifficultyChange={setDifficulty}
-          score={score}
-          highScore={highScore}
-          title={title}
-          isGameOver={gameState === "GAME_OVER"}
-          isWon={gameState === "WON"}
-        />
-      )}
+      <GameStartOverlay
+        isPlaying={gameState === "PLAYING"}
+        isGameOver={gameState === "GAME_OVER"}
+        score={score}
+        highScore={highScore}
+        onStart={initGame}
+        onRestart={initGame}
+        gameName={title}
+      />
     </div>
   );
 }

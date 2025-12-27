@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Gamepad2 } from "lucide-react";
-import StartOverlay from "./StartOverlay";
+import { Gamepad2, Maximize2, Minimize2 } from "lucide-react";
+import GameStartOverlay from "./GameStartOverlay";
 import CalculatorVerticalLayout from "../templates/CalculatorVerticalLayout";
 import useFaqJsonLd from "../../hooks/useFaqJsonLd";
 import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
 
 // --- Game Constants ---
 const INITIAL_SPEED_MAP = {
@@ -43,11 +44,14 @@ function NeonPaddleBoard({
   const [playerScore, setPlayerScore] = useState(0);
   const [aiScore, setAiScore] = useState(0);
   const [winner, setWinner] = useState<"PLAYER" | "AI" | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Game Logic Refs
   const ballRef = useRef({ x: CANVAS_WIDTH / 2, y: CANVAS_HEIGHT / 2, dx: 5, dy: 5, radius: 8 });
   const playerYRef = useRef(CANVAS_HEIGHT / 2 - PADDLE_HEIGHT / 2);
   const aiYRef = useRef(CANVAS_HEIGHT / 2 - PADDLE_HEIGHT / 2);
+  const playerScoreRef = useRef(0);
+  const aiScoreRef = useRef(0);
   const animationFrameRef = useRef<number | null>(null);
 
   // --- Effects ---
@@ -56,23 +60,49 @@ function NeonPaddleBoard({
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current && canvasRef.current) {
-        const { clientWidth } = containerRef.current;
-        const width = Math.min(clientWidth, 800);
-        const height = width * (CANVAS_HEIGHT / CANVAS_WIDTH);
-        
-        canvasRef.current.style.width = `${width}px`;
-        canvasRef.current.style.height = `${height}px`;
-        canvasRef.current.width = CANVAS_WIDTH;
-        canvasRef.current.height = CANVAS_HEIGHT;
-        draw();
+        // If fullscreen, use window dimensions directly
+        if (document.fullscreenElement && containerRef.current === document.fullscreenElement) {
+           canvasRef.current.style.width = "100%";
+           canvasRef.current.style.height = "100%";
+           return;
+        }
+
+        // In normal mode, let CSS handle the size with aspect-ratio
+        canvasRef.current.style.width = "100%";
+        canvasRef.current.style.height = "100%";
       }
     };
 
     window.addEventListener("resize", handleResize);
+    // Call immediately to set initial size
     handleResize();
+    // Also call after a slight delay to ensure container is rendered
+    setTimeout(handleResize, 100);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [gameState, theme]);
+  }, [gameState, theme, isFullscreen]);
+
+  const toggleFullscreen = () => {
+    if (!containerRef.current) return;
+
+    if (!document.fullscreenElement) {
+      containerRef.current.requestFullscreen().catch((err) => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullscreen(false);
+    }
+  };
+
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
 
   // Game Loop
   useEffect(() => {
@@ -155,6 +185,8 @@ function NeonPaddleBoard({
     setDifficulty(diff);
     setPlayerScore(0);
     setAiScore(0);
+    playerScoreRef.current = 0;
+    aiScoreRef.current = 0;
     setWinner(null);
     playerYRef.current = CANVAS_HEIGHT / 2 - PADDLE_HEIGHT / 2;
     aiYRef.current = CANVAS_HEIGHT / 2 - PADDLE_HEIGHT / 2;
@@ -225,9 +257,9 @@ function NeonPaddleBoard({
     // Scoring
     if (ball.x < 0) {
       // AI Score
-      const newScore = aiScore + 1;
-      setAiScore(newScore);
-      if (newScore >= WIN_SCORE) {
+      aiScoreRef.current += 1;
+      setAiScore(aiScoreRef.current);
+      if (aiScoreRef.current >= WIN_SCORE) {
         setWinner("AI");
         setGameState("GAME_OVER");
       } else {
@@ -235,9 +267,9 @@ function NeonPaddleBoard({
       }
     } else if (ball.x > CANVAS_WIDTH) {
       // Player Score
-      const newScore = playerScore + 1;
-      setPlayerScore(newScore);
-      if (newScore >= WIN_SCORE) {
+      playerScoreRef.current += 1;
+      setPlayerScore(playerScoreRef.current);
+      if (playerScoreRef.current >= WIN_SCORE) {
         setWinner("PLAYER");
         setGameState("GAME_OVER");
       } else {
@@ -303,28 +335,51 @@ function NeonPaddleBoard({
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-[800px] mx-auto aspect-[16/10] bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none"
+      className={`relative w-full max-w-[800px] mx-auto bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none ${
+        isFullscreen ? "flex items-center justify-center h-screen max-w-none rounded-none border-0" : "aspect-[16/10]"
+      }`}
       tabIndex={0}
     >
       <canvas
         ref={canvasRef}
+        width={CANVAS_WIDTH}
+        height={CANVAS_HEIGHT}
         className="block w-full h-full touch-none"
       />
       
-      {/* Overlays */}
-      {(gameState === "MENU" || gameState === "GAME_OVER") && (
-        <StartOverlay
-          onStart={initGame}
-          currentDifficulty={difficulty}
-          onDifficultyChange={setDifficulty}
-          score={playerScore}
-          highScore={WIN_SCORE}
-          title={title}
-          isGameOver={gameState === "GAME_OVER"}
-          customMessage={gameState === "GAME_OVER" ? (winner === "PLAYER" ? "YOU WIN!" : "GAME OVER - AI WINS") : undefined}
-          hideHighScore={true}
-        />
+      {/* Fullscreen Toggle */}
+      {!isFullscreen && (
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute top-2 right-2 z-10 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+          onClick={toggleFullscreen}
+        >
+          <Maximize2 className="w-6 h-6" />
+        </Button>
       )}
+
+      {isFullscreen && (
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute top-4 right-4 z-10 text-white/50 hover:text-white hover:bg-white/10"
+          onClick={toggleFullscreen}
+        >
+          <Minimize2 className="w-8 h-8" />
+        </Button>
+      )}
+      
+      {/* Overlays */}
+      <GameStartOverlay
+        isPlaying={gameState === "PLAYING"}
+        isGameOver={gameState === "GAME_OVER"}
+        score={playerScore}
+        highScore={WIN_SCORE}
+        onStart={initGame}
+        onRestart={initGame}
+        gameName={title}
+      />
     </div>
   );
 }
