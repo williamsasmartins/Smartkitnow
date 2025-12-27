@@ -5550,6 +5550,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvHybridBreakEvenCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "annual-ev-hybrid-cost",
+    title: "Annual Fuel/Electricity Cost: EV vs Hybrid",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Compare yearly operating costs for EV, hybrid, and gas vehicles based on annual mileage and local rates.",
+    loader: () => import("@/components/calculators/Automotive/AnnualEvHybridCostCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
