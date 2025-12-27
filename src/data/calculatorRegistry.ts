@@ -5332,12 +5332,21 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     {
-    slug: "tco-calculator",
+    slug: "tco-total-cost-ownership",
     title: "Total Cost of Ownership (TCO) Calculator",
     category: "automotive",
     subcategory: "consumption-costs-travel",
     description: "Calculate the true long-term cost of owning a vehicle.",
     loader: () => import("@/components/calculators/Automotive/TcoCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "cost-per-mile-km",
+    title: "Cost Per Mile (Per Kilometer) Calculator",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Determine the exact cost per mile or km to drive your car.",
+    loader: () => import("@/components/calculators/Automotive/CostPerMileCalculator"),
     urlStyle: "flat"
   },
   // SKN-AUTO-REGISTER: do not remove this line
