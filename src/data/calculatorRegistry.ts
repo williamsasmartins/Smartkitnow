@@ -5604,6 +5604,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvIncentivesEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-hybrid-maintenance-savings",
+    title: "EV Maintenance Savings vs Hybrid Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Compare long-term maintenance and repair costs between EVs and hybrids, factoring in fewer moving parts, brake regeneration, and no oil changes.",
+    loader: () => import("@/components/calculators/Automotive/EvHybridMaintenanceSavingsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
