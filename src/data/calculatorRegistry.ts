@@ -5676,6 +5676,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/ZeroToSixtyTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "hp-to-torque-converter",
+    title: "Horsepower to Torque Converter",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Convert between horsepower and torque at a given RPM (using the standard formula).",
+    loader: () => import("@/components/calculators/Automotive/HpToTorqueConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
