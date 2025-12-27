@@ -5340,6 +5340,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/TcoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cost-per-mile-calculator",
+    title: "Cost Per Mile (Per Kilometer) Calculator",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Determine the exact cost per mile or km to drive your car.",
+    loader: () => import("@/components/calculators/Automotive/CostPerMileCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
