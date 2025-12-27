@@ -5496,6 +5496,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/TowingCapacitySafetyMarginCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "payload-gvwr-utilization",
+    title: "Payload & GVWR Utilization Helper",
+    category: "automotive",
+    subcategory: "maintenance-capacity",
+    description: "Calculate available payload capacity to avoid overloading.",
+    loader: () => import("@/components/calculators/Automotive/PayloadGvwrUtilizationCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
