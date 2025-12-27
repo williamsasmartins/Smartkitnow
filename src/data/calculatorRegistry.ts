@@ -5314,7 +5314,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     {
-    slug: "ice-vs-ev-ownership-cost",
+    slug: "ice-vs-ev-ownership-cost-5y",
     title: "ICE vs EV Ownership Cost (5 years)",
     category: "automotive",
     subcategory: "consumption-costs-travel",
