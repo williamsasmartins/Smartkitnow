@@ -5441,6 +5441,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/OutTheDoorEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "used-car-value-estimator",
+    title: "Used Car Value Estimator",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "Estimate trade-in and private party value of used cars.",
+    loader: () => import("@/components/calculators/Automotive/UsedCarValueEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
