@@ -5505,6 +5505,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/PayloadGvwrUtilizationCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-home-public-charging-cost-time",
+    title: "EV Home vs Public Charging Cost & Time Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Estimate charging time and cost at home (Level 2) versus public stations, including electricity rates and charger power.",
+    loader: () => import("@/components/calculators/Automotive/EvHomePublicChargingCostTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
