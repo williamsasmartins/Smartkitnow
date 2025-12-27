@@ -5478,6 +5478,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
    
+    {
+    slug: "brake-pad-wear-estimator",
+    title: "Brake Pad/Rotors Wear Estimator",
+    category: "automotive",
+    subcategory: "maintenance-capacity",
+    description: "Estimate remaining life of brake pads and rotors.",
+    loader: () => import("@/components/calculators/Automotive/BrakePadWearEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
