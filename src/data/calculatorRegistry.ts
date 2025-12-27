@@ -5385,6 +5385,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/TireRevsPerMileRpmCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "final-drive-gear-ratio-speed",
+    title: "Final Drive & Gear Ratio Speed Calculator",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Calculate vehicle speed based on gear ratios and tire size.",
+    loader: () => import("@/components/calculators/Automotive/FinalDriveGearRatioSpeedCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
