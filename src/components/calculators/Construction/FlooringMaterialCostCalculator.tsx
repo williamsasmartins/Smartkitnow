@@ -391,6 +391,46 @@ export default function FlooringMaterialCostCalculator() {
           ))}
         </div>
       </section>
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+
+          <li>
+            <a href="https://www.thisoldhouse.com/search?q=Flooring%20Cost%20Estimation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Flooring Cost Estimation - This Old House
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Professional advice, step-by-step tutorials, and expert videos on Flooring Cost Estimation from the trusted team at This Old House.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.familyhandyman.com/?s=Flooring%20Cost%20Estimation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Flooring Cost Estimation - The Family Handyman
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Practical DIY guides, project plans, and tool reviews for Flooring Cost Estimation, helping you get the job done right.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.finehomebuilding.com/?s=Flooring%20Cost%20Estimation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Flooring Cost Estimation - Fine Homebuilding
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Expert articles and detailed construction techniques for Flooring Cost Estimation from professional builders and craftsmen.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.constructconnect.com/blog/search?term=Flooring%20Cost%20Estimation" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Flooring Cost Estimation - ConstructConnect
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Construction industry insights, cost data, and project management tips relevant to Flooring Cost Estimation.
+            </p>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 
@@ -411,6 +451,7 @@ export default function FlooringMaterialCostCalculator() {
         { id: "example", label: "Example" },
         { id: "mistakes", label: "Mistakes" },
         { id: "faq", label: "FAQ" },
+        { id: "references", label: "References & Resources" },
       ]}
       showTopBanner
       showSidebar

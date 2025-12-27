@@ -395,6 +395,46 @@ export default function BoardFootCalculator() {
           ))}
         </div>
       </section>
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+
+          <li>
+            <a href="https://www.thisoldhouse.com/search?q=Board%20Foot%20Measurement" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Board Foot Measurement - This Old House
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Professional advice, step-by-step tutorials, and expert videos on Board Foot Measurement from the trusted team at This Old House.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.familyhandyman.com/?s=Board%20Foot%20Measurement" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Board Foot Measurement - The Family Handyman
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Practical DIY guides, project plans, and tool reviews for Board Foot Measurement, helping you get the job done right.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.finehomebuilding.com/?s=Board%20Foot%20Measurement" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Board Foot Measurement - Fine Homebuilding
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Expert articles and detailed construction techniques for Board Foot Measurement from professional builders and craftsmen.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.constructconnect.com/blog/search?term=Board%20Foot%20Measurement" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Board Foot Measurement - ConstructConnect
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Construction industry insights, cost data, and project management tips relevant to Board Foot Measurement.
+            </p>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 
@@ -415,6 +455,7 @@ export default function BoardFootCalculator() {
         { id: "example", label: "Example" },
         { id: "mistakes", label: "Mistakes" },
         { id: "faq", label: "FAQ" },
+        { id: "references", label: "References & Resources" },
       ]}
       showTopBanner
       showSidebar

@@ -441,6 +441,38 @@ export default function FencePostMaterialLinearFeetCalculator() {
           ))}
         </div>
       </section>
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+
+          <li>
+            <a href="https://www.thisoldhouse.com/search?q=Fence%20Construction" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Fence Construction - This Old House
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Professional advice, step-by-step tutorials, and expert videos on Fence Construction from the trusted team at This Old House.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.familyhandyman.com/?s=Fence%20Construction" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Fence Construction - The Family Handyman
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Practical DIY guides, project plans, and tool reviews for Fence Construction, helping you get the job done right.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.constructiondive.com/search/?q=Fence%20Construction" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Fence Construction - Construction Dive
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Latest news and trends in the construction industry regarding Fence Construction.
+            </p>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 
@@ -462,6 +494,7 @@ export default function FencePostMaterialLinearFeetCalculator() {
         { id: "example", label: "Example" }, // Layout handles id="example" automatically for the prop
         { id: "mistakes", label: "Mistakes" },
         { id: "faq", label: "FAQ" },
+        { id: "references", label: "References & Resources" },
       ]}
       showTopBanner
       showSidebar

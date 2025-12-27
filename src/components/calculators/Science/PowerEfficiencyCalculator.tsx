@@ -345,6 +345,47 @@ Where:
           ))}
         </ul>
       </section>
+
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Special:Search?search=Power%20and%20Efficiency%20Physics" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Power and Efficiency Physics - Wikipedia
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              A comprehensive encyclopedia article providing an in-depth overview of Power and Efficiency Physics, including historical context, mathematical derivations, and key applications.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.khanacademy.org/search?page_search_query=Power%20and%20Efficiency%20Physics" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Power and Efficiency Physics - Khan Academy
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Watch free educational video tutorials and complete interactive practice exercises on Power and Efficiency Physics at Khan Academy, perfect for visual learners.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.physicsclassroom.com/search?q=Power%20and%20Efficiency%20Physics" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Power and Efficiency Physics - The Physics Classroom
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Explore student-friendly tutorials, interactives, and concept builders related to Power and Efficiency Physics designed to improve understanding of physics principles.
+            </p>
+          </li>
+          <li>
+            <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Power and Efficiency Physics - HyperPhysics
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Navigate the HyperPhysics concept map to find concise summaries and calculation examples for Power and Efficiency Physics.
+            </p>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 
@@ -431,6 +472,7 @@ Efficiency (η) = (Useful Energy Output / Total Energy Input) × 100%`,
         { id: "what-is", label: "Understanding" },
         { id: "formula", label: "Formula" },
         { id: "faq", label: "FAQ" },
+        { id: "references", label: "References & Resources" }
       ]}
       showTopBanner
       showSidebar

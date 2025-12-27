@@ -216,6 +216,47 @@ Where:
           ))}
         </ul>
       </section>
+
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Special:Search?search=RC%20Time%20Constant" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              RC Time Constant - Wikipedia
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              A comprehensive encyclopedia article providing an in-depth overview of RC Time Constant, including historical context, mathematical derivations, and key applications.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.khanacademy.org/search?page_search_query=RC%20Time%20Constant" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              RC Time Constant - Khan Academy
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Watch free educational video tutorials and complete interactive practice exercises on RC Time Constant at Khan Academy, perfect for visual learners.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.physicsclassroom.com/search?q=RC%20Time%20Constant" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              RC Time Constant - The Physics Classroom
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Explore student-friendly tutorials, interactives, and concept builders related to RC Time Constant designed to improve understanding of physics principles.
+            </p>
+          </li>
+          <li>
+            <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              RC Time Constant - HyperPhysics
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Navigate the HyperPhysics concept map to find concise summaries and calculation examples for RC Time Constant.
+            </p>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 
@@ -270,6 +311,7 @@ Where:
         { id: "what-is", label: "Understanding" },
         { id: "formula", label: "Formula" },
         { id: "faq", label: "FAQ" },
+        { id: "references", label: "References & Resources" }
       ]}
       showTopBanner
       showSidebar

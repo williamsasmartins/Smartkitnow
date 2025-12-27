@@ -293,6 +293,47 @@ Where:
           ))}
         </ul>
       </section>
+
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Special:Search?search=Percent%20Composition%20by%20Mass" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Percent Composition by Mass - Wikipedia
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              A comprehensive encyclopedia article providing an in-depth overview of Percent Composition by Mass, including historical context, mathematical derivations, and key applications.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.khanacademy.org/search?page_search_query=Percent%20Composition%20by%20Mass" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Percent Composition by Mass - Khan Academy
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Watch free educational video tutorials and complete interactive practice exercises on Percent Composition by Mass at Khan Academy, perfect for visual learners.
+            </p>
+          </li>
+          <li>
+            <a href="https://chem.libretexts.org/Special:Search?query=Percent%20Composition%20by%20Mass" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Percent Composition by Mass - Chemistry LibreTexts
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Access open-access chemistry textbooks and rigorous academic articles explaining Percent Composition by Mass in detail for students and researchers.
+            </p>
+          </li>
+          <li>
+            <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Percent%20Composition%20by%20Mass" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Percent Composition by Mass - PubChem
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Search the PubChem database for chemical information, compound properties, and safety data related to Percent Composition by Mass.
+            </p>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 
@@ -348,6 +389,7 @@ Where:
         { id: "what-is", label: "Understanding" },
         { id: "formula", label: "Formula" },
         { id: "faq", label: "FAQ" },
+        { id: "references", label: "References & Resources" }
       ]}
       showTopBanner
       showSidebar

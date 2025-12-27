@@ -438,6 +438,46 @@ export default function HeatingCostPerSquareFootCalculator() {
           ))}
         </div>
       </section>
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+
+          <li>
+            <a href="https://www.thisoldhouse.com/search?q=Heating%20Costs" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Heating Costs - This Old House
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Professional advice, step-by-step tutorials, and expert videos on Heating Costs from the trusted team at This Old House.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.familyhandyman.com/?s=Heating%20Costs" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Heating Costs - The Family Handyman
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Practical DIY guides, project plans, and tool reviews for Heating Costs, helping you get the job done right.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.energy.gov/search/site?keywords=Heating%20Costs" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Heating Costs - Energy.gov
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Official Department of Energy guidelines for energy efficiency and Heating Costs to save money and improve home comfort.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.ashrae.org/search?q=Heating%20Costs" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Heating Costs - ASHRAE
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Technical standards and guidelines for HVAC and building systems related to Heating Costs.
+            </p>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 
@@ -459,6 +499,7 @@ export default function HeatingCostPerSquareFootCalculator() {
         { id: "example", label: "Example" }, // Layout handles id="example" automatically for the prop
         { id: "mistakes", label: "Mistakes" },
         { id: "faq", label: "FAQ" },
+        { id: "references", label: "References & Resources" },
       ]}
       showTopBanner
       showSidebar

@@ -532,6 +532,46 @@ export default function InsulationRValueRequirementCalculator() {
           ))}
         </div>
       </section>
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+
+          <li>
+            <a href="https://www.thisoldhouse.com/search?q=Insulation%20R-Value" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Insulation R-Value - This Old House
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Professional advice, step-by-step tutorials, and expert videos on Insulation R-Value from the trusted team at This Old House.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.familyhandyman.com/?s=Insulation%20R-Value" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Insulation R-Value - The Family Handyman
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Practical DIY guides, project plans, and tool reviews for Insulation R-Value, helping you get the job done right.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.energy.gov/search/site?keywords=Insulation%20R-Value" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Insulation R-Value - Energy.gov
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Official Department of Energy guidelines for energy efficiency and Insulation R-Value to save money and improve home comfort.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.ashrae.org/search?q=Insulation%20R-Value" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Insulation R-Value - ASHRAE
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Technical standards and guidelines for HVAC and building systems related to Insulation R-Value.
+            </p>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 
@@ -553,6 +593,7 @@ export default function InsulationRValueRequirementCalculator() {
         { id: "example", label: "Example" }, // Layout handles id="example" automatically for the prop
         { id: "mistakes", label: "Mistakes" },
         { id: "faq", label: "FAQ" },
+        { id: "references", label: "References & Resources" },
       ]}
       showTopBanner
       showSidebar

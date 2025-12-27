@@ -298,6 +298,47 @@ Note: All values must be positive numbers.`}
           ))}
         </ul>
       </section>
+
+      <section id="references" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          References & Additional Resources
+        </h2>
+        <ul className="list-disc pl-5 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Special:Search?search=Molarity" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Molarity - Wikipedia
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              A comprehensive encyclopedia article providing an in-depth overview of Molarity, including historical context, mathematical derivations, and key applications.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.khanacademy.org/search?page_search_query=Molarity" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Molarity - Khan Academy
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Watch free educational video tutorials and complete interactive practice exercises on Molarity at Khan Academy, perfect for visual learners.
+            </p>
+          </li>
+          <li>
+            <a href="https://chem.libretexts.org/Special:Search?query=Molarity" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Molarity - Chemistry LibreTexts
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Access open-access chemistry textbooks and rigorous academic articles explaining Molarity in detail for students and researchers.
+            </p>
+          </li>
+          <li>
+            <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Molarity" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              Molarity - PubChem
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Search the PubChem database for chemical information, compound properties, and safety data related to Molarity.
+            </p>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 
@@ -350,6 +391,7 @@ Note: All values must be positive numbers.`}
         { id: "what-is", label: "Understanding" },
         { id: "formula", label: "Formula" },
         { id: "faq", label: "FAQ" },
+        { id: "references", label: "References & Resources" }
       ]}
       showTopBanner
       showSidebar
