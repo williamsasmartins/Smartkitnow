@@ -5432,6 +5432,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/InsuranceCostPerYearCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "out-the-door-estimator",
+    title: "Sales Tax, Title & Fees Out-the-Door Estimator",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "Estimate total \"out-the-door\" price including all fees.",
+    loader: () => import("@/components/calculators/Automotive/OutTheDoorEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
