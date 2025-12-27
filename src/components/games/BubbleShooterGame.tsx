@@ -464,13 +464,16 @@ function BubbleShooterBoard({
   };
   
   const removeFloating = () => {
+    // Safety check
+    if (!gridRef.current || gridRef.current.length === 0) return;
+
     // BFS from top row to mark connected bubbles
     const visited = new Set<string>();
     const queue: {r: number, c: number}[] = [];
     
     // Add all top row bubbles
     for (let c = 0; c < COLS; c++) {
-      if (gridRef.current[0][c]) {
+      if (gridRef.current[0] && gridRef.current[0][c]) {
         queue.push({r: 0, c});
       }
     }
@@ -483,7 +486,7 @@ function BubbleShooterBoard({
       
       const neighbors = getNeighbors(r, c);
       neighbors.forEach(n => {
-        if (gridRef.current[n.r][n.c]) {
+        if (gridRef.current[n.r] && gridRef.current[n.r][n.c]) {
           queue.push(n);
         }
       });
@@ -491,6 +494,7 @@ function BubbleShooterBoard({
     
     // Remove anything not visited
     for (let r = 0; r < ROWS; r++) {
+      if (!gridRef.current[r]) continue;
       for (let c = 0; c < COLS; c++) {
         if (gridRef.current[r][c] && !visited.has(`${r},${c}`)) {
           gridRef.current[r][c] = null;
@@ -520,11 +524,14 @@ function BubbleShooterBoard({
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     // Draw Grid Bubbles
-    for (let r = 0; r < ROWS; r++) {
-      for (let c = 0; c < COLS; c++) {
-        const b = gridRef.current[r][c];
-        if (b) {
-          drawBubble(ctx, b.x, b.y, b.color);
+    if (gridRef.current.length > 0) {
+      for (let r = 0; r < ROWS; r++) {
+        if (!gridRef.current[r]) continue;
+        for (let c = 0; c < COLS; c++) {
+          const b = gridRef.current[r][c];
+          if (b) {
+            drawBubble(ctx, b.x, b.y, b.color);
+          }
         }
       }
     }

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowLeft, RefreshCw, Trophy, Settings2, X, Gamepad2, Lightbulb, History, HelpCircle, Share2, Mail, BookOpen } from "lucide-react";
+import { ArrowLeft, RefreshCw, Trophy, Settings2, X, Gamepad2, Lightbulb, History, HelpCircle, Share2, Mail, BookOpen, Maximize2, Minimize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import StartOverlay from "./StartOverlay";
+import GameStartOverlay from "./GameStartOverlay";
 import CalculatorVerticalLayout from "../templates/CalculatorVerticalLayout";
 import useFaqJsonLd from "../../hooks/useFaqJsonLd";
 import { useTheme } from "next-themes";
@@ -43,6 +43,7 @@ function NeonSnakeBoard({
   const [difficulty, setDifficulty] = useState<Difficulty>("medium");
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Game Logic Refs (mutable without re-render)
   const snakeRef = useRef<{ x: number; y: number }[]>([{ x: 10, y: 10 }]);
@@ -53,6 +54,40 @@ function NeonSnakeBoard({
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   // --- Effects ---
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      containerRef.current?.requestFullscreen().catch((err) => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+      // Small delay to allow layout to settle before resizing canvas
+      setTimeout(() => {
+        if (containerRef.current && canvasRef.current) {
+           const { clientWidth, clientHeight } = containerRef.current;
+           // If fullscreen, use more height, otherwise keep square-ish
+           const isFull = !!document.fullscreenElement;
+           const size = isFull 
+             ? Math.min(clientWidth, clientHeight - 100) 
+             : Math.min(clientWidth, 500);
+           
+           canvasRef.current.width = size;
+           canvasRef.current.height = size;
+           draw();
+        }
+      }, 100);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, [gameState, theme]);
 
   // Load High Score
   useEffect(() => {
@@ -72,8 +107,12 @@ function NeonSnakeBoard({
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current && canvasRef.current) {
-        const { clientWidth } = containerRef.current;
-        const size = Math.min(clientWidth, 500); // Max 500px, fill container
+        const { clientWidth, clientHeight } = containerRef.current;
+        const isFull = !!document.fullscreenElement;
+        const size = isFull 
+             ? Math.min(clientWidth, clientHeight - 100) 
+             : Math.min(clientWidth, 500);
+
         canvasRef.current.width = size;
         canvasRef.current.height = size;
         draw();
@@ -330,7 +369,7 @@ function NeonSnakeBoard({
 
   return (
     <div 
-      className="relative flex flex-col items-center justify-center w-full max-w-4xl mx-auto"
+      className={`relative flex flex-col items-center justify-center w-full mx-auto ${isFullscreen ? 'h-screen p-4' : 'max-w-4xl'}`}
       ref={containerRef}
     >
       {/* Header / Stats */}
@@ -345,9 +384,19 @@ function NeonSnakeBoard({
           </div>
         </div>
         
-        <div className="text-right">
-          <p className="text-xs text-slate-500 uppercase font-bold tracking-wider">High Score</p>
-          <p className="text-lg font-mono font-bold text-slate-700 dark:text-slate-300 leading-none">{highScore}</p>
+        <div className="flex items-center gap-4">
+          <div className="text-right">
+            <p className="text-xs text-slate-500 uppercase font-bold tracking-wider">High Score</p>
+            <p className="text-lg font-mono font-bold text-slate-700 dark:text-slate-300 leading-none">{highScore}</p>
+          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleFullscreen}
+            className="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+          >
+            {isFullscreen ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
+          </Button>
         </div>
       </div>
 
@@ -362,75 +411,15 @@ function NeonSnakeBoard({
           className="block mx-auto cursor-pointer"
         />
 
-        {/* Start / Menu Overlay */}
-        <StartOverlay 
-          open={gameState === "MENU"} 
-          onClose={() => initGame("medium")}
-          title={title}
-          description={description}
-        >
-          <div className="grid gap-3">
-            <Button 
-              variant="outline" 
-              className="w-full h-12 text-lg border-green-500/20 hover:bg-green-500/10 hover:text-green-600 text-green-700 dark:text-green-400 font-bold"
-              onClick={() => initGame("easy")}
-            >
-              Easy
-            </Button>
-            <Button 
-              variant="outline" 
-              className="w-full h-12 text-lg border-blue-500/20 hover:bg-blue-500/10 hover:text-blue-600 text-blue-700 dark:text-blue-400 font-bold"
-              onClick={() => initGame("medium")}
-            >
-              Medium
-            </Button>
-            <Button 
-              variant="outline" 
-              className="w-full h-12 text-lg border-red-500/20 hover:bg-red-500/10 hover:text-red-600 text-red-700 dark:text-red-400 font-bold"
-              onClick={() => initGame("hard")}
-            >
-              Hard
-            </Button>
-          </div>
-          
-          <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-800">
-             <Button 
-              variant="ghost" 
-              className="w-full text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
-              onClick={() => navigate("/games")}
-            >
-              <X className="w-4 h-4 mr-2" /> Close Game
-            </Button>
-          </div>
-        </StartOverlay>
-
-        {/* Game Over Overlay */}
-        {gameState === "GAME_OVER" && (
-           <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/90 dark:bg-slate-950/90 backdrop-blur-sm p-4 animate-in fade-in zoom-in-95 duration-300">
-            <div className="text-center">
-              <h2 className="text-4xl font-black text-slate-900 dark:text-white mb-2 drop-shadow-sm dark:drop-shadow-[0_0_15px_rgba(239,68,68,0.5)]">GAME OVER</h2>
-              <p className="text-xl text-slate-600 dark:text-slate-300 mb-8">Score: <span className="text-slate-900 dark:text-white font-mono font-bold">{score}</span></p>
-              
-              <div className="flex gap-4 justify-center">
-                <Button 
-                  size="lg" 
-                  className="bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 font-bold min-w-[140px]"
-                  onClick={() => setGameState("MENU")}
-                >
-                  <RefreshCw className="w-4 h-4 mr-2" /> Play Again
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="border-slate-300 text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
-                  onClick={() => navigate("/games")}
-                >
-                  <ArrowLeft className="w-4 h-4 mr-2" /> Exit
-                </Button>
-              </div>
-            </div>
-           </div>
-        )}
+        <GameStartOverlay
+          isPlaying={gameState === "PLAYING"}
+          isGameOver={gameState === "GAME_OVER"}
+          score={score}
+          highScore={highScore}
+          onStart={initGame}
+          onRestart={initGame}
+          gameName={title}
+        />
       </Card>
 
       {/* Controls Hint */}
