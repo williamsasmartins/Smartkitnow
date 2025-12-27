@@ -5304,6 +5304,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvKwhCostPerMileCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-charging-cost-time",
+    title: "EV Charging Cost & Time Estimator",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Estimate time and cost to charge an EV at home or public stations.",
+    loader: () => import("@/components/calculators/Automotive/EvChargingCostTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
