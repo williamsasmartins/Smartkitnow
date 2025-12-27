@@ -5358,6 +5358,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/TireSizeComparisonCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "speedometer-error",
+    title: "Speedometer Error",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Calculate speedometer reading error due to tire size changes.",
+    loader: () => import("@/components/calculators/Automotive/SpeedometerErrorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
