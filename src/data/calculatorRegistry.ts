@@ -5532,6 +5532,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvRealWorldRangeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-hybrid-gas-tco",
+    title: "EV vs Hybrid vs Gas TCO Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Compare total cost of ownership over 5-10 years, including purchase price, fuel/electricity, maintenance, incentives, and depreciation.",
+    loader: () => import("@/components/calculators/Automotive/EvHybridGasTcoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
