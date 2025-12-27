@@ -513,6 +513,48 @@ const QRCodeGenerator = () => {
           unknown QR sources and prefer H ECC for codes that might be partially covered or worn.
         </p>
       </section>
+
+      <section id="faq">
+        <h2 className="text-2xl font-semibold">Frequently Asked Questions</h2>
+        <div className="space-y-4 mt-4">
+          {faqs.map((faq, index) => (
+            <div key={index} className="border-b border-slate-200 dark:border-slate-700 pb-4 last:border-0">
+              <h3 className="font-medium text-lg text-slate-900 dark:text-slate-100">{faq.question}</h3>
+              <p className="text-slate-600 dark:text-slate-400 mt-1">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="references">
+        <h2 className="text-2xl font-semibold">References & Additional Resources</h2>
+        <ul className="list-disc pl-5 mt-4 space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+          <li>
+            <a href="https://www.qrcode.com/en/history/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              History of QR Code - Denso Wave
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Official history and development story of the QR Code from its inventors at Denso Wave.
+            </p>
+          </li>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/QR_code" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              QR Code - Wikipedia
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Comprehensive encyclopedia article covering QR code standards, versions, and error correction levels.
+            </p>
+          </li>
+          <li>
+            <a href="https://www.kaspersky.com/resource-center/definitions/what-is-a-qr-code-how-to-scan" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+              QR Code Security Guide - Kaspersky
+            </a>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">
+              Essential security tips and best practices for scanning and generating QR codes safely.
+            </p>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 
@@ -548,6 +590,7 @@ const QRCodeGenerator = () => {
         { id: 'printing', label: 'Printing Tips' },
         { id: 'privacy', label: 'Privacy' },
         { id: 'faq', label: 'FAQs' },
+        { id: 'references', label: 'References' },
       ]}
       relatedCalculators={[
         { title: 'Unit Converter', url: '/conversion/unit-converter', icon: '🔁' },
