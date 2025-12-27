@@ -5459,6 +5459,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/LowAprVsCashBackCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "oil-change-interval-planner",
+    title: "Oil Change Interval Planner",
+    category: "automotive",
+    subcategory: "maintenance-capacity",
+    description: "Plan optimal oil change schedules based on driving habits.",
+    loader: () => import("@/components/calculators/Automotive/OilChangeIntervalPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
