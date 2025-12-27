@@ -5478,7 +5478,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     {
-    slug: "0-60-speed-vs-gear-rpm",
+    slug: "zero-to-sixty-gear-rpm",
     title: "0–60 Speed vs Gear/RPM",
     category: "automotive",
     subcategory: "tires-wheels-speedometer",
