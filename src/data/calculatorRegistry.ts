@@ -5376,6 +5376,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/WheelOffsetBackspacingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tire-revs-per-mile-rpm",
+    title: "Tire Revolutions per Mile & RPM @ Speed",
+    category: "automotive",
+    subcategory: "tires-wheels-speedometer",
+    description: "Estimate engine RPM at specific speeds based on tire size.",
+    loader: () => import("@/components/calculators/Automotive/TireRevsPerMileRpmCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
