@@ -5586,6 +5586,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvBatteryDegradationCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-home-charger-payback",
+    title: "Home Charger Installation Cost & Payback Calculator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Estimate installation cost for a Level 2 charger and payback period through savings vs public charging.",
+    loader: () => import("@/components/calculators/Automotive/EvHomeChargerPaybackCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
