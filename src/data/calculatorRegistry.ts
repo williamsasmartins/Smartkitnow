@@ -5640,6 +5640,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/PhevElectricGasModeCostCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-preconditioning-cost",
+    title: "EV Preconditioning Energy & Cost Estimator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Estimate battery energy used and cost for preconditioning (heating/cooling) the cabin while plugged in, vs doing it while driving.",
+    loader: () => import("@/components/calculators/Automotive/EvPreconditioningCostCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
