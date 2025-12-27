@@ -5577,6 +5577,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvHybridCo2SavingsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-battery-degradation",
+    title: "EV Battery Degradation & Long-Term Range Estimator",
+    category: "automotive",
+    subcategory: "electric-vehicles-comparisons",
+    description: "Predict battery capacity loss over years and impact on range, based on usage and charging habits.",
+    loader: () => import("@/components/calculators/Automotive/EvBatteryDegradationCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
