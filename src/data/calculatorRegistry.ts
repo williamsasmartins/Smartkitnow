@@ -5322,6 +5322,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/IceVsEvOwnershipCostCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "carbon-emissions-per-trip",
+    title: "Carbon Emissions per Trip",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Estimate CO2 emissions for a specific trip.",
+    loader: () => import("@/components/calculators/Automotive/CarbonEmissionsPerTripCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
