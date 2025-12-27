@@ -5414,6 +5414,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/DownPaymentImpactPayoffCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "depreciation-curve-estimator",
+    title: "Depreciation Curve Estimator",
+    category: "automotive",
+    subcategory: "financing-leasing-value",
+    description: "Estimate vehicle value loss over time by segment.",
+    loader: () => import("@/components/calculators/Automotive/DepreciationCurveEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
