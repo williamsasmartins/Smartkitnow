@@ -5266,33 +5266,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
 // --- AUTOMOTIVE CALCULATORS ---
 
   
-    {
-    slug: "trip-fuel-cost",
-    title: "Trip Fuel Cost Calculator",
-    category: "automotive",
-    subcategory: "consumption-costs-travel",
-    description: "Calculate trip cost based on distance, fuel efficiency, and price.",
-    loader: () => import("@/components/calculators/Automotive/TripFuelCostCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "fuel-economy-converter",
-    title: "Fuel Economy Converter",
-    category: "automotive",
-    subcategory: "consumption-costs-travel",
-    description: "Convert fuel economy between MPG and L/100km.",
-    loader: () => import("@/components/calculators/Automotive/FuelEconomyConverterCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "annual-fuel-cost-break-even",
-    title: "Annual Fuel Cost & Break-Even",
-    category: "automotive",
-    subcategory: "consumption-costs-travel",
-    description: "Compare annual fuel costs for gas, electric, and E85 vehicles.",
-    loader: () => import("@/components/calculators/Automotive/AnnualFuelCostBreakEvenCalculator"),
-    urlStyle: "flat"
-  },
+   
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
