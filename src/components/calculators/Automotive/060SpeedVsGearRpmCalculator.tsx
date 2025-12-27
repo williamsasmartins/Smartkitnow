@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Car, Fuel, DollarSign, Info, CheckCircle2, AlertTriangle, BookOpen, ExternalLink, Settings, Zap } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
-export default function 060SpeedVsGearRpmCalculator() {
+export default function ZeroToSixtySpeedVsGearRpmCalculator() { // ✅ Valid
   const [inputs, setInputs] = useState({
     unit: "imperial",
     gearRatio: "",
