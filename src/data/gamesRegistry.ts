@@ -20,8 +20,63 @@ export const GAMES: GameRegistryEntry[] = [
     loader: () => import("../components/games/NeonSnakeGame"),
   },
 
+  // --- ARCADE CLASSICS ---
+  {
+    slug: "astro-breakout",
+    title: "Astro Breakout",
+    description: "Classic breakout arcade action. Destroy all bricks to advance!",
+    loader: () => import("../components/games/AstroBreakoutGame"),
+  },
+  {
+    slug: "brick-dash",
+    title: "Brick Dash",
+    description: "Fast-paced dodging game. Avoid the falling bricks!",
+    loader: () => import("../components/games/BrickDashGame"),
+  },
+  {
+    slug: "bubble-shooter-nova",
+    title: "Bubble Shooter Nova",
+    description: "Match 3 bubbles to pop them in this neon space adventure.",
+    loader: () => import("../components/games/BubbleShooterGame"),
+  },
+  {
+    slug: "space-invaders-remix",
+    title: "Space Invaders Remix",
+    description: "Defend Earth from the neon alien invasion!",
+    loader: () => import("../components/games/SpaceInvadersGame"),
+  },
+  {
+    slug: "asteroid-drift",
+    title: "Asteroid Drift",
+    description: "Navigate through the asteroid field and blast your way to survival.",
+    loader: () => import("../components/games/AsteroidDriftGame"),
+  },
+  {
+    slug: "neon-paddle",
+    title: "Neon Paddle",
+    description: "The classic Pong game reimagined with neon visuals.",
+    loader: () => import("../components/games/NeonPaddleGame"),
+  },
+  {
+    slug: "pinball-neon",
+    title: "Pinball Neon",
+    description: "Classic pinball mechanics with a modern neon twist.",
+    loader: () => import("../components/games/PinballNeonGame"),
+  },
+  {
+    slug: "crossy-street",
+    title: "Crossy Street",
+    description: "Cross the neon streets without getting hit by traffic.",
+    loader: () => import("../components/games/CrossyStreetGame"),
+  },
+  {
+    slug: "missile-command-grid",
+    title: "Missile Command Grid",
+    description: "Protect your cities from incoming missile attacks.",
+    loader: () => import("../components/games/MissileCommandGame"),
+  },
+
   // --- OUTROS JOGOS ---
-  { slug: "astro-breakout", title: "Astro Breakout", description: "Breakout-style arcade.", loader: DEFAULT_GAME_LOADER, comingSoon: true },
   { slug: "orb-runner", title: "Orb Runner", description: "Arcade runner game.", loader: DEFAULT_GAME_LOADER, comingSoon: true },
   { slug: "pixel-tetris", title: "Pixel Tetris", description: "Classic block-stacking puzzle.", loader: DEFAULT_GAME_LOADER, comingSoon: true },
   { slug: "memory-flux", title: "Memory Flux", description: "Memory challenge game.", loader: DEFAULT_GAME_LOADER, comingSoon: true },
