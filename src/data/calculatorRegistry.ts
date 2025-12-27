@@ -5332,7 +5332,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     {
-    slug: "tco-calculator",
+    slug: "tco-total-cost-ownership",
     title: "Total Cost of Ownership (TCO) Calculator",
     category: "automotive",
     subcategory: "consumption-costs-travel",
