@@ -5312,6 +5312,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvChargingCostTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ice-vs-ev-ownership-cost",
+    title: "ICE vs EV Ownership Cost (5 years)",
+    category: "automotive",
+    subcategory: "consumption-costs-travel",
+    description: "Compare total ownership costs of gas vs. electric cars over 5 years.",
+    loader: () => import("@/components/calculators/Automotive/IceVsEvOwnershipCostCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
