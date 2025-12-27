@@ -5667,6 +5667,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/QuarterMileEtMphFromHpCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "zero-to-sixty-time",
+    title: "0-60 mph Acceleration Time Estimator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Calculate 0-60 mph time based on horsepower, torque, weight, and drivetrain type.",
+    loader: () => import("@/components/calculators/Automotive/ZeroToSixtyTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
