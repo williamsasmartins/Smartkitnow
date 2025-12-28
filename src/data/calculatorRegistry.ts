@@ -5922,6 +5922,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/LedPowerConsumptionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "lumens-to-watts",
+    title: "Lighting Lumens-to-Watts Converter",
+    category: "electrical",
+    subcategory: "lighting-energy-cost-home-electrical",
+    description: "Convert between Lumens and Watts for different light sources.",
+    loader: () => import("@/components/calculators/Electrical/LumensToWattsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
