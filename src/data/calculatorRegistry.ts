@@ -5849,6 +5849,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/WireSizeAwgKcmilCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "breaker-size",
+    title: "Breaker Size Calculator",
+    category: "electrical",
+    subcategory: "wiring-conductors-breakers",
+    description: "Calculate the correct circuit breaker size for a specific load.",
+    loader: () => import("@/components/calculators/Electrical/BreakerSizeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
