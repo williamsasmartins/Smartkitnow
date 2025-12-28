@@ -5858,6 +5858,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/BreakerSizeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "conduit-fill",
+    title: "Conduit Fill Calculator",
+    category: "electrical",
+    subcategory: "wiring-conductors-breakers",
+    description: "Calculate the maximum number of wires allowed in a conduit.",
+    loader: () => import("@/components/calculators/Electrical/ConduitFillCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
