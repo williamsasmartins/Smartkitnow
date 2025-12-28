@@ -6030,6 +6030,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/BatteryRuntimeEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "system-payback-period-roi",
+    title: "System Payback Period (ROI) Calculator",
+    category: "electrical",
+    subcategory: "renewable-energy-battery-systems",
+    description: "Calculate ROI and payback period for renewable energy systems.",
+    loader: () => import("@/components/calculators/Electrical/SystemPaybackPeriodRoiCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
