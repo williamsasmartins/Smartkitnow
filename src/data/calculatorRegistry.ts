@@ -5777,6 +5777,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/OhmsLawCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "voltage-drop-wire-length",
+    title: "Voltage Drop Calculator (Wire Gauge & Length)",
+    category: "electrical",
+    subcategory: "basic-electrical-circuit-calculations",
+    description: "Calculate voltage drop based on wire gauge, length, and current.",
+    loader: () => import("@/components/calculators/Electrical/VoltageDropWireLengthCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
