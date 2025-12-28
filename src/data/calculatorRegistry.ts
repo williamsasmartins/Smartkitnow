@@ -5685,6 +5685,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/HpToTorqueConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "engine-displacement",
+    title: "Engine Displacement Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Calculate engine size (cc or cubic inches) from bore, stroke, and number of cylinders.",
+    loader: () => import("@/components/calculators/Automotive/EngineDisplacementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
