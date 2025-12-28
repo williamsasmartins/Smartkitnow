@@ -6012,6 +6012,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/InverterLoadCapacityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-charging-time",
+    title: "EV Charging Time Calculator",
+    category: "electrical",
+    subcategory: "renewable-energy-battery-systems",
+    description: "Estimate time required to charge an electric vehicle.",
+    loader: () => import("@/components/calculators/Electrical/EvChargingTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
