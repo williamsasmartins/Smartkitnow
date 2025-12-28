@@ -5894,6 +5894,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ThreePhasePowerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "transformer-kva",
+    title: "Transformer kVA Calculator",
+    category: "electrical",
+    subcategory: "wiring-conductors-breakers",
+    description: "Calculate Transformer capacity in kVA.",
+    loader: () => import("@/components/calculators/Electrical/TransformerKvaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
