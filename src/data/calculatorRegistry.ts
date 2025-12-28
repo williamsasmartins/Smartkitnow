@@ -6048,6 +6048,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/DaysBetweenDatesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "add-subtract-date",
+    title: "Add/Subtract Date (days/months/years)",
+    category: "time",
+    subcategory: "dates-durations",
+    description: "Add or subtract a specific number of days, months, or years from a given starting date. Perfect for deadline tracking.",
+    loader: () => import("@/components/calculators/Time/AddSubtractDateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
