@@ -6120,6 +6120,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/LeapYearCheckerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "time-zone-converter",
+    title: "Time Zone Converter (between cities)",
+    category: "time",
+    subcategory: "time-zones-clocks",
+    description: "Convert time instantly between different global cities and time zones. Ideal for international communication.",
+    loader: () => import("@/components/calculators/Time/TimeZoneConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
