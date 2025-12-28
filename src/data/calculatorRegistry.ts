@@ -5739,6 +5739,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/ModPowerGainsEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ev-acceleration-torque",
+    title: "EV Acceleration & Torque Delivery Estimator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Calculate 0-60 time and effective torque for electric vehicles based on motor power, battery output, and weight.",
+    loader: () => import("@/components/calculators/Automotive/EvAccelerationTorqueCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
