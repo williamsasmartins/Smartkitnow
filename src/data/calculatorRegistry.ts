@@ -5958,6 +5958,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/GeneratorSizingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "power-factor",
+    title: "Power Factor Calculator",
+    category: "electrical",
+    subcategory: "lighting-energy-cost-home-electrical",
+    description: "Calculate power factor and correction capacitor size.",
+    loader: () => import("@/components/calculators/Electrical/PowerFactorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
