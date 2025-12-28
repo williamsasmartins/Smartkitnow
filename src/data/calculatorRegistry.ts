@@ -5885,6 +5885,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/CableAmpacityByDistanceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "three-phase-power",
+    title: "3-Phase Power Calculator",
+    category: "electrical",
+    subcategory: "wiring-conductors-breakers",
+    description: "Calculate power, voltage, and current in 3-phase systems.",
+    loader: () => import("@/components/calculators/Electrical/ThreePhasePowerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
