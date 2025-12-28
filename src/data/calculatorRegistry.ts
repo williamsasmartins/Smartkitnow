@@ -6183,6 +6183,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/CalendarGeneratorPdfCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "workday-workweek-planner",
+    title: "Workday/Workweek Planner (customized)",
+    category: "time",
+    subcategory: "calendar-extras",
+    description: "Customize your work schedule (e.g., 4/10s, 9/80s) and plan your workdays/workweeks efficiently.",
+    loader: () => import("@/components/calculators/Time/WorkdayWorkweekPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
