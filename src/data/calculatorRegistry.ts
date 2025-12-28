@@ -6147,6 +6147,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/MeetingPlannerTimeZonesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "utc-local-time-converter",
+    title: "UTC ↔ Local Time Converter",
+    category: "time",
+    subcategory: "time-zones-clocks",
+    description: "Convert Coordinated Universal Time (UTC) to your local time zone and vice versa.",
+    loader: () => import("@/components/calculators/Time/UtcLocalTimeConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
