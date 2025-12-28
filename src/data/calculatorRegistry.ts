@@ -5876,6 +5876,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/VoltageLossEfficiencyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cable-ampacity-by-distance",
+    title: "Cable Ampacity by Distance Calculator",
+    category: "electrical",
+    subcategory: "wiring-conductors-breakers",
+    description: "Calculate cable ampacity accounting for distance and voltage drop.",
+    loader: () => import("@/components/calculators/Electrical/CableAmpacityByDistanceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
