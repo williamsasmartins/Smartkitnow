@@ -5994,6 +5994,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/SolarPanelOutputArraySizingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "solar-battery-bank-sizing",
+    title: "Solar Battery Bank Sizing Calculator",
+    category: "electrical",
+    subcategory: "renewable-energy-battery-systems",
+    description: "Size battery banks for solar energy storage.",
+    loader: () => import("@/components/calculators/Electrical/SolarBatteryBankSizingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
