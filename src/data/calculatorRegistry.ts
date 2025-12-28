@@ -5976,6 +5976,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/PvSystemProductionEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "off-grid-system-sizing",
+    title: "Off-Grid System Sizing Calculator",
+    category: "electrical",
+    subcategory: "renewable-energy-battery-systems",
+    description: "Size solar and battery systems for off-grid applications.",
+    loader: () => import("@/components/calculators/Electrical/OffGridSystemSizingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
