@@ -5957,6 +5957,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/LightingCircuitLoadPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "generator-sizing",
+    title: "Generator Sizing Calculator",
+    category: "electrical",
+    subcategory: "lighting-energy-cost-home-electrical",
+    description: "Estimate the size of generator needed for your home or equipment.",
+    loader: () => import("@/components/calculators/Electrical/GeneratorSizingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
