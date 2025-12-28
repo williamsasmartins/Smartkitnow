@@ -5786,6 +5786,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/VoltageDropWireLengthCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "current-amperage",
+    title: "Current (Amperage) Calculator",
+    category: "electrical",
+    subcategory: "basic-electrical-circuit-calculations",
+    description: "Calculate electrical current in a circuit.",
+    loader: () => import("@/components/calculators/Electrical/CurrentAmperageCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
