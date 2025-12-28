@@ -5730,6 +5730,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/HeaderTubeLengthDiameterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "mod-power-gains-estimator",
+    title: "Power Gains from Modifications Estimator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Estimate horsepower and torque gains from common mods like intake, exhaust, cam, or turbo.",
+    loader: () => import("@/components/calculators/Automotive/ModPowerGainsEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
