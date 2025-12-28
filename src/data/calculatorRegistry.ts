@@ -6075,6 +6075,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/BusinessDaysCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "iso-week-number",
+    title: "Week Number & ISO Week Finder",
+    category: "time",
+    subcategory: "dates-durations",
+    description: "Find the ISO week number for any given date. Standardized for business and international scheduling.",
+    loader: () => import("@/components/calculators/Time/IsoWeekNumberCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
