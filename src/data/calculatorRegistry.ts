@@ -5913,6 +5913,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ConduitBendingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "led-power-consumption",
+    title: "LED Lighting Power Consumption Calculator",
+    category: "electrical",
+    subcategory: "lighting-energy-cost-home-electrical",
+    description: "Estimate power consumption and savings with LED lighting.",
+    loader: () => import("@/components/calculators/Electrical/LedPowerConsumptionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
