@@ -5795,6 +5795,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/CurrentAmperageCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "power-watts",
+    title: "Power (Watts) Calculator",
+    category: "electrical",
+    subcategory: "basic-electrical-circuit-calculations",
+    description: "Calculate electrical power in Watts.",
+    loader: () => import("@/components/calculators/Electrical/PowerWattsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
