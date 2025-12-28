@@ -5712,6 +5712,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/CarbCfmSizingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "camshaft-duration-overlap",
+    title: "Camshaft Duration & Overlap Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Calculate intake/exhaust duration, overlap, and lobe separation angle for cam selection.",
+    loader: () => import("@/components/calculators/Automotive/CamshaftDurationOverlapCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
