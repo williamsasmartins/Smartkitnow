@@ -5703,6 +5703,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/CompressionRatioCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "carb-cfm-sizing",
+    title: "Carburetor CFM Sizing Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Estimate required carburetor airflow (CFM) for your engine based on RPM and volumetric efficiency.",
+    loader: () => import("@/components/calculators/Automotive/CarbCfmSizingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
