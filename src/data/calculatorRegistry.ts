@@ -5948,6 +5948,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ElectricityCostPerHourMonthCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "lighting-circuit-load-planner",
+    title: "Lighting Circuit Load Planner",
+    category: "electrical",
+    subcategory: "lighting-energy-cost-home-electrical",
+    description: "Plan electrical load for lighting circuits.",
+    loader: () => import("@/components/calculators/Electrical/LightingCircuitLoadPlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
