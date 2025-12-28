@@ -5967,6 +5967,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/PowerFactorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pv-system-production-estimator",
+    title: "PV System Production Estimator (e.g., PVWatts)",
+    category: "electrical",
+    subcategory: "renewable-energy-battery-systems",
+    description: "Estimate energy production for solar PV systems.",
+    loader: () => import("@/components/calculators/Electrical/PvSystemProductionEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
