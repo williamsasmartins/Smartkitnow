@@ -5721,6 +5721,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/CamshaftDurationOverlapCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "header-tube-length-diameter",
+    title: "Header Primary Tube Length & Diameter Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Optimize exhaust header dimensions for peak torque RPM and engine specs.",
+    loader: () => import("@/components/calculators/Automotive/HeaderTubeLengthDiameterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
