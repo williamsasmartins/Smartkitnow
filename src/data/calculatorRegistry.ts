@@ -5904,6 +5904,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/MotorFlaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "conduit-bending",
+    title: "Conduit Bending Calculator",
+    category: "electrical",
+    subcategory: "wiring-conductors-breakers",
+    description: "Calculate bend deduction and other values for conduit bending.",
+    loader: () => import("@/components/calculators/Electrical/ConduitBendingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
