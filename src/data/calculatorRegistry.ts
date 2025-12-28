@@ -6102,6 +6102,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/DateDifferenceHmsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "julian-date-day-number",
+    title: "Julian Date/Day Calculator",
+    category: "time",
+    subcategory: "dates-durations",
+    description: "Convert any date into its Julian Date or Day Number (1-366). Used in science, astronomy, and military applications.",
+    loader: () => import("@/components/calculators/Time/JulianDateDayNumberCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
