@@ -6237,6 +6237,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/SunriseSunsetTimesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "moon-phases",
+    title: "Moon Phases",
+    category: "time",
+    subcategory: "sun-moon-astronomy",
+    description: "Track the lunar cycle and predict the phase of the moon (New, Full, Quarter) for any date.",
+    loader: () => import("@/components/calculators/Time/MoonPhasesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
