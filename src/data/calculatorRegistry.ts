@@ -6228,6 +6228,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/CountSpecificWeekdaysCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sunrise-sunset-times",
+    title: "Sunrise and Sunset Times",
+    category: "time",
+    subcategory: "sun-moon-astronomy",
+    description: "Calculate the exact sunrise and sunset times for any location and date. Essential for photographers and planners.",
+    loader: () => import("@/components/calculators/Time/SunriseSunsetTimesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
