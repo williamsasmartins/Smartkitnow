@@ -6084,6 +6084,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/IsoWeekNumberCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "age-calculator",
+    title: "Age Calculator (years/months/days)",
+    category: "time",
+    subcategory: "dates-durations",
+    description: "Calculate a person's age precisely in years, months, and days.",
+    loader: () => import("@/components/calculators/Time/AgeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
