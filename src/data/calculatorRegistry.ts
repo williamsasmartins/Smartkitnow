@@ -6021,6 +6021,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/EvChargingTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "battery-runtime-estimator",
+    title: "Battery Runtime Estimator",
+    category: "electrical",
+    subcategory: "renewable-energy-battery-systems",
+    description: "Estimate how long a battery will last under a specific load.",
+    loader: () => import("@/components/calculators/Electrical/BatteryRuntimeEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
