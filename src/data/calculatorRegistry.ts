@@ -6210,6 +6210,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/StopwatchSplitTimesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "day-of-week-for-date",
+    title: "Day of Week for Any Date (includes Doomsday rule)",
+    category: "time",
+    subcategory: "calendar-extras",
+    description: "Determine the exact day of the week for any past or future date (and learn the 'Doomsday Rule').",
+    loader: () => import("@/components/calculators/Time/DayOfWeekForDateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
