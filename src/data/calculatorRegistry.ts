@@ -6039,6 +6039,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/SystemPaybackPeriodRoiCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "days-between-dates",
+    title: "Days Between Dates (date duration)",
+    category: "time",
+    subcategory: "dates-durations",
+    description: "Calculate the number of days, months, or years between two specific dates. Essential for planning projects, calculating age, or tracking duration.",
+    loader: () => import("@/components/calculators/Time/DaysBetweenDatesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
