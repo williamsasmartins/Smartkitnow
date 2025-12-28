@@ -6066,6 +6066,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/AddSubtractTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "business-days",
+    title: "Business Days Calculator (exclude weekends/holidays)",
+    category: "time",
+    subcategory: "dates-durations",
+    description: "Calculate the number of working days between two dates, automatically excluding weekends and customizable holidays.",
+    loader: () => import("@/components/calculators/Time/BusinessDaysCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
