@@ -6174,6 +6174,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/EpochUnixTimeConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "calendar-generator-pdf",
+    title: "Calendar Generator (month/year, export PDF)",
+    category: "time",
+    subcategory: "calendar-extras",
+    description: "Generate and customize a monthly or yearly calendar, with an option to export as a PDF.",
+    loader: () => import("@/components/calculators/Time/CalendarGeneratorPdfCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
