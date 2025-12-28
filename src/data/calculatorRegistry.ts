@@ -6111,6 +6111,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/JulianDateDayNumberCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "leap-year-checker",
+    title: "Leap Year Checker",
+    category: "time",
+    subcategory: "dates-durations",
+    description: "Check quickly whether a given year is a leap year.",
+    loader: () => import("@/components/calculators/Time/LeapYearCheckerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
