@@ -5985,6 +5985,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/OffGridSystemSizingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "solar-panel-output-array-sizing",
+    title: "Solar Panel Output & Array Sizing Calculator",
+    category: "electrical",
+    subcategory: "renewable-energy-battery-systems",
+    description: "Calculate solar panel output and size your array.",
+    loader: () => import("@/components/calculators/Electrical/SolarPanelOutputArraySizingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
