@@ -22,32 +22,6 @@ export default function EvAccelerationTorqueCalculator() {
     setInputs(prev => ({ ...prev, [field]: value }));
   };
 
-  /**
-   * Logic Explanation:
-   * 
-   * This calculator estimates the acceleration time (0-60 mph or 0-100 km/h) and torque delivery based on:
-   * - Battery capacity (kWh)
-   * - Electricity rate ($/kWh)
-   * - Vehicle weight (lbs or kg)
-   * - Motor power (kW)
-   * 
-   * Assumptions:
-   * - Motor power directly relates to torque and acceleration capability.
-   * - Battery capacity affects how long the vehicle can sustain power delivery.
-   * - Vehicle weight affects acceleration time.
-   * 
-   * Formulas:
-   * - Torque (Nm) ≈ (Motor Power (kW) * 9550) / Motor RPM (assumed 4000 RPM for EV motor)
-   * - Acceleration time (0-60 mph or 0-100 km/h) ≈ (Vehicle Weight / Motor Power) * constant factor
-   * 
-   * Cost to fully charge = Battery Capacity (kWh) * Rate ($/kWh)
-   * 
-   * Output:
-   * - Estimated 0-60 mph (or 0-100 km/h) acceleration time in seconds
-   * - Estimated torque in Nm
-   * - Cost to fully charge battery
-   */
-
   const results = useMemo(() => {
     const battery = parseFloat(inputs.batteryCapacity);
     const rate = parseFloat(inputs.ratePerKWh);
@@ -78,8 +52,6 @@ export default function EvAccelerationTorqueCalculator() {
     const torqueNm = (power * 9550) / motorRPM;
 
     // Acceleration time estimate (seconds)
-    // Empirical factor: For EVs, 0-60 mph time roughly proportional to weight/power ratio * 2.5
-    // This is a rough estimate for typical EVs.
     const accelTimeSec = (weightKg / power) * 2.5;
 
     // Cost to fully charge battery
@@ -168,14 +140,6 @@ export default function EvAccelerationTorqueCalculator() {
     {
       title: "Edmunds Automotive",
       description: "Comprehensive car reviews and expert advice on electric vehicles."
-    },
-    {
-      title: "Electric Vehicle Basics - U.S. Department of Energy",
-      description: "Fundamental concepts and technical details about EVs."
-    },
-    {
-      title: "SAE International - Electric Vehicle Powertrain",
-      description: "Technical papers and standards on EV motor and battery performance."
     }
   ];
 
@@ -266,22 +230,22 @@ export default function EvAccelerationTorqueCalculator() {
         <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to use this calculator</h2>
         <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
           <li>
-            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric) from the dropdown at the top right.
+            <strong>Step 1:</strong> Select your preferred unit system (Imperial or Metric).
           </li>
           <li>
-            <strong>Step 2:</strong> Enter your electric vehicle's battery capacity in kilowatt-hours (kWh).
+            <strong>Step 2:</strong> Enter your electric vehicle's battery capacity in kWh.
           </li>
           <li>
-            <strong>Step 3:</strong> Input the current electricity rate you pay per kWh in dollars.
+            <strong>Step 3:</strong> Input the current electricity rate per kWh.
           </li>
           <li>
-            <strong>Step 4:</strong> Provide your vehicle's weight in pounds (lbs) if using Imperial or kilograms (kg) if using Metric.
+            <strong>Step 4:</strong> Provide your vehicle's weight.
           </li>
           <li>
-            <strong>Step 5:</strong> Enter the motor power rating in kilowatts (kW), typically found in your vehicle specifications.
+            <strong>Step 5:</strong> Enter the motor power rating in kW.
           </li>
           <li>
-            <strong>Step 6:</strong> Click the "Calculate" button to see your estimated acceleration time, torque delivery, and charging cost.
+            <strong>Step 6:</strong> Click "Calculate" to see acceleration, torque, and cost.
           </li>
         </ol>
       </section>
@@ -289,20 +253,14 @@ export default function EvAccelerationTorqueCalculator() {
       {/* 2. COMPLETE GUIDE */}
       <section id="guide">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to EV Acceleration & Torque Delivery Estimator
+          <BookOpen className="w-6 h-6 text-blue-500" /> Complete Guide to EV Acceleration & Torque
         </h2>
         <div className="prose prose-slate dark:prose-invert">
           <p>
-            Electric vehicles (EVs) are revolutionizing the automotive industry by offering instant torque and smooth acceleration. Understanding how your EV's battery capacity, motor power, and vehicle weight influence acceleration and torque delivery is essential for both enthusiasts and professionals. This calculator provides a practical tool to estimate these performance metrics alongside the cost to fully charge your battery.
+            Electric vehicles (EVs) offer instant torque and smooth acceleration. Understanding how battery capacity, motor power, and vehicle weight influence performance is essential. This calculator estimates these metrics along with charging costs.
           </p>
           <p>
-            The battery capacity, measured in kilowatt-hours (kWh), indicates how much energy your EV can store. A larger battery generally means longer driving range but also affects the vehicle's weight. Motor power, expressed in kilowatts (kW), directly relates to the torque output and acceleration capability. The vehicle's weight plays a crucial role in determining how quickly it can accelerate; heavier vehicles require more power to achieve the same acceleration as lighter ones.
-          </p>
-          <p>
-            By inputting these parameters, the calculator estimates the torque using a standard formula that relates power and motor speed, assuming a typical motor RPM for EVs. The acceleration time estimate is derived from an empirical relationship between weight and power, providing a reasonable approximation of 0-60 mph or 0-100 km/h times. Additionally, the calculator computes the cost to fully charge your EV battery based on your local electricity rate, helping you understand the financial aspect of EV ownership.
-          </p>
-          <p>
-            While this tool offers valuable insights, keep in mind that actual vehicle performance can vary due to factors like drivetrain efficiency, tire conditions, and environmental influences. For precise performance data, consult manufacturer specifications or professional testing results.
+            Battery capacity (kWh) determines range and weight. Motor power (kW) dictates torque and acceleration. Weight is crucial; heavier cars need more power. This tool uses standard formulas to estimate torque and empirical data for acceleration times.
           </p>
         </div>
       </section>
@@ -313,21 +271,8 @@ export default function EvAccelerationTorqueCalculator() {
           <AlertTriangle className="w-5 h-5" /> Common Mistakes
         </h3>
         <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>1. Incorrect Units:</strong> Mixing metric and imperial units can lead to inaccurate results. Always ensure you select the correct unit system and input values accordingly.
-          </p>
-          <p>
-            <strong>2. Ignoring Motor Power:</strong> Leaving motor power blank or entering unrealistic values will skew acceleration and torque estimates. Use manufacturer specs for accuracy.
-          </p>
-          <p>
-            <strong>3. Overlooking Vehicle Weight:</strong> Vehicle weight significantly impacts acceleration. Using outdated or incorrect weight values can misrepresent performance.
-          </p>
-          <p>
-            <strong>4. Assuming Exact Results:</strong> This calculator provides estimates based on simplified formulas. Real-world performance depends on many additional factors.
-          </p>
-          <p>
-            <strong>5. Not Updating Electricity Rates:</strong> Electricity costs vary by location and time. Use current rates to get accurate charging cost estimates.
-          </p>
+          <p><strong>1. Incorrect Units:</strong> Mixing metric/imperial inputs leads to errors.</p>
+          <p><strong>2. Ignoring Weight:</strong> Vehicle weight heavily impacts acceleration.</p>
         </div>
       </section>
 
@@ -352,14 +297,7 @@ export default function EvAccelerationTorqueCalculator() {
         <div className="space-y-4">
           {references.map((ref, i) => (
             <div key={i}>
-              <a
-                href="#"
-                className="text-blue-600 dark:text-blue-400 font-semibold hover:underline flex items-center gap-1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {ref.title} <ExternalLink className="w-3 h-3" />
-              </a>
+              <p className="text-blue-600 dark:text-blue-400 font-semibold">{ref.title}</p>
               <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
             </div>
           ))}
