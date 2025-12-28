@@ -5694,6 +5694,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EngineDisplacementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "compression-ratio",
+    title: "Compression Ratio Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Determine engine compression ratio based on chamber volume, piston dome/dish, and deck height.",
+    loader: () => import("@/components/calculators/Automotive/CompressionRatioCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
