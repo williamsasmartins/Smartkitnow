@@ -6156,6 +6156,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/UtcLocalTimeConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dst-change-checker",
+    title: "DST Change Checker (time changes)",
+    category: "time",
+    subcategory: "time-zones-clocks",
+    description: "Check upcoming Daylight Saving Time (DST) changes for any location and see the time shift.",
+    loader: () => import("@/components/calculators/Time/DstChangeCheckerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
