@@ -5903,6 +5903,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/TransformerKvaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "motor-fla",
+    title: "Motor FLA (Full Load Amps) Calculator",
+    category: "electrical",
+    subcategory: "wiring-conductors-breakers",
+    description: "Calculate Full Load Amps for electric motors.",
+    loader: () => import("@/components/calculators/Electrical/MotorFlaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
