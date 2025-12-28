@@ -5939,6 +5939,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/LumensToWattsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "electricity-cost-per-hour-month",
+    title: "Electricity Cost per Hour/Month Calculator",
+    category: "electrical",
+    subcategory: "lighting-energy-cost-home-electrical",
+    description: "Calculate electricity cost based on usage and rate.",
+    loader: () => import("@/components/calculators/Electrical/ElectricityCostPerHourMonthCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
