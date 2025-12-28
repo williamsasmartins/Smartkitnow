@@ -6165,6 +6165,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/DstChangeCheckerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "epoch-unix-time-converter",
+    title: "Epoch/Unix Time Converter",
+    category: "time",
+    subcategory: "time-zones-clocks",
+    description: "Convert between human-readable dates and the Epoch (Unix) timestamp. Essential for programming and data logging.",
+    loader: () => import("@/components/calculators/Time/EpochUnixTimeConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
