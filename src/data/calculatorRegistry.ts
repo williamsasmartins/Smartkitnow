@@ -5822,6 +5822,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ParallelSeriesCircuitCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "resistor-color-code",
+    title: "Resistor Color Code Decoder",
+    category: "electrical",
+    subcategory: "basic-electrical-circuit-calculations",
+    description: "Decode resistor color bands to find resistance value.",
+    loader: () => import("@/components/calculators/Electrical/ResistorColorCodeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
