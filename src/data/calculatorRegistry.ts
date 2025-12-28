@@ -5813,6 +5813,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ElectricalResistanceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "parallel-series-circuit",
+    title: "Parallel & Series Circuit Calculator",
+    category: "electrical",
+    subcategory: "basic-electrical-circuit-calculations",
+    description: "Calculate equivalent resistance for parallel and series circuits.",
+    loader: () => import("@/components/calculators/Electrical/ParallelSeriesCircuitCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
