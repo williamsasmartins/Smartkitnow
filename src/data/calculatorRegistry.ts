@@ -6246,6 +6246,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/MoonPhasesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "astronomical-seasons",
+    title: "Seasons Calculator",
+    category: "time",
+    subcategory: "sun-moon-astronomy",
+    description: "Calculate the exact date and time for the start of the astronomical seasons (solstices and equinoxes).",
+    loader: () => import("@/components/calculators/Time/AstronomicalSeasonsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
