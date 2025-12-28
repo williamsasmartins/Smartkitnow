@@ -6003,6 +6003,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/SolarBatteryBankSizingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "inverter-load-capacity",
+    title: "Inverter Load Capacity Calculator",
+    category: "electrical",
+    subcategory: "renewable-energy-battery-systems",
+    description: "Calculate required inverter size for your loads.",
+    loader: () => import("@/components/calculators/Electrical/InverterLoadCapacityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
