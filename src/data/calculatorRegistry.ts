@@ -6057,6 +6057,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/AddSubtractDateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "add-subtract-time",
+    title: "Add/Subtract Time (h/min/s)",
+    category: "time",
+    subcategory: "dates-durations",
+    description: "Add or subtract hours, minutes, or seconds from a starting time. Useful for scheduling and time management.",
+    loader: () => import("@/components/calculators/Time/AddSubtractTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
