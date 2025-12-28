@@ -5867,6 +5867,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ConduitFillCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "voltage-loss-efficiency",
+    title: "Voltage Loss & Efficiency Calculator",
+    category: "electrical",
+    subcategory: "wiring-conductors-breakers",
+    description: "Estimate voltage loss and system efficiency.",
+    loader: () => import("@/components/calculators/Electrical/VoltageLossEfficiencyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
