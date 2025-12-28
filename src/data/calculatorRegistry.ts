@@ -5831,6 +5831,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ResistorColorCodeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "electrical-load-capacity",
+    title: "Electrical Load Capacity (Breaker/Panel) Calculator",
+    category: "electrical",
+    subcategory: "basic-electrical-circuit-calculations",
+    description: "Estimate load capacity for breakers and electrical panels.",
+    loader: () => import("@/components/calculators/Electrical/ElectricalLoadCapacityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
