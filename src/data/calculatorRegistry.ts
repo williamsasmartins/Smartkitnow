@@ -6192,6 +6192,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/WorkdayWorkweekPlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "countdown-timer",
+    title: "Countdown Timer (until a date/time)",
+    category: "time",
+    subcategory: "calendar-extras",
+    description: "Set a countdown timer to track the exact time remaining until a specific future date or event.",
+    loader: () => import("@/components/calculators/Time/CountdownTimerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
