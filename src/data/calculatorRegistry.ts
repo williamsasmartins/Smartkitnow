@@ -6138,6 +6138,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/WorldClockCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "meeting-planner-time-zones",
+    title: "Meeting Planner (common time across time zones)",
+    category: "time",
+    subcategory: "time-zones-clocks",
+    description: "Find the best overlapping time for a meeting across multiple time zones. Maximize attendance for global teams.",
+    loader: () => import("@/components/calculators/Time/MeetingPlannerTimeZonesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
