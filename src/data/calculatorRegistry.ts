@@ -5767,6 +5767,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
    
+    {
+    slug: "ohms-law",
+    title: "Ohm's Law Calculator (V, I, R, P)",
+    category: "electrical",
+    subcategory: "basic-electrical-circuit-calculations",
+    description: "Calculate Voltage, Current, Resistance, or Power using Ohm's Law.",
+    loader: () => import("@/components/calculators/Electrical/OhmsLawCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
