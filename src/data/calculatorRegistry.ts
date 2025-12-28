@@ -6093,6 +6093,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/AgeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "date-difference-hms",
+    title: "Date Difference in Hours/Minutes/Seconds",
+    category: "time",
+    subcategory: "dates-durations",
+    description: "Determine the exact difference between two dates in total hours, minutes, and seconds.",
+    loader: () => import("@/components/calculators/Time/DateDifferenceHmsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
