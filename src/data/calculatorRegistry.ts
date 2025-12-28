@@ -6129,6 +6129,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/TimeZoneConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "world-clock",
+    title: "World Clock (list of cities)",
+    category: "time",
+    subcategory: "time-zones-clocks",
+    description: "Display the current time for a list of major global cities. Quick reference for time differences.",
+    loader: () => import("@/components/calculators/Time/WorldClockCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
