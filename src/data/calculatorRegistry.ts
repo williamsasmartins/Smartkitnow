@@ -5748,6 +5748,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvAccelerationTorqueCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dyno-correction-factor",
+    title: "Dyno Correction Factor Calculator",
+    category: "automotive",
+    subcategory: "performance-tuning",
+    description: "Adjust dyno-measured horsepower and torque for standard atmospheric conditions (SAE, DIN, etc.).",
+    loader: () => import("@/components/calculators/Automotive/DynoCorrectionFactorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
