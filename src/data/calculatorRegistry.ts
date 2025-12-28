@@ -6219,6 +6219,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/DayOfWeekForDateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "count-specific-weekdays",
+    title: "Count Specific Weekdays Between Dates (e.g., all Fridays)",
+    category: "time",
+    subcategory: "calendar-extras",
+    description: "Count the total occurrence of a specific weekday (e.g., all Mondays) between two dates.",
+    loader: () => import("@/components/calculators/Time/CountSpecificWeekdaysCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
