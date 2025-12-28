@@ -6201,6 +6201,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/CountdownTimerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "stopwatch-split-times",
+    title: "Stopwatch & Split Times (web tool)",
+    category: "time",
+    subcategory: "calendar-extras",
+    description: "Simple web-based stopwatch with functionality to record and manage split times.",
+    loader: () => import("@/components/calculators/Time/StopwatchSplitTimesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
