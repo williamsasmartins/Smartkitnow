@@ -5804,6 +5804,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/PowerWattsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "electrical-resistance",
+    title: "Electrical Resistance Calculator",
+    category: "electrical",
+    subcategory: "basic-electrical-circuit-calculations",
+    description: "Calculate resistance in a circuit.",
+    loader: () => import("@/components/calculators/Electrical/ElectricalResistanceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
