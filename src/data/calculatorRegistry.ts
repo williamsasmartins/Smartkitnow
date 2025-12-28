@@ -5840,6 +5840,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ElectricalLoadCapacityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "wire-size-awg-kcmil",
+    title: "Wire Size (AWG/KCMIL) Calculator",
+    category: "electrical",
+    subcategory: "wiring-conductors-breakers",
+    description: "Determine appropriate wire size (AWG/KCMIL) for a given load.",
+    loader: () => import("@/components/calculators/Electrical/WireSizeAwgKcmilCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
