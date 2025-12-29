@@ -6256,6 +6256,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
    
+    {
+    slug: "video-bitrate-file-size",
+    title: "Video Bitrate ↔ File Size Calculator",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Calculate video file size from bitrate, duration, and codec or vice versa.",
+    loader: () => import("@/components/calculators/Video/VideoBitrateFileSizeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
