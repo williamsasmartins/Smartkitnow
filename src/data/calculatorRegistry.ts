@@ -6364,6 +6364,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/CameraBitrateRecordTimeConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "aspect-ratio-letterbox-pillarbox",
+    title: "Aspect Ratio Calculator (Letterbox/Pillarbox)",
+    category: "video",
+    subcategory: "resolution-aspect-ratio-pixels",
+    description: "Calculate letterbox/pillarbox dimensions when changing aspect ratios.",
+    loader: () => import("@/components/calculators/Video/AspectRatioLetterboxPillarboxCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
