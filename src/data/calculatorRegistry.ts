@@ -6690,6 +6690,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/RenderFarmCostEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "3d-render-time-calculator",
+    title: "3D Render Time Calculator",
+    category: "video",
+    subcategory: "video-rendering-export",
+    description: "Estimate total render time for 3D scenes.",
+    loader: () => import("@/components/calculators/Video/3dRenderTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
