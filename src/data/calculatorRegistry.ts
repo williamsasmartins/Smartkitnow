@@ -6627,6 +6627,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/CableLengthImpactCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "inverse-square-law-calculator",
+    title: "Inverse Square Law Calculator",
+    category: "video",
+    subcategory: "audio-processing-engineering",
+    description: "Apply inverse square law to sound intensity over distance.",
+    loader: () => import("@/components/calculators/Video/InverseSquareLawCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
