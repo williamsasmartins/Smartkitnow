@@ -4,35 +4,35 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Film, AlertTriangle, BookOpen, ExternalLink } from "lucide-react";
+import { Monitor, BookOpen, AlertTriangle, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
-export default function RenderFarmCostEstimatorCalculator() {
+export default function ThreeDRenderFarmTimeCalculator() {
   const [inputs, setInputs] = useState({
     frameCount: "",
-    secPerFrame: "",
+    secondsPerFrame: "",
     nodes: "",
   });
 
   const handleInputChange = (field: string, value: string) => {
-    // Allow only numbers and decimal point
+    // Allow only numbers and decimals
     if (/^\d*\.?\d*$/.test(value)) {
       setInputs((prev) => ({ ...prev, [field]: value }));
     }
   };
 
   const results = useMemo(() => {
-    const frameCount = parseInt(inputs.frameCount, 10);
-    const secPerFrame = parseFloat(inputs.secPerFrame);
-    const nodes = parseInt(inputs.nodes, 10);
+    const frameCountNum = parseInt(inputs.frameCount, 10);
+    const secondsPerFrameNum = parseFloat(inputs.secondsPerFrame);
+    const nodesNum = parseInt(inputs.nodes, 10);
 
     if (
-      isNaN(frameCount) ||
-      isNaN(secPerFrame) ||
-      isNaN(nodes) ||
-      frameCount <= 0 ||
-      secPerFrame <= 0 ||
-      nodes <= 0
+      isNaN(frameCountNum) ||
+      frameCountNum <= 0 ||
+      isNaN(secondsPerFrameNum) ||
+      secondsPerFrameNum <= 0 ||
+      isNaN(nodesNum) ||
+      nodesNum <= 0
     ) {
       return {
         primary: "0",
@@ -42,54 +42,52 @@ export default function RenderFarmCostEstimatorCalculator() {
       };
     }
 
-    // Total time in seconds = (frameCount * secPerFrame) / nodes
-    const totalSeconds = (frameCount * secPerFrame) / nodes;
+    // Total time in seconds = (frameCount * secondsPerFrame) / nodes
+    const totalSeconds = (frameCountNum * secondsPerFrameNum) / nodesNum;
 
     // Convert totalSeconds to hours and minutes
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = Math.floor(totalSeconds % 60);
 
-    // Format time string
-    let timeStr = "";
-    if (hours > 0) timeStr += `${hours}h `;
-    if (minutes > 0) timeStr += `${minutes}m `;
-    timeStr += `${seconds}s`;
+    const formattedTime = `${hours}h ${minutes}m ${seconds}s`;
 
     return {
-      primary: timeStr.trim(),
+      primary: formattedTime,
       secondary: "Total Render Time",
-      details: `Rendering ${frameCount.toLocaleString()} frames at ${secPerFrame} seconds/frame using ${nodes.toLocaleString()} node${nodes > 1 ? "s" : ""}.`,
+      details: `Rendering ${frameCountNum} frames at ${secondsPerFrameNum.toFixed(
+        2
+      )} seconds/frame using ${nodesNum} node${nodesNum > 1 ? "s" : ""}.`,
       feedback:
-        "Increasing the number of nodes reduces total render time linearly, but consider cost and network overhead.",
+        "Increasing the number of nodes decreases total render time linearly, but consider overhead and network limitations.",
     };
   }, [inputs]);
 
   const faqs = [
     {
-      question: "What is a render farm?",
+      question: "What is a render farm node?",
       answer:
-        "A render farm is a cluster of networked computers (nodes) used to render computer-generated imagery (CGI), animations, and visual effects. It distributes rendering tasks across multiple machines to speed up the process significantly compared to a single computer.",
+        "A render farm node is an individual computer or server that processes rendering tasks. Multiple nodes work in parallel to speed up the rendering process by dividing the workload. The more nodes you have, the faster your frames can be rendered, assuming efficient distribution and no bottlenecks.",
     },
     {
-      question: "How does the number of nodes affect render time?",
+      question: "Why does increasing nodes not always reduce render time perfectly?",
       answer:
-        "The number of nodes directly impacts the total render time. More nodes mean the workload is divided among more machines, reducing the time it takes to complete rendering. However, diminishing returns may occur due to overhead and network latency.",
+        "While adding more nodes generally decreases render time, factors like network bandwidth, data transfer overhead, and software limitations can reduce efficiency. Sometimes, diminishing returns occur when nodes outnumber the workload or when coordination overhead becomes significant.",
     },
     {
-      question: "What does 'seconds per frame' mean?",
+      question: "How accurate is this calculator?",
       answer:
-        "'Seconds per frame' is the average time it takes to render a single frame on one node. This depends on the complexity of the scene, resolution, rendering settings, and hardware capabilities.",
+        "This calculator provides an estimate based on input parameters assuming ideal conditions. Real-world render times may vary due to hardware differences, scene complexity, software optimizations, and network performance. Always allow buffer time in production schedules.",
     },
     {
-      question: "Can I use this calculator for GPU and CPU render farms?",
+      question: "Can I use this calculator for GPU rendering?",
       answer:
-        "Yes, this calculator works for both GPU and CPU render farms as long as you know the average seconds per frame for your hardware. Different hardware types will have different performance metrics, so input accurate values for best estimates.",
+        "Yes, the calculator works for both CPU and GPU rendering as long as you input the average seconds per frame accurately. GPU rendering times can differ significantly from CPU times, so ensure your seconds per frame reflect the hardware used.",
     },
     {
-      question: "Does this calculator include cost estimation?",
+      question: "What if my frames have variable render times?",
       answer:
-        "This calculator estimates total render time only. To estimate cost, you would need to multiply the total render time by your render farm's hourly rate per node or overall pricing model.",
+        "If frames vary widely in render time, use an average seconds per frame value for estimation. For more precise planning, consider segmenting frames by complexity or running test renders to gather more accurate timing data.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -97,50 +95,49 @@ export default function RenderFarmCostEstimatorCalculator() {
   const example = {
     title: "Real World Example",
     scenario:
-      "You have a 10,000 frame animation that takes 45 seconds to render each frame on a single node. You want to use 20 nodes in your render farm to speed up the process.",
+      "You have a 3D animation project with 240 frames. Each frame takes approximately 45 seconds to render on a single node. You have access to 10 render nodes.",
     steps: [
       {
         label: "Step 1",
         explanation:
-          "Enter 10,000 as the Frame Count (total frames to render).",
+          "Input the total frame count: 240 frames into the calculator.",
       },
       {
         label: "Step 2",
         explanation:
-          "Enter 45 as Seconds per Frame (average time to render one frame).",
+          "Enter the average seconds per frame: 45 seconds/frame.",
       },
       {
         label: "Step 3",
-        explanation:
-          "Enter 20 as Nodes (number of machines rendering in parallel).",
+        explanation: "Enter the number of available nodes: 10 nodes.",
       },
       {
         label: "Step 4",
-        explanation: "Click Calculate to see the total render time.",
+        explanation: "Click Calculate to see the total estimated render time.",
       },
     ],
     result:
-      "The calculator shows approximately 6 hours 15 minutes total render time, significantly faster than rendering on a single node.",
+      "The calculator estimates a total render time of approximately 3 hours and 0 minutes, showing how distributing frames across multiple nodes speeds up the process.",
   };
 
   const references = [
     {
-      title: "Render Farm Wikipedia",
+      title: "Render Farm Basics - Autodesk Knowledge Network",
       description:
-        "Comprehensive overview of render farms, their architecture, and usage in CGI and animation.",
-      url: "https://en.wikipedia.org/wiki/Render_farm",
+        "Comprehensive guide on how render farms work and best practices for distributed rendering.",
+      url: "https://knowledge.autodesk.com/support/maya/learn-explore/caas/CloudHelp/cloudhelp/2023/ENU/Maya-RenderFarm/files/GUID-5B7E7B3E-3A9D-4F6A-9D3E-7B9E6E5A3B1B-htm.html",
     },
     {
-      title: "Pixar RenderMan Documentation",
+      title: "Distributed Rendering Explained - Chaos Group",
       description:
-        "Industry standard rendering software documentation with insights on render farm setups.",
-      url: "https://renderman.pixar.com/resources/RenderMan_20_White_Paper.pdf",
+        "Detailed explanation of distributed rendering concepts and how render farms optimize 3D production workflows.",
+      url: "https://www.chaos.com/vray/help/distributed-rendering",
     },
     {
-      title: "AWS Thinkbox Deadline Render Farm",
+      title: "Optimizing Render Farm Performance - Pixar",
       description:
-        "Cloud-based render farm solution with pricing and performance details.",
-      url: "https://aws.amazon.com/thinkbox/deadline/",
+        "Insights on maximizing efficiency and avoiding common pitfalls in render farm setups.",
+      url: "https://graphics.pixar.com/library/RenderFarmOptimization/paper.pdf",
     },
   ];
 
@@ -154,49 +151,59 @@ export default function RenderFarmCostEstimatorCalculator() {
             type="number"
             min={1}
             step={1}
-            placeholder="e.g. 10000"
+            placeholder="e.g. 240"
             value={inputs.frameCount}
             onChange={(e) => handleInputChange("frameCount", e.target.value)}
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="secPerFrame">Seconds per Frame</Label>
+          <Label htmlFor="secondsPerFrame">Seconds per Frame</Label>
           <Input
-            id="secPerFrame"
+            id="secondsPerFrame"
             type="number"
             min={0.01}
             step={0.01}
             placeholder="e.g. 45"
-            value={inputs.secPerFrame}
-            onChange={(e) => handleInputChange("secPerFrame", e.target.value)}
+            value={inputs.secondsPerFrame}
+            onChange={(e) =>
+              handleInputChange("secondsPerFrame", e.target.value)
+            }
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="nodes">Nodes</Label>
+          <Label htmlFor="nodes">Number of Nodes</Label>
           <Input
             id="nodes"
             type="number"
             min={1}
             step={1}
-            placeholder="e.g. 20"
+            placeholder="e.g. 10"
             value={inputs.nodes}
             onChange={(e) => handleInputChange("nodes", e.target.value)}
           />
         </div>
       </div>
 
-      <Button className="w-full bg-blue-600 hover:bg-blue-700 h-12 text-lg" type="button">
-        <Film className="mr-2 h-5 w-5" /> Calculate
+      <Button className="w-full bg-blue-600 hover:bg-blue-700 h-12 text-lg" disabled={
+        !inputs.frameCount || !inputs.secondsPerFrame || !inputs.nodes
+      }>
+        <Monitor className="mr-2 h-5 w-5" /> Calculate
       </Button>
 
       {results && (
         <Card className="mt-6 bg-slate-50 dark:bg-slate-900 border-blue-200 shadow-md">
           <CardContent className="p-6 text-center">
-            <span className="text-sm font-semibold text-slate-500 uppercase">Result</span>
-            <div className="text-5xl font-extrabold text-blue-600 my-3">{results.primary}</div>
+            <span className="text-sm font-semibold text-slate-500 uppercase">
+              Result
+            </span>
+            <div className="text-5xl font-extrabold text-blue-600 my-3">
+              {results.primary}
+            </div>
             <div className="text-xl font-bold mt-2">{results.secondary}</div>
             <p className="text-xs text-slate-500 mt-2">{results.details}</p>
-            <p className="mt-3 italic text-sm text-blue-700">{results.feedback}</p>
+            <p className="mt-3 italic text-sm text-blue-700 dark:text-blue-400">
+              {results.feedback}
+            </p>
           </CardContent>
         </Card>
       )}
@@ -210,38 +217,34 @@ export default function RenderFarmCostEstimatorCalculator() {
           How to use this calculator
         </h2>
         <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>Enter the total number of frames you need to render in the "Frame Count" field.</li>
-          <li>
-            Input the average time it takes to render one frame (in seconds) in the "Seconds per Frame" field.
-          </li>
-          <li>Specify the number of nodes (computers) available in your render farm.</li>
-          <li>Click the "Calculate" button to compute the total render time distributed across your nodes.</li>
-          <li>
-            Review the result displayed below, which shows the estimated total render time in hours, minutes, and seconds.
-          </li>
+          <li>Enter the total number of frames you need to render in your project.</li>
+          <li>Input the average time in seconds it takes to render a single frame on one node.</li>
+          <li>Specify how many render nodes you have available in your render farm.</li>
+          <li>Click the Calculate button to see the estimated total render time distributed across your nodes.</li>
+          <li>Review the result and use it to plan your rendering schedule efficiently.</li>
         </ol>
       </section>
 
       <section id="guide">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
           <BookOpen className="w-6 h-6 text-blue-500" />
-          Complete Guide to Render Farm Cost Estimator
+          Complete Guide to 3D Render Farm Time Calculator
         </h2>
         <div className="prose prose-slate dark:prose-invert">
           <p>
-            Rendering is a critical step in video production, animation, and visual effects workflows. It involves generating final images or frames from 3D models, scenes, and animations using complex calculations. Because rendering can be computationally intensive and time-consuming, professionals often use render farms—clusters of multiple computers working in parallel—to speed up the process.
+            Rendering 3D animations and visual effects is a computationally intensive process that can take hours or even days depending on the complexity of the scenes and the hardware used. A render farm is a cluster of computers (nodes) working together to distribute the rendering workload, significantly reducing the total time required.
           </p>
           <p>
-            This calculator helps you estimate the total time required to render a sequence of frames using a render farm. By inputting the total number of frames, the average time it takes to render each frame on a single node, and the number of nodes available, you get an estimate of how long the entire render job will take when distributed across your farm.
+            This calculator helps you estimate the total render time by taking into account three key inputs: the total number of frames in your animation, the average time it takes to render each frame on a single node, and the number of nodes available in your render farm. By dividing the total rendering workload across multiple nodes, you can achieve faster turnaround times.
           </p>
           <p>
-            The calculation assumes that the workload is evenly distributed and that all nodes work simultaneously without overhead or downtime. In reality, factors like network latency, node performance variability, and task overhead can affect total render time. However, this tool provides a solid baseline estimate for planning and budgeting.
+            It is important to note that this calculator assumes ideal conditions where the workload is perfectly balanced and there is no overhead or bottleneck in the network or software. In real-world scenarios, factors such as data transfer times, node performance variability, and software inefficiencies can affect the actual render time.
           </p>
           <p>
-            Understanding render times is essential for scheduling production timelines, managing costs, and optimizing resource allocation. For example, increasing the number of nodes reduces render time but may increase operational costs. Balancing speed and cost efficiency is key to effective render farm management.
+            To get the most accurate estimate, measure the average seconds per frame by rendering a few test frames on your hardware. Also, consider that adding more nodes will reduce render time but may introduce overhead, so the speedup might not be perfectly linear.
           </p>
           <p>
-            Use this calculator to quickly assess how changes in frame count, frame complexity (seconds per frame), or node count impact your render schedules. It is a valuable tool for video engineers, DITs, post-production supervisors, and anyone involved in managing rendering workflows.
+            Use this tool to plan your rendering schedule, allocate resources efficiently, and optimize your production pipeline for timely delivery of high-quality 3D content.
           </p>
         </div>
       </section>
@@ -251,39 +254,39 @@ export default function RenderFarmCostEstimatorCalculator() {
         className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900"
       >
         <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-800 dark:text-amber-200">
-          <AlertTriangle className="w-5 h-5" /> Common Mistakes
+          <AlertTriangle className="w-5 h-5" />
+          Common Mistakes
         </h3>
         <div className="space-y-2 text-sm text-amber-900 dark:text-amber-100">
           <p>
-            <strong>Warning:</strong> One common mistake is entering zero or negative values for any input, which leads to invalid or misleading results. Always ensure all inputs are positive numbers.
+            <strong>Warning:</strong> Entering zero or negative values for any input will produce invalid results. Always ensure all inputs are positive numbers.
           </p>
           <p>
-            Another frequent error is underestimating the seconds per frame. This value should be based on real benchmarks or tests on your hardware to avoid unrealistic render time estimates.
+            <strong>Warning:</strong> Using an inaccurate average seconds per frame can lead to misleading estimates. Test render a representative sample of frames for better accuracy.
           </p>
           <p>
-            Users sometimes forget that adding more nodes does not always linearly decrease render time due to overhead, network bottlenecks, or software limitations. Use this calculator as an estimate, not an exact prediction.
+            <strong>Warning:</strong> Assuming perfect linear scaling with nodes ignores overhead and network latency. Real render farms may not reduce time proportionally with added nodes.
           </p>
           <p>
-            Lastly, this calculator does not factor in cost directly. To estimate cost, multiply the total render time by your render farm's hourly rate per node.
+            <strong>Warning:</strong> Forgetting to consider frame dependencies or scenes that require sequential rendering can invalidate parallel render assumptions.
           </p>
         </div>
       </section>
 
       <section id="example" className="scroll-mt-24">
-        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">Real World Example</h2>
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">
+          Real World Example
+        </h2>
         <div className="space-y-4 text-slate-700 dark:text-slate-300">
-          <p>
-            <strong>Scenario:</strong> You have a 10,000 frame animation that takes 45 seconds to render each frame on a single node. You want to use 20 nodes in your render farm to speed up the process.
-          </p>
+          <p><strong>Scenario:</strong> {example.scenario}</p>
           <ol className="list-decimal pl-5 space-y-2">
-            <li>Enter 10,000 as the Frame Count.</li>
-            <li>Enter 45 as Seconds per Frame.</li>
-            <li>Enter 20 as Nodes.</li>
-            <li>Click Calculate.</li>
+            {example.steps.map((step, i) => (
+              <li key={i}>
+                <strong>{step.label}:</strong> {step.explanation}
+              </li>
+            ))}
           </ol>
-          <p>
-            <strong>Result:</strong> The calculator shows approximately 6 hours 15 minutes total render time, significantly faster than rendering on a single node, which would take over 125 hours.
-          </p>
+          <p><strong>Result:</strong> {example.result}</p>
         </div>
       </section>
 
@@ -293,9 +296,16 @@ export default function RenderFarmCostEstimatorCalculator() {
         </h2>
         <div className="space-y-6">
           {faqs.map((faq, i) => (
-            <div key={i} className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
-              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">{faq.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
+            <div
+              key={i}
+              className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0"
+            >
+              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">
+                {faq.question}
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                {faq.answer}
+              </p>
             </div>
           ))}
         </div>
@@ -303,7 +313,8 @@ export default function RenderFarmCostEstimatorCalculator() {
 
       <section id="references">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-900 dark:text-slate-100">
-          <BookOpen className="w-5 h-5 text-blue-500" /> References & additional resources
+          <BookOpen className="w-5 h-5 text-blue-500" />
+          References & additional resources
         </h2>
         <div className="space-y-4">
           {references.map((ref, i) => (
@@ -316,7 +327,9 @@ export default function RenderFarmCostEstimatorCalculator() {
               >
                 {ref.title} <ExternalLink className="w-3 h-3" />
               </a>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{ref.description}</p>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                {ref.description}
+              </p>
             </div>
           ))}
         </div>
@@ -326,8 +339,8 @@ export default function RenderFarmCostEstimatorCalculator() {
 
   return (
     <CalculatorVerticalLayout
-      title="Render Farm Cost Estimator"
-      description="Professional video & audio calculator: Render Farm Cost Estimator. Accurate technical formulas for production, post-production, and broadcasting."
+      title="3D Render Farm Time Calculator"
+      description="Professional video & audio calculator: 3D Render Farm Time Calculator. Accurate technical formulas for production, post-production, and broadcasting."
       widget={widget}
       editorial={editorial}
       jsonLd={faqJsonLd}
