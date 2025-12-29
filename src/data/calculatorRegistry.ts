@@ -6519,6 +6519,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/RenderFarmCostEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "video-export-time-estimator",
+    title: "Video Export Time Estimator",
+    category: "video",
+    subcategory: "video-rendering-export",
+    description: "Predict export duration based on project complexity and hardware.",
+    loader: () => import("@/components/calculators/Video/VideoExportTimeEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
