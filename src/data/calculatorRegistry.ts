@@ -6691,13 +6691,13 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     {
-    slug: "3d-render-time-calculator",
-    title: "3D Render Time Calculator",
+    slug: "render-time-calculator-3d",
+    title: "render-time-calculator-3d",
     category: "video",
     subcategory: "video-rendering-export",
     description: "Estimate total render time for 3D scenes.",
-    loader: () => import("@/components/calculators/Video/3dRenderTimeCalculator"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Video/ThreeDRenderTimeCalculator"),
+  urlStyle: "flat"
   },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
