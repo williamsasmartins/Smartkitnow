@@ -6274,6 +6274,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/RecordingTimeCardSsdCapacityCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "audio-bitrate-channels-impact-file-size",
+    title: "Audio Bitrate + Channels Impact (File Size)",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Calculate how audio bitrate and number of channels affect total file size.",
+    loader: () => import("@/components/calculators/Video/AudioBitrateChannelsImpactFileSizeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
