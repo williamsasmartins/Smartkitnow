@@ -6555,6 +6555,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/CloudRenderQueuePlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "video-rendering-hardware-requirement-calculator",
+    title: "Video Rendering Hardware Requirement Calculator",
+    category: "video",
+    subcategory: "video-rendering-export",
+    description: "Recommend CPU/GPU/RAM specs for target render times.",
+    loader: () => import("@/components/calculators/Video/VideoRenderingHardwareRequirementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
