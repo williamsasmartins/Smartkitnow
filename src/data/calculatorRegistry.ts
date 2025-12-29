@@ -6454,6 +6454,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/TimecodeDurationHhMmSsFfConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fps-converter-23-976-24-25-29-97-30-50-59-94",
+    title: "FPS Converter (23.976↔24↔25↔29.97↔30↔50↔59.94)",
+    category: "video",
+    subcategory: "time-fps-timecode",
+    description: "Convert footage between common frame rates with pulldown options.",
+    loader: () => import("@/components/calculators/Video/FpsConverter239762425299730505994Calculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
