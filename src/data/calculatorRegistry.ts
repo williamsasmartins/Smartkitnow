@@ -6427,6 +6427,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/PixelAspectRatioParConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "anamorphic-lens-calculator",
+    title: "Anamorphic Lens Calculator",
+    category: "video",
+    subcategory: "resolution-aspect-ratio-pixels",
+    description: "Calculate squeeze factors and final aspect ratio with anamorphic lenses.",
+    loader: () => import("@/components/calculators/Video/AnamorphicLensCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
