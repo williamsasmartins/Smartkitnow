@@ -6672,6 +6672,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AudioFileSizeEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "wavelength-frequency-calculator",
+    title: "Wavelength and Frequency Calculator",
+    category: "video",
+    subcategory: "audio-processing-engineering",
+    description: "Convert between sound frequency and wavelength at different temperatures.",
+    loader: () => import("@/components/calculators/Video/WavelengthFrequencyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
