@@ -55,14 +55,14 @@ const timeFpsTimecode: Item[] = [
 
 // Video Rendering & Export (10)
 const renderingExport: Item[] = [
-  { name: "3D Render Time Calculator", slug: "3d-render-time-calculator" },
+  { name: "3D Render Time Calculator", slug: "render-time-calculator-3d" },
   { name: "Render Farm Cost Estimator", slug: "render-farm-cost-estimator" },
   { name: "Video Export Time Estimator", slug: "video-export-time-estimator" },
   { name: "GPU Render Performance Calculator", slug: "gpu-render-performance-calculator" },
   { name: "Render Time Per Frame Calculator", slug: "render-time-per-frame-calculator" },
   { name: "Cloud Render Queue Planner", slug: "cloud-render-queue-planner" },
   { name: "Video Rendering Hardware Requirement Calculator", slug: "video-rendering-hardware-requirement-calculator" },
-  { name: "3D Render Farm Time Calculator", slug: "3d-render-farm-time-calculator" },
+  { name: "3D Render Farm Time Calculator", slug: "render-farm-time-calculator-3d" },
   { name: "Animation Render Duration Estimator", slug: "animation-render-duration-estimator" },
   { name: "Multi-Workstation Render Time Calculator", slug: "multi-workstation-render-time-calculator" },
 ];
