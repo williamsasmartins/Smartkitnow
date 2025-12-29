@@ -6600,6 +6600,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/DbuDbvConversionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sound-pressure-level-spl-calculator",
+    title: "Sound Pressure Level (SPL) Calculator",
+    category: "video",
+    subcategory: "audio-processing-engineering",
+    description: "Calculate SPL at different listening positions.",
+    loader: () => import("@/components/calculators/Video/SoundPressureLevelSplCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
