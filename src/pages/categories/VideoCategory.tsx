@@ -31,7 +31,7 @@ const bitrateStorage: Item[] = [
 const resolutionAspectPixels: Item[] = [
   { name: "Aspect Ratio Calculator (Letterbox/Pillarbox)", slug: "aspect-ratio-letterbox-pillarbox" },
   { name: "Resolution Presets & Pixel Count (720p/1080p/4K/8K)", slug: "resolution-presets-pixel-count-720p-1080p-4k-8k" },
-  { name: "16:9 → 9:16/1:1 Crop & Safe Area Helper", slug: "16-9-to-9-16-1-1-crop-safe-area-helper" },
+  { name: "16:9 → 9:16/1:1 Crop & Safe Area Helper", slug: "aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper" },
   { name: "DPI/PPI ↔ Pixels (Print/Display)", slug: "dpi-ppi-pixels-print-display" },
   { name: "Screen Size from Diagonal & AR", slug: "screen-size-from-diagonal-ar" },
   { name: "TV Size & Viewing Distance Planner", slug: "tv-size-viewing-distance-planner" },
