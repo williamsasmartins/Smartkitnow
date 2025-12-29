@@ -6692,7 +6692,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
     {
     slug: "render-time-calculator-3d",
-    title: "render-time-calculator-3d",
+    title: "3D Render Time Calculator",
     category: "video",
     subcategory: "video-rendering-export",
     description: "Estimate total render time for 3D scenes.",
