@@ -6681,6 +6681,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/WavelengthFrequencyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "3d-render-farm-time-calculator",
+    title: "3D Render Farm Time Calculator",
+    category: "video",
+    subcategory: "video-rendering-export",
+    description: "Calculate total time when distributing across multiple nodes.",
+    loader: () => import("@/components/calculators/Video/3dRenderFarmTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
