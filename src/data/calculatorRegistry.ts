@@ -1082,10 +1082,10 @@ export const calculatorRegistry: CalculatorEntry[] = [
     {
     slug: "vo2max-estimator-cooper-rockport",
     title: "VO2max Estimator (Cooper/Rockport)",
-    category: "health",
+    category: "sports",
     subcategory: "training-performance",
     description: "Estimate your VO2max aerobic capacity. Use Cooper or Rockport test results to assess your cardiovascular fitness level.",
-    loader: () => import("@/components/calculators/Health/Vo2maxEstimatorCooperRockportCalculator"),
+    loader: () => import("@/components/calculators/Sports/Vo2maxEstimatorCooperRockportCalculator"),
     urlStyle: "flat"
   },
     {
@@ -6511,6 +6511,24 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     {
+    slug: "render-time-calculator-3d",
+    title: "3D Render Time Calculator",
+    category: "video",
+    subcategory: "video-rendering-export",
+    description: "Calculate estimated render time based on frame count and time per frame.",
+    loader: () => import("@/components/calculators/Video/ThreeDRenderTimeCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "render-farm-time-calculator-3d",
+    title: "3D Render Farm Time Calculator",
+    category: "video",
+    subcategory: "video-rendering-export",
+    description: "Estimate render time when using a render farm with multiple nodes.",
+    loader: () => import("@/components/calculators/Video/ThreeDRenderFarmTimeCalculator"),
+    urlStyle: "flat"
+  },
+    {
     slug: "render-farm-cost-estimator",
     title: "Render Farm Cost Estimator",
     category: "video",
@@ -6680,24 +6698,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     description: "Convert between sound frequency and wavelength at different temperatures.",
     loader: () => import("@/components/calculators/Video/WavelengthFrequencyCalculator"),
     urlStyle: "flat"
-  },
-    {
-    slug: "render-farm-time-calculator-3d", // Assuming you updated the slug as discussed
-    title: "3D Render Farm Time Calculator",
-    category: "video",
-    subcategory: "video-rendering-export",
-    description: "Calculate total time when distributing across multiple nodes.",
-    loader: () => import("@/components/calculators/Video/RenderFarmCostEstimatorCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "render-time-calculator-3d",
-    title: "3D Render Time Calculator",
-    category: "video",
-    subcategory: "video-rendering-export",
-    description: "Estimate total render time for 3D scenes.",
-    loader: () => import("@/components/calculators/Video/ThreeDRenderTimeCalculator"),
-  urlStyle: "flat"
+
   },
     {
     slug: "aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper",

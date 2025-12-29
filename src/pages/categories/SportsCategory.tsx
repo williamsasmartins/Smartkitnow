@@ -6,6 +6,7 @@ import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import SuggestionBox from "@/components/SuggestionBox";
 import SEOHead from "@/components/SEOHead";
+import JsonLd from "@/components/seo/JsonLd";
 
 // Mirror structure of FinancialCategory
 
@@ -83,17 +84,38 @@ const TOTAL =
 
 export default function SportsCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.smartkitnow.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Sports Calculators",
+        "item": "https://www.smartkitnow.com/sports"
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen">
-        <SEOHead
-          title="Sports Calculators"
-          description="Explore 49 sports calculators for endurance performance, strength training, ball sports analytics, and game management. Fast, accurate tools for athletes and coaches."
-          canonical="https://www.smartkitnow.com/sports"
-          robots="index,follow"
-          og={{ type: "website", url: "https://www.smartkitnow.com/sports", siteName: "Smart Kit Now" }}
-          twitter={{ card: "summary_large_image" }}
-          extra={[{ name: "keywords", content: "sports calculators, running pace calculator, race predictor, heart rate zones, VO2max, cycling power, FTP zones, swim pace, sweat rate, cadence, negative split, swimming points, pool converter, interval pace, 1RM, TDEE, macros, calorie deficit, fitness age, yoga calories, fantasy points, betting odds, soccer table, xG, eFG TS, ORtg DRtg, OPS SLG OBP, ERA WHIP, WPS, BABIP, GB FB, golf handicap, bowling score, FINA points, swim performance" }]}
-        />
+      <SEOHead
+        title="Sports Calculators"
+        description="Explore 49 sports calculators for endurance performance, strength training, ball sports analytics, and game management. Fast, accurate tools for athletes and coaches."
+        canonical="https://www.smartkitnow.com/sports"
+        robots="index,follow"
+        og={{ type: "website", url: "https://www.smartkitnow.com/sports", siteName: "Smart Kit Now" }}
+        twitter={{ card: "summary_large_image" }}
+        extra={[{ name: "keywords", content: "sports calculators, running pace calculator, race predictor, heart rate zones, VO2max, cycling power, FTP zones, swim pace, sweat rate, cadence, negative split, swimming points, pool converter, interval pace, 1RM, TDEE, macros, calorie deficit, fitness age, yoga calories, fantasy points, betting odds, soccer table, xG, eFG TS, ORtg DRtg, OPS SLG OBP, ERA WHIP, WPS, BABIP, GB FB, golf handicap, bowling score, FINA points, swim performance" }]}
+      />
+      <JsonLd data={breadcrumbJsonLd} />
       {/* offset below fixed header */}
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />

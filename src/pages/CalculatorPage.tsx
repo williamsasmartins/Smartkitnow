@@ -1,6 +1,8 @@
 import React, { Suspense } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getEntry } from "@/data/calculatorRegistry";
+import { getEntry, FRIENDLY_TITLES, SUBCATEGORY_TITLES } from "@/data/calculatorRegistry";
+import JsonLd from "@/components/seo/JsonLd";
+import SEOHead from "@/components/SEOHead";
 
 function createLazyFromLoader(loader: () => Promise<any>, namedExport?: string) {
   const Lazy = React.lazy(async () => {
@@ -39,8 +41,68 @@ export default function CalculatorPage() {
   // do componente CalculatorVerticalLayout, evitando duplicação de espaços.
   const containerClasses = "w-full px-4 md:px-8 lg:px-10";
 
+  // Build BreadcrumbList JSON-LD
+  const origin = "https://www.smartkitnow.com";
+  const catSlug = entry.category;
+  const subSlug = entry.subcategory;
+  const catName = FRIENDLY_TITLES[catSlug] || catSlug;
+  const subName = (subSlug && SUBCATEGORY_TITLES[catSlug]?.[subSlug]) || subSlug;
+
+  const itemListElement = [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": `${origin}/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": catName,
+      "item": `${origin}/${catSlug}`
+    }
+  ];
+  
+  let canonicalPath = `/${catSlug}`;
+
+  if (subSlug) {
+    itemListElement.push({
+      "@type": "ListItem",
+      "position": 3,
+      "name": subName || subSlug,
+      "item": `${origin}/${catSlug}/${subSlug}`
+    });
+    itemListElement.push({
+      "@type": "ListItem",
+      "position": 4,
+      "name": entry.title,
+      "item": `${origin}/${catSlug}/${subSlug}/${entry.slug}`
+    });
+    canonicalPath += `/${subSlug}/${entry.slug}`;
+  } else {
+    itemListElement.push({
+      "@type": "ListItem",
+      "position": 3,
+      "name": entry.title,
+      "item": `${origin}/${catSlug}/${entry.slug}`
+    });
+    canonicalPath += `/${entry.slug}`;
+  }
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": itemListElement
+  };
+
   return (
     <div className={containerClasses}>
+      <SEOHead 
+        title={`${entry.title} - Smart Kit Now`}
+        description={entry.description || `Use our ${entry.title} to calculate results quickly and easily.`}
+        canonical={`${origin}${canonicalPath}`}
+      />
+      <JsonLd data={breadcrumbJsonLd} />
       {/* max-w-none permite que o CalculatorVerticalLayout controle a largura interna */}
       <div className="max-w-none">
         <Suspense fallback={<div className="py-10 text-muted-foreground text-center">Loading Calculator...</div>}>

@@ -6,6 +6,7 @@ import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import SuggestionBox from "@/components/SuggestionBox";
 import SEOHead from "@/components/SEOHead";
+import JsonLd from "@/components/seo/JsonLd";
 
 // Mirror structure of FinancialCategory
 
@@ -91,6 +92,26 @@ const TOTAL =
 
 export default function VideoCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.smartkitnow.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Video Calculators",
+        "item": "https://www.smartkitnow.com/video"
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen">
       <SEOHead
@@ -102,6 +123,7 @@ export default function VideoCategory() {
         twitter={{ card: "summary_large_image" }}
         extra={[{ name: "keywords", content: "video calculators, bitrate calculator, file size, storage planner, surveillance NVR, live streaming bitrate, data rate Mbps MB/s, compression H.264 H.265, camera bitrate recording time, aspect ratio calculator, pixel count, crop safe area, DPI PPI, screen size diagonal, viewing distance, pixel aspect ratio PAR, anamorphic lens calculator, video crop dimensions, timecode converter, FPS converter, shutter angle 180 degree rule, slow motion speed ramp, frames to timecode, drop frame NTSC, 3D render time, render farm cost, export time estimator, GPU render performance, render per frame, cloud render queue, hardware requirements, amplifier power, dBu dBV, SPL calculator, speaker placement, inverse square law, ohm's law audio, speaker crossover, decibel power ratio, audio file size, wavelength frequency" }]}
       />
+      <JsonLd data={breadcrumbJsonLd} />
       {/* offset below fixed header */}
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />

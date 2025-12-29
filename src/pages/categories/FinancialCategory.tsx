@@ -6,6 +6,7 @@ import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import SuggestionBox from "@/components/SuggestionBox";
 import SEOHead from "@/components/SEOHead";
+import JsonLd from "@/components/seo/JsonLd";
 
 type Item = { name: string; slug: string };
 
@@ -121,6 +122,26 @@ const TOTAL =
 
 export default function FinancialCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
+  
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.smartkitnow.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Financial Calculators",
+        "item": "https://www.smartkitnow.com/financial"
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen">
       <SEOHead
@@ -132,6 +153,7 @@ export default function FinancialCategory() {
         twitter={{ card: "summary_large_image" }}
         extra={[{ name: "keywords", content: "financial calculators, loan calculator, mortgage amortization, extra payments, refinance savings, HELOC, affordability, student loans, lease vs buy, compound interest, future value, ROI, inflation, retirement savings, emergency fund, 401k growth, social security benefit, rule of 72, bond yield, Roth IRA conversion, DCA simulator, crypto DCA, stock DCA, monthly budget, net income after tax, hourly to annual salary, debt-to-income ratio, savings rate, expense splitter, take-home pay, paycheck calculator, credit card payoff, debt consolidation, net worth, currency converter, sales tax, VAT GST, debt snowball, APR, credit card interest, loan comparison, college savings, IRR NPV, tax bracket, crypto to fiat, crypto exchange rate, live price checker, portfolio tracker, fiat to crypto, multi-currency converter, crypto profit loss, crypto ROI, compound growth, yield farming APY, staking rewards, break-even, mining profitability, hash rate earnings, electricity cost revenue, GPU ASIC ROI, pool fee impact, crypto tax liability, capital gains tax, transaction fee deduction, cost basis FIFO LIFO, leverage margin profit, position size risk management, volatility risk assessment" }]}
       />
+      <JsonLd data={breadcrumbJsonLd} />
       {/* empurra tudo abaixo do header fixo */}
       <div className="h-16 md:h-20" aria-hidden />
       <AdBannerTop />
