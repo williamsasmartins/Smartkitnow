@@ -6636,6 +6636,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/InverseSquareLawCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ohms-law-for-audio-calculator",
+    title: "Ohm's Law for Audio Calculator",
+    category: "video",
+    subcategory: "audio-processing-engineering",
+    description: "Calculate voltage, current, power, or impedance in audio circuits.",
+    loader: () => import("@/components/calculators/Video/OhmsLawForAudioCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
