@@ -6682,12 +6682,12 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
     {
-    slug: "3d-render-farm-time-calculator",
+    slug: "render-farm-time-calculator-3d", // Assuming you updated the slug as discussed
     title: "3D Render Farm Time Calculator",
     category: "video",
     subcategory: "video-rendering-export",
     description: "Calculate total time when distributing across multiple nodes.",
-    loader: () => import("@/components/calculators/Video/3dRenderFarmTimeCalculator"),
+    loader: () => import("@/components/calculators/Video/ThreeDRenderFarmTimeCalculator"),
     urlStyle: "flat"
   },
   // SKN-AUTO-REGISTER: do not remove this line
