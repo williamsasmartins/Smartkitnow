@@ -6418,6 +6418,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/TvSizeViewingDistancePlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pixel-aspect-ratio-par-converter",
+    title: "Pixel Aspect Ratio (PAR) Converter",
+    category: "video",
+    subcategory: "resolution-aspect-ratio-pixels",
+    description: "Handle non-square pixel aspect ratios in video formats.",
+    loader: () => import("@/components/calculators/Video/PixelAspectRatioParConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
