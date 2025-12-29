@@ -6481,6 +6481,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/SlowMoSpeedRampTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "frame-count-duration-converter",
+    title: "Frame Count ↔ Duration Converter",
+    category: "video",
+    subcategory: "time-fps-timecode",
+    description: "Convert total frames to duration at a given FPS and vice versa.",
+    loader: () => import("@/components/calculators/Video/FrameCountDurationConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
