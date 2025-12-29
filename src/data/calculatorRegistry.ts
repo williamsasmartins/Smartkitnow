@@ -6564,6 +6564,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VideoRenderingHardwareRequirementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "animation-render-duration-estimator",
+    title: "Animation Render Duration Estimator",
+    category: "video",
+    subcategory: "video-rendering-export",
+    description: "Estimate full animation render timeline.",
+    loader: () => import("@/components/calculators/Video/AnimationRenderDurationEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
