@@ -6510,6 +6510,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/TimecodeToFramesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "render-farm-cost-estimator",
+    title: "Render Farm Cost Estimator",
+    category: "video",
+    subcategory: "video-rendering-export",
+    description: "Calculate cost of using cloud render farms.",
+    loader: () => import("@/components/calculators/Video/RenderFarmCostEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
