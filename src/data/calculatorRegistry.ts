@@ -6654,6 +6654,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/SpeakerCrossoverCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "decibel-power-ratio-calculator",
+    title: "Decibel Power Ratio Calculator",
+    category: "video",
+    subcategory: "audio-processing-engineering",
+    description: "Convert between decibels and power ratios.",
+    loader: () => import("@/components/calculators/Video/DecibelPowerRatioCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
