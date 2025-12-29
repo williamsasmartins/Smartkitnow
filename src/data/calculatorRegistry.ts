@@ -6319,6 +6319,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/YoutubeTwitchRecommendedBitrateCheckerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "surveillance-nvr-video-storage-planner",
+    title: "Surveillance/NVR Video Storage Planner",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Plan storage needs for surveillance systems with multiple cameras.",
+    loader: () => import("@/components/calculators/Video/SurveillanceNvrVideoStoragePlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
