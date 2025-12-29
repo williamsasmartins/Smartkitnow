@@ -6699,6 +6699,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/ThreeDRenderTimeCalculator"),
   urlStyle: "flat"
   },
+    {
+    slug: "aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper",
+    title: "16:9 → 9:16/1:1 Crop & Safe Area Helper",
+    category: "video",
+    subcategory: "resolution-aspect-ratio-pixels",
+    description: "Plan crops and safe areas when converting landscape to vertical or square formats.",
+    loader: () => import("@/components/calculators/Video/AspectRatio169To91611CropSafeAreaHelperCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
