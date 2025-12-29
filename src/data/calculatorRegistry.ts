@@ -6301,6 +6301,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/UncompressedVideoSizeResolutionBitDepthCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "h264-h265-target-bitrate-helper-resolution-fps",
+    title: "H.264/H.265 Target Bitrate Helper (by resolution/FPS)",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Recommended target bitrates for H.264 and H.265 by resolution and frame rate.",
+    loader: () => import("@/components/calculators/Video/H264H265TargetBitrateHelperResolutionFpsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
