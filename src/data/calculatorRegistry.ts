@@ -6273,6 +6273,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/FrameRateShutterSpeedCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "storage-needs-by-resolution",
+    title: "Storage Needs by Resolution & Length",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Determine necessary storage space. Calculate hard drive requirements based on video resolution (4K, HD) and total recording duration.",
+    loader: () => import("@/components/calculators/Video/StorageNeedsByResolutionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
