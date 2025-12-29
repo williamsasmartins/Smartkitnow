@@ -6337,6 +6337,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/LiveStreamingBitrateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "video-data-rate-calculator",
+    title: "Video Data Rate Calculator (Mbps ↔ MB/s)",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Convert between Mbps (megabits per second) and MB/s (megabytes per second).",
+    loader: () => import("@/components/calculators/Video/VideoDataRateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
