@@ -6255,42 +6255,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/AstronomicalSeasonsCalculator"),
     urlStyle: "flat"
   },
-    {
-    slug: "video-bitrate-file-size",
-    title: "Video Bitrate ↔ File Size Calculator",
-    category: "video",
-    subcategory: "bitrate-file-size-storage",
-    description: "Estimate your final video file size instantly. Calculate the required bitrate based on video length, resolution, and desired file size.",
-    loader: () => import("@/components/calculators/Video/VideoBitrateFileSizeCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "frame-rate-shutter-speed",
-    title: "Frame Rate (FPS) ↔ Shutter Speed",
-    category: "video",
-    subcategory: "bitrate-file-size-storage",
-    description: "Calculate optimal shutter speed based on your frame rate (FPS). Essential for filmmakers to achieve natural motion blur (the 180-degree rule).",
-    loader: () => import("@/components/calculators/Video/FrameRateShutterSpeedCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "storage-needs-by-resolution",
-    title: "Storage Needs by Resolution & Length",
-    category: "video",
-    subcategory: "bitrate-file-size-storage",
-    description: "Determine necessary storage space. Calculate hard drive requirements based on video resolution (4K, HD) and total recording duration.",
-    loader: () => import("@/components/calculators/Video/StorageNeedsByResolutionCalculator"),
-    urlStyle: "flat"
-  },
-    {
-    slug: "data-transfer-time-estimator",
-    title: "Data Transfer Time Estimator",
-    category: "video",
-    subcategory: "bitrate-file-size-storage",
-    description: "Estimate file transfer time. Calculate how long it will take to move large video files based on file size and connection speed (USB, Ethernet).",
-    loader: () => import("@/components/calculators/Video/DataTransferTimeEstimatorCalculator"),
-    urlStyle: "flat"
-  },
+   
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
