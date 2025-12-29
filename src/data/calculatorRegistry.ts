@@ -6573,6 +6573,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AnimationRenderDurationEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "multi-workstation-render-time-calculator",
+    title: "Multi-Workstation Render Time Calculator",
+    category: "video",
+    subcategory: "video-rendering-export",
+    description: "Predict time savings using multiple local workstations.",
+    loader: () => import("@/components/calculators/Video/MultiWorkstationRenderTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
