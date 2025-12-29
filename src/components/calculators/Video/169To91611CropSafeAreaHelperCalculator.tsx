@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Film, BookOpen, AlertTriangle, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
-export default function 169To91611CropSafeAreaHelperCalculator() {
+export default function SixteenNineToNineSixteenOneOneCropSafeAreaHelperCalculator() { // ✅ Correct
   const [inputs, setInputs] = useState({
     width: "",
     height: "",
