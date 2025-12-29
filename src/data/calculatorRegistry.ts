@@ -6373,6 +6373,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AspectRatioLetterboxPillarboxCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "resolution-presets-pixel-count-720p-1080p-4k-8k",
+    title: "Resolution Presets & Pixel Count (720p/1080p/4K/8K)",
+    category: "video",
+    subcategory: "resolution-aspect-ratio-pixels",
+    description: "View standard resolution presets and total pixel counts (e.g., 1080p, 4K, 8K).",
+    loader: () => import("@/components/calculators/Video/ResolutionPresetsPixelCount720p1080p4k8kCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
