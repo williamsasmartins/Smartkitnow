@@ -6582,6 +6582,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/MultiWorkstationRenderTimeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "amplifier-power-required-calculator",
+    title: "Amplifier Power Required Calculator",
+    category: "video",
+    subcategory: "audio-processing-engineering",
+    description: "Calculate required amplifier power for desired SPL at distance.",
+    loader: () => import("@/components/calculators/Video/AmplifierPowerRequiredCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
