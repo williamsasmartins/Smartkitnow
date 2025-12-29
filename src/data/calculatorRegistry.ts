@@ -6472,6 +6472,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/ShutterAngleSpeedHelper180DegreeRuleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "slow-mo-speed-ramp-time-calculator",
+    title: "Slow-Mo & Speed-Ramp Time Calculator",
+    category: "video",
+    subcategory: "time-fps-timecode",
+    description: "Calculate playback duration changes when slowing down or ramping footage.",
+    loader: () => import("@/components/calculators/Video/SlowMoSpeedRampTimeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
