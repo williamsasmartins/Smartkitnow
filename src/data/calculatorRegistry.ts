@@ -6618,6 +6618,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/SpeakerPlacementCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cable-length-impact-calculator",
+    title: "Cable Length Impact Calculator",
+    category: "video",
+    subcategory: "audio-processing-engineering",
+    description: "Estimate signal loss or impedance changes over long cable runs.",
+    loader: () => import("@/components/calculators/Video/CableLengthImpactCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
