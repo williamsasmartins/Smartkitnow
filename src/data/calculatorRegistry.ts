@@ -6663,6 +6663,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/DecibelPowerRatioCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "audio-file-size-estimator",
+    title: "Audio File Size Estimator",
+    category: "video",
+    subcategory: "audio-processing-engineering",
+    description: "Calculate audio file size based on sample rate, bit depth, channels, and duration.",
+    loader: () => import("@/components/calculators/Video/AudioFileSizeEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
