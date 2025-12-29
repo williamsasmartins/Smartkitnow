@@ -6355,6 +6355,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VideoCompressionSizeEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "camera-bitrate-record-time-converter",
+    title: "Camera Bitrate to Record Time Converter",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Convert camera bitrate settings to available recording time on storage media.",
+    loader: () => import("@/components/calculators/Video/CameraBitrateRecordTimeConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
