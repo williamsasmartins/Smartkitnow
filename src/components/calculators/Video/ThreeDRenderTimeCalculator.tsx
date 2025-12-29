@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Film, AlertTriangle, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
-export default function 3dRenderTimeCalculator() {
+export default function ThreeDRenderTimeCalculator()
   const [inputs, setInputs] = useState({
     frameCount: "",
     secPerFrame: "",
