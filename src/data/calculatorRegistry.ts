@@ -6292,6 +6292,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VbrCbrSizeEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "uncompressed-video-size-resolution-bit-depth",
+    title: "Uncompressed Video Size (Resolution × Bit Depth)",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Calculate raw uncompressed video file size based on resolution, bit depth, and FPS.",
+    loader: () => import("@/components/calculators/Video/UncompressedVideoSizeResolutionBitDepthCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
