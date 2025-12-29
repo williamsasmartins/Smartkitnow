@@ -6708,6 +6708,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AspectRatio169To91611CropSafeAreaHelperCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dpi-ppi-pixels-print-display",
+    title: "DPI/PPI ↔ Pixels (Print/Display)",
+    category: "video",
+    subcategory: "resolution-aspect-ratio-pixels",
+    description: "Convert between DPI/PPI and pixel dimensions for print and display.",
+    loader: () => import("@/components/calculators/Video/DpiPpiPixelsPrintDisplayCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
