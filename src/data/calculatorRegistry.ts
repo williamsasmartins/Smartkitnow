@@ -6537,6 +6537,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/GpuRenderPerformanceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "render-time-per-frame-calculator",
+    title: "Render Time Per Frame Calculator",
+    category: "video",
+    subcategory: "video-rendering-export",
+    description: "Estimate average time per frame based on test renders.",
+    loader: () => import("@/components/calculators/Video/RenderTimePerFrameCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
