@@ -6436,6 +6436,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AnamorphicLensCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "video-crop-dimension-calculator",
+    title: "Video Crop Dimension Calculator",
+    category: "video",
+    subcategory: "resolution-aspect-ratio-pixels",
+    description: "Determine output dimensions after cropping video to specific ratios or sizes.",
+    loader: () => import("@/components/calculators/Video/VideoCropDimensionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
