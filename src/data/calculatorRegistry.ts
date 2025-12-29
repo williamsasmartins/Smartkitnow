@@ -6282,6 +6282,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/StorageNeedsByResolutionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "data-transfer-time-estimator",
+    title: "Data Transfer Time Estimator",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Estimate file transfer time. Calculate how long it will take to move large video files based on file size and connection speed (USB, Ethernet).",
+    loader: () => import("@/components/calculators/Video/DataTransferTimeEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
