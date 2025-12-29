@@ -6528,6 +6528,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VideoExportTimeEstimatorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "gpu-render-performance-calculator",
+    title: "GPU Render Performance Calculator",
+    category: "video",
+    subcategory: "video-rendering-export",
+    description: "Compare render performance across different GPUs.",
+    loader: () => import("@/components/calculators/Video/GpuRenderPerformanceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
