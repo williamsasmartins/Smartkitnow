@@ -6483,6 +6483,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/FramesToTimecodeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "timecode-addition-subtraction-calculator",
+    title: "Timecode Addition/Subtraction Calculator",
+    category: "video",
+    subcategory: "time-fps-timecode",
+    description: "Add or subtract timecodes accurately.",
+    loader: () => import("@/components/calculators/Video/TimecodeAdditionSubtractionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
