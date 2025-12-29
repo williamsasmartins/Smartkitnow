@@ -6429,6 +6429,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VideoCropDimensionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "timecode-duration-hh-mm-ss-ff-converter",
+    title: "Timecode ↔ Duration (HH:MM:SS:FF) Converter",
+    category: "video",
+    subcategory: "time-fps-timecode",
+    description: "Convert between timecode and total duration in seconds or frames.",
+    loader: () => import("@/components/calculators/Video/TimecodeDurationHhMmSsFfConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
