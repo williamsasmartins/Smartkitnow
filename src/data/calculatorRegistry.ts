@@ -6255,6 +6255,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/AstronomicalSeasonsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "video-bitrate-file-size",
+    title: "Video Bitrate ↔ File Size Calculator",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Estimate your final video file size instantly. Calculate the required bitrate based on video length, resolution, and desired file size.",
+    loader: () => import("@/components/calculators/Video/VideoBitrateFileSizeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
