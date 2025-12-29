@@ -6328,6 +6328,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/SurveillanceNvrVideoStoragePlannerCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "live-streaming-bitrate-calculator",
+    title: "Live Streaming Bitrate Calculator",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Determine optimal bitrate for live streaming based on resolution and bandwidth.",
+    loader: () => import("@/components/calculators/Video/LiveStreamingBitrateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
