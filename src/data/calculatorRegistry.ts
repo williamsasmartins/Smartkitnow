@@ -6384,6 +6384,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
     
     
+    {
+    slug: "screen-size-from-diagonal-ar",
+    title: "Screen Size from Diagonal & AR",
+    category: "video",
+    subcategory: "resolution-aspect-ratio-pixels",
+    description: "Calculate physical width and height from diagonal screen size and aspect ratio.",
+    loader: () => import("@/components/calculators/Video/ScreenSizeFromDiagonalArCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
