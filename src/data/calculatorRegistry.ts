@@ -6501,6 +6501,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/DropFrameTimecodeConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "timecode-to-frames-calculator",
+    title: "Timecode to Frames Calculator",
+    category: "video",
+    subcategory: "time-fps-timecode",
+    description: "Convert timecode back to total frame count.",
+    loader: () => import("@/components/calculators/Video/TimecodeToFramesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
