@@ -6546,6 +6546,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/RenderTimePerFrameCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cloud-render-queue-planner",
+    title: "Cloud Render Queue Planner",
+    category: "video",
+    subcategory: "video-rendering-export",
+    description: "Plan render queue priorities and estimated completion times.",
+    loader: () => import("@/components/calculators/Video/CloudRenderQueuePlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
