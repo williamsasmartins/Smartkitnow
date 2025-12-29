@@ -6645,6 +6645,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/OhmsLawForAudioCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "speaker-crossover-calculator",
+    title: "Speaker Crossover Calculator",
+    category: "video",
+    subcategory: "audio-processing-engineering",
+    description: "Design crossover frequencies for multi-driver speaker systems.",
+    loader: () => import("@/components/calculators/Video/SpeakerCrossoverCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
