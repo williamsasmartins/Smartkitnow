@@ -6474,6 +6474,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/FrameCountDurationConverterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "frames-to-timecode-calculator",
+    title: "Frames to Timecode Calculator",
+    category: "video",
+    subcategory: "time-fps-timecode",
+    description: "Convert frame numbers to SMPTE timecode.",
+    loader: () => import("@/components/calculators/Video/FramesToTimecodeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
