@@ -253,7 +253,7 @@ export default function MacronutrientCalculator() {
                 Activity Level <Activity className="w-4 h-4 text-blue-600" />
               </Label>
               <Select
-                value={inputs.activityLevel}
+                value={inputs.activityLevel.toString()}
                 onValueChange={(v) => handleInputChange("activityLevel", parseFloat(v))}
               >
                 <SelectTrigger>
@@ -511,13 +511,13 @@ export default function MacronutrientCalculator() {
         formula:
           "BMR = (10 × weight(kg)) + (6.25 × height(cm)) - (5 × age) + 5 (male) or -161 (female); TDEE = BMR × Activity Level; Protein = Protein Factor × weight(kg); Fat = Fat Factor × weight(kg); Carbs = (TDEE - (Protein Calories + Fat Calories)) / 4",
         variables: [
-          { name: "weight", description: "Body weight in kilograms" },
-          { name: "height", description: "Height in centimeters" },
-          { name: "age", description: "Age in years" },
-          { name: "gender", description: "Male or Female" },
-          { name: "activity level", description: "Physical activity multiplier" },
-          { name: "protein factor", description: "Protein grams per kg based on goal" },
-          { name: "fat factor", description: "Fat grams per kg based on goal" },
+          { symbol: "weight", description: "Body weight in kilograms" },
+          { symbol: "height", description: "Height in centimeters" },
+          { symbol: "age", description: "Age in years" },
+          { symbol: "gender", description: "Male or Female" },
+          { symbol: "activity level", description: "Physical activity multiplier" },
+          { symbol: "protein factor", description: "Protein grams per kg based on goal" },
+          { symbol: "fat factor", description: "Fat grams per kg based on goal" },
         ],
       }}
       example={{

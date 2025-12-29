@@ -8,6 +8,8 @@ import {
   Sigma,
   RotateCcw,
   AlertTriangle,
+  Calculator,
+  FunctionSquare,
 } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
