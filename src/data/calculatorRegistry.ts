@@ -6283,6 +6283,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AudioBitrateChannelsImpactFileSizeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "vbr-cbr-size-estimator",
+    title: "VBR vs CBR Size Estimator",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Compare file size differences between Variable Bitrate (VBR) and Constant Bitrate (CBR).",
+    loader: () => import("@/components/calculators/Video/VbrCbrSizeEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
