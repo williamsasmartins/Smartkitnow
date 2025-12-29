@@ -6687,7 +6687,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "video",
     subcategory: "video-rendering-export",
     description: "Calculate total time when distributing across multiple nodes.",
-    loader: () => import("@/components/calculators/Video/ThreeDRenderFarmTimeCalculator"),
+    loader: () => import("@/components/calculators/Video/RenderFarmCostEstimatorCalculator"),
     urlStyle: "flat"
   },
   // SKN-AUTO-REGISTER: do not remove this line
