@@ -6447,6 +6447,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/FpsConverter239762425299730505994Calculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "shutter-angle-speed-helper-180-degree-rule",
+    title: "Shutter Angle/Speed Helper (180° Rule)",
+    category: "video",
+    subcategory: "time-fps-timecode",
+    description: "Calculate shutter speed from angle and FPS (180° rule guide).",
+    loader: () => import("@/components/calculators/Video/ShutterAngleSpeedHelper180DegreeRuleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
