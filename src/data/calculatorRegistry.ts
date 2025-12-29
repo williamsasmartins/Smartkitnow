@@ -6609,6 +6609,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/SoundPressureLevelSplCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "speaker-placement-calculator",
+    title: "Speaker Placement Calculator",
+    category: "video",
+    subcategory: "audio-processing-engineering",
+    description: "Optimal speaker positioning for stereo or surround setups.",
+    loader: () => import("@/components/calculators/Video/SpeakerPlacementCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
