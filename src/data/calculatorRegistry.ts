@@ -6492,6 +6492,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/TimecodeAdditionSubtractionCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "drop-frame-timecode-converter",
+    title: "Drop Frame Timecode Converter",
+    category: "video",
+    subcategory: "time-fps-timecode",
+    description: "Handle drop-frame vs non-drop-frame NTSC timecode conversions.",
+    loader: () => import("@/components/calculators/Video/DropFrameTimecodeConverterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
