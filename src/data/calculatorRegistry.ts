@@ -6389,7 +6389,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "video",
     subcategory: "resolution-aspect-ratio-pixels",
     description: "Plan crops and safe areas when converting landscape to vertical or square formats.",
-    loader: () => import("@/components/calculators/Video/169To91611CropSafeAreaHelperCalculator"),
+    loader: () => import("@/components/calculators/Video/SixteenNineToNineSixteenOneOneCropSafeAreaHelperCalculator"),
     urlStyle: "flat"
   },
     {
