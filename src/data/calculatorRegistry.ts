@@ -6409,6 +6409,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/ScreenSizeFromDiagonalArCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tv-size-viewing-distance-planner",
+    title: "TV Size & Viewing Distance Planner",
+    category: "video",
+    subcategory: "resolution-aspect-ratio-pixels",
+    description: "Recommend optimal viewing distance based on TV size and resolution.",
+    loader: () => import("@/components/calculators/Video/TvSizeViewingDistancePlannerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
