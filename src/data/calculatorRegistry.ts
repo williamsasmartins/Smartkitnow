@@ -6310,6 +6310,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/H264H265TargetBitrateHelperResolutionFpsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "youtube-twitch-recommended-bitrate-checker",
+    title: "YouTube/Twitch Recommended Bitrate (Upload/Stream) Checker",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Check platform-recommended bitrates for streaming and upload quality.",
+    loader: () => import("@/components/calculators/Video/YoutubeTwitchRecommendedBitrateCheckerCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
