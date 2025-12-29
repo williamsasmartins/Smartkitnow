@@ -6265,6 +6265,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VideoBitrateFileSizeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "recording-time-card-ssd-capacity",
+    title: "Recording Time vs Card/SSD Capacity",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Estimate maximum recording time based on storage capacity and bitrate.",
+    loader: () => import("@/components/calculators/Video/RecordingTimeCardSsdCapacityCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
