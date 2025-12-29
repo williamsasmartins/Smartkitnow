@@ -6346,6 +6346,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VideoDataRateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "video-compression-size-estimator",
+    title: "Video Compression Size Estimator (H.264/etc.)",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Estimate compressed file size for different codecs and quality settings.",
+    loader: () => import("@/components/calculators/Video/VideoCompressionSizeEstimatorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
