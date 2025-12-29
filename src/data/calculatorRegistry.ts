@@ -6264,6 +6264,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VideoBitrateFileSizeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "frame-rate-shutter-speed",
+    title: "Frame Rate (FPS) ↔ Shutter Speed",
+    category: "video",
+    subcategory: "bitrate-file-size-storage",
+    description: "Calculate optimal shutter speed based on your frame rate (FPS). Essential for filmmakers to achieve natural motion blur (the 180-degree rule).",
+    loader: () => import("@/components/calculators/Video/FrameRateShutterSpeedCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
