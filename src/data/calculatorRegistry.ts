@@ -6591,6 +6591,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AmplifierPowerRequiredCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "dbu-dbv-conversion-calculator",
+    title: "dBu to dBV Conversion Calculator",
+    category: "video",
+    subcategory: "audio-processing-engineering",
+    description: "Convert between dBu and dBV audio levels.",
+    loader: () => import("@/components/calculators/Video/DbuDbvConversionCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
