@@ -1,21 +1,21 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
-  Trophy,
-  Gamepad2,
-  Lightbulb,
-  History,
-  HelpCircle,
-  BookOpen,
-  Maximize2,
-  Minimize2,
-  X,
-  Pause,
-  Play,
-  RotateCcw,
-  ArrowUp,
   ArrowDown,
   ArrowLeft,
   ArrowRight,
+  ArrowUp,
+  BookOpen,
+  Gamepad2,
+  HelpCircle,
+  History,
+  Lightbulb,
+  Maximize2,
+  Minimize2,
+  Pause,
+  Play,
+  RotateCcw,
+  Trophy,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -23,29 +23,30 @@ import { useNavigate } from "react-router-dom";
 import CalculatorVerticalLayout from "../templates/CalculatorVerticalLayout";
 import useFaqJsonLd from "../../hooks/useFaqJsonLd";
 import { useTheme } from "next-themes";
-import StartOverlay from "./StartOverlay";
 
 /**
- * Neon Snake — SKN-grade
- * - Menu: select difficulty + explicit Start button
- * - Exit button: always available
+ * Neon Snake — SKN-grade (Inline setup UI)
+ * - Difficulty selection + Start inline (no overlay modal)
+ * - Slower playable speeds
+ * - Soft color difficulty cards: green/yellow/red
+ * - Responsive canvas via ResizeObserver + DPR cap (<=2)
+ * - Mobile: swipe via Pointer Events + optional D-pad controls
+ * - Pause/Resume + auto pause when tab hidden
  * - Theater mode (works everywhere) + Fullscreen when supported
- * - ResizeObserver + DPR cap <= 2
- * - Pointer Events for swipe + optional D-pad on touch devices
- * - Pause/Resume + auto-pause on tab hidden
  */
 
 const GRID_SIZE = 20;
 
 type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT";
 type Difficulty = "easy" | "medium" | "hard";
-type GameState = "MENU" | "COUNTDOWN" | "PLAYING" | "PAUSED" | "GAME_OVER";
+type GameState = "SETUP" | "PLAYING" | "PAUSED" | "GAME_OVER";
 type ViewMode = "EMBEDDED" | "THEATER" | "FULLSCREEN";
 
+// Slower, more playable defaults
 const SPEED_MS: Record<Difficulty, number> = {
-  easy: 220,
-  medium: 110,
-  hard: 70,
+  easy: 340,
+  medium: 200,
+  hard: 130,
 };
 
 const POINTS: Record<Difficulty, number> = {
@@ -69,12 +70,11 @@ function isOpposite(a: Direction, b: Direction) {
 
 function roundedRectPath(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
   const radius = Math.max(0, Math.min(r, Math.min(w, h) / 2));
-  if ((ctx as any).roundRect) {
-    // modern browsers
-    (ctx as any).roundRect(x, y, w, h, radius);
+  const anyCtx = ctx as any;
+  if (anyCtx.roundRect) {
+    anyCtx.roundRect(x, y, w, h, radius);
     return;
   }
-  // fallback (Safari older)
   ctx.moveTo(x + radius, y);
   ctx.arcTo(x + w, y, x + w, y + h, radius);
   ctx.arcTo(x + w, y + h, x, y + h, radius);
@@ -97,7 +97,7 @@ function NeonSnakeBoard({ title }: { title: string }) {
   const boardWrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const [gameState, setGameState] = useState<GameState>("MENU");
+  const [gameState, setGameState] = useState<GameState>("SETUP");
   const [difficulty, setDifficulty] = useState<Difficulty>("medium");
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
@@ -105,9 +105,7 @@ function NeonSnakeBoard({ title }: { title: string }) {
   const [viewMode, setViewMode] = useState<ViewMode>("EMBEDDED");
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
-  const [countdown, setCountdown] = useState(3);
-
-  // game mutable state
+  // mutable game state
   const snakeRef = useRef<{ x: number; y: number }[]>([{ x: 10, y: 10 }]);
   const foodRef = useRef<{ x: number; y: number }>({ x: 15, y: 10 });
   const dirRef = useRef<Direction>("RIGHT");
@@ -123,26 +121,24 @@ function NeonSnakeBoard({ title }: { title: string }) {
   const colors = useMemo(() => {
     const isDark = theme === "dark";
     return {
-      bg: isDark ? "#0f172a" : "#f8fafc",
-      grid: isDark ? "#1e293b" : "#e2e8f0",
+      bg: isDark ? "#0b1222" : "#f8fafc",
+      grid: isDark ? "#16233b" : "#e2e8f0",
       food: isDark ? "#ef4444" : "#dc2626",
       snakeHead: isDark ? "#22c55e" : "#16a34a",
       snakeBody: isDark ? "#4ade80" : "#86efac",
-      hudBg: isDark ? "bg-slate-900/50" : "bg-white",
+      hudBg: isDark ? "bg-slate-900/50" : "bg-white/80",
       hudBorder: isDark ? "border-slate-800" : "border-slate-200",
-      hudText: isDark ? "text-slate-200" : "text-slate-700",
+      hudText: isDark ? "text-slate-200" : "text-slate-800",
       hudMuted: isDark ? "text-slate-400" : "text-slate-500",
     };
   }, [theme]);
 
-  // detect touch device once
   useEffect(() => {
     const coarse = window.matchMedia?.("(pointer: coarse)")?.matches ?? false;
     const touch = "ontouchstart" in window || (navigator as any).maxTouchPoints > 0;
     setIsTouchDevice(coarse || touch);
   }, []);
 
-  // high score
   useEffect(() => {
     const saved = localStorage.getItem("neon-snake-highscore");
     if (saved) setHighScore(parseInt(saved, 10));
@@ -162,74 +158,8 @@ function NeonSnakeBoard({ title }: { title: string }) {
     }
   }, []);
 
-  const gameOver = useCallback(() => {
-    stopLoop();
-    setGameState("GAME_OVER");
-    // light haptics if available
-    if (navigator.vibrate) navigator.vibrate([40, 30, 40]);
-  }, [stopLoop]);
-
-  const placeFood = useCallback(() => {
-    const maxCells = GRID_SIZE;
-    const snake = snakeRef.current;
-    // avoid infinite loops if very full
-    for (let attempt = 0; attempt < 400; attempt++) {
-      const nf = {
-        x: Math.floor(Math.random() * maxCells),
-        y: Math.floor(Math.random() * maxCells),
-      };
-      const collision = snake.some((seg) => seg.x === nf.x && seg.y === nf.y);
-      if (!collision) {
-        foodRef.current = nf;
-        return;
-      }
-    }
-    // fallback: if too full, just set something (should be rare)
-    foodRef.current = { x: 0, y: 0 };
-  }, []);
-
-  const resetGame = useCallback(
-    (diff: Difficulty) => {
-      setDifficulty(diff);
-      setScore(0);
-
-      snakeRef.current = [
-        { x: 10, y: 10 },
-        { x: 9, y: 10 },
-        { x: 8, y: 10 },
-      ];
-      dirRef.current = "RIGHT";
-      nextDirRef.current = "RIGHT";
-      placeFood();
-      draw(); // render initial board
-    },
-    [placeFood]
-  );
-
-  const startCountdownAndPlay = useCallback(
-    (diff: Difficulty) => {
-      stopLoop();
-      resetGame(diff);
-      setCountdown(3);
-      setGameState("COUNTDOWN");
-    },
-    [resetGame, stopLoop]
-  );
-
-  const pauseGame = useCallback(() => {
-    if (gameState !== "PLAYING") return;
-    stopLoop();
-    setGameState("PAUSED");
-  }, [gameState, stopLoop]);
-
-  const resumeGame = useCallback(() => {
-    if (gameState !== "PAUSED") return;
-    setGameState("PLAYING");
-  }, [gameState]);
-
   const exitToGames = useCallback(() => {
     stopLoop();
-    // If fullscreen, exit first
     if (document.fullscreenElement) {
       document.exitFullscreen().catch(() => void 0);
     }
@@ -237,200 +167,20 @@ function NeonSnakeBoard({ title }: { title: string }) {
     navigate("/games");
   }, [navigate, stopLoop]);
 
-  const tick = useCallback(() => {
+  const placeFood = useCallback(() => {
     const snake = snakeRef.current;
-    const head = { ...snake[0] };
-
-    const dir = nextDirRef.current;
-    if (!isOpposite(dirRef.current, dir)) {
-      dirRef.current = dir;
-    }
-    const committed = dirRef.current;
-
-    if (committed === "UP") head.y -= 1;
-    if (committed === "DOWN") head.y += 1;
-    if (committed === "LEFT") head.x -= 1;
-    if (committed === "RIGHT") head.x += 1;
-
-    // wall collision
-    if (head.x < 0 || head.x >= GRID_SIZE || head.y < 0 || head.y >= GRID_SIZE) {
-      gameOver();
-      return;
-    }
-
-    // self collision (ignore last tail cell if it will move? we keep it simple and strict)
-    if (snake.some((seg) => seg.x === head.x && seg.y === head.y)) {
-      gameOver();
-      return;
-    }
-
-    snake.unshift(head);
-
-    // food
-    if (head.x === foodRef.current.x && head.y === foodRef.current.y) {
-      setScore((s) => s + POINTS[difficulty]);
-      placeFood();
-      if (navigator.vibrate) navigator.vibrate(15);
-    } else {
-      snake.pop();
-    }
-
-    draw();
-  }, [difficulty, gameOver, placeFood]);
-
-  // countdown logic
-  useEffect(() => {
-    if (gameState !== "COUNTDOWN") return;
-
-    let alive = true;
-    const id = window.setInterval(() => {
-      if (!alive) return;
-      setCountdown((c) => {
-        const next = c - 1;
-        if (next <= 0) {
-          window.clearInterval(id);
-          setGameState("PLAYING");
-          return 0;
-        }
-        return next;
-      });
-    }, 700);
-
-    return () => {
-      alive = false;
-      window.clearInterval(id);
-    };
-  }, [gameState]);
-
-  // main loop
-  useEffect(() => {
-    stopLoop();
-
-    if (gameState === "PLAYING") {
-      const speed = SPEED_MS[difficulty];
-      loopRef.current = window.setInterval(tick, speed);
-    }
-
-    return () => stopLoop();
-  }, [difficulty, gameState, stopLoop, tick]);
-
-  // auto-pause on tab hidden
-  useEffect(() => {
-    const onVis = () => {
-      if (document.hidden && gameState === "PLAYING") pauseGame();
-    };
-    document.addEventListener("visibilitychange", onVis);
-    return () => document.removeEventListener("visibilitychange", onVis);
-  }, [gameState, pauseGame]);
-
-  // keyboard
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      // close with Esc in theater
-      if (e.key === "Escape" && (viewMode === "THEATER" || document.fullscreenElement)) {
-        e.preventDefault();
-        // exit theater/fullscreen first, not the page
-        if (document.fullscreenElement) {
-          document.exitFullscreen().catch(() => void 0);
-        }
-        setViewMode("EMBEDDED");
+    for (let attempt = 0; attempt < 400; attempt++) {
+      const nf = {
+        x: Math.floor(Math.random() * GRID_SIZE),
+        y: Math.floor(Math.random() * GRID_SIZE),
+      };
+      if (!snake.some((seg) => seg.x === nf.x && seg.y === nf.y)) {
+        foodRef.current = nf;
         return;
       }
-
-      if (gameState !== "PLAYING" && gameState !== "PAUSED") return;
-
-      if (e.key === " " || e.key === "p" || e.key === "P") {
-        e.preventDefault();
-        if (gameState === "PLAYING") pauseGame();
-        else if (gameState === "PAUSED") resumeGame();
-        return;
-      }
-
-      if (gameState !== "PLAYING") return;
-
-      const key = e.key;
-      if (key === "ArrowUp" || key === "w" || key === "W") {
-        e.preventDefault();
-        if (dirRef.current !== "DOWN") nextDirRef.current = "UP";
-      } else if (key === "ArrowDown" || key === "s" || key === "S") {
-        e.preventDefault();
-        if (dirRef.current !== "UP") nextDirRef.current = "DOWN";
-      } else if (key === "ArrowLeft" || key === "a" || key === "A") {
-        e.preventDefault();
-        if (dirRef.current !== "RIGHT") nextDirRef.current = "LEFT";
-      } else if (key === "ArrowRight" || key === "d" || key === "D") {
-        e.preventDefault();
-        if (dirRef.current !== "LEFT") nextDirRef.current = "RIGHT";
-      }
-    };
-
-    window.addEventListener("keydown", onKey, { passive: false });
-    return () => window.removeEventListener("keydown", onKey as any);
-  }, [gameState, pauseGame, resumeGame, viewMode]);
-
-  // fullscreen tracking + body scroll lock on theater/fullscreen
-  useEffect(() => {
-    const onFs = () => {
-      if (document.fullscreenElement) setViewMode("FULLSCREEN");
-      else if (viewMode === "FULLSCREEN") setViewMode("EMBEDDED");
-    };
-    document.addEventListener("fullscreenchange", onFs);
-
-    const lock = viewMode === "THEATER" || viewMode === "FULLSCREEN";
-    if (lock) document.documentElement.classList.add("overflow-hidden");
-    else document.documentElement.classList.remove("overflow-hidden");
-
-    return () => {
-      document.removeEventListener("fullscreenchange", onFs);
-      document.documentElement.classList.remove("overflow-hidden");
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [viewMode]);
-
-  const resizeCanvas = useCallback(() => {
-    const wrap = boardWrapRef.current;
-    const canvas = canvasRef.current;
-    if (!wrap || !canvas) return;
-
-    // Compute available size
-    // Embedded: cap at 520
-    // Theater/Fullscreen: use as much as possible but keep safe header space
-    const rect = wrap.getBoundingClientRect();
-    let cssSize = Math.floor(Math.min(rect.width, rect.height));
-    if (viewMode === "EMBEDDED") cssSize = Math.min(cssSize, 520);
-
-    // Guard
-    cssSize = Math.max(260, cssSize);
-
-    const dpr = clampDpr(window.devicePixelRatio || 1);
-    sizeRef.current = { cssSize, dpr };
-
-    // Set canvas physical pixels
-    canvas.width = Math.floor(cssSize * dpr);
-    canvas.height = Math.floor(cssSize * dpr);
-
-    // Set canvas CSS size
-    canvas.style.width = `${cssSize}px`;
-    canvas.style.height = `${cssSize}px`;
-
-    draw();
-  }, [viewMode]);
-
-  // ResizeObserver on board wrap
-  useEffect(() => {
-    resizeCanvas();
-    const wrap = boardWrapRef.current;
-    if (!wrap) return;
-
-    const ro = new ResizeObserver(() => resizeCanvas());
-    ro.observe(wrap);
-
-    window.addEventListener("resize", resizeCanvas);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", resizeCanvas);
-    };
-  }, [resizeCanvas]);
+    }
+    foodRef.current = { x: 0, y: 0 };
+  }, []);
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
@@ -442,13 +192,11 @@ function NeonSnakeBoard({ title }: { title: string }) {
     const { cssSize, dpr } = sizeRef.current;
     if (!cssSize) return;
 
-    // draw in CSS pixels
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     const size = cssSize;
     const cell = size / GRID_SIZE;
 
-    // background
     ctx.fillStyle = colors.bg;
     ctx.fillRect(0, 0, size, size);
 
@@ -467,7 +215,7 @@ function NeonSnakeBoard({ title }: { title: string }) {
       ctx.stroke();
     }
 
-    // food (glow)
+    // food
     const food = foodRef.current;
     ctx.save();
     ctx.shadowBlur = 14;
@@ -500,11 +248,247 @@ function NeonSnakeBoard({ title }: { title: string }) {
     });
   }, [colors]);
 
-  // pointer swipe (more reliable than touch events)
+  const resizeCanvas = useCallback(() => {
+    const wrap = boardWrapRef.current;
+    const canvas = canvasRef.current;
+    if (!wrap || !canvas) return;
+
+    const rect = wrap.getBoundingClientRect();
+    let cssSize = Math.floor(Math.min(rect.width, rect.height));
+
+    // embedded cap; theater/fullscreen uses more space
+    if (viewMode === "EMBEDDED") cssSize = Math.min(cssSize, 560);
+    cssSize = Math.max(260, cssSize);
+
+    const dpr = clampDpr(window.devicePixelRatio || 1);
+    sizeRef.current = { cssSize, dpr };
+
+    canvas.width = Math.floor(cssSize * dpr);
+    canvas.height = Math.floor(cssSize * dpr);
+    canvas.style.width = `${cssSize}px`;
+    canvas.style.height = `${cssSize}px`;
+
+    draw();
+  }, [draw, viewMode]);
+
+  useEffect(() => {
+    resizeCanvas();
+    const wrap = boardWrapRef.current;
+    if (!wrap) return;
+
+    const ro = new ResizeObserver(() => resizeCanvas());
+    ro.observe(wrap);
+
+    window.addEventListener("resize", resizeCanvas);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", resizeCanvas);
+    };
+  }, [resizeCanvas]);
+
+  const resetGame = useCallback(
+    (diff: Difficulty) => {
+      setDifficulty(diff);
+      setScore(0);
+
+      snakeRef.current = [
+        { x: 10, y: 10 },
+        { x: 9, y: 10 },
+        { x: 8, y: 10 },
+      ];
+      dirRef.current = "RIGHT";
+      nextDirRef.current = "RIGHT";
+      placeFood();
+      draw();
+    },
+    [draw, placeFood]
+  );
+
+  const startGame = useCallback(() => {
+    stopLoop();
+    resetGame(difficulty);
+    setGameState("PLAYING");
+  }, [difficulty, resetGame, stopLoop]);
+
+  const restartGame = useCallback(() => {
+    stopLoop();
+    resetGame(difficulty);
+    setGameState("PLAYING");
+  }, [difficulty, resetGame, stopLoop]);
+
+  const pauseGame = useCallback(() => {
+    if (gameState !== "PLAYING") return;
+    stopLoop();
+    setGameState("PAUSED");
+  }, [gameState, stopLoop]);
+
+  const resumeGame = useCallback(() => {
+    if (gameState !== "PAUSED") return;
+    setGameState("PLAYING");
+  }, [gameState]);
+
+  const gameOver = useCallback(() => {
+    stopLoop();
+    setGameState("GAME_OVER");
+    if (navigator.vibrate) navigator.vibrate([40, 30, 40]);
+  }, [stopLoop]);
+
+  const tick = useCallback(() => {
+    const snake = snakeRef.current;
+    const head = { ...snake[0] };
+
+    const requested = nextDirRef.current;
+    if (!isOpposite(dirRef.current, requested)) {
+      dirRef.current = requested;
+    }
+    const committed = dirRef.current;
+
+    if (committed === "UP") head.y -= 1;
+    if (committed === "DOWN") head.y += 1;
+    if (committed === "LEFT") head.x -= 1;
+    if (committed === "RIGHT") head.x += 1;
+
+    // wall collision
+    if (head.x < 0 || head.x >= GRID_SIZE || head.y < 0 || head.y >= GRID_SIZE) {
+      gameOver();
+      return;
+    }
+
+    // self collision (check against current body)
+    if (snake.some((seg) => seg.x === head.x && seg.y === head.y)) {
+      gameOver();
+      return;
+    }
+
+    snake.unshift(head);
+
+    // food
+    if (head.x === foodRef.current.x && head.y === foodRef.current.y) {
+      setScore((s) => s + POINTS[difficulty]);
+      placeFood();
+      if (navigator.vibrate) navigator.vibrate(12);
+    } else {
+      snake.pop();
+    }
+
+    draw();
+  }, [difficulty, draw, gameOver, placeFood]);
+
+  // main loop
+  useEffect(() => {
+    stopLoop();
+    if (gameState === "PLAYING") {
+      loopRef.current = window.setInterval(tick, SPEED_MS[difficulty]);
+    }
+    return () => stopLoop();
+  }, [difficulty, gameState, stopLoop, tick]);
+
+  // auto-pause when tab hidden
+  useEffect(() => {
+    const onVis = () => {
+      if (document.hidden && gameState === "PLAYING") pauseGame();
+    };
+    document.addEventListener("visibilitychange", onVis);
+    return () => document.removeEventListener("visibilitychange", onVis);
+  }, [gameState, pauseGame]);
+
+  // keyboard controls + Esc closes theater/fullscreen
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      // Esc closes theater/fullscreen (does NOT exit page)
+      if (e.key === "Escape" && (viewMode === "THEATER" || document.fullscreenElement)) {
+        e.preventDefault();
+        if (document.fullscreenElement) document.exitFullscreen().catch(() => void 0);
+        setViewMode("EMBEDDED");
+        return;
+      }
+
+      if (e.key === " " || e.key === "p" || e.key === "P") {
+        if (gameState === "PLAYING") {
+          e.preventDefault();
+          pauseGame();
+          return;
+        }
+        if (gameState === "PAUSED") {
+          e.preventDefault();
+          resumeGame();
+          return;
+        }
+      }
+
+      if (gameState !== "PLAYING") return;
+
+      const key = e.key;
+      if (key === "ArrowUp" || key === "w" || key === "W") {
+        e.preventDefault();
+        if (dirRef.current !== "DOWN") nextDirRef.current = "UP";
+      } else if (key === "ArrowDown" || key === "s" || key === "S") {
+        e.preventDefault();
+        if (dirRef.current !== "UP") nextDirRef.current = "DOWN";
+      } else if (key === "ArrowLeft" || key === "a" || key === "A") {
+        e.preventDefault();
+        if (dirRef.current !== "RIGHT") nextDirRef.current = "LEFT";
+      } else if (key === "ArrowRight" || key === "d" || key === "D") {
+        e.preventDefault();
+        if (dirRef.current !== "LEFT") nextDirRef.current = "RIGHT";
+      }
+    };
+
+    window.addEventListener("keydown", onKey, { passive: false });
+    return () => window.removeEventListener("keydown", onKey as any);
+  }, [gameState, pauseGame, resumeGame, viewMode]);
+
+  // fullscreen tracking + scroll lock in theater/fullscreen
+  useEffect(() => {
+    const onFs = () => {
+      if (document.fullscreenElement) setViewMode("FULLSCREEN");
+      else if (viewMode === "FULLSCREEN") setViewMode("EMBEDDED");
+    };
+    document.addEventListener("fullscreenchange", onFs);
+
+    const lock = viewMode === "THEATER" || viewMode === "FULLSCREEN";
+    if (lock) document.documentElement.classList.add("overflow-hidden");
+    else document.documentElement.classList.remove("overflow-hidden");
+
+    return () => {
+      document.removeEventListener("fullscreenchange", onFs);
+      document.documentElement.classList.remove("overflow-hidden");
+    };
+  }, [viewMode]);
+
+  const inBigMode = viewMode === "THEATER" || viewMode === "FULLSCREEN";
+
+  const toggleTheaterOrFullscreen = useCallback(async () => {
+    // if fullscreen -> exit
+    if (document.fullscreenElement) {
+      await document.exitFullscreen().catch(() => void 0);
+      setViewMode("EMBEDDED");
+      return;
+    }
+    // if theater -> exit
+    if (viewMode === "THEATER") {
+      setViewMode("EMBEDDED");
+      return;
+    }
+    // try fullscreen; fallback to theater if blocked (iOS Safari)
+    try {
+      const el = rootRef.current;
+      if (el?.requestFullscreen) {
+        await el.requestFullscreen();
+        setViewMode("FULLSCREEN");
+      } else {
+        setViewMode("THEATER");
+      }
+    } catch {
+      setViewMode("THEATER");
+    }
+  }, [viewMode]);
+
+  // pointer swipe for mobile
   const onPointerDown = useCallback(
     (e: React.PointerEvent) => {
       if (gameState !== "PLAYING") return;
-      if (e.pointerType === "mouse") return; // keep mouse for click-free play
+      if (e.pointerType === "mouse") return;
       (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
       pointerStartRef.current = { x: e.clientX, y: e.clientY, id: e.pointerId };
       e.preventDefault();
@@ -525,7 +509,6 @@ function NeonSnakeBoard({ title }: { title: string }) {
       const absX = Math.abs(dx);
       const absY = Math.abs(dy);
       const threshold = 22;
-
       if (absX < threshold && absY < threshold) return;
 
       if (absX > absY) {
@@ -541,131 +524,204 @@ function NeonSnakeBoard({ title }: { title: string }) {
     [gameState]
   );
 
-  const setDir = useCallback((d: Direction) => {
-    if (gameState !== "PLAYING") return;
-    if (isOpposite(dirRef.current, d)) return;
-    nextDirRef.current = d;
+  const setDir = useCallback(
+    (d: Direction) => {
+      if (gameState !== "PLAYING") return;
+      if (isOpposite(dirRef.current, d)) return;
+      nextDirRef.current = d;
+    },
+    [gameState]
+  );
+
+  const diffCardClass = (d: Difficulty, selected: boolean) => {
+    const base =
+      "text-left p-4 rounded-xl border transition select-none focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-slate-950";
+    const palette =
+      d === "easy"
+        ? "border-green-500/30 bg-green-500/10 hover:bg-green-500/15"
+        : d === "medium"
+        ? "border-yellow-500/30 bg-yellow-500/10 hover:bg-yellow-500/15"
+        : "border-red-500/30 bg-red-500/10 hover:bg-red-500/15";
+
+    const ring =
+      d === "easy"
+        ? "ring-green-500/40"
+        : d === "medium"
+        ? "ring-yellow-500/40"
+        : "ring-red-500/40";
+
+    return [base, palette, selected ? `ring-2 ${ring}` : ""].join(" ");
+  };
+
+  // Ensure we have a clean preview board in SETUP
+  useEffect(() => {
+    if (gameState === "SETUP") {
+      stopLoop();
+      resetGame(difficulty);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState]);
-
-  const toggleTheaterOrFullscreen = useCallback(async () => {
-    // If already in fullscreen -> exit
-    if (document.fullscreenElement) {
-      await document.exitFullscreen().catch(() => void 0);
-      setViewMode("EMBEDDED");
-      return;
-    }
-
-    // If in theater -> exit theater
-    if (viewMode === "THEATER") {
-      setViewMode("EMBEDDED");
-      return;
-    }
-
-    // Try fullscreen; if fails, fallback to theater (iOS)
-    try {
-      const el = rootRef.current;
-      if (el?.requestFullscreen) {
-        await el.requestFullscreen();
-        setViewMode("FULLSCREEN");
-      } else {
-        setViewMode("THEATER");
-      }
-    } catch {
-      setViewMode("THEATER");
-    }
-  }, [viewMode]);
-
-  // UI helpers
-  const showHud = true;
-  const inBigMode = viewMode === "THEATER" || viewMode === "FULLSCREEN";
 
   return (
     <div
       ref={rootRef}
       className={[
-        "relative flex flex-col items-center justify-center w-full mx-auto",
-        inBigMode ? "fixed inset-0 z-50 bg-black/80 backdrop-blur-sm p-4 overflow-hidden" : "max-w-4xl",
+        "relative w-full mx-auto overflow-x-hidden",
+        inBigMode ? "fixed inset-0 z-50 bg-black/80 backdrop-blur-sm p-4 flex flex-col" : "max-w-5xl",
       ].join(" ")}
       style={{ touchAction: "none" }}
     >
-      {/* Top bar / stats */}
-      {showHud && (
-        <div
-          className={[
-            "w-full flex items-center justify-between mb-4 p-4 rounded-xl border backdrop-blur-sm shadow-sm",
-            colors.hudBg,
-            colors.hudBorder,
-          ].join(" ")}
-        >
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-500/10 rounded-lg">
-              <Trophy className="w-5 h-5 text-yellow-500" />
-            </div>
-            <div>
-              <p className={["text-xs uppercase font-bold tracking-wider", colors.hudMuted].join(" ")}>Score</p>
-              <p className={["text-2xl font-mono font-bold leading-none", colors.hudText].join(" ")}>{score}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <div className="text-right mr-2">
-              <p className={["text-xs uppercase font-bold tracking-wider", colors.hudMuted].join(" ")}>High</p>
-              <p className={["text-lg font-mono font-bold leading-none", colors.hudText].join(" ")}>
-                {highScore}
-              </p>
-            </div>
-
-            {/* Pause / Resume */}
-            {gameState === "PLAYING" && (
-              <Button variant="ghost" size="icon" onClick={pauseGame} aria-label="Pause">
-                <Pause className="h-5 w-5" />
-              </Button>
-            )}
-            {gameState === "PAUSED" && (
-              <Button variant="ghost" size="icon" onClick={resumeGame} aria-label="Resume">
-                <Play className="h-5 w-5" />
-              </Button>
-            )}
-
-            {/* Theater/Fullscreen toggle */}
-            <Button variant="ghost" size="icon" onClick={toggleTheaterOrFullscreen} aria-label="Theater/Fullscreen">
-              {inBigMode ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
-            </Button>
-
-            {/* Close button visible in theater/fullscreen */}
-            {inBigMode && (
-              <Button variant="ghost" size="icon" onClick={() => setViewMode("EMBEDDED")} aria-label="Close overlay">
-                <X className="h-5 w-5" />
-              </Button>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Board wrap: gives ResizeObserver a stable box */}
+      {/* Top HUD */}
       <div
-        ref={boardWrapRef}
         className={[
-          "w-full flex items-center justify-center",
-          inBigMode ? "flex-1 min-h-0" : "",
+          "w-full flex items-center justify-between mb-4 p-4 rounded-xl border backdrop-blur-sm shadow-sm",
+          colors.hudBg,
+          colors.hudBorder,
         ].join(" ")}
       >
-        <Card
-          className="relative bg-slate-100 dark:bg-slate-950 border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden select-none"
-          style={{ touchAction: "none" }}
-        >
-          <canvas
-            ref={canvasRef}
-            className="block mx-auto"
-            onPointerDown={onPointerDown}
-            onPointerUp={onPointerUp}
-          />
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-blue-500/10 rounded-lg">
+            <Trophy className="w-5 h-5 text-yellow-500" />
+          </div>
+          <div>
+            <p className={["text-xs uppercase font-bold tracking-wider", colors.hudMuted].join(" ")}>Score</p>
+            <p className={["text-2xl font-mono font-bold leading-none", colors.hudText].join(" ")}>{score}</p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <div className="text-right mr-2">
+            <p className={["text-xs uppercase font-bold tracking-wider", colors.hudMuted].join(" ")}>High</p>
+            <p className={["text-lg font-mono font-bold leading-none", colors.hudText].join(" ")}>
+              {highScore}
+            </p>
+          </div>
+
+          {gameState === "PLAYING" && (
+            <Button variant="ghost" size="icon" onClick={pauseGame} aria-label="Pause">
+              <Pause className="h-5 w-5" />
+            </Button>
+          )}
+          {gameState === "PAUSED" && (
+            <Button variant="ghost" size="icon" onClick={resumeGame} aria-label="Resume">
+              <Play className="h-5 w-5" />
+            </Button>
+          )}
+
+          <Button variant="ghost" size="icon" onClick={toggleTheaterOrFullscreen} aria-label="Theater/Fullscreen">
+            {inBigMode ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
+          </Button>
+
+          {inBigMode && (
+            <Button variant="ghost" size="icon" onClick={() => setViewMode("EMBEDDED")} aria-label="Close theater">
+              <X className="h-5 w-5" />
+            </Button>
+          )}
+        </div>
+      </div>
+
+      {/* Inline setup + actions */}
+      <div className="w-full max-w-[760px] mx-auto mb-4">
+        <Card className="p-4 border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/40 backdrop-blur">
+          <div className="flex flex-col gap-3">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{title}</div>
+                <div className="text-xs text-slate-600 dark:text-slate-400">
+                  Choose difficulty, then start. On mobile: swipe or use the arrows.
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Button variant="outline" onClick={exitToGames} className="gap-2">
+                  <X className="h-4 w-4" />
+                  Exit
+                </Button>
+              </div>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-3">
+              {(["easy", "medium", "hard"] as Difficulty[]).map((d) => {
+                const selected = d === difficulty;
+                return (
+                  <button
+                    key={d}
+                    type="button"
+                    onClick={() => {
+                      setDifficulty(d);
+                      if (gameState !== "PLAYING") resetGame(d);
+                    }}
+                    className={diffCardClass(d, selected)}
+                    disabled={gameState === "PLAYING"}
+                    aria-pressed={selected}
+                  >
+                    <div className="font-semibold text-slate-900 dark:text-slate-100">{formatDifficulty(d)}</div>
+                    <div className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                      Speed: {SPEED_MS[d]}ms / step
+                    </div>
+                    <div className="text-sm text-slate-600 dark:text-slate-400">
+                      Points: {POINTS[d]} / food
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3">
+              {gameState !== "PLAYING" ? (
+                <Button className="flex-1" onClick={startGame}>
+                  {gameState === "SETUP" ? "Start game" : "Play again"}
+                </Button>
+              ) : (
+                <Button className="flex-1" variant="secondary" onClick={pauseGame}>
+                  <Pause className="h-4 w-4 mr-2" />
+                  Pause
+                </Button>
+              )}
+
+              <Button className="flex-1" variant="outline" onClick={restartGame}>
+                <RotateCcw className="h-4 w-4 mr-2" />
+                Restart
+              </Button>
+
+              {gameState === "PAUSED" && (
+                <Button className="flex-1" onClick={resumeGame}>
+                  <Play className="h-4 w-4 mr-2" />
+                  Resume
+                </Button>
+              )}
+            </div>
+
+            {gameState === "GAME_OVER" && (
+              <div className="text-sm text-slate-700 dark:text-slate-300">
+                Game over. Score: <strong>{score}</strong> • High: <strong>{highScore}</strong>
+              </div>
+            )}
+          </div>
         </Card>
       </div>
 
-      {/* Mobile D-pad (optional) */}
-      {isTouchDevice && gameState === "PLAYING" && (
-        <div className="mt-4 w-full max-w-[520px] flex items-center justify-between gap-3">
+      {/* Board area (ResizeObserver measures this square box) */}
+      <div className={["w-full flex justify-center", inBigMode ? "flex-1 min-h-0" : ""].join(" ")}>
+        <div
+          ref={boardWrapRef}
+          className={[
+            "w-full max-w-[620px] aspect-square flex items-center justify-center",
+            inBigMode ? "max-w-none w-full" : "",
+          ].join(" ")}
+        >
+          <Card
+            className="relative bg-slate-100 dark:bg-slate-950 border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden select-none"
+            style={{ touchAction: "none" }}
+          >
+            <canvas ref={canvasRef} className="block mx-auto" onPointerDown={onPointerDown} onPointerUp={onPointerUp} />
+          </Card>
+        </div>
+      </div>
+
+      {/* Touch D-pad */}
+      {isTouchDevice && (gameState === "PLAYING" || gameState === "PAUSED") && (
+        <div className="mt-4 w-full max-w-[620px] mx-auto flex items-center justify-between gap-3">
           <Button className="flex-1" variant="secondary" onClick={() => setDir("LEFT")} aria-label="Left">
             <ArrowLeft className="h-5 w-5" />
           </Button>
@@ -683,138 +739,13 @@ function NeonSnakeBoard({ title }: { title: string }) {
         </div>
       )}
 
-      {/* Controls hint */}
+      {/* Hints */}
       <div className="mt-4 text-center text-slate-500 text-sm">
         <p className="hidden md:block">
           Use <strong>Arrow Keys</strong> or <strong>WASD</strong>. Press <strong>Space</strong> to pause.
         </p>
-        <p className="md:hidden">Swipe on the board, or use the on-screen controls.</p>
+        <p className="md:hidden">Swipe on the board, or use the on-screen arrows.</p>
       </div>
-
-      {/* MENU overlay */}
-      <StartOverlay
-        open={gameState === "MENU"}
-        title={title}
-        subtitle="Pick a difficulty, then press Start."
-        onClose={exitToGames}
-        closeLabel="Exit"
-      >
-        <div className="space-y-4">
-          <div className="grid gap-3 sm:grid-cols-3">
-            {(["easy", "medium", "hard"] as Difficulty[]).map((d) => {
-              const selected = d === difficulty;
-              return (
-                <button
-                  key={d}
-                  type="button"
-                  onClick={() => setDifficulty(d)}
-                  className={[
-                    "text-left p-4 rounded-xl border transition",
-                    selected
-                      ? "border-indigo-500 bg-indigo-500/10"
-                      : "border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/50",
-                  ].join(" ")}
-                >
-                  <div className="font-semibold">{formatDifficulty(d)}</div>
-                  <div className="text-sm text-slate-500 mt-1">
-                    Speed: {Math.round(1000 / SPEED_MS[d])} moves/sec
-                  </div>
-                  <div className="text-sm text-slate-500">Points: {POINTS[d]} / food</div>
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Button className="flex-1" onClick={() => startCountdownAndPlay(difficulty)}>
-              Start game
-            </Button>
-            <Button className="flex-1" variant="secondary" onClick={exitToGames}>
-              Exit
-            </Button>
-          </div>
-        </div>
-      </StartOverlay>
-
-      {/* COUNTDOWN overlay */}
-      <StartOverlay
-        open={gameState === "COUNTDOWN"}
-        title="Get ready"
-        subtitle="Starting in..."
-        onClose={pauseGame}
-        closeLabel="Pause"
-      >
-        <div className="flex items-center justify-center py-8">
-          <div className="text-6xl font-mono font-bold">{countdown}</div>
-        </div>
-      </StartOverlay>
-
-      {/* PAUSED overlay */}
-      <StartOverlay
-        open={gameState === "PAUSED"}
-        title="Paused"
-        subtitle="Resume when you're ready."
-        onClose={exitToGames}
-        closeLabel="Exit"
-      >
-        <div className="flex flex-col sm:flex-row gap-3">
-          <Button className="flex-1" onClick={resumeGame}>
-            Resume
-          </Button>
-          <Button className="flex-1" variant="secondary" onClick={() => startCountdownAndPlay(difficulty)}>
-            Restart
-          </Button>
-          <Button className="flex-1" variant="outline" onClick={exitToGames}>
-            Exit
-          </Button>
-        </div>
-      </StartOverlay>
-
-      {/* GAME OVER overlay */}
-      <StartOverlay
-        open={gameState === "GAME_OVER"}
-        title="Game over"
-        subtitle={`Score: ${score}  •  High: ${highScore}`}
-        onClose={exitToGames}
-        closeLabel="Exit"
-      >
-        <div className="space-y-4">
-          <div className="grid gap-3 sm:grid-cols-3">
-            {(["easy", "medium", "hard"] as Difficulty[]).map((d) => {
-              const selected = d === difficulty;
-              return (
-                <button
-                  key={d}
-                  type="button"
-                  onClick={() => setDifficulty(d)}
-                  className={[
-                    "text-left p-4 rounded-xl border transition",
-                    selected
-                      ? "border-indigo-500 bg-indigo-500/10"
-                      : "border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/50",
-                  ].join(" ")}
-                >
-                  <div className="font-semibold">{formatDifficulty(d)}</div>
-                  <div className="text-sm text-slate-500 mt-1">Points: {POINTS[d]} / food</div>
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Button className="flex-1" onClick={() => startCountdownAndPlay(difficulty)}>
-              <RotateCcw className="h-4 w-4 mr-2" />
-              Play again
-            </Button>
-            <Button className="flex-1" variant="secondary" onClick={() => setGameState("MENU")}>
-              Change settings
-            </Button>
-            <Button className="flex-1" variant="outline" onClick={exitToGames}>
-              Exit
-            </Button>
-          </div>
-        </div>
-      </StartOverlay>
     </div>
   );
 }
@@ -836,7 +767,7 @@ export default function NeonSnakeGame({
     {
       question: "Why doesn’t Fullscreen work on some phones?",
       answer:
-        "Some mobile browsers (notably iOS Safari) limit Fullscreen for canvases. Neon Snake includes Theater Mode, which works reliably on all devices.",
+        "Some mobile browsers (notably iOS Safari) limit Fullscreen. Neon Snake includes Theater Mode as a reliable alternative.",
     },
     {
       question: "How is the score calculated?",
@@ -845,8 +776,7 @@ export default function NeonSnakeGame({
     },
     {
       question: "Can I pause the game?",
-      answer:
-        "Yes. On desktop, press Space (or P). On any device, use the Pause button in the top bar.",
+      answer: "Yes. On desktop press Space (or P). You can also use the Pause button in the game header.",
     },
   ];
 
@@ -863,9 +793,15 @@ export default function NeonSnakeGame({
           In <strong>Neon Snake</strong>, guide the snake to eat glowing pellets, grow longer, and avoid walls or your own body.
         </p>
         <ul className="list-disc pl-6 mt-4 space-y-2 text-slate-700 dark:text-slate-300">
-          <li><strong>Eat & Grow:</strong> Each pellet increases your length.</li>
-          <li><strong>Avoid Collisions:</strong> Walls or your own body end the run.</li>
-          <li><strong>Pause Smart:</strong> Use pause to reset your thinking before tight turns.</li>
+          <li>
+            <strong>Eat & Grow:</strong> Each pellet increases your length.
+          </li>
+          <li>
+            <strong>Avoid Collisions:</strong> Walls or your own body end the run.
+          </li>
+          <li>
+            <strong>Stay Smooth:</strong> Avoid sharp reversals and plan lanes.
+          </li>
         </ul>
       </section>
 
@@ -878,13 +814,13 @@ export default function NeonSnakeGame({
           <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800">
             <h3 className="font-bold text-lg mb-2">Plan Your Space</h3>
             <p className="text-slate-600 dark:text-slate-400">
-              Think about where your tail will be in 3–5 moves. Avoid creating dead-ends near corners.
+              Think about where your tail will be in a few moves. Avoid trapping yourself near corners.
             </p>
           </div>
           <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-200 dark:border-slate-800">
-            <h3 className="font-bold text-lg mb-2">Use Smooth Lines</h3>
+            <h3 className="font-bold text-lg mb-2">Use Lanes</h3>
             <p className="text-slate-600 dark:text-slate-400">
-              Gentle “S” routes reduce panic turns and keep exit paths open when you get long.
+              Create consistent “lanes” to keep exit routes open as the snake grows.
             </p>
           </div>
         </div>
@@ -896,7 +832,7 @@ export default function NeonSnakeGame({
           A Bit of History
         </h2>
         <p className="mt-4 text-slate-700 dark:text-slate-300">
-          Snake-style games trace back to early arcade designs and became globally iconic on late-90s mobile phones. The core loop remains timeless:
+          Snake-style games trace back to early arcade designs and became iconic on late-90s mobile phones. The loop remains timeless:
           risk management, path planning, and escalating self-imposed pressure.
         </p>
       </section>
