@@ -1407,32 +1407,38 @@ const Index = () => {
     {
       name: "BMI Calculator",
       description: "Calculate your Body Mass Index",
-      icon: Heart
+      icon: Heart,
+      path: "/health/bmi-body-mass-index"
     },
     {
       name: "Loan Calculator",
       description: "Calculate monthly payments",
-      icon: DollarSign
+      icon: DollarSign,
+      path: "/financial/loan-payment"
     },
     {
       name: "Tip Calculator",
       description: "Calculate tips and split bills",
-      icon: Calculator
+      icon: Calculator,
+      path: "/financial/tip-split-bill"
     },
     {
       name: "Unit Converter",
       description: "Convert between units",
-      icon: RotateCcw
+      icon: RotateCcw,
+      path: "/conversion"
     },
     {
       name: "Calorie Calculator",
       description: "Calculate daily calories",
-      icon: ChefHat
+      icon: ChefHat,
+      path: "/health/daily-calorie-needs-goal"
     },
     {
       name: "Grade Calculator",
       description: "Calculate your GPA",
-      icon: Star
+      icon: Star,
+      path: "/math/gpa-calculator"
     }
   ];
   return <div className="min-h-screen bg-[var(--skn-bg-soft)]">

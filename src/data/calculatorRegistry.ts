@@ -134,10 +134,19 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/LoanPaymentCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tip-split-bill",
+    title: "Tip & Split Bill Calculator",
+    category: "financial",
+    subcategory: "general",
+    description: "Calculate tip amount, total bill, and how much each person owes when splitting the check.",
+    loader: () => import("@/components/calculators/Financial/TipSplitBillCalculator"),
+    urlStyle: "flat"
+  },
     
     
-   
-   
+  
+  
     
    
    
@@ -3133,6 +3142,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     subcategory: "percent-ratio-fractions",
     description: "Calculate the percentage of a total value. Quickly determine what part of the whole a specific number represents.",
     loader: () => import("@/components/calculators/Math/PercentOfTotalCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "gpa-calculator",
+    title: "GPA Calculator",
+    category: "math",
+    subcategory: "grades-gpa",
+    description: "Calculate your GPA using course credits and letter grades on a common 4.0 scale.",
+    loader: () => import("@/components/calculators/Math/GpaCalculator"),
     urlStyle: "flat"
   },
     {
