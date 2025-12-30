@@ -1,6 +1,6 @@
-import { X, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 interface StartOverlayProps {
   open: boolean;
@@ -21,43 +21,39 @@ export default function StartOverlay({
 }: StartOverlayProps) {
   if (!open) return null;
 
-  return (
-    <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/90 dark:bg-slate-950/90 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-      <div className="relative w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 p-8 shadow-2xl text-center">
-        
-        {/* Decorative Icon */}
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-500/10 ring-1 ring-blue-500/50">
+  const portalTarget = document.fullscreenElement ?? document.body;
+
+  return createPortal(
+    <div className="fixed inset-0 z-50 flex min-h-[100dvh] w-full items-start justify-center overflow-y-auto bg-white/90 p-4 pt-[calc(1rem+env(safe-area-inset-top))] pb-[calc(1rem+env(safe-area-inset-bottom))] backdrop-blur-sm animate-in fade-in duration-200 dark:bg-slate-950/90 sm:items-center">
+      <div className="relative w-full max-w-md rounded-2xl border border-slate-200 bg-white/95 p-6 text-center shadow-2xl dark:border-slate-800 dark:bg-slate-900/95 sm:p-8">
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 ring-1 ring-blue-500/50 dark:bg-blue-500/10">
           <Sparkles className="h-8 w-8 text-blue-600 dark:text-blue-500" />
         </div>
 
-        {/* Title & Desc */}
         {title && (
-          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2">
+          <h2 className="mb-2 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
             {title}
           </h2>
         )}
         {description && (
-          <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+          <p className="mb-6 leading-relaxed text-slate-600 dark:text-slate-400">
             {description}
           </p>
         )}
 
-        {/* Dynamic Content (Difficulty Buttons, etc) */}
-        <div className="space-y-4">
-          {children}
-        </div>
+        <div className="space-y-4">{children}</div>
 
-        {/* Fallback Close Button */}
         {!hideFooterClose && !children && (
-          <Button 
-            size="lg" 
-            className="w-full mt-6 bg-blue-600 hover:bg-blue-500 text-white font-bold" 
+          <Button
+            size="lg"
+            className="mt-6 w-full bg-blue-600 font-bold text-white hover:bg-blue-500"
             onClick={onClose}
           >
             Start Game
           </Button>
         )}
       </div>
-    </div>
+    </div>,
+    portalTarget
   );
 }
