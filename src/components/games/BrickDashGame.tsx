@@ -52,7 +52,7 @@ export default function BrickDashGame({
     speed: number;
     spawnRate: number;
     score: number;
-    keys: { left: false; right: false };
+    keys: { left: boolean; right: boolean };
     touchX: number | null;
   }>({
     playerX: CANVAS_WIDTH / 2 - PLAYER_SIZE / 2,

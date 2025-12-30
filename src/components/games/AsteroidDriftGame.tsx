@@ -341,7 +341,7 @@ function AsteroidDriftBoard({
     const angle = Math.random() * Math.PI * 2;
 
     // Generate random vertices
-    const vertices = [];
+    const vertices: number[] = [];
     const numVerts = 8 + Math.floor(Math.random() * 4);
     for (let i = 0; i < numVerts; i++) {
       vertices.push(0.8 + Math.random() * 0.4); // scale factor 0.8-1.2

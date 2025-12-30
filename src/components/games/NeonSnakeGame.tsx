@@ -199,7 +199,7 @@ function NeonSnakeBoard({
     // Random position avoiding snake body
     let valid = false;
     let newFood = { x: 0, y: 0 };
-    const maxCells = 20; // 20x20 grid
+    const maxCells = GRID_SIZE;
 
     while (!valid) {
       newFood = {
@@ -228,7 +228,7 @@ function NeonSnakeBoard({
     if (dir === "RIGHT") head.x += 1;
 
     // Check Wall Collision
-    if (head.x < 0 || head.x >= 20 || head.y < 0 || head.y >= 20) {
+    if (head.x < 0 || head.x >= GRID_SIZE || head.y < 0 || head.y >= GRID_SIZE) {
       gameOver();
       return;
     }
@@ -267,7 +267,7 @@ function NeonSnakeBoard({
     if (!ctx) return;
 
     const size = canvas.width;
-    const cellSize = size / 20; // 20x20 grid
+    const cellSize = size / GRID_SIZE;
     const isDark = theme === "dark";
 
     // Colors based on theme
@@ -286,7 +286,7 @@ function NeonSnakeBoard({
     // Grid (optional, subtle)
     ctx.strokeStyle = colors.grid;
     ctx.lineWidth = 1;
-    for (let i = 0; i <= 20; i++) {
+    for (let i = 0; i <= GRID_SIZE; i++) {
       ctx.beginPath();
       ctx.moveTo(i * cellSize, 0);
       ctx.lineTo(i * cellSize, size);
