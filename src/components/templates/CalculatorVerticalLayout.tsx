@@ -29,7 +29,7 @@ function OnThisPageNav({ sections }: { sections: OnThisPageSection[] }) {
       const yOffset = -120;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
-      window.history.pushState(null, "", `#${id}`);
+      window.history.replaceState(null, "", `#${id}`);
     }
   };
 
