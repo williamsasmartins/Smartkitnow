@@ -6,11 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { Car, DollarSign, AlertTriangle, BookOpen, ExternalLink, Settings } from "lucide-react";
+import { Car, DollarSign, AlertTriangle, BookOpen, ExternalLink, Settings, TrendingDown, TrendingUp } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function LeaseVsBuyCalculator() {
-  const resultsRef = useRef<HTMLDivElement>(null); // Referência para scroll
+  const resultsRef = useRef<HTMLDivElement>(null);
   const [inputs, setInputs] = useState({
     unit: "imperial",
     price: "",
@@ -22,16 +22,19 @@ export default function LeaseVsBuyCalculator() {
   });
 
   const handleInputChange = (field: string, value: string) => {
-    // Validação simples para permitir digitação
+    // Permite digitação livre de números e decimais
     if (/^\d*\.?\d*$/.test(value)) {
-        setInputs(prev => ({ ...prev, [field]: value }));
+      setInputs(prev => ({ ...prev, [field]: value }));
     }
   };
 
   const scrollToResults = () => {
-    if (resultsRef.current) {
-      resultsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    // Pequeno delay para garantir que o DOM atualizou
+    setTimeout(() => {
+      if (resultsRef.current) {
+        resultsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
   };
 
   function calculateLoanPayment(P: number, annualRate: number, n: number) {
@@ -56,133 +59,189 @@ export default function LeaseVsBuyCalculator() {
       isNaN(leaseTerm) || leaseTerm <= 0 ||
       isNaN(leaseResidual) || leaseResidual < 0
     ) {
-      return null; // Retorna null se incompleto para não mostrar card vazio
+      return null;
     }
 
     const monthlyLoanPayment = calculateLoanPayment(price, rate, term);
     const totalBuyCost = monthlyLoanPayment * term;
-    const totalLeaseCost = leasePayment * leaseTerm + leaseResidual;
+    // Custo Total do Lease = Mensalidades + Valor Residual (se comprar no final)
+    const totalLeaseCost = (leasePayment * leaseTerm) + leaseResidual;
     const diff = totalBuyCost - totalLeaseCost;
 
     const formatCurrency = (v: number) =>
-      v.toLocaleString("en-US", { style: "currency", currency: "USD" });
+      v.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+
+    const isLeaseCheaper = diff > 0;
 
     return {
-      primary: diff > 0 ? "Leasing is Cheaper" : diff < 0 ? "Buying is Cheaper" : "Costs Are Equal",
-      secondary: `Buy: ${formatCurrency(totalBuyCost)} vs Lease: ${formatCurrency(totalLeaseCost)}`,
-      details: `Savings: ${formatCurrency(Math.abs(diff))} over the term.`,
-      buyMonthly: formatCurrency(monthlyLoanPayment),
-      feedback: diff > 0
-        ? "Leasing costs less total cash, but you own nothing at the end unless you pay the residual."
-        : "Buying costs less total cash and you own the asset at the end."
+      verdict: isLeaseCheaper ? "Leasing is Cheaper" : "Buying is Cheaper",
+      savings: Math.abs(diff),
+      buyTotal: totalBuyCost,
+      leaseTotal: totalLeaseCost,
+      buyMonthly: monthlyLoanPayment,
+      leaseMonthly: leasePayment,
+      formattedSavings: formatCurrency(Math.abs(diff)),
+      feedback: isLeaseCheaper
+        ? "Leasing has a lower total cash flow over this term, assuming you buy the car at the end."
+        : "Buying saves you money in the long run compared to this lease deal."
     };
   }, [inputs]);
 
   const faqs = [
     {
-      question: "What factors should I consider when deciding to lease or buy a car?",
-      answer: "Consider your driving habits (mileage), monthly budget, and desire for ownership. Leasing offers lower monthly payments and new cars more often but has mileage limits. Buying leads to ownership and freedom from mileage restrictions but has higher initial monthly costs."
+      question: "Which is better financially: Leasing or Buying?",
+      answer: "Buying is usually better financially in the long term because you own the asset once the loan is paid off. Leasing is often cheaper in the short term (monthly cash flow) but you have no equity at the end unless you pay the residual value."
     },
     {
-      question: "What is the 'Residual Value'?",
-      answer: "The residual value is the estimated value of the car at the end of the lease term. It is set by the leasing company. If you decide to buy the car when the lease is over, this is the price you will pay."
+      question: "What is the Residual Value?",
+      answer: "The residual value is the pre-determined price you can buy the car for at the end of a lease. A higher residual value usually means lower monthly lease payments."
     },
     {
-      question: "Does buying always save money in the long run?",
-      answer: "Generally, yes. Once the loan is paid off, you own the car and have no monthly payments, reducing long-term costs significantly compared to perpetual leasing."
+      question: "Does mileage matter?",
+      answer: "Yes, for leasing. Leases have strict mileage limits (e.g., 10,000 miles/year). Exceeding them results in heavy penalties. When buying, high mileage only affects resale value, not your contract."
     }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
   const example = {
-    title: "Real World Example",
-    scenario: "Comparing a $35,000 car purchase (5% rate, 60 months) vs. a $400/month lease (36 months, $20k residual).",
+    title: "Real World Scenario",
+    scenario: "Comparing a $35,000 car purchase (60 months loan) vs. a $400/month lease (36 months) with a $20k residual buyout.",
     steps: [
-      { label: "1. Buy Cost", explanation: "$660/mo for 60 months = $39,600 total." },
-      { label: "2. Lease Cost", explanation: "($400 x 36 months) + $20,000 residual = $34,400 total." },
-      { label: "3. Verdict", explanation: "Leasing is cheaper by $5,200 if you just look at cash flow over this specific period." }
+      { label: "1. Buy Cost", explanation: "Loan payments total approx $39,600 over 5 years." },
+      { label: "2. Lease Cost", explanation: "($400 × 36) + $20,000 buyout = $34,400 total." },
+      { label: "3. Verdict", explanation: "In this specific scenario, the Lease-to-Buy path is cheaper by ~$5,200." }
     ],
-    result: "Lease saves $5,200 (but zero equity)."
+    result: "Winner: Leasing (in this specific math case)."
   };
 
   const references = [
-    { title: "Edmunds Lease vs Buy Guide", description: "In-depth comparison of financing options.", url: "https://www.edmunds.com/" },
+    { title: "Edmunds: Lease vs Buy Guide", description: "In-depth financial comparison.", url: "https://www.edmunds.com/" },
     { title: "Consumer Reports", description: "Unbiased car buying advice.", url: "https://www.consumerreports.org/" }
   ];
 
   const widget = (
     <div className="space-y-6">
+      {/* Unit Selector (Optional visual tweak) */}
       <div className="flex justify-end">
         <Select value={inputs.unit} onValueChange={(v) => handleInputChange("unit", v)}>
-          <SelectTrigger className="w-[140px]">
+          <SelectTrigger className="w-[130px]">
             <Settings className="mr-2 h-4 w-4" />
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="imperial">Imperial (US)</SelectItem>
-            <SelectItem value="metric">Metric</SelectItem>
+            <SelectItem value="imperial">Imperial ($)</SelectItem>
+            <SelectItem value="metric">Metric (€/£)</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* BUY SECTION */}
-        <div className="space-y-4 p-4 border rounded-lg bg-blue-50/50 dark:bg-blue-900/10">
-            <h3 className="font-bold text-blue-700 flex items-center gap-2"><DollarSign className="w-4 h-4"/> Buying Details</h3>
-            <div className="space-y-2">
-            <Label>Purchase Price ($)</Label>
-            <Input type="text" inputMode="decimal" value={inputs.price} onChange={(e) => handleInputChange("price", e.target.value)} placeholder="35000" />
+        <div className="space-y-4 p-5 border rounded-xl bg-blue-50/50 dark:bg-blue-900/10 border-blue-100 dark:border-blue-800">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="p-2 bg-blue-100 rounded-lg text-blue-700"><DollarSign className="w-5 h-5"/></div>
+            <h3 className="font-bold text-blue-800 dark:text-blue-300">Buying Option</h3>
+          </div>
+          
+          <div className="space-y-3">
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold text-slate-500 uppercase">Purchase Price</Label>
+              <Input type="text" inputMode="decimal" value={inputs.price} onChange={(e) => handleInputChange("price", e.target.value)} placeholder="35000" className="bg-white dark:bg-slate-950" />
             </div>
-            <div className="space-y-2">
-            <Label>Interest Rate (%)</Label>
-            <Input type="text" inputMode="decimal" value={inputs.rate} onChange={(e) => handleInputChange("rate", e.target.value)} placeholder="5.0" />
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <Label className="text-xs font-semibold text-slate-500 uppercase">Rate (%)</Label>
+                <Input type="text" inputMode="decimal" value={inputs.rate} onChange={(e) => handleInputChange("rate", e.target.value)} placeholder="5.0" className="bg-white dark:bg-slate-950" />
+              </div>
+              <div className="space-y-1">
+                <Label className="text-xs font-semibold text-slate-500 uppercase">Term (Mo)</Label>
+                <Input type="text" inputMode="numeric" value={inputs.term} onChange={(e) => handleInputChange("term", e.target.value)} placeholder="60" className="bg-white dark:bg-slate-950" />
+              </div>
             </div>
-            <div className="space-y-2">
-            <Label>Loan Term (Months)</Label>
-            <Input type="text" inputMode="numeric" value={inputs.term} onChange={(e) => handleInputChange("term", e.target.value)} placeholder="60" />
-            </div>
+          </div>
         </div>
 
         {/* LEASE SECTION */}
-        <div className="space-y-4 p-4 border rounded-lg bg-green-50/50 dark:bg-green-900/10">
-            <h3 className="font-bold text-green-700 flex items-center gap-2"><Car className="w-4 h-4"/> Leasing Details</h3>
-            <div className="space-y-2">
-            <Label>Monthly Payment ($)</Label>
-            <Input type="text" inputMode="decimal" value={inputs.leasePayment} onChange={(e) => handleInputChange("leasePayment", e.target.value)} placeholder="400" />
+        <div className="space-y-4 p-5 border rounded-xl bg-green-50/50 dark:bg-green-900/10 border-green-100 dark:border-green-800">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="p-2 bg-green-100 rounded-lg text-green-700"><Car className="w-5 h-5"/></div>
+            <h3 className="font-bold text-green-800 dark:text-green-300">Leasing Option</h3>
+          </div>
+
+          <div className="space-y-3">
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold text-slate-500 uppercase">Monthly Payment</Label>
+              <Input type="text" inputMode="decimal" value={inputs.leasePayment} onChange={(e) => handleInputChange("leasePayment", e.target.value)} placeholder="400" className="bg-white dark:bg-slate-950" />
             </div>
-            <div className="space-y-2">
-            <Label>Lease Term (Months)</Label>
-            <Input type="text" inputMode="numeric" value={inputs.leaseTerm} onChange={(e) => handleInputChange("leaseTerm", e.target.value)} placeholder="36" />
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <Label className="text-xs font-semibold text-slate-500 uppercase">Term (Mo)</Label>
+                <Input type="text" inputMode="numeric" value={inputs.leaseTerm} onChange={(e) => handleInputChange("leaseTerm", e.target.value)} placeholder="36" className="bg-white dark:bg-slate-950" />
+              </div>
+              <div className="space-y-1">
+                <Label className="text-xs font-semibold text-slate-500 uppercase">Residual</Label>
+                <Input type="text" inputMode="decimal" value={inputs.leaseResidual} onChange={(e) => handleInputChange("leaseResidual", e.target.value)} placeholder="20000" className="bg-white dark:bg-slate-950" />
+              </div>
             </div>
-            <div className="space-y-2">
-            <Label>Residual Value ($)</Label>
-            <Input type="text" inputMode="decimal" value={inputs.leaseResidual} onChange={(e) => handleInputChange("leaseResidual", e.target.value)} placeholder="20000" />
-            </div>
+          </div>
         </div>
       </div>
 
       <Button 
-        className="w-full bg-blue-600 hover:bg-blue-700 h-12 text-lg" 
-        onClick={scrollToResults} // <--- AÇÃO DE SCROLL ADICIONADA
+        className="w-full bg-blue-600 hover:bg-blue-700 h-14 text-lg font-bold shadow-lg shadow-blue-200 dark:shadow-none" 
+        onClick={scrollToResults}
       >
-        <Car className="mr-2 h-5 w-5" /> Calculate Comparison
+        Calculate Comparison
       </Button>
 
-      {/* Âncora para o scroll */}
-      <div ref={resultsRef}>
+      {/* RESULTS ANCHOR */}
+      <div ref={resultsRef} className="scroll-mt-24">
         {results && (
-            <Card className="mt-6 bg-slate-50 dark:bg-slate-900 border-blue-200 shadow-md animate-in fade-in slide-in-from-bottom-4">
-            <CardContent className="p-6 text-center">
-                <span className="text-sm font-semibold text-slate-500 uppercase">Verdict</span>
-                <div className="text-3xl md:text-4xl font-extrabold text-blue-600 my-3">{results.primary}</div>
-                <div className="text-lg font-bold mt-2 text-slate-700 dark:text-slate-300">{results.secondary}</div>
-                <p className="text-sm text-slate-500 mt-2">{results.details}</p>
-                <div className="mt-4 p-3 bg-white dark:bg-slate-800 rounded border text-sm text-left">
-                    <p className="mb-1"><strong>Buy Monthly:</strong> {results.buyMonthly}</p>
-                    <p className="italic text-slate-600 dark:text-slate-400">{results.feedback}</p>
+          <div className="space-y-4 mt-8 animate-in fade-in slide-in-from-bottom-4">
+            {/* MAIN VERDICT CARD */}
+            <Card className={`border-2 ${results.verdict.includes("Leasing") ? "border-green-500 bg-green-50 dark:bg-green-950/30" : "border-blue-500 bg-blue-50 dark:bg-blue-950/30"}`}>
+              <CardContent className="p-6 text-center">
+                <span className="text-xs font-bold uppercase tracking-wider opacity-70">Financial Verdict</span>
+                <div className="text-2xl md:text-4xl font-extrabold my-2 text-slate-900 dark:text-white">
+                  {results.verdict}
                 </div>
-            </CardContent>
+                <div className="flex items-center justify-center gap-2 text-lg font-medium">
+                  <span>Saves</span>
+                  <span className={`px-2 py-1 rounded text-white ${results.verdict.includes("Leasing") ? "bg-green-600" : "bg-blue-600"}`}>
+                    {results.formattedSavings}
+                  </span>
+                  <span>total</span>
+                </div>
+              </CardContent>
             </Card>
+
+            {/* DETAIL CARDS */}
+            <div className="grid grid-cols-2 gap-4">
+              <Card className="bg-slate-50 dark:bg-slate-900">
+                <CardContent className="p-4 text-center">
+                  <div className="text-xs font-semibold text-slate-500 uppercase mb-1">Buy Total Cost</div>
+                  <div className="text-lg md:text-2xl font-bold text-blue-600">
+                    {results.buyTotal.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 })}
+                  </div>
+                  <div className="text-xs text-slate-400 mt-1">Owning Asset</div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-50 dark:bg-slate-900">
+                <CardContent className="p-4 text-center">
+                  <div className="text-xs font-semibold text-slate-500 uppercase mb-1">Lease Total Cost</div>
+                  <div className="text-lg md:text-2xl font-bold text-green-600">
+                    {results.leaseTotal.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 })}
+                  </div>
+                  <div className="text-xs text-slate-400 mt-1">With Buyout</div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <p className="text-center text-sm text-slate-500 italic px-4">
+              {results.feedback}
+            </p>
+          </div>
         )}
       </div>
     </div>
@@ -193,29 +252,21 @@ export default function LeaseVsBuyCalculator() {
       <section id="how-to-use" className="scroll-mt-24">
         <h2 className="text-2xl font-bold mb-4">How to use this calculator</h2>
         <ol className="list-decimal pl-5 space-y-3 text-slate-600 dark:text-slate-400">
-          <li>Enter the full <strong>Purchase Price</strong> and financing details (Rate/Term) for the buying option.</li>
-          <li>Enter the quoted <strong>Lease Payment</strong>, term, and the residual value (buyout price) for the leasing option.</li>
-          <li>Click <strong>Calculate Comparison</strong> to see which method costs less out-of-pocket over the specified timeframe.</li>
+          <li><strong>Fill in the Buying Section:</strong> Enter the full vehicle price, your expected interest rate, and the loan term (e.g., 60 months).</li>
+          <li><strong>Fill in the Leasing Section:</strong> Enter the monthly payment quote, the lease term, and the residual value (the price to buy the car at the end).</li>
+          <li><strong>Compare:</strong> The calculator will sum up all payments for both paths and tell you which one requires less total cash outflow.</li>
         </ol>
       </section>
 
-      <section id="guide">
-        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-blue-500" /> Guide to Leasing vs Buying
-        </h2>
-        <div className="prose prose-slate dark:prose-invert">
-          <p>Leasing is like renting: lower monthly payments, but you own nothing at the end. Buying builds equity, but payments are higher and you are responsible for long-term repairs.</p>
-        </div>
-      </section>
-
-      {/* CORREÇÃO DO CSS DA CAIXA AMARELA */}
+      {/* FIXED SAFETY BOX COLOR */}
       <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900">
         <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-amber-900 dark:text-amber-100">
           <AlertTriangle className="w-5 h-5" /> Common Mistakes
         </h3>
-        <div className="space-y-2 text-sm text-amber-900 dark:text-amber-100"> {/* Texto escuro forçado */}
-          <p><strong>1. Ignoring Mileage Limits:</strong> Leases have strict mileage caps (e.g., 10k miles/year). Going over is expensive.</p>
-          <p><strong>2. Focusing Only on Monthly Payment:</strong> A lower lease payment might cost you more in the long run if you have no asset to trade in later.</p>
+        <div className="space-y-2 text-sm text-amber-900 dark:text-amber-100">
+          <p><strong>Hidden Fees:</strong> Leases often have acquisition fees ($500+) and disposition fees that aren't in the monthly payment.</p>
+          <p><strong>Mileage Penalties:</strong> If you drive more than 10k-12k miles/year, leasing can become extremely expensive due to over-mileage fees.</p>
+          <p><strong>Ownership Equity:</strong> This calculator compares cash flow. Remember that with buying, you own an asset (the car) at the end, which has value. With leasing, you own nothing unless you pay the residual.</p>
         </div>
       </section>
 
@@ -238,7 +289,7 @@ export default function LeaseVsBuyCalculator() {
         <div className="space-y-4">
           {references.map((ref, i) => (
             <div key={i}>
-              <a href={ref.url} className="text-blue-600 font-semibold hover:underline flex items-center gap-1">
+              <a href={ref.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 font-semibold hover:underline flex items-center gap-1">
                 {ref.title} <ExternalLink className="w-3 h-3" />
               </a>
               <p className="text-sm text-slate-600">{ref.description}</p>
@@ -252,7 +303,7 @@ export default function LeaseVsBuyCalculator() {
   return (
     <CalculatorVerticalLayout
       title="Lease vs Buy Calculator"
-      description="Compare the true cost of leasing versus buying a car with this financial tool."
+      description="Compare the financial difference between leasing and buying a car. Calculate monthly payments, total costs, and residual value impact."
       widget={widget}
       editorial={editorial}
       jsonLd={faqJsonLd}
@@ -260,11 +311,12 @@ export default function LeaseVsBuyCalculator() {
       relatedCalculators={[]}
       onThisPage={[
         { id: "how-to-use", label: "How to Use" },
-        { id: "guide", label: "Guide" },
-        { id: "mistakes", label: "Mistakes" },
+        { id: "mistakes", label: "Common Mistakes" },
         { id: "faq", label: "FAQ" }
       ]}
-      showTopBanner showSidebar showBottomBanner
+      showTopBanner
+      showSidebar
+      showBottomBanner
     />
   );
 }
