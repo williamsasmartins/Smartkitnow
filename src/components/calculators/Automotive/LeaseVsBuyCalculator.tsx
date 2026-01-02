@@ -10,8 +10,18 @@ import { Car, DollarSign, AlertTriangle, BookOpen, ExternalLink, Settings, Trend
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function LeaseVsBuyCalculator() {
+  type InputsState = {
+    unit: "imperial" | "metric";
+    price: string;
+    rate: string;
+    term: string;
+    leasePayment: string;
+    leaseTerm: string;
+    leaseResidual: string;
+  };
+
   const resultsRef = useRef<HTMLDivElement>(null);
-  const [inputs, setInputs] = useState({
+  const [inputs, setInputs] = useState<InputsState>({
     unit: "imperial",
     price: "",
     rate: "",
@@ -21,10 +31,15 @@ export default function LeaseVsBuyCalculator() {
     leaseResidual: "",
   });
 
-  const handleInputChange = (field: string, value: string) => {
-    // Permite digitação livre de números e decimais
-    if (/^\d*\.?\d*$/.test(value)) {
-      setInputs(prev => ({ ...prev, [field]: value }));
+  const handleInputChange = (field: keyof InputsState, value: string) => {
+    if (field === "unit") {
+      setInputs((prev) => ({ ...prev, unit: value as InputsState["unit"] }));
+      return;
+    }
+
+    const normalized = value.replace(",", ".");
+    if (/^\d*\.?\d*$/.test(normalized)) {
+      setInputs((prev) => ({ ...prev, [field]: normalized }));
     }
   };
 

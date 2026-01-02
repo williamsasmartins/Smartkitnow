@@ -14,6 +14,7 @@ type Item = { name: string; slug: string };
 // BBQ & Smoking
 const bbqSmoking: Item[] = [
   { name: "Texas-Style Brisket", slug: "texas-style-brisket" },
+  { name: 'Brazilian Picanha "Top Sirloin Cap"', slug: "brazilian-picanha-top-sirloin-cap" },
   { name: "Pulled Pork", slug: "pulled-pork" },
   { name: "St. Louis Ribs", slug: "st-louis-ribs" },
   { name: "Baby Back Ribs", slug: "baby-back-ribs" },
