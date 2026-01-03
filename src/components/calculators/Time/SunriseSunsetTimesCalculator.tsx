@@ -153,18 +153,16 @@ function utcToLocalTime(
 function isDST(date: Date, location: string) {
   const year = date.getUTCFullYear();
   switch (location) {
-    case "new_york":
-      // DST starts second Sunday in March, ends first Sunday in Nov
+    case "new_york": {
       const march = new Date(Date.UTC(year, 2, 1));
       const nov = new Date(Date.UTC(year, 10, 1));
-      const secondSundayMarch =
-        7 + (7 - march.getUTCDay()) % 7 + 7; // 8th to 14th
-      const firstSundayNov = 1 + (7 - nov.getUTCDay()) % 7; // 1st to 7th
+      const secondSundayMarch = 7 + (7 - march.getUTCDay()) % 7 + 7;
+      const firstSundayNov = 1 + (7 - nov.getUTCDay()) % 7;
       const dstStart = new Date(Date.UTC(year, 2, secondSundayMarch, 2));
       const dstEnd = new Date(Date.UTC(year, 10, firstSundayNov, 2));
       return date >= dstStart && date < dstEnd;
-    case "london":
-      // DST starts last Sunday in March, ends last Sunday in Oct
+    }
+    case "london": {
       const lastSunday = (month: number) => {
         const lastDay = new Date(Date.UTC(year, month + 1, 0));
         return lastDay.getUTCDate() - lastDay.getUTCDay();
@@ -172,15 +170,16 @@ function isDST(date: Date, location: string) {
       const dstStartLondon = new Date(Date.UTC(year, 2, lastSunday(2), 1));
       const dstEndLondon = new Date(Date.UTC(year, 9, lastSunday(9), 1));
       return date >= dstStartLondon && date < dstEndLondon;
-    case "sydney":
-      // DST starts first Sunday in Oct, ends first Sunday in Apr
+    }
+    case "sydney": {
       const firstSunday = (month: number) => {
         const firstDay = new Date(Date.UTC(year, month, 1));
         return 1 + ((7 - firstDay.getUTCDay()) % 7);
       };
-      const dstStartSydney = new Date(Date.UTC(year, 9, firstSunday(9), 16)); // 2am local = 16 UTC prev day
+      const dstStartSydney = new Date(Date.UTC(year, 9, firstSunday(9), 16));
       const dstEndSydney = new Date(Date.UTC(year, 3, firstSunday(3), 16));
       return date >= dstStartSydney || date < dstEndSydney;
+    }
     default:
       return false;
   }

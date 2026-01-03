@@ -66,7 +66,7 @@ export default function UsedCarValueEstimatorCalculator() {
     }
 
     // Base depreciation: 15% per year
-    let depreciatedValue = priceNum * Math.pow(0.85, age);
+    const depreciatedValue = priceNum * Math.pow(0.85, age);
 
     // Average mileage per year
     const avgMileagePerYear = inputs.unit === "imperial" ? 12000 : 19312; // miles or km

@@ -31,7 +31,7 @@ function isValidDate(d: Date) {
 }
 
 function addBusinessDays(date: Date, days: number) {
-  let result = new Date(date);
+  const result = new Date(date);
   let addedDays = 0;
   const step = days < 0 ? -1 : 1;
   while (addedDays !== days) {

@@ -32,10 +32,10 @@ function getJulianDate(date: Date): number {
             date.getUTCSeconds() / 86400 + 
             date.getUTCMilliseconds() / 86400000;
 
-  let A = Math.floor(Y / 100);
-  let B = 2 - A + Math.floor(A / 4);
+  const A = Math.floor(Y / 100);
+  const B = 2 - A + Math.floor(A / 4);
 
-  let JD =
+  const JD =
     Math.floor(365.25 * (Y + 4716)) +
     Math.floor(30.6001 * (M + 1)) +
     D +

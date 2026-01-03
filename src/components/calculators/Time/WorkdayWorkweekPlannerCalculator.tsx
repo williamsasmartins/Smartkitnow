@@ -29,7 +29,7 @@ export default function WorkdayWorkweekPlannerCalculator() {
   // Calculate difference in days excluding weekends (business days)
   const calculateBusinessDays = (start: Date, end: Date) => {
     let count = 0;
-    let current = new Date(start);
+    const current = new Date(start);
     while (current <= end) {
       if (!isWeekend(current)) count++;
       current.setDate(current.getDate() + 1);

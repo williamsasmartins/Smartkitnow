@@ -118,7 +118,7 @@ export default function AspectRatioLetterboxPillarboxCalculator() {
     const letterboxPercent = ((letterbox / targetH) * 100).toFixed(2);
     const pillarboxPercent = ((pillarbox / targetW) * 100).toFixed(2);
 
-    let details = `Content Aspect Ratio: ${aspectRatioStr} (${(aspectW / aspectH).toFixed(
+    const details = `Content Aspect Ratio: ${aspectRatioStr} (${(aspectW / aspectH).toFixed(
       3
     )}:1). Target Frame Aspect Ratio: 16:9 (1.778:1). ${diagonalCheck}`;
 

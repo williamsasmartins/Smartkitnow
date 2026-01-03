@@ -50,7 +50,7 @@ export default function DateDifferenceHmsCalculator() {
       const valNum = Number(inputs.value);
       if (isNaN(valNum)) return { primary: "Invalid value", secondary: "", details: "", feedback: "" };
 
-      let resultDate = new Date(start.getTime());
+      const resultDate = new Date(start.getTime());
       switch (inputs.option) {
         case "addDays":
           resultDate.setDate(resultDate.getDate() + valNum);

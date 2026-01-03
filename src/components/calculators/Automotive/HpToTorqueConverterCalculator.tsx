@@ -60,7 +60,7 @@ export default function HpToTorqueConverterCalculator() {
     // Estimate torque at 5000 rpm
     // Torque (lb-ft) = (HP * 5252) / RPM
     // RPM assumed 5000 for peak power
-    let torque = (hpNum * 5252) / 5000; // lb-ft
+    const torque = (hpNum * 5252) / 5000; // lb-ft
 
     // Convert units if metric
     let torqueDisplay = torque;

@@ -47,7 +47,7 @@ export default function GeneratorSizingCalculator() {
   const results = useMemo(() => {
     const connectedLoad = parseFloat(inputs.val1);
     const startingLoad = inputs.val2 ? parseFloat(inputs.val2) : 0;
-    let powerFactor = inputs.val3 ? parseFloat(inputs.val3) : 1.0;
+    const powerFactor = inputs.val3 ? parseFloat(inputs.val3) : 1.0;
 
     if (
       isNaN(connectedLoad) ||

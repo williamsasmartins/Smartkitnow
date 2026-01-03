@@ -49,7 +49,7 @@ export default function InsuranceCostPerYearCalculator() {
     }
 
     // Base insurance cost is a percentage of car value based on coverage level
-    let baseCost = carValueNum * coverageMultipliers[coverageLevel];
+    const baseCost = carValueNum * coverageMultipliers[coverageLevel];
 
     // Adjust cost based on driver age risk factor
     // Younger than 25: +50% cost, 25-40: no change, 41-65: -10%, 65+: +20%

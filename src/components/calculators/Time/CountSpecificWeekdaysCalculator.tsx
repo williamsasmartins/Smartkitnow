@@ -90,7 +90,7 @@ export default function CountSpecificWeekdaysCalculator() {
 
     // Find the first occurrence of the target weekday on or after start date
     const startWeekday = start.getDay();
-    let daysToAdd = (targetWeekday - startWeekday + 7) % 7;
+    const daysToAdd = (targetWeekday - startWeekday + 7) % 7;
     // If the start date itself is the target weekday, daysToAdd = 0
 
     const firstOccurrence = new Date(start.getTime() + daysToAdd * oneDayMs);

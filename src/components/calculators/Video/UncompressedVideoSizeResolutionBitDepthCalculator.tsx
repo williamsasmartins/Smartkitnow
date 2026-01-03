@@ -59,7 +59,7 @@ export default function UncompressedVideoSizeResolutionBitDepthCalculator() {
     }
 
     // Validate or calculate diagonal if provided
-    let diagonalCalc = Math.sqrt(W * W + H * H);
+    const diagonalCalc = Math.sqrt(W * W + H * H);
 
     if (!isNaN(D) && D > 0) {
       // Check if diagonal matches W and H within 1% tolerance

@@ -48,9 +48,9 @@ export default function RecordingTimeCardSsdCapacityCalculator() {
     // Calculate size in Megabits: bitrate (Mbps) * duration (sec)
     // Convert Megabits to Megabytes: divide by 8 (8 bits = 1 Byte)
     // Convert Megabytes to GB: divide by 1024
-    let sizeMB = (bitrate * durationSec) / 8;
-    let sizeGB = sizeMB / 1024;
-    let sizeTB = sizeGB / 1024;
+    const sizeMB = (bitrate * durationSec) / 8;
+    const sizeGB = sizeMB / 1024;
+    const sizeTB = sizeGB / 1024;
 
     let displaySize = 0;
     let unit = inputs.sizeUnit;

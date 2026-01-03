@@ -87,7 +87,7 @@ function dateDiffInDays(start: Date, end: Date): number {
 function businessDaysBetween(start: Date, end: Date): number {
   // Calculate business days between two dates (excluding Sat/Sun)
   let count = 0;
-  let current = new Date(start);
+  const current = new Date(start);
   while (current <= end) {
     const day = current.getDay();
     if (day !== 0 && day !== 6) count++;

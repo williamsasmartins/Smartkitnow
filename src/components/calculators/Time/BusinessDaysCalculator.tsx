@@ -45,7 +45,7 @@ export default function BusinessDaysCalculator() {
     if (end < start) return 0;
 
     let count = 0;
-    let current = new Date(start);
+    const current = new Date(start);
     current.setHours(0, 0, 0, 0);
     const endDate = new Date(end);
     endDate.setHours(0, 0, 0, 0);

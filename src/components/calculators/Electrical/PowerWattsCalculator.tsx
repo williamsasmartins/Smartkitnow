@@ -30,7 +30,7 @@ export default function PowerWattsCalculator() {
   const results = useMemo(() => {
     const V = parseFloat(inputs.voltage);
     const I = parseFloat(inputs.current);
-    let PF = inputs.powerFactor === "" ? 1 : parseFloat(inputs.powerFactor);
+    const PF = inputs.powerFactor === "" ? 1 : parseFloat(inputs.powerFactor);
 
     if (
       isNaN(V) ||

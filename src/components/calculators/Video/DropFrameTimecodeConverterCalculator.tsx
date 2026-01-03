@@ -68,16 +68,16 @@ function framesToTimecodeDropFrame(totalFrames: number, fps: number) {
 
   totalFrames = totalFrames % framesPer24Hours;
 
-  let d = Math.floor(totalFrames / framesPer10Minutes);
-  let m = totalFrames % framesPer10Minutes;
+  const d = Math.floor(totalFrames / framesPer10Minutes);
+  const m = totalFrames % framesPer10Minutes;
 
-  let totalMinutes = d * 10 + Math.floor(m / (roundedFPS * 60 - dropFrames));
-  let framesInMinute = m % (roundedFPS * 60 - dropFrames);
+  const totalMinutes = d * 10 + Math.floor(m / (roundedFPS * 60 - dropFrames));
+  const framesInMinute = m % (roundedFPS * 60 - dropFrames);
 
-  let hh = Math.floor(totalMinutes / 60);
-  let mm = totalMinutes % 60;
-  let ss = Math.floor(framesInMinute / roundedFPS);
-  let ff = framesInMinute % roundedFPS;
+  const hh = Math.floor(totalMinutes / 60);
+  const mm = totalMinutes % 60;
+  const ss = Math.floor(framesInMinute / roundedFPS);
+  const ff = framesInMinute % roundedFPS;
 
   return { hh, mm, ss, ff };
 }
@@ -109,10 +109,10 @@ function timecodeToFramesDropFrame(tc: { hh: number; mm: number; ss: number; ff:
   const framesPer24Hours = framesPerHour * 24;
   const framesPer10Minutes = roundedFPS * 60 * 10 - dropFrames * 9;
 
-  let d = Math.floor(totalMinutes / 10);
-  let m = totalMinutes % 10;
+  const d = Math.floor(totalMinutes / 10);
+  const m = totalMinutes % 10;
 
-  let totalDroppedFrames = dropFrames * (totalMinutes - d);
+  const totalDroppedFrames = dropFrames * (totalMinutes - d);
 
   let totalFrames =
     hh * 3600 * roundedFPS +

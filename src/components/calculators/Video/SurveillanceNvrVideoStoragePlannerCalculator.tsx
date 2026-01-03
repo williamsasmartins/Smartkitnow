@@ -57,7 +57,7 @@ export default function SurveillanceNvrVideoStoragePlannerCalculator() {
 
     // Convert Megabytes to GB or TB
     let size = 0;
-    let unit = inputs.sizeUnit;
+    const unit = inputs.sizeUnit;
     if (unit === "GB") {
       size = totalMegaBytes / 1024; // 1024 MB = 1 GB
     } else if (unit === "TB") {

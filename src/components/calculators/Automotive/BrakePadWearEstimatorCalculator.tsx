@@ -51,8 +51,8 @@ export default function BrakePadWearEstimatorCalculator() {
     // Pads: 12 mm (0.47 in), Rotors: 30 mm (1.18 in) - common average values
     // If unit is imperial, convert typical new thickness accordingly
 
-    let typicalPadNewThickness = inputs.unit === "imperial" ? 0.47 : 12; // inches or mm
-    let typicalRotorNewThickness = inputs.unit === "imperial" ? 1.18 : 30; // inches or mm
+    const typicalPadNewThickness = inputs.unit === "imperial" ? 0.47 : 12; // inches or mm
+    const typicalRotorNewThickness = inputs.unit === "imperial" ? 1.18 : 30; // inches or mm
 
     // Validate typical new thickness > min thickness
     if (padMin >= typicalPadNewThickness || rotorMin >= typicalRotorNewThickness) {
