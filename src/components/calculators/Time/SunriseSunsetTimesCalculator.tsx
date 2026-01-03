@@ -378,11 +378,10 @@ export default function SunriseSunsetTimesCalculator() {
             <Globe className="inline mr-1" /> Hemisphere
           </Label>
           <Select
-            id="hemisphere"
             value={inputs.hemisphere}
             onValueChange={(val) => handleInputChange("hemisphere", val)}
           >
-            <SelectTrigger>
+            <SelectTrigger id="hemisphere">
               <SelectValue placeholder="Select Hemisphere" />
             </SelectTrigger>
             <SelectContent>
@@ -400,11 +399,10 @@ export default function SunriseSunsetTimesCalculator() {
             <Info className="inline mr-1" /> Location
           </Label>
           <Select
-            id="location"
             value={inputs.location}
             onValueChange={(val) => handleInputChange("location", val)}
           >
-            <SelectTrigger>
+            <SelectTrigger id="location">
               <SelectValue placeholder="Select Location" />
             </SelectTrigger>
             <SelectContent>
