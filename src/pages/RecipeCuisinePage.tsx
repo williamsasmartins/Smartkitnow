@@ -1057,6 +1057,823 @@ export default function RecipeCuisinePage() {
     },
   ];
 
+  const indianSections: Section[] = [
+    {
+      title: "Starters & Small Plates",
+      items: [
+        "Samosas",
+        "Onion Bhaji",
+        "Vegetable Pakoras",
+        "Paneer Tikka",
+        "Chicken Tikka",
+        "Tandoori Chicken",
+        "Seekh Kebabs",
+        "Aloo Tikki",
+        "Pani Puri",
+        "Bhel Puri",
+        "Dahi Puri",
+        "Papdi Chaat",
+        "Aloo Chaat",
+        "Vada Pav",
+        "Dhokla",
+      ],
+    },
+    {
+      title: "Soups & Light Bowls",
+      items: [
+        "Lentil Soup (Dal Soup)",
+        "Tomato Soup (Indian-Style)",
+        "Mulligatawny Soup",
+      ],
+    },
+    {
+      title: "Breads",
+      items: [
+        "Naan",
+        "Garlic Naan",
+        "Roti",
+        "Chapati",
+        "Paratha",
+        "Aloo Paratha",
+        "Poori",
+        "Bhatura",
+      ],
+    },
+    {
+      title: "Rice & One-Pot Dishes",
+      items: [
+        "Chicken Biryani",
+        "Vegetable Biryani",
+        "Hyderabadi Biryani",
+        "Pulao (Pilaf)",
+        "Jeera Rice (Cumin Rice)",
+        "Lemon Rice",
+        "Coconut Rice",
+        "Tamarind Rice",
+        "Khichdi",
+      ],
+    },
+    {
+      title: "Curries — Chicken",
+      items: [
+        "Butter Chicken",
+        "Chicken Tikka Masala",
+        "Chicken Curry",
+        "Korma (Chicken)",
+        "Saag Chicken",
+        "Chicken Vindaloo",
+        "Chicken Chettinad",
+      ],
+    },
+    {
+      title: "Curries — Lamb, Goat & Beef",
+      items: [
+        "Rogan Josh",
+        "Lamb Curry",
+        "Goat Curry",
+        "Keema (Minced Meat Curry)",
+        "Beef Curry (South Indian-Style)",
+      ],
+    },
+    {
+      title: "Curries — Vegetarian & Paneer",
+      items: [
+        "Palak Paneer",
+        "Paneer Butter Masala",
+        "Chana Masala",
+        "Dal Tadka",
+        "Dal Makhani",
+        "Rajma (Kidney Bean Curry)",
+        "Aloo Gobi",
+        "Baingan Bharta",
+        "Malai Kofta",
+        "Vegetable Korma",
+        "Bhindi Masala (Okra Curry)",
+        "Navratan Korma",
+      ],
+    },
+    {
+      title: "Grilled, Tandoor & Dry Dishes",
+      items: ["Fish Tikka", "Chicken 65"],
+    },
+    {
+      title: "Street Food & Snacks",
+      items: [
+        "Pav Bhaji",
+        "Dosa (Plain)",
+        "Masala Dosa",
+        "Idli with Sambar",
+        "Medu Vada",
+        "Upma",
+        "Poha",
+      ],
+    },
+    {
+      title: "Chutneys, Raita & Condiments",
+      items: [
+        "Mint Chutney",
+        "Tamarind Chutney",
+        "Coconut Chutney",
+        "Tomato Chutney",
+        "Cucumber Raita",
+        "Boondi Raita",
+        "Mango Pickle",
+        "Lime Pickle",
+      ],
+    },
+    {
+      title: "Sides",
+      items: [
+        "Sambar",
+        "Rasam",
+        "Cabbage Stir-Fry (South Indian-Style)",
+        "Spiced Potatoes (Aloo)",
+        "Spiced Cauliflower (Gobi)",
+      ],
+    },
+    {
+      title: "Desserts & Sweet Baking",
+      items: [
+        "Gulab Jamun",
+        "Rasgulla",
+        "Jalebi",
+        "Kheer (Rice Pudding)",
+        "Gajar Halwa (Carrot Pudding)",
+        "Ladoo (Besan or Motichoor)",
+        "Barfi",
+        "Kulfi",
+        "Soan Papdi",
+        "Shrikhand",
+        "Mango Lassi (as a sweet drink)",
+      ],
+    },
+    {
+      title: "Drinks",
+      items: [
+        "Masala Chai",
+        "Mango Lassi",
+        "Salted Lassi",
+        "Indian Spiced Lemonade (Shikanji)",
+        "Rose Milk",
+        "Filter Coffee (South Indian-Style)",
+      ],
+    },
+  ];
+
+  const middleEasternSections: Section[] = [
+    {
+      title: "Starters & Small Plates (Mezze)",
+      items: [
+        "Hummus",
+        "Baba Ganoush",
+        "Muhammara",
+        "Labneh",
+        "Tabbouleh",
+        "Fattoush",
+        "Greek-Style Cucumber Yogurt Dip (Tzatziki)",
+        "Stuffed Grape Leaves (Dolmas)",
+        "Falafel",
+        "Kibbeh (Fried Bulgur Meat Croquettes)",
+        "Spinach Pies (Fatayer)",
+        "Meat Pies (Sfiha)",
+        "Cheese Pies (Fatayer)",
+        "Za’atar Flatbread (Manakish)",
+        "Ful Medames",
+        "Roasted Eggplant Salad",
+        "Pickled Turnips",
+        "Olives and Pickles",
+      ],
+    },
+    {
+      title: "Soups & Stews",
+      items: [
+        "Lentil Soup",
+        "Chickpea Stew (Middle Eastern-Style)",
+        "Lamb and Okra Stew",
+        "Tomato and Vermicelli Soup",
+      ],
+    },
+    {
+      title: "Breads",
+      items: [
+        "Pita Bread",
+        "Flatbread (Arabic-Style)",
+        "Saj Bread",
+        "Lavash",
+        "Za’atar Flatbread (Manakish)",
+      ],
+    },
+    {
+      title: "Rice, Grains & One-Pot Dishes",
+      items: [
+        "Chicken Shawarma Rice Bowl",
+        "Lamb Rice Pilaf",
+        "Maqluba (Upside-Down Rice)",
+        "Mansaf",
+        "Kabsa",
+        "Mandi Rice",
+        "Mujadara (Lentils and Rice)",
+        "Freekeh Pilaf",
+        "Bulgur Pilaf",
+        "Couscous (Middle Eastern-Style)",
+      ],
+    },
+    {
+      title: "Grilled & Roasted Mains",
+      items: [
+        "Chicken Shawarma",
+        "Beef Shawarma",
+        "Lamb Shawarma",
+        "Chicken Kebabs (Shish Tawook)",
+        "Kofta Kebabs",
+        "Shish Kebab",
+        "Lamb Chops (Middle Eastern-Style)",
+        "Whole Roasted Chicken with Garlic and Lemon",
+        "Grilled Halloumi",
+      ],
+    },
+    {
+      title: "Sauces & Condiments",
+      items: [
+        "Tahini Sauce",
+        "Garlic Sauce (Toum)",
+        "Zhoug (Spicy Herb Sauce)",
+        "Harissa",
+        "Amba (Mango Sauce)",
+        "Pomegranate Molasses Dressing",
+      ],
+    },
+    {
+      title: "Vegetarian & Legume Dishes",
+      items: [
+        "Stuffed Eggplant (Vegetarian)",
+        "Stuffed Bell Peppers (Middle Eastern-Style)",
+        "Okra Stew (Vegetarian)",
+      ],
+    },
+    {
+      title: "Sides",
+      items: [
+        "Roasted Vegetables (Middle Eastern-Style)",
+        "Lebanese Rice",
+        "Sumac Onions",
+        "Cucumber Yogurt Salad",
+        "Pickled Vegetables",
+      ],
+    },
+    {
+      title: "Desserts & Sweet Baking",
+      items: [
+        "Baklava",
+        "Kunafa",
+        "Basbousa (Semolina Cake)",
+        "Ma’amoul (Date Cookies)",
+        "Halva (Sesame Sweet)",
+        "Rice Pudding (Middle Eastern-Style)",
+        "Pistachio Milk Pudding (Muhallebi)",
+        "Sweet Cheese Pastry",
+        "Date Cake",
+        "Honey Sesame Cookies",
+      ],
+    },
+    {
+      title: "Drinks",
+      items: [
+        "Mint Tea",
+        "Turkish Coffee",
+        "Arabic Coffee",
+        "Rose Water Lemonade",
+        "Tamarind Drink",
+        "Yogurt Drink (Ayran)",
+        "Date Shake",
+      ],
+    },
+  ];
+
+  const mediterraneanSections: Section[] = [
+    {
+      title: "Mezze & Starters",
+      items: [
+        "Hummus",
+        "Baba Ganoush",
+        "Tzatziki",
+        "Muhammara",
+        "Olive Tapenade",
+        "Marinated Olives",
+        "Stuffed Grape Leaves (Dolmas)",
+        "Grilled Halloumi",
+        "Fried Zucchini (Mediterranean-Style)",
+        "Roasted Red Pepper Dip",
+      ],
+    },
+    {
+      title: "Salads & Bowls",
+      items: [
+        "Greek Salad",
+        "Tomato Cucumber Salad",
+        "Chickpea Salad with Feta",
+        "Lentil Salad (Mediterranean-Style)",
+        "Tabbouleh",
+        "Mediterranean Quinoa Bowl",
+        "Farro Salad with Roasted Vegetables",
+        "Orzo Salad with Feta and Herbs",
+        "Watermelon Feta Salad",
+        "Mediterranean Tuna Salad",
+      ],
+    },
+    {
+      title: "Soups",
+      items: [
+        "Lentil Soup",
+        "Avgolemono Soup (Greek Lemon Chicken Soup)",
+        "Spanish Gazpacho",
+        "Chickpea and Spinach Soup",
+        "Tomato Basil Soup",
+      ],
+    },
+    {
+      title: "Seafood",
+      items: [
+        "Grilled Fish with Lemon and Herbs",
+        "Spanish Garlic Shrimp (Gambas al Ajillo)",
+        "Shrimp Saganaki (Greek Tomato-Feta Shrimp)",
+        "Baked Cod with Tomatoes and Olives",
+        "Mediterranean Baked Salmon",
+        "Mussels in Tomato and White Wine (Mediterranean-Style)",
+        "Seafood Paella",
+      ],
+    },
+    {
+      title: "Chicken & Meat",
+      items: [
+        "Chicken Souvlaki",
+        "Chicken Gyros",
+        "Greek Lemon Chicken and Potatoes",
+        "Lamb Kofta",
+        "Grilled Lamb Chops with Herbs",
+        "Beef Kebab Skewers (Mediterranean-Style)",
+        "Turkey Meatballs (Mediterranean-Style)",
+      ],
+    },
+    {
+      title: "Vegetarian Mains",
+      items: [
+        "Baked Eggplant with Tomato",
+        "Vegetable Moussaka",
+        "Stuffed Bell Peppers (Mediterranean-Style)",
+        "Ratatouille",
+        "Roasted Vegetables with Olive Oil",
+        "Chickpea and Spinach Stew",
+        "Halloumi and Vegetable Skewers",
+      ],
+    },
+    {
+      title: "Grains, Pasta & Rice",
+      items: [
+        "Mediterranean Rice Pilaf",
+        "Lemon Herb Couscous",
+        "Orzo with Lemon and Herbs",
+        "Whole Wheat Pasta with Olive Oil, Garlic, and Tomatoes",
+        "Farro Bowl with Roasted Vegetables",
+      ],
+    },
+    {
+      title: "Sauces & Condiments",
+      items: [
+        "Lemon Tahini Sauce",
+        "Garlic Yogurt Sauce",
+        "Mediterranean Herb Sauce (Salsa Verde)",
+        "Harissa (Mediterranean-Style)",
+      ],
+    },
+    {
+      title: "Desserts & Drinks",
+      items: [
+        "Yogurt with Honey and Nuts",
+        "Baklava",
+        "Greek Orange Cake (Portokalopita)",
+        "Lemon Olive Oil Cake",
+        "Fresh Fruit with Mint and Honey",
+        "Mint Lemonade",
+      ],
+    },
+  ];
+
+  const americanSections: Section[] = [
+    {
+      title: "Starters & Appetizers",
+      items: [
+        "Buffalo Chicken Wings",
+        "Deviled Eggs",
+        "Spinach and Artichoke Dip",
+        "Nachos",
+        "Loaded Potato Skins",
+        "Mozzarella Sticks",
+        "Onion Rings",
+        "Jalapeño Poppers",
+        "Fried Pickles",
+        "Crab Cakes",
+        "Shrimp Cocktail",
+        "Sliders (Mini Burgers)",
+      ],
+    },
+    {
+      title: "Soups & Chili",
+      items: [
+        "Chicken Noodle Soup",
+        "Clam Chowder",
+        "Tomato Soup",
+        "Broccoli Cheddar Soup",
+        "Beef Stew",
+        "Classic Beef Chili",
+        "White Chicken Chili",
+        "Gumbo",
+        "Jambalaya",
+      ],
+    },
+    {
+      title: "Salads",
+      items: [
+        "Caesar Salad",
+        "Cobb Salad",
+        "Coleslaw",
+        "Macaroni Salad",
+        "Potato Salad",
+        "Chef Salad",
+      ],
+    },
+    {
+      title: "Sandwiches & Burgers",
+      items: [
+        "Classic Cheeseburger",
+        "Smash Burger",
+        "BBQ Pulled Pork Sandwich",
+        "Philly Cheesesteak",
+        "Reuben Sandwich",
+        "Grilled Cheese Sandwich",
+        "Club Sandwich",
+        "BLT Sandwich",
+        "Tuna Salad Sandwich",
+        "Fried Chicken Sandwich",
+        "Hot Dog",
+        "Chicago-Style Hot Dog",
+      ],
+    },
+    {
+      title: "Barbecue & Grilling",
+      items: [
+        "BBQ Ribs",
+        "Smoked Brisket",
+        "Pulled Pork",
+        "BBQ Chicken",
+        "Grilled Steak",
+        "Burgers on the Grill",
+        "Smoked Sausage",
+      ],
+    },
+    {
+      title: "Comfort Food Mains",
+      items: [
+        "Fried Chicken",
+        "Chicken and Waffles",
+        "Meatloaf",
+        "Mac and Cheese",
+        "Chicken Pot Pie",
+        "Pot Roast",
+        "Beef Stroganoff (American-Style)",
+        "Salisbury Steak",
+        "Shepherd’s Pie (American-Style)",
+        "Baked Meatballs (American-Style)",
+      ],
+    },
+    {
+      title: "Seafood Classics",
+      items: [
+        "Fish and Chips (American-Style)",
+        "Lobster Roll",
+        "Shrimp and Grits",
+        "Crab Boil",
+        "Fish Tacos (American-Style)",
+      ],
+    },
+    {
+      title: "Pasta & Casseroles",
+      items: [
+        "Baked Ziti",
+        "Chicken Alfredo",
+        "Tuna Noodle Casserole",
+        "Green Bean Casserole",
+        "Chicken and Rice Casserole",
+        "Baked Mac and Cheese",
+      ],
+    },
+    {
+      title: "Breakfast & Brunch",
+      items: [
+        "Pancakes",
+        "Waffles",
+        "French Toast",
+        "Biscuits and Gravy",
+        "Breakfast Burrito",
+        "Omelet",
+        "Hash Browns",
+        "Breakfast Sandwich",
+      ],
+    },
+    {
+      title: "Sides",
+      items: [
+        "French Fries",
+        "Mashed Potatoes",
+        "Baked Potato",
+        "Cornbread",
+        "Macaroni Salad",
+        "Coleslaw",
+        "Corn on the Cob",
+        "Baked Beans",
+        "Buttered Green Beans",
+      ],
+    },
+    {
+      title: "Sauces & Condiments",
+      items: [
+        "Classic BBQ Sauce",
+        "Ranch Dressing",
+        "Honey Mustard Sauce",
+        "Buffalo Wing Sauce",
+        "Gravy",
+      ],
+    },
+    {
+      title: "Desserts & Sweet Baking",
+      items: [
+        "Chocolate Chip Cookies",
+        "Brownies",
+        "Apple Pie",
+        "Pumpkin Pie",
+        "Pecan Pie",
+        "Cheesecake",
+        "Banana Bread",
+        "Carrot Cake",
+        "Red Velvet Cake",
+        "Cinnamon Rolls",
+        "Donuts",
+        "Ice Cream Sundae",
+      ],
+    },
+    {
+      title: "Drinks",
+      items: [
+        "Classic Lemonade",
+        "Iced Tea (Sweet Tea)",
+        "Milkshake",
+        "Hot Chocolate",
+        "Root Beer Float",
+      ],
+    },
+  ];
+
+  const canadianSections: Section[] = [
+    {
+      title: "Starters & Appetizers",
+      items: [
+        "Poutine (Mini Style)",
+        "Bacon-Wrapped Scallops",
+        "Smoked Salmon Canapés",
+        "Maple Glazed Wings",
+        "Stuffed Mushrooms (Canadian-Style)",
+        "Cheese Curds (Fried)",
+        "Nanaimo Bar Bites",
+        "Tourtière Hand Pies",
+      ],
+    },
+    {
+      title: "Soups & Stews",
+      items: [
+        "French Canadian Pea Soup",
+        "Seafood Chowder (Atlantic-Style)",
+        "Beef Barley Soup (Canadian-Style)",
+        "Maple Mustard Pork Stew (Canadian-Style)",
+      ],
+    },
+    {
+      title: "Salads",
+      items: [
+        "Coleslaw (Canadian-Style)",
+        "Beet and Goat Cheese Salad",
+        "Smoked Salmon Salad",
+        "Maple Dijon Salad",
+      ],
+    },
+    {
+      title: "Sandwiches & Handhelds",
+      items: [
+        "Montreal Smoked Meat Sandwich",
+        "Canadian Bacon and Egg Sandwich",
+        "Lobster Roll (Atlantic Canada Style)",
+        "Peameal Bacon Sandwich",
+        "Halifax Donair (Canadian-Style)",
+      ],
+    },
+    {
+      title: "Main Courses — Meat & Poultry",
+      items: [
+        "Tourtière (Meat Pie)",
+        "Montreal Smoked Meat",
+        "Butter Tarts (as a sweet main bake)",
+        "Split Pea Soup with Ham (as a hearty main)",
+        "Maple Glazed Salmon (as main)",
+        "Alberta Beef Steak",
+        "Maple Dijon Roast Chicken",
+      ],
+    },
+    {
+      title: "Main Courses — Seafood",
+      items: [
+        "Maple Glazed Salmon",
+        "Cedar Plank Salmon",
+        "Atlantic Lobster (Boiled)",
+        "Fish Cakes (Atlantic-Style)",
+        "Pan-Fried Pickerel (Walleye)",
+        "Smoked Salmon Platter",
+      ],
+    },
+    {
+      title: "Comfort Foods & Regional Classics",
+      items: [
+        "Poutine",
+        "Halifax Donair",
+        "Montreal-Style Bagels",
+        "Montreal Smoked Meat Sandwich",
+        "Butter Tart Squares",
+        "Kraft Dinner (Canadian-Style Mac and Cheese)",
+      ],
+    },
+    {
+      title: "Breakfast & Brunch",
+      items: [
+        "Montreal-Style Bagels",
+        "Canadian Pancakes with Maple Syrup",
+        "Eggs Benedict (Canadian-Style)",
+        "Peameal Bacon and Eggs",
+        "French Toast with Maple Syrup",
+      ],
+    },
+    {
+      title: "Sides",
+      items: [
+        "Cheese Curds",
+        "Maple Roasted Vegetables",
+        "Roasted Potatoes (Canadian-Style)",
+        "Buttered Peas",
+        "Coleslaw",
+        "Gravy (for poutine and meats)",
+      ],
+    },
+    {
+      title: "Desserts & Sweet Baking",
+      items: [
+        "Nanaimo Bars",
+        "Butter Tarts",
+        "Maple Taffy on Snow",
+        "Canadian Maple Fudge",
+        "Saskatoon Berry Pie",
+        "Blueberry Grunt",
+        "Date Squares",
+        "BeaverTails",
+        "Maple Cream Cookies",
+        "Apple Crumble (Canadian-Style)",
+      ],
+    },
+    {
+      title: "Drinks",
+      items: [
+        "Caesar Cocktail",
+        "Ice Wine",
+        "Maple Latte",
+        "Hot Apple Cider",
+        "Canadian Rye and Ginger",
+      ],
+    },
+  ];
+
+  const russianEasternEuropeanSections: Section[] = [
+    {
+      title: "Starters & Small Plates",
+      items: [
+        "Beet Salad with Garlic and Walnuts",
+        "Eggplant Spread (Eastern European-Style)",
+        "Pickled Vegetables",
+        "Marinated Mushrooms",
+        "Herring with Onions",
+        "Smoked Fish Platter",
+        "Rye Bread with Butter",
+        "Potato Pancakes (Appetizer Size)",
+      ],
+    },
+    {
+      title: "Soups",
+      items: [
+        "Borscht (Beet Soup)",
+        "Cabbage Soup (Shchi)",
+        "Chicken Noodle Soup (Eastern European-Style)",
+        "Mushroom Soup",
+        "Sour Rye Soup",
+        "Solyanka (Hearty Mixed Soup)",
+      ],
+    },
+    {
+      title: "Dumplings & Filled Dough",
+      items: [
+        "Russian Dumplings (Pelmeni)",
+        "Potato Dumplings (Vareniki)",
+        "Cheese Dumplings (Vareniki)",
+        "Cabbage Dumplings (Vareniki)",
+        "Pierogi (Potato and Cheese)",
+        "Pierogi (Sauerkraut and Mushroom)",
+        "Pierogi (Meat)",
+        "Meat-Filled Pastries (Piroshki)",
+        "Cabbage Piroshki",
+      ],
+    },
+    {
+      title: "Salads",
+      items: [
+        "Russian Olivier Salad",
+        "Herring Under a Fur Coat Salad",
+        "Vinegret Salad",
+        "Cucumber and Dill Salad",
+        "Tomato and Onion Salad",
+      ],
+    },
+    {
+      title: "Main Courses — Meat & Poultry",
+      items: [
+        "Beef Stroganoff",
+        "Cabbage Rolls (Stuffed Cabbage)",
+        "Chicken Kiev",
+        "Meatballs in Cream Sauce",
+        "Pork Cutlets",
+        "Goulash (Eastern European-Style)",
+        "Roast Pork with Garlic",
+        "Sausage and Sauerkraut",
+      ],
+    },
+    {
+      title: "Main Courses — Fish",
+      items: [
+        "Baked Fish with Sour Cream and Dill",
+        "Pan-Fried Fish Cutlets",
+        "Herring with Potatoes",
+        "Smoked Fish with Rye Bread",
+      ],
+    },
+    {
+      title: "Sides",
+      items: [
+        "Buckwheat Porridge (Kasha)",
+        "Mashed Potatoes",
+        "Roasted Potatoes with Dill",
+        "Braised Cabbage",
+        "Sauerkraut",
+        "Pickles",
+        "Rye Bread",
+      ],
+    },
+    {
+      title: "Breads & Savory Baking",
+      items: [
+        "Dark Rye Bread",
+        "Braided Sweet Bread (Eastern European-Style)",
+        "Savory Cheese Buns",
+        "Stuffed Pastries (Piroshki)",
+      ],
+    },
+    {
+      title: "Desserts & Sweet Baking",
+      items: [
+        "Honey Cake (Medovik)",
+        "Napoleon Cake (Eastern European-Style)",
+        "Sweet Cheese Pancakes (Syrniki)",
+        "Poppy Seed Roll",
+        "Sweet Yeast Buns",
+        "Cottage Cheese Cake",
+        "Jam-Filled Cookies",
+        "Fruit Dumplings (Sweet Vareniki)",
+      ],
+    },
+    {
+      title: "Drinks",
+      items: [
+        "Hot Tea with Lemon",
+        "Kompot (Fruit Drink)",
+        "Kvass",
+        "Spiced Honey Drink (Sbiten)",
+        "Vodka (Traditional)",
+      ],
+    },
+  ];
+
   if (!data) return <Navigate to="/recipes" replace />;
 
   const isItalian = data.key === "italian";
@@ -1066,6 +1883,12 @@ export default function RecipeCuisinePage() {
   const isJapanese = data.key === "japanese";
   const isChinese = data.key === "chinese";
   const isThai = data.key === "thai";
+  const isIndian = data.key === "indian";
+  const isMiddleEastern = data.key === "middle-eastern";
+  const isMediterranean = data.key === "mediterranean";
+  const isAmerican = data.key === "american";
+  const isCanadian = data.key === "canadian";
+  const isRussianEasternEuropean = data.key === "russian-eastern-european";
   const activeSections = isItalian
     ? italianSections
     : isMexican
@@ -1080,7 +1903,19 @@ export default function RecipeCuisinePage() {
               ? chineseSections
               : isThai
                 ? thaiSections
-                : null;
+                : isIndian
+                  ? indianSections
+                  : isMiddleEastern
+                    ? middleEasternSections
+                    : isMediterranean
+                      ? mediterraneanSections
+                      : isAmerican
+                        ? americanSections
+                        : isCanadian
+                          ? canadianSections
+                          : isRussianEasternEuropean
+                            ? russianEasternEuropeanSections
+                      : null;
   const totalSectionLinks = activeSections
     ? activeSections.reduce((sum, s) => sum + s.items.length, 0)
     : data.recipes.length;
