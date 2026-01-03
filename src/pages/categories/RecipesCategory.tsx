@@ -32,18 +32,19 @@ const bbqSmoking: Item[] = [
 
 // International & Regional Cuisines (subcategories)
 const internationalRegional: Item[] = [
-  { name: "Italian Classics", slug: "italian-classics" },
-  { name: "Mexican Street Food", slug: "mexican-street-food" },
-  { name: "Brazilian & Portuguese", slug: "brazilian-portuguese" },
-  { name: "Japanese (Washoku)", slug: "japanese-washoku" },
-  { name: "Chinese Regional", slug: "chinese-regional" },
-  { name: "Thai Favorites", slug: "thai-favorites" },
-  { name: "Indian Curries", slug: "indian-curries" },
-  { name: "Middle Eastern & Levant", slug: "middle-eastern-levant" },
-  { name: "Mediterranean Diet", slug: "mediterranean-diet" },
-  { name: "American (USA)", slug: "american-usa" },
-  { name: "Canadian", slug: "canadian" },
-  { name: "Russian & Eastern European", slug: "russian-eastern-european" },
+  { name: "Italian Recipes", slug: "italian" },
+  { name: "Mexican Recipes", slug: "mexican" },
+  { name: "Brazilian Recipes", slug: "brazilian" },
+  { name: "Portuguese Recipes", slug: "portuguese" },
+  { name: "Japanese Recipes", slug: "japanese" },
+  { name: "Chinese Recipes", slug: "chinese" },
+  { name: "Thai Recipes", slug: "thai" },
+  { name: "Indian Recipes", slug: "indian" },
+  { name: "Middle Eastern & Levant Recipes", slug: "middle-eastern" },
+  { name: "Mediterranean Recipes", slug: "mediterranean" },
+  { name: "American Recipes", slug: "american" },
+  { name: "Canadian Recipes", slug: "canadian" },
+  { name: "Russian & Eastern European Recipes", slug: "russian-eastern-european" },
 ];
 
 // Meal Type & Category
@@ -134,7 +135,7 @@ export default function RecipesCategory() {
                       BBQ & Smoking: brisket, ribs, pulled pork, poultry, salmon and grilled seafood & veggies.
                     </p>
                     <p>
-                      International & Regional: Italian, Mexican, Brazilian/Portuguese, Japanese, Chinese, Thai, Indian, Middle Eastern, Mediterranean, American/Canadian, Russian & Eastern European.
+                      International & Regional: Italian, Mexican, Brazilian, Portuguese, Japanese, Chinese, Thai, Indian, Middle Eastern, Mediterranean, American, Canadian, Russian & Eastern European.
                     </p>
                     <p>
                       Meal Types: breakfast & brunch, lunch, dinner mains, soups & stews, salads & bowls, sandwiches & burgers, pasta/noodles, rice/grains, desserts & baking, sides & vegetables.

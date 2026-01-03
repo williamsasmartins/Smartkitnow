@@ -41,7 +41,6 @@ const Search = lazy(() => import("@/pages/Search"));
 const SmartTips = lazy(() => import("@/pages/SmartTips"));
 const SmartTipsSubCategory = lazy(() => import("@/pages/SmartTipsSubCategory"));
 const SmartTipDetail = lazy(() => import("@/pages/SmartTipDetail"));
-const RecipeSubCategory = lazy(() => import("@/pages/RecipeSubCategory"));
 const RecipesCategory = lazy(() => import("@/pages/categories/RecipesCategory"));
 const DailyQuotesPage = lazy(() => import("@/pages/DailyQuotesPage"));
 const CategoryIndex = lazy(() => import("@/pages/CategoryIndex"));
@@ -85,9 +84,7 @@ export default function App() {
               <Route path="/recipes" element={<RecipesCategory />} />
               {/* More specific: cuisine recipe detail */}
               <Route path="/recipes/:cuisine/:recipe" element={<RecipeDetailPage />} />
-              {/* Cuisine list page should precede the generic subcategory route to avoid conflicts */}
               <Route path="/recipes/:cuisine" element={<RecipeCuisinePage />} />
-              <Route path="/recipes/:categorySlug" element={<RecipeSubCategory />} />
 
               {/* Daily Quotes */}
               <Route path="/daily-quotes" element={<DailyQuotesPage />} />
