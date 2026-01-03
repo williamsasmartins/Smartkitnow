@@ -6736,6 +6736,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/DpiPpiPixelsPrintDisplayCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tomato-and-basil-bruschetta",
+    title: "Tomato and Basil Bruschetta",
+    category: "italian",
+    subcategory: "starters-small-plates",
+    description: "Toasted bread topped with fresh tomatoes, basil, garlic, and olive oil.",
+    loader: () => import("@/components/calculators/Misc/TomatoAndBasilBruschettaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
