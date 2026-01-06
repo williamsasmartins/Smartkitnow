@@ -9,14 +9,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Activity, Timer, TrendingUp, Dumbbell, Trophy, Medal, Flag, Flame, Zap, Heart, Scale, Calculator, Info, RotateCcw, AlertTriangle, BookOpen, ExternalLink, Waves, Gauge } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
-function generateSeedOrder(numTeams) {
+function generateSeedOrder(numTeams: number): number[] {
   // Generates seeding order for single-elimination bracket using standard "snake" seeding
   // Works for any power of two bracket size
   // Algorithm: recursively pair seeds to balance bracket fairness
-  function helper(n) {
+  function helper(n: number): number[] {
     if (n === 1) return [1];
     const prev = helper(n / 2);
-    const result = [];
+    const result: number[] = [];
     for (const seed of prev) {
       result.push(seed);
       result.push(n + 1 - seed);
@@ -31,7 +31,7 @@ export default function TournamentBracketSeedingHelperCalculator() {
     numTeams: "",
     seedingMethod: "standard",
   });
-  const handleInputChange = useCallback((name, value) => {
+  const handleInputChange = useCallback((name: "numTeams" | "seedingMethod", value: string) => {
     setInputs((prev) => ({ ...prev, [name]: value }));
   }, []);
 
@@ -59,7 +59,7 @@ export default function TournamentBracketSeedingHelperCalculator() {
     }
 
     // Generate seed order based on method
-    let seedOrder = [];
+    let seedOrder: number[] = [];
     if (inputs.seedingMethod === "standard") {
       seedOrder = generateSeedOrder(numTeams);
     } else {
@@ -68,7 +68,7 @@ export default function TournamentBracketSeedingHelperCalculator() {
     }
 
     // Format output as string with pairs
-    const pairs = [];
+    const pairs: string[] = [];
     for (let i = 0; i < seedOrder.length; i += 2) {
       pairs.push(`Seed ${seedOrder[i]} vs Seed ${seedOrder[i + 1]}`);
     }
