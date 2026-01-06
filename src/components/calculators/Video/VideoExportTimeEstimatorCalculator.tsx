@@ -57,7 +57,7 @@ export default function VideoExportTimeEstimatorCalculator() {
     const seconds = Math.round(totalSeconds % 60);
 
     // Format result string
-    const timeParts = [];
+    const timeParts: string[] = [];
     if (hours > 0) timeParts.push(`${hours}h`);
     if (minutes > 0) timeParts.push(`${minutes}m`);
     if (seconds > 0 || timeParts.length === 0) timeParts.push(`${seconds}s`);

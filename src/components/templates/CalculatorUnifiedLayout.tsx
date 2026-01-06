@@ -246,12 +246,7 @@ export default function CalculatorUnifiedLayout({
           </div>
 
           <div className="mt-8" role="note" aria-label="Important notice">
-            <LegalDisclaimer
-              kind="financial"
-              locale="en"
-              note="Smart Kit Now is not responsible for actions taken based on these estimates."
-              className="rounded-2xl border border-gray-200 bg-white/5 p-4 dark:border-gray-800"
-            />
+            <LegalDisclaimer />
           </div>
 
           <div className="mt-4 grid grid-cols-12 gap-4 skn-eqgrid">

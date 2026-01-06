@@ -203,11 +203,10 @@ export default function VideoDataRateCalculator() {
         <div className="space-y-2 md:col-span-2">
           <Label htmlFor="sizeUnit">Output Size Unit</Label>
           <Select
-            id="sizeUnit"
             value={inputs.sizeUnit}
             onValueChange={(value) => handleInputChange("sizeUnit", value)}
           >
-            <SelectTrigger className="w-24">
+            <SelectTrigger id="sizeUnit" className="w-24">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

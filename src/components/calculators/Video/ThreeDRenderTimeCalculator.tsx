@@ -46,7 +46,7 @@ export default function ThreeDRenderTimeCalculator() { // <--- A CORREÇÃO EST�
     const seconds = Math.round(totalSeconds % 60);
 
     // Format result string
-    const timeParts = [];
+    const timeParts: string[] = [];
     if (hours > 0) timeParts.push(`${hours}h`);
     if (minutes > 0) timeParts.push(`${minutes}m`);
     timeParts.push(`${seconds}s`);

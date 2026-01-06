@@ -13,7 +13,7 @@ function formatTime(seconds: number) {
   const hrs = Math.floor(seconds / 3600);
   const mins = Math.floor((seconds % 3600) / 60);
   const secs = Math.round(seconds % 60);
-  const parts = [];
+  const parts: string[] = [];
   if (hrs) parts.push(`${hrs}h`);
   if (mins) parts.push(`${mins}m`);
   if (secs || parts.length === 0) parts.push(`${secs}s`);

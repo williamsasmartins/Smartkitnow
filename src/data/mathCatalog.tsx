@@ -2,7 +2,6 @@
 import React from "react";
 import {
   Calculator,
-  BezierCurve,
   Shapes,
   Sigma,
   Binary,
@@ -69,7 +68,7 @@ export const MATH_SUBCATS: MathSubcat[] = [
   {
     slug: "fractions-ratios",
     title: "Fractions & Ratios",
-    icon: <BezierCurve className="h-5 w-5" />,
+    icon: <Divide className="h-5 w-5" />,
     colorBg: "rgba(60,131,246,0.16)",
     colorFg: "#3c83f6",
     groups: [

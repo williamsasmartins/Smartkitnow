@@ -133,13 +133,19 @@ function formatTimecode(tc: { hh: number; mm: number; ss: number; ff: number }) 
 }
 
 export default function DropFrameTimecodeConverterCalculator() {
-  const [inputs, setInputs] = useState({
+  type Inputs = {
+    timecode: string;
+    fps: string;
+    convertToFrames: boolean;
+  };
+
+  const [inputs, setInputs] = useState<Inputs>({
     timecode: "",
     fps: "29.97",
     convertToFrames: true,
   });
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = <K extends keyof Inputs>(field: K, value: Inputs[K]) => {
     setInputs((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -324,9 +330,8 @@ export default function DropFrameTimecodeConverterCalculator() {
           <Select
             value={inputs.fps}
             onValueChange={(value) => handleInputChange("fps", value)}
-            id="fpsSelect"
           >
-            <SelectTrigger>
+            <SelectTrigger id="fpsSelect">
               <SelectValue placeholder="Select FPS" />
             </SelectTrigger>
             <SelectContent>

@@ -1,5 +1,5 @@
 // Registry for category: financial
-import type { CalculatorEntry } from "../../calculatorRegistry";
+import type { CalculatorEntry } from "../calculatorRegistry";
 
 export const registry: CalculatorEntry[] = [
   {
@@ -8,7 +8,7 @@ export const registry: CalculatorEntry[] = [
     category: "financial",
     subcategory: "loans",
     description: "Calculate monthly auto loan payments based on car price, interest rate, and loan term.",
-    loader: () => import("@/components/calculators/Financial/TestAutoLoanCalculatorCalculator"),
+    loader: () => import("@/components/calculators/Financial/AutoLoanCalculator"),
     urlStyle: "flat"
   },
 ];
