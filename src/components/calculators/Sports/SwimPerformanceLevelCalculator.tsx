@@ -91,14 +91,32 @@ const swimStandards = {
   },
 };
 
-function getAgeGroup(age) {
+type SwimGender = "male" | "female";
+
+type SwimPerformanceResult =
+  | { error: string }
+  | {
+      value: string;
+      color: string;
+      time: string;
+      ageGroup: string;
+      gender: SwimGender;
+      note: string;
+      formulaUsed: string;
+    };
+
+function getAgeGroup(age: number): string | null {
   for (const group of ageGroups) {
     if (age >= group.min && age <= group.max) return group.label;
   }
   return null;
 }
 
-function getPerformanceLevel(gender, ageGroup, time) {
+function getPerformanceLevel(
+  gender: SwimGender,
+  ageGroup: string,
+  time: number
+): { level: string; color: string } | null {
   if (!swimStandards[gender] || !swimStandards[gender][ageGroup]) return null;
   const standards = swimStandards[gender][ageGroup];
   if (time <= standards.A) return { level: "National A", color: "text-green-700" };
@@ -115,7 +133,7 @@ export default function SwimPerformanceLevelCalculator() {
     timeMinutes: "",
     timeSeconds: "",
   });
-  const [calculated, setCalculated] = useState(null);
+  const [calculated, setCalculated] = useState<SwimPerformanceResult | null>(null);
 
   const handleInputChange = useCallback((name, value) => {
     setInputs((prev) => ({ ...prev, [name]: value }));
@@ -123,7 +141,7 @@ export default function SwimPerformanceLevelCalculator() {
 
   const handleCalculate = useCallback(() => {
     const age = Number(inputs.age);
-    const gender = inputs.gender;
+    const gender = inputs.gender as SwimGender;
     const min = Number(inputs.timeMinutes);
     const sec = Number(inputs.timeSeconds);
 
@@ -276,7 +294,7 @@ export default function SwimPerformanceLevelCalculator() {
       {calculated && (
         <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-950 border-blue-200 shadow-lg">
           <CardContent className="p-8 text-center">
-            {calculated.error ? (
+            {"error" in calculated ? (
               <p className="text-red-700 dark:text-red-400 font-semibold text-lg">{calculated.error}</p>
             ) : (
               <>

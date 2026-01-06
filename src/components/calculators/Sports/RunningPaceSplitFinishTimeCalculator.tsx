@@ -170,7 +170,7 @@ export default function RunningPaceSplitFinishTimeCalculator() {
     let value = "";
     let label = "";
     let subtext = "";
-    let warning = null;
+    let warning: string | null = null;
     let formulaUsed = "";
 
     if (hasDistance && hasPace && !hasFinishTime) {

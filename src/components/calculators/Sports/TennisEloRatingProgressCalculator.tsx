@@ -159,9 +159,8 @@ export default function TennisEloRatingProgressCalculator() {
         <Select
           value={inputs.matchResult}
           onValueChange={(v) => handleInputChange("matchResult", v)}
-          id="matchResult"
         >
-          <SelectTrigger>
+          <SelectTrigger id="matchResult">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -177,16 +176,15 @@ export default function TennisEloRatingProgressCalculator() {
           K-Factor <Scale className="w-4 h-4 text-green-600" />
         </Label>
         <Select
-          value={inputs.kFactor}
+          value={String(inputs.kFactor)}
           onValueChange={(v) => handleInputChange("kFactor", Number(v))}
-          id="kFactor"
         >
-          <SelectTrigger>
+          <SelectTrigger id="kFactor">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
             {K_FACTOR_OPTIONS.map(({ label, value }) => (
-              <SelectItem key={value} value={value}>
+              <SelectItem key={value} value={String(value)}>
                 {label}
               </SelectItem>
             ))}

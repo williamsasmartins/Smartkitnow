@@ -9,6 +9,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Activity, Timer, TrendingUp, Dumbbell, Trophy, Medal, Flag, Flame, Zap, Heart, Scale, Calculator, Info, RotateCcw, AlertTriangle, BookOpen, ExternalLink, Waves, Gauge } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+type BracketSeedingResults = {
+  value: string | null;
+  label: string | null;
+  subtext: string | null;
+  warning: string | null;
+  formulaUsed: string | null;
+};
+
 function generateSeedOrder(numTeams: number): number[] {
   // Generates seeding order for single-elimination bracket using standard "snake" seeding
   // Works for any power of two bracket size
@@ -35,7 +43,7 @@ export default function TournamentBracketSeedingHelperCalculator() {
     setInputs((prev) => ({ ...prev, [name]: value }));
   }, []);
 
-  const results = useMemo(() => {
+  const results = useMemo<BracketSeedingResults>(() => {
     const numTeams = parseInt(inputs.numTeams, 10);
     if (!numTeams || numTeams < 2) {
       return {
@@ -134,10 +142,9 @@ export default function TournamentBracketSeedingHelperCalculator() {
         <Select
           value={inputs.seedingMethod}
           onValueChange={(v) => handleInputChange("seedingMethod", v)}
-          id="seedingMethod"
           aria-label="Select seeding method"
         >
-          <SelectTrigger>
+          <SelectTrigger id="seedingMethod">
             <SelectValue placeholder="Select seeding method" />
           </SelectTrigger>
           <SelectContent>

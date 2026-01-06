@@ -53,6 +53,17 @@ function secondsToTimeString(seconds: number) {
   return min + ":" + (sec < 10 ? "0" : "") + sec.toFixed(2);
 }
 
+type SwimIntervalPaceResult =
+  | { error: string }
+  | {
+      pacePer100m: number;
+      totalIntervalTime: number;
+      totalSessionTime: number;
+      pacePer100mStr: string;
+      totalIntervalTimeStr: string;
+      totalSessionTimeStr: string;
+    };
+
 export default function SwimIntervalPaceCalculator() {
   const [inputs, setInputs] = useState({
     distance: "100",
@@ -60,7 +71,7 @@ export default function SwimIntervalPaceCalculator() {
     restTime: "",
     intervals: "",
   });
-  const [calculated, setCalculated] = useState(null);
+  const [calculated, setCalculated] = useState<SwimIntervalPaceResult | null>(null);
 
   const handleInputChange = useCallback((name, value) => {
     setInputs((prev) => ({ ...prev, [name]: value }));
@@ -107,7 +118,6 @@ export default function SwimIntervalPaceCalculator() {
       pacePer100mStr: secondsToTimeString(pacePer100m),
       totalIntervalTimeStr: secondsToTimeString(totalIntervalTime),
       totalSessionTimeStr: secondsToTimeString(totalSessionTime),
-      error: null,
     });
   }, [inputs]);
 
@@ -232,7 +242,7 @@ export default function SwimIntervalPaceCalculator() {
           {calculated && (
             <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-950 border-blue-200 shadow-lg mt-6">
               <CardContent className="p-8 text-center">
-                {calculated.error ? (
+                {"error" in calculated ? (
                   <p className="text-red-600 font-semibold text-lg">{calculated.error}</p>
                 ) : (
                   <>

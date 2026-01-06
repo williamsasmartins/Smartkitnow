@@ -48,7 +48,9 @@ const WILKS_COEFFICIENTS = {
   },
 };
 
-function calculateWilksCoefficient(gender, bodyweightKg) {
+type WilksGender = keyof typeof WILKS_COEFFICIENTS;
+
+function calculateWilksCoefficient(gender: WilksGender, bodyweightKg: number): number | null {
   const coeffs = WILKS_COEFFICIENTS[gender];
   if (!coeffs || bodyweightKg <= 0) return null;
   const { a, b, c, d, e, f } = coeffs;
@@ -65,15 +67,19 @@ function calculateWilksCoefficient(gender, bodyweightKg) {
 }
 
 export default function WilksCoefficientCalculator() {
-  const [inputs, setInputs] = useState({
+  const [inputs, setInputs] = useState<{
+    gender: WilksGender;
+    bodyweight: "",
+    totalLifted: "",
+  }>({
     gender: "male",
     bodyweight: "",
     totalLifted: "",
   });
-  const [calculated, setCalculated] = useState(null);
-  const [warning, setWarning] = useState(null);
+  const [calculated, setCalculated] = useState<{ wilksCoeff: string; wilksScore: string } | null>(null);
+  const [warning, setWarning] = useState<string | null>(null);
 
-  const handleInputChange = useCallback((name, value) => {
+  const handleInputChange = useCallback((name: "gender" | "bodyweight" | "totalLifted", value: string) => {
     setInputs((prev) => ({ ...prev, [name]: value }));
     setCalculated(null);
     setWarning(null);
@@ -150,9 +156,8 @@ export default function WilksCoefficientCalculator() {
             <Select
               value={inputs.gender}
               onValueChange={(v) => handleInputChange("gender", v)}
-              id="gender"
             >
-              <SelectTrigger>
+              <SelectTrigger id="gender">
                 <SelectValue placeholder="Select gender" />
               </SelectTrigger>
               <SelectContent>
