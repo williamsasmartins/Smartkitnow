@@ -70,7 +70,7 @@ export default function DstChangeCheckerCalculator() {
       let low = start.getTime();
       let high = end.getTime();
       let mid = 0;
-      let changeDate = null;
+      let changeDate: Date | null = null;
 
       while (low <= high) {
         mid = Math.floor((low + high) / 2);

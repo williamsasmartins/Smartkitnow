@@ -65,7 +65,7 @@ export default function SmallMammalExerciseTimePlannerCalculator() {
     runTime = Math.round(runTime);
 
     // Warning if age is very young or very old (over 84 months = 7 years)
-    let warning = null;
+    let warning: string | null = null;
     if (age < 2) {
       warning =
         "Very young animals require supervised exercise to prevent injury. Consult your veterinarian for tailored advice.";

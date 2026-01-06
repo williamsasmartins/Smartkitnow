@@ -55,9 +55,9 @@ export default function SeniorCatCareReadinessChecklistCalculator() {
       };
     }
 
-    const totalScore = scores.reduce((a, b) => a + b, 0);
+    const totalScore = scores.filter((v): v is number => v !== null).reduce((a, b) => a + b, 0);
 
-    let warning = null;
+    let warning: string | null = null;
     if (totalScore < 5) {
       warning =
         "Low readiness score indicates your senior cat may need additional support or veterinary evaluation.";

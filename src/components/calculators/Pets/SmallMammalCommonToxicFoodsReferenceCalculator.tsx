@@ -63,7 +63,7 @@ export default function SmallMammalCommonToxicFoodsReferenceCalculator() {
 
     // Risk assessment
     let riskLevel = "Low Risk";
-    let warning = null;
+    let warning: string | null = null;
 
     if (doseMgPerKg >= toxicThreshold) {
       riskLevel = "High Risk";

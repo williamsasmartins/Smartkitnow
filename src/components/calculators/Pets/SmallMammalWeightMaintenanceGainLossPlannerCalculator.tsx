@@ -188,11 +188,10 @@ export default function SmallMammalWeightMaintenanceGainLossPlannerCalculator() 
             Activity Level
           </Label>
           <Select
-            id="activityLevel"
             value={inputs.activityLevel}
             onValueChange={(val) => setInputs((prev) => ({ ...prev, activityLevel: val }))}
           >
-            <SelectTrigger className="w-full">
+            <SelectTrigger id="activityLevel" className="w-full">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

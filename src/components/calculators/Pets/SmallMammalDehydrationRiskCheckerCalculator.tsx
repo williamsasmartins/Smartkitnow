@@ -77,7 +77,7 @@ export default function SmallMammalDehydrationRiskCheckerCalculator() {
 
     // Interpretation
     let label = "";
-    let warning = null;
+    let warning: string | null = null;
     if (hydrationScore < 10) {
       label = "Low risk of dehydration";
     } else if (hydrationScore < 20) {

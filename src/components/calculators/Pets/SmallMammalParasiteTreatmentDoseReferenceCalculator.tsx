@@ -45,7 +45,7 @@ export default function SmallMammalParasiteTreatmentDoseReferenceCalculator() {
     const totalDoseMg = weightKg * doseRateNum;
 
     // Warning if dose is unusually high or low (arbitrary thresholds)
-    let warning = null;
+    let warning: string | null = null;
     if (totalDoseMg > 5000) {
       warning =
         "Calculated dose is very high. Please verify weight and dose rate inputs.";

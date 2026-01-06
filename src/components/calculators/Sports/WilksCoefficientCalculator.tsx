@@ -423,8 +423,8 @@ export default function WilksCoefficientCalculator() {
     "Wilks Coefficient = 500 / (a + b×W + c×W² + d×W³ + e×W⁴ + f×W⁵), where W = bodyweight in kg and coefficients a-f differ by gender.";
 
   const formulaVariables = [
-    { variable: "W", description: "Bodyweight in kilograms" },
-    { variable: "a, b, c, d, e, f", description: "Gender-specific Wilks coefficients" },
+    { symbol: "W", description: "Bodyweight in kilograms" },
+    { symbol: "a, b, c, d, e, f", description: "Gender-specific Wilks coefficients" },
   ];
 
   const example = {

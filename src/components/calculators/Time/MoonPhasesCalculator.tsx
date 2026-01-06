@@ -257,9 +257,8 @@ export default function MoonPhasesCalculator() {
           <Select
             value={inputs.hemisphere}
             onValueChange={(value) => handleInputChange("hemisphere", value)}
-            id="hemisphere-select"
           >
-            <SelectTrigger>
+            <SelectTrigger id="hemisphere-select">
               <SelectValue placeholder="Select Hemisphere" />
             </SelectTrigger>
             <SelectContent>

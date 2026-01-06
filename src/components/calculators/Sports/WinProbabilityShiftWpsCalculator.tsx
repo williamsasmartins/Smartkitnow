@@ -47,7 +47,15 @@ export default function WinProbabilityShiftWpsCalculator() {
     setInputs((prev) => ({ ...prev, [name]: value }));
   }, []);
 
-  const results = useMemo(() => {
+  type Results = {
+    value: string | null;
+    label: string | null;
+    subtext: string | null;
+    warning: string | null;
+    formulaUsed: string | null;
+  };
+
+  const results = useMemo<Results>(() => {
     const currentWinProb = parseFloat(inputs.currentWinProb);
     const playImpact = parseFloat(inputs.playImpact);
     const timeRemaining = parseFloat(inputs.timeRemaining);
@@ -201,9 +209,8 @@ export default function WinProbabilityShiftWpsCalculator() {
           <Select
             value={inputs.possession}
             onValueChange={(v) => handleInputChange("possession", v)}
-            id="possession"
           >
-            <SelectTrigger className="w-full">
+            <SelectTrigger id="possession" className="w-full">
               <SelectValue placeholder="Select possession" />
             </SelectTrigger>
             <SelectContent>

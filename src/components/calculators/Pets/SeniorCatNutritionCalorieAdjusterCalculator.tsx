@@ -74,7 +74,7 @@ export default function SeniorCatNutritionCalorieAdjusterCalculator() {
     const calories = Math.round(mer);
 
     // Warning for unusual weights
-    let warning = null;
+    let warning: string | null = null;
     if (weightKg < 2) {
       warning =
         "Weight is below typical adult cat range; consult your veterinarian for precise needs.";
@@ -179,11 +179,10 @@ export default function SeniorCatNutritionCalorieAdjusterCalculator() {
           Activity Level
         </Label>
         <Select
-          id="activity"
           value={inputs.activity}
           onValueChange={(val) => handleInputChange("activity", val)}
         >
-          <SelectTrigger className="w-[220px]">
+          <SelectTrigger id="activity" className="w-[220px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

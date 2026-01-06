@@ -101,11 +101,12 @@ export default function WorldClockCalculator() {
         details: `Base time (${baseCityLabel}): ${baseTimeFormatted}`,
         feedback: "All times are shown in 24-hour format (HH:mm:ss).",
       };
-    } catch (error) {
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
       return {
         primary: "--:--:--",
         secondary: "Error calculating time",
-        details: error.message,
+        details: message,
         feedback: "",
       };
     }
@@ -192,11 +193,10 @@ export default function WorldClockCalculator() {
         <div className="space-y-2">
           <Label htmlFor="baseCity">Base City / Time Zone</Label>
           <Select
-            id="baseCity"
             value={inputs.baseCity}
             onValueChange={(value) => handleInputChange("baseCity", value)}
           >
-            <SelectTrigger>
+            <SelectTrigger id="baseCity">
               <SelectValue placeholder="Select base city" />
             </SelectTrigger>
             <SelectContent>
@@ -228,11 +228,10 @@ export default function WorldClockCalculator() {
         <div className="space-y-2">
           <Label htmlFor="targetCity">Target City / Time Zone</Label>
           <Select
-            id="targetCity"
             value={inputs.targetCity}
             onValueChange={(value) => handleInputChange("targetCity", value)}
           >
-            <SelectTrigger>
+            <SelectTrigger id="targetCity">
               <SelectValue placeholder="Select target city" />
             </SelectTrigger>
             <SelectContent>

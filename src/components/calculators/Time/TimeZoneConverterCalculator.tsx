@@ -144,7 +144,9 @@ export default function TimeZoneConverterCalculator() {
         });
         const local = dtf.format(date);
         // Parse local time parts
-        const [m, d, y, hh, mm, ss] = local.match(/\d+/g).map(Number);
+        const matches = local.match(/\d+/g);
+        if (!matches || matches.length < 6) return 0;
+        const [m, d, y, hh, mm, ss] = matches.map(Number);
         // Create a date in local time zone with those parts
         const asLocal = new Date(y, m - 1, d, hh, mm, ss);
         // Offset in minutes = (asLocal - date) / 60000

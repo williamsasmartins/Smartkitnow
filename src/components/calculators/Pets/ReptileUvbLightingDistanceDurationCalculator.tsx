@@ -56,7 +56,7 @@ export default function ReptileUvbLightingDistanceDurationCalculator() {
     if (suggestedDuration > maxDuration) suggestedDuration = maxDuration;
 
     // Warning if maxDistance is too far for effective UVB (generally > 12 inches or 30 cm)
-    let warning = null;
+    let warning: string | null = null;
     if (maxDistance > 12 && uvbIntensity < recommendedIntensity) {
       warning =
         "The distance is quite far and UVB intensity is below recommended levels. Consider moving the light closer or increasing UVB output.";
@@ -65,7 +65,7 @@ export default function ReptileUvbLightingDistanceDurationCalculator() {
     return {
       value: suggestedDuration.toFixed(2),
       label: "Suggested UVB Exposure Duration (hours/day)",
-      subtext: `Based on UVB intensity of ${uvbIntensity} µW/cm² and recommended ${recommendedIntensity} µW/cm² at ${maxDistance} ${inputs.unit === "metric" ? "cm" : "inches"}.`,
+      subtext: `Based on UVB intensity of ${uvbIntensity} µW/cm² and recommended ${recommendedIntensity} µW/cm² at distance ${maxDistance}.`,
       warning,
     };
   }, [inputs]);

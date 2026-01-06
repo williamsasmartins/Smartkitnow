@@ -125,11 +125,10 @@ export default function SmallMammalDailyCalorieNeedsCalculator() {
           Select Species
         </Label>
         <Select
-          id="species"
           value={inputs.species}
           onValueChange={(value) => setInputs((prev) => ({ ...prev, species: value }))}
         >
-          <SelectTrigger>
+          <SelectTrigger id="species">
             <SelectValue placeholder="Choose species" />
           </SelectTrigger>
           <SelectContent>

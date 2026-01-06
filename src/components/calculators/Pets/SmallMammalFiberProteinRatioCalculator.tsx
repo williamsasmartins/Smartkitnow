@@ -44,7 +44,7 @@ export default function SmallMammalFiberProteinRatioCalculator() {
 
     // Contextual interpretation based on typical fiber:protein ratios for small mammals
     let subtext = "";
-    let warning = null;
+    let warning: string | null = null;
 
     if (ratio < 0.3) {
       subtext =

@@ -224,14 +224,13 @@ export default function StopwatchSplitTimesCalculator() {
           <Label htmlFor="splits">
             Split Times (one per line, hh:mm:ss.ms)
           </Label>
-          <Input
+          <textarea
             id="splits"
-            as="textarea"
             rows={6}
             placeholder={"00:00:10.000\n00:00:25.500\n00:00:40.750"}
             value={inputs.splits}
             onChange={(e) => handleInputChange("splits", e.target.value)}
-            className="font-mono"
+            className="flex h-auto w-full rounded-md border border-input bg-background px-3 py-2 text-sm font-mono ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           />
         </div>
       </div>

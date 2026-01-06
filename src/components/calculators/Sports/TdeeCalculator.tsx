@@ -67,9 +67,9 @@ export default function TdeeCalculator() {
     inputs.weight &&
     inputs.height &&
     inputs.activityLevel &&
-    !isNaN(inputs.age) &&
-    !isNaN(inputs.weight) &&
-    !isNaN(inputs.height);
+    !Number.isNaN(Number(inputs.age)) &&
+    !Number.isNaN(Number(inputs.weight)) &&
+    !Number.isNaN(Number(inputs.height));
 
   const results = useMemo(() => {
     if (!canCalculate) {
