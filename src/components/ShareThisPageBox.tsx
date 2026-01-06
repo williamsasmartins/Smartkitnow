@@ -60,10 +60,10 @@ export default function ShareThisPageBox() {
       <div className="mb-5">
         <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
           <Share2 className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-          Share This Calculator
+          Share This Page
         </h3>
         <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-          Help others by sharing this calculator
+          Help others by sharing this page
         </p>
       </div>
 

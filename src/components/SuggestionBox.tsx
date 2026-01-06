@@ -40,7 +40,7 @@ export default function SuggestionBox() {
       data.append("message", suggestion.trim());
       // Contexto adicional
       if (page) data.append("page", page);
-      data.append("_subject", "New calculator suggestion");
+      data.append("_subject", "New Smart Kit Now suggestion");
 
       const res = await fetch("https://formspree.io/f/xanpypnb", {
         method: "POST",
