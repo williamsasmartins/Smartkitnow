@@ -9,6 +9,17 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Activity, Timer, TrendingUp, Dumbbell, Trophy, Medal, Flag, Flame, Zap, Heart, Scale, Calculator, Info, RotateCcw, AlertTriangle, BookOpen, ExternalLink, Waves, Gauge } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+type PlankProgressionRow = { week: number; holdTime: number };
+
+type PlankProgressionResults = {
+  value: string | null;
+  label: string | null;
+  subtext: string | null;
+  warning: string | null;
+  formulaUsed: string;
+  progressionTable: PlankProgressionRow[] | null;
+};
+
 export default function PlankHoldProgressionCalculator() {
   /**
    * Inputs:
@@ -25,14 +36,17 @@ export default function PlankHoldProgressionCalculator() {
     progressionRate: "5",
   });
 
-  const handleInputChange = useCallback((name, value) => {
+  const handleInputChange = useCallback(
+    (name: "currentHold" | "targetHold" | "sessionsPerWeek" | "progressionRate", value: string) => {
     // Only allow numbers and decimals for inputs except sessionsPerWeek (integer)
     if (name === "sessionsPerWeek") {
       if (/^\d*$/.test(value)) setInputs((p) => ({ ...p, [name]: value }));
     } else {
       if (/^\d*\.?\d*$/.test(value)) setInputs((p) => ({ ...p, [name]: value }));
     }
-  }, []);
+    },
+    []
+  );
 
   /**
    * Calculation logic:
@@ -44,7 +58,7 @@ export default function PlankHoldProgressionCalculator() {
    * We also provide a progression table for each week showing expected hold time.
    */
 
-  const results = useMemo(() => {
+  const results = useMemo<PlankProgressionResults>(() => {
     const current = parseFloat(inputs.currentHold);
     const target = parseFloat(inputs.targetHold);
     const sessionsPerWeek = parseInt(inputs.sessionsPerWeek);
@@ -84,7 +98,7 @@ export default function PlankHoldProgressionCalculator() {
     // Generate progression table: weekly expected max hold time
     // For each week, calculate hold time after sessionsPerWeek sessions
     // holdTime_week = current * (1 + progressionRate/100)^(sessionsPerWeek * week)
-    const progressionTable = [];
+    const progressionTable: PlankProgressionRow[] = [];
     for (let w = 1; w <= weeksRounded; w++) {
       const holdTime = current * Math.pow(1 + progressionRate / 100, sessionsPerWeek * w);
       progressionTable.push({

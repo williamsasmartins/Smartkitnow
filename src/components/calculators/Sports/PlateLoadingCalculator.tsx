@@ -185,9 +185,8 @@ export default function PlateLoadingCalculator() {
               <Select
                 value={inputs.unit}
                 onValueChange={(v) => handleInputChange("unit", v)}
-                id="unit"
               >
-                <SelectTrigger>
+                <SelectTrigger id="unit">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
