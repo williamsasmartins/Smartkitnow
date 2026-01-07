@@ -6786,6 +6786,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/AntipastoPlatterCuredMeatsCheeseOlivesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "garlic-and-herb-crostini",
+    title: "Garlic and Herb Crostini",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Crispy toasted bread rubbed with garlic and topped with fresh herbs.",
+    loader: () => import("@/components/calculators/Misc/GarlicAndHerbCrostiniCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
