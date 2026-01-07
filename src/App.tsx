@@ -7,7 +7,6 @@ import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import BackToTopButton from "@/components/BackToTopButton";
-const GlowCardDemo = lazy(() => import("@/pages/GlowCardDemo"));
 const FinancialCategory = lazy(() => import("@/pages/categories/FinancialCategory"));
 const HealthCategory = lazy(() => import("@/pages/categories/HealthCategory"));
 const CookingCategory = lazy(() => import("@/pages/categories/CookingCategory"));
@@ -66,7 +65,6 @@ export default function App() {
             <Routes>
               {/* Home & institucionais */}
               <Route path="/" element={<Index />} />
-              <Route path="/glow-demo" element={<GlowCardDemo />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<ContactSuggestionPage />} />
               <Route path="/cookies" element={<Cookies />} />
