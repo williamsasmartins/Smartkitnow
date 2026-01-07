@@ -15,6 +15,168 @@ import { Separator } from "@/components/ui/separator";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Heart, Printer, Timer, ChefHat } from "lucide-react";
 
+type PollinationsImageOptions = {
+  width: number;
+  height: number;
+  seed: number;
+  model?: string;
+  safe?: boolean;
+  enhance?: boolean;
+  nologo?: boolean;
+};
+
+type PollinationsCacheEntry = {
+  url: string;
+  status: "ok" | "error";
+  updatedAt: number;
+};
+
+const POLLINATIONS_CACHE_KEY = "skn:pollinations:image-cache:v1";
+const POLLINATIONS_OK_TTL_MS = 1000 * 60 * 60 * 24 * 30;
+const POLLINATIONS_ERROR_TTL_MS = 1000 * 60 * 60 * 6;
+
+function fnv1a32(input: string) {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < input.length; i++) {
+    h ^= input.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return h >>> 0;
+}
+
+function pollinationsImageUrl(prompt: string, opts: PollinationsImageOptions) {
+  const base = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}`;
+  const params = new URLSearchParams();
+  params.set("width", String(opts.width));
+  params.set("height", String(opts.height));
+  params.set("seed", String(opts.seed));
+  if (opts.model) params.set("model", opts.model);
+  if (opts.safe != null) params.set("safe", String(opts.safe));
+  if (opts.enhance != null) params.set("enhance", String(opts.enhance));
+  if (opts.nologo != null) params.set("nologo", String(opts.nologo));
+  return `${base}?${params.toString()}`;
+}
+
+function readPollinationsCache(): Record<string, PollinationsCacheEntry> {
+  try {
+    const raw = localStorage.getItem(POLLINATIONS_CACHE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return {};
+    return parsed as Record<string, PollinationsCacheEntry>;
+  } catch {
+    return {};
+  }
+}
+
+function writePollinationsCache(next: Record<string, PollinationsCacheEntry>) {
+  try {
+    localStorage.setItem(POLLINATIONS_CACHE_KEY, JSON.stringify(next));
+  } catch {
+    return;
+  }
+}
+
+function getPollinationsCacheEntry(cacheId: string) {
+  const cache = readPollinationsCache();
+  const entry = cache[cacheId];
+  if (!entry) return null;
+  const ttl = entry.status === "ok" ? POLLINATIONS_OK_TTL_MS : POLLINATIONS_ERROR_TTL_MS;
+  if (Date.now() - entry.updatedAt > ttl) return null;
+  return entry;
+}
+
+function setPollinationsCacheEntry(cacheId: string, entry: PollinationsCacheEntry) {
+  const cache = readPollinationsCache();
+  cache[cacheId] = entry;
+  writePollinationsCache(cache);
+}
+
+function buildFoodPhotoPrompt(dish: string, cuisine: string) {
+  return [
+    `Ultra realistic food photography of ${dish}`,
+    `${cuisine} cuisine`,
+    "served on rustic ceramic plate or wooden board",
+    "natural daylight, shallow depth of field, 50mm lens",
+    "high detail, appetizing, vibrant colors",
+    "no text, no watermark, no logo, no extra objects",
+  ].join(", ");
+}
+
+function AiDishImage({
+  cacheId,
+  dish,
+  cuisine,
+  alt,
+  width,
+  height,
+  className,
+  loading,
+  fallbackSrc,
+}: {
+  cacheId: string;
+  dish: string;
+  cuisine: string;
+  alt: string;
+  width: number;
+  height: number;
+  className?: string;
+  loading?: "eager" | "lazy";
+  fallbackSrc?: string;
+}) {
+  const prompt = useMemo(() => buildFoodPhotoPrompt(dish, cuisine), [dish, cuisine]);
+  const seed = useMemo(() => fnv1a32(cacheId), [cacheId]);
+  const url = useMemo(
+    () =>
+      pollinationsImageUrl(prompt, {
+        width,
+        height,
+        seed,
+        model: "flux",
+        safe: true,
+        enhance: true,
+        nologo: true,
+      }),
+    [prompt, seed, width, height]
+  );
+
+  const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    const entry = getPollinationsCacheEntry(cacheId);
+    if (entry?.status === "error") setDisabled(true);
+  }, [cacheId]);
+
+  if (disabled && !fallbackSrc) {
+    return (
+      <div
+        className={["h-full w-full bg-muted", className].filter(Boolean).join(" ")}
+        role="img"
+        aria-label={alt}
+      />
+    );
+  }
+
+  const src = disabled ? fallbackSrc : url;
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      loading={loading}
+      decoding="async"
+      onLoad={() => {
+        if (!disabled) setPollinationsCacheEntry(cacheId, { url, status: "ok", updatedAt: Date.now() });
+      }}
+      onError={() => {
+        setPollinationsCacheEntry(cacheId, { url, status: "error", updatedAt: Date.now() });
+        setDisabled(true);
+      }}
+    />
+  );
+}
+
 export default function RecipeDetailPage() {
   const { cuisine, recipe } = useParams<{ cuisine: string; recipe: string }>();
   const c = cuisine ? getCuisine(cuisine) : undefined;
@@ -98,11 +260,58 @@ export default function RecipeDetailPage() {
 
   const faqJsonLd = useFaqJsonLd(faqs);
 
+  const bruschettaFallbackImage =
+    "https://images.unsplash.com/photo-1622896784083-cc051313dbb6?auto=format&fit=crop&w=1600&q=80";
+
+  const bruschettaHeroCacheId = "recipes:italian:tomato-and-basil-bruschetta:hero";
+  const bruschettaHeroPrompt = useMemo(
+    () => buildFoodPhotoPrompt("Tomato and Basil Bruschetta", "Italian"),
+    []
+  );
+  const bruschettaHeroUrl = useMemo(
+    () =>
+      pollinationsImageUrl(bruschettaHeroPrompt, {
+        width: 1600,
+        height: 900,
+        seed: fnv1a32(bruschettaHeroCacheId),
+        model: "flux",
+        safe: true,
+        enhance: true,
+        nologo: true,
+      }),
+    [bruschettaHeroPrompt]
+  );
+
+  const [bruschettaHeroSrc, setBruschettaHeroSrc] = useState(bruschettaFallbackImage);
+
+  useEffect(() => {
+    if (!isBruschetta) return;
+
+    const cached = getPollinationsCacheEntry(bruschettaHeroCacheId);
+    if (cached?.status === "error") return;
+    const targetUrl = cached?.status === "ok" ? cached.url : bruschettaHeroUrl;
+
+    const img = new Image();
+    img.decoding = "async";
+    img.src = targetUrl;
+    img.onload = () => {
+      setBruschettaHeroSrc(targetUrl);
+      setPollinationsCacheEntry(bruschettaHeroCacheId, { url: targetUrl, status: "ok", updatedAt: Date.now() });
+    };
+    img.onerror = () => {
+      setPollinationsCacheEntry(bruschettaHeroCacheId, { url: targetUrl, status: "error", updatedAt: Date.now() });
+    };
+
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [isBruschetta, bruschettaHeroUrl]);
+
   const recipeJsonLd = useMemo(() => {
     if (!isBruschetta) return null;
 
-    const image =
-      "https://images.unsplash.com/photo-1622896784083-cc051313dbb6?auto=format&fit=crop&w=1600&q=80";
+    const image = bruschettaHeroUrl;
 
     return {
       "@context": "https://schema.org",
@@ -160,7 +369,7 @@ export default function RecipeDetailPage() {
         sodiumContent: "320 mg",
       },
     };
-  }, [isBruschetta]);
+  }, [bruschettaHeroUrl, isBruschetta]);
 
   if (!c || !r) return <Navigate to="/recipes" replace />;
 
@@ -271,10 +480,11 @@ export default function RecipeDetailPage() {
                       <Card className="md:col-span-2 overflow-hidden">
                         <div className="aspect-[16/9] w-full bg-muted">
                           <img
-                            src="https://images.unsplash.com/photo-1622896784083-cc051313dbb6?auto=format&fit=crop&w=1600&q=80"
+                            src={bruschettaHeroSrc}
                             alt="Tomato and Basil Bruschetta"
                             className="h-full w-full object-cover"
                             loading="eager"
+                            decoding="async"
                           />
                         </div>
                       </Card>
@@ -616,6 +826,18 @@ export default function RecipeDetailPage() {
                       {related.map((rr) => (
                         <Link key={rr.slug} to={`/recipes/${c.key}/${rr.slug}`} className="group">
                           <Card className="h-full transition-colors group-hover:border-primary/50">
+                            <div className="aspect-[16/9] w-full bg-muted overflow-hidden">
+                              <AiDishImage
+                                cacheId={`recipes:${c.key}:${rr.slug}:card`}
+                                dish={rr.title}
+                                cuisine={c.name}
+                                alt={rr.title}
+                                width={1200}
+                                height={675}
+                                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                                loading="lazy"
+                              />
+                            </div>
                             <CardHeader className="pb-2">
                               <CardTitle className="text-base">{rr.title}</CardTitle>
                             </CardHeader>
