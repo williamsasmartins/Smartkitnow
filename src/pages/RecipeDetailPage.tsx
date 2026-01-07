@@ -225,6 +225,7 @@ function AiDishImage({
       decoding="async"
       onLoad={(e) => {
         if (disabled || isCoolingDown) return;
+        if (!src) return;
         const img = e.currentTarget;
         const naturalW = img.naturalWidth || 0;
         const naturalH = img.naturalHeight || 0;
