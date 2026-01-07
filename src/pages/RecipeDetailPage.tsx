@@ -289,40 +289,39 @@ export default function RecipeDetailPage() {
 
       <main className="mx-auto max-w-7xl px-4 pb-16 lg:pr-[65px]">
         <div className="grid gap-8 lg:grid-cols-12">
-            <header className="lg:col-span-9 py-6 pr-[15px]">
-              <nav aria-label="Breadcrumb" className="text-sm mb-2 text-muted-foreground">
-                <Link to="/" className="hover:underline">
-                  Home
-                </Link>
-                <span> &gt; </span>
-                <Link to="/recipes" className="hover:underline">
-                  Recipes
-                </Link>
-                <span> &gt; </span>
-                <Link to={`/recipes/${c.key}`} className="hover:underline">
-                  {c.name}
-                </Link>
-                <span> &gt; </span>
-                <span>{r.title}</span>
-              </nav>
-              <h1 className="text-3xl md:text-4xl font-semibold text-primary">{r.title}</h1>
-              <p className="mt-2 text-sm">
-                {c.name} —{" "}
-                <Link to={`/recipes/${c.key}`} className="text-primary hover:underline">
-                  see all {c.name} recipes
-                </Link>
-              </p>
-            </header>
-            <aside className="hidden lg:block lg:col-span-3">
-              <div className="sticky pr-[65px]" style={{ top: "var(--skn-rail-top)" }}>
-                <AdSidebarRight topOffset={0} />
-              </div>
-            </aside>
-            <div className="lg:col-span-9 pr-[15px]">
-              <div className="mt-6 space-y-6">
-                <ShareThisPageBox />
-                <SuggestionBox />
-              </div>
+          <header className="lg:col-span-9 py-6 pr-[15px]">
+            <nav aria-label="Breadcrumb" className="text-sm mb-2 text-muted-foreground">
+              <Link to="/" className="hover:underline">
+                Home
+              </Link>
+              <span> &gt; </span>
+              <Link to="/recipes" className="hover:underline">
+                Recipes
+              </Link>
+              <span> &gt; </span>
+              <Link to={`/recipes/${c.key}`} className="hover:underline">
+                {c.name}
+              </Link>
+              <span> &gt; </span>
+              <span>{r.title}</span>
+            </nav>
+            <h1 className="text-3xl md:text-4xl font-semibold text-primary">{r.title}</h1>
+            <p className="mt-2 text-sm">
+              {c.name} —{" "}
+              <Link to={`/recipes/${c.key}`} className="text-primary hover:underline">
+                see all {c.name} recipes
+              </Link>
+            </p>
+          </header>
+          <aside className="hidden lg:block lg:col-span-3">
+            <div className="sticky pr-[65px]" style={{ top: "var(--skn-rail-top)" }}>
+              <AdSidebarRight topOffset={0} />
+            </div>
+          </aside>
+          <div className="lg:col-span-9 pr-[15px]">
+            <div className="mt-6 space-y-6">
+              <ShareThisPageBox />
+              <SuggestionBox />
             </div>
           </div>
         </div>
