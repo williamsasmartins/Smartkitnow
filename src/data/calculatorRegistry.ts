@@ -6975,6 +6975,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LasagnaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "baked-ziti",
+    title: "Baked Ziti",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Tube pasta baked with tomato sauce, ricotta, and melted mozzarella.",
+    loader: () => import("@/components/calculators/Misc/BakedZitiCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
