@@ -6840,6 +6840,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ProsciuttoAndMelonCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "minestrone-soup",
+    title: "Minestrone Soup",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Hearty vegetable soup with beans, pasta, and seasonal greens in a tomato broth.",
+    loader: () => import("@/components/calculators/Misc/MinestroneSoupCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
