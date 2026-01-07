@@ -23,6 +23,7 @@ type PollinationsImageOptions = {
   safe?: boolean;
   enhance?: boolean;
   nologo?: boolean;
+  referrer?: string;
 };
 
 type PollinationsCacheEntry = {
@@ -33,7 +34,7 @@ type PollinationsCacheEntry = {
 
 const POLLINATIONS_CACHE_KEY = "skn:pollinations:image-cache:v1";
 const POLLINATIONS_OK_TTL_MS = 1000 * 60 * 60 * 24 * 30;
-const POLLINATIONS_ERROR_TTL_MS = 1000 * 60 * 60 * 6;
+const POLLINATIONS_ERROR_TTL_MS = 1000 * 60 * 30;
 
 function fnv1a32(input: string) {
   let h = 0x811c9dc5;
@@ -54,6 +55,7 @@ function pollinationsImageUrl(prompt: string, opts: PollinationsImageOptions) {
   if (opts.safe != null) params.set("safe", String(opts.safe));
   if (opts.enhance != null) params.set("enhance", String(opts.enhance));
   if (opts.nologo != null) params.set("nologo", String(opts.nologo));
+  if (opts.referrer) params.set("referrer", opts.referrer);
   return `${base}?${params.toString()}`;
 }
 
@@ -98,7 +100,7 @@ function buildFoodPhotoPrompt(dish: string, cuisine: string) {
     `${cuisine} cuisine`,
     "served on rustic ceramic plate or wooden board",
     "natural daylight, shallow depth of field, 50mm lens",
-    "high detail, appetizing, vibrant colors",
+    "high detail, appetizing, vibrant colors, professional food styling",
     "no text, no watermark, no logo, no extra objects",
   ].join(", ");
 }
@@ -126,21 +128,24 @@ function AiDishImage({
 }) {
   const prompt = useMemo(() => buildFoodPhotoPrompt(dish, cuisine), [dish, cuisine]);
   const seed = useMemo(() => fnv1a32(cacheId), [cacheId]);
-  const url = useMemo(
-    () =>
-      pollinationsImageUrl(prompt, {
-        width,
-        height,
-        seed,
-        model: "flux",
-        safe: true,
-        enhance: true,
-        nologo: true,
-      }),
-    [prompt, seed, width, height]
-  );
+  const urls = useMemo(() => {
+    const common: Omit<PollinationsImageOptions, "model"> = {
+      width,
+      height,
+      seed,
+      safe: true,
+      enhance: true,
+      nologo: true,
+      referrer: "smartkitnow.com",
+    };
+    return [
+      pollinationsImageUrl(prompt, { ...common, model: "flux" }),
+      pollinationsImageUrl(prompt, { ...common, model: "turbo" }),
+    ];
+  }, [prompt, seed, width, height]);
 
   const [disabled, setDisabled] = useState(false);
+  const [candidateIndex, setCandidateIndex] = useState(0);
 
   useEffect(() => {
     const entry = getPollinationsCacheEntry(cacheId);
@@ -157,7 +162,7 @@ function AiDishImage({
     );
   }
 
-  const src = disabled ? fallbackSrc : url;
+  const src = disabled ? fallbackSrc : urls[candidateIndex]!;
 
   return (
     <img
@@ -167,10 +172,14 @@ function AiDishImage({
       loading={loading}
       decoding="async"
       onLoad={() => {
-        if (!disabled) setPollinationsCacheEntry(cacheId, { url, status: "ok", updatedAt: Date.now() });
+        if (!disabled) setPollinationsCacheEntry(cacheId, { url: src, status: "ok", updatedAt: Date.now() });
       }}
       onError={() => {
-        setPollinationsCacheEntry(cacheId, { url, status: "error", updatedAt: Date.now() });
+        if (candidateIndex + 1 < urls.length) {
+          setCandidateIndex(candidateIndex + 1);
+          return;
+        }
+        setPollinationsCacheEntry(cacheId, { url: src, status: "error", updatedAt: Date.now() });
         setDisabled(true);
       }}
     />
@@ -268,19 +277,22 @@ export default function RecipeDetailPage() {
     () => buildFoodPhotoPrompt("Tomato and Basil Bruschetta", "Italian"),
     []
   );
-  const bruschettaHeroUrl = useMemo(
-    () =>
-      pollinationsImageUrl(bruschettaHeroPrompt, {
-        width: 1600,
-        height: 900,
-        seed: fnv1a32(bruschettaHeroCacheId),
-        model: "flux",
-        safe: true,
-        enhance: true,
-        nologo: true,
-      }),
-    [bruschettaHeroPrompt]
-  );
+  const bruschettaHeroUrls = useMemo(() => {
+    const seed = fnv1a32(bruschettaHeroCacheId);
+    const common: Omit<PollinationsImageOptions, "model"> = {
+      width: 1600,
+      height: 900,
+      seed,
+      safe: true,
+      enhance: true,
+      nologo: true,
+      referrer: "smartkitnow.com",
+    };
+    return [
+      pollinationsImageUrl(bruschettaHeroPrompt, { ...common, model: "flux" }),
+      pollinationsImageUrl(bruschettaHeroPrompt, { ...common, model: "turbo" }),
+    ];
+  }, [bruschettaHeroPrompt]);
 
   const [bruschettaHeroSrc, setBruschettaHeroSrc] = useState(bruschettaFallbackImage);
 
@@ -289,29 +301,53 @@ export default function RecipeDetailPage() {
 
     const cached = getPollinationsCacheEntry(bruschettaHeroCacheId);
     if (cached?.status === "error") return;
-    const targetUrl = cached?.status === "ok" ? cached.url : bruschettaHeroUrl;
+    if (cached?.status === "ok") {
+      setBruschettaHeroSrc(cached.url);
+      return;
+    }
 
-    const img = new Image();
-    img.decoding = "async";
-    img.src = targetUrl;
-    img.onload = () => {
-      setBruschettaHeroSrc(targetUrl);
-      setPollinationsCacheEntry(bruschettaHeroCacheId, { url: targetUrl, status: "ok", updatedAt: Date.now() });
+    let cancelled = false;
+    let attempt = 0;
+    let index = 0;
+
+    const load = (url: string) => {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = url;
+      img.onload = () => {
+        if (cancelled) return;
+        setBruschettaHeroSrc(url);
+        setPollinationsCacheEntry(bruschettaHeroCacheId, { url, status: "ok", updatedAt: Date.now() });
+      };
+      img.onerror = () => {
+        if (cancelled) return;
+        index += 1;
+        if (index < bruschettaHeroUrls.length) {
+          load(bruschettaHeroUrls[index]!);
+          return;
+        }
+        attempt += 1;
+        if (attempt >= 2) {
+          setPollinationsCacheEntry(bruschettaHeroCacheId, { url, status: "error", updatedAt: Date.now() });
+          return;
+        }
+        index = 0;
+        window.setTimeout(() => load(bruschettaHeroUrls[index]!), 15000);
+      };
     };
-    img.onerror = () => {
-      setPollinationsCacheEntry(bruschettaHeroCacheId, { url: targetUrl, status: "error", updatedAt: Date.now() });
-    };
+
+    const url = bruschettaHeroUrls[0]!;
+    load(url);
 
     return () => {
-      img.onload = null;
-      img.onerror = null;
+      cancelled = true;
     };
-  }, [isBruschetta, bruschettaHeroUrl]);
+  }, [bruschettaHeroUrls, isBruschetta]);
 
   const recipeJsonLd = useMemo(() => {
     if (!isBruschetta) return null;
 
-    const image = bruschettaHeroUrl;
+    const image = bruschettaHeroUrls[0]!;
 
     return {
       "@context": "https://schema.org",
@@ -369,7 +405,7 @@ export default function RecipeDetailPage() {
         sodiumContent: "320 mg",
       },
     };
-  }, [bruschettaHeroUrl, isBruschetta]);
+  }, [bruschettaHeroUrls, isBruschetta]);
 
   if (!c || !r) return <Navigate to="/recipes" replace />;
 
@@ -485,6 +521,7 @@ export default function RecipeDetailPage() {
                             className="h-full w-full object-cover"
                             loading="eager"
                             decoding="async"
+                            onError={() => setBruschettaHeroSrc(bruschettaFallbackImage)}
                           />
                         </div>
                       </Card>
