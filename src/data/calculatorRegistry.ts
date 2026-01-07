@@ -6804,6 +6804,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FriedRiceBallsAranciniCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "stuffed-zucchini-blossoms",
+    title: "Stuffed Zucchini Blossoms",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Delicate zucchini flowers stuffed with cheese and herbs, then lightly battered and fried.",
+    loader: () => import("@/components/calculators/Misc/StuffedZucchiniBlossomsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
