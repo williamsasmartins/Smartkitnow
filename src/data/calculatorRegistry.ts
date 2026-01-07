@@ -6885,6 +6885,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TomatoAndBreadSoupCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "arugula-and-parmesan-salad",
+    title: "Arugula and Parmesan Salad",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Peppery arugula tossed with shaved Parmesan and lemon-olive oil dressing.",
+    loader: () => import("@/components/calculators/Misc/ArugulaAndParmesanSaladCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
