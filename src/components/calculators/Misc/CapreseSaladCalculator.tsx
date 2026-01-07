@@ -9,7 +9,7 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 export default function CapreseSaladCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
-    "https://image.pollinations.ai/prompt/Caprese%20Salad%2C%20plated%20food%20dish%20on%20table%2C%20chopped%20ingredients%20visible%2C%20restaurant%20style%2C%20delicious%2C%20highly%20detailed?width=1280&height=720&nologo=true&seed=7746"
+    "https://image.pollinations.ai/prompt/Caprese%20Salad%2C%20plated%20food%20dish%20on%20table%2C%20chopped%20ingredients%20visible%2C%20restaurant%20style%2C%20delicious%2C%20highly%20detailed?width=1280&height=720&nologo=true&seed=5655"
   );
 
   // --- DATA ---
@@ -24,11 +24,12 @@ export default function CapreseSaladCalculator() {
     { name: "Fresh Basil Leaves", baseAmount: 20, unit: "g" },
     { name: "Extra Virgin Olive Oil", baseAmount: 30, unit: "ml" },
     { name: "Balsamic Vinegar", baseAmount: 15, unit: "ml" },
-    { name: "Sea Salt", baseAmount: 2, unit: "g" },
-    { name: "Freshly Ground Black Pepper", baseAmount: 1, unit: "g" },
+    { name: "Sea Salt", baseAmount: 1, unit: "tsp" },
+    { name: "Freshly Ground Black Pepper", baseAmount: 0.5, unit: "tsp" },
+    { name: "Garlic (optional, minced)", baseAmount: 1, unit: "clove" },
     { name: "Arugula (optional)", baseAmount: 50, unit: "g" },
-    { name: "Toasted Pine Nuts (optional)", baseAmount: 15, unit: "g" },
-    { name: "Garlic (optional, minced)", baseAmount: 5, unit: "g" },
+    { name: "Pine Nuts (optional, toasted)", baseAmount: 15, unit: "g" },
+    { name: "Capers (optional)", baseAmount: 10, unit: "g" },
     { name: "Lemon Zest (optional)", baseAmount: 1, unit: "tsp" },
   ];
 
@@ -47,34 +48,34 @@ export default function CapreseSaladCalculator() {
   // --- FAQ (RICH & DETAILED) ---
   const faqs = [
     {
-      question: "What is the origin of Caprese Salad?",
+      question: "What type of mozzarella is best for Caprese Salad?",
       answer:
-        "Caprese Salad originates from the island of Capri in Italy. It is a simple Italian salad, made of fresh mozzarella, tomatoes, and basil, intended to represent the colors of the Italian flag. It was created as a light summer dish and has become popular worldwide for its fresh flavors and simplicity.",
+        "Fresh mozzarella, preferably mozzarella di bufala or fior di latte, is ideal for Caprese Salad. It has a soft, creamy texture and mild flavor that complements the tomatoes and basil perfectly. Avoid pre-shredded or low-moisture mozzarella as they lack the authentic texture and taste.",
     },
     {
-      question: "Can I use other types of cheese instead of fresh mozzarella?",
+      question: "Can I prepare Caprese Salad ahead of time?",
       answer:
-        "While fresh mozzarella is traditional and preferred for its creamy texture and mild flavor, you can substitute it with burrata for a richer taste or bocconcini for smaller portions. Avoid using aged or hard cheeses as they do not provide the same fresh and delicate balance.",
+        "Caprese Salad is best served fresh to preserve the vibrant flavors and textures. However, you can prepare the ingredients in advance and assemble the salad just before serving. If you must prepare it earlier, keep the mozzarella and tomatoes refrigerated separately and add olive oil and basil just before serving to avoid sogginess.",
+    },
+    {
+      question: "What variations can I try with this classic recipe?",
+      answer:
+        "You can add arugula or baby spinach for extra greens, sprinkle toasted pine nuts for crunch, or add a drizzle of pesto instead of plain basil. Some also like to add avocado slices or substitute balsamic vinegar with a balsamic glaze for a sweeter finish.",
     },
     {
       question: "How do I select the best tomatoes for Caprese Salad?",
       answer:
-        "Choose ripe, firm, and fragrant tomatoes, preferably heirloom or vine-ripened varieties. They should be juicy but not overly soft to maintain the salad’s texture. Cherry tomatoes can be used for a bite-sized version, but classic slices of large tomatoes are traditional.",
+        "Choose ripe, firm, and fragrant tomatoes such as heirloom, vine-ripened, or Roma tomatoes. They should be juicy but not overly soft or mealy. The quality of tomatoes greatly influences the overall taste, so opt for fresh, in-season tomatoes whenever possible.",
     },
     {
-      question: "Is it necessary to use balsamic vinegar in Caprese Salad?",
+      question: "Is Caprese Salad suitable for special diets?",
       answer:
-        "Balsamic vinegar adds a sweet and tangy depth to the salad, complementing the creamy mozzarella and fresh tomatoes. However, some purists prefer to drizzle only extra virgin olive oil and salt. Using a high-quality aged balsamic vinegar can enhance the flavor without overpowering the dish.",
+        "Yes, Caprese Salad is naturally gluten-free, low-carb, and vegetarian. It can also be adapted for keto diets due to its high fat and protein content from mozzarella and olive oil. Just ensure any optional ingredients align with your dietary needs.",
     },
     {
-      question: "Can Caprese Salad be prepared ahead of time?",
+      question: "How should I store leftovers?",
       answer:
-        "Caprese Salad is best served fresh to preserve the texture and vibrant flavors of the ingredients. If preparing ahead, assemble just before serving or keep components separate and combine shortly before eating. Storing assembled salad for too long can cause the tomatoes to release water and the basil to wilt.",
-    },
-    {
-      question: "What are some variations of Caprese Salad?",
-      answer:
-        "Variations include adding avocado slices, arugula, toasted pine nuts, or substituting basil with mint or oregano. Some recipes incorporate a light spread of pesto or a sprinkle of lemon zest to brighten the flavors. These variations can add complexity while maintaining the salad’s fresh essence.",
+        "Store leftovers in an airtight container in the refrigerator for up to 1 day. To maintain freshness, keep the dressing separate and add it just before serving. Note that the salad may release water and the texture of the mozzarella might change after refrigeration.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -97,7 +98,7 @@ export default function CapreseSaladCalculator() {
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
           <span className="text-white font-bold text-lg flex items-center gap-2">
-            <Clock className="w-5 h-5 text-orange-400" /> Prep: 20m | Cook: 0m
+            <Clock className="w-5 h-5 text-orange-400" /> Prep: 10m | Cook: 0m
           </span>
         </div>
       </div>
@@ -170,7 +171,7 @@ export default function CapreseSaladCalculator() {
     </div>
   );
 
-  // --- EDITORIAL CONTENT ---
+  // --- EDITORIAL CONTENT (BIGGER FONTS) ---
   const editorial = (
     <div className="space-y-12">
       <section>
@@ -181,16 +182,17 @@ export default function CapreseSaladCalculator() {
           <p className="mb-4">
             Caprese Salad is a quintessential Italian dish that celebrates the
             simplicity and freshness of its ingredients. Originating from the
-            island of Capri, this salad is a vibrant combination of ripe
-            tomatoes, creamy fresh mozzarella, and aromatic basil leaves,
-            dressed lightly with extra virgin olive oil and balsamic vinegar.
+            island of Capri, this salad combines ripe tomatoes, creamy fresh
+            mozzarella, and fragrant basil leaves, all drizzled with high-quality
+            extra virgin olive oil and a splash of balsamic vinegar. Its vibrant
+            colors mirror the Italian flag, making it as visually appealing as it
+            is delicious.
           </p>
           <p>
-            This salad is not only visually appealing with its colors inspired
-            by the Italian flag, but it also offers a perfect balance of
-            textures and flavors. It is an ideal appetizer or side dish,
+            This salad is perfect as a light appetizer or a refreshing side dish,
             especially during the summer months when tomatoes and basil are at
-            their peak freshness.
+            their peak. The balance of creamy, tangy, and herbaceous flavors makes
+            it a timeless classic that’s easy to prepare yet impressive to serve.
           </p>
         </div>
       </section>
@@ -205,12 +207,13 @@ export default function CapreseSaladCalculator() {
               1
             </span>
             <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
-              Prepare Ingredients
+              Prepare the Ingredients
             </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Wash the tomatoes and basil leaves thoroughly. Slice the fresh
-              mozzarella and tomatoes into even, approximately 1/4-inch thick
-              slices. Pat the basil leaves dry to avoid excess moisture.
+              Slice the fresh mozzarella and ripe tomatoes into even, approximately
+              1/4-inch thick slices. Rinse the basil leaves gently and pat dry.
+              If using optional ingredients like arugula or pine nuts, prepare them
+              accordingly.
             </p>
           </li>
           <li className="ml-8 relative">
@@ -218,12 +221,13 @@ export default function CapreseSaladCalculator() {
               2
             </span>
             <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
-              Assemble the Salad
+              Arrange the Salad
             </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              On a large plate or platter, alternate slices of tomato and
-              mozzarella, slightly overlapping them. Tuck fresh basil leaves
-              between the slices evenly.
+              On a large serving plate, alternate slices of tomato and mozzarella,
+              slightly overlapping them. Tuck fresh basil leaves between the slices
+              for an aromatic touch. If using arugula, spread it as a bed beneath
+              the slices.
             </p>
           </li>
           <li className="ml-8 relative">
@@ -234,9 +238,10 @@ export default function CapreseSaladCalculator() {
               Dress the Salad
             </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Drizzle extra virgin olive oil and balsamic vinegar evenly over
-              the salad. Season with sea salt and freshly ground black pepper
-              to taste.
+              Drizzle extra virgin olive oil evenly over the salad, followed by a
+              light splash of balsamic vinegar. Season with sea salt and freshly
+              ground black pepper to taste. Optionally, sprinkle toasted pine nuts
+              or capers for added texture and flavor.
             </p>
           </li>
           <li className="ml-8 relative">
@@ -244,25 +249,12 @@ export default function CapreseSaladCalculator() {
               4
             </span>
             <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
-              Optional Garnishes
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              For added texture and flavor, sprinkle toasted pine nuts or add a
-              handful of fresh arugula around the salad. A light sprinkle of
-              lemon zest or minced garlic can also enhance the dish.
-            </p>
-          </li>
-          <li className="ml-8 relative">
-            <span className="absolute -left-12 flex items-center justify-center w-8 h-8 bg-orange-100 rounded-full ring-4 ring-white dark:ring-slate-950 dark:bg-orange-900 text-orange-700 dark:text-orange-100 font-bold text-sm">
-              5
-            </span>
-            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
               Serve Immediately
             </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Serve the Caprese Salad fresh at room temperature to enjoy the
-              full flavors and textures. It pairs wonderfully with crusty bread
-              or as a side to grilled meats.
+              Serve the Caprese Salad immediately to enjoy the fresh flavors and
+              textures at their best. It pairs wonderfully with crusty bread or as
+              a side to grilled meats and seafood.
             </p>
           </li>
         </ol>
@@ -274,24 +266,23 @@ export default function CapreseSaladCalculator() {
         </h3>
         <ul className="list-disc pl-5 space-y-3 text-amber-900 dark:text-amber-100 text-base">
           <li>
-            Use the freshest mozzarella you can find, ideally made from buffalo
-            milk, for a creamier texture and richer flavor.
+            Use the freshest ingredients possible — the quality of mozzarella,
+            tomatoes, and basil makes all the difference.
           </li>
           <li>
-            Slice tomatoes and mozzarella evenly to ensure balanced bites and a
-            beautiful presentation.
+            For a sweeter balsamic flavor, consider using a balsamic glaze or
+            reduction instead of plain vinegar.
           </li>
           <li>
-            Let the salad sit for 5 minutes after dressing to allow flavors to
-            meld, but avoid letting it sit too long to prevent sogginess.
+            Toast pine nuts lightly in a dry pan until golden to add a delightful
+            crunch and nutty aroma.
           </li>
           <li>
-            Experiment with a drizzle of high-quality aged balsamic glaze for a
-            sweeter, more concentrated flavor.
+            If you prefer a garlicky note, rub the serving plate lightly with a
+            cut garlic clove before arranging the salad.
           </li>
           <li>
-            When using optional ingredients like pine nuts or garlic, toast or
-            lightly sauté them to enhance their aroma and taste.
+            Serve the salad at room temperature to maximize flavor and aroma.
           </li>
         </ul>
       </section>
