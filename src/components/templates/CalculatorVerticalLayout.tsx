@@ -243,6 +243,7 @@ interface CalculatorVerticalLayoutProps {
   showTopBanner?: boolean;
   showSidebar?: boolean;
   showBottomBanner?: boolean;
+  hideLegalDisclaimer?: boolean; // Nova prop opcional
   jsonLd?: object | object[] | null | undefined;
   children?: ReactNode;
 }
@@ -262,6 +263,7 @@ export default function CalculatorVerticalLayout({
   showTopBanner = true,
   showSidebar = true,
   showBottomBanner = true,
+  hideLegalDisclaimer = false, // Padrão é false (mostrar)
   jsonLd,
   children,
 }: CalculatorVerticalLayoutProps) {
@@ -352,7 +354,7 @@ export default function CalculatorVerticalLayout({
             )}
 
             {/* LEGAL DISCLAIMER */}
-            <LegalDisclaimer />
+            {!hideLegalDisclaimer && <LegalDisclaimer />}
 
             {/* SHARE THIS PAGE */}
             <ShareThisPageBox />
