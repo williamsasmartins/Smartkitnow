@@ -6768,6 +6768,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CapreseSaladCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "italian-bread-salad-panzanella",
+    title: "Italian Bread Salad (Panzanella)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Tuscan salad of stale bread, tomatoes, onions, cucumber, and basil in a vinaigrette.",
+    loader: () => import("@/components/calculators/Misc/ItalianBreadSaladPanzanellaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
