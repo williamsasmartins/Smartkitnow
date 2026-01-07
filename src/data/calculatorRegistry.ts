@@ -6870,6 +6870,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
 
 
  
+    {
+    slug: "italian-wedding-soup",
+    title: "Italian Wedding Soup",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Broth with meatballs, greens, and tiny pasta like acini di pepe.",
+    loader: () => import("@/components/calculators/Misc/ItalianWeddingSoupCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
