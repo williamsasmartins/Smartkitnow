@@ -9,27 +9,28 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 export default function ItalianBreadSaladPanzanellaCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
-    "https://image.pollinations.ai/prompt/Italian%20Bread%20Salad%20Panzanella%2C%20plated%20food%20dish%20on%20table%2C%20chopped%20ingredients%20visible%2C%20restaurant%20style%2C%20delicious%2C%20highly%20detailed?width=1280&height=720&nologo=true&seed=9458"
+    "https://image.pollinations.ai/prompt/Italian%20Bread%20Salad%20Panzanella%2C%20plated%20food%20dish%20on%20table%2C%20chopped%20ingredients%20visible%2C%20restaurant%20style%2C%20delicious%2C%20highly%20detailed?width=1280&height=720&nologo=true&seed=8285"
   );
 
   // --- DATA ---
   const title = "Italian Bread Salad (Panzanella)";
-  const description = "Tuscan salad of stale bread, tomatoes, onions, cucumber, and basil in a vinaigrette.";
+  const description =
+    "Tuscan salad of stale bread, tomatoes, onions, cucumber, and basil in a vinaigrette.";
 
   // INGREDIENTS
   const ingredients = [
-    { name: "Stale rustic bread (preferably Tuscan)", baseAmount: 300, unit: "g" },
+    { name: "Stale rustic bread, cubed", baseAmount: 300, unit: "g" },
     { name: "Ripe tomatoes, chopped", baseAmount: 400, unit: "g" },
-    { name: "Cucumber, peeled and sliced", baseAmount: 150, unit: "g" },
+    { name: "Cucumber, peeled and diced", baseAmount: 150, unit: "g" },
     { name: "Red onion, thinly sliced", baseAmount: 80, unit: "g" },
     { name: "Fresh basil leaves", baseAmount: 15, unit: "g" },
     { name: "Extra virgin olive oil", baseAmount: 60, unit: "ml" },
     { name: "Red wine vinegar", baseAmount: 30, unit: "ml" },
     { name: "Salt", baseAmount: 5, unit: "g" },
-    { name: "Freshly ground black pepper", baseAmount: 2, unit: "g" },
-    { name: "Garlic clove, minced", baseAmount: 1, unit: "clove" },
-    { name: "Capers (optional)", baseAmount: 15, unit: "g" },
-    { name: "Olives (optional), pitted and sliced", baseAmount: 50, unit: "g" },
+    { name: "Black pepper, freshly ground", baseAmount: 2, unit: "g" },
+    { name: "Capers (optional)", baseAmount: 20, unit: "g" },
+    { name: "Fresh oregano (optional)", baseAmount: 5, unit: "g" },
+    { name: "Garlic clove, minced (optional)", baseAmount: 1, unit: "clove" },
   ];
 
   // Nutrition per 4 servings (approximate)
@@ -49,32 +50,32 @@ export default function ItalianBreadSaladPanzanellaCalculator() {
     {
       question: "What type of bread is best for Panzanella?",
       answer:
-        "Traditionally, stale Tuscan bread without salt is used for Panzanella. It should be firm enough to soak up the dressing without turning mushy. If Tuscan bread is unavailable, any rustic country bread or sourdough that is a day or two old works well.",
+        "Traditionally, stale rustic or country-style bread with a firm crumb is ideal for Panzanella. It soaks up the dressing without becoming too mushy. Avoid soft sandwich bread as it disintegrates quickly.",
     },
     {
       question: "Can I prepare Panzanella in advance?",
       answer:
-        "Panzanella is best served fresh to maintain the texture of the bread and vegetables. However, you can prepare the salad a few hours ahead and refrigerate it. Toss the salad again before serving to redistribute the dressing and flavors.",
+        "Panzanella is best served fresh to maintain the texture of the bread and vegetables. However, you can prepare the bread and vegetables separately a few hours ahead and combine them just before serving.",
     },
     {
-      question: "How do I prevent the bread from becoming too soggy?",
+      question: "How do I prevent the bread from becoming soggy?",
       answer:
-        "Use stale or toasted bread to ensure it absorbs the vinaigrette without disintegrating. Also, add the dressing gradually and toss gently. Letting the salad rest for 10-15 minutes before serving allows the bread to soak up flavors without becoming overly mushy.",
+        "Use stale or toasted bread cubes to ensure they absorb the vinaigrette without turning mushy. Toss the salad gently and serve soon after mixing to keep the texture balanced.",
     },
     {
-      question: "Can I customize the vegetables in Panzanella?",
+      question: "Can I add other vegetables or ingredients?",
       answer:
-        "Absolutely! While tomatoes, cucumbers, and onions are classic, you can add bell peppers, radishes, or fresh herbs like parsley. Just ensure the vegetables are fresh and chopped uniformly for the best texture and flavor balance.",
+        "Absolutely! Panzanella is versatile. You can add bell peppers, radishes, olives, or even mozzarella. Just ensure the ingredients complement the fresh, tangy flavor profile.",
     },
     {
-      question: "Is Panzanella suitable for a vegan diet?",
+      question: "Is Panzanella suitable for vegan diets?",
       answer:
-        "Yes, Panzanella is naturally vegan as it contains bread, vegetables, olive oil, and vinegar. Just ensure the bread you use does not contain dairy or eggs if you want to keep it strictly vegan.",
+        "Yes, the traditional Panzanella recipe is naturally vegan, relying on fresh vegetables, bread, olive oil, and vinegar. Just ensure your bread contains no animal-derived ingredients.",
     },
     {
       question: "What wine pairs well with Panzanella?",
       answer:
-        "A crisp, light-bodied white wine such as Vermentino or Pinot Grigio complements the fresh and tangy flavors of Panzanella beautifully. For red wine lovers, a chilled Chianti or a light Sangiovese works well.",
+        "A crisp, light-bodied white wine like Pinot Grigio or a dry Rosé pairs beautifully with the fresh, acidic flavors of Panzanella.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -97,7 +98,7 @@ export default function ItalianBreadSaladPanzanellaCalculator() {
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
           <span className="text-white font-bold text-lg flex items-center gap-2">
-            <Clock className="w-5 h-5 text-orange-400" /> Prep: 20m | Cook: 0m
+            <Clock className="w-5 h-5 text-orange-400" /> Prep: 20m | Cook: 10m
           </span>
         </div>
       </div>
@@ -136,7 +137,10 @@ export default function ItalianBreadSaladPanzanellaCalculator() {
                 <TableRow key={i}>
                   <TableCell className="font-medium text-base">{ing.name}</TableCell>
                   <TableCell className="text-right font-bold text-base text-slate-700 dark:text-slate-200">
-                    {getAmount(ing.baseAmount)} {ing.unit}
+                    {ing.unit === "clove"
+                      ? Math.round(getAmount(ing.baseAmount))
+                      : getAmount(ing.baseAmount)}{" "}
+                    {ing.unit}
                   </TableCell>
                 </TableRow>
               ))}
@@ -179,18 +183,17 @@ export default function ItalianBreadSaladPanzanellaCalculator() {
           <p className="mb-4">
             Panzanella is a classic Tuscan bread salad that celebrates the
             simplicity and freshness of Italian summer produce. Traditionally
-            made with stale bread soaked in a tangy vinaigrette and combined
-            with ripe tomatoes, cucumbers, onions, and fragrant basil, this
-            salad is a perfect way to use up leftover bread while enjoying a
-            refreshing, rustic dish.
+            made with stale bread, ripe tomatoes, cucumbers, onions, and fresh
+            basil, this salad is dressed with a tangy vinaigrette that brings
+            all the flavors together. It’s a perfect dish to use up leftover
+            bread and enjoy seasonal vegetables in a light, refreshing way.
           </p>
           <p>
-            This salad is beloved for its vibrant flavors and contrasting
-            textures — the crunch of fresh vegetables paired with the soft,
-            soaked bread creates a delightful mouthfeel. Panzanella is often
-            served as a light lunch or a side dish alongside grilled meats or
-            seafood, embodying the essence of Italian cucina povera (peasant
-            cooking) with its humble yet delicious ingredients.
+            This recipe is not only delicious but also highly adaptable. Whether
+            you prefer it with a splash of red wine vinegar or a hint of garlic,
+            Panzanella offers a rustic yet elegant dish that pairs wonderfully
+            with grilled meats or as a standalone light meal. Its vibrant colors
+            and textures make it a feast for both the eyes and the palate.
           </p>
         </div>
       </section>
@@ -208,9 +211,9 @@ export default function ItalianBreadSaladPanzanellaCalculator() {
               Prepare the Bread
             </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Cut the stale bread into roughly 2 cm cubes. If the bread is not
-              stale, toast the cubes lightly in the oven at 180°C (350°F) for
-              10 minutes until crisp but not browned. Set aside to cool.
+              Cut the stale rustic bread into 2 cm cubes. If the bread is not
+              stale, toast the cubes lightly in a preheated oven at 180°C (350°F)
+              for 10 minutes until crisp but not browned. Set aside to cool.
             </p>
           </li>
           <li className="ml-8 relative">
@@ -221,9 +224,9 @@ export default function ItalianBreadSaladPanzanellaCalculator() {
               Prepare the Vegetables
             </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Chop the tomatoes into bite-sized pieces, peel and slice the
-              cucumber, and thinly slice the red onion. Mince the garlic and
-              roughly tear the basil leaves.
+              Chop the ripe tomatoes, peel and dice the cucumber, and thinly slice
+              the red onion. Mince the garlic if using. Tear the fresh basil leaves
+              and oregano roughly.
             </p>
           </li>
           <li className="ml-8 relative">
@@ -231,11 +234,11 @@ export default function ItalianBreadSaladPanzanellaCalculator() {
               3
             </span>
             <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
-              Make the Dressing
+              Make the Vinaigrette
             </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              In a small bowl, whisk together the extra virgin olive oil, red
-              wine vinegar, minced garlic, salt, and freshly ground black
+              In a small bowl, whisk together the extra virgin olive oil, red wine
+              vinegar, minced garlic (if using), salt, and freshly ground black
               pepper until emulsified.
             </p>
           </li>
@@ -244,12 +247,12 @@ export default function ItalianBreadSaladPanzanellaCalculator() {
               4
             </span>
             <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
-              Assemble the Salad
+              Combine Ingredients
             </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              In a large bowl, combine the bread cubes, tomatoes, cucumber,
-              onion, basil leaves, and optional capers or olives. Pour the
-              dressing over and toss gently to coat all ingredients evenly.
+              In a large bowl, combine the bread cubes, chopped tomatoes, cucumber,
+              red onion, capers, and herbs. Pour the vinaigrette over the salad and
+              toss gently to coat everything evenly.
             </p>
           </li>
           <li className="ml-8 relative">
@@ -260,9 +263,9 @@ export default function ItalianBreadSaladPanzanellaCalculator() {
               Rest and Serve
             </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Let the salad rest at room temperature for 10-15 minutes to allow
-              the bread to absorb the dressing and flavors. Serve fresh,
-              garnished with extra basil leaves if desired.
+              Let the salad rest for at least 15 minutes at room temperature to allow
+              the bread to soak up the dressing and the flavors to meld. Serve
+              fresh, garnished with extra basil leaves if desired.
             </p>
           </li>
         </ol>
@@ -274,28 +277,28 @@ export default function ItalianBreadSaladPanzanellaCalculator() {
         </h3>
         <ul className="list-disc pl-5 space-y-3 text-amber-900 dark:text-amber-100 text-base">
           <li>
-            Use day-old or slightly stale bread to ensure it soaks up the
-            dressing without becoming mushy.
+            Use day-old or slightly stale bread for the best texture; fresh bread
+            will become soggy quickly.
           </li>
           <li>
-            For extra flavor, toast the bread cubes lightly before assembling
-            the salad.
+            Toast the bread cubes lightly if your bread is very fresh to add crunch
+            and prevent sogginess.
           </li>
           <li>
-            Adjust the acidity of the dressing by balancing red wine vinegar
-            with olive oil to your taste.
+            Adjust the acidity of the vinaigrette by adding more or less red wine
+            vinegar to suit your taste.
           </li>
           <li>
-            Let the salad rest before serving to allow the flavors to meld
-            perfectly.
+            For a more robust flavor, add a splash of balsamic vinegar or a pinch of
+            chili flakes.
           </li>
           <li>
-            Add a pinch of sugar to the dressing if your tomatoes are not very
-            sweet.
+            Serve Panzanella as a side dish with grilled meats or fish, or enjoy it
+            as a light vegetarian main course.
           </li>
           <li>
-            Experiment with adding other fresh herbs like oregano or parsley for
-            a different aromatic profile.
+            If you prefer a softer salad, add the dressing and let it rest longer,
+            but serve within a few hours to avoid overly soggy bread.
           </li>
         </ul>
       </section>
