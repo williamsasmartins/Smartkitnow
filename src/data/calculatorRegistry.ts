@@ -6858,6 +6858,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TuscanBreadAndVegetableSoupRibollitaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pasta-and-bean-soup-pasta-e-fagioli",
+    title: "Pasta and Bean Soup (Pasta e Fagioli)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Comforting soup of pasta, cannellini beans, tomatoes, and herbs.",
+    loader: () => import("@/components/calculators/Misc/PastaAndBeanSoupPastaEFagioliCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
