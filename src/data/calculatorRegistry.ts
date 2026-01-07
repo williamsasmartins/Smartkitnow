@@ -6744,16 +6744,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
  
     
     
-    
-    {
-    slug: "caprese-salad",
-    title: "Caprese Salad",
-    category: "recipes",
-    subcategory: "italian",
-    description: "Layers of fresh mozzarella, ripe tomatoes, and basil drizzled with olive oil and balsamic.",
-    loader: () => import("@/components/calculators/Recipes/CapreseSaladCalculator"),
-    urlStyle: "flat"
-  },
+  
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
