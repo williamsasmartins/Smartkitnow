@@ -6813,6 +6813,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/StuffedZucchiniBlossomsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "marinated-artichokes",
+    title: "Marinated Artichokes",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Tender artichoke hearts marinated in olive oil, garlic, and herbs.",
+    loader: () => import("@/components/calculators/Misc/MarinatedArtichokesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
