@@ -34,6 +34,7 @@ export default function RecipeCuisinePage() {
     {
       title: "Starters & Small Plates",
       items: [
+        "Tomato and Basil Bruschetta",
         "Caprese Salad",
         "Italian Bread Salad (Panzanella)",
         "Antipasto Platter (Cured Meats, Cheese, Olives)",
