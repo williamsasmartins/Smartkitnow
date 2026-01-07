@@ -5,11 +5,10 @@ Este projeto gera imagens realistas de pratos diretamente no frontend usando o e
 ## Onde está implementado
 
 - Página: [RecipeDetailPage.tsx](file:///c:/Users/Williams%20Martins/OneDrive/Documentos/WBSmartKitNow/smartkit-onepage-wonder/src/pages/RecipeDetailPage.tsx)
-- Escopo atual: receita `italian/tomato-and-basil-bruschetta` (hero) + cards de “Related recipes”.
 
 ## Como funciona
 
-- O prompt é montado a partir do nome do prato e da culinária (ex.: “Tomato and Basil Bruschetta”, “Italian”).
+- O prompt é montado a partir do nome do prato e da culinária.
 - A URL gerada é determinística, usando `seed` derivado de um identificador estável (`cacheId`).
 - A imagem “hero” usa fallback imediato (Unsplash) e faz upgrade para a imagem gerada assim que ela carrega com sucesso.
 - Os cards relacionados usam `loading="lazy"` para não impactar o carregamento inicial.
@@ -33,7 +32,6 @@ Regras:
 
 ## Como estender para outras receitas
 
-1. Identifique a receita na página (como o `isBruschetta`).
+1. Identifique a receita na página.
 2. Defina um `cacheId` estável por posição/variante (ex.: `recipes:${c.key}:${r.slug}:hero`).
 3. Use `AiDishImage` para imagens inline e/ou aplique o mesmo padrão “fallback + upgrade” usado no hero.
-
