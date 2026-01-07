@@ -6984,6 +6984,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BakedZitiCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "stuffed-pasta-shells",
+    title: "Stuffed Pasta Shells",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Jumbo shells filled with ricotta and spinach, baked in marinara.",
+    loader: () => import("@/components/calculators/Misc/StuffedPastaShellsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
