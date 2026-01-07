@@ -32,7 +32,6 @@ export const CUISINES: Cuisine[] = [
     description:
       "Discover Italian recipes from antipasti and minestrone to carbonara, risotto alla Milanese, Neapolitan pizza, and tiramisu—classic regional flavors built on simple ingredients.",
     recipes: R([
-      "Tomato and Basil Bruschetta",
       "Caprese Salad",
       "Italian Bread Salad (Panzanella)",
       "Antipasto Platter (Cured Meats, Cheese, Olives)",
