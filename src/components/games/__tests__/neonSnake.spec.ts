@@ -23,12 +23,12 @@ describe("neonSnake engine", () => {
   });
 
   it("step grows when eating and moves forward otherwise", () => {
+    const rnd = vi.spyOn(Math, "random").mockReturnValue(0.1);
     const snake: Pos[] = [{ x: 1, y: 1 }];
     const food: Pos = { x: 2, y: 1 };
     const s1 = step(snake, "right", 5, 5, food);
     expect(s1.ate).toBe(true);
     expect(s1.snake.length).toBe(2);
-    const rnd = vi.spyOn(Math, "random").mockReturnValue(0.1);
     const s2 = step(s1.snake, "right", 5, 5, s1.food);
     rnd.mockRestore();
     expect(s2.ate).toBe(false);
