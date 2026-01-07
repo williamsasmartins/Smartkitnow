@@ -6831,6 +6831,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BakedStuffedMushroomsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "prosciutto-and-melon",
+    title: "Prosciutto and Melon",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Sweet ripe melon wrapped in thin slices of salty prosciutto.",
+    loader: () => import("@/components/calculators/Misc/ProsciuttoAndMelonCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
