@@ -162,6 +162,7 @@ function AiDishImage({
   };
 
   const [disabled, setDisabled] = useState(false);
+  const [cachedOkUrl, setCachedOkUrl] = useState<string | null>(null);
   const [state, setState] = useState<AiImageState>({
     candidateIndex: 0,
     retryCount: 0,
@@ -170,6 +171,7 @@ function AiDishImage({
 
   useEffect(() => {
     const entry = getPollinationsCacheEntry(cacheId);
+    if (entry?.status === "ok") setCachedOkUrl(entry.url);
     if (entry?.status === "error") setDisabled(true);
   }, [cacheId]);
 
@@ -182,7 +184,9 @@ function AiDishImage({
     return () => window.clearTimeout(timeoutId);
   }, [state.cooldownUntil]);
 
-  if (disabled && !fallbackSrc) {
+  const isCoolingDown = state.cooldownUntil != null && Date.now() < state.cooldownUntil;
+
+  if (!cachedOkUrl && (disabled || isCoolingDown) && !fallbackSrc) {
     return (
       <div
         className={["h-full w-full bg-muted", className].filter(Boolean).join(" ")}
@@ -192,8 +196,7 @@ function AiDishImage({
     );
   }
 
-  const isCoolingDown = state.cooldownUntil != null && Date.now() < state.cooldownUntil;
-  const src = disabled || isCoolingDown ? fallbackSrc : urls[state.candidateIndex]!;
+  const src = cachedOkUrl ?? (disabled || isCoolingDown ? fallbackSrc : urls[state.candidateIndex]!);
 
   const handleFailure = () => {
     const exhausted = state.candidateIndex + 1 >= urls.length;
@@ -232,6 +235,7 @@ function AiDishImage({
         const tooSmall = naturalW < width * 0.8 || naturalH < height * 0.8;
 
         if (tooSmall || ratioOff > 0.05) {
+          if (cachedOkUrl) setCachedOkUrl(null);
           handleFailure();
           return;
         }
@@ -239,6 +243,7 @@ function AiDishImage({
         setPollinationsCacheEntry(cacheId, { url: src, status: "ok", updatedAt: Date.now() });
       }}
       onError={() => {
+        if (cachedOkUrl) setCachedOkUrl(null);
         if (disabled || isCoolingDown) return;
         handleFailure();
       }}
