@@ -6795,6 +6795,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GarlicAndHerbCrostiniCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fried-rice-balls-arancini",
+    title: "Fried Rice Balls (Arancini)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Deep-fried risotto balls filled with cheese, meat, or peas.",
+    loader: () => import("@/components/calculators/Misc/FriedRiceBallsAranciniCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
