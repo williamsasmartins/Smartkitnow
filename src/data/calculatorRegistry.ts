@@ -6777,6 +6777,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ItalianBreadSaladPanzanellaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "antipasto-platter-cured-meats-cheese-olives",
+    title: "Antipasto Platter (Cured Meats, Cheese, Olives)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Assortment of cured meats, cheeses, olives, and marinated vegetables.",
+    loader: () => import("@/components/calculators/Misc/AntipastoPlatterCuredMeatsCheeseOlivesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
