@@ -6948,6 +6948,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GarlicAndOliveOilPastaAglioEOlioCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "spaghetti-with-tomato-and-basil-pomodoro",
+    title: "Spaghetti with Tomato and Basil (Pomodoro)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Light fresh tomato sauce with basil and garlic over spaghetti.",
+    loader: () => import("@/components/calculators/Misc/SpaghettiWithTomatoAndBasilPomodoroCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
