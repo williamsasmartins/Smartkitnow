@@ -6921,6 +6921,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TagliatelleWithMeatRaguBologneseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "black-pepper-and-pecorino-pasta-cacio-e-pepe",
+    title: "Black Pepper and Pecorino Pasta (Cacio e Pepe)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Simple yet bold pasta with Pecorino Romano and freshly ground black pepper.",
+    loader: () => import("@/components/calculators/Misc/BlackPepperAndPecorinoPastaCacioEPepeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
