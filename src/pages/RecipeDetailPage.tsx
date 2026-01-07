@@ -32,7 +32,7 @@ type PollinationsCacheEntry = {
   updatedAt: number;
 };
 
-const POLLINATIONS_CACHE_KEY = "skn:pollinations:image-cache:v1";
+const POLLINATIONS_CACHE_KEY = "skn:pollinations:image-cache:v2";
 const POLLINATIONS_OK_TTL_MS = 1000 * 60 * 60 * 24 * 30;
 const POLLINATIONS_ERROR_TTL_MS = 1000 * 60 * 30;
 
@@ -95,6 +95,17 @@ function setPollinationsCacheEntry(cacheId: string, entry: PollinationsCacheEntr
 }
 
 function buildFoodPhotoPrompt(dish: string, cuisine: string) {
+  if (/bruschetta/i.test(dish)) {
+    return [
+      "Ultra realistic food photography",
+      "Italian bruschetta",
+      "toasted baguette slices topped with diced ripe tomatoes, fresh basil leaves, extra-virgin olive oil, garlic",
+      "served on rustic wooden board, minimal styling",
+      "natural window light, shallow depth of field, 50mm lens, high detail, appetizing, vibrant colors",
+      "photorealistic, not illustration, not cartoon",
+      "no text, no watermark, no logo, no QR code, no characters, no poster, no UI",
+    ].join(", ");
+  }
   return [
     `Ultra realistic food photography of ${dish}`,
     `${cuisine} cuisine`,
@@ -144,13 +155,32 @@ function AiDishImage({
     ];
   }, [prompt, seed, width, height]);
 
+  type AiImageState = {
+    candidateIndex: number;
+    retryCount: number;
+    cooldownUntil: number | null;
+  };
+
   const [disabled, setDisabled] = useState(false);
-  const [candidateIndex, setCandidateIndex] = useState(0);
+  const [state, setState] = useState<AiImageState>({
+    candidateIndex: 0,
+    retryCount: 0,
+    cooldownUntil: null,
+  });
 
   useEffect(() => {
     const entry = getPollinationsCacheEntry(cacheId);
     if (entry?.status === "error") setDisabled(true);
   }, [cacheId]);
+
+  useEffect(() => {
+    if (state.cooldownUntil == null) return;
+    const timeoutId = window.setTimeout(
+      () => setState((s) => ({ ...s, cooldownUntil: null })),
+      Math.max(0, state.cooldownUntil - Date.now())
+    );
+    return () => window.clearTimeout(timeoutId);
+  }, [state.cooldownUntil]);
 
   if (disabled && !fallbackSrc) {
     return (
@@ -162,7 +192,26 @@ function AiDishImage({
     );
   }
 
-  const src = disabled ? fallbackSrc : urls[candidateIndex]!;
+  const isCoolingDown = state.cooldownUntil != null && Date.now() < state.cooldownUntil;
+  const src = disabled || isCoolingDown ? fallbackSrc : urls[state.candidateIndex]!;
+
+  const handleFailure = () => {
+    const exhausted = state.candidateIndex + 1 >= urls.length;
+    const canRetry = state.retryCount < 1;
+
+    if (exhausted && !canRetry) {
+      setPollinationsCacheEntry(cacheId, { url: src ?? "", status: "error", updatedAt: Date.now() });
+      setDisabled(true);
+      return;
+    }
+
+    setState((prev) => {
+      const nextIndex = prev.candidateIndex + 1;
+      if (nextIndex < urls.length) return { ...prev, candidateIndex: nextIndex };
+      if (prev.retryCount >= 1) return prev;
+      return { candidateIndex: 0, retryCount: prev.retryCount + 1, cooldownUntil: Date.now() + 15000 };
+    });
+  };
 
   return (
     <img
@@ -171,16 +220,27 @@ function AiDishImage({
       className={className}
       loading={loading}
       decoding="async"
-      onLoad={() => {
-        if (!disabled) setPollinationsCacheEntry(cacheId, { url: src, status: "ok", updatedAt: Date.now() });
-      }}
-      onError={() => {
-        if (candidateIndex + 1 < urls.length) {
-          setCandidateIndex(candidateIndex + 1);
+      onLoad={(e) => {
+        if (disabled || isCoolingDown) return;
+        const img = e.currentTarget;
+        const naturalW = img.naturalWidth || 0;
+        const naturalH = img.naturalHeight || 0;
+        const expectedRatio = width / height;
+        const actualRatio = naturalH ? naturalW / naturalH : 0;
+
+        const ratioOff = actualRatio ? Math.abs(actualRatio - expectedRatio) : 1;
+        const tooSmall = naturalW < width * 0.8 || naturalH < height * 0.8;
+
+        if (tooSmall || ratioOff > 0.05) {
+          handleFailure();
           return;
         }
-        setPollinationsCacheEntry(cacheId, { url: src, status: "error", updatedAt: Date.now() });
-        setDisabled(true);
+
+        setPollinationsCacheEntry(cacheId, { url: src, status: "ok", updatedAt: Date.now() });
+      }}
+      onError={() => {
+        if (disabled || isCoolingDown) return;
+        handleFailure();
       }}
     />
   );
@@ -273,11 +333,8 @@ export default function RecipeDetailPage() {
     "https://images.unsplash.com/photo-1622896784083-cc051313dbb6?auto=format&fit=crop&w=1600&q=80";
 
   const bruschettaHeroCacheId = "recipes:italian:tomato-and-basil-bruschetta:hero";
-  const bruschettaHeroPrompt = useMemo(
-    () => buildFoodPhotoPrompt("Tomato and Basil Bruschetta", "Italian"),
-    []
-  );
-  const bruschettaHeroUrls = useMemo(() => {
+  const bruschettaHeroImages = useMemo(() => {
+    const prompt = buildFoodPhotoPrompt("Tomato and Basil Bruschetta", "Italian");
     const seed = fnv1a32(bruschettaHeroCacheId);
     const common: Omit<PollinationsImageOptions, "model"> = {
       width: 1600,
@@ -289,65 +346,16 @@ export default function RecipeDetailPage() {
       referrer: "smartkitnow.com",
     };
     return [
-      pollinationsImageUrl(bruschettaHeroPrompt, { ...common, model: "flux" }),
-      pollinationsImageUrl(bruschettaHeroPrompt, { ...common, model: "turbo" }),
+      pollinationsImageUrl(prompt, { ...common, model: "flux" }),
+      pollinationsImageUrl(prompt, { ...common, model: "turbo" }),
+      bruschettaFallbackImage,
     ];
-  }, [bruschettaHeroPrompt]);
-
-  const [bruschettaHeroSrc, setBruschettaHeroSrc] = useState(bruschettaFallbackImage);
-
-  useEffect(() => {
-    if (!isBruschetta) return;
-
-    const cached = getPollinationsCacheEntry(bruschettaHeroCacheId);
-    if (cached?.status === "error") return;
-    if (cached?.status === "ok") {
-      setBruschettaHeroSrc(cached.url);
-      return;
-    }
-
-    let cancelled = false;
-    let attempt = 0;
-    let index = 0;
-
-    const load = (url: string) => {
-      const img = new Image();
-      img.decoding = "async";
-      img.src = url;
-      img.onload = () => {
-        if (cancelled) return;
-        setBruschettaHeroSrc(url);
-        setPollinationsCacheEntry(bruschettaHeroCacheId, { url, status: "ok", updatedAt: Date.now() });
-      };
-      img.onerror = () => {
-        if (cancelled) return;
-        index += 1;
-        if (index < bruschettaHeroUrls.length) {
-          load(bruschettaHeroUrls[index]!);
-          return;
-        }
-        attempt += 1;
-        if (attempt >= 2) {
-          setPollinationsCacheEntry(bruschettaHeroCacheId, { url, status: "error", updatedAt: Date.now() });
-          return;
-        }
-        index = 0;
-        window.setTimeout(() => load(bruschettaHeroUrls[index]!), 15000);
-      };
-    };
-
-    const url = bruschettaHeroUrls[0]!;
-    load(url);
-
-    return () => {
-      cancelled = true;
-    };
-  }, [bruschettaHeroUrls, isBruschetta]);
+  }, []);
 
   const recipeJsonLd = useMemo(() => {
     if (!isBruschetta) return null;
 
-    const image = bruschettaHeroUrls[0]!;
+    const image = bruschettaHeroImages;
 
     return {
       "@context": "https://schema.org",
@@ -405,7 +413,7 @@ export default function RecipeDetailPage() {
         sodiumContent: "320 mg",
       },
     };
-  }, [bruschettaHeroUrls, isBruschetta]);
+  }, [bruschettaHeroImages, isBruschetta]);
 
   if (!c || !r) return <Navigate to="/recipes" replace />;
 
@@ -515,13 +523,16 @@ export default function RecipeDetailPage() {
 
                       <Card className="md:col-span-2 overflow-hidden">
                         <div className="aspect-[16/9] w-full bg-muted">
-                          <img
-                            src={bruschettaHeroSrc}
+                          <AiDishImage
+                            cacheId="recipes:italian:tomato-and-basil-bruschetta:hero"
+                            dish="Tomato and Basil Bruschetta"
+                            cuisine="Italian"
                             alt="Tomato and Basil Bruschetta"
+                            width={1600}
+                            height={900}
                             className="h-full w-full object-cover"
                             loading="eager"
-                            decoding="async"
-                            onError={() => setBruschettaHeroSrc(bruschettaFallbackImage)}
+                            fallbackSrc={bruschettaFallbackImage}
                           />
                         </div>
                       </Card>
