@@ -6849,6 +6849,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MinestroneSoupCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tuscan-bread-and-vegetable-soup-ribollita",
+    title: "Tuscan Bread and Vegetable Soup (Ribollita)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Thick rustic soup with bread, beans, kale, and vegetables, reheated for extra flavor.",
+    loader: () => import("@/components/calculators/Misc/TuscanBreadAndVegetableSoupRibollitaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
