@@ -6822,6 +6822,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MarinatedArtichokesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "baked-stuffed-mushrooms",
+    title: "Baked Stuffed Mushrooms",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Mushrooms filled with breadcrumbs, cheese, garlic, and herbs, then baked until golden.",
+    loader: () => import("@/components/calculators/Misc/BakedStuffedMushroomsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
