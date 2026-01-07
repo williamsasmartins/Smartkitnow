@@ -6749,6 +6749,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     
    
     
+    {
+    slug: "tomato-and-basil-bruschetta",
+    title: "Tomato and Basil Bruschetta",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Toasted bread topped with fresh tomatoes, basil, garlic, and olive oil.",
+    loader: () => import("@/components/calculators/Misc/TomatoAndBasilBruschettaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
