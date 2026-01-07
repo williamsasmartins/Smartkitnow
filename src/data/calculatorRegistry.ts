@@ -6867,130 +6867,133 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PastaAndBeanSoupPastaEFagioliCalculator"),
     urlStyle: "flat"
   },
-    {
+   // ... (mantenha as anteriores que funcionam)
+
+  {
     slug: "italian-wedding-soup",
     title: "Italian Wedding Soup",
     category: "culinary",
     subcategory: "italian",
     description: "Broth with meatballs, greens, and tiny pasta like acini di pepe.",
-    loader: () => import("@/components/calculators/Misc/ItalianWeddingSoupCalculator"),
+    // CORRIGIDO: De /Misc/ para /Recipes/
+    loader: () => import("@/components/calculators/Recipes/ItalianWeddingSoupCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tomato-and-bread-soup",
     title: "Tomato and Bread Soup",
     category: "culinary",
     subcategory: "italian",
     description: "Simple rustic soup blending ripe tomatoes with soaked stale bread and basil.",
-    loader: () => import("@/components/calculators/Misc/TomatoAndBreadSoupCalculator"),
+    loader: () => import("@/components/calculators/Recipes/TomatoAndBreadSoupCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "arugula-and-parmesan-salad",
     title: "Arugula and Parmesan Salad",
     category: "culinary",
     subcategory: "italian",
     description: "Peppery arugula tossed with shaved Parmesan and lemon-olive oil dressing.",
-    loader: () => import("@/components/calculators/Misc/ArugulaAndParmesanSaladCalculator"),
+    loader: () => import("@/components/calculators/Recipes/ArugulaAndParmesanSaladCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "chicory-salad-with-anchovy-garlic-dressing",
     title: "Chicory Salad with Anchovy-Garlic Dressing",
     category: "culinary",
     subcategory: "italian",
     description: "Bitter chicory greens in a bold anchovy, garlic, and lemon vinaigrette.",
-    loader: () => import("@/components/calculators/Misc/ChicorySaladWithAnchovyGarlicDressingCalculator"),
+    loader: () => import("@/components/calculators/Recipes/ChicorySaladWithAnchovyGarlicDressingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "spaghetti-carbonara",
     title: "Spaghetti Carbonara",
     category: "culinary",
     subcategory: "italian",
     description: "Creamy pasta with eggs, Pecorino cheese, guanciale, and black pepper.",
-    loader: () => import("@/components/calculators/Misc/SpaghettiCarbonaraCalculator"),
+    loader: () => import("@/components/calculators/Recipes/SpaghettiCarbonaraCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tagliatelle-with-meat-ragu-bolognese",
     title: "Tagliatelle with Meat Ragù (Bolognese)",
     category: "culinary",
     subcategory: "italian",
     description: "Rich slow-cooked meat sauce with beef, pork, tomatoes, and milk.",
-    loader: () => import("@/components/calculators/Misc/TagliatelleWithMeatRaguBologneseCalculator"),
+    loader: () => import("@/components/calculators/Recipes/TagliatelleWithMeatRaguBologneseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "black-pepper-and-pecorino-pasta-cacio-e-pepe",
     title: "Black Pepper and Pecorino Pasta (Cacio e Pepe)",
     category: "culinary",
     subcategory: "italian",
     description: "Simple yet bold pasta with Pecorino Romano and freshly ground black pepper.",
-    loader: () => import("@/components/calculators/Misc/BlackPepperAndPecorinoPastaCacioEPepeCalculator"),
+    loader: () => import("@/components/calculators/Recipes/BlackPepperAndPecorinoPastaCacioEPepeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pasta-with-basil-pesto",
     title: "Pasta with Basil Pesto",
     category: "culinary",
     subcategory: "italian",
     description: "Fresh Genovese pesto made with basil, pine nuts, garlic, Parmesan, and olive oil.",
-    loader: () => import("@/components/calculators/Misc/PastaWithBasilPestoCalculator"),
+    loader: () => import("@/components/calculators/Recipes/PastaWithBasilPestoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "garlic-and-olive-oil-pasta-aglio-e-olio",
     title: "Garlic and Olive Oil Pasta (Aglio e Olio)",
     category: "culinary",
     subcategory: "italian",
     description: "Classic midnight pasta with garlic, olive oil, chili flakes, and parsley.",
-    loader: () => import("@/components/calculators/Misc/GarlicAndOliveOilPastaAglioEOlioCalculator"),
+    loader: () => import("@/components/calculators/Recipes/GarlicAndOliveOilPastaAglioEOlioCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "spaghetti-with-tomato-and-basil-pomodoro",
     title: "Spaghetti with Tomato and Basil (Pomodoro)",
     category: "culinary",
     subcategory: "italian",
     description: "Light fresh tomato sauce with basil and garlic over spaghetti.",
-    loader: () => import("@/components/calculators/Misc/SpaghettiWithTomatoAndBasilPomodoroCalculator"),
+    loader: () => import("@/components/calculators/Recipes/SpaghettiWithTomatoAndBasilPomodoroCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "spaghetti-with-clams",
     title: "Spaghetti with Clams",
     category: "culinary",
     subcategory: "italian",
     description: "Clams cooked in white wine, garlic, and parsley sauce.",
-    loader: () => import("@/components/calculators/Misc/SpaghettiWithClamsCalculator"),
+    loader: () => import("@/components/calculators/Recipes/SpaghettiWithClamsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "lasagna",
     title: "Lasagna",
     category: "culinary",
     subcategory: "italian",
     description: "Layered pasta with ragù, béchamel, mozzarella, and Parmesan.",
-    loader: () => import("@/components/calculators/Misc/LasagnaCalculator"),
+    loader: () => import("@/components/calculators/Recipes/LasagnaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "baked-ziti",
     title: "Baked Ziti",
     category: "culinary",
     subcategory: "italian",
     description: "Tube pasta baked with tomato sauce, ricotta, and melted mozzarella.",
-    loader: () => import("@/components/calculators/Misc/BakedZitiCalculator"),
+    loader: () => import("@/components/calculators/Recipes/BakedZitiCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "stuffed-pasta-shells",
     title: "Stuffed Pasta Shells",
     category: "culinary",
     subcategory: "italian",
     description: "Jumbo shells filled with ricotta and spinach, baked in marinara.",
-    loader: () => import("@/components/calculators/Misc/StuffedPastaShellsCalculator"),
+    loader: () => import("@/components/calculators/Recipes/StuffedPastaShellsCalculator"),
     urlStyle: "flat"
   },
   // SKN-AUTO-REGISTER: do not remove this line
