@@ -6894,6 +6894,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ArugulaAndParmesanSaladCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chicory-salad-with-anchovy-garlic-dressing",
+    title: "Chicory Salad with Anchovy-Garlic Dressing",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Bitter chicory greens in a bold anchovy, garlic, and lemon vinaigrette.",
+    loader: () => import("@/components/calculators/Misc/ChicorySaladWithAnchovyGarlicDressingCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
