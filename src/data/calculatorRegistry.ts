@@ -6907,6 +6907,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChicorySaladWithAnchovyGarlicDressingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "spaghetti-carbonara",
+    title: "Spaghetti Carbonara",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Creamy pasta with eggs, Pecorino cheese, guanciale, and black pepper.",
+    loader: () => import("@/components/calculators/Misc/SpaghettiCarbonaraCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
