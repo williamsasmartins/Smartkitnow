@@ -6934,6 +6934,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BlackPepperAndPecorinoPastaCacioEPepeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pasta-with-basil-pesto",
+    title: "Pasta with Basil Pesto",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Fresh Genovese pesto made with basil, pine nuts, garlic, Parmesan, and olive oil.",
+    loader: () => import("@/components/calculators/Misc/PastaWithBasilPestoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
