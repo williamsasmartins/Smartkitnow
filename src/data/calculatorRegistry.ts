@@ -6970,6 +6970,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SpaghettiWithClamsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "lasagna",
+    title: "Lasagna",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Layered pasta with ragù, béchamel, mozzarella, and Parmesan.",
+    loader: () => import("@/components/calculators/Misc/LasagnaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
