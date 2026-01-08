@@ -9,7 +9,7 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 export default function PastaAndBeanSoupPastaEFagioliCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
-    "https://image.pollinations.ai/prompt/Pasta%20and%20Bean%20Soup%20Pasta%20e%20Fagioli%2C%20plated%20food%20dish%20on%20table%2C%20chopped%20ingredients%20visible%2C%20restaurant%20style%2C%20delicious%2C%20highly%20detailed?width=1280&height=720&nologo=true&seed=3562"
+    "https://image.pollinations.ai/prompt/Pasta%20and%20Bean%20Soup%20Pasta%20e%20Fagioli%2C%20plated%20food%20dish%20on%20table%2C%20chopped%20ingredients%20visible%2C%20restaurant%20style%2C%20delicious%2C%20highly%20detailed?width=1280&height=720&nologo=true&seed=6143"
   );
 
   // --- DATA ---
@@ -20,66 +20,64 @@ export default function PastaAndBeanSoupPastaEFagioliCalculator() {
   const ingredients = [
     { name: "Cannellini Beans (cooked)", baseAmount: 400, unit: "g" },
     { name: "Ditalini Pasta", baseAmount: 100, unit: "g" },
-    { name: "Carrot (finely chopped)", baseAmount: 1, unit: "medium" },
-    { name: "Celery Stalk (finely chopped)", baseAmount: 1, unit: "stalk" },
+    { name: "Extra Virgin Olive Oil", baseAmount: 3, unit: "tbsp" },
     { name: "Yellow Onion (finely chopped)", baseAmount: 1, unit: "medium" },
+    { name: "Carrot (finely chopped)", baseAmount: 1, unit: "medium" },
+    { name: "Celery Stalk (finely chopped)", baseAmount: 2, unit: "stalks" },
     { name: "Garlic Cloves (minced)", baseAmount: 3, unit: "cloves" },
     { name: "Canned Diced Tomatoes", baseAmount: 400, unit: "g" },
-    { name: "Vegetable Broth", baseAmount: 1, unit: "L" },
-    { name: "Extra Virgin Olive Oil", baseAmount: 3, unit: "tbsp" },
-    { name: "Fresh Rosemary (chopped)", baseAmount: 1, unit: "tsp" },
-    { name: "Fresh Thyme (chopped)", baseAmount: 1, unit: "tsp" },
+    { name: "Vegetable Broth", baseAmount: 1.2, unit: "L" },
+    { name: "Fresh Rosemary (sprig)", baseAmount: 1, unit: "sprig" },
+    { name: "Fresh Thyme (sprigs)", baseAmount: 2, unit: "sprigs" },
     { name: "Bay Leaf", baseAmount: 1, unit: "leaf" },
-    { name: "Salt", baseAmount: 1, unit: "tsp" },
-    { name: "Black Pepper", baseAmount: 0.5, unit: "tsp" },
-    { name: "Parmesan Cheese (optional, for serving)", baseAmount: 50, unit: "g" },
+    { name: "Salt", baseAmount: 1.5, unit: "tsp" },
+    { name: "Black Pepper (freshly ground)", baseAmount: 0.5, unit: "tsp" },
+    { name: "Fresh Parsley (chopped)", baseAmount: 2, unit: "tbsp" },
+    { name: "Grated Parmesan Cheese (optional)", baseAmount: 50, unit: "g" },
   ];
 
-  // Nutrition per serving (approximate)
   const nutrition = {
     calories: "320",
     protein: "15g",
     carbs: "45g",
-    fat: "6g",
+    fat: "7g",
   };
 
   // --- LOGIC ---
   const getAmount = (base: number) =>
-    base * (servings / 4) % 1 === 0
-      ? (base * (servings / 4)).toFixed(0)
-      : (base * (servings / 4)).toFixed(1);
+    (base * (servings / 4)).toFixed(1).replace(/\.0$/, "");
 
   // --- FAQ (RICH & DETAILED) ---
   const faqs = [
     {
-      question: "What type of pasta is best for Pasta e Fagioli?",
-      answer:
-        "Traditionally, small pasta shapes like ditalini or small shells are used because they hold the soup well and provide a pleasant texture. However, you can substitute with any small pasta you prefer, such as elbow macaroni or small tubetti.",
-    },
-    {
       question: "Can I use dried beans instead of canned beans?",
       answer:
-        "Yes, you can use dried cannellini beans, but they require soaking overnight and longer cooking times. Using canned beans is a convenient shortcut that saves time without compromising flavor.",
+        "Absolutely! If using dried cannellini beans, soak them overnight and cook them until tender before adding to the soup. This will enhance the flavor and texture, but requires additional preparation time.",
+    },
+    {
+      question: "What type of pasta works best for Pasta e Fagioli?",
+      answer:
+        "Traditionally, small pasta shapes like ditalini or elbow macaroni are used because they blend well with the beans and broth. However, you can substitute with other small pasta shapes you have on hand.",
     },
     {
       question: "How can I make this soup vegan?",
       answer:
-        "To make this soup vegan, simply omit the Parmesan cheese or use a plant-based cheese alternative. Ensure your vegetable broth is vegan-friendly as well.",
+        "To make the soup vegan, simply omit the grated Parmesan cheese or use a plant-based cheese alternative. Ensure your vegetable broth is vegan-friendly as well.",
     },
     {
-      question: "Can I prepare Pasta e Fagioli in advance?",
+      question: "Can I prepare this soup in advance?",
       answer:
-        "Absolutely! This soup tastes even better the next day as the flavors meld. Store it in an airtight container in the refrigerator for up to 3 days. Reheat gently on the stove and add extra broth if it thickens too much.",
+        "Yes, Pasta e Fagioli tastes even better the next day as the flavors meld. Store it in an airtight container in the refrigerator for up to 3 days. Add the pasta fresh or just before serving to avoid it becoming mushy.",
     },
     {
-      question: "What are some good garnishes for this soup?",
+      question: "What are some good variations of this recipe?",
       answer:
-        "Freshly grated Parmesan cheese, a drizzle of high-quality extra virgin olive oil, chopped fresh parsley, or a sprinkle of crushed red pepper flakes all complement the flavors beautifully.",
+        "You can add pancetta or Italian sausage for a meatier version, or include kale or spinach for extra greens. Adjust seasoning to taste and enjoy experimenting with this versatile dish.",
     },
     {
-      question: "Can I freeze Pasta e Fagioli?",
+      question: "How thick should the soup be?",
       answer:
-        "Yes, you can freeze this soup for up to 3 months. It's best to undercook the pasta slightly before freezing to prevent it from becoming mushy upon reheating.",
+        "Pasta e Fagioli can be served either as a hearty stew or a lighter soup. Adjust the amount of broth to your preference. For a thicker consistency, mash some of the beans before adding pasta.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -175,7 +173,7 @@ export default function PastaAndBeanSoupPastaEFagioliCalculator() {
     </div>
   );
 
-  // --- EDITORIAL CONTENT ---
+  // --- EDITORIAL CONTENT (BIGGER FONTS) ---
   const editorial = (
     <div className="space-y-12">
       <section>
@@ -184,18 +182,17 @@ export default function PastaAndBeanSoupPastaEFagioliCalculator() {
         </h2>
         <div className="prose prose-lg prose-slate dark:prose-invert leading-relaxed text-base md:text-lg text-slate-700 dark:text-slate-300">
           <p className="mb-4">
-            Pasta e Fagioli, literally translating to "pasta and beans," is a classic Italian
-            comfort food that has been enjoyed for centuries. This hearty soup combines simple,
-            wholesome ingredients like cannellini beans, small pasta, fresh vegetables, and
-            fragrant herbs to create a nourishing and flavorful dish. Originating from humble
-            peasant roots, it showcases the Italian philosophy of making the most out of pantry
-            staples.
+            Pasta e Fagioli, meaning "pasta and beans" in Italian, is a classic
+            comfort food hailing from the rustic kitchens of Italy. This hearty
+            soup combines simple, wholesome ingredients like cannellini beans,
+            small pasta, fresh herbs, and ripe tomatoes to create a nourishing
+            and flavorful dish that warms the soul.
           </p>
           <p>
-            This recipe balances creamy beans with tender pasta and a rich tomato broth, making it
-            perfect for chilly days or whenever you crave a satisfying, nutritious meal. Its
-            versatility allows for easy adjustments to suit dietary preferences, and it pairs
-            beautifully with crusty bread or a fresh green salad.
+            Traditionally enjoyed as a peasant dish, Pasta e Fagioli has evolved
+            into a beloved staple across Italy and beyond. Its versatility allows
+            for numerous regional variations, but the essence remains the same:
+            a satisfying, protein-rich soup perfect for any season.
           </p>
         </div>
       </section>
@@ -209,62 +206,66 @@ export default function PastaAndBeanSoupPastaEFagioliCalculator() {
             <span className="absolute -left-12 flex items-center justify-center w-8 h-8 bg-orange-100 rounded-full ring-4 ring-white dark:ring-slate-950 dark:bg-orange-900 text-orange-700 dark:text-orange-100 font-bold text-sm">
               1
             </span>
-            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">Prepare the Vegetables</h3>
+            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
+              Prepare the Base
+            </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Finely chop the carrot, celery stalk, and yellow onion. Mince the garlic cloves.
-              These aromatics form the flavorful base of the soup.
+              Heat the olive oil in a large pot over medium heat. Add the finely
+              chopped onion, carrot, and celery, and sauté gently until softened
+              and translucent, about 8-10 minutes. Stir in the minced garlic and
+              cook for another minute until fragrant.
             </p>
           </li>
           <li className="ml-8 relative">
             <span className="absolute -left-12 flex items-center justify-center w-8 h-8 bg-orange-100 rounded-full ring-4 ring-white dark:ring-slate-950 dark:bg-orange-900 text-orange-700 dark:text-orange-100 font-bold text-sm">
               2
             </span>
-            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">Sauté Aromatics</h3>
+            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
+              Add Tomatoes and Herbs
+            </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Heat the olive oil in a large pot over medium heat. Add the chopped onion, carrot,
-              and celery, cooking until softened and fragrant, about 5-7 minutes. Stir in the
-              minced garlic and cook for another minute.
+              Pour in the canned diced tomatoes along with their juices. Add the
+              rosemary sprig, thyme sprigs, and bay leaf. Stir to combine and let
+              the mixture simmer gently for 10 minutes to develop flavor.
             </p>
           </li>
           <li className="ml-8 relative">
             <span className="absolute -left-12 flex items-center justify-center w-8 h-8 bg-orange-100 rounded-full ring-4 ring-white dark:ring-slate-950 dark:bg-orange-900 text-orange-700 dark:text-orange-100 font-bold text-sm">
               3
             </span>
-            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">Add Tomatoes and Herbs</h3>
+            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
+              Add Beans and Broth
+            </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Pour in the canned diced tomatoes along with their juices. Add the rosemary,
-              thyme, bay leaf, salt, and black pepper. Stir well to combine.
+              Add the cooked cannellini beans and vegetable broth to the pot.
+              Season with salt and freshly ground black pepper. Bring to a gentle
+              boil, then reduce heat and simmer uncovered for 20 minutes.
             </p>
           </li>
           <li className="ml-8 relative">
             <span className="absolute -left-12 flex items-center justify-center w-8 h-8 bg-orange-100 rounded-full ring-4 ring-white dark:ring-slate-950 dark:bg-orange-900 text-orange-700 dark:text-orange-100 font-bold text-sm">
               4
             </span>
-            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">Simmer the Soup</h3>
+            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
+              Cook the Pasta
+            </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Add the vegetable broth and bring the mixture to a boil. Reduce heat to low and
-              simmer uncovered for 20 minutes to allow flavors to meld.
+              Add the ditalini pasta to the simmering soup and cook until tender,
+              about 8-10 minutes. Stir occasionally to prevent sticking. Adjust
+              seasoning as needed.
             </p>
           </li>
           <li className="ml-8 relative">
             <span className="absolute -left-12 flex items-center justify-center w-8 h-8 bg-orange-100 rounded-full ring-4 ring-white dark:ring-slate-950 dark:bg-orange-900 text-orange-700 dark:text-orange-100 font-bold text-sm">
               5
             </span>
-            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">Add Beans and Pasta</h3>
+            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
+              Finish and Serve
+            </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Stir in the cooked cannellini beans and ditalini pasta. Continue to simmer until
-              the pasta is tender, about 10-12 minutes. Adjust seasoning with salt and pepper as
-              needed.
-            </p>
-          </li>
-          <li className="ml-8 relative">
-            <span className="absolute -left-12 flex items-center justify-center w-8 h-8 bg-orange-100 rounded-full ring-4 ring-white dark:ring-slate-950 dark:bg-orange-900 text-orange-700 dark:text-orange-100 font-bold text-sm">
-              6
-            </span>
-            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">Serve</h3>
-            <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Remove the bay leaf. Ladle the soup into bowls and garnish with freshly grated
-              Parmesan cheese and a drizzle of extra virgin olive oil if desired. Serve hot.
+              Remove the herb sprigs and bay leaf. Stir in chopped fresh parsley.
+              Ladle the soup into bowls and optionally sprinkle with grated
+              Parmesan cheese. Serve hot with crusty bread for a complete meal.
             </p>
           </li>
         </ol>
@@ -276,26 +277,28 @@ export default function PastaAndBeanSoupPastaEFagioliCalculator() {
         </h3>
         <ul className="list-disc pl-5 space-y-3 text-amber-900 dark:text-amber-100 text-base">
           <li>
-            Use homemade vegetable broth if possible for a richer, more complex flavor.
+            For a creamier texture, mash a portion of the cooked beans before
+            adding the pasta.
           </li>
           <li>
-            To save time, cook dried beans in advance or use canned beans rinsed well to reduce
-            sodium.
+            Use homemade vegetable broth for richer flavor, or enhance store-bought
+            broth with a splash of white wine.
           </li>
           <li>
-            Avoid overcooking the pasta; it should be al dente to maintain texture in the soup.
+            Toast the pasta lightly in the olive oil before adding broth for a
+            nutty depth.
           </li>
           <li>
-            For a smoky depth, add a small piece of pancetta or smoked bacon during the sauté
-            step (optional).
+            Add a pinch of red pepper flakes during sautéing for a subtle heat
+            kick.
           </li>
           <li>
-            Fresh herbs elevate the dish, but dried herbs can be used in a pinch—just reduce the
-            quantity by half.
+            If you prefer a thicker soup, reduce the broth quantity or simmer
+            longer uncovered.
           </li>
           <li>
-            Leftover soup thickens as it cools; add a splash of broth or water when reheating to
-            loosen it up.
+            Garnish with a drizzle of high-quality extra virgin olive oil just
+            before serving for an aromatic finish.
           </li>
         </ul>
       </section>
@@ -305,8 +308,12 @@ export default function PastaAndBeanSoupPastaEFagioliCalculator() {
         <div className="space-y-6">
           {faqs.map((f, i) => (
             <div key={i} className="border-b pb-4 last:border-0">
-              <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">{f.question}</h3>
-              <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">{f.answer}</p>
+              <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
+                {f.question}
+              </h3>
+              <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
+                {f.answer}
+              </p>
             </div>
           ))}
         </div>
