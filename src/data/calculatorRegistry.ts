@@ -6765,7 +6765,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Layers of fresh mozzarella, ripe tomatoes, and basil drizzled with olive oil and balsamic.",
-    loader: () => import("@/components/calculators/Misc/CapreseSaladCalculator"),
+    loader: () => import("@/pages/NotFound"),
     urlStyle: "flat"
   },
     {
@@ -6774,7 +6774,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Tuscan salad of stale bread, tomatoes, onions, cucumber, and basil in a vinaigrette.",
-    loader: () => import("@/components/calculators/Misc/ItalianBreadSaladPanzanellaCalculator"),
+    loader: () => import("@/pages/NotFound"),
     urlStyle: "flat"
   },
     {
