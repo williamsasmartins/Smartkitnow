@@ -6753,11 +6753,11 @@ export const calculatorRegistry: CalculatorEntry[] = [
     {
     slug: "tomato-and-basil-bruschetta",
     title: "Tomato and Basil Bruschetta",
-    category: "culinary",
+    category: "recipes",
     subcategory: "italian",
     description: "Toasted bread topped with fresh tomatoes, basil, garlic, and olive oil.",
-    loader: () => import("@/components/calculators/Misc/TomatoAndBasilBruschettaCalculator"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Recipes/TomatoAndBasilBruschettaCalculator"),
+    urlStyle: "nested"
   },
     {
     slug: "caprese-salad",
@@ -6780,92 +6780,92 @@ export const calculatorRegistry: CalculatorEntry[] = [
     {
     slug: "antipasto-platter-cured-meats-cheese-olives",
     title: "Antipasto Platter (Cured Meats, Cheese, Olives)",
-    category: "culinary",
+    category: "recipes",
     subcategory: "italian",
     description: "Assortment of cured meats, cheeses, olives, and marinated vegetables.",
-    loader: () => import("@/components/calculators/Misc/AntipastoPlatterCuredMeatsCheeseOlivesCalculator"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Recipes/AntipastoPlatterCuredMeatsCheeseOlivesCalculator"),
+    urlStyle: "nested"
   },
     {
     slug: "garlic-and-herb-crostini",
     title: "Garlic and Herb Crostini",
-    category: "culinary",
+    category: "recipes",
     subcategory: "italian",
     description: "Crispy toasted bread rubbed with garlic and topped with fresh herbs.",
-    loader: () => import("@/components/calculators/Misc/GarlicAndHerbCrostiniCalculator"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Recipes/GarlicAndHerbCrostiniCalculator"),
+    urlStyle: "nested"
   },
     {
     slug: "fried-rice-balls-arancini",
     title: "Fried Rice Balls (Arancini)",
-    category: "culinary",
+    category: "recipes",
     subcategory: "italian",
     description: "Deep-fried risotto balls filled with cheese, meat, or peas.",
-    loader: () => import("@/components/calculators/Misc/FriedRiceBallsAranciniCalculator"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Recipes/FriedRiceBallsAranciniCalculator"),
+    urlStyle: "nested"
   },
     {
     slug: "stuffed-zucchini-blossoms",
     title: "Stuffed Zucchini Blossoms",
-    category: "culinary",
+    category: "recipes",
     subcategory: "italian",
     description: "Delicate zucchini flowers stuffed with cheese and herbs, then lightly battered and fried.",
-    loader: () => import("@/components/calculators/Misc/StuffedZucchiniBlossomsCalculator"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Recipes/StuffedZucchiniBlossomsCalculator"),
+    urlStyle: "nested"
   },
     {
     slug: "marinated-artichokes",
     title: "Marinated Artichokes",
-    category: "culinary",
+    category: "recipes",
     subcategory: "italian",
     description: "Tender artichoke hearts marinated in olive oil, garlic, and herbs.",
-    loader: () => import("@/components/calculators/Misc/MarinatedArtichokesCalculator"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Recipes/MarinatedArtichokesCalculator"),
+    urlStyle: "nested"
   },
     {
     slug: "baked-stuffed-mushrooms",
     title: "Baked Stuffed Mushrooms",
-    category: "culinary",
+    category: "recipes",
     subcategory: "italian",
     description: "Mushrooms filled with breadcrumbs, cheese, garlic, and herbs, then baked until golden.",
-    loader: () => import("@/components/calculators/Misc/BakedStuffedMushroomsCalculator"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Recipes/BakedStuffedMushroomsCalculator"),
+    urlStyle: "nested"
   },
     {
     slug: "prosciutto-and-melon",
     title: "Prosciutto and Melon",
-    category: "culinary",
+    category: "recipes",
     subcategory: "italian",
     description: "Sweet ripe melon wrapped in thin slices of salty prosciutto.",
-    loader: () => import("@/components/calculators/Misc/ProsciuttoAndMelonCalculator"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Recipes/ProsciuttoAndMelonCalculator"),
+    urlStyle: "nested"
   },
     {
     slug: "minestrone-soup",
     title: "Minestrone Soup",
-    category: "culinary",
+    category: "recipes",
     subcategory: "italian",
     description: "Hearty vegetable soup with beans, pasta, and seasonal greens in a tomato broth.",
-    loader: () => import("@/components/calculators/Misc/MinestroneSoupCalculator"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Recipes/MinestroneSoupCalculator"),
+    urlStyle: "nested"
   },
     {
     slug: "tuscan-bread-and-vegetable-soup-ribollita",
     title: "Tuscan Bread and Vegetable Soup (Ribollita)",
-    category: "culinary",
+    category: "recipes",
     subcategory: "italian",
     description: "Thick rustic soup with bread, beans, kale, and vegetables, reheated for extra flavor.",
-    loader: () => import("@/components/calculators/Misc/TuscanBreadAndVegetableSoupRibollitaCalculator"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Recipes/TuscanBreadAndVegetableSoupRibollitaCalculator"),
+    urlStyle: "nested"
   },
     {
     slug: "pasta-and-bean-soup-pasta-e-fagioli",
     title: "Pasta and Bean Soup (Pasta e Fagioli)",
-    category: "culinary",
+    category: "recipes",
     subcategory: "italian",
     description: "Comforting soup of pasta, cannellini beans, tomatoes, and herbs.",
-    loader: () => import("@/components/calculators/Misc/PastaAndBeanSoupPastaEFagioliCalculator"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Recipes/PastaAndBeanSoupPastaEFagioliCalculator"),
+    urlStyle: "nested"
   },
 
 
