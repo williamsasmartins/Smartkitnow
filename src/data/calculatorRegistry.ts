@@ -6762,20 +6762,20 @@ export const calculatorRegistry: CalculatorEntry[] = [
     {
     slug: "caprese-salad",
     title: "Caprese Salad",
-    category: "culinary",
+    category: "recipes",
     subcategory: "italian",
     description: "Layers of fresh mozzarella, ripe tomatoes, and basil drizzled with olive oil and balsamic.",
-    loader: () => import("@/pages/NotFound"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Recipes/CapreseSaladCalculator"),
+    urlStyle: "nested"
   },
     {
     slug: "italian-bread-salad-panzanella",
     title: "Italian Bread Salad (Panzanella)",
-    category: "culinary",
+    category: "recipes",
     subcategory: "italian",
     description: "Tuscan salad of stale bread, tomatoes, onions, cucumber, and basil in a vinaigrette.",
-    loader: () => import("@/pages/NotFound"),
-    urlStyle: "flat"
+    loader: () => import("@/components/calculators/Recipes/ItalianBreadSaladPanzanellaCalculator"),
+    urlStyle: "nested"
   },
     {
     slug: "antipasto-platter-cured-meats-cheese-olives",

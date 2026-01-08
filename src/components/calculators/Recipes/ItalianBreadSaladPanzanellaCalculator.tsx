@@ -6,85 +6,80 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
-export default function CapreseSaladCalculator() {
+export default function ItalianBreadSaladPanzanellaCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
-    "https://image.pollinations.ai/prompt/Caprese%20Salad%2C%20plated%20food%20dish%20on%20table%2C%20chopped%20ingredients%20visible%2C%20restaurant%20style%2C%20delicious%2C%20highly%20detailed?width=1280&height=720&nologo=true&seed=8471"
+    "https://image.pollinations.ai/prompt/Italian%20Bread%20Salad%20Panzanella%2C%20plated%20food%20dish%20on%20table%2C%20chopped%20ingredients%20visible%2C%20restaurant%20style%2C%20delicious%2C%20highly%20detailed?width=1280&height=720&nologo=true&seed=465"
   );
 
-  // --- DATA ---
-  const title = "Caprese Salad";
-  const description =
-    "Layers of fresh mozzarella, ripe tomatoes, and basil drizzled with olive oil and balsamic.";
+  const title = "Italian Bread Salad (Panzanella)";
+  const description = "Tuscan salad of stale bread, tomatoes, onions, cucumber, and basil in a vinaigrette.";
 
-  // INGREDIENTS
   const ingredients = [
-    { name: "Fresh Mozzarella Cheese", baseAmount: 250, unit: "g" },
-    { name: "Ripe Tomatoes", baseAmount: 300, unit: "g" },
-    { name: "Fresh Basil Leaves", baseAmount: 20, unit: "g" },
-    { name: "Extra Virgin Olive Oil", baseAmount: 30, unit: "ml" },
-    { name: "Balsamic Vinegar", baseAmount: 15, unit: "ml" },
-    { name: "Sea Salt", baseAmount: 1, unit: "tsp" },
-    { name: "Freshly Ground Black Pepper", baseAmount: 0.5, unit: "tsp" },
-    { name: "Optional: Arugula", baseAmount: 50, unit: "g" },
-    { name: "Optional: Pine Nuts", baseAmount: 15, unit: "g" },
-    { name: "Optional: Garlic Clove (minced)", baseAmount: 1, unit: "clove" },
+    { name: "Stale rustic bread (cubed)", baseAmount: 300, unit: "g" },
+    { name: "Ripe tomatoes (chopped)", baseAmount: 400, unit: "g" },
+    { name: "Cucumber (peeled and sliced)", baseAmount: 150, unit: "g" },
+    { name: "Red onion (thinly sliced)", baseAmount: 80, unit: "g" },
+    { name: "Fresh basil leaves", baseAmount: 15, unit: "g" },
+    { name: "Extra virgin olive oil", baseAmount: 60, unit: "ml" },
+    { name: "Red wine vinegar", baseAmount: 30, unit: "ml" },
+    { name: "Salt", baseAmount: 5, unit: "g" },
+    { name: "Black pepper (freshly ground)", baseAmount: 2, unit: "g" },
+    { name: "Garlic clove (minced)", baseAmount: 1, unit: "clove" },
+    { name: "Capers (optional)", baseAmount: 15, unit: "g" },
+    { name: "Olives (pitted and halved, optional)", baseAmount: 50, unit: "g" },
   ];
 
-  // Nutrition per serving (approximate)
   const nutrition = {
-    calories: "220",
-    protein: "12g",
-    carbs: "4g",
-    fat: "18g",
+    calories: "320",
+    protein: "7g",
+    carbs: "35g",
+    fat: "15g",
   };
 
-  // --- LOGIC ---
   const getAmount = (base: number) =>
     (base * (servings / 4)).toFixed(1).replace(/\.0$/, "");
 
-  // --- FAQ (RICH & DETAILED) ---
   const faqs = [
     {
-      question: "What is the best type of tomato to use for Caprese Salad?",
+      question: "What type of bread is best for Panzanella?",
       answer:
-        "For Caprese Salad, ripe, juicy tomatoes with a balance of sweetness and acidity work best. Heirloom tomatoes or vine-ripened beefsteak tomatoes are excellent choices because they offer vibrant flavor and a meaty texture that complements the creamy mozzarella.",
+        "Traditionally, stale rustic or country-style bread with a firm crust is ideal for Panzanella. It soaks up the dressing without becoming too mushy. Avoid soft sandwich bread as it won't hold texture well.",
     },
     {
-      question: "Can I substitute fresh mozzarella with other cheeses?",
+      question: "Can I prepare Panzanella in advance?",
       answer:
-        "While fresh mozzarella is traditional and provides the signature creamy texture, you can experiment with burrata for an even creamier experience or bocconcini for smaller bite-sized pieces. Avoid aged or hard cheeses as they will alter the salad’s delicate balance.",
+        "Panzanella is best served fresh to maintain the bread's texture and the brightness of the vegetables. However, you can prepare the vegetables and dressing a few hours ahead and combine them with the bread just before serving.",
     },
     {
-      question: "How should I store leftover Caprese Salad?",
+      question: "How do I prevent the bread from becoming soggy?",
       answer:
-        "Caprese Salad is best enjoyed fresh. If you have leftovers, store them in an airtight container in the refrigerator for up to 1 day. To maintain freshness, keep the dressing separate and add it just before serving to prevent sogginess.",
+        "Use stale or toasted bread cubes that are dry and firm. Toss the bread with the dressing just before serving to keep it from absorbing too much liquid and becoming soggy.",
     },
     {
-      question: "Is it necessary to use balsamic vinegar in the salad?",
+      question: "Can I add other vegetables or ingredients?",
       answer:
-        "Balsamic vinegar adds a sweet and tangy depth that beautifully complements the creamy mozzarella and fresh tomatoes. However, if you prefer a lighter taste, you can omit it or substitute with a drizzle of aged balsamic glaze for a more concentrated flavor.",
+        "Absolutely! Panzanella is versatile. You can add ingredients like bell peppers, radishes, capers, or olives to enhance flavor and texture. Just ensure they complement the fresh, vibrant profile of the salad.",
     },
     {
-      question: "Can Caprese Salad be made vegan or dairy-free?",
+      question: "Is Panzanella suitable for vegans?",
       answer:
-        "Yes! To make a vegan or dairy-free version, substitute fresh mozzarella with plant-based cheese alternatives such as cashew-based mozzarella or tofu marinated in lemon juice and herbs. The rest of the ingredients remain the same, preserving the fresh and vibrant flavors.",
+        "Yes, Panzanella is naturally vegan as it contains bread, vegetables, olive oil, and vinegar. Just ensure the bread you use does not contain dairy or eggs if you want to keep it strictly vegan.",
     },
     {
-      question: "What wine pairs well with Caprese Salad?",
+      question: "What wine pairs well with Panzanella?",
       answer:
-        "A crisp, light white wine like Pinot Grigio or Sauvignon Blanc pairs wonderfully with Caprese Salad. Their acidity complements the tomatoes and cuts through the richness of the mozzarella, enhancing the overall dining experience.",
+        "A crisp, light-bodied white wine like Pinot Grigio or Vermentino pairs beautifully with Panzanella, complementing its fresh and tangy flavors without overpowering the salad.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
-  // --- WIDGET CONTENT ---
   const widget = (
     <div className="space-y-6">
       <div className="rounded-xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800 relative group bg-slate-100 dark:bg-slate-800">
         <img
           src={imgSrc}
-          alt="Caprese Salad"
+          alt="Italian Bread Salad (Panzanella)"
           width="1280"
           height="720"
           className="w-full h-auto object-cover aspect-video transition-transform duration-700 group-hover:scale-105"
@@ -96,7 +91,7 @@ export default function CapreseSaladCalculator() {
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
           <span className="text-white font-bold text-lg flex items-center gap-2">
-            <Clock className="w-5 h-5 text-orange-400" /> Prep: 10m | Cook: 0m
+            <Clock className="w-5 h-5 text-orange-400" /> Prep: 20m | Cook: 10m
           </span>
         </div>
       </div>
@@ -113,7 +108,6 @@ export default function CapreseSaladCalculator() {
                 size="sm"
                 className="h-8 w-8 p-0"
                 onClick={() => setServings((s) => Math.max(1, s - 1))}
-                aria-label="Decrease servings"
               >
                 -
               </Button>
@@ -123,7 +117,6 @@ export default function CapreseSaladCalculator() {
                 size="sm"
                 className="h-8 w-8 p-0"
                 onClick={() => setServings((s) => s + 1)}
-                aria-label="Increase servings"
               >
                 +
               </Button>
@@ -137,7 +130,10 @@ export default function CapreseSaladCalculator() {
                 <TableRow key={i}>
                   <TableCell className="font-medium text-base">{ing.name}</TableCell>
                   <TableCell className="text-right font-bold text-base text-slate-700 dark:text-slate-200">
-                    {getAmount(ing.baseAmount)} {ing.unit}
+                    {ing.unit === "clove"
+                      ? getAmount(ing.baseAmount)
+                      : getAmount(ing.baseAmount)}{" "}
+                    {ing.unit}
                   </TableCell>
                 </TableRow>
               ))}
@@ -169,7 +165,6 @@ export default function CapreseSaladCalculator() {
     </div>
   );
 
-  // --- EDITORIAL CONTENT (BIGGER FONTS) ---
   const editorial = (
     <div className="space-y-12">
       <section>
@@ -178,20 +173,21 @@ export default function CapreseSaladCalculator() {
         </h2>
         <div className="prose prose-lg prose-slate dark:prose-invert leading-relaxed text-base md:text-lg text-slate-700 dark:text-slate-300">
           <p className="mb-4">
-            Caprese Salad is a classic Italian dish that celebrates the simplicity
-            and freshness of its ingredients. Originating from the island of Capri,
-            this salad is a vibrant combination of ripe tomatoes, creamy fresh
-            mozzarella, and aromatic basil leaves, all drizzled with high-quality
-            extra virgin olive oil and a touch of balsamic vinegar. Its colors
-            represent the Italian flag, making it not only delicious but also
-            visually appealing.
+            Panzanella is a classic Tuscan bread salad that celebrates the
+            simplicity and freshness of Italian cuisine. Traditionally made
+            with stale bread, ripe tomatoes, cucumbers, onions, fragrant
+            basil, this salad is dressed with a tangy vinaigrette of olive oil
+            and red wine vinegar. It’s a perfect way to use up leftover bread
+            while enjoying a refreshing, vibrant dish especially popular in
+            summer.
           </p>
           <p>
-            This salad is perfect as a light appetizer or a refreshing side dish,
-            especially during the summer months when tomatoes and basil are at their
-            peak. The balance of flavors and textures—from the juicy tomatoes to the
-            silky mozzarella and fragrant basil—makes Caprese Salad a timeless and
-            beloved recipe worldwide.
+            The beauty of Panzanella lies in its rustic charm and the balance of
+            textures — crunchy bread cubes softened just enough by the dressing,
+            juicy tomatoes bursting with flavor, and the aromatic lift from fresh
+            herbs. This recipe is easy to customize with optional ingredients like
+            olives or capers, making it a versatile and crowd-pleasing salad for
+            any occasion.
           </p>
         </div>
       </section>
@@ -206,12 +202,12 @@ export default function CapreseSaladCalculator() {
               1
             </span>
             <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
-              Prepare the Ingredients
+              Prepare the Bread
             </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Wash the tomatoes and basil leaves thoroughly. Slice the tomatoes and
-              fresh mozzarella into even, approximately 1/4-inch thick slices to
-              ensure balanced layering.
+              Cut the stale rustic bread into 2 cm cubes. If the bread is not
+              stale, toast the cubes lightly in the oven at 180°C (350°F) for 10
+              minutes until crisp but not browned. Set aside to cool.
             </p>
           </li>
           <li className="ml-8 relative">
@@ -219,12 +215,12 @@ export default function CapreseSaladCalculator() {
               2
             </span>
             <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
-              Layer the Salad
+              Prepare the Vegetables
             </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              On a serving platter or individual plates, alternate slices of tomato
-              and mozzarella, slightly overlapping each piece. Tuck fresh basil
-              leaves between the layers for aroma and color.
+              Chop the ripe tomatoes into bite-sized pieces. Peel and slice the
+              cucumber, thinly slice the red onion, and roughly tear the fresh
+              basil leaves. If using, halve the olives and rinse the capers.
             </p>
           </li>
           <li className="ml-8 relative">
@@ -232,12 +228,12 @@ export default function CapreseSaladCalculator() {
               3
             </span>
             <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
-              Season and Dress
+              Make the Dressing
             </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Drizzle extra virgin olive oil and balsamic vinegar evenly over the
-              salad. Sprinkle sea salt and freshly ground black pepper to taste.
-              Optionally, add minced garlic or pine nuts for extra flavor and texture.
+              In a small bowl, whisk together the extra virgin olive oil, red wine
+              vinegar, minced garlic, salt, and freshly ground black pepper until
+              emulsified.
             </p>
           </li>
           <li className="ml-8 relative">
@@ -245,12 +241,25 @@ export default function CapreseSaladCalculator() {
               4
             </span>
             <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
-              Serve Fresh
+              Assemble the Salad
             </h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Serve immediately at room temperature to enjoy the full flavors and
-              textures. Caprese Salad pairs beautifully with crusty bread or as a
-              side to grilled meats and seafood.
+              In a large bowl, combine the bread cubes, tomatoes, cucumber, onion,
+              basil, and optional olives and capers. Pour the dressing over and
+              toss gently to combine, ensuring the bread absorbs the flavors.
+            </p>
+          </li>
+          <li className="ml-8 relative">
+            <span className="absolute -left-12 flex items-center justify-center w-8 h-8 bg-orange-100 rounded-full ring-4 ring-white dark:ring-slate-950 dark:bg-orange-900 text-orange-700 dark:text-orange-100 font-bold text-sm">
+              5
+            </span>
+            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
+              Rest and Serve
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
+              Let the salad rest at room temperature for 15-20 minutes to allow the
+              bread to soak up the dressing. Serve fresh as a side dish or light
+              meal.
             </p>
           </li>
         </ol>
@@ -262,24 +271,27 @@ export default function CapreseSaladCalculator() {
         </h3>
         <ul className="list-disc pl-5 space-y-3 text-amber-900 dark:text-amber-100 text-base">
           <li>
-            Use the freshest mozzarella you can find, ideally from a local cheese
-            shop or fresh mozzarella packed in water for the best texture and flavor.
+            Use day-old or slightly stale bread for the best texture; fresh bread
+            will become too mushy.
           </li>
           <li>
-            Let the salad sit for 5-10 minutes after dressing to allow the flavors to
-            meld, but avoid letting it sit too long to prevent sogginess.
+            Toast the bread cubes lightly if your bread is very soft to add crunch.
           </li>
           <li>
-            For a beautiful presentation, arrange the slices in a circular pattern or
-            in rows, alternating tomato and mozzarella.
+            Adjust the acidity of the dressing by adding more or less red wine
+            vinegar to taste.
           </li>
           <li>
-            If using balsamic vinegar, consider reducing it to a glaze for a sweeter,
-            thicker drizzle that adds visual appeal.
+            For a more robust flavor, add a splash of balsamic vinegar or a pinch
+            of chili flakes.
           </li>
           <li>
-            Experiment with adding a sprinkle of flaky sea salt like Maldon for a
-            delicate crunch.
+            Serve Panzanella at room temperature rather than chilled to preserve
+            the flavors and texture.
+          </li>
+          <li>
+            Garnish with extra fresh basil leaves just before serving for a
+            vibrant aroma.
           </li>
         </ul>
       </section>
@@ -346,3 +358,4 @@ export default function CapreseSaladCalculator() {
     />
   );
 }
+
