@@ -1,2 +1,1 @@
-export { default } from "@/components/calculators/misc/TuscanBreadAndVegetableSoupRibollitaCalculator";
-
+export { default } from "@/components/calculators/Misc/TuscanBreadAndVegetableSoupRibollitaCalculator";
