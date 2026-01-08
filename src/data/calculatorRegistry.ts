@@ -6943,6 +6943,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PastaWithBasilPestoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "garlic-and-olive-oil-pasta-aglio-e-olio",
+    title: "Garlic and Olive Oil Pasta (Aglio e Olio)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Classic midnight pasta with garlic, olive oil, chili flakes, and parsley.",
+    loader: () => import("@/components/calculators/Misc/GarlicAndOliveOilPastaAglioEOlioCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
