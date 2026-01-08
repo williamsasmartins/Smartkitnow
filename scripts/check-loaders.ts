@@ -12,6 +12,10 @@ function resolveFromLoader(e: any): string | null {
   if (!spec) return null;
   if (spec.startsWith("@/")) {
     const rel = spec.slice(2);
+    if (rel.endsWith(".tsx") || rel.endsWith(".ts")) {
+      const direct = path.resolve(__DIR, "../src", rel);
+      if (fs.existsSync(direct)) return direct;
+    }
     const tsx = path.resolve(__DIR, "../src", rel + ".tsx");
     const ts = path.resolve(__DIR, "../src", rel + ".ts");
     if (fs.existsSync(tsx)) return tsx;

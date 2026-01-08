@@ -6756,7 +6756,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "italian",
     description: "Toasted bread topped with fresh tomatoes, basil, garlic, and olive oil.",
-    loader: () => import("@/components/calculators/Recipes/TomatoAndBasilBruschettaCalculator"),
+    loader: () => import("@/components/calculators/Recipes/TomatoAndBasilBruschettaCalculator.tsx"),
     urlStyle: "nested"
   },
     {
@@ -6765,7 +6765,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "italian",
     description: "Layers of fresh mozzarella, ripe tomatoes, and basil drizzled with olive oil and balsamic.",
-    loader: () => import("@/components/calculators/Recipes/CapreseSaladCalculator"),
+    loader: () => import("@/components/calculators/Recipes/CapreseSaladCalculator.tsx"),
     urlStyle: "nested"
   },
     {
@@ -6774,7 +6774,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "italian",
     description: "Tuscan salad of stale bread, tomatoes, onions, cucumber, and basil in a vinaigrette.",
-    loader: () => import("@/components/calculators/Recipes/ItalianBreadSaladPanzanellaCalculator"),
+    loader: () => import("@/components/calculators/Recipes/ItalianBreadSaladPanzanellaCalculator.tsx"),
     urlStyle: "nested"
   },
     {
@@ -6783,7 +6783,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "italian",
     description: "Assortment of cured meats, cheeses, olives, and marinated vegetables.",
-    loader: () => import("@/components/calculators/Recipes/AntipastoPlatterCuredMeatsCheeseOlivesCalculator"),
+    loader: () => import("@/components/calculators/Recipes/AntipastoPlatterCuredMeatsCheeseOlivesCalculator.tsx"),
     urlStyle: "nested"
   },
     {
@@ -6792,7 +6792,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "italian",
     description: "Crispy toasted bread rubbed with garlic and topped with fresh herbs.",
-    loader: () => import("@/components/calculators/Recipes/GarlicAndHerbCrostiniCalculator"),
+    loader: () => import("@/components/calculators/Recipes/GarlicAndHerbCrostiniCalculator.tsx"),
     urlStyle: "nested"
   },
     {
@@ -6801,7 +6801,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "italian",
     description: "Deep-fried risotto balls filled with cheese, meat, or peas.",
-    loader: () => import("@/components/calculators/Recipes/FriedRiceBallsAranciniCalculator"),
+    loader: () => import("@/components/calculators/Recipes/FriedRiceBallsAranciniCalculator.tsx"),
     urlStyle: "nested"
   },
     {
@@ -6810,7 +6810,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "italian",
     description: "Delicate zucchini flowers stuffed with cheese and herbs, then lightly battered and fried.",
-    loader: () => import("@/components/calculators/Recipes/StuffedZucchiniBlossomsCalculator"),
+    loader: () => import("@/components/calculators/Recipes/StuffedZucchiniBlossomsCalculator.tsx"),
     urlStyle: "nested"
   },
     {
@@ -6819,7 +6819,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "italian",
     description: "Tender artichoke hearts marinated in olive oil, garlic, and herbs.",
-    loader: () => import("@/components/calculators/Recipes/MarinatedArtichokesCalculator"),
+    loader: () => import("@/components/calculators/Recipes/MarinatedArtichokesCalculator.tsx"),
     urlStyle: "nested"
   },
     {
@@ -6828,7 +6828,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "italian",
     description: "Mushrooms filled with breadcrumbs, cheese, garlic, and herbs, then baked until golden.",
-    loader: () => import("@/components/calculators/Recipes/BakedStuffedMushroomsCalculator"),
+    loader: () => import("@/components/calculators/Recipes/BakedStuffedMushroomsCalculator.tsx"),
     urlStyle: "nested"
   },
     {
@@ -6837,7 +6837,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "italian",
     description: "Sweet ripe melon wrapped in thin slices of salty prosciutto.",
-    loader: () => import("@/components/calculators/Recipes/ProsciuttoAndMelonCalculator"),
+    loader: () => import("@/components/calculators/Recipes/ProsciuttoAndMelonCalculator.tsx"),
     urlStyle: "nested"
   },
     {
@@ -6846,7 +6846,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "italian",
     description: "Hearty vegetable soup with beans, pasta, and seasonal greens in a tomato broth.",
-    loader: () => import("@/components/calculators/Recipes/MinestroneSoupCalculator"),
+    loader: () => import("@/components/calculators/Recipes/MinestroneSoupCalculator.tsx"),
     urlStyle: "nested"
   },
     {
@@ -6855,7 +6855,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "italian",
     description: "Thick rustic soup with bread, beans, kale, and vegetables, reheated for extra flavor.",
-    loader: () => import("@/components/calculators/Recipes/TuscanBreadAndVegetableSoupRibollitaCalculator"),
+    loader: () => import("@/components/calculators/Recipes/TuscanBreadAndVegetableSoupRibollitaCalculator.tsx"),
     urlStyle: "nested"
   },
     {
@@ -6864,7 +6864,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "italian",
     description: "Comforting soup of pasta, cannellini beans, tomatoes, and herbs.",
-    loader: () => import("@/components/calculators/Recipes/PastaAndBeanSoupPastaEFagioliCalculator"),
+    loader: () => import("@/components/calculators/Recipes/PastaAndBeanSoupPastaEFagioliCalculator.tsx"),
     urlStyle: "nested"
   },
 
