@@ -6961,6 +6961,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SpaghettiWithTomatoAndBasilPomodoroCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "spaghetti-with-clams",
+    title: "Spaghetti with Clams",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Clams cooked in white wine, garlic, and parsley sauce.",
+    loader: () => import("@/components/calculators/Misc/SpaghettiWithClamsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
