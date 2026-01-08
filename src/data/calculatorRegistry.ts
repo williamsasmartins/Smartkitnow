@@ -6916,6 +6916,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SpaghettiCarbonaraCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tagliatelle-with-meat-ragu-bolognese",
+    title: "Tagliatelle with Meat Ragù (Bolognese)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Rich slow-cooked meat sauce with beef, pork, tomatoes, and milk.",
+    loader: () => import("@/components/calculators/Misc/TagliatelleWithMeatRaguBologneseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
