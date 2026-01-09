@@ -7321,6 +7321,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/StuffedFlatbreadPiadinaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tiramisu",
+    title: "Tiramisu",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Layered dessert of coffee-soaked ladyfingers, mascarpone, and cocoa.",
+    loader: () => import("@/components/calculators/Misc/TiramisuCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
