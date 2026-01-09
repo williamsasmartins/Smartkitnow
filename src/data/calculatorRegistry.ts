@@ -7366,6 +7366,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/AffogatoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "biscotti",
+    title: "Biscotti",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Twice-baked almond cookies, perfect for dipping in coffee or vin santo.",
+    loader: () => import("@/components/calculators/Misc/BiscottiCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
