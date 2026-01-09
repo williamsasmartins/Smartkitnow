@@ -7060,6 +7060,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ParmesanRisottoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "creamy-polenta-with-mushrooms",
+    title: "Creamy Polenta with Mushrooms",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Smooth cornmeal polenta topped with sautéed mushrooms.",
+    loader: () => import("@/components/calculators/Misc/CreamyPolentaWithMushroomsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
