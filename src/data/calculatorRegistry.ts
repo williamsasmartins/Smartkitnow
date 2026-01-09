@@ -7357,6 +7357,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GelatoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "affogato",
+    title: "Affogato",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Vanilla gelato \"drowned\" in a shot of hot espresso.",
+    loader: () => import("@/components/calculators/Misc/AffogatoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
