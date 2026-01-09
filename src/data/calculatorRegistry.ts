@@ -7240,6 +7240,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FriedCalamariCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "seafood-stew-tomato-and-wine-base",
+    title: "Seafood Stew (Tomato and Wine Base)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Mixed seafood simmered in a rich tomato and white wine broth.",
+    loader: () => import("@/components/calculators/Misc/SeafoodStewTomatoAndWineBaseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
