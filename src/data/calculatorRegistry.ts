@@ -7330,6 +7330,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TiramisuCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "panna-cotta",
+    title: "Panna Cotta",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Silky cooked cream dessert, often served with berry sauce.",
+    loader: () => import("@/components/calculators/Misc/PannaCottaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
