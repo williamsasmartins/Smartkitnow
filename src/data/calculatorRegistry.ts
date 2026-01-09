@@ -7348,6 +7348,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CannoliCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "gelato",
+    title: "Gelato",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Dense and creamy Italian ice cream in various flavors.",
+    loader: () => import("@/components/calculators/Misc/GelatoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
