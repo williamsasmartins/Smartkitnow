@@ -7186,6 +7186,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ItalianStyleRoastPorkPorchettaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tuscan-steak-florentine-style",
+    title: "Tuscan Steak (Florentine-Style)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Thick grilled T-bone steak seasoned simply with salt and pepper.",
+    loader: () => import("@/components/calculators/Misc/TuscanSteakFlorentineStyleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
