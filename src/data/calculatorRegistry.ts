@@ -7195,6 +7195,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TuscanSteakFlorentineStyleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "italian-meatballs-in-tomato-sauce",
+    title: "Italian Meatballs in Tomato Sauce",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Tender beef and pork meatballs simmered in marinara sauce.",
+    loader: () => import("@/components/calculators/Misc/ItalianMeatballsInTomatoSauceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
