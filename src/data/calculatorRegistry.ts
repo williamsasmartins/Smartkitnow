@@ -7204,6 +7204,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ItalianMeatballsInTomatoSauceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "eggplant-parmesan",
+    title: "Eggplant Parmesan",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Breaded eggplant slices layered with tomato sauce and melted cheese.",
+    loader: () => import("@/components/calculators/Misc/EggplantParmesanCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
