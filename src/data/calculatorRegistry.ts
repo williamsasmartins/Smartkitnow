@@ -7159,6 +7159,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenSaltimboccaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "veal-cutlet-milanese",
+    title: "Veal Cutlet Milanese",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Breaded and fried veal cutlet served with lemon and arugula.",
+    loader: () => import("@/components/calculators/Misc/VealCutletMilaneseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
