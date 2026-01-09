@@ -7177,6 +7177,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BraisedVealShanksOssoBucoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "italian-style-roast-pork-porchetta",
+    title: "Italian-Style Roast Pork (Porchetta)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Herb-crusted rolled pork roast with crispy crackling skin.",
+    loader: () => import("@/components/calculators/Misc/ItalianStyleRoastPorkPorchettaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
