@@ -7384,6 +7384,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SemifreddoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "italian-ice-granita",
+    title: "Italian Ice (Granita)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Icy refreshing dessert with intense fruit flavor, like lemon or almond.",
+    loader: () => import("@/components/calculators/Misc/ItalianIceGranitaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
