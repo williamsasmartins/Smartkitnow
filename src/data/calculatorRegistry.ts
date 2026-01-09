@@ -7276,6 +7276,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BroccoliRabeWithGarlicAndChiliCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sweet-and-sour-eggplant-relish-caponata",
+    title: "Sweet and Sour Eggplant Relish (Caponata)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Sicilian eggplant stew with celery, olives, capers, and vinegar.",
+    loader: () => import("@/components/calculators/Misc/SweetAndSourEggplantRelishCaponataCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
