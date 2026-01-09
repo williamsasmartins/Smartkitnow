@@ -7267,6 +7267,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GarlicSauteedSpinachCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "broccoli-rabe-with-garlic-and-chili",
+    title: "Broccoli Rabe with Garlic and Chili",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Bitter greens sautéed with garlic and red chili flakes.",
+    loader: () => import("@/components/calculators/Misc/BroccoliRabeWithGarlicAndChiliCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
