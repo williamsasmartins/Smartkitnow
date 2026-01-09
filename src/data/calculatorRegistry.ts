@@ -7303,6 +7303,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CiabattaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "breadsticks-grissini",
+    title: "Breadsticks (Grissini)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Thin, crunchy breadsticks often seasoned with herbs or sesame.",
+    loader: () => import("@/components/calculators/Misc/BreadsticksGrissiniCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
