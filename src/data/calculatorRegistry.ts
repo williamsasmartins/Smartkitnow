@@ -7249,6 +7249,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SeafoodStewTomatoAndWineBaseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "roasted-potatoes",
+    title: "Roasted Potatoes",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Crispy potatoes roasted with rosemary, garlic, and olive oil.",
+    loader: () => import("@/components/calculators/Misc/RoastedPotatoesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
