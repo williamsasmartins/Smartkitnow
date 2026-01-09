@@ -7006,6 +7006,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PotatoGnocchiWithTomatoSauceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ricotta-gnocchi",
+    title: "Ricotta Gnocchi",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Light and delicate dumplings made with ricotta cheese.",
+    loader: () => import("@/components/calculators/Misc/RicottaGnocchiCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
