@@ -7087,6 +7087,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/NeapolitanPizzaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "margherita-pizza",
+    title: "Margherita Pizza",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Classic pizza with tomato, mozzarella, basil, and olive oil.",
+    loader: () => import("@/components/calculators/Misc/MargheritaPizzaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
