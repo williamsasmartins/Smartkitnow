@@ -7132,6 +7132,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CalzoneCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "focaccia",
+    title: "Focaccia",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Dimpled olive oil bread topped with rosemary and sea salt.",
+    loader: () => import("@/components/calculators/Misc/FocacciaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
