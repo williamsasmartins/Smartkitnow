@@ -7213,6 +7213,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EggplantParmesanCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "shrimp-scampi",
+    title: "Shrimp Scampi",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Shrimp sautéed in garlic, butter, white wine, and lemon.",
+    loader: () => import("@/components/calculators/Misc/ShrimpScampiCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
