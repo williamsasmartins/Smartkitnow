@@ -7150,6 +7150,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenCacciatoreCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chicken-saltimbocca",
+    title: "Chicken Saltimbocca",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Chicken cutlets topped with prosciutto and sage, in white wine sauce.",
+    loader: () => import("@/components/calculators/Misc/ChickenSaltimboccaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
