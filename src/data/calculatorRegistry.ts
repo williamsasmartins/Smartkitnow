@@ -7123,6 +7123,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ProsciuttoAndArugulaPizzaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "calzone",
+    title: "Calzone",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Folded pizza stuffed with ricotta, mozzarella, and ham.",
+    loader: () => import("@/components/calculators/Misc/CalzoneCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
