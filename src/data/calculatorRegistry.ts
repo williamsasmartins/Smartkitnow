@@ -7033,6 +7033,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SaffronRisottoRisottoAllaMilaneseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "mushroom-risotto",
+    title: "Mushroom Risotto",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Rich earthy risotto with mixed wild mushrooms and white wine.",
+    loader: () => import("@/components/calculators/Misc/MushroomRisottoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
