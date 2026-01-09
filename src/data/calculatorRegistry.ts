@@ -7141,6 +7141,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FocacciaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chicken-cacciatore",
+    title: "Chicken Cacciatore",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Braised chicken with tomatoes, peppers, onions, and herbs.",
+    loader: () => import("@/components/calculators/Misc/ChickenCacciatoreCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
