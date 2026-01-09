@@ -7168,6 +7168,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/VealCutletMilaneseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "braised-veal-shanks-osso-buco",
+    title: "Braised Veal Shanks (Osso Buco)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Slow-braised veal shanks in wine and vegetables, served with gremolata.",
+    loader: () => import("@/components/calculators/Misc/BraisedVealShanksOssoBucoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
