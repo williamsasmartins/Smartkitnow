@@ -7042,6 +7042,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MushroomRisottoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "seafood-risotto",
+    title: "Seafood Risotto",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Creamy rice with shrimp, mussels, clams, and fish stock.",
+    loader: () => import("@/components/calculators/Misc/SeafoodRisottoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
