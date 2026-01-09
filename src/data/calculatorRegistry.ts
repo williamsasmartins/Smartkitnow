@@ -7231,6 +7231,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MusselsInWhiteWineAndGarlicCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fried-calamari",
+    title: "Fried Calamari",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Lightly battered and fried squid rings served with marinara.",
+    loader: () => import("@/components/calculators/Misc/FriedCalamariCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
