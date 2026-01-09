@@ -7114,6 +7114,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FourCheesePizzaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "prosciutto-and-arugula-pizza",
+    title: "Prosciutto and Arugula Pizza",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Pizza with prosciutto, fresh arugula, and shaved Parmesan.",
+    loader: () => import("@/components/calculators/Misc/ProsciuttoAndArugulaPizzaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
