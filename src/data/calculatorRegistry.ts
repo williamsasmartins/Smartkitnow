@@ -7078,6 +7078,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PolentaWithMeatRaguCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "neapolitan-pizza",
+    title: "Neapolitan Pizza",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Traditional thin-crust pizza with San Marzano tomatoes and mozzarella.",
+    loader: () => import("@/components/calculators/Misc/NeapolitanPizzaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
