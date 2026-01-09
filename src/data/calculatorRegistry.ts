@@ -7105,6 +7105,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MarinaraPizzaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "four-cheese-pizza",
+    title: "Four Cheese Pizza",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Pizza topped with mozzarella, Gorgonzola, fontina, and Parmesan.",
+    loader: () => import("@/components/calculators/Misc/FourCheesePizzaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
