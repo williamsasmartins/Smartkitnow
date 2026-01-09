@@ -7339,6 +7339,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PannaCottaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cannoli",
+    title: "Cannoli",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Crispy pastry tubes filled with sweetened ricotta and candied fruit.",
+    loader: () => import("@/components/calculators/Misc/CannoliCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
