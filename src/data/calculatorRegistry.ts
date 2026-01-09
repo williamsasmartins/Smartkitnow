@@ -7294,6 +7294,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RoastedPeppersWithOliveOilCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ciabatta",
+    title: "Ciabatta",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Rustic Italian bread with open crumb and crisp crust.",
+    loader: () => import("@/components/calculators/Misc/CiabattaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
