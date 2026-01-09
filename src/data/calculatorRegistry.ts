@@ -7051,6 +7051,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SeafoodRisottoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "parmesan-risotto",
+    title: "Parmesan Risotto",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Classic simple risotto finished with abundant Parmigiano-Reggiano.",
+    loader: () => import("@/components/calculators/Misc/ParmesanRisottoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
