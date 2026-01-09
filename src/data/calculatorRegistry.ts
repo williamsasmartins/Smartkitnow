@@ -7375,6 +7375,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BiscottiCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "semifreddo",
+    title: "Semifreddo",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Semi-frozen mousse-like dessert, often flavored with nuts or fruit.",
+    loader: () => import("@/components/calculators/Misc/SemifreddoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
