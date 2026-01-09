@@ -7069,6 +7069,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CreamyPolentaWithMushroomsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "polenta-with-meat-ragu",
+    title: "Polenta with Meat Ragù",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Grilled or fried polenta served with hearty meat sauce.",
+    loader: () => import("@/components/calculators/Misc/PolentaWithMeatRaguCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
