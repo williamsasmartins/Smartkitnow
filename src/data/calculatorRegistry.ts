@@ -7258,6 +7258,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RoastedPotatoesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "garlic-sauteed-spinach",
+    title: "Garlic Sautéed Spinach",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Fresh spinach quickly sautéed with garlic and olive oil.",
+    loader: () => import("@/components/calculators/Misc/GarlicSauteedSpinachCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
