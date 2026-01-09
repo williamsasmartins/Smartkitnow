@@ -7024,6 +7024,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TortelliniInBrothCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "saffron-risotto-risotto-alla-milanese",
+    title: "Saffron Risotto (Risotto alla Milanese)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Creamy Arborio rice infused with saffron and Parmesan.",
+    loader: () => import("@/components/calculators/Misc/SaffronRisottoRisottoAllaMilaneseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
