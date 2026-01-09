@@ -7015,6 +7015,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RicottaGnocchiCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tortellini-in-broth",
+    title: "Tortellini in Broth",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Tiny meat-filled pasta rings served in clear chicken broth.",
+    loader: () => import("@/components/calculators/Misc/TortelliniInBrothCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
