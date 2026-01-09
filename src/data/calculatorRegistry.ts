@@ -7222,6 +7222,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ShrimpScampiCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "mussels-in-white-wine-and-garlic",
+    title: "Mussels in White Wine and Garlic",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Steamed mussels in a fragrant white wine, garlic, and parsley broth.",
+    loader: () => import("@/components/calculators/Misc/MusselsInWhiteWineAndGarlicCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
