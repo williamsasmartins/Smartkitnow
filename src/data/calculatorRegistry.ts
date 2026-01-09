@@ -6997,6 +6997,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/StuffedPastaShellsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "potato-gnocchi-with-tomato-sauce",
+    title: "Potato Gnocchi with Tomato Sauce",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Fluffy potato dumplings in simple fresh tomato sauce.",
+    loader: () => import("@/components/calculators/Misc/PotatoGnocchiWithTomatoSauceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
