@@ -7312,6 +7312,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BreadsticksGrissiniCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "stuffed-flatbread-piadina",
+    title: "Stuffed Flatbread (Piadina)",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Soft flatbread from Romagna, filled with prosciutto, cheese, or greens.",
+    loader: () => import("@/components/calculators/Misc/StuffedFlatbreadPiadinaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
