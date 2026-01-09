@@ -7285,6 +7285,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SweetAndSourEggplantRelishCaponataCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "roasted-peppers-with-olive-oil",
+    title: "Roasted Peppers with Olive Oil",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Charred bell peppers marinated in olive oil, garlic, and herbs.",
+    loader: () => import("@/components/calculators/Misc/RoastedPeppersWithOliveOilCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
