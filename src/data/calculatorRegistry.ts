@@ -7457,6 +7457,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/NegroniCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "limoncello",
+    title: "Limoncello",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Sweet lemon liqueur served chilled as a digestif.",
+    loader: () => import("@/components/calculators/Misc/LimoncelloCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
