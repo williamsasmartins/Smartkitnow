@@ -89,6 +89,7 @@ export default function App() {
 
               {/* Daily Quotes */}
               <Route path="/daily-quotes" element={<DailyQuotesPage />} />
+              <Route path="/horoscopo" element={<DailyQuotesPage />} />
 
               {/* Financial dedicated route */}
               <Route path="/financial" element={<FinancialCategory />} />

@@ -34,6 +34,7 @@ export const FRIENDLY_TITLES: Record<string, string> = {
   construction: "Construction Calculators",
   electrical: "Electrical Calculators",
   recipes: "Recipe Collections",
+  "daily-quotes": "Daily Quotes",
 };
 
 // Títulos amigáveis para subcategorias
@@ -58,6 +59,9 @@ export const SUBCATEGORY_TITLES: Record<string, Record<string, string>> = {
     general: "General",
   },
   math: {
+    general: "General",
+  },
+  "daily-quotes": {
     general: "General",
   },
 };
@@ -88,6 +92,7 @@ export function categoryIcon(category?: string): string {
     construction: "🏗️",
     electrical: "⚡",
     recipes: "📚",
+    "daily-quotes": "✨",
   };
   return MAP[key] ?? "🧮";
 }
@@ -7391,6 +7396,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     subcategory: "italian",
     description: "Icy refreshing dessert with intense fruit flavor, like lemon or almond.",
     loader: () => import("@/components/calculators/Misc/ItalianIceGranitaCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "daily-horoscope",
+    title: "Daily Horoscope",
+    category: "daily-quotes",
+    subcategory: "general",
+    description: "Your daily astrological forecast. Love, career, and lucky numbers updated every day.",
+    loader: () => import("@/components/calculators/DailyQuotes/DailyHoroscopeCalculator"),
     urlStyle: "flat"
   },
   // SKN-AUTO-REGISTER: do not remove this line
