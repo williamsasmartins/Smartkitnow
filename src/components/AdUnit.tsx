@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useTheme } from "next-themes";
 
 // ================================================================
 // CONFIGURAÇÃO: Trocar em .env quando for aprovado
@@ -59,15 +58,6 @@ interface AdUnitProps {
 
 export default function AdUnit({ slot, type, className = '' }: AdUnitProps) {
   const config = AD_CONFIGS[type];
-  const { resolvedTheme } = useTheme();
-  const isDark =
-    resolvedTheme === "dark" ||
-    (typeof document !== "undefined" && document.documentElement.classList.contains("dark"));
-  const placeholderStyle = {
-    backgroundColor: isDark ? "#0f172a" : "#f3f4f6",
-    border: `2px dashed ${isDark ? "#334155" : "#e5e7eb"}`,
-    color: isDark ? "#cbd5e1" : "#9ca3af",
-  } as const;
   
   // ================================================================
   // MODO DESENVOLVIMENTO (Placeholder)
@@ -77,11 +67,10 @@ export default function AdUnit({ slot, type, className = '' }: AdUnitProps) {
       <div className={`skn-ad-placeholder ${className}`}>
         {/* Desktop */}
         <div 
-          className="hidden lg:flex flex-col items-center justify-center mx-auto rounded-lg"
+          className="hidden lg:flex flex-col items-center justify-center mx-auto rounded-lg border border-dashed border-border bg-muted/40 text-muted-foreground"
           style={{ 
             width: config.desktop.width,
             height: config.desktop.height,
-            ...placeholderStyle
           }}
         >
           <span className="text-xs font-semibold uppercase tracking-wider mb-1">
@@ -95,11 +84,10 @@ export default function AdUnit({ slot, type, className = '' }: AdUnitProps) {
         {/* Tablet (se configurado) */}
         {config.tablet && (
           <div 
-            className="hidden md:flex lg:hidden flex-col items-center justify-center mx-auto rounded-lg"
+            className="hidden md:flex lg:hidden flex-col items-center justify-center mx-auto rounded-lg border border-dashed border-border bg-muted/40 text-muted-foreground"
             style={{ 
               width: config.tablet.width,
               height: config.tablet.height,
-              ...placeholderStyle
             }}
           >
             <span className="text-xs font-semibold uppercase tracking-wider mb-1">
@@ -114,11 +102,10 @@ export default function AdUnit({ slot, type, className = '' }: AdUnitProps) {
         {/* Mobile (se configurado) */}
         {config.mobile && (
           <div 
-            className="flex md:hidden flex-col items-center justify-center mx-auto rounded-lg"
+            className="flex md:hidden flex-col items-center justify-center mx-auto rounded-lg border border-dashed border-border bg-muted/40 text-muted-foreground"
             style={{ 
               width: config.mobile.width,
               height: config.mobile.height,
-              ...placeholderStyle
             }}
           >
             <span className="text-xs font-semibold uppercase tracking-wider mb-1">
