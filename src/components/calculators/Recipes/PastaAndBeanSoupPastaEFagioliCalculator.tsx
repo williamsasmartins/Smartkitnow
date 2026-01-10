@@ -1,1 +1,1 @@
-export { default } from "@/components/calculators/Misc/PastaAndBeanSoupPastaEFagioliCalculator";
+export { default } from "@/components/calculators/misc/PastaAndBeanSoupPastaEFagioliCalculator";

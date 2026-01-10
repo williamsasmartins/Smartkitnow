@@ -1,1 +1,1 @@
-export { default } from "@/components/calculators/Misc/MinestroneSoupCalculator";
+export { default } from "@/components/calculators/misc/MinestroneSoupCalculator";

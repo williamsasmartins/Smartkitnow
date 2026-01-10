@@ -1,1 +1,1 @@
-export { default } from "@/components/calculators/Misc/MarinatedArtichokesCalculator";
+export { default } from "@/components/calculators/misc/MarinatedArtichokesCalculator";

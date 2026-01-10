@@ -1,1 +1,1 @@
-export { default } from "@/components/calculators/Misc/BakedStuffedMushroomsCalculator";
+export { default } from "@/components/calculators/misc/BakedStuffedMushroomsCalculator";
