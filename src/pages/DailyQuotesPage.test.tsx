@@ -29,10 +29,10 @@ describe("/daily-quotes", () => {
     render(<DailyQuotesPage />);
 
     expect(
-      screen.getByRole("heading", { level: 1, name: "Daily Quotes" })
+      screen.getByRole("heading", { level: 1, name: "Horoscope" })
     ).toBeInTheDocument();
 
-    expect(screen.getByRole("link", { name: "Horoscopo" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Read Horoscope" })).toHaveAttribute(
       "href",
       "/daily-quotes/horoscopo"
     );
@@ -54,7 +54,7 @@ describe("/daily-quotes", () => {
     );
 
     expect(
-      await screen.findByRole("heading", { level: 1, name: "Daily Quotes" })
+      await screen.findByRole("heading", { level: 1, name: "Horoscope" })
     ).toBeInTheDocument();
   });
 });

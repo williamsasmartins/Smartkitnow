@@ -501,7 +501,7 @@ const res = await fetch("https://raw.githubusercontent.com/williamsasmartins/sma
 
   return (
     <CalculatorVerticalLayout
-      title="Daily Quotes"
+      title="Horoscope"
       description="A clean, fast way to read your daily horoscope by zodiac sign. Tap a sign to see focused insights across general energy, love, career, and lucky numbers—then use the notes below to interpret the message with more clarity and less fluff."
       widget={widget}
       editorial={editorial}
