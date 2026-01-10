@@ -7448,6 +7448,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CappuccinoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "negroni",
+    title: "Negroni",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Classic aperitif cocktail with gin, vermouth, and Campari.",
+    loader: () => import("@/components/calculators/Misc/NegroniCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
