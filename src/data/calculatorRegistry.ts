@@ -7412,6 +7412,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/DailyQuotes/DailyHoroscopeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sfogliatella",
+    title: "Sfogliatella",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Flaky layered pastry filled with orange-scented ricotta cream.",
+    loader: () => import("@/components/calculators/Misc/SfogliatellaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
