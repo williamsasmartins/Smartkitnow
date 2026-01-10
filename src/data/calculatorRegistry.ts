@@ -7421,6 +7421,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SfogliatellaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "panettone",
+    title: "Panettone",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Tall domed sweet bread studded with candied fruit and raisins.",
+    loader: () => import("@/components/calculators/Misc/PanettoneCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
