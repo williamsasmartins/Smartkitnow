@@ -178,6 +178,7 @@ export default function DailyHoroscopeCalculator() {
   const [loading, setLoading] = useState(true);
   const [usingFallback, setUsingFallback] = useState(false);
   const [today, setToday] = useState(() => formatLocalDate(new Date()));
+  const [showOnThisPage, setShowOnThisPage] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -225,6 +226,14 @@ const res = await fetch("https://raw.githubusercontent.com/williamsasmartins/sma
     };
   }, []);
 
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 640px)");
+    const update = () => setShowOnThisPage(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   const selected = useMemo(() => data[selectedSign], [data, selectedSign]);
   const selectedMeta = useMemo(
     () => SIGNS.find((s) => s.key === selectedSign) ?? SIGNS[0],
@@ -247,7 +256,7 @@ const res = await fetch("https://raw.githubusercontent.com/williamsasmartins/sma
               Choose your sign
             </h2>
             <p className="mt-1 text-indigo-200/90 text-sm">
-              Today (your local time zone): <span className="font-semibold text-indigo-100">{today}</span>
+              Local date: <span className="font-semibold text-indigo-100">{today}</span>
             </p>
           </div>
           <div className="text-xs text-indigo-200/80 sm:text-right">
@@ -255,7 +264,7 @@ const res = await fetch("https://raw.githubusercontent.com/williamsasmartins/sma
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-3 sm:grid-cols-4 gap-2">
+        <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
           {SIGNS.map((sign) => {
             const isActive = selectedSign === sign.key;
             return (
@@ -266,12 +275,14 @@ const res = await fetch("https://raw.githubusercontent.com/williamsasmartins/sma
                 onClick={() => setSelectedSign(sign.key)}
                 aria-pressed={isActive}
                 className={[
-                  "h-auto py-3 px-3 justify-start gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/10",
+                  "w-full min-w-0 h-auto py-3 px-3 flex-col items-center justify-center text-center gap-1 bg-white/10 hover:bg-white/15 text-white border border-white/10 sm:flex-row sm:justify-start sm:text-left sm:gap-2",
                   isActive ? "ring-2 ring-indigo-300/70 bg-white/15" : "",
                 ].join(" ")}
               >
-                <span className="text-lg">{sign.emoji}</span>
-                <span className="text-sm font-semibold">{sign.label}</span>
+                <span className="text-xl leading-none">{sign.emoji}</span>
+                <span className="text-[11px] sm:text-sm font-semibold leading-tight whitespace-normal break-words">
+                  {sign.label}
+                </span>
               </Button>
             );
           })}
@@ -466,12 +477,16 @@ const res = await fetch("https://raw.githubusercontent.com/williamsasmartins/sma
       showSidebar
       showBottomBanner
       hideLegalDisclaimer
-      onThisPage={[
-        { id: "zodiac-grid", label: "Choose your sign" },
-        { id: "how-to-read", label: "How to read a horoscope" },
-        { id: "zodiac-curiosities", label: "Zodiac curiosities" },
-        { id: "sign-guide", label: "Zodiac signs guide" },
-      ]}
+      onThisPage={
+        showOnThisPage
+          ? [
+              { id: "zodiac-grid", label: "Choose your sign" },
+              { id: "how-to-read", label: "How to read a horoscope" },
+              { id: "zodiac-curiosities", label: "Zodiac curiosities" },
+              { id: "sign-guide", label: "Zodiac signs guide" },
+            ]
+          : undefined
+      }
     />
   );
 }
