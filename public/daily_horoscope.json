@@ -1,0 +1,75 @@
+{
+  "date": "Today",
+  "aries": {
+    "general": "A fresh start is available today. Keep your focus simple and take one decisive step.",
+    "love": "Warmth wins. A small honest message can shift the mood in your favor.",
+    "career": "Prioritize the task that unlocks everything else and momentum will follow.",
+    "luckyNumbers": "3, 11, 27"
+  },
+  "taurus": {
+    "general": "Slow progress is still progress. Choose comfort that supports your goals.",
+    "love": "Consistency speaks louder than intensity. Show up in a practical way.",
+    "career": "A reliable routine protects your time and improves your output.",
+    "luckyNumbers": "4, 18, 22"
+  },
+  "gemini": {
+    "general": "Curiosity pays off. Ask better questions and the day becomes easier.",
+    "love": "Keep it light but sincere. A playful moment can create real closeness.",
+    "career": "Communicate your plan clearly, then execute with speed and precision.",
+    "luckyNumbers": "5, 9, 33"
+  },
+  "cancer": {
+    "general": "Your intuition is sharp. Trust the feeling that something needs care.",
+    "love": "Choose softness over defense. Vulnerability can strengthen your bond.",
+    "career": "Protect deep-work time. Small interruptions are the biggest threat today.",
+    "luckyNumbers": "2, 16, 28"
+  },
+  "leo": {
+    "general": "Confidence returns when you act. Take one bold step and commit to it.",
+    "love": "Be generous with praise. Your attention is the spark someone needs.",
+    "career": "Visibility helps. Share an update or results with the right people.",
+    "luckyNumbers": "1, 10, 29"
+  },
+  "virgo": {
+    "general": "Clarity comes from simplifying. Remove one unnecessary obligation.",
+    "love": "Kind honesty works best. Speak plainly and listen without fixing everything.",
+    "career": "Details matter, but don’t over-polish. Ship the draft and iterate.",
+    "luckyNumbers": "6, 14, 26"
+  },
+  "libra": {
+    "general": "Balance is possible, but it requires boundaries. Say no without guilt.",
+    "love": "A thoughtful gesture lands well. Keep it elegant and straightforward.",
+    "career": "Align stakeholders early. A quick check-in prevents rework later.",
+    "luckyNumbers": "7, 12, 24"
+  },
+  "scorpio": {
+    "general": "Your focus is intense. Use it on what matters, not what irritates you.",
+    "love": "Depth beats drama. Choose intimacy, not tests.",
+    "career": "Investigate before deciding. The hidden detail is the real lever.",
+    "luckyNumbers": "8, 13, 31"
+  },
+  "sagittarius": {
+    "general": "Adventure can be small. Change your route, your pace, or your perspective.",
+    "love": "Honesty plus humor is magnetic. Keep it real and optimistic.",
+    "career": "Aim higher, then break it down. A bold goal needs a simple plan.",
+    "luckyNumbers": "9, 15, 21"
+  },
+  "capricorn": {
+    "general": "Discipline pays. Your future self benefits from today’s structure.",
+    "love": "Support can be quiet. Do something useful and meaningful.",
+    "career": "Lead with competence. A calm, clear decision sets the tone.",
+    "luckyNumbers": "10, 20, 30"
+  },
+  "aquarius": {
+    "general": "Original ideas are flowing. Capture them, then pick one to build.",
+    "love": "Give space, then reconnect. A shared interest brings you closer.",
+    "career": "Experiment with a new approach. Measure results and refine fast.",
+    "luckyNumbers": "11, 17, 25"
+  },
+  "pisces": {
+    "general": "Sensitivity is a strength today. Create a calm environment and protect it.",
+    "love": "Romance is in the details. A gentle surprise can feel magical.",
+    "career": "Trust your creative instincts, but anchor them with a small checklist.",
+    "luckyNumbers": "12, 19, 32"
+  }
+}
