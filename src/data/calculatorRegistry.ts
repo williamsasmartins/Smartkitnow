@@ -7439,6 +7439,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EspressoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cappuccino",
+    title: "Cappuccino",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Espresso with steamed milk and thick foam, dusted with cocoa.",
+    loader: () => import("@/components/calculators/Misc/CappuccinoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
