@@ -173,7 +173,7 @@ export default function RecipesCategory() {
               title={`BBQ & Smoking (${bbqSmoking.length})`}
               description="Smoked and grilled favorites: brisket, ribs, pulled pork, poultry, seafood, and veggies."
               items={bbqSmoking}
-              base="/recipes"
+              base="/recipes/bbq-smoking"
             />
 
             <Section

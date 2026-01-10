@@ -3676,6 +3676,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.smartkitnow.com/recipes/bbq-smoking/texas-style-brisket</loc>
+    <lastmod>2026-01-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.smartkitnow.com/recipes/italian/tomato-and-basil-bruschetta</loc>
     <lastmod>2026-01-10</lastmod>
     <priority>0.5</priority>
@@ -4067,6 +4072,16 @@
   </url>
   <url>
     <loc>https://www.smartkitnow.com/culinary/aperitif-spritz</loc>
+    <lastmod>2026-01-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/culinary/bbq-smoking</loc>
+    <lastmod>2026-01-10</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/culinary/texas-style-brisket</loc>
     <lastmod>2026-01-10</lastmod>
     <priority>0.5</priority>
   </url>

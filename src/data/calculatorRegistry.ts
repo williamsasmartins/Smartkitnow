@@ -65,6 +65,9 @@ export const SUBCATEGORY_TITLES: Record<string, Record<string, string>> = {
   culinary: {
     italian: "Italian",
   },
+  recipes: {
+    "bbq-smoking": "BBQ & Smoking",
+  },
   "daily-quotes": {
     general: "General",
   },
@@ -6760,6 +6763,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
    
     
   
+    {
+    slug: "texas-style-brisket",
+    title: "Texas-Style Brisket",
+    category: "recipes",
+    subcategory: "bbq-smoking",
+    description: "Smoke tender Texas-style brisket with a peppery bark, juicy slices, and simple timing cues.",
+    loader: () => import("@/components/calculators/Misc/TexasStyleBrisketCalculator"),
+    urlStyle: "nested"
+  },
     {
     slug: "tomato-and-basil-bruschetta",
     title: "Tomato and Basil Bruschetta",
