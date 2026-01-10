@@ -7484,6 +7484,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BbqSmokingCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "texas-style-brisket",
+    title: "Texas-Style Brisket",
+    category: "culinary",
+    subcategory: "bbq-smoking",
+    description: "Smoke tender Texas-style brisket with a peppery bark, juicy slices, and simple timing cues.",
+    loader: () => import("@/components/calculators/Misc/TexasStyleBrisketCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
