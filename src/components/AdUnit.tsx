@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useTheme } from "next-themes";
 
 // ================================================================
 // CONFIGURAÇÃO: Trocar em .env quando for aprovado
@@ -58,6 +59,18 @@ interface AdUnitProps {
 
 export default function AdUnit({ slot, type, className = '' }: AdUnitProps) {
   const config = AD_CONFIGS[type];
+  const { resolvedTheme } = useTheme();
+  const isDark =
+    resolvedTheme === "dark" ||
+    (typeof document !== "undefined" && document.documentElement.classList.contains("dark")) ||
+    (typeof window !== "undefined" &&
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const placeholderStyle = {
+    backgroundColor: isDark ? "#0f172a" : "#f3f4f6",
+    border: `2px dashed ${isDark ? "#334155" : "#e5e7eb"}`,
+    color: isDark ? "#cbd5e1" : "#9ca3af",
+  } as const;
   
   // ================================================================
   // MODO DESENVOLVIMENTO (Placeholder)
@@ -71,9 +84,7 @@ export default function AdUnit({ slot, type, className = '' }: AdUnitProps) {
           style={{ 
             width: config.desktop.width,
             height: config.desktop.height,
-            backgroundColor: '#f3f4f6',
-            border: '2px dashed #e5e7eb',
-            color: '#9ca3af'
+            ...placeholderStyle
           }}
         >
           <span className="text-xs font-semibold uppercase tracking-wider mb-1">
@@ -91,9 +102,7 @@ export default function AdUnit({ slot, type, className = '' }: AdUnitProps) {
             style={{ 
               width: config.tablet.width,
               height: config.tablet.height,
-              backgroundColor: '#f3f4f6',
-              border: '2px dashed #e5e7eb',
-              color: '#9ca3af'
+              ...placeholderStyle
             }}
           >
             <span className="text-xs font-semibold uppercase tracking-wider mb-1">
@@ -112,9 +121,7 @@ export default function AdUnit({ slot, type, className = '' }: AdUnitProps) {
             style={{ 
               width: config.mobile.width,
               height: config.mobile.height,
-              backgroundColor: '#f3f4f6',
-              border: '2px dashed #e5e7eb',
-              color: '#9ca3af'
+              ...placeholderStyle
             }}
           >
             <span className="text-xs font-semibold uppercase tracking-wider mb-1">

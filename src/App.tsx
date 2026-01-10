@@ -1,6 +1,6 @@
 // src/App.tsx
 import { Suspense, lazy } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import ScrollToTop from "@/components/ScrollToTop";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 import { Header } from "@/components/Header";
@@ -42,6 +42,9 @@ const SmartTipsSubCategory = lazy(() => import("@/pages/SmartTipsSubCategory"));
 const SmartTipDetail = lazy(() => import("@/pages/SmartTipDetail"));
 const RecipesCategory = lazy(() => import("@/pages/categories/RecipesCategory"));
 const DailyQuotesPage = lazy(() => import("@/pages/DailyQuotesPage"));
+const DailyHoroscopeCalculator = lazy(
+  () => import("@/components/calculators/DailyQuotes/DailyHoroscopeCalculator")
+);
 const CategoryIndex = lazy(() => import("@/pages/CategoryIndex"));
 const CalculatorPage = lazy(() => import("@/pages/CalculatorPage"));
 const RecipeCuisinePage = lazy(() => import("@/pages/RecipeCuisinePage"));
@@ -89,7 +92,8 @@ export default function App() {
 
               {/* Daily Quotes */}
               <Route path="/daily-quotes" element={<DailyQuotesPage />} />
-              <Route path="/horoscopo" element={<DailyQuotesPage />} />
+              <Route path="/daily-quotes/horoscopo" element={<DailyHoroscopeCalculator />} />
+              <Route path="/horoscopo" element={<Navigate to="/daily-quotes/horoscopo" replace />} />
 
               {/* Financial dedicated route */}
               <Route path="/financial" element={<FinancialCategory />} />

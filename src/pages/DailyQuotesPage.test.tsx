@@ -28,55 +28,22 @@ describe("/daily-quotes", () => {
   it("renders the English title and description", async () => {
     render(<DailyQuotesPage />);
 
-    await waitFor(() => expect(globalThis.fetch).toHaveBeenCalled());
-
     expect(
       screen.getByRole("heading", { level: 1, name: "Daily Quotes" })
     ).toBeInTheDocument();
 
-    expect(
-      screen.getAllByText(/A clean, fast way to read your daily horoscope/i).length
-    ).toBeGreaterThan(0);
-  });
-
-  it("renders navigation links starting with Horoscope", async () => {
-    render(<DailyQuotesPage />);
-
-    await waitFor(() => expect(globalThis.fetch).toHaveBeenCalled());
-
-    const nav = screen.getByRole("navigation", {
-      name: /daily quotes navigation/i,
-    });
-
-    const links = within(nav).getAllByRole("link");
-    expect(links[0]).toHaveTextContent("Horoscope");
-    expect(links[0]).toHaveAttribute("href", "#zodiac-grid");
-
-    expect(within(nav).getByRole("link", { name: "How to read" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Horoscopo" })).toHaveAttribute(
       "href",
-      "#how-to-read"
+      "/daily-quotes/horoscopo"
     );
-    expect(
-      within(nav).getByRole("link", { name: "Zodiac curiosities" })
-    ).toHaveAttribute("href", "#zodiac-curiosities");
-    expect(
-      within(nav).getByRole("link", { name: "Zodiac signs guide" })
-    ).toHaveAttribute("href", "#sign-guide");
   });
 
-  it("exposes basic accessible landmarks and sections", async () => {
+  it("does not render the horoscope widget by default", async () => {
     render(<DailyQuotesPage />);
 
-    await waitFor(() => expect(globalThis.fetch).toHaveBeenCalled());
-
     expect(
-      screen.getByRole("heading", { level: 2, name: /Choose your sign/i })
-    ).toBeInTheDocument();
-
-    expect(document.getElementById("zodiac-grid")).toBeTruthy();
-    expect(document.getElementById("how-to-read")).toBeTruthy();
-    expect(document.getElementById("zodiac-curiosities")).toBeTruthy();
-    expect(document.getElementById("sign-guide")).toBeTruthy();
+      screen.queryByRole("heading", { level: 2, name: /Choose your sign/i })
+    ).not.toBeInTheDocument();
   });
 
   it("is rendered when navigating to /daily-quotes in the app router", async () => {
@@ -89,5 +56,35 @@ describe("/daily-quotes", () => {
     expect(
       await screen.findByRole("heading", { level: 1, name: "Daily Quotes" })
     ).toBeInTheDocument();
+  });
+});
+
+describe("/daily-quotes/horoscopo", () => {
+  beforeEach(() => {
+    mockFetchOk();
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it("renders the horoscope calculator when navigating in the app router", async () => {
+    render(
+      <MemoryRouter initialEntries={["/daily-quotes/horoscopo"]}>
+        <App />
+      </MemoryRouter>
+    );
+
+    await waitFor(() => expect(globalThis.fetch).toHaveBeenCalled());
+
+    expect(
+      await screen.findByRole("heading", { level: 2, name: /Choose your sign/i })
+    ).toBeInTheDocument();
+
+    const nav = screen.getByRole("navigation", {
+      name: /daily quotes navigation/i,
+    });
+    const links = within(nav).getAllByRole("link");
+    expect(links[0]).toHaveTextContent("Horoscope");
   });
 });
