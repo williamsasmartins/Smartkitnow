@@ -7412,6 +7412,60 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/DailyQuotes/DailyHoroscopeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sfogliatella",
+    title: "Sfogliatella",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Flaky layered pastry filled with orange-scented ricotta cream.",
+    loader: () => import("@/components/calculators/Misc/SfogliatellaCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "panettone",
+    title: "Panettone",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Tall domed sweet bread studded with candied fruit and raisins.",
+    loader: () => import("@/components/calculators/Misc/PanettoneCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "espresso",
+    title: "Espresso",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Strong concentrated coffee brewed under pressure.",
+    loader: () => import("@/components/calculators/Misc/EspressoCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "cappuccino",
+    title: "Cappuccino",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Espresso with steamed milk and thick foam, dusted with cocoa.",
+    loader: () => import("@/components/calculators/Misc/CappuccinoCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "negroni",
+    title: "Negroni",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Classic aperitif cocktail with gin, vermouth, and Campari.",
+    loader: () => import("@/components/calculators/Misc/NegroniCalculator"),
+    urlStyle: "flat"
+  },
+    {
+    slug: "limoncello",
+    title: "Limoncello",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Sweet lemon liqueur served chilled as a digestif.",
+    loader: () => import("@/components/calculators/Misc/LimoncelloCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
