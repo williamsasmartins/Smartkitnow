@@ -120,6 +120,14 @@ const FALLBACK: DailyHoroscopeJson = {
   },
 };
 
+function formatLocalDate(value: Date): string {
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(value);
+}
+
 function mergeWithFallback(raw: unknown): DailyHoroscopeJson {
   const base = FALLBACK;
   const obj = (raw && typeof raw === "object" ? raw : {}) as Partial<DailyHoroscopeJson>;
@@ -169,6 +177,7 @@ export default function DailyHoroscopeCalculator() {
   const [selectedSign, setSelectedSign] = useState<ZodiacSign>("aries");
   const [loading, setLoading] = useState(true);
   const [usingFallback, setUsingFallback] = useState(false);
+  const [today, setToday] = useState(() => formatLocalDate(new Date()));
 
   useEffect(() => {
     const controller = new AbortController();
@@ -195,6 +204,26 @@ export default function DailyHoroscopeCalculator() {
     };
   }, []);
 
+  useEffect(() => {
+    let intervalId: number | undefined;
+    const now = new Date();
+    const nextMidnight = new Date(now);
+    nextMidnight.setHours(24, 0, 0, 0);
+    const msUntilMidnight = Math.max(0, nextMidnight.getTime() - now.getTime());
+
+    const timeoutId = window.setTimeout(() => {
+      setToday(formatLocalDate(new Date()));
+      intervalId = window.setInterval(() => {
+        setToday(formatLocalDate(new Date()));
+      }, 60_000);
+    }, msUntilMidnight + 250);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      if (intervalId) window.clearInterval(intervalId);
+    };
+  }, []);
+
   const selected = useMemo(() => data[selectedSign], [data, selectedSign]);
   const selectedMeta = useMemo(
     () => SIGNS.find((s) => s.key === selectedSign) ?? SIGNS[0],
@@ -203,7 +232,10 @@ export default function DailyHoroscopeCalculator() {
 
   const widget = (
     <div className="space-y-6">
-      <div className="rounded-2xl p-6 border border-indigo-500/20 bg-gradient-to-br from-indigo-950 via-violet-950 to-slate-950 text-white shadow-2xl shadow-indigo-500/10">
+      <div
+        id="zodiac-grid"
+        className="rounded-2xl p-6 border border-indigo-500/20 bg-gradient-to-br from-indigo-950 via-violet-950 to-slate-950 text-white shadow-2xl shadow-indigo-500/10"
+      >
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-2 text-indigo-200">
@@ -214,7 +246,7 @@ export default function DailyHoroscopeCalculator() {
               Choose your sign
             </h2>
             <p className="mt-1 text-indigo-200/90 text-sm">
-              Date: <span className="font-semibold text-indigo-100">{data.date}</span>
+              Today (your local time zone): <span className="font-semibold text-indigo-100">{today}</span>
             </p>
           </div>
           <div className="text-xs text-indigo-200/80 sm:text-right">
@@ -323,13 +355,101 @@ export default function DailyHoroscopeCalculator() {
 
   const editorial = (
     <div className="space-y-10">
-      <section className="rounded-2xl border border-indigo-200 dark:border-indigo-900 bg-white dark:bg-slate-900 p-6">
-        <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
-          How this works
-        </h2>
+      <section id="about" className="rounded-2xl border border-indigo-200 dark:border-indigo-900 bg-white dark:bg-slate-900 p-6">
+        <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">Daily Horoscope — What you’ll find here</h2>
         <div className="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">
-          This page loads a JSON file from <span className="font-semibold">/daily_horoscope.json</span>. The file is
-          updated automatically every day, so you always see the latest forecast for each sign.
+          This page brings you a clean, fast way to read your daily horoscope by zodiac sign. Tap a sign to see a focused
+          forecast across <span className="font-semibold">general energy</span>, <span className="font-semibold">love</span>,{" "}
+          <span className="font-semibold">career</span>, and{" "}
+          <span className="font-semibold">lucky numbers</span>—then use the notes below to interpret the message with more
+          clarity and less fluff.
+        </div>
+        <div className="mt-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Astrology is a cultural and symbolic system. Use this content for reflection and entertainment, not for medical,
+          legal, or financial decisions.
+        </div>
+      </section>
+
+      <section id="how-to-read" className="rounded-2xl border border-indigo-200 dark:border-indigo-900 bg-white dark:bg-slate-900 p-6">
+        <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">How to read a daily horoscope</h2>
+        <div className="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+          A good daily horoscope is less about “prediction” and more about{" "}
+          <span className="font-semibold">pattern recognition</span>. Think of it as a short prompt to help you choose your
+          focus. Here are simple ways to get more value from your reading:
+        </div>
+        <ul className="mt-4 list-disc pl-6 text-slate-700 dark:text-slate-300">
+          <li>
+            Read your <span className="font-semibold">Sun sign</span> first (the one most people know), then compare with
+            your <span className="font-semibold">Rising/Ascendant</span> if you follow astrology more deeply.
+          </li>
+          <li>
+            Treat “love” as <span className="font-semibold">connection</span> (relationships, friendships, social tone), and
+            “career” as <span className="font-semibold">direction</span> (work, projects, decisions, reputation).
+          </li>
+          <li>
+            Turn one sentence into an action: a boundary to set, a message to send, or a task to finish.
+          </li>
+          <li>
+            Use the theme for the day, not every detail. If it doesn’t resonate, skip it—tomorrow’s tone will be different.
+          </li>
+        </ul>
+      </section>
+
+      <section id="zodiac-curiosities" className="rounded-2xl border border-indigo-200 dark:border-indigo-900 bg-white dark:bg-slate-900 p-6">
+        <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">Zodiac curiosities (quick, useful, and surprisingly fun)</h2>
+        <div className="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+          The zodiac is a 12-part map traditionally linked to the Sun’s apparent path through the sky across the year.
+          Different traditions exist (including Western and Vedic astrology), and even when people read “just for fun,” the
+          zodiac remains one of the most recognizable symbolic systems in the world. If you’re here for a daily horoscope,
+          these bite-sized curiosities add context—and make your reading feel more grounded.
+        </div>
+        <h3 className="mt-6 text-xl font-extrabold text-slate-900 dark:text-white">Elements: Fire, Earth, Air, Water</h3>
+        <div className="mt-2 text-slate-700 dark:text-slate-300 leading-relaxed">
+          Each sign belongs to an element, which describes the “style” of energy:
+          <span className="font-semibold"> Fire</span> (Aries, Leo, Sagittarius) leans bold and action-oriented,
+          <span className="font-semibold"> Earth</span> (Taurus, Virgo, Capricorn) favors stability and results,
+          <span className="font-semibold"> Air</span> (Gemini, Libra, Aquarius) thrives on ideas and social flow, and
+          <span className="font-semibold"> Water</span> (Cancer, Scorpio, Pisces) is intuitive and emotionally attuned.
+        </div>
+        <h3 className="mt-6 text-xl font-extrabold text-slate-900 dark:text-white">Modalities: Cardinal, Fixed, Mutable</h3>
+        <div className="mt-2 text-slate-700 dark:text-slate-300 leading-relaxed">
+          Modalities describe how a sign moves through change:
+          <span className="font-semibold"> Cardinal</span> signs initiate (Aries, Cancer, Libra, Capricorn),
+          <span className="font-semibold"> Fixed</span> signs sustain (Taurus, Leo, Scorpio, Aquarius), and
+          <span className="font-semibold"> Mutable</span> signs adapt (Gemini, Virgo, Sagittarius, Pisces). If your daily
+          horoscope feels “pushy,” “stubborn,” or “flexible,” modality often explains the flavor.
+        </div>
+        <h3 className="mt-6 text-xl font-extrabold text-slate-900 dark:text-white">Why horoscopes feel accurate sometimes</h3>
+        <div className="mt-2 text-slate-700 dark:text-slate-300 leading-relaxed">
+          Many people use horoscopes as reflective prompts. When a theme matches your current season of life, it can feel
+          uncannily specific. The key is to use the forecast to improve your day: notice patterns, set intention, and make
+          kinder choices—not to outsource responsibility to the stars.
+        </div>
+      </section>
+
+      <section id="sign-guide" className="rounded-2xl border border-indigo-200 dark:border-indigo-900 bg-white dark:bg-slate-900 p-6">
+        <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">Zodiac signs guide (traits people recognize instantly)</h2>
+        <div className="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">
+          Looking for a fast personality snapshot? These are common, modern associations—useful when you want to interpret a
+          daily horoscope quickly and understand why the wording differs from sign to sign.
+        </div>
+        <ul className="mt-4 grid gap-3 md:grid-cols-2 text-slate-700 dark:text-slate-300">
+          <li><span className="font-semibold">Aries:</span> bold starts, courage, direct action, competitive spark.</li>
+          <li><span className="font-semibold">Taurus:</span> comfort, loyalty, patience, building something lasting.</li>
+          <li><span className="font-semibold">Gemini:</span> curiosity, communication, variety, quick connections.</li>
+          <li><span className="font-semibold">Cancer:</span> care, home, intuition, emotional protection.</li>
+          <li><span className="font-semibold">Leo:</span> confidence, creativity, visibility, generous leadership.</li>
+          <li><span className="font-semibold">Virgo:</span> improvement, detail, service, practical problem-solving.</li>
+          <li><span className="font-semibold">Libra:</span> balance, relationships, harmony, refined decision-making.</li>
+          <li><span className="font-semibold">Scorpio:</span> depth, focus, transformation, truth-seeking.</li>
+          <li><span className="font-semibold">Sagittarius:</span> adventure, optimism, learning, big-picture vision.</li>
+          <li><span className="font-semibold">Capricorn:</span> discipline, ambition, structure, long-term strategy.</li>
+          <li><span className="font-semibold">Aquarius:</span> originality, community, innovation, future-thinking.</li>
+          <li><span className="font-semibold">Pisces:</span> compassion, imagination, intuition, artistic flow.</li>
+        </ul>
+        <div className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+          Tip: if you’re comparing signs, look at the element first (style), then the modality (movement). That two-step
+          lens makes horoscope language click faster.
         </div>
       </section>
     </div>
@@ -338,12 +458,19 @@ export default function DailyHoroscopeCalculator() {
   return (
     <CalculatorVerticalLayout
       title="Daily Horoscope"
-      description="Your daily astrological forecast. Love, career, and lucky numbers updated every day."
+      description="Read your daily horoscope by zodiac sign with clear insights for love, career, and overall energy—plus a richer zodiac guide and fun astrology curiosities to help you interpret today’s vibe."
       widget={widget}
       editorial={editorial}
       showTopBanner
       showSidebar
       showBottomBanner
+      hideLegalDisclaimer
+      onThisPage={[
+        { id: "zodiac-grid", label: "Choose your sign" },
+        { id: "how-to-read", label: "How to read a horoscope" },
+        { id: "zodiac-curiosities", label: "Zodiac curiosities" },
+        { id: "sign-guide", label: "Zodiac signs guide" },
+      ]}
     />
   );
 }
