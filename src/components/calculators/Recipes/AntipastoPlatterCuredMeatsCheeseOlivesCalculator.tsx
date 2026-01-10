@@ -1,1 +1,1 @@
-export { default } from "@/components/calculators/misc/AntipastoPlatterCuredMeatsCheeseOlivesCalculator";
+export { default } from "@/components/calculators/Misc/AntipastoPlatterCuredMeatsCheeseOlivesCalculator";

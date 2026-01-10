@@ -1,1 +1,1 @@
-export { default } from "@/components/calculators/misc/ProsciuttoAndMelonCalculator";
+export { default } from "@/components/calculators/Misc/ProsciuttoAndMelonCalculator";

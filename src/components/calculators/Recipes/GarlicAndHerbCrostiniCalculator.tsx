@@ -1,1 +1,1 @@
-export { default } from "@/components/calculators/misc/GarlicAndHerbCrostiniCalculator";
+export { default } from "@/components/calculators/Misc/GarlicAndHerbCrostiniCalculator";

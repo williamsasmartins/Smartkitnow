@@ -3787,7 +3787,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "home-maintenance",
     description: "Calculate the perfect cleaning dilution ratio. Mix chemicals and water safely and effectively for household cleaning tasks.",
-    loader: () => import("@/components/calculators/misc/CleaningDilutionRatioCalculator"),
+    loader: () => import("@/components/calculators/Misc/CleaningDilutionRatioCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3796,7 +3796,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "home-maintenance",
     description: "Determine the right laundry detergent dosage. Calculate the exact amount needed per load size to save money and protect clothes.",
-    loader: () => import("@/components/calculators/misc/LaundryDetergentDosageCalculator"),
+    loader: () => import("@/components/calculators/Misc/LaundryDetergentDosageCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3805,7 +3805,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "home-maintenance",
     description: "Estimate paint needed for touch-ups. Calculate exactly how much paint covers scratches and small repairs on walls and trim.",
-    loader: () => import("@/components/calculators/misc/HomePaintTouchUpCalculator"),
+    loader: () => import("@/components/calculators/Misc/HomePaintTouchUpCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3814,7 +3814,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "home-maintenance",
     description: "Calculate Air Changes per Hour (ACH). Measure ventilation efficiency and air quality turnover rates for any room size.",
-    loader: () => import("@/components/calculators/misc/RoomAirChangesAchCalculator"),
+    loader: () => import("@/components/calculators/Misc/RoomAirChangesAchCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3823,7 +3823,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "home-maintenance",
     description: "Estimate propane tank burn time. Calculate how long your grill, heater, or generator will run based on tank size and BTU usage.",
-    loader: () => import("@/components/calculators/misc/PropaneTankBurnTimeCalculator"),
+    loader: () => import("@/components/calculators/Misc/PropaneTankBurnTimeCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3832,7 +3832,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "home-maintenance",
     description: "Track food safety during power outages. Estimate how long food stays safe in your refrigerator or freezer without power.",
-    loader: () => import("@/components/calculators/misc/RefrigeratorFreezerSafeZoneTimeWindowCalculator"),
+    loader: () => import("@/components/calculators/Misc/RefrigeratorFreezerSafeZoneTimeWindowCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3841,7 +3841,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "home-maintenance",
     description: "Calculate electricity costs for light bulbs. Compare LED vs. incandescent usage to see how much you save on your energy bill.",
-    loader: () => import("@/components/calculators/misc/LightBulbCostPerYearCalculator"),
+    loader: () => import("@/components/calculators/Misc/LightBulbCostPerYearCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3850,7 +3850,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "home-maintenance",
     description: "Estimate water heater recovery time. Calculate how long it takes for your tank to provide hot water again after depletion.",
-    loader: () => import("@/components/calculators/misc/WaterHeaterRecoveryTimeCalculator"),
+    loader: () => import("@/components/calculators/Misc/WaterHeaterRecoveryTimeCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3859,7 +3859,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "home-maintenance",
     description: "Estimate home renovation costs. Create a budget for your remodeling project by calculating material and labor expenses.",
-    loader: () => import("@/components/calculators/misc/HomeRenovationCostEstimatorCalculator"),
+    loader: () => import("@/components/calculators/Misc/HomeRenovationCostEstimatorCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3868,7 +3868,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "home-maintenance",
     description: "Calculate appliance energy consumption. Track how much electricity your fridge, TV, and washer use to manage your utility bill.",
-    loader: () => import("@/components/calculators/misc/ApplianceEnergyConsumptionCalculator"),
+    loader: () => import("@/components/calculators/Misc/ApplianceEnergyConsumptionCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3877,7 +3877,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "health-wellness-sleep",
     description: "Estimate your life expectancy. Analyze lifestyle factors like diet and exercise to see statistical projections for longevity.",
-    loader: () => import("@/components/calculators/misc/LifeExpectancyCalculator"),
+    loader: () => import("@/components/calculators/Misc/LifeExpectancyCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3886,7 +3886,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "health-wellness-sleep",
     description: "Calculate Body Mass Index (BMI) quickly. A simple everyday tool to check if your weight falls within a healthy range.",
-    loader: () => import("@/components/calculators/misc/BmiCalculator"),
+    loader: () => import("@/components/calculators/Misc/BmiCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3895,7 +3895,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "health-wellness-sleep",
     description: "Calculate your sleep debt and recovery plan. Find out how much sleep you owe your body and determine your ideal bedtime.",
-    loader: () => import("@/components/calculators/misc/SleepDebtIdealBedtimeCalculator"),
+    loader: () => import("@/components/calculators/Misc/SleepDebtIdealBedtimeCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3904,7 +3904,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "health-wellness-sleep",
     description: "Monitor your caffeine intake. Calculate your daily limit based on body weight to enjoy coffee safely without the jitters.",
-    loader: () => import("@/components/calculators/misc/CaffeineMaxPerDayCalculator"),
+    loader: () => import("@/components/calculators/Misc/CaffeineMaxPerDayCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3913,7 +3913,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "health-wellness-sleep",
     description: "Manage digital wellness with a screen time budget. Plan productive work intervals using the Pomodoro technique.",
-    loader: () => import("@/components/calculators/misc/ScreenTimePomodoroPlannerCalculator"),
+    loader: () => import("@/components/calculators/Misc/ScreenTimePomodoroPlannerCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3922,7 +3922,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "health-wellness-sleep",
     description: "Convert daily steps to distance. See how many miles or kilometers you walked based on your step count and stride length.",
-    loader: () => import("@/components/calculators/misc/StepsToDistanceConverterCalculator"),
+    loader: () => import("@/components/calculators/Misc/StepsToDistanceConverterCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3931,7 +3931,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "health-wellness-sleep",
     description: "Set up a hydration schedule. Calculate the best intervals to drink water throughout the day to meet your daily intake goals.",
-    loader: () => import("@/components/calculators/misc/HydrationReminderIntervalCalculator"),
+    loader: () => import("@/components/calculators/Misc/HydrationReminderIntervalCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3940,7 +3940,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "health-wellness-sleep",
     description: "Plan balanced meals with MyPlate guidelines. Calculate daily calorie and nutrient portions for a healthy lifestyle.",
-    loader: () => import("@/components/calculators/misc/MyplateDailyCalorieNutrientCalculator"),
+    loader: () => import("@/components/calculators/Misc/MyplateDailyCalorieNutrientCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3949,7 +3949,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "health-wellness-sleep",
     description: "Calculate everyday BMR. Find out the minimum calories your body needs to function before adding any physical activity.",
-    loader: () => import("@/components/calculators/misc/BmrCalculator"),
+    loader: () => import("@/components/calculators/Misc/BmrCalculator"),
     urlStyle: "flat"
   },
     
@@ -3959,7 +3959,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "events-party-culinary",
     description: "Plan party food and drink quantities. Calculate exactly how many servings, pizzas, and beverages you need for your guest list.",
-    loader: () => import("@/components/calculators/misc/PartyFoodDrinksPlannerCalculator"),
+    loader: () => import("@/components/calculators/Misc/PartyFoodDrinksPlannerCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3968,7 +3968,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "events-party-culinary",
     description: "Calculate ice needed for parties. Estimate bags of ice required for drinks and cooling based on guest count and duration.",
-    loader: () => import("@/components/calculators/misc/IceQuantityBeveragesCalculator"),
+    loader: () => import("@/components/calculators/Misc/IceQuantityBeveragesCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3977,7 +3977,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "events-party-culinary",
     description: "Plan buffet quantities. Calculate how much food fits in standard hotel pans to ensure you feed everyone without running out.",
-    loader: () => import("@/components/calculators/misc/BuffetPanCapacityCountCalculator"),
+    loader: () => import("@/components/calculators/Misc/BuffetPanCapacityCountCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3986,7 +3986,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "events-party-culinary",
     description: "Estimate the beverage mix for events. Calculate the ratio of wine, beer, and soft drinks needed based on guest preferences.",
-    loader: () => import("@/components/calculators/misc/BeverageMixEstimatorCalculator"),
+    loader: () => import("@/components/calculators/Misc/BeverageMixEstimatorCalculator"),
     urlStyle: "flat"
   },
     {
@@ -3995,7 +3995,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "events-party-culinary",
     description: "Brew coffee for a crowd. Calculate the coffee grounds-to-water ratio for large urns to ensure the perfect strength.",
-    loader: () => import("@/components/calculators/misc/CoffeeUrnYieldStrengthCalculator"),
+    loader: () => import("@/components/calculators/Misc/CoffeeUrnYieldStrengthCalculator"),
     urlStyle: "flat"
   },
     {
@@ -4004,7 +4004,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "events-party-culinary",
     description: "Handle leftovers safely. Estimate cooling times and safe reheating duration to prevent food spoilage after big meals.",
-    loader: () => import("@/components/calculators/misc/LeftoversCoolingReheatTimeCalculator"),
+    loader: () => import("@/components/calculators/Misc/LeftoversCoolingReheatTimeCalculator"),
     urlStyle: "flat"
   },
     {
@@ -4013,7 +4013,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "events-party-culinary",
     description: "Create a comprehensive event budget. Track expenses for venue, food, and entertainment to keep your party planning on track.",
-    loader: () => import("@/components/calculators/misc/EventBudgetCalculator"),
+    loader: () => import("@/components/calculators/Misc/EventBudgetCalculator"),
     urlStyle: "flat"
   },
     {
@@ -4022,7 +4022,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "events-party-culinary",
     description: "Calculate venue capacity. Determine how many guests can safely fit in a room based on square footage and seating layout.",
-    loader: () => import("@/components/calculators/misc/EventCapacityCalculator"),
+    loader: () => import("@/components/calculators/Misc/EventCapacityCalculator"),
     urlStyle: "flat"
   },
     {
@@ -4031,7 +4031,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "garden-exterior",
     description: "Calculate mulch coverage and bags needed. Determine the cubic yards or bags of mulch required for your garden beds.",
-    loader: () => import("@/components/calculators/misc/MulchCoverageBagCountCalculator"),
+    loader: () => import("@/components/calculators/Misc/MulchCoverageBagCountCalculator"),
     urlStyle: "flat"
   },
     {
@@ -4040,7 +4040,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "garden-exterior",
     description: "Calculate soil volume for raised beds. Find out exactly how much topsoil or compost you need to fill your garden planters.",
-    loader: () => import("@/components/calculators/misc/GardenSoilCompostVolumeCalculator"),
+    loader: () => import("@/components/calculators/Misc/GardenSoilCompostVolumeCalculator"),
     urlStyle: "flat"
   },
     {
@@ -4049,7 +4049,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "garden-exterior",
     description: "Estimate lawn mowing time. Calculate how long it takes to mow your yard and the fuel required based on mower size.",
-    loader: () => import("@/components/calculators/misc/LawnMowingTimeFuelCalculator"),
+    loader: () => import("@/components/calculators/Misc/LawnMowingTimeFuelCalculator"),
     urlStyle: "flat"
   },
     {
@@ -4058,7 +4058,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "garden-exterior",
     description: "Calculate hose runtime for watering. Determine how long to run your sprinkler to deliver a specific amount of water.",
-    loader: () => import("@/components/calculators/misc/HoseRuntimeFlowRateCalculator"),
+    loader: () => import("@/components/calculators/Misc/HoseRuntimeFlowRateCalculator"),
     urlStyle: "flat"
   },
     {
@@ -4067,7 +4067,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "garden-exterior",
     description: "Estimate rainwater supply duration. Calculate how long your rain barrel will last during dry spells based on garden usage.",
-    loader: () => import("@/components/calculators/misc/RainwaterBarrelDaysSupplyCalculator"),
+    loader: () => import("@/components/calculators/Misc/RainwaterBarrelDaysSupplyCalculator"),
     urlStyle: "flat"
   },
     {
@@ -4076,7 +4076,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "garden-exterior",
     description: "Calculate grass seed needed. Determine the pounds of seed required to overseed or plant a new lawn based on area.",
-    loader: () => import("@/components/calculators/misc/GrassSeedQuantityCalculator"),
+    loader: () => import("@/components/calculators/Misc/GrassSeedQuantityCalculator"),
     urlStyle: "flat"
   },
     {
@@ -4085,7 +4085,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "garden-exterior",
     description: "Calculate square footage for lawns and gardens. Measure the total area of your outdoor space for landscaping projects.",
-    loader: () => import("@/components/calculators/misc/SquareFootageCalculator"),
+    loader: () => import("@/components/calculators/Misc/SquareFootageCalculator"),
     urlStyle: "flat"
   },
     {
@@ -4094,7 +4094,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "garden-exterior",
     description: "Find your planting dates. Determine the best time to sow seeds based on local frost dates and your hardiness zone.",
-    loader: () => import("@/components/calculators/misc/PlantingCalendarFrostDateCalculator"),
+    loader: () => import("@/components/calculators/Misc/PlantingCalendarFrostDateCalculator"),
     urlStyle: "flat"
   },
     {
@@ -4103,7 +4103,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "garden-exterior",
     description: "Optimize your garden layout. Calculate the ideal spacing between plants to maximize yield and prevent overcrowding.",
-    loader: () => import("@/components/calculators/misc/PlantSpacingCalculator"),
+    loader: () => import("@/components/calculators/Misc/PlantSpacingCalculator"),
     urlStyle: "flat"
   },
     {
@@ -4112,7 +4112,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "garden-exterior",
     description: "Calculate fertilizer application rates. Determine the correct amount of nitrogen, phosphorus, and potassium for your lawn area.",
-    loader: () => import("@/components/calculators/misc/FertilizerApplicationCalculator"),
+    loader: () => import("@/components/calculators/Misc/FertilizerApplicationCalculator"),
     urlStyle: "flat"
   },
    
@@ -6887,7 +6887,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Broth with meatballs, greens, and tiny pasta like acini di pepe.",
-    loader: () => import("@/components/calculators/misc/ItalianWeddingSoupCalculator"),
+    loader: () => import("@/components/calculators/Misc/ItalianWeddingSoupCalculator"),
     urlStyle: "flat"
   },
     {
@@ -6896,7 +6896,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Simple rustic soup blending ripe tomatoes with soaked stale bread and basil.",
-    loader: () => import("@/components/calculators/misc/TomatoAndBreadSoupCalculator"),
+    loader: () => import("@/components/calculators/Misc/TomatoAndBreadSoupCalculator"),
     urlStyle: "flat"
   },
     {
@@ -6905,7 +6905,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Peppery arugula tossed with shaved Parmesan and lemon-olive oil dressing.",
-    loader: () => import("@/components/calculators/misc/ArugulaAndParmesanSaladCalculator"),
+    loader: () => import("@/components/calculators/Misc/ArugulaAndParmesanSaladCalculator"),
     urlStyle: "flat"
   },
     {
@@ -6914,7 +6914,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Bitter chicory greens in a bold anchovy, garlic, and lemon vinaigrette.",
-    loader: () => import("@/components/calculators/misc/ChicorySaladWithAnchovyGarlicDressingCalculator"),
+    loader: () => import("@/components/calculators/Misc/ChicorySaladWithAnchovyGarlicDressingCalculator"),
     urlStyle: "flat"
   },
     {
@@ -6923,7 +6923,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Creamy pasta with eggs, Pecorino cheese, guanciale, and black pepper.",
-    loader: () => import("@/components/calculators/misc/SpaghettiCarbonaraCalculator"),
+    loader: () => import("@/components/calculators/Misc/SpaghettiCarbonaraCalculator"),
     urlStyle: "flat"
   },
     {
@@ -6932,7 +6932,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Rich slow-cooked meat sauce with beef, pork, tomatoes, and milk.",
-    loader: () => import("@/components/calculators/misc/TagliatelleWithMeatRaguBologneseCalculator"),
+    loader: () => import("@/components/calculators/Misc/TagliatelleWithMeatRaguBologneseCalculator"),
     urlStyle: "flat"
   },
     {
@@ -6941,7 +6941,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Simple yet bold pasta with Pecorino Romano and freshly ground black pepper.",
-    loader: () => import("@/components/calculators/misc/BlackPepperAndPecorinoPastaCacioEPepeCalculator"),
+    loader: () => import("@/components/calculators/Misc/BlackPepperAndPecorinoPastaCacioEPepeCalculator"),
     urlStyle: "flat"
   },
     {
@@ -6950,7 +6950,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Fresh Genovese pesto made with basil, pine nuts, garlic, Parmesan, and olive oil.",
-    loader: () => import("@/components/calculators/misc/PastaWithBasilPestoCalculator"),
+    loader: () => import("@/components/calculators/Misc/PastaWithBasilPestoCalculator"),
     urlStyle: "flat"
   },
     {
@@ -6959,7 +6959,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Classic midnight pasta with garlic, olive oil, chili flakes, and parsley.",
-    loader: () => import("@/components/calculators/misc/GarlicAndOliveOilPastaAglioEOlioCalculator"),
+    loader: () => import("@/components/calculators/Misc/GarlicAndOliveOilPastaAglioEOlioCalculator"),
     urlStyle: "flat"
   },
     {
@@ -6968,7 +6968,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Light fresh tomato sauce with basil and garlic over spaghetti.",
-    loader: () => import("@/components/calculators/misc/SpaghettiWithTomatoAndBasilPomodoroCalculator"),
+    loader: () => import("@/components/calculators/Misc/SpaghettiWithTomatoAndBasilPomodoroCalculator"),
     urlStyle: "flat"
   },
     {
@@ -6977,7 +6977,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Clams cooked in white wine, garlic, and parsley sauce.",
-    loader: () => import("@/components/calculators/misc/SpaghettiWithClamsCalculator"),
+    loader: () => import("@/components/calculators/Misc/SpaghettiWithClamsCalculator"),
     urlStyle: "flat"
   },
     {
@@ -6986,7 +6986,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Layered pasta with ragù, béchamel, mozzarella, and Parmesan.",
-    loader: () => import("@/components/calculators/misc/LasagnaCalculator"),
+    loader: () => import("@/components/calculators/Misc/LasagnaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -6995,7 +6995,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Tube pasta baked with tomato sauce, ricotta, and melted mozzarella.",
-    loader: () => import("@/components/calculators/misc/BakedZitiCalculator"),
+    loader: () => import("@/components/calculators/Misc/BakedZitiCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7004,7 +7004,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Jumbo shells filled with ricotta and spinach, baked in marinara.",
-    loader: () => import("@/components/calculators/misc/StuffedPastaShellsCalculator"),
+    loader: () => import("@/components/calculators/Misc/StuffedPastaShellsCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7013,7 +7013,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Fluffy potato dumplings in simple fresh tomato sauce.",
-    loader: () => import("@/components/calculators/misc/PotatoGnocchiWithTomatoSauceCalculator"),
+    loader: () => import("@/components/calculators/Misc/PotatoGnocchiWithTomatoSauceCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7022,7 +7022,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Light and delicate dumplings made with ricotta cheese.",
-    loader: () => import("@/components/calculators/misc/RicottaGnocchiCalculator"),
+    loader: () => import("@/components/calculators/Misc/RicottaGnocchiCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7031,7 +7031,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Tiny meat-filled pasta rings served in clear chicken broth.",
-    loader: () => import("@/components/calculators/misc/TortelliniInBrothCalculator"),
+    loader: () => import("@/components/calculators/Misc/TortelliniInBrothCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7040,7 +7040,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Creamy Arborio rice infused with saffron and Parmesan.",
-    loader: () => import("@/components/calculators/misc/SaffronRisottoRisottoAllaMilaneseCalculator"),
+    loader: () => import("@/components/calculators/Misc/SaffronRisottoRisottoAllaMilaneseCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7049,7 +7049,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Rich earthy risotto with mixed wild mushrooms and white wine.",
-    loader: () => import("@/components/calculators/misc/MushroomRisottoCalculator"),
+    loader: () => import("@/components/calculators/Misc/MushroomRisottoCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7058,7 +7058,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Creamy rice with shrimp, mussels, clams, and fish stock.",
-    loader: () => import("@/components/calculators/misc/SeafoodRisottoCalculator"),
+    loader: () => import("@/components/calculators/Misc/SeafoodRisottoCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7067,7 +7067,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Classic simple risotto finished with abundant Parmigiano-Reggiano.",
-    loader: () => import("@/components/calculators/misc/ParmesanRisottoCalculator"),
+    loader: () => import("@/components/calculators/Misc/ParmesanRisottoCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7076,7 +7076,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Smooth cornmeal polenta topped with sautéed mushrooms.",
-    loader: () => import("@/components/calculators/misc/CreamyPolentaWithMushroomsCalculator"),
+    loader: () => import("@/components/calculators/Misc/CreamyPolentaWithMushroomsCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7085,7 +7085,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Grilled or fried polenta served with hearty meat sauce.",
-    loader: () => import("@/components/calculators/misc/PolentaWithMeatRaguCalculator"),
+    loader: () => import("@/components/calculators/Misc/PolentaWithMeatRaguCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7094,7 +7094,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Traditional thin-crust pizza with San Marzano tomatoes and mozzarella.",
-    loader: () => import("@/components/calculators/misc/NeapolitanPizzaCalculator"),
+    loader: () => import("@/components/calculators/Misc/NeapolitanPizzaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7103,7 +7103,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Classic pizza with tomato, mozzarella, basil, and olive oil.",
-    loader: () => import("@/components/calculators/misc/MargheritaPizzaCalculator"),
+    loader: () => import("@/components/calculators/Misc/MargheritaPizzaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7112,7 +7112,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Simple vegan pizza with tomato sauce, garlic, and oregano.",
-    loader: () => import("@/components/calculators/misc/MarinaraPizzaCalculator"),
+    loader: () => import("@/components/calculators/Misc/MarinaraPizzaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7121,7 +7121,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Pizza topped with mozzarella, Gorgonzola, fontina, and Parmesan.",
-    loader: () => import("@/components/calculators/misc/FourCheesePizzaCalculator"),
+    loader: () => import("@/components/calculators/Misc/FourCheesePizzaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7130,7 +7130,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Pizza with prosciutto, fresh arugula, and shaved Parmesan.",
-    loader: () => import("@/components/calculators/misc/ProsciuttoAndArugulaPizzaCalculator"),
+    loader: () => import("@/components/calculators/Misc/ProsciuttoAndArugulaPizzaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7139,7 +7139,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Folded pizza stuffed with ricotta, mozzarella, and ham.",
-    loader: () => import("@/components/calculators/misc/CalzoneCalculator"),
+    loader: () => import("@/components/calculators/Misc/CalzoneCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7148,7 +7148,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Dimpled olive oil bread topped with rosemary and sea salt.",
-    loader: () => import("@/components/calculators/misc/FocacciaCalculator"),
+    loader: () => import("@/components/calculators/Misc/FocacciaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7157,7 +7157,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Braised chicken with tomatoes, peppers, onions, and herbs.",
-    loader: () => import("@/components/calculators/misc/ChickenCacciatoreCalculator"),
+    loader: () => import("@/components/calculators/Misc/ChickenCacciatoreCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7166,7 +7166,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Chicken cutlets topped with prosciutto and sage, in white wine sauce.",
-    loader: () => import("@/components/calculators/misc/ChickenSaltimboccaCalculator"),
+    loader: () => import("@/components/calculators/Misc/ChickenSaltimboccaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7175,7 +7175,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Breaded and fried veal cutlet served with lemon and arugula.",
-    loader: () => import("@/components/calculators/misc/VealCutletMilaneseCalculator"),
+    loader: () => import("@/components/calculators/Misc/VealCutletMilaneseCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7184,7 +7184,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Slow-braised veal shanks in wine and vegetables, served with gremolata.",
-    loader: () => import("@/components/calculators/misc/BraisedVealShanksOssoBucoCalculator"),
+    loader: () => import("@/components/calculators/Misc/BraisedVealShanksOssoBucoCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7193,7 +7193,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Herb-crusted rolled pork roast with crispy crackling skin.",
-    loader: () => import("@/components/calculators/misc/ItalianStyleRoastPorkPorchettaCalculator"),
+    loader: () => import("@/components/calculators/Misc/ItalianStyleRoastPorkPorchettaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7202,7 +7202,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Thick grilled T-bone steak seasoned simply with salt and pepper.",
-    loader: () => import("@/components/calculators/misc/TuscanSteakFlorentineStyleCalculator"),
+    loader: () => import("@/components/calculators/Misc/TuscanSteakFlorentineStyleCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7211,7 +7211,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Tender beef and pork meatballs simmered in marinara sauce.",
-    loader: () => import("@/components/calculators/misc/ItalianMeatballsInTomatoSauceCalculator"),
+    loader: () => import("@/components/calculators/Misc/ItalianMeatballsInTomatoSauceCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7220,7 +7220,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Breaded eggplant slices layered with tomato sauce and melted cheese.",
-    loader: () => import("@/components/calculators/misc/EggplantParmesanCalculator"),
+    loader: () => import("@/components/calculators/Misc/EggplantParmesanCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7229,7 +7229,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Shrimp sautéed in garlic, butter, white wine, and lemon.",
-    loader: () => import("@/components/calculators/misc/ShrimpScampiCalculator"),
+    loader: () => import("@/components/calculators/Misc/ShrimpScampiCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7238,7 +7238,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Steamed mussels in a fragrant white wine, garlic, and parsley broth.",
-    loader: () => import("@/components/calculators/misc/MusselsInWhiteWineAndGarlicCalculator"),
+    loader: () => import("@/components/calculators/Misc/MusselsInWhiteWineAndGarlicCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7247,7 +7247,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Lightly battered and fried squid rings served with marinara.",
-    loader: () => import("@/components/calculators/misc/FriedCalamariCalculator"),
+    loader: () => import("@/components/calculators/Misc/FriedCalamariCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7256,7 +7256,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Mixed seafood simmered in a rich tomato and white wine broth.",
-    loader: () => import("@/components/calculators/misc/SeafoodStewTomatoAndWineBaseCalculator"),
+    loader: () => import("@/components/calculators/Misc/SeafoodStewTomatoAndWineBaseCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7265,7 +7265,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Crispy potatoes roasted with rosemary, garlic, and olive oil.",
-    loader: () => import("@/components/calculators/misc/RoastedPotatoesCalculator"),
+    loader: () => import("@/components/calculators/Misc/RoastedPotatoesCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7274,7 +7274,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Fresh spinach quickly sautéed with garlic and olive oil.",
-    loader: () => import("@/components/calculators/misc/GarlicSauteedSpinachCalculator"),
+    loader: () => import("@/components/calculators/Misc/GarlicSauteedSpinachCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7283,7 +7283,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Bitter greens sautéed with garlic and red chili flakes.",
-    loader: () => import("@/components/calculators/misc/BroccoliRabeWithGarlicAndChiliCalculator"),
+    loader: () => import("@/components/calculators/Misc/BroccoliRabeWithGarlicAndChiliCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7292,7 +7292,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Sicilian eggplant stew with celery, olives, capers, and vinegar.",
-    loader: () => import("@/components/calculators/misc/SweetAndSourEggplantRelishCaponataCalculator"),
+    loader: () => import("@/components/calculators/Misc/SweetAndSourEggplantRelishCaponataCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7301,7 +7301,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Charred bell peppers marinated in olive oil, garlic, and herbs.",
-    loader: () => import("@/components/calculators/misc/RoastedPeppersWithOliveOilCalculator"),
+    loader: () => import("@/components/calculators/Misc/RoastedPeppersWithOliveOilCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7310,7 +7310,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Rustic Italian bread with open crumb and crisp crust.",
-    loader: () => import("@/components/calculators/misc/CiabattaCalculator"),
+    loader: () => import("@/components/calculators/Misc/CiabattaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7319,7 +7319,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Thin, crunchy breadsticks often seasoned with herbs or sesame.",
-    loader: () => import("@/components/calculators/misc/BreadsticksGrissiniCalculator"),
+    loader: () => import("@/components/calculators/Misc/BreadsticksGrissiniCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7328,7 +7328,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Soft flatbread from Romagna, filled with prosciutto, cheese, or greens.",
-    loader: () => import("@/components/calculators/misc/StuffedFlatbreadPiadinaCalculator"),
+    loader: () => import("@/components/calculators/Misc/StuffedFlatbreadPiadinaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7337,7 +7337,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Layered dessert of coffee-soaked ladyfingers, mascarpone, and cocoa.",
-    loader: () => import("@/components/calculators/misc/TiramisuCalculator"),
+    loader: () => import("@/components/calculators/Misc/TiramisuCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7346,7 +7346,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Silky cooked cream dessert, often served with berry sauce.",
-    loader: () => import("@/components/calculators/misc/PannaCottaCalculator"),
+    loader: () => import("@/components/calculators/Misc/PannaCottaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7355,7 +7355,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Crispy pastry tubes filled with sweetened ricotta and candied fruit.",
-    loader: () => import("@/components/calculators/misc/CannoliCalculator"),
+    loader: () => import("@/components/calculators/Misc/CannoliCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7364,7 +7364,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Dense and creamy Italian ice cream in various flavors.",
-    loader: () => import("@/components/calculators/misc/GelatoCalculator"),
+    loader: () => import("@/components/calculators/Misc/GelatoCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7373,7 +7373,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Vanilla gelato \"drowned\" in a shot of hot espresso.",
-    loader: () => import("@/components/calculators/misc/AffogatoCalculator"),
+    loader: () => import("@/components/calculators/Misc/AffogatoCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7382,7 +7382,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Twice-baked almond cookies, perfect for dipping in coffee or vin santo.",
-    loader: () => import("@/components/calculators/misc/BiscottiCalculator"),
+    loader: () => import("@/components/calculators/Misc/BiscottiCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7391,7 +7391,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Semi-frozen mousse-like dessert, often flavored with nuts or fruit.",
-    loader: () => import("@/components/calculators/misc/SemifreddoCalculator"),
+    loader: () => import("@/components/calculators/Misc/SemifreddoCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7400,7 +7400,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Icy refreshing dessert with intense fruit flavor, like lemon or almond.",
-    loader: () => import("@/components/calculators/misc/ItalianIceGranitaCalculator"),
+    loader: () => import("@/components/calculators/Misc/ItalianIceGranitaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7418,7 +7418,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Flaky layered pastry filled with orange-scented ricotta cream.",
-    loader: () => import("@/components/calculators/misc/SfogliatellaCalculator"),
+    loader: () => import("@/components/calculators/Misc/SfogliatellaCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7427,7 +7427,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Tall domed sweet bread studded with candied fruit and raisins.",
-    loader: () => import("@/components/calculators/misc/PanettoneCalculator"),
+    loader: () => import("@/components/calculators/Misc/PanettoneCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7436,7 +7436,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Strong concentrated coffee brewed under pressure.",
-    loader: () => import("@/components/calculators/misc/EspressoCalculator"),
+    loader: () => import("@/components/calculators/Misc/EspressoCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7445,7 +7445,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Espresso with steamed milk and thick foam, dusted with cocoa.",
-    loader: () => import("@/components/calculators/misc/CappuccinoCalculator"),
+    loader: () => import("@/components/calculators/Misc/CappuccinoCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7454,7 +7454,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Classic aperitif cocktail with gin, vermouth, and Campari.",
-    loader: () => import("@/components/calculators/misc/NegroniCalculator"),
+    loader: () => import("@/components/calculators/Misc/NegroniCalculator"),
     urlStyle: "flat"
   },
     {
@@ -7463,7 +7463,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "culinary",
     subcategory: "italian",
     description: "Sweet lemon liqueur served chilled as a digestif.",
-    loader: () => import("@/components/calculators/misc/LimoncelloCalculator"),
+    loader: () => import("@/components/calculators/Misc/LimoncelloCalculator"),
     urlStyle: "flat"
   },
     {

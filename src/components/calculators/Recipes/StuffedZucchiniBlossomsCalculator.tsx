@@ -1,1 +1,1 @@
-export { default } from "@/components/calculators/misc/StuffedZucchiniBlossomsCalculator";
+export { default } from "@/components/calculators/Misc/StuffedZucchiniBlossomsCalculator";

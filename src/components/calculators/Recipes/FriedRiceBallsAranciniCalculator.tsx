@@ -1,1 +1,1 @@
-export { default } from "@/components/calculators/misc/FriedRiceBallsAranciniCalculator";
+export { default } from "@/components/calculators/Misc/FriedRiceBallsAranciniCalculator";
