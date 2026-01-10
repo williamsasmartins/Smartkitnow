@@ -22,6 +22,7 @@ export const FRIENDLY_TITLES: Record<string, string> = {
   financial: "Financial Calculators",
   health: "Health Calculators",
   cooking: "Cooking Calculators",
+  culinary: "Italian Recipes",
   pets: "Pets Calculators",
   math: "Math Calculators",
   conversion: "Conversion Calculators",
@@ -61,6 +62,9 @@ export const SUBCATEGORY_TITLES: Record<string, Record<string, string>> = {
   math: {
     general: "General",
   },
+  culinary: {
+    italian: "Italian",
+  },
   "daily-quotes": {
     general: "General",
   },
@@ -80,6 +84,7 @@ export function categoryIcon(category?: string): string {
     financial: "💰",
     health: "🩺",
     cooking: "🍳",
+    culinary: "🍝",
     pets: "🐾",
     math: "🧮",
     conversion: "🔁",
