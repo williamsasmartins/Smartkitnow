@@ -62,10 +62,7 @@ export default function AdUnit({ slot, type, className = '' }: AdUnitProps) {
   const { resolvedTheme } = useTheme();
   const isDark =
     resolvedTheme === "dark" ||
-    (typeof document !== "undefined" && document.documentElement.classList.contains("dark")) ||
-    (typeof window !== "undefined" &&
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches);
+    (typeof document !== "undefined" && document.documentElement.classList.contains("dark"));
   const placeholderStyle = {
     backgroundColor: isDark ? "#0f172a" : "#f3f4f6",
     border: `2px dashed ${isDark ? "#334155" : "#e5e7eb"}`,
