@@ -26,7 +26,11 @@ describe("/daily-quotes", () => {
   });
 
   it("renders the English title and description", async () => {
-    render(<DailyQuotesPage />);
+    render(
+      <MemoryRouter>
+        <DailyQuotesPage />
+      </MemoryRouter>
+    );
 
     expect(
       screen.getByRole("heading", { level: 1, name: "Horoscope" })
@@ -39,7 +43,11 @@ describe("/daily-quotes", () => {
   });
 
   it("does not render the horoscope widget by default", async () => {
-    render(<DailyQuotesPage />);
+    render(
+      <MemoryRouter>
+        <DailyQuotesPage />
+      </MemoryRouter>
+    );
 
     expect(
       screen.queryByRole("heading", { level: 2, name: /Choose your sign/i })

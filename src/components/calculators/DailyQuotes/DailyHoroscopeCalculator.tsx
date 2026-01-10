@@ -178,7 +178,6 @@ export default function DailyHoroscopeCalculator() {
   const [loading, setLoading] = useState(true);
   const [usingFallback, setUsingFallback] = useState(false);
   const [today, setToday] = useState(() => formatLocalDate(new Date()));
-  const [showOnThisPage, setShowOnThisPage] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -224,14 +223,6 @@ const res = await fetch("https://raw.githubusercontent.com/williamsasmartins/sma
       window.clearTimeout(timeoutId);
       if (intervalId) window.clearInterval(intervalId);
     };
-  }, []);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 640px)");
-    const update = () => setShowOnThisPage(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
   }, []);
 
   const selected = useMemo(() => data[selectedSign], [data, selectedSign]);
@@ -509,16 +500,6 @@ const res = await fetch("https://raw.githubusercontent.com/williamsasmartins/sma
       showSidebar
       showBottomBanner
       hideLegalDisclaimer
-      onThisPage={
-        showOnThisPage
-          ? [
-              { id: "zodiac-grid", label: "Choose your sign" },
-              { id: "how-to-read", label: "How to read a horoscope" },
-              { id: "zodiac-curiosities", label: "Zodiac curiosities" },
-              { id: "sign-guide", label: "Zodiac signs guide" },
-            ]
-          : undefined
-      }
     />
   );
 }
