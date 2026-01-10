@@ -7430,6 +7430,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PanettoneCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "espresso",
+    title: "Espresso",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Strong concentrated coffee brewed under pressure.",
+    loader: () => import("@/components/calculators/Misc/EspressoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
