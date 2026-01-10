@@ -185,7 +185,8 @@ export default function DailyHoroscopeCalculator() {
       try {
         setLoading(true);
         setUsingFallback(false);
-        const res = await fetch("/daily_horoscope.json", { cache: "no-store", signal: controller.signal });
+        // Use o link RAW do seu repositório para não depender de rebuilds do Vercel
+const res = await fetch("https://raw.githubusercontent.com/williamsasmartins/smartkit-onepage-wonder/main/public/daily_horoscope.json", { cache: "no-store", signal: controller.signal });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = (await res.json()) as unknown;
         setData(mergeWithFallback(json));
