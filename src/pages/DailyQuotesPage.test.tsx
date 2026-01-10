@@ -25,7 +25,7 @@ describe("/daily-quotes", () => {
     vi.unstubAllGlobals();
   });
 
-  it("renders the English title and description", async () => {
+  it("renders the hub title and shows categories", async () => {
     render(
       <MemoryRouter>
         <DailyQuotesPage />
@@ -33,13 +33,10 @@ describe("/daily-quotes", () => {
     );
 
     expect(
-      screen.getByRole("heading", { level: 1, name: "Horoscope" })
+      screen.getByRole("heading", { level: 1, name: "Daily Inspiration Hub" })
     ).toBeInTheDocument();
 
-    expect(screen.getByRole("link", { name: "Read Horoscope" })).toHaveAttribute(
-      "href",
-      "/daily-quotes/horoscopo"
-    );
+    expect(screen.getByText("Daily Horoscope")).toBeInTheDocument();
   });
 
   it("does not render the horoscope widget by default", async () => {
@@ -62,7 +59,7 @@ describe("/daily-quotes", () => {
     );
 
     expect(
-      await screen.findByRole("heading", { level: 1, name: "Horoscope" })
+      await screen.findByRole("heading", { level: 1, name: "Daily Inspiration Hub" })
     ).toBeInTheDocument();
   });
 });
