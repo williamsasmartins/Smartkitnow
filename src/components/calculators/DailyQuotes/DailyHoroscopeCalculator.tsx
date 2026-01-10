@@ -242,6 +242,38 @@ const res = await fetch("https://raw.githubusercontent.com/williamsasmartins/sma
 
   const widget = (
     <div className="space-y-6">
+      <nav
+        aria-label="Daily Quotes navigation"
+        className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur px-3 py-3"
+      >
+        <div className="flex items-center gap-2 overflow-x-auto whitespace-nowrap py-1">
+          <a
+            href="#zodiac-grid"
+            aria-current="page"
+            className="inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900 transition-colors"
+          >
+            Horoscope
+          </a>
+          <a
+            href="#how-to-read"
+            className="inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900 transition-colors"
+          >
+            How to read
+          </a>
+          <a
+            href="#zodiac-curiosities"
+            className="inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900 transition-colors"
+          >
+            Zodiac curiosities
+          </a>
+          <a
+            href="#sign-guide"
+            className="inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900 transition-colors"
+          >
+            Zodiac signs guide
+          </a>
+        </div>
+      </nav>
       <div
         id="zodiac-grid"
         className="rounded-2xl p-6 border border-indigo-500/20 bg-gradient-to-br from-indigo-950 via-violet-950 to-slate-950 text-white shadow-2xl shadow-indigo-500/10"
@@ -250,7 +282,7 @@ const res = await fetch("https://raw.githubusercontent.com/williamsasmartins/sma
           <div>
             <div className="inline-flex items-center gap-2 text-indigo-200">
               <Sparkles className="h-5 w-5" />
-              <span className="text-xs font-semibold tracking-widest uppercase">Daily Horoscope</span>
+              <span className="text-xs font-semibold tracking-widest uppercase">Horoscope</span>
             </div>
             <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight">
               Choose your sign
@@ -469,8 +501,8 @@ const res = await fetch("https://raw.githubusercontent.com/williamsasmartins/sma
 
   return (
     <CalculatorVerticalLayout
-      title="Daily Horoscope"
-      description="Read your daily horoscope by zodiac sign with clear insights for love, career, and overall energy—plus a richer zodiac guide and fun astrology curiosities to help you interpret today’s vibe."
+      title="Daily Quotes"
+      description="A clean, fast way to read your daily horoscope by zodiac sign. Tap a sign to see focused insights across general energy, love, career, and lucky numbers—then use the notes below to interpret the message with more clarity and less fluff."
       widget={widget}
       editorial={editorial}
       showTopBanner
