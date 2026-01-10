@@ -7487,15 +7487,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/AperitifSpritzCalculator"),
     urlStyle: "flat"
   },
-    {
-    slug: "bbq-smoking",
-    title: "BBQ & Smoking",
-    category: "culinary",
-    subcategory: "general",
-    description: "Smoked and grilled favorites: brisket, ribs, pulled pork, poultry, seafood, and veggies.",
-    loader: () => import("@/components/calculators/Misc/BbqSmokingCalculator"),
-    urlStyle: "flat"
-  },
+    
     {
     slug: "texas-style-brisket",
     title: "Texas-Style Brisket",
