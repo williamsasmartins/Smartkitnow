@@ -1,75 +1,473 @@
 {
-  "date": "October 1",
+  "date": "January 10, 2026",
+  "hero": {
+    "text": "Embrace the challenges, for they are the path to your greatest strengths.",
+    "author": "Unknown"
+  },
   "aries": {
-    "general": "A day for new beginnings.",
-    "love": "Passion may spark unexpectedly.",
-    "career": "Collaboration will lead to success.",
-    "luckyNumbers": "03, 17, 25"
+    "general": "Today, your intuition is particularly strong; trust it when making decisions.",
+    "love": "A surprise encounter could ignite sparks in your love life.",
+    "career": "Your innovative ideas will gain recognition at work today.",
+    "luckyNumbers": "3, 12, 21"
   },
   "taurus": {
-    "general": "Focus on stability today.",
-    "love": "Communication is key in relationships.",
-    "career": "A financial opportunity may arise.",
-    "luckyNumbers": "05, 14, 29"
+    "general": "Stability is key for you today; focus on maintaining order in your life.",
+    "love": "Deep conversations with your partner will strengthen your bond.",
+    "career": "Patience is required; the fruits of your labor will soon reveal themselves.",
+    "luckyNumbers": "5, 14, 23"
   },
   "gemini": {
-    "general": "Embrace creativity and ideas.",
-    "love": "Flirty conversations could ignite interest.",
-    "career": "Networking will open new doors.",
-    "luckyNumbers": "11, 22, 34"
+    "general": "Communication will be your strongest asset; don't shy away from expressing yourself.",
+    "love": "A light-hearted approach could spice up your romantic life today.",
+    "career": "Team collaborations are favored; your input will be valued.",
+    "luckyNumbers": "2, 9, 27"
   },
   "cancer": {
-    "general": "Nurture your emotional well-being.",
-    "love": "Deep connections can be made today.",
-    "career": "Trust your instincts in decision-making.",
-    "luckyNumbers": "08, 19, 27"
+    "general": "Emotional clarity will help you navigate any challenges that arise.",
+    "love": "An old flame might resurface, leading to introspection.",
+    "career": "Your nurturing nature could help resolve conflicts at work.",
+    "luckyNumbers": "4, 11, 18"
   },
   "leo": {
-    "general": "Your confidence shines bright.",
-    "love": "Romance is in the air; take a chance.",
-    "career": "Leadership roles may come your way.",
-    "luckyNumbers": "02, 16, 28"
+    "general": "Confidence is your ally; let your vibrant energy shine today.",
+    "love": "Romantic gestures will be well-received; don’t hesitate to be bold.",
+    "career": "Leadership opportunities may come your way; take the lead.",
+    "luckyNumbers": "1, 10, 22"
   },
   "virgo": {
-    "general": "A good day for organization.",
-    "love": "Acts of service speak volumes.",
-    "career": "Perfectionism pays off; stay focused.",
-    "luckyNumbers": "01, 18, 30"
+    "general": "Attention to detail will play a crucial role in your tasks today.",
+    "love": "Small acts of kindness can deepen your relationship.",
+    "career": "Organizational skills you possess will set you apart today.",
+    "luckyNumbers": "6, 15, 30"
   },
   "libra": {
-    "general": "Seek balance in all aspects.",
-    "love": "Compromise will strengthen bonds.",
-    "career": "Teamwork will enhance productivity.",
-    "luckyNumbers": "07, 13, 26"
+    "general": "Seek balance amidst chaos; a calm mind will guide your actions.",
+    "love": "Harmony in your relationships will bring peace.",
+    "career": "Collaborative efforts will lead to greater success at work.",
+    "luckyNumbers": "7, 16, 25"
   },
   "scorpio": {
-    "general": "Intense emotions may surface.",
-    "love": "Deep conversations can transform relationships.",
-    "career": "Trust your gut in professional matters.",
-    "luckyNumbers": "10, 21, 31"
+    "general": "Your passion can drive you to incredible heights; utilize it wisely.",
+    "love": "Honesty in communication will enhance your relationships.",
+    "career": "Transformational opportunities may arise; be ready to adapt.",
+    "luckyNumbers": "8, 17, 26"
   },
   "sagittarius": {
-    "general": "Adventure calls; explore new horizons.",
-    "love": "Spontaneity can reignite the spark.",
-    "career": "Look for opportunities to expand your skills.",
-    "luckyNumbers": "04, 15, 32"
+    "general": "Adventure calls! Take a leap of faith on something new.",
+    "love": "Spontaneity can revive an old romance.",
+    "career": "Creativity will help you stand out in your professional life.",
+    "luckyNumbers": "9, 20, 28"
   },
   "capricorn": {
-    "general": "A day to focus on long-term goals.",
-    "love": "Dedication will strengthen your partnership.",
-    "career": "Hard work will pay off soon.",
-    "luckyNumbers": "06, 20, 23"
+    "general": "Hard work is about to pay off; stay focused on your goals.",
+    "love": "Relationships may deepen through shared ambitions.",
+    "career": "Your persistence will be recognized, paving the way for future opportunities.",
+    "luckyNumbers": "12, 19, 29"
   },
   "aquarius": {
-    "general": "Innovation will lead the way.",
-    "love": "Open-mindedness enhances your love life.",
-    "career": "Collaboration can spark brilliant ideas.",
-    "luckyNumbers": "09, 24, 35"
+    "general": "Open-mindedness will lead to beneficial new connections today.",
+    "love": "Reach out to friends for advice on romantic matters.",
+    "career": "Innovative solutions to problems will put you in the spotlight.",
+    "luckyNumbers": "13, 24, 31"
   },
   "pisces": {
-    "general": "Intuition is strong today.",
-    "love": "Dreamy moments can deepen connections.",
-    "career": "Follow your heart in professional choices.",
-    "luckyNumbers": "12, 15, 33"
+    "general": "Embrace your creativity; allow your imagination to flourish.",
+    "love": "Artistic activities with your partner can deepen your bond.",
+    "career": "Your intuition will guide you toward the right decisions.",
+    "luckyNumbers": "15, 26, 32"
+  },
+  "content": {
+    "professional": [
+      {
+        "id": 1,
+        "text": "Success doesn’t come from what you do occasionally, it comes from what you do consistently.",
+        "author": "Marie Forleo",
+        "tags": [
+          "career",
+          "hustle"
+        ]
+      },
+      {
+        "id": 2,
+        "text": "It’s not about ideas. It’s about making ideas happen.",
+        "author": "Scott Belsky",
+        "tags": [
+          "career",
+          "focus"
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Dream big, work hard, stay focused, and surround yourself with good people.",
+        "author": null,
+        "tags": [
+          "career",
+          "hustle"
+        ]
+      },
+      {
+        "id": 4,
+        "text": "The future depends on what you do today.",
+        "author": "Mahatma Gandhi",
+        "tags": [
+          "career",
+          "focus"
+        ]
+      },
+      {
+        "id": 5,
+        "text": "Don’t watch the clock; do what it does. Keep going.",
+        "author": "Sam Levenson",
+        "tags": [
+          "career",
+          "hustle"
+        ]
+      },
+      {
+        "id": 6,
+        "text": "Success is not the key to happiness. Happiness is the key to success.",
+        "author": "Albert Schweitzer",
+        "tags": [
+          "career",
+          "focus"
+        ]
+      }
+    ],
+    "motivation": [
+      {
+        "id": 7,
+        "text": "The pain you feel today will be the strength you feel tomorrow.",
+        "author": null,
+        "tags": [
+          "gym",
+          "mindset"
+        ]
+      },
+      {
+        "id": 8,
+        "text": "Push yourself because no one else is going to do it for you.",
+        "author": null,
+        "tags": [
+          "gym",
+          "power"
+        ]
+      },
+      {
+        "id": 9,
+        "text": "Wake up, work out, look hot, kick ass.",
+        "author": null,
+        "tags": [
+          "gym",
+          "mindset"
+        ]
+      },
+      {
+        "id": 10,
+        "text": "Fitness is not about being better than someone else; it’s about being better than you used to be.",
+        "author": null,
+        "tags": [
+          "gym",
+          "power"
+        ]
+      },
+      {
+        "id": 11,
+        "text": "Your body can stand almost anything; it’s your mind that you have to convince.",
+        "author": null,
+        "tags": [
+          "gym",
+          "mindset"
+        ]
+      },
+      {
+        "id": 12,
+        "text": "Don’t limit your challenges. Challenge your limits.",
+        "author": null,
+        "tags": [
+          "gym",
+          "power"
+        ]
+      }
+    ],
+    "captions": [
+      {
+        "id": 13,
+        "text": "Living my best life!",
+        "author": null,
+        "tags": [
+          "selfie",
+          "vibes"
+        ]
+      },
+      {
+        "id": 14,
+        "text": "Caught in a moment of joy.",
+        "author": null,
+        "tags": [
+          "travel",
+          "vibes"
+        ]
+      },
+      {
+        "id": 15,
+        "text": "Just because I can!",
+        "author": null,
+        "tags": [
+          "selfie",
+          "vibes"
+        ]
+      },
+      {
+        "id": 16,
+        "text": "Wander often, wonder always.",
+        "author": null,
+        "tags": [
+          "travel",
+          "vibes"
+        ]
+      },
+      {
+        "id": 17,
+        "text": "Collecting moments, not things.",
+        "author": null,
+        "tags": [
+          "travel",
+          "vibes"
+        ]
+      },
+      {
+        "id": 18,
+        "text": "Good vibes only.",
+        "author": null,
+        "tags": [
+          "selfie",
+          "vibes"
+        ]
+      }
+    ],
+    "tech": [
+      {
+        "id": 19,
+        "text": "Why do programmers prefer dark mode? Because light attracts bugs!",
+        "author": null,
+        "tags": [
+          "dev",
+          "coding"
+        ]
+      },
+      {
+        "id": 20,
+        "text": "I told my computer I needed a break, and now it won’t stop sending me beach wallpapers.",
+        "author": null,
+        "tags": [
+          "dev",
+          "coding"
+        ]
+      },
+      {
+        "id": 21,
+        "text": "Why do Java developers wear glasses? Because they can’t C#!",
+        "author": null,
+        "tags": [
+          "dev",
+          "coding"
+        ]
+      },
+      {
+        "id": 22,
+        "text": "A SQL query walks into a bar, walks up to two tables and asks, 'Can I join you?'",
+        "author": null,
+        "tags": [
+          "dev",
+          "coding"
+        ]
+      },
+      {
+        "id": 23,
+        "text": "There are 10 types of people in the world: those who understand binary and those who don’t.",
+        "author": null,
+        "tags": [
+          "dev",
+          "geek"
+        ]
+      },
+      {
+        "id": 24,
+        "text": "Why did the programmer quit his job? Because he didn’t get arrays.",
+        "author": null,
+        "tags": [
+          "dev",
+          "coding"
+        ]
+      }
+    ],
+    "fun": [
+      {
+        "id": 25,
+        "text": "Why did the coffee file a police report? It got mugged!",
+        "author": null,
+        "tags": [
+          "funny",
+          "coffee"
+        ]
+      },
+      {
+        "id": 26,
+        "text": "I’m on a seafood diet. I see food, and I eat it.",
+        "author": null,
+        "tags": [
+          "funny",
+          "mood"
+        ]
+      },
+      {
+        "id": 27,
+        "text": "I don't need an inspirational quote. I need coffee.",
+        "author": null,
+        "tags": [
+          "funny",
+          "coffee"
+        ]
+      },
+      {
+        "id": 28,
+        "text": "If I had a dollar for every time I got distracted, I wish I had a puppy.",
+        "author": null,
+        "tags": [
+          "funny",
+          "mood"
+        ]
+      },
+      {
+        "id": 29,
+        "text": "Adulting is like folding a fitted sheet: no one really knows how.",
+        "author": null,
+        "tags": [
+          "funny",
+          "mood"
+        ]
+      },
+      {
+        "id": 30,
+        "text": "I finally decided on a career. I want to be a professional procrastinator.",
+        "author": null,
+        "tags": [
+          "funny",
+          "mood"
+        ]
+      }
+    ],
+    "faith": [
+      {
+        "id": 31,
+        "text": "Faith is taking the first step even when you don't see the whole staircase.",
+        "author": "Martin Luther King Jr.",
+        "tags": [
+          "bible",
+          "hope"
+        ]
+      },
+      {
+        "id": 32,
+        "text": "Peace I leave with you; my peace I give you.",
+        "author": "John 14:27",
+        "tags": [
+          "bible",
+          "peace"
+        ]
+      },
+      {
+        "id": 33,
+        "text": "The Lord is my shepherd; I shall not want.",
+        "author": "Psalm 23:1",
+        "tags": [
+          "bible",
+          "hope"
+        ]
+      },
+      {
+        "id": 34,
+        "text": "Cast all your anxiety on him because he cares for you.",
+        "author": "1 Peter 5:7",
+        "tags": [
+          "bible",
+          "peace"
+        ]
+      },
+      {
+        "id": 35,
+        "text": "With God, all things are possible.",
+        "author": "Matthew 19:26",
+        "tags": [
+          "bible",
+          "hope"
+        ]
+      },
+      {
+        "id": 36,
+        "text": "For I know the plans I have for you, declares the Lord.",
+        "author": "Jeremiah 29:11",
+        "tags": [
+          "bible",
+          "hope"
+        ]
+      }
+    ],
+    "wisdom": [
+      {
+        "id": 37,
+        "text": "The unexamined life is not worth living.",
+        "author": "Socrates",
+        "tags": [
+          "philosophy",
+          "life"
+        ]
+      },
+      {
+        "id": 38,
+        "text": "Life can only be understood backwards; but it must be lived forwards.",
+        "author": "Søren Kierkegaard",
+        "tags": [
+          "philosophy",
+          "life"
+        ]
+      },
+      {
+        "id": 39,
+        "text": "The only true wisdom is in knowing you know nothing.",
+        "author": "Socrates",
+        "tags": [
+          "philosophy",
+          "life"
+        ]
+      },
+      {
+        "id": 40,
+        "text": "To be is to do.",
+        "author": "Socrates",
+        "tags": [
+          "philosophy",
+          "life"
+        ]
+      },
+      {
+        "id": 41,
+        "text": "To do is to be.",
+        "author": "Jean-Paul Sartre",
+        "tags": [
+          "philosophy",
+          "life"
+        ]
+      },
+      {
+        "id": 42,
+        "text": "Life is really simple, but we insist on making it complicated.",
+        "author": "Confucius",
+        "tags": [
+          "philosophy",
+          "life"
+        ]
+      }
+    ]
   }
 }
