@@ -7466,6 +7466,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LimoncelloCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "aperitif-spritz",
+    title: "Aperitif Spritz",
+    category: "culinary",
+    subcategory: "italian",
+    description: "Refreshing cocktail of Prosecco, Aperol, and soda with orange slice.",
+    loader: () => import("@/components/calculators/Misc/AperitifSpritzCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
