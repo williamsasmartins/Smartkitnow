@@ -1,75 +1,75 @@
 {
-  "date": "January 9",
+  "date": "October 1",
   "aries": {
-    "general": "A day full of energy and enthusiasm.",
-    "love": "Warm connections will deepen your bonds.",
-    "career": "Opportunities for leadership may arise.",
-    "luckyNumbers": "3, 7, 12"
+    "general": "A day for new beginnings.",
+    "love": "Passion may spark unexpectedly.",
+    "career": "Collaboration will lead to success.",
+    "luckyNumbers": "03, 17, 25"
   },
   "taurus": {
-    "general": "Focus on your personal goals today.",
-    "love": "Patience will strengthen your relationship.",
-    "career": "Financial decisions should be made carefully.",
-    "luckyNumbers": "2, 14, 22"
+    "general": "Focus on stability today.",
+    "love": "Communication is key in relationships.",
+    "career": "A financial opportunity may arise.",
+    "luckyNumbers": "05, 14, 29"
   },
   "gemini": {
-    "general": "Communication will bring clarity.",
-    "love": "A surprise message may spark joy.",
-    "career": "Collaboration with colleagues is favored.",
-    "luckyNumbers": "5, 19, 27"
+    "general": "Embrace creativity and ideas.",
+    "love": "Flirty conversations could ignite interest.",
+    "career": "Networking will open new doors.",
+    "luckyNumbers": "11, 22, 34"
   },
   "cancer": {
-    "general": "Emotional resilience will guide you.",
-    "love": "Open discussions will nurture love.",
-    "career": "Focus on teamwork to achieve goals.",
-    "luckyNumbers": "1, 16, 29"
+    "general": "Nurture your emotional well-being.",
+    "love": "Deep connections can be made today.",
+    "career": "Trust your instincts in decision-making.",
+    "luckyNumbers": "08, 19, 27"
   },
   "leo": {
-    "general": "Your confidence shines brightly today.",
-    "love": "Romantic ventures could take a turn.",
-    "career": "Take initiative; your ideas are needed.",
-    "luckyNumbers": "4, 21, 33"
+    "general": "Your confidence shines bright.",
+    "love": "Romance is in the air; take a chance.",
+    "career": "Leadership roles may come your way.",
+    "luckyNumbers": "02, 16, 28"
   },
   "virgo": {
-    "general": "Attention to detail will serve you well.",
-    "love": "Acts of service will speak volumes.",
-    "career": "Organizational skills will be your ally.",
-    "luckyNumbers": "6, 15, 30"
+    "general": "A good day for organization.",
+    "love": "Acts of service speak volumes.",
+    "career": "Perfectionism pays off; stay focused.",
+    "luckyNumbers": "01, 18, 30"
   },
   "libra": {
-    "general": "Harmony is essential; seek balance.",
-    "love": "Connection deepens through shared activities.",
-    "career": "Networking could lead to new prospects.",
-    "luckyNumbers": "8, 18, 25"
+    "general": "Seek balance in all aspects.",
+    "love": "Compromise will strengthen bonds.",
+    "career": "Teamwork will enhance productivity.",
+    "luckyNumbers": "07, 13, 26"
   },
   "scorpio": {
-    "general": "Introspection yields powerful insights.",
-    "love": "A day of passionate encounters awaits.",
-    "career": "Your instincts will guide you to success.",
-    "luckyNumbers": "9, 17, 28"
+    "general": "Intense emotions may surface.",
+    "love": "Deep conversations can transform relationships.",
+    "career": "Trust your gut in professional matters.",
+    "luckyNumbers": "10, 21, 31"
   },
   "sagittarius": {
-    "general": "Adventure calls; embrace spontaneity.",
-    "love": "A promising day for social interactions.",
-    "career": "New horizons open; be willing to explore.",
-    "luckyNumbers": "10, 20, 31"
+    "general": "Adventure calls; explore new horizons.",
+    "love": "Spontaneity can reignite the spark.",
+    "career": "Look for opportunities to expand your skills.",
+    "luckyNumbers": "04, 15, 32"
   },
   "capricorn": {
-    "general": "Discipline will lead to significant achievements.",
-    "love": "Strengthen commitments through honest dialogue.",
-    "career": "Ambitious goals are within reach.",
-    "luckyNumbers": "11, 23, 32"
+    "general": "A day to focus on long-term goals.",
+    "love": "Dedication will strengthen your partnership.",
+    "career": "Hard work will pay off soon.",
+    "luckyNumbers": "06, 20, 23"
   },
   "aquarius": {
-    "general": "Innovation will spark new ideas.",
-    "love": "Exciting conversations could lead to romance.",
-    "career": "Creative solutions will impress your team.",
-    "luckyNumbers": "12, 24, 26"
+    "general": "Innovation will lead the way.",
+    "love": "Open-mindedness enhances your love life.",
+    "career": "Collaboration can spark brilliant ideas.",
+    "luckyNumbers": "09, 24, 35"
   },
   "pisces": {
-    "general": "Imagination fuels creativity today.",
-    "love": "Intuitive connections deepen understanding.",
-    "career": "Let your creativity shine; it’s your strength.",
-    "luckyNumbers": "13, 22, 30"
+    "general": "Intuition is strong today.",
+    "love": "Dreamy moments can deepen connections.",
+    "career": "Follow your heart in professional choices.",
+    "luckyNumbers": "12, 15, 33"
   }
 }
