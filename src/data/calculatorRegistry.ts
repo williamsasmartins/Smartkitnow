@@ -7758,6 +7758,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenTortillaSoupCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pozole",
+    title: "Pozole (Pork or Chicken)",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Ensopado com hominy (milho) e carne, servido com guarnições frescas.",
+    loader: () => import("@/components/calculators/Misc/PozoleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
