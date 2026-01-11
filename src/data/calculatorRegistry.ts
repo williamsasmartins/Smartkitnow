@@ -8163,6 +8163,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PastelTresLechesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "flan",
+    title: "Flan",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Pudim assado com calda de caramelo, liso e delicado.",
+    loader: () => import("@/components/calculators/Misc/FlanCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
