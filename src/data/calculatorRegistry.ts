@@ -8091,6 +8091,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChilesRellenosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chiles-en-nogada",
+    title: "Chiles en Nogada",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Poblano recheado com carne/frutas, coberto com molho de noz e romã.",
+    loader: () => import("@/components/calculators/Misc/ChilesEnNogadaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
