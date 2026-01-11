@@ -8064,6 +8064,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CarneAsadaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "birria",
+    title: "Birria (Beef or Goat)",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Ensopado especiado de boi ou cabra, servido com caldo e tortilhas.",
+    loader: () => import("@/components/calculators/Misc/BirriaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
