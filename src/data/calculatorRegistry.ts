@@ -7803,6 +7803,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChilaquilesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "huevos-rancheros",
+    title: "Huevos Rancheros",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Ovos com salsa sobre tortilla, geralmente com feijão e guarnições.",
+    loader: () => import("@/components/calculators/Misc/HuevosRancherosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
