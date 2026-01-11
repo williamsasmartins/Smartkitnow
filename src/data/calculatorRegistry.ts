@@ -8172,6 +8172,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FlanCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "horchata",
+    title: "Horchata",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Bebida doce e cremosa de arroz, canela e baunilha.",
+    loader: () => import("@/components/calculators/Misc/HorchataCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
