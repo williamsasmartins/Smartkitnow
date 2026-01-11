@@ -7875,6 +7875,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BarbacoaTacosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "birria-tacos",
+    title: "Birria Tacos",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tacos de carne ensopada e especiada, muitas vezes com caldo para “dip”.",
+    loader: () => import("@/components/calculators/Misc/BirriaTacosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
