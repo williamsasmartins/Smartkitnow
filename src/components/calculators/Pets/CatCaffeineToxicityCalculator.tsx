@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ChangeEvent } from "react";
 import CalculatorVerticalLayout from '@/components/templates/CalculatorVerticalLayout';
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -44,7 +44,7 @@ export default function CatCaffeineToxicityCalculator() {
     const riskScore = caffeineRaw / (weightKg * toxicDoseMgPerKg);
 
     let label = "";
-    let warning = null;
+    let warning: string | null = null;
 
     if (riskScore < 0.1) {
       label = "Minimal risk of caffeine toxicity.";
@@ -92,7 +92,7 @@ export default function CatCaffeineToxicityCalculator() {
   const faqJsonLd = useFaqJsonLd(faqs);
 
   // Handle input changes
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     if (/^\d*\.?\d*$/.test(value)) {
       setInputs((prev) => ({ ...prev, [name]: value }));

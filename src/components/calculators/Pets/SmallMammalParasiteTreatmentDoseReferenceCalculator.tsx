@@ -118,7 +118,7 @@ export default function SmallMammalParasiteTreatmentDoseReferenceCalculator() {
             type="number"
             min="0"
             step="any"
-            placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "lbs" : "kg"}`}
             value={inputs.weight}
             onChange={(e) =>
               setInputs((prev) => ({ ...prev, weight: e.target.value }))
