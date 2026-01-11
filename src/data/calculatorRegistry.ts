@@ -7596,6 +7596,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BeerCanChickenCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chicken-wings",
+    title: "Chicken Wings",
+    category: "culinary",
+    subcategory: "bbq-smoking",
+    description: "Smoke or grill chicken wings for crunchy skin, saucy finishes, and party-batch timing.",
+    loader: () => import("@/components/calculators/Misc/ChickenWingsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
