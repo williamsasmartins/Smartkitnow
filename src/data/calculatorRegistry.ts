@@ -7911,6 +7911,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenTingaTacosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "baja-fish-tacos",
+    title: "Baja-Style Fish Tacos",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tacos de peixe empanado, com molho cremoso e repolho (estilo Baja).",
+    loader: () => import("@/components/calculators/Misc/BajaFishTacosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
