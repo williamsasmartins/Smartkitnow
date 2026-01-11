@@ -7542,6 +7542,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BeefShortRibsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tri-tip-steak",
+    title: "Tri-Tip Steak",
+    category: "culinary",
+    subcategory: "bbq-smoking",
+    description: "Grill or smoke tri-tip for medium-rare slices, robust seasoning, and easy reverse-sear timing.",
+    loader: () => import("@/components/calculators/Misc/TriTipSteakCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
