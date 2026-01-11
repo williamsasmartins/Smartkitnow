@@ -7776,6 +7776,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MenudoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "albondigas-soup",
+    title: "Albondigas Soup",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Sopa com almôndegas e legumes em caldo temperado.",
+    loader: () => import("@/components/calculators/Misc/AlbondigasSoupCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
