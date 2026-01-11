@@ -5,7 +5,8 @@ import QuoteCard, { DailyQuoteItem } from "@/components/calculators/DailyQuotes/
 import { 
   Briefcase, Rocket, Camera, Laptop, 
   Smile, HeartHandshake, Brain, Moon, 
-  ArrowLeft, Sparkles, RefreshCw, Loader2 
+  ArrowLeft, Sparkles, RefreshCw, Loader2,
+  Copy, Share2, Check
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -42,6 +43,7 @@ export default function DailyQuotesPage() {
   const [dreamInput, setDreamInput] = useState("");
   const [interpretation, setInterpretation] = useState<any>(null);
   const [isInterpreting, setIsInterpreting] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   // FETCH REAL DATA
   useEffect(() => {
@@ -54,7 +56,7 @@ export default function DailyQuotesPage() {
         setData(json);
       } catch (error) {
         console.error("Error fetching data:", error);
-        toast("Could not load today's inspiration. Please try again later.");
+        // Silent fail - user sees loading state or empty state handled below
       } finally {
         setLoading(false);
       }
@@ -90,24 +92,50 @@ export default function DailyQuotesPage() {
 
       const data = await res.json();
       
-      // O n8n pode retornar o JSON direto ou dentro de uma estrutura, dependendo do nó
-      // Vamos tentar pegar o conteúdo de forma segura
+      // Handle different n8n response structures
       let aiContent = data.message?.content || data[0]?.message?.content || data.content || data;
       
       if (typeof aiContent === "string") {
-        // Limpa se vier com markdown ```json ... ```
         const cleanJson = aiContent.replace(/^```json\s*/i, "").replace(/\s*```$/, "");
         setInterpretation(JSON.parse(cleanJson));
       } else {
-        // Se já for objeto
         setInterpretation(aiContent);
       }
 
     } catch (error) {
       console.error("Dream API Error:", error);
-      toast("Our mystical AI is meditating. Please try again in a moment.");
+      toast("The oracle is silent right now. Please try again.");
     } finally {
       setIsInterpreting(false);
+    }
+  };
+
+  // --- SHARE & COPY FUNCTIONS ---
+  const handleCopyResult = () => {
+    if (!interpretation) return;
+    const text = `🌙 Dream Interpretation:\n\n"${interpretation.summary}"\n\n✨ Advice: ${interpretation.advice}\n\n🔮 Interpreted by SmartKitNow.com`;
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+    toast("Interpretation copied to clipboard!");
+  };
+
+  const handleShareResult = async () => {
+    if (!interpretation) return;
+    const text = `🌙 Dream Interpretation:\n\n"${interpretation.summary}"\n\n✨ Advice: ${interpretation.advice}\n\n🔮 Check yours at SmartKitNow.com`;
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'My Dream Meaning',
+          text: text,
+          url: 'https://smartkitnow.com/daily-quotes',
+        });
+      } catch (err) {
+        console.log('Share canceled');
+      }
+    } else {
+      handleCopyResult(); // Fallback to copy
     }
   };
 
@@ -134,7 +162,6 @@ export default function DailyQuotesPage() {
 
     const allItems = [...itemsList];
     
-    // Shuffle
     if (shuffleSeed >= 0) {
         for (let i = allItems.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -142,7 +169,6 @@ export default function DailyQuotesPage() {
         }
     }
     
-    // Show up to 6 items
     return allItems.slice(0, 6); 
   }, [selectedCategory, shuffleSeed, data]);
 
@@ -162,13 +188,13 @@ export default function DailyQuotesPage() {
               <div className="p-2 bg-indigo-500/10 rounded-lg">
                 <Moon className="w-6 h-6 text-indigo-500" />
               </div>
-              <h3 className="text-xl font-bold">What did you dream?</h3>
+              <h3 className="text-xl font-bold">Dream Interpreter</h3>
             </div>
             
             <textarea 
               value={dreamInput}
               onChange={(e) => setDreamInput(e.target.value)}
-              placeholder="I was flying over a crystal city, but my wings felt heavy..."
+              placeholder="Describe your dream here... (e.g., I was flying over a crystal city)"
               className="w-full min-h-[120px] p-4 rounded-xl bg-background border border-input focus:ring-2 focus:ring-indigo-500/50 resize-none transition-all mb-4"
               disabled={isInterpreting}
             />
@@ -181,7 +207,7 @@ export default function DailyQuotesPage() {
               {isInterpreting ? (
                 <>
                   <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                  Analyzing Symbols...
+                  Connecting with the subconscious...
                 </>
               ) : (
                 <>
@@ -197,18 +223,30 @@ export default function DailyQuotesPage() {
             <div className="space-y-6 animate-in slide-in-from-bottom-4 duration-700">
               
               {/* Summary Card */}
-              <div className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-xl p-6 text-center">
+              <div className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-xl p-6 text-center relative group">
                 <h4 className="text-indigo-500 font-bold uppercase tracking-wider text-xs mb-2">Core Meaning</h4>
                 <p className="text-xl font-medium text-foreground leading-relaxed">
                   "{interpretation.summary}"
                 </p>
+                
+                {/* Action Buttons */}
+                <div className="flex justify-center gap-2 mt-4 opacity-100 transition-opacity">
+                  <Button variant="secondary" size="sm" onClick={handleCopyResult} className="gap-2 h-8 text-xs">
+                    {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                    {copied ? "Copied" : "Copy"}
+                  </Button>
+                  <Button variant="secondary" size="sm" onClick={handleShareResult} className="gap-2 h-8 text-xs">
+                    <Share2 className="w-3 h-3" />
+                    Share
+                  </Button>
+                </div>
               </div>
 
               {/* Analysis */}
               <div className="prose dark:prose-invert max-w-none">
                 <h4 className="flex items-center gap-2 text-lg font-bold mb-2">
                   <Brain className="w-5 h-5 text-purple-500" />
-                  Psychological Analysis
+                  Deep Analysis
                 </h4>
                 <p className="text-muted-foreground leading-relaxed">
                   {interpretation.analysis}
@@ -245,8 +283,17 @@ export default function DailyQuotesPage() {
     }
 
     if (currentItems.length === 0) return (
-      <div className="text-center py-10 text-muted-foreground">
-        No inspiration found for this category today. Try again tomorrow!
+      <div className="text-center py-20 animate-in fade-in zoom-in-95">
+        <div className="w-20 h-20 mx-auto bg-muted rounded-full flex items-center justify-center mb-4">
+           {selectedCategory === "professional" && <Briefcase className="w-10 h-10 text-muted-foreground/50" />}
+           {selectedCategory === "motivation" && <Rocket className="w-10 h-10 text-muted-foreground/50" />}
+           {/* Fallback icon */}
+           {![ "professional", "motivation"].includes(selectedCategory) && <RefreshCw className="w-10 h-10 text-muted-foreground/50" />}
+        </div>
+        <h3 className="text-xl font-bold mb-2">Refreshing Inspiration...</h3>
+        <p className="text-muted-foreground max-w-sm mx-auto mb-6">
+          We are currently downloading new quotes from the cosmos. Please verify if the n8n workflow has run successfully.
+        </p>
       </div>
     );
 
