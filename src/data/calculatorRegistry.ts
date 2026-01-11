@@ -8154,6 +8154,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChurrosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pastel-tres-leches",
+    title: "Tres Leches Cake",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Bolo embebido em três leites, bem úmido e doce.",
+    loader: () => import("@/components/calculators/Misc/PastelTresLechesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
