@@ -8073,6 +8073,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BirriaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cochinita-pibil",
+    title: "Cochinita Pibil",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Porco marinado com achiote e cítricos, cozido lentamente (Yucatán).",
+    loader: () => import("@/components/calculators/Misc/CochinitaPibilCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
