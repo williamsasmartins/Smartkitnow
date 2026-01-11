@@ -8037,6 +8037,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenTingaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "mole-poblano",
+    title: "Mole Chicken (Mole Poblano)",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Frango ao mole poblano, molho complexo com pimentas e chocolate.",
+    loader: () => import("@/components/calculators/Misc/MolePoblanoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
