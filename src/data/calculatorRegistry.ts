@@ -8046,6 +8046,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MolePoblanoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pork-carnitas",
+    title: "Pork Carnitas",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Porco cozido lentamente até ficar macio, depois dourado e suculento.",
+    loader: () => import("@/components/calculators/Misc/PorkCarnitasCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
