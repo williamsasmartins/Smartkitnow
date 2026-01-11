@@ -8190,6 +8190,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/AguaDeJamaicaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "margarita",
+    title: "Margarita",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Coquetel com tequila, limão e licor, servido com sal na borda.",
+    loader: () => import("@/components/calculators/Misc/MargaritaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
