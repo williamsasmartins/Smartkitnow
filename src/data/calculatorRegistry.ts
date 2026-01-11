@@ -7884,6 +7884,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BirriaTacosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fish-tacos",
+    title: "Fish Tacos",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tacos de peixe com molho, repolho e toque cítrico.",
+    loader: () => import("@/components/calculators/Misc/FishTacosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
