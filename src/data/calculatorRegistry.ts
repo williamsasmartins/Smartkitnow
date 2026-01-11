@@ -7794,6 +7794,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SopaDeLimaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chilaquiles",
+    title: "Chilaquiles",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tortilla chips cozidos em salsa, com queijo, creme e ovos/carne.",
+    loader: () => import("@/components/calculators/Misc/ChilaquilesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
