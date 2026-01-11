@@ -7749,6 +7749,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FlautasCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chicken-tortilla-soup",
+    title: "Chicken Tortilla Soup",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Sopa de frango com tomate/chili, finalizada com tiras de tortilla.",
+    loader: () => import("@/components/calculators/Misc/ChickenTortillaSoupCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
