@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function DogGrapeRaisinExposureRiskCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
   const [inputs, setInputs] = useState({
     weight: "",
     grapesCount: "",
@@ -50,8 +52,7 @@ export default function DogGrapeRaisinExposureRiskCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Convert grapes count to grams (avg grape ~5g)
     const grapesGrams = grapesCountRaw && grapesCountRaw > 0 ? grapesCountRaw * 5 : 0;
@@ -147,13 +148,24 @@ export default function DogGrapeRaisinExposureRiskCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "kg" && next !== "lb") return;
+              const weightRaw = parseFloat(inputs.weight);
+              if (Number.isFinite(weightRaw) && weightRaw > 0) {
+                const nextWeight = convertWeight(weightRaw, unit, next);
+                setInputs((prev) => ({ ...prev, weight: formatNumberForInput(nextWeight, 2) }));
+              }
+              setUnit(next);
+            }}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -162,14 +174,14 @@ export default function DogGrapeRaisinExposureRiskCalculator() {
         <div className="space-y-4">
           <div>
             <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-              Dog Weight ({unit === "imperial" ? "lbs" : "kg"})
+              Dog Weight ({unit === "lb" ? "lbs" : "kg"})
             </Label>
             <Input
               id="weight"
               type="number"
               min={0}
               step="any"
-              placeholder={unit === "imperial" ? "e.g. 30" : "e.g. 13.6"}
+              placeholder={unit === "lb" ? "e.g. 30" : "e.g. 13.6"}
               value={inputs.weight}
               onChange={(e) => handleInputChange("weight", e.target.value)}
             />

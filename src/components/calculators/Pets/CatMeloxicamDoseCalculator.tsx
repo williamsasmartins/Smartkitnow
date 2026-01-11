@@ -7,11 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function CatMeloxicamDoseCalculator() {
   // 1. STATE
   // Unit system default to imperial (lbs)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight only (lbs or kg)
   const [inputs, setInputs] = useState({
@@ -31,8 +33,7 @@ export default function CatMeloxicamDoseCalculator() {
         warning: null,
       };
     }
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? Number(weightRaw) / 2.20462 : Number(weightRaw);
+    const weightKg = weightToKg(Number(weightRaw), unit);
 
     // Calculate dose in mg
     const doseMg = weightKg * 0.05;
@@ -90,13 +91,24 @@ export default function CatMeloxicamDoseCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "kg" && next !== "lb") return;
+              const weightRaw = parseFloat(inputs.weight);
+              if (Number.isFinite(weightRaw) && weightRaw > 0) {
+                const nextWeight = convertWeight(weightRaw, unit, next);
+                setInputs((prev) => ({ ...prev, weight: formatNumberForInput(nextWeight, 2) }));
+              }
+              setUnit(next);
+            }}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -105,14 +117,14 @@ export default function CatMeloxicamDoseCalculator() {
       {/* Weight Input */}
       <div className="space-y-1">
         <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-          Cat Weight ({unit === "imperial" ? "lbs" : "kg"})
+          Cat Weight ({unit === "lb" ? "lbs" : "kg"})
         </Label>
         <Input
           id="weight"
           type="number"
           min="0"
           step="0.01"
-          placeholder={`Enter weight in ${unit === "imperial" ? "pounds" : "kilograms"}`}
+          placeholder={`Enter weight in ${unit === "lb" ? "pounds" : "kilograms"}`}
           value={inputs.weight}
           onChange={(e) => setInputs({ ...inputs, weight: e.target.value })}
           aria-describedby="weightHelp"
@@ -127,7 +139,7 @@ export default function CatMeloxicamDoseCalculator() {
         <Button
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
           onClick={() => {
-            // No extra action needed, calculation is reactive
+            setInputs((prev) => ({ ...prev }));
           }}
         >
           <Calculator className="mr-2 h-4 w-4" /> Calculate

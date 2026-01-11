@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function DogCaffeineToxicityCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
   const [inputs, setInputs] = useState({
     weight: "",
     caffeineMg: "",
@@ -25,10 +27,11 @@ export default function DogCaffeineToxicityCalculator() {
   const results = useMemo(() => {
     const weightRaw = parseFloat(inputs.weight);
     const caffeineRaw = parseFloat(inputs.caffeineMg);
-    if (!weightRaw || weightRaw <= 0 || !caffeineRaw || caffeineRaw <= 0)
+    if (isNaN(weightRaw) || weightRaw <= 0 || isNaN(caffeineRaw) || caffeineRaw <= 0) {
       return { value: 0, label: "Enter valid weight and caffeine amount..." };
+    }
 
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // mg/kg caffeine dose
     const doseMgPerKg = caffeineRaw / weightKg;
@@ -97,13 +100,24 @@ export default function DogCaffeineToxicityCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "kg" && next !== "lb") return;
+              const weightRaw = parseFloat(inputs.weight);
+              if (Number.isFinite(weightRaw) && weightRaw > 0) {
+                const nextWeight = convertWeight(weightRaw, unit, next);
+                setInputs((prev) => ({ ...prev, weight: formatNumberForInput(nextWeight, 2) }));
+              }
+              setUnit(next);
+            }}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -111,14 +125,14 @@ export default function DogCaffeineToxicityCalculator() {
         {/* Weight Input */}
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Dog Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Dog Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
             type="number"
             min="0"
             step="any"
-            placeholder={`Enter weight in ${unit === "imperial" ? "pounds" : "kilograms"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "pounds" : "kilograms"}`}
             value={inputs.weight}
             onChange={(e) => handleInputChange("weight", e.target.value)}
           />
@@ -145,7 +159,7 @@ export default function DogCaffeineToxicityCalculator() {
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
-          onClick={() => {}}
+          onClick={() => setInputs((prev) => ({ ...prev }))}
           type="button"
         >
           <Calculator className="mr-2 h-4 w-4" /> Calculate

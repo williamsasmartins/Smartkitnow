@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function CatXylitolExposureRiskCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: Cat weight and xylitol amount ingested (mg)
   const [inputs, setInputs] = useState({
@@ -32,7 +34,7 @@ export default function CatXylitolExposureRiskCalculator() {
     }
 
     // Convert weight to kg if imperial (lbs)
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Toxic dose threshold for xylitol in cats is not well established but considered very low.
     // For educational purposes, use a conservative threshold of 50 mg/kg as potential risk.
@@ -93,13 +95,24 @@ export default function CatXylitolExposureRiskCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "kg" && next !== "lb") return;
+              const weightRaw = parseFloat(inputs.weight);
+              if (Number.isFinite(weightRaw) && weightRaw > 0) {
+                const nextWeight = convertWeight(weightRaw, unit, next);
+                setInputs((prev) => ({ ...prev, weight: formatNumberForInput(nextWeight, 2) }));
+              }
+              setUnit(next);
+            }}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -109,14 +122,14 @@ export default function CatXylitolExposureRiskCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Cat Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Cat Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
             type="number"
             min="0"
             step="any"
-            placeholder={unit === "imperial" ? "e.g. 8.5" : "e.g. 3.9"}
+            placeholder={unit === "lb" ? "e.g. 8.5" : "e.g. 3.9"}
             value={inputs.weight}
             onChange={(e) => setInputs((prev) => ({ ...prev, weight: e.target.value }))}
           />
@@ -142,7 +155,7 @@ export default function CatXylitolExposureRiskCalculator() {
         <Button
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
           onClick={() => {
-            // No special action needed, calculation is reactive
+            setInputs((prev) => ({ ...prev }));
           }}
         >
           <Calculator className="mr-2 h-4 w-4" /> Calculate

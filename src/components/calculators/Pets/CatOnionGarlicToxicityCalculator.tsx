@@ -4,13 +4,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function CatOnionGarlicToxicityCalculator() {
   // 1. STATE
   // Unit system needed for weight input (imperial or metric)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight and amount of onion/garlic ingested (grams)
   const [inputs, setInputs] = useState({
@@ -40,7 +43,7 @@ export default function CatOnionGarlicToxicityCalculator() {
     }
 
     // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Dose in g/kg
     const dose = amountRaw / weightKg;
@@ -109,28 +112,40 @@ export default function CatOnionGarlicToxicityCalculator() {
           <Label className="text-slate-700 dark:text-slate-300">
             Unit System
           </Label>
-          <select
+          <Select
             value={unit}
-            onChange={(e) => setUnit(e.target.value)}
-            className="border border-slate-300 rounded px-3 py-1 dark:bg-slate-800 dark:text-slate-200"
+            onValueChange={(next) => {
+              if (next !== "kg" && next !== "lb") return;
+              const weightRaw = parseFloat(inputs.weight);
+              if (Number.isFinite(weightRaw) && weightRaw > 0) {
+                const nextWeight = convertWeight(weightRaw, unit, next);
+                setInputs((prev) => ({ ...prev, weight: formatNumberForInput(nextWeight, 2) }));
+              }
+              setUnit(next);
+            }}
           >
-            <option value="imperial">Imperial (lbs)</option>
-            <option value="metric">Metric (kg)</option>
-          </select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
 
       {/* Weight input */}
       <div className="space-y-1">
         <Label className="text-slate-700 dark:text-slate-300" htmlFor="weight">
-          Cat Weight ({unit === "imperial" ? "lbs" : "kg"})
+          Cat Weight ({unit === "lb" ? "lbs" : "kg"})
         </Label>
         <Input
           id="weight"
           type="number"
           min="0"
           step="any"
-          placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+          placeholder={`Enter weight in ${unit === "lb" ? "lbs" : "kg"}`}
           value={inputs.weight || ""}
           onChange={(e) =>
             setInputs((prev) => ({ ...prev, weight: e.target.value }))
@@ -164,7 +179,7 @@ export default function CatOnionGarlicToxicityCalculator() {
         <Button
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md"
           onClick={() => {
-            // Trigger recalculation by updating state (already reactive)
+            setInputs((prev) => ({ ...prev }));
           }}
         >
           <Calculator className="mr-2 h-4 w-4" /> Calculate

@@ -8,13 +8,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
-import { convertWeight, formatNumberForInput, LB_PER_KG } from "@/lib/utils";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function CatBenadrylDiphenhydramineDoseCalculator() {
   // 1. STATE
   // Unit system default: imperial (lbs)
-  const { unit: preferredWeightUnit, setUnit: setPreferredWeightUnit } = useWeightUnitPreference();
-  const [unit, setUnit] = useState<"imperial" | "metric">(() => (preferredWeightUnit === "lb" ? "imperial" : "metric"));
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight only (lbs or kg)
   const [inputs, setInputs] = useState({
@@ -35,7 +34,7 @@ export default function CatBenadrylDiphenhydramineDoseCalculator() {
         warning: null,
       };
     }
-    const weightKg = unit === "imperial" ? weightRaw / LB_PER_KG : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Dose mg = 1 mg/kg * weightKg
     const doseMg = +(weightKg * 1).toFixed(2);
@@ -95,23 +94,22 @@ export default function CatBenadrylDiphenhydramineDoseCalculator() {
           <Select
             value={unit}
             onValueChange={(next) => {
-              if (next !== "imperial" && next !== "metric") return;
+              if (next !== "kg" && next !== "lb") return;
               setInputs((prev) => {
                 const num = parseFloat(prev.weight);
                 if (!prev.weight || Number.isNaN(num) || num <= 0) return prev;
-                const converted = convertWeight(num, unit === "imperial" ? "lb" : "kg", next === "imperial" ? "lb" : "kg");
+                const converted = convertWeight(num, unit, next);
                 return { ...prev, weight: formatNumberForInput(converted, 2) };
               });
               setUnit(next);
-              setPreferredWeightUnit(next === "imperial" ? "lb" : "kg");
             }}
           >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -120,14 +118,14 @@ export default function CatBenadrylDiphenhydramineDoseCalculator() {
       {/* Weight input */}
       <div className="space-y-2">
         <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-          Cat's Weight ({unit === "imperial" ? "lbs" : "kg"})
+          Cat's Weight ({unit === "lb" ? "lbs" : "kg"})
         </Label>
         <Input
           id="weight"
           type="number"
           min="0"
           step="any"
-          placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+          placeholder={`Enter weight in ${unit === "lb" ? "lbs" : "kg"}`}
           value={inputs.weight}
           onChange={(e) =>
             setInputs((prev) => ({ ...prev, weight: e.target.value }))

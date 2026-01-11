@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function DogTramadolDoseCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
   const [inputs, setInputs] = useState({
     weight: "",
     painSeverity: "mild",
@@ -33,7 +35,7 @@ export default function DogTramadolDoseCalculator() {
       };
     }
 
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Determine dosage per pain severity
     let dosageMgPerKg = 0;
@@ -62,7 +64,7 @@ export default function DogTramadolDoseCalculator() {
       label: `Recommended Tramadol dose (${dosageMgPerKg} mg/kg)`,
       subtext: `For a dog weighing ${weightKg.toFixed(2)} kg (${weightRaw.toFixed(
         2
-      )} ${unit === "imperial" ? "lbs" : "kg"}), administer approximately ${totalDoseMg} mg every 8-12 hours.`,
+      )} ${unit === "lb" ? "lbs" : "kg"}), administer approximately ${totalDoseMg} mg every 8-12 hours.`,
       warning,
     };
   }, [inputs, unit]);
@@ -107,13 +109,24 @@ export default function DogTramadolDoseCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "kg" && next !== "lb") return;
+              const weightRaw = parseFloat(inputs.weight);
+              if (Number.isFinite(weightRaw) && weightRaw > 0) {
+                const nextWeight = convertWeight(weightRaw, unit, next);
+                setInputs((prev) => ({ ...prev, weight: formatNumberForInput(nextWeight, 2) }));
+              }
+              setUnit(next);
+            }}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -121,7 +134,7 @@ export default function DogTramadolDoseCalculator() {
         {/* Weight Input */}
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Dog's Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Dog's Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
@@ -129,7 +142,7 @@ export default function DogTramadolDoseCalculator() {
             type="number"
             min={0}
             step="any"
-            placeholder={`Enter weight in ${unit === "imperial" ? "pounds" : "kilograms"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "pounds" : "kilograms"}`}
             value={inputs.weight}
             onChange={onInputChange}
             aria-describedby="weight-desc"

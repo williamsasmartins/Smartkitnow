@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Activity, Calculator, RotateCcw, Info, AlertTriangle, Syringe } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function DogCephalexinDoseCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
   const [inputs, setInputs] = useState({
     weight: "",
     dosageMgPerKg: "20", // default dosage mg/kg/day (typical range 20-30 mg/kg/day)
@@ -23,7 +25,7 @@ export default function DogCephalexinDoseCalculator() {
     const dosageMgPerKg = parseFloat(inputs.dosageMgPerKg);
     const frequencyPerDay = parseInt(inputs.frequencyPerDay);
 
-    if (!weightRaw || weightRaw <= 0) {
+    if (isNaN(weightRaw) || weightRaw <= 0) {
       return {
         value: 0,
         label: "Enter valid dog weight",
@@ -49,7 +51,7 @@ export default function DogCephalexinDoseCalculator() {
     }
 
     // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Total daily dose in mg = weightKg * dosageMgPerKg
     const totalDailyDoseMg = weightKg * dosageMgPerKg;
@@ -120,13 +122,25 @@ export default function DogCephalexinDoseCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "kg" && next !== "lb") return;
+              setInputs((prev) => {
+                const weightRaw = parseFloat(prev.weight);
+                if (!Number.isFinite(weightRaw) || weightRaw <= 0) return prev;
+                const nextWeight = convertWeight(weightRaw, unit, next);
+                return { ...prev, weight: formatNumberForInput(nextWeight, 2) };
+              });
+              setUnit(next);
+            }}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -134,7 +148,7 @@ export default function DogCephalexinDoseCalculator() {
         {/* Weight Input */}
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Dog Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Dog Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
@@ -142,7 +156,7 @@ export default function DogCephalexinDoseCalculator() {
             type="number"
             min={0}
             step="any"
-            placeholder={unit === "imperial" ? "e.g. 50" : "e.g. 22.7"}
+            placeholder={unit === "lb" ? "e.g. 50" : "e.g. 22.7"}
             value={inputs.weight}
             onChange={handleInputChange}
           />

@@ -19,10 +19,12 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function DogGabapentinDoseCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
   const [inputs, setInputs] = useState({
     weight: "",
     dosageMgPerKg: "10",
@@ -48,8 +50,7 @@ export default function DogGabapentinDoseCalculator() {
         warning: null,
       };
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Gabapentin dose calculation:
     // Dose (mg) = weightKg * dosageMgPerKg
@@ -74,7 +75,7 @@ export default function DogGabapentinDoseCalculator() {
       label: `Gabapentin dose for your dog (${dosageRaw} mg/kg)`,
       subtext: `Based on a weight of ${weightKg.toFixed(
         2
-      )} kg (${unit === "imperial" ? weightRaw + " lbs" : weightRaw + " kg"})`,
+      )} kg (${unit === "lb" ? weightRaw + " lbs" : weightRaw + " kg"})`,
       warning,
     };
   }, [inputs, unit]);
@@ -123,13 +124,24 @@ export default function DogGabapentinDoseCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "kg" && next !== "lb") return;
+              const weightRaw = parseFloat(inputs.weight);
+              if (Number.isFinite(weightRaw) && weightRaw > 0) {
+                const nextWeight = convertWeight(weightRaw, unit, next);
+                setInputs((prev) => ({ ...prev, weight: formatNumberForInput(nextWeight, 2) }));
+              }
+              setUnit(next);
+            }}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -137,14 +149,14 @@ export default function DogGabapentinDoseCalculator() {
         {/* Weight Input */}
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Dog Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Dog Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
             name="weight"
             type="text"
             inputMode="decimal"
-            placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "lbs" : "kg"}`}
             value={inputs.weight}
             onChange={handleInputChange}
             aria-describedby="weight-desc"

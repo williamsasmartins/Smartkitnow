@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function DogMeloxicamMetacamDoseCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
   const [inputs, setInputs] = useState({
     weight: "",
     doseMgPerKg: "0.1", // default initial dose mg/kg
@@ -44,8 +46,7 @@ export default function DogMeloxicamMetacamDoseCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Calculate initial dose (mg)
     // Typical initial dose: 0.1 mg/kg (can be adjusted)
@@ -114,13 +115,24 @@ export default function DogMeloxicamMetacamDoseCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "kg" && next !== "lb") return;
+              const weightRaw = parseFloat(inputs.weight);
+              if (Number.isFinite(weightRaw) && weightRaw > 0) {
+                const nextWeight = convertWeight(weightRaw, unit, next);
+                setInputs((prev) => ({ ...prev, weight: formatNumberForInput(nextWeight, 2) }));
+              }
+              setUnit(next);
+            }}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -128,14 +140,14 @@ export default function DogMeloxicamMetacamDoseCalculator() {
         {/* Weight Input */}
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300 mb-1 block">
-            Dog Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Dog Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
             name="weight"
             type="text"
             inputMode="decimal"
-            placeholder={`Enter weight in ${unit === "imperial" ? "pounds" : "kilograms"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "pounds" : "kilograms"}`}
             value={inputs.weight}
             onChange={onInputChange}
             aria-describedby="weight-desc"

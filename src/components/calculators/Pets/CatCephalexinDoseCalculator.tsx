@@ -8,13 +8,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
-import { convertWeight, formatNumberForInput, LB_PER_KG } from "@/lib/utils";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function CatCephalexinDoseCalculator() {
   // 1. STATE
   // Unit system needed for weight input (lbs or kg)
-  const { unit: preferredWeightUnit, setUnit: setPreferredWeightUnit } = useWeightUnitPreference();
-  const [unit, setUnit] = useState<"imperial" | "metric">(() => (preferredWeightUnit === "lb" ? "imperial" : "metric"));
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight only (lbs or kg)
   const [inputs, setInputs] = useState({
@@ -45,8 +44,7 @@ export default function CatCephalexinDoseCalculator() {
         warning: null,
       };
     }
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightNum / LB_PER_KG : weightNum;
+    const weightKg = weightToKg(weightNum, unit);
 
     // Calculate dose per administration (20 mg/kg q12h)
     const doseMgPerAdmin = 20 * weightKg;
@@ -107,23 +105,22 @@ export default function CatCephalexinDoseCalculator() {
           <Select
             value={unit}
             onValueChange={(next) => {
-              if (next !== "imperial" && next !== "metric") return;
+              if (next !== "kg" && next !== "lb") return;
               setInputs((prev) => {
                 const num = parseFloat(prev.weight);
                 if (!prev.weight || Number.isNaN(num) || num <= 0) return prev;
-                const converted = convertWeight(num, unit === "imperial" ? "lb" : "kg", next === "imperial" ? "lb" : "kg");
+                const converted = convertWeight(num, unit, next);
                 return { ...prev, weight: formatNumberForInput(converted, 2) };
               });
               setUnit(next);
-              setPreferredWeightUnit(next === "imperial" ? "lb" : "kg");
             }}
           >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -132,14 +129,14 @@ export default function CatCephalexinDoseCalculator() {
       {/* Weight input */}
       <div className="space-y-2">
         <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-          Cat's Body Weight ({unit === "imperial" ? "lbs" : "kg"})
+          Cat's Body Weight ({unit === "lb" ? "lbs" : "kg"})
         </Label>
         <Input
           id="weight"
           type="number"
           min="0"
           step="any"
-          placeholder={`Enter weight in ${unit === "imperial" ? "pounds" : "kilograms"}`}
+          placeholder={`Enter weight in ${unit === "lb" ? "pounds" : "kilograms"}`}
           value={inputs.weight}
           onChange={(e) => setInputs({ ...inputs, weight: e.target.value })}
           aria-describedby="weightHelp"

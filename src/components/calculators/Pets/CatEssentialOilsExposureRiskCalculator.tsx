@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function CatEssentialOilsExposureRiskCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs:
   // weight (lbs or kg)
@@ -52,7 +54,7 @@ export default function CatEssentialOilsExposureRiskCalculator() {
     }
 
     // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? w / 2.20462 : w;
+    const weightKg = weightToKg(w, unit);
 
     const exposureFactor = type === "diffuser" ? 1 : 5;
 
@@ -119,13 +121,24 @@ export default function CatEssentialOilsExposureRiskCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "kg" && next !== "lb") return;
+              const weightRaw = parseFloat(inputs.weight);
+              if (Number.isFinite(weightRaw) && weightRaw > 0) {
+                const nextWeight = convertWeight(weightRaw, unit, next);
+                setInputs((prev) => ({ ...prev, weight: formatNumberForInput(nextWeight, 2) }));
+              }
+              setUnit(next);
+            }}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -134,14 +147,14 @@ export default function CatEssentialOilsExposureRiskCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Cat Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Cat Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
             type="number"
             min="0"
             step="any"
-            placeholder={unit === "imperial" ? "e.g. 10" : "e.g. 4.5"}
+            placeholder={unit === "lb" ? "e.g. 10" : "e.g. 4.5"}
             value={inputs.weight}
             onChange={(e) => setInputs({ ...inputs, weight: e.target.value })}
           />
