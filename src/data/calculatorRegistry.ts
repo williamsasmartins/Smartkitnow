@@ -7569,6 +7569,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SmokedTurkeyCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "smoked-salmon",
+    title: "Smoked Salmon",
+    category: "culinary",
+    subcategory: "bbq-smoking",
+    description: "Make smoked salmon with gentle heat, simple cure options, and flaky, silky texture.",
+    loader: () => import("@/components/calculators/Misc/SmokedSalmonCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
