@@ -7506,6 +7506,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianPicanhaTopSirloinCapCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pulled-pork",
+    title: "Pulled Pork",
+    category: "recipes",
+    subcategory: "bbq-smoking",
+    description: "Slow-smoke pork shoulder for pull-apart strands, balanced rub, and tangy finishing sauce ideas.",
+    loader: () => import("@/components/calculators/Recipes/PulledPorkCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
