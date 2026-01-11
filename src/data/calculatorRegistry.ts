@@ -8145,6 +8145,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TortillasDeHarinaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "churros",
+    title: "Churros",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Massa frita polvilhada com açúcar e canela, servida com calda opcional.",
+    loader: () => import("@/components/calculators/Misc/ChurrosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
