@@ -7533,6 +7533,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BabyBackRibsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "beef-short-ribs",
+    title: "Beef Short Ribs",
+    category: "culinary",
+    subcategory: "bbq-smoking",
+    description: "Cook meaty beef short ribs low-and-slow for rich bark, deep smoke, and buttery tenderness.",
+    loader: () => import("@/components/calculators/Misc/BeefShortRibsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
