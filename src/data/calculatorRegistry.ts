@@ -7497,6 +7497,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TexasStyleBrisketCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-picanha-top-sirloin-cap",
+    title: "Brazilian Picanha (Top Sirloin Cap)",
+    category: "recipes",
+    subcategory: "bbq-smoking",
+    description: "Grill Brazilian picanha (top sirloin cap) with a crisp fat cap, coarse salt, and perfect slicing.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianPicanhaTopSirloinCapCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
