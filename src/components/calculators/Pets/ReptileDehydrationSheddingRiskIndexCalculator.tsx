@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function ReptileDehydrationSheddingRiskIndexCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs:
   // Weight (lbs or kg)
@@ -51,8 +53,7 @@ export default function ReptileDehydrationSheddingRiskIndexCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Normalize shedding score to risk factor (higher score = lower risk)
     // Risk contribution from shedding = (10 - sheddingScore) * 2 (scale 0-18)
@@ -129,8 +130,8 @@ export default function ReptileDehydrationSheddingRiskIndexCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -139,7 +140,7 @@ export default function ReptileDehydrationSheddingRiskIndexCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
@@ -147,7 +148,7 @@ export default function ReptileDehydrationSheddingRiskIndexCalculator() {
             type="number"
             min="0"
             step="any"
-            placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "lbs" : "kg"}`}
             value={inputs.weight}
             onChange={handleInputChange}
           />

@@ -6,11 +6,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function SmallMammalCageSizeRequirementCalculator() {
   // 1. STATE
   // Unit system default to imperial (lbs, ft)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight (lbs or kg), species (select), activity level (optional)
   // For simplicity, species affects minimum cage size multiplier
@@ -42,8 +45,7 @@ export default function SmallMammalCageSizeRequirementCalculator() {
     }
     const multiplier = speciesMultipliers[inputs.species] ?? 1.0;
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightNum / 2.20462 : weightNum;
+    const weightKg = weightToKg(weightNum, unit);
 
     // Calculate minimum cage size in cubic feet
     // Formula: Cage Size (cu ft) = Weight (kg) × Species Multiplier (cu ft/kg)
@@ -104,14 +106,15 @@ export default function SmallMammalCageSizeRequirementCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <select
-            value={unit}
-            onChange={(e) => setUnit(e.target.value)}
-            className="border border-slate-300 rounded px-3 py-1 dark:bg-slate-800 dark:text-slate-200"
-          >
-            <option value="imperial">Imperial (lbs)</option>
-            <option value="metric">Metric (kg)</option>
-          </select>
+          <Select value={unit} onValueChange={setUnit}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
 
@@ -119,7 +122,7 @@ export default function SmallMammalCageSizeRequirementCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
@@ -127,7 +130,7 @@ export default function SmallMammalCageSizeRequirementCalculator() {
             type="number"
             min="0"
             step="any"
-            placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "lbs" : "kg"}`}
             value={inputs.weight}
             onChange={handleInputChange}
             className="mt-1"

@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function ReptileVitaminD3RequirementCalculator() {
   // 1. STATE
-  // Default unit system is imperial (lbs)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight and baseline dietary vitamin D3 intake (optional)
   // Weight is required; dietary intake optional to estimate supplemental need
@@ -38,8 +39,7 @@ export default function ReptileVitaminD3RequirementCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Supplemental vitamin D3 requirement (IU/day) = 50 IU/kg BW
     const supplementalRequirement = 50 * weightKg;
@@ -101,8 +101,8 @@ export default function ReptileVitaminD3RequirementCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -111,14 +111,14 @@ export default function ReptileVitaminD3RequirementCalculator() {
       {/* Weight input */}
       <div>
         <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-          Body Weight ({unit === "imperial" ? "lbs" : "kg"})
+          Body Weight ({unit === "lb" ? "lbs" : "kg"})
         </Label>
         <Input
           id="weight"
           type="number"
           min="0"
           step="any"
-          placeholder={`Enter weight in ${unit === "imperial" ? "pounds" : "kilograms"}`}
+          placeholder={`Enter weight in ${unit === "lb" ? "pounds" : "kilograms"}`}
           value={inputs.weight}
           onChange={(e) => setInputs((prev) => ({ ...prev, weight: e.target.value }))}
           aria-describedby="weight-desc"

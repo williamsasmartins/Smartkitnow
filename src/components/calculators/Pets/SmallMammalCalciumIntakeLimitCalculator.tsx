@@ -7,11 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function SmallMammalCalciumIntakeLimitCalculator() {
   // 1. STATE
   // Unit system: Imperial (lbs) or Metric (kg)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight (lbs or kg)
   const [inputs, setInputs] = useState({
@@ -31,8 +33,7 @@ export default function SmallMammalCalciumIntakeLimitCalculator() {
         warning: null,
       };
     }
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Calculate calcium intake limit in mg/day
     // 70 mg calcium per kg body weight per day is a commonly recommended safe upper limit to reduce bladder stone risk
@@ -84,8 +85,8 @@ export default function SmallMammalCalciumIntakeLimitCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -94,14 +95,14 @@ export default function SmallMammalCalciumIntakeLimitCalculator() {
       {/* Weight Input */}
       <div className="space-y-2">
         <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-          Weight ({unit === "imperial" ? "lbs" : "kg"})
+          Weight ({unit === "lb" ? "lbs" : "kg"})
         </Label>
         <Input
           id="weight"
           type="number"
           min="0"
           step="any"
-          placeholder={`Enter weight in ${unit === "imperial" ? "pounds" : "kilograms"}`}
+          placeholder={`Enter weight in ${unit === "lb" ? "pounds" : "kilograms"}`}
           value={inputs.weight}
           onChange={(e) => setInputs({ ...inputs, weight: e.target.value })}
           aria-describedby="weight-help"

@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function SmallMammalParasiteTreatmentDoseReferenceCalculator() {
   // 1. STATE
-  // Unit system default: imperial (lbs)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight and dose rate (mg/kg)
   const [inputs, setInputs] = useState({
@@ -38,8 +39,7 @@ export default function SmallMammalParasiteTreatmentDoseReferenceCalculator() {
       };
     }
 
-    // Convert weight to kg if input is imperial (lbs)
-    const weightKg = unit === "imperial" ? weightNum / 2.20462 : weightNum;
+    const weightKg = weightToKg(weightNum, unit);
 
     // Calculate total dose in mg
     const totalDoseMg = weightKg * doseRateNum;
@@ -58,7 +58,7 @@ export default function SmallMammalParasiteTreatmentDoseReferenceCalculator() {
       value: totalDoseMg.toFixed(2),
       label: "Total Dose (mg)",
       subtext: `Based on weight (${weightNum} ${
-        unit === "imperial" ? "lbs" : "kg"
+        unit === "lb" ? "lbs" : "kg"
       }) and dose rate (${doseRateNum} mg/kg)`,
       warning,
     };
@@ -100,8 +100,8 @@ export default function SmallMammalParasiteTreatmentDoseReferenceCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -111,7 +111,7 @@ export default function SmallMammalParasiteTreatmentDoseReferenceCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Animal Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Animal Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"

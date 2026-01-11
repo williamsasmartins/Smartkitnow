@@ -7,11 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function ReptileCalciumD3SupplementCalculator() {
   // 1. STATE
   // Unit system needed for weight input (lbs or kg)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight and calcium requirement multiplier (mg/kg)
   // Also optional: D3 IU multiplier (if needed, but typically fixed)
@@ -44,8 +46,7 @@ export default function ReptileCalciumD3SupplementCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightNum / 2.20462 : weightNum;
+    const weightKg = weightToKg(weightNum, unit);
 
     // Calculate total calcium and D3 needed per day
     // Calcium (mg) = weight (kg) * calcium mg/kg
@@ -123,8 +124,8 @@ export default function ReptileCalciumD3SupplementCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -134,7 +135,7 @@ export default function ReptileCalciumD3SupplementCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
@@ -143,7 +144,7 @@ export default function ReptileCalciumD3SupplementCalculator() {
             inputMode="decimal"
             value={inputs.weight}
             onChange={handleInputChange}
-            placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "lbs" : "kg"}`}
           />
         </div>
         <div>

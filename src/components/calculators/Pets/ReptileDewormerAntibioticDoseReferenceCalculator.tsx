@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Activity, Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function ReptileDewormerAntibioticDoseReferenceCalculator() {
   // 1. STATE
-  // Default unit system: imperial (lbs)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight and drug selection
   const [inputs, setInputs] = useState({
@@ -68,8 +69,7 @@ export default function ReptileDewormerAntibioticDoseReferenceCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightNum / 2.20462 : weightNum;
+    const weightKg = weightToKg(weightNum, unit);
 
     // Calculate dose in mg
     const doseMg = weightKg * drugDoseData[inputs.drug].doseMgPerKg;
@@ -130,8 +130,8 @@ export default function ReptileDewormerAntibioticDoseReferenceCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -140,7 +140,7 @@ export default function ReptileDewormerAntibioticDoseReferenceCalculator() {
       {/* Weight Input */}
       <div>
         <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-          Body Weight ({unit === "imperial" ? "lbs" : "kg"})
+          Body Weight ({unit === "lb" ? "lbs" : "kg"})
         </Label>
         <Input
           id="weight"
@@ -148,7 +148,7 @@ export default function ReptileDewormerAntibioticDoseReferenceCalculator() {
           type="number"
           min="0"
           step="any"
-          placeholder={`Enter weight in ${unit === "imperial" ? "pounds" : "kilograms"}`}
+          placeholder={`Enter weight in ${unit === "lb" ? "pounds" : "kilograms"}`}
           value={inputs.weight}
           onChange={handleInputChange}
           aria-describedby="weight-desc"

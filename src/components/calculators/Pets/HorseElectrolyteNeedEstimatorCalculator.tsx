@@ -7,11 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Activity, Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function HorseElectrolyteNeedEstimatorCalculator() {
   // 1. STATE
   // Unit system: Imperial (lbs) or Metric (kg)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs:
   // weight: horse body weight (lbs or kg)
@@ -25,8 +27,6 @@ export default function HorseElectrolyteNeedEstimatorCalculator() {
     sweatRate: "",
   });
 
-  // Helper: convert lbs to kg
-  const toKg = (val: number) => val / 2.20462;
   // Convert °F to °C
   const fToC = (f: number) => (f - 32) * (5 / 9);
 
@@ -71,8 +71,8 @@ export default function HorseElectrolyteNeedEstimatorCalculator() {
     }
 
     // Convert inputs to metric for calculation
-    const weightKg = unit === "imperial" ? toKg(weightRaw) : weightRaw;
-    const ambientC = unit === "imperial" ? fToC(tempRaw) : tempRaw;
+    const weightKg = weightToKg(weightRaw, unit);
+    const ambientC = unit === "lb" ? fToC(tempRaw) : tempRaw;
     const durationHr = durationRaw / 60; // minutes to hours
 
     // Default sweat rate if not provided or invalid
@@ -165,8 +165,8 @@ export default function HorseElectrolyteNeedEstimatorCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs, °F)</SelectItem>
-              <SelectItem value="metric">Metric (kg, °C)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs, °F)</SelectItem>
+              <SelectItem value="kg">Metric (kg, °C)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -176,14 +176,14 @@ export default function HorseElectrolyteNeedEstimatorCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Horse Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Horse Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
             name="weight"
             type="text"
             inputMode="decimal"
-            placeholder={unit === "imperial" ? "e.g. 1100" : "e.g. 500"}
+            placeholder={unit === "lb" ? "e.g. 1100" : "e.g. 500"}
             value={inputs.weight}
             onChange={handleInputChange}
             aria-describedby="weight-desc"
@@ -214,14 +214,14 @@ export default function HorseElectrolyteNeedEstimatorCalculator() {
 
         <div>
           <Label htmlFor="ambientTemp" className="text-slate-700 dark:text-slate-300">
-            Ambient Temperature ({unit === "imperial" ? "°F" : "°C"})
+            Ambient Temperature ({unit === "lb" ? "°F" : "°C"})
           </Label>
           <Input
             id="ambientTemp"
             name="ambientTemp"
             type="text"
             inputMode="decimal"
-            placeholder={unit === "imperial" ? "e.g. 85" : "e.g. 29"}
+            placeholder={unit === "lb" ? "e.g. 85" : "e.g. 29"}
             value={inputs.ambientTemp}
             onChange={handleInputChange}
             aria-describedby="temp-desc"

@@ -155,7 +155,7 @@ export default function DailyQuotesPage() {
   const currentItems = useMemo(() => {
     if (!data || !selectedCategory || selectedCategory === "horoscope" || selectedCategory === "dream") return [];
     
-    // @ts-expect-error
+    // @ts-expect-error Dynamic category indexing is not fully typed
     const itemsList = data.content?.[selectedCategory as keyof DailyDataPacket["content"]];
     
     if (!itemsList || !Array.isArray(itemsList)) return [];

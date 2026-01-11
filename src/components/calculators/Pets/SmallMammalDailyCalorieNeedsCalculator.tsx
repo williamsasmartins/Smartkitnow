@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Activity, Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function SmallMammalDailyCalorieNeedsCalculator() {
   // 1. STATE
-  // Default unit system: imperial (lbs)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: species, weight (lbs or kg)
   const [inputs, setInputs] = useState({
@@ -50,8 +51,7 @@ export default function SmallMammalDailyCalorieNeedsCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightNum / 2.20462 : weightNum;
+    const weightKg = weightToKg(weightNum, unit);
 
     // Calculate RER (Resting Energy Requirement)
     const RER = 70 * Math.pow(weightKg, 0.75);
@@ -69,7 +69,7 @@ export default function SmallMammalDailyCalorieNeedsCalculator() {
       value: MERrounded,
       label: "Daily Calorie Needs (kcal/day)",
       subtext: `Based on species: ${speciesFactors[inputs.species].label} and weight: ${weightNum} ${
-        unit === "imperial" ? "lbs" : "kg"
+        unit === "lb" ? "lbs" : "kg"
       }`,
       warning: null,
     };
@@ -112,8 +112,8 @@ export default function SmallMammalDailyCalorieNeedsCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -142,14 +142,14 @@ export default function SmallMammalDailyCalorieNeedsCalculator() {
       {/* Weight Input */}
       <div className="space-y-2">
         <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-          Weight ({unit === "imperial" ? "lbs" : "kg"})
+          Weight ({unit === "lb" ? "lbs" : "kg"})
         </Label>
         <Input
           id="weight"
           type="number"
           min="0"
           step="any"
-          placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+          placeholder={`Enter weight in ${unit === "lb" ? "lbs" : "kg"}`}
           value={inputs.weight}
           onChange={(e) => setInputs((prev) => ({ ...prev, weight: e.target.value }))}
         />

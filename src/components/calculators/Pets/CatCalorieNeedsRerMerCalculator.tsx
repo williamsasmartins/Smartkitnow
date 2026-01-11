@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Activity, Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function CatCalorieNeedsRerMerCalculator() {
   // 1. STATE
-  // Weight is involved, so keep unit switcher
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight only (kg or lbs)
   const [inputs, setInputs] = useState<{ weight?: string }>({ weight: "" });
@@ -39,8 +40,7 @@ export default function CatCalorieNeedsRerMerCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightNum * 0.45359237 : weightNum;
+    const weightKg = weightToKg(weightNum, unit);
 
     // RER formula: RER = 70 * (weight in kg)^0.75
     const rer = 70 * Math.pow(weightKg, 0.75);
@@ -106,13 +106,13 @@ export default function CatCalorieNeedsRerMerCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select value={unit} onValueChange={(value) => setUnit(value as "kg" | "lb")}>
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>

@@ -4,6 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 import {
   Table,
   TableBody,
@@ -135,9 +137,10 @@ interface Results {
 
 export default function DogCalorieNeedsRerMerCalculator() {
   // ESTADO
+  const { unit, setUnit } = useWeightUnitPreference();
+
   const [inputs, setInputs] = useState({
     weight: "",
-    weightUnit: "kg" as "kg" | "lb",
     activityId: "neutered-adult" as ActivityId,
     lifeStageId: "adult" as LifeStageId,
     bodyConditionId: "ideal" as BodyConditionId,
@@ -146,9 +149,6 @@ export default function DogCalorieNeedsRerMerCalculator() {
   const resultsRef = useRef<HTMLDivElement | null>(null);
 
   // FUNÇÕES AUXILIARES -------------------------------------------------
-
-  const toKg = (weight: number, unit: "kg" | "lb") =>
-    unit === "kg" ? weight : weight * 0.45359237;
 
   const getBodyConditionMultiplier = (id: BodyConditionId): [number, number] => {
     switch (id) {
@@ -172,7 +172,7 @@ export default function DogCalorieNeedsRerMerCalculator() {
     const weightRaw = parseFloat(inputs.weight.replace(",", "."));
     if (!weightRaw || weightRaw <= 0) return null;
 
-    const weightKg = toKg(weightRaw, inputs.weightUnit);
+    const weightKg = weightToKg(weightRaw, unit);
 
     // RER = 70 × (kg^0.75)
     const rer = 70 * Math.pow(weightKg, 0.75);
@@ -213,7 +213,7 @@ export default function DogCalorieNeedsRerMerCalculator() {
       merLow,
       merHigh,
     };
-  }, [inputs]);
+  }, [inputs, unit]);
 
   const handleCalculate = () => {
     setTimeout(() => {
@@ -227,7 +227,6 @@ export default function DogCalorieNeedsRerMerCalculator() {
   const handleReset = () => {
     setInputs({
       weight: "",
-      weightUnit: "kg",
       activityId: "neutered-adult",
       lifeStageId: "adult",
       bodyConditionId: "ideal",
@@ -269,13 +268,8 @@ export default function DogCalorieNeedsRerMerCalculator() {
               <select
                 id="weightUnit"
                 className="h-10 w-full rounded-md border border-slate-300 bg-slate-950/5 px-2 text-sm dark:border-slate-700 dark:bg-slate-900/60"
-                value={inputs.weightUnit}
-                onChange={(e) =>
-                  setInputs((prev) => ({
-                    ...prev,
-                    weightUnit: e.target.value as "kg" | "lb",
-                  }))
-                }
+                value={unit}
+                onChange={(e) => setUnit(e.target.value as "kg" | "lb")}
               >
                 <option value="kg">kg</option>
                 <option value="lb">lb</option>

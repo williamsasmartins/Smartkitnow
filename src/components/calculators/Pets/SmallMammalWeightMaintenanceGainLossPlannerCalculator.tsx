@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Activity, Calculator, RotateCcw, Info, AlertTriangle, Scale } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function SmallMammalWeightMaintenanceGainLossPlannerCalculator() {
   // 1. STATE
-  // Unit system default to imperial (lbs)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs:
   // Current Weight (lbs or kg)
@@ -62,9 +63,8 @@ export default function SmallMammalWeightMaintenanceGainLossPlannerCalculator() 
       };
     }
 
-    // Convert to kg if imperial
-    const currentWeightKg = unit === "imperial" ? cw / 2.20462 : cw;
-    const targetWeightKg = unit === "imperial" ? tw / 2.20462 : tw;
+    const currentWeightKg = weightToKg(cw, unit);
+    const targetWeightKg = weightToKg(tw, unit);
 
     // Calculate RER
     const RER = 70 * Math.pow(currentWeightKg, 0.75);
@@ -146,8 +146,8 @@ export default function SmallMammalWeightMaintenanceGainLossPlannerCalculator() 
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -157,28 +157,28 @@ export default function SmallMammalWeightMaintenanceGainLossPlannerCalculator() 
       <div className="space-y-4">
         <div>
           <Label htmlFor="currentWeight" className="text-slate-700 dark:text-slate-300">
-            Current Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Current Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="currentWeight"
             type="number"
             min="0"
             step="any"
-            placeholder={`Enter current weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+            placeholder={`Enter current weight in ${unit === "lb" ? "lbs" : "kg"}`}
             value={inputs.currentWeight}
             onChange={(e) => setInputs((prev) => ({ ...prev, currentWeight: e.target.value }))}
           />
         </div>
         <div>
           <Label htmlFor="targetWeight" className="text-slate-700 dark:text-slate-300">
-            Target Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Target Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="targetWeight"
             type="number"
             min="0"
             step="any"
-            placeholder={`Enter target weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+            placeholder={`Enter target weight in ${unit === "lb" ? "lbs" : "kg"}`}
             value={inputs.targetWeight}
             onChange={(e) => setInputs((prev) => ({ ...prev, targetWeight: e.target.value }))}
           />

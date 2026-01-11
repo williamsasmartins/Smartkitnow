@@ -4,15 +4,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function SmallMammalDehydrationRiskCheckerCalculator() {
   // 1. STATE
   // No unit switcher needed since inputs are time and age based.
   // Inputs: weight (lbs or kg), estimated dehydration %, recent water intake (ml), duration since last drinking (hours)
   // But per instructions, default unit imperial and keep unit switcher for weight input.
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   const [inputs, setInputs] = useState({
     weight: "",
@@ -56,8 +59,7 @@ export default function SmallMammalDehydrationRiskCheckerCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? w / 2.20462 : w;
+    const weightKg = weightToKg(w, unit);
 
     // Maintenance water requirement per day (ml)
     // Source: Small mammals ~60 ml/kg/day
@@ -128,14 +130,15 @@ export default function SmallMammalDehydrationRiskCheckerCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Weight Unit</Label>
-          <select
-            value={unit}
-            onChange={(e) => setUnit(e.target.value)}
-            className="border border-slate-300 rounded px-3 py-1 dark:bg-slate-800 dark:text-slate-200"
-          >
-            <option value="imperial">Imperial (lbs)</option>
-            <option value="metric">Metric (kg)</option>
-          </select>
+          <Select value={unit} onValueChange={setUnit}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
 
@@ -143,14 +146,14 @@ export default function SmallMammalDehydrationRiskCheckerCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
             type="number"
             min="0"
             step="any"
-            placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "lbs" : "kg"}`}
             value={inputs.weight}
             onChange={(e) => setInputs({ ...inputs, weight: e.target.value })}
           />

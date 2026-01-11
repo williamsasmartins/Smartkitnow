@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Activity, Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 const speciesOptions = [
   { label: "Bearded Dragon", value: "bearded_dragon" },
@@ -49,7 +51,7 @@ const feedingRatios = {
 export default function ReptileDailyFeedingRatioSpeciesAgeCalculator() {
   // 1. STATE
   // Unit system for weight input (imperial default)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: species, age group, weight
   const [inputs, setInputs] = useState({
@@ -79,8 +81,7 @@ export default function ReptileDailyFeedingRatioSpeciesAgeCalculator() {
       };
     }
 
-    // Convert weight to kg internally if imperial
-    const weightKg = unit === "imperial" ? weightNum / 2.20462 : weightNum;
+    const weightKg = weightToKg(weightNum, unit);
 
     // Get feeding ratio (as fraction)
     const ratio = feedingRatios[species]?.[ageGroup];
@@ -100,16 +101,16 @@ export default function ReptileDailyFeedingRatioSpeciesAgeCalculator() {
     // Convert result to preferred unit for display
     // Display in grams if metric, ounces if imperial
     const displayValue =
-      unit === "imperial"
+      unit === "lb"
         ? (dailyFoodGrams / 28.3495).toFixed(2) + " oz"
         : dailyFoodGrams.toFixed(1) + " g";
 
     return {
       value: displayValue,
-      label: `Daily Feeding Amount (${unit === "imperial" ? "ounces" : "grams"})`,
+      label: `Daily Feeding Amount (${unit === "lb" ? "ounces" : "grams"})`,
       subtext: `Based on species: ${speciesOptions.find((s) => s.value === species)?.label}, age group: ${
         ageGroups.find((a) => a.value === ageGroup)?.label
-      }, and weight: ${weightNum} ${unit === "imperial" ? "lbs" : "kg"}.`,
+      }, and weight: ${weightNum} ${unit === "lb" ? "lbs" : "kg"}.`,
       warning: null,
     };
   }, [inputs, unit]);
@@ -150,8 +151,8 @@ export default function ReptileDailyFeedingRatioSpeciesAgeCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>

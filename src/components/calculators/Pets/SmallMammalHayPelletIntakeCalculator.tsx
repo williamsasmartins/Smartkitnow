@@ -7,11 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { kgToWeight, weightToKg } from "@/lib/utils";
 
 export default function SmallMammalHayPelletIntakeCalculator() {
   // 1. STATE
   // Default unit system is imperial (lbs)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight and desired pellet % of total dry matter intake
   const [inputs, setInputs] = useState({
@@ -39,8 +41,7 @@ export default function SmallMammalHayPelletIntakeCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Total dry matter intake (DMI) for small herbivores (rabbits, guinea pigs) ~ 4% of body weight (kg)
     // Hay intake = (100 - pelletPercent)% of total DMI
@@ -51,15 +52,13 @@ export default function SmallMammalHayPelletIntakeCalculator() {
     const pelletIntakeGrams = (pelletPercentRaw / 100) * totalDmiGrams;
     const hayIntakeGrams = totalDmiGrams - pelletIntakeGrams;
 
-    // Convert grams to lbs if imperial
-    const gramsToLbs = 0.00220462;
     const hayIntakeDisplay =
-      unit === "imperial"
-        ? (hayIntakeGrams * gramsToLbs).toFixed(2) + " lbs"
+      unit === "lb"
+        ? kgToWeight(hayIntakeGrams / 1000, "lb").toFixed(2) + " lbs"
         : hayIntakeGrams.toFixed(1) + " g";
     const pelletIntakeDisplay =
-      unit === "imperial"
-        ? (pelletIntakeGrams * gramsToLbs).toFixed(2) + " lbs"
+      unit === "lb"
+        ? kgToWeight(pelletIntakeGrams / 1000, "lb").toFixed(2) + " lbs"
         : pelletIntakeGrams.toFixed(1) + " g";
 
     return {
@@ -110,8 +109,8 @@ export default function SmallMammalHayPelletIntakeCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -121,14 +120,14 @@ export default function SmallMammalHayPelletIntakeCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
             type="number"
             min="0"
             step="any"
-            placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "lbs" : "kg"}`}
             value={inputs.weight}
             onChange={(e) =>
               setInputs((prev) => ({ ...prev, weight: e.target.value }))
