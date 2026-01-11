@@ -7929,6 +7929,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenEnchiladasCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cheese-enchiladas",
+    title: "Cheese Enchiladas",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Enchiladas recheadas com queijo e finalizadas com molho.",
+    loader: () => import("@/components/calculators/Misc/CheeseEnchiladasCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
