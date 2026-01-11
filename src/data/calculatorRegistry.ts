@@ -7587,6 +7587,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SpatchcockChickenCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "beer-can-chicken",
+    title: "Beer Can Chicken",
+    category: "culinary",
+    subcategory: "bbq-smoking",
+    description: "Beer-can style chicken for moist results, seasoned skin, and grill stability tips.",
+    loader: () => import("@/components/calculators/Misc/BeerCanChickenCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
