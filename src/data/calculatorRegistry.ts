@@ -8010,6 +8010,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HuarachesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tostadas",
+    title: "Tostadas",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tortilha crocante com camadas de feijão, carne/vegetais e salsa.",
+    loader: () => import("@/components/calculators/Misc/TostadasCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
