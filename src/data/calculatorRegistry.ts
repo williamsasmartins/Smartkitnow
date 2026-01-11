@@ -7965,6 +7965,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EnchiladasSuizasCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tamales",
+    title: "Tamales (Chicken, Pork, or Sweet)",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Massa de milho no vapor em palha, com recheios salgados ou doces.",
+    loader: () => import("@/components/calculators/Misc/TamalesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
