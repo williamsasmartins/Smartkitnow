@@ -7578,6 +7578,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SmokedSalmonCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "spatchcock-chicken",
+    title: "Spatchcock Chicken",
+    category: "culinary",
+    subcategory: "bbq-smoking",
+    description: "Spatchcock chicken for faster, even grilling with crisp skin and smoky, juicy meat.",
+    loader: () => import("@/components/calculators/Misc/SpatchcockChickenCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
