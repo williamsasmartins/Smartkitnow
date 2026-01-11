@@ -8100,6 +8100,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChilesEnNogadaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "arroz-mexicano",
+    title: "Mexican Rice",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Arroz vermelho soltinho com tomate e temperos.",
+    loader: () => import("@/components/calculators/Misc/ArrozMexicanoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
