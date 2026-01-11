@@ -7983,6 +7983,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/QuesadillasCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "gorditas",
+    title: "Gorditas",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Bolso de massa de milho recheado, frito ou grelhado.",
+    loader: () => import("@/components/calculators/Misc/GorditasCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
