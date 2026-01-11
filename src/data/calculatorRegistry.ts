@@ -7731,6 +7731,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/NachosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "taquitos",
+    title: "Taquitos",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tortilhas enroladas e fritas, recheadas (frango/carne) e crocantes.",
+    loader: () => import("@/components/calculators/Misc/TaquitosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
