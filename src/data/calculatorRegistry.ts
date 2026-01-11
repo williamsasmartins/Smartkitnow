@@ -7740,6 +7740,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TaquitosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "flautas",
+    title: "Flautas",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Similar aos taquitos, geralmente maiores e bem crocantes.",
+    loader: () => import("@/components/calculators/Misc/FlautasCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
