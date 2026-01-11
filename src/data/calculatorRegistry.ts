@@ -8028,6 +8028,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TlayudasCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chicken-tinga",
+    title: "Chicken Tinga",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Frango desfiado em molho de tomate e chipotle, levemente defumado.",
+    loader: () => import("@/components/calculators/Misc/ChickenTingaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
