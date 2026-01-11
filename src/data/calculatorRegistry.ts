@@ -8001,6 +8001,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SopesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "huaraches",
+    title: "Huaraches",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Massa alongada com feijão e coberturas (carne, queijo, salsa).",
+    loader: () => import("@/components/calculators/Misc/HuarachesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
