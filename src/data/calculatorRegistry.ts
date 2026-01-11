@@ -7992,6 +7992,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GorditasCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sopes",
+    title: "Sopes",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Base grossa de masa com “bordas”, coberta com feijão, carne e salsa.",
+    loader: () => import("@/components/calculators/Misc/SopesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
