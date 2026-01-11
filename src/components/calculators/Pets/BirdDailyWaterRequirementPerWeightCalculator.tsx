@@ -7,11 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Activity, Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function BirdDailyWaterRequirementPerWeightCalculator() {
   // 1. STATE
   // Default unit system: imperial (lbs)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight only
   const [inputs, setInputs] = useState({
@@ -34,7 +36,7 @@ export default function BirdDailyWaterRequirementPerWeightCalculator() {
     }
 
     const weightNum = parseFloat(weightRaw);
-    const weightKg = unit === "imperial" ? weightNum / 2.20462 : weightNum;
+    const weightKg = weightToKg(weightNum, unit);
 
     // Veterinary standard: 80 ml water per kg body weight per day
     const waterMl = 80 * weightKg;
@@ -43,7 +45,7 @@ export default function BirdDailyWaterRequirementPerWeightCalculator() {
     // We'll show ml and also oz if imperial
     let displayValue = "";
     let label = "";
-    if (unit === "imperial") {
+    if (unit === "lb") {
       // 1 ml = 0.033814 oz
       const waterOz = waterMl * 0.033814;
       displayValue = `${waterMl.toFixed(0)} ml (${waterOz.toFixed(2)} fl oz)`;
@@ -108,8 +110,8 @@ export default function BirdDailyWaterRequirementPerWeightCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">lb</SelectItem>
+              <SelectItem value="kg">kg</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -118,14 +120,14 @@ export default function BirdDailyWaterRequirementPerWeightCalculator() {
       {/* Weight input */}
       <div className="space-y-1">
         <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-          Bird Weight ({unit === "imperial" ? "lbs" : "kg"})
+          Bird Weight ({unit})
         </Label>
         <Input
           id="weight"
           type="number"
           min="0"
           step="any"
-          placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+          placeholder={`Enter weight in ${unit === "lb" ? "lb" : "kg"}`}
           value={inputs.weight}
           onChange={(e) =>
             setInputs((prev) => ({ ...prev, weight: e.target.value }))

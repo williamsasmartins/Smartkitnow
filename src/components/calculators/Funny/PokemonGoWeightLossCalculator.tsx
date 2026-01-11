@@ -17,7 +17,7 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function PokemonGoWeightLossCalculator() {
   // Units: Metric (km, kg) or Imperial (miles, lbs)
-  const [units, setUnits] = useState("metric");
+  const [units, setUnits] = useState("imperial");
   const [inputs, setInputs] = useState({
     weight: "",
     distance: "",

@@ -11,7 +11,7 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 export default function CatCalorieNeedsRerMerCalculator() {
   // 1. STATE
   // Weight is involved, so keep unit switcher
-  const [unit, setUnit] = useState("metric");
+  const [unit, setUnit] = useState("imperial");
 
   // Inputs: weight only (kg or lbs)
   const [inputs, setInputs] = useState<{ weight?: string }>({ weight: "" });

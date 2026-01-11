@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
-import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
+import { convertWeight, formatNumberForInput, LB_PER_KG, weightToKg } from "@/lib/utils";
 
 export default function DogPrednisonePrednisoloneDoseCalculator() {
   // 1. STATE
@@ -22,6 +22,7 @@ export default function DogPrednisonePrednisoloneDoseCalculator() {
   const results = useMemo(() => {
     const weightRaw = parseFloat(inputs.weight);
     const dosageRaw = parseFloat(inputs.dosageMgPerKg);
+    const perWeightUnitLabel = unit === "kg" ? "mg/kg" : "mg/lb";
 
     if (!weightRaw || weightRaw <= 0) {
       return {
@@ -34,23 +35,26 @@ export default function DogPrednisonePrednisoloneDoseCalculator() {
     if (!dosageRaw || dosageRaw <= 0) {
       return {
         value: 0,
-        label: "Please enter a valid dosage (mg/kg).",
+        label: `Please enter a valid dosage (${perWeightUnitLabel}).`,
         subtext: null,
         warning: null,
       };
     }
 
     const weightKg = weightToKg(weightRaw, unit);
+    const dosageMgPerKg = unit === "kg" ? dosageRaw : dosageRaw * LB_PER_KG;
+    const displayedDosage = unit === "kg" ? dosageMgPerKg : dosageMgPerKg / LB_PER_KG;
+    const weightUnitLabel = unit === "kg" ? "kg" : "lb";
 
     // Calculate dose in mg: Dose (mg) = weightKg * dosageMgPerKg
-    const doseMg = weightKg * dosageRaw;
+    const doseMg = weightKg * dosageMgPerKg;
 
     // Round dose to 2 decimals for display
     const doseRounded = Math.round(doseMg * 100) / 100;
 
     // Warning for high doses (above typical max 2 mg/kg/day)
     let warning = null;
-    if (dosageRaw > 2) {
+    if (dosageMgPerKg > 2) {
       warning =
         "Dosage exceeds typical maximum recommended dose (2 mg/kg/day). Consult your veterinarian before administering.";
     }
@@ -58,7 +62,7 @@ export default function DogPrednisonePrednisoloneDoseCalculator() {
     return {
       value: doseRounded,
       label: `Prednisone/Prednisolone dose for your dog`,
-      subtext: `Based on weight ${weightKg.toFixed(2)} kg and dosage ${dosageRaw} mg/kg.`,
+      subtext: `Based on weight ${weightRaw.toFixed(2)} ${weightUnitLabel} and dosage ${formatNumberForInput(displayedDosage, 2)} ${perWeightUnitLabel}.`,
       warning,
     };
   }, [inputs, unit]);
@@ -109,9 +113,19 @@ export default function DogPrednisonePrednisoloneDoseCalculator() {
             onValueChange={(next) => {
               if (next !== "kg" && next !== "lb") return;
               const weightRaw = parseFloat(inputs.weight);
+              const dosageRaw = parseFloat(inputs.dosageMgPerKg);
               if (Number.isFinite(weightRaw) && weightRaw > 0) {
                 const nextWeight = convertWeight(weightRaw, unit, next);
                 setInputs((prev) => ({ ...prev, weight: formatNumberForInput(nextWeight, 2) }));
+              }
+              if (Number.isFinite(dosageRaw) && dosageRaw > 0) {
+                const nextDosage =
+                  unit === "kg" && next === "lb"
+                    ? dosageRaw / LB_PER_KG
+                    : unit === "lb" && next === "kg"
+                      ? dosageRaw * LB_PER_KG
+                      : dosageRaw;
+                setInputs((prev) => ({ ...prev, dosageMgPerKg: formatNumberForInput(nextDosage, 4) }));
               }
               setUnit(next);
             }}
@@ -148,13 +162,13 @@ export default function DogPrednisonePrednisoloneDoseCalculator() {
         {/* Dosage Input */}
         <div>
           <Label htmlFor="dosageMgPerKg" className="text-slate-700 dark:text-slate-300">
-            Dosage (mg/kg)
+            Dosage ({unit === "kg" ? "mg/kg" : "mg/lb"})
           </Label>
           <Input
             id="dosageMgPerKg"
             name="dosageMgPerKg"
             type="text"
-            placeholder="Typical range: 0.5 - 2 mg/kg"
+            placeholder={`Typical range: 0.5 - 2 ${unit === "kg" ? "mg/kg" : "mg/lb"}`}
             value={inputs.dosageMgPerKg}
             onChange={handleInputChange}
             aria-describedby="dosageHelp"

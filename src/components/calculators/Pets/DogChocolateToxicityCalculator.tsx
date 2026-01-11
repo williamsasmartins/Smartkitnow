@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Activity, Calculator, RotateCcw, Info, AlertTriangle, Dog, Skull } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
-import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
+import { convertWeight, formatNumberForInput, LB_PER_KG, weightToKg } from "@/lib/utils";
 
 const CHOCOLATE_TYPES = [
   { label: "White Chocolate", mgTheobrominePerGram: 0.1 },
@@ -51,6 +51,8 @@ export default function DogChocolateToxicityCalculator() {
     // We'll use 20 mg/kg as mild, 40 mg/kg as moderate, 60 mg/kg as severe
 
     const doseMgPerKg = totalTheobromineMg / weightKg;
+    const displayedDose = unit === "kg" ? doseMgPerKg : doseMgPerKg / LB_PER_KG;
+    const doseUnitLabel = unit === "kg" ? "mg/kg" : "mg/lb";
 
     // Determine toxicity level and advice
     let toxicityLevel = "No significant toxicity expected.";
@@ -71,8 +73,8 @@ export default function DogChocolateToxicityCalculator() {
     }
 
     return {
-      value: doseMgPerKg.toFixed(1),
-      label: `Theobromine dose: ${doseMgPerKg.toFixed(1)} mg/kg`,
+      value: displayedDose.toFixed(1),
+      label: `Theobromine dose: ${displayedDose.toFixed(1)} ${doseUnitLabel}`,
       subtext: toxicityLevel,
       warning,
     };

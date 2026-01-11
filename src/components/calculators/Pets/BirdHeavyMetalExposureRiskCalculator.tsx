@@ -7,11 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Activity, Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function BirdHeavyMetalExposureRiskCalculator() {
   // 1. STATE
   // Default unit system (imperial or metric)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight and exposure level (mg/kg)
   const [inputs, setInputs] = useState({
@@ -41,8 +43,7 @@ export default function BirdHeavyMetalExposureRiskCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightNum / 2.20462 : weightNum;
+    const weightKg = weightToKg(weightNum, unit);
 
     // Calculate risk score
     const riskScore = exposureNum * weightKg;
@@ -114,8 +115,8 @@ export default function BirdHeavyMetalExposureRiskCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">lb</SelectItem>
+              <SelectItem value="kg">kg</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -125,7 +126,7 @@ export default function BirdHeavyMetalExposureRiskCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Bird Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Bird Weight ({unit})
           </Label>
           <Input
             id="weight"
@@ -133,7 +134,7 @@ export default function BirdHeavyMetalExposureRiskCalculator() {
             type="number"
             min="0"
             step="any"
-            placeholder={`Enter weight in ${unit === "imperial" ? "pounds" : "kilograms"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "pounds" : "kilograms"}`}
             value={inputs.weight}
             onChange={handleInputChange}
           />

@@ -7,10 +7,10 @@ function readStoredUnit(): WeightUnit {
   try {
     const raw = sessionStorage.getItem(KEY);
     if (raw === "kg" || raw === "lb") return raw;
-  } catch {
-    return "kg";
+  } catch (error) {
+    console.warn("Failed to read stored weight unit:", error);
   }
-  return "kg";
+  return "lb";
 }
 
 export function useWeightUnitPreference() {
@@ -20,8 +20,8 @@ export function useWeightUnitPreference() {
     setUnitState(next);
     try {
       sessionStorage.setItem(KEY, next);
-    } catch {
-      return;
+    } catch (error) {
+      console.warn("Failed to store weight unit:", error);
     }
   }, []);
 

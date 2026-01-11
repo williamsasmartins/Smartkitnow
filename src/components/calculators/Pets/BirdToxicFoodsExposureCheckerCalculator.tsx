@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 const TOXICITY_THRESHOLDS = {
   avocado: 0.05, // grams per kg body weight (persin toxic dose threshold)
@@ -31,7 +33,7 @@ const TOXICITY_DESCRIPTIONS = {
 
 export default function BirdToxicFoodsExposureCheckerCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   const [inputs, setInputs] = useState({
     weight: "",
@@ -44,7 +46,7 @@ export default function BirdToxicFoodsExposureCheckerCalculator() {
   const weightKg = useMemo(() => {
     const w = parseFloat(inputs.weight);
     if (isNaN(w) || w <= 0) return null;
-    return unit === "imperial" ? w / 2.20462 : w;
+    return weightToKg(w, unit);
   }, [inputs.weight, unit]);
 
   // Convert amount to grams
@@ -160,8 +162,8 @@ export default function BirdToxicFoodsExposureCheckerCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">lb</SelectItem>
+              <SelectItem value="kg">kg</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -170,14 +172,14 @@ export default function BirdToxicFoodsExposureCheckerCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Pet Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Pet Weight ({unit})
           </Label>
           <Input
             id="weight"
             type="number"
             min="0"
             step="any"
-            placeholder={unit === "imperial" ? "e.g. 5.5" : "e.g. 2.5"}
+            placeholder={unit === "lb" ? "e.g. 5.5" : "e.g. 2.5"}
             value={inputs.weight}
             onChange={(e) => setInputs((prev) => ({ ...prev, weight: e.target.value }))}
           />

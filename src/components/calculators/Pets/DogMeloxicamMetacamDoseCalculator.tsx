@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
-import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
+import { convertWeight, formatNumberForInput, LB_PER_KG, weightToKg } from "@/lib/utils";
 
 export default function DogMeloxicamMetacamDoseCalculator() {
   // 1. STATE
@@ -28,6 +28,7 @@ export default function DogMeloxicamMetacamDoseCalculator() {
   const results = useMemo(() => {
     const weightRaw = parseFloat(inputs.weight);
     const doseMgPerKgRaw = parseFloat(inputs.doseMgPerKg);
+    const perWeightUnitLabel = unit === "kg" ? "mg/kg" : "mg/lb";
 
     if (!weightRaw || weightRaw <= 0) {
       return {
@@ -40,21 +41,22 @@ export default function DogMeloxicamMetacamDoseCalculator() {
     if (!doseMgPerKgRaw || doseMgPerKgRaw <= 0) {
       return {
         value: 0,
-        label: "Enter a valid dose (mg/kg) to calculate dosage.",
+        label: `Enter a valid dose (${perWeightUnitLabel}) to calculate dosage.`,
         subtext: null,
         warning: null,
       };
     }
 
     const weightKg = weightToKg(weightRaw, unit);
+    const doseMgPerKg = unit === "kg" ? doseMgPerKgRaw : doseMgPerKgRaw * LB_PER_KG;
 
     // Calculate initial dose (mg)
     // Typical initial dose: 0.1 mg/kg (can be adjusted)
-    const initialDoseMg = weightKg * doseMgPerKgRaw;
+    const initialDoseMg = weightKg * doseMgPerKg;
 
     // Calculate maintenance dose (mg)
     // Maintenance dose is usually half initial dose (0.05 mg/kg)
-    const maintenanceDoseMg = weightKg * (doseMgPerKgRaw / 2);
+    const maintenanceDoseMg = weightKg * (doseMgPerKg / 2);
 
     // Round to 2 decimals
     const initialDoseRounded = initialDoseMg.toFixed(2);
@@ -62,7 +64,7 @@ export default function DogMeloxicamMetacamDoseCalculator() {
 
     // Warning for max dose (max 0.2 mg/kg/day generally)
     let warning = null;
-    if (doseMgPerKgRaw > 0.2) {
+    if (doseMgPerKg > 0.2) {
       warning =
         "Warning: The dose entered exceeds the commonly recommended maximum of 0.2 mg/kg/day. Consult your veterinarian before administering higher doses.";
     }
@@ -120,9 +122,19 @@ export default function DogMeloxicamMetacamDoseCalculator() {
             onValueChange={(next) => {
               if (next !== "kg" && next !== "lb") return;
               const weightRaw = parseFloat(inputs.weight);
+              const doseRaw = parseFloat(inputs.doseMgPerKg);
               if (Number.isFinite(weightRaw) && weightRaw > 0) {
                 const nextWeight = convertWeight(weightRaw, unit, next);
                 setInputs((prev) => ({ ...prev, weight: formatNumberForInput(nextWeight, 2) }));
+              }
+              if (Number.isFinite(doseRaw) && doseRaw > 0) {
+                const nextDose =
+                  unit === "kg" && next === "lb"
+                    ? doseRaw / LB_PER_KG
+                    : unit === "lb" && next === "kg"
+                      ? doseRaw * LB_PER_KG
+                      : doseRaw;
+                setInputs((prev) => ({ ...prev, doseMgPerKg: formatNumberForInput(nextDose, 4) }));
               }
               setUnit(next);
             }}
@@ -160,7 +172,7 @@ export default function DogMeloxicamMetacamDoseCalculator() {
         {/* Dose Input */}
         <div>
           <Label htmlFor="doseMgPerKg" className="text-slate-700 dark:text-slate-300 mb-1 block">
-            Dose (mg/kg) - Initial Dose (Typical: 0.1)
+            Dose ({unit === "kg" ? "mg/kg" : "mg/lb"}) - Initial Dose (Typical: 0.1)
           </Label>
           <Input
             id="doseMgPerKg"

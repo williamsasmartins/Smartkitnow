@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function BirdAmbientTemperatureSafeZoneCalculator() {
   // 1. STATE
@@ -27,7 +29,7 @@ export default function BirdAmbientTemperatureSafeZoneCalculator() {
 
   // So we keep unit switcher for weight input only
 
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   const [inputs, setInputs] = useState({
     ambientTemp: "",
@@ -55,7 +57,7 @@ export default function BirdAmbientTemperatureSafeZoneCalculator() {
         warning: null,
       };
     }
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Calculate safe zone limits (°F)
     // Convert weightKg to power 0.25
@@ -119,11 +121,11 @@ export default function BirdAmbientTemperatureSafeZoneCalculator() {
           <Label className="text-slate-700 dark:text-slate-300">Weight Unit</Label>
           <select
             value={unit}
-            onChange={(e) => setUnit(e.target.value)}
+            onChange={(e) => setUnit(e.target.value as "kg" | "lb")}
             className="border border-slate-300 rounded px-3 py-1 dark:bg-slate-800 dark:text-slate-200"
           >
-            <option value="imperial">Imperial (lbs)</option>
-            <option value="metric">Metric (kg)</option>
+            <option value="lb">lb</option>
+            <option value="kg">kg</option>
           </select>
         </div>
       </div>
@@ -152,12 +154,12 @@ export default function BirdAmbientTemperatureSafeZoneCalculator() {
 
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Bird Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Bird Weight ({unit})
           </Label>
           <Input
             id="weight"
             type="number"
-            placeholder={unit === "imperial" ? "e.g. 2.5" : "e.g. 1.1"}
+            placeholder={unit === "lb" ? "e.g. 2.5" : "e.g. 1.1"}
             value={inputs.weight}
             onChange={(e) => setInputs((prev) => ({ ...prev, weight: e.target.value }))}
             min={0.01}
@@ -165,7 +167,7 @@ export default function BirdAmbientTemperatureSafeZoneCalculator() {
             aria-describedby="weightHelp"
           />
           <p id="weightHelp" className="text-xs text-slate-400 mt-1">
-            Enter the bird's weight in {unit === "imperial" ? "pounds" : "kilograms"}.
+            Enter the bird's weight in {unit === "lb" ? "pounds" : "kilograms"}.
           </p>
         </div>
       </div>

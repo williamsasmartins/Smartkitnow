@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
-import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
+import { convertWeight, formatNumberForInput, LB_PER_KG, weightToKg } from "@/lib/utils";
 
 export default function DogAlcoholEthanolExposureRiskCalculator() {
   // 1. STATE
@@ -62,6 +62,9 @@ export default function DogAlcoholEthanolExposureRiskCalculator() {
 
     // Calculate mg/kg dose:
     const doseMgPerKg = ethanolMassMg / weightKg;
+    const displayedDose = unit === "kg" ? doseMgPerKg : doseMgPerKg / LB_PER_KG;
+    const doseUnitLabel = unit === "kg" ? "mg/kg" : "mg/lb";
+    const weightUnitLabel = unit === "kg" ? "kg" : "lb";
 
     // Toxicity thresholds (approximate, from veterinary toxicology literature):
     // Mild signs: > 100 mg/kg
@@ -90,9 +93,10 @@ export default function DogAlcoholEthanolExposureRiskCalculator() {
     }
 
     return {
-      value: doseMgPerKg.toFixed(1),
+      value: displayedDose.toFixed(1),
       label: riskLabel,
-      subtext: `Dose: ${doseMgPerKg.toFixed(1)} mg ethanol per kg body weight.`,
+      unitLabel: doseUnitLabel,
+      subtext: `Dose: ${displayedDose.toFixed(1)} mg ethanol per ${weightUnitLabel} body weight.`,
       warning,
     };
   }, [inputs, unit]);
@@ -232,7 +236,9 @@ export default function DogAlcoholEthanolExposureRiskCalculator() {
               <p className="text-sm font-bold text-blue-900 dark:text-blue-100 mb-3 uppercase tracking-wider">
                 Estimated Ethanol Dose
               </p>
-              <p className="text-5xl font-extrabold text-blue-900 dark:text-white">{results.value} mg/kg</p>
+              <p className="text-5xl font-extrabold text-blue-900 dark:text-white">
+                {results.value} {results.unitLabel}
+              </p>
               <p className="text-slate-600 dark:text-slate-300 mt-2 font-medium">{results.label}</p>
               {results.subtext && <p className="text-sm text-slate-500 mt-2">{results.subtext}</p>}
 

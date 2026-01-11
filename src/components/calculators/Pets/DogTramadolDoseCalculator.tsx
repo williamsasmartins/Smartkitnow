@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
-import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
+import { convertWeight, formatNumberForInput, LB_PER_KG, weightToKg } from "@/lib/utils";
 
 export default function DogTramadolDoseCalculator() {
   // 1. STATE
@@ -58,13 +58,14 @@ export default function DogTramadolDoseCalculator() {
 
     // Calculate total dose in mg
     const totalDoseMg = +(weightKg * dosageMgPerKg).toFixed(2);
+    const displayedDosage = unit === "kg" ? dosageMgPerKg : dosageMgPerKg / LB_PER_KG;
+    const perWeightUnitLabel = unit === "kg" ? "mg/kg" : "mg/lb";
+    const weightUnitLabel = unit === "kg" ? "kg" : "lb";
 
     return {
       value: totalDoseMg,
-      label: `Recommended Tramadol dose (${dosageMgPerKg} mg/kg)`,
-      subtext: `For a dog weighing ${weightKg.toFixed(2)} kg (${weightRaw.toFixed(
-        2
-      )} ${unit === "lb" ? "lbs" : "kg"}), administer approximately ${totalDoseMg} mg every 8-12 hours.`,
+      label: `Recommended Tramadol dose (${formatNumberForInput(displayedDosage, 2)} ${perWeightUnitLabel})`,
+      subtext: `For a dog weighing ${weightRaw.toFixed(2)} ${weightUnitLabel}, administer approximately ${totalDoseMg} mg every 8-12 hours.`,
       warning,
     };
   }, [inputs, unit]);

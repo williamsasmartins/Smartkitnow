@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function BirdElectrolyteVitaminCWaterMixCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: Bird weight and desired Vitamin C dose (mg/kg), Electrolyte concentration (g/L), Water volume (L)
   const [inputs, setInputs] = useState({
@@ -46,7 +48,7 @@ export default function BirdElectrolyteVitaminCWaterMixCalculator() {
     }
 
     // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Total Vitamin C needed (mg) = Dose (mg/kg) * weight (kg)
     const totalVitaminCmg = vitaminCDoseRaw * weightKg;
@@ -120,8 +122,8 @@ export default function BirdElectrolyteVitaminCWaterMixCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">lb</SelectItem>
+              <SelectItem value="kg">kg</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -130,14 +132,14 @@ export default function BirdElectrolyteVitaminCWaterMixCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Bird Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Bird Weight ({unit})
           </Label>
           <Input
             id="weight"
             type="number"
             min="0"
             step="any"
-            placeholder={unit === "imperial" ? "e.g. 1.5" : "e.g. 0.68"}
+            placeholder={unit === "lb" ? "e.g. 1.5" : "e.g. 0.68"}
             value={inputs.weight}
             onChange={(e) => setInputs((prev) => ({ ...prev, weight: e.target.value }))}
           />

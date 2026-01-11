@@ -11,7 +11,7 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 export default function CatProteinFatIntakeGuideCalculator() {
   // 1. STATE
   // Protein/Fat intake depends on weight, so keep unit switcher for weight (lbs/kg)
-  const [unit, setUnit] = useState("metric");
+  const [unit, setUnit] = useState("imperial");
 
   // Inputs: weight (kg or lbs), goal (maintenance, weight loss, weight gain)
   const [inputs, setInputs] = useState({

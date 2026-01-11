@@ -11,7 +11,7 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 export default function CatIdealWeightTargetCaloriesCalculator() {
   // 1. STATE
   // Weight is involved in formulas, so keep unit switcher
-  const [unit, setUnit] = useState("metric"); // default metric (kg)
+  const [unit, setUnit] = useState("imperial"); // default imperial (lbs)
 
   // Inputs: current weight only, since ideal weight is often estimated by body condition score or breed,
   // but here we provide a calculator for target calories based on current weight.

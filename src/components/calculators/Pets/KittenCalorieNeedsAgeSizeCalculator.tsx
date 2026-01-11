@@ -10,7 +10,7 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 export default function KittenCalorieNeedsAgeSizeCalculator() {
   // 1. STATE
   // This calculator requires weight input, so unit switcher is kept.
-  const [unit, setUnit] = useState("metric"); // default metric for veterinary use
+  const [unit, setUnit] = useState("imperial"); // default imperial (lbs)
 
   // Inputs: weight (kg or lbs), age (weeks)
   const [inputs, setInputs] = useState({

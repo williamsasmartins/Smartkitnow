@@ -7,11 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function BirdAntibioticDoseReferenceCalculator() {
   // 1. STATE
   // Unit system default to imperial (lbs)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight and dose per kg
   const [inputs, setInputs] = useState({
@@ -33,8 +35,7 @@ export default function BirdAntibioticDoseReferenceCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightNum / 2.20462 : weightNum;
+    const weightKg = weightToKg(weightNum, unit);
 
     // Calculate total dose in mg
     const totalDoseMg = weightKg * doseNum;
@@ -97,8 +98,8 @@ export default function BirdAntibioticDoseReferenceCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">lb</SelectItem>
+              <SelectItem value="kg">kg</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -108,14 +109,14 @@ export default function BirdAntibioticDoseReferenceCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Bird Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Bird Weight ({unit})
           </Label>
           <Input
             id="weight"
             type="number"
             min="0"
             step="any"
-            placeholder={`Enter weight in ${unit === "imperial" ? "pounds" : "kilograms"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "pounds" : "kilograms"}`}
             value={inputs.weight}
             onChange={(e) => setInputs((prev) => ({ ...prev, weight: e.target.value }))}
           />

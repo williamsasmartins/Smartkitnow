@@ -6,11 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function BirdVitaminARequirementCalculator() {
   // 1. STATE
   // Unit system: imperial (lbs) or metric (kg)
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight (bird body weight)
   const [inputs, setInputs] = useState({
@@ -32,7 +34,7 @@ export default function BirdVitaminARequirementCalculator() {
         warning: null,
       };
     }
-    const weightKg = unit === "imperial" ? Number(weightRaw) / 2.20462 : Number(weightRaw);
+    const weightKg = weightToKg(Number(weightRaw), unit);
     const vitaminARequirement = Math.round(4000 * weightKg);
 
     let warning = null;
@@ -86,11 +88,11 @@ export default function BirdVitaminARequirementCalculator() {
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
           <select
             value={unit}
-            onChange={(e) => setUnit(e.target.value)}
+            onChange={(e) => setUnit(e.target.value as "kg" | "lb")}
             className="border rounded px-3 py-1 dark:bg-slate-800 dark:text-slate-100"
           >
-            <option value="imperial">Imperial (lbs)</option>
-            <option value="metric">Metric (kg)</option>
+            <option value="lb">lb</option>
+            <option value="kg">kg</option>
           </select>
         </div>
       </div>
@@ -98,14 +100,14 @@ export default function BirdVitaminARequirementCalculator() {
       {/* Weight Input */}
       <div className="space-y-2">
         <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-          Bird Body Weight ({unit === "imperial" ? "lbs" : "kg"})
+          Bird Body Weight ({unit})
         </Label>
         <Input
           id="weight"
           type="number"
           min="0"
           step="any"
-          placeholder={`Enter weight in ${unit === "imperial" ? "pounds" : "kilograms"}`}
+          placeholder={`Enter weight in ${unit === "lb" ? "pounds" : "kilograms"}`}
           value={inputs.weight}
           onChange={(e) => setInputs({ ...inputs, weight: e.target.value })}
           className="max-w-xs"

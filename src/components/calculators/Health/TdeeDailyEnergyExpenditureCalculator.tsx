@@ -10,7 +10,7 @@ import { Activity, HelpCircle, BookOpen, AlertCircle, Calculator, RotateCcw } fr
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function TdeeDailyEnergyExpenditureCalculator() {
-  const [unit, setUnit] = useState("metric");
+  const [unit, setUnit] = useState("imperial");
   const [inputs, setInputs] = useState({ 
     age: "", 
     gender: "male",

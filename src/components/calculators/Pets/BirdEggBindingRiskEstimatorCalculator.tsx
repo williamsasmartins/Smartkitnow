@@ -4,13 +4,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function BirdEggBindingRiskEstimatorCalculator() {
   // 1. STATE
   // No unit switcher needed because inputs are time/age based or categorical.
   // Inputs: Bird weight (lbs or kg), Age (months), Egg-laying frequency (eggs/week), Nutritional score (1-10)
+  const { unit, setUnit } = useWeightUnitPreference();
   const [inputs, setInputs] = useState({
     weight: "",
     age: "",
@@ -55,9 +59,7 @@ export default function BirdEggBindingRiskEstimatorCalculator() {
       };
     }
 
-    // Convert weight to kg if input is in lbs (assume imperial)
-    // Since no unit selector, assume imperial input in lbs.
-    const weightKg = weightRaw / 2.20462;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Ideal weight for small bird (e.g. cockatiel) ~ 0.1 kg (100g)
     const idealWeightKg = 0.1;
@@ -190,16 +192,30 @@ export default function BirdEggBindingRiskEstimatorCalculator() {
   const widget = (
     <div className="space-y-6">
       <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
+          <Select value={unit} onValueChange={setUnit}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="lb">lb</SelectItem>
+              <SelectItem value="kg">kg</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+      <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Bird Weight (lbs)
+            Bird Weight ({unit})
           </Label>
           <Input
             id="weight"
             type="number"
             min="0"
             step="0.01"
-            placeholder="e.g. 0.2"
+            placeholder={unit === "lb" ? "e.g. 0.2" : "e.g. 0.09"}
             value={inputs.weight}
             onChange={(e) => setInputs({ ...inputs, weight: e.target.value })}
           />

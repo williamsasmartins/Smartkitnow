@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function BirdOmega3SupplementDoseParrotsCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight (lbs or kg)
   const [inputs, setInputs] = useState({
@@ -31,7 +33,7 @@ export default function BirdOmega3SupplementDoseParrotsCalculator() {
         warning: null,
       };
     }
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
     const doseMg = 40 * weightKg; // 40 mg/kg daily dose
     const doseRounded = Math.round(doseMg);
 
@@ -78,8 +80,8 @@ export default function BirdOmega3SupplementDoseParrotsCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">lb</SelectItem>
+              <SelectItem value="kg">kg</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -87,14 +89,14 @@ export default function BirdOmega3SupplementDoseParrotsCalculator() {
 
       <div className="space-y-4">
         <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-          Parrot Weight ({unit === "imperial" ? "lbs" : "kg"})
+          Parrot Weight ({unit})
         </Label>
         <Input
           id="weight"
           type="number"
           min="0"
           step="any"
-          placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+          placeholder={`Enter weight in ${unit === "lb" ? "lb" : "kg"}`}
           value={inputs.weight}
           onChange={(e) => setInputs({ ...inputs, weight: e.target.value })}
           aria-describedby="weight-help"

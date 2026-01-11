@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { weightToKg } from "@/lib/utils";
 
 export default function BirdCalciumSupplementDosageBreedingFemalesCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight and calcium requirement factor (mg/kg)
   // Commonly, calcium supplementation for breeding females is around 50-100 mg/kg body weight per day,
@@ -42,8 +44,7 @@ export default function BirdCalciumSupplementDosageBreedingFemalesCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightNum / 2.20462 : weightNum;
+    const weightKg = weightToKg(weightNum, unit);
 
     // Calculate total calcium dose in mg
     const totalDoseMg = weightKg * doseNum;
@@ -57,7 +58,7 @@ export default function BirdCalciumSupplementDosageBreedingFemalesCalculator() {
     return {
       value: formattedDose,
       label: `Total Calcium Supplement Dose (mg/day)`,
-      subtext: `Based on weight ${weightNum} ${unit === "imperial" ? "lbs" : "kg"} and dose ${doseNum} mg/kg`,
+      subtext: `Based on weight ${weightNum} ${unit} and dose ${doseNum} mg/kg`,
       warning: null,
     };
   }, [inputs, unit]);
@@ -98,8 +99,8 @@ export default function BirdCalciumSupplementDosageBreedingFemalesCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
+              <SelectItem value="lb">lb</SelectItem>
+              <SelectItem value="kg">kg</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -109,14 +110,14 @@ export default function BirdCalciumSupplementDosageBreedingFemalesCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Weight ({unit})
           </Label>
           <Input
             id="weight"
             type="number"
             min="0"
             step="any"
-            placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "lb" : "kg"}`}
             value={inputs.weight}
             onChange={(e) => setInputs((prev) => ({ ...prev, weight: e.target.value }))}
           />
