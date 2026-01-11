@@ -8082,6 +8082,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CochinitaPibilCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chiles-rellenos",
+    title: "Chile Rellenos",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Pimentas recheadas (geralmente com queijo), empanadas e servidas com molho.",
+    loader: () => import("@/components/calculators/Misc/ChilesRellenosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
