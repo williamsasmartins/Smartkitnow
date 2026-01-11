@@ -8019,6 +8019,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TostadasCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tlayudas",
+    title: "Tlayudas",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "“Pizza” oaxaqueña em tortilha grande, com feijão, queijo e coberturas.",
+    loader: () => import("@/components/calculators/Misc/TlayudasCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
