@@ -8109,6 +8109,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ArrozMexicanoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "frijoles-refritos",
+    title: "Refried Beans",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Feijão amassado e refogado, cremoso e bem temperado.",
+    loader: () => import("@/components/calculators/Misc/FrijolesRefritosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
