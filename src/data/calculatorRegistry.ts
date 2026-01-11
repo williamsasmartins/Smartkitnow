@@ -7857,6 +7857,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CarneAsadaTacosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "carnitas-tacos",
+    title: "Carnitas Tacos",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tacos de porco cozido lentamente e desfiado, suculento e dourado.",
+    loader: () => import("@/components/calculators/Misc/CarnitasTacosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
