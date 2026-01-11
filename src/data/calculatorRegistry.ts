@@ -7686,6 +7686,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/QuesoFundidoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "elote",
+    title: "Mexican Street Corn (Elote)",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Espiga de milho com maionese, queijo, limão e chili.",
+    loader: () => import("@/components/calculators/Misc/EloteCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
