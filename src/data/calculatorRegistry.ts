@@ -7920,6 +7920,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BajaFishTacosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chicken-enchiladas",
+    title: "Chicken Enchiladas",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tortilhas recheadas de frango, cobertas com molho e assadas.",
+    loader: () => import("@/components/calculators/Misc/ChickenEnchiladasCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
