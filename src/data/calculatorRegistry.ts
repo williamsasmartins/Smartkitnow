@@ -7956,6 +7956,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EnchiladasRojasCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "enchiladas-suizas",
+    title: "Enchiladas Suizas",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Enchiladas com molho cremoso (geralmente verde) e bastante queijo.",
+    loader: () => import("@/components/calculators/Misc/EnchiladasSuizasCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
