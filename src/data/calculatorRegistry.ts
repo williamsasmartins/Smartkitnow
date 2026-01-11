@@ -7821,6 +7821,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BreakfastTacosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "migas-mexican-style",
+    title: "Migas (Mexican-Style)",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Ovos mexidos com pedaços de tortilla e temperos.",
+    loader: () => import("@/components/calculators/Misc/MigasMexicanStyleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
