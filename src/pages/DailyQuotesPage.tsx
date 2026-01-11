@@ -93,7 +93,7 @@ export default function DailyQuotesPage() {
       const data = await res.json();
       
       // Handle different n8n response structures
-      let aiContent = data.message?.content || data[0]?.message?.content || data.content || data;
+      const aiContent = data.message?.content || data[0]?.message?.content || data.content || data;
       
       if (typeof aiContent === "string") {
         const cleanJson = aiContent.replace(/^```json\s*/i, "").replace(/\s*```$/, "");
@@ -155,7 +155,7 @@ export default function DailyQuotesPage() {
   const currentItems = useMemo(() => {
     if (!data || !selectedCategory || selectedCategory === "horoscope" || selectedCategory === "dream") return [];
     
-    // @ts-ignore
+    // @ts-expect-error
     const itemsList = data.content?.[selectedCategory as keyof DailyDataPacket["content"]];
     
     if (!itemsList || !Array.isArray(itemsList)) return [];

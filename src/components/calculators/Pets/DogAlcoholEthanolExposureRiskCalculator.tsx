@@ -149,8 +149,8 @@ export default function DogAlcoholEthanolExposureRiskCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="lb">Imperial (lbs, fl oz)</SelectItem>
-              <SelectItem value="kg">Metric (kg, mL)</SelectItem>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -191,14 +191,14 @@ export default function DogAlcoholEthanolExposureRiskCalculator() {
         {/* Volume Consumed Input */}
         <div>
           <Label htmlFor="volumeConsumed" className="text-slate-700 dark:text-slate-300">
-            Volume Consumed ({unit === "lb" ? "fl oz" : "mL"})
+            Volume Consumed (mL)
           </Label>
           <Input
             id="volumeConsumed"
             type="number"
             min="0"
             step="any"
-            placeholder={`Volume of ethanol-containing liquid ingested in ${unit === "lb" ? "fluid ounces" : "milliliters"}`}
+            placeholder="Volume of ethanol-containing liquid ingested in milliliters"
             value={inputs.volumeConsumed}
             onChange={(e) => setInputs({ ...inputs, volumeConsumed: e.target.value })}
           />
