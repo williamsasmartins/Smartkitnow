@@ -7785,6 +7785,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/AlbondigasSoupCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sopa-de-lima",
+    title: "Lime Soup (Yucatan-Style)",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Sopa yucateca com toque cítrico de limão e frango.",
+    loader: () => import("@/components/calculators/Misc/SopaDeLimaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
