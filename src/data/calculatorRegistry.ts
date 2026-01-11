@@ -7641,6 +7641,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PicoDeGalloCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "salsa-roja",
+    title: "Salsa Roja",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Salsa vermelha à base de tomate e pimentas, levemente picante.",
+    loader: () => import("@/components/calculators/Misc/SalsaRojaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
