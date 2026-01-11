@@ -7848,6 +7848,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TacosAlPastorCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "carne-asada-tacos",
+    title: "Carne Asada Tacos",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tacos de carne grelhada, com cebola, coentro e limão.",
+    loader: () => import("@/components/calculators/Misc/CarneAsadaTacosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
