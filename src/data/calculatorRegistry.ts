@@ -7632,6 +7632,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GuacamoleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "pico-de-gallo",
+    title: "Pico de Gallo",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Salsa crua de tomate, cebola, coentro e limão, bem refrescante.",
+    loader: () => import("@/components/calculators/Misc/PicoDeGalloCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
