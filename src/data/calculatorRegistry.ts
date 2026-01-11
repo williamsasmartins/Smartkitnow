@@ -8118,6 +8118,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FrijolesRefritosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "frijoles-charros",
+    title: "Charro Beans",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Feijão com bacon/linguiça, tomate e especiarias, estilo “charro”.",
+    loader: () => import("@/components/calculators/Misc/FrijolesCharrosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
