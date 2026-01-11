@@ -7515,6 +7515,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/PulledPorkCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "st-louis-ribs",
+    title: "St. Louis Ribs",
+    category: "culinary",
+    subcategory: "bbq-smoking",
+    description: "Trim and smoke St. Louis ribs for even cooking, bite-through texture, and glaze-friendly bark.",
+    loader: () => import("@/components/calculators/Misc/StLouisRibsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
