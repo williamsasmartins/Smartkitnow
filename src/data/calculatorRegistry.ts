@@ -7893,6 +7893,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FishTacosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "shrimp-tacos",
+    title: "Shrimp Tacos",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tacos de camarão temperado, com acompanhamentos frescos.",
+    loader: () => import("@/components/calculators/Misc/ShrimpTacosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
