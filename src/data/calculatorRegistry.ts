@@ -8055,6 +8055,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PorkCarnitasCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "carne-asada",
+    title: "Carne Asada",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Carne grelhada e temperada, servida com guarnições e tortilhas.",
+    loader: () => import("@/components/calculators/Misc/CarneAsadaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
