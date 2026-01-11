@@ -7695,6 +7695,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EloteCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "esquites",
+    title: "Mexican Corn Cup (Esquites)",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Milho em copo com creme, queijo, limão e temperos.",
+    loader: () => import("@/components/calculators/Misc/EsquitesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
