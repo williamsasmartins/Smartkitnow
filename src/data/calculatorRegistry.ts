@@ -8181,6 +8181,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HorchataCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "agua-de-jamaica",
+    title: "Agua de Jamaica",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Chá gelado de hibisco, ácido e refrescante.",
+    loader: () => import("@/components/calculators/Misc/AguaDeJamaicaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
