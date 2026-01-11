@@ -7830,6 +7830,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MigasMexicanStyleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "huevos-mexicanos-con-salsa",
+    title: "Mexican Scrambled Eggs (with Salsa)",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Ovos mexidos com salsa para um sabor mais marcante e úmido.",
+    loader: () => import("@/components/calculators/Misc/HuevosMexicanosConSalsaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
