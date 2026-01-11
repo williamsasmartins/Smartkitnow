@@ -7947,6 +7947,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EnchiladasVerdesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "enchiladas-rojas",
+    title: "Enchiladas Rojas",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Enchiladas com molho vermelho de pimentas e tomate.",
+    loader: () => import("@/components/calculators/Misc/EnchiladasRojasCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
