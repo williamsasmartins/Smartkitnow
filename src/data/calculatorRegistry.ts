@@ -7812,6 +7812,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HuevosRancherosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "breakfast-tacos",
+    title: "Breakfast Tacos",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tacos de café da manhã com ovos e recheios variados.",
+    loader: () => import("@/components/calculators/Misc/BreakfastTacosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
