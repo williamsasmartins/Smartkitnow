@@ -7974,6 +7974,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TamalesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "quesadillas",
+    title: "Quesadillas",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tortilhas com queijo derretido e recheios opcionais, na chapa.",
+    loader: () => import("@/components/calculators/Misc/QuesadillasCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
