@@ -7605,6 +7605,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenWingsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "grilled-shrimp",
+    title: "Grilled Shrimp",
+    category: "culinary",
+    subcategory: "bbq-smoking",
+    description: "Grill shrimp fast with marinades, skewering tips, and no-overcook timing.",
+    loader: () => import("@/components/calculators/Misc/GrilledShrimpCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
