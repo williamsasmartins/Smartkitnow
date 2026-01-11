@@ -7839,6 +7839,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HuevosMexicanosConSalsaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tacos-al-pastor",
+    title: "Tacos al Pastor",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Porco marinado com especiarias, abacaxi e cebola, estilo pastor.",
+    loader: () => import("@/components/calculators/Misc/TacosAlPastorCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
