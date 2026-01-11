@@ -7677,6 +7677,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BlackBeanDipCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "queso-fundido",
+    title: "Queso Fundido",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Queijo derretido servido quente, geralmente com chorizo ou pimentas.",
+    loader: () => import("@/components/calculators/Misc/QuesoFundidoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
