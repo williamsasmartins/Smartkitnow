@@ -7,11 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, LB_PER_KG } from "@/lib/utils";
 
 export default function CatCephalexinDoseCalculator() {
   // 1. STATE
   // Unit system needed for weight input (lbs or kg)
-  const [unit, setUnit] = useState("imperial");
+  const { unit: preferredWeightUnit, setUnit: setPreferredWeightUnit } = useWeightUnitPreference();
+  const [unit, setUnit] = useState<"imperial" | "metric">(() => (preferredWeightUnit === "lb" ? "imperial" : "metric"));
 
   // Inputs: weight only (lbs or kg)
   const [inputs, setInputs] = useState({
@@ -43,7 +46,7 @@ export default function CatCephalexinDoseCalculator() {
       };
     }
     // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightNum / 2.20462 : weightNum;
+    const weightKg = unit === "imperial" ? weightNum / LB_PER_KG : weightNum;
 
     // Calculate dose per administration (20 mg/kg q12h)
     const doseMgPerAdmin = 20 * weightKg;
@@ -101,7 +104,20 @@ export default function CatCephalexinDoseCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "imperial" && next !== "metric") return;
+              setInputs((prev) => {
+                const num = parseFloat(prev.weight);
+                if (!prev.weight || Number.isNaN(num) || num <= 0) return prev;
+                const converted = convertWeight(num, unit === "imperial" ? "lb" : "kg", next === "imperial" ? "lb" : "kg");
+                return { ...prev, weight: formatNumberForInput(converted, 2) };
+              });
+              setUnit(next);
+              setPreferredWeightUnit(next === "imperial" ? "lb" : "kg");
+            }}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>

@@ -7,10 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, LB_PER_KG } from "@/lib/utils";
 
 export default function HorseHayIntakeBodyweightPercentCalculator() {
   // 1. STATE
-  const [unit, setUnit] = useState("imperial");
+  const { unit: preferredWeightUnit, setUnit: setPreferredWeightUnit } = useWeightUnitPreference();
+  const [unit, setUnit] = useState<"imperial" | "metric">(() => (preferredWeightUnit === "lb" ? "imperial" : "metric"));
 
   // Inputs: weight only, since hay intake is % of body weight
   const [inputs, setInputs] = useState({
@@ -32,15 +35,15 @@ export default function HorseHayIntakeBodyweightPercentCalculator() {
     }
 
     // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = unit === "imperial" ? weightRaw / LB_PER_KG : weightRaw;
 
     // Calculate hay intake range in kg
     const minHayKg = weightKg * 0.015; // 1.5%
     const maxHayKg = weightKg * 0.025; // 2.5%
 
     // Convert back to lbs if imperial
-    const minHay = unit === "imperial" ? minHayKg * 2.20462 : minHayKg;
-    const maxHay = unit === "imperial" ? maxHayKg * 2.20462 : maxHayKg;
+    const minHay = unit === "imperial" ? minHayKg * LB_PER_KG : minHayKg;
+    const maxHay = unit === "imperial" ? maxHayKg * LB_PER_KG : maxHayKg;
 
     // Format to 2 decimals
     const minHayFormatted = minHay.toFixed(2);
@@ -86,17 +89,32 @@ export default function HorseHayIntakeBodyweightPercentCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "imperial" && next !== "metric") return;
+              setInputs((prev) => {
+                const num = parseFloat(prev.weight);
+                if (!prev.weight || Number.isNaN(num) || num <= 0) return prev;
+                const fromUnit = unit === "imperial" ? "lb" : "kg";
+                const toUnit = next === "imperial" ? "lb" : "kg";
+                const converted = convertWeight(num, fromUnit, toUnit);
+                return { ...prev, weight: formatNumberForInput(converted, 2) };
+              });
+              setUnit(next);
+              setPreferredWeightUnit(next === "imperial" ? "lb" : "kg");
+            }}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="imperial">Imperial (lbs)</SelectItem>
-              <SelectItem value="metric">Metric (kg)</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+            <SelectItem value="imperial">Imperial (lbs)</SelectItem>
+            <SelectItem value="metric">Metric (kg)</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
+    </div>
 
       {/* Weight Input */}
       <div className="space-y-2">

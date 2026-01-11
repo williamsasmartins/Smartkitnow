@@ -19,6 +19,8 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { LB_PER_KG } from "@/lib/utils";
 
 function roundToOneDecimal(num: number) {
   return Math.round(num * 10) / 10;
@@ -26,7 +28,8 @@ function roundToOneDecimal(num: number) {
 
 export default function IdealWeightRangeHamwiDevineMillerCalculator() {
   // 1. STATE (Imperial Default)
-  const [unit, setUnit] = useState<"imperial" | "metric">("imperial");
+  const { unit: preferredWeightUnit, setUnit: setPreferredWeightUnit } = useWeightUnitPreference();
+  const [unit, setUnit] = useState<"imperial" | "metric">(() => (preferredWeightUnit === "lb" ? "imperial" : "metric"));
   const [inputs, setInputs] = useState<{
     gender: "male" | "female" | "";
     heightFeet: string;
@@ -99,12 +102,12 @@ export default function IdealWeightRangeHamwiDevineMillerCalculator() {
     // Devine (kg)
     const devineKg =
       (inputs.gender === "male" ? 50 : 45.5) + 2.3 * inchesOver5ft;
-    const devineLbs = devineKg * 2.20462;
+    const devineLbs = devineKg * LB_PER_KG;
 
     // Miller (kg)
     const millerKg =
       (inputs.gender === "male" ? 56.2 : 53.1) + (inputs.gender === "male" ? 1.41 : 1.36) * inchesOver5ft;
-    const millerLbs = millerKg * 2.20462;
+    const millerLbs = millerKg * LB_PER_KG;
 
     // Return rounded results in lbs (imperial) or kg (metric)
     if (unit === "imperial") {
@@ -116,7 +119,7 @@ export default function IdealWeightRangeHamwiDevineMillerCalculator() {
     } else {
       // Convert lbs back to kg for metric display
       return {
-        hamwi: roundToOneDecimal(hamwi / 2.20462),
+        hamwi: roundToOneDecimal(hamwi / LB_PER_KG),
         devine: roundToOneDecimal(devineKg),
         miller: roundToOneDecimal(millerKg),
       };
@@ -169,8 +172,10 @@ export default function IdealWeightRangeHamwiDevineMillerCalculator() {
           <Select
             value={unit}
             onValueChange={(val) => {
-              setUnit(val as "imperial" | "metric");
+              if (val !== "imperial" && val !== "metric") return;
+              setUnit(val);
               resetInputs();
+              setPreferredWeightUnit(val === "imperial" ? "lb" : "kg");
             }}
           >
             <SelectTrigger className="w-[180px]">

@@ -4,13 +4,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function CatChocolateToxicityCalculator() {
   // 1. STATE
   // Unit system needed because weight input can be in lbs or kg
-  const [unit, setUnit] = useState("imperial");
+  const { unit, setUnit } = useWeightUnitPreference();
 
   // Inputs: weight and chocolate type (to get theobromine content mg/g)
   // Chocolate types: White, Milk, Dark, Baking
@@ -51,8 +54,7 @@ export default function CatChocolateToxicityCalculator() {
       };
     }
 
-    // Convert weight to kg if imperial
-    const weightKg = unit === "imperial" ? weightRaw / 2.20462 : weightRaw;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Theobromine content per gram chocolate
     const theobromineMgPerGram = theobromineContentMap[inputs.chocolateType];
@@ -137,14 +139,29 @@ export default function CatChocolateToxicityCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <select
+          <Select
             value={unit}
-            onChange={(e) => setUnit(e.target.value)}
-            className="border rounded px-3 py-1 dark:bg-slate-800 dark:text-slate-100"
+            onValueChange={(next) => {
+              if (next !== "kg" && next !== "lb") return;
+              const weightRaw = parseFloat(inputs.weight);
+              if (Number.isFinite(weightRaw) && weightRaw > 0) {
+                const nextWeight = convertWeight(weightRaw, unit, next);
+                setInputs((prev) => ({
+                  ...prev,
+                  weight: formatNumberForInput(nextWeight, 2),
+                }));
+              }
+              setUnit(next);
+            }}
           >
-            <option value="imperial">Imperial (lbs)</option>
-            <option value="metric">Metric (kg)</option>
-          </select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
 
@@ -152,7 +169,7 @@ export default function CatChocolateToxicityCalculator() {
       <div className="space-y-4">
         <div>
           <Label htmlFor="weight" className="text-slate-700 dark:text-slate-300">
-            Cat Weight ({unit === "imperial" ? "lbs" : "kg"})
+            Cat Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="weight"
@@ -160,7 +177,7 @@ export default function CatChocolateToxicityCalculator() {
             type="number"
             min="0"
             step="any"
-            placeholder={`Enter weight in ${unit === "imperial" ? "lbs" : "kg"}`}
+            placeholder={`Enter weight in ${unit === "lb" ? "lbs" : "kg"}`}
             value={inputs.weight}
             onChange={onInputChange}
             className="mt-1"

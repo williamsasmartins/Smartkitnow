@@ -8,18 +8,56 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 // ⚠️ FULL ICON IMPORT
 import { Activity, Timer, TrendingUp, Dumbbell, Trophy, Medal, Flag, Flame, Zap, Heart, Scale, Calculator, Info, RotateCcw, AlertTriangle, BookOpen, ExternalLink, Waves, Gauge } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { formatNumberForInput, LB_PER_KG } from "@/lib/utils";
 
 export default function HydrationSweatRateCalculator() {
-  const [inputs, setInputs] = useState({
+  const { unit: preferredWeightUnit, setUnit: setPreferredWeightUnit } = useWeightUnitPreference();
+  const [inputs, setInputs] = useState(() => ({
     preWeight: "",
     postWeight: "",
     exerciseDuration: "",
     fluidConsumed: "",
-    unit: "metric",
-  });
+    unit: preferredWeightUnit === "lb" ? "imperial" : "metric",
+  }));
   const handleInputChange = useCallback((name, value) => {
+    if (name === "unit") {
+      const nextUnit = value === "imperial" ? "imperial" : "metric";
+      setInputs((prev) => {
+        const currentUnit = prev.unit === "imperial" ? "imperial" : "metric";
+        if (currentUnit === nextUnit) return prev;
+
+        const preNum = parseFloat(prev.preWeight);
+        const postNum = parseFloat(prev.postWeight);
+        const fluidNum = parseFloat(prev.fluidConsumed);
+
+        const hasPre = prev.preWeight !== "" && !Number.isNaN(preNum) && preNum > 0;
+        const hasPost = prev.postWeight !== "" && !Number.isNaN(postNum) && postNum > 0;
+        const hasFluid = prev.fluidConsumed !== "" && !Number.isNaN(fluidNum) && fluidNum >= 0;
+
+        const kgToLb = (n: number) => n * LB_PER_KG;
+        const lbToKg = (n: number) => n / LB_PER_KG;
+        const lToFlOz = (n: number) => n * 33.8140227018;
+        const flOzToL = (n: number) => n / 33.8140227018;
+
+        const fromMetric = currentUnit === "metric";
+        const nextPre = hasPre ? (fromMetric ? kgToLb(preNum) : lbToKg(preNum)) : preNum;
+        const nextPost = hasPost ? (fromMetric ? kgToLb(postNum) : lbToKg(postNum)) : postNum;
+        const nextFluid = hasFluid ? (fromMetric ? lToFlOz(fluidNum) : flOzToL(fluidNum)) : fluidNum;
+
+        return {
+          ...prev,
+          unit: nextUnit,
+          preWeight: hasPre ? formatNumberForInput(nextPre, 2) : prev.preWeight,
+          postWeight: hasPost ? formatNumberForInput(nextPost, 2) : prev.postWeight,
+          fluidConsumed: hasFluid ? formatNumberForInput(nextFluid, 2) : prev.fluidConsumed,
+        };
+      });
+      setPreferredWeightUnit(nextUnit === "imperial" ? "lb" : "kg");
+      return;
+    }
     setInputs((prev) => ({ ...prev, [name]: value }));
-  }, []);
+  }, [setPreferredWeightUnit]);
 
   // Sweat rate calculation logic:
   // Sweat Rate (L/hr) = ((Pre-exercise body mass - Post-exercise body mass) + Fluid consumed) / Exercise duration (hours)
@@ -66,8 +104,8 @@ export default function HydrationSweatRateCalculator() {
     let fluidLiters = fluid;
 
     if (unit === "imperial") {
-      preWeightKg = preW * 0.453592;
-      postWeightKg = postW * 0.453592;
+      preWeightKg = preW / LB_PER_KG;
+      postWeightKg = postW / LB_PER_KG;
       fluidLiters = fluid * 0.0295735;
     }
 
@@ -218,13 +256,13 @@ export default function HydrationSweatRateCalculator() {
         <Button
           variant="outline"
           onClick={() =>
-            setInputs({
+            setInputs((prev) => ({
+              ...prev,
               preWeight: "",
               postWeight: "",
               exerciseDuration: "",
               fluidConsumed: "",
-              unit: "metric",
-            })
+            }))
           }
           className="flex-1 h-11"
         >

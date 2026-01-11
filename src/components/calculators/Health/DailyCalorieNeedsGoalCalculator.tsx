@@ -19,10 +19,13 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput } from "@/lib/utils";
 
 export default function DailyCalorieNeedsGoalCalculator() {
   // 1. STATE (Imperial Default)
-  const [unit, setUnit] = useState("imperial");
+  const { unit: preferredWeightUnit, setUnit: setPreferredWeightUnit } = useWeightUnitPreference();
+  const [unit, setUnit] = useState<"imperial" | "metric">(() => (preferredWeightUnit === "lb" ? "imperial" : "metric"));
   const [inputs, setInputs] = useState({
     age: "",
     sex: "male",
@@ -159,7 +162,64 @@ export default function DailyCalorieNeedsGoalCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "imperial" && next !== "metric") return;
+              setInputs((prev) => {
+                if (next === unit) return prev;
+
+                const weightNum = parseFloat(prev.weight);
+                const nextWeight =
+                  prev.weight !== "" && !Number.isNaN(weightNum) && weightNum > 0
+                    ? formatNumberForInput(
+                        convertWeight(weightNum, unit === "imperial" ? "lb" : "kg", next === "imperial" ? "lb" : "kg"),
+                        2,
+                      )
+                    : prev.weight;
+
+                if (next === "metric") {
+                  const feetNum = parseFloat(prev.heightFeet);
+                  const inchesNum = parseFloat(prev.heightInches);
+                  const canConvertHeight = prev.heightFeet !== "" && prev.heightInches !== "" && !Number.isNaN(feetNum) && !Number.isNaN(inchesNum);
+                  const heightCm = canConvertHeight ? (feetNum * 12 + inchesNum) * 2.54 : prev.heightCm;
+                  return {
+                    ...prev,
+                    weight: nextWeight,
+                    heightCm: canConvertHeight ? formatNumberForInput(heightCm, 1) : prev.heightCm,
+                    heightFeet: "",
+                    heightInches: "",
+                  };
+                }
+
+                const cmNum = parseFloat(prev.heightCm);
+                const canConvertHeight = prev.heightCm !== "" && !Number.isNaN(cmNum) && cmNum > 0;
+                if (!canConvertHeight) {
+                  return {
+                    ...prev,
+                    weight: nextWeight,
+                    heightCm: "",
+                  };
+                }
+                const totalInches = cmNum / 2.54;
+                let feet = Math.floor(totalInches / 12);
+                let inches = Math.round(totalInches - feet * 12);
+                if (inches === 12) {
+                  feet += 1;
+                  inches = 0;
+                }
+                return {
+                  ...prev,
+                  weight: nextWeight,
+                  heightFeet: String(feet),
+                  heightInches: String(inches),
+                  heightCm: "",
+                };
+              });
+              setUnit(next);
+              setPreferredWeightUnit(next === "imperial" ? "lb" : "kg");
+            }}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>

@@ -106,7 +106,6 @@ export default function DeathByCaffeineCalculator() {
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button
           onClick={() => {
-            // no-op (results update automatically)
           }}
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white shadow-md"
           aria-label="Calculate lethal caffeine dose"

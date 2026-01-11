@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 // ⚠️ FULL ICON IMPORT
 import { Home, Heart, Utensils, Leaf, Calendar, DollarSign, Droplets, Activity, Moon, Sun, Users, Paintbrush, Wrench, Info, RotateCcw, AlertTriangle, FlaskConical, Scale, Waves, Zap, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, LB_PER_KG, weightToKg } from "@/lib/utils";
 
 const CAFFEINE_MG_PER_UNIT = {
   coffee: 95, // average mg per 8 oz cup brewed coffee
@@ -19,10 +21,11 @@ const CAFFEINE_MG_PER_UNIT = {
 };
 
 export default function CaffeineMaxPerDayCalculator() {
+  const { unit: preferredWeightUnit, setUnit: setPreferredWeightUnit } = useWeightUnitPreference();
   // Inputs: weight, unit (kg or lbs), optional age, pregnancy, health conditions
-  const [inputs, setInputs] = useState({
+  const [inputs, setInputs] = useState(() => ({
     weight: "",
-    weightUnit: "kg",
+    weightUnit: preferredWeightUnit === "lb" ? "lbs" : "kg",
     age: "",
     pregnant: "no",
     healthCondition: "none",
@@ -34,9 +37,24 @@ export default function CaffeineMaxPerDayCalculator() {
       energyDrink: "",
       chocolate: "",
     },
-  });
+  }));
 
   const handleInputChange = useCallback((name, value) => {
+    if (name === "weightUnit") {
+      const nextUnit = value === "lbs" ? "lbs" : "kg";
+      setInputs((prev) => {
+        const currentUnit = prev.weightUnit === "lbs" ? "lbs" : "kg";
+        if (currentUnit === nextUnit) return prev;
+        const num = parseFloat(prev.weight);
+        const fromUnit = currentUnit === "lbs" ? "lb" : "kg";
+        const toUnit = nextUnit === "lbs" ? "lb" : "kg";
+        const nextWeight =
+          !prev.weight || Number.isNaN(num) || num <= 0 ? prev.weight : formatNumberForInput(convertWeight(num, fromUnit, toUnit), 2);
+        return { ...prev, weightUnit: nextUnit, weight: nextWeight };
+      });
+      setPreferredWeightUnit(nextUnit === "lbs" ? "lb" : "kg");
+      return;
+    }
     if (name.startsWith("caffeineSources.")) {
       const key = name.split(".")[1];
       setInputs((prev) => ({
@@ -49,7 +67,7 @@ export default function CaffeineMaxPerDayCalculator() {
     } else {
       setInputs((prev) => ({ ...prev, [name]: value }));
     }
-  }, []);
+  }, [setPreferredWeightUnit]);
 
   // Calculation logic:
   // Step 1: Convert weight to kg if needed
@@ -70,7 +88,7 @@ export default function CaffeineMaxPerDayCalculator() {
     }
 
     // Convert weight to kg if input is in lbs
-    const weightKg = inputs.weightUnit === "lbs" ? weightNum * 0.453592 : weightNum;
+    const weightKg = weightToKg(weightNum, inputs.weightUnit === "lbs" ? "lb" : "kg");
 
     // Base max caffeine mg per kg body weight (general safe limit)
     // According to FDA and other sources, 3-5 mg/kg is safe for most adults.
@@ -118,7 +136,10 @@ export default function CaffeineMaxPerDayCalculator() {
         ? `You have consumed approximately ${caffeineIntakeMg.toFixed(0)} mg caffeine. Remaining safe intake: ${remainingMg > 0 ? remainingMg.toFixed(0) + " mg" : "0 mg (limit reached or exceeded)"}`
         : "Enter your caffeine consumption to see remaining safe intake.",
       warning,
-      formulaUsed: `Max caffeine (mg) = Body weight (kg) × 4 mg/kg (adjusted for age, pregnancy, health)`,
+      formulaUsed:
+        inputs.weightUnit === "lbs"
+          ? `Max caffeine (mg) = Body weight (lb) × ${(4 / LB_PER_KG).toFixed(2)} mg/lb (adjusted for age, pregnancy, health)`
+          : "Max caffeine (mg) = Body weight (kg) × 4 mg/kg (adjusted for age, pregnancy, health)",
       remainingMg: remainingMg > 0 ? remainingMg : 0,
       caffeineIntakeMg,
       adjustedMaxMg,

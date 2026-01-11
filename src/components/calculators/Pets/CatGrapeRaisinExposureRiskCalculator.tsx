@@ -4,13 +4,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, RotateCcw, Info, AlertTriangle } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, weightToKg } from "@/lib/utils";
 
 export default function CatGrapeRaisinExposureRiskCalculator() {
   // 1. STATE
   // No unit selector needed since inputs are count-based
   // Inputs: number of grapes or raisins ingested
+  const { unit, setUnit } = useWeightUnitPreference();
   const [inputs, setInputs] = useState({
     grapes: "",
     raisins: "",
@@ -30,15 +34,15 @@ export default function CatGrapeRaisinExposureRiskCalculator() {
   const results = useMemo(() => {
     const grapesNum = parseInt(inputs.grapes);
     const raisinsNum = parseInt(inputs.raisins);
-    const weightLb = parseFloat(inputs.catWeight);
+    const weightRaw = parseFloat(inputs.catWeight);
 
     if (
       isNaN(grapesNum) ||
       grapesNum < 0 ||
       isNaN(raisinsNum) ||
       raisinsNum < 0 ||
-      isNaN(weightLb) ||
-      weightLb <= 0
+      isNaN(weightRaw) ||
+      weightRaw <= 0
     ) {
       return {
         value: 0,
@@ -48,8 +52,7 @@ export default function CatGrapeRaisinExposureRiskCalculator() {
       };
     }
 
-    // Convert weight to kg
-    const weightKg = weightLb / 2.20462;
+    const weightKg = weightToKg(weightRaw, unit);
 
     // Calculate total grape/raisin weight in grams
     const grapeWeightG = grapesNum * 5; // 5 g per grape
@@ -79,7 +82,7 @@ export default function CatGrapeRaisinExposureRiskCalculator() {
         "Dose calculated based on estimated grape and raisin weights relative to cat's body weight.",
       warning,
     };
-  }, [inputs]);
+  }, [inputs, unit]);
 
   // 3. FAQS (MUST BE DETAILED - 3 SENTENCES MINIMUM)
   const faqs = [
@@ -109,18 +112,46 @@ export default function CatGrapeRaisinExposureRiskCalculator() {
   // 4. WIDGET JSX
   const widget = (
     <div className="space-y-6">
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "kg" && next !== "lb") return;
+              const weightRaw = parseFloat(inputs.catWeight);
+              if (Number.isFinite(weightRaw) && weightRaw > 0) {
+                const nextWeight = convertWeight(weightRaw, unit, next);
+                setInputs((prev) => ({
+                  ...prev,
+                  catWeight: formatNumberForInput(nextWeight, 2),
+                }));
+              }
+              setUnit(next);
+            }}
+          >
+            <SelectTrigger className="w-[180px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="lb">Imperial (lbs)</SelectItem>
+              <SelectItem value="kg">Metric (kg)</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
       {/* Inputs */}
       <div className="space-y-4">
         <div>
           <Label htmlFor="catWeight" className="text-slate-700 dark:text-slate-300">
-            Cat Weight (lbs)
+            Cat Weight ({unit === "lb" ? "lbs" : "kg"})
           </Label>
           <Input
             id="catWeight"
             type="number"
             min="0"
             step="0.1"
-            placeholder="e.g. 10.5"
+            placeholder={unit === "lb" ? "e.g. 10.5" : "e.g. 4.8"}
             value={inputs.catWeight}
             onChange={(e) => setInputs({ ...inputs, catWeight: e.target.value })}
           />

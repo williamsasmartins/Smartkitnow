@@ -19,10 +19,13 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight } from "@/lib/utils";
 
 export default function StepsDistanceCaloriesConverterCalculator() {
   // 1. STATE (Imperial Default)
-  const [unit, setUnit] = useState("imperial");
+  const { unit: preferredWeightUnit, setUnit: setPreferredWeightUnit } = useWeightUnitPreference();
+  const [unit, setUnit] = useState<"imperial" | "metric">(() => (preferredWeightUnit === "lb" ? "imperial" : "metric"));
   const [inputs, setInputs] = useState<{
     steps?: number;
     distance?: number;
@@ -169,7 +172,20 @@ export default function StepsDistanceCaloriesConverterCalculator() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Label className="text-slate-700 dark:text-slate-300">Unit System</Label>
-          <Select value={unit} onValueChange={setUnit}>
+          <Select
+            value={unit}
+            onValueChange={(next) => {
+              if (next !== "imperial" && next !== "metric") return;
+              setInputs((prev) => {
+                if (next === unit) return prev;
+                if (prev.weight === undefined || prev.weight <= 0) return prev;
+                const nextWeight = convertWeight(prev.weight, unit === "imperial" ? "lb" : "kg", next === "imperial" ? "lb" : "kg");
+                return { ...prev, weight: +nextWeight.toFixed(2) };
+              });
+              setUnit(next);
+              setPreferredWeightUnit(next === "imperial" ? "lb" : "kg");
+            }}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue />
             </SelectTrigger>

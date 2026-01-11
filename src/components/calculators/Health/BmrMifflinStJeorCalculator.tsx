@@ -19,10 +19,12 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
 
 export default function BmrMifflinStJeorCalculator() {
   // 1. STATE (Imperial Default)
-  const [unit, setUnit] = useState("imperial");
+  const { unit: preferredWeightUnit, setUnit: setPreferredWeightUnit } = useWeightUnitPreference();
+  const [unit, setUnit] = useState<"imperial" | "metric">(() => (preferredWeightUnit === "lb" ? "imperial" : "metric"));
   const [inputs, setInputs] = useState<{
     weight?: number;
     heightFeet?: number;
@@ -121,16 +123,50 @@ export default function BmrMifflinStJeorCalculator() {
           <Select
             value={unit}
             onValueChange={(val) => {
-              setUnit(val);
-              // Reset inputs on unit change to avoid confusion
-              setInputs({
-                weight: undefined,
-                heightFeet: undefined,
-                heightInches: undefined,
-                heightCm: undefined,
-                age: undefined,
-                sex: undefined,
+              if (val !== "imperial" && val !== "metric") return;
+              setInputs((prev) => {
+                if (val === unit) return prev;
+                if (val === "metric") {
+                  const weightKg = prev.weight !== undefined ? prev.weight * 0.45359237 : undefined;
+                  const heightIn =
+                    prev.heightFeet !== undefined && prev.heightInches !== undefined
+                      ? prev.heightFeet * 12 + prev.heightInches
+                      : undefined;
+                  const heightCm = heightIn !== undefined ? heightIn * 2.54 : prev.heightCm;
+                  return {
+                    ...prev,
+                    weight: weightKg,
+                    heightCm,
+                    heightFeet: undefined,
+                    heightInches: undefined,
+                  };
+                }
+
+                const weightLb = prev.weight !== undefined ? prev.weight / 0.45359237 : undefined;
+                const inchesTotal = prev.heightCm !== undefined ? prev.heightCm / 2.54 : undefined;
+                if (inchesTotal === undefined) {
+                  return {
+                    ...prev,
+                    weight: weightLb,
+                    heightCm: undefined,
+                  };
+                }
+                let feet = Math.floor(inchesTotal / 12);
+                let inches = Math.round(inchesTotal - feet * 12);
+                if (inches === 12) {
+                  feet += 1;
+                  inches = 0;
+                }
+                return {
+                  ...prev,
+                  weight: weightLb,
+                  heightFeet: feet,
+                  heightInches: inches,
+                  heightCm: undefined,
+                };
               });
+              setUnit(val);
+              setPreferredWeightUnit(val === "imperial" ? "lb" : "kg");
             }}
           >
             <SelectTrigger className="w-[180px]">
