@@ -7551,6 +7551,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TriTipSteakCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "reverse-sear-ribeye",
+    title: "Reverse Sear Ribeye",
+    category: "culinary",
+    subcategory: "bbq-smoking",
+    description: "Reverse-sear ribeye for edge-to-edge doneness, crisp crust, and precise temperature control.",
+    loader: () => import("@/components/calculators/Misc/ReverseSearRibeyeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
