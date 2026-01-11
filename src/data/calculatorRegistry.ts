@@ -7659,6 +7659,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SalsaVerdeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "roasted-tomato-salsa",
+    title: "Roasted Tomato Salsa",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Salsa de tomate assado com sabor defumado e mais profundo.",
+    loader: () => import("@/components/calculators/Misc/RoastedTomatoSalsaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
