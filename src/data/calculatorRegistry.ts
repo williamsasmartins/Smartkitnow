@@ -7524,6 +7524,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/StLouisRibsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "baby-back-ribs",
+    title: "Baby Back Ribs",
+    category: "culinary",
+    subcategory: "bbq-smoking",
+    description: "Smoke baby back ribs until tender with a sweet-savory rub and reliable doneness checks.",
+    loader: () => import("@/components/calculators/Misc/BabyBackRibsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
