@@ -8136,6 +8136,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TortillasDeMaizCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tortillas-de-harina",
+    title: "Flour Tortillas",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tortilhas de trigo macias, comuns no norte do México.",
+    loader: () => import("@/components/calculators/Misc/TortillasDeHarinaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
