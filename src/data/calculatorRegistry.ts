@@ -7722,6 +7722,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ShrimpCocktailMexicanStyleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "nachos",
+    title: "Nachos",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tortilla chips com queijo e coberturas como feijões, salsa e jalapeño.",
+    loader: () => import("@/components/calculators/Misc/NachosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
