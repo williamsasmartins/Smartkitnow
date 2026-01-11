@@ -7650,6 +7650,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SalsaRojaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "salsa-verde",
+    title: "Salsa Verde",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Salsa verde de tomatillo e pimentas, com acidez e frescor.",
+    loader: () => import("@/components/calculators/Misc/SalsaVerdeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
