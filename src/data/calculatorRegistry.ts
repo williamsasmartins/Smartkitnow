@@ -7902,6 +7902,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ShrimpTacosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chicken-tinga-tacos",
+    title: "Chicken Tinga Tacos",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tacos de frango desfiado em molho de tomate e chipotle.",
+    loader: () => import("@/components/calculators/Misc/ChickenTingaTacosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
