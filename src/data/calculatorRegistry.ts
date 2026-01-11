@@ -7866,6 +7866,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CarnitasTacosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "barbacoa-tacos",
+    title: "Barbacoa Tacos",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Carne cozida lentamente, macia e bem temperada, servida em tacos.",
+    loader: () => import("@/components/calculators/Misc/BarbacoaTacosCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
