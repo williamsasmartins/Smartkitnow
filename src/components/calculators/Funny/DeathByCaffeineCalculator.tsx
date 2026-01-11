@@ -6,10 +6,27 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Sparkles, RotateCcw, Lightbulb, ExternalLink, Coffee, Skull } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { WeightUnitToggle } from "@/components/ui/weight-unit-toggle";
+import { useWeightUnitPreference } from "@/hooks/useWeightUnitPreference";
+import { convertWeight, formatNumberForInput, LB_PER_KG, weightToKg } from "@/lib/utils";
 
 export default function DeathByCaffeineCalculator() {
-  const [inputs, setInputs] = useState({ weight: "" });
-  const handleInputChange = useCallback((n, v) => setInputs((p) => ({ ...p, [n]: v })), []);
+  const { unit, setUnit } = useWeightUnitPreference();
+  const [weight, setWeight] = useState("");
+
+  const handleUnitChange = useCallback(
+    (nextUnit: "kg" | "lb") => {
+      if (nextUnit === unit) return;
+      setWeight((prev) => {
+        const num = parseFloat(prev);
+        if (!prev || Number.isNaN(num) || num <= 0) return prev;
+        const converted = convertWeight(num, unit, nextUnit);
+        return formatNumberForInput(converted, 2);
+      });
+      setUnit(nextUnit);
+    },
+    [setUnit, unit],
+  );
 
   /**
    * Calculation logic:
@@ -20,11 +37,12 @@ export default function DeathByCaffeineCalculator() {
    * - Also convert to approximate cups of coffee (1 cup ~ 95 mg caffeine).
    */
   const results = useMemo(() => {
-    const weightKg = parseFloat(inputs.weight);
-    if (!inputs.weight || isNaN(weightKg) || weightKg <= 0) {
+    const weightValue = parseFloat(weight);
+    if (!weight || Number.isNaN(weightValue) || weightValue <= 0) {
       return { value: null };
     }
 
+    const weightKg = weightToKg(weightValue, unit);
     const lethalDoseMgPerKg = 190; // mg per kg body weight
     const lethalDoseMg = lethalDoseMgPerKg * weightKg;
 
@@ -40,7 +58,7 @@ export default function DeathByCaffeineCalculator() {
       color: "text-red-600",
       icon: <Skull className="mx-auto h-12 w-12 text-red-600" />,
     };
-  }, [inputs]);
+  }, [unit, weight]);
 
   const faqs = [
     {
@@ -64,29 +82,31 @@ export default function DeathByCaffeineCalculator() {
   const widget = (
     <div className="space-y-6">
       <div>
-        <Label htmlFor="weight" className="mb-2 block font-semibold text-slate-700 dark:text-slate-300">
-          Your Body Weight (kg)
-        </Label>
+        <div className="mb-2 flex items-center justify-between gap-3">
+          <Label htmlFor="weight" className="block font-semibold text-slate-700 dark:text-slate-300">
+            Your Body Weight ({unit})
+          </Label>
+          <WeightUnitToggle value={unit} onChange={handleUnitChange} />
+        </div>
         <Input
           id="weight"
           type="number"
           min={0}
           step="any"
-          placeholder="e.g. 70"
-          value={inputs.weight}
-          onChange={(e) => handleInputChange("weight", e.target.value)}
+          placeholder={unit === "kg" ? "e.g. 70" : "e.g. 154"}
+          value={weight}
+          onChange={(e) => setWeight(e.target.value)}
           aria-describedby="weight-help"
         />
         <p id="weight-help" className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-          Enter your weight in kilograms to estimate your lethal caffeine dose.
+          Enter your weight in {unit === "kg" ? "kilograms (kg)" : "pounds (lb)"} to estimate your lethal caffeine dose.
         </p>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-3 pt-4">
         <Button
           onClick={() => {
-            // Just trigger recalculation by setting inputs again (no extra logic needed)
-            setInputs((p) => ({ ...p }));
+            // no-op (results update automatically)
           }}
           className="flex-1 h-11 bg-blue-600 hover:bg-blue-700 text-white shadow-md"
           aria-label="Calculate lethal caffeine dose"
@@ -95,7 +115,7 @@ export default function DeathByCaffeineCalculator() {
         </Button>
         <Button
           variant="outline"
-          onClick={() => setInputs({ weight: "" })}
+          onClick={() => setWeight("")}
           className="flex-1 h-11"
           aria-label="Reset input"
         >
@@ -199,22 +219,47 @@ export default function DeathByCaffeineCalculator() {
       jsonLd={faqJsonLd}
       formula={{
         title: "The Math",
-        formula: "Lethal Dose (mg) = Body Weight (kg) × 190 mg/kg",
-        variables: [
-          { symbol: "Lethal Dose (mg)", description: "Estimated lethal caffeine dose in milligrams" },
-          { symbol: "Body Weight (kg)", description: "Your body weight in kilograms" },
-          { symbol: "190 mg/kg", description: "Average lethal dose of caffeine per kilogram of body weight" },
-        ],
+        formula:
+          unit === "kg"
+            ? "Lethal Dose (mg) = Body Weight (kg) × 190 mg/kg"
+            : `Lethal Dose (mg) = Body Weight (lb) × ${(190 / LB_PER_KG).toFixed(2)} mg/lb`,
+        variables:
+          unit === "kg"
+            ? [
+                { symbol: "Lethal Dose (mg)", description: "Estimated lethal caffeine dose in milligrams" },
+                { symbol: "Body Weight (kg)", description: "Your body weight in kilograms" },
+                { symbol: "190 mg/kg", description: "Average lethal dose of caffeine per kilogram of body weight" },
+              ]
+            : [
+                { symbol: "Lethal Dose (mg)", description: "Estimated lethal caffeine dose in milligrams" },
+                { symbol: "Body Weight (lb)", description: "Your body weight in pounds" },
+                { symbol: `${(190 / LB_PER_KG).toFixed(2)} mg/lb`, description: "Average lethal dose of caffeine per pound of body weight" },
+              ],
       }}
       example={{
         title: "Example",
-        scenario: "Calculate lethal caffeine dose for a person weighing 70 kg.",
+        scenario:
+          unit === "kg"
+            ? "Calculate lethal caffeine dose for a person weighing 70 kg."
+            : "Calculate lethal caffeine dose for a person weighing 154 lb.",
         steps: [
-          { label: "1", explanation: "Multiply 70 kg by 190 mg/kg." },
-          { label: "2", explanation: "70 × 190 = 13,300 mg caffeine." },
-          { label: "3", explanation: "This equals about 140 cups of coffee (13,300 ÷ 95 mg per cup)." },
+          unit === "kg"
+            ? { label: "1", explanation: "Multiply 70 kg by 190 mg/kg." }
+            : { label: "1", explanation: `Multiply 154 lb by ${(190 / LB_PER_KG).toFixed(2)} mg/lb.` },
+          unit === "kg"
+            ? { label: "2", explanation: "70 × 190 = 13,300 mg caffeine." }
+            : { label: "2", explanation: `154 × ${(190 / LB_PER_KG).toFixed(2)} ≈ ${(154 * (190 / LB_PER_KG)).toLocaleString("en-US", { maximumFractionDigits: 0 })} mg caffeine.` },
+          unit === "kg"
+            ? { label: "3", explanation: "This equals about 140 cups of coffee (13,300 ÷ 95 mg per cup)." }
+            : {
+                label: "3",
+                explanation: `This equals about ${((154 * (190 / LB_PER_KG)) / 95).toFixed(0)} cups of coffee (÷ 95 mg per cup).`,
+              },
         ],
-        result: "The estimated lethal dose is 13,300 mg caffeine, roughly 140 cups of coffee.",
+        result:
+          unit === "kg"
+            ? "The estimated lethal dose is 13,300 mg caffeine, roughly 140 cups of coffee."
+            : `The estimated lethal dose is ${(154 * (190 / LB_PER_KG)).toLocaleString("en-US", { maximumFractionDigits: 0 })} mg caffeine, roughly ${((154 * (190 / LB_PER_KG)) / 95).toFixed(0)} cups of coffee.`,
       }}
       relatedCalculators={[
         { title: "Coffee Strength vs Productivity Score", url: "/funny/coffee-strength-vs-productivity-meme", icon: "☕" },
