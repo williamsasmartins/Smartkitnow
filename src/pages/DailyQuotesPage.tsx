@@ -27,7 +27,6 @@ type DailyDataPacket = {
     faith: DailyQuoteItem[];
     wisdom: DailyQuoteItem[];
   };
-  // Signs are at the root, but the Widget handles them separately
 };
 
 type CategoryKey = keyof DailyDataPacket["content"] | "horoscope" | "dream";
@@ -38,6 +37,11 @@ export default function DailyQuotesPage() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryKey | null>(null);
   const [liked, setLiked] = useState<Set<number>>(new Set());
   const [shuffleSeed, setShuffleSeed] = useState(0);
+
+  // --- DREAM INTERPRETER STATES ---
+  const [dreamInput, setDreamInput] = useState("");
+  const [interpretation, setInterpretation] = useState<any>(null);
+  const [isInterpreting, setIsInterpreting] = useState(false);
 
   // FETCH REAL DATA
   useEffect(() => {
@@ -67,6 +71,44 @@ export default function DailyQuotesPage() {
 
   const handleShuffle = () => {
     setShuffleSeed(prev => prev + 1);
+  };
+
+  // --- DREAM INTERPRETER LOGIC ---
+  const handleInterpretDream = async () => {
+    if (!dreamInput.trim()) return;
+    setIsInterpreting(true);
+    setInterpretation(null);
+
+    try {
+      const res = await fetch("https://n8n.sweetslove.ca/webhook/dream-interpreter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ dream: dreamInput }),
+      });
+
+      if (!res.ok) throw new Error("Failed to interpret");
+
+      const data = await res.json();
+      
+      // O n8n pode retornar o JSON direto ou dentro de uma estrutura, dependendo do nó
+      // Vamos tentar pegar o conteúdo de forma segura
+      let aiContent = data.message?.content || data[0]?.message?.content || data.content || data;
+      
+      if (typeof aiContent === "string") {
+        // Limpa se vier com markdown ```json ... ```
+        const cleanJson = aiContent.replace(/^```json\s*/i, "").replace(/\s*```$/, "");
+        setInterpretation(JSON.parse(cleanJson));
+      } else {
+        // Se já for objeto
+        setInterpretation(aiContent);
+      }
+
+    } catch (error) {
+      console.error("Dream API Error:", error);
+      toast("Our mystical AI is meditating. Please try again in a moment.");
+    } finally {
+      setIsInterpreting(false);
+    }
   };
 
   const CATEGORIES = [
@@ -106,26 +148,98 @@ export default function DailyQuotesPage() {
 
   const renderContent = () => {
     if (selectedCategory === "horoscope") {
-      // The widget fetches internally, so it works independently
       return <DailyHoroscopeWidget showNavigation={false} />;
     }
 
+    // --- DREAM INTERPRETER UI ---
     if (selectedCategory === "dream") {
       return (
-        <div className="text-center py-20 bg-muted/20 rounded-xl border border-dashed border-border animate-in fade-in zoom-in-95">
-          <div className="w-20 h-20 mx-auto bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mb-6">
-            <Moon className="w-10 h-10 text-indigo-500" />
-          </div>
-          <h3 className="text-2xl font-bold mb-3">Dream Interpreter AI</h3>
-          <p className="text-muted-foreground max-w-md mx-auto mb-8 leading-relaxed">
-            Did you dream about flying, falling, or losing teeth? Our AI interpretation tool is being calibrated to uncover the hidden meanings of your subconscious.
-          </p>
-          <div className="flex justify-center gap-4">
-            <Button variant="outline" onClick={() => setSelectedCategory(null)}>
-              Go Back
+        <div className="max-w-2xl mx-auto animate-in fade-in zoom-in-95 duration-500">
+          
+          {/* Input Section */}
+          <div className="bg-muted/30 rounded-2xl p-6 border border-border mb-8">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 bg-indigo-500/10 rounded-lg">
+                <Moon className="w-6 h-6 text-indigo-500" />
+              </div>
+              <h3 className="text-xl font-bold">What did you dream?</h3>
+            </div>
+            
+            <textarea 
+              value={dreamInput}
+              onChange={(e) => setDreamInput(e.target.value)}
+              placeholder="I was flying over a crystal city, but my wings felt heavy..."
+              className="w-full min-h-[120px] p-4 rounded-xl bg-background border border-input focus:ring-2 focus:ring-indigo-500/50 resize-none transition-all mb-4"
+              disabled={isInterpreting}
+            />
+            
+            <Button 
+              onClick={handleInterpretDream} 
+              disabled={isInterpreting || !dreamInput.trim()}
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-500/20 h-12 text-lg"
+            >
+              {isInterpreting ? (
+                <>
+                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  Analyzing Symbols...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="w-5 h-5 mr-2" />
+                  Interpret Dream
+                </>
+              )}
             </Button>
-            <Button disabled>Coming Soon</Button>
           </div>
+
+          {/* Result Section */}
+          {interpretation && (
+            <div className="space-y-6 animate-in slide-in-from-bottom-4 duration-700">
+              
+              {/* Summary Card */}
+              <div className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-xl p-6 text-center">
+                <h4 className="text-indigo-500 font-bold uppercase tracking-wider text-xs mb-2">Core Meaning</h4>
+                <p className="text-xl font-medium text-foreground leading-relaxed">
+                  "{interpretation.summary}"
+                </p>
+              </div>
+
+              {/* Analysis */}
+              <div className="prose dark:prose-invert max-w-none">
+                <h4 className="flex items-center gap-2 text-lg font-bold mb-2">
+                  <Brain className="w-5 h-5 text-purple-500" />
+                  Psychological Analysis
+                </h4>
+                <p className="text-muted-foreground leading-relaxed">
+                  {interpretation.analysis}
+                </p>
+              </div>
+
+              {/* Symbols Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {interpretation.symbols?.map((sym: string, idx: number) => (
+                  <div key={idx} className="bg-muted/40 p-4 rounded-lg border border-border flex items-start gap-3">
+                    <Sparkles className="w-4 h-4 text-amber-500 mt-1 shrink-0" />
+                    <span className="text-sm text-foreground/90">{sym}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Advice */}
+              <div className="bg-emerald-500/10 border border-emerald-500/20 p-5 rounded-xl flex gap-4 items-start">
+                <div className="p-2 bg-emerald-500/20 rounded-full shrink-0">
+                  <HeartHandshake className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-emerald-700 dark:text-emerald-400 text-sm uppercase mb-1">Guidance</h4>
+                  <p className="text-emerald-900 dark:text-emerald-100 font-medium">
+                    {interpretation.advice}
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          )}
         </div>
       );
     }
