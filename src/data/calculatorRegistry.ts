@@ -7767,6 +7767,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PozoleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "menudo",
+    title: "Menudo",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Sopa clássica com dobradinha e caldo apimentado, bem reconfortante.",
+    loader: () => import("@/components/calculators/Misc/MenudoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
