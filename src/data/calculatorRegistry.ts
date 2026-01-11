@@ -7614,6 +7614,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GrilledShrimpCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "grilled-vegetables",
+    title: "Grilled Vegetables",
+    category: "culinary",
+    subcategory: "bbq-smoking",
+    description: "Grill vegetables with char, seasoning blends, and texture-friendly heat zones.",
+    loader: () => import("@/components/calculators/Misc/GrilledVegetablesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
