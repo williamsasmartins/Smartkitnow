@@ -7560,6 +7560,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ReverseSearRibeyeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "smoked-turkey",
+    title: "Smoked Turkey",
+    category: "culinary",
+    subcategory: "bbq-smoking",
+    description: "Smoke turkey for juicy breast meat, crispy skin tips, and safe internal temperature guidance.",
+    loader: () => import("@/components/calculators/Misc/SmokedTurkeyCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
