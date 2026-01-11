@@ -7938,6 +7938,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CheeseEnchiladasCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "enchiladas-verdes",
+    title: "Enchiladas Verdes",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Enchiladas com salsa verde (tomatillo), geralmente com frango e creme.",
+    loader: () => import("@/components/calculators/Misc/EnchiladasVerdesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
