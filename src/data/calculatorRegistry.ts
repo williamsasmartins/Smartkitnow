@@ -7704,6 +7704,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EsquitesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "ceviche-mexican-style",
+    title: "Ceviche (Mexican-Style)",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Ceviche cítrico com peixe/seafood, tomate, cebola e coentro.",
+    loader: () => import("@/components/calculators/Misc/CevicheMexicanStyleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
