@@ -8127,6 +8127,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FrijolesCharrosCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "tortillas-de-maiz",
+    title: "Corn Tortillas",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Tortilhas de milho para tacos e tostadas, base da cozinha mexicana.",
+    loader: () => import("@/components/calculators/Misc/TortillasDeMaizCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
