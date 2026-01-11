@@ -7623,6 +7623,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GrilledVegetablesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "guacamole",
+    title: "Guacamole",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Creme de abacate com limão, sal e temperos, servido com chips.",
+    loader: () => import("@/components/calculators/Misc/GuacamoleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
