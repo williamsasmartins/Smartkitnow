@@ -7668,6 +7668,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RoastedTomatoSalsaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "black-bean-dip",
+    title: "Black Bean Dip",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Dip cremoso de feijão preto temperado, ótimo para nachos.",
+    loader: () => import("@/components/calculators/Misc/BlackBeanDipCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
