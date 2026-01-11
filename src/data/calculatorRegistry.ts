@@ -7713,6 +7713,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CevicheMexicanStyleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "shrimp-cocktail-mexican-style",
+    title: "Shrimp Cocktail (Mexican-Style)",
+    category: "culinary",
+    subcategory: "mexican",
+    description: "Coquetel de camarão com molho tipo “coctel” e toques cítricos.",
+    loader: () => import("@/components/calculators/Misc/ShrimpCocktailMexicanStyleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
   ];
 
