@@ -87,8 +87,7 @@ export default function App() {
               {/* ROTA DE CULINÁRIA (Listagem) - Pode manter se quiser a lista bonita */}
               <Route path="/recipes/:cuisine" element={<RecipeCuisinePage />} />
 
-              {/* 🚨 AQUI ESTÁ O BLOQUEIO! COMENTE ESTA LINHA: 🚨 */}
-              {/* <Route path="/recipes/:cuisine/:recipe" element={<RecipeDetailPage />} /> */}
+              <Route path="/recipes/:cuisine/:recipe" element={<RecipeDetailPage />} />
 
               {/* Daily Quotes */}
               <Route path="/daily-quotes" element={<DailyQuotesPage />} />

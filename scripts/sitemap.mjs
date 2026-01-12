@@ -12,6 +12,7 @@ const ORIGIN = "https://www.smartkitnow.com";
 
 // Import dinâmico do registry TS via parse simples
 const registryPath = path.join(ROOT, "src", "data", "calculatorRegistry.ts");
+const cuisinesPath = path.join(ROOT, "src", "data", "recipes", "cuisines.ts");
 
 // Carrega arquivo como texto e extrai o array REGISTRY
 const src = fs.readFileSync(registryPath, "utf-8");
@@ -90,6 +91,35 @@ for (const e of REGISTRY) {
   const loc = canonicalPath(e);
   const prio = e.category === "pets" ? fmtPriority(0.85) : priorityForCategory(e.category);
   parts.push(urlTag(loc, prio));
+}
+
+try {
+  const cuisinesSrc = fs.readFileSync(cuisinesPath, "utf-8");
+  const m = cuisinesSrc.match(/key:\s*"mexican"[\s\S]*?recipes:\s*R\(\[([\s\S]*?)\]\)/);
+  if (m) {
+    parts.push(urlTag("/recipes/mexican", fmtPriority(0.45)));
+    const titles = m[1]
+      .split("\n")
+      .map((l) => l.trim())
+      .filter(Boolean)
+      .map((l) => l.replace(/,$/, ""))
+      .filter((l) => l.startsWith('"') && l.endsWith('"'))
+      .map((l) => l.slice(1, -1));
+
+    const slugify = (title) =>
+      title
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9\s-]/g, "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "-");
+
+    for (const title of titles) {
+      parts.push(urlTag(`/recipes/mexican/${slugify(title)}`, fmtPriority(0.35)));
+    }
+  }
+} catch {
 }
 
 parts.push(`</urlset>`);

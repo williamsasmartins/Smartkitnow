@@ -5,8 +5,10 @@ import path from "path";
 const HOST = "https://www.smartkitnow.com";
 // Fonte: arquivo TS com o registro das calculadoras
 const SRC = path.resolve("src/data/calculatorRegistry.ts");
+const CUISINES_SRC = path.resolve("src/data/recipes/cuisines.ts");
 
 const buf = readFileSync(SRC, "utf8");
+const cuisinesBuf = readFileSync(CUISINES_SRC, "utf8");
 // Extrai blocos de arrays de RegistryEntry e objetos individuais dentro deles
 const blocksRe = /const\s+\w+\s*:\s*RegistryEntry\[\]\s*=\s*\[\s*([\s\S]*?)\s*\];/g;
 const objRe = /\{[\s\S]*?\}/g;
@@ -51,6 +53,7 @@ const STATIC_ENTRIES = [
   // Hubs adicionais
   { loc: `${HOST}/smart-tips`, lastmod: formatDate(), priority: 0.4 },
   { loc: `${HOST}/recipes`, lastmod: formatDate(), priority: 0.4 },
+  { loc: `${HOST}/recipes/mexican`, lastmod: formatDate(), priority: 0.45 },
 ];
 
 // Coleta calculadoras do registry
@@ -86,6 +89,31 @@ for (const e of [...STATIC_ENTRIES, ...dynamicEntries]) {
 }
 
 const entries = Array.from(byLoc.values()).sort((a, b) => a.loc.localeCompare(b.loc));
+
+const mexicanMatch = cuisinesBuf.match(/key:\s*"mexican"[\s\S]*?recipes:\s*R\(\[([\s\S]*?)\]\)/);
+if (mexicanMatch) {
+  const titles = mexicanMatch[1]
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .map((l) => l.replace(/,$/, ""))
+    .filter((l) => l.startsWith('"') && l.endsWith('"'))
+    .map((l) => l.slice(1, -1));
+
+  const slugify = (title) =>
+    title
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9\s-]/g, "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "-");
+
+  for (const title of titles) {
+    const loc = `${HOST}/recipes/mexican/${slugify(title)}`;
+    byLoc.set(loc, { loc, lastmod: formatDate(), priority: 0.35 });
+  }
+}
 
 // Monta XML com lastmod/priority
 const body = entries
