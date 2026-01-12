@@ -1,19 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
-import AdBannerTop from "@/components/ads/AdBannerTop";
-import AdSidebarRight from "@/components/ads/AdSidebarRight";
-import ShareThisPageBox from "@/components/ShareThisPageBox";
-import SuggestionBox from "@/components/SuggestionBox";
 import { getCuisine, getRecipe } from "@/data/recipes/cuisines";
 import SeoHead from "@/components/SEOHead";
-import JsonLd from "@/components/JsonLd";
-import useFaqJsonLd from "@/hooks/useFaqJsonLd";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Heart, Printer, Timer, ChefHat } from "lucide-react";
+import { getEntry } from "@/data/calculatorRegistry";
 
 type PollinationsImageOptions = {
   width: number;
@@ -103,6 +92,14 @@ function buildFoodPhotoPrompt(dish: string, cuisine: string) {
     "high detail, appetizing, vibrant colors, professional food styling",
     "no text, no watermark, no logo, no extra objects",
   ].join(", ");
+}
+
+function createLazyFromLoader(loader: () => Promise<any>, namedExport?: string) {
+  const Lazy = React.lazy(async () => {
+    const mod = await loader();
+    return { default: namedExport ? mod[namedExport] : (mod.default ?? Object.values(mod)[0]) };
+  });
+  return Lazy;
 }
 
 function AiDishImage({
@@ -282,50 +279,58 @@ export default function RecipeDetailPage() {
 
   if (!c || !r) return <Navigate to="/recipes" replace />;
 
-  return (
-    <div className="min-h-screen">
-      <div className="h-16 md:h-20" aria-hidden />
-      <AdBannerTop />
+  const origin = "https://www.smartkitnow.com";
+  const canonicalUrl = `${origin}/recipes/${c.key}/${r.slug}`;
+  const entry = recipe ? getEntry(recipe) : undefined;
+  const LazyCalc = entry ? createLazyFromLoader(entry.loader, entry.namedExport) : null;
 
-      <main className="mx-auto max-w-7xl px-4 pb-16 lg:pr-[65px]">
-        <div className="grid gap-8 lg:grid-cols-12">
-          <header className="lg:col-span-9 py-6 pr-[15px]">
-            <nav aria-label="Breadcrumb" className="text-sm mb-2 text-muted-foreground">
-              <Link to="/" className="hover:underline">
-                Home
-              </Link>
-              <span> &gt; </span>
-              <Link to="/recipes" className="hover:underline">
-                Recipes
-              </Link>
-              <span> &gt; </span>
-              <Link to={`/recipes/${c.key}`} className="hover:underline">
-                {c.name}
-              </Link>
-              <span> &gt; </span>
-              <span>{r.title}</span>
-            </nav>
-            <h1 className="text-3xl md:text-4xl font-semibold text-primary">{r.title}</h1>
-            <p className="mt-2 text-sm">
-              {c.name} —{" "}
-              <Link to={`/recipes/${c.key}`} className="text-primary hover:underline">
-                see all {c.name} recipes
-              </Link>
-            </p>
-          </header>
-          <aside className="hidden lg:block lg:col-span-3">
-            <div className="sticky pr-[65px]" style={{ top: "var(--skn-rail-top)" }}>
-              <AdSidebarRight topOffset={0} />
-            </div>
-          </aside>
-          <div className="lg:col-span-9 pr-[15px]">
-            <div className="mt-6 space-y-6">
-              <ShareThisPageBox />
-              <SuggestionBox />
-            </div>
-          </div>
-        </div>
-      </main>
+  if (entry && LazyCalc) {
+    return (
+      <div className="w-full px-4 md:px-8 lg:px-10">
+        <SeoHead
+          title={`${entry.title} - Smart Kit Now`}
+          description={entry.description || `See ingredients and instructions for ${entry.title}.`}
+          canonical={canonicalUrl}
+        />
+        <Suspense fallback={<div className="py-10 text-muted-foreground text-center">Loading…</div>}>
+          <main className="min-w-0">
+            <LazyCalc />
+          </main>
+        </Suspense>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-auto max-w-3xl px-4 lg:px-6 py-10">
+      <SeoHead title={`${r.title} - Smart Kit Now`} canonical={canonical ?? canonicalUrl} />
+      <nav aria-label="Breadcrumb" className="text-sm mb-3 text-muted-foreground">
+        <Link to="/" className="hover:underline">
+          Home
+        </Link>
+        <span> &gt; </span>
+        <Link to="/recipes" className="hover:underline">
+          Recipes
+        </Link>
+        <span> &gt; </span>
+        <Link to={`/recipes/${c.key}`} className="hover:underline">
+          {c.name}
+        </Link>
+        <span> &gt; </span>
+        <span>{r.title}</span>
+      </nav>
+      <h1 className="text-2xl font-semibold text-primary">{r.title}</h1>
+      <p className="mt-2 text-muted-foreground">
+        Esta receita ainda está sendo preparada para exibição completa.
+      </p>
+      <div className="mt-6 flex flex-wrap gap-3">
+        <Link to={`/recipes/${c.key}`} className="text-primary hover:underline">
+          Voltar para {c.name}
+        </Link>
+        <Link to="/recipes" className="text-primary hover:underline">
+          Ver todas as cozinhas
+        </Link>
+      </div>
     </div>
   );
 }
