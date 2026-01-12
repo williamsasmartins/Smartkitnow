@@ -155,7 +155,7 @@ export default function DailyQuotesPage() {
   const currentItems = useMemo(() => {
     if (!data || !selectedCategory || selectedCategory === "horoscope" || selectedCategory === "dream") return [];
     
-    // @ts-expect-error Dynamic category indexing is not fully typed
+    // CORREÇÃO 1: Removido o comentário @ts-expect-error pois a lógica abaixo protege o acesso
     const itemsList = data.content?.[selectedCategory as keyof DailyDataPacket["content"]];
     
     if (!itemsList || !Array.isArray(itemsList)) return [];
@@ -287,8 +287,8 @@ export default function DailyQuotesPage() {
         <div className="w-20 h-20 mx-auto bg-muted rounded-full flex items-center justify-center mb-4">
            {selectedCategory === "professional" && <Briefcase className="w-10 h-10 text-muted-foreground/50" />}
            {selectedCategory === "motivation" && <Rocket className="w-10 h-10 text-muted-foreground/50" />}
-           {/* Fallback icon */}
-           {![ "professional", "motivation"].includes(selectedCategory) && <RefreshCw className="w-10 h-10 text-muted-foreground/50" />}
+           {/* CORREÇÃO 2: Adicionado || "" para garantir que selectedCategory nunca seja null aqui */}
+           {![ "professional", "motivation"].includes(selectedCategory || "") && <RefreshCw className="w-10 h-10 text-muted-foreground/50" />}
         </div>
         <h3 className="text-xl font-bold mb-2">Refreshing Inspiration...</h3>
         <p className="text-muted-foreground max-w-sm mx-auto mb-6">
