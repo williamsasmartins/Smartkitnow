@@ -1,8 +1,10 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useMemo } from "react";
+import { useLocation } from "react-router-dom";
 import AdUnit from "../AdUnit";
 import ShareThisPageBox from "../ShareThisPageBox";
 import SuggestionBox from "../SuggestionBox";
 import LegalDisclaimer from "../LegalDisclaimer";
+import { getEntry } from "@/data/calculatorRegistry";
 
 // ================================================================
 // AD SLOTS CONFIGURATION
@@ -267,6 +269,16 @@ export default function CalculatorVerticalLayout({
   jsonLd,
   children,
 }: CalculatorVerticalLayoutProps) {
+  const location = useLocation();
+  const resolvedDescription = useMemo(() => {
+    const path = location.pathname || "";
+    if (!path.startsWith("/recipes/")) return description;
+    const parts = path.split("/").filter(Boolean);
+    const slugFromUrl = parts[2];
+    const entry = slugFromUrl ? getEntry(slugFromUrl) : undefined;
+    return entry?.description ?? description;
+  }, [description, location.pathname]);
+
   return (
     <div className="skn-vertical-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
       {jsonLd ? (
@@ -291,9 +303,9 @@ export default function CalculatorVerticalLayout({
               <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight tracking-tight">
                 {title}
               </h1>
-              {description && (
+              {resolvedDescription && (
                 <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {description}
+                  {resolvedDescription}
                 </p>
               )}
             </header>

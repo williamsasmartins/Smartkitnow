@@ -9,16 +9,6 @@ import { getCuisine } from "@/data/recipes/cuisines";
 
 type Section = { title: string; items: string[] };
 
-function slugify(title: string): string {
-  return title
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-zA-Z0-9\s-]/g, "")
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, "-");
-}
-
 export default function RecipeCuisinePage() {
   const { cuisine } = useParams<{ cuisine: string }>();
   const normalizedCuisine = cuisine === "japanise" ? "japanese" : cuisine;
@@ -218,14 +208,13 @@ export default function RecipeCuisinePage() {
       ],
     },
     {
-      title: "Enchiladas & Sauced Dishes",
+      title: "Enchiladas",
       items: [
         "Chicken Enchiladas",
         "Cheese Enchiladas",
         "Enchiladas Verdes",
         "Enchiladas Rojas",
         "Enchiladas Suizas",
-        "Chilaquiles (Green or Red)",
       ],
     },
     {
@@ -238,40 +227,19 @@ export default function RecipeCuisinePage() {
         "Huaraches",
         "Tostadas",
         "Tlayudas",
-        "Empanadas (Savory)",
       ],
     },
     {
-      title: "Main Courses — Meat & Poultry",
+      title: "Main Courses",
       items: [
         "Chicken Tinga",
         "Mole Chicken (Mole Poblano)",
         "Pork Carnitas",
         "Carne Asada",
-        "Barbacoa",
         "Birria (Beef or Goat)",
         "Cochinita Pibil",
         "Chile Rellenos",
         "Chiles en Nogada",
-      ],
-    },
-    {
-      title: "Main Courses — Seafood",
-      items: [
-        "Fish Veracruz",
-        "Mexican Shrimp in Garlic Sauce",
-        "Mexican-Style Ceviche",
-        "Grilled Fish Tacos Filling",
-      ],
-    },
-    {
-      title: "Vegetarian Mains",
-      items: [
-        "Black Bean and Cheese Quesadillas",
-        "Nopales Salad",
-        "Vegetable Fajita-Style Filling",
-        "Mushroom Tacos",
-        "Bean Tostadas",
       ],
     },
     {
@@ -280,54 +248,14 @@ export default function RecipeCuisinePage() {
         "Mexican Rice",
         "Refried Beans",
         "Charro Beans",
-        "Black Beans (Mexican-Style)",
         "Corn Tortillas",
         "Flour Tortillas",
-        "Tortilla Chips",
-        "Mexican Slaw",
-        "Pickled Red Onions",
       ],
     },
-    {
-      title: "Salsas, Sauces & Condiments",
-      items: [
-        "Pico de Gallo",
-        "Salsa Roja",
-        "Salsa Verde",
-        "Chipotle Salsa",
-        "Avocado Salsa",
-        "Tomatillo Salsa",
-        "Mole Poblano Sauce",
-        "Crema (Mexican-Style Sour Cream)",
-      ],
-    },
-    {
-      title: "Desserts & Sweet Baking",
-      items: [
-        "Churros",
-        "Tres Leches Cake",
-        "Flan",
-        "Rice Pudding (Arroz con Leche)",
-        "Sweet Corn Cake",
-        "Mexican Sweet Bread (Conchas)",
-        "Buñuelos",
-        "Paletas (Mexican Ice Pops)",
-        "Cajeta (Goat Milk Caramel)",
-        "Mexican Hot Chocolate",
-      ],
-    },
+    { title: "Desserts", items: ["Churros", "Tres Leches Cake", "Flan"] },
     {
       title: "Drinks",
-      items: [
-        "Horchata",
-        "Hibiscus Iced Tea (Agua de Jamaica)",
-        "Tamarind Drink (Agua de Tamarindo)",
-        "Limeade (Agua Fresca)",
-        "Atole",
-        "Champurrado",
-        "Margarita",
-        "Michelada",
-      ],
+      items: ["Horchata", "Agua de Jamaica", "Margarita"],
     },
   ];
 
@@ -1969,7 +1897,8 @@ export default function RecipeCuisinePage() {
                           const renderList = (items: string[]) => (
                             <ul className="list-disc ml-6 space-y-2.5">
                               {items.map((title) => {
-                                const slug = titleToSlug.get(title) ?? slugify(title);
+                                const slug = titleToSlug.get(title);
+                                if (!slug) return null;
                                 return (
                                   <li key={`${section.title}:${slug}`} className="leading-relaxed">
                                     <Link

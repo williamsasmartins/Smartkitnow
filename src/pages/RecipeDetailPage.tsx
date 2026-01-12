@@ -242,6 +242,7 @@ export default function RecipeDetailPage() {
   const { cuisine, recipe } = useParams<{ cuisine: string; recipe: string }>();
   const c = cuisine ? getCuisine(cuisine) : undefined;
   const r = cuisine && recipe ? getRecipe(cuisine, recipe) : undefined;
+  const entryFromUrl = recipe ? getEntry(recipe) : undefined;
 
   const canonical = typeof window !== "undefined" ? window.location.href : undefined;
 
@@ -277,11 +278,18 @@ export default function RecipeDetailPage() {
     }
   }
 
-  if (!c || !r) return <Navigate to="/recipes" replace />;
+  if (!c) return <Navigate to="/recipes" replace />;
+  if (!r) {
+    if (entryFromUrl && entryFromUrl.slug && entryFromUrl.slug !== recipe) {
+      return <Navigate to={`/recipes/${c.key}/${entryFromUrl.slug}`} replace />;
+    }
+    return <Navigate to="/recipes" replace />;
+  }
+  if (recipe && recipe !== r.slug) return <Navigate to={`/recipes/${c.key}/${r.slug}`} replace />;
 
   const origin = "https://www.smartkitnow.com";
   const canonicalUrl = `${origin}/recipes/${c.key}/${r.slug}`;
-  const entry = recipe ? getEntry(recipe) : undefined;
+  const entry = r ? getEntry(r.slug) : undefined;
   const LazyCalc = entry ? createLazyFromLoader(entry.loader, entry.namedExport) : null;
 
   if (entry && LazyCalc) {
@@ -321,14 +329,14 @@ export default function RecipeDetailPage() {
       </nav>
       <h1 className="text-2xl font-semibold text-primary">{r.title}</h1>
       <p className="mt-2 text-muted-foreground">
-        Esta receita ainda está sendo preparada para exibição completa.
+        This recipe is still being prepared for a full display.
       </p>
       <div className="mt-6 flex flex-wrap gap-3">
         <Link to={`/recipes/${c.key}`} className="text-primary hover:underline">
-          Voltar para {c.name}
+          Back to {c.name}
         </Link>
         <Link to="/recipes" className="text-primary hover:underline">
-          Ver todas as cozinhas
+          View all cuisines
         </Link>
       </div>
     </div>

@@ -7692,6 +7692,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Grilled corn on the cob slathered with mayonnaise, cheese, lime, and chili powder.",
+    aliases: ["mexican-street-corn-elote"],
     loader: () => import("@/components/calculators/Misc/EloteCalculator"),
     urlStyle: "flat"
   },
@@ -7701,6 +7702,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Mexican street corn served in a cup with cream, cheese, lime, and seasonings.",
+    aliases: ["mexican-corn-cup-esquites"],
     loader: () => import("@/components/calculators/Misc/EsquitesCalculator"),
     urlStyle: "flat"
   },
@@ -7764,6 +7766,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Traditional hominy stew with meat, garnished with fresh lettuce, radish, and lime.",
+    aliases: ["pozole-pork-or-chicken"],
     loader: () => import("@/components/calculators/Misc/PozoleCalculator"),
     urlStyle: "flat"
   },
@@ -7791,6 +7794,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Aromatic chicken soup from Yucatán with a distinct citrus kick from fresh limes.",
+    aliases: ["lime-soup-yucatan-style"],
     loader: () => import("@/components/calculators/Misc/SopaDeLimaCalculator"),
     urlStyle: "flat"
   },
@@ -7836,6 +7840,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Scrambled eggs cooked with fresh tomato, onion, and chili peppers.",
+    aliases: ["mexican-scrambled-eggs-with-salsa"],
     loader: () => import("@/components/calculators/Misc/HuevosMexicanosConSalsaCalculator"),
     urlStyle: "flat"
   },
@@ -7917,6 +7922,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Beer-battered fried fish tacos served with creamy white sauce and cabbage.",
+    aliases: ["baja-style-fish-tacos"],
     loader: () => import("@/components/calculators/Misc/BajaFishTacosCalculator"),
     urlStyle: "flat"
   },
@@ -7971,6 +7977,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Corn dough steamed in corn husks, filled with savory meats or sweet fillings.",
+    aliases: ["tamales-chicken-pork-or-sweet"],
     loader: () => import("@/components/calculators/Misc/TamalesCalculator"),
     urlStyle: "flat"
   },
@@ -8043,6 +8050,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Chicken served in a rich, dark sauce made from chilies, chocolate, and spices.",
+    aliases: ["mole-chicken-mole-poblano"],
     loader: () => import("@/components/calculators/Misc/MolePoblanoCalculator"),
     urlStyle: "flat"
   },
@@ -8070,6 +8078,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "A spicy and savory meat stew, traditionally made with goat or beef.",
+    aliases: ["birria-beef-or-goat"],
     loader: () => import("@/components/calculators/Misc/BirriaCalculator"),
     urlStyle: "flat"
   },
@@ -8088,6 +8097,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Roasted poblano peppers stuffed with cheese, battered, and fried.",
+    aliases: ["chile-rellenos"],
     loader: () => import("@/components/calculators/Misc/ChilesRellenosCalculator"),
     urlStyle: "flat"
   },
@@ -8106,6 +8116,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Fluffy red rice cooked with tomato sauce, garlic, and onions.",
+    aliases: ["mexican-rice"],
     loader: () => import("@/components/calculators/Misc/ArrozMexicanoCalculator"),
     urlStyle: "flat"
   },
@@ -8115,6 +8126,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Cooked beans mashed and fried with lard or oil for a creamy side dish.",
+    aliases: ["refried-beans"],
     loader: () => import("@/components/calculators/Misc/FrijolesRefritosCalculator"),
     urlStyle: "flat"
   },
@@ -8124,6 +8136,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Pinto beans simmered with bacon, chorizo, peppers, and spices.",
+    aliases: ["charro-beans"],
     loader: () => import("@/components/calculators/Misc/FrijolesCharrosCalculator"),
     urlStyle: "flat"
   },
@@ -8133,6 +8146,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Authentic homemade tortillas made from masa harina and water.",
+    aliases: ["corn-tortillas"],
     loader: () => import("@/components/calculators/Misc/TortillasDeMaizCalculator"),
     urlStyle: "flat"
   },
@@ -8142,6 +8156,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Soft and pliable wheat flour tortillas, perfect for burritos.",
+    aliases: ["flour-tortillas"],
     loader: () => import("@/components/calculators/Misc/TortillasDeHarinaCalculator"),
     urlStyle: "flat"
   },
@@ -8160,6 +8175,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "recipes",
     subcategory: "mexican",
     description: "Sponge cake soaked in three kinds of milk: evaporated, condensed, and heavy cream.",
+    aliases: ["tres-leches-cake"],
     loader: () => import("@/components/calculators/Misc/PastelTresLechesCalculator"),
     urlStyle: "flat"
   },
