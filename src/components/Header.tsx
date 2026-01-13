@@ -110,51 +110,53 @@ export function Header() {
           <ThemeToggle />
         </div>
 
-        <nav className="container mx-auto px-4 pb-2">
-          <ul className="skn-cat-menu flex flex-nowrap items-center justify-start gap-3 text-sm whitespace-nowrap w-full overflow-x-auto">
-            <li className="flex items-center">
-              <Link to="/construction" className="text-primary hover:text-primary transition-colors inline-flex items-center">
-                <span className="mr-1" aria-hidden>{getCategoryIcon("construction")}</span>
-                Construction
+      </div>
+
+      <nav className="container mx-auto px-4 pb-2">
+        <ul className="skn-cat-menu flex flex-nowrap items-center justify-start gap-3 text-sm whitespace-nowrap w-full overflow-x-auto">
+          <li className="flex items-center">
+            <Link to="/construction" className="text-primary hover:text-primary transition-colors inline-flex items-center">
+              <span className="mr-1" aria-hidden>{getCategoryIcon("construction")}</span>
+              Construction
+            </Link>
+          </li>
+          <li className="flex items-center">
+            <Link to="/automotive" className="text-primary hover:text-primary transition-colors inline-flex items-center">
+              <span className="mr-1" aria-hidden>{getCategoryIcon("automotive")}</span>
+              Automotive
+            </Link>
+          </li>
+          {PRIMARY_CATS.map((cat) => (
+            <li key={cat.key} className="flex items-center">
+              <Link to={cat.to} className="text-primary hover:text-primary transition-colors inline-flex items-center">
+                <span className="mr-1" aria-hidden>{getCategoryIcon(cat.key)}</span>
+                {cat.label}
               </Link>
             </li>
-            <li className="flex items-center">
-              <Link to="/automotive" className="text-primary hover:text-primary transition-colors inline-flex items-center">
-                <span className="mr-1" aria-hidden>{getCategoryIcon("automotive")}</span>
-                Automotive
-              </Link>
-            </li>
-            {PRIMARY_CATS.map((cat) => (
-              <li key={cat.key} className="flex items-center">
-                <Link to={cat.to} className="text-primary hover:text-primary transition-colors inline-flex items-center">
-                  <span className="mr-1" aria-hidden>{getCategoryIcon(cat.key)}</span>
-                  {cat.label}
-                </Link>
-              </li>
-            ))}
-            <li className="flex items-center">
-              {!isMenuLoaded ? (
-                <button
-                  className="text-primary hover:text-primary transition-colors inline-flex items-center px-2"
-                  onMouseEnter={prefetchMenu}
-                  onClick={loadAndOpenMenu}
-                >
-                  More
-                </button>
-              ) : (
-                <Suspense
-                  fallback={
-                    <button className="text-primary hover:text-primary transition-colors inline-flex items-center px-2">
-                      More
-                    </button>
-                  }
-                >
-                  <HeaderMoreMenu categories={MORE_CATS} defaultOpen={forceOpen} />
-                </Suspense>
-              )}
-            </li>
-          </ul>
-        </nav>
+          ))}
+          <li className="flex items-center">
+            {!isMenuLoaded ? (
+              <button
+                className="text-primary hover:text-primary transition-colors inline-flex items-center px-2"
+                onMouseEnter={prefetchMenu}
+                onClick={loadAndOpenMenu}
+              >
+                More
+              </button>
+            ) : (
+              <Suspense
+                fallback={
+                  <button className="text-primary hover:text-primary transition-colors inline-flex items-center px-2">
+                    More
+                  </button>
+                }
+              >
+                <HeaderMoreMenu categories={MORE_CATS} defaultOpen={forceOpen} />
+              </Suspense>
+            )}
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
