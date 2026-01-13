@@ -5,6 +5,7 @@ import ShareThisPageBox from "../ShareThisPageBox";
 import SuggestionBox from "../SuggestionBox";
 import LegalDisclaimer from "../LegalDisclaimer";
 import { getEntry } from "@/data/calculatorRegistry";
+import { SEO } from "../SEO";
 
 // ================================================================
 // AD SLOTS CONFIGURATION
@@ -281,6 +282,12 @@ export default function CalculatorVerticalLayout({
 
   return (
     <div className="skn-vertical-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
+      <SEO
+        title={title}
+        description={resolvedDescription}
+        canonical={`https://www.smartkitnow.com${location.pathname}`}
+      />
+
       {jsonLd ? (
         <script type="application/ld+json" suppressHydrationWarning>
           {JSON.stringify(jsonLd)}
