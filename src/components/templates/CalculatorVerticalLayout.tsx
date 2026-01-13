@@ -1,5 +1,5 @@
 import React, { ReactNode, useMemo } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AdUnit from "../AdUnit";
 import ShareThisPageBox from "../ShareThisPageBox";
 import SuggestionBox from "../SuggestionBox";
@@ -159,9 +159,8 @@ function ExampleSection({
             <p className="font-bold text-slate-900 dark:text-slate-100 mb-3">
               {step.step != null
                 ? `Step ${step.step}: ${step.description ?? ""}`
-                : `${step.label ?? "Step"}${
-                    step.explanation ? `: ${step.explanation}` : ""
-                  }`}
+                : `${step.label ?? "Step"}${step.explanation ? `: ${step.explanation}` : ""
+                }`}
             </p>
             {step.calculation && (
               <p className="font-mono text-sm text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
@@ -270,6 +269,7 @@ export default function CalculatorVerticalLayout({
   children,
 }: CalculatorVerticalLayoutProps) {
   const location = useLocation();
+  const navigate = useNavigate();
   const resolvedDescription = useMemo(() => {
     const path = location.pathname || "";
     if (!path.startsWith("/recipes/")) return description;
@@ -300,6 +300,15 @@ export default function CalculatorVerticalLayout({
           <div className="w-full max-w-3xl mx-auto xl:mx-0 px-4 sm:px-6 min-w-0">
             {/* TITLE SECTION */}
             <header className="mb-8">
+              <div className="mb-6">
+                <button
+                  onClick={() => navigate("/")}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></svg>
+                  Back to Home
+                </button>
+              </div>
               <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight tracking-tight">
                 {title}
               </h1>

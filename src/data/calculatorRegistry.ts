@@ -133,12 +133,21 @@ export function subcategoryIcon(subcategory?: string, category?: string): string
 // CALCULATOR REGISTRY (VAZIO E LIMPO)
 // ====================================================================
 export const calculatorRegistry: CalculatorEntry[] = [
-   
-   
-   
-  
-   
-    {
+  {
+    slug: "qr-code-generator",
+    title: "Free QR Code Generator",
+    category: "everyday-life",
+    subcategory: "general",
+    description: "Generate free QR codes for URLs, text, and contacts (vCard). Download PNG or SVG, choose error‑correction (ECC), margins, size and brand colors.",
+    loader: () => import("@/components/calculators/EverydayLife/QrCodeGeneratorCalculator"),
+    urlStyle: "flat"
+  },
+
+
+
+
+
+  {
     slug: "loan-payment",
     title: "Loan Payment Calculator (Principal, Rate, Term)",
     category: "financial",
@@ -147,7 +156,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/LoanPaymentCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tip-split-bill",
     title: "Tip & Split Bill Calculator",
     category: "financial",
@@ -156,23 +165,23 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/TipSplitBillCalculator"),
     urlStyle: "flat"
   },
-    
-    
-  
-  
-    
-   
-   
-  
-    
-   
-   
- 
-    
-   
-   
-  
-    {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
     slug: "mortgage-amortization",
     title: "Mortgage Payment & Amortization Calculator",
     category: "financial",
@@ -181,7 +190,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/MortgageAmortizationCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "extra-payments-payoff",
     title: "Extra Payments & Payoff Time Calculator",
     category: "financial",
@@ -190,7 +199,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/ExtraPaymentsPayoffCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "interest-only-loan",
     title: "Interest-Only Loan Calculator",
     category: "financial",
@@ -199,7 +208,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/InterestOnlyLoanCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "refinance-savings",
     title: "Refinance Savings Calculator",
     category: "financial",
@@ -208,7 +217,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/RefinanceSavingsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "heloc-payment-estimator",
     title: "HELOC Payment Estimator",
     category: "financial",
@@ -217,7 +226,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/HelocPaymentEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "car-loan-affordability",
     title: "Car Loan Affordability Calculator",
     category: "financial",
@@ -226,7 +235,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CarLoanAffordabilityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "balloon-payment",
     title: "Balloon Payment Calculator",
     category: "financial",
@@ -235,7 +244,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/BalloonPaymentCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "house-affordability",
     title: "How Much House Can I Afford? Calculator",
     category: "financial",
@@ -244,7 +253,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/HouseAffordabilityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "auto-loan",
     title: "Auto Loan Calculator",
     category: "financial",
@@ -253,9 +262,9 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/AutoLoanCalculator"),
     urlStyle: "flat"
   },
-    
-    
-    {
+
+
+  {
     slug: "student-loan-repayment",
     title: "Student Loan Repayment Calculator",
     category: "financial",
@@ -264,7 +273,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/StudentLoanRepaymentCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "lease-vs-buy",
     title: "Lease vs Buy Calculator",
     category: "financial",
@@ -273,7 +282,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/LeaseVsBuyCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "compound-interest",
     title: "Compound Interest Calculator",
     category: "financial",
@@ -282,7 +291,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CompoundInterestCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "future-value-investment",
     title: "Future Value of Investment Calculator",
     category: "financial",
@@ -291,7 +300,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/FutureValueInvestmentCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "roi-return-on-investment",
     title: "Investment Return (ROI) Calculator",
     category: "financial",
@@ -300,7 +309,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/RoiReturnOnInvestmentCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "sip-monthly-investment-planner",
     title: "SIP/Monthly Investment Planner",
     category: "financial",
@@ -309,7 +318,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/SipMonthlyInvestmentPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "inflation-adjusted-value",
     title: "Inflation Adjusted Value Calculator",
     category: "financial",
@@ -318,7 +327,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/InflationAdjustedValueCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "retirement-savings-goal",
     title: "Retirement Savings Goal Calculator",
     category: "financial",
@@ -327,7 +336,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/RetirementSavingsGoalCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "emergency-fund-goal",
     title: "Emergency Fund Goal Calculator",
     category: "financial",
@@ -336,7 +345,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/EmergencyFundGoalCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "401k-retirement-savings-growth",
     title: "401(k) / Retirement Savings Growth Calculator",
     category: "financial",
@@ -345,7 +354,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/401kRetirementSavingsGrowthCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "social-security-benefit-estimator",
     title: "Social Security Benefit Estimator",
     category: "financial",
@@ -354,7 +363,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/SocialSecurityBenefitEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "rule-of-72",
     title: "Rule of 72 Calculator",
     category: "financial",
@@ -363,7 +372,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/RuleOf72Calculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bond-yield",
     title: "Bond Yield Calculator",
     category: "financial",
@@ -372,7 +381,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/BondYieldCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "roth-ira-conversion",
     title: "Roth IRA Conversion Calculator",
     category: "financial",
@@ -381,7 +390,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/RothIraConversionCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dca-simulator",
     title: "Dollar Cost Averaging (DCA) Simulator",
     category: "financial",
@@ -390,7 +399,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/DcaSimulatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "crypto-dca-strategy",
     title: "Crypto DCA Strategy Calculator",
     category: "financial",
@@ -399,7 +408,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoDcaStrategyCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "stock-dca-return-estimator",
     title: "Stock DCA Return Estimator",
     category: "financial",
@@ -408,7 +417,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/StockDcaReturnEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "monthly-budget-planner",
     title: "Monthly Budget Planner",
     category: "financial",
@@ -417,7 +426,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/MonthlyBudgetPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "net-income-after-tax",
     title: "Net Income after Tax Calculator",
     category: "financial",
@@ -426,7 +435,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/NetIncomeAfterTaxCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "hourly-to-annual-salary",
     title: "Hourly to Annual Salary Converter",
     category: "financial",
@@ -435,7 +444,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/HourlyToAnnualSalaryCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "debt-to-income-ratio",
     title: "Debt-to-Income Ratio Calculator",
     category: "financial",
@@ -444,7 +453,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/DebtToIncomeRatioCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "savings-rate-tracker",
     title: "Savings Rate Tracker",
     category: "financial",
@@ -453,7 +462,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/SavingsRateTrackerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "expense-splitter-shared-bills",
     title: "Expense Splitter (Shared Bills) Calculator",
     category: "financial",
@@ -462,7 +471,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/ExpenseSplitterSharedBillsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "take-home-pay",
     title: "Take-Home Pay Calculator",
     category: "financial",
@@ -471,7 +480,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/TakeHomePayCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "paycheck-calculator",
     title: "Paycheck Calculator",
     category: "financial",
@@ -480,7 +489,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/PaycheckCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "absence-percentage-calculator",
     title: "Absence Percentage Calculator",
     category: "financial",
@@ -489,7 +498,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/AbsencePercentageCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "credit-card-payoff",
     title: "Credit Card Payoff Calculator",
     category: "financial",
@@ -498,7 +507,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CreditCardPayoffCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "debt-consolidation",
     title: "Debt Consolidation Calculator",
     category: "financial",
@@ -507,7 +516,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/DebtConsolidationCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "net-worth",
     title: "Net Worth Calculator",
     category: "financial",
@@ -516,7 +525,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/NetWorthCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "currency-converter-live",
     title: "Currency Converter (Live Rates)",
     category: "financial",
@@ -525,7 +534,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CurrencyConverterLiveCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "sales-tax",
     title: "Sales Tax Calculator",
     category: "financial",
@@ -534,7 +543,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/SalesTaxCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "vat-gst",
     title: "VAT/GST Calculator",
     category: "financial",
@@ -543,7 +552,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/VatGstCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "debt-snowball",
     title: "Debt Snowball Calculator",
     category: "financial",
@@ -552,7 +561,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/DebtSnowballCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "apr",
     title: "APR Calculator",
     category: "financial",
@@ -561,7 +570,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/AprCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "credit-card-interest",
     title: "Credit Card Interest Calculator",
     category: "financial",
@@ -570,7 +579,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CreditCardInterestCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "loan-comparison",
     title: "Loan Comparison Calculator",
     category: "financial",
@@ -579,7 +588,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/LoanComparisonCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "college-savings",
     title: "College Savings Calculator",
     category: "financial",
@@ -588,7 +597,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CollegeSavingsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "irr-npv",
     title: "IRR NPV Calculator",
     category: "financial",
@@ -597,7 +606,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/IrrNpvCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tax-bracket",
     title: "Tax Bracket Calculator",
     category: "financial",
@@ -606,7 +615,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/TaxBracketCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "crypto-to-fiat",
     title: "Crypto to Fiat Converter",
     category: "financial",
@@ -615,7 +624,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoToFiatCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "crypto-to-crypto-exchange-rate",
     title: "Crypto to Crypto Exchange Rate Calculator",
     category: "financial",
@@ -624,7 +633,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoToCryptoExchangeRateCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "live-price-checker",
     title: "Live Price Checker (Real-Time Rates)",
     category: "financial",
@@ -633,7 +642,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/LivePriceCheckerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "portfolio-value-tracker",
     title: "Portfolio Value Tracker",
     category: "financial",
@@ -642,7 +651,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/PortfolioValueTrackerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fiat-to-crypto-purchase",
     title: "Fiat to Crypto Purchase Calculator",
     category: "financial",
@@ -651,7 +660,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/FiatToCryptoPurchaseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "multi-currency-crypto-converter",
     title: "Multi-Currency Crypto Converter",
     category: "financial",
@@ -660,7 +669,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/MultiCurrencyCryptoConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "crypto-profit-loss",
     title: "Crypto Profit/Loss Calculator",
     category: "financial",
@@ -669,7 +678,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoProfitLossCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "crypto-roi",
     title: "ROI (Return on Investment) Calculator",
     category: "financial",
@@ -678,7 +687,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoRoiCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "crypto-future-value-compound-growth",
     title: "Future Value & Compound Growth Estimator",
     category: "financial",
@@ -687,7 +696,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoFutureValueCompoundGrowthCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "yield-farming-apy",
     title: "Yield Farming APY Calculator",
     category: "financial",
@@ -696,7 +705,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/YieldFarmingApyCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "staking-rewards-estimator",
     title: "Staking Rewards Estimator",
     category: "financial",
@@ -705,7 +714,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/StakingRewardsEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "investment-break-even-point",
     title: "Investment Break-Even Point Calculator",
     category: "financial",
@@ -714,7 +723,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/InvestmentBreakEvenPointCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dca-strategy-analyzer-crypto",
     title: "DCA Strategy Analyzer (Crypto)",
     category: "financial",
@@ -723,7 +732,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/DcaStrategyAnalyzerCryptoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "mining-profitability",
     title: "Mining Profitability Calculator",
     category: "financial",
@@ -732,7 +741,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/MiningProfitabilityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "hash-rate-to-earnings",
     title: "Hash Rate to Earnings Converter",
     category: "financial",
@@ -741,7 +750,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/HashRateToEarningsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "electricity-cost-vs-mining-revenue",
     title: "Electricity Cost vs Mining Revenue",
     category: "financial",
@@ -750,7 +759,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/ElectricityCostVsMiningRevenueCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "gpu-asic-mining-roi",
     title: "GPU/ASIC Mining ROI Calculator",
     category: "financial",
@@ -759,7 +768,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/GpuAsicMiningRoiCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pool-fee-impact",
     title: "Pool Fee Impact Estimator",
     category: "financial",
@@ -768,7 +777,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/PoolFeeImpactCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "crypto-tax-liability",
     title: "Crypto Tax Liability Calculator",
     category: "financial",
@@ -777,7 +786,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CryptoTaxLiabilityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "capital-gains-tax-estimator",
     title: "Capital Gains Tax Estimator",
     category: "financial",
@@ -786,7 +795,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CapitalGainsTaxEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "transaction-fee-deduction",
     title: "Transaction Fee Deduction Tool",
     category: "financial",
@@ -795,7 +804,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/TransactionFeeDeductionCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cost-basis-fifo-lifo",
     title: "Cost Basis Calculator (FIFO/LIFO)",
     category: "financial",
@@ -804,7 +813,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/CostBasisFifoLifoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "leverage-margin-profit",
     title: "Leverage & Margin Profit Calculator",
     category: "financial",
@@ -813,7 +822,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/LeverageMarginProfitCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "position-size-risk-management",
     title: "Position Size & Risk Management Tool",
     category: "financial",
@@ -822,7 +831,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/PositionSizeRiskManagementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "volatility-risk-assessment",
     title: "Volatility & Risk Assessment Calculator",
     category: "financial",
@@ -831,17 +840,17 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Financial/VolatilityRiskAssessmentCalculator"),
     urlStyle: "flat"
   },
-    
-  
- 
-    
-    
-   
-    
-   
-  
-   
-    {
+
+
+
+
+
+
+
+
+
+
+  {
     slug: "dog-calorie-needs-rer-mer",
     title: "Dog Calorie Needs (RER/MER) Calculator",
     category: "pets",
@@ -850,10 +859,10 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogCalorieNeedsRerMerCalculator"),
     urlStyle: "flat"
   },
-    
-  
-    
-    {
+
+
+
+  {
     slug: "qr-code-generator",
     title: "QR Code Generator",
     category: "everyday-life",
@@ -862,70 +871,70 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/EverydayLife/QrCodeGeneratorCalculator"),
     urlStyle: "flat"
   },
-    
-    
-  
-    
- 
-   
-   
- 
 
-    
-   
-   
-   
-   
-   
-   
-    
-   
-  
-  
-   
-    
-   
-  
-    
-   
-   
-   
- 
-   
-    
-   
-   
-   
 
-   
-    
- 
-    
-   
-   
 
-   
- 
 
-  
-  
-   
-   
-  
-  
-  
-    
-   
-  
-   
-   
-   
-  
-   
-  
-  
-    
-    {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
     slug: "tdee-daily-energy-expenditure",
     title: "TDEE — Total Daily Energy Expenditure Calculator",
     category: "health",
@@ -934,12 +943,12 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/TdeeDailyEnergyExpenditureCalculator"),
     urlStyle: "flat"
   },
-   
-   
-   
-    
- 
-    {
+
+
+
+
+
+  {
     slug: "bmi-body-mass-index",
     title: "BMI — Body Mass Index Calculator",
     category: "health",
@@ -948,7 +957,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/BmiBodyMassIndexCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bmr-mifflin-st-jeor",
     title: "BMR — Basal Metabolic Rate (Mifflin-St Jeor)",
     category: "health",
@@ -957,7 +966,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/BmrMifflinStJeorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "body-fat-us-navy-3-sites",
     title: "Body Fat % (US Navy / 3-sites)",
     category: "health",
@@ -966,7 +975,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/BodyFatUsNavy3SitesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ideal-weight-range-hamwi-devine-miller",
     title: "Ideal Weight Range (Hamwi/Devine/Miller)",
     category: "health",
@@ -975,7 +984,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/IdealWeightRangeHamwiDevineMillerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "waist-to-height-ratio",
     title: "Waist-to-Height Ratio Checker",
     category: "health",
@@ -984,7 +993,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/WaistToHeightRatioCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "body-surface-area-bsa",
     title: "Body Surface Area (BSA) Calculator",
     category: "health",
@@ -993,7 +1002,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/BodySurfaceAreaBsaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "daily-calorie-needs-goal",
     title: "Daily Calorie Needs (Goal-based)",
     category: "health",
@@ -1002,7 +1011,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/DailyCalorieNeedsGoalCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "weight-loss-date-deficit-planner",
     title: "Weight Loss Date & Deficit Planner",
     category: "health",
@@ -1011,7 +1020,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/WeightLossDateDeficitPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "macro-split-planner",
     title: "Macro Split Planner (Protein/Carb/Fat)",
     category: "health",
@@ -1020,7 +1029,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/MacroSplitPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "protein-intake-by-goal",
     title: "Protein Intake by Goal (cut/bulk/maintain)",
     category: "health",
@@ -1029,7 +1038,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/ProteinIntakeByGoalCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "carb-target-low-carb-keto",
     title: "Carb Target (incl. low-carb/keto ranges)",
     category: "health",
@@ -1038,7 +1047,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/CarbTargetLowCarbKetoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fat-intake-range-amdr",
     title: "Fat Intake Range (AMDR)",
     category: "health",
@@ -1047,7 +1056,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/FatIntakeRangeAmdrCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fiber-intake-target",
     title: "Fiber Intake Target (by kcal/sexo)",
     category: "health",
@@ -1056,7 +1065,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/FiberIntakeTargetCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "water-intake-per-day",
     title: "Water Intake per Day (by weight/activity/climate)",
     category: "health",
@@ -1065,7 +1074,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/WaterIntakePerDayCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "meal-calories-split",
     title: "Meal Calories Split (breakfast/lunch/dinner/snacks)",
     category: "health",
@@ -1074,7 +1083,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/MealCaloriesSplitCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "running-pace-speed-splits",
     title: "Running Pace, Speed & Split Calculator",
     category: "health",
@@ -1083,7 +1092,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/RunningPaceSpeedSplitsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "calories-burned-met",
     title: "Calories Burned by Activity (MET-based)",
     category: "health",
@@ -1092,7 +1101,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/CaloriesBurnedMetCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "heart-rate-zones",
     title: "Heart Rate Zones (Karvonen/percentages)",
     category: "health",
@@ -1101,7 +1110,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/HeartRateZonesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "vo2max-estimator-cooper-rockport",
     title: "VO2max Estimator (Cooper/Rockport)",
     category: "sports",
@@ -1110,7 +1119,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/Vo2maxEstimatorCooperRockportCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "one-rep-max-1rm-epley-brzycki",
     title: "1RM — One-Rep Max (Epley/Brzycki)",
     category: "health",
@@ -1119,7 +1128,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/OneRepMax1rmEpleyBrzyckiCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "steps-distance-calories-converter",
     title: "Steps ↔ Distance ↔ Calories Converter",
     category: "health",
@@ -1128,7 +1137,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/StepsDistanceCaloriesConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ovulation-fertile-window",
     title: "Ovulation & Fertile Window Estimator",
     category: "health",
@@ -1137,7 +1146,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/OvulationFertileWindowCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pregnancy-due-date-naegele",
     title: "Pregnancy Due-Date (Naegele)",
     category: "health",
@@ -1146,7 +1155,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/PregnancyDueDateNaegeleCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pregnancy-weight-gain-range-bmi-aware",
     title: "Pregnancy Weight-Gain Range (BMI-aware)",
     category: "health",
@@ -1155,7 +1164,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Health/PregnancyWeightGainRangeBmiAwareCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tdee-gestation-adjusted",
     title: "Gestational TDEE (educational)",
     category: "health",
@@ -1166,10 +1175,10 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
 
 
-  
-  
-    
-    {
+
+
+
+  {
     slug: "dog-weight-loss-planner",
     title: "Dog Weight Loss Planner",
     category: "pets",
@@ -1178,7 +1187,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogWeightLossPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-ideal-weight-target-calories",
     title: "Dog Ideal Weight & Target Calories Calculator",
     category: "pets",
@@ -1187,7 +1196,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogIdealWeightTargetCaloriesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-treat-calories-daily-allowance",
     title: "Dog Treat Calories & Daily Allowance Calculator",
     category: "pets",
@@ -1196,7 +1205,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogTreatCaloriesDailyAllowanceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-chocolate-toxicity",
     title: "Dog Chocolate Toxicity Calculator",
     category: "pets",
@@ -1205,7 +1214,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogChocolateToxicityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-grape-raisin-exposure-risk",
     title: "Dog Grape/Raisin Exposure Risk Calculator",
     category: "pets",
@@ -1214,7 +1223,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogGrapeRaisinExposureRiskCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-onion-garlic-exposure-risk",
     title: "Dog Onion/Garlic (Allium) Exposure Risk Calculator",
     category: "pets",
@@ -1223,7 +1232,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogOnionGarlicExposureRiskCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-xylitol-exposure-risk",
     title: "Dog Xylitol Exposure Risk Calculator",
     category: "pets",
@@ -1232,7 +1241,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogXylitolExposureRiskCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-caffeine-toxicity",
     title: "Dog Caffeine Toxicity Calculator",
     category: "pets",
@@ -1241,7 +1250,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogCaffeineToxicityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-macadamia-nut-toxicity",
     title: "Dog Macadamia Nut Toxicity Calculator",
     category: "pets",
@@ -1250,7 +1259,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogMacadamiaNutToxicityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-alcohol-ethanol-exposure-risk",
     title: "Dog Alcohol/Ethanol Exposure Risk Calculator",
     category: "pets",
@@ -1259,7 +1268,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogAlcoholEthanolExposureRiskCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-human-medication-exposure-alert",
     title: "Dog Human-Medication Exposure Alert (Ibuprofen/Acetaminophen)",
     category: "pets",
@@ -1268,7 +1277,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogHumanMedicationExposureAlertCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-benadryl-diphenhydramine-dose",
     title: "Benadryl (Diphenhydramine) Dose Calculator for Dogs",
     category: "pets",
@@ -1277,7 +1286,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogBenadrylDiphenhydramineDoseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-cephalexin-dose",
     title: "Cephalexin Dose Calculator for Dogs",
     category: "pets",
@@ -1286,7 +1295,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogCephalexinDoseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-meloxicam-metacam-dose",
     title: "Meloxicam/Metacam Dose Calculator for Dogs",
     category: "pets",
@@ -1295,7 +1304,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogMeloxicamMetacamDoseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-gabapentin-dose",
     title: "Gabapentin Dose Calculator for Dogs",
     category: "pets",
@@ -1304,7 +1313,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogGabapentinDoseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-prednisone-prednisolone-dose",
     title: "Prednisone/Prednisolone Dose Calculator for Dogs",
     category: "pets",
@@ -1313,7 +1322,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogPrednisonePrednisoloneDoseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-tramadol-dose",
     title: "Tramadol Dose Calculator for Dogs",
     category: "pets",
@@ -1322,7 +1331,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogTramadolDoseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-omega-3-epa-dha-supplement",
     title: "Omega-3 (EPA/DHA) Supplement Calculator for Dogs",
     category: "pets",
@@ -1331,7 +1340,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogOmega3EpaDhaSupplementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "puppy-adult-size-predictor-weight-curve",
     title: "Puppy Adult Size Predictor (Weight Curve)",
     category: "pets",
@@ -1340,7 +1349,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/PuppyAdultSizePredictorWeightCurveCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-body-condition-score-bcs-target",
     title: "Dog Body Condition Score Helper (BCS → Target Plan)",
     category: "pets",
@@ -1349,7 +1358,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogBodyConditionScoreBcsTargetCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-bmi-body-index-educational",
     title: "Dog BMI/Body Index (educational)",
     category: "pets",
@@ -1358,7 +1367,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogBmiBodyIndexEducationalCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-crate-size-finder",
     title: "Dog Crate Size Finder",
     category: "pets",
@@ -1367,7 +1376,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogCrateSizeFinderCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-harness-size-fit-guide",
     title: "Dog Harness Size & Fit Guide",
     category: "pets",
@@ -1376,7 +1385,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogHarnessSizeFitGuideCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-walking-calories-burned",
     title: "Dog Walking Calories Burned Calculator",
     category: "pets",
@@ -1385,7 +1394,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogWalkingCaloriesBurnedCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-step-goal-activity-time-planner",
     title: "Dog Step-Goal & Activity Time Planner",
     category: "pets",
@@ -1394,7 +1403,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogStepGoalActivityTimePlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-heat-risk-walk-safety-window",
     title: "Heat Risk/Walk Safety Window (Temp & Humidity)",
     category: "pets",
@@ -1403,7 +1412,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogHeatRiskWalkSafetyWindowCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-age-human-years-breed-aware",
     title: "Dog Age in Human Years (Breed-Aware)",
     category: "pets",
@@ -1412,7 +1421,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogAgeHumanYearsBreedAwareCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-life-expectancy-estimator",
     title: "Dog Life Expectancy Estimator (lifestyle factors)",
     category: "pets",
@@ -1421,7 +1430,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogLifeExpectancyEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-pregnancy-gestation-due-date",
     title: "Dog Pregnancy (Gestation) Due-Date Calculator",
     category: "pets",
@@ -1430,8 +1439,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogPregnancyGestationDueDateCalculator"),
     urlStyle: "flat"
   },
-    
-    {
+
+  {
     slug: "puppy-calorie-needs-age-breed-size",
     title: "Puppy Calorie Needs by Age/Breed Size Calculator",
     category: "pets",
@@ -1440,7 +1449,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/PuppyCalorieNeedsAgeBreedSizeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-protein-fat-intake-guide",
     title: "Dog Protein/Fat Intake Guide (by Goal)",
     category: "pets",
@@ -1449,7 +1458,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogProteinFatIntakeGuideCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-daily-water-intake-checker",
     title: "Dog Daily Water Intake Checker",
     category: "pets",
@@ -1458,7 +1467,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogDailyWaterIntakeCheckerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-dehydration-risk-estimator",
     title: "Dehydration Risk Estimator (Weight & Symptoms Aware)",
     category: "pets",
@@ -1467,7 +1476,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogDehydrationRiskEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-whelping-countdown-stage-timeline",
     title: "Whelping Countdown & Stage Timeline",
     category: "pets",
@@ -1476,7 +1485,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/DogWhelpingCountdownStageTimelineCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-calorie-needs-rer-mer",
     title: "Cat Calorie Needs (RER/MER) Calculator",
     category: "pets",
@@ -1485,7 +1494,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatCalorieNeedsRerMerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-weight-loss-planner",
     title: "Cat Weight Loss Planner",
     category: "pets",
@@ -1494,7 +1503,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatWeightLossPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-ideal-weight-target-calories",
     title: "Ideal Weight & Target Calories for Cats",
     category: "pets",
@@ -1503,7 +1512,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatIdealWeightTargetCaloriesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "kitten-calorie-needs-age-size",
     title: "Kitten Calorie Needs by Age/Size",
     category: "pets",
@@ -1512,7 +1521,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/KittenCalorieNeedsAgeSizeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "senior-cat-nutrition-calorie-adjuster",
     title: "Senior Cat Nutrition & Calorie Adjuster",
     category: "pets",
@@ -1521,7 +1530,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SeniorCatNutritionCalorieAdjusterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-treat-calories-daily-allowance",
     title: "Cat Treat Calories & Daily Allowance",
     category: "pets",
@@ -1530,7 +1539,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatTreatCaloriesDailyAllowanceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-protein-fat-intake-guide",
     title: "Protein/Fat Intake Guide for Cats (by Goal)",
     category: "pets",
@@ -1539,7 +1548,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatProteinFatIntakeGuideCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-daily-water-intake-checker",
     title: "Daily Water Intake Checker for Cats",
     category: "pets",
@@ -1548,9 +1557,9 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatDailyWaterIntakeCheckerCalculator"),
     urlStyle: "flat"
   },
-    
-   
-    {
+
+
+  {
     slug: "cat-dehydration-risk-estimator",
     title: "Dehydration Risk Estimator (Symptoms + Intake)",
     category: "pets",
@@ -1559,7 +1568,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatDehydrationRiskEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-chocolate-toxicity",
     title: "Cat Chocolate Toxicity Calculator",
     category: "pets",
@@ -1568,7 +1577,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatChocolateToxicityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-onion-garlic-toxicity",
     title: "Cat Onion/Garlic Toxicity Calculator",
     category: "pets",
@@ -1577,7 +1586,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatOnionGarlicToxicityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-grape-raisin-exposure-risk",
     title: "Cat Grape/Raisin Exposure Risk (educational)",
     category: "pets",
@@ -1586,7 +1595,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatGrapeRaisinExposureRiskCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-xylitol-exposure-risk",
     title: "Xylitol Exposure Risk for Cats (rare but educational)",
     category: "pets",
@@ -1595,7 +1604,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatXylitolExposureRiskCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-caffeine-toxicity",
     title: "Caffeine Toxicity Risk for Cats",
     category: "pets",
@@ -1604,7 +1613,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatCaffeineToxicityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-essential-oils-exposure-risk",
     title: "Essential Oils Exposure Risk (diffuser/dermal)",
     category: "pets",
@@ -1613,7 +1622,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatEssentialOilsExposureRiskCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-lilies-poisoning-risk-guide",
     title: "Lilies Poisoning Risk Guide (cats)",
     category: "pets",
@@ -1622,7 +1631,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatLiliesPoisoningRiskGuideCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-acetaminophen-ibuprofen-exposure-risk",
     title: "Acetaminophen/Ibuprofen Exposure Risk (human meds)",
     category: "pets",
@@ -1631,7 +1640,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatAcetaminophenIbuprofenExposureRiskCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-benadryl-diphenhydramine-dose",
     title: "Benadryl (Diphenhydramine) Dose Calculator for Cats",
     category: "pets",
@@ -1640,7 +1649,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatBenadrylDiphenhydramineDoseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-cephalexin-dose",
     title: "Cephalexin Dose Calculator for Cats",
     category: "pets",
@@ -1649,7 +1658,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatCephalexinDoseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-meloxicam-dose",
     title: "Meloxicam Dose Calculator for Cats",
     category: "pets",
@@ -1658,7 +1667,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatMeloxicamDoseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-gabapentin-dose",
     title: "Gabapentin Dose Calculator for Cats",
     category: "pets",
@@ -1667,7 +1676,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatGabapentinDoseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-prednisolone-dose",
     title: "Prednisolone Dose Calculator for Cats",
     category: "pets",
@@ -1676,7 +1685,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatPrednisoloneDoseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-omega-3-epa-dha-supplement",
     title: "Omega-3 (EPA/DHA) Supplement Calculator for Cats",
     category: "pets",
@@ -1685,7 +1694,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatOmega3EpaDhaSupplementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-insulin-starter-reference",
     title: "Insulin Starter Reference (info-only)",
     category: "pets",
@@ -1694,7 +1703,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatInsulinStarterReferenceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "kitten-adult-weight-predictor",
     title: "Kitten Adult Weight Predictor",
     category: "pets",
@@ -1703,7 +1712,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/KittenAdultWeightPredictorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-body-condition-score-bcs-target",
     title: "Cat Body Condition Score Helper (BCS → Target Plan)",
     category: "pets",
@@ -1712,7 +1721,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatBodyConditionScoreBcsTargetCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-bmi-body-index-educational",
     title: "Cat BMI/Body Index (educational)",
     category: "pets",
@@ -1721,7 +1730,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatBmiBodyIndexEducationalCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-carrier-size-fit-guide",
     title: "Cat Carrier Size & Fit Guide",
     category: "pets",
@@ -1730,7 +1739,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatCarrierSizeFitGuideCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-harness-size-fit-guide",
     title: "Cat Harness Size & Fit Guide",
     category: "pets",
@@ -1739,7 +1748,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatHarnessSizeFitGuideCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-activity-calorie-adjuster",
     title: "Indoor/Outdoor Activity Calorie Adjuster",
     category: "pets",
@@ -1748,7 +1757,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatActivityCalorieAdjusterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-play-session-planner",
     title: "Play Session Planner (Feather/Chase Time Targets)",
     category: "pets",
@@ -1757,7 +1766,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatPlaySessionPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-resting-active-hours-balance-tracker",
     title: "Resting vs. Active Hours Balance Tracker (owner input)",
     category: "pets",
@@ -1766,7 +1775,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatRestingActiveHoursBalanceTrackerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-age-human-years-breed-size-aware",
     title: "Cat Age in Human Years (Breed/Size Aware)",
     category: "pets",
@@ -1775,7 +1784,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatAgeHumanYearsBreedSizeAwareCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "senior-cat-care-readiness-checklist",
     title: "Senior Cat Care Readiness Checklist (scored helper)",
     category: "pets",
@@ -1784,7 +1793,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SeniorCatCareReadinessChecklistCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-life-expectancy-estimator",
     title: "Life Expectancy Estimator (lifestyle factors; educational)",
     category: "pets",
@@ -1793,7 +1802,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatLifeExpectancyEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-litter-box-output-tracker",
     title: "Litter Box Output Tracker (Normal vs. Increased)",
     category: "pets",
@@ -1802,7 +1811,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatLitterBoxOutputTrackerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-fluid-intake-urine-output-balance",
     title: "Fluid Intake vs. Urine Output Balance Checker",
     category: "pets",
@@ -1811,7 +1820,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatFluidIntakeUrineOutputBalanceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-phosphorus-per-meal-estimator",
     title: "Phosphorus per Meal Estimator (diet label helper)",
     category: "pets",
@@ -1820,7 +1829,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatPhosphorusPerMealEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-pregnancy-gestation-due-date",
     title: "Cat Pregnancy (Gestation) Due-Date Calculator",
     category: "pets",
@@ -1829,7 +1838,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatPregnancyGestationDueDateCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "kitten-weaning-timeline-feeding-amounts",
     title: "Kitten Weaning Timeline & Feeding Amounts",
     category: "pets",
@@ -1838,7 +1847,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/KittenWeaningTimelineFeedingAmountsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-shedding-combing-time-planner",
     title: "Shedding & Combing Time Planner",
     category: "pets",
@@ -1847,7 +1856,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatSheddingCombingTimePlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-nail-trim-interval-planner",
     title: "Nail Trim Interval Planner (activity/surface based)",
     category: "pets",
@@ -1856,7 +1865,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatNailTrimIntervalPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "multi-cat-litter-box-count-calculator",
     title: "Multi-Cat Litter Box Count Calculator",
     category: "pets",
@@ -1865,7 +1874,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/MultiCatLitterBoxCountCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-environmental-enrichment-planner",
     title: "Environmental Enrichment Planner (per room)",
     category: "pets",
@@ -1874,7 +1883,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatEnvironmentalEnrichmentPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-stress-score-playtime-offset-planner",
     title: "Stress Score & Playtime Offset Planner (owner input)",
     category: "pets",
@@ -1883,7 +1892,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/CatStressScorePlaytimeOffsetPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-calorie-energy-requirement-de-tdn",
     title: "Horse Calorie & Energy Requirement Calculator (DE / TDN)",
     category: "pets",
@@ -1892,7 +1901,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseCalorieEnergyRequirementDeTdnCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-weight-estimator-girth-length",
     title: "Horse Weight Estimator (Heart Girth & Length)",
     category: "pets",
@@ -1901,7 +1910,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseWeightEstimatorGirthLengthCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-daily-calorie-needs-body-weight",
     title: "Daily Calorie Needs by Body Weight",
     category: "pets",
@@ -1910,7 +1919,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdDailyCalorieNeedsBodyWeightCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-seed-to-pellet-conversion-planner",
     title: "Seed-to-Pellet Conversion Planner",
     category: "pets",
@@ -1919,7 +1928,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdSeedToPelletConversionPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-uvb-lighting-distance-duration",
     title: "UVB Lighting Distance & Duration Calculator",
     category: "pets",
@@ -1928,7 +1937,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileUvbLightingDistanceDurationCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-basking-temperature-gradient-planner",
     title: "Basking Temperature & Gradient Planner",
     category: "pets",
@@ -1937,7 +1946,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileBaskingTemperatureGradientPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-feeding-rate-forage-concentrate",
     title: "Horse Feeding Rate Calculator (Forage + Concentrate)",
     category: "pets",
@@ -1946,7 +1955,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseFeedingRateForageConcentrateCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-hay-intake-bodyweight-percent",
     title: "Horse Hay Intake Calculator (per body weight %)",
     category: "pets",
@@ -1955,7 +1964,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseHayIntakeBodyweightPercentCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-protein-lysine-requirement",
     title: "Horse Protein & Lysine Requirement Calculator",
     category: "pets",
@@ -1964,7 +1973,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseProteinLysineRequirementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-electrolyte-need-estimator",
     title: "Horse Electrolyte Need Estimator (Exercise & Heat)",
     category: "pets",
@@ -1973,7 +1982,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseElectrolyteNeedEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-body-condition-score-henneke",
     title: "Horse Body Condition Score Helper (Henneke 1–9)",
     category: "pets",
@@ -1982,7 +1991,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseBodyConditionScoreHennekeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-water-intake-temperature-weight",
     title: "Horse Water Intake by Temperature & Weight",
     category: "pets",
@@ -1991,7 +2000,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseWaterIntakeTemperatureWeightCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-dehydration-risk-estimator",
     title: "Dehydration Risk Estimator (Skin Turgor + Mucous Check)",
     category: "pets",
@@ -2000,7 +2009,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseDehydrationRiskEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-colic-risk-assessment",
     title: "Horse Colic Risk Assessment (Feeding & Management)",
     category: "pets",
@@ -2009,7 +2018,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseColicRiskAssessmentCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-laminitis-risk-index",
     title: "Laminitis Risk Index (BCS + NSC intake)",
     category: "pets",
@@ -2018,7 +2027,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseLaminitisRiskIndexCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-toxic-plant-exposure-risk",
     title: "Horse Toxic Plant Exposure Risk (Ragwort, Yew, etc.)",
     category: "pets",
@@ -2027,8 +2036,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseToxicPlantExposureRiskCalculator"),
     urlStyle: "flat"
   },
-    
-    {
+
+  {
     slug: "horse-nsaid-overdose-risk",
     title: "Horse NSAID Overdose Risk (Phenylbutazone)",
     category: "pets",
@@ -2037,7 +2046,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseNsaidOverdoseRiskCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-selenium-toxicity-threshold",
     title: "Horse Selenium Toxicity Threshold (ppm)",
     category: "pets",
@@ -2046,7 +2055,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseSeleniumToxicityThresholdCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-salt-mineral-balance-checker",
     title: "Horse Salt & Mineral Balance Checker",
     category: "pets",
@@ -2055,7 +2064,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseSaltMineralBalanceCheckerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-dewormer-dose-calculator",
     title: "Dewormer Dose Calculator (by Drug Class & Weight)",
     category: "pets",
@@ -2064,7 +2073,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseDewormerDoseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-phenylbutazone-flunixin-dose",
     title: "Phenylbutazone / Flunixin Dose Calculator",
     category: "pets",
@@ -2073,7 +2082,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorsePhenylbutazoneFlunixinDoseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-electrolyte-powder-mixing",
     title: "Electrolyte Powder Mixing Calculator",
     category: "pets",
@@ -2082,7 +2091,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseElectrolytePowderMixingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-omega-3-supplement-planner",
     title: "Omega-3 Supplement Planner (EPA/DHA per kg)",
     category: "pets",
@@ -2091,7 +2100,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseOmega3SupplementPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-gestation-due-date",
     title: "Horse Gestation (Due Date) Calculator",
     category: "pets",
@@ -2100,7 +2109,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseGestationDueDateCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horse-foaling-countdown-lactation-feed-planner",
     title: "Foaling Countdown & Lactation Feed Planner",
     category: "pets",
@@ -2109,7 +2118,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/HorseFoalingCountdownLactationFeedPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-hand-feeding-formula-amount-chicks",
     title: "Hand-Feeding Formula Amount (Chicks)",
     category: "pets",
@@ -2118,7 +2127,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdHandFeedingFormulaAmountChicksCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-vitamin-a-requirement",
     title: "Vitamin A Requirement Calculator",
     category: "pets",
@@ -2127,7 +2136,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdVitaminARequirementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-calcium-supplement-dosage-breeding-females",
     title: "Calcium Supplement Dosage (Breeding Females)",
     category: "pets",
@@ -2136,7 +2145,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdCalciumSupplementDosageBreedingFemalesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-weight-trend-tracker-weekly",
     title: "Weight Trend Tracker (Weekly Log)",
     category: "pets",
@@ -2145,7 +2154,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdWeightTrendTrackerWeeklyCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-toxic-foods-exposure-checker",
     title: "Toxic Foods Exposure Checker (Avocado, Chocolate, etc.)",
     category: "pets",
@@ -2154,7 +2163,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdToxicFoodsExposureCheckerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-heavy-metal-exposure-risk",
     title: "Heavy Metal (Lead/Zinc) Exposure Risk",
     category: "pets",
@@ -2163,7 +2172,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdHeavyMetalExposureRiskCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-feather-plucking-stress-risk-index",
     title: "Feather Plucking & Stress Risk Index",
     category: "pets",
@@ -2172,7 +2181,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdFeatherPluckingStressRiskIndexCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-egg-binding-risk-estimator",
     title: "Egg Binding Risk Estimator",
     category: "pets",
@@ -2181,7 +2190,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdEggBindingRiskEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-ambient-temperature-safe-zone",
     title: "Ambient Temperature Safe Zone Calculator",
     category: "pets",
@@ -2190,7 +2199,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdAmbientTemperatureSafeZoneCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-daily-water-requirement-per-weight",
     title: "Daily Water Requirement per Weight",
     category: "pets",
@@ -2199,7 +2208,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdDailyWaterRequirementPerWeightCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-dehydration-signs-estimator",
     title: "Dehydration Signs Estimator",
     category: "pets",
@@ -2208,7 +2217,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdDehydrationSignsEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-antibiotic-dose-reference",
     title: "Antibiotic Dose Reference (mg/kg)",
     category: "pets",
@@ -2217,7 +2226,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdAntibioticDoseReferenceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-omega-3-supplement-dose-parrots",
     title: "Omega-3 Supplement Dose (for parrots)",
     category: "pets",
@@ -2226,7 +2235,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdOmega3SupplementDoseParrotsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bird-electrolyte-vitamin-c-water-mix",
     title: "Electrolyte & Vitamin C Water Mix Calculator",
     category: "pets",
@@ -2235,7 +2244,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BirdElectrolyteVitaminCWaterMixCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-daily-feeding-ratio-species-age",
     title: "Daily Feeding Ratio (by Species & Age)",
     category: "pets",
@@ -2244,7 +2253,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileDailyFeedingRatioSpeciesAgeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-calcium-to-phosphorus-ratio",
     title: "Calcium-to-Phosphorus Ratio Calculator",
     category: "pets",
@@ -2253,7 +2262,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileCalciumToPhosphorusRatioCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-vitamin-d3-requirement",
     title: "Vitamin D3 Requirement (Supplemental)",
     category: "pets",
@@ -2262,7 +2271,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileVitaminD3RequirementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-feeder-insect-gut-loading-ratio",
     title: "Feeder Insect Gut-Loading Ratio",
     category: "pets",
@@ -2271,7 +2280,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileFeederInsectGutLoadingRatioCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-dehydration-shedding-risk-index",
     title: "Dehydration & Shedding Risk Index",
     category: "pets",
@@ -2280,7 +2289,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileDehydrationSheddingRiskIndexCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-metabolic-bone-disease-risk",
     title: "Metabolic Bone Disease Risk Estimator",
     category: "pets",
@@ -2289,7 +2298,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileMetabolicBoneDiseaseRiskCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-ideal-humidity-range",
     title: "Ideal Humidity Range Calculator",
     category: "pets",
@@ -2298,7 +2307,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileIdealHumidityRangeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-growth-curve-python-bearded-dragon-gecko",
     title: "Growth Curve by Species (Python, Bearded Dragon, Gecko)",
     category: "pets",
@@ -2307,7 +2316,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileGrowthCurvePythonBeardedDragonGeckoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-thermal-gradient-maintenance-power",
     title: "Thermal Gradient Maintenance Power Estimator",
     category: "pets",
@@ -2316,7 +2325,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileThermalGradientMaintenancePowerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-dewormer-antibiotic-dose-reference",
     title: "Dewormer & Antibiotic Dose Reference",
     category: "pets",
@@ -2325,7 +2334,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileDewormerAntibioticDoseReferenceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-calcium-d3-supplement",
     title: "Calcium + D3 Supplement Calculator",
     category: "pets",
@@ -2334,7 +2343,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileCalciumD3SupplementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reptile-fluid-replacement-volume",
     title: "Fluid Replacement Volume Calculator",
     category: "pets",
@@ -2343,7 +2352,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/ReptileFluidReplacementVolumeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "aquarium-volume-rectangular-cylindrical-bowfront",
     title: "Aquarium Volume Calculator (Rectangular / Cylindrical / Bowfront)",
     category: "pets",
@@ -2352,7 +2361,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumVolumeRectangularCylindricalBowfrontCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "aquarium-safe-stocking-density-fish-per-litre",
     title: "Safe Stocking Density (Fish/cm per Litre)",
     category: "pets",
@@ -2361,7 +2370,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumSafeStockingDensityFishPerLitreCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "aquarium-filter-flow-rate",
     title: "Filter Flow Rate Calculator",
     category: "pets",
@@ -2370,7 +2379,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumFilterFlowRateCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "aquarium-water-change-volume-planner",
     title: "Water Change Volume Planner",
     category: "pets",
@@ -2379,7 +2388,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumWaterChangeVolumePlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "aquarium-heater-wattage-requirement",
     title: "Heater Wattage Requirement",
     category: "pets",
@@ -2388,7 +2397,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumHeaterWattageRequirementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "aquarium-co2-injection-rate-planted-tank",
     title: "CO₂ Injection Rate Calculator (Planted Tank)",
     category: "pets",
@@ -2397,7 +2406,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumCo2InjectionRatePlantedTankCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "aquarium-ph-adjustment-buffer",
     title: "pH Adjustment (Acid/Base Buffer) Calculator",
     category: "pets",
@@ -2406,7 +2415,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumPhAdjustmentBufferCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "aquarium-ammonia-nitrite-cycle-time",
     title: "Ammonia-to-Nitrite Cycle Time Estimator",
     category: "pets",
@@ -2415,7 +2424,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumAmmoniaNitriteCycleTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "aquarium-salt-dosage-therapeutic",
     title: "Aquarium Salt Dosage Calculator (Therapeutic)",
     category: "pets",
@@ -2424,7 +2433,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumSaltDosageTherapeuticCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "aquarium-nitrate-reduction-goal-planner",
     title: "Nitrate Reduction Goal Planner (ppm → water change %)",
     category: "pets",
@@ -2433,7 +2442,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/AquariumNitrateReductionGoalPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fish-food-feeding-rate",
     title: "Fish Food Feeding Rate Calculator",
     category: "pets",
@@ -2442,7 +2451,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/FishFoodFeedingRateCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "oxygen-solubility-vs-temperature-table",
     title: "Oxygen Solubility vs. Temperature Table",
     category: "pets",
@@ -2451,7 +2460,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/OxygenSolubilityVsTemperatureTableCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pond-volume-liner-size",
     title: "Pond Volume & Liner Size Calculator",
     category: "pets",
@@ -2460,7 +2469,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/PondVolumeLinerSizeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "koi-feed-planner-temp-weight",
     title: "Koi Feed Planner (Temp + Weight)",
     category: "pets",
@@ -2469,7 +2478,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/KoiFeedPlannerTempWeightCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "breeding-tank-volume-planner",
     title: "Breeding Tank Volume Planner",
     category: "pets",
@@ -2478,7 +2487,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/BreedingTankVolumePlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "small-mammal-daily-calorie-needs",
     title: "Daily Calorie Needs (Species Specific)",
     category: "pets",
@@ -2487,7 +2496,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalDailyCalorieNeedsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "small-mammal-weight-maintenance-gain-loss-planner",
     title: "Weight Maintenance vs. Gain/Loss Planner",
     category: "pets",
@@ -2496,7 +2505,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalWeightMaintenanceGainLossPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "small-mammal-hay-pellet-intake",
     title: "Hay & Pellet Intake Calculator",
     category: "pets",
@@ -2505,7 +2514,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalHayPelletIntakeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "small-mammal-fiber-protein-ratio",
     title: "Fiber & Protein Ratio Calculator",
     category: "pets",
@@ -2514,7 +2523,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalFiberProteinRatioCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "guinea-pig-vitamin-c-requirement",
     title: "Vitamin C Requirement (Guinea Pig)",
     category: "pets",
@@ -2523,7 +2532,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/GuineaPigVitaminCRequirementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "small-mammal-calcium-intake-limit",
     title: "Calcium Intake Limit (Bladder Stone Prevention)",
     category: "pets",
@@ -2532,7 +2541,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalCalciumIntakeLimitCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "rabbit-treat-calories-safe-portion",
     title: "Rabbit Treat Calories & Safe Portion",
     category: "pets",
@@ -2541,7 +2550,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/RabbitTreatCaloriesSafePortionCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ferret-protein-fat-ratio-checker",
     title: "Ferret Protein/Fat Ratio Checker",
     category: "pets",
@@ -2550,7 +2559,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/FerretProteinFatRatioCheckerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "rabbit-temperature-stress-risk-heatstroke",
     title: "Temperature Stress Risk (Rabbit Heatstroke)",
     category: "pets",
@@ -2559,7 +2568,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/RabbitTemperatureStressRiskHeatstrokeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "small-mammal-dehydration-risk-checker",
     title: "Dehydration Risk Checker",
     category: "pets",
@@ -2568,7 +2577,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalDehydrationRiskCheckerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "small-mammal-common-toxic-foods-reference",
     title: "Common Toxic Foods Reference",
     category: "pets",
@@ -2577,7 +2586,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalCommonToxicFoodsReferenceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "small-mammal-safe-vegetables-fruits-portion",
     title: "Safe Vegetables & Fruits Portion Calculator",
     category: "pets",
@@ -2586,7 +2595,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalSafeVegetablesFruitsPortionCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "small-mammal-parasite-treatment-dose-reference",
     title: "Parasite Treatment Dose Reference",
     category: "pets",
@@ -2595,7 +2604,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalParasiteTreatmentDoseReferenceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "small-mammal-cage-size-requirement",
     title: "Cage Size Requirement Calculator",
     category: "pets",
@@ -2604,7 +2613,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalCageSizeRequirementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "small-mammal-exercise-time-planner",
     title: "Exercise Time Planner (Run Time per Day)",
     category: "pets",
@@ -2613,7 +2622,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalExerciseTimePlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "small-mammal-bedding-replacement-frequency",
     title: "Bedding Replacement Frequency Estimator",
     category: "pets",
@@ -2622,8 +2631,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Pets/SmallMammalBeddingReplacementFrequencyCalculator"),
     urlStyle: "flat"
   },
-    
-    {
+
+  {
     slug: "length-m-ft-in",
     title: "Length: m ↔ ft ↔ in",
     category: "conversion",
@@ -2632,7 +2641,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/LengthMFtInCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "area-m2-ft2",
     title: "Area: m² ↔ ft²",
     category: "conversion",
@@ -2641,7 +2650,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/AreaM2Ft2Calculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "volume-l-ml-gal-oz",
     title: "Volume: L ↔ mL ↔ gal ↔ oz",
     category: "conversion",
@@ -2650,7 +2659,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/VolumeLMlGalOzCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "mass-kg-lb-oz",
     title: "Mass: kg ↔ lb ↔ oz",
     category: "conversion",
@@ -2659,7 +2668,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/MassKgLbOzCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "temperature-c-f-k",
     title: "Temperature: °C ↔ °F ↔ K",
     category: "conversion",
@@ -2668,7 +2677,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/TemperatureCFKCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "density-g-per-ml-kg-per-m3",
     title: "Density: g/mL ↔ kg/m³",
     category: "conversion",
@@ -2677,7 +2686,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/DensityGPerMlKgPerM3Calculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "angle-deg-rad",
     title: "Angle: deg ↔ rad",
     category: "conversion",
@@ -2686,7 +2695,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/AngleDegRadCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "speed-mps-kmph-mph",
     title: "Speed: m/s ↔ km/h ↔ mph",
     category: "conversion",
@@ -2695,7 +2704,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/SpeedMpsKmphMphCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "force-n-lbf",
     title: "Force: N ↔ lbf",
     category: "conversion",
@@ -2704,7 +2713,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/ForceNLbfCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "energy-j-cal-kwh",
     title: "Energy: J ↔ cal ↔ kWh",
     category: "conversion",
@@ -2713,7 +2722,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/EnergyJCalKwhCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "power-w-hp",
     title: "Power: W ↔ hp",
     category: "conversion",
@@ -2722,7 +2731,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/PowerWHpCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pressure-pa-bar-psi",
     title: "Pressure: Pa ↔ bar ↔ psi",
     category: "conversion",
@@ -2731,7 +2740,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/PressurePaBarPsiCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "torque-nm-lbfft",
     title: "Torque: N·m ↔ lbf·ft",
     category: "conversion",
@@ -2740,7 +2749,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/TorqueNmLbfftCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "work-potential-energy",
     title: "Work & Potential Energy",
     category: "conversion",
@@ -2749,7 +2758,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/WorkPotentialEnergyCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "time-ms-s-min-hr",
     title: "Time: ms ↔ s ↔ min ↔ hr",
     category: "conversion",
@@ -2758,7 +2767,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/TimeMsSMinHrCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "frequency-hz-khz-mhz",
     title: "Frequency: Hz ↔ kHz ↔ MHz",
     category: "conversion",
@@ -2767,7 +2776,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/FrequencyHzKhzMhzCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "period-frequency",
     title: "Period ↔ Frequency",
     category: "conversion",
@@ -2776,7 +2785,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/PeriodFrequencyCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "frame-rate-fps-hz",
     title: "Frame Rate: fps ↔ Hz",
     category: "conversion",
@@ -2785,7 +2794,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/FrameRateFpsHzCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "clock-time-timezone-shift",
     title: "Clock Time & Timezone Shift",
     category: "conversion",
@@ -2794,7 +2803,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/ClockTimeTimezoneShiftCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bytes-b-kb-mb-gb-tb",
     title: "Bytes: B ↔ kB ↔ MB ↔ GB ↔ TB",
     category: "conversion",
@@ -2803,7 +2812,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/BytesBKbMbGbTbCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bits-b-kb-mb-gb",
     title: "Bits: b ↔ kb ↔ Mb ↔ Gb",
     category: "conversion",
@@ -2812,7 +2821,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/BitsBKbMbGbCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "binary-decimal-prefixes",
     title: "Binary ↔ Decimal prefixes (KiB ↔ KB)",
     category: "conversion",
@@ -2821,7 +2830,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/BinaryDecimalPrefixesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "transfer-speed-mbps-mbs",
     title: "Transfer Speed: Mbps ↔ MB/s",
     category: "conversion",
@@ -2830,7 +2839,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/TransferSpeedMbpsMbsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "compression-ratio-size",
     title: "Compression Ratio & Size",
     category: "conversion",
@@ -2839,7 +2848,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/CompressionRatioSizeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "checksum-hash-quick-tools",
     title: "Checksum & Hash Quick Tools",
     category: "conversion",
@@ -2848,7 +2857,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/ChecksumHashQuickToolsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cooking-tsp-tbsp-cup-ml",
     title: "Cooking: tsp/tbsp/cup ↔ mL",
     category: "conversion",
@@ -2857,7 +2866,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/CookingTspTbspCupMlCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fuel-economy-l-per-100km-mpg",
     title: "Fuel Economy: L/100km ↔ mpg",
     category: "conversion",
@@ -2866,7 +2875,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/FuelEconomyLPer100kmMpgCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "currency-fx-quick-convert",
     title: "Currency: FX quick convert",
     category: "conversion",
@@ -2875,7 +2884,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/CurrencyFxQuickConvertCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bmi-bsa-quick-estimators",
     title: "BMI & BSA quick estimators",
     category: "conversion",
@@ -2884,7 +2893,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/BmiBsaQuickEstimatorsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "paper-size-a-series-us",
     title: "Paper Size: A-series ↔ US",
     category: "conversion",
@@ -2893,7 +2902,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/PaperSizeASeriesUsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "shoe-size-eu-us-uk",
     title: "Shoe Size: EU ↔ US ↔ UK",
     category: "conversion",
@@ -2902,7 +2911,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Conversion/ShoeSizeEuUsUkCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cups-grams-ounces-by-ingredient",
     title: "Cups ↔ Grams ↔ Ounces Converter",
     category: "cooking",
@@ -2911,7 +2920,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/CupsGramsOuncesByIngredientCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "volume-weight-food-density",
     title: "Volume ↔ Weight Converter",
     category: "cooking",
@@ -2920,7 +2929,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/VolumeWeightFoodDensityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fahrenheit-celsius-oven-internal-temp",
     title: "Fahrenheit ↔ Celsius Converter",
     category: "cooking",
@@ -2929,7 +2938,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/FahrenheitCelsiusOvenInternalTempCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "teaspoon-tablespoon-cup-ml-converter",
     title: "Teaspoon/Tablespoon/Cup ↔ mL Converter",
     category: "cooking",
@@ -2938,7 +2947,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/TeaspoonTablespoonCupMlConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "recipe-scaler",
     title: "Recipe Scaler (x0.5, x2, x3…)",
     category: "cooking",
@@ -2947,7 +2956,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/RecipeScalerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "serving-size-multiplier",
     title: "Serving Size Multiplier",
     category: "cooking",
@@ -2956,7 +2965,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/ServingSizeMultiplierCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "salt-percent-brining",
     title: "Salt % for Brining Calculator",
     category: "cooking",
@@ -2965,7 +2974,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/SaltPercentBriningCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "alcohol-abv-dilution",
     title: "Alcohol by Volume (ABV) Dilution",
     category: "cooking",
@@ -2974,8 +2983,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/AlcoholAbvDilutionCalculator"),
     urlStyle: "flat"
   },
-   
-    {
+
+  {
     slug: "cake-pan-size-volume-converter",
     title: "Cake Pan Size & Volume Converter",
     category: "cooking",
@@ -2984,7 +2993,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/CakePanSizeVolumeConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bakers-percentage",
     title: "Baker’s Percentage Calculator",
     category: "cooking",
@@ -2993,7 +3002,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/BakersPercentageCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dough-hydration-percent",
     title: "Dough Hydration % Calculator",
     category: "cooking",
@@ -3002,7 +3011,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/DoughHydrationPercentCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "sourdough-starter-ratio-feed-planner",
     title: "Sourdough Starter Ratio & Feed Planner",
     category: "cooking",
@@ -3011,7 +3020,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/SourdoughStarterRatioFeedPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "yeast-conversion-instant-active-fresh",
     title: "Yeast Conversion Calculator",
     category: "cooking",
@@ -3020,7 +3029,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/YeastConversionInstantActiveFreshCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "flour-blend-substitution",
     title: "Flour Blend Substitution Helper",
     category: "cooking",
@@ -3029,7 +3038,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/FlourBlendSubstitutionCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "sugar-butter-flour-density-lookup",
     title: "Sugar/Butter/Flour Density Lookup",
     category: "cooking",
@@ -3038,7 +3047,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/SugarButterFlourDensityLookupCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "chocolate-butter-tempering-temperature",
     title: "Chocolate/Butter Tempering Temperature",
     category: "cooking",
@@ -3047,7 +3056,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/ChocolateButterTemperingTemperatureCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "turkey-thaw-cook-time",
     title: "Turkey Size, Thaw & Cook Time Calculator",
     category: "cooking",
@@ -3056,7 +3065,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/TurkeyThawCookTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "whole-chicken-roast-cook-time",
     title: "Whole Chicken/Roast Cook Time Estimator",
     category: "cooking",
@@ -3065,7 +3074,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/WholeChickenRoastCookTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "steak-doneness-time-resting",
     title: "Steak Doneness Time & Resting Window",
     category: "cooking",
@@ -3074,7 +3083,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/SteakDonenessTimeRestingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pork-beef-smoking-time-per-lb",
     title: "Pork/Beef Smoking Time per lb",
     category: "cooking",
@@ -3083,7 +3092,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/PorkBeefSmokingTimePerLbCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "safe-internal-temperature-checker",
     title: "Safe Internal Temperature Checker",
     category: "cooking",
@@ -3092,7 +3101,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/SafeInternalTemperatureCheckerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "defrost-time-fridge-cold-water",
     title: "Defrost Time Estimator",
     category: "cooking",
@@ -3101,7 +3110,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/DefrostTimeFridgeColdWaterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "rice-water-ratio-yield",
     title: "Rice:Water Ratio & Yield Calculator",
     category: "cooking",
@@ -3110,7 +3119,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/RiceWaterRatioYieldCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pasta-dry-cooked-yield-portions",
     title: "Pasta Dry ↔ Cooked Yield & Portions",
     category: "cooking",
@@ -3119,7 +3128,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/PastaDryCookedYieldPortionsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "stock-broth-reduction-time-yield",
     title: "Stock/Broth Reduction Time & Yield",
     category: "cooking",
@@ -3128,7 +3137,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/StockBrothReductionTimeYieldCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "oil-for-frying-pan-depth-volume",
     title: "Oil for Frying Calculator",
     category: "cooking",
@@ -3137,7 +3146,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/OilForFryingPanDepthVolumeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "icing-frosting-coverage-cake-size",
     title: "Icing/Frosting Coverage by Cake Size",
     category: "cooking",
@@ -3146,9 +3155,9 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Cooking/IcingFrostingCoverageCakeSizeCalculator"),
     urlStyle: "flat"
   },
-    
-   
-    {
+
+
+  {
     slug: "percent-of-total",
     title: "Percent of Total Calculator",
     category: "math",
@@ -3157,7 +3166,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PercentOfTotalCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "gpa-calculator",
     title: "GPA Calculator",
     category: "math",
@@ -3166,7 +3175,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/GpaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "percent-increase-decrease",
     title: "Percent Increase/Decrease Calculator",
     category: "math",
@@ -3175,7 +3184,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PercentIncreaseDecreaseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "percent-change",
     title: "Percent Change Calculator",
     category: "math",
@@ -3184,7 +3193,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PercentChangeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fraction-decimal-converter",
     title: "Fraction ⇄ Decimal Converter",
     category: "math",
@@ -3193,7 +3202,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/FractionDecimalConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fraction-reducer-simplifier",
     title: "Fraction Reducer / Simplifier",
     category: "math",
@@ -3202,7 +3211,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/FractionReducerSimplifierCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ratio-calculator",
     title: "Ratio Calculator (A:B = C:D)",
     category: "math",
@@ -3211,7 +3220,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/RatioCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "percent-error-calculator",
     title: "Percent Error Calculator",
     category: "math",
@@ -3220,7 +3229,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PercentErrorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "proportion-solver",
     title: "Proportion Solver (Cross-Multiplication)",
     category: "math",
@@ -3229,11 +3238,11 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/ProportionSolverCalculator"),
     urlStyle: "flat"
   },
-    
-    
-   
-   
-    {
+
+
+
+
+  {
     slug: "quadratic-equation-solver",
     title: "Quadratic Equation Solver (ax²+bx+c)",
     category: "math",
@@ -3242,7 +3251,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/QuadraticEquationSolverCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "linear-equation-solver-1-2-variables",
     title: "Linear Equation Solver (1–2 variables)",
     category: "math",
@@ -3251,7 +3260,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/LinearEquationSolver12VariablesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "system-of-equations-substitution-elimination",
     title: "System of Equations Solver (Substitution/Elimination)",
     category: "math",
@@ -3260,7 +3269,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/SystemOfEquationsSubstitutionEliminationCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "exponent-power-calculator",
     title: "Exponent & Power Calculator",
     category: "math",
@@ -3269,7 +3278,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/ExponentPowerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "log-antilog-base-10-e",
     title: "Log / Antilog (base 10/e) Calculator",
     category: "math",
@@ -3278,7 +3287,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/LogAntilogBase10ECalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "scientific-notation-standard-form",
     title: "Scientific Notation ⇄ Standard Form",
     category: "math",
@@ -3287,7 +3296,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/ScientificNotationStandardFormCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "polynomial-factorization-helper",
     title: "Polynomial Factorization Helper",
     category: "math",
@@ -3296,7 +3305,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PolynomialFactorizationHelperCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "root-radical-simplifier",
     title: "Root/Radical Simplifier",
     category: "math",
@@ -3305,7 +3314,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/RootRadicalSimplifierCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "gcf-gcd-calculator",
     title: "GCF / GCD Calculator",
     category: "math",
@@ -3314,7 +3323,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/GcfGcdCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "lcm-calculator",
     title: "LCM Calculator",
     category: "math",
@@ -3323,7 +3332,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/LcmCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "prime-factorization-tool",
     title: "Prime Factorization Tool",
     category: "math",
@@ -3332,7 +3341,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PrimeFactorizationToolCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "modulo-remainder-calculator",
     title: "Modulo (Remainder) Calculator",
     category: "math",
@@ -3341,7 +3350,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/ModuloRemainderCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "permutations-combinations-npr-ncr",
     title: "Permutations & Combinations (nPr / nCr)",
     category: "math",
@@ -3350,7 +3359,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PermutationsCombinationsNprNcrCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "random-number-generator-ranges",
     title: "Random Number Generator (ranges)",
     category: "math",
@@ -3359,7 +3368,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/RandomNumberGeneratorRangesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "triangle-solver-sss-sas-asa",
     title: "Triangle Solver (SSS/SAS/ASA)",
     category: "math",
@@ -3368,7 +3377,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/TriangleSolverSssSasAsaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "circle-area-circumference",
     title: "Circle Area / Circumference Calculator",
     category: "math",
@@ -3377,7 +3386,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/CircleAreaCircumferenceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "rectangle-parallelogram-area",
     title: "Rectangle & Parallelogram Area Calculator",
     category: "math",
@@ -3386,7 +3395,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/RectangleParallelogramAreaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pythagorean-theorem-solver",
     title: "Pythagorean Theorem Solver",
     category: "math",
@@ -3395,7 +3404,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/PythagoreanTheoremSolverCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "trig-functions-angle-side-finder",
     title: "Trig Functions (sin/cos/tan) Angle/Side Finder",
     category: "math",
@@ -3404,7 +3413,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/TrigFunctionsAngleSideFinderCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "shapes-area-volume-pack",
     title: "2D/3D Shapes Area & Volume Pack",
     category: "math",
@@ -3413,7 +3422,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/ShapesAreaVolumePackCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "angle-converter-deg-rad",
     title: "Angle Converter (deg ↔ rad)",
     category: "math",
@@ -3422,7 +3431,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/AngleConverterDegRadCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "mean-median-mode",
     title: "Mean, Median, Mode Calculator",
     category: "math",
@@ -3431,7 +3440,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/MeanMedianModeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "standard-deviation-variance-pop-sample",
     title: "Standard Deviation & Variance (pop/sample)",
     category: "math",
@@ -3440,7 +3449,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/StandardDeviationVariancePopSampleCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "z-score-percentile-finder",
     title: "Z-Score & Percentile Finder",
     category: "math",
@@ -3449,7 +3458,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/ZScorePercentileFinderCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "linear-interpolation-extrapolation",
     title: "Linear Interpolation / Extrapolation",
     category: "math",
@@ -3458,7 +3467,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/LinearInterpolationExtrapolationCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "binomial-probability-calculator",
     title: "Binomial Probability Calculator",
     category: "math",
@@ -3467,7 +3476,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/BinomialProbabilityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "normal-cdf-pdf-estimator",
     title: "Normal CDF / PDF Quick Estimator",
     category: "math",
@@ -3476,10 +3485,10 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Math/NormalCdfPdfEstimatorCalculator"),
     urlStyle: "flat"
   },
-    
-    
-   
-    {
+
+
+
+  {
     slug: "kinematics-suvat-solver",
     title: "Kinematics Equations Solver (SUVAT)",
     category: "science",
@@ -3488,7 +3497,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/KinematicsSuvatSolverCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "projectile-motion-calculator",
     title: "Projectile Motion Calculator",
     category: "science",
@@ -3497,7 +3506,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/ProjectileMotionCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "force-work-energy-calculator",
     title: "Force, Work & Energy Calculator",
     category: "science",
@@ -3506,8 +3515,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/ForceWorkEnergyCalculator"),
     urlStyle: "flat"
   },
-   
-    {
+
+  {
     slug: "power-efficiency-calculator",
     title: "Power & Efficiency Calculator",
     category: "science",
@@ -3516,7 +3525,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/PowerEfficiencyCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "momentum-impulse-calculator",
     title: "Momentum & Impulse Calculator",
     category: "science",
@@ -3525,7 +3534,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/MomentumImpulseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "uniform-circular-motion-centripetal",
     title: "Uniform Circular Motion Calculator",
     category: "science",
@@ -3534,7 +3543,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/UniformCircularMotionCentripetalCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "free-fall-time-velocity-estimator",
     title: "Free-Fall Time/Velocity Estimator",
     category: "science",
@@ -3543,7 +3552,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/FreeFallTimeVelocityEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "wave-speed-frequency-wavelength",
     title: "Wave Speed / Frequency / Wavelength",
     category: "science",
@@ -3552,7 +3561,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/WaveSpeedFrequencyWavelengthCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "snells-law-critical-angle",
     title: "Snell’s Law & Critical Angle Calculator",
     category: "science",
@@ -3561,7 +3570,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/SnellsLawCriticalAngleCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "thin-lens-solver",
     title: "Thin Lens Solver",
     category: "science",
@@ -3570,7 +3579,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/ThinLensSolverCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "specific-heat-q-mc-delta-t",
     title: "Specific Heat Calculator",
     category: "science",
@@ -3579,7 +3588,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/SpecificHeatQMcDeltaTCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "heat-transfer-conduction",
     title: "Heat Transfer (Conduction) Calculator",
     category: "science",
@@ -3588,7 +3597,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/HeatTransferConductionCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "blackbody-peak-wien-law-estimator",
     title: "Blackbody Peak (Wien's Law) Estimator",
     category: "science",
@@ -3597,7 +3606,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/BlackbodyPeakWienLawEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "photon-energy-e-hf",
     title: "Photon Energy Calculator",
     category: "science",
@@ -3606,7 +3615,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/PhotonEnergyEHfCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "half-life-exponential-decay",
     title: "Half-Life / Exponential Decay Calculator",
     category: "science",
@@ -3615,7 +3624,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/HalfLifeExponentialDecayCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "radioactive-activity-a-lambda-n",
     title: "Radioactive Activity Calculator",
     category: "science",
@@ -3624,7 +3633,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/RadioactiveActivityALambdaNCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reactance-capacitor-inductor-educational",
     title: "Capacitor/Inductor Reactance Calculator",
     category: "science",
@@ -3633,7 +3642,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/ReactanceCapacitorInductorEducationalCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "rc-time-constant-tau-rc",
     title: "RC Time Constant Calculator",
     category: "science",
@@ -3642,7 +3651,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/RcTimeConstantTauRcCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "molarity-moles-volume",
     title: "Molarity / Moles / Volume Calculator",
     category: "science",
@@ -3651,7 +3660,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/MolarityMolesVolumeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dilution-c1v1-c2v2",
     title: "Dilution Calculator (C₁V₁ = C₂V₂)",
     category: "science",
@@ -3660,7 +3669,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/DilutionC1v1C2v2Calculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "molality-normality-converter",
     title: "Molality & Normality Converter",
     category: "science",
@@ -3669,7 +3678,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/MolalityNormalityConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ideal-gas-law-pv-nrt",
     title: "Ideal Gas Law Calculator",
     category: "science",
@@ -3678,7 +3687,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/IdealGasLawPvNrtCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "stoichiometry-limiting-reagent",
     title: "Stoichiometry & Limiting Reagent Solver",
     category: "science",
@@ -3687,7 +3696,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/StoichiometryLimitingReagentCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "percent-yield-theoretical-yield",
     title: "Percent Yield & Theoretical Yield",
     category: "science",
@@ -3696,7 +3705,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/PercentYieldTheoreticalYieldCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ph-poh-h-oh-calculator",
     title: "pH / pOH / [H+] Calculator",
     category: "science",
@@ -3705,7 +3714,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/PhPohHOhCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "buffer-henderson-hasselbalch-helper",
     title: "Buffer (Henderson–Hasselbalch) Helper",
     category: "science",
@@ -3714,7 +3723,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/BufferHendersonHasselbalchHelperCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "molar-mass-calculator",
     title: "Molar Mass Calculator",
     category: "science",
@@ -3723,7 +3732,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/MolarMassCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "percent-composition-by-mass",
     title: "Percent Composition by Mass",
     category: "science",
@@ -3732,7 +3741,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/PercentCompositionByMassCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ppm-ppb-concentration-converter",
     title: "ppm / ppb Concentration Converter",
     category: "science",
@@ -3741,7 +3750,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/PpmPpbConcentrationConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "density-specific-gravity-calculator",
     title: "Density / Specific Gravity Calculator",
     category: "science",
@@ -3750,7 +3759,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/DensitySpecificGravityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "escape-velocity-calculator",
     title: "Escape Velocity Calculator",
     category: "science",
@@ -3759,7 +3768,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/EscapeVelocityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "orbital-period-kepler-estimator",
     title: "Orbital Period (Kepler) Estimator",
     category: "science",
@@ -3768,7 +3777,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/OrbitalPeriodKeplerEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "gravity-on-other-planets-calculator",
     title: "Gravity on Other Planets Calculator",
     category: "science",
@@ -3777,14 +3786,14 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Science/GravityOnOtherPlanetsCalculator"),
     urlStyle: "flat"
   },
-    
-   
-   
-  
-    
-   
-    
-    {
+
+
+
+
+
+
+
+  {
     slug: "cleaning-dilution-ratio",
     title: "Cleaning Dilution Ratio Calculator",
     category: "everyday",
@@ -3793,7 +3802,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CleaningDilutionRatioCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "laundry-detergent-dosage",
     title: "Laundry Detergent Dosage by Load Size",
     category: "everyday",
@@ -3802,7 +3811,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LaundryDetergentDosageCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "home-paint-touch-up",
     title: "Home Paint Touch-Up Estimator",
     category: "everyday",
@@ -3811,7 +3820,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HomePaintTouchUpCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "room-air-changes-ach",
     title: "Room Air Changes per Hour (ACH) Calculator",
     category: "everyday",
@@ -3820,7 +3829,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RoomAirChangesAchCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "propane-tank-burn-time",
     title: "Propane Tank Burn Time Estimator",
     category: "everyday",
@@ -3829,7 +3838,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PropaneTankBurnTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "refrigerator-freezer-safe-zone-time-window",
     title: "Refrigerator/Freezer Safe Zone Time Window",
     category: "everyday",
@@ -3838,7 +3847,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RefrigeratorFreezerSafeZoneTimeWindowCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "light-bulb-cost-per-year",
     title: "Light Bulb Cost per Year Calculator",
     category: "everyday",
@@ -3847,7 +3856,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LightBulbCostPerYearCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "water-heater-recovery-time",
     title: "Water Heater Recovery Time Estimator",
     category: "everyday",
@@ -3856,7 +3865,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/WaterHeaterRecoveryTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "home-renovation-cost-estimator",
     title: "Home Renovation Cost Estimator",
     category: "everyday",
@@ -3865,7 +3874,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HomeRenovationCostEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "appliance-energy-consumption",
     title: "Appliance Energy Consumption Calculator",
     category: "everyday",
@@ -3874,7 +3883,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ApplianceEnergyConsumptionCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "life-expectancy",
     title: "Life Expectancy Calculator",
     category: "everyday",
@@ -3883,7 +3892,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LifeExpectancyCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bmi-calculator",
     title: "Body Mass Index (BMI) Calculator",
     category: "everyday",
@@ -3892,7 +3901,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BmiCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "sleep-debt-ideal-bedtime",
     title: "Sleep Debt & Ideal Bedtime Planner",
     category: "everyday",
@@ -3901,7 +3910,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SleepDebtIdealBedtimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "caffeine-max-per-day",
     title: "Caffeine Max per Day Calculator",
     category: "everyday",
@@ -3910,7 +3919,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CaffeineMaxPerDayCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "screen-time-pomodoro-planner",
     title: "Screen Time Budget / Pomodoro Planner",
     category: "everyday",
@@ -3919,7 +3928,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ScreenTimePomodoroPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "steps-to-distance-converter",
     title: "Steps → Distance Converter",
     category: "everyday",
@@ -3928,7 +3937,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/StepsToDistanceConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "hydration-reminder-interval",
     title: "Hydration Reminder Interval Planner",
     category: "everyday",
@@ -3937,7 +3946,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HydrationReminderIntervalCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "myplate-daily-calorie-nutrient",
     title: "MyPlate Daily Calorie/Nutrient Planner",
     category: "everyday",
@@ -3946,7 +3955,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MyplateDailyCalorieNutrientCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bmr-calculator",
     title: "Basal Metabolic Rate (BMR) Calculator",
     category: "everyday",
@@ -3955,8 +3964,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BmrCalculator"),
     urlStyle: "flat"
   },
-    
-    {
+
+  {
     slug: "party-food-drinks-planner",
     title: "Party Food & Drinks Planner",
     category: "everyday",
@@ -3965,7 +3974,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PartyFoodDrinksPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ice-quantity-beverages",
     title: "Ice Quantity for Beverages Calculator",
     category: "everyday",
@@ -3974,7 +3983,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/IceQuantityBeveragesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "buffet-pan-capacity-count",
     title: "Buffet Serving Pan Capacity & Count",
     category: "everyday",
@@ -3983,7 +3992,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BuffetPanCapacityCountCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "beverage-mix-estimator",
     title: "Wine/Beer/Soft Drink Mix Estimator",
     category: "everyday",
@@ -3992,7 +4001,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BeverageMixEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "coffee-urn-yield-strength",
     title: "Coffee Urn Yield & Strength Calculator",
     category: "everyday",
@@ -4001,7 +4010,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CoffeeUrnYieldStrengthCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "leftovers-cooling-reheat-time",
     title: "Leftovers Cooling & Reheat Time",
     category: "everyday",
@@ -4010,7 +4019,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LeftoversCoolingReheatTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "event-budget-calculator",
     title: "Event Budget Calculator",
     category: "everyday",
@@ -4019,7 +4028,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EventBudgetCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "event-capacity-calculator",
     title: "Event Capacity Calculator",
     category: "everyday",
@@ -4028,7 +4037,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EventCapacityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "mulch-coverage-bag-count",
     title: "Mulch Coverage & Bag Count Calculator",
     category: "everyday",
@@ -4037,7 +4046,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MulchCoverageBagCountCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "garden-soil-compost-volume",
     title: "Garden Soil/Compost Volume Calculator",
     category: "everyday",
@@ -4046,7 +4055,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GardenSoilCompostVolumeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "lawn-mowing-time-fuel",
     title: "Lawn Mowing Time & Fuel Planner",
     category: "everyday",
@@ -4055,7 +4064,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LawnMowingTimeFuelCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "hose-runtime-flow-rate",
     title: "Hose Runtime vs Flow Rate Calculator",
     category: "everyday",
@@ -4064,7 +4073,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HoseRuntimeFlowRateCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "rainwater-barrel-days-supply",
     title: "Rainwater Barrel Days of Supply",
     category: "everyday",
@@ -4073,7 +4082,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RainwaterBarrelDaysSupplyCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "grass-seed-quantity",
     title: "Grass Seed Quantity Calculator",
     category: "everyday",
@@ -4082,7 +4091,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GrassSeedQuantityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "square-footage-calculator",
     title: "Square Footage Calculator",
     category: "everyday",
@@ -4091,7 +4100,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SquareFootageCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "planting-calendar-frost-date",
     title: "Planting Calendar & Frost Date Finder",
     category: "everyday",
@@ -4100,7 +4109,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PlantingCalendarFrostDateCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "plant-spacing-calculator",
     title: "Plant Spacing Calculator",
     category: "everyday",
@@ -4109,7 +4118,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PlantSpacingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fertilizer-application-calculator",
     title: "Fertilizer Application Calculator",
     category: "everyday",
@@ -4118,8 +4127,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FertilizerApplicationCalculator"),
     urlStyle: "flat"
   },
-   
-    {
+
+  {
     slug: "running-pace-split-finish-time",
     title: "Running Pace / Split / Finish Time Calculator",
     category: "sports",
@@ -4128,7 +4137,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/RunningPaceSplitFinishTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "race-time-predictor-riegel",
     title: "Race Time Predictor (Riegel Formula)",
     category: "sports",
@@ -4137,7 +4146,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/RaceTimePredictorRiegelCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "heart-rate-zones-karvonen",
     title: "Heart-Rate Zones Calculator (Karvonen Method)",
     category: "sports",
@@ -4146,7 +4155,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/HeartRateZonesKarvonenCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cycling-power-speed-estimator",
     title: "Cycling Power ↔ Speed Estimator (flat/wind)",
     category: "sports",
@@ -4155,7 +4164,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/CyclingPowerSpeedEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ftp-zones-planner",
     title: "FTP (Functional Threshold Power) Zones Planner",
     category: "sports",
@@ -4164,7 +4173,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/FtpZonesPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "swim-pace-css-splits",
     title: "Swim Pace: CSS (Critical Swim Speed) & Splits",
     category: "sports",
@@ -4173,7 +4182,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/SwimPaceCssSplitsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "t1-t2-time-impact",
     title: "T1/T2 Transition Time Impact (Triathlon)",
     category: "sports",
@@ -4182,7 +4191,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/T1T2TimeImpactCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "hydration-sweat-rate",
     title: "Hydration / Sweat Rate Calculator",
     category: "sports",
@@ -4191,7 +4200,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/HydrationSweatRateCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cycling-cadence",
     title: "Cycling Cadence Calculator",
     category: "sports",
@@ -4200,7 +4209,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/CyclingCadenceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "negative-split",
     title: "Negative Split Race Planner",
     category: "sports",
@@ -4209,9 +4218,9 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/NegativeSplitCalculator"),
     urlStyle: "flat"
   },
-    
-   
-    {
+
+
+  {
     slug: "swimming-power-points",
     title: "Swimming Power Points Calculator",
     category: "sports",
@@ -4220,7 +4229,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/SwimmingPowerPointsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pool-length-time-converter",
     title: "Pool Length Time Converter (SCY/SCM/LCM)",
     category: "sports",
@@ -4229,7 +4238,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/PoolLengthTimeConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "swim-interval-pace",
     title: "Swim Interval Pace Calculator",
     category: "sports",
@@ -4238,7 +4247,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/SwimIntervalPaceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "one-rep-max-1rm",
     title: "One-Rep Max (1RM) Calculator",
     category: "sports",
@@ -4247,7 +4256,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/OneRepMax1rmCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "training-weight-percentage",
     title: "Training Weight Percentage Calculator",
     category: "sports",
@@ -4256,7 +4265,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/TrainingWeightPercentageCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "target-heart-rate-rpe-zones",
     title: "Target Heart Rate / RPE Zones",
     category: "sports",
@@ -4265,7 +4274,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/TargetHeartRateRpeZonesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tdee-calculator",
     title: "TDEE Calculator (Sports)",
     category: "sports",
@@ -4274,7 +4283,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/TdeeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "plank-hold-progression",
     title: "Plank / Hold Time Progression",
     category: "sports",
@@ -4283,7 +4292,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/PlankHoldProgressionCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "wilks-coefficient",
     title: "Wilks Coefficient Calculator",
     category: "sports",
@@ -4292,7 +4301,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/WilksCoefficientCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "body-fat-percentage",
     title: "Body Fat Percentage Calculator (Athletes)",
     category: "sports",
@@ -4301,7 +4310,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BodyFatPercentageCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "plate-loading",
     title: "Plate Loading Calculator",
     category: "sports",
@@ -4310,7 +4319,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/PlateLoadingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "macronutrient-calculator",
     title: "Macronutrient Calculator (Sports)",
     category: "sports",
@@ -4319,7 +4328,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/MacronutrientCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "calorie-deficit-surplus",
     title: "Calorie Deficit / Surplus Calculator",
     category: "sports",
@@ -4328,7 +4337,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/CalorieDeficitSurplusCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fitness-age-calculator",
     title: "Fitness Age Calculator",
     category: "sports",
@@ -4337,7 +4346,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/FitnessAgeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "yoga-calories-burned",
     title: "Yoga Calories Burned Calculator",
     category: "sports",
@@ -4346,7 +4355,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/YogaCaloriesBurnedCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fantasy-team-points-projections",
     title: "Fantasy Team Points Projections Calculator",
     category: "sports",
@@ -4355,7 +4364,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/FantasyTeamPointsProjectionsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "betting-odds-payout-calculator",
     title: "Betting Odds & Payout Calculator",
     category: "sports",
@@ -4364,7 +4373,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BettingOddsPayoutCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "soccer-league-table-points-gd",
     title: "Soccer League Table: Points & GD",
     category: "sports",
@@ -4373,7 +4382,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/SoccerLeagueTablePointsGdCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "expected-goals-xg-helper",
     title: "xG (Expected Goals) Reading Helper",
     category: "sports",
@@ -4382,7 +4391,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/ExpectedGoalsXgHelperCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "basketball-efg-ts",
     title: "Basketball eFG% & TS% Calculator",
     category: "sports",
@@ -4391,7 +4400,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BasketballEfgTsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "basketball-pace-ortg-drtg",
     title: "Basketball Pace & ORtg/DRtg",
     category: "sports",
@@ -4400,7 +4409,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BasketballPaceOrtgDrtgCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "baseball-ops-slg-obp",
     title: "Baseball OPS / SLG / OBP Calculator",
     category: "sports",
@@ -4409,7 +4418,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BaseballOpsSlgObpCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "era-whip-calculator",
     title: "ERA & WHIP Calculator",
     category: "sports",
@@ -4418,7 +4427,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/EraWhipCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "win-probability-shift-wps",
     title: "Win Probability Shift (WPS) Estimator",
     category: "sports",
@@ -4427,7 +4436,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/WinProbabilityShiftWpsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "babip-calculator",
     title: "BABIP Calculator",
     category: "sports",
@@ -4436,7 +4445,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BabipCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ground-ball-to-fly-ball-ratio-gb-fb",
     title: "Ground Ball to Fly Ball Ratio (GB/FB)",
     category: "sports",
@@ -4445,7 +4454,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/GroundBallToFlyBallRatioGbFbCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "golf-handicap-differential-index",
     title: "Golf Handicap Differential & Index",
     category: "sports",
@@ -4454,7 +4463,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/GolfHandicapDifferentialIndexCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "golf-expected-putts-per-round",
     title: "Golf Expected Putts per Round",
     category: "sports",
@@ -4463,7 +4472,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/GolfExpectedPuttsPerRoundCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tennis-serve-speed",
     title: "Tennis Serve Speed Calculator",
     category: "sports",
@@ -4472,7 +4481,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/TennisServeSpeedCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tennis-elo-rating-progress",
     title: "Tennis ELO / Rating Progress",
     category: "sports",
@@ -4481,7 +4490,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/TennisEloRatingProgressCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "rowing-split-500m-pace",
     title: "Rowing Split (500m) ↔ Pace",
     category: "sports",
@@ -4490,7 +4499,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/RowingSplit500mPaceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "climbing-grade-converter-yds-french-eu",
     title: "Climbing Grade Converter",
     category: "sports",
@@ -4499,7 +4508,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/ClimbingGradeConverterYdsFrenchEuCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tournament-bracket-seeding-helper",
     title: "Tournament Bracket Seeding Helper",
     category: "sports",
@@ -4508,7 +4517,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/TournamentBracketSeedingHelperCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "golf-handicap-calculator",
     title: "Golf Handicap Calculator",
     category: "sports",
@@ -4517,7 +4526,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/GolfHandicapCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bowling-score-calculator",
     title: "Bowling Score Calculator",
     category: "sports",
@@ -4526,7 +4535,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/BowlingScoreCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fina-points-calculator",
     title: "FINA Points Calculator",
     category: "sports",
@@ -4535,7 +4544,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/FinaPointsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "swim-performance-level-calculator",
     title: "Swim Performance Level Calculator",
     category: "sports",
@@ -4544,11 +4553,11 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Sports/SwimPerformanceLevelCalculator"),
     urlStyle: "flat"
   },
-   
-   
-   
-    
-    {
+
+
+
+
+  {
     slug: "pizza-size-price-comparison",
     title: "Pizza Size/Price Comparison Calculator",
     category: "funny",
@@ -4557,7 +4566,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/PizzaSizePriceComparisonCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pizza-slices-per-person-regret-index",
     title: "Pizza Slices per Person & Regret Index",
     category: "funny",
@@ -4566,7 +4575,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/PizzaSlicesPerPersonRegretIndexCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "bbq-charcoal-splitter",
     title: "BBQ 'Who Brings the Charcoal?' Splitter",
     category: "funny",
@@ -4575,7 +4584,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/BbqCharcoalSplitterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "coffee-strength-vs-productivity-meme",
     title: "Coffee Strength vs Productivity Score",
     category: "funny",
@@ -4584,7 +4593,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/CoffeeStrengthVsProductivityMemeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "hot-dog-bun-mismatch-solver",
     title: "Hot-Dog to Bun Mismatch Solver",
     category: "funny",
@@ -4593,7 +4602,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/HotDogBunMismatchSolverCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "sugar-in-my-tea-dramatic",
     title: "How Much Sugar Is in My Tea? (Dramatic)",
     category: "funny",
@@ -4602,7 +4611,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/SugarInMyTeaDramaticCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "first-date-awkwardness-meter",
     title: "First-Date Awkwardness Meter",
     category: "funny",
@@ -4611,7 +4620,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/FirstDateAwkwardnessMeterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "donut-calculator",
     title: "Donut Calculator",
     category: "funny",
@@ -4620,7 +4629,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/DonutCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ideal-egg-boiling-calculator",
     title: "Ideal Egg Boiling Calculator",
     category: "funny",
@@ -4629,7 +4638,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/IdealEggBoilingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "coffee-addiction-meter",
     title: "Coffee Addiction Meter",
     category: "funny",
@@ -4638,7 +4647,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/CoffeeAddictionMeterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "zombie-survival-calculator",
     title: "Zombie Survival Calculator",
     category: "funny",
@@ -4647,7 +4656,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/ZombieSurvivalCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "love-meter",
     title: "Love Meter (Name Compatibility)",
     category: "funny",
@@ -4656,8 +4665,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/LoveMeterCalculator"),
     urlStyle: "flat"
   },
-    
-    {
+
+  {
     slug: "meetings-wasted-time-counter",
     title: "Meetings Wasted-Time Counter",
     category: "funny",
@@ -4666,7 +4675,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/MeetingsWastedTimeCounterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "email-cost-estimator-energy",
     title: "Cost to Send This Email (Energy/kWh)",
     category: "funny",
@@ -4675,7 +4684,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/EmailCostEstimatorEnergyCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tab-overload-anxiety-score",
     title: "Tab Overload Anxiety Score",
     category: "funny",
@@ -4684,7 +4693,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/TabOverloadAnxietyScoreCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "commit-message-quality-judge",
     title: "Commit Message Quality Judge",
     category: "funny",
@@ -4693,7 +4702,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/CommitMessageQualityJudgeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "keyboard-clicks-per-day",
     title: "Keyboard Clicks per Day Estimator",
     category: "funny",
@@ -4702,7 +4711,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/KeyboardClicksPerDayCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "meme-virality-calculator",
     title: "Meme Virality Calculator",
     category: "funny",
@@ -4711,7 +4720,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/MemeViralityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "calculator-word-generator-upside-down",
     title: "Calculator Word Generator (Upside-Down)",
     category: "funny",
@@ -4720,7 +4729,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/CalculatorWordGeneratorUpsideDownCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "lost-socks-calculator",
     title: "Lost Socks Calculator",
     category: "funny",
@@ -4729,7 +4738,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/LostSocksCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dog-zoomies-energy-meter",
     title: "Dog Zoomies Energy Release Meter",
     category: "funny",
@@ -4738,7 +4747,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/DogZoomiesEnergyMeterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cat-ignore-o-meter",
     title: "Cat 'Ignore-o-Meter'",
     category: "funny",
@@ -4747,7 +4756,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/CatIgnoreOMeterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "plant-watering-procrastination-index",
     title: "Plant Watering Procrastination Index",
     category: "funny",
@@ -4756,7 +4765,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/PlantWateringProcrastinationIndexCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "netflix-one-more-episode-timer",
     title: "Netflix 'Just One More Episode' Timer",
     category: "funny",
@@ -4765,7 +4774,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/NetflixOneMoreEpisodeTimerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "death-by-caffeine",
     title: "Death by Caffeine (Max Safe Intake)",
     category: "funny",
@@ -4774,7 +4783,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/DeathByCaffeineCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "social-media-time-alternatives",
     title: "Social Media Time Alternatives",
     category: "funny",
@@ -4783,7 +4792,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/SocialMediaTimeAlternativesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pokemon-go-weight-loss",
     title: "Pokémon GO Weight Loss Calculator",
     category: "funny",
@@ -4792,7 +4801,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/PokemonGoWeightLossCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "life-value-in-tacos",
     title: "Life Value Estimator (Worth in Tacos)",
     category: "funny",
@@ -4801,7 +4810,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/LifeValueInTacosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "drake-equation-calculator",
     title: "Drake Equation Calculator",
     category: "funny",
@@ -4810,7 +4819,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/DrakeEquationCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "vacation-budget-reality-check",
     title: "Vacation Budget Reality Check",
     category: "funny",
@@ -4819,7 +4828,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/VacationBudgetRealityCheckCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "loop-the-loop-speed-calculator",
     title: "Loop-the-Loop Speed Calculator",
     category: "funny",
@@ -4828,7 +4837,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/LoopTheLoopSpeedCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "rocks-to-flood-country",
     title: "Rocks to Flood a Country Estimator",
     category: "funny",
@@ -4837,7 +4846,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/RocksToFloodCountryCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "penguin-slap-power",
     title: "Penguin Slap Power Calculator",
     category: "funny",
@@ -4846,7 +4855,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/PenguinSlapPowerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "nickels-to-crush-calculator",
     title: "Nickels to Crush Calculator",
     category: "funny",
@@ -4855,7 +4864,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/NickelsToCrushCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "black-hole-sun-impact",
     title: "Black Hole Sun Impact Calculator",
     category: "funny",
@@ -4864,7 +4873,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/BlackHoleSunImpactCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "time-travel-energy-requirement",
     title: "Time Travel Energy Requirement",
     category: "funny",
@@ -4873,7 +4882,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/TimeTravelEnergyRequirementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "medical-tourism-cost-saver",
     title: "Medical Tourism Cost Saver",
     category: "funny",
@@ -4882,7 +4891,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/MedicalTourismCostSaverCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "crinkle-crankle-wall-brick-saver",
     title: "Crinkle Crankle Wall Brick Saver",
     category: "funny",
@@ -4891,13 +4900,13 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Funny/CrinkleCrankleWallBrickSaverCalculator"),
     urlStyle: "flat"
   },
-    
-    
-  
-   
-  
-   
-    {
+
+
+
+
+
+
+  {
     slug: "drywall-area-sheets",
     title: "Drywall Area & Sheets Calculator",
     category: "construction",
@@ -4906,8 +4915,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/DrywallAreaSheetsCalculator"),
     urlStyle: "flat"
   },
-  
-    {
+
+  {
     slug: "concrete-slab-volume",
     title: "Concrete Slab Volume Calculator",
     category: "construction",
@@ -4916,7 +4925,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/ConcreteSlabVolumeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "concrete-footing-foundation",
     title: "Concrete Footing & Foundation Calculator",
     category: "construction",
@@ -4925,7 +4934,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/ConcreteFootingFoundationCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "concrete-block-cmu-wall",
     title: "Concrete Block (CMU) Wall Calculator",
     category: "construction",
@@ -4934,7 +4943,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/ConcreteBlockCmuWallCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "rebar-spacing-quantity",
     title: "Rebar Spacing & Quantity Calculator",
     category: "construction",
@@ -4943,7 +4952,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/RebarSpacingQuantityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "mortar-mix-ratio-bag",
     title: "Mortar Mix Ratio & Bag Calculator",
     category: "construction",
@@ -4952,7 +4961,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/MortarMixRatioBagCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cement-sand-aggregate-ratio",
     title: "Cement, Sand & Aggregate Ratio Calculator",
     category: "construction",
@@ -4961,7 +4970,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/CementSandAggregateRatioCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "concrete-weight-yield",
     title: "Concrete Weight & Yield Calculator",
     category: "construction",
@@ -4970,7 +4979,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/ConcreteWeightYieldCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "concrete-curing-time",
     title: "Concrete Curing Time Estimator",
     category: "construction",
@@ -4979,7 +4988,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/ConcreteCuringTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "brick-calculator",
     title: "Brick Calculator",
     category: "construction",
@@ -4988,7 +4997,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/BrickCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "retaining-wall-calculator",
     title: "Retaining Wall Calculator",
     category: "construction",
@@ -4997,7 +5006,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/RetainingWallCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "deck-board-joist-spacing",
     title: "Deck Board & Joist Spacing Calculator",
     category: "construction",
@@ -5006,7 +5015,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/DeckBoardJoistSpacingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "stair-tread-riser-dimensions",
     title: "Stair Tread & Riser Dimensions Calculator",
     category: "construction",
@@ -5015,7 +5024,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/StairTreadRiserDimensionsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "trim-baseboard-length-estimator",
     title: "Trim & Baseboard Length Estimator",
     category: "construction",
@@ -5024,7 +5033,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/TrimBaseboardLengthEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "hardwood-plank-quantity",
     title: "Hardwood Plank Quantity Calculator",
     category: "construction",
@@ -5033,7 +5042,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/HardwoodPlankQuantityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "laminate-flooring-waste-allowance",
     title: "Laminate Flooring Waste Allowance Calculator",
     category: "construction",
@@ -5042,7 +5051,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/LaminateFlooringWasteAllowanceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "carpet-roll-waste",
     title: "Carpet Roll & Waste Calculator",
     category: "construction",
@@ -5051,7 +5060,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/CarpetRollWasteCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "board-foot",
     title: "Board Foot Calculator",
     category: "construction",
@@ -5060,7 +5069,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/BoardFootCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fence-post-material-linear-feet",
     title: "Fence Post & Material Calculator",
     category: "construction",
@@ -5069,7 +5078,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/FencePostMaterialLinearFeetCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tile-area-grout",
     title: "Tile Area & Grout Calculator",
     category: "construction",
@@ -5078,7 +5087,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/TileAreaGroutCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "flooring-material-cost",
     title: "Flooring Material Cost Estimator",
     category: "construction",
@@ -5087,7 +5096,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/FlooringMaterialCostCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "baluster-spacing-calculator",
     title: "Baluster Spacing Calculator",
     category: "construction",
@@ -5096,7 +5105,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/BalusterSpacingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "paint-coverage-gallons",
     title: "Paint Coverage & Gallons Needed Calculator",
     category: "construction",
@@ -5105,7 +5114,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/PaintCoverageGallonsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "wallpaper-roll-coverage",
     title: "Wallpaper Roll Coverage Calculator",
     category: "construction",
@@ -5114,7 +5123,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/WallpaperRollCoverageCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ceiling-tile-quantity",
     title: "Ceiling Tile Quantity Calculator",
     category: "construction",
@@ -5123,7 +5132,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/CeilingTileQuantityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "plaster-volume-bag",
     title: "Plaster Volume & Bag Estimator",
     category: "construction",
@@ -5132,7 +5141,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/PlasterVolumeBagCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "acoustic-panel-area",
     title: "Acoustic Panel Area Planner",
     category: "construction",
@@ -5141,7 +5150,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/AcousticPanelAreaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "joint-compound-amount",
     title: "Joint Compound Amount Calculator",
     category: "construction",
@@ -5150,7 +5159,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/JointCompoundAmountCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "plywood-calculator",
     title: "Plywood Calculator",
     category: "construction",
@@ -5159,7 +5168,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/PlywoodCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "roof-pitch-slope-angle",
     title: "Roof Pitch & Slope Angle Calculator",
     category: "construction",
@@ -5168,7 +5177,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/RoofPitchSlopeAngleCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "roof-shingle-bundle",
     title: "Roof Shingle & Bundle Calculator",
     category: "construction",
@@ -5177,7 +5186,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/RoofShingleBundleCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "metal-roof-panel-coverage",
     title: "Metal Roofing Panel Coverage Calculator",
     category: "construction",
@@ -5186,7 +5195,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/MetalRoofPanelCoverageCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "roof-underlayment-roll",
     title: "Roof Underlayment Roll Estimator",
     category: "construction",
@@ -5195,7 +5204,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/RoofUnderlaymentRollCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "siding-panel-coverage",
     title: "Siding Panel Coverage Calculator",
     category: "construction",
@@ -5204,7 +5213,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/SidingPanelCoverageCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "gutter-size",
     title: "Roof Drainage (Gutter Size) Calculator",
     category: "construction",
@@ -5213,7 +5222,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/GutterSizeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "hip-roof-calculator",
     title: "Hip Roof Calculator",
     category: "construction",
@@ -5222,7 +5231,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/HipRoofCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "gable-roof-calculator",
     title: "Gable Roof Calculator",
     category: "construction",
@@ -5231,7 +5240,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/GableRoofCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "excavation-calculator",
     title: "Excavation Calculator",
     category: "construction",
@@ -5240,7 +5249,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/ExcavationCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "insulation-r-value-requirement",
     title: "Insulation R-Value Requirement Calculator",
     category: "construction",
@@ -5249,7 +5258,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/InsulationRValueRequirementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "hvac-btu-requirement",
     title: "HVAC BTU Requirement Calculator",
     category: "construction",
@@ -5258,7 +5267,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/HvacBtuRequirementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "duct-size-airflow",
     title: "Duct Size & Airflow Calculator",
     category: "construction",
@@ -5267,7 +5276,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/DuctSizeAirflowCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "heating-cost-per-square-foot",
     title: "Heating Cost per Square Foot Estimator",
     category: "construction",
@@ -5276,7 +5285,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/HeatingCostPerSquareFootCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "energy-efficiency-savings",
     title: "Energy Efficiency Savings Estimator",
     category: "construction",
@@ -5285,7 +5294,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/EnergyEfficiencySavingsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cfm-calculator",
     title: "CFM Calculator",
     category: "construction",
@@ -5294,12 +5303,12 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Construction/CfmCalculator"),
     urlStyle: "flat"
   },
-// --- AUTOMOTIVE CALCULATORS ---
+  // --- AUTOMOTIVE CALCULATORS ---
 
-  
-   
-   
-    {
+
+
+
+  {
     slug: "trip-fuel-cost",
     title: "Trip Fuel Cost Calculator",
     category: "automotive",
@@ -5308,7 +5317,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/TripFuelCostCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fuel-economy-converter",
     title: "Fuel Economy Converter",
     category: "automotive",
@@ -5317,7 +5326,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/FuelEconomyConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "annual-fuel-cost-break-even",
     title: "Annual Fuel Cost & Break-Even",
     category: "automotive",
@@ -5326,7 +5335,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/AnnualFuelCostBreakEvenCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-kwh-per-100mi-cost-per-mile",
     title: "EV kWh per 100 mi ↔ Cost per Mile",
     category: "automotive",
@@ -5335,7 +5344,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvKwhCostPerMileCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-charging-cost-time",
     title: "EV Charging Cost & Time Estimator",
     category: "automotive",
@@ -5344,7 +5353,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvChargingCostTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ice-vs-ev-ownership-cost-5y",
     title: "ICE vs EV Ownership Cost (5 years)",
     category: "automotive",
@@ -5353,7 +5362,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/IceVsEvOwnershipCostCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "carbon-emissions-per-trip",
     title: "Carbon Emissions per Trip",
     category: "automotive",
@@ -5362,7 +5371,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/CarbonEmissionsPerTripCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tco-total-cost-ownership",
     title: "Total Cost of Ownership (TCO) Calculator",
     category: "automotive",
@@ -5371,7 +5380,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/TcoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cost-per-mile-km",
     title: "Cost Per Mile (Per Kilometer) Calculator",
     category: "automotive",
@@ -5380,7 +5389,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/CostPerMileCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tire-size-comparison",
     title: "Tire Size Comparison",
     category: "automotive",
@@ -5389,7 +5398,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/TireSizeComparisonCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "speedometer-error",
     title: "Speedometer Error",
     category: "automotive",
@@ -5398,7 +5407,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/SpeedometerErrorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "wheel-offset-backspacing",
     title: "Wheel Offset/Backspacing Calculator",
     category: "automotive",
@@ -5407,7 +5416,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/WheelOffsetBackspacingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tire-revs-per-mile-rpm-speed",
     title: "Tire Revolutions per Mile & RPM @ Speed",
     category: "automotive",
@@ -5416,7 +5425,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/TireRevsPerMileRpmCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "final-drive-gear-ratio-speed",
     title: "Final Drive & Gear Ratio Speed Calculator",
     category: "automotive",
@@ -5425,7 +5434,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/FinalDriveGearRatioSpeedCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "shift-point-rpm-drop",
     title: "Shift Point RPM Drop Estimator",
     category: "automotive",
@@ -5434,9 +5443,9 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/ShiftPointRpmDropCalculator"),
     urlStyle: "flat"
   },
-   
-    
-    {
+
+
+  {
     slug: "down-payment-impact-payoff-time",
     title: "Down Payment Impact & Payoff Time",
     category: "automotive",
@@ -5445,7 +5454,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/DownPaymentImpactPayoffCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "depreciation-curve-estimator",
     title: "Depreciation Curve Estimator",
     category: "automotive",
@@ -5454,7 +5463,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/DepreciationCurveEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "insurance-cost-per-year",
     title: "Insurance Cost per Year",
     category: "automotive",
@@ -5463,7 +5472,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/InsuranceCostPerYearCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "out-the-door-tax-title-fees",
     title: "Sales Tax, Title & Fees Out-the-Door Estimator",
     category: "automotive",
@@ -5472,7 +5481,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/OutTheDoorEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "used-car-value-estimator",
     title: "Used Car Value Estimator",
     category: "automotive",
@@ -5481,7 +5490,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/UsedCarValueEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "low-apr-vs-cashback-incentive",
     title: "Low APR vs. Cash Back Incentive Calculator",
     category: "automotive",
@@ -5490,7 +5499,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/LowAprVsCashBackCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "oil-change-interval-planner",
     title: "Oil Change Interval Planner",
     category: "automotive",
@@ -5499,7 +5508,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/OilChangeIntervalPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "car-loan-payment-amortization",
     title: "Car Loan Payment & Amortization Calculator",
     category: "automotive",
@@ -5508,8 +5517,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/CarLoanPaymentAmortizationCalculator"),
     urlStyle: "flat"
   },
-   
-    {
+
+  {
     slug: "brake-wear-estimator",
     title: "Brake Pad/Rotors Wear Estimator",
     category: "automotive",
@@ -5518,7 +5527,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/BrakePadWearEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "towing-capacity-safety-margin",
     title: "Towing Capacity Safety Margin Checker",
     category: "automotive",
@@ -5527,7 +5536,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/TowingCapacitySafetyMarginCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "payload-gvwr-utilization",
     title: "Payload & GVWR Utilization Helper",
     category: "automotive",
@@ -5536,7 +5545,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/PayloadGvwrUtilizationCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-home-public-charging-cost-time",
     title: "EV Home vs Public Charging Cost & Time Calculator",
     category: "automotive",
@@ -5545,7 +5554,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvHomePublicChargingCostTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-cost-per-mile",
     title: "EV Cost Per Mile Calculator",
     category: "automotive",
@@ -5554,7 +5563,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvCostPerMileCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-real-world-range",
     title: "EV Real-World Range Estimator",
     category: "automotive",
@@ -5563,7 +5572,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvRealWorldRangeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-hybrid-gas-tco",
     title: "EV vs Hybrid vs Gas TCO Calculator",
     category: "automotive",
@@ -5572,7 +5581,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvHybridGasTcoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-hybrid-break-even",
     title: "EV vs Hybrid Break-Even Point Calculator",
     category: "automotive",
@@ -5581,7 +5590,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvHybridBreakEvenCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "annual-ev-hybrid-cost",
     title: "Annual Fuel/Electricity Cost: EV vs Hybrid",
     category: "automotive",
@@ -5590,7 +5599,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/AnnualEvHybridCostCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-trip-cost-planner",
     title: "EV Trip Cost & Charging Planner",
     category: "automotive",
@@ -5599,7 +5608,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvTripCostPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-hybrid-co2-savings",
     title: "CO2 Emissions Savings: EV vs Hybrid",
     category: "automotive",
@@ -5608,7 +5617,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvHybridCo2SavingsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-battery-degradation",
     title: "EV Battery Degradation & Long-Term Range Estimator",
     category: "automotive",
@@ -5617,7 +5626,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvBatteryDegradationCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-home-charger-payback",
     title: "Home Charger Installation Cost & Payback Calculator",
     category: "automotive",
@@ -5626,7 +5635,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvHomeChargerPaybackCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-incentives-estimator",
     title: "EV Incentives & Tax Credits Estimator",
     category: "automotive",
@@ -5635,7 +5644,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvIncentivesEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-hybrid-maintenance-savings",
     title: "EV Maintenance Savings vs Hybrid Calculator",
     category: "automotive",
@@ -5644,7 +5653,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvHybridMaintenanceSavingsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-fast-charging-degradation",
     title: "EV Fast Charging Impact on Battery Life Calculator",
     category: "automotive",
@@ -5653,7 +5662,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvFastChargingDegradationCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-solar-charging-savings",
     title: "EV Solar Charging Savings Calculator",
     category: "automotive",
@@ -5662,7 +5671,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvSolarChargingSavingsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "phev-electric-gas-mode-cost",
     title: "PHEV Electric vs Gas Mode Cost Calculator",
     category: "automotive",
@@ -5671,7 +5680,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/PhevElectricGasModeCostCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-preconditioning-cost",
     title: "EV Preconditioning Energy & Cost Estimator",
     category: "automotive",
@@ -5680,7 +5689,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvPreconditioningCostCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "hp-from-quarter-mile-et",
     title: "Horsepower from Quarter Mile ET Calculator",
     category: "automotive",
@@ -5689,7 +5698,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/HpFromQuarterMileEtCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "quarter-mile-et-mph-from-hp",
     title: "Quarter Mile ET & MPH from HP Calculator",
     category: "automotive",
@@ -5698,7 +5707,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/QuarterMileEtMphFromHpCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "zero-to-sixty-time",
     title: "0-60 mph Acceleration Time Estimator",
     category: "automotive",
@@ -5707,7 +5716,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/ZeroToSixtyTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "hp-to-torque-converter",
     title: "Horsepower to Torque Converter",
     category: "automotive",
@@ -5716,7 +5725,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/HpToTorqueConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "engine-displacement",
     title: "Engine Displacement Calculator",
     category: "automotive",
@@ -5725,7 +5734,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EngineDisplacementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "compression-ratio",
     title: "Compression Ratio Calculator",
     category: "automotive",
@@ -5734,7 +5743,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/CompressionRatioCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "carb-cfm-sizing",
     title: "Carburetor CFM Sizing Calculator",
     category: "automotive",
@@ -5743,7 +5752,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/CarbCfmSizingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "camshaft-duration-overlap",
     title: "Camshaft Duration & Overlap Calculator",
     category: "automotive",
@@ -5752,7 +5761,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/CamshaftDurationOverlapCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "header-tube-length-diameter",
     title: "Header Primary Tube Length & Diameter Calculator",
     category: "automotive",
@@ -5761,7 +5770,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/HeaderTubeLengthDiameterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "mod-power-gains-estimator",
     title: "Power Gains from Modifications Estimator",
     category: "automotive",
@@ -5770,7 +5779,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/ModPowerGainsEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-acceleration-torque",
     title: "EV Acceleration & Torque Delivery Estimator",
     category: "automotive",
@@ -5779,7 +5788,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/EvAccelerationTorqueCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dyno-correction-factor",
     title: "Dyno Correction Factor Calculator",
     category: "automotive",
@@ -5788,7 +5797,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/DynoCorrectionFactorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "zero-to-sixty-gear-rpm",
     title: "0–60 Speed vs Gear/RPM",
     category: "automotive",
@@ -5797,9 +5806,9 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Automotive/060SpeedVsGearRpmCalculator"),
     urlStyle: "flat"
   },
-   
-   
-    {
+
+
+  {
     slug: "ohms-law",
     title: "Ohm's Law Calculator (V, I, R, P)",
     category: "electrical",
@@ -5808,7 +5817,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/OhmsLawCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "voltage-drop-wire-length",
     title: "Voltage Drop Calculator (Wire Gauge & Length)",
     category: "electrical",
@@ -5817,7 +5826,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/VoltageDropWireLengthCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "current-amperage",
     title: "Current (Amperage) Calculator",
     category: "electrical",
@@ -5826,7 +5835,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/CurrentAmperageCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "power-watts",
     title: "Power (Watts) Calculator",
     category: "electrical",
@@ -5835,7 +5844,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/PowerWattsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "electrical-resistance",
     title: "Electrical Resistance Calculator",
     category: "electrical",
@@ -5844,7 +5853,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ElectricalResistanceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "parallel-series-circuit",
     title: "Parallel & Series Circuit Calculator",
     category: "electrical",
@@ -5853,7 +5862,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ParallelSeriesCircuitCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "resistor-color-code",
     title: "Resistor Color Code Decoder",
     category: "electrical",
@@ -5862,7 +5871,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ResistorColorCodeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "electrical-load-capacity",
     title: "Electrical Load Capacity (Breaker/Panel) Calculator",
     category: "electrical",
@@ -5871,7 +5880,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ElectricalLoadCapacityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "wire-size-awg-kcmil",
     title: "Wire Size (AWG/KCMIL) Calculator",
     category: "electrical",
@@ -5880,7 +5889,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/WireSizeAwgKcmilCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "breaker-size",
     title: "Breaker Size Calculator",
     category: "electrical",
@@ -5889,7 +5898,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/BreakerSizeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "conduit-fill",
     title: "Conduit Fill Calculator",
     category: "electrical",
@@ -5898,8 +5907,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ConduitFillCalculator"),
     urlStyle: "flat"
   },
-    
-    {
+
+  {
     slug: "cable-ampacity-by-distance",
     title: "Cable Ampacity by Distance Calculator",
     category: "electrical",
@@ -5908,7 +5917,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/CableAmpacityByDistanceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "three-phase-power",
     title: "3-Phase Power Calculator",
     category: "electrical",
@@ -5917,7 +5926,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ThreePhasePowerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "transformer-kva",
     title: "Transformer kVA Calculator",
     category: "electrical",
@@ -5926,7 +5935,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/TransformerKvaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "motor-fla",
     title: "Motor FLA (Full Load Amps) Calculator",
     category: "electrical",
@@ -5935,7 +5944,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/MotorFlaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "conduit-bending",
     title: "Conduit Bending Calculator",
     category: "electrical",
@@ -5944,7 +5953,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ConduitBendingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "led-power-consumption",
     title: "LED Lighting Power Consumption Calculator",
     category: "electrical",
@@ -5953,7 +5962,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/LedPowerConsumptionCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "lumens-to-watts",
     title: "Lighting Lumens-to-Watts Converter",
     category: "electrical",
@@ -5962,7 +5971,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/LumensToWattsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "electricity-cost-per-hour-month",
     title: "Electricity Cost per Hour/Month Calculator",
     category: "electrical",
@@ -5971,7 +5980,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/ElectricityCostPerHourMonthCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "lighting-circuit-load-planner",
     title: "Lighting Circuit Load Planner",
     category: "electrical",
@@ -5980,7 +5989,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/LightingCircuitLoadPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "generator-sizing",
     title: "Generator Sizing Calculator",
     category: "electrical",
@@ -5989,7 +5998,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/GeneratorSizingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "power-factor",
     title: "Power Factor Calculator",
     category: "electrical",
@@ -5998,7 +6007,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/PowerFactorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pv-system-production-estimator",
     title: "PV System Production Estimator (e.g., PVWatts)",
     category: "electrical",
@@ -6007,7 +6016,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/PvSystemProductionEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "off-grid-system-sizing",
     title: "Off-Grid System Sizing Calculator",
     category: "electrical",
@@ -6016,7 +6025,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/OffGridSystemSizingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "solar-panel-output-array-sizing",
     title: "Solar Panel Output & Array Sizing Calculator",
     category: "electrical",
@@ -6025,7 +6034,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/SolarPanelOutputArraySizingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "solar-battery-bank-sizing",
     title: "Solar Battery Bank Sizing Calculator",
     category: "electrical",
@@ -6034,7 +6043,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/SolarBatteryBankSizingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "inverter-load-capacity",
     title: "Inverter Load Capacity Calculator",
     category: "electrical",
@@ -6043,7 +6052,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/InverterLoadCapacityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ev-charging-time",
     title: "EV Charging Time Calculator",
     category: "electrical",
@@ -6052,7 +6061,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/EvChargingTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "battery-runtime-estimator",
     title: "Battery Runtime Estimator",
     category: "electrical",
@@ -6061,7 +6070,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/BatteryRuntimeEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "system-payback-period-roi",
     title: "System Payback Period (ROI) Calculator",
     category: "electrical",
@@ -6070,7 +6079,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Electrical/SystemPaybackPeriodRoiCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "days-between-dates",
     title: "Days Between Dates (date duration)",
     category: "time",
@@ -6079,7 +6088,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/DaysBetweenDatesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "add-subtract-date",
     title: "Add/Subtract Date (days/months/years)",
     category: "time",
@@ -6088,7 +6097,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/AddSubtractDateCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "add-subtract-time",
     title: "Add/Subtract Time (h/min/s)",
     category: "time",
@@ -6097,7 +6106,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/AddSubtractTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "business-days",
     title: "Business Days Calculator (exclude weekends/holidays)",
     category: "time",
@@ -6106,7 +6115,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/BusinessDaysCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "iso-week-number",
     title: "Week Number & ISO Week Finder",
     category: "time",
@@ -6115,7 +6124,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/IsoWeekNumberCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "age-calculator",
     title: "Age Calculator (years/months/days)",
     category: "time",
@@ -6124,7 +6133,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/AgeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "date-difference-hms",
     title: "Date Difference in Hours/Minutes/Seconds",
     category: "time",
@@ -6133,7 +6142,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/DateDifferenceHmsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "julian-date-day-number",
     title: "Julian Date/Day Calculator",
     category: "time",
@@ -6142,7 +6151,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/JulianDateDayNumberCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "leap-year-checker",
     title: "Leap Year Checker",
     category: "time",
@@ -6151,7 +6160,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/LeapYearCheckerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "time-zone-converter",
     title: "Time Zone Converter (between cities)",
     category: "time",
@@ -6160,7 +6169,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/TimeZoneConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "world-clock",
     title: "World Clock (list of cities)",
     category: "time",
@@ -6169,7 +6178,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/WorldClockCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "meeting-planner-time-zones",
     title: "Meeting Planner (common time across time zones)",
     category: "time",
@@ -6178,7 +6187,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/MeetingPlannerTimeZonesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "utc-local-time-converter",
     title: "UTC ↔ Local Time Converter",
     category: "time",
@@ -6187,7 +6196,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/UtcLocalTimeConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dst-change-checker",
     title: "DST Change Checker (time changes)",
     category: "time",
@@ -6196,7 +6205,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/DstChangeCheckerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "epoch-unix-time-converter",
     title: "Epoch/Unix Time Converter",
     category: "time",
@@ -6205,7 +6214,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/EpochUnixTimeConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "calendar-generator-pdf",
     title: "Calendar Generator (month/year, export PDF)",
     category: "time",
@@ -6214,7 +6223,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/CalendarGeneratorPdfCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "workday-workweek-planner",
     title: "Workday/Workweek Planner (customized)",
     category: "time",
@@ -6223,7 +6232,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/WorkdayWorkweekPlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "countdown-timer",
     title: "Countdown Timer (until a date/time)",
     category: "time",
@@ -6232,7 +6241,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/CountdownTimerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "stopwatch-split-times",
     title: "Stopwatch & Split Times (web tool)",
     category: "time",
@@ -6241,7 +6250,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/StopwatchSplitTimesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "day-of-week-for-date",
     title: "Day of Week for Any Date (includes Doomsday rule)",
     category: "time",
@@ -6250,7 +6259,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/DayOfWeekForDateCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "count-specific-weekdays",
     title: "Count Specific Weekdays Between Dates (e.g., all Fridays)",
     category: "time",
@@ -6259,7 +6268,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/CountSpecificWeekdaysCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "sunrise-sunset-times",
     title: "Sunrise and Sunset Times",
     category: "time",
@@ -6268,7 +6277,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/SunriseSunsetTimesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "moon-phases",
     title: "Moon Phases",
     category: "time",
@@ -6277,7 +6286,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/MoonPhasesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "astronomical-seasons",
     title: "Seasons Calculator",
     category: "time",
@@ -6286,8 +6295,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/AstronomicalSeasonsCalculator"),
     urlStyle: "flat"
   },
-   
-    {
+
+  {
     slug: "video-bitrate-file-size",
     title: "Video Bitrate ↔ File Size Calculator",
     category: "video",
@@ -6296,7 +6305,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VideoBitrateFileSizeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "recording-time-card-ssd-capacity",
     title: "Recording Time vs Card/SSD Capacity",
     category: "video",
@@ -6305,7 +6314,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/RecordingTimeCardSsdCapacityCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "audio-bitrate-channels-impact-file-size",
     title: "Audio Bitrate + Channels Impact (File Size)",
     category: "video",
@@ -6314,7 +6323,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AudioBitrateChannelsImpactFileSizeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "vbr-cbr-size-estimator",
     title: "VBR vs CBR Size Estimator",
     category: "video",
@@ -6323,7 +6332,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VbrCbrSizeEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "uncompressed-video-size-resolution-bit-depth",
     title: "Uncompressed Video Size (Resolution × Bit Depth)",
     category: "video",
@@ -6332,7 +6341,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/UncompressedVideoSizeResolutionBitDepthCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "h264-h265-target-bitrate-helper-resolution-fps",
     title: "H.264/H.265 Target Bitrate Helper (by resolution/FPS)",
     category: "video",
@@ -6341,7 +6350,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/H264H265TargetBitrateHelperResolutionFpsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "youtube-twitch-recommended-bitrate-checker",
     title: "YouTube/Twitch Recommended Bitrate (Upload/Stream) Checker",
     category: "video",
@@ -6350,7 +6359,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/YoutubeTwitchRecommendedBitrateCheckerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "surveillance-nvr-video-storage-planner",
     title: "Surveillance/NVR Video Storage Planner",
     category: "video",
@@ -6359,7 +6368,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/SurveillanceNvrVideoStoragePlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "live-streaming-bitrate-calculator",
     title: "Live Streaming Bitrate Calculator",
     category: "video",
@@ -6368,7 +6377,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/LiveStreamingBitrateCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "video-data-rate-calculator",
     title: "Video Data Rate Calculator (Mbps ↔ MB/s)",
     category: "video",
@@ -6377,7 +6386,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VideoDataRateCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "video-compression-size-estimator",
     title: "Video Compression Size Estimator (H.264/etc.)",
     category: "video",
@@ -6386,7 +6395,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VideoCompressionSizeEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "camera-bitrate-record-time-converter",
     title: "Camera Bitrate to Record Time Converter",
     category: "video",
@@ -6395,7 +6404,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/CameraBitrateRecordTimeConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "aspect-ratio-letterbox-pillarbox",
     title: "Aspect Ratio Calculator (Letterbox/Pillarbox)",
     category: "video",
@@ -6404,7 +6413,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AspectRatioLetterboxPillarboxCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "resolution-presets-pixel-count-720p-1080p-4k-8k",
     title: "Resolution Presets & Pixel Count (720p/1080p/4K/8K)",
     category: "video",
@@ -6413,9 +6422,9 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/ResolutionPresetsPixelCount720p1080p4k8kCalculator"),
     urlStyle: "flat"
   },
-    
-    
-    {
+
+
+  {
     slug: "screen-size-from-diagonal-ar",
     title: "Screen Size from Diagonal & AR",
     category: "video",
@@ -6424,7 +6433,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/ScreenSizeFromDiagonalArCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tv-size-viewing-distance-planner",
     title: "TV Size & Viewing Distance Planner",
     category: "video",
@@ -6433,7 +6442,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/TvSizeViewingDistancePlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pixel-aspect-ratio-par-converter",
     title: "Pixel Aspect Ratio (PAR) Converter",
     category: "video",
@@ -6442,7 +6451,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/PixelAspectRatioParConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "anamorphic-lens-calculator",
     title: "Anamorphic Lens Calculator",
     category: "video",
@@ -6451,7 +6460,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AnamorphicLensCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "video-crop-dimension-calculator",
     title: "Video Crop Dimension Calculator",
     category: "video",
@@ -6460,7 +6469,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VideoCropDimensionCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "timecode-duration-hh-mm-ss-ff-converter",
     title: "Timecode ↔ Duration (HH:MM:SS:FF) Converter",
     category: "video",
@@ -6469,7 +6478,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/TimecodeDurationHhMmSsFfConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fps-converter-23-976-24-25-29-97-30-50-59-94",
     title: "FPS Converter (23.976↔24↔25↔29.97↔30↔50↔59.94)",
     category: "video",
@@ -6478,7 +6487,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/FpsConverter239762425299730505994Calculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "shutter-angle-speed-helper-180-degree-rule",
     title: "Shutter Angle/Speed Helper (180° Rule)",
     category: "video",
@@ -6487,7 +6496,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/ShutterAngleSpeedHelper180DegreeRuleCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "slow-mo-speed-ramp-time-calculator",
     title: "Slow-Mo & Speed-Ramp Time Calculator",
     category: "video",
@@ -6496,7 +6505,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/SlowMoSpeedRampTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "frame-count-duration-converter",
     title: "Frame Count ↔ Duration Converter",
     category: "video",
@@ -6505,7 +6514,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/FrameCountDurationConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "frames-to-timecode-calculator",
     title: "Frames to Timecode Calculator",
     category: "video",
@@ -6514,7 +6523,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/FramesToTimecodeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "timecode-addition-subtraction-calculator",
     title: "Timecode Addition/Subtraction Calculator",
     category: "video",
@@ -6523,7 +6532,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/TimecodeAdditionSubtractionCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "drop-frame-timecode-converter",
     title: "Drop Frame Timecode Converter",
     category: "video",
@@ -6532,7 +6541,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/DropFrameTimecodeConverterCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "timecode-to-frames-calculator",
     title: "Timecode to Frames Calculator",
     category: "video",
@@ -6541,7 +6550,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/TimecodeToFramesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "render-time-calculator-3d",
     title: "3D Render Time Calculator",
     category: "video",
@@ -6550,7 +6559,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/ThreeDRenderTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "render-farm-time-calculator-3d",
     title: "3D Render Farm Time Calculator",
     category: "video",
@@ -6559,7 +6568,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/ThreeDRenderFarmTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "render-farm-cost-estimator",
     title: "Render Farm Cost Estimator",
     category: "video",
@@ -6568,7 +6577,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/RenderFarmCostEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "video-export-time-estimator",
     title: "Video Export Time Estimator",
     category: "video",
@@ -6577,7 +6586,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VideoExportTimeEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "gpu-render-performance-calculator",
     title: "GPU Render Performance Calculator",
     category: "video",
@@ -6586,7 +6595,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/GpuRenderPerformanceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "render-time-per-frame-calculator",
     title: "Render Time Per Frame Calculator",
     category: "video",
@@ -6595,7 +6604,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/RenderTimePerFrameCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cloud-render-queue-planner",
     title: "Cloud Render Queue Planner",
     category: "video",
@@ -6604,7 +6613,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/CloudRenderQueuePlannerCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "video-rendering-hardware-requirement-calculator",
     title: "Video Rendering Hardware Requirement Calculator",
     category: "video",
@@ -6613,7 +6622,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/VideoRenderingHardwareRequirementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "animation-render-duration-estimator",
     title: "Animation Render Duration Estimator",
     category: "video",
@@ -6622,7 +6631,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AnimationRenderDurationEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "multi-workstation-render-time-calculator",
     title: "Multi-Workstation Render Time Calculator",
     category: "video",
@@ -6631,7 +6640,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/MultiWorkstationRenderTimeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "amplifier-power-required-calculator",
     title: "Amplifier Power Required Calculator",
     category: "video",
@@ -6640,7 +6649,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AmplifierPowerRequiredCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dbu-dbv-conversion-calculator",
     title: "dBu to dBV Conversion Calculator",
     category: "video",
@@ -6649,7 +6658,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/DbuDbvConversionCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "sound-pressure-level-spl-calculator",
     title: "Sound Pressure Level (SPL) Calculator",
     category: "video",
@@ -6658,7 +6667,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/SoundPressureLevelSplCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "speaker-placement-calculator",
     title: "Speaker Placement Calculator",
     category: "video",
@@ -6667,7 +6676,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/SpeakerPlacementCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cable-length-impact-calculator",
     title: "Cable Length Impact Calculator",
     category: "video",
@@ -6676,7 +6685,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/CableLengthImpactCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "inverse-square-law-calculator",
     title: "Inverse Square Law Calculator",
     category: "video",
@@ -6685,7 +6694,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/InverseSquareLawCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ohms-law-for-audio-calculator",
     title: "Ohm's Law for Audio Calculator",
     category: "video",
@@ -6694,7 +6703,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/OhmsLawForAudioCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "speaker-crossover-calculator",
     title: "Speaker Crossover Calculator",
     category: "video",
@@ -6703,7 +6712,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/SpeakerCrossoverCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "decibel-power-ratio-calculator",
     title: "Decibel Power Ratio Calculator",
     category: "video",
@@ -6712,7 +6721,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/DecibelPowerRatioCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "audio-file-size-estimator",
     title: "Audio File Size Estimator",
     category: "video",
@@ -6721,7 +6730,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AudioFileSizeEstimatorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "wavelength-frequency-calculator",
     title: "Wavelength and Frequency Calculator",
     category: "video",
@@ -6731,7 +6740,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
 
   },
-    {
+  {
     slug: "aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper",
     title: "16:9 → 9:16/1:1 Crop & Safe Area Helper",
     category: "video",
@@ -6740,7 +6749,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/AspectRatio169To91611CropSafeAreaHelperCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "dpi-ppi-pixels-print-display",
     title: "DPI/PPI ↔ Pixels (Print/Display)",
     category: "video",
@@ -6749,21 +6758,21 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Video/DpiPpiPixelsPrintDisplayCalculator"),
     urlStyle: "flat"
   },
-    
-   
-   
-   
-   
- 
-    
-    
-  
-    
-    
-   
-    
-  
-    {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
     slug: "texas-style-brisket",
     title: "Texas-Style Brisket",
     category: "recipes",
@@ -6772,7 +6781,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TexasStyleBrisketCalculator"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "tomato-and-basil-bruschetta",
     title: "Tomato and Basil Bruschetta",
     category: "recipes",
@@ -6781,7 +6790,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/TomatoAndBasilBruschettaCalculator.tsx"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "caprese-salad",
     title: "Caprese Salad",
     category: "recipes",
@@ -6790,7 +6799,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/CapreseSaladCalculator.tsx"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "italian-bread-salad-panzanella",
     title: "Italian Bread Salad (Panzanella)",
     category: "recipes",
@@ -6799,7 +6808,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/ItalianBreadSaladPanzanellaCalculator.tsx"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "antipasto-platter-cured-meats-cheese-olives",
     title: "Antipasto Platter (Cured Meats, Cheese, Olives)",
     category: "recipes",
@@ -6808,7 +6817,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/AntipastoPlatterCuredMeatsCheeseOlivesCalculator.tsx"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "garlic-and-herb-crostini",
     title: "Garlic and Herb Crostini",
     category: "recipes",
@@ -6817,7 +6826,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/GarlicAndHerbCrostiniCalculator.tsx"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "fried-rice-balls-arancini",
     title: "Fried Rice Balls (Arancini)",
     category: "recipes",
@@ -6826,7 +6835,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/FriedRiceBallsAranciniCalculator.tsx"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "stuffed-zucchini-blossoms",
     title: "Stuffed Zucchini Blossoms",
     category: "recipes",
@@ -6835,7 +6844,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/StuffedZucchiniBlossomsCalculator.tsx"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "marinated-artichokes",
     title: "Marinated Artichokes",
     category: "recipes",
@@ -6844,7 +6853,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/MarinatedArtichokesCalculator.tsx"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "baked-stuffed-mushrooms",
     title: "Baked Stuffed Mushrooms",
     category: "recipes",
@@ -6853,7 +6862,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BakedStuffedMushroomsCalculator.tsx"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "prosciutto-and-melon",
     title: "Prosciutto and Melon",
     category: "recipes",
@@ -6862,7 +6871,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/ProsciuttoAndMelonCalculator.tsx"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "minestrone-soup",
     title: "Minestrone Soup",
     category: "recipes",
@@ -6871,7 +6880,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/MinestroneSoupCalculator.tsx"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "tuscan-bread-and-vegetable-soup-ribollita",
     title: "Tuscan Bread and Vegetable Soup (Ribollita)",
     category: "recipes",
@@ -6880,7 +6889,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/TuscanBreadAndVegetableSoupRibollitaCalculator.tsx"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "pasta-and-bean-soup-pasta-e-fagioli",
     title: "Pasta and Bean Soup (Pasta e Fagioli)",
     category: "recipes",
@@ -6891,9 +6900,9 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
 
 
- 
-  
-    {
+
+
+  {
     slug: "italian-wedding-soup",
     title: "Italian Wedding Soup",
     category: "culinary",
@@ -6902,7 +6911,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ItalianWeddingSoupCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tomato-and-bread-soup",
     title: "Tomato and Bread Soup",
     category: "culinary",
@@ -6911,7 +6920,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TomatoAndBreadSoupCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "arugula-and-parmesan-salad",
     title: "Arugula and Parmesan Salad",
     category: "culinary",
@@ -6920,7 +6929,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ArugulaAndParmesanSaladCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "chicory-salad-with-anchovy-garlic-dressing",
     title: "Chicory Salad with Anchovy-Garlic Dressing",
     category: "culinary",
@@ -6929,7 +6938,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChicorySaladWithAnchovyGarlicDressingCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "spaghetti-carbonara",
     title: "Spaghetti Carbonara",
     category: "culinary",
@@ -6938,7 +6947,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SpaghettiCarbonaraCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tagliatelle-with-meat-ragu-bolognese",
     title: "Tagliatelle with Meat Ragù (Bolognese)",
     category: "culinary",
@@ -6947,7 +6956,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TagliatelleWithMeatRaguBologneseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "black-pepper-and-pecorino-pasta-cacio-e-pepe",
     title: "Black Pepper and Pecorino Pasta (Cacio e Pepe)",
     category: "culinary",
@@ -6956,7 +6965,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BlackPepperAndPecorinoPastaCacioEPepeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pasta-with-basil-pesto",
     title: "Pasta with Basil Pesto",
     category: "culinary",
@@ -6965,7 +6974,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PastaWithBasilPestoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "garlic-and-olive-oil-pasta-aglio-e-olio",
     title: "Garlic and Olive Oil Pasta (Aglio e Olio)",
     category: "culinary",
@@ -6974,7 +6983,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GarlicAndOliveOilPastaAglioEOlioCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "spaghetti-with-tomato-and-basil-pomodoro",
     title: "Spaghetti with Tomato and Basil (Pomodoro)",
     category: "culinary",
@@ -6983,7 +6992,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SpaghettiWithTomatoAndBasilPomodoroCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "spaghetti-with-clams",
     title: "Spaghetti with Clams",
     category: "culinary",
@@ -6992,7 +7001,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SpaghettiWithClamsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "lasagna",
     title: "Lasagna",
     category: "culinary",
@@ -7001,7 +7010,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LasagnaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "baked-ziti",
     title: "Baked Ziti",
     category: "culinary",
@@ -7010,7 +7019,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BakedZitiCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "stuffed-pasta-shells",
     title: "Stuffed Pasta Shells",
     category: "culinary",
@@ -7019,7 +7028,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/StuffedPastaShellsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "potato-gnocchi-with-tomato-sauce",
     title: "Potato Gnocchi with Tomato Sauce",
     category: "culinary",
@@ -7028,7 +7037,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PotatoGnocchiWithTomatoSauceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ricotta-gnocchi",
     title: "Ricotta Gnocchi",
     category: "culinary",
@@ -7037,7 +7046,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RicottaGnocchiCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tortellini-in-broth",
     title: "Tortellini in Broth",
     category: "culinary",
@@ -7046,7 +7055,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TortelliniInBrothCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "saffron-risotto-risotto-alla-milanese",
     title: "Saffron Risotto (Risotto alla Milanese)",
     category: "culinary",
@@ -7055,7 +7064,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SaffronRisottoRisottoAllaMilaneseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "mushroom-risotto",
     title: "Mushroom Risotto",
     category: "culinary",
@@ -7064,7 +7073,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MushroomRisottoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "seafood-risotto",
     title: "Seafood Risotto",
     category: "culinary",
@@ -7073,7 +7082,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SeafoodRisottoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "parmesan-risotto",
     title: "Parmesan Risotto",
     category: "culinary",
@@ -7082,7 +7091,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ParmesanRisottoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "creamy-polenta-with-mushrooms",
     title: "Creamy Polenta with Mushrooms",
     category: "culinary",
@@ -7091,7 +7100,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CreamyPolentaWithMushroomsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "polenta-with-meat-ragu",
     title: "Polenta with Meat Ragù",
     category: "culinary",
@@ -7100,7 +7109,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PolentaWithMeatRaguCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "neapolitan-pizza",
     title: "Neapolitan Pizza",
     category: "culinary",
@@ -7109,7 +7118,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/NeapolitanPizzaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "margherita-pizza",
     title: "Margherita Pizza",
     category: "culinary",
@@ -7118,7 +7127,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MargheritaPizzaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "marinara-pizza",
     title: "Marinara Pizza",
     category: "culinary",
@@ -7127,7 +7136,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MarinaraPizzaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "four-cheese-pizza",
     title: "Four Cheese Pizza",
     category: "culinary",
@@ -7136,7 +7145,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FourCheesePizzaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "prosciutto-and-arugula-pizza",
     title: "Prosciutto and Arugula Pizza",
     category: "culinary",
@@ -7145,7 +7154,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ProsciuttoAndArugulaPizzaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "calzone",
     title: "Calzone",
     category: "culinary",
@@ -7154,7 +7163,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CalzoneCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "focaccia",
     title: "Focaccia",
     category: "culinary",
@@ -7163,7 +7172,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FocacciaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "chicken-cacciatore",
     title: "Chicken Cacciatore",
     category: "culinary",
@@ -7172,7 +7181,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenCacciatoreCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "chicken-saltimbocca",
     title: "Chicken Saltimbocca",
     category: "culinary",
@@ -7181,7 +7190,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenSaltimboccaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "veal-cutlet-milanese",
     title: "Veal Cutlet Milanese",
     category: "culinary",
@@ -7190,7 +7199,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/VealCutletMilaneseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "braised-veal-shanks-osso-buco",
     title: "Braised Veal Shanks (Osso Buco)",
     category: "culinary",
@@ -7199,7 +7208,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BraisedVealShanksOssoBucoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "italian-style-roast-pork-porchetta",
     title: "Italian-Style Roast Pork (Porchetta)",
     category: "culinary",
@@ -7208,7 +7217,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ItalianStyleRoastPorkPorchettaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tuscan-steak-florentine-style",
     title: "Tuscan Steak (Florentine-Style)",
     category: "culinary",
@@ -7217,7 +7226,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TuscanSteakFlorentineStyleCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "italian-meatballs-in-tomato-sauce",
     title: "Italian Meatballs in Tomato Sauce",
     category: "culinary",
@@ -7226,7 +7235,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ItalianMeatballsInTomatoSauceCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "eggplant-parmesan",
     title: "Eggplant Parmesan",
     category: "culinary",
@@ -7235,7 +7244,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EggplantParmesanCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "shrimp-scampi",
     title: "Shrimp Scampi",
     category: "culinary",
@@ -7244,7 +7253,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ShrimpScampiCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "mussels-in-white-wine-and-garlic",
     title: "Mussels in White Wine and Garlic",
     category: "culinary",
@@ -7253,7 +7262,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MusselsInWhiteWineAndGarlicCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fried-calamari",
     title: "Fried Calamari",
     category: "culinary",
@@ -7262,7 +7271,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FriedCalamariCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "seafood-stew-tomato-and-wine-base",
     title: "Seafood Stew (Tomato and Wine Base)",
     category: "culinary",
@@ -7271,7 +7280,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SeafoodStewTomatoAndWineBaseCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "roasted-potatoes",
     title: "Roasted Potatoes",
     category: "culinary",
@@ -7280,7 +7289,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RoastedPotatoesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "garlic-sauteed-spinach",
     title: "Garlic Sautéed Spinach",
     category: "culinary",
@@ -7289,7 +7298,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GarlicSauteedSpinachCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "broccoli-rabe-with-garlic-and-chili",
     title: "Broccoli Rabe with Garlic and Chili",
     category: "culinary",
@@ -7298,7 +7307,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BroccoliRabeWithGarlicAndChiliCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "sweet-and-sour-eggplant-relish-caponata",
     title: "Sweet and Sour Eggplant Relish (Caponata)",
     category: "culinary",
@@ -7307,7 +7316,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SweetAndSourEggplantRelishCaponataCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "roasted-peppers-with-olive-oil",
     title: "Roasted Peppers with Olive Oil",
     category: "culinary",
@@ -7316,7 +7325,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RoastedPeppersWithOliveOilCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ciabatta",
     title: "Ciabatta",
     category: "culinary",
@@ -7325,7 +7334,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CiabattaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "breadsticks-grissini",
     title: "Breadsticks (Grissini)",
     category: "culinary",
@@ -7334,7 +7343,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BreadsticksGrissiniCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "stuffed-flatbread-piadina",
     title: "Stuffed Flatbread (Piadina)",
     category: "culinary",
@@ -7343,7 +7352,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/StuffedFlatbreadPiadinaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tiramisu",
     title: "Tiramisu",
     category: "culinary",
@@ -7352,7 +7361,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TiramisuCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "panna-cotta",
     title: "Panna Cotta",
     category: "culinary",
@@ -7361,7 +7370,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PannaCottaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cannoli",
     title: "Cannoli",
     category: "culinary",
@@ -7370,7 +7379,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CannoliCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "gelato",
     title: "Gelato",
     category: "culinary",
@@ -7379,7 +7388,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GelatoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "affogato",
     title: "Affogato",
     category: "culinary",
@@ -7388,7 +7397,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/AffogatoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "biscotti",
     title: "Biscotti",
     category: "culinary",
@@ -7397,7 +7406,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BiscottiCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "semifreddo",
     title: "Semifreddo",
     category: "culinary",
@@ -7406,7 +7415,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SemifreddoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "italian-ice-granita",
     title: "Italian Ice (Granita)",
     category: "culinary",
@@ -7415,7 +7424,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ItalianIceGranitaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "daily-horoscope",
     title: "Daily Horoscope",
     category: "daily-quotes",
@@ -7424,7 +7433,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/DailyQuotes/DailyHoroscopeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "sfogliatella",
     title: "Sfogliatella",
     category: "culinary",
@@ -7433,7 +7442,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SfogliatellaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "panettone",
     title: "Panettone",
     category: "culinary",
@@ -7442,7 +7451,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PanettoneCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "espresso",
     title: "Espresso",
     category: "culinary",
@@ -7451,7 +7460,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EspressoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cappuccino",
     title: "Cappuccino",
     category: "culinary",
@@ -7460,7 +7469,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CappuccinoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "negroni",
     title: "Negroni",
     category: "culinary",
@@ -7469,7 +7478,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/NegroniCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "limoncello",
     title: "Limoncello",
     category: "culinary",
@@ -7478,7 +7487,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/LimoncelloCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "aperitif-spritz",
     title: "Aperitif Spritz",
     category: "culinary",
@@ -7487,8 +7496,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/AperitifSpritzCalculator"),
     urlStyle: "flat"
   },
-    
-    {
+
+  {
     slug: "texas-style-brisket",
     title: "Texas-Style Brisket",
     category: "culinary",
@@ -7497,7 +7506,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TexasStyleBrisketCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "brazilian-picanha-top-sirloin-cap",
     title: "Brazilian Picanha (Top Sirloin Cap)",
     category: "recipes",
@@ -7506,7 +7515,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianPicanhaTopSirloinCapCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pulled-pork",
     title: "Pulled Pork",
     category: "recipes",
@@ -7515,7 +7524,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/PulledPorkCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "st-louis-ribs",
     title: "St. Louis Ribs",
     category: "culinary",
@@ -7524,7 +7533,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/StLouisRibsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "baby-back-ribs",
     title: "Baby Back Ribs",
     category: "culinary",
@@ -7533,7 +7542,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BabyBackRibsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "beef-short-ribs",
     title: "Beef Short Ribs",
     category: "culinary",
@@ -7542,7 +7551,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BeefShortRibsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tri-tip-steak",
     title: "Tri-Tip Steak",
     category: "culinary",
@@ -7551,7 +7560,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TriTipSteakCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "reverse-sear-ribeye",
     title: "Reverse Sear Ribeye",
     category: "culinary",
@@ -7560,7 +7569,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ReverseSearRibeyeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "smoked-turkey",
     title: "Smoked Turkey",
     category: "culinary",
@@ -7569,7 +7578,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SmokedTurkeyCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "smoked-salmon",
     title: "Smoked Salmon",
     category: "culinary",
@@ -7578,7 +7587,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SmokedSalmonCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "spatchcock-chicken",
     title: "Spatchcock Chicken",
     category: "culinary",
@@ -7587,7 +7596,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SpatchcockChickenCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "beer-can-chicken",
     title: "Beer Can Chicken",
     category: "culinary",
@@ -7596,7 +7605,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BeerCanChickenCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "chicken-wings",
     title: "Chicken Wings",
     category: "culinary",
@@ -7605,7 +7614,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenWingsCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "grilled-shrimp",
     title: "Grilled Shrimp",
     category: "culinary",
@@ -7614,7 +7623,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GrilledShrimpCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "grilled-vegetables",
     title: "Grilled Vegetables",
     category: "culinary",
@@ -7623,7 +7632,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GrilledVegetablesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "guacamole",
     title: "Guacamole",
     category: "recipes",
@@ -7632,7 +7641,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GuacamoleCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pico-de-gallo",
     title: "Pico de Gallo",
     category: "recipes",
@@ -7641,7 +7650,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PicoDeGalloCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "salsa-roja",
     title: "Salsa Roja",
     category: "recipes",
@@ -7650,7 +7659,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SalsaRojaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "salsa-verde",
     title: "Salsa Verde",
     category: "recipes",
@@ -7659,7 +7668,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SalsaVerdeCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "roasted-tomato-salsa",
     title: "Roasted Tomato Salsa",
     category: "recipes",
@@ -7668,7 +7677,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/RoastedTomatoSalsaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "black-bean-dip",
     title: "Black Bean Dip",
     category: "recipes",
@@ -7677,7 +7686,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BlackBeanDipCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "queso-fundido",
     title: "Queso Fundido",
     category: "recipes",
@@ -7686,7 +7695,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/QuesoFundidoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "elote",
     title: "Mexican Street Corn (Elote)",
     category: "recipes",
@@ -7696,7 +7705,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EloteCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "esquites",
     title: "Mexican Corn Cup (Esquites)",
     category: "recipes",
@@ -7706,7 +7715,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EsquitesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "ceviche-mexican-style",
     title: "Ceviche (Mexican-Style)",
     category: "recipes",
@@ -7715,7 +7724,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CevicheMexicanStyleCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "shrimp-cocktail-mexican-style",
     title: "Shrimp Cocktail (Mexican-Style)",
     category: "recipes",
@@ -7724,7 +7733,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ShrimpCocktailMexicanStyleCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "nachos",
     title: "Nachos",
     category: "recipes",
@@ -7733,7 +7742,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/NachosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "taquitos",
     title: "Taquitos",
     category: "recipes",
@@ -7742,7 +7751,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TaquitosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "flautas",
     title: "Flautas",
     category: "recipes",
@@ -7751,7 +7760,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FlautasCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "chicken-tortilla-soup",
     title: "Chicken Tortilla Soup",
     category: "recipes",
@@ -7760,7 +7769,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenTortillaSoupCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pozole",
     title: "Pozole (Pork or Chicken)",
     category: "recipes",
@@ -7770,7 +7779,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PozoleCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "menudo",
     title: "Menudo",
     category: "recipes",
@@ -7779,7 +7788,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MenudoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "albondigas-soup",
     title: "Albondigas Soup",
     category: "recipes",
@@ -7788,7 +7797,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/AlbondigasSoupCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "sopa-de-lima",
     title: "Lime Soup (Yucatan-Style)",
     category: "recipes",
@@ -7798,7 +7807,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SopaDeLimaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "chilaquiles",
     title: "Chilaquiles",
     category: "recipes",
@@ -7807,7 +7816,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChilaquilesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "huevos-rancheros",
     title: "Huevos Rancheros",
     category: "recipes",
@@ -7816,7 +7825,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HuevosRancherosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "breakfast-tacos",
     title: "Breakfast Tacos",
     category: "recipes",
@@ -7825,7 +7834,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BreakfastTacosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "migas-mexican-style",
     title: "Migas (Mexican-Style)",
     category: "recipes",
@@ -7834,7 +7843,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MigasMexicanStyleCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "huevos-mexicanos-con-salsa",
     title: "Mexican Scrambled Eggs (with Salsa)",
     category: "recipes",
@@ -7844,7 +7853,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HuevosMexicanosConSalsaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tacos-al-pastor",
     title: "Tacos al Pastor",
     category: "recipes",
@@ -7853,7 +7862,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TacosAlPastorCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "carne-asada-tacos",
     title: "Carne Asada Tacos",
     category: "recipes",
@@ -7862,7 +7871,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CarneAsadaTacosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "carnitas-tacos",
     title: "Carnitas Tacos",
     category: "recipes",
@@ -7871,7 +7880,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CarnitasTacosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "barbacoa-tacos",
     title: "Barbacoa Tacos",
     category: "recipes",
@@ -7880,7 +7889,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BarbacoaTacosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "birria-tacos",
     title: "Birria Tacos",
     category: "recipes",
@@ -7889,7 +7898,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BirriaTacosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "fish-tacos",
     title: "Fish Tacos",
     category: "recipes",
@@ -7898,7 +7907,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FishTacosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "shrimp-tacos",
     title: "Shrimp Tacos",
     category: "recipes",
@@ -7907,7 +7916,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ShrimpTacosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "chicken-tinga-tacos",
     title: "Chicken Tinga Tacos",
     category: "recipes",
@@ -7916,7 +7925,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenTingaTacosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "baja-fish-tacos",
     title: "Baja-Style Fish Tacos",
     category: "recipes",
@@ -7926,7 +7935,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BajaFishTacosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "chicken-enchiladas",
     title: "Chicken Enchiladas",
     category: "recipes",
@@ -7935,7 +7944,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenEnchiladasCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cheese-enchiladas",
     title: "Cheese Enchiladas",
     category: "recipes",
@@ -7944,7 +7953,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CheeseEnchiladasCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "enchiladas-verdes",
     title: "Enchiladas Verdes",
     category: "recipes",
@@ -7953,7 +7962,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EnchiladasVerdesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "enchiladas-rojas",
     title: "Enchiladas Rojas",
     category: "recipes",
@@ -7962,7 +7971,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EnchiladasRojasCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "enchiladas-suizas",
     title: "Enchiladas Suizas",
     category: "recipes",
@@ -7971,7 +7980,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/EnchiladasSuizasCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tamales",
     title: "Tamales (Chicken, Pork, or Sweet)",
     category: "recipes",
@@ -7981,7 +7990,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TamalesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "quesadillas",
     title: "Quesadillas",
     category: "recipes",
@@ -7990,7 +7999,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/QuesadillasCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "gorditas",
     title: "Gorditas",
     category: "recipes",
@@ -7999,7 +8008,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/GorditasCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "sopes",
     title: "Sopes",
     category: "recipes",
@@ -8008,7 +8017,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/SopesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "huaraches",
     title: "Huaraches",
     category: "recipes",
@@ -8017,7 +8026,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HuarachesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tostadas",
     title: "Tostadas",
     category: "recipes",
@@ -8026,7 +8035,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TostadasCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tlayudas",
     title: "Tlayudas",
     category: "recipes",
@@ -8035,7 +8044,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TlayudasCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "chicken-tinga",
     title: "Chicken Tinga",
     category: "recipes",
@@ -8044,7 +8053,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChickenTingaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "mole-poblano",
     title: "Mole Chicken (Mole Poblano)",
     category: "recipes",
@@ -8054,7 +8063,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MolePoblanoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pork-carnitas",
     title: "Pork Carnitas",
     category: "recipes",
@@ -8063,7 +8072,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PorkCarnitasCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "carne-asada",
     title: "Carne Asada",
     category: "recipes",
@@ -8072,7 +8081,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CarneAsadaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "birria",
     title: "Birria (Beef or Goat)",
     category: "recipes",
@@ -8082,7 +8091,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/BirriaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "cochinita-pibil",
     title: "Cochinita Pibil",
     category: "recipes",
@@ -8091,7 +8100,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/CochinitaPibilCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "chiles-rellenos",
     title: "Chile Rellenos",
     category: "recipes",
@@ -8101,7 +8110,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChilesRellenosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "chiles-en-nogada",
     title: "Chiles en Nogada",
     category: "recipes",
@@ -8110,7 +8119,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChilesEnNogadaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "arroz-mexicano",
     title: "Mexican Rice",
     category: "recipes",
@@ -8120,7 +8129,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ArrozMexicanoCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "frijoles-refritos",
     title: "Refried Beans",
     category: "recipes",
@@ -8130,7 +8139,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FrijolesRefritosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "frijoles-charros",
     title: "Charro Beans",
     category: "recipes",
@@ -8140,7 +8149,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FrijolesCharrosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tortillas-de-maiz",
     title: "Corn Tortillas",
     category: "recipes",
@@ -8150,7 +8159,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TortillasDeMaizCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "tortillas-de-harina",
     title: "Flour Tortillas",
     category: "recipes",
@@ -8160,7 +8169,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/TortillasDeHarinaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "churros",
     title: "Churros",
     category: "recipes",
@@ -8169,7 +8178,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/ChurrosCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "pastel-tres-leches",
     title: "Tres Leches Cake",
     category: "recipes",
@@ -8179,7 +8188,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/PastelTresLechesCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "flan",
     title: "Flan",
     category: "recipes",
@@ -8188,7 +8197,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/FlanCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "horchata",
     title: "Horchata",
     category: "recipes",
@@ -8197,7 +8206,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/HorchataCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "agua-de-jamaica",
     title: "Agua de Jamaica",
     category: "recipes",
@@ -8206,7 +8215,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/AguaDeJamaicaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "margarita",
     title: "Margarita",
     category: "recipes",
@@ -8216,7 +8225,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
   // SKN-AUTO-REGISTER: do not remove this line
-  ];
+];
 
 // ====================================================================
 // HELPER FUNCTIONS

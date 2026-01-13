@@ -1490,7 +1490,7 @@ const Index = () => {
           </div>
 
           {/* Categories Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
+          <div className="grid grid-cols-1 min-[425px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
             {calculatorCategories.map((category, index) => {
             const IconComponent = category.icon;
             const isAutomotive = category.name === "Automotive Calculators";

@@ -54,7 +54,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
       <Header />
-      <div className="flex-1">
+      <div className="flex-1 w-full max-w-[1440px] mx-auto">
         <ScrollToTop />
         <AppErrorBoundary>
           <Suspense
@@ -81,9 +81,9 @@ export default function App() {
               <Route path="/smart-tips/:subcategory" element={<SmartTipsSubCategory />} />
               <Route path="/smart-tip/:slug" element={<SmartTipDetail />} />
 
-             {/* Recipes */}
+              {/* Recipes */}
               <Route path="/recipes" element={<RecipesCategory />} />
-              
+
               {/* ROTA DE CULINÁRIA (Listagem) - Pode manter se quiser a lista bonita */}
               <Route path="/recipes/:cuisine" element={<RecipeCuisinePage />} />
 

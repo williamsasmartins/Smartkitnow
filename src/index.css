@@ -52,7 +52,8 @@
     --popover-foreground: 210 40% 98%;
 
     /* Mantém contraste adequado também no tema escuro */
-    --primary: 217 91% 60%; /* ~ Tailwind blue-600 (#2563eb) */
+    --primary: 217 91% 60%;
+    /* ~ Tailwind blue-600 (#2563eb) */
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -79,6 +80,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -88,9 +90,11 @@
 .bg-gradient-soft {
   @apply bg-gradient-to-b from-muted/40 to-background;
 }
+
 .bg-gradient-primary {
   background-image: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--foreground)) 100%);
 }
+
 .hover\:shadow-soft:hover {
   /* Azul #0000FF mantendo os mesmos offsets/blur/spread */
   box-shadow: 0 10px 25px rgba(0, 0, 255, 0.08);
@@ -109,14 +113,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  .skn-offset-header {
-    padding-top: 140px; /* mobile: header + category menu */
-  }
-  @media (min-width: 640px) {
-    .skn-offset-header {
-      padding-top: 160px; /* sm+: slightly larger header */
-    }
-  }
+
   /* Performance: delay rendering of offscreen sections */
   .cv-auto {
     content-visibility: auto;
@@ -124,17 +121,37 @@
   }
 }
 
+:root {
+  --header-height: 140px;
+  /* Base value */
+}
+
+/* Adjust for mobile if the header is taller due to wrapping */
+@media (max-width: 639px) {
+  :root {
+    --header-height: 180px;
+    /* Improved estimate for mobile layout */
+  }
+}
+
+.skn-offset-header {
+  padding-top: var(--header-height);
+}
+
 /* Tipografia global para páginas de categoria */
 @layer components {
   .skn-typography {
     @apply text-[15px] leading-[1.6];
   }
+
   .skn-typography h1 {
     @apply text-[24px] md:text-[28px] leading-tight font-bold;
   }
+
   .skn-typography h2 {
     @apply text-[20px] md:text-[24px] leading-tight font-semibold;
   }
+
   .skn-typography p,
   .skn-typography li,
   .skn-typography a {
@@ -142,12 +159,19 @@
   }
 }
 
-main, #root, .app-shell, .app-root, .page-wrapper {
+main,
+#root,
+.app-shell,
+.app-root,
+.page-wrapper {
   overflow: visible;
 }
-html, body {
+
+html,
+body {
   overflow-x: hidden;
 }
+
 /* Sempre reserve espaço da barra vertical para evitar deslocamentos ao abrir overlays */
 body {
   overflow-y: scroll;
@@ -155,7 +179,9 @@ body {
 
 /* Evita layout shift quando a barra de rolagem vertical aparece/desaparece */
 /* — SKN: reservar espaço fixo para a barra de rolagem — */
-html, body, #root {
+html,
+body,
+#root {
   scrollbar-gutter: stable both-edges;
 }
 
@@ -169,63 +195,101 @@ html, body, #root {
 /* Mantém todo conteúdo das calculadoras estritamente dentro da área demarcada */
 .calculator-safe-zone {
   max-width: 100%;
-  overflow-x: hidden;           /* nunca ultrapassar horizontalmente */
-  padding-right: 5px;           /* margem de segurança mínima */
+  overflow-x: hidden;
+  /* nunca ultrapassar horizontalmente */
+  padding-right: 5px;
+  /* margem de segurança mínima */
 }
+
 .calculator-safe-zone.balanced {
   /* Variante opcional: padding simétrico nos dois lados */
   padding-left: 5px;
 }
+
 .calculator-safe-zone * {
-  min-width: 0;                 /* grids/flex não estourarem colunas */
+  min-width: 0;
+  /* grids/flex não estourarem colunas */
   word-wrap: break-word;
-  overflow-wrap: anywhere;      /* textos grandes se adaptarem ao viewport */
+  overflow-wrap: anywhere;
+  /* textos grandes se adaptarem ao viewport */
 }
+
 .calculator-safe-zone table {
-  table-layout: fixed;          /* proporções estáveis em todas larguras */
+  table-layout: fixed;
+  /* proporções estáveis em todas larguras */
   width: 100%;
 }
+
 .calculator-safe-zone img,
 .calculator-safe-zone svg,
 .calculator-safe-zone canvas,
 .calculator-safe-zone video {
   max-width: 100%;
-  height: auto;                 /* manter proporção sem transbordo */
+  height: auto;
+  /* manter proporção sem transbordo */
 }
 
 /* Breakpoints abrangentes para ajustes finos */
 @media (max-width: 767px) {
   .calculator-safe-zone {
-    padding-right: 6px; /* mobile: margem levemente maior para o zoom */
+    padding-right: 6px;
+    /* mobile: margem levemente maior para o zoom */
   }
-  .calculator-safe-zone.balanced { padding-left: 6px; }
+
+  .calculator-safe-zone.balanced {
+    padding-left: 6px;
+  }
 }
+
 @media (min-width: 768px) and (max-width: 1023px) {
-  .calculator-safe-zone { padding-right: 6px; }
-  .calculator-safe-zone.balanced { padding-left: 6px; }
+  .calculator-safe-zone {
+    padding-right: 6px;
+  }
+
+  .calculator-safe-zone.balanced {
+    padding-left: 6px;
+  }
 }
+
 @media (min-width: 1024px) and (max-width: 1439px) {
-  .calculator-safe-zone { padding-right: 5px; }
-  .calculator-safe-zone.balanced { padding-left: 5px; }
+  .calculator-safe-zone {
+    padding-right: 5px;
+  }
+
+  .calculator-safe-zone.balanced {
+    padding-left: 5px;
+  }
 }
+
 @media (min-width: 1440px) {
-  .calculator-safe-zone { padding-right: 5px; }
-  .calculator-safe-zone.balanced { padding-left: 5px; }
+  .calculator-safe-zone {
+    padding-right: 5px;
+  }
+
+  .calculator-safe-zone.balanced {
+    padding-left: 5px;
+  }
 }
 
 /* === SKN: Scroll + Right Rail control (desktop) === */
-:root{
+:root {
   /* Altura (top) em que o sidebar ad começa a "grudar" (ajuste fino aqui) */
-  --skn-rail-top: 140px;   /* << ajuste fino aqui */
+  --skn-rail-top: 140px;
+  /* << ajuste fino aqui */
   /* Respiro para a barra de rolagem não cobrir o ad */
-  --skn-rail-pad: 10px;    /* 8–12px funciona bem no Windows */
+  --skn-rail-pad: 10px;
+  /* 8–12px funciona bem no Windows */
 }
 
 @media (min-width: 1024px) {
+
   /* 1) NÃO forçar mais a barra visível */
-  html, body {
-    overflow-y: auto !important;       /* volta ao comportamento normal */
-    scrollbar-gutter: auto !important; /* não reserva “calha” fixa */
+  html,
+  body {
+    overflow-y: auto !important;
+    /* volta ao comportamento normal */
+    scrollbar-gutter: auto !important;
+    /* não reserva “calha” fixa */
   }
 
   /* 2) Esconder a UI da scrollbar nos principais motores */
@@ -238,7 +302,9 @@ html, body, #root {
   }
 
   /* Firefox */
-  html, body, #root {
+  html,
+  body,
+  #root {
     scrollbar-width: none !important;
   }
 

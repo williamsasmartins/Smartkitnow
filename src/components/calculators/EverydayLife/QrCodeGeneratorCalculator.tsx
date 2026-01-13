@@ -75,8 +75,8 @@ const QRCodeGenerator = () => {
   });
   const [size, setSize] = useState<number>(300);
   const [margin, setMargin] = useState<number>(2);
-  const [ecc, setEcc] = useState<'L'|'M'|'Q'|'H'>('M');
-  const [format, setFormat] = useState<'png'|'svg'>('png');
+  const [ecc, setEcc] = useState<'L' | 'M' | 'Q' | 'H'>('M');
+  const [format, setFormat] = useState<'png' | 'svg'>('png');
   const [svgMarkup, setSvgMarkup] = useState<string | null>(null);
   const [autoColors, setAutoColors] = useState<boolean>(true);
   const [moduleColor, setModuleColor] = useState<string>('#000000');
@@ -268,18 +268,18 @@ const QRCodeGenerator = () => {
   ];
 
   const widget = (
-    <div className="calculator-safe-zone balanced">
+    <div className="calculator-safe-zone">
       {/* Tabs (shadcn) */}
-      <div className="mb-4">
+      <div className="mb-6">
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)}>
-          <TabsList className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-1">
+          <TabsList className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-1 w-full flex justify-start overflow-x-auto">
             {tabs.map((tab) => {
               const IconComponent = tab.icon as any;
               return (
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id as any}
-                  className="px-4 py-2 rounded-lg data-[state=active]:bg-slate-100 dark:data-[state=active]:bg-slate-800"
+                  className="px-4 py-2 rounded-lg flex-1 md:flex-none data-[state=active]:bg-blue-50 dark:data-[state=active]:bg-blue-900/20 data-[state=active]:text-blue-600 dark:data-[state=active]:text-blue-400 font-medium"
                 >
                   <IconComponent className="w-4 h-4 mr-2" /> {tab.label}
                 </TabsTrigger>
@@ -290,76 +290,88 @@ const QRCodeGenerator = () => {
       </div>
 
       {/* Inputs + Preview */}
-      <div className="space-y-8 p-6">
-        {/* Inputs Card */}
-        <Card className="border-0 shadow-none">
-          <CardHeader className="p-0 pb-4">
-            <CardTitle className="text-lg font-semibold flex items-center gap-2 text-slate-900 dark:text-slate-100">
-              <LinkIcon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+      <div className="space-y-8">
+        {/* Inputs Card - Unified Dark Wrapper */}
+        <Card className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#020617] shadow-lg rounded-xl overflow-hidden">
+          <CardHeader className="px-6 py-6 md:px-8 border-b-0 pb-2">
+            <CardTitle className="text-xl font-bold flex items-center gap-2 text-slate-900 dark:text-slate-50">
+              <LinkIcon className="h-6 w-6 text-blue-600 dark:text-blue-500" />
               QR details
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-0 space-y-6">
+          <CardContent className="p-6 md:p-8 pt-2 space-y-6">
             {activeTab === 'url' && (
               <div>
-                <Label className="mb-2">{t('websiteUrl')}</Label>
-                <Input type="url" value={urlInput} onChange={(e) => setUrlInput(e.target.value)} placeholder={t('urlPlaceholder')} className="h-11 text-base" />
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{t('urlHelp')}</p>
+                <Label className="mb-2 text-base font-semibold text-slate-900 dark:text-slate-50">{t('websiteUrl')}</Label>
+                <Input
+                  type="url"
+                  value={urlInput}
+                  onChange={(e) => setUrlInput(e.target.value)}
+                  placeholder={t('urlPlaceholder')}
+                  className="h-12 text-base bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-blue-500"
+                />
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">{t('urlHelp')}</p>
               </div>
             )}
 
             {activeTab === 'text' && (
               <div>
-                <Label className="mb-2">{t('textContent')}</Label>
-                <Textarea value={textInput} onChange={(e) => setTextInput(e.target.value)} placeholder={t('textPlaceholder')} rows={4} className="w-full" />
+                <Label className="mb-2 text-base font-semibold">{t('textContent')}</Label>
+                <Textarea
+                  value={textInput}
+                  onChange={(e) => setTextInput(e.target.value)}
+                  placeholder={t('textPlaceholder')}
+                  rows={4}
+                  className="w-full text-base bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800"
+                />
               </div>
             )}
 
             {activeTab === 'contact' && (
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <Label className="mb-2">{t('firstName')}</Label>
-                    <Input value={contactInfo.firstName} onChange={(e) => setContactInfo({ ...contactInfo, firstName: e.target.value })} placeholder={t('firstNamePlaceholder')} className="h-11" />
+                    <Label className="mb-2 font-semibold">{t('firstName')}</Label>
+                    <Input value={contactInfo.firstName} onChange={(e) => setContactInfo({ ...contactInfo, firstName: e.target.value })} placeholder={t('firstNamePlaceholder')} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
                   </div>
                   <div>
-                    <Label className="mb-2">{t('lastName')}</Label>
-                    <Input value={contactInfo.lastName} onChange={(e) => setContactInfo({ ...contactInfo, lastName: e.target.value })} placeholder={t('lastNamePlaceholder')} className="h-11" />
+                    <Label className="mb-2 font-semibold">{t('lastName')}</Label>
+                    <Input value={contactInfo.lastName} onChange={(e) => setContactInfo({ ...contactInfo, lastName: e.target.value })} placeholder={t('lastNamePlaceholder')} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
                   </div>
                 </div>
                 <div>
-                  <Label className="mb-2">{t('phoneNumber')}</Label>
-                  <Input type="tel" value={contactInfo.phone} onChange={(e) => setContactInfo({ ...contactInfo, phone: e.target.value })} placeholder={t('phonePlaceholder')} className="h-11" />
+                  <Label className="mb-2 font-semibold">{t('phoneNumber')}</Label>
+                  <Input type="tel" value={contactInfo.phone} onChange={(e) => setContactInfo({ ...contactInfo, phone: e.target.value })} placeholder={t('phonePlaceholder')} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
                 </div>
                 <div>
-                  <Label className="mb-2">{t('emailAddress')}</Label>
-                  <Input type="email" value={contactInfo.email} onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })} placeholder={t('emailPlaceholder')} className="h-11" />
+                  <Label className="mb-2 font-semibold">{t('emailAddress')}</Label>
+                  <Input type="email" value={contactInfo.email} onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })} placeholder={t('emailPlaceholder')} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
                 </div>
                 <div>
-                  <Label className="mb-2">{t('organization')}</Label>
-                  <Input value={contactInfo.organization} onChange={(e) => setContactInfo({ ...contactInfo, organization: e.target.value })} placeholder={t('organizationPlaceholder')} className="h-11" />
+                  <Label className="mb-2 font-semibold">{t('organization')}</Label>
+                  <Input value={contactInfo.organization} onChange={(e) => setContactInfo({ ...contactInfo, organization: e.target.value })} placeholder={t('organizationPlaceholder')} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
                 </div>
                 <div>
-                  <Label className="mb-2">{t('website')}</Label>
-                  <Input type="url" value={contactInfo.url} onChange={(e) => setContactInfo({ ...contactInfo, url: e.target.value })} placeholder={t('websitePlaceholder')} className="h-11" />
+                  <Label className="mb-2 font-semibold">{t('website')}</Label>
+                  <Input type="url" value={contactInfo.url} onChange={(e) => setContactInfo({ ...contactInfo, url: e.target.value })} placeholder={t('websitePlaceholder')} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
                 </div>
               </div>
             )}
 
             {/* Options */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
               <div>
-                <Label className="mb-2">Size (px)</Label>
-                <Input type="number" min={128} max={1024} value={size} onChange={(e) => setSize(Math.max(128, Math.min(1024, Number(e.target.value) || 300)))} className="h-11" />
+                <Label className="mb-2 font-medium text-slate-700 dark:text-slate-300">Size (px)</Label>
+                <Input type="number" min={128} max={1024} value={size} onChange={(e) => setSize(Math.max(128, Math.min(1024, Number(e.target.value) || 300)))} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
               </div>
               <div>
-                <Label className="mb-2">Margin</Label>
-                <Input type="number" min={0} max={16} value={margin} onChange={(e) => setMargin(Math.max(0, Math.min(16, Number(e.target.value) || 2)))} className="h-11" />
+                <Label className="mb-2 font-medium text-slate-700 dark:text-slate-300">Margin</Label>
+                <Input type="number" min={0} max={16} value={margin} onChange={(e) => setMargin(Math.max(0, Math.min(16, Number(e.target.value) || 2)))} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
               </div>
               <div>
-                <Label className="mb-2">Error correction (ECC)</Label>
-                <Select value={ecc} onValueChange={(v) => setEcc(v as 'L'|'M'|'Q'|'H')}>
-                  <SelectTrigger className="w-full" aria-label="ECC">
+                <Label className="mb-2 font-medium text-slate-700 dark:text-slate-300">Error correction</Label>
+                <Select value={ecc} onValueChange={(v) => setEcc(v as 'L' | 'M' | 'Q' | 'H')}>
+                  <SelectTrigger className="w-full h-11 bg-slate-50 dark:bg-slate-900/50" aria-label="ECC">
                     <SelectValue placeholder="Select ECC" />
                   </SelectTrigger>
                   <SelectContent>
@@ -371,9 +383,9 @@ const QRCodeGenerator = () => {
                 </Select>
               </div>
               <div>
-                <Label className="mb-2">Format</Label>
-                <Select value={format} onValueChange={(v) => setFormat(v as 'png'|'svg')}>
-                  <SelectTrigger className="w-full" aria-label="Format">
+                <Label className="mb-2 font-medium text-slate-700 dark:text-slate-300">Format</Label>
+                <Select value={format} onValueChange={(v) => setFormat(v as 'png' | 'svg')}>
+                  <SelectTrigger className="w-full h-11 bg-slate-50 dark:bg-slate-900/50" aria-label="Format">
                     <SelectValue placeholder="Select format" />
                   </SelectTrigger>
                   <SelectContent>
@@ -385,21 +397,29 @@ const QRCodeGenerator = () => {
             </div>
 
             {/* Color controls */}
-            <div className="space-y-3">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-4 pt-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <Label className="mb-2">Module color</Label>
-                  <input type="color" value={moduleColor} disabled={autoColors} onChange={(e) => setModuleColor(e.target.value)} className="w-full h-10 p-1 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900" />
+                  <Label className="mb-2 font-medium text-slate-700 dark:text-slate-300">Module color</Label>
+                  <div className="flex gap-2">
+                    <input type="color" value={moduleColor} disabled={autoColors} onChange={(e) => setModuleColor(e.target.value)} className="h-11 w-16 p-1 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 cursor-pointer" />
+                    <Input type="text" value={moduleColor} disabled={autoColors} onChange={(e) => setModuleColor(e.target.value)} className="flex-1 h-11 bg-slate-50 dark:bg-slate-900/50 uppercase font-mono" />
+                  </div>
                 </div>
                 <div>
-                  <Label className="mb-2">Background color</Label>
-                  <input type="color" value={bgColor} disabled={autoColors} onChange={(e) => setBgColor(e.target.value)} className="w-full h-10 p-1 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900" />
+                  <Label className="mb-2 font-medium text-slate-700 dark:text-slate-300">Background color</Label>
+                  <div className="flex gap-2">
+                    <input type="color" value={bgColor} disabled={autoColors} onChange={(e) => setBgColor(e.target.value)} className="h-11 w-16 p-1 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 cursor-pointer" />
+                    <Input type="text" value={bgColor} disabled={autoColors} onChange={(e) => setBgColor(e.target.value)} className="flex-1 h-11 bg-slate-50 dark:bg-slate-900/50 uppercase font-mono" />
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <input id="autoColors" type="checkbox" checked={autoColors} onChange={(e) => setAutoColors(e.target.checked)} />
-                <label htmlFor="autoColors" className="text-sm text-slate-700 dark:text-slate-200">Auto theme colors</label>
-                <Button type="button" variant="outline" className="ml-auto" onClick={() => {
+              <div className="flex items-center justify-between pt-2">
+                <div className="flex items-center gap-3">
+                  <input id="autoColors" type="checkbox" checked={autoColors} onChange={(e) => setAutoColors(e.target.checked)} className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+                  <label htmlFor="autoColors" className="text-sm font-medium text-slate-700 dark:text-slate-200">Auto theme colors</label>
+                </div>
+                <Button type="button" variant="outline" size="sm" onClick={() => {
                   const brand = getComputedStyle(document.documentElement).getPropertyValue('--skn-brand').trim();
                   if (brand) { setAutoColors(false); setModuleColor(brand); }
                 }}>
@@ -408,8 +428,8 @@ const QRCodeGenerator = () => {
               </div>
             </div>
 
-            <div className="flex gap-3">
-              <Button variant="outline" className="flex-1" onClick={resetForm}>{t('clearAllFields')}</Button>
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
+              <Button variant="ghost" className="w-full text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-800" onClick={resetForm}>{t('clearAllFields')}</Button>
             </div>
           </CardContent>
         </Card>
