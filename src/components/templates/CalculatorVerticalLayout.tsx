@@ -75,7 +75,7 @@ function FormulaBox({
   title?: string;
 }) {
   return (
-    <div className="my-12 p-8 rounded-2xl border-2 border-indigo-200 dark:border-indigo-800 bg-gradient-to-br from-indigo-50 via-violet-50 to-purple-50 dark:from-slate-900 dark:via-indigo-950 dark:to-violet-950 shadow-xl shadow-indigo-500/10">
+    <div className="my-12 p-4 md:p-8 rounded-2xl border-2 border-indigo-200 dark:border-indigo-800 bg-gradient-to-br from-indigo-50 via-violet-50 to-purple-50 dark:from-slate-900 dark:via-indigo-950 dark:to-violet-950 shadow-xl shadow-indigo-500/10">
       {/* Title */}
       <div className="text-center mb-8">
         <div className="inline-block bg-white dark:bg-slate-900 rounded-xl px-8 py-4 shadow-lg shadow-indigo-500/10 border border-indigo-100 dark:border-indigo-900">
@@ -141,7 +141,7 @@ function ExampleSection({
   const hasResult = typeof result === "string" && result.trim().length > 0;
 
   return (
-    <div className="my-10 p-8 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 shadow-xl">
+    <div className="my-10 p-4 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 shadow-xl">
       <h3 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mb-5 tracking-tight">
         {title}
       </h3>
@@ -195,7 +195,7 @@ function RelatedCalculators({ calculators }: { calculators: RelatedCalc[] }) {
   if (!calculators || calculators.length === 0) return null;
 
   return (
-    <div className="my-10 p-8 rounded-2xl bg-gradient-to-br from-violet-50 to-purple-50 dark:from-slate-900 dark:to-violet-950 border-2 border-violet-200 dark:border-violet-800 shadow-xl">
+    <div className="my-10 p-4 md:p-8 rounded-2xl bg-gradient-to-br from-violet-50 to-purple-50 dark:from-slate-900 dark:to-violet-950 border-2 border-violet-200 dark:border-violet-800 shadow-xl">
       <h3 className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mb-6 flex items-center gap-3 tracking-tight">
         <span>🔗</span> Related Calculators
       </h3>
@@ -329,7 +329,7 @@ export default function CalculatorVerticalLayout({
               <div className="mb-10">{children}</div>
             ) : (
               <section className="mb-10 rounded-2xl overflow-hidden border-2 border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 shadow-2xl shadow-indigo-500/10 transition-all duration-200">
-                <div className="p-8">{widget}</div>
+                <div className="p-4 md:p-8">{widget}</div>
               </section>
             )}
 
