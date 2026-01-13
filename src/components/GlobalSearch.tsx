@@ -54,6 +54,47 @@ export function GlobalSearch({
         command();
     };
 
+    // 1. Build the master list of all searchable items
+    const searchItems = [
+        // --- Static Pages ---
+        { title: "Home", href: "/", category: "Pages", icon: Home },
+        { title: "Search Page", href: "/search", category: "Pages", icon: Search },
+        { title: "About Us", href: "/about", category: "Pages", icon: FileText },
+        { title: "Contact", href: "/contact", category: "Pages", icon: FileText },
+        { title: "Privacy Policy", href: "/privacy", category: "Pages", icon: FileText },
+        { title: "Terms of Service", href: "/terms", category: "Pages", icon: FileText },
+
+        // --- Categories ---
+        { title: "Financial Tools", href: "/financial", category: "Categories", icon: LayoutGrid },
+        { title: "Health Calculators", href: "/health", category: "Categories", icon: LayoutGrid },
+        { title: "Cooking & Recipes", href: "/cooking", category: "Categories", icon: LayoutGrid },
+        { title: "Math Solvers", href: "/math", category: "Categories", icon: LayoutGrid },
+
+        // --- Calculators (Dynamic) ---
+        ...calculatorRegistry.map(calc => ({
+            title: calc.title,
+            href: `/${calc.category}/${calc.slug}`,
+            category: "Calculators",
+            icon: Calculator,
+            keywords: [calc.category, calc.subcategory || "", ...(calc.description?.split(" ") || [])]
+        })),
+
+        // --- Games (Dynamic) ---
+        ...GAMES.map(game => ({
+            title: game.title,
+            href: `/games/${game.slug}`,
+            category: "Games",
+            icon: Gamepad2,
+            keywords: ["game", "play", "free"]
+        }))
+    ];
+
+    // Group items for rendering
+    const pages = searchItems.filter(i => i.category === "Pages");
+    const categories = searchItems.filter(i => i.category === "Categories");
+    const calculators = searchItems.filter(i => i.category === "Calculators");
+    const games = searchItems.filter(i => i.category === "Games");
+
     return (
         <CommandDialog open={open} onOpenChange={onOpenChange} {...props}>
             <CommandInput placeholder="Type a command or search..." />
@@ -61,65 +102,61 @@ export function GlobalSearch({
                 <CommandEmpty>No results found.</CommandEmpty>
 
                 <CommandGroup heading="Pages">
-                    <CommandItem
-                        onSelect={() => runCommand(() => navigate("/"))}
-                    >
-                        <Home className="mr-2 h-4 w-4" />
-                        <span>Home</span>
-                    </CommandItem>
-                    <CommandItem
-                        onSelect={() => runCommand(() => navigate("/search"))}
-                    >
-                        <Search className="mr-2 h-4 w-4" />
-                        <span>Search Page</span>
-                    </CommandItem>
-                    <CommandItem
-                        onSelect={() => runCommand(() => navigate("/about"))}
-                    >
-                        <FileText className="mr-2 h-4 w-4" />
-                        <span>About</span>
-                    </CommandItem>
-                    <CommandItem
-                        onSelect={() => runCommand(() => navigate("/financial"))}
-                    >
-                        <LayoutGrid className="mr-2 h-4 w-4" />
-                        <span>Financial Tools</span>
-                    </CommandItem>
+                    {pages.map((item) => (
+                        <CommandItem
+                            key={item.href}
+                            onSelect={() => runCommand(() => navigate(item.href))}
+                            value={item.title}
+                        >
+                            <item.icon className="mr-2 h-4 w-4" />
+                            <span>{item.title}</span>
+                        </CommandItem>
+                    ))}
                 </CommandGroup>
 
                 <CommandSeparator />
 
-                <CommandGroup heading="Tools & Calculators">
-                    {calculatorRegistry.slice(0, 10).map((calc) => (
+                <CommandGroup heading="Categories">
+                    {categories.map((item) => (
                         <CommandItem
-                            key={calc.slug}
-                            onSelect={() => runCommand(() => navigate(`/${calc.category}/${calc.slug}`))}
-                            value={calc.title}
+                            key={item.href}
+                            onSelect={() => runCommand(() => navigate(item.href))}
+                            value={item.title}
                         >
-                            <Calculator className="mr-2 h-4 w-4" />
-                            <span>{calc.title}</span>
+                            <item.icon className="mr-2 h-4 w-4" />
+                            <span>{item.title}</span>
                         </CommandItem>
                     ))}
-                    <CommandItem
-                        onSelect={() => runCommand(() => navigate("/search"))}
-                        className="text-muted-foreground"
-                    >
-                        <Search className="mr-2 h-4 w-4" />
-                        <span>Search all calculators...</span>
-                    </CommandItem>
+                </CommandGroup>
+
+                <CommandSeparator />
+
+                <CommandGroup heading="Calculators">
+                    {calculators.map((item) => (
+                        <CommandItem
+                            key={item.href}
+                            onSelect={() => runCommand(() => navigate(item.href))}
+                            value={item.title}
+                            keywords={item.keywords}
+                        >
+                            <item.icon className="mr-2 h-4 w-4" />
+                            <span>{item.title}</span>
+                        </CommandItem>
+                    ))}
                 </CommandGroup>
 
                 <CommandSeparator />
 
                 <CommandGroup heading="Games">
-                    {GAMES.slice(0, 5).map((game) => (
+                    {games.map((item) => (
                         <CommandItem
-                            key={game.slug}
-                            onSelect={() => runCommand(() => navigate(`/games/${game.slug}`))}
-                            value={game.title}
+                            key={item.href}
+                            onSelect={() => runCommand(() => navigate(item.href))}
+                            value={item.title}
+                            keywords={item.keywords}
                         >
-                            <Gamepad2 className="mr-2 h-4 w-4" />
-                            <span>{game.title}</span>
+                            <item.icon className="mr-2 h-4 w-4" />
+                            <span>{item.title}</span>
                         </CommandItem>
                     ))}
                 </CommandGroup>
