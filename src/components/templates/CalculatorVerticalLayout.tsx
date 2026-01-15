@@ -5,7 +5,7 @@ import ShareThisPageBox from "../ShareThisPageBox";
 import SuggestionBox from "../SuggestionBox";
 import LegalDisclaimer from "../LegalDisclaimer";
 import { getEntry } from "@/data/calculatorRegistry";
-import { SEO } from "../SEO";
+import SEOHead from "@/components/SEOHead";
 
 // ================================================================
 // AD SLOTS CONFIGURATION
@@ -247,6 +247,7 @@ interface CalculatorVerticalLayoutProps {
   showBottomBanner?: boolean;
   hideLegalDisclaimer?: boolean; // Nova prop opcional
   jsonLd?: object | object[] | null | undefined;
+  canonical?: string;
   children?: ReactNode;
 }
 
@@ -267,6 +268,7 @@ export default function CalculatorVerticalLayout({
   showBottomBanner = true,
   hideLegalDisclaimer = false, // Padrão é false (mostrar)
   jsonLd,
+  canonical,
   children,
 }: CalculatorVerticalLayoutProps) {
   const location = useLocation();
@@ -282,10 +284,10 @@ export default function CalculatorVerticalLayout({
 
   return (
     <div className="skn-vertical-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
-      <SEO
+      <SEOHead
         title={title}
         description={resolvedDescription}
-        canonical={`https://www.smartkitnow.com${location.pathname}`}
+        canonical={canonical}
       />
 
       {jsonLd ? (

@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import BackToTopButton from "@/components/BackToTopButton";
+import LegacyRedirect from "@/components/LegacyRedirects";
 const FinancialCategory = lazy(() => import("@/pages/categories/FinancialCategory"));
 const HealthCategory = lazy(() => import("@/pages/categories/HealthCategory"));
 const CookingCategory = lazy(() => import("@/pages/categories/CookingCategory"));
@@ -147,7 +148,7 @@ export default function App() {
               <Route path="/:category" element={<CategoryIndex />} />
 
               {/* Calculator detail (supports both with and without subcategory) */}
-              <Route path="/:category/:subcategory/:slug" element={<CalculatorPage />} />
+              <Route path="/:category/:subcategory/:slug" element={<LegacyRedirect />} />
               <Route path="/:category/:slug" element={<CalculatorPage />} />
 
               {/* 404 */}

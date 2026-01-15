@@ -436,6 +436,7 @@ export default function BmiBodyMassIndexCalculator() {
     <CalculatorVerticalLayout
       title="BMI — Body Mass Index Calculator"
       description="Calculate your Body Mass Index (BMI) instantly. Determine if you are in a healthy weight range based on your height and weight."
+      canonical="/health/bmi-body-mass-index"
       widget={widget}
       editorial={editorial}
       jsonLd={faqJsonLd}

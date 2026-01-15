@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 type OpenGraph = {
   type?: "website" | "article";
@@ -30,137 +30,54 @@ type Props = {
   extra?: Array<{ name?: string; property?: string; content: string }>;
 } & LegacyProps;
 
-export default function SeoHead({ title, description, canonical, robots = "index,follow", og, twitter, extra, ogType, ogImage }: Props) {
-  useEffect(() => {
-    // <title>
-    document.title = title;
+export default function SEOHead({ title, description, canonical, robots = "index,follow", og, twitter, extra, ogType, ogImage }: Props) {
+  // Logic to build canonical if not provided
+  // It removes query strings (?...) by using window.location.origin + window.location.pathname
+  // Note: structured canonical passed via props should take precedence.
+  const effectiveCanonical = canonical || (
+    typeof window !== 'undefined'
+      ? window.location.origin + window.location.pathname
+      : undefined
+  );
 
-    const setMeta = (sel: string, newEl: () => HTMLElement, set: (el: HTMLElement) => void) => {
-      let el = document.head.querySelector(sel) as HTMLElement | null;
-      if (!el) {
-        el = newEl();
-        document.head.appendChild(el);
-      }
-      set(el);
-    };
+  const ogDefaults: OpenGraph = { type: ogType || "article", siteName: "Smart Kit Now", url: effectiveCanonical, image: ogImage };
+  const ogData = { ...ogDefaults, ...(og || {}) };
 
-    // robots
-    setMeta('meta[name="robots"]',
-      () => {
-        const m = document.createElement("meta");
-        m.setAttribute("name", "robots");
-        return m;
-      },
-      (el) => el.setAttribute("content", robots)
-    );
+  const twDefaults: Twitter = { card: "summary_large_image", image: ogData.image };
+  const tw = { ...twDefaults, ...(twitter || {}) };
 
-    // description
-    if (description) {
-      setMeta('meta[name="description"]',
-        () => {
-          const m = document.createElement("meta");
-          m.setAttribute("name", "description");
-          return m;
-        },
-        (el) => el.setAttribute("content", description)
-      );
-    }
+  return (
+    <Helmet>
+      {/* Basic */}
+      <title>{title}</title>
+      <meta name="robots" content={robots} />
+      {description && <meta name="description" content={description} />}
+      {effectiveCanonical && <link rel="canonical" href={effectiveCanonical} />}
 
-    // canonical
-    if (canonical) {
-      setMeta('link[rel="canonical"]',
-        () => {
-          const l = document.createElement("link");
-          l.setAttribute("rel", "canonical");
-          return l;
-        },
-        (el) => (el as HTMLLinkElement).setAttribute("href", canonical)
-      );
+      {/* Alternates (Example: Just self-referencing en/x-default for now as per previous logic) */}
+      {effectiveCanonical && <link rel="alternate" href={effectiveCanonical} hrefLang="en" />}
+      {effectiveCanonical && <link rel="alternate" href={effectiveCanonical} hrefLang="x-default" />}
 
-      // alternates (basic en and x-default)
-      const upsertAlternate = (hreflang: string, href: string) => {
-        const sel = `link[rel="alternate"][hreflang="${hreflang}"]`;
-        let el = document.head.querySelector<HTMLLinkElement>(sel);
-        if (!el) {
-          el = document.createElement("link");
-          el.setAttribute("rel", "alternate");
-          el.setAttribute("hreflang", hreflang);
-          document.head.appendChild(el);
-        }
-        el.setAttribute("href", href);
-      };
-      upsertAlternate("en", canonical);
-      upsertAlternate("x-default", canonical);
-    }
+      {/* Open Graph */}
+      <meta property="og:title" content={title} />
+      {description && <meta property="og:description" content={description} />}
+      <meta property="og:type" content={ogData.type} />
+      {ogData.url && <meta property="og:url" content={ogData.url} />}
+      {ogData.siteName && <meta property="og:site_name" content={ogData.siteName} />}
+      {ogData.image && <meta property="og:image" content={ogData.image} />}
 
-    // Open Graph
-    const ogDefaults: OpenGraph = { type: ogType || "article", siteName: "Smart Kit Now", url: canonical, image: ogImage };
-    const ogData = { ...ogDefaults, ...(og || {}) };
-    const setOG = (property: string, content?: string) => {
-      if (!content) return;
-      setMeta(`meta[property="${property}"]`,
-        () => {
-          const m = document.createElement("meta");
-          m.setAttribute("property", property);
-          return m;
-        },
-        (el) => el.setAttribute("content", content)
-      );
-    };
-    setOG("og:title", title);
-    setOG("og:description", description);
-    setOG("og:type", ogData.type);
-    setOG("og:url", ogData.url);
-    setOG("og:site_name", ogData.siteName);
-    if (ogData.image) setOG("og:image", ogData.image);
+      {/* Twitter */}
+      <meta name="twitter:card" content={tw.card} />
+      <meta name="twitter:title" content={title} />
+      {description && <meta name="twitter:description" content={description} />}
+      {tw.image && <meta name="twitter:image" content={tw.image} />}
+      {tw.site && <meta name="twitter:site" content={tw.site} />}
+      {tw.creator && <meta name="twitter:creator" content={tw.creator} />}
 
-    // Twitter
-    const twDefaults: Twitter = { card: "summary_large_image", image: ogData.image };
-    const tw = { ...twDefaults, ...(twitter || {}) };
-    const setTW = (name: string, content?: string) => {
-      if (!content) return;
-      setMeta(`meta[name="${name}"]`,
-        () => {
-          const m = document.createElement("meta");
-          m.setAttribute("name", name);
-          return m;
-        },
-        (el) => el.setAttribute("content", content)
-      );
-    };
-    setTW("twitter:card", tw.card);
-    setTW("twitter:title", title);
-    if (description) setTW("twitter:description", description);
-    if (tw.image) setTW("twitter:image", tw.image);
-    if (tw.site) setTW("twitter:site", tw.site);
-    if (tw.creator) setTW("twitter:creator", tw.creator);
-
-    // Extra meta
-    if (Array.isArray(extra)) {
-      extra.forEach(({ name, property, content }) => {
-        if (!content) return;
-        if (name) {
-          setMeta(`meta[name="${name}"]`,
-            () => {
-              const m = document.createElement("meta");
-              m.setAttribute("name", name);
-              return m;
-            },
-            (el) => el.setAttribute("content", content)
-          );
-        } else if (property) {
-          setMeta(`meta[property="${property}"]`,
-            () => {
-              const m = document.createElement("meta");
-              m.setAttribute("property", property);
-              return m;
-            },
-            (el) => el.setAttribute("content", content)
-          );
-        }
-      });
-    }
-  }, [title, description, canonical, robots, og, twitter, extra, ogType, ogImage]);
-
-  return null;
+      {/* Extra */}
+      {extra?.map((item, idx) => (
+        <meta key={idx} {...item} />
+      ))}
+    </Helmet>
+  );
 }

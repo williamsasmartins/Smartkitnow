@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import logoImage from "@/assets/logo-skn.png";
 import JsonLd from "@/components/seo/JsonLd";
+import SEOHead from "@/components/SEOHead";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -1441,7 +1442,13 @@ const Index = () => {
       path: "/math/gpa-calculator"
     }
   ];
-  return <div className="min-h-screen bg-[var(--skn-bg-soft)]">
+  return (
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans selection:bg-indigo-100 selection:text-indigo-900">
+      <SEOHead
+        title="Smart Kit Now - Your Ultimate Smart Tools Collection"
+        description="Discover powerful smart tools and utilities designed to enhance your productivity and streamline your workflow. Your ultimate collection awaits."
+        canonical="https://www.smartkitnow.com/"
+      />
       {/* JSON-LD: Organization and WebSite with Sitelinks Search */}
       <JsonLd data={{
         "@context": "https://schema.org",
@@ -1492,60 +1499,60 @@ const Index = () => {
           {/* Categories Grid */}
           <div className="grid grid-cols-1 min-[425px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
             {calculatorCategories.map((category, index) => {
-            const IconComponent = category.icon;
-            const isAutomotive = category.name === "Automotive Calculators";
-            const isConstruction = category.name === "Construction Calculators";
-            const isConversion = category.name === "Conversion Calculators";
-            const isCooking = category.name === "Cooking Calculators";
-            const isElectrical = category.name === "Electrical Calculators";
-            const isFinancial = category.name === "Financial Calculators";
-            const isHealth = category.name === "Health & Fitness Calculators";
-            const isMath = category.name === "Math & Algebra Calculators";
-            const isPets = category.name === "Pet Care Calculators";
-            const isScience = category.name === "Science Calculators";
-            const isTime = category.name === "Time & Date Calculators";
-            const isRecipes = category.name === "Recipes";
-            const isSmartTips = category.name === "Smart Tips";
-            const handleClick = () => {
-              if (import.meta.env.DEV) {
-                console.log("Category clicked:", category.name);
-              }
-              // Prefer explicit path if provided on the category object
-              if ((category as any).path) {
-                navigate((category as any).path);
-                return;
-              }
-              // Fallbacks for legacy categories without explicit paths
-              if (isAutomotive) navigate('/automotive');
-              if (isConstruction) navigate('/construction');
-              if (isConversion) navigate('/conversion');
-              if (isCooking) navigate('/cooking');
-              if (isElectrical) navigate('/electrical');
-              if (isFinancial) navigate('/financial');
-              if (isHealth) navigate('/health');
-              if (isMath) navigate('/math');
-              if (isPets) navigate('/pets');
-              if (isScience) navigate('/science');
-              if (isTime) navigate('/time');
-              if (isRecipes) navigate('/recipes');
-              if (isSmartTips) navigate('/smart-tips');
-            };
-            return <GlowCard key={index} className="skn-card group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={handleClick} customSize glowColor={isFinancial ? 'green' : isHealth ? 'red' : isPets ? 'orange' : isRecipes ? 'purple' : isConversion ? 'blue' : isElectrical ? 'orange' : isConstruction ? 'orange' : isCooking ? 'orange' : isMath ? 'purple' : isScience ? 'blue' : isTime ? 'blue' : 'blue'}>
-                  <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
-                    <span className="text-[20px] leading-none select-none">
-                      {getCategoryIcon((category as any).key)}
-                    </span>
-                    <h3 className="skn-home-title text-[14px] md:text-[15px] font-semibold tracking-[-0.01em]">
-                      {(category as any).title ?? category.name}
-                    </h3>
-                  </CardContent>
-                </GlowCard>;
-          })}
+              const IconComponent = category.icon;
+              const isAutomotive = category.name === "Automotive Calculators";
+              const isConstruction = category.name === "Construction Calculators";
+              const isConversion = category.name === "Conversion Calculators";
+              const isCooking = category.name === "Cooking Calculators";
+              const isElectrical = category.name === "Electrical Calculators";
+              const isFinancial = category.name === "Financial Calculators";
+              const isHealth = category.name === "Health & Fitness Calculators";
+              const isMath = category.name === "Math & Algebra Calculators";
+              const isPets = category.name === "Pet Care Calculators";
+              const isScience = category.name === "Science Calculators";
+              const isTime = category.name === "Time & Date Calculators";
+              const isRecipes = category.name === "Recipes";
+              const isSmartTips = category.name === "Smart Tips";
+              const handleClick = () => {
+                if (import.meta.env.DEV) {
+                  console.log("Category clicked:", category.name);
+                }
+                // Prefer explicit path if provided on the category object
+                if ((category as any).path) {
+                  navigate((category as any).path);
+                  return;
+                }
+                // Fallbacks for legacy categories without explicit paths
+                if (isAutomotive) navigate('/automotive');
+                if (isConstruction) navigate('/construction');
+                if (isConversion) navigate('/conversion');
+                if (isCooking) navigate('/cooking');
+                if (isElectrical) navigate('/electrical');
+                if (isFinancial) navigate('/financial');
+                if (isHealth) navigate('/health');
+                if (isMath) navigate('/math');
+                if (isPets) navigate('/pets');
+                if (isScience) navigate('/science');
+                if (isTime) navigate('/time');
+                if (isRecipes) navigate('/recipes');
+                if (isSmartTips) navigate('/smart-tips');
+              };
+              return <GlowCard key={index} className="skn-card group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={handleClick} customSize glowColor={isFinancial ? 'green' : isHealth ? 'red' : isPets ? 'orange' : isRecipes ? 'purple' : isConversion ? 'blue' : isElectrical ? 'orange' : isConstruction ? 'orange' : isCooking ? 'orange' : isMath ? 'purple' : isScience ? 'blue' : isTime ? 'blue' : 'blue'}>
+                <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
+                  <span className="text-[20px] leading-none select-none">
+                    {getCategoryIcon((category as any).key)}
+                  </span>
+                  <h3 className="skn-home-title text-[14px] md:text-[15px] font-semibold tracking-[-0.01em]">
+                    {(category as any).title ?? category.name}
+                  </h3>
+                </CardContent>
+              </GlowCard>;
+            })}
           </div>
 
           {/* Discover More Button */}
           <div className="text-center">
-            <Button 
+            <Button
               onClick={() => document.getElementById('featured-calculators')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-[#5c82ee] hover:bg-[#4a6fe0] text-white shadow-soft transition-all duration-300 hover:shadow-glow"
             >
@@ -1584,7 +1591,7 @@ const Index = () => {
 
         {/* removed per user request */}
 
-        </main>
-      </div>;
+      </main>
+    </div>);
 };
 export default Index;

@@ -10,10 +10,10 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function AutoLoanCalculator() {
   // STATE
-  const [inputs, setInputs] = useState({ 
-    loanAmount: "", 
-    interestRate: "", 
-    loanTerm: "" 
+  const [inputs, setInputs] = useState({
+    loanAmount: "",
+    interestRate: "",
+    loanTerm: ""
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
@@ -37,11 +37,11 @@ export default function AutoLoanCalculator() {
 
     // Validate
     if (loanAmountValue <= 0 || interestRateValue <= 0 || loanTermValue <= 0) {
-      return { 
-        mainResult: 0, 
-        totalInterest: 0, 
-        totalPayment: 0, 
-        scheduleData: [] 
+      return {
+        mainResult: 0,
+        totalInterest: 0,
+        totalPayment: 0,
+        scheduleData: []
       };
     }
 
@@ -64,20 +64,20 @@ export default function AutoLoanCalculator() {
       };
     });
 
-    return { 
-      mainResult: monthlyPayment, 
-      totalInterest, 
-      totalPayment, 
-      scheduleData 
+    return {
+      mainResult: monthlyPayment,
+      totalInterest,
+      totalPayment,
+      scheduleData
     };
   }, [inputs]);
 
   // HANDLERS
   const handleCalculate = () => {
     setTimeout(() => {
-      resultsRef.current?.scrollIntoView({ 
-        behavior: "smooth", 
-        block: "center" 
+      resultsRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
       });
     }, 100);
   };
@@ -131,7 +131,7 @@ export default function AutoLoanCalculator() {
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <DollarSign className="w-4 h-4 text-blue-600"/>
+              <DollarSign className="w-4 h-4 text-blue-600" />
               Loan Amount
             </Label>
             <Input
@@ -145,7 +145,7 @@ export default function AutoLoanCalculator() {
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <TrendingUp className="w-4 h-4 text-green-600"/>
+              <TrendingUp className="w-4 h-4 text-green-600" />
               Interest Rate (%)
             </Label>
             <Input
@@ -159,7 +159,7 @@ export default function AutoLoanCalculator() {
 
           <div className="space-y-2 md:col-span-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <Calculator className="w-4 h-4 text-purple-600"/>
+              <Calculator className="w-4 h-4 text-purple-600" />
               Loan Term (years)
             </Label>
             <Input
@@ -175,15 +175,15 @@ export default function AutoLoanCalculator() {
 
       {/* BUTTONS */}
       <div className="flex gap-4 mt-6">
-        <Button 
-          onClick={handleCalculate} 
+        <Button
+          onClick={handleCalculate}
           className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
         >
-          <Calculator className="mr-2 h-4 w-4"/> 
+          <Calculator className="mr-2 h-4 w-4" />
           Calculate
         </Button>
-        <Button 
-          onClick={handleReset} 
+        <Button
+          onClick={handleReset}
           variant="outline"
           className="border-gray-300 dark:border-gray-600"
         >
@@ -195,7 +195,7 @@ export default function AutoLoanCalculator() {
       {results.mainResult > 0 && (
         <div ref={resultsRef} className="space-y-6 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Your Results</h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* MAIN RESULT - Full Width Gradient (MANDATORY STYLE) */}
             <Card className="col-span-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200 dark:border-blue-800 shadow-xl">
@@ -258,14 +258,14 @@ export default function AutoLoanCalculator() {
                     Payment Schedule
                   </span>
                   {results.scheduleData.length > 12 && (
-                    <Button 
-                      onClick={() => setShowFullTable(!showFullTable)} 
+                    <Button
+                      onClick={() => setShowFullTable(!showFullTable)}
                       variant="outline"
                       size="sm"
                       className="border-gray-300 dark:border-gray-600"
                     >
-                      {showFullTable 
-                        ? 'Show Less' 
+                      {showFullTable
+                        ? 'Show Less'
                         : `Show All ${results.scheduleData.length} Payments`}
                     </Button>
                   )}
@@ -287,8 +287,8 @@ export default function AutoLoanCalculator() {
                       {results.scheduleData
                         .slice(0, showFullTable ? undefined : 12)
                         .map((row, idx) => (
-                          <TableRow 
-                            key={idx} 
+                          <TableRow
+                            key={idx}
                             className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                           >
                             <TableCell className="font-medium">{row.month}</TableCell>
@@ -318,35 +318,35 @@ export default function AutoLoanCalculator() {
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
     <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
+
       {/* SECTION 1: INTRODUCTION (400-500 words) */}
       <section id="introduction">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Understanding Auto Loan Calculator
         </h2>
-        
+
         <p className="mb-6">
           The Auto Loan Calculator is an essential tool for anyone considering purchasing a vehicle through financing. It helps you understand the monthly payments you will need to make, the total interest you will pay over the life of the loan, and the overall cost of the loan. By inputting the loan amount, interest rate, and loan term, you can quickly get a clear picture of your financial commitment. This calculator is particularly useful for comparing different loan offers and understanding how different interest rates and loan terms affect your payments.
         </p>
-        
+
         <p className="mb-6">
           Accurate calculations are crucial when it comes to auto loans, as even small errors can lead to significant financial implications. For instance, underestimating your monthly payments could result in financial strain, while overestimating could mean missing out on a better deal. According to recent statistics, the average auto loan amount has been steadily increasing, making it even more important to use tools like this calculator to make informed decisions. By using this calculator, you can ensure that you are fully aware of the financial commitment you are making and avoid any unpleasant surprises down the line. For more insights, check out our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a>.
         </p>
-        
+
         <p className="mb-6">
           To use this calculator effectively, you will need to gather some key information. Start by determining the total amount you plan to borrow, which is the loan amount. Next, find out the interest rate offered by your lender, which is usually expressed as an annual percentage rate (APR). Finally, decide on the loan term, which is the number of years you plan to take to repay the loan. Once you have this information, enter it into the calculator to see your estimated monthly payment, total interest, and total payment. For additional guidance, visit our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
         </p>
 
         <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
+            <Info className="h-5 w-5" />
             Key Insight
           </h4>
           <p className="text-blue-800 dark:text-blue-200">
             When using the Auto Loan Calculator, always double-check the interest rate and loan term. These two factors have the most significant impact on your monthly payment and total interest. Consider running multiple scenarios with different rates and terms to find the best option for your budget.
           </p>
         </div>
-        
+
         <p className="mb-6">
           Best practices for using this calculator include being realistic about your budget and considering additional costs such as insurance and maintenance. It's also wise to factor in any potential changes in your financial situation, such as a job change or unexpected expenses. By taking these factors into account, you can optimize your loan terms and ensure that your auto purchase is a financially sound decision.
         </p>
@@ -357,11 +357,11 @@ export default function AutoLoanCalculator() {
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Auto Loan Calculator Formula
         </h2>
-        
+
         <p className="mb-6">
           The Auto Loan Calculator uses a standard formula to determine your monthly payment. This formula is widely accepted in the financial industry and is based on the principle of amortization, where each payment covers both the interest and a portion of the principal. The formula takes into account the loan amount, the interest rate, and the loan term to calculate the fixed monthly payment you will need to make over the life of the loan.
         </p>
-        
+
         {/* FORMULA BOX - MANDATORY STYLING */}
         <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
           M = P[r(1+r)^n] / [(1+r)^n – 1]
@@ -375,7 +375,7 @@ export default function AutoLoanCalculator() {
             </ul>
           </div>
         </div>
-        
+
         <p className="mb-4">
           Each variable in the formula plays a crucial role in determining the monthly payment. The loan amount (P) is the total amount you borrow, while the interest rate (r) is the cost of borrowing that amount, expressed as a monthly rate. The loan term (n) is the total number of payments you will make, which is typically the number of years multiplied by 12. By adjusting these variables, you can see how different loan scenarios affect your monthly payment and total interest paid.
         </p>
@@ -386,11 +386,11 @@ export default function AutoLoanCalculator() {
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Key Factors That Affect Your Results
         </h2>
-        
+
         <p className="mb-6">
           Understanding the factors that affect your auto loan results is crucial for making informed financial decisions. These factors can significantly impact your monthly payments and the total cost of your loan. By considering each factor carefully, you can optimize your loan terms and ensure that your auto purchase is a sound financial decision.
         </p>
-        
+
         <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
           Interest Rate
         </h3>
@@ -400,7 +400,7 @@ export default function AutoLoanCalculator() {
         <p className="mb-6">
           When comparing interest rates, consider both the nominal rate and the annual percentage rate (APR), which includes any additional fees or costs associated with the loan. A lower APR indicates a better overall deal. Additionally, consider the impact of your credit score on the interest rate offered by lenders.
         </p>
-        
+
         <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
           Loan Term
         </h3>
@@ -410,7 +410,7 @@ export default function AutoLoanCalculator() {
         <p className="mb-6">
           Consider how long you plan to keep the vehicle and whether you anticipate any changes in your financial situation. A shorter loan term may be more challenging to manage monthly, but it can save you money in the long run. For more insights, explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
         </p>
-        
+
         <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
           Loan Amount
         </h3>
@@ -420,7 +420,7 @@ export default function AutoLoanCalculator() {
         <p className="mb-6">
           Consider the total cost of ownership, including taxes, fees, and insurance, when determining the loan amount. A larger down payment can reduce the loan amount and result in lower monthly payments and less interest paid. For more guidance, check out our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
         </p>
-        
+
         <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
           Credit Score
         </h3>
@@ -444,15 +444,15 @@ export default function AutoLoanCalculator() {
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions
         </h2>
-        
+
         <div className="space-y-8">
           {faqs.map((faq, index) => (
             <div key={index}>
               <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0" />
                 {faq.question}
               </h3>
-              <div 
+              <div
                 className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 space-y-3 prose dark:prose-invert max-w-none"
                 dangerouslySetInnerHTML={{ __html: faq.answer }}
               />
@@ -468,12 +468,12 @@ export default function AutoLoanCalculator() {
         </h2>
         <ul className="space-y-4">
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
             <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.federalreserve.gov"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
               >
                 Federal Reserve - Auto Loan Rates
@@ -484,12 +484,12 @@ export default function AutoLoanCalculator() {
             </div>
           </li>
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
             <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.consumerfinance.gov"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
               >
                 Consumer Financial Protection Bureau - Auto Loans
@@ -500,12 +500,12 @@ export default function AutoLoanCalculator() {
             </div>
           </li>
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
             <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.fdic.gov"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
               >
                 FDIC - Auto Loan Insights
@@ -516,12 +516,12 @@ export default function AutoLoanCalculator() {
             </div>
           </li>
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
             <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.irs.gov"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
               >
                 Internal Revenue Service - Vehicle Deductions
@@ -532,12 +532,12 @@ export default function AutoLoanCalculator() {
             </div>
           </li>
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
             <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.investopedia.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
               >
                 Investopedia - Auto Loan Basics
@@ -548,12 +548,12 @@ export default function AutoLoanCalculator() {
             </div>
           </li>
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
             <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.nerdwallet.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
               >
                 NerdWallet - Auto Loan Guide
@@ -573,6 +573,7 @@ export default function AutoLoanCalculator() {
     <CalculatorVerticalLayout
       title="Auto Loan Calculator"
       description="Calculate your auto loan payments accurately. Factor in trade-in value, sales tax, and fees to get a clear picture of your car purchase."
+      canonical="/financial/auto-loan"
       jsonLd={faqJsonLd}
       widget={widget}
       editorial={editorial}
@@ -597,20 +598,20 @@ export default function AutoLoanCalculator() {
         title: "Example Calculation",
         scenario: "Imagine you have a loan amount of $30,000 with an interest rate of 3.5% over a 5-year term.",
         steps: [
-          { 
-            label: "Step 1", 
-            calculation: "Convert annual interest rate to monthly: 3.5% / 12 = 0.0029167", 
-            explanation: "Calculate the monthly interest rate." 
+          {
+            label: "Step 1",
+            calculation: "Convert annual interest rate to monthly: 3.5% / 12 = 0.0029167",
+            explanation: "Calculate the monthly interest rate."
           },
-          { 
-            label: "Step 2", 
-            calculation: "Calculate monthly payment: M = 30000[0.0029167(1+0.0029167)^60] / [(1+0.0029167)^60 – 1]", 
-            explanation: "Use the formula to determine monthly payment." 
+          {
+            label: "Step 2",
+            calculation: "Calculate monthly payment: M = 30000[0.0029167(1+0.0029167)^60] / [(1+0.0029167)^60 – 1]",
+            explanation: "Use the formula to determine monthly payment."
           },
-          { 
-            label: "Step 3", 
-            calculation: "The monthly payment is approximately $547.50", 
-            explanation: "This is the amount you will pay each month for 5 years." 
+          {
+            label: "Step 3",
+            calculation: "The monthly payment is approximately $547.50",
+            explanation: "This is the amount you will pay each month for 5 years."
           }
         ],
         result: "The final result is a monthly payment of approximately $547.50, meaning you will pay this amount each month for the duration of the loan."
