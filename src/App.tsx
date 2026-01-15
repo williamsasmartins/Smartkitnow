@@ -51,6 +51,8 @@ const CalculatorPage = lazy(() => import("@/pages/CalculatorPage"));
 const RecipeCuisinePage = lazy(() => import("@/pages/RecipeCuisinePage"));
 const RecipeDetailPage = lazy(() => import("@/pages/RecipeDetailPage"));
 
+import { calculatorRoutes } from "@/config/calculatorRoutes";
+
 export default function App() {
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
@@ -95,61 +97,39 @@ export default function App() {
               <Route path="/daily-quotes/horoscopo" element={<DailyHoroscopeCalculator />} />
               <Route path="/horoscopo" element={<Navigate to="/daily-quotes/horoscopo" replace />} />
 
-              {/* Financial dedicated route */}
+              {/* Explicit Calculator Routes */}
+              {calculatorRoutes.map((route) => (
+                <Route
+                  key={`${route.category}-${route.slug}`}
+                  path={`/${route.category}/${route.slug}`}
+                  element={<CalculatorPage />}
+                />
+              ))}
+
+              {/* Category-only index routes */}
               <Route path="/financial" element={<FinancialCategory />} />
-
-              {/* Health dedicated route */}
               <Route path="/health" element={<HealthCategory />} />
-
-              {/* Cooking dedicated route */}
               <Route path="/cooking" element={<CookingCategory />} />
-
-              {/* Conversion dedicated route */}
               <Route path="/conversion" element={<ConversionCategory />} />
-
-              {/* Math dedicated route */}
               <Route path="/math" element={<MathCategory />} />
-
-              {/* Science dedicated route */}
               <Route path="/science" element={<ScienceCategory />} />
-
-              {/* Time dedicated route */}
               <Route path="/time" element={<TimeCategory />} />
-
-              {/* Pets dedicated route */}
               <Route path="/pets" element={<PetsCategory />} />
-
-              {/* Automotive dedicated route */}
               <Route path="/automotive" element={<AutomotiveCategory />} />
-
-              {/* Construction dedicated route */}
               <Route path="/construction" element={<ConstructionCategory />} />
-
-              {/* Electrical dedicated route */}
               <Route path="/electrical" element={<ElectricalCategory />} />
-
-              {/* Everyday dedicated route */}
               <Route path="/everyday" element={<EverydayCategory />} />
-
-              {/* Sports dedicated route */}
               <Route path="/sports" element={<SportsCategory />} />
-
-              {/* Funny dedicated route */}
               <Route path="/funny" element={<FunnyCategory />} />
-
-              {/* Video dedicated route */}
               <Route path="/video" element={<VideoCategory />} />
-              {/* Games dedicated route */}
               <Route path="/games" element={<GamesCategory />} />
-              {/* Game detail route */}
               <Route path="/games/:slug" element={<GamePage />} />
 
-              {/* Category index (generic) */}
+              {/* Generic category index fallback if not explicitly matched above */}
               <Route path="/:category" element={<CategoryIndex />} />
 
-              {/* Calculator detail (supports both with and without subcategory) */}
+              {/* Legacy Redirect for nested URLs (Redirects to flat /category/slug) */}
               <Route path="/:category/:subcategory/:slug" element={<LegacyRedirect />} />
-              <Route path="/:category/:slug" element={<CalculatorPage />} />
 
               {/* 404 */}
               <Route path="*" element={<NotFound />} />

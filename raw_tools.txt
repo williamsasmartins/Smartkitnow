@@ -1,0 +1,108 @@
+Loan Payment Calculator (Principal, Rate, Term)	loan-payment	financial	done
+Mortgage Payment & Amortization Calculator	mortgage-amortization	financial	done
+Extra Payments & Payoff Time Calculator	extra-payments-payoff	financial	done
+Interest-Only Loan Calculator	interest-only-loan	financial	done
+Refinance Savings Calculator	refinance-savings	financial	done
+HELOC Payment Estimator	heloc-payment-estimator	financial	done
+Car Loan Affordability Calculator	car-loan-affordability	financial	done
+Balloon Payment Calculator	balloon-payment	financial	done
+How Much House Can I Afford? Calculator	house-affordability	financial	done
+Auto Loan Calculator	auto-loan	financial	done
+Student Loan Repayment Calculator	student-loan-repayment	financial	done
+Lease vs Buy Calculator	lease-vs-buy	financial	done
+Compound Interest Calculator	compound-interest	financial	done
+Future Value of Investment Calculator	future-value-investment	financial	done
+Investment Return (ROI) Calculator	roi-return-on-investment	financial	done
+SIP/Monthly Investment Planner	sip-monthly-investment-planner	financial	done
+Inflation Adjusted Value Calculator	inflation-adjusted-value	financial	done
+Retirement Savings Goal Calculator	retirement-savings-goal	financial	done
+Emergency Fund Goal Calculator	emergency-fund-goal	financial	done
+401(k) / Retirement Savings Growth Calculator	401k-retirement-savings-growth	financial	done
+Social Security Benefit Estimator	social-security-benefit-estimator	financial	done
+Rule of 72 Calculator	rule-of-72	financial	done
+Bond Yield Calculator	bond-yield	financial	done
+Roth IRA Conversion Calculator	roth-ira-conversion	financial	done
+Dollar Cost Averaging (DCA) Simulator	dca-simulator	financial	done
+Crypto DCA Strategy Calculator	crypto-dca-strategy	financial	done
+Stock DCA Return Estimator	stock-dca-return-estimator	financial	done
+Monthly Budget Planner	monthly-budget-planner	financial	done
+Net Income after Tax Calculator	net-income-after-tax	financial	done
+Hourly to Annual Salary Converter	hourly-to-annual-salary	financial	done
+Debt-to-Income Ratio Calculator	debt-to-income-ratio	financial	done
+Savings Rate Tracker	savings-rate-tracker	financial	done
+Expense Splitter (Shared Bills) Calculator	expense-splitter-shared-bills	financial	done
+Take-Home Pay Calculator	take-home-pay	financial	done
+Paycheck Calculator	paycheck-calculator	financial	done
+Absence Percentage Calculator	absence-percentage-calculator	financial	done
+Credit Card Payoff Calculator	credit-card-payoff	financial	done
+Debt Consolidation Calculator	debt-consolidation	financial	done
+Net Worth Calculator	net-worth	financial	done
+Currency Converter (Live Rates)	currency-converter-live	financial	done
+Sales Tax Calculator	sales-tax	financial	done
+VAT/GST Calculator	vat-gst	financial	done
+Debt Snowball Calculator	debt-snowball	financial	done
+APR Calculator	apr	financial	done
+Credit Card Interest Calculator	credit-card-interest	financial	done
+Loan Comparison Calculator	loan-comparison	financial	done
+College Savings Calculator	college-savings	financial	done
+IRR NPV Calculator	irr-npv	financial	done
+Tax Bracket Calculator	tax-bracket	financial	done
+Crypto to Fiat Converter	crypto-to-fiat	financial	done
+Crypto to Crypto Exchange Rate Calculator	crypto-to-crypto-exchange-rate	financial	done
+Live Price Checker (Real-Time Rates)	live-price-checker	financial	done
+Portfolio Value Tracker	portfolio-value-tracker	financial	done
+Fiat to Crypto Purchase Calculator	fiat-to-crypto-purchase	financial	done
+Multi-Currency Crypto Converter	multi-currency-crypto-converter	financial	done
+Crypto Profit/Loss Calculator	crypto-profit-loss	financial	done
+ROI (Return on Investment) Calculator	crypto-roi	financial	done
+Future Value & Compound Growth Estimator	crypto-future-value-compound-growth	financial	done
+Yield Farming APY Calculator	yield-farming-apy	financial	done
+Staking Rewards Estimator	staking-rewards-estimator	financial	done
+Investment Break-Even Point Calculator	investment-break-even-point	financial	done
+DCA Strategy Analyzer (Crypto)	dca-strategy-analyzer-crypto	financial	done
+Mining Profitability Calculator	mining-profitability	financial	done
+Hash Rate to Earnings Converter	hash-rate-to-earnings	financial	done
+Electricity Cost vs Mining Revenue	electricity-cost-vs-mining-revenue	financial	done
+GPU/ASIC Mining ROI Calculator	gpu-asic-mining-roi	financial	done
+Pool Fee Impact Estimator	pool-fee-impact	financial	done
+Crypto Tax Liability Calculator	crypto-tax-liability	financial	done
+Capital Gains Tax Estimator	capital-gains-tax-estimator	financial	done
+Transaction Fee Deduction Tool	transaction-fee-deduction	financial	done
+Cost Basis Calculator (FIFO/LIFO)	cost-basis-fifo-lifo	financial	done
+Leverage & Margin Profit Calculator	leverage-margin-profit	financial	done
+Position Size & Risk Management Tool	position-size-risk-management	financial	done
+Volatility & Risk Assessment Calculator	volatility-risk-assessment	financial	done
+BMI — Body Mass Index Calculator	bmi-body-mass-index	health	done
+BMR — Basal Metabolic Rate (Mifflin-St Jeor)	bmr-mifflin-st-jeor	health	done
+TDEE — Total Daily Energy Expenditure Calculator	tdee-daily-energy-expenditure	health	done
+Body Fat % (US Navy / 3-sites)	body-fat-us-navy-3-sites	health	done
+Ideal Weight Range (Hamwi/Devine/Miller)	ideal-weight-range-hamwi-devine-miller	health	done
+Waist-to-Height Ratio Checker	waist-to-height-ratio	health	done
+Body Surface Area (BSA) Calculator	body-surface-area-bsa	health	done
+Daily Calorie Needs (Goal-based)	daily-calorie-needs-goal	health	done
+Weight Loss Date & Deficit Planner	weight-loss-date-deficit-planner	health	done
+Macro Split Planner (Protein/Carb/Fat)	macro-split-planner	health	done
+Protein Intake by Goal (cut/bulk/maintain)	protein-intake-by-goal	health	done
+Carb Target (incl. low-carb/keto ranges)	carb-target-low-carb-keto	health	done
+Fat Intake Range (AMDR)	fat-intake-range-amdr	health	done
+Fiber Intake Target (by kcal/sexo)	fiber-intake-target	health	done
+Water Intake per Day (by weight/activity/climate)	water-intake-per-day	health	done
+Meal Calories Split (breakfast/lunch/dinner/snacks)	meal-calories-split	health	done
+Running Pace, Speed & Split Calculator	running-pace-speed-splits	health	done
+Calories Burned by Activity (MET-based)	calories-burned-met	health	done
+Heart Rate Zones (Karvonen/percentages)	heart-rate-zones	health	done
+VO2max Estimator (Cooper/Rockport)	vo2max-estimator-cooper-rockport	health	done
+1RM — One-Rep Max (Epley/Brzycki)	one-rep-max-1rm-epley-brzycki	health	done
+Steps ↔ Distance ↔ Calories Converter	steps-distance-calories-converter	health	done
+Ovulation & Fertile Window Estimator	ovulation-fertile-window	health	done
+Pregnancy Due-Date (Naegele)	pregnancy-due-date-naegele	health	done
+Pregnancy Weight-Gain Range (BMI-aware)	pregnancy-weight-gain-range-bmi-aware	health	done
+Gestational TDEE (educational)	tdee-gestation-adjusted	health	done
+Length: m â ft â inlength-m-ft-inconversiondone
+Area: mÂ² â ftÂ²area-m2-ft2conversiondone
+Volume: L â mL â gal â ozvolume-l-ml-gal-ozconversiondone
+Mass: kg â lb â ozmass-kg-lb-ozconversiondone
+Temperature: Â°C â Â°F â Ktemperature-c-f-kconversiondone
+Density: g/mL â kg/mÂ³density-g-per-ml-kg-per-m3conversiondone
+Angle: deg â radangle-deg-radconversiondone
+Speed: m/s â†

@@ -22,6 +22,7 @@ type LegacyProps = {
 type Props = {
   title: string;
   description?: string;
+  path?: string; // e.g. "financial/auto-loan"
   canonical?: string;
   robots?: string; // e.g., "index,follow" or "noindex,follow"
   og?: OpenGraph;
@@ -30,14 +31,14 @@ type Props = {
   extra?: Array<{ name?: string; property?: string; content: string }>;
 } & LegacyProps;
 
-export default function SEOHead({ title, description, canonical, robots = "index,follow", og, twitter, extra, ogType, ogImage }: Props) {
-  // Logic to build canonical if not provided
-  // It removes query strings (?...) by using window.location.origin + window.location.pathname
-  // Note: structured canonical passed via props should take precedence.
+export default function SEOHead({ title, description, path, canonical, robots = "index,follow", og, twitter, extra, ogType, ogImage }: Props) {
+  const domain = "https://www.smartkitnow.com";
+
+  // Logic to build canonical: Absolute path takes precedence, then path prop, then window fallback
   const effectiveCanonical = canonical || (
-    typeof window !== 'undefined'
-      ? window.location.origin + window.location.pathname
-      : undefined
+    path
+      ? `${domain}/${path.startsWith('/') ? path.slice(1) : path}`
+      : (typeof window !== 'undefined' ? window.location.origin + window.location.pathname : undefined)
   );
 
   const ogDefaults: OpenGraph = { type: ogType || "article", siteName: "Smart Kit Now", url: effectiveCanonical, image: ogImage };
