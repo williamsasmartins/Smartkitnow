@@ -8521,6 +8521,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/ChickenStroganoffBrazilianStyleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chicken-okra-stew",
+    title: "Chicken and Okra Stew",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Savory bone-in chicken braised with fresh okra.",
+    loader: () => import("@/components/calculators/Recipes/ChickenOkraStewCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
