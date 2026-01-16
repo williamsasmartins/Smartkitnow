@@ -8566,6 +8566,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/CoastalFishStewCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "shrimp-stew-moqueca-de-camarao",
+    title: "Brazilian Shrimp Stew",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Succulent shrimp cooked in a fragrant palm oil and coconut sauce.",
+    loader: () => import("@/components/calculators/Recipes/ShrimpStewMoquecaDeCamaraoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
