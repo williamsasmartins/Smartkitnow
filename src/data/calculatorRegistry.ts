@@ -8539,6 +8539,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/ChickenAndCornStewCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-chicken-pot-pie-empadao",
+    title: "Brazilian Chicken Pot Pie",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Flaky, buttery crust filled with creamy shredded chicken.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianChickenPotPieEmpadaoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
