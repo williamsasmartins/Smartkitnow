@@ -8224,6 +8224,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MargaritaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-cheese-bread",
+    title: "Brazilian Cheese Bread",
+    category: "recipes",
+    subcategory: "starters-small-plates",
+    description: "Classic chewy Pão de Queijo made with cassava flour and cheese.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianCheeseBreadCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
