@@ -8809,6 +8809,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SweetCornCoconutPuddingCanjicaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "coconut-candy-cocada",
+    title: "Coconut Candy",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Traditional chewy sweet made with fresh shredded coconut.",
+    loader: () => import("@/components/calculators/Recipes/CoconutCandyCocadaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
