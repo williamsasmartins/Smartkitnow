@@ -8827,6 +8827,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/GuavaCheeseDessertRomeuEJulietaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-carrot-cake-chocolate",
+    title: "Brazilian Carrot Cake",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Blender carrot cake with a hard chocolate fudge topping.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianCarrotCakeChocolateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
