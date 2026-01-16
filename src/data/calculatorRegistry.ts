@@ -8350,6 +8350,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/FeijoadaBlackBeanPorkStewCalculator"),
     urlStyle: "nested"
   },
+    {
+    slug: "brazilian-fish-stew-moqueca",
+    title: "Brazilian Fish Stew",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Traditional coastal fish stew with coconut milk and dende oil.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianFishStewMoquecaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
