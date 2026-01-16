@@ -8314,6 +8314,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/HeartsOfPalmSaladCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-tomato-vinaigrette",
+    title: "Brazilian Tomato Vinaigrette",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Tangy tomato, onion, and bell pepper relish for barbecue.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianTomatoVinaigretteCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
