@@ -8575,6 +8575,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/ShrimpStewMoquecaDeCamaraoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "mixed-seafood-stew",
+    title: "Brazilian Seafood Stew",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "A comprehensive mix of ocean bounty in a traditional broth.",
+    loader: () => import("@/components/calculators/Recipes/MixedSeafoodStewCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
