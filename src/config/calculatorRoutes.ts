@@ -1885,5 +1885,41 @@ export const calculatorRoutes: ToolRoute[] = [
         category: "misc",
         title: "Appliance Energy Consumption",
         component: lazy(() => import("../components/calculators/Misc/ApplianceEnergyConsumptionCalculator"))
+    },
+    {
+        slug: "chicken-croquettes",
+        category: "recipes",
+        title: "Chicken Croquettes (Coxinha)",
+        component: lazy(() => import("../components/calculators/Recipes/ChickenCroquettesCoxinhaCalculator"))
+    },
+    {
+        slug: "brazilian-cheese-bread",
+        category: "recipes",
+        title: "Brazilian Cheese Bread (Pão de Queijo)",
+        component: lazy(() => import("../components/calculators/Recipes/BrazilianCheeseBreadCalculator"))
+    },
+    {
+        slug: "brazilian-picanha",
+        category: "recipes",
+        title: "Brazilian Picanha (Top Sirloin Cap)",
+        component: lazy(() => import("../components/calculators/Recipes/BrazilianPicanhaTopSirloinCapCalculator"))
+    },
+    {
+        slug: "caprese-salad",
+        category: "recipes",
+        title: "Caprese Salad",
+        component: lazy(() => import("../components/calculators/Recipes/CapreseSaladCalculator"))
+    },
+    {
+        slug: "italian-bread-salad",
+        category: "recipes",
+        title: "Italian Bread Salad (Panzanella)",
+        component: lazy(() => import("../components/calculators/Recipes/ItalianBreadSaladPanzanellaCalculator"))
+    },
+    {
+        slug: "pulled-pork",
+        category: "recipes",
+        title: "Pulled Pork (BBQ)",
+        component: lazy(() => import("../components/calculators/Recipes/PulledPorkCalculator"))
     }
 ];
