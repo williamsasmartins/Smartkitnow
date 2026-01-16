@@ -8269,6 +8269,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BlackEyedPeaFrittersAcarajeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fried-cassava-mandioca",
+    title: "Fried Cassava",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Boiled and then deep-fried cassava batons, a perfect side.",
+    loader: () => import("@/components/calculators/Recipes/FriedCassavaMandiocaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
