@@ -8332,6 +8332,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianStyleCollardGreensCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "crispy-pork-belly-bites-torresmo",
+    title: "Crispy Pork Belly Bites",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Extra crispy, golden-brown deep-fried pork belly chunks.",
+    loader: () => import("@/components/calculators/Recipes/CrispyPorkBellyBitesTorresmoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
