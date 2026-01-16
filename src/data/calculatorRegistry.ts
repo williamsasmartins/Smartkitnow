@@ -8674,6 +8674,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianHotDogLoadedCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sides-farofa",
+    title: "Toasted Cassava Flour",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Crunchy side dish that adds texture to beans and meats.",
+    loader: () => import("@/components/calculators/Recipes/SidesFarofaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
