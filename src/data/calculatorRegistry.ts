@@ -8620,6 +8620,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SnacksCoxinhaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "snacks-pastel",
+    title: "Crispy Fried Pastries",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Traditional \"Feira\" (street market) large fried pastries.",
+    loader: () => import("@/components/calculators/Recipes/SnacksPastelCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
