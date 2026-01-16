@@ -8710,6 +8710,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SidesWhiteRiceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sides-black-beans",
+    title: "Seasoned Black Beans",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Daily essential bowl of slow-cooked seasoned black beans.",
+    loader: () => import("@/components/calculators/Recipes/SidesBlackBeansCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
