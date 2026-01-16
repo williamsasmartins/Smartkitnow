@@ -8692,6 +8692,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SidesVinaigretteCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sides-collard-greens",
+    title: "Brazilian-Style Collard Greens",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Traditionally served with feijoada, flash-fried with garlic.",
+    loader: () => import("@/components/calculators/Recipes/SidesCollardGreensCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
