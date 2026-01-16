@@ -8872,6 +8872,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/CaipirinhaCocktailCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-limeade-suco-suico",
+    title: "Brazilian Limeade",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Refreshing drink made with whole limes and condensed milk.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianLimeadeSucoSuicoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
