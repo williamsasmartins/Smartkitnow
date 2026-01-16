@@ -8359,6 +8359,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianFishStewMoquecaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-seafood-stew",
+    title: "Brazilian Seafood Stew",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "A medley of fresh seafood simmered in a fragrant broth.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianSeafoodStewCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
