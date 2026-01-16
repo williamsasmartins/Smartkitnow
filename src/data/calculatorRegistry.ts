@@ -8881,6 +8881,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianLimeadeSucoSuicoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "national-lime-cocktail",
+    title: "National Lime Cocktail",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "A sophisticated take on the classic Cachaça and lime mix.",
+    loader: () => import("@/components/calculators/Recipes/NationalLimeCocktailCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
