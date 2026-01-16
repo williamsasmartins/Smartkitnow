@@ -8458,6 +8458,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BlackBeansSausageCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "bean-puree-sausage-tutu",
+    title: "Bean Purée with Sausage",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Thick bean sauce thickened with cassava flour and pork.",
+    loader: () => import("@/components/calculators/Recipes/BeanPureeSausageTutuCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
