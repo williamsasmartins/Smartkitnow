@@ -8719,6 +8719,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SidesBlackBeansCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "garlic-rice",
+    title: "Garlic Rice",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "A more intense, aromatic version of the standard white rice.",
+    loader: () => import("@/components/calculators/Recipes/GarlicRiceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
