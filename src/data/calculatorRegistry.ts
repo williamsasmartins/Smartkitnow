@@ -8656,6 +8656,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SnacksMandiocaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "snacks-cassava-fries",
+    title: "Cassava Fries",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Starchy fries served with dipping sauces or just salt.",
+    loader: () => import("@/components/calculators/Recipes/SnacksCassavaFriesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
