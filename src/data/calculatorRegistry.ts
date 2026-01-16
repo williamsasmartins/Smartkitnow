@@ -8503,6 +8503,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SlowCookedPorkRibsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "beef-stroganoff-brazilian-style",
+    title: "Brazilian-Style Beef Stroganoff",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Creamy beef stew with mushrooms, corn, and heavy cream.",
+    loader: () => import("@/components/calculators/Recipes/BeefStroganoffBrazilianStyleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
