@@ -8296,6 +8296,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BeefSkewersEspetinhoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "grilled-sausage-bites",
+    title: "Grilled Sausage Bites",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Sliced Calabresa or spicy sausage, grilled to perfection.",
+    loader: () => import("@/components/calculators/Recipes/GrilledSausageBitesCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
