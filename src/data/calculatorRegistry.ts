@@ -8800,6 +8800,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/CoconutEggCustardQuindimCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sweet-corn-coconut-pudding-canjica",
+    title: "Sweet Corn and Coconut Pudding",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Hominy corn cooked with milk, sugar, and cinnamon.",
+    loader: () => import("@/components/calculators/Recipes/SweetCornCoconutPuddingCanjicaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
