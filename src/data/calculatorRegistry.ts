@@ -8683,6 +8683,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SidesFarofaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sides-vinaigrette",
+    title: "Brazilian Tomato Vinaigrette",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Refreshing salsa to balance the richness of barbecued meats.",
+    loader: () => import("@/components/calculators/Recipes/SidesVinaigretteCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
