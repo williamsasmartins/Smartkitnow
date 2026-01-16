@@ -8557,6 +8557,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/MashedCassavaCasseroleEscondidinhoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "coastal-fish-stew",
+    title: "Brazilian Fish Stew",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Moqueca prepared with white fish, peppers, and coconut milk.",
+    loader: () => import("@/components/calculators/Recipes/CoastalFishStewCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
