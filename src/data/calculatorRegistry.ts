@@ -8728,6 +8728,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/GarlicRiceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "farofa-with-bacon",
+    title: "Farofa with Bacon",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Smoky manioc flour crumble enriched with crispy bacon bits.",
+    loader: () => import("@/components/calculators/Recipes/FarofaWithBaconCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
