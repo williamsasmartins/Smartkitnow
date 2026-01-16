@@ -8224,23 +8224,23 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Misc/MargaritaCalculator"),
     urlStyle: "flat"
   },
-    {
+  {
     slug: "brazilian-cheese-bread",
     title: "Brazilian Cheese Bread",
     category: "recipes",
-    subcategory: "starters-small-plates",
+    subcategory: "brazilian",
     description: "Classic chewy Pão de Queijo made with cassava flour and cheese.",
     loader: () => import("@/components/calculators/Recipes/BrazilianCheeseBreadCalculator"),
-    urlStyle: "flat"
+    urlStyle: "nested"
   },
-    {
+  {
     slug: "chicken-croquettes-coxinha",
     title: "Chicken Croquettes",
     category: "recipes",
     subcategory: "brazilian",
     description: "Tear-drop shaped savory dough filled with shredded seasoned chicken.",
     loader: () => import("@/components/calculators/Recipes/ChickenCroquettesCoxinhaCalculator"),
-    urlStyle: "flat"
+    urlStyle: "nested"
   },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
