@@ -8386,6 +8386,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/ChickenAndOkraStewFrangoComQuiaboCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-beef-vegetable-soup",
+    title: "Brazilian Beef and Vegetable Soup",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Hearty, slow-cooked beef soup with seasonal Brazilian vegetables.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianBeefVegetableSoupCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
