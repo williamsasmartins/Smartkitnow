@@ -8242,104 +8242,113 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/ChickenCroquettesCoxinhaCalculator"),
     urlStyle: "nested"
   },
-    {
+  {
     slug: "crispy-fried-pastries-pastel",
     title: "Crispy Fried Pastries",
     category: "recipes",
     subcategory: "brazilian",
     description: "Deep-fried brittle crust pies with various savory fillings.",
     loader: () => import("@/components/calculators/Recipes/CrispyFriedPastriesPastelCalculator"),
-    urlStyle: "flat"
+    urlStyle: "nested"
   },
-    {
+  {
     slug: "cod-fritters-bolinho-de-bacalhau",
     title: "Cod Fritters",
     category: "recipes",
     subcategory: "brazilian",
     description: "Golden, crispy potato and salted cod croquettes.",
     loader: () => import("@/components/calculators/Recipes/CodFrittersBolinhoDeBacalhauCalculator"),
-    urlStyle: "flat"
+    urlStyle: "nested"
   },
-    {
+  {
     slug: "black-eyed-pea-fritters-acaraje",
     title: "Black-Eyed Pea Fritters",
     category: "recipes",
     subcategory: "brazilian",
     description: "Afro-Brazilian deep-fried peeled black-eyed pea balls.",
     loader: () => import("@/components/calculators/Recipes/BlackEyedPeaFrittersAcarajeCalculator"),
-    urlStyle: "flat"
+    urlStyle: "nested"
   },
-    {
+  {
     slug: "fried-cassava-mandioca",
     title: "Fried Cassava",
     category: "recipes",
     subcategory: "brazilian",
     description: "Boiled and then deep-fried cassava batons, a perfect side.",
     loader: () => import("@/components/calculators/Recipes/FriedCassavaMandiocaCalculator"),
-    urlStyle: "flat"
+    urlStyle: "nested"
   },
-    {
+  {
     slug: "cassava-fries",
     title: "Cassava Fries",
     category: "recipes",
     subcategory: "brazilian",
     description: "A crispy, starchy alternative to traditional potato fries.",
     loader: () => import("@/components/calculators/Recipes/CassavaFriesCalculator"),
-    urlStyle: "flat"
+    urlStyle: "nested"
   },
-    {
+  {
     slug: "beef-skewers-espetinho",
     title: "Beef Skewers",
     category: "recipes",
     subcategory: "brazilian",
     description: "Tender grilled beef cubes served on traditional wooden skewers.",
     loader: () => import("@/components/calculators/Recipes/BeefSkewersEspetinhoCalculator"),
-    urlStyle: "flat"
+    urlStyle: "nested"
   },
-    {
+  {
     slug: "grilled-sausage-bites",
     title: "Grilled Sausage Bites",
     category: "recipes",
     subcategory: "brazilian",
     description: "Sliced Calabresa or spicy sausage, grilled to perfection.",
     loader: () => import("@/components/calculators/Recipes/GrilledSausageBitesCalculator"),
-    urlStyle: "flat"
+    urlStyle: "nested"
   },
-    {
+  {
     slug: "hearts-of-palm-salad",
     title: "Hearts of Palm Salad",
     category: "recipes",
     subcategory: "brazilian",
     description: "A refreshing salad featuring tender, premium hearts of palm.",
     loader: () => import("@/components/calculators/Recipes/HeartsOfPalmSaladCalculator"),
-    urlStyle: "flat"
+    urlStyle: "nested"
   },
-    {
+  {
     slug: "brazilian-tomato-vinaigrette",
     title: "Brazilian Tomato Vinaigrette",
     category: "recipes",
     subcategory: "brazilian",
     description: "Tangy tomato, onion, and bell pepper relish for barbecue.",
     loader: () => import("@/components/calculators/Recipes/BrazilianTomatoVinaigretteCalculator"),
-    urlStyle: "flat"
+    urlStyle: "nested"
   },
-    {
+  {
     slug: "brazilian-style-collard-greens",
     title: "Brazilian-Style Collard Greens",
     category: "recipes",
     subcategory: "brazilian",
     description: "Finely shredded kale or collards sautéed with garlic and oil.",
     loader: () => import("@/components/calculators/Recipes/BrazilianStyleCollardGreensCalculator"),
-    urlStyle: "flat"
+    urlStyle: "nested"
   },
-    {
+  {
     slug: "crispy-pork-belly-bites-torresmo",
     title: "Crispy Pork Belly Bites",
     category: "recipes",
     subcategory: "brazilian",
     description: "Extra crispy, golden-brown deep-fried pork belly chunks.",
     loader: () => import("@/components/calculators/Recipes/CrispyPorkBellyBitesTorresmoCalculator"),
-    urlStyle: "flat"
+    urlStyle: "nested"
+  },
+  {
+    slug: "feijoada-black-bean-pork-stew",
+    title: "Brazilian Black Bean and Pork Stew 'Feijoada'",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "A hearty Brazilian stew of black beans and pork.",
+    loader: () => import("@/components/calculators/Recipes/FeijoadaBlackBeanPorkStewCalculator"),
+    urlStyle: "nested"
   },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
