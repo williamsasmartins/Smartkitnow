@@ -8611,6 +8611,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SnacksPaoDeQueijoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "snacks-coxinha",
+    title: "Chicken Croquettes",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "The most popular Brazilian street snack, crispy and savory.",
+    loader: () => import("@/components/calculators/Recipes/SnacksCoxinhaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
