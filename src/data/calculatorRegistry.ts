@@ -8467,6 +8467,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BeanPureeSausageTutuCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "acai-bowl",
+    title: "Acai Bowl",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Frozen mashed açaí fruit served with granola and fruits.",
+    loader: () => import("@/components/calculators/Recipes/AcaiBowlCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
