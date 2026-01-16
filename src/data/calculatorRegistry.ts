@@ -8548,6 +8548,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianChickenPotPieEmpadaoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "mashed-cassava-casserole-escondidinho",
+    title: "Mashed Cassava Casserole",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "\"Hidden\" meat filling under a layer of creamy puréed cassava.",
+    loader: () => import("@/components/calculators/Recipes/MashedCassavaCasseroleEscondidinhoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
