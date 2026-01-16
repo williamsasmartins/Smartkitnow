@@ -8764,6 +8764,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/ChocolateTrufflesBrigadeiroCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "coconut-truffles-beijinho",
+    title: "Coconut Truffles",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "\"Little kiss\" coconut truffles rolled in crystal sugar.",
+    loader: () => import("@/components/calculators/Recipes/CoconutTrufflesBeijinhoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
