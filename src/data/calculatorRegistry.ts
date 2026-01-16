@@ -8665,6 +8665,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SnacksCassavaFriesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-hot-dog-loaded",
+    title: "Brazilian Hot Dog",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Loaded dog with mashed potatoes, corn, peas, and more.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianHotDogLoadedCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
