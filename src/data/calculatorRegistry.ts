@@ -8782,6 +8782,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianCaramelFlanPudimCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "passion-fruit-mousse",
+    title: "Passion Fruit Mousse",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Tart, creamy, and light tropical fruit dessert.",
+    loader: () => import("@/components/calculators/Recipes/PassionFruitMousseCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
