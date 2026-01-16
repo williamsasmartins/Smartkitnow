@@ -8836,6 +8836,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianCarrotCakeChocolateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "french-toast-rabanada",
+    title: "French Toast (Brazilian-Style)",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Traditional Christmas deep-fried sugary cinnamon bread.",
+    loader: () => import("@/components/calculators/Recipes/FrenchToastRabanadaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
