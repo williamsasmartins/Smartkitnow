@@ -8494,6 +8494,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/GrilledPicanhaSteakCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "slow-cooked-pork-ribs",
+    title: "Slow-Cooked Pork Ribs",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Tender, fall-off-the-bone ribs with Brazilian spices.",
+    loader: () => import("@/components/calculators/Recipes/SlowCookedPorkRibsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
