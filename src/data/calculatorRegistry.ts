@@ -8404,6 +8404,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SeafoodAndCoconutStewCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-white-rice",
+    title: "Brazilian Rice",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Fluffy long-grain white rice sautéed with garlic and onions.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianWhiteRiceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
