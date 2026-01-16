@@ -8845,6 +8845,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/FrenchToastRabanadaCalculator"),
     urlStyle: "flat"
   },
+  {
+    slug: "peanut-brittle-brazilian-style",
+    title: "Peanut Brittle Brazilian Style",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Ground peanut sweet with a crumbly, melt-in-mouth texture.",
+    loader: () => import("@/components/calculators/Recipes/PeanutBrittleBrazilianStyleCalculator"),
+    urlStyle: "nested" // Importante: O plano pediu "nested"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
