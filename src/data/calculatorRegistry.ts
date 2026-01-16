@@ -8449,6 +8449,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/RiceAndBeansPlateCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "black-beans-sausage",
+    title: "Black Beans with Sausage",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Hearty black beans simmered with smoked calabresa sausage.",
+    loader: () => import("@/components/calculators/Recipes/BlackBeansSausageCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
