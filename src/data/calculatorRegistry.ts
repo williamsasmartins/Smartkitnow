@@ -8530,6 +8530,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/ChickenOkraStewCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chicken-and-corn-stew",
+    title: "Chicken and Corn Stew",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "A comforting, farm-style chicken stew with sweet corn gems.",
+    loader: () => import("@/components/calculators/Recipes/ChickenAndCornStewCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
