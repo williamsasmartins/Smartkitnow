@@ -8395,6 +8395,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianBeefVegetableSoupCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "seafood-and-coconut-stew",
+    title: "Brazilian Seafood and Coconut Stew",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Light and creamy shrimp stew with a strong coconut presence.",
+    loader: () => import("@/components/calculators/Recipes/SeafoodAndCoconutStewCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
