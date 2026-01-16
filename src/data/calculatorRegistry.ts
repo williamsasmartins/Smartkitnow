@@ -8485,6 +8485,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianBarbecuePlatterChurrascoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "grilled-picanha-steak",
+    title: "Grilled Picanha Steak",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "The most prized Brazilian cut: Top Sirloin Cap with fat cap.",
+    loader: () => import("@/components/calculators/Recipes/GrilledPicanhaSteakCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
