@@ -8260,6 +8260,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/CodFrittersBolinhoDeBacalhauCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "black-eyed-pea-fritters-acaraje",
+    title: "Black-Eyed Pea Fritters",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Afro-Brazilian deep-fried peeled black-eyed pea balls.",
+    loader: () => import("@/components/calculators/Recipes/BlackEyedPeaFrittersAcarajeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
