@@ -8593,6 +8593,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/CodCasseroleBacalhoadaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "garlic-shrimp-brazilian-style",
+    title: "Garlic Shrimp (Brazilian-Style)",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Pan-seared tiger shrimp with extra garlic and fresh parsley.",
+    loader: () => import("@/components/calculators/Recipes/GarlicShrimpBrazilianStyleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
