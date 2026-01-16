@@ -8323,6 +8323,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianTomatoVinaigretteCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-style-collard-greens",
+    title: "Brazilian-Style Collard Greens",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Finely shredded kale or collards sautéed with garlic and oil.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianStyleCollardGreensCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
