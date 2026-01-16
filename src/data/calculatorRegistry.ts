@@ -8602,6 +8602,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/GarlicShrimpBrazilianStyleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "snacks-pao-de-queijo",
+    title: "Brazilian Cheese Bread",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "The ultimate gluten-free street snack found in every bakery.",
+    loader: () => import("@/components/calculators/Recipes/SnacksPaoDeQueijoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
