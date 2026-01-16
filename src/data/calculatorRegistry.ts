@@ -8512,6 +8512,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BeefStroganoffBrazilianStyleCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chicken-stroganoff-brazilian-style",
+    title: "Brazilian-Style Chicken Stroganoff",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "A lighter chicken version of the beloved creamy stroganoff.",
+    loader: () => import("@/components/calculators/Recipes/ChickenStroganoffBrazilianStyleCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
