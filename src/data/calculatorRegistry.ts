@@ -8647,6 +8647,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SnacksAcarajeCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "snacks-mandioca",
+    title: "Fried Cassava",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Golden sticks of manioc, the Brazilian version of potatoes.",
+    loader: () => import("@/components/calculators/Recipes/SnacksMandiocaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
