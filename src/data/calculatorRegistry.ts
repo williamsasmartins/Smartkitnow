@@ -8584,6 +8584,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/MixedSeafoodStewCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cod-casserole-bacalhoada",
+    title: "Brazilian Cod Casserole",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Baked codfish with potatoes, olives, eggs, and olive oil.",
+    loader: () => import("@/components/calculators/Recipes/CodCasseroleBacalhoadaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
