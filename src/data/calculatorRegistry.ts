@@ -8305,6 +8305,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/GrilledSausageBitesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "hearts-of-palm-salad",
+    title: "Hearts of Palm Salad",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "A refreshing salad featuring tender, premium hearts of palm.",
+    loader: () => import("@/components/calculators/Recipes/HeartsOfPalmSaladCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
