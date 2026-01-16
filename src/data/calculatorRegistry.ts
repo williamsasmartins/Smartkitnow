@@ -8476,6 +8476,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/AcaiBowlCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-barbecue-platter-churrasco",
+    title: "Brazilian Barbecue Platter",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "An assortment of prime grilled meats cooked over open fire.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianBarbecuePlatterChurrascoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
