@@ -8251,6 +8251,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/CrispyFriedPastriesPastelCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cod-fritters-bolinho-de-bacalhau",
+    title: "Cod Fritters",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Golden, crispy potato and salted cod croquettes.",
+    loader: () => import("@/components/calculators/Recipes/CodFrittersBolinhoDeBacalhauCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
