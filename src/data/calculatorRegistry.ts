@@ -8863,6 +8863,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SugarcaneMolassesCandyRapaduraCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "caipirinha-cocktail",
+    title: "Caipirinha",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Brazil's national cocktail: Cachaça, lime, sugar, and ice.",
+    loader: () => import("@/components/calculators/Recipes/CaipirinhaCocktailCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
