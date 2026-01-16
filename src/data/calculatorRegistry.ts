@@ -8242,6 +8242,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/ChickenCroquettesCoxinhaCalculator"),
     urlStyle: "nested"
   },
+    {
+    slug: "crispy-fried-pastries-pastel",
+    title: "Crispy Fried Pastries",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Deep-fried brittle crust pies with various savory fillings.",
+    loader: () => import("@/components/calculators/Recipes/CrispyFriedPastriesPastelCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
