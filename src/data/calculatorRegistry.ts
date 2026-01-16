@@ -8440,6 +8440,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/ToastedCassavaFlourFarofaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "rice-and-beans-plate",
+    title: "Rice and Beans Plate",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "The iconic \"Feijão com Arroz\" foundation of Brazilian cuisine.",
+    loader: () => import("@/components/calculators/Recipes/RiceAndBeansPlateCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
