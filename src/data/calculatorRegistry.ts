@@ -8377,6 +8377,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/CreamyShrimpPeanutStewVatapaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chicken-and-okra-stew-frango-com-quiabo",
+    title: "Brazilian Chicken and Okra Stew",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "A rustic Minas Gerais classic chicken stew with sautéed okra.",
+    loader: () => import("@/components/calculators/Recipes/ChickenAndOkraStewFrangoComQuiaboCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
