@@ -8368,6 +8368,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianSeafoodStewCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "creamy-shrimp-peanut-stew-vatapa",
+    title: "Creamy Shrimp and Peanut Stew",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Thick Afro-Brazilian paste made from bread, shrimp, and peanuts.",
+    loader: () => import("@/components/calculators/Recipes/CreamyShrimpPeanutStewVatapaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
