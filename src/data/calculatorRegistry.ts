@@ -8701,6 +8701,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SidesCollardGreensCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sides-white-rice",
+    title: "White Rice",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Brazilian-style garlic-scented long-grain white rice.",
+    loader: () => import("@/components/calculators/Recipes/SidesWhiteRiceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
