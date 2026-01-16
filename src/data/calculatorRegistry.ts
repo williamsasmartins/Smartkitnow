@@ -8746,6 +8746,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/FarofaWithEggsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fried-plantains",
+    title: "Fried Plantains",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Very sweet, caramelized sautéed or fried ripe plantains.",
+    loader: () => import("@/components/calculators/Recipes/FriedPlantainsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
