@@ -8413,6 +8413,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianWhiteRiceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-black-beans",
+    title: "Brazilian Black Beans",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Creamy seasoned black beans, the staple of every Brazilian meal.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianBlackBeansCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
