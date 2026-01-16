@@ -8629,6 +8629,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SnacksPastelCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "snacks-bolinho-bacalhau",
+    title: "Cod Fritters",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Bite-sized salted cod delights, perfect with a cold beer.",
+    loader: () => import("@/components/calculators/Recipes/SnacksBolinhoBacalhauCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
