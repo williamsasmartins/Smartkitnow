@@ -8431,6 +8431,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SeasonedPintoBeansFeijaoCariocaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "toasted-cassava-flour-farofa",
+    title: "Toasted Cassava Flour",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Savory manioc flour crumble with various seasonings.",
+    loader: () => import("@/components/calculators/Recipes/ToastedCassavaFlourFarofaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
