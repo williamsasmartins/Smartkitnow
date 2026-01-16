@@ -8737,6 +8737,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/FarofaWithBaconCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "farofa-with-eggs",
+    title: "Farofa with Eggs",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Moist version of farofa featuring scrambled eggs and herbs.",
+    loader: () => import("@/components/calculators/Recipes/FarofaWithEggsCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
