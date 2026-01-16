@@ -8638,6 +8638,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SnacksBolinhoBacalhauCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "snacks-acaraje",
+    title: "Black-Eyed Pea Fritters",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Deep fried bean dough filled with vatapá and dried shrimp.",
+    loader: () => import("@/components/calculators/Recipes/SnacksAcarajeCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
