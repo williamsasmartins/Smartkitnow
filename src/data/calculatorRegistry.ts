@@ -8755,6 +8755,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/FriedPlantainsCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chocolate-truffles-brigadeiro",
+    title: "Chocolate Truffles",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Iconic fudge balls made of cocoa and condensed milk.",
+    loader: () => import("@/components/calculators/Recipes/ChocolateTrufflesBrigadeiroCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
