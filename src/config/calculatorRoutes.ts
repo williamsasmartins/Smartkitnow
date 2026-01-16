@@ -1886,4 +1886,4 @@ export const calculatorRoutes: ToolRoute[] = [
         title: "Appliance Energy Consumption",
         component: lazy(() => import("../components/calculators/Misc/ApplianceEnergyConsumptionCalculator"))
     }
-],
+];
