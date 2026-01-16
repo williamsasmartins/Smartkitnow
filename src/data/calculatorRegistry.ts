@@ -8422,6 +8422,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianBlackBeansCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "seasoned-pinto-beans-feijao-carioca",
+    title: "Seasoned Pinto Beans",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Popular pinto beans cooked with traditional Brazilian spices.",
+    loader: () => import("@/components/calculators/Recipes/SeasonedPintoBeansFeijaoCariocaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
