@@ -8773,6 +8773,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/CoconutTrufflesBeijinhoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-caramel-flan-pudim",
+    title: "Brazilian Caramel Flan",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Silky condensed milk custard with golden caramel sauce.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianCaramelFlanPudimCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
