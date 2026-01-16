@@ -8233,6 +8233,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianCheeseBreadCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "chicken-croquettes-coxinha",
+    title: "Chicken Croquettes",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Tear-drop shaped savory dough filled with shredded seasoned chicken.",
+    loader: () => import("@/components/calculators/Recipes/ChickenCroquettesCoxinhaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
