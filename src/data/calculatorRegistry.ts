@@ -8818,6 +8818,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/CoconutCandyCocadaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "guava-cheese-dessert-romeu-e-julieta",
+    title: "Guava and Cheese Dessert",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "The perfect pairing of guava paste and mild white cheese.",
+    loader: () => import("@/components/calculators/Recipes/GuavaCheeseDessertRomeuEJulietaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
