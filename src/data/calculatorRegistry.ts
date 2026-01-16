@@ -8791,6 +8791,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/PassionFruitMousseCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "coconut-egg-custard-quindim",
+    title: "Coconut Egg Custard",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Bright yellow, glossy dessert made from yolks and coconut.",
+    loader: () => import("@/components/calculators/Recipes/CoconutEggCustardQuindimCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
