@@ -8287,6 +8287,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/CassavaFriesCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "beef-skewers-espetinho",
+    title: "Beef Skewers",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Tender grilled beef cubes served on traditional wooden skewers.",
+    loader: () => import("@/components/calculators/Recipes/BeefSkewersEspetinhoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
