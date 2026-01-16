@@ -8854,6 +8854,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/PeanutBrittleBrazilianStyleCalculator"),
     urlStyle: "nested" // Importante: O plano pediu "nested"
   },
+    {
+    slug: "sugarcane-molasses-candy-rapadura",
+    title: "Sugarcane Molasses Candy",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Unrefined whole cane sugar brick, a Northeast staple.",
+    loader: () => import("@/components/calculators/Recipes/SugarcaneMolassesCandyRapaduraCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
