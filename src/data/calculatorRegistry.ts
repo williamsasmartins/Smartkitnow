@@ -8908,6 +8908,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/FreshCoconutWaterCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "iced-mate-tea",
+    title: "Iced Mate Tea",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Rio de Janeiro beach classic: toasted Erva Mate cold tea.",
+    loader: () => import("@/components/calculators/Recipes/IcedMateTeaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
