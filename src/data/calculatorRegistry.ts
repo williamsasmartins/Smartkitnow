@@ -8944,6 +8944,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/SugarcaneJuiceCaldoDeCanaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "brazilian-coffee-cafezinho",
+    title: "Brazilian Coffee",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Strong, hot, and sugary coffee served in a small cup.",
+    loader: () => import("@/components/calculators/Recipes/BrazilianCoffeeCafezinhoCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
