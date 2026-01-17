@@ -8890,6 +8890,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/NationalLimeCocktailCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "guarana-soda",
+    title: "Guarana Soda",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Famous soda made from the energy-rich Amazonian berry.",
+    loader: () => import("@/components/calculators/Recipes/GuaranaSodaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
