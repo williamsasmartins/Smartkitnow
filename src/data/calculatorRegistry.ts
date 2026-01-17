@@ -8926,6 +8926,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/PassionFruitJuiceCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "cashew-fruit-juice-suco-de-caju",
+    title: "Cashew Fruit Juice",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Unique, slightly astringent juice from the cashew apple.",
+    loader: () => import("@/components/calculators/Recipes/CashewFruitJuiceSucoDeCajuCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
