@@ -8953,6 +8953,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/BrazilianCoffeeCafezinhoCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "avocado-smoothie-vitamina",
+    title: "Avocado Smoothie",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Creamy dessert-like drink made with avocado and mil",
+    loader: () => import("@/components/calculators/Recipes/AvocadoSmoothieVitaminaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
