@@ -8917,6 +8917,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/IcedMateTeaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "passion-fruit-juice",
+    title: "Passion Fruit Juice",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Intense, vitamin-rich tropical juice from Maracujá.",
+    loader: () => import("@/components/calculators/Recipes/PassionFruitJuiceCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
