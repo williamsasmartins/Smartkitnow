@@ -8935,6 +8935,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/CashewFruitJuiceSucoDeCajuCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "sugarcane-juice-caldo-de-cana",
+    title: "Sugarcane Juice",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Sweet, fresh juice pressed from raw sugarcane stalks.",
+    loader: () => import("@/components/calculators/Recipes/SugarcaneJuiceCaldoDeCanaCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
