@@ -8899,6 +8899,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Recipes/GuaranaSodaCalculator"),
     urlStyle: "flat"
   },
+    {
+    slug: "fresh-coconut-water",
+    title: "Coconut Water",
+    category: "recipes",
+    subcategory: "brazilian",
+    description: "Pure, chilled water served directly from a green coconut.",
+    loader: () => import("@/components/calculators/Recipes/FreshCoconutWaterCalculator"),
+    urlStyle: "flat"
+  },
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
