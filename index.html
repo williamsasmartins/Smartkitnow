@@ -1,51 +1,53 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smart Kit Now - Your Ultimate Smart Tools Collection</title>
-    <meta name="description" content="Discover powerful smart tools and utilities designed to enhance your productivity and streamline your workflow. Your ultimate collection awaits." />
-    <meta name="author" content="Smart Kit Now" />
-    <meta name="google-site-verification" content="YtJGpKTUhVan-Fob03Lkt4sAXT6K0xlepSfvPyrRK2g" />
 
-    <!-- Preconnects -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Kit Now - Your Ultimate Smart Tools Collection</title>
+  <meta name="description"
+    content="Discover powerful smart tools and utilities designed to enhance your productivity and streamline your workflow. Your ultimate collection awaits." />
+  <meta name="author" content="Smart Kit Now" />
+  <meta name="google-site-verification" content="YtJGpKTUhVan-Fob03Lkt4sAXT6K0xlepSfvPyrRK2g" />
 
-    <!-- Partytown Config (disable SW on localhost/insecure preview) -->
-    <script nonce="SKN_NONCE">
-      (function(){
-        const host = location.hostname;
-        const isLocal = host === 'localhost' || host === '127.0.0.1';
-        const isSecure = window.isSecureContext || isLocal;
-        // On local/insecure contexts, use a relative lib path to avoid SW registration
-        window.partytown = {
-          forward: ['dataLayer.push', 'gtag', 'updateConsent'],
-          lib: isSecure && !isLocal ? '/~partytown/' : './~partytown/'
-        };
-      })();
-    </script>
-    <!-- Partytown Snippet -->
-    <script nonce="SKN_NONCE">
-      !function(t,e,n,i,r,o,a,d,s,c,p,l){function u(){l||(l=1,"/"==(a=(o.lib||"/~partytown/")+(o.debug?"debug/":""))[0]&&(s=e.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t,composed:1})):(d=setTimeout(f,1e4),e.addEventListener("pt0",w),r?h(1):n.serviceWorker?n.serviceWorker.register(a+(o.swPath||"partytown-sw.js"),{scope:a}).then((function(t){t.active?h():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&h()}))}),console.error):f())))}function h(t){c=e.createElement(t?"script":"iframe"),t||(c.style.display="block",c.style.width="0",c.style.height="0",c.style.border="0",c.style.visibility="hidden",c.setAttribute("aria-hidden",!0)),c.src=a+"partytown-"+(t?"atomics.js?v=0.10.2":"sandbox-sw.html?"+Date.now()),e.body.appendChild(c)}function f(t,n){for(w(),t=0;t<s.length;t++)(n=e.createElement("script")).innerHTML=s[t].innerHTML,n.nonce=o.nonce,e.head.appendChild(n);c&&c.parentNode.removeChild(c)}function w(){clearTimeout(d)}o=t.partytown||{},i==t&&(o.forward||[]).map((function(e){p=t,e.split(".").map((function(e,n,i){p=p[i[n]]=n+1<i.length?"push"==i[n+1]?[]:p[i[n]]||{}:function(){(t._ptf=t._ptf||[]).push(i,arguments)}}))})),"complete"==e.readyState?u():(t.addEventListener("DOMContentLoaded",u),t.addEventListener("load",u))}(window,document,navigator,top,window.crossOriginIsolated);
-    </script>
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
 
-    <!-- Google tag (gtag.js) -->
-    <script nonce="SKN_NONCE">
-      (function() {
-        const host = location.hostname;
-        const isLocal = host === 'localhost' || host === '127.0.0.1';
-        if (!isLocal) {
-            const s = document.createElement('script');
-            s.type = 'text/partytown';
-            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WC1M7X9STR';
-            document.head.appendChild(s);
+  <!-- Partytown Config (disable SW on localhost/insecure preview) -->
+  <script nonce="SKN_NONCE">
+    (function () {
+      const host = location.hostname;
+      const isLocal = host === 'localhost' || host === '127.0.0.1';
+      const isSecure = window.isSecureContext || isLocal;
+      // On local/insecure contexts, use a relative lib path to avoid SW registration
+      window.partytown = {
+        forward: ['dataLayer.push', 'gtag', 'updateConsent'],
+        lib: isSecure && !isLocal ? '/~partytown/' : './~partytown/'
+      };
+    })();
+  </script>
+  <!-- Partytown Snippet -->
+  <script nonce="SKN_NONCE">
+    !function (t, e, n, i, r, o, a, d, s, c, p, l) { function u() { l || (l = 1, "/" == (a = (o.lib || "/~partytown/") + (o.debug ? "debug/" : ""))[0] && (s = e.querySelectorAll('script[type="text/partytown"]'), i != t ? i.dispatchEvent(new CustomEvent("pt1", { detail: t, composed: 1 })) : (d = setTimeout(f, 1e4), e.addEventListener("pt0", w), r ? h(1) : n.serviceWorker ? n.serviceWorker.register(a + (o.swPath || "partytown-sw.js"), { scope: a }).then((function (t) { t.active ? h() : t.installing && t.installing.addEventListener("statechange", (function (t) { "activated" == t.target.state && h() })) }), console.error) : f()))) } function h(t) { c = e.createElement(t ? "script" : "iframe"), t || (c.style.display = "block", c.style.width = "0", c.style.height = "0", c.style.border = "0", c.style.visibility = "hidden", c.setAttribute("aria-hidden", !0)), c.src = a + "partytown-" + (t ? "atomics.js?v=0.10.2" : "sandbox-sw.html?" + Date.now()), e.body.appendChild(c) } function f(t, n) { for (w(), t = 0; t < s.length; t++)(n = e.createElement("script")).innerHTML = s[t].innerHTML, n.nonce = o.nonce, e.head.appendChild(n); c && c.parentNode.removeChild(c) } function w() { clearTimeout(d) } o = t.partytown || {}, i == t && (o.forward || []).map((function (e) { p = t, e.split(".").map((function (e, n, i) { p = p[i[n]] = n + 1 < i.length ? "push" == i[n + 1] ? [] : p[i[n]] || {} : function () { (t._ptf = t._ptf || []).push(i, arguments) } })) })), "complete" == e.readyState ? u() : (t.addEventListener("DOMContentLoaded", u), t.addEventListener("load", u)) }(window, document, navigator, top, window.crossOriginIsolated);
+  </script>
 
-            const s2 = document.createElement('script');
-            s2.type = 'text/partytown';
-            s2.innerHTML = `
+  <!-- Google tag (gtag.js) -->
+  <script nonce="SKN_NONCE">
+    (function () {
+      const host = location.hostname;
+      const isLocal = host === 'localhost' || host === '127.0.0.1';
+      if (!isLocal) {
+        const s = document.createElement('script');
+        s.type = 'text/partytown';
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WC1M7X9STR';
+        document.head.appendChild(s);
+
+        const s2 = document.createElement('script');
+        s2.type = 'text/partytown';
+        s2.innerHTML = `
               window.dataLayer = window.dataLayer || [];
               function gtag(){window.dataLayer.push(arguments);} 
               window.gtag = gtag;
@@ -60,52 +62,58 @@
               window.updateConsent = function(params) { gtag('consent', 'update', params); };
               gtag('config', 'G-WC1M7X9STR', { anonymize_ip: true });
             `;
-            document.head.appendChild(s2);
-        }
-      })();
-    </script>
+        document.head.appendChild(s2);
+      }
+    })();
+  </script>
 
-    <!-- Google AdSense -->
-    <script nonce="SKN_NONCE">
-      (function() {
-        const host = location.hostname;
-        const isLocal = host === 'localhost' || host === '127.0.0.1';
-        // Read client from meta tag to avoid hardcoding in source
-        var meta = document.querySelector('meta[name="google-adsense-account"]');
-        var client = meta ? meta.getAttribute('content') : '';
-        if (!isLocal && client && client.startsWith('ca-pub-')) {
-          const s = document.createElement('script');
-          s.type = 'text/partytown'; // Use Partytown for AdSense
-          s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + client;
-          s.crossOrigin = 'anonymous';
-          document.head.appendChild(s);
-        }
-      })();
-    </script>
-    <meta name="google-adsense-account" content="ca-pub-3663257080779677">
+  <!-- Google AdSense -->
+  <script nonce="SKN_NONCE">
+    (function () {
+      const host = location.hostname;
+      const isLocal = host === 'localhost' || host === '127.0.0.1';
+      // Read client from meta tag to avoid hardcoding in source
+      var meta = document.querySelector('meta[name="google-adsense-account"]');
+      var client = meta ? meta.getAttribute('content') : '';
+      if (!isLocal && client && client.startsWith('ca-pub-')) {
+        const s = document.createElement('script');
+        s.type = 'text/partytown'; // Use Partytown for AdSense
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + client;
+        s.crossOrigin = 'anonymous';
+        document.head.appendChild(s);
+      }
+    })();
+  </script>
+  <meta name="google-adsense-account" content="ca-pub-3663257080779677">
+  <meta name="keywords"
+    content="smart tools, calculators, converters, productivity tools, financial calculators, health calculators, cooking tools, recipe calculators, Brazilian recipes">
 
-    <meta property="og:title" content="Smart Kit Now - Your Ultimate Smart Tools Collection" />
-    <meta property="og:description" content="Discover powerful smart tools and utilities designed to enhance your productivity and streamline your workflow." />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Smart Kit Now" />
-    <meta property="og:url" content="https://www.smartkitnow.com/" />
-    <meta property="og:image" content="/favicon.png" />
+  <meta property="og:title" content="Smart Kit Now - Your Ultimate Smart Tools Collection" />
+  <meta property="og:description"
+    content="Discover powerful smart tools and utilities designed to enhance your productivity and streamline your workflow." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Smart Kit Now" />
+  <meta property="og:url" content="https://www.smartkitnow.com/" />
+  <meta property="og:image" content="https://www.smartkitnow.com/favicon.png" />
 
-    <!-- Canonical handled by React Helmet -->
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#111827" />
+  <!-- Canonical handled by React Helmet -->
+  <link rel="canonical" href="https://www.smartkitnow.com/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#111827" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Smart Kit Now - Your Ultimate Smart Tools Collection" />
-    <meta name="twitter:description" content="Discover powerful smart tools and utilities designed to enhance your productivity and streamline your workflow." />
-    <meta name="twitter:image" content="/favicon.png" />
-    <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
-    <link rel="icon" href="/favicon.png" type="image/png" sizes="16x16">
-    <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180">
-  </head>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Smart Kit Now - Your Ultimate Smart Tools Collection" />
+  <meta name="twitter:description"
+    content="Discover powerful smart tools and utilities designed to enhance your productivity and streamline your workflow." />
+  <meta name="twitter:image" content="https://www.smartkitnow.com/favicon.png" />
+  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/favicon.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180">
+</head>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
