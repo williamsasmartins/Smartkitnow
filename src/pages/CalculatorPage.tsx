@@ -12,17 +12,21 @@ function createLazyFromLoader(loader: () => Promise<any>, namedExport?: string) 
   return Lazy;
 }
 
-export default function CalculatorPage() {
+interface CalculatorPageProps {
+  activeSlug?: string;
+}
+
+export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
   const { calculator, slug } = useParams();
-  
-  const calcSlug = (calculator ?? slug ?? "").toLowerCase();
-  
+
+  const calcSlug = (activeSlug ?? calculator ?? slug ?? "").toLowerCase();
+
   // --- A MUDANÇA MÁGICA ---
   // Antes: Só era "Wide" se fosse financeiro.
   // Agora: É SEMPRE "Wide". Isso garante o fundo azul em tela cheia para TODOS.
-  const isWide = true; 
+  const isWide = true;
   // ------------------------
-  
+
   const entry = calcSlug ? getEntry(calcSlug) : null;
 
   if (!entry) {
@@ -62,7 +66,7 @@ export default function CalculatorPage() {
       "item": `${origin}/${catSlug}`
     }
   ];
-  
+
   let canonicalPath = `/${catSlug}`;
 
   if (subSlug) {
@@ -97,7 +101,7 @@ export default function CalculatorPage() {
 
   return (
     <div className={containerClasses}>
-      <SEOHead 
+      <SEOHead
         title={`${entry.title} - Smart Kit Now`}
         description={entry.description || `Use our ${entry.title} to calculate results quickly and easily.`}
         canonical={`${origin}${canonicalPath}`}

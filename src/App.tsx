@@ -102,7 +102,7 @@ export default function App() {
                 <Route
                   key={`${entry.category}-${entry.slug}`}
                   path={calcLink(entry)} // Use helper to generate correct path (flat/nested)
-                  element={<CalculatorPage />}
+                  element={<CalculatorPage activeSlug={entry.slug} />}
                 />
               ))}
 
