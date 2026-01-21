@@ -51,7 +51,7 @@ const CalculatorPage = lazy(() => import("@/pages/CalculatorPage"));
 const RecipeCuisinePage = lazy(() => import("@/pages/RecipeCuisinePage"));
 const RecipeDetailPage = lazy(() => import("@/pages/RecipeDetailPage"));
 
-import { calculatorRoutes } from "@/config/calculatorRoutes";
+import { REGISTRY, calcLink } from "@/data/calculatorRegistry";
 
 export default function App() {
   return (
@@ -97,11 +97,11 @@ export default function App() {
               <Route path="/daily-quotes/horoscopo" element={<DailyHoroscopeCalculator />} />
               <Route path="/horoscopo" element={<Navigate to="/daily-quotes/horoscopo" replace />} />
 
-              {/* Explicit Calculator Routes */}
-              {calculatorRoutes.map((route) => (
+              {/* Explicit Calculator Routes from Registry */}
+              {REGISTRY.map((entry) => (
                 <Route
-                  key={`${route.category}-${route.slug}`}
-                  path={`/${route.category}/${route.slug}`}
+                  key={`${entry.category}-${entry.slug}`}
+                  path={calcLink(entry)} // Use helper to generate correct path (flat/nested)
                   element={<CalculatorPage />}
                 />
               ))}
