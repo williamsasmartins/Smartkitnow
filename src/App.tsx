@@ -23,7 +23,10 @@ const EverydayCategory = lazy(() => import("@/pages/categories/EverydayCategory"
 const SportsCategory = lazy(() => import("@/pages/categories/SportsCategory"));
 const FunnyCategory = lazy(() => import("@/pages/categories/FunnyCategory"));
 const VideoCategory = lazy(() => import("@/pages/categories/VideoCategory"));
-const GamesCategory = lazy(() => import("@/pages/categories/GamesCategory"));
+const GamesCategory = lazy(() => import("@/pages/categories/GamesCategory")); // Keeping old one just in case, or replacing?
+// I will comment out old ones or just add new ones.
+const GamesPage = lazy(() => import("@/pages/GamesPage"));
+const GamePlayerPage = lazy(() => import("@/pages/GamePlayerPage"));
 const GamePage = lazy(() => import("@/pages/GamePage"));
 
 // Páginas principais
@@ -122,8 +125,8 @@ export default function App() {
               <Route path="/sports" element={<SportsCategory />} />
               <Route path="/funny" element={<FunnyCategory />} />
               <Route path="/video" element={<VideoCategory />} />
-              <Route path="/games" element={<GamesCategory />} />
-              <Route path="/games/:slug" element={<GamePage />} />
+              {/* <Route path="/games" element={<GamesCategory />} /> */}
+              {/* <Route path="/games/:slug" element={<GamePage />} /> */}
 
               {/* Generic category index fallback if not explicitly matched above */}
               <Route path="/:category" element={<CategoryIndex />} />
@@ -138,8 +141,115 @@ export default function App() {
         </AppErrorBoundary>
       </main>
       <Footer />
-      <BackToTopButton />
-      <CookieConsentBanner />
-    </div>
-  );
+const GamePage = lazy(() => import("@/pages/GamePage")); // This seems to be the old reference, I will replace it or add new ones. 
+// Actually line 27 in original file was `const GamePage = lazy(() => import("@/pages/GamePage"));`
+// But I created `src/pages/GamePlayerPage.tsx` and `src/pages/GamesPage.tsx`.
+// I will keep the original file clean and just ADD the new routes.
+
+const GamesPage = lazy(() => import("@/pages/GamesPage"));
+const GamePlayerPage = lazy(() => import("@/pages/GamePlayerPage"));
+
+      // ... imports ...
+
+      export default function App() {
+  return (
+      <div className="min-h-screen flex flex-col overflow-x-hidden">
+        <Header />
+        <main className="flex-1 w-full max-w-[1440px] mx-auto">
+          <ScrollToTop />
+          <AppErrorBoundary>
+            <Suspense
+              fallback={
+                <div className="flex items-center justify-center min-h-screen w-full bg-background">
+                  <div className="animate-spin rounded-full h-8 w-8 border-2 border-primary border-t-transparent" />
+                  <span className="sr-only">Loading…</span>
+                </div>
+              }
+            >
+              <Routes>
+                {/* Home & institucionais */}
+                <Route path="/" element={<Index />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<ContactSuggestionPage />} />
+                <Route path="/cookies" element={<Cookies />} />
+                <Route path="/cookie-settings" element={<CookieSettings />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/search" element={<Search />} />
+
+                {/* Game Zone */}
+                <Route path="/games" element={<GamesPage />} />
+                <Route path="/games/:slug" element={<GamePlayerPage />} />
+
+                {/* ... existing routes ... */}
+                {/* Smart Tips */}
+                <Route path="/smart-tips" element={<SmartTips />} />
+                <Route path="/smart-tips/:subcategory" element={<SmartTipsSubCategory />} />
+                <Route path="/smart-tip/:slug" element={<SmartTipDetail />} />
+
+                {/* Recipes */}
+                <Route path="/recipes" element={<RecipesCategory />} />
+
+                {/* ROTA DE CULINÁRIA (Listagem) - Pode manter se quiser a lista bonita */}
+                <Route path="/recipes/:cuisine" element={<RecipeCuisinePage />} />
+
+                <Route path="/recipes/:cuisine/:recipe" element={<RecipeDetailPage />} />
+
+                {/* Daily Quotes */}
+                <Route path="/daily-quotes" element={<DailyQuotesPage />} />
+                <Route path="/daily-quotes/horoscopo" element={<DailyHoroscopeCalculator />} />
+                <Route path="/horoscopo" element={<Navigate to="/daily-quotes/horoscopo" replace />} />
+
+                {/* Explicit Calculator Routes from Registry */}
+                {REGISTRY.map((entry) => (
+                  <Route
+                    key={`${entry.category}-${entry.slug}`}
+                    path={calcLink(entry)} // Use helper to generate correct path (flat/nested)
+                    element={<CalculatorPage activeSlug={entry.slug} />}
+                  />
+                ))}
+
+                {/* Category-only index routes */}
+                <Route path="/financial" element={<FinancialCategory />} />
+                <Route path="/health" element={<HealthCategory />} />
+                <Route path="/cooking" element={<CookingCategory />} />
+                <Route path="/conversion" element={<ConversionCategory />} />
+                <Route path="/math" element={<MathCategory />} />
+                <Route path="/science" element={<ScienceCategory />} />
+                <Route path="/time" element={<TimeCategory />} />
+                <Route path="/pets" element={<PetsCategory />} />
+                <Route path="/automotive" element={<AutomotiveCategory />} />
+                <Route path="/construction" element={<ConstructionCategory />} />
+                <Route path="/electrical" element={<ElectricalCategory />} />
+                <Route path="/everyday" element={<EverydayCategory />} />
+                <Route path="/sports" element={<SportsCategory />} />
+                <Route path="/funny" element={<FunnyCategory />} />
+                <Route path="/video" element={<VideoCategory />} />
+
+                {/* Old games route might conflict, I will remove or ignore the old /games/:slug line 126 if I can replace it. */}
+                {/* The original code had:
+                  <Route path="/games" element={<GamesCategory />} />
+                  <Route path="/games/:slug" element={<GamePage />} /> 
+                  (Actually it was just line 125, 126).
+              */}
+
+                {/* I will remove the old /games and /games/:slug lines 125-126 in the Replacement */}
+
+                {/* Generic category index fallback if not explicitly matched above */}
+                <Route path="/:category" element={<CategoryIndex />} />
+
+                {/* Legacy Redirect for nested URLs (Redirects to flat /category/slug) */}
+                <Route path="/:category/:subcategory/:slug" element={<LegacyRedirect />} />
+
+                {/* 404 */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </AppErrorBoundary>
+        </main>
+        <Footer />
+        <BackToTopButton />
+        <CookieConsentBanner />
+      </div>
+      );
 }
