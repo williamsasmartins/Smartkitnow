@@ -1321,7 +1321,7 @@ const Index = () => {
       name: "Video Calculators",
       icon: Video,
       color: "text-violet-600",
-      path: "/tv-video",
+      path: "/video",
       description: "Optimize your home theater setup: find ideal TV viewing distance, screen size, and speaker placement for immersive video experiences."
     }, {
       key: "recipes",
@@ -1349,7 +1349,7 @@ const Index = () => {
       name: "Every day Life Calculators",
       icon: Home,
       color: "text-blue-500",
-      path: "/everyday-life",
+      path: "/everyday",
       description: "Handy everyday calculators for household budgeting, time planning, chores, and daily life management."
     }, {
       key: "sports",
