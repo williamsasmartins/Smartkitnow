@@ -1,10 +1,11 @@
 import { useState, useMemo, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import DailyHoroscopeWidget from "@/components/calculators/DailyQuotes/DailyHoroscopeWidget";
 import QuoteCard, { DailyQuoteItem } from "@/components/calculators/DailyQuotes/QuoteCard";
-import { 
-  Briefcase, Rocket, Camera, Laptop, 
-  Smile, HeartHandshake, Brain, Moon, 
+import {
+  Briefcase, Rocket, Camera, Laptop,
+  Smile, HeartHandshake, Brain, Moon,
   ArrowLeft, Sparkles, RefreshCw, Loader2,
   Copy, Share2, Check
 } from "lucide-react";
@@ -33,9 +34,20 @@ type DailyDataPacket = {
 type CategoryKey = keyof DailyDataPacket["content"] | "horoscope" | "dream";
 
 export default function DailyQuotesPage() {
+  const { category } = useParams<{ category: string }>();
+  const navigate = useNavigate();
   const [data, setData] = useState<DailyDataPacket | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<CategoryKey | null>(null);
+
+  // Sync URL param with state
+  useEffect(() => {
+    if (category) {
+      setSelectedCategory(category as CategoryKey);
+    } else {
+      setSelectedCategory(null);
+    }
+  }, [category]);
   const [liked, setLiked] = useState<Set<number>>(new Set());
   const [shuffleSeed, setShuffleSeed] = useState(0);
 
@@ -91,10 +103,10 @@ export default function DailyQuotesPage() {
       if (!res.ok) throw new Error("Failed to interpret");
 
       const data = await res.json();
-      
+
       // Handle different n8n response structures
       const aiContent = data.message?.content || data[0]?.message?.content || data.content || data;
-      
+
       if (typeof aiContent === "string") {
         const cleanJson = aiContent.replace(/^```json\s*/i, "").replace(/\s*```$/, "");
         setInterpretation(JSON.parse(cleanJson));
@@ -123,7 +135,7 @@ export default function DailyQuotesPage() {
   const handleShareResult = async () => {
     if (!interpretation) return;
     const text = `🌙 Dream Interpretation:\n\n"${interpretation.summary}"\n\n✨ Advice: ${interpretation.advice}\n\n🔮 Check yours at SmartKitNow.com`;
-    
+
     if (navigator.share) {
       try {
         await navigator.share({
@@ -154,22 +166,22 @@ export default function DailyQuotesPage() {
   // Filter and Shuffle Logic
   const currentItems = useMemo(() => {
     if (!data || !selectedCategory || selectedCategory === "horoscope" || selectedCategory === "dream") return [];
-    
+
     // CORREÇÃO 1: Removido o comentário @ts-expect-error pois a lógica abaixo protege o acesso
     const itemsList = data.content?.[selectedCategory as keyof DailyDataPacket["content"]];
-    
+
     if (!itemsList || !Array.isArray(itemsList)) return [];
 
     const allItems = [...itemsList];
-    
+
     if (shuffleSeed >= 0) {
-        for (let i = allItems.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [allItems[i], allItems[j]] = [allItems[j], allItems[i]];
-        }
+      for (let i = allItems.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [allItems[i], allItems[j]] = [allItems[j], allItems[i]];
+      }
     }
-    
-    return allItems.slice(0, 6); 
+
+    return allItems.slice(0, 6);
   }, [selectedCategory, shuffleSeed, data]);
 
   const renderContent = () => {
@@ -181,7 +193,7 @@ export default function DailyQuotesPage() {
     if (selectedCategory === "dream") {
       return (
         <div className="max-w-2xl mx-auto animate-in fade-in zoom-in-95 duration-500">
-          
+
           {/* Input Section */}
           <div className="bg-muted/30 rounded-2xl p-6 border border-border mb-8">
             <div className="flex items-center gap-3 mb-4">
@@ -190,17 +202,17 @@ export default function DailyQuotesPage() {
               </div>
               <h3 className="text-xl font-bold">Dream Interpreter</h3>
             </div>
-            
-            <textarea 
+
+            <textarea
               value={dreamInput}
               onChange={(e) => setDreamInput(e.target.value)}
               placeholder="Describe your dream here... (e.g., I was flying over a crystal city)"
               className="w-full min-h-[120px] p-4 rounded-xl bg-background border border-input focus:ring-2 focus:ring-indigo-500/50 resize-none transition-all mb-4"
               disabled={isInterpreting}
             />
-            
-            <Button 
-              onClick={handleInterpretDream} 
+
+            <Button
+              onClick={handleInterpretDream}
               disabled={isInterpreting || !dreamInput.trim()}
               className="w-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-500/20 h-12 text-lg"
             >
@@ -221,14 +233,14 @@ export default function DailyQuotesPage() {
           {/* Result Section */}
           {interpretation && (
             <div className="space-y-6 animate-in slide-in-from-bottom-4 duration-700">
-              
+
               {/* Summary Card */}
               <div className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-xl p-6 text-center relative group">
                 <h4 className="text-indigo-500 font-bold uppercase tracking-wider text-xs mb-2">Core Meaning</h4>
                 <p className="text-xl font-medium text-foreground leading-relaxed">
                   "{interpretation.summary}"
                 </p>
-                
+
                 {/* Action Buttons */}
                 <div className="flex justify-center gap-2 mt-4 opacity-100 transition-opacity">
                   <Button variant="secondary" size="sm" onClick={handleCopyResult} className="gap-2 h-8 text-xs">
@@ -285,10 +297,10 @@ export default function DailyQuotesPage() {
     if (currentItems.length === 0) return (
       <div className="text-center py-20 animate-in fade-in zoom-in-95">
         <div className="w-20 h-20 mx-auto bg-muted rounded-full flex items-center justify-center mb-4">
-           {selectedCategory === "professional" && <Briefcase className="w-10 h-10 text-muted-foreground/50" />}
-           {selectedCategory === "motivation" && <Rocket className="w-10 h-10 text-muted-foreground/50" />}
-           {/* CORREÇÃO 2: Adicionado || "" para garantir que selectedCategory nunca seja null aqui */}
-           {![ "professional", "motivation"].includes(selectedCategory || "") && <RefreshCw className="w-10 h-10 text-muted-foreground/50" />}
+          {selectedCategory === "professional" && <Briefcase className="w-10 h-10 text-muted-foreground/50" />}
+          {selectedCategory === "motivation" && <Rocket className="w-10 h-10 text-muted-foreground/50" />}
+          {/* CORREÇÃO 2: Adicionado || "" para garantir que selectedCategory nunca seja null aqui */}
+          {!["professional", "motivation"].includes(selectedCategory || "") && <RefreshCw className="w-10 h-10 text-muted-foreground/50" />}
         </div>
         <h3 className="text-xl font-bold mb-2">Refreshing Inspiration...</h3>
         <p className="text-muted-foreground max-w-sm mx-auto mb-6">
@@ -311,12 +323,12 @@ export default function DailyQuotesPage() {
             />
           ))}
         </div>
-        
+
         <div className="flex justify-center pt-8 pb-4">
-            <Button variant="secondary" size="lg" onClick={handleShuffle} className="gap-2 shadow-sm">
-                <RefreshCw className="w-4 h-4" />
-                Shuffle Suggestions
-            </Button>
+          <Button variant="secondary" size="lg" onClick={handleShuffle} className="gap-2 shadow-sm">
+            <RefreshCw className="w-4 h-4" />
+            Shuffle Suggestions
+          </Button>
         </div>
       </div>
     );
@@ -325,9 +337,9 @@ export default function DailyQuotesPage() {
   const seoDescription = (
     <div className="max-w-3xl mx-auto text-center space-y-4 mb-10 text-muted-foreground">
       <p className="text-lg leading-relaxed">
-        Start your day with clarity and purpose. Explore our comprehensive <strong>Daily Inspiration Hub</strong> featuring 
-        accurate <span className="text-foreground font-medium">Horoscope forecasts</span>, 
-        deep <span className="text-foreground font-medium">Dream Meanings</span>, and a curated collection of 
+        Start your day with clarity and purpose. Explore our comprehensive <strong>Daily Inspiration Hub</strong> featuring
+        accurate <span className="text-foreground font-medium">Horoscope forecasts</span>,
+        deep <span className="text-foreground font-medium">Dream Meanings</span>, and a curated collection of
         <span className="text-foreground font-medium"> Motivational Quotes</span>.
       </p>
     </div>
@@ -348,32 +360,32 @@ export default function DailyQuotesPage() {
             <>
               {/* Hero Section from real JSON */}
               {!selectedCategory && data?.hero && (
-                 <div className="relative rounded-2xl overflow-hidden p-8 text-center bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-background border border-border mb-8 animate-in fade-in duration-700">
-                   <div className="relative z-10 max-w-3xl mx-auto space-y-4">
-                     <div className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-2">
-                       Quote of the Day • {data.date}
-                     </div>
-                     <h1 className="text-2xl md:text-3xl font-extrabold text-foreground leading-tight">
-                       "{data.hero.text}"
-                     </h1>
-                     <p className="text-lg text-muted-foreground font-medium">
-                       — {data.hero.author}
-                     </p>
-                   </div>
-                   {seoDescription}
-                 </div>
+                <div className="relative rounded-2xl overflow-hidden p-8 text-center bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-background border border-border mb-8 animate-in fade-in duration-700">
+                  <div className="relative z-10 max-w-3xl mx-auto space-y-4">
+                    <div className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-2">
+                      Quote of the Day • {data.date}
+                    </div>
+                    <h1 className="text-2xl md:text-3xl font-extrabold text-foreground leading-tight">
+                      "{data.hero.text}"
+                    </h1>
+                    <p className="text-lg text-muted-foreground font-medium">
+                      — {data.hero.author}
+                    </p>
+                  </div>
+                  {seoDescription}
+                </div>
               )}
 
               {/* Header with Back Button */}
               {selectedCategory && (
                 <div className="flex items-center justify-between mb-8">
-                  <Button 
-                    variant="ghost" 
-                    onClick={() => setSelectedCategory(null)}
+                  <Button
+                    variant="ghost"
+                    onClick={() => navigate("/daily-quotes")}
                     className="gap-2 pl-0 hover:bg-transparent hover:text-primary group"
                   >
                     <div className="p-1 rounded-full bg-muted group-hover:bg-primary/10 transition-colors">
-                        <ArrowLeft className="w-4 h-4" />
+                      <ArrowLeft className="w-4 h-4" />
                     </div>
                     <span className="font-semibold text-lg">Back to Hub</span>
                   </Button>
@@ -384,10 +396,10 @@ export default function DailyQuotesPage() {
               {!selectedCategory ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {CATEGORIES.map((cat) => (
-                    <Card 
-                      key={cat.id} 
+                    <Card
+                      key={cat.id}
                       className="cursor-pointer hover:border-primary/50 hover:bg-accent/5 hover:-translate-y-1 transition-all duration-300 group shadow-sm hover:shadow-md"
-                      onClick={() => setSelectedCategory(cat.id as CategoryKey)}
+                      onClick={() => navigate(`/daily-quotes/${cat.id}`)}
                     >
                       <CardContent className="p-6 flex items-start gap-4">
                         <div className={`p-3 rounded-xl bg-muted/50 group-hover:bg-background border border-transparent group-hover:border-border transition-colors ${cat.color}`}>
@@ -411,13 +423,13 @@ export default function DailyQuotesPage() {
                   <div className="mb-6 border-b border-border pb-4">
                     <h2 className="text-3xl font-extrabold capitalize flex items-center gap-3">
                       {(() => {
-                          const CatIcon = CATEGORIES.find(c => c.id === selectedCategory)?.icon;
-                          return CatIcon ? <CatIcon className={`w-8 h-8 ${CATEGORIES.find(c => c.id === selectedCategory)?.color}`} /> : null;
+                        const CatIcon = CATEGORIES.find(c => c.id === selectedCategory)?.icon;
+                        return CatIcon ? <CatIcon className={`w-8 h-8 ${CATEGORIES.find(c => c.id === selectedCategory)?.color}`} /> : null;
                       })()}
-                      {selectedCategory.replace("_", " ")} 
+                      {selectedCategory.replace("_", " ")}
                     </h2>
                     <p className="text-muted-foreground mt-1 ml-11">
-                        Fresh selections for {data?.date}
+                      Fresh selections for {data?.date}
                     </p>
                   </div>
                   {renderContent()}

@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { getCategoryIcon } from "@/lib/navigation";
 import { GlowCard } from "@/components/ui/spotlight-card";
-import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft, QrCode } from "lucide-react";
+import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft, QrCode, Moon } from "lucide-react";
 
 const FeaturedCalculatorsSection = lazy(() => import("@/components/home/FeaturedCalculatorsSection"));
 const AboutSection = lazy(() => import("@/components/home/AboutSection"));
@@ -1440,6 +1440,13 @@ const Index = () => {
       description: "Calculate your GPA",
       icon: Star,
       path: "/math/gpa-calculator"
+    },
+    {
+      name: "Dream Interpreter",
+      description: "Discover the hidden meanings in your dreams with AI",
+      icon: Moon,
+      path: "/daily-quotes/dream",
+      ctaLabel: "Interpret Dream"
     }
   ];
   return (

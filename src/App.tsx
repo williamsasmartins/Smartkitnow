@@ -97,6 +97,7 @@ export default function App() {
               {/* Daily Quotes */}
               <Route path="/daily-quotes" element={<DailyQuotesPage />} />
               <Route path="/daily-quotes/horoscopo" element={<DailyHoroscopeCalculator />} />
+              <Route path="/daily-quotes/:category" element={<DailyQuotesPage />} />
               <Route path="/horoscopo" element={<Navigate to="/daily-quotes/horoscopo" replace />} />
 
               {/* Explicit Calculator Routes from Registry */}
