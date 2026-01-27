@@ -32,6 +32,7 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
   if (!entry) {
     return (
       <div className="mx-auto max-w-3xl px-4 lg:px-6 py-10">
+        <SEOHead title="Calculator Not Found - Smart Kit Now" robots="noindex, nofollow" />
         <h1 className="text-2xl font-bold text-[#5c82ee]">Calculator not found</h1>
         <p className="mt-2 text-muted-foreground">We couldn't find this calculator. Please use the site menu.</p>
       </div>

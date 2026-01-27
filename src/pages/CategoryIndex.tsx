@@ -43,7 +43,7 @@ export default function CategoryIndex() {
   const subcats = listSubcategoriesOfCategory(normalizedCategory);
 
   const totalInCategory = listByCategory(normalizedCategory).length;
-  const canonicalUrl = `https://smartkitnow.com/${normalizedCategory}`;
+  const canonicalUrl = `https://www.smartkitnow.com/${normalizedCategory}`;
   const description = `Explore practical ${title.replace(/ Calculators$/, "").toLowerCase()} calculators designed to help you plan, measure, and make better decisions.`;
 
   return (
@@ -171,11 +171,11 @@ export default function CategoryIndex() {
 
           <section className="mt-6 skn-typography text-sm">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-6">
-                  <SiteFeedbackForm title="Questions or suggestions?" compact={true} />
-                  <ShareThisCalculator />
-                </div>
+              <div className="space-y-6">
+                <SiteFeedbackForm title="Questions or suggestions?" compact={true} />
+                <ShareThisCalculator />
               </div>
+            </div>
           </section>
         </AdRailLayout>
       </main>
