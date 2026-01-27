@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SnacksAcarajeCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function SnacksAcarajeCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Snack",
+    recipeCuisine: "Brazilian",
+    keywords: "acaraje, black-eyed pea fritters, brazilian snack, bahia cuisine, street food, appetizer",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Soak black-eyed peas overnight, peel them, and blend with onion, garlic, and pepper to form a thick batter.",
+      "Stir palm oil into the batter and let it rest.",
+      "Heat more palm oil in a deep pan.",
+      "Fry scoops of batter until golden brown and crispy (about 4-6 minutes).",
+      "Slice open and fill with vatapá and ground dried shrimp."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -343,7 +364,7 @@ export default function SnacksAcarajeCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

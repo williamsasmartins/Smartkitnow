@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function BrazilianHotDogLoadedCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function BrazilianHotDogLoadedCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Main Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "brazilian hot dog, cachorro quente, loaded hot dog, street food, brazilian snacks, full meal",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Prepare toppings: cook peas/corn, make mashed potatoes, grate carrots/onions/tomatoes.",
+      "Mix mayonnaise, ketchup, and mustard for the sauce.",
+      "Grill or pan-fry sausages until browned (8-10 minutes).",
+      "Toast buns until golden and slightly crispy.",
+      "Place sausage in bun and layer with mashed potatoes, vegetables, sauces, cheese, and parsley."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -352,7 +373,7 @@ export default function BrazilianHotDogLoadedCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

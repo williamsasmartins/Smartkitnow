@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SnacksPaoDeQueijoCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function SnacksPaoDeQueijoCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT15M",
+    totalTime: "PT35M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Snack",
+    recipeCuisine: "Brazilian",
+    keywords: "pao de queijo, cheese bread, brazilian snack, gluten-free, appetizer, traditional recipe",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Boil milk, water, and oil, then pour over tapioca flour and stir.",
+      "Cool slightly, then mix in beaten eggs, Parmesan, mozzarella, and baking powder.",
+      "Add garlic powder or parsley if desired, mixing into a smooth dough.",
+      "Shape into 3-4 cm balls with oiled hands.",
+      "Bake at 200°C (390°F) for 15-20 minutes until puffed and golden."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -359,7 +380,7 @@ export default function SnacksPaoDeQueijoCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function ChickenAndOkraStewFrangoComQuiaboCalculator() {
   const [servings, setServings] = useState(4);
@@ -76,10 +77,30 @@ export default function ChickenAndOkraStewFrangoComQuiaboCalculator() {
     {
       question: "Can I substitute fresh okra with frozen?",
       answer:
-      "While fresh okra is ideal for texture and flavor, frozen okra can be used in a pinch. Thaw and pat dry the frozen okra before cooking to minimize excess moisture and sliminess.",
+        "While fresh okra is ideal for texture and flavor, frozen okra can be used in a pinch. Thaw and pat dry the frozen okra before cooking to minimize excess moisture and sliminess.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT40M",
+    totalTime: "PT60M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "chicken stew, okra stew, frango com quiabo, brazilian cuisine, minas gerais",
+    recipeIngredient: ingredients.map(i => `${typeof i.baseAmount === 'number' ? getAmount(i.baseAmount) : i.baseAmount}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Pat chicken dry, season with salt, pepper, and paprika, and brown in olive oil.",
+      "Sauté onion, garlic, and bell pepper, then stir in tomatoes and bay leaf.",
+      "Return chicken to the pot with water or broth and simmer for 25 minutes.",
+      "Sauté sliced okra separately until browned, then add to the stew and cook for 5-7 minutes.",
+      "Remove bay leaf, stir in parsley, and serve hot with rice and lime wedges."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -367,7 +388,7 @@ export default function ChickenAndOkraStewFrangoComQuiaboCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

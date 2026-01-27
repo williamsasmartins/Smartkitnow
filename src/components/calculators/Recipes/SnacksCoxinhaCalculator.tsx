@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SnacksCoxinhaCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function SnacksCoxinhaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Snack",
+    recipeCuisine: "Brazilian",
+    keywords: "coxinha, chicken croquettes, brazilian snack, street food, appetizer, savory snack",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Sauté shredded chicken with onion, garlic, and parsley to make the filling.",
+      "Boil chicken broth and butter, then mix with flour to form a dough ball.",
+      "Knead the dough, then shape small portions into teardrops filled with chicken.",
+      "Coat shaped croquettes in beaten egg and breadcrumbs, then chill for 15 minutes.",
+      "Deep fry at 180°C (350°F) until golden brown and crispy."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -353,7 +374,7 @@ export default function SnacksCoxinhaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

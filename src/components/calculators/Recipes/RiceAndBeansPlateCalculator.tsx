@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function RiceAndBeansPlateCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function RiceAndBeansPlateCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT1H",
+    totalTime: "PT1H20M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "rice and beans, feijao com arroz, brazilian cuisine, staple meal, vegetarian",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Soak black beans for at least 4 hours or overnight.",
+      "Simmer beans with bay leaves and onion for 45-60 minutes until tender.",
+      "Sauté rice with onion, garlic, and bell pepper, then simmer for 15-18 minutes.",
+      "Season beans with sautéed garlic oil, salt, and pepper.",
+      "Plate rice and beans together, garnish with cilantro and lime wedges."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -372,7 +393,7 @@ export default function RiceAndBeansPlateCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

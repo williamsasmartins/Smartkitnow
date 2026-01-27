@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SnacksMandiocaCalculator() {
   const [servings, setServings] = useState(4);
@@ -77,6 +78,26 @@ export default function SnacksMandiocaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Snack",
+    recipeCuisine: "Brazilian",
+    keywords: "mandioca frita, fried cassava, brazilian snack, yuca fries, appetizer, side dish",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Peel cassava and cut into sticks.",
+      "Boil in salted water with a bay leaf for 10-15 minutes until tender.",
+      "Drain and pat dry thoroughly.",
+      "Deep fry at 180°C (350°F) until golden and crispy.",
+      "Season with salt, garlic powder, and parsley while hot; serve with lime."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -319,7 +340,7 @@ export default function SnacksMandiocaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

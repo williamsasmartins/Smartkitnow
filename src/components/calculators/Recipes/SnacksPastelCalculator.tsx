@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SnacksPastelCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function SnacksPastelCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Snack",
+    recipeCuisine: "Brazilian",
+    keywords: "pastel, crispy fried pastries, brazilian snack, street food, appetizer, savory pastry",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Knead flour, warm water, oil, and salt into a smooth dough, then rest for 30 minutes.",
+      "Sauté ground beef with onions, garlic, and spices to make the filling.",
+      "Roll dough into thin circles and place a spoonful of filling in the center.",
+      "Fold into half-moons and seal edges firmly with a fork.",
+      "Deep fry at 180°C (350°F) until golden brown and crispy."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -313,7 +334,7 @@ export default function SnacksPastelCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

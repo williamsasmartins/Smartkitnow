@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function BrazilianBlackBeansCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function BrazilianBlackBeansCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT1H30M",
+    totalTime: "PT1H50M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Side Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "black beans, feijao preto, brazilian cuisine, staple food, creamy beans",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Rinse and soak dried black beans for 8-12 hours or overnight.",
+      "Sauté diced bacon in a large pot until crispy, then sauté onion, garlic, and chili.",
+      "Add drained beans, water, bay leaves, cumin, salt, pepper, and sugar to the pot.",
+      "Simmer gently for 1 to 1.5 hours until beans are tender and creamy.",
+      "Stir in orange juice and garnish with fresh cilantro before serving."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -337,7 +358,7 @@ export default function BrazilianBlackBeansCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

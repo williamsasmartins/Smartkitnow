@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function BrazilianChickenPotPieEmpadaoCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function BrazilianChickenPotPieEmpadaoCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT40M",
+    totalTime: "PT1H",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "chicken pot pie, empadao de frango, brazilian cuisine, savory pie, flaky crust",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Knead flour, cold butter, milk, and salt until a smooth dough forms, then chill for 30 minutes.",
+      "Sauté onion, garlic, chicken, tomato paste, and broth until thick.",
+      "Stir in olives, hard-boiled eggs, and parsley, then let cool.",
+      "Line a dish with half the dough, add filling, cover with remaining dough, and brush with egg yolk.",
+      "Bake at 180°C (350°F) for 35-40 minutes until golden brown."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -342,7 +363,7 @@ export default function BrazilianChickenPotPieEmpadaoCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

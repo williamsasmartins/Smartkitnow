@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function CoastalFishStewCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function CoastalFishStewCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT30M",
+    totalTime: "PT50M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "fish stew, moqueca, brazilian cuisine, seafood, coconut milk, dende oil",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Marinate fish fillets with lime juice, salt, and pepper for 15 minutes.",
+      "Sauté onions, bell peppers, and garlic in olive and dendê oil until fragrant.",
+      "Add chopped tomatoes and simmer with coconut milk.",
+      "Nestle fish fillets into the sauce and cook for 10-15 minutes until opaque.",
+      "Garnish with fresh cilantro and green onions, then serve over rice."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -358,7 +379,7 @@ export default function CoastalFishStewCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

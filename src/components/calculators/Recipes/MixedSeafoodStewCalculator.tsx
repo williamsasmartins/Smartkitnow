@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function MixedSeafoodStewCalculator() {
   const [servings, setServings] = useState(4);
@@ -82,6 +83,26 @@ export default function MixedSeafoodStewCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT30M",
+    totalTime: "PT50M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "seafood stew, moqueca, brazilian cuisine, shrimp, squid, mussels, fish",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Prepare and clean all seafood, cutting fish into bite-sized pieces.",
+      "Sauté onion, garlic, and bell pepper in olive oil until softened.",
+      "Simmer tomatoes and stock, then add fish fillets for 5 minutes.",
+      "Add shrimp, squid, mussels, and clams; cook until shells open.",
+      "Finish with coconut milk, lime juice, and fresh herbs; serve hot."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -342,7 +363,7 @@ export default function MixedSeafoodStewCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

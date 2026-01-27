@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function ChickenOkraStewCalculator() {
   const [servings, setServings] = useState(4);
@@ -79,6 +80,26 @@ export default function ChickenOkraStewCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT40M",
+    totalTime: "PT1H",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "chicken and okra stew, frango com quiabo, brazilian cuisine, comfort food, stew",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Brown seasoned chicken thighs in olive oil, then set aside.",
+      "Sauté onion, garlic, and spices until fragrant.",
+      "Add chopped tomatoes and broth, then return chicken to the pot.",
+      "Simmer for 25-30 minutes until chicken is tender.",
+      "Add sliced okra and cook for 10 more minutes, then finish with lemon juice and parsley."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -374,7 +395,7 @@ export default function ChickenOkraStewCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

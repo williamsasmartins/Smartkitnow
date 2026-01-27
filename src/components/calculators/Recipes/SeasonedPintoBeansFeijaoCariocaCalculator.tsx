@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SeasonedPintoBeansFeijaoCariocaCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function SeasonedPintoBeansFeijaoCariocaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT1H30M",
+    totalTime: "PT1H50M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Side Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "pinto beans, feijao carioca, brazilian cuisine, seasoned beans, staple side",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Rinse and soak pinto beans for at least 6 hours or overnight.",
+      "Sauté onion, garlic, and optional chili in olive oil until fragrant.",
+      "Add drained beans, water, bay leaves, paprika, cumin, and tomatoes to the pot.",
+      "Simmer gently for 1 to 1.5 hours until beans are tender.",
+      "Season with salt and pepper, remove bay leaves, and stir in cilantro and lime juice."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -351,7 +372,7 @@ export default function SeasonedPintoBeansFeijaoCariocaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function GarlicShrimpBrazilianStyleCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function GarlicShrimpBrazilianStyleCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Appetizer",
+    recipeCuisine: "Brazilian",
+    keywords: "garlic shrimp, camarao ao alho e oleo, brazilian cuisine, tapas, seafood, quick meal",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Prep and season shrimp with salt and pepper.",
+      "Sauté minced garlic in olive oil and butter until fragrant.",
+      "Add shrimp in a single layer and sear for 2-3 minutes per side until pink.",
+      "Deglaze with white wine and lemon juice, then simmer briefly.",
+      "Stir in chopped parsley, green onions, and cilantro, then serve hot."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -346,7 +367,7 @@ export default function GarlicShrimpBrazilianStyleCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

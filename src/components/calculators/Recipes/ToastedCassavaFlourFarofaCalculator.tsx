@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function ToastedCassavaFlourFarofaCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function ToastedCassavaFlourFarofaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Side Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "farofa, cassava flour, manioc flour, brazilian cuisine, side dish, toasted flour",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Finely chop onion, garlic, bacon, and herbs.",
+      "Melt butter in a skillet, cook bacon until crispy, then sauté onion and garlic.",
+      "Gradually add cassava flour, stirring constantly on medium-low heat.",
+      "Toast for 5-7 minutes until golden and fragrant.",
+      "Stir in parsley, green onions, salt, and pepper, then serve with lime wedges."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -339,7 +360,7 @@ export default function ToastedCassavaFlourFarofaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function CodCasseroleBacalhoadaCalculator() {
   const [servings, setServings] = useState(4);
@@ -79,6 +80,26 @@ export default function CodCasseroleBacalhoadaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT1H",
+    totalTime: "PT1H20M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "cod casserole, bacalhoada, brazilian cuisine, salted cod, baked fish, traditional meal",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Soak salted cod for 24-48 hours, then shred into bite-sized pieces.",
+      "Slice potatoes, onions, tomatoes, peppers, and hard-boiled eggs.",
+      "Layer half the potatoes, onions, cod, and other vegetables in a baking dish with garlic, parsley, and olive oil.",
+      "Repeat the layers, cover with foil, and bake at 180°C (350°F) for 40 minutes.",
+      "Remove foil and bake for 20 more minutes until golden and tender."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -357,7 +378,7 @@ export default function CodCasseroleBacalhoadaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

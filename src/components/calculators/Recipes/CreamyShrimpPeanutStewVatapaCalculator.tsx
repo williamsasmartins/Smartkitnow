@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function CreamyShrimpPeanutStewVatapaCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function CreamyShrimpPeanutStewVatapaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT30M",
+    totalTime: "PT50M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "shrimp stew, vatapa, brazilian cuisine, peanut stew, afro-brazilian",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Soak stale bread in water or coconut milk until soft, and rinse shrimp.",
+      "Sauté onions, garlic, and peppers in palm oil until fragrant.",
+      "Blend soaked bread, peanut butter, and coconut milk until smooth.",
+      "Add the blended mixture and tomatoes to the pan and simmer for 15-20 minutes.",
+      "Add shrimp and cook until pink, then season with salt, pepper, and cilantro."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -374,7 +395,7 @@ export default function CreamyShrimpPeanutStewVatapaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

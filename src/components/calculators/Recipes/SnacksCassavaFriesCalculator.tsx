@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SnacksCassavaFriesCalculator() {
   const [servings, setServings] = useState(4);
@@ -77,6 +78,26 @@ export default function SnacksCassavaFriesCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Snack",
+    recipeCuisine: "Brazilian",
+    keywords: "cassava fries, mandioca frita, brazilian snack, yuca fries, gluten-free, appetizer",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Peel cassava and cut into sticks.",
+      "Boil in water for 10-15 minutes until just tender.",
+      "Drain and pat dry thoroughly.",
+      "Season with salt, garlic powder, and paprika.",
+      "Deep fry at 180°C (350°F) for 3-5 minutes until golden brown."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -319,7 +340,7 @@ export default function SnacksCassavaFriesCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

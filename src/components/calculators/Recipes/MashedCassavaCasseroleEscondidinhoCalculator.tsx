@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function MashedCassavaCasseroleEscondidinhoCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function MashedCassavaCasseroleEscondidinhoCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT40M",
+    totalTime: "PT1H",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "mashed cassava casserole, escondidinho, brazilian cuisine, comfort food, yuca casserole",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Boil peeled cassava chunks until tender, then mash with butter and milk until creamy.",
+      "Sauté onion, garlic, and ground beef until browned, then simmer with tomato paste and spices.",
+      "Stir in parsley and remove bay leaf.",
+      "Layer half of the mash, the meat filling, and then the remaining mash in a baking dish.",
+      "Top with Parmesan and mozzarella, then bake at 180°C (350°F) for 20-25 minutes."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -340,7 +361,7 @@ export default function MashedCassavaCasseroleEscondidinhoCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function BrazilianBeefVegetableSoupCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function BrazilianBeefVegetableSoupCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT2H",
+    totalTime: "PT2H20M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Soup",
+    recipeCuisine: "Brazilian",
+    keywords: "beef soup, vegetable soup, brazilian soup, comfort food, sopa de carne",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Brown seasoned beef chuck cubes in olive oil, then set aside.",
+      "Sauté onions and garlic, then add tomatoes and cook until soft.",
+      "Return beef to the pot with broth and bay leaves, then simmer for 1 hour.",
+      "Add remaining vegetables and continue to simmer for 30-40 minutes until tender.",
+      "Remove bay leaves, stir in parsley, and serve hot with rice and farofa."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -352,7 +373,7 @@ export default function BrazilianBeefVegetableSoupCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

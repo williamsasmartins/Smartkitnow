@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SlowCookedPorkRibsCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function SlowCookedPorkRibsCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT4H",
+    totalTime: "PT4H20M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "pork ribs, slow cooked ribs, brazilian spices, BBQ, costelinha de porco",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Combine spices to create a dry rub.",
+      "Pat ribs dry and rub thoroughly with the spice mix, then refrigerate for at least 2 hours.",
+      "Whisk together oil, vinegar, honey, and water for the cooking liquid.",
+      "Place ribs in a slow cooker or roasting pan, pour liquid over, and cook for 3-4 hours.",
+      "Optionally broil for a caramelized finish and garnish with fresh cilantro."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -363,7 +384,7 @@ export default function SlowCookedPorkRibsCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

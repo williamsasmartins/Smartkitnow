@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SeafoodAndCoconutStewCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function SeafoodAndCoconutStewCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "seafood stew, coconut stew, moqueca, brazilian cuisine, shrimp, fish",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Rinse seafood and pat dry, cutting fish into bite-sized pieces.",
+      "Sauté onion, garlic, and bell pepper in palm oil until softened.",
+      "Add tomatoes and chili, then simmer with fish stock.",
+      "Add seafood and coconut milk, season, and simmer for 8-10 minutes.",
+      "Finish with cilantro and lime juice, and serve hot with rice."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -332,7 +353,7 @@ export default function SeafoodAndCoconutStewCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

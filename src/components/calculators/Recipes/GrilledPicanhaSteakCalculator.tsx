@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function GrilledPicanhaSteakCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function GrilledPicanhaSteakCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "picanha, grilled steak, brazilian bbq, churrasco, top sirloin cap",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Score the picanha fat cap in a crosshatch pattern and pat dry.",
+      "Rub with olive oil, coarse sea salt, pepper, garlic, and optional paprika.",
+      "Preheat grill to medium-high (400°F / 200°C).",
+      "Grill fat-side down for 5-7 minutes to render fat, then flip.",
+      "Grill meat-side for 4-6 minutes, rest for 5-10 minutes, and slice against the grain."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -379,7 +400,7 @@ export default function GrilledPicanhaSteakCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

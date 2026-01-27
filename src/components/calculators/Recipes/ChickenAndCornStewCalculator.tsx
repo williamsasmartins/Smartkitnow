@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function ChickenAndCornStewCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function ChickenAndCornStewCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT40M",
+    totalTime: "PT1H",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "chicken and corn stew, sopa de milho com frango, brazilian cuisine, comfort food, farm style",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Dice chicken and vegetables, mince garlic, and prepare corn.",
+      "Sauté onion, garlic, carrots, and celery in butter and oil, then brown chicken.",
+      "Add broth, potatoes, and thyme, then simmer for 25 minutes until potatoes are tender.",
+      "Stir in corn and heavy cream, simmer for 5-7 minutes until creamy.",
+      "Ladle into bowls and garnish with extra thyme."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -356,7 +377,7 @@ export default function ChickenAndCornStewCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

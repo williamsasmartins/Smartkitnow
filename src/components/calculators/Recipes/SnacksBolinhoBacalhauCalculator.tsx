@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SnacksBolinhoBacalhauCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function SnacksBolinhoBacalhauCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Snack",
+    recipeCuisine: "Brazilian",
+    keywords: "bolinho de bacalhau, cod fritters, brazilian snack, salted cod, appetizer, savory snack",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Soak salted cod for 24-48 hours, then shred into small flakes.",
+      "Mix shredded cod with mashed potatoes, onion, garlic, parsley, eggs, and flour.",
+      "Add baking powder and spices, mixing until a cohesive batter forms.",
+      "Chill the mixture for 30 minutes to firm up.",
+      "Shape into ovals or rounds and deep fry at 180°C (350°F) until golden brown."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -348,7 +369,7 @@ export default function SnacksBolinhoBacalhauCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

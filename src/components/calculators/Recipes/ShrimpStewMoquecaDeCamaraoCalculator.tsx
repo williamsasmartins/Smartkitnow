@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function ShrimpStewMoquecaDeCamaraoCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function ShrimpStewMoquecaDeCamaraoCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT25M",
+    totalTime: "PT45M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "shrimp stew, moqueca de camarao, brazilian cuisine, seafood, coconut milk, dende oil",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Sauté onions, bell peppers, and garlic in olive and palm oil until fragrant.",
+      "Add chopped tomatoes and green chili, then simmer until tomatoes break down.",
+      "Pour in coconut milk and stock, then simmer for 10 minutes.",
+      "Add shrimp and cook for 3-5 minutes until pink and opaque.",
+      "Finish with fresh cilantro and lime juice, then serve."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -337,7 +358,7 @@ export default function ShrimpStewMoquecaDeCamaraoCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar
