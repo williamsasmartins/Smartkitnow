@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function FarofaWithEggsCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function FarofaWithEggsCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Side Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "farofa com ovos, egg farofa, brazilian side dish, toasted cassava flour, moist farofa, traditional recipe",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Dice onion, garlic, and herbs. Lightly beat eggs with salt and pepper.",
+      "Sauté onions and garlic in butter/oil (and bacon if using) until soft.",
+      "Add cassava flour and toast over medium-low heat for 5-7 minutes until golden.",
+      "In a separate pan, gently scramble eggs until just set but still moist.",
+      "Fold scrambled eggs and fresh herbs into the toasted flour mixture; serve immediately."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -314,7 +335,7 @@ export default function FarofaWithEggsCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function BrazilianPicanhaTopSirloinCapCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,27 @@ export default function BrazilianPicanhaTopSirloinCapCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT15M",
+    totalTime: "PT35M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "picanha, steak, beef, brazilian barbecue, churrasco, top sirloin cap",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Trim excess silver skin but keep the fat cap, score fat in crosshatch.",
+      "Liberal seasoning with coarse sea salt on all sides.",
+      "Preheat grill (charcoal or wood) to high heat (450-500°F).",
+      "Grill fat side down for 5-7 mins to render and crisp, then sear meat side for 3-4 mins.",
+      "Move to indirect heat and cook until 130°F (54°C) for medium-rare.",
+      "Rest for 10 minutes then slice thinly against the grain."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -394,7 +416,7 @@ export default function BrazilianPicanhaTopSirloinCapCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

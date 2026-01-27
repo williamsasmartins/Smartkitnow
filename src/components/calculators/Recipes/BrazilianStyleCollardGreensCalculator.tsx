@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function BrazilianStyleCollardGreensCalculator() {
   const [servings, setServings] = useState(4);
@@ -79,6 +80,26 @@ export default function BrazilianStyleCollardGreensCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Side Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "brazilian collard greens, couve a mineira, sautéed kale, brazilian side dish, feijoada side, garlic collard greens",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit === "small" ? "" : i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Remove stems from collard greens and shred leaves finely into thin ribbons.",
+      "Sauté diced bacon in olive oil until crispy; remove and set aside.",
+      "Sauté minced garlic and onion in the skillet until fragrant.",
+      "Add shredded greens and broth/water; cover and cook for 5-7 minutes until tender.",
+      "Season with salt, pepper, sugar, and lemon juice; stir in bacon and parsley."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -354,7 +375,7 @@ export default function BrazilianStyleCollardGreensCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

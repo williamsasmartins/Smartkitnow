@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function FriedCassavaMandiocaCalculator() {
   const [servings, setServings] = useState(4);
@@ -79,6 +80,26 @@ export default function FriedCassavaMandiocaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Appetizer",
+    recipeCuisine: "Brazilian",
+    keywords: "fried cassava, mandioca frita, brazilian snack, yuca, appetizer, fried root vegetable",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Peel cassava and cut into batons; rinse under cold water.",
+      "Boil in salted water for 15-20 minutes until tender; drain and cool.",
+      "Toss with garlic, parsley, spices, and cornstarch.",
+      "Heat oil to 180°C (350°F) and fry batons for 3-5 minutes until golden.",
+      "Drain on paper towels and serve hot with lime wedges."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -321,7 +342,7 @@ export default function FriedCassavaMandiocaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

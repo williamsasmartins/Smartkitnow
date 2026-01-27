@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function PassionFruitMousseCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,27 @@ export default function PassionFruitMousseCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Dessert",
+    recipeCuisine: "Brazilian",
+    keywords: "passion fruit mousse, mousse de maracuja, tropical dessert, brazilian mousse, light dessert, traditional recipe",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Dissolve softened gelatin sheets in warm water and set aside.",
+      "Combine passion fruit pulp, sugar, lime juice, vanilla, and salt; fold in gelatin.",
+      "Whip heavy cream to soft peaks and set aside.",
+      "Beat egg whites with salt and powdered sugar to stiff, glossy peaks.",
+      "Gently fold whipped cream and then the meringue into the passion fruit mixture.",
+      "Spoon into glasses and refrigerate for at least 4 hours until set."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -322,7 +344,7 @@ export default function PassionFruitMousseCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

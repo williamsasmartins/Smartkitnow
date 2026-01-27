@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function CrispyFriedPastriesPastelCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function CrispyFriedPastriesPastelCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Appetizer",
+    recipeCuisine: "Brazilian",
+    keywords: "crispy fried pastries, pastel, brazilian snack, street food, savory pastry, deep-fried",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Knead flour, salt, water, and oil into a firm dough; rest for 30 minutes.",
+      "Sauté onion, garlic, and ground beef with spices; stir in olives and eggs.",
+      "Roll dough into thin circles and fill with the beef mixture.",
+      "Fold into half-moons, seal edges with a fork, and fry in hot oil (180°C/350°F).",
+      "Fry until golden brown and crispy; drain on paper towels and serve warm."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -354,7 +375,7 @@ export default function CrispyFriedPastriesPastelCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

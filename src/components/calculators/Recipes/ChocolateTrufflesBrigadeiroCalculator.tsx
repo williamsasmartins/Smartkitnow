@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function ChocolateTrufflesBrigadeiroCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function ChocolateTrufflesBrigadeiroCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT15M",
+    cookTime: "PT15M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Dessert",
+    recipeCuisine: "Brazilian",
+    keywords: "brigadeiro, chocolate truffles, brazilian fudge, cocoa balls, condensed milk dessert, traditional recipe",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Combine condensed milk, cocoa powder, butter, and salt in a non-stick pan.",
+      "Cook over medium-low heat, stirring constantly until thickened (about 10-15 minutes).",
+      "Remove from heat and stir in chopped dark chocolate and vanilla extract.",
+      "Cool the mixture in a greased bowl, refrigerated for at least 4 hours.",
+      "Lightly grease hands, roll into balls, and coat with sugar or cocoa powder."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -342,7 +363,7 @@ export default function ChocolateTrufflesBrigadeiroCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

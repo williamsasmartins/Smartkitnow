@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function BeefSkewersEspetinhoCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function BeefSkewersEspetinhoCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Appetizer",
+    recipeCuisine: "Brazilian",
+    keywords: "beef skewers, espetinho, brazilian barbecue, grilled beef, street food, appetizer",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Whisk olive oil, garlic, soy sauce, lemon juice, and spices to make the marinade.",
+      "Add cubed beef to the marinade and refrigerate for 1-6 hours.",
+      "Thread beef cubes onto soaked wooden skewers, alternating with onion and pepper chunks.",
+      "Grill over medium-high heat for 8-10 minutes, turning every 2-3 minutes.",
+      "Garnish with fresh parsley and serve hot."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -346,7 +367,7 @@ export default function BeefSkewersEspetinhoCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

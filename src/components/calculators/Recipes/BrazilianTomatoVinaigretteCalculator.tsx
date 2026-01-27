@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function BrazilianTomatoVinaigretteCalculator() {
   const [servings, setServings] = useState(4);
@@ -79,6 +80,25 @@ export default function BrazilianTomatoVinaigretteCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT0M",
+    totalTime: "PT20M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Condiment",
+    recipeCuisine: "Brazilian",
+    keywords: "brazilian tomato vinaigrette, vinagrete, brazilian barbecue side, salsa, churrasco condiment, tomato relish",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit === "cloves" ? "" : i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Finely chop tomatoes, onions, peppers, and herbs; mince the garlic.",
+      "Combine all vegetables, herbs, garlic, salt, pepper, and optional sugar in a bowl.",
+      "Add olive oil, white vinegar, and lime juice; toss thoroughly.",
+      "Let rest for 20 minutes at room temperature or chill before serving."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -338,7 +358,7 @@ export default function BrazilianTomatoVinaigretteCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function CrispyPorkBellyBitesTorresmoCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function CrispyPorkBellyBitesTorresmoCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Appetizer",
+    recipeCuisine: "Brazilian",
+    keywords: "crispy pork belly, torresmo, brazilian snack, crackling, deep-fried pork, appetizer",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Cut pork belly into chunks and score the skin.",
+      "Boil in salted water with vinegar and bay leaves for 20 minutes.",
+      "Pat dry thoroughly, season, and rest in the fridge for 1 hour.",
+      "Fry in hot oil (180°C/350°F) for 5-7 minutes until crispy and golden.",
+      "Drain and serve immediately with lime wedges."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -347,7 +368,7 @@ export default function CrispyPorkBellyBitesTorresmoCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function CoconutTrufflesBeijinhoCalculator() {
   const [servings, setServings] = useState(4);
@@ -76,6 +77,30 @@ export default function CoconutTrufflesBeijinhoCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT15M",
+    cookTime: "PT15M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Dessert",
+    recipeCuisine: "Brazilian",
+    keywords: "beijinho, coconut truffles, brazilian sweets, little kiss, condensed milk dessert, traditional recipe",
+    recipeIngredient: ingredients.map(ing =>
+      ing.unit.includes("can")
+        ? `${ing.unit} ${ing.name}`
+        : `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`
+    ),
+    recipeInstructions: [
+      "Combine condensed milk, butter, shredded coconut, vanilla, and salt in a non-stick saucepan.",
+      "Cook over medium-low heat, stirring constantly for 12-15 minutes until it pulls away from the pan.",
+      "Cool the mixture to room temperature on a greased plate or bowl.",
+      "Lightly grease hands and roll portions into small 2-3 cm balls.",
+      "Roll in sugar or shredded coconut and top with a clove if desired."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -354,7 +379,7 @@ export default function CoconutTrufflesBeijinhoCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

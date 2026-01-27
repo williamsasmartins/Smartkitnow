@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function BrazilianCaramelFlanPudimCalculator() {
   const [servings, setServings] = useState(4);
@@ -75,6 +76,26 @@ export default function BrazilianCaramelFlanPudimCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT50M",
+    totalTime: "PT70M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Dessert",
+    recipeCuisine: "Brazilian",
+    keywords: "pudim de leite, brazilian caramel flan, condensed milk custard, silky flan, traditional brazilian dessert",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Melt sugar and water into amber caramel; coat the bottom of a flan mold.",
+      "Whisk condensed milk, whole milk, eggs, vanilla, and salt until smooth.",
+      "Strain the mixture into the mold and place in a hot water bath (bain-marie).",
+      "Bake at 160°C (320°F) for 50 minutes until just set but still jiggly.",
+      "Cool to room temperature, then refrigerate for 4+ hours before unmolding and serving."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -357,7 +378,7 @@ export default function BrazilianCaramelFlanPudimCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

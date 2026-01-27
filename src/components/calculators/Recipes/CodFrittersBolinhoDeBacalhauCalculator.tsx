@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function CodFrittersBolinhoDeBacalhauCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,32 @@ export default function CodFrittersBolinhoDeBacalhauCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Appetizer",
+    recipeCuisine: "Brazilian",
+    keywords: "cod fritters, bolinho de bacalhau, brazilian appetizer, salted cod, snack, portuguese influence",
+    recipeIngredient: ingredients.map(i => {
+      const amount = i.unit.match(/[a-zA-Z]/)
+        ? Math.round(i.baseAmount * (servings / 4))
+        : getAmount(i.baseAmount);
+      return `${amount}${i.unit === "large" || i.unit === "medium" || i.unit === "cloves" || i.unit === "wedges" ? "" : i.unit} ${i.name}`;
+    }),
+    recipeInstructions: [
+      "Soak salted cod for 24-48 hours, poach for 10 minutes, and shred finely.",
+      "Boil and mash potatoes until smooth; let cool.",
+      "Mix shredded cod, mashed potatoes, onion, garlic, parsley, eggs, and flour into a sticky batter.",
+      "Shape into small walnut-sized ovals using spoons or wet hands.",
+      "Fry in hot oil (180°C/350°F) for 3-4 minutes until golden and crispy.",
+      "Serve hot with lemon wedges."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -338,7 +365,7 @@ export default function CodFrittersBolinhoDeBacalhauCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

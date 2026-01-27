@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function GrilledSausageBitesCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function GrilledSausageBitesCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Appetizer",
+    recipeCuisine: "Brazilian",
+    keywords: "grilled sausage bites, calabresa, brazilian appetizer, snack, grilled meat, easy appetizer",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Slice sausage into bite-sized pieces; dice peppers and onion, mince garlic.",
+      "Toss sausage with oil, garlic, and spices; marinate for 10-15 minutes.",
+      "Preheat grill or grill pan to medium-high heat.",
+      "Grill sausage and vegetables for 8-10 minutes until charred and cooked through.",
+      "Transfer to a platter, sprinkle with parsley, and serve with lemon wedges."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -346,7 +367,7 @@ export default function GrilledSausageBitesCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

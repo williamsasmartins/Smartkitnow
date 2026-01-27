@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function FriedPlantainsCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function FriedPlantainsCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT10M",
+    cookTime: "PT10M",
+    totalTime: "PT20M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Side Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "fried plantains, banana frita, sweet plantains, brazilian side dish, caramelized plantains, traditional recipe",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Peel ripe plantains and slice diagonally into 1/2-inch thick pieces.",
+      "Heat vegetable oil in a large skillet to 350°F (175°C).",
+      "Fry slices for 2-3 minutes per side until golden brown and caramelized.",
+      "Drain on paper towels and sprinkle with salt and optional cinnamon/sugar.",
+      "Garnish with cilantro or lime juice if desired and serve immediately."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -369,7 +390,7 @@ export default function FriedPlantainsCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

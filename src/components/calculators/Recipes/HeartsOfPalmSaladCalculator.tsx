@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function HeartsOfPalmSaladCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function HeartsOfPalmSaladCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT0M",
+    totalTime: "PT20M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Salad",
+    recipeCuisine: "Brazilian",
+    keywords: "hearts of palm salad, palm hearts, salada de palmito, brazilian salad, healthy salad, vegetarian salad",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit === "medium" ? "" : i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Slice hearts of palm, halve tomatoes, dice cucumber and onion, cube avocado.",
+      "Whisk lime juice, olive oil, honey, salt, and pepper to make the dressing.",
+      "Gently toss all vegetables and cilantro with the dressing until evenly coated.",
+      "Plate the salad and garnish with optional feta, pine nuts, and basil.",
+      "Serve immediately to maintain freshness and crispness."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -351,7 +372,7 @@ export default function HeartsOfPalmSaladCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

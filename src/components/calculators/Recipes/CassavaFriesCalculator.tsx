@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function CassavaFriesCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function CassavaFriesCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Appetizer",
+    recipeCuisine: "Brazilian",
+    keywords: "cassava fries, yuca fries, brazilian appetiser, fried mandioca, gluten-free snack, crispy side dish",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Peel, cut into sticks, and soak cassava in salted water for 30 minutes.",
+      "Pat dry thoroughly and lightly dust with cornstarch if desired.",
+      "Heat oil to 180°C (350°F).",
+      "Fry in batches for 5-7 minutes until golden brown and crispy.",
+      "Drain on paper towels, season with spices and parsley, and serve with lime."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -338,7 +359,7 @@ export default function CassavaFriesCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

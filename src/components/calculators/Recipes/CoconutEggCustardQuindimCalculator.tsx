@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function CoconutEggCustardQuindimCalculator() {
   const [servings, setServings] = useState(4);
@@ -77,6 +78,26 @@ export default function CoconutEggCustardQuindimCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT40M",
+    totalTime: "PT60M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Dessert",
+    recipeCuisine: "Brazilian",
+    keywords: "quindim, coconut egg custard, brazilian sweets, yolk dessert, tropical custard, traditional recipe",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Whisk egg yolks and sugar until smooth; add coconut milk, butter, and flavorings.",
+      "Strain the mixture through a fine sieve into buttered molds.",
+      "Place molds in a hot water bath (bain-marie).",
+      "Bake at 160°C (320°F) for 35-40 minutes until set but slightly jiggly.",
+      "Cool to room temperature, refrigerate for 2+ hours, then unmold and serve."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -365,7 +386,7 @@ export default function CoconutEggCustardQuindimCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar
