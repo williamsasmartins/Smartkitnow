@@ -6,6 +6,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+import { getRecipeSchema } from "@/components/RecipeSchema";
+
 export default function BeanPureeSausageTutuCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
@@ -79,6 +81,26 @@ export default function BeanPureeSausageTutuCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT1H",
+    totalTime: "PT1H20M",
+    recipeYield: "4 servings",
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "bean puree with sausage, tutu de feijão, brazilian bean puree, cassava flour, hearty stew",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Rinse the dry cannellini beans and soak them overnight in plenty of cold water. Drain and rinse again, then place in a pot with fresh water and a sprig of rosemary. Simmer gently for about 1 hour or until tender. Drain, reserving some cooking liquid.",
+      "Remove the sausage casing and crumble the meat. In a large skillet, heat half the olive oil over medium heat. Add the sausage and cook until browned and cooked through. Remove and set aside. In the same pan, add the remaining oil, finely chopped onion, and minced garlic. Sauté until translucent and fragrant.",
+      "Add the cooked beans, sausage, and chicken broth to the skillet with the aromatics. Stir well and bring to a gentle simmer. Gradually sprinkle in the cassava flour while stirring constantly to avoid lumps. Cook for 5-7 minutes until the purée thickens to a creamy consistency.",
+      "Season the purée with salt, black pepper, and red chili flakes if using. Stir in fresh lemon juice to brighten the flavors. Remove the rosemary sprig. Garnish with chopped fresh parsley before serving."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -359,7 +381,7 @@ export default function BeanPureeSausageTutuCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

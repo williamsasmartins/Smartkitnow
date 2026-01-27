@@ -6,6 +6,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+import { getRecipeSchema } from "@/components/RecipeSchema";
+
 export default function ChickenStroganoffBrazilianStyleCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
@@ -80,6 +82,27 @@ export default function ChickenStroganoffBrazilianStyleCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: "4 servings",
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "chicken stroganoff, brazilian chicken stroganoff, creamy chicken stew, brazilian food, quick recipes",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Dice the chicken breast into bite-sized pieces. Finely chop the onion and mince the garlic cloves. Slice the mushrooms and chop the fresh parsley.",
+      "Heat olive oil and butter in a large skillet over medium heat. Add the chopped onion and garlic, sautéing until translucent and fragrant, about 3-4 minutes. Add the diced chicken and cook until browned on all sides but not fully cooked through, about 5-6 minutes.",
+      "Stir in the sliced mushrooms and cook until softened, about 4 minutes. Pour in the tomato sauce and water or chicken broth, stirring to combine. Let simmer for 5 minutes to meld flavors.",
+      "Lower the heat and stir in the heavy cream, ketchup, and mustard. Season with salt and black pepper to taste. Cook gently for 3-4 minutes until the sauce thickens slightly and the chicken is cooked through.",
+      "Remove from heat and sprinkle with chopped fresh parsley. Serve hot over white rice and accompany with shoestring potatoes or a fresh salad for a complete meal."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -356,7 +379,7 @@ export default function ChickenStroganoffBrazilianStyleCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

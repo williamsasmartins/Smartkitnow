@@ -6,6 +6,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+import { getRecipeSchema } from "@/components/RecipeSchema";
+
 export default function BeefStroganoffBrazilianStyleCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
@@ -80,6 +82,27 @@ export default function BeefStroganoffBrazilianStyleCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: "4 servings",
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "beef stroganoff, brazilian stroganoff, creamy beef stew, comfort food, brazilian recipes",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Thinly slice the beef sirloin against the grain for tenderness. Clean and slice the mushrooms, finely chop the onion, and mince the garlic cloves.",
+      "Heat the vegetable oil and 1 tablespoon of butter in a large pan over medium heat. Add the chopped onion and garlic, cooking until translucent and fragrant. Add the sliced mushrooms and cook until they release their moisture and begin to brown.",
+      "Push the mushroom mixture to the side of the pan and add the remaining butter. Increase heat to medium-high and add the beef slices in a single layer. Sear quickly until browned but still tender, about 2-3 minutes per side.",
+      "Stir in the ketchup, Dijon mustard, and corn kernels. Mix well to combine all flavors. Reduce heat to medium-low and pour in the heavy cream, stirring gently to create a smooth sauce.",
+      "Let the stroganoff simmer gently for 5 minutes, allowing the sauce to thicken slightly and the flavors to meld. Garnish with fresh chopped parsley and serve immediately over hot cooked white rice."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -360,7 +383,7 @@ export default function BeefStroganoffBrazilianStyleCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -6,6 +6,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+import { getRecipeSchema } from "@/components/RecipeSchema";
+
 export default function BrazilianFishStewMoquecaCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
@@ -80,6 +82,28 @@ export default function BrazilianFishStewMoquecaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT30M",
+    totalTime: "PT50M",
+    recipeYield: "4 servings",
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "brazilian fish stew, moqueca de peixe, seafood stew, brazilian food, coconut milk stew, dende oil",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Cut the fish fillets into large chunks. Marinate with lime juice and sea salt, then set aside for 15 minutes to enhance flavor and firm up the fish.",
+      "Heat vegetable oil in a large pan over medium heat. Add minced garlic and sliced onions, cooking until softened and fragrant, about 5 minutes.",
+      "Stir in the sliced red and yellow bell peppers and chopped tomatoes. Cook for 5-7 minutes until vegetables soften and release their juices.",
+      "Pour in the coconut milk and dendê oil, stirring gently to combine. Bring to a gentle simmer.",
+      "Gently place the marinated fish chunks into the simmering stew. Cover and cook for 10-15 minutes, until the fish is opaque and cooked through.",
+      "Stir in chopped cilantro, green onions, and optional fresh chili. Adjust salt to taste. Serve hot with white rice and farofa."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -336,7 +360,7 @@ export default function BrazilianFishStewMoquecaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

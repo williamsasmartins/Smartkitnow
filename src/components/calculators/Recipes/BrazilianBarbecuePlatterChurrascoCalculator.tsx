@@ -6,6 +6,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+import { getRecipeSchema } from "@/components/RecipeSchema";
+
 export default function BrazilianBarbecuePlatterChurrascoCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
@@ -80,6 +82,27 @@ export default function BrazilianBarbecuePlatterChurrascoCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT1H30M",
+    totalTime: "PT1H50M",
+    recipeYield: "4 servings",
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "brazilian barbecue, churrasco, picanha, grilled meat, brazilian steakhouse, mixed grill",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Trim excess fat from the beef short ribs and pork ribs. Cut the chicken thighs into large pieces. For the picanha, leave a thick fat cap intact to enhance flavor. Mince garlic and mix with olive oil, lemon juice, and rosemary to create a marinade for the chicken and pork sausage.",
+      "Generously coat all meat cuts with coarse sea salt. Marinate the chicken thighs and pork sausage in the garlic-lemon mixture for at least 30 minutes. Sprinkle freshly ground black pepper on the picanha and ribs.",
+      "Light a charcoal or wood fire and allow it to burn down to medium-high heat with glowing embers. Arrange the grill grate about 6-8 inches above the coals for optimal cooking.",
+      "Skewer the meats or place them directly on the grill. Cook the picanha fat-side down first to render fat and create a crispy crust. Turn meats regularly to ensure even cooking. Grill sausages and chicken until cooked through and nicely charred. Ribs should be cooked low and slow for tenderness.",
+      "Arrange the grilled meats on a large platter with grilled pineapple slices and farofa. Serve chimichurri sauce on the side for dipping. Garnish with fresh lemon wedges."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -318,9 +341,7 @@ export default function BrazilianBarbecuePlatterChurrascoCalculator() {
               <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">
                 {f.question}
               </h3>
-              <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-                {f.answer}
-              </p>
+              <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">{f.answer}</p>
             </div>
           ))}
         </div>
@@ -375,7 +396,7 @@ export default function BrazilianBarbecuePlatterChurrascoCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

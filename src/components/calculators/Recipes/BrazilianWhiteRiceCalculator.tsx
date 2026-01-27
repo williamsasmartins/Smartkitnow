@@ -6,6 +6,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+import { getRecipeSchema } from "@/components/RecipeSchema";
+
 export default function BrazilianWhiteRiceCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
@@ -78,6 +80,28 @@ export default function BrazilianWhiteRiceCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT18M",
+    totalTime: "PT38M",
+    recipeYield: "4 servings",
+    recipeCategory: "Side Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "brazilian rice, arroz branco, garlic rice, fluffy rice, brazilian food, side dish",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Rinse the long-grain white rice under cold water until the water runs clear to remove excess starch. Drain well and set aside.",
+      "Heat the vegetable oil in a medium saucepan over medium heat. Add the minced garlic and chopped onion, sautéing until fragrant and translucent, about 3-4 minutes.",
+      "Add the drained rice to the saucepan and stir continuously for 2-3 minutes until the rice is well coated with oil and slightly toasted.",
+      "Pour in the water or broth, add salt and bay leaf, and stir once to combine. Bring to a boil over high heat.",
+      "Once boiling, reduce heat to low, cover with a tight-fitting lid, and simmer for 15-18 minutes until the liquid is absorbed and rice is tender. Avoid lifting the lid during cooking.",
+      "Remove from heat and let the rice rest, covered, for 5 minutes. Remove the bay leaf, then fluff the rice gently with a fork. Stir in chopped parsley and optional butter for extra flavor."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -364,7 +388,7 @@ export default function BrazilianWhiteRiceCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

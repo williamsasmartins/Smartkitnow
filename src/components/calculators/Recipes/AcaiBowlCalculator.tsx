@@ -6,6 +6,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+import { getRecipeSchema } from "@/components/RecipeSchema";
+
 export default function AcaiBowlCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
@@ -78,6 +80,26 @@ export default function AcaiBowlCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT10M",
+    cookTime: "PT0M",
+    totalTime: "PT10M",
+    recipeYield: "4 servings",
+    recipeCategory: "Breakfast",
+    recipeCuisine: "Brazilian",
+    keywords: "acai bowl, açaí na tigela, breakfast bowl, healthy breakfast, brazilian food, superfood",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "In a high-speed blender, combine the frozen açaí puree, ripe bananas, almond milk, and lime juice. Blend until smooth and thick, adding more almond milk if necessary to reach a creamy consistency.",
+      "Pour the blended açaí mixture into serving bowls. Arrange sliced strawberries, blueberries, banana slices, and granola on top in an appealing pattern.",
+      "Sprinkle chia seeds, coconut flakes, and fresh mint leaves over the bowl. Drizzle honey or agave syrup for added sweetness if desired.",
+      "Enjoy your fresh açaí bowl right away to experience the best texture and flavor. Optionally, add a spoonful of peanut butter for extra richness."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -341,7 +363,7 @@ export default function AcaiBowlCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

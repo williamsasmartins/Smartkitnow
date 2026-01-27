@@ -6,6 +6,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+import { getRecipeSchema } from "@/components/RecipeSchema";
+
 export default function BlackBeansSausageCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
@@ -81,6 +83,27 @@ export default function BlackBeansSausageCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT60M",
+    totalTime: "PT1H20M",
+    recipeYield: "4 servings",
+    recipeCategory: "Main Course",
+    recipeCuisine: "Brazilian",
+    keywords: "black beans with sausage, feijão com linguiça, brazilian black beans, calabresa sausage, pork and beans",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Rinse the dry black beans thoroughly and soak them in cold water for at least 6 hours or overnight. This helps reduce cooking time and improves digestibility.",
+      "Slice the calabresa sausage into thin rounds. Dice the onion, bell pepper, and carrot. Mince the garlic cloves.",
+      "Heat olive oil in a large pot over medium heat. Add the sausage slices and cook until browned and slightly crispy. Remove and set aside. In the same pot, add onion, garlic, bell pepper, and carrot. Sauté until softened and fragrant, about 5-7 minutes.",
+      "Drain the soaked beans and add them to the pot along with tomato paste, bay leaves, smoked paprika, cumin, salt, and black pepper. Stir well to combine.",
+      "Pour in the broth and bring the mixture to a boil. Reduce heat to low, cover, and simmer gently for about 50-60 minutes or until the beans are tender. Return the cooked sausage to the pot and stir to combine. Adjust seasoning to taste."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -251,18 +274,7 @@ export default function BlackBeansSausageCalculator() {
             <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">Simmer the Beans</h3>
             <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
               Pour in the broth and bring the mixture to a boil. Reduce heat to low, cover, and simmer
-              gently for about 50-60 minutes or until the beans are tender. Stir occasionally and add
-              water or broth if needed to maintain desired consistency.
-            </p>
-          </li>
-          <li className="ml-8 relative">
-            <span className="absolute -left-12 flex items-center justify-center w-8 h-8 bg-orange-100 rounded-full ring-4 ring-white dark:ring-slate-950 dark:bg-orange-900 text-orange-700 dark:text-orange-100 font-bold text-sm">
-              6
-            </span>
-            <h3 className="font-bold text-xl mb-2 text-slate-900 dark:text-white">Finish and Serve</h3>
-            <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed">
-              Return the cooked sausage to the pot and stir to combine. Adjust seasoning to taste.
-              Garnish with chopped fresh cilantro if desired. Serve hot with rice or crusty bread.
+              gently for about 50-60 minutes or until the beans are tender. Return the cooked sausage to the pot and stir to combine. Adjust seasoning to taste.
             </p>
           </li>
         </ol>
@@ -343,7 +355,7 @@ export default function BlackBeansSausageCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar
