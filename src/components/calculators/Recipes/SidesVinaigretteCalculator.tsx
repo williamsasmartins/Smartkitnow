@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SidesVinaigretteCalculator() {
   const [servings, setServings] = useState(4);
@@ -79,6 +80,25 @@ export default function SidesVinaigretteCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT0M",
+    totalTime: "PT20M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Condiment",
+    recipeCuisine: "Brazilian",
+    keywords: "vinagrete, brazilian vinaigrette, tomato salsa, churrasco side, refreshing salsa, traditional recipe",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Finely chop tomatoes, red onion, green bell pepper, parsley, cilantro, and chili (if using).",
+      "Whisk together olive oil, white vinegar, lime juice, sugar, salt, and black pepper.",
+      "Pour the dressing over the chopped vegetables and toss well.",
+      "Rest for at least 20 minutes to let flavors meld before serving."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -315,7 +335,7 @@ export default function SidesVinaigretteCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

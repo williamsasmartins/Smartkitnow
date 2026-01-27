@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SidesBlackBeansCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function SidesBlackBeansCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT60M",
+    totalTime: "PT80M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Side Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "feijão preto, brazilian black beans, seasoned black beans, slow-cooked beans, healthy side, traditional recipe",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Rinse and soak dried black beans for at least 6 hours or overnight.",
+      "Sauté finely chopped onion and minced garlic in olive oil until fragrant.",
+      "Add soaked and drained beans along with cumin, oregano, bay leaf, and seasonings.",
+      "Add water or broth, bring to a boil, and simmer for 50-60 minutes until tender.",
+      "Remove bay leaf, stir in lime juice and fresh cilantro; adjust seasoning and serve."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -313,7 +334,7 @@ export default function SidesBlackBeansCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

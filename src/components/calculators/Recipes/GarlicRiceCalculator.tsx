@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function GarlicRiceCalculator() {
   const [servings, setServings] = useState(4);
@@ -76,6 +77,27 @@ export default function GarlicRiceCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT15M",
+    totalTime: "PT35M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Side Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "garlic rice, arroz com alho, aromatic rice, brazilian side dish, flavorful rice, traditional recipe",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Rinse rice under cold water until clear; drain well.",
+      "Sauté minced garlic in vegetable oil and butter until fragrant and lightly golden.",
+      "Add rinsed rice and toast for a few minutes, stirring frequently.",
+      "Add broth (or water), salt, and pepper; bring to a boil.",
+      "Reduce heat to low, cover, and simmer for 15 minutes.",
+      "Remove from heat, rest for 5 minutes, fluff with a fork, and garnish with parsley and green onions."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -324,7 +346,7 @@ export default function GarlicRiceCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

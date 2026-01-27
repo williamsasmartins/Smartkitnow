@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SidesCollardGreensCalculator() {
   const [servings, setServings] = useState(4);
@@ -79,6 +80,26 @@ export default function SidesCollardGreensCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Side Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "couve a mineira, brazilian collard greens, flash-fried greens, garlic collard greens, feijoada side, healthy side",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Wash, de-stem, and thinly slice collard greens into ribbons.",
+      "Sauté diced bacon (if using) in olive oil until crispy.",
+      "Add onion and garlic to the pan and cook until fragrant.",
+      "Add greens and a splash of water, then flash-fry over high heat for 3-5 minutes.",
+      "Season with salt, pepper, paprika, and lemon juice; serve immediately."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -368,7 +389,7 @@ export default function SidesCollardGreensCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

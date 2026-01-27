@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SidesFarofaCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function SidesFarofaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Side Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "farofa, toasted cassava flour, brazilian side dish, crunchy side, bacon farofa, traditional recipe",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Finely chop onion, garlic, parsley, and dice bacon.",
+      "Sauté bacon in butter or oil until crispy, then add onion and garlic until fragrant.",
+      "Gradually add cassava flour, stirring constantly over medium-low heat.",
+      "Toast for 8-10 minutes until golden brown and nutty.",
+      "Stir in green onions, parsley, and seasonings; serve with lime."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -352,7 +373,7 @@ export default function SidesFarofaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

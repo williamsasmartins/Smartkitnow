@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SidesWhiteRiceCalculator() {
   const [servings, setServings] = useState(4);
@@ -77,6 +78,27 @@ export default function SidesWhiteRiceCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Side Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "brazilian white rice, arroz branco, garlic rice, fluffy white rice, staple side dish, traditional recipe",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Rinse rice under cold water until it runs clear.",
+      "Sauté minced garlic and onion in vegetable oil until fragrant.",
+      "Add rice and toast for 2-3 minutes, stirring frequently.",
+      "Add water, salt, bay leaf, and peppercorns; bring to a boil.",
+      "Cover and simmer on low for 10 minutes, then let rest for 10 minutes off heat.",
+      "Remove bay leaf/peppercorns, fluff with a fork, and stir in parsley and butter (optional)."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -335,7 +357,7 @@ export default function SidesWhiteRiceCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

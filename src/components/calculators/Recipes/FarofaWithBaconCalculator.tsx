@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function FarofaWithBaconCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function FarofaWithBaconCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Side Dish",
+    recipeCuisine: "Brazilian",
+    keywords: "farofa com bacon, manioc flour with bacon, brazilian farofa, smoky side dish, traditional recipe, crunchy side",
+    recipeIngredient: ingredients.map(i => `${getAmount(i.baseAmount)}${i.unit} ${i.name}`),
+    recipeInstructions: [
+      "Dice bacon and finely chop onion, garlic, and herbs.",
+      "Sauté bacon in olive oil until crispy, then add butter, onions, and garlic until fragrant.",
+      "Gradually add manioc flour, stirring constantly over medium-low heat.",
+      "Toast for 5-8 minutes until golden and fragrant.",
+      "Season with salt and pepper, then stir in fresh herbs and optional ingredients; serve warm."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -352,7 +373,7 @@ export default function FarofaWithBaconCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar
