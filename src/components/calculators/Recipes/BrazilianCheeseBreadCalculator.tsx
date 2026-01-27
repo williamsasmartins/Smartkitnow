@@ -6,6 +6,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+import { getRecipeSchema } from "@/components/RecipeSchema";
+
 export default function BrazilianCheeseBreadCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
@@ -80,6 +82,27 @@ export default function BrazilianCheeseBreadCalculator() {
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT15M",
+    totalTime: "PT35M",
+    recipeYield: "4 servings",
+    recipeCategory: "Appetizer",
+    recipeCuisine: "Brazilian",
+    keywords: "pao de queijo, brazilian cheese bread, gluten free bread, cassava flour recipe",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "In a medium saucepan, combine the milk, water, vegetable oil, butter (if using), and salt. Heat over medium until it just begins to boil, then remove from heat immediately.",
+      "Pour the hot liquid mixture over the tapioca flour in a large bowl. Stir vigorously with a wooden spoon until the mixture is smooth and forms a sticky dough. Let it cool for about 10 minutes.",
+      "Beat the eggs lightly and add them to the dough along with the grated Parmesan cheese (and mozzarella if using). Mix thoroughly until the dough is smooth and elastic.",
+      "Preheat your oven to 200°C (390°F). Using wet hands or a spoon, form small balls (about 3-4 cm diameter) from the dough and place them on a baking sheet lined with parchment paper.",
+      "Bake for 15-20 minutes or until the cheese breads puff up and turn golden on top. Remove from oven and let cool slightly before serving."
+    ]
+  });
+
   // --- WIDGET CONTENT ---
   const widget = (
     <div className="space-y-6">
@@ -140,7 +163,7 @@ export default function BrazilianCheeseBreadCalculator() {
                   <TableCell className="font-medium text-base">{ing.name}</TableCell>
                   <TableCell className="text-right font-bold text-base text-slate-700 dark:text-slate-200">
                     {ing.unit === "pcs"
-                      ? Math.round(getAmount(ing.baseAmount))
+                      ? Math.round(Number(getAmount(ing.baseAmount)))
                       : getAmount(ing.baseAmount)}{" "}
                     {ing.unit}
                   </TableCell>
@@ -330,7 +353,7 @@ export default function BrazilianCheeseBreadCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-interface RecipeSchemaProps {
+export interface RecipeSchemaData {
     name: string;
     description: string;
     image?: string;
@@ -15,24 +15,26 @@ interface RecipeSchemaProps {
     recipeInstructions?: string[];
 }
 
-export function RecipeSchema({
-    name,
-    description,
-    image = '/favicon.png',
-    prepTime,
-    cookTime,
-    totalTime,
-    recipeYield,
-    recipeCategory = 'Recipe',
-    recipeCuisine,
-    keywords,
-    recipeIngredient = [],
-    recipeInstructions = []
-}: RecipeSchemaProps) {
+export function getRecipeSchema(data: RecipeSchemaData) {
+    const {
+        name,
+        description,
+        image = '/favicon.png',
+        prepTime,
+        cookTime,
+        totalTime,
+        recipeYield,
+        recipeCategory = 'Recipe',
+        recipeCuisine,
+        keywords,
+        recipeIngredient = [],
+        recipeInstructions = []
+    } = data;
+
     const baseUrl = 'https://www.smartkitnow.com';
     const absoluteImage = image.startsWith('http') ? image : `${baseUrl}${image}`;
 
-    const schema = {
+    return {
         '@context': 'https://schema.org',
         '@type': 'Recipe',
         name,
@@ -63,6 +65,10 @@ export function RecipeSchema({
             ratingCount: '100'
         }
     };
+}
+
+export function RecipeSchema(props: RecipeSchemaData) {
+    const schema = getRecipeSchema(props);
 
     return (
         <Helmet>

@@ -6,6 +6,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+import { getRecipeSchema } from "@/components/RecipeSchema";
+
 export default function FeijoadaBlackBeanPorkStewCalculator() {
     const [servings, setServings] = useState(6);
     const [imgSrc, setImgSrc] = useState(
@@ -21,6 +23,7 @@ export default function FeijoadaBlackBeanPorkStewCalculator() {
         { name: "Black Beans", baseAmount: 500, unit: "g" },
         { name: "Dried Beef (Carne Seca)", baseAmount: 200, unit: "g" },
         { name: "Smoked Pork Sausage (Paio)", baseAmount: 200, unit: "g" },
+        { name: "Smoked Pork Sausage (Calabresa)", baseAmount: 200, unit: "g" },
         { name: "Smoked Pork Ribs", baseAmount: 300, unit: "g" },
         { name: "Bacon", baseAmount: 100, unit: "g" },
         { name: "Onion (finely chopped)", baseAmount: 1, unit: "large" },
@@ -64,6 +67,27 @@ export default function FeijoadaBlackBeanPorkStewCalculator() {
         },
     ];
     const faqJsonLd = useFaqJsonLd(faqs);
+
+    const recipeJsonLd = getRecipeSchema({
+        name: title,
+        description: description,
+        image: imgSrc,
+        prepTime: "PT40M",
+        cookTime: "PT3H",
+        totalTime: "PT3H40M",
+        recipeYield: "6 servings",
+        recipeCategory: "Main Course",
+        recipeCuisine: "Brazilian",
+        keywords: "feijoada, brazilian black bean stew, national dish of brazil, pork stew, comfort food",
+        recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+        recipeInstructions: [
+            "If using carne seca or salt pork, soak them in water for 24 hours in the refrigerator, changing the water several times to remove excess salt. Cut all meats into bite-sized chunks.",
+            "In a large heavy pot, add the black beans and cover with water. Bring to a boil, then add the tougher meats like ribs and carne seca. Simmer for about 1.5 hours until the beans start to soften.",
+            "Add the sliced sausages and bacon. Continue to simmer for another 45 minutes to 1 hour. If the stew gets too thick, add a little more water.",
+            "In a separate small pan, sauté onion and garlic in a little oil. Ladle two spoons of beans from the main pot into this pan and mash them with a fork to form a paste. Pour this paste back into the main pot to thicken and season the stew.",
+            "Adjust salt and pepper. Serve hot with white rice, collard greens, and orange slices."
+        ]
+    });
 
     // --- WIDGET CONTENT ---
     const widget = (
@@ -235,7 +259,7 @@ export default function FeijoadaBlackBeanPorkStewCalculator() {
             description={description}
             widget={widget}
             editorial={editorial}
-            jsonLd={faqJsonLd}
+            jsonLd={[faqJsonLd, recipeJsonLd]}
             hideLegalDisclaimer={true}
             showTopBanner
             showSidebar

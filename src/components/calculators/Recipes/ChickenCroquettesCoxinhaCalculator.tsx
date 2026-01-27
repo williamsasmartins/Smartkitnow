@@ -6,6 +6,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
+import { getRecipeSchema } from "@/components/RecipeSchema";
+
 export default function ChickenCroquettesCoxinhaCalculator() {
   const [servings, setServings] = useState(4);
   const [imgSrc, setImgSrc] = useState(
@@ -80,6 +82,27 @@ export default function ChickenCroquettesCoxinhaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT15M",
+    totalTime: "PT35M",
+    recipeYield: "4 servings",
+    recipeCategory: "Appetizer",
+    recipeCuisine: "Brazilian",
+    keywords: "coxinha, chicken croquettes, brazilian appetizers, savory dough, street food",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "In a skillet, melt half the butter over medium heat. Sauté the chopped onion and minced garlic until translucent and fragrant. Add the shredded chicken, salt, pepper, nutmeg (if using), and half the parsley. Stir in the cream cheese until melted and well combined. Remove from heat and let cool.",
+      "In a saucepan, bring the chicken broth, remaining butter, salt, and pepper to a boil. Gradually add the flour, stirring vigorously until the dough forms a ball and pulls away from the sides. Remove from heat and let it cool slightly.",
+      "Once the dough is cool enough to handle, knead it until smooth. Divide into equal portions. Flatten each portion in your palm, place a spoonful of filling in the center, then fold and shape into a tear-drop or drumstick shape, sealing the edges tightly.",
+      "Beat the eggs in a shallow bowl. Dip each croquette first in the egg, then coat thoroughly with breadcrumbs.",
+      "Heat vegetable oil in a deep fryer or heavy pot to 170-180°C (340-355°F). Fry croquettes in batches until golden brown and crispy, about 4-5 minutes. Drain on paper towels."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -339,7 +362,7 @@ export default function ChickenCroquettesCoxinhaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar
