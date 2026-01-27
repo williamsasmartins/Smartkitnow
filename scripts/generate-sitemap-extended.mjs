@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync, readdirSync } from "fs";
 import path from "path";
 
 // Host canonical
@@ -54,6 +54,7 @@ const STATIC_ENTRIES = [
   { loc: `${HOST}/smart-tips`, lastmod: formatDate(), priority: 0.4 },
   { loc: `${HOST}/recipes`, lastmod: formatDate(), priority: 0.4 },
   { loc: `${HOST}/recipes/mexican`, lastmod: formatDate(), priority: 0.45 },
+  { loc: `${HOST}/recipes/brazilian`, lastmod: formatDate(), priority: 0.45 },
 ];
 
 // Coleta calculadoras do registry
@@ -88,8 +89,6 @@ for (const e of [...STATIC_ENTRIES, ...dynamicEntries]) {
   byLoc.set(e.loc, e);
 }
 
-const entries = Array.from(byLoc.values()).sort((a, b) => a.loc.localeCompare(b.loc));
-
 const mexicanMatch = cuisinesBuf.match(/key:\s*"mexican"[\s\S]*?recipes:\s*R\(\[([\s\S]*?)\]\)/);
 if (mexicanMatch) {
   const titles = mexicanMatch[1]
@@ -114,6 +113,35 @@ if (mexicanMatch) {
     byLoc.set(loc, { loc, lastmod: formatDate(), priority: 0.35 });
   }
 }
+
+// Add Brazilian recipes from the Recipes directory
+const recipesDir = path.resolve("src/components/calculators/Recipes");
+try {
+  const recipeFiles = readdirSync(recipesDir).filter(f => f.endsWith("Calculator.tsx"));
+
+  const slugifyFilename = (filename) => {
+    // Remove "Calculator.tsx" suffix
+    const name = filename.replace(/Calculator\.tsx$/, "");
+    // Convert PascalCase to kebab-case
+    return name
+      .replace(/([a-z])([A-Z])/g, "$1-$2")
+      .replace(/([A-Z])([A-Z][a-z])/g, "$1-$2")
+      .toLowerCase();
+  };
+
+  for (const file of recipeFiles) {
+    const slug = slugifyFilename(file);
+    const loc = `${HOST}/recipes/brazilian/${slug}`;
+    byLoc.set(loc, { loc, lastmod: formatDate(), priority: 0.35 });
+  }
+
+  console.log(`Added ${recipeFiles.length} Brazilian recipes to sitemap`);
+} catch (err) {
+  console.warn("Could not read Brazilian recipes directory:", err.message);
+}
+
+// Regenerate entries array after adding all recipes
+const entries = Array.from(byLoc.values()).sort((a, b) => a.loc.localeCompare(b.loc));
 
 // Monta XML com lastmod/priority
 const body = entries
