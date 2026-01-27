@@ -1,109 +1,93 @@
 {
-  "date": "January 26, 2026",
+  "date": "January 27, 2026",
   "hero": {
-    "text": "Excellence is not a skill; it's an attitude.",
-    "author": "Ralph Marston"
+    "text": "Believe in yourself and all that you are.",
+    "author": "Christian D. Larson"
   },
   "aries": {
-    "general": "Today is a day for making bold decisions. Trust your instincts and step forward with confidence.",
-    "love": "Passion ignites today, bringing a spark to your relationships. Embrace the warmth.",
-    "career": "Opportunities arise in unexpected ways. Be ready to seize them.",
-    "luckyNumbers": "4, 7, 14"
+    "general": "Today will be a fiery day full of spontaneity. Embrace new beginnings and take risks.",
+    "love": "Your passion will shine brightly; be open to expressing your feelings to your partner.",
+    "career": "An unexpected opportunity may arise; be ready to seize the moment.",
+    "luckyNumbers": "3, 7, 9"
   },
   "taurus": {
-    "general": "Focus on grounding yourself today. Stability will come through patience and perseverance.",
-    "love": "Nurturing your bond leads to deeper connections. Show love through small gestures.",
-    "career": "Your hard work will not go unnoticed, but be open to feedback.",
-    "luckyNumbers": "3, 8, 12"
+    "general": "Slow and steady wins the race today. Focus on long-term goals and be patient.",
+    "love": "Stability in relationships is essential; communicate clearly with your loved ones.",
+    "career": "Persistence will pay off; continue working hard and success will come.",
+    "luckyNumbers": "2, 5, 8"
   },
   "gemini": {
-    "general": "Communication is key today. Express your thoughts clearly to avoid misunderstandings.",
-    "love": "A new connection could blossom through shared interests. Be open to surprises.",
-    "career": "Network and collaborate with others to unlock new possibilities.",
-    "luckyNumbers": "2, 9, 19"
+    "general": "Your ideas will flow effortlessly; engage in conversations that inspire you.",
+    "love": "Flirtation and humor will bring joy to your interactions today.",
+    "career": "Networking is key; reach out to contacts that could assist your ambitions.",
+    "luckyNumbers": "1, 4, 6"
   },
   "cancer": {
-    "general": "Embrace your emotions today; they guide you toward clarity and strength.",
-    "love": "Intuition leads you to understand a partner's needs better. Listen closely.",
-    "career": "Focus on creativity and innovation; your contributions can make a difference.",
-    "luckyNumbers": "5, 11, 15"
+    "general": "Emotional insights are strong today; trust your intuition.",
+    "love": "Deep connections are highlighted; spend quality time with those you cherish.",
+    "career": "Teamwork will enhance productivity; collaborate for better outcomes.",
+    "luckyNumbers": "3, 8, 10"
   },
   "leo": {
-    "general": "Today's energy is bold and vibrant. Let your true colors shine and lead the way.",
-    "love": "Romance is in the air; plan a special date night to rekindle the spark.",
-    "career": "Your leadership skills are highlighted. Step up and take charge.",
-    "luckyNumbers": "1, 6, 18"
+    "general": "Your charisma is magnetic; let others be drawn to your energy.",
+    "love": "Romance is in the air; surprise your partner with something special.",
+    "career": "Take the lead on projects; your natural leadership will shine.",
+    "luckyNumbers": "5, 7, 11"
   },
   "virgo": {
-    "general": "Organizational skills will serve you well. Tackle your to-do list with focus and determination.",
-    "love": "Sharing responsibilities in your relationship strengthens your bond.",
-    "career": "Attention to detail is your ally today; utilize it to perfect your work.",
-    "luckyNumbers": "10, 13, 17"
+    "general": "Attention to detail will pay off; focus on the minutiae today.",
+    "love": "Practicality will benefit relationships; work together toward common goals.",
+    "career": "Organizational skills will shine; use this time to streamline processes.",
+    "luckyNumbers": "2, 9, 12"
   },
   "libra": {
-    "general": "Seek balance in all areas of your life. Harmony will bring peace.",
-    "love": "A little compromise can lead to a joyful outcome. Be ready to meet halfway.",
-    "career": "Collaborative efforts will bear fruit—embrace teamwork today.",
-    "luckyNumbers": "2, 4, 20"
+    "general": "Seek harmony in your surroundings; balance will be achieved through cooperation.",
+    "love": "Open dialogues will deepen connections; listen as much as you speak.",
+    "career": "Creative solutions will emerge; think outside the box.",
+    "luckyNumbers": "1, 6, 10"
   },
   "scorpio": {
-    "general": "Trust your instincts; they are your strongest ally today. Follow your gut.",
-    "love": "Deep conversations bring you closer to your partner. Open up.",
-    "career": "Your intuition will guide you in making key decisions. Don't second-guess yourself.",
-    "luckyNumbers": "7, 22, 28"
+    "general": "Your intensity is heightened; channel it into productive outlets.",
+    "love": "Vulnerability can lead to greater intimacy; share your true feelings.",
+    "career": "Strategic planning is essential; map out your goals carefully.",
+    "luckyNumbers": "4, 7, 8"
   },
   "sagittarius": {
-    "general": "Adventure beckons; embrace new experiences today. Let curiosity lead you.",
-    "love": "Spontaneity in romance can lead to delightful surprises. Be open-minded.",
-    "career": "Take a leap of faith on new opportunities—trust that they will lead to growth.",
-    "luckyNumbers": "1, 9, 23"
+    "general": "Adventure beckons; embrace new experiences and explore possibilities.",
+    "love": "Fun and spontaneity will liven your romantic life.",
+    "career": "Innovation is key; don’t hesitate to suggest new ideas.",
+    "luckyNumbers": "3, 5, 9"
   },
   "capricorn": {
-    "general": "Your determination is palpable today. Harness it to achieve your goals.",
-    "love": "Stability in your relationship offers a foundation for growth. Cherish it.",
-    "career": "Your ambitions are clear; pursue them with diligence and patience.",
-    "luckyNumbers": "5, 16, 24"
+    "general": "Your hard work is about to pay off; stay focused on your aims.",
+    "love": "Realism in love matters will cultivate greater appreciation.",
+    "career": "Leadership roles are favored; take charge of projects today.",
+    "luckyNumbers": "2, 6, 11"
   },
   "aquarius": {
-    "general": "Innovative ideas flourish today. Don't shy away from thinking outside the box.",
-    "love": "Your uniqueness attracts attention. Embrace who you are unapologetically.",
-    "career": "Seek out unconventional solutions; your creativity is a powerful tool.",
-    "luckyNumbers": "3, 15, 25"
+    "general": "Inspiration strikes; embrace your creative side.",
+    "love": "Friendship and love blend harmoniously; let these connections flourish.",
+    "career": "Team efforts yield rewarding results; collaborate effectively.",
+    "luckyNumbers": "1, 3, 8"
   },
   "pisces": {
-    "general": "Emotional depth can lead to profound insights today. Listen to your heart.",
-    "love": "Romantic gestures will bring joy. Don't hesitate to express your feelings.",
-    "career": "Your artistic skills are in the spotlight. Share your vision confidently.",
-    "luckyNumbers": "6, 12, 29"
+    "general": "Emotional currents are strong; go with the flow and trust your instincts.",
+    "love": "Nurture the emotional bond you share with others.",
+    "career": "Intuition guides your professional paths; trust your gut feelings.",
+    "luckyNumbers": "4, 5, 7"
   },
   "content": {
     "professional": [
       {
         "id": 1,
-        "text": "Success usually comes to those who are too busy to be looking for it.",
-        "author": "Henry David Thoreau",
+        "text": "Success is not the key to happiness. Happiness is the key to success.",
+        "author": "Albert Schweitzer",
         "tags": [
           "career"
         ]
       },
       {
         "id": 2,
-        "text": "The only way to do great work is to love what you do.",
-        "author": "Steve Jobs",
-        "tags": [
-          "career"
-        ]
-      },
-      {
-        "id": 3,
-        "text": "Don’t watch the clock; do what it does. Keep going.",
-        "author": "Sam Levenson",
-        "tags": [
-          "career"
-        ]
-      },
-      {
-        "id": 4,
         "text": "Opportunities don't happen. You create them.",
         "author": "Chris Grosser",
         "tags": [
@@ -111,7 +95,7 @@
         ]
       },
       {
-        "id": 5,
+        "id": 3,
         "text": "I find that the harder I work, the more luck I seem to have.",
         "author": "Thomas Jefferson",
         "tags": [
@@ -119,9 +103,25 @@
         ]
       },
       {
+        "id": 4,
+        "text": "The future depends on what you do today.",
+        "author": "Mahatma Gandhi",
+        "tags": [
+          "career"
+        ]
+      },
+      {
+        "id": 5,
+        "text": "You miss 100% of the shots you don’t take.",
+        "author": "Wayne Gretzky",
+        "tags": [
+          "career"
+        ]
+      },
+      {
         "id": 6,
-        "text": "Success is not the key to happiness. Happiness is the key to success.",
-        "author": "Albert Schweitzer",
+        "text": "The only way to do great work is to love what you do.",
+        "author": "Steve Jobs",
         "tags": [
           "career"
         ]
@@ -130,30 +130,14 @@
     "motivation": [
       {
         "id": 1,
-        "text": "You are never too old to set another goal or to dream a new dream.",
-        "author": "C.S. Lewis",
-        "tags": [
-          "motivation"
-        ]
-      },
-      {
-        "id": 2,
-        "text": "The future belongs to those who believe in the beauty of their dreams.",
-        "author": "Eleanor Roosevelt",
-        "tags": [
-          "motivation"
-        ]
-      },
-      {
-        "id": 3,
-        "text": "Your limitation—it’s only your imagination.",
+        "text": "Your limitation—it's only your imagination.",
         "author": "Unknown",
         "tags": [
           "motivation"
         ]
       },
       {
-        "id": 4,
+        "id": 2,
         "text": "Push yourself, because no one else is going to do it for you.",
         "author": "Unknown",
         "tags": [
@@ -161,7 +145,7 @@
         ]
       },
       {
-        "id": 5,
+        "id": 3,
         "text": "Great things never come from comfort zones.",
         "author": "Unknown",
         "tags": [
@@ -169,8 +153,24 @@
         ]
       },
       {
-        "id": 6,
+        "id": 4,
         "text": "Dream it. Wish it. Do it.",
+        "author": "Unknown",
+        "tags": [
+          "motivation"
+        ]
+      },
+      {
+        "id": 5,
+        "text": "Success doesn’t just find you. You have to go out and get it.",
+        "author": "Unknown",
+        "tags": [
+          "motivation"
+        ]
+      },
+      {
+        "id": 6,
+        "text": "The harder you work for something, the greater you’ll feel when you achieve it.",
         "author": "Unknown",
         "tags": [
           "motivation"
@@ -180,48 +180,48 @@
     "captions": [
       {
         "id": 1,
-        "text": "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
-        "author": "Ralph Waldo Emerson",
+        "text": "Embrace the chaos, where the magic happens.",
+        "author": "Unknown",
         "tags": [
           "caption"
         ]
       },
       {
         "id": 2,
-        "text": "Believe you can and you're halfway there.",
-        "author": "Theodore Roosevelt",
+        "text": "Find your joy in the journey, not just the destination.",
+        "author": "Unknown",
         "tags": [
           "caption"
         ]
       },
       {
         "id": 3,
-        "text": "Act as if what you do makes a difference. It does.",
-        "author": "William James",
+        "text": "Moments make memories; cherish them.",
+        "author": "Unknown",
         "tags": [
           "caption"
         ]
       },
       {
         "id": 4,
-        "text": "Life is 10% what happens to us and 90% how we react to it.",
-        "author": "Charles R. Swindoll",
+        "text": "Discover the extraordinary in the ordinary.",
+        "author": "Unknown",
         "tags": [
           "caption"
         ]
       },
       {
         "id": 5,
-        "text": "You must be the change you wish to see in the world.",
-        "author": "Mahatma Gandhi",
+        "text": "You are the artist of your own life.",
+        "author": "Unknown",
         "tags": [
           "caption"
         ]
       },
       {
         "id": 6,
-        "text": "Success is not in what you have, but who you are.",
-        "author": "Bo Bennett",
+        "text": "Live the life you’ve dreamed.",
+        "author": "Unknown",
         "tags": [
           "caption"
         ]
@@ -238,8 +238,8 @@
       },
       {
         "id": 2,
-        "text": "The great growling engine of change - technology.",
-        "author": "Alfred North Whitehead",
+        "text": "The Internet is becoming the town square for the global village of tomorrow.",
+        "author": "Bill Gates",
         "tags": [
           "tech"
         ]
@@ -254,24 +254,24 @@
       },
       {
         "id": 4,
-        "text": "Any sufficiently advanced technology is indistinguishable from magic.",
-        "author": "Arthur C. Clarke",
+        "text": "The science of today is the technology of tomorrow.",
+        "author": "Edward Teller",
         "tags": [
           "tech"
         ]
       },
       {
         "id": 5,
-        "text": "Technology is a word that describes something that doesn’t work yet.",
-        "author": "Douglas Adams",
+        "text": "Technology, like art, is a soaring exercise of the human imagination.",
+        "author": "Daniel Bell",
         "tags": [
           "tech"
         ]
       },
       {
         "id": 6,
-        "text": "The most important thing is to keep the most important thing the most important thing.",
-        "author": "Don Wood",
+        "text": "Innovation distinguishes between a leader and a follower.",
+        "author": "Steve Jobs",
         "tags": [
           "tech"
         ]
@@ -280,15 +280,15 @@
     "fun": [
       {
         "id": 1,
-        "text": "I'm not arguing, I'm just explaining why I'm right.",
-        "author": "Unknown",
+        "text": "Always remember that you are absolutely unique. Just like everyone else.",
+        "author": "Margaret Mead",
         "tags": [
           "fun"
         ]
       },
       {
         "id": 2,
-        "text": "Why don’t scientists trust atoms? Because they make up everything!",
+        "text": "I used to think I was indecisive, but now I'm not too sure.",
         "author": "Unknown",
         "tags": [
           "fun"
@@ -296,7 +296,7 @@
       },
       {
         "id": 3,
-        "text": "I told my computer I needed a break, and now it won’t stop sending me beach photos.",
+        "text": "The early bird might get the worm, but the second mouse gets the cheese.",
         "author": "Unknown",
         "tags": [
           "fun"
@@ -304,15 +304,15 @@
       },
       {
         "id": 4,
-        "text": "What do you call fake spaghetti? An impasta!",
-        "author": "Unknown",
+        "text": "A day without laughter is a day wasted.",
+        "author": "Charlie Chaplin",
         "tags": [
           "fun"
         ]
       },
       {
         "id": 5,
-        "text": "Parallel lines have so much in common. It’s a shame they’ll never meet.",
+        "text": "I'm on my way to a better me; please excuse the detours.",
         "author": "Unknown",
         "tags": [
           "fun"
@@ -320,7 +320,7 @@
       },
       {
         "id": 6,
-        "text": "I would tell a joke about construction, but I’m still working on it.",
+        "text": "Don't worry if plan A doesn't work out, there are 25 more letters in the alphabet.",
         "author": "Unknown",
         "tags": [
           "fun"
@@ -330,7 +330,7 @@
     "faith": [
       {
         "id": 1,
-        "text": "Faith is taking the first step even when you don't see the whole staircase.",
+        "text": "Faith is taking the first step even when you don’t see the whole staircase.",
         "author": "Martin Luther King Jr.",
         "tags": [
           "faith"
@@ -338,40 +338,40 @@
       },
       {
         "id": 2,
-        "text": "The moment you doubt whether you can fly, you cease forever to be able to do it.",
-        "author": "J.M. Barrie",
+        "text": "Everything that is done in the world is done by hope.",
+        "author": "Martin Luther",
         "tags": [
           "faith"
         ]
       },
       {
         "id": 3,
-        "text": "Your faith can move mountains.",
-        "author": "Jesus Christ",
+        "text": "To be a Christian means to forgive the inexcusable because God has forgiven the inexcusable in you.",
+        "author": "C.S. Lewis",
         "tags": [
           "faith"
         ]
       },
       {
         "id": 4,
-        "text": "In faith, there is enough light for those who want to believe.",
-        "author": "George B. TANQUARY",
+        "text": "Faith is the bird that feels the light and sings when the dawn is still dark.",
+        "author": "Rabindranath Tagore",
         "tags": [
           "faith"
         ]
       },
       {
         "id": 5,
-        "text": "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
-        "author": "Christian D. Larson",
+        "text": "A strong faith can move mountains.",
+        "author": "Unknown",
         "tags": [
           "faith"
         ]
       },
       {
         "id": 6,
-        "text": "Faith sees the invisible, believes the unbelievable, and receives the impossible.",
-        "author": "Corrie Ten Boom",
+        "text": "Faith does not eliminate questions. But faith knows where to take them.",
+        "author": "Elisabeth Elliot",
         "tags": [
           "faith"
         ]
@@ -380,6 +380,14 @@
     "wisdom": [
       {
         "id": 1,
+        "text": "Wisdom is the reward for a lifetime of listening when you would rather have talked.",
+        "author": "Marilyn vos Savant",
+        "tags": [
+          "wisdom"
+        ]
+      },
+      {
+        "id": 2,
         "text": "The only true wisdom is in knowing you know nothing.",
         "author": "Socrates",
         "tags": [
@@ -387,41 +395,33 @@
         ]
       },
       {
-        "id": 2,
-        "text": "Wisdom is not a product of schooling but of the lifelong attempt to acquire it.",
-        "author": "Albert Einstein",
-        "tags": [
-          "wisdom"
-        ]
-      },
-      {
         "id": 3,
-        "text": "In seeking wisdom, you will encounter more questions than answers.",
-        "author": "Unknown",
+        "text": "In seeking wisdom, the first step is silence, the second listening, the third remembering.",
+        "author": "Anonymous",
         "tags": [
           "wisdom"
         ]
       },
       {
         "id": 4,
-        "text": "Knowledge speaks, but wisdom listens.",
-        "author": "Jimi Hendrix",
+        "text": "The wiser you get, the more you realize how little you know.",
+        "author": "Anonymous",
         "tags": [
           "wisdom"
         ]
       },
       {
         "id": 5,
-        "text": "Wisdom begins in wonder.",
-        "author": "Socrates",
+        "text": "Patience is the companion of wisdom.",
+        "author": "Saint Augustine",
         "tags": [
           "wisdom"
         ]
       },
       {
         "id": 6,
-        "text": "Truth will ultimately prevail where there is pains to bring it to light.",
-        "author": "George Washington",
+        "text": "Knowledge speaks, but wisdom listens.",
+        "author": "Jimi Hendrix",
         "tags": [
           "wisdom"
         ]
