@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function PassionFruitJuiceCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function PassionFruitJuiceCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT10M",
+    cookTime: "PT5M",
+    totalTime: "PT15M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Drink",
+    recipeCuisine: "Brazilian",
+    keywords: "passion fruit juice, suco de maracujá, brazilian juice, tropical drink, refreshing beverage",
+    recipeIngredient: ingredients.map(ing => `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Scoop out the passion fruit pulp and strain through a sieve if seeds aren't desired.",
+      "Combine pulp, water, sugar, and lime juice in a pitcher and stir until sugar dissolves.",
+      "Optionally add coconut water, orange juice, or ginger juice for extra flavor complexity.",
+      "Add ice and stir well. For a sparkling twist, add sparkling water just before serving.",
+      "Store refrigerated and serve chilled, stirring before consumption if separation occurs."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -365,7 +386,7 @@ export default function PassionFruitJuiceCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

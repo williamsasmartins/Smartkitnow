@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function GuaranaSodaCalculator() {
   const [servings, setServings] = useState(4);
@@ -77,6 +78,26 @@ export default function GuaranaSodaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT10M",
+    cookTime: "PT0M",
+    totalTime: "PT10M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Drink",
+    recipeCuisine: "Brazilian",
+    keywords: "guarana soda, brazilian soda, energy drink, guarana berry, refreshing beverage",
+    recipeIngredient: ingredients.map(ing => `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Prepare guarana extract by dissolving powder in a small amount of warm water or measuring ready extract.",
+      "Dissolve cane sugar and citric acid in a small amount of warm water to create a syrup base.",
+      "In a pitcher, combine guarana extract, syrup base, natural flavors, and other additives.",
+      "Slowly pour in chilled carbonated water and stir gently to preserve fizz.",
+      "Serve immediately over ice in glasses garnished with mint and lime."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -319,7 +340,7 @@ export default function GuaranaSodaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

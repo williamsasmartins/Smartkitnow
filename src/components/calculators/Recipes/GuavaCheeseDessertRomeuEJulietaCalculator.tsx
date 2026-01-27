@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function GuavaCheeseDessertRomeuEJulietaCalculator() {
   const [servings, setServings] = useState(4);
@@ -79,6 +80,27 @@ export default function GuavaCheeseDessertRomeuEJulietaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT30M", // Updated to match baking time (25-30m)
+    totalTime: "PT50M",
+    recipeYield: "4 servings",
+    recipeCategory: "Dessert",
+    recipeCuisine: "Brazilian",
+    keywords: "romeu e julieta, guava and cheese, brazilian dessert, goiabada, minas cheese",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Cut the guava paste into small cubes or thin slices. If firm, warm slightly to soften.",
+      "In a bowl, mix cream cheese, sweetened condensed milk, heavy cream, sugar, vanilla extract, lime zest, and a pinch of salt until smooth.",
+      "Preheat oven to 180°C (350°F). Cream butter and sugar, add eggs, then fold in flour. Pour into a greased dish.",
+      "Spread half the guava paste over the batter, add the cheese layer, then top with remaining guava paste and optional cheese slices.",
+      "Bake for 25-30 minutes until golden. Cool slightly, dust with powdered sugar, and serve."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -339,7 +361,7 @@ export default function GuavaCheeseDessertRomeuEJulietaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function CaipirinhaCocktailCalculator() {
   const [servings, setServings] = useState(4);
@@ -38,8 +39,8 @@ export default function CaipirinhaCocktailCalculator() {
     base === 1
       ? "1"
       : base > 1 && Number.isInteger(base)
-      ? (base * (servings / 4)).toFixed(0)
-      : (base * (servings / 4)).toFixed(1).replace(/\.0$/, "");
+        ? (base * (servings / 4)).toFixed(0)
+        : (base * (servings / 4)).toFixed(1).replace(/\.0$/, "");
 
   // --- FAQ (RICH & DETAILED) ---
   const faqs = [
@@ -75,6 +76,26 @@ export default function CaipirinhaCocktailCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT10M",
+    cookTime: "PT0M",
+    totalTime: "PT10M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Drink",
+    recipeCuisine: "Brazilian",
+    keywords: "caipirinha, brazilian cocktail, cachaça drink, classic cocktail, traditional caipirinha",
+    recipeIngredient: ingredients.map(ing => `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Wash the lime and cut it into 8 wedges, removing the white pith if desired.",
+      "Place the lime wedges and granulated sugar into a sturdy glass.",
+      "Muddle the lime and sugar to release the juice and essential oils.",
+      "Pour the cachaça over the mixture and fill the glass with crushed ice.",
+      "Stir gently to combine and garnish with a lime wedge. Serve immediately."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -306,7 +327,7 @@ export default function CaipirinhaCocktailCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

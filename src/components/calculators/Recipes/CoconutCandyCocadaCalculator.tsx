@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function CoconutCandyCocadaCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,27 @@ export default function CoconutCandyCocadaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: "4 servings",
+    recipeCategory: "Dessert",
+    recipeCuisine: "Brazilian",
+    keywords: "cocada, coconut candy, brazilian sweet, shredded coconut, chewy candy",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "In a heavy-bottomed pan, combine granulated sugar and water. Heat over medium heat until sugar dissolves. Cook until it reaches a soft-ball stage.",
+      "Lower the heat and stir in the shredded coconut, sweetened condensed milk, butter, vanilla extract, salt, and lime juice.",
+      "Continue cooking over low heat, stirring constantly, until the mixture thickens and pulls away from the sides of the pan.",
+      "Remove from heat and let cool slightly. Spoon onto parchment paper or into molds.",
+      "Allow to cool completely until firm. Store in an airtight container."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -320,7 +342,7 @@ export default function CoconutCandyCocadaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function BlackEyedPeaFrittersAcarajeCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,27 @@ export default function BlackEyedPeaFrittersAcarajeCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: "4 servings",
+    recipeCategory: "Appetizer",
+    recipeCuisine: "Brazilian",
+    keywords: "acaraje, black eyed pea fritters, brazilian street food, bahian cuisine, dende oil",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Rinse the black-eyed peas and soak them in plenty of water overnight (8-12 hours). After soaking, drain and rub the peas between your hands or against a coarse sieve to remove the skins. Rinse and repeat until most skins are removed. Drain well.",
+      "In a food processor or blender, combine the peeled black-eyed peas, chopped onion, minced garlic, parsley, salt, black pepper, and cayenne pepper. Blend until you get a smooth, thick batter. Add a little water if needed to help blend, but keep the batter thick.",
+      "Pour dende oil into a deep frying pan or pot to a depth of about 5 cm (2 inches). Heat over medium-high heat until it reaches 180°C (350°F).",
+      "Using a spoon or your hands, shape the batter into small balls or ovals and carefully drop them into the hot oil. Fry in batches, turning occasionally, until golden brown and crispy, about 5-7 minutes. Remove with a slotted spoon and drain on paper towels.",
+      "Serve the fritters hot with lime wedges and optional hot sauce or traditional Bahian fillings like vatapá and caruru."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -367,7 +389,7 @@ export default function BlackEyedPeaFrittersAcarajeCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

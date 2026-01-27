@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function PeanutBrittleBrazilianStyleCalculator() {
   const [servings, setServings] = useState(4);
@@ -76,6 +77,26 @@ export default function PeanutBrittleBrazilianStyleCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Dessert",
+    recipeCuisine: "Brazilian",
+    keywords: "pé-de-moleque, peanut brittle, brazilian peanut sweet, traditional dessert, rustic candy",
+    recipeIngredient: ingredients.map(ing => `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Roast raw peanuts for 5-7 minutes until fragrant.",
+      "In a heavy pan, cook sugar, water, and lime juice to hard crack stage (150°C).",
+      "Remove from heat and quickly stir in butter, salt, vanilla, and baking soda.",
+      "Fold in roasted peanuts and pour onto a cornstarch-dusted sheet.",
+      "Cool completely, break into pieces, and store in an airtight container."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -339,7 +360,7 @@ export default function PeanutBrittleBrazilianStyleCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

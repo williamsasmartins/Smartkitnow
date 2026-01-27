@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function FrenchToastRabanadaCalculator() {
   const [servings, setServings] = useState(4);
@@ -81,6 +82,30 @@ export default function FrenchToastRabanadaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: "4 servings",
+    recipeCategory: "Dessert",
+    recipeCuisine: "Brazilian",
+    keywords: "rabanada, brazilian french toast, christmas dessert, deep fried bread, cinnamon sugar",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Slice French bread into 2-3 cm thick pieces. Use slightly stale bread.",
+      "Whisk eggs, milk, sugar, cinnamon, vanilla, orange zest, and salt in a bowl.",
+      "Dip bread slices into the custard, soaking for 20-30 seconds per side.",
+      "Heat oil (with optional butter) to 170-180°C (340-355°F).",
+      "Fry soaked slices in batches until golden brown (2-3 minutes per side). Drain on paper towels.",
+      "While warm, coat with a mixture of powdered sugar and cinnamon. Serve immediately."
+    ]
+  });
+
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -330,7 +355,7 @@ export default function FrenchToastRabanadaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function BrazilianCarrotCakeChocolateCalculator() {
   const [servings, setServings] = useState(4);
@@ -79,6 +80,29 @@ export default function BrazilianCarrotCakeChocolateCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT40M",
+    totalTime: "PT1H0M",
+    recipeYield: "8 servings",
+    recipeCategory: "Dessert",
+    recipeCuisine: "Brazilian",
+    keywords: "brazilian carrot cake, bolo de cenoura, chocolate glaze, blender cake, brazilian dessert",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Blend chopped carrots, sugar, oil, and eggs until smooth (1-2 minutes).",
+      "In a large bowl, sift flour, baking powder, and salt. Gently fold in the blended carrot mixture.",
+      "Preheat oven to 180°C (350°F). Pour batter into a greased 9x13 inch pan and bake for 35-40 minutes. Cool completely.",
+      "In a saucepan, combine condensed milk, dark chocolate, butter, cocoa, and cream. Stir over low heat until thick and glossy (5-7 minutes).",
+      "Spread the warm chocolate fudge topping over the cooled cake. Let set before slicing."
+    ]
+  });
+
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -327,7 +351,7 @@ export default function BrazilianCarrotCakeChocolateCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

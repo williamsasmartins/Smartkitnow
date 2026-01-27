@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function IcedMateTeaCalculator() {
   const [servings, setServings] = useState(4);
@@ -71,6 +72,26 @@ export default function IcedMateTeaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT10M",
+    cookTime: "PT10M",
+    totalTime: "PT20M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Drink",
+    recipeCuisine: "Brazilian",
+    keywords: "iced mate tea, chá mate, brazilian drink, beach classic, refreshing tea",
+    recipeIngredient: ingredients.map(ing => `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Gently toast Erva Mate leaves in a dry pan until fragrant and smoky.",
+      "Steep the toasted leaves in hot filtered water for 8-10 minutes, then strain.",
+      "While warm, stir in honey and lemon juice, then add cold water to cool.",
+      "Refrigerate for 30 minutes, then pour into glasses filled with ice.",
+      "Garnish with lime and orange peel, and optionally top with sparkling water. Enjoy!"
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -342,7 +363,7 @@ export default function IcedMateTeaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

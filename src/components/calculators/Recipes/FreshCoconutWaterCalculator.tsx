@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function FreshCoconutWaterCalculator() {
   const [servings, setServings] = useState(4);
@@ -73,6 +74,26 @@ export default function FreshCoconutWaterCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT10M",
+    cookTime: "PT0M",
+    totalTime: "PT10M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Drink",
+    recipeCuisine: "Brazilian",
+    keywords: "coconut water, fresh coconut water, brazilian drink, healthy hydration, electrolyte drink",
+    recipeIngredient: ingredients.map(ing => `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Use a sharp knife or cleaver to carefully slice the top of the young green coconut.",
+      "Extract the water by pouring it through a fine mesh sieve into a clean container.",
+      "Optionally stir in fresh mint leaves, lime wedges, or a touch of natural sweetener like honey.",
+      "Add ice cubes to the coconut water or refrigerate for 30 minutes before serving.",
+      "Serve immediately for maximum freshness and flavor."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -296,7 +317,7 @@ export default function FreshCoconutWaterCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

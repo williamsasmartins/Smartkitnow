@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SweetCornCoconutPuddingCanjicaCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,27 @@ export default function SweetCornCoconutPuddingCanjicaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT1H30M",
+    totalTime: "PT1H50M",
+    recipeYield: "4 servings",
+    recipeCategory: "Dessert",
+    recipeCuisine: "Brazilian",
+    keywords: "canjica, sweet corn pudding, coconut pudding, brazilian dessert, festa junina",
+    recipeIngredient: ingredients.map(ing => `${ing.baseAmount}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Rinse the hominy corn thoroughly and soak it in plenty of water overnight (8-12 hours) to soften the kernels.",
+      "Drain the soaked corn and place it in a large pot. Cover with fresh water and bring to a boil. Reduce heat and simmer for about 1 hour or until tender. Drain.",
+      "In the same pot, combine whole milk, coconut milk, sugar, condensed milk, cinnamon sticks, cloves, and salt. Heat gently until sugar dissolves.",
+      "Add the cooked hominy corn to the milk mixture. Simmer on low heat, stirring occasionally, for 30-40 minutes until thickened.",
+      "Remove cinnamon sticks and cloves. Stir in vanilla extract, butter, and grated coconut. Serve warm or chilled, garnished with toasted coconut flakes."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -356,7 +378,7 @@ export default function SweetCornCoconutPuddingCanjicaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

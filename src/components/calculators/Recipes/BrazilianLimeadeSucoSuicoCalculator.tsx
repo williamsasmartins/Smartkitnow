@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function BrazilianLimeadeSucoSuicoCalculator() {
   const [servings, setServings] = useState(4);
@@ -76,6 +77,26 @@ export default function BrazilianLimeadeSucoSuicoCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT10M",
+    cookTime: "PT0M",
+    totalTime: "PT10M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Drink",
+    recipeCuisine: "Brazilian",
+    keywords: "brazilian limeade, limonada suiça, creamy limeade, refreshing drink, brazilian juice",
+    recipeIngredient: ingredients.map(ing => `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Wash the limes thoroughly and cut each into 8 wedges, removing seeds.",
+      "In a blender, combine the quartered limes, cold water, sugar, and a pinch of salt. Blend on high speed for about 10-15 seconds.",
+      "Pour the blended mixture through a fine mesh strainer into a pitcher to remove pulp and peel bits.",
+      "Stir in the sweetened condensed milk until fully incorporated.",
+      "Add ice cubes to chill the drink and garnish with lime slices. Serve immediately."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -348,7 +369,7 @@ export default function BrazilianLimeadeSucoSuicoCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

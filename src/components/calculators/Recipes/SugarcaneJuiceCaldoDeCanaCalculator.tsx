@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SugarcaneJuiceCaldoDeCanaCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function SugarcaneJuiceCaldoDeCanaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT10M",
+    cookTime: "PT0M",
+    totalTime: "PT10M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Drink",
+    recipeCuisine: "Brazilian",
+    keywords: "sugarcane juice, caldo de cana, garapa, brazilian juice, fresh juice, natural energy",
+    recipeIngredient: ingredients.map(ing => `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Thoroughly wash and peel tough outer layer of sugarcane stalks.",
+      "Extract juice using a sugarcane juicer or by blending chopped pieces with water and straining.",
+      "Stir in lime juice, grated ginger, and a pinch of salt to taste.",
+      "Add ice cubes or crushed ice to the juice and stir well.",
+      "Garnish with mind or basil and lemon slices. Serve immediately."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -344,7 +365,7 @@ export default function SugarcaneJuiceCaldoDeCanaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function CashewFruitJuiceSucoDeCajuCalculator() {
   const [servings, setServings] = useState(4);
@@ -80,6 +81,26 @@ export default function CashewFruitJuiceSucoDeCajuCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT10M",
+    totalTime: "PT30M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Drink",
+    recipeCuisine: "Brazilian",
+    keywords: "cashew fruit juice, suco de caju, brazilian juice, tropical drink, healthy beverage",
+    recipeIngredient: ingredients.map(ing => `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Wash the cashew apples, remove the nuts, and chop the flesh.",
+      "Simmer water with cinnamon and cloves for 5 minutes, then cool.",
+      "Blend chopped cashew apples, infused water, sugar, lime juice, ginger, honey, and salt until smooth.",
+      "Strain the juice through a fine mesh sieve to remove pulp.",
+      "Add ice and top with sparkling water if desired. Garnish with mint and lemon zest. Serve chilled."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -336,7 +357,7 @@ export default function CashewFruitJuiceSucoDeCajuCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

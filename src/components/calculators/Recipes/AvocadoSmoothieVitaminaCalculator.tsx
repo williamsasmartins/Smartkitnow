@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function AvocadoSmoothieVitaminaCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function AvocadoSmoothieVitaminaCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT10M",
+    cookTime: "PT0M",
+    totalTime: "PT10M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Drink",
+    recipeCuisine: "Brazilian",
+    keywords: "avocado smoothie, vitamina de abacate, brazilian drink, healthy smoothie, creamy avocado",
+    recipeIngredient: ingredients.map(ing => `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Cut the ripe avocados in half, remove the pit, and scoop the flesh into a blender.",
+      "Pour in the whole milk, sweetened condensed milk, honey, vanilla extract, and lime juice.",
+      "Add ice cubes to chill the smoothie.",
+      "Blend all ingredients on high speed until the mixture is smooth and creamy. Adjust sweetness or thickness by adding more honey or milk as needed.",
+      "Pour the smoothie into glasses and garnish with fresh mint leaves or a sprinkle of chia seeds. Serve immediately."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -309,7 +330,7 @@ export default function AvocadoSmoothieVitaminaCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

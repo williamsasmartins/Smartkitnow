@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function SugarcaneMolassesCandyRapaduraCalculator() {
   const [servings, setServings] = useState(4);
@@ -77,6 +78,26 @@ export default function SugarcaneMolassesCandyRapaduraCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT20M",
+    cookTime: "PT1H",
+    totalTime: "PT1H20M",
+    recipeYield: `${servings} portions`,
+    recipeCategory: "Dessert",
+    recipeCuisine: "Brazilian",
+    keywords: "rapadura, sugarcane molasses candy, traditional brazilian sweet, unrefined sugar, northeast brazil",
+    recipeIngredient: ingredients.map(ing => `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Strain fresh sugarcane juice and add lime juice to clarify.",
+      "Boil juice in a wide pan, skimming off foam.",
+      "Simmer for 45-60 minutes until it reaches 115°C (soft ball stage).",
+      "Stir in optional spices/nuts and pour into buttered molds.",
+      "Cool at room temperature for several hours until set. Unmold and serve."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -361,7 +382,7 @@ export default function SugarcaneMolassesCandyRapaduraCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

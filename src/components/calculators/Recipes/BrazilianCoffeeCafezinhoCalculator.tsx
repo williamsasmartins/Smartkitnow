@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function BrazilianCoffeeCafezinhoCalculator() {
   const [servings, setServings] = useState(4);
@@ -76,6 +77,26 @@ export default function BrazilianCoffeeCafezinhoCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT5M",
+    cookTime: "PT10M",
+    totalTime: "PT15M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Drink",
+    recipeCuisine: "Brazilian",
+    keywords: "brazilian coffee, cafezinho, brazilian drink, morning coffee, sweet coffee",
+    recipeIngredient: ingredients.map(ing => `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Use freshly ground dark roast coffee, finely ground to a powdery consistency.",
+      "In a small stovetop coffee pot or saucepan, combine the coffee grounds and granulated sugar (and optional spices).",
+      "Bring filtered water to a boil, then pour it over the coffee and sugar mixture. Stir well.",
+      "Place the pot over medium heat and bring to a gentle boil, then reduce heat and simmer for 5-7 minutes.",
+      "Strain the coffee into small cafezinho cups. Serve immediately while hot."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -310,7 +331,7 @@ export default function BrazilianCoffeeCafezinhoCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ChefHat, Flame, Utensils, Clock, Users, BookOpen, ExternalLink } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
+import { getRecipeSchema } from "@/components/RecipeSchema";
 
 export default function NationalLimeCocktailCalculator() {
   const [servings, setServings] = useState(4);
@@ -78,6 +79,26 @@ export default function NationalLimeCocktailCalculator() {
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
+  const recipeJsonLd = getRecipeSchema({
+    name: title,
+    description: description,
+    image: imgSrc,
+    prepTime: "PT10M",
+    cookTime: "PT0M",
+    totalTime: "PT10M",
+    recipeYield: `${servings} servings`,
+    recipeCategory: "Drink",
+    recipeCuisine: "Brazilian",
+    keywords: "national lime cocktail, cachaça cocktail, brazilian drink, lime cocktail, refreshing beverage",
+    recipeIngredient: ingredients.map(ing => `${getAmount(ing.baseAmount)}${ing.unit} ${ing.name}`),
+    recipeInstructions: [
+      "Sugar-rim a rocks glass and set aside.",
+      "Gently muddle lime wedges, mint, and simple syrup in a shaker.",
+      "Add cachaça and Angostura bitters, then fill with crushed ice.",
+      "Shake for 10 seconds and strain into the prepared glass with fresh ice.",
+      "Top with club soda, garnish with lime zest, and serve immediately."
+    ]
+  });
 
   // --- WIDGET CONTENT ---
   const widget = (
@@ -357,7 +378,7 @@ export default function NationalLimeCocktailCalculator() {
       description={description}
       widget={widget}
       editorial={editorial}
-      jsonLd={faqJsonLd}
+      jsonLd={[faqJsonLd, recipeJsonLd]}
       hideLegalDisclaimer={true}
       showTopBanner
       showSidebar
