@@ -1518,7 +1518,7 @@ const Index = () => {
               const isPets = category.name === "Pet Care Calculators";
               const isScience = category.name === "Science Calculators";
               const isTime = category.name === "Time & Date Calculators";
-              const isRecipes = category.name === "Recipes";
+
               const isSmartTips = category.name === "Smart Tips";
               const handleClick = () => {
                 if (import.meta.env.DEV) {
@@ -1541,10 +1541,10 @@ const Index = () => {
                 if (isPets) navigate('/pets');
                 if (isScience) navigate('/science');
                 if (isTime) navigate('/time');
-                if (isRecipes) navigate('/recipes');
+
                 if (isSmartTips) navigate('/smart-tips');
               };
-              return <GlowCard key={index} className="skn-card group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={handleClick} customSize glowColor={isFinancial ? 'green' : isHealth ? 'red' : isPets ? 'orange' : isRecipes ? 'purple' : isConversion ? 'blue' : isElectrical ? 'orange' : isConstruction ? 'orange' : isCooking ? 'orange' : isMath ? 'purple' : isScience ? 'blue' : isTime ? 'blue' : 'blue'}>
+              return <GlowCard key={index} className="skn-card group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={handleClick} customSize glowColor={isFinancial ? 'green' : isHealth ? 'red' : isPets ? 'orange' : isConversion ? 'blue' : isElectrical ? 'orange' : isConstruction ? 'orange' : isCooking ? 'orange' : isMath ? 'purple' : isScience ? 'blue' : isTime ? 'blue' : 'blue'}>
                 <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
                   <span className="text-[20px] leading-none select-none">
                     {getCategoryIcon((category as any).key)}

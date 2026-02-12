@@ -67,7 +67,7 @@ export function GlobalSearch({
         // --- Categories ---
         { title: "Financial Tools", href: "/financial", category: "Categories", icon: LayoutGrid },
         { title: "Health Calculators", href: "/health", category: "Categories", icon: LayoutGrid },
-        { title: "Cooking & Recipes", href: "/cooking", category: "Categories", icon: LayoutGrid },
+        { title: "Cooking", href: "/cooking", category: "Categories", icon: LayoutGrid },
         { title: "Math Solvers", href: "/math", category: "Categories", icon: LayoutGrid },
 
         // --- Calculators (Dynamic) ---

@@ -7,7 +7,7 @@ export const CATEGORY_ICON_EMOJI: Record<string, string> = {
   math: "🧮",
   science: "🔬",
   time: "⏱️",
-  recipes: "📚",
+
   tips: "💡",
   quotes: "💬",
   everyday: "🏠",

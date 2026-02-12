@@ -46,13 +46,12 @@ const Search = lazy(() => import("@/pages/Search"));
 const SmartTips = lazy(() => import("@/pages/SmartTips"));
 const SmartTipsSubCategory = lazy(() => import("@/pages/SmartTipsSubCategory"));
 const SmartTipDetail = lazy(() => import("@/pages/SmartTipDetail"));
-const RecipesCategory = lazy(() => import("@/pages/categories/RecipesCategory"));
+
 const DailyQuotesPage = lazy(() => import("@/pages/DailyQuotesPage"));
 const DailyHoroscopeCalculator = lazy(() => import("@/components/calculators/DailyQuotes/DailyHoroscopeCalculator"));
 const CategoryIndex = lazy(() => import("@/pages/CategoryIndex"));
 const CalculatorPage = lazy(() => import("@/pages/CalculatorPage"));
-const RecipeCuisinePage = lazy(() => import("@/pages/RecipeCuisinePage"));
-const RecipeDetailPage = lazy(() => import("@/pages/RecipeDetailPage"));
+
 
 export default function App() {
   return (
@@ -89,10 +88,7 @@ export default function App() {
               <Route path="/smart-tips/:subcategory" element={<SmartTipsSubCategory />} />
               <Route path="/smart-tip/:slug" element={<SmartTipDetail />} />
 
-              {/* Recipes */}
-              <Route path="/recipes" element={<RecipesCategory />} />
-              <Route path="/recipes/:cuisine" element={<RecipeCuisinePage />} />
-              <Route path="/recipes/:cuisine/:recipe" element={<RecipeDetailPage />} />
+
 
               {/* Daily Quotes */}
               <Route path="/daily-quotes" element={<DailyQuotesPage />} />

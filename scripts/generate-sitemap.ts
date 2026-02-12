@@ -3,14 +3,14 @@ import path from "node:path";
 
 // Ajuste este import se necessário (ts-node/tsx para executar TS diretamente)
 import { REGISTRY, calcLink } from "../src/data/calculatorRegistry.ts";
-import { getCuisine } from "../src/data/recipes/cuisines.ts";
+
 
 const ORIGIN = "https://www.smartkitnow.com";
 
 const STATIC_URLS = [
   "/", "/about", "/contact", "/privacy", "/terms", "/cookies", "/cookie-settings",
   "/pets", "/health", "/financial", "/cooking", "/math",
-  "/conversion", "/science", "/time", "/video", "/smart-tips", "/recipes",
+  "/conversion", "/science", "/time", "/video", "/smart-tips",
 ];
 
 function today(): string {
@@ -45,14 +45,6 @@ function main() {
   for (const e of REGISTRY) {
     const shortPath = calcLink(e);
     parts.push(toUrl(shortPath, priorityForCategory(e.category)));
-  }
-
-  const mexican = getCuisine("mexican");
-  if (mexican) {
-    parts.push(toUrl(`/recipes/${mexican.key}`, "0.45"));
-    for (const r of mexican.recipes) {
-      parts.push(toUrl(`/recipes/${mexican.key}/${r.slug}`, "0.35"));
-    }
   }
 
   parts.push(`</urlset>`);
