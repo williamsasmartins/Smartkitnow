@@ -125,8 +125,9 @@ export default function App() {
               {/* Generic category index fallback */}
               <Route path="/:category" element={<CategoryIndex />} />
 
-              {/* Legacy Redirect for nested URLs */}
-              <Route path="/:category/:subcategory/:slug" element={<LegacyRedirect />} />
+              {/* Decommissioned Routes */}
+              <Route path="/recipes" element={<Navigate to="/" replace />} />
+              <Route path="/recipes/*" element={<Navigate to="/" replace />} />
 
               {/* 404 */}
               <Route path="*" element={<NotFound />} />
