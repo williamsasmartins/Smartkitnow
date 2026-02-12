@@ -1,0 +1,104 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 prebuild
+> tsx scripts/generate-sitemap.ts || echo 'sitemap skipped'
+
+✅ sitemap.xml gerado em /public/sitemap.xml
+
+> vite_react_shadcn_ts@0.0.0 build
+> vite build
+
+[36mvite v5.4.21 [32mbuilding for production...[36m[39m
+transforming...
+[32m✓[39m 1359 modules transformed.
+node.exe : 
+[31mx[39m Build 
+failed in 11.72s
+At line:1 char:1
++ & "C:\Program Files
+\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: ([31mx   
+ [39m Build faile    
+d in 11.72s:Stri    
+ng) [], RemoteEx    
+ception
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+[31merror during 
+build:
+[31m[vite:load-fallb
+ack] Could not load 
+C:\Users\Williams Mar
+tins\OneDrive\Documen
+tos\WBSmartKitNow\sma
+rtkit-onepage-wonder\
+src/components/calcul
+ators/Misc/ItalianWed
+dingSoupCalculator 
+(imported by src/data
+/calculatorRegistry.t
+s): ENOENT: no such 
+file or directory, 
+open 
+'C:\Users\Williams Ma
+rtins\OneDrive\Docume
+ntos\WBSmartKitNow\sm
+artkit-onepage-wonder
+\src\components\calcu
+lators\Misc\ItalianWe
+ddingSoupCalculator'
+[31m
+    at async open (no
+de:internal/fs/promis
+es:641:25)
+    at async 
+Object.readFile (node
+:internal/fs/promises
+:1245:14)
+    at async 
+Object.load (file:///
+C:/Users/Williams%20M
+artins/OneDrive/Docum
+entos/WBSmartKitNow/s
+martkit-onepage-wonde
+r/node_modules/vite/d
+ist/node/chunks/dep-B
+K3b2jBa.js:65357:25)
+    at async PluginDr
+iver.hookFirstAndGetP
+lugin (file:///C:/Use
+rs/Williams%20Martins
+/OneDrive/Documentos/
+WBSmartKitNow/smartki
+t-onepage-wonder/node
+_modules/rollup/dist/
+es/shared/node-entry.
+js:22449:28)
+    at async file:///
+C:/Users/Williams%20M
+artins/OneDrive/Docum
+entos/WBSmartKitNow/s
+martkit-onepage-wonde
+r/node_modules/rollup
+/dist/es/shared/node-
+entry.js:21449:33
+    at async 
+Queue.work (file:///C
+:/Users/Williams%20Ma
+rtins/OneDrive/Docume
+ntos/WBSmartKitNow/sm
+artkit-onepage-wonder
+/node_modules/rollup/
+dist/es/shared/node-e
+ntry.js:22677:32)[39
+m
