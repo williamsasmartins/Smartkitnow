@@ -274,13 +274,8 @@ export default function CalculatorVerticalLayout({
   const location = useLocation();
   const navigate = useNavigate();
   const resolvedDescription = useMemo(() => {
-    const path = location.pathname || "";
-    if (!path.startsWith("/recipes/")) return description;
-    const parts = path.split("/").filter(Boolean);
-    const slugFromUrl = parts[2];
-    const entry = slugFromUrl ? getEntry(slugFromUrl) : undefined;
-    return entry?.description ?? description;
-  }, [description, location.pathname]);
+    return description;
+  }, [description]);
 
   return (
     <div className="skn-vertical-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">

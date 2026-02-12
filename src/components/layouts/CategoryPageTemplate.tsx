@@ -2,7 +2,7 @@ import { useMemo, useState, ReactNode } from "react";
 import { getCategoryIcon } from "@/lib/navigation";
 import { BadgeDollarSign, LineChart, PiggyBank, Percent, BriefcaseBusiness, CreditCard, Banknote } from "lucide-react";
 
-const KIND_TITLES: Record<string,string> = {
+const KIND_TITLES: Record<string, string> = {
   financial: "Financial Calculators",
   health: "Health & Fitness Calculators",
   cooking: "Cooking Calculators",
@@ -12,7 +12,7 @@ const KIND_TITLES: Record<string,string> = {
   science: "Science Calculators",
   time: "Time & Date Calculators",
   video: "Video Calculators",
-  recipes: "Recipes",
+
   tips: "Smart Tips",
   quotes: "Daily Quotes",
   everyday: "Every day Life Calculators",
@@ -147,12 +147,12 @@ export default function CategoryPageTemplate({
 const sectionIcon = (heading: string) => {
   const base = "w-5 h-5";
   const norm = heading.toLowerCase();
-  if (norm.includes("interest") || norm.includes("loan"))  return { el: <BadgeDollarSign className={base} />, color: "#3b82f6" }; // blue
-  if (norm.includes("investment"))                          return { el: <LineChart className={base} />,      color: "#16a34a" }; // green
-  if (norm.startsWith("loan"))                              return { el: <PiggyBank className={base} />,       color: "#8b5cf6" }; // violet
-  if (norm.includes("tax") || norm.includes("income"))      return { el: <Percent className={base} />,         color: "#f59e0b" }; // amber
-  if (norm.includes("business") || norm.includes("profit")) return { el: <BriefcaseBusiness className={base} />,color: "#6366f1" }; // indigo
-  if (norm.includes("debt") || norm.includes("credit"))     return { el: <CreditCard className={base} />,      color: "#ef4444" }; // red
-  if (norm.includes("currency") || norm.includes("inflation")) return { el: <Banknote className={base} />,     color: "#14b8a6" }; // teal
+  if (norm.includes("interest") || norm.includes("loan")) return { el: <BadgeDollarSign className={base} />, color: "#3b82f6" }; // blue
+  if (norm.includes("investment")) return { el: <LineChart className={base} />, color: "#16a34a" }; // green
+  if (norm.startsWith("loan")) return { el: <PiggyBank className={base} />, color: "#8b5cf6" }; // violet
+  if (norm.includes("tax") || norm.includes("income")) return { el: <Percent className={base} />, color: "#f59e0b" }; // amber
+  if (norm.includes("business") || norm.includes("profit")) return { el: <BriefcaseBusiness className={base} />, color: "#6366f1" }; // indigo
+  if (norm.includes("debt") || norm.includes("credit")) return { el: <CreditCard className={base} />, color: "#ef4444" }; // red
+  if (norm.includes("currency") || norm.includes("inflation")) return { el: <Banknote className={base} />, color: "#14b8a6" }; // teal
   return { el: <BadgeDollarSign className={base} />, color: "#3c83f6" };
 };

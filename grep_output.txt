@@ -1,0 +1,161 @@
+src/components/calculators/Conversion/CookingTspTbspCupMlCalculator.tsx:        "Cup sizes can vary internationally, with US cups differing from metric or UK cups. This converter uses the US customary cup size (236.588 mL), which is most common in recipes from the United States. If your recipe specifies a different cup size, you should adjust the conversion factor accordingly or use a converter specific to that measurement system.",
+src/components/calculators/Conversion/CookingTspTbspCupMlCalculator.tsx:          tablespoons (tbsp), and cups are often used in recipes, but these can vary
+src/components/calculators/Conversion/CookingTspTbspCupMlCalculator.tsx:          This conversion is particularly useful when following recipes from different
+src/components/calculators/Conversion/CookingTspTbspCupMlCalculator.tsx:          baking or following precise recipes.
+src/components/calculators/Conversion/CookingTspTbspCupMlCalculator.tsx:            <a href="https://www.allrecipes.com/search?q=Cooking%20Conversions" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+src/components/calculators/Conversion/CookingTspTbspCupMlCalculator.tsx:              Cooking Conversions - Allrecipes
+src/components/calculators/Cooking/AlcoholAbvDilutionCalculator.tsx:        "Dilution reduces the alcohol concentration by increasing the total volume of liquid. The final ABV is calculated by multiplying the initial ABV by the ratio of initial volume to total volume after dilution. This helps chefs control alcohol intensity in recipes.",
+src/components/calculators/Cooking/AlcoholAbvDilutionCalculator.tsx:          This tool helps you calculate the final alcohol concentration after diluting a spirit or wine with another liquid. Use it to adjust recipes for desired alcohol intensity or to comply with food safety standards.
+src/components/calculators/Cooking/BakersPercentageCalculator.tsx:        "Baker’s percentage expresses each ingredient’s weight as a percentage of the flour weight, which is always 100%. This method standardizes recipes, allowing bakers to scale and adjust dough formulas precisely, ensuring consistent results regardless of batch size.",
+src/components/calculators/Cooking/BakersPercentageCalculator.tsx:          scale recipes easily and maintain consistent dough characteristics
+src/components/calculators/Cooking/BakersPercentageCalculator.tsx:      description="Master Baker's Math. Calculate ingredient ratios based on flour weight to create consistent and scalable bread recipes."
+src/components/calculators/Cooking/CakePanSizeVolumeConverterCalculator.tsx:        "Yes, by calculating the volume of your original pan and then finding the dimensions of a new pan shape with the same volume, you can adjust recipes to fit different pan shapes without affecting the bake.",
+src/components/calculators/Cooking/CakePanSizeVolumeConverterCalculator.tsx:          pan based on its shape and dimensions, allowing you to adjust recipes
+src/components/calculators/Cooking/CakePanSizeVolumeConverterCalculator.tsx:          recipes or substituting pans without compromising your bake.
+src/components/calculators/Cooking/CakePanSizeVolumeConverterCalculator.tsx:              Useful chart for converting cake pan sizes and adjusting recipes.
+src/components/calculators/Cooking/CakePanSizeVolumeConverterCalculator.tsx:      description="Convert cake pan sizes. Adjust recipes for different pan shapes and volumes (round vs square) without ruining your bake."
+src/components/calculators/Cooking/ChocolateButterTemperingTemperatureCalculator.tsx:          chocolate and butter-based recipes. This calculator provides quick
+src/components/calculators/Cooking/CupsGramsOuncesByIngredientCalculator.tsx:      question: "Why do ingredient weights vary between recipes?",
+src/components/calculators/Cooking/CupsGramsOuncesByIngredientCalculator.tsx:          Converting between cups, grams, and ounces is essential for precise cooking and baking. Unlike liquids, solid ingredients have varying densities, so a cup of flour does not weigh the same as a cup of sugar. This converter uses ingredient-specific densities to provide accurate conversions, ensuring your recipes turn out perfectly every time.
+src/components/calculators/Cooking/DoughHydrationPercentCalculator.tsx:          calculating hydration, bakers can tailor their recipes to achieve
+src/components/calculators/Cooking/DoughHydrationPercentCalculator.tsx:          "The dough hydration is 131.1%, which is very high and likely too wet for most bread recipes.",
+src/components/calculators/Cooking/FahrenheitCelsiusOvenInternalTempCalculator.tsx:        "Accurate temperature conversion ensures your recipes bake correctly, preserving texture and flavor. Oven temperatures vary globally, so converting between Fahrenheit and Celsius helps maintain consistency. This is crucial in baking where precise heat affects chemical reactions in dough and batter.",
+src/components/calculators/Cooking/FahrenheitCelsiusOvenInternalTempCalculator.tsx:        "Temperature controls the rate of chemical reactions like yeast fermentation and protein coagulation. Too low, and dough may underproof; too high, and baked goods can burn or dry out. Converting temperatures accurately helps replicate recipes from different regions reliably.",
+src/components/calculators/Cooking/FahrenheitCelsiusOvenInternalTempCalculator.tsx:          these units, ensuring recipes are followed precisely. Accurate
+src/components/calculators/Cooking/FahrenheitCelsiusOvenInternalTempCalculator.tsx:      description="Convert oven temperatures instantly. Switch between Fahrenheit and Celsius for baking recipes and internal meat thermometers."
+src/components/calculators/Cooking/FlourBlendSubstitutionCalculator.tsx:          flours needed to replace all-purpose flour in recipes. It accounts
+src/components/calculators/Cooking/PorkBeefSmokingTimePerLbCalculator.tsx:              href="https://amazingribs.com/tested-recipes/pork-recipes/pork-shoulder-smoke-time-temperature"
+src/components/calculators/Cooking/RecipeScalerCalculator.tsx:export default function RecipeScalerCalculator() {
+src/components/calculators/Cooking/RecipeScalerCalculator.tsx:        "Baker's percentage expresses ingredient weights relative to flour weight (100%). It helps bakers scale recipes consistently and understand hydration and ingredient ratios, improving dough consistency and baking outcomes.",
+src/components/calculators/Cooking/RecipeScalerCalculator.tsx:          Scaling recipes is an essential skill for both home cooks and
+src/components/calculators/Cooking/RecipeScalerCalculator.tsx:      description="Scale your recipes up or down. Multiply or divide ingredient quantities to adjust serving sizes for parties or single meals."
+src/components/calculators/Cooking/RiceWaterRatioYieldCalculator.tsx:        "Yes, measuring by weight is often more precise. This calculator supports both volume (cups) and weight (grams) inputs. Using a digital scale helps maintain consistency, especially when cooking different rice types or adjusting recipes.",
+src/components/calculators/Cooking/RiceWaterRatioYieldCalculator.tsx:          when experimenting with new rice varieties or recipes.
+src/components/calculators/Cooking/ServingSizeMultiplierCalculator.tsx:        "Baker's math sets flour weight as the baseline (100%), and all other ingredients are calculated as a percentage of flour weight. This helps bakers scale recipes precisely and maintain consistent hydration and texture.",
+src/components/calculators/Cooking/ServingSizeMultiplierCalculator.tsx:          Adjusting recipes for different serving sizes requires precise
+src/components/calculators/Cooking/ServingSizeMultiplierCalculator.tsx:          ingredient density and culinary science, you can scale recipes
+src/components/calculators/Cooking/ServingSizeMultiplierCalculator.tsx:            <strong>Step 4:</strong> Use results to adjust recipes or cooking
+src/components/calculators/Cooking/ServingSizeMultiplierCalculator.tsx:      description="Adjust recipes by serving size. Input your desired number of servings to automatically recalculate all ingredient amounts."
+src/components/calculators/Cooking/SourdoughStarterRatioFeedPlannerCalculator.tsx:        "Sourdough starter hydration is the ratio of water to flour in your starter, expressed as a percentage. It affects the starter's activity, texture, and flavor. A 100% hydration starter has equal weights of water and flour, producing a bubbly, active starter ideal for most recipes. Adjusting hydration changes fermentation speed and dough handling.",
+src/components/calculators/Cooking/TeaspoonTablespoonCupMlConverterCalculator.tsx:      question: "Can I use this converter for baking recipes?",
+src/components/calculators/Cooking/TeaspoonTablespoonCupMlConverterCalculator.tsx:          ensuring you get accurate volumes for your recipes. Unlike generic volume
+src/components/calculators/Cooking/VolumeWeightFoodDensityCalculator.tsx:          ingredient-specific densities, ensuring accuracy in recipes.
+src/components/calculators/Cooking/VolumeWeightFoodDensityCalculator.tsx:          Use this tool to convert recipes or scale ingredients confidently.
+src/components/calculators/Funny/HotDogBunMismatchSolverCalculator.tsx:      remark = `You'll have ${hotDogLeftoverFinal} extra hot dog${hotDogLeftoverFinal > 1 ? "s" : ""} and ${bunLeftoverFinal} extra bun${bunLeftoverFinal > 1 ? "s" : ""}. Time for some creative recipes!`;
+src/components/calculators/Math/RatioCalculator.tsx:        "The ratio A:B = C:D expresses a proportion where two ratios are equal. This relationship is fundamental in mathematics and real-world applications such as scaling recipes, maps, or models. Understanding this equality allows one to find an unknown term when three terms are known, ensuring consistent proportional relationships across different contexts.",
+src/components/calculators/Math/RatioCalculator.tsx:      description="Solve ratio problems easily. Find the missing value in a proportion (A:B = C:D) to scale recipes, images, or designs."
+src/components/calculators/Misc/AperitifSpritzCalculator.tsx:              href="https://www.liquor.com/recipes/aperol-spritz/"
+src/components/calculators/Misc/BarbacoaTacosCalculator.tsx:            cooked in an underground pit, but modern recipes use slow cookers or
+src/components/calculators/Misc/BirriaCalculator.tsx:              href="https://www.saveur.com/article/Recipes/Birria-Goat-Stew/"
+src/components/calculators/Misc/BirriaTacosCalculator.tsx:        "Traditionally, beef chuck roast or short ribs are used for Birria because they become tender and flavorful after slow cooking. Some recipes also use goat or lamb, but beef is most common and accessible.",
+src/components/calculators/Misc/BirriaTacosCalculator.tsx:              href="https://www.saveur.com/article/Recipes/Birria-Tacos/"
+src/components/calculators/Misc/BlackPepperAndPecorinoPastaCacioEPepeCalculator.tsx:        "Butter is optional and can be added to enrich the sauce and improve creaminess. Traditional recipes often omit it, relying solely on cheese and pasta water for the sauce’s texture.",
+src/components/calculators/Misc/EggplantParmesanCalculator.tsx:        "Traditional recipes use wheat-based breadcrumbs and flour, which contain gluten. To make it gluten-free, substitute with gluten-free breadcrumbs and a suitable gluten-free flour for breading.",
+src/components/calculators/Misc/ItalianStyleRoastPorkPorchettaCalculator.tsx:        "The best cut for porchetta is a boneless pork belly with the skin on. This cut provides the perfect balance of tender meat and crispy crackling skin when roasted properly. Some recipes also incorporate pork loin inside the belly for added texture and flavor.",
+src/components/calculators/Misc/LimoncelloCalculator.tsx:        "Steeping the lemon zest in alcohol is a crucial step to extract the essential oils and vibrant lemon flavor. Typically, you should macerate the zest in high-proof alcohol for at least 7 to 10 days in a cool, dark place. Some traditional recipes recommend up to 30 days for a more intense flavor. Shake the jar gently every day to help release the oils evenly.",
+src/components/calculators/Misc/MargaritaCalculator.tsx:              href="https://www.liquor.com/recipes/margarita/"
+src/components/calculators/Misc/MolePoblanoCalculator.tsx:              href="https://www.saveur.com/article/Recipes/Mole-Poblano/"
+src/components/calculators/Misc/PastelTresLechesCalculator.tsx:              href="https://www.saveur.com/article/Recipes/Tres-Leches-Cake/"
+src/components/calculators/Misc/ReverseSearRibeyeCalculator.tsx:              href="https://www.foodnetwork.com/recipes/articles/how-to-reverse-sear-steak"
+src/components/calculators/Misc/RoastedPotatoesCalculator.tsx:              href="https://www.bbcgoodfood.com/recipes/perfect-roast-potatoes"
+src/components/calculators/Misc/SalsaVerdeCalculator.tsx:            evolving from indigenous recipes that utilized native ingredients like tomatillos
+src/components/calculators/Misc/SemifreddoCalculator.tsx:        "Yes, you can substitute raw egg yolks with pasteurized eggs or use eggless recipes that rely on whipped cream and gelatin for structure. However, traditional semifreddo uses raw egg yolks for richness and texture, so ensure eggs are fresh and handled safely if you choose the classic method.",
+src/components/calculators/Misc/ShrimpCocktailMexicanStyleCalculator.tsx:              href="https://www.saveur.com/article/Recipes/Mexican-Shrimp-Cocktail-Coctel-de-Camaron"
+src/components/calculators/Misc/SmokedTurkeyCalculator.tsx:              href="https://www.smokedturkeyrecipes.com/"
+src/components/calculators/Misc/SmokedTurkeyCalculator.tsx:              Smoked Turkey Recipes & Tips
+src/components/calculators/Misc/StLouisRibsCalculator.tsx:              href="https://amazingribs.com/tested-recipes/pork-ribs/how-to-cook-st-louis-style-ribs"
+src/components/calculators/Misc/TacosAlPastorCalculator.tsx:              href="https://www.saveur.com/article/Recipes/Tacos-Al-Pastor/"
+src/components/calculators/Misc/TagliatelleWithMeatRaguBologneseCalculator.tsx:        "For optimal flavor, the ragù should simmer gently for at least 2 hours, allowing the meat to tenderize and the flavors to meld. Some recipes recommend up to 4 hours for a deeper, more complex taste.",
+src/components/calculators/Misc/TamalesCalculator.tsx:              href="https://www.saveur.com/article/Recipes/Mexican-Tamales/"
+src/components/layouts/CategoryPageTemplate.tsx:  recipes: "Recipes",
+src/components/templates/CalculatorVerticalLayout.tsx:    if (!path.startsWith("/recipes/")) return description;
+src/config/calculatorRoutes.ts:        component: lazy(() => import("../components/calculators/Cooking/RecipeScalerCalculator"))
+src/data/calculatorRegistry.ts:  culinary: "Italian Recipes",
+src/data/calculatorRegistry.ts:    description: "Convert oven temperatures instantly. Switch between Fahrenheit and Celsius for baking recipes and internal meat thermometers.",
+src/data/calculatorRegistry.ts:    description: "Scale your recipes up or down. Multiply or divide ingredient quantities to adjust serving sizes for parties or single meals.",
+src/data/calculatorRegistry.ts:    loader: () => import("@/components/calculators/Cooking/RecipeScalerCalculator"),
+src/data/calculatorRegistry.ts:    description: "Adjust recipes by serving size. Input your desired number of servings to automatically recalculate all ingredient amounts.",
+src/data/calculatorRegistry.ts:    description: "Convert cake pan sizes. Adjust recipes for different pan shapes and volumes (round vs square) without ruining your bake.",
+src/data/calculatorRegistry.ts:    description: "Master Baker's Math. Calculate ingredient ratios based on flour weight to create consistent and scalable bread recipes.",
+src/data/calculatorRegistry.ts:    description: "Solve ratio problems easily. Find the missing value in a proportion (A:B = C:D) to scale recipes, images, or designs.",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/calculatorRegistry.ts:    category: "recipes",
+src/data/categories/recipes.data.ts: export const RECIPES_TITLE = "Recipes"; 
+src/data/categories/recipes.data.ts: export const RECIPES_DESCRIPTION = 
+src/data/categories/recipes.data.ts:   "Scalable, precise, and practical recipes. Adjust servings, convert units, and keep flavors consistent with clear, test-kitchen guidance."; 
+src/data/categories/recipes.data.ts: export const RECIPES_SECTIONS: CategorySection[] = [ 
+src/data/categories/recipes.data.ts:     heading: "Popular Recipes", 
+src/data/categories/recipes.data.ts:       { title: "Basic Pizza Dough", to: "/recipes/pizza-dough" }, 
+src/data/categories/recipes.data.ts:       { title: "Classic Pancakes", to: "/recipes/pancakes" }, 
+src/data/categories/recipes.data.ts:       { title: "Homemade Bread", to: "/recipes/bread" }, 
+src/data/categories/recipes.data.ts:       { title: "Roast Chicken", to: "/recipes/roast-chicken" }, 
+src/data/categories/recipes.data.ts:       { title: "Chocolate Brownies", to: "/recipes/brownies" }, 
+src/data/categories/recipes.data.ts:       { title: "Simple Pasta Sauce", to: "/recipes/pasta-sauce" }, 
+src/data/categories/recipes.data.ts:       { title: "Quick Weeknight Dinners", to: "/recipes/weeknight" }, 
+src/data/categories/recipes.data.ts:       { title: "Meal Prep Favorites", to: "/recipes/meal-prep" }, 
+src/data/categories/recipes.data.ts:       { title: "Crowd-Pleasers", to: "/recipes/crowd" }, 
+src/data/recommendedResources.ts:      description: "21-day smoothie program for calorie deficit and weight loss with delicious recipes.",
+src/data/recommendedResources.ts:      title: "Healthy Recipes",
+src/data/recommendedResources.ts:      description: "Find calorie-conscious recipes and nutrition tips.",
+src/data/recommendedResources.ts:      cta: "Browse Recipes",
+src/data/smartTipsData.ts:            "Try new recipes to make plant-based meals exciting",
+src/pages/Index.tsx:      description: "Our cooking and baking calculators and resources help you prepare the perfect dish by simplifying recipes and converting ingredients from one measurement to another.",
+src/pages/categories/CookingCategory.tsx:                      Scale recipes, multiply servings, set precise <strong>salt % for brines</strong>, and plan <strong>sourdough feeds</strong>; compute <strong>baker’s percentage</strong> and <strong>dough hydration</strong>.
