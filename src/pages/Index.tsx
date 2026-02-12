@@ -1323,13 +1323,7 @@ const Index = () => {
       color: "text-violet-600",
       path: "/video",
       description: "Optimize your home theater setup: find ideal TV viewing distance, screen size, and speaker placement for immersive video experiences."
-    }, {
-      key: "recipes",
-      name: "Recipes",
-      icon: BookOpen,
-      color: "text-teal-600",
-      path: "/recipes",
-      description: "Delicious and healthy recipes with detailed nutrition information, cooking tips, and step-by-step instructions."
+
     }, {
       key: "tips",
       name: "Smart Tips",
