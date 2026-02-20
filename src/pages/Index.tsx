@@ -1360,6 +1360,15 @@ const Index = () => {
       path: "/funny",
       description: "Lighthearted tools for fun estimations, playful math, and humorous calculations to share with friends."
     },
+    // New squares
+    {
+      key: "games",
+      name: "Free Games",
+      icon: Video,
+      color: "text-blue-600",
+      path: "/games",
+      description: "Play curated arcade, puzzle, word, board and more. Free."
+    },
     {
       key: "qr",
       name: "Free QR Code Generator",
@@ -1382,6 +1391,13 @@ const Index = () => {
       icon: QrCode,
       path: "/everyday-life/qr-code-generator",
       ctaLabel: "Generate QR Code"
+    },
+    {
+      name: "Free Games",
+      description: "Play curated arcade, puzzle, word, and board games",
+      icon: Video,
+      path: "/games",
+      ctaLabel: "Play Now"
     },
     {
       name: "BMI Calculator",
@@ -1539,30 +1555,30 @@ const Index = () => {
               </CardContent>
             </GlowCard>
 
-            {/* Spotlight 3: Budget Planner */}
+            {/* Spotlight 3: Neon Snake */}
             <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-purple-100 dark:border-purple-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl"
-              glowColor="purple"
-              onClick={() => navigate('/financial/mortgage-amortization')}
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-green-100 dark:border-green-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl"
+              glowColor="green"
+              onClick={() => navigate('/games/neon-snake')}
             >
               <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                <PieChart className="w-24 h-24 text-purple-500" />
+                <Smile className="w-24 h-24 text-green-500" />
               </div>
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center mb-4 text-purple-600 dark:text-purple-400">
-                  <Calculator className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/50 flex items-center justify-center mb-4 text-green-600 dark:text-green-400">
+                  <Video className="w-6 h-6" />
                 </div>
                 <div className="inline-flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-purple-700 bg-purple-100 rounded-full">Popular</span>
+                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-green-700 bg-green-100 rounded-full">New Game</span>
                 </div>
-                <CardTitle className="text-xl">Monthly Budget Planner</CardTitle>
+                <CardTitle className="text-xl">Neon Snake</CardTitle>
                 <CardDescription className="line-clamp-2">
-                  Master your finances. Visualize income vs. expenses with our new interactive allocation chart.
+                  Classic snake action reimagined with neon glow graphics and smooth controls.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="mt-4 flex items-center text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:underline">
-                  Plan Budget <TrendingUp className="w-4 h-4 ml-1" />
+                <div className="mt-4 flex items-center text-sm font-medium text-green-600 dark:text-green-400 group-hover:underline">
+                  Play Now <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
                 </div>
               </CardContent>
             </GlowCard>

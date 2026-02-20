@@ -1,6 +1,15 @@
 import React from "react";
 import GamePlaceholder from "../components/games/GamePlaceholder";
 import TicTacToePrime from "../components/games/board/TicTacToePrime";
+import NeonSnakeGame from "../components/games/NeonSnakeGame";
+import SpaceInvadersGame from "../components/games/SpaceInvadersGame";
+import AstroBreakoutGame from "../components/games/AstroBreakoutGame";
+import NeonPaddleGame from "../components/games/NeonPaddleGame";
+import AsteroidDriftGame from "../components/games/AsteroidDriftGame";
+import PinballNeonGame from "../components/games/PinballNeonGame";
+import BubbleShooterGame from "../components/games/BubbleShooterGame";
+import BrickDashGame from "../components/games/BrickDashGame";
+// import CrossyStreetGame from "../components/games/CrossyStreetGame"; 
 
 export type GameCategory =
     | "arcade"
@@ -23,6 +32,7 @@ export interface GameEntry {
     category: GameCategory;
     description: string;
     component: React.ComponentType<any>;
+    useCustomLayout?: boolean;
 }
 
 // ----------------------------------------------------------------------
@@ -46,6 +56,7 @@ const RAW_GAMES: Omit<GameEntry, "component">[] = [
     { slug: "cosmic-dash", title: "Cosmic Dash", category: "runner", description: "Jump across floating platforms." },
     { slug: "temple-escape", title: "Temple Escape", category: "runner", description: "Run from the ancient guardian." },
     { slug: "ninja-roof-runner", title: "Ninja Roof Runner", category: "runner", description: "Parkour over city rooftops." },
+    { slug: "brick-dash", title: "Brick Dash", category: "runner", description: "Dodge the falling bricks!" }, // Added
 
     // --- PUZZLE (10) ---
     { slug: "sudoku-zen", title: "Sudoku Zen", category: "puzzle", description: "Relaxing number placement puzzle." },
@@ -131,9 +142,18 @@ const RAW_GAMES: Omit<GameEntry, "component">[] = [
 
 export const GAME_REGISTRY: GameEntry[] = RAW_GAMES.map(game => {
     // SPECIAL MAPPING FOR REAL GAMES
-    if (game.slug === "tic-tac-toe-prime") {
-        return { ...game, component: TicTacToePrime };
-    }
+    if (game.slug === "tic-tac-toe-prime") return { ...game, component: TicTacToePrime }; // Uses standard layout
+
+    // Full-page games (Self-contained layout)
+    if (game.slug === "neon-snake") return { ...game, component: NeonSnakeGame, useCustomLayout: true };
+    if (game.slug === "galaxy-invaders") return { ...game, component: SpaceInvadersGame, useCustomLayout: true };
+    if (game.slug === "brick-breaker-pro") return { ...game, component: AstroBreakoutGame, useCustomLayout: true };
+    if (game.slug === "pong-masters") return { ...game, component: NeonPaddleGame, useCustomLayout: true };
+    if (game.slug === "meteor-blast") return { ...game, component: AsteroidDriftGame, useCustomLayout: true };
+    if (game.slug === "cyber-pinball") return { ...game, component: PinballNeonGame, useCustomLayout: true };
+    if (game.slug === "bubble-shooter-pop") return { ...game, component: BubbleShooterGame, useCustomLayout: true };
+    if (game.slug === "brick-dash") return { ...game, component: BrickDashGame, useCustomLayout: true };
+    if (game.slug === "ninja-roof-runner") return { ...game, component: BrickDashGame, useCustomLayout: true };
 
     // DEFAULT FALLBACK FOR ALL OTHER GAMES
     return {

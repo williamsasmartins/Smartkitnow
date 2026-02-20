@@ -13,6 +13,11 @@ export default function GamePlayerPage() {
 
     const GameComponent = game.component;
 
+    // Direct render for games that handle their own layout (page components, not just board components)
+    if (game.useCustomLayout) {
+        return <GameComponent />;
+    }
+
     return (
         <GameLayout
             title={game.title}
