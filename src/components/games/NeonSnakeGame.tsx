@@ -540,15 +540,15 @@ function NeonSnakeBoard({ title }: { title: string }) {
       d === "easy"
         ? "border-green-500/30 bg-green-500/10 hover:bg-green-500/15"
         : d === "medium"
-        ? "border-yellow-500/30 bg-yellow-500/10 hover:bg-yellow-500/15"
-        : "border-red-500/30 bg-red-500/10 hover:bg-red-500/15";
+          ? "border-yellow-500/30 bg-yellow-500/10 hover:bg-yellow-500/15"
+          : "border-red-500/30 bg-red-500/10 hover:bg-red-500/15";
 
     const ring =
       d === "easy"
         ? "ring-green-500/40"
         : d === "medium"
-        ? "ring-yellow-500/40"
-        : "ring-red-500/40";
+          ? "ring-yellow-500/40"
+          : "ring-red-500/40";
 
     return [base, palette, selected ? `ring-2 ${ring}` : ""].join(" ");
   };
@@ -706,8 +706,8 @@ function NeonSnakeBoard({ title }: { title: string }) {
         <div
           ref={boardWrapRef}
           className={[
-            "w-full max-w-[620px] aspect-square flex items-center justify-center",
-            inBigMode ? "max-w-none w-full" : "",
+            "w-full aspect-square flex items-center justify-center mx-auto",
+            inBigMode ? "max-w-none h-full" : "max-w-[min(90vw,65vh)]",
           ].join(" ")}
         >
           <Card

@@ -1508,7 +1508,7 @@ const Index = () => {
               <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Car className="w-24 h-24 text-blue-500" />
               </div>
-              <CardHeader>
+              <CardHeader className="flex flex-col items-center text-center">
                 <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
                   <DollarSign className="w-6 h-6" />
                 </div>
@@ -1520,8 +1520,8 @@ const Index = () => {
                   Visualize your monthly payments and interest costs with our new interactive breakdown charts.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="mt-4 flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:underline">
+              <CardContent className="flex justify-center pb-6">
+                <div className="flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:underline">
                   Calculate Now <TrendingUp className="w-4 h-4 ml-1" />
                 </div>
               </CardContent>
@@ -1536,7 +1536,7 @@ const Index = () => {
               <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
                 <TrendingUp className="w-24 h-24 text-emerald-500" />
               </div>
-              <CardHeader>
+              <CardHeader className="flex flex-col items-center text-center">
                 <div className="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center mb-4 text-emerald-600 dark:text-emerald-400">
                   <TrendingUp className="w-6 h-6" />
                 </div>
@@ -1548,8 +1548,8 @@ const Index = () => {
                   Project your future wealth with our advanced compound interest visualizer.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="mt-4 flex items-center text-sm font-medium text-emerald-600 dark:text-emerald-400 group-hover:underline">
+              <CardContent className="flex justify-center pb-6">
+                <div className="flex items-center text-sm font-medium text-emerald-600 dark:text-emerald-400 group-hover:underline">
                   Start Investing <TrendingUp className="w-4 h-4 ml-1" />
                 </div>
               </CardContent>
@@ -1564,7 +1564,7 @@ const Index = () => {
               <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Smile className="w-24 h-24 text-green-500" />
               </div>
-              <CardHeader>
+              <CardHeader className="flex flex-col items-center text-center">
                 <div className="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/50 flex items-center justify-center mb-4 text-green-600 dark:text-green-400">
                   <Video className="w-6 h-6" />
                 </div>
@@ -1576,8 +1576,8 @@ const Index = () => {
                   Classic snake action reimagined with neon glow graphics and smooth controls.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="mt-4 flex items-center text-sm font-medium text-green-600 dark:text-green-400 group-hover:underline">
+              <CardContent className="flex justify-center pb-6">
+                <div className="flex items-center text-sm font-medium text-green-600 dark:text-green-400 group-hover:underline">
                   Play Now <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
                 </div>
               </CardContent>
