@@ -299,6 +299,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
   {
+    slug: "future-value",
+    title: "Future Value Investment Calculator",
+    category: "financial",
+    subcategory: "investments-savings",
+    description: "Calculate the future value of your investments with compound interest and regular contributions.",
+    loader: () => import("@/components/calculators/Financial/FutureValueInvestmentCalculator"),
+    urlStyle: "flat"
+  },
+  {
     slug: "roi-return-on-investment",
     title: "Investment Return (ROI) Calculator",
     category: "financial",
