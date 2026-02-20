@@ -1,20 +1,36 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle, TrendingUp } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle, TrendingUp, Share2 } from "lucide-react";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function AutoLoanCalculator() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   // STATE
   const [inputs, setInputs] = useState({
-    loanAmount: "",
-    interestRate: "",
-    loanTerm: ""
+    loanAmount: searchParams.get("amount") || "",
+    interestRate: searchParams.get("rate") || "",
+    loanTerm: searchParams.get("term") || ""
   });
+  const [showFullTable, setShowFullTable] = useState(false);
+  const resultsRef = useRef<HTMLDivElement>(null);
+
+  // Auto-calculate on mount if params exist
+  useEffect(() => {
+    if (searchParams.size > 0 && inputs.loanAmount && inputs.interestRate && inputs.loanTerm) {
+      setTimeout(() => {
+        resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 500);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -84,6 +100,19 @@ export default function AutoLoanCalculator() {
 
   const handleReset = () => {
     setInputs({ loanAmount: "", interestRate: "", loanTerm: "" });
+    setSearchParams({});
+  };
+
+  const handleShare = () => {
+    const params = new URLSearchParams();
+    if (inputs.loanAmount) params.set("amount", inputs.loanAmount);
+    if (inputs.interestRate) params.set("rate", inputs.interestRate);
+    if (inputs.loanTerm) params.set("term", inputs.loanTerm);
+
+    const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, "", newUrl);
+    navigator.clipboard.writeText(newUrl);
+    toast.success("Link copied to clipboard!");
   };
 
   const faqs = [
@@ -123,7 +152,7 @@ export default function AutoLoanCalculator() {
 
   const faqJsonLd = useFaqJsonLd(faqs);
 
-  // WIDGET JSX (200-250 LINES)
+  // WIDGET JSX
   const widget = (
     <Card className="p-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
       {/* INPUT SECTION */}
@@ -189,12 +218,66 @@ export default function AutoLoanCalculator() {
         >
           Reset
         </Button>
+        <Button
+          onClick={handleShare}
+          variant="outline"
+          className="border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950 px-3"
+          title="Share result"
+        >
+          <Share2 className="h-4 w-4" />
+        </Button>
       </div>
 
-      {/* RESULTS SECTION - GRID 2x2 (MANDATORY) */}
+      {/* RESULTS SECTION */}
       {results.mainResult > 0 && (
         <div ref={resultsRef} className="space-y-6 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Your Results</h3>
+
+          {/* VISUAL CHART */}
+          <Card className="border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg flex items-center gap-2 text-gray-800 dark:text-gray-100">
+                <TrendingUp className="h-5 w-5 text-blue-600" />
+                Cost Breakdown
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="h-[300px] w-full flex justify-center items-center">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={[
+                      { name: 'Principal', value: parseFloat(inputs.loanAmount) || 0, fill: '#3b82f6' },
+                      { name: 'Interest', value: results.totalInterest, fill: '#f43f5e' }
+                    ]}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={80}
+                    paddingAngle={5}
+                    dataKey="value"
+                  >
+                    {[
+                      { name: 'Principal', fill: '#3b82f6' },
+                      { name: 'Interest', fill: '#f43f5e' }
+                    ].map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.fill} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    formatter={(value: number) => formatCurrency(value)}
+                    itemStyle={{ color: "#1e293b" }}
+                    contentStyle={{
+                      backgroundColor: "rgba(255, 255, 255, 0.95)",
+                      borderRadius: "8px",
+                      border: "1px solid #e5e7eb",
+                      boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
+                    }}
+                  />
+                  <Legend verticalAlign="bottom" height={36} />
+                </PieChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* MAIN RESULT - Full Width Gradient (MANDATORY STYLE) */}

@@ -1,4 +1,6 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
@@ -6,18 +8,30 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle } from "lucide-react";
+import { Calculator, DollarSign, TrendingUp, HelpCircle, BookOpen, Info, CheckCircle, Share2, BarChart2 } from "lucide-react";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from "recharts";
 
 export default function FutureValueInvestmentCalculator() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   // STATE
-  const [inputs, setInputs] = useState({ 
-    principal: "", 
-    rate: "", 
-    years: "", 
-    contribution: "" 
+  const [inputs, setInputs] = useState({
+    principal: searchParams.get("principal") || "",
+    rate: searchParams.get("rate") || "",
+    years: searchParams.get("years") || "",
+    contribution: searchParams.get("contribution") || ""
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  // Auto-calculate
+  useEffect(() => {
+    if (searchParams.size > 0 && inputs.principal && inputs.rate && inputs.years) {
+      setTimeout(() => {
+        resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 500);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const faqs = [
     {
@@ -76,11 +90,11 @@ export default function FutureValueInvestmentCalculator() {
 
     // Validate
     if (principalValue < 0 || rateValue < 0 || yearsValue <= 0) {
-      return { 
-        futureValue: 0, 
-        totalContributions: 0, 
-        totalInterest: 0, 
-        scheduleData: [] 
+      return {
+        futureValue: 0,
+        totalContributions: 0,
+        totalInterest: 0,
+        scheduleData: []
       };
     }
 
@@ -91,38 +105,78 @@ export default function FutureValueInvestmentCalculator() {
     let totalContributions = 0;
     let totalInterest = 0;
 
-    const scheduleData = Array.from({ length: periods }, (_, i) => {
+    // Explicitly type arrays to avoid 'never[]' errors
+    const scheduleData: { month: number; contribution: string; interest: string; balance: string }[] = [];
+    const chartData: { year: number; Principal: number; Contributions: number; Interest: number }[] = [];
+
+    // Push initial state
+    chartData.push({
+      year: 0,
+      Principal: principalValue,
+      Contributions: 0,
+      Interest: 0
+    });
+
+    for (let i = 0; i < periods; i++) {
       futureValue = futureValue * (1 + monthlyRate) + contributionValue;
       totalContributions += contributionValue;
       totalInterest = futureValue - principalValue - totalContributions;
-      return {
-        month: i + 1,
+
+      const currentMonth = i + 1;
+
+      scheduleData.push({
+        month: currentMonth,
         contribution: formatCurrency(contributionValue),
         interest: formatCurrency(futureValue - principalValue - totalContributions),
         balance: formatCurrency(futureValue)
-      };
-    });
+      });
 
-    return { 
-      futureValue, 
-      totalContributions, 
-      totalInterest, 
-      scheduleData 
+      // Add to chart data yearly
+      if (currentMonth % 12 === 0) {
+        chartData.push({
+          year: currentMonth / 12,
+          Principal: principalValue,
+          Contributions: parseFloat(totalContributions.toFixed(2)),
+          Interest: parseFloat(totalInterest.toFixed(2))
+        });
+      }
+    }
+
+    return {
+      futureValue,
+      totalContributions,
+      totalInterest,
+      scheduleData,
+      chartData
     };
   }, [inputs]);
 
   // HANDLERS
   const handleCalculate = () => {
     setTimeout(() => {
-      resultsRef.current?.scrollIntoView({ 
-        behavior: "smooth", 
-        block: "center" 
+      resultsRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
       });
     }, 100);
   };
 
   const handleReset = () => {
     setInputs({ principal: "", rate: "", years: "", contribution: "" });
+    setSearchParams({});
+  };
+
+  const handleShare = () => {
+    const params = new URLSearchParams();
+    if (inputs.principal) params.set("principal", inputs.principal);
+    if (inputs.rate) params.set("rate", inputs.rate);
+    if (inputs.years) params.set("years", inputs.years);
+    if (inputs.contribution) params.set("contribution", inputs.contribution);
+
+    const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, "", newUrl);
+    navigator.clipboard.writeText(newUrl);
+    toast.success("Link copied to clipboard!");
   };
 
   // WIDGET JSX (200-250 LINES)
@@ -133,7 +187,7 @@ export default function FutureValueInvestmentCalculator() {
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <DollarSign className="w-4 h-4 text-blue-600"/>
+              <DollarSign className="w-4 h-4 text-blue-600" />
               Initial Principal
             </Label>
             <Input
@@ -147,7 +201,7 @@ export default function FutureValueInvestmentCalculator() {
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <TrendingUp className="w-4 h-4 text-green-600"/>
+              <TrendingUp className="w-4 h-4 text-green-600" />
               Annual Interest Rate (%)
             </Label>
             <Input
@@ -161,7 +215,7 @@ export default function FutureValueInvestmentCalculator() {
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <Calculator className="w-4 h-4 text-purple-600"/>
+              <Calculator className="w-4 h-4 text-purple-600" />
               Number of Years
             </Label>
             <Input
@@ -175,7 +229,7 @@ export default function FutureValueInvestmentCalculator() {
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-              <DollarSign className="w-4 h-4 text-orange-600"/>
+              <DollarSign className="w-4 h-4 text-orange-600" />
               Monthly Contribution
             </Label>
             <Input
@@ -191,19 +245,27 @@ export default function FutureValueInvestmentCalculator() {
 
       {/* BUTTONS */}
       <div className="flex gap-4 mt-6">
-        <Button 
-          onClick={handleCalculate} 
+        <Button
+          onClick={handleCalculate}
           className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
         >
-          <Calculator className="mr-2 h-4 w-4"/> 
+          <Calculator className="mr-2 h-4 w-4" />
           Calculate
         </Button>
-        <Button 
-          onClick={handleReset} 
+        <Button
+          onClick={handleReset}
           variant="outline"
           className="border-gray-300 dark:border-gray-600"
         >
           Reset
+        </Button>
+        <Button
+          onClick={handleShare}
+          variant="outline"
+          className="border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950 px-3"
+          title="Share result"
+        >
+          <Share2 className="h-4 w-4" />
         </Button>
       </div>
 
@@ -211,7 +273,53 @@ export default function FutureValueInvestmentCalculator() {
       {results.futureValue > 0 && (
         <div ref={resultsRef} className="space-y-6 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Your Results</h3>
-          
+
+          {/* VISUAL CHART */}
+          <Card className="border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg mb-6">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg flex items-center gap-2 text-gray-800 dark:text-gray-100">
+                <BarChart2 className="h-5 w-5 text-blue-600" />
+                Investment Growth Over Time
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="h-[350px] w-full p-4">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={results.chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
+                  <XAxis
+                    dataKey="year"
+                    label={{ value: 'Years', position: 'insideBottomRight', offset: -5 }}
+                    stroke="#6b7280"
+                    fontSize={12}
+                    tickLine={false}
+                    axisLine={false}
+                  />
+                  <YAxis
+                    stroke="#6b7280"
+                    fontSize={12}
+                    tickFormatter={(value) => `$${value / 1000}k`}
+                    tickLine={false}
+                    axisLine={false}
+                  />
+                  <RechartsTooltip
+                    formatter={(value: number) => [`$${value.toLocaleString()}`, ""]}
+                    itemStyle={{ color: "#111827" }}
+                    contentStyle={{
+                      backgroundColor: "rgba(255, 255, 255, 0.95)",
+                      borderRadius: "8px",
+                      border: "1px solid #e5e7eb",
+                      boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
+                    }}
+                  />
+                  <Legend wrapperStyle={{ paddingTop: '20px' }} />
+                  <Bar dataKey="Principal" stackId="a" fill="#3b82f6" name="Initial Principal" radius={[0, 0, 0, 0]} />
+                  <Bar dataKey="Contributions" stackId="a" fill="#8b5cf6" name="Contributions" radius={[0, 0, 0, 0]} />
+                  <Bar dataKey="Interest" stackId="a" fill="#10b981" name="Interest Earned" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* MAIN RESULT - Full Width Gradient (MANDATORY STYLE) */}
             <Card className="col-span-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200 dark:border-blue-800 shadow-xl">
@@ -274,14 +382,14 @@ export default function FutureValueInvestmentCalculator() {
                     Investment Growth Schedule
                   </span>
                   {results.scheduleData.length > 12 && (
-                    <Button 
-                      onClick={() => setShowFullTable(!showFullTable)} 
+                    <Button
+                      onClick={() => setShowFullTable(!showFullTable)}
                       variant="outline"
                       size="sm"
                       className="border-gray-300 dark:border-gray-600"
                     >
-                      {showFullTable 
-                        ? 'Show Less' 
+                      {showFullTable
+                        ? 'Show Less'
                         : `Show All ${results.scheduleData.length} Months`}
                     </Button>
                   )}
@@ -302,8 +410,8 @@ export default function FutureValueInvestmentCalculator() {
                       {results.scheduleData
                         .slice(0, showFullTable ? undefined : 12)
                         .map((row, idx) => (
-                          <TableRow 
-                            key={idx} 
+                          <TableRow
+                            key={idx}
                             className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                           >
                             <TableCell className="font-medium">{row.month}</TableCell>
@@ -330,35 +438,35 @@ export default function FutureValueInvestmentCalculator() {
   // EDITORIAL JSX (350-400 LINES, 2500-3000 WORDS)
   const editorial = (
     <div className="skn-editorial space-y-12 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      
+
       {/* SECTION 1: INTRODUCTION (400-500 words) */}
       <section id="introduction">
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Understanding Future Value of Investment Calculator
         </h2>
-        
+
         <p className="mb-6">
           The Future Value of Investment Calculator is a powerful tool designed to help you estimate the growth of your investments over time. By inputting your initial principal, expected annual interest rate, the number of years you plan to invest, and any regular contributions you intend to make, this calculator provides a comprehensive projection of your investment's future value. Whether you're planning for retirement, saving for a major purchase, or simply looking to grow your wealth, understanding the potential future value of your investments is crucial for making informed financial decisions.
         </p>
-        
+
         <p className="mb-6">
           Accurate calculations are vital in the realm of investments. Even small errors can lead to significant financial discrepancies over time. For instance, underestimating the impact of compound interest can result in missed opportunities for growth. This calculator uses a standard formula to ensure precise calculations, helping you avoid costly mistakes. By understanding the potential outcomes of your investment strategies, you can better align your financial goals with realistic expectations. For more insights, explore our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> to see how different interest rates affect loan repayments.
         </p>
-        
+
         <p className="mb-6">
           To use this calculator effectively, gather information such as your initial investment amount, the expected annual interest rate, the duration of your investment, and any additional monthly contributions. Enter these values into the respective fields to calculate the future value. It's important to use realistic figures to ensure the accuracy of your projections. For instance, if you're unsure about the interest rate, consider using historical averages or consult with a financial advisor. For a deeper understanding of how contributions affect growth, check out our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
         </p>
 
         <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h4 className="font-bold flex items-center gap-2 text-blue-900 dark:text-blue-100 mb-3">
-            <Info className="h-5 w-5"/> 
+            <Info className="h-5 w-5" />
             Key Insight
           </h4>
           <p className="text-blue-800 dark:text-blue-200">
             Remember, the power of compound interest means that even small regular contributions can significantly increase the future value of your investment. Consistency is key, and starting early can provide a substantial advantage over time.
           </p>
         </div>
-        
+
         <p className="mb-6">
           Best practices for using this calculator include regularly updating your inputs to reflect changes in your financial situation or market conditions. Consider factors such as inflation, which can erode the real value of your returns. Additionally, review your investment strategy periodically to ensure it aligns with your evolving financial goals. By staying informed and proactive, you can optimize your investment outcomes and achieve greater financial security.
         </p>
@@ -369,11 +477,11 @@ export default function FutureValueInvestmentCalculator() {
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Future Value of Investment Calculator Formula
         </h2>
-        
+
         <p className="mb-6">
           The formula used in this calculator is based on the future value of a series formula, which calculates the future value of an investment with regular contributions. This formula is widely recognized in financial planning and investment analysis due to its ability to account for compound interest over time. The standard formula is:
         </p>
-        
+
         {/* FORMULA BOX - MANDATORY STYLING */}
         <div className="bg-slate-100 dark:bg-slate-800 p-8 rounded-xl font-mono text-center my-8 border border-slate-200 dark:border-slate-700 text-xl text-slate-900 dark:text-slate-100 overflow-x-auto shadow-sm">
           FV = P × (1 + r/n)^(nt) + PMT × [((1 + r/n)^(nt) - 1) / (r/n)]
@@ -389,7 +497,7 @@ export default function FutureValueInvestmentCalculator() {
             </ul>
           </div>
         </div>
-        
+
         <p className="mb-4">
           Each component of the formula plays a crucial role in determining the future value. The principal amount (P) is the initial sum invested, which grows over time through compound interest. The annual interest rate (r) is divided by the number of compounding periods per year (n) to determine the periodic interest rate. The number of years (t) represents the investment duration, while the monthly contribution (PMT) accounts for additional funds added regularly. Variations of this formula may be used for different compounding frequencies, such as quarterly or annually, depending on the investment terms.
         </p>
@@ -400,11 +508,11 @@ export default function FutureValueInvestmentCalculator() {
         <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-slate-100">
           Key Factors That Affect Your Results
         </h2>
-        
+
         <p className="mb-6">
           Understanding the factors that influence your investment's future value is essential for making informed decisions. These factors interact in complex ways, affecting the growth trajectory of your investments. By analyzing each component, you can optimize your strategy to achieve your financial goals.
         </p>
-        
+
         <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
           Initial Principal
         </h3>
@@ -414,7 +522,7 @@ export default function FutureValueInvestmentCalculator() {
         <p className="mb-6">
           To maximize the impact of your principal, consider strategies to increase your initial investment, such as reallocating funds from lower-yielding accounts. For more insights on maximizing your principal, explore our <a href="/financial/mortgage-amortization" className="text-blue-600 dark:text-blue-400 hover:underline">Mortgage Payment & Amortization Calculator</a>.
         </p>
-        
+
         <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
           Interest Rate
         </h3>
@@ -424,7 +532,7 @@ export default function FutureValueInvestmentCalculator() {
         <p className="mb-6">
           Interest rates can vary based on market conditions and investment types. It's crucial to research and compare rates across different financial products to ensure you're getting the best return. For a detailed comparison of interest rates, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
         </p>
-        
+
         <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
           Investment Duration
         </h3>
@@ -434,7 +542,7 @@ export default function FutureValueInvestmentCalculator() {
         <p className="mb-6">
           To take full advantage of time, start investing as early as possible and maintain a long-term perspective. This approach minimizes the impact of short-term market fluctuations and maximizes growth potential. For strategies on optimizing investment duration, consult our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
         </p>
-        
+
         <h3 className="text-2xl font-semibold mb-4 mt-8 text-slate-900 dark:text-slate-100">
           Regular Contributions
         </h3>
@@ -465,10 +573,10 @@ export default function FutureValueInvestmentCalculator() {
           {faqs.map((faq, index) => (
             <div key={index}>
               <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0" />
                 {faq.question}
               </h3>
-              <p 
+              <p
                 className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3"
                 dangerouslySetInnerHTML={{ __html: faq.answer }}
               />
@@ -484,12 +592,12 @@ export default function FutureValueInvestmentCalculator() {
         </h2>
         <ul className="space-y-4">
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
             <div>
-              <a 
-                href="https://www.federalreserve.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.federalreserve.gov"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
               >
                 Federal Reserve - Economic Research
@@ -500,12 +608,12 @@ export default function FutureValueInvestmentCalculator() {
             </div>
           </li>
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
             <div>
-              <a 
-                href="https://www.consumerfinance.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.consumerfinance.gov"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
               >
                 Consumer Financial Protection Bureau - Financial Tools
@@ -516,12 +624,12 @@ export default function FutureValueInvestmentCalculator() {
             </div>
           </li>
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
             <div>
-              <a 
-                href="https://www.fdic.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.fdic.gov"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
               >
                 FDIC - Banking Regulations
@@ -532,12 +640,12 @@ export default function FutureValueInvestmentCalculator() {
             </div>
           </li>
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
             <div>
-              <a 
-                href="https://www.irs.gov" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.irs.gov"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
               >
                 Internal Revenue Service - Tax Information
@@ -548,12 +656,12 @@ export default function FutureValueInvestmentCalculator() {
             </div>
           </li>
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
             <div>
-              <a 
-                href="https://www.investopedia.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.investopedia.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
               >
                 Investopedia - Investment Strategies
@@ -564,12 +672,12 @@ export default function FutureValueInvestmentCalculator() {
             </div>
           </li>
           <li className="flex items-start gap-3">
-            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0"/>
+            <BookOpen className="h-5 w-5 text-slate-400 mt-1 shrink-0" />
             <div>
-              <a 
-                href="https://www.nerdwallet.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.nerdwallet.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
               >
                 NerdWallet - Personal Finance
@@ -615,18 +723,18 @@ export default function FutureValueInvestmentCalculator() {
         title: "Example Calculation",
         scenario: "Imagine you have an initial investment of $10,000 with a 5% annual interest rate, compounded monthly, over 20 years with a $200 monthly contribution.",
         steps: [
-          { 
-            label: "Step 1", 
+          {
+            label: "Step 1",
             calculation: "Calculate the future value of the principal: $10,000 × (1 + 0.05/12)^(12×20)",
             explanation: "Determine the growth of the initial investment over 20 years."
           },
-          { 
-            label: "Step 2", 
+          {
+            label: "Step 2",
             calculation: "Calculate the future value of the contributions: $200 × [((1 + 0.05/12)^(12×20) - 1) / (0.05/12)]",
             explanation: "Determine the growth of the monthly contributions over 20 years."
           },
-          { 
-            label: "Step 3", 
+          {
+            label: "Step 3",
             calculation: "Add the future values from Step 1 and Step 2 to get the total future value.",
             explanation: "Combine the growth of the principal and contributions for the final result."
           }

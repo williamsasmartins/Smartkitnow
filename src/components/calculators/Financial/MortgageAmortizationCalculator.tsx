@@ -1,4 +1,6 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,7 +27,9 @@ import {
   BookOpen,
   Info,
   CheckCircle,
+  Share2
 } from "lucide-react";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
 
 type InputsState = {
   income: string;
@@ -41,14 +45,25 @@ type ScheduleRow = {
 };
 
 export default function MonthlyBudgetPlannerCalculator() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   // STATE
   const [inputs, setInputs] = useState<InputsState>({
-    income: "",
-    expenses: "",
-    savingsGoal: "",
+    income: searchParams.get("income") || "",
+    expenses: searchParams.get("expenses") || "",
+    savingsGoal: searchParams.get("goal") || "",
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement | null>(null);
+
+  // Auto-calculate
+  useEffect(() => {
+    if (searchParams.size > 0 && inputs.income && inputs.expenses) {
+      setTimeout(() => {
+        resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 500);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // HELPER: format currency
   const formatCurrency = (value: number): string =>
@@ -85,15 +100,15 @@ export default function MonthlyBudgetPlannerCalculator() {
     const scheduleData: ScheduleRow[] =
       monthsToGoal > 0
         ? Array.from({ length: monthsToGoal }, (_, i) => {
-            const month = i + 1;
-            const cumulativeSavings = netIncome * month;
-            return {
-              month,
-              savings: netIncome,
-              cumulativeSavings,
-              goalReached: cumulativeSavings >= savingsGoalValue,
-            };
-          })
+          const month = i + 1;
+          const cumulativeSavings = netIncome * month;
+          return {
+            month,
+            savings: netIncome,
+            cumulativeSavings,
+            goalReached: cumulativeSavings >= savingsGoalValue,
+          };
+        })
         : [];
 
     return {
@@ -122,6 +137,19 @@ export default function MonthlyBudgetPlannerCalculator() {
       savingsGoal: "",
     });
     setShowFullTable(false);
+    setSearchParams({});
+  };
+
+  const handleShare = () => {
+    const params = new URLSearchParams();
+    if (inputs.income) params.set("income", inputs.income);
+    if (inputs.expenses) params.set("expenses", inputs.expenses);
+    if (inputs.savingsGoal) params.set("goal", inputs.savingsGoal);
+
+    const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, "", newUrl);
+    navigator.clipboard.writeText(newUrl);
+    toast.success("Link copied to clipboard!");
   };
 
   // WIDGET (formulário + resultados)
@@ -213,6 +241,14 @@ export default function MonthlyBudgetPlannerCalculator() {
         >
           Reset
         </Button>
+        <Button
+          onClick={handleShare}
+          variant="outline"
+          className="border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950 px-3"
+          title="Share result"
+        >
+          <Share2 className="h-4 w-4" />
+        </Button>
       </div>
 
       {/* RESULTS */}
@@ -224,6 +260,52 @@ export default function MonthlyBudgetPlannerCalculator() {
           <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
             Your monthly budget snapshot
           </h3>
+
+          {/* BUDGET ALLOCATION CHART */}
+          <Card className="border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg flex items-center gap-2 text-gray-800 dark:text-gray-100">
+                <TrendingUp className="h-5 w-5 text-blue-600" />
+                Income Allocation
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="h-[300px] w-full flex justify-center items-center">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={[
+                      { name: 'Expenses', value: parseFloat(inputs.expenses) || 0, fill: '#ef4444' },
+                      { name: 'Savings (Net Income)', value: results.netIncome, fill: '#10b981' }
+                    ]}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={80}
+                    paddingAngle={5}
+                    dataKey="value"
+                  >
+                    {[
+                      { name: 'Expenses', fill: '#ef4444' },
+                      { name: 'Savings (Net Income)', fill: '#10b981' }
+                    ].map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.fill} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    formatter={(value: number) => formatCurrency(value)}
+                    itemStyle={{ color: "#1e293b" }}
+                    contentStyle={{
+                      backgroundColor: "rgba(255, 255, 255, 0.95)",
+                      borderRadius: "8px",
+                      border: "1px solid #e5e7eb",
+                      boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
+                    }}
+                  />
+                  <Legend verticalAlign="bottom" height={36} />
+                </PieChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Net income */}
