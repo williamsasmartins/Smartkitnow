@@ -49,11 +49,102 @@ const TRANSLATIONS = {
     qrCodeData: "QR Code Data:",
     footerText: "Generate QR codes instantly • No data stored • Free to use",
     qrCodeAlt: "Generated QR Code",
+    qrDetails: "QR Details",
+    livePreview: "Live Preview",
+    configuration: "Configuration",
+    appearance: "Appearance",
+    quickStyles: "Quick Styles",
+    autoColors: "Auto Colors",
+    resetToTheme: "Reset to Theme",
+    exportSvg: "Export SVG",
+    downloadPng: "Download PNG",
+    privateSecure: "Private & Secure",
+    privacyText: "All QR codes are generated directly in your browser. Your data never leaves your computer.",
+    size: "Size (px)",
+    margin: "Margin",
+    ecc: "Error Correction",
+    format: "Format",
+    moduleColor: "Module Color",
+    bgColor: "Background Color",
+    quickClassic: "Classic",
+    quickAzure: "Azure",
+    quickAmethyst: "Amethyst",
+    quickGold: "Gold Rush",
   },
+  "pt-BR": {
+    appTitle: "Gerador de QR Code",
+    appDescription: "Gere QR codes gratuitos para URLs, texto e contatos (vCard). Baixe em PNG ou SVG, escolha a correção de erro (ECC), margens, tamanho e cores da marca. Privado: os dados nunca saem do seu navegador.",
+    urlTab: "URL",
+    textTab: "Texto",
+    contactTab: "Contato",
+    enterUrl: "Digite a URL",
+    enterText: "Digite o Texto",
+    contactInformation: "Informações de Contato",
+    websiteUrl: "URL do Website",
+    urlPlaceholder: "exemplo.com ou https://exemplo.com",
+    urlHelp: "Digite a URL de um site. Se não incluir http://, adicionaremos https:// automaticamente.",
+    textContent: "Conteúdo do Texto",
+    textPlaceholder: "Digite qualquer texto para gerar o QR code...",
+    firstName: "Nome",
+    firstNamePlaceholder: "João",
+    lastName: "Sobrenome",
+    lastNamePlaceholder: "Silva",
+    phoneNumber: "Telefone",
+    phonePlaceholder: "+55 (11) 99999-9999",
+    emailAddress: "E-mail",
+    emailPlaceholder: "joao.silva@exemplo.com",
+    organization: "Empresa",
+    organizationPlaceholder: "Nome da Empresa",
+    website: "Website",
+    websitePlaceholder: "https://exemplo.com",
+    clearAllFields: "Limpar Todos os Campos",
+    generatedQrCode: "QR Code Gerado",
+    scanQrCode: "Escaneie este QR code com seu dispositivo",
+    fillFormPrompt: "Preencha o formulário para gerar seu QR code",
+    download: "Download",
+    copyData: "Copiar Dados",
+    copied: "Copiado!",
+    qrCodeData: "Dados do QR Code:",
+    footerText: "Gere QR codes instantaneamente • Sem armazenamento de dados • Grátis",
+    qrCodeAlt: "QR Code Gerado",
+    qrDetails: "Detalhes do QR",
+    livePreview: "Prévia em Tempo Real",
+    configuration: "Configuração",
+    appearance: "Aparência",
+    quickStyles: "Estilos Rápidos",
+    autoColors: "Cores Automáticas",
+    resetToTheme: "Redefinir para o Tema",
+    exportSvg: "Exportar SVG",
+    downloadPng: "Baixar PNG",
+    privateSecure: "Privado e Seguro",
+    privacyText: "Todos os QR codes são gerados diretamente no seu navegador. Seus dados nunca saem do seu computador.",
+    size: "Tamanho (px)",
+    margin: "Margem",
+    ecc: "Correção de Erro",
+    format: "Formato",
+    moduleColor: "Cor do Módulo",
+    bgColor: "Cor de Fundo",
+    quickClassic: "Clássico",
+    quickAzure: "Azure",
+    quickAmethyst: "Ametista",
+    quickGold: "Dourado",
+  }
 };
 
-// Always English
-const t = (key: keyof typeof TRANSLATIONS['en-US']) => TRANSLATIONS['en-US'][key] || String(key);
+// Language detection logic
+const getLang = () => {
+  if (typeof window === 'undefined') return 'en-US';
+  const path = window.location.pathname;
+  if (path.includes('/pt/')) return 'pt-BR';
+  const navLang = navigator.language;
+  if (navLang.startsWith('pt')) return 'pt-BR';
+  return 'en-US';
+};
+
+const t = (key: keyof typeof TRANSLATIONS['en-US']) => {
+  const lang = getLang();
+  return TRANSLATIONS[lang][key] || TRANSLATIONS['en-US'][key] || String(key);
+};
 
 const QRCodeGenerator = () => {
   const { resolvedTheme } = useTheme();
@@ -197,18 +288,25 @@ const QRCodeGenerator = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab, urlInput, textInput, contactInfo, size, margin, ecc, format, resolvedTheme, autoColors, moduleColor, bgColor]);
 
-  const applyPreset = (preset: 'high' | 'brand-light' | 'brand-dark') => {
+  const applyPreset = (preset: 'classic' | 'modern-blue' | 'vibrant-purple' | 'dark-gold') => {
     setAutoColors(false);
-    const brand = getComputedStyle(document.documentElement).getPropertyValue('--skn-brand').trim() || '#2563eb';
-    if (preset === 'high') {
-      setModuleColor('#000000');
-      setBgColor('#ffffff');
-    } else if (preset === 'brand-light') {
-      setModuleColor(brand);
-      setBgColor('#ffffff');
-    } else {
-      setModuleColor(brand);
-      setBgColor('#0f172a');
+    switch (preset) {
+      case 'classic':
+        setModuleColor('#000000');
+        setBgColor('#ffffff');
+        break;
+      case 'modern-blue':
+        setModuleColor('#2563eb');
+        setBgColor('#f8fafc');
+        break;
+      case 'vibrant-purple':
+        setModuleColor('#7c3aed');
+        setBgColor('#faf5ff');
+        break;
+      case 'dark-gold':
+        setModuleColor('#fbbf24');
+        setBgColor('#0f172a');
+        break;
     }
   };
 
@@ -270,18 +368,18 @@ const QRCodeGenerator = () => {
   const widget = (
     <div className="calculator-safe-zone">
       {/* Tabs (shadcn) */}
-      <div className="mb-6">
+      <div className="mb-8">
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)}>
-          <TabsList className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-1 w-full flex justify-start overflow-x-auto">
+          <TabsList className="bg-slate-100/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl p-1.5 w-full flex justify-start overflow-x-auto h-auto">
             {tabs.map((tab) => {
               const IconComponent = tab.icon as any;
               return (
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id as any}
-                  className="px-4 py-2 rounded-lg flex-1 md:flex-none data-[state=active]:bg-blue-50 dark:data-[state=active]:bg-blue-900/20 data-[state=active]:text-blue-600 dark:data-[state=active]:text-blue-400 font-medium"
+                  className="px-6 py-3 rounded-xl flex-1 md:flex-none data-[state=active]:bg-white dark:data-[state=active]:bg-slate-800 data-[state=active]:text-blue-600 dark:data-[state=active]:text-blue-400 data-[state=active]:shadow-sm font-semibold transition-all duration-200"
                 >
-                  <IconComponent className="w-4 h-4 mr-2" /> {tab.label}
+                  <IconComponent className="w-4.5 h-4.5 mr-2.5" /> {tab.label}
                 </TabsTrigger>
               );
             })}
@@ -289,192 +387,256 @@ const QRCodeGenerator = () => {
         </Tabs>
       </div>
 
-      {/* Inputs + Preview */}
-      <div className="space-y-8">
-        {/* Inputs Card - Unified Dark Wrapper */}
-        <Card className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#020617] shadow-lg rounded-xl overflow-hidden">
-          <CardHeader className="px-6 py-6 md:px-8 border-b-0 pb-2">
-            <CardTitle className="text-xl font-bold flex items-center gap-2 text-slate-900 dark:text-slate-50">
-              <LinkIcon className="h-6 w-6 text-blue-600 dark:text-blue-500" />
-              QR details
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-6 md:p-8 pt-2 space-y-6">
-            {activeTab === 'url' && (
-              <div>
-                <Label className="mb-2 text-base font-semibold text-slate-900 dark:text-slate-50">{t('websiteUrl')}</Label>
-                <Input
-                  type="url"
-                  value={urlInput}
-                  onChange={(e) => setUrlInput(e.target.value)}
-                  placeholder={t('urlPlaceholder')}
-                  className="h-12 text-base bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-blue-500"
-                />
-                <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">{t('urlHelp')}</p>
-              </div>
-            )}
+      {/* Main Grid Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-            {activeTab === 'text' && (
-              <div>
-                <Label className="mb-2 text-base font-semibold">{t('textContent')}</Label>
-                <Textarea
-                  value={textInput}
-                  onChange={(e) => setTextInput(e.target.value)}
-                  placeholder={t('textPlaceholder')}
-                  rows={4}
-                  className="w-full text-base bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800"
-                />
-              </div>
-            )}
-
-            {activeTab === 'contact' && (
-              <div className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <Label className="mb-2 font-semibold">{t('firstName')}</Label>
-                    <Input value={contactInfo.firstName} onChange={(e) => setContactInfo({ ...contactInfo, firstName: e.target.value })} placeholder={t('firstNamePlaceholder')} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
+        {/* LEFT COLUMN: Inputs & Customization */}
+        <div className="lg:col-span-7 space-y-6">
+          <Card className="border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/70 backdrop-blur-sm shadow-xl rounded-3xl overflow-hidden">
+            <CardHeader className="px-8 py-6 border-b border-slate-100 dark:border-slate-800/50">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-xl font-bold flex items-center gap-2.5 text-slate-900 dark:text-slate-50">
+                  <div className="p-2 bg-blue-100 dark:bg-blue-900/40 rounded-lg">
+                    <QrCode className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
-                  <div>
-                    <Label className="mb-2 font-semibold">{t('lastName')}</Label>
-                    <Input value={contactInfo.lastName} onChange={(e) => setContactInfo({ ...contactInfo, lastName: e.target.value })} placeholder={t('lastNamePlaceholder')} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
-                  </div>
-                </div>
-                <div>
-                  <Label className="mb-2 font-semibold">{t('phoneNumber')}</Label>
-                  <Input type="tel" value={contactInfo.phone} onChange={(e) => setContactInfo({ ...contactInfo, phone: e.target.value })} placeholder={t('phonePlaceholder')} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
-                </div>
-                <div>
-                  <Label className="mb-2 font-semibold">{t('emailAddress')}</Label>
-                  <Input type="email" value={contactInfo.email} onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })} placeholder={t('emailPlaceholder')} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
-                </div>
-                <div>
-                  <Label className="mb-2 font-semibold">{t('organization')}</Label>
-                  <Input value={contactInfo.organization} onChange={(e) => setContactInfo({ ...contactInfo, organization: e.target.value })} placeholder={t('organizationPlaceholder')} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
-                </div>
-                <div>
-                  <Label className="mb-2 font-semibold">{t('website')}</Label>
-                  <Input type="url" value={contactInfo.url} onChange={(e) => setContactInfo({ ...contactInfo, url: e.target.value })} placeholder={t('websitePlaceholder')} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
-                </div>
-              </div>
-            )}
-
-            {/* Options */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
-              <div>
-                <Label className="mb-2 font-medium text-slate-700 dark:text-slate-300">Size (px)</Label>
-                <Input type="number" min={128} max={1024} value={size} onChange={(e) => setSize(Math.max(128, Math.min(1024, Number(e.target.value) || 300)))} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
-              </div>
-              <div>
-                <Label className="mb-2 font-medium text-slate-700 dark:text-slate-300">Margin</Label>
-                <Input type="number" min={0} max={16} value={margin} onChange={(e) => setMargin(Math.max(0, Math.min(16, Number(e.target.value) || 2)))} className="h-11 bg-slate-50 dark:bg-slate-900/50" />
-              </div>
-              <div>
-                <Label className="mb-2 font-medium text-slate-700 dark:text-slate-300">Error correction</Label>
-                <Select value={ecc} onValueChange={(v) => setEcc(v as 'L' | 'M' | 'Q' | 'H')}>
-                  <SelectTrigger className="w-full h-11 bg-slate-50 dark:bg-slate-900/50" aria-label="ECC">
-                    <SelectValue placeholder="Select ECC" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="L">L</SelectItem>
-                    <SelectItem value="M">M</SelectItem>
-                    <SelectItem value="Q">Q</SelectItem>
-                    <SelectItem value="H">H</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label className="mb-2 font-medium text-slate-700 dark:text-slate-300">Format</Label>
-                <Select value={format} onValueChange={(v) => setFormat(v as 'png' | 'svg')}>
-                  <SelectTrigger className="w-full h-11 bg-slate-50 dark:bg-slate-900/50" aria-label="Format">
-                    <SelectValue placeholder="Select format" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="png">PNG</SelectItem>
-                    <SelectItem value="svg">SVG</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            {/* Color controls */}
-            <div className="space-y-4 pt-2">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <Label className="mb-2 font-medium text-slate-700 dark:text-slate-300">Module color</Label>
-                  <div className="flex gap-2">
-                    <input type="color" value={moduleColor} disabled={autoColors} onChange={(e) => setModuleColor(e.target.value)} className="h-11 w-16 p-1 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 cursor-pointer" />
-                    <Input type="text" value={moduleColor} disabled={autoColors} onChange={(e) => setModuleColor(e.target.value)} className="flex-1 h-11 bg-slate-50 dark:bg-slate-900/50 uppercase font-mono" />
-                  </div>
-                </div>
-                <div>
-                  <Label className="mb-2 font-medium text-slate-700 dark:text-slate-300">Background color</Label>
-                  <div className="flex gap-2">
-                    <input type="color" value={bgColor} disabled={autoColors} onChange={(e) => setBgColor(e.target.value)} className="h-11 w-16 p-1 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 cursor-pointer" />
-                    <Input type="text" value={bgColor} disabled={autoColors} onChange={(e) => setBgColor(e.target.value)} className="flex-1 h-11 bg-slate-50 dark:bg-slate-900/50 uppercase font-mono" />
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center justify-between pt-2">
-                <div className="flex items-center gap-3">
-                  <input id="autoColors" type="checkbox" checked={autoColors} onChange={(e) => setAutoColors(e.target.checked)} className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
-                  <label htmlFor="autoColors" className="text-sm font-medium text-slate-700 dark:text-slate-200">Auto theme colors</label>
-                </div>
-                <Button type="button" variant="outline" size="sm" onClick={() => {
-                  const brand = getComputedStyle(document.documentElement).getPropertyValue('--skn-brand').trim();
-                  if (brand) { setAutoColors(false); setModuleColor(brand); }
-                }}>
-                  Use Brand Color
+                  {t('qrDetails')}
+                </CardTitle>
+                <Button variant="ghost" size="sm" className="text-slate-500 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors" onClick={resetForm}>
+                  {t('clearAllFields')}
                 </Button>
               </div>
-            </div>
+            </CardHeader>
+            <CardContent className="p-8 space-y-8">
+              {/* Contextual Inputs */}
+              <div className="space-y-4">
+                {activeTab === 'url' && (
+                  <div className="space-y-2">
+                    <Label className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{t('websiteUrl')}</Label>
+                    <div className="relative group">
+                      <LinkIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
+                      <Input
+                        type="url"
+                        value={urlInput}
+                        onChange={(e) => setUrlInput(e.target.value)}
+                        placeholder={t('urlPlaceholder')}
+                        className="h-14 pl-12 text-base rounded-2xl bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                      />
+                    </div>
+                    <p className="text-xs text-slate-400 dark:text-slate-500 ml-1">{t('urlHelp')}</p>
+                  </div>
+                )}
 
-            <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-              <Button variant="ghost" className="w-full text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-800" onClick={resetForm}>{t('clearAllFields')}</Button>
-            </div>
-          </CardContent>
-        </Card>
+                {activeTab === 'text' && (
+                  <div className="space-y-2">
+                    <Label className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{t('textContent')}</Label>
+                    <Textarea
+                      value={textInput}
+                      onChange={(e) => setTextInput(e.target.value)}
+                      placeholder={t('textPlaceholder')}
+                      rows={4}
+                      className="w-full text-base rounded-2xl p-4 bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all resize-none"
+                    />
+                  </div>
+                )}
 
-        {/* Results Card */}
-        <Card className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-md">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base font-semibold flex items-center gap-2 text-slate-900 dark:text-slate-100">
-              Generated QR Code
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 w-full">
-              {qrData ? (
-                <div className="text-center">
-                  <div ref={qrContainerRef} className="flex justify-center"></div>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 mt-4">{t('scanQrCode')}</p>
+                {activeTab === 'contact' && (
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{t('firstName')}</Label>
+                        <Input value={contactInfo.firstName} onChange={(e) => setContactInfo({ ...contactInfo, firstName: e.target.value })} placeholder={t('firstNamePlaceholder')} className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800" />
+                      </div>
+                      <div className="space-y-2">
+                        <Label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{t('lastName')}</Label>
+                        <Input value={contactInfo.lastName} onChange={(e) => setContactInfo({ ...contactInfo, lastName: e.target.value })} placeholder={t('lastNamePlaceholder')} className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800" />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{t('phoneNumber')}</Label>
+                        <Input type="tel" value={contactInfo.phone} onChange={(e) => setContactInfo({ ...contactInfo, phone: e.target.value })} placeholder={t('phonePlaceholder')} className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800" />
+                      </div>
+                      <div className="space-y-2">
+                        <Label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{t('emailAddress')}</Label>
+                        <Input type="email" value={contactInfo.email} onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })} placeholder={t('emailPlaceholder')} className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800" />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{t('organization')}</Label>
+                      <Input value={contactInfo.organization} onChange={(e) => setContactInfo({ ...contactInfo, organization: e.target.value })} placeholder={t('organizationPlaceholder')} className="h-12 rounded-xl bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800" />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Technical Options */}
+              <div className="pt-6 border-t border-slate-100 dark:border-slate-800/50">
+                <h4 className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">{t('configuration')}</h4>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="space-y-2">
+                    <Label className="text-xs font-medium">Size (px)</Label>
+                    <Input type="number" min={128} max={1024} value={size} onChange={(e) => setSize(Math.max(128, Math.min(1024, Number(e.target.value) || 300)))} className="h-10 rounded-lg bg-slate-50/50 dark:bg-slate-900/50" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-xs font-medium">Margin</Label>
+                    <Input type="number" min={0} max={16} value={margin} onChange={(e) => setMargin(Math.max(0, Math.min(16, Number(e.target.value) || 2)))} className="h-10 rounded-lg bg-slate-50/50 dark:bg-slate-900/50" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-xs font-medium">ECC</Label>
+                    <Select value={ecc} onValueChange={(v) => setEcc(v as 'L' | 'M' | 'Q' | 'H')}>
+                      <SelectTrigger className="h-10 rounded-lg bg-slate-50/50 dark:bg-slate-900/50">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="L">L (7%)</SelectItem>
+                        <SelectItem value="M">M (15%)</SelectItem>
+                        <SelectItem value="Q">Q (25%)</SelectItem>
+                        <SelectItem value="H">H (30%)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-xs font-medium">Format</Label>
+                    <Select value={format} onValueChange={(v) => setFormat(v as 'png' | 'svg')}>
+                      <SelectTrigger className="h-10 rounded-lg bg-slate-50/50 dark:bg-slate-900/50">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="png">PNG</SelectItem>
+                        <SelectItem value="svg">SVG</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-              ) : (
-                <div className="text-center py-16">
-                  <QrCode className="w-16 h-16 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
-                  <p className="text-slate-500 dark:text-slate-400">{t('fillFormPrompt')}</p>
+              </div>
+
+              {/* Visual Customization */}
+              <div className="pt-6 border-t border-slate-100 dark:border-slate-800/50 space-y-6">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{t('appearance')}</h4>
+                  <div className="flex items-center gap-2">
+                    <input id="autoColors" type="checkbox" checked={autoColors} onChange={(e) => setAutoColors(e.target.checked)} className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+                    <label htmlFor="autoColors" className="text-xs font-semibold text-slate-600 dark:text-slate-300">{t('autoColors')}</label>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <Label className="text-xs font-medium">Module Color</Label>
+                    <div className="flex gap-2">
+                      <div className="relative h-11 w-11 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 flex-shrink-0 shadow-sm">
+                        <input type="color" value={moduleColor} disabled={autoColors} onChange={(e) => setModuleColor(e.target.value)} className="absolute inset-0 h-[100%] w-[100%] scale-[2] cursor-pointer disabled:cursor-not-allowed border-none p-0 outline-none" />
+                      </div>
+                      <Input type="text" value={moduleColor} disabled={autoColors} onChange={(e) => setModuleColor(e.target.value)} className="h-11 rounded-xl bg-slate-50 dark:bg-slate-900/50 uppercase font-mono text-sm tracking-wider" />
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <Label className="text-xs font-medium">Background Color</Label>
+                    <div className="flex gap-2">
+                      <div className="relative h-11 w-11 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 flex-shrink-0 shadow-sm">
+                        <input type="color" value={bgColor} disabled={autoColors} onChange={(e) => setBgColor(e.target.value)} className="absolute inset-0 h-[100%] w-[100%] scale-[2] cursor-pointer disabled:cursor-not-allowed border-none p-0 outline-none" />
+                      </div>
+                      <Input type="text" value={bgColor} disabled={autoColors} onChange={(e) => setBgColor(e.target.value)} className="h-11 rounded-xl bg-slate-50 dark:bg-slate-900/50 uppercase font-mono text-sm tracking-wider" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Quick Presets */}
+                <div className="space-y-3">
+                  <Label className="text-xs font-medium text-slate-500">{t('quickStyles')}</Label>
+                  <div className="flex flex-wrap gap-2">
+                    <Button type="button" variant="outline" size="sm" className="rounded-full h-8 px-4 text-xs font-bold border-slate-200 hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-900 transition-all hover:scale-105" onClick={() => applyPreset('classic')}>
+                      Classic
+                    </Button>
+                    <Button type="button" variant="outline" size="sm" className="rounded-full h-8 px-4 text-xs font-bold border-blue-200 text-blue-600 hover:bg-blue-50 dark:border-blue-900/50 dark:text-blue-400 dark:hover:bg-blue-950/30 transition-all hover:scale-105" onClick={() => applyPreset('modern-blue')}>
+                      Azure
+                    </Button>
+                    <Button type="button" variant="outline" size="sm" className="rounded-full h-8 px-4 text-xs font-bold border-purple-200 text-purple-600 hover:bg-purple-50 dark:border-purple-900/50 dark:text-purple-400 dark:hover:bg-purple-950/30 transition-all hover:scale-105" onClick={() => applyPreset('vibrant-purple')}>
+                      Amethyst
+                    </Button>
+                    <Button type="button" variant="outline" size="sm" className="rounded-full h-8 px-4 text-xs font-bold border-amber-200 text-amber-600 hover:bg-amber-50 dark:border-amber-900/50 dark:text-amber-400 dark:hover:bg-amber-950/30 transition-all hover:scale-105" onClick={() => applyPreset('dark-gold')}>
+                      Gold Rush
+                    </Button>
+                    <Button type="button" variant="ghost" size="sm" className="rounded-full h-8 px-4 text-xs font-bold text-slate-500 underline" onClick={() => setAutoColors(true)}>
+                      Reset to Theme
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* RIGHT COLUMN: Preview & Actions */}
+        <div className="lg:col-span-5 lg:sticky lg:top-8 space-y-6">
+          <Card className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-2xl rounded-3xl overflow-hidden group">
+            <CardHeader className="px-8 py-6 pb-2 border-b-0">
+              <CardTitle className="text-base font-bold flex items-center gap-2 text-slate-900 dark:text-slate-100 uppercase tracking-widest">
+                <span>{t('livePreview')}</span>
+                {qrData && <div className="ml-auto w-2 h-2 rounded-full bg-green-500 animate-pulse" />}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-8">
+              <div className="relative aspect-square w-full rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800/50 flex flex-col items-center justify-center p-8 transition-all duration-500 group-hover:shadow-inner border-2 border-dashed border-slate-200 dark:border-slate-800">
+                {qrData ? (
+                  <>
+                    <div ref={qrContainerRef} className="flex justify-center transition-transform duration-300 hover:scale-105"></div>
+                    <p className="text-xs font-bold text-slate-500 dark:text-slate-400 mt-6 tracking-wide flex items-center gap-2">
+                      <Check className="w-3.5 h-3.5 text-blue-500" /> {t('scanQrCode')}
+                    </p>
+                  </>
+                ) : (
+                  <div className="text-center">
+                    <div className="w-24 h-24 bg-slate-200/50 dark:bg-slate-800/50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                      <QrCode className="w-12 h-12 text-slate-400 dark:text-slate-600 animate-bounce" />
+                    </div>
+                    <p className="text-slate-600 dark:text-slate-400 font-medium px-4">{t('fillFormPrompt')}</p>
+                  </div>
+                )}
+
+                {/* Decorative Elements */}
+                <div className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-slate-300 dark:border-slate-700 rounded-tl-sm opacity-50" />
+                <div className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-slate-300 dark:border-slate-700 rounded-tr-sm opacity-50" />
+                <div className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-slate-300 dark:border-slate-700 rounded-bl-sm opacity-50" />
+                <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-slate-300 dark:border-slate-700 rounded-br-sm opacity-50" />
+              </div>
+
+              {qrData && (
+                <div className="mt-8 space-y-4">
+                  <div className="flex gap-3">
+                    <Button onClick={downloadQRCode} className="flex-1 h-12 rounded-xl bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/20 transition-all active:scale-95 font-bold">
+                      <Download className="w-4 h-4 mr-2" /> {format === 'svg' ? 'Export SVG' : 'Download PNG'}
+                    </Button>
+                    <Button variant="outline" onClick={copyToClipboard} className="h-12 w-14 rounded-xl border-slate-200 dark:border-slate-800 transition-all active:scale-90 flex items-center justify-center">
+                      {copied ? <Check className="w-5 h-5 text-green-600" /> : <Copy className="w-5 h-5" />}
+                    </Button>
+                  </div>
+
+                  {/* Data Summary Accordion-like shadow box */}
+                  <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-5 border border-slate-100 dark:border-slate-800/50 overflow-hidden">
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">{t('qrCodeData')}</h3>
+                      <span className="text-[10px] py-0.5 px-2 bg-slate-200 dark:bg-slate-800 rounded-full font-mono text-slate-600 dark:text-slate-400">{qrData.length} chars</span>
+                    </div>
+                    <div className="max-h-24 overflow-y-auto custom-scrollbar">
+                      <pre className="text-[11px] font-mono text-slate-600 dark:text-slate-300 break-all leading-relaxed whitespace-pre-wrap">{qrData}</pre>
+                    </div>
+                  </div>
                 </div>
               )}
+            </CardContent>
+          </Card>
+
+          {/* Security Note */}
+          <div className="px-6 py-4 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/10 border border-emerald-100 dark:border-emerald-900/30 flex items-start gap-4">
+            <div className="mt-0.5 p-1.5 bg-emerald-100 dark:bg-emerald-900/40 rounded-lg">
+              <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             </div>
-            {qrData && (
-              <div className="flex gap-4 w-full mt-4">
-                <Button onClick={downloadQRCode} className="flex-1">
-                  <Download className="w-4 h-4 mr-2" /> {format === 'svg' ? 'Download SVG' : t('download')}
-                </Button>
-                <Button variant="outline" onClick={copyToClipboard} className="flex-1">
-                  {copied ? (<><Check className="w-4 h-4 mr-2 text-green-600" /> {t('copied')}</>) : (<><Copy className="w-4 h-4 mr-2" /> {t('copyData')}</>)}
-                </Button>
-              </div>
-            )}
-            {qrData && (
-              <div className="w-full mt-4">
-                <h3 className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">{t('qrCodeData')}</h3>
-                <div className="bg-slate-100 dark:bg-slate-800 rounded-lg p-3 text-xs text-slate-600 dark:text-slate-300 max-h-32 overflow-y-auto">
-                  <pre className="whitespace-pre-wrap break-words">{qrData}</pre>
-                </div>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+            <p className="text-xs text-emerald-800 dark:text-emerald-400 font-medium leading-relaxed">
+              <strong>{t('privateSecure')}:</strong> {t('privacyText')}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
