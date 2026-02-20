@@ -567,80 +567,82 @@ function NeonSnakeBoard({ title }: { title: string }) {
       ref={rootRef}
       className={[
         "relative w-full mx-auto overflow-x-hidden",
-        inBigMode ? "fixed inset-0 z-50 bg-black/80 backdrop-blur-sm p-4 flex flex-col" : "max-w-5xl",
+        inBigMode ? "fixed inset-0 z-50 bg-black/80 backdrop-blur-sm p-2 flex flex-col" : "max-w-5xl",
       ].join(" ")}
       style={{ touchAction: "none" }}
     >
       {/* Top HUD */}
       <div
         className={[
-          "w-full flex items-center justify-between mb-4 p-4 rounded-xl border backdrop-blur-sm shadow-sm",
+          "w-full flex items-center justify-between mb-2 p-2 rounded-xl border backdrop-blur-sm shadow-sm",
           colors.hudBg,
           colors.hudBorder,
         ].join(" ")}
       >
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-500/10 rounded-lg">
-            <Trophy className="w-5 h-5 text-yellow-500" />
+          <div className="p-1.5 bg-blue-500/10 rounded-lg">
+            <Trophy className="w-4 h-4 text-yellow-500" />
           </div>
           <div>
-            <p className={["text-xs uppercase font-bold tracking-wider", colors.hudMuted].join(" ")}>Score</p>
-            <p className={["text-2xl font-mono font-bold leading-none", colors.hudText].join(" ")}>{score}</p>
+            <p className={["text-[10px] uppercase font-bold tracking-wider", colors.hudMuted].join(" ")}>Score</p>
+            <p className={["text-xl font-mono font-bold leading-none", colors.hudText].join(" ")}>{score}</p>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
           <div className="text-right mr-2">
-            <p className={["text-xs uppercase font-bold tracking-wider", colors.hudMuted].join(" ")}>High</p>
-            <p className={["text-lg font-mono font-bold leading-none", colors.hudText].join(" ")}>
+            <p className={["text-[10px] uppercase font-bold tracking-wider", colors.hudMuted].join(" ")}>High</p>
+            <p className={["text-base font-mono font-bold leading-none", colors.hudText].join(" ")}>
               {highScore}
             </p>
           </div>
 
           {gameState === "PLAYING" && (
-            <Button variant="ghost" size="icon" onClick={pauseGame} aria-label="Pause">
-              <Pause className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={pauseGame} aria-label="Pause">
+              <Pause className="h-4 w-4" />
             </Button>
           )}
           {gameState === "PAUSED" && (
-            <Button variant="ghost" size="icon" onClick={resumeGame} aria-label="Resume">
-              <Play className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={resumeGame} aria-label="Resume">
+              <Play className="h-4 w-4" />
             </Button>
           )}
 
-          <Button variant="ghost" size="icon" onClick={toggleTheaterOrFullscreen} aria-label="Theater/Fullscreen">
-            {inBigMode ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
+          <Button variant="ghost" size="icon" className="h-8 w-8" onClick={toggleTheaterOrFullscreen} aria-label="Theater/Fullscreen">
+            {inBigMode ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
           </Button>
 
           {inBigMode && (
-            <Button variant="ghost" size="icon" onClick={() => setViewMode("EMBEDDED")} aria-label="Close theater">
-              <X className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setViewMode("EMBEDDED")} aria-label="Close theater">
+              <X className="h-4 w-4" />
             </Button>
           )}
         </div>
       </div>
 
       {/* Inline setup + actions */}
-      <div className="w-full max-w-[760px] mx-auto mb-4">
+      <div className={["w-full mx-auto mb-2", inBigMode ? "max-w-[400px]" : "max-w-[760px]"].join(" ")}>
         <Card className="p-4 border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/40 backdrop-blur">
-          <div className="flex flex-col gap-3">
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{title}</div>
-                <div className="text-xs text-slate-600 dark:text-slate-400">
-                  Choose difficulty, then start. On mobile: swipe or use the arrows.
+          <div className={["flex flex-col", inBigMode ? "gap-2" : "gap-3"].join(" ")}>
+            {!inBigMode && (
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{title}</div>
+                  <div className="text-xs text-slate-600 dark:text-slate-400">
+                    Choose difficulty, then start. On mobile: swipe or use the arrows.
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" onClick={exitToGames} className="gap-2">
+                    <X className="h-4 w-4" />
+                    Exit
+                  </Button>
                 </div>
               </div>
+            )}
 
-              <div className="flex items-center gap-2">
-                <Button variant="outline" onClick={exitToGames} className="gap-2">
-                  <X className="h-4 w-4" />
-                  Exit
-                </Button>
-              </div>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-3">
+            <div className={["grid gap-2", inBigMode ? "grid-cols-3" : "gap-3 sm:grid-cols-3"].join(" ")}>
               {(["easy", "medium", "hard"] as Difficulty[]).map((d) => {
                 const selected = d === difficulty;
                 return (
@@ -651,50 +653,59 @@ function NeonSnakeBoard({ title }: { title: string }) {
                       setDifficulty(d);
                       if (gameState !== "PLAYING") resetGame(d);
                     }}
-                    className={diffCardClass(d, selected)}
+                    className={[
+                      diffCardClass(d, selected),
+                      inBigMode ? "p-2 text-center" : "", // Compact padding
+                    ].join(" ")}
                     disabled={gameState === "PLAYING"}
                     aria-pressed={selected}
                   >
-                    <div className="font-semibold text-slate-900 dark:text-slate-100">{formatDifficulty(d)}</div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                      Speed: {SPEED_MS[d]}ms / step
+                    <div className={["font-semibold text-slate-900 dark:text-slate-100", inBigMode ? "text-xs" : ""].join(" ")}>
+                      {formatDifficulty(d)}
                     </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400">
-                      Points: {POINTS[d]} / food
-                    </div>
+                    {!inBigMode && (
+                      <>
+                        <div className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                          Speed: {SPEED_MS[d]}ms / step
+                        </div>
+                        <div className="text-sm text-slate-600 dark:text-slate-400">
+                          Points: {POINTS[d]} / food
+                        </div>
+                      </>
+                    )}
                   </button>
                 );
               })}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-2">
               {gameState !== "PLAYING" ? (
-                <Button className="flex-1" onClick={startGame}>
+                <Button className="flex-1 h-9 text-sm" onClick={startGame}>
                   {gameState === "SETUP" ? "Start game" : "Play again"}
                 </Button>
               ) : (
-                <Button className="flex-1" variant="secondary" onClick={pauseGame}>
-                  <Pause className="h-4 w-4 mr-2" />
+                <Button className="flex-1 h-9 text-sm" variant="secondary" onClick={pauseGame}>
+                  <Pause className="h-3.5 w-3.5 mr-2" />
                   Pause
                 </Button>
               )}
 
-              <Button className="flex-1" variant="outline" onClick={restartGame}>
-                <RotateCcw className="h-4 w-4 mr-2" />
+              <Button className="flex-1 h-9 text-sm" variant="outline" onClick={restartGame}>
+                <RotateCcw className="h-3.5 w-3.5 mr-2" />
                 Restart
               </Button>
 
               {gameState === "PAUSED" && (
-                <Button className="flex-1" onClick={resumeGame}>
-                  <Play className="h-4 w-4 mr-2" />
+                <Button className="flex-1 h-9 text-sm" onClick={resumeGame}>
+                  <Play className="h-3.5 w-3.5 mr-2" />
                   Resume
                 </Button>
               )}
             </div>
 
             {gameState === "GAME_OVER" && (
-              <div className="text-sm text-slate-700 dark:text-slate-300">
-                Game over. Score: <strong>{score}</strong> • High: <strong>{highScore}</strong>
+              <div className="text-xs text-center text-slate-700 dark:text-slate-300">
+                Game over. Score: <strong>{score}</strong>
               </div>
             )}
           </div>
