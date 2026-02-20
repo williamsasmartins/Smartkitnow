@@ -53,6 +53,7 @@ function NeonPaddleBoard({
   const playerScoreRef = useRef(0);
   const aiScoreRef = useRef(0);
   const animationFrameRef = useRef<number | null>(null);
+  const keysRef = useRef<{ [key: string]: boolean }>({});
 
   // --- Effects ---
 
@@ -62,9 +63,9 @@ function NeonPaddleBoard({
       if (containerRef.current && canvasRef.current) {
         // If fullscreen, use window dimensions directly
         if (document.fullscreenElement && containerRef.current === document.fullscreenElement) {
-           canvasRef.current.style.width = "100%";
-           canvasRef.current.style.height = "100%";
-           return;
+          canvasRef.current.style.width = "100%";
+          canvasRef.current.style.height = "100%";
+          return;
         }
 
         // In normal mode, let CSS handle the size with aspect-ratio
@@ -127,21 +128,21 @@ function NeonPaddleBoard({
   // Keyboard Controls
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (gameState !== "PLAYING") return;
-      
-      const speed = 30;
-      
-      if (e.key === "ArrowUp" || e.key === "w") {
+      if (e.key === "ArrowUp" || e.key === "ArrowDown" || e.key === "w" || e.key === "s") {
         e.preventDefault();
-        playerYRef.current = Math.max(0, playerYRef.current - speed);
-      } else if (e.key === "ArrowDown" || e.key === "s") {
-        e.preventDefault();
-        playerYRef.current = Math.min(CANVAS_HEIGHT - PADDLE_HEIGHT, playerYRef.current + speed);
       }
+      keysRef.current[e.key] = true;
+    };
+    const handleKeyUp = (e: KeyboardEvent) => {
+      keysRef.current[e.key] = false;
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown, { passive: false });
+    window.addEventListener("keyup", handleKeyUp);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
   }, [gameState]);
 
   // Touch/Mouse Controls
@@ -154,7 +155,7 @@ function NeonPaddleBoard({
       const rect = canvas.getBoundingClientRect();
       const scaleY = CANVAS_HEIGHT / rect.height;
       const relativeY = (clientY - rect.top) * scaleY;
-      
+
       let newY = relativeY - PADDLE_HEIGHT / 2;
       newY = Math.max(0, Math.min(CANVAS_HEIGHT - PADDLE_HEIGHT, newY));
       playerYRef.current = newY;
@@ -198,7 +199,7 @@ function NeonPaddleBoard({
     const speed = INITIAL_SPEED_MAP[diff];
     const dirX = Math.random() > 0.5 ? 1 : -1;
     const dirY = (Math.random() * 2 - 1); // -1 to 1
-    
+
     ballRef.current = {
       x: CANVAS_WIDTH / 2,
       y: CANVAS_HEIGHT / 2,
@@ -209,8 +210,17 @@ function NeonPaddleBoard({
   };
 
   const update = () => {
+    // Keyboard Movement
+    const speed = 10;
+    if (keysRef.current["ArrowUp"] || keysRef.current["w"]) {
+      playerYRef.current = Math.max(0, playerYRef.current - speed);
+    }
+    if (keysRef.current["ArrowDown"] || keysRef.current["s"]) {
+      playerYRef.current = Math.min(CANVAS_HEIGHT - PADDLE_HEIGHT, playerYRef.current + speed);
+    }
+
     const ball = ballRef.current;
-    
+
     // Move Ball
     ball.x += ball.dx;
     ball.y += ball.dy;
@@ -335,9 +345,8 @@ function NeonPaddleBoard({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full max-w-[800px] mx-auto bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none ${
-        isFullscreen ? "flex items-center justify-center h-screen max-w-none rounded-none border-0" : "aspect-[16/10]"
-      }`}
+      className={`relative w-full max-w-[800px] mx-auto bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none ${isFullscreen ? "flex items-center justify-center h-screen max-w-none rounded-none border-0" : "aspect-[16/10]"
+        }`}
       tabIndex={0}
     >
       <canvas
@@ -346,7 +355,7 @@ function NeonPaddleBoard({
         height={CANVAS_HEIGHT}
         className="block w-full h-full touch-none"
       />
-      
+
       {/* Fullscreen Toggle */}
       {!isFullscreen && (
         <Button
@@ -369,7 +378,7 @@ function NeonPaddleBoard({
           <Minimize2 className="w-8 h-8" />
         </Button>
       )}
-      
+
       {/* Overlays */}
       <GameStartOverlay
         isPlaying={gameState === "PLAYING"}
@@ -450,8 +459,8 @@ export default function NeonPaddleGame({
         </h2>
         <div className="prose prose-slate dark:prose-invert max-w-none mt-4">
           <p>
-            Pong was one of the earliest arcade video games, released in 1972 by Atari. 
-            It was a simple tennis sports game featuring two-dimensional graphics. 
+            Pong was one of the earliest arcade video games, released in 1972 by Atari.
+            It was a simple tennis sports game featuring two-dimensional graphics.
             Its immense popularity helped launch the video game industry as we know it today.
           </p>
         </div>

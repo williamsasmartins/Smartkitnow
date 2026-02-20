@@ -54,7 +54,7 @@ function PinballBoard({
   const { theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Game State
   const [gameState, setGameState] = useState<GameState>("MENU");
   const [score, setScore] = useState(0);
@@ -99,9 +99,9 @@ function PinballBoard({
     const handleResize = () => {
       if (containerRef.current && canvasRef.current) {
         if (document.fullscreenElement && containerRef.current === document.fullscreenElement) {
-           canvasRef.current.style.width = "100%";
-           canvasRef.current.style.height = "100%";
-           return;
+          canvasRef.current.style.width = "100%";
+          canvasRef.current.style.height = "100%";
+          return;
         }
 
         // In normal mode, let CSS handle the size with aspect-ratio
@@ -146,7 +146,7 @@ function PinballBoard({
     // Difficulty settings
     const balls = difficulty === "easy" ? 5 : difficulty === "medium" ? 3 : 2;
     setBallsLeft(balls);
-    
+
     setGameState("PLAYING");
     resetBall();
   };
@@ -168,11 +168,11 @@ function PinballBoard({
     if (gameState !== "PLAYING") return;
 
     const state = physicsRef.current;
-    
+
     // Physics
     if (state.inPlay) {
       const ball = state.ball;
-      
+
       // Gravity
       ball.vy += GRAVITY;
       ball.vx *= FRICTION;
@@ -187,14 +187,14 @@ function PinballBoard({
         ball.x = ball.radius;
         ball.vx = -ball.vx * BOUNCE_DAMPING;
       }
-      
+
       // Right Wall (Complex)
-      if (ball.x > CANVAS_WIDTH - 40 - ball.radius && ball.y < 400) { 
-         ball.x = CANVAS_WIDTH - 40 - ball.radius;
-         ball.vx = -ball.vx * BOUNCE_DAMPING;
-      } else if (ball.x > CANVAS_WIDTH - ball.radius) { 
-         ball.x = CANVAS_WIDTH - ball.radius;
-         ball.vx = -ball.vx * BOUNCE_DAMPING;
+      if (ball.x > CANVAS_WIDTH - 40 - ball.radius && ball.y < 400) {
+        ball.x = CANVAS_WIDTH - 40 - ball.radius;
+        ball.vx = -ball.vx * BOUNCE_DAMPING;
+      } else if (ball.x > CANVAS_WIDTH - ball.radius) {
+        ball.x = CANVAS_WIDTH - ball.radius;
+        ball.vx = -ball.vx * BOUNCE_DAMPING;
       }
 
       // Top Wall
@@ -228,32 +228,32 @@ function PinballBoard({
 
         // Optimization: simple box check
         if (ball.x > Math.min(flipper.x, endX) - 20 && ball.x < Math.max(flipper.x, endX) + 20 &&
-            ball.y > Math.min(flipper.y, endY) - 20 && ball.y < Math.max(flipper.y, endY) + 20) {
-            
-            const lineLen = flipper.length;
-            const dot = ((ball.x - flipper.x) * (endX - flipper.x) + (ball.y - flipper.y) * (endY - flipper.y)) / (lineLen * lineLen);
-            const clampedDot = Math.max(0, Math.min(1, dot));
-            const closestX = flipper.x + (clampedDot * (endX - flipper.x));
-            const closestY = flipper.y + (clampedDot * (endY - flipper.y));
+          ball.y > Math.min(flipper.y, endY) - 20 && ball.y < Math.max(flipper.y, endY) + 20) {
 
-            const distX = ball.x - closestX;
-            const distY = ball.y - closestY;
-            const distance = Math.sqrt(distX * distX + distY * distY);
+          const lineLen = flipper.length;
+          const dot = ((ball.x - flipper.x) * (endX - flipper.x) + (ball.y - flipper.y) * (endY - flipper.y)) / (lineLen * lineLen);
+          const clampedDot = Math.max(0, Math.min(1, dot));
+          const closestX = flipper.x + (clampedDot * (endX - flipper.x));
+          const closestY = flipper.y + (clampedDot * (endY - flipper.y));
 
-            if (distance < ball.radius + 5) {
-              const normalAngle = flipper.angle - Math.PI / 2;
-              const pushX = Math.cos(normalAngle);
-              const pushY = Math.sin(normalAngle);
-              const boost = flipper.active ? 15 : 2;
-              
-              const dotVel = ball.vx * pushX + ball.vy * pushY;
-              if (dotVel < 0 || flipper.active) {
-                 ball.vx += pushX * boost + (Math.random() - 0.5);
-                 ball.vy += pushY * boost;
-                 ball.x += pushX * (ball.radius + 5 - distance + 1);
-                 ball.y += pushY * (ball.radius + 5 - distance + 1);
-              }
+          const distX = ball.x - closestX;
+          const distY = ball.y - closestY;
+          const distance = Math.sqrt(distX * distX + distY * distY);
+
+          if (distance < ball.radius + 5) {
+            const normalAngle = flipper.angle - Math.PI / 2;
+            const pushX = Math.cos(normalAngle);
+            const pushY = Math.sin(normalAngle);
+            const boost = flipper.active ? 15 : 2;
+
+            const dotVel = ball.vx * pushX + ball.vy * pushY;
+            if (dotVel < 0 || flipper.active) {
+              ball.vx += pushX * boost + (Math.random() - 0.5);
+              ball.vy += pushY * boost;
+              ball.x += pushX * (ball.radius + 5 - distance + 1);
+              ball.y += pushY * (ball.radius + 5 - distance + 1);
             }
+          }
         }
       });
 
@@ -262,13 +262,13 @@ function PinballBoard({
         const dx = ball.x - bumper.x;
         const dy = ball.y - bumper.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (dist < bumper.radius + ball.radius) {
           const angle = Math.atan2(dy, dx);
           const speed = Math.sqrt(ball.vx * ball.vx + ball.vy * ball.vy);
           ball.vx = Math.cos(angle) * (speed + 2);
           ball.vy = Math.sin(angle) * (speed + 2);
-          
+
           ball.x = bumper.x + Math.cos(angle) * (bumper.radius + ball.radius + 1);
           ball.y = bumper.y + Math.sin(angle) * (bumper.radius + ball.radius + 1);
 
@@ -278,11 +278,11 @@ function PinballBoard({
       });
 
     } else {
-        // Reset Ball Pos
-        state.ball.x = 380;
-        state.ball.y = 500;
-        state.ball.vx = 0;
-        state.ball.vy = 0;
+      // Reset Ball Pos
+      state.ball.x = 380;
+      state.ball.y = 500;
+      state.ball.vx = 0;
+      state.ball.vy = 0;
     }
 
   }, [gameState]);
@@ -298,11 +298,11 @@ function PinballBoard({
 
     // Clear
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    
+
     // Background
     ctx.fillStyle = isDark ? "#111" : "#222";
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    
+
     // Lane
     ctx.strokeStyle = "#444";
     ctx.beginPath();
@@ -312,33 +312,33 @@ function PinballBoard({
 
     // Bumpers
     state.bumpers.forEach(bumper => {
-       const isActive = bumper.activeTime && (time - bumper.activeTime < 200);
-       ctx.beginPath();
-       ctx.arc(bumper.x, bumper.y, bumper.radius, 0, Math.PI * 2);
-       ctx.fillStyle = isActive ? "#fff" : bumper.color;
-       ctx.fill();
-       ctx.strokeStyle = isActive ? bumper.color : "#fff";
-       ctx.lineWidth = 2;
-       ctx.stroke();
-       if (isActive) {
-           ctx.shadowColor = bumper.color;
-           ctx.shadowBlur = 20;
-           ctx.stroke();
-           ctx.shadowBlur = 0;
-       }
+      const isActive = bumper.activeTime && (time - bumper.activeTime < 200);
+      ctx.beginPath();
+      ctx.arc(bumper.x, bumper.y, bumper.radius, 0, Math.PI * 2);
+      ctx.fillStyle = isActive ? "#fff" : bumper.color;
+      ctx.fill();
+      ctx.strokeStyle = isActive ? bumper.color : "#fff";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      if (isActive) {
+        ctx.shadowColor = bumper.color;
+        ctx.shadowBlur = 20;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      }
     });
 
     // Flippers
     state.flippers.forEach(flipper => {
-        ctx.save();
-        ctx.translate(flipper.x, flipper.y);
-        ctx.rotate(flipper.angle);
-        ctx.fillStyle = "#00ff00";
-        ctx.fillRect(0, -5, flipper.length, 10);
-        ctx.beginPath();
-        ctx.arc(0, 0, 5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
+      ctx.save();
+      ctx.translate(flipper.x, flipper.y);
+      ctx.rotate(flipper.angle);
+      ctx.fillStyle = "#00ff00";
+      ctx.fillRect(0, -5, flipper.length, 10);
+      ctx.beginPath();
+      ctx.arc(0, 0, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
     });
 
     // Ball
@@ -385,30 +385,13 @@ function PinballBoard({
     };
   }, [gameState]);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-      if (gameState !== "PLAYING") return;
-      const rect = (e.target as HTMLElement).getBoundingClientRect();
-      const x = e.touches[0].clientX - rect.left;
-      
-      if (x < rect.width / 2) {
-          physicsRef.current.flippers[0].active = true;
-      } else {
-          physicsRef.current.flippers[1].active = true;
-      }
-      if (!physicsRef.current.inPlay) launchBall();
-  };
 
-  const handleTouchEnd = () => {
-      physicsRef.current.flippers[0].active = false;
-      physicsRef.current.flippers[1].active = false;
-  };
 
   return (
-    <div 
+    <div
       ref={containerRef}
-      className={`flex flex-col items-center w-full max-w-md mx-auto ${
-        isFullscreen ? "fixed inset-0 z-50 bg-slate-50 dark:bg-slate-950 max-w-none justify-center p-4" : ""
-      }`}
+      className={`flex flex-col items-center w-full max-w-md mx-auto ${isFullscreen ? "fixed inset-0 z-50 bg-slate-50 dark:bg-slate-950 max-w-none justify-center p-4" : ""
+        }`}
     >
       {/* Stats */}
       <div className="flex justify-between w-full mb-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg max-w-md">
@@ -427,18 +410,35 @@ function PinballBoard({
       </div>
 
       {/* Game Board */}
-      <div className={`relative w-full bg-black rounded-lg overflow-hidden shadow-2xl border-4 border-gray-800 ${
-        isFullscreen ? "h-full max-h-[80vh] w-auto aspect-[2/3]" : "aspect-[2/3]"
-      }`}>
-         <canvas
+      <div className={`relative w-full bg-black rounded-lg overflow-hidden shadow-2xl border-4 border-gray-800 ${isFullscreen ? "h-full max-h-[80vh] w-auto aspect-[2/3]" : "aspect-[2/3]"
+        }`}>
+        <canvas
           ref={canvasRef}
           width={CANVAS_WIDTH}
           height={CANVAS_HEIGHT}
-          className="w-full h-full object-contain touch-none"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
+          className="w-full h-full object-contain touch-none absolute inset-0 pointer-events-none"
         />
-        
+
+        {/* Mobile multi-touch zones overlay */}
+        <div className="absolute inset-0 z-0 flex touch-none">
+          <div
+            className="w-1/2 h-full"
+            onContextMenu={(e) => e.preventDefault()}
+            onPointerDown={(e) => { e.preventDefault(); physicsRef.current.flippers[0].active = true; if (!physicsRef.current.inPlay && gameState === "PLAYING") launchBall(); }}
+            onPointerUp={(e) => { e.preventDefault(); physicsRef.current.flippers[0].active = false; }}
+            onPointerLeave={(e) => { e.preventDefault(); physicsRef.current.flippers[0].active = false; }}
+            onPointerCancel={(e) => { e.preventDefault(); physicsRef.current.flippers[0].active = false; }}
+          />
+          <div
+            className="w-1/2 h-full"
+            onContextMenu={(e) => e.preventDefault()}
+            onPointerDown={(e) => { e.preventDefault(); physicsRef.current.flippers[1].active = true; if (!physicsRef.current.inPlay && gameState === "PLAYING") launchBall(); }}
+            onPointerUp={(e) => { e.preventDefault(); physicsRef.current.flippers[1].active = false; }}
+            onPointerLeave={(e) => { e.preventDefault(); physicsRef.current.flippers[1].active = false; }}
+            onPointerCancel={(e) => { e.preventDefault(); physicsRef.current.flippers[1].active = false; }}
+          />
+        </div>
+
         {/* Fullscreen Toggle */}
         {!isFullscreen && (
           <Button
@@ -461,7 +461,7 @@ function PinballBoard({
             <Minimize2 className="w-8 h-8" />
           </Button>
         )}
-        
+
         <GameStartOverlay
           isPlaying={gameState === "PLAYING"}
           isGameOver={gameState === "GAME_OVER"}
@@ -474,9 +474,9 @@ function PinballBoard({
       </div>
 
       {/* Controls Help */}
-       <div className="mt-2 text-xs text-gray-500 text-center">
-         Desktop: Arrows to flip, Space to launch • Mobile: Tap sides to flip
-       </div>
+      <div className="mt-2 text-xs text-gray-500 text-center">
+        Desktop: Arrows to flip, Space to launch • Mobile: Tap sides to flip
+      </div>
     </div>
   );
 }
@@ -490,12 +490,12 @@ export default function PinballNeonGame({
 }) {
   const faqJsonLd = useFaqJsonLd([
     {
-        question: "How do I control the flippers?",
-        answer: "Use the Left and Right Arrow keys on your keyboard, or tap the left and right sides of the screen on mobile devices."
+      question: "How do I control the flippers?",
+      answer: "Use the Left and Right Arrow keys on your keyboard, or tap the left and right sides of the screen on mobile devices."
     },
     {
-        question: "How do I launch the ball?",
-        answer: "Press the Spacebar or tap the screen to launch the ball into play."
+      question: "How do I launch the ball?",
+      answer: "Press the Spacebar or tap the screen to launch the ball into play."
     }
   ]);
 
@@ -504,7 +504,7 @@ export default function PinballNeonGame({
       <section id="guide">
         <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">How to Play</h3>
         <p>
-          Neon Pinball brings the classic arcade machine experience to your screen. 
+          Neon Pinball brings the classic arcade machine experience to your screen.
           Keep the ball in play using the flippers and aim for the high score bumpers!
         </p>
         <ul className="list-disc pl-5 mt-2 space-y-1">

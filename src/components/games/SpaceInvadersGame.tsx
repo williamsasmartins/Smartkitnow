@@ -74,6 +74,7 @@ function SpaceInvadersBoard({
   const alienMoveTimerRef = useRef(0);
   const alienShootTimerRef = useRef(0);
   const animationFrameRef = useRef<number | null>(null);
+  const keysRef = useRef<{ [key: string]: boolean }>({});
 
   // --- Effects ---
 
@@ -121,7 +122,7 @@ function SpaceInvadersBoard({
         const { clientWidth } = containerRef.current;
         const width = Math.min(clientWidth, 600);
         const height = width; // Square aspect ratio
-        
+
         canvasRef.current.style.width = `${width}px`;
         canvasRef.current.style.height = `${height}px`;
         canvasRef.current.width = CANVAS_WIDTH;
@@ -159,23 +160,23 @@ function SpaceInvadersBoard({
   // Keyboard Controls
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      keysRef.current[e.key] = true;
       if (gameState !== "PLAYING") return;
-      
-      const speed = 15;
-      
-      if (e.key === "ArrowLeft" || e.key === "a") {
-        playerRef.current.x = Math.max(0, playerRef.current.x - speed);
-      } else if (e.key === "ArrowRight" || e.key === "d") {
-        playerRef.current.x = Math.min(CANVAS_WIDTH - PLAYER_WIDTH, playerRef.current.x + speed);
-      } else if (e.key === " " || e.key === "ArrowUp") {
-        // Shoot
+      if (e.key === " " || e.key === "ArrowUp") {
         firePlayerProjectile();
         e.preventDefault();
       }
     };
+    const handleKeyUp = (e: KeyboardEvent) => {
+      keysRef.current[e.key] = false;
+    };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
   }, [gameState]);
 
   // Touch Controls
@@ -183,23 +184,26 @@ function SpaceInvadersBoard({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    let touchStartX = 0;
+    const handleMove = (clientX: number) => {
+      if (gameState !== "PLAYING") return;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = CANVAS_WIDTH / rect.width;
+      const relativeX = (clientX - rect.left) * scaleX;
+
+      let newX = relativeX - PLAYER_WIDTH / 2;
+      newX = Math.max(0, Math.min(CANVAS_WIDTH - PLAYER_WIDTH, newX));
+      playerRef.current.x = newX;
+    };
 
     const onTouchStart = (e: TouchEvent) => {
-      touchStartX = e.touches[0].clientX;
-      // Also shoot on tap? Maybe separate button or just tap anywhere
+      e.preventDefault(); // Prevent scrolling
+      handleMove(e.touches[0].clientX);
       firePlayerProjectile();
     };
 
     const onTouchMove = (e: TouchEvent) => {
       e.preventDefault();
-      const touchX = e.touches[0].clientX;
-      const diff = touchX - touchStartX;
-      touchStartX = touchX;
-      
-      let newX = playerRef.current.x + diff;
-      newX = Math.max(0, Math.min(CANVAS_WIDTH - PLAYER_WIDTH, newX));
-      playerRef.current.x = newX;
+      handleMove(e.touches[0].clientX);
     };
 
     canvas.addEventListener("touchstart", onTouchStart, { passive: false });
@@ -219,12 +223,12 @@ function SpaceInvadersBoard({
     setScore(0);
     setLives(3);
     setGameState("PLAYING");
-    
+
     playerRef.current = { x: CANVAS_WIDTH / 2 - PLAYER_WIDTH / 2, y: CANVAS_HEIGHT - 40, active: true };
     projectilesRef.current = [];
     alienDirectionRef.current = 1;
     alienMoveTimerRef.current = 0;
-    
+
     // Initialize Aliens
     const aliens: Alien[] = [];
     for (let r = 0; r < ALIEN_ROWS; r++) {
@@ -249,18 +253,27 @@ function SpaceInvadersBoard({
     // For now, allow rapid fire but maybe limit count
     const activePlayerShots = projectilesRef.current.filter(p => p.fromPlayer && p.active).length;
     if (activePlayerShots < 3) {
-       projectilesRef.current.push({
-         x: playerRef.current.x + PLAYER_WIDTH / 2 - 2,
-         y: playerRef.current.y,
-         width: 4,
-         height: 10,
-         active: true,
-         fromPlayer: true
-       });
+      projectilesRef.current.push({
+        x: playerRef.current.x + PLAYER_WIDTH / 2 - 2,
+        y: playerRef.current.y,
+        width: 4,
+        height: 10,
+        active: true,
+        fromPlayer: true
+      });
     }
   };
 
   const update = () => {
+    // Player Movement via Keys
+    const speed = 7;
+    if (keysRef.current["ArrowLeft"] || keysRef.current["a"]) {
+      playerRef.current.x = Math.max(0, playerRef.current.x - speed);
+    }
+    if (keysRef.current["ArrowRight"] || keysRef.current["d"]) {
+      playerRef.current.x = Math.min(CANVAS_WIDTH - PLAYER_WIDTH, playerRef.current.x + speed);
+    }
+
     // Move Projectiles
     projectilesRef.current.forEach(p => {
       if (!p.active) return;
@@ -269,7 +282,7 @@ function SpaceInvadersBoard({
       } else {
         p.y += PROJECTILE_SPEED / 2; // Alien shots slower
       }
-      
+
       // Deactivate off-screen
       if (p.y < 0 || p.y > CANVAS_HEIGHT) p.active = false;
     });
@@ -277,11 +290,11 @@ function SpaceInvadersBoard({
     // Move Aliens
     alienMoveTimerRef.current++;
     const moveThreshold = 60 / INITIAL_SPEED_MAP[difficulty]; // 60fps / speed
-    
+
     if (alienMoveTimerRef.current > moveThreshold) {
       alienMoveTimerRef.current = 0;
       let shouldDrop = false;
-      
+
       // Check edges
       const activeAliens = aliensRef.current.filter(a => a.active);
       if (activeAliens.length === 0) {
@@ -291,13 +304,13 @@ function SpaceInvadersBoard({
 
       const leftEdge = Math.min(...activeAliens.map(a => a.x));
       const rightEdge = Math.max(...activeAliens.map(a => a.x + a.width));
-      
-      if ((rightEdge >= CANVAS_WIDTH - 10 && alienDirectionRef.current === 1) || 
-          (leftEdge <= 10 && alienDirectionRef.current === -1)) {
+
+      if ((rightEdge >= CANVAS_WIDTH - 10 && alienDirectionRef.current === 1) ||
+        (leftEdge <= 10 && alienDirectionRef.current === -1)) {
         shouldDrop = true;
         alienDirectionRef.current *= -1;
       }
-      
+
       aliensRef.current.forEach(a => {
         if (shouldDrop) {
           a.y += 20;
@@ -314,26 +327,26 @@ function SpaceInvadersBoard({
     // Alien Shooting
     alienShootTimerRef.current++;
     if (alienShootTimerRef.current > 120 / INITIAL_SPEED_MAP[difficulty]) { // Shoot every ~2s adjusted by difficulty
-       alienShootTimerRef.current = 0;
-       const activeAliens = aliensRef.current.filter(a => a.active);
-       if (activeAliens.length > 0) {
-         // Pick random shooter
-         const shooter = activeAliens[Math.floor(Math.random() * activeAliens.length)];
-         projectilesRef.current.push({
-           x: shooter.x + shooter.width / 2,
-           y: shooter.y + shooter.height,
-           width: 4,
-           height: 10,
-           active: true,
-           fromPlayer: false
-         });
-       }
+      alienShootTimerRef.current = 0;
+      const activeAliens = aliensRef.current.filter(a => a.active);
+      if (activeAliens.length > 0) {
+        // Pick random shooter
+        const shooter = activeAliens[Math.floor(Math.random() * activeAliens.length)];
+        projectilesRef.current.push({
+          x: shooter.x + shooter.width / 2,
+          y: shooter.y + shooter.height,
+          width: 4,
+          height: 10,
+          active: true,
+          fromPlayer: false
+        });
+      }
     }
 
     // Collisions
     projectilesRef.current.forEach(p => {
       if (!p.active) return;
-      
+
       if (p.fromPlayer) {
         // Check Alien Hit
         aliensRef.current.forEach(a => {
@@ -456,7 +469,7 @@ function SpaceInvadersBoard({
         ref={canvasRef}
         className="block w-full h-full touch-none"
       />
-      
+
       {/* Overlays */}
       <GameStartOverlay
         isPlaying={gameState === "PLAYING"}
@@ -501,7 +514,7 @@ export default function SpaceInvadersGame({
         </h2>
         <div className="prose prose-slate dark:prose-invert max-w-none mt-4">
           <p>
-            <strong>Space Invaders Remix</strong> puts you in command of Earth's last defense ship. 
+            <strong>Space Invaders Remix</strong> puts you in command of Earth's last defense ship.
             Waves of aliens are descending from the sky, and you must destroy them all.
           </p>
           <ul className="list-disc pl-6 space-y-2">

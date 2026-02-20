@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Gamepad2, Maximize2, Minimize2 } from "lucide-react";
+import { Gamepad2, Maximize2, Minimize2, RotateCcw, RotateCw, ArrowUp, Crosshair } from "lucide-react";
 import GameStartOverlay from "./GameStartOverlay";
 import CalculatorVerticalLayout from "../templates/CalculatorVerticalLayout";
 import useFaqJsonLd from "../../hooks/useFaqJsonLd";
@@ -71,24 +71,24 @@ function AsteroidDriftBoard({
   const livesRef = useRef(3);
 
   // Game Logic Refs
-  const shipRef = useRef({ 
-    x: CANVAS_WIDTH / 2, 
-    y: CANVAS_HEIGHT / 2, 
-    dx: 0, 
-    dy: 0, 
-    angle: -Math.PI / 2, 
+  const shipRef = useRef({
+    x: CANVAS_WIDTH / 2,
+    y: CANVAS_HEIGHT / 2,
+    dx: 0,
+    dy: 0,
+    angle: -Math.PI / 2,
     thrusting: false,
     rotatingLeft: false,
     rotatingRight: false,
     invulnerable: 0 // frames
   });
-  
+
   const asteroidsRef = useRef<Asteroid[]>([]);
   const bulletsRef = useRef<Bullet[]>([]);
   const animationFrameRef = useRef<number | null>(null);
 
   // --- Effects ---
-  
+
   const toggleFullscreen = () => {
     if (!containerRef.current) return;
 
@@ -133,7 +133,7 @@ function AsteroidDriftBoard({
         const { clientWidth } = containerRef.current;
         const width = Math.min(clientWidth, 800);
         const height = width * (CANVAS_HEIGHT / CANVAS_WIDTH);
-        
+
         canvasRef.current.style.width = `${width}px`;
         canvasRef.current.style.height = `${height}px`;
         canvasRef.current.width = CANVAS_WIDTH;
@@ -172,7 +172,7 @@ function AsteroidDriftBoard({
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (gameState !== "PLAYING") return;
-      
+
       switch (e.key) {
         case "ArrowLeft":
         case "a":
@@ -219,73 +219,6 @@ function AsteroidDriftBoard({
     };
   }, [gameState]);
 
-  // Touch Controls (Simple overlay buttons could be better, but implementing basic tap regions)
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    // Left side: Rotate Left, Right side: Rotate Right, Top: Thrust, Bottom: Fire?
-    // Let's keep it simple: Drag for thrust/rotate? 
-    // Actually, for Asteroids on mobile, on-screen controls are best. 
-    // Since we don't have on-screen controls UI, we'll map touch areas:
-    // Left half: Rotate Left
-    // Right half: Rotate Right
-    // Both: Thrust? 
-    // Tap center: Fire
-    
-    // This is tricky without UI buttons. 
-    // Let's implement a simple "Follow finger" approach for movement and tap to shoot?
-    // No, classic asteroids physics is hard with follow finger.
-    
-    // Fallback: Tap left/right side of screen to rotate.
-    // Tap top to thrust.
-    // Double tap to shoot?
-    
-    // For now, let's stick to keyboard as primary, but maybe add basic touch support later if requested.
-    // The user asked for "responsiveness", so touch is needed.
-    // Let's use: 
-    // Tap left 1/3: Rotate Left
-    // Tap right 1/3: Rotate Right
-    // Tap bottom center: Thrust
-    // Tap top center: Fire
-
-    const handleTouchStart = (e: TouchEvent) => {
-      e.preventDefault();
-      const rect = canvas.getBoundingClientRect();
-      const x = e.touches[0].clientX - rect.left;
-      const y = e.touches[0].clientY - rect.top;
-      const w = rect.width;
-      const h = rect.height;
-
-      if (y < h * 0.3) {
-        fireBullet();
-      } else if (y > h * 0.7) {
-        shipRef.current.thrusting = true;
-      } else if (x < w * 0.5) {
-        shipRef.current.rotatingLeft = true;
-      } else {
-        shipRef.current.rotatingRight = true;
-      }
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      e.preventDefault();
-      // Stop everything on lift
-      shipRef.current.thrusting = false;
-      shipRef.current.rotatingLeft = false;
-      shipRef.current.rotatingRight = false;
-    };
-
-    canvas.addEventListener("touchstart", handleTouchStart, { passive: false });
-    canvas.addEventListener("touchend", handleTouchEnd, { passive: false });
-
-    return () => {
-      canvas.removeEventListener("touchstart", handleTouchStart);
-      canvas.removeEventListener("touchend", handleTouchEnd);
-    };
-  }, [gameState]);
-
-
   // --- Game Logic ---
 
   const initGame = (diff: Difficulty) => {
@@ -293,12 +226,12 @@ function AsteroidDriftBoard({
     setScore(0);
     setLives(3);
     setGameState("PLAYING");
-    
+
     resetShip();
-    
+
     asteroidsRef.current = [];
     bulletsRef.current = [];
-    
+
     // Create initial asteroids
     const count = diff === "easy" ? 4 : diff === "medium" ? 6 : 8;
     for (let i = 0; i < count; i++) {
@@ -307,12 +240,12 @@ function AsteroidDriftBoard({
   };
 
   const resetShip = () => {
-    shipRef.current = { 
-      x: CANVAS_WIDTH / 2, 
-      y: CANVAS_HEIGHT / 2, 
-      dx: 0, 
-      dy: 0, 
-      angle: -Math.PI / 2, 
+    shipRef.current = {
+      x: CANVAS_WIDTH / 2,
+      y: CANVAS_HEIGHT / 2,
+      dx: 0,
+      dy: 0,
+      angle: -Math.PI / 2,
       thrusting: false,
       rotatingLeft: false,
       rotatingRight: false,
@@ -322,11 +255,11 @@ function AsteroidDriftBoard({
 
   const spawnAsteroid = (size: "large" | "medium" | "small", x?: number, y?: number) => {
     const radius = size === "large" ? 40 : size === "medium" ? 20 : 10;
-    
+
     // If x,y not provided, random edge position
     let spawnX = x;
     let spawnY = y;
-    
+
     if (spawnX === undefined || spawnY === undefined) {
       if (Math.random() < 0.5) {
         spawnX = Math.random() < 0.5 ? 0 : CANVAS_WIDTH;
@@ -361,7 +294,7 @@ function AsteroidDriftBoard({
 
   const fireBullet = () => {
     if (shipRef.current.invulnerable > 0 && gameState !== "PLAYING") return;
-    
+
     const ship = shipRef.current;
     bulletsRef.current.push({
       x: ship.x + Math.cos(ship.angle) * SHIP_SIZE,
@@ -379,7 +312,7 @@ function AsteroidDriftBoard({
     // Ship Physics
     if (ship.rotatingLeft) ship.angle -= ROTATION_SPEED;
     if (ship.rotatingRight) ship.angle += ROTATION_SPEED;
-    
+
     if (ship.thrusting) {
       ship.dx += Math.cos(ship.angle) * THRUST;
       ship.dy += Math.sin(ship.angle) * THRUST;
@@ -405,7 +338,7 @@ function AsteroidDriftBoard({
       b.y += b.dy;
       b.life--;
       if (b.life <= 0) b.active = false;
-      
+
       // Screen Wrap Bullets
       if (b.x < 0) b.x += CANVAS_WIDTH;
       if (b.x > CANVAS_WIDTH) b.x -= CANVAS_WIDTH;
@@ -436,7 +369,7 @@ function AsteroidDriftBoard({
           b.active = false;
           a.active = false;
           setScore(s => s + (a.size === "large" ? 20 : a.size === "medium" ? 50 : 100));
-          
+
           // Split
           if (a.size === "large") {
             spawnAsteroid("medium", a.x, a.y);
@@ -468,7 +401,7 @@ function AsteroidDriftBoard({
 
     // Cleanup
     asteroidsRef.current = asteroidsRef.current.filter(a => a.active);
-    
+
     // Level Up? (Respawn asteroids if all gone)
     if (asteroidsRef.current.length === 0) {
       const count = difficulty === "easy" ? 4 : difficulty === "medium" ? 6 : 8;
@@ -584,7 +517,47 @@ function AsteroidDriftBoard({
         ref={canvasRef}
         className="block w-full h-full touch-none"
       />
-      
+
+      {/* Mobile On-Screen Controls */}
+      {gameState === "PLAYING" && (
+        <div className="absolute inset-x-0 bottom-4 z-10 flex justify-between px-4 sm:hidden select-none touch-none">
+          <div className="flex gap-2">
+            <button
+              className="w-14 h-14 rounded-full bg-slate-800/60 flex items-center justify-center border border-slate-600/50 backdrop-blur active:bg-slate-700/80"
+              onPointerDown={(e) => { e.preventDefault(); shipRef.current.rotatingLeft = true; }}
+              onPointerUp={(e) => { e.preventDefault(); shipRef.current.rotatingLeft = false; }}
+              onPointerLeave={(e) => { e.preventDefault(); shipRef.current.rotatingLeft = false; }}
+            >
+              <RotateCcw className="text-white w-6 h-6" />
+            </button>
+            <button
+              className="w-14 h-14 rounded-full bg-slate-800/60 flex items-center justify-center border border-slate-600/50 backdrop-blur active:bg-slate-700/80"
+              onPointerDown={(e) => { e.preventDefault(); shipRef.current.rotatingRight = true; }}
+              onPointerUp={(e) => { e.preventDefault(); shipRef.current.rotatingRight = false; }}
+              onPointerLeave={(e) => { e.preventDefault(); shipRef.current.rotatingRight = false; }}
+            >
+              <RotateCw className="text-white w-6 h-6" />
+            </button>
+          </div>
+          <div className="flex gap-2">
+            <button
+              className="w-14 h-14 rounded-full bg-slate-800/60 flex items-center justify-center border border-slate-600/50 backdrop-blur active:bg-slate-700/80"
+              onPointerDown={(e) => { e.preventDefault(); shipRef.current.thrusting = true; }}
+              onPointerUp={(e) => { e.preventDefault(); shipRef.current.thrusting = false; }}
+              onPointerLeave={(e) => { e.preventDefault(); shipRef.current.thrusting = false; }}
+            >
+              <ArrowUp className="text-white w-6 h-6" />
+            </button>
+            <button
+              className="w-14 h-14 rounded-full bg-red-600/60 flex items-center justify-center border border-red-500/50 backdrop-blur active:bg-red-700/80"
+              onPointerDown={(e) => { e.preventDefault(); fireBullet(); }}
+            >
+              <Crosshair className="text-white w-6 h-6" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Overlays */}
       <GameStartOverlay
         isPlaying={gameState === "PLAYING"}
@@ -629,7 +602,7 @@ export default function AsteroidDriftGame({
         </h2>
         <div className="prose prose-slate dark:prose-invert max-w-none mt-4">
           <p>
-            <strong>Asteroid Drift</strong> challenges your reflexes and physics control. 
+            <strong>Asteroid Drift</strong> challenges your reflexes and physics control.
             You are adrift in a dangerous asteroid belt. Survival depends on your ability to pilot and shoot.
           </p>
           <ul className="list-disc pl-6 space-y-2">

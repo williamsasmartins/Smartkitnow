@@ -52,9 +52,10 @@ function AstroBreakoutBoard({
   const bricksRef = useRef<{ x: number; y: number; width: number; height: number; active: boolean; color: string }[]>([]);
   const animationFrameRef = useRef<number | null>(null);
   const isDraggingRef = useRef(false);
+  const keysRef = useRef<{ [key: string]: boolean }>({});
 
   // --- Effects ---
-  
+
   const toggleFullscreen = () => {
     if (!containerRef.current) return;
 
@@ -100,7 +101,7 @@ function AstroBreakoutBoard({
         // Maintain aspect ratio
         const width = Math.min(clientWidth, 800);
         const height = width * (CANVAS_HEIGHT / CANVAS_WIDTH);
-        
+
         canvasRef.current.style.width = `${width}px`;
         canvasRef.current.style.height = `${height}px`;
         // Internal resolution remains constant for easier logic
@@ -139,19 +140,18 @@ function AstroBreakoutBoard({
   // Keyboard Controls
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (gameState !== "PLAYING") return;
-      
-      const paddleSpeed = 20; // Keyboard speed
-      
-      if (e.key === "ArrowLeft" || e.key === "a") {
-        paddleRef.current.x = Math.max(0, paddleRef.current.x - paddleSpeed);
-      } else if (e.key === "ArrowRight" || e.key === "d") {
-        paddleRef.current.x = Math.min(CANVAS_WIDTH - paddleRef.current.width, paddleRef.current.x + paddleSpeed);
-      }
+      keysRef.current[e.key] = true;
+    };
+    const handleKeyUp = (e: KeyboardEvent) => {
+      keysRef.current[e.key] = false;
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
   }, [gameState]);
 
   // Touch/Mouse Controls
@@ -164,7 +164,7 @@ function AstroBreakoutBoard({
       const rect = canvas.getBoundingClientRect();
       const scaleX = CANVAS_WIDTH / rect.width;
       const relativeX = (clientX - rect.left) * scaleX;
-      
+
       let newX = relativeX - paddleRef.current.width / 2;
       newX = Math.max(0, Math.min(CANVAS_WIDTH - paddleRef.current.width, newX));
       paddleRef.current.x = newX;
@@ -195,7 +195,7 @@ function AstroBreakoutBoard({
     setDifficulty(diff);
     setScore(0);
     setLives(3);
-    
+
     // Reset Paddle
     paddleRef.current = {
       x: (CANVAS_WIDTH - PADDLE_WIDTH_MAP[diff]) / 2,
@@ -214,7 +214,7 @@ function AstroBreakoutBoard({
     const offsetLeft = 35;
     const brickWidth = (CANVAS_WIDTH - (offsetLeft * 2) - (padding * (cols - 1))) / cols;
     const brickHeight = 25;
-    
+
     const colors = ["#ef4444", "#f97316", "#eab308", "#22c55e", "#3b82f6"]; // Red, Orange, Yellow, Green, Blue
 
     bricksRef.current = [];
@@ -248,6 +248,15 @@ function AstroBreakoutBoard({
   };
 
   const update = () => {
+    // Keyboard Movement
+    const paddleSpeed = 8;
+    if (keysRef.current["ArrowLeft"] || keysRef.current["a"]) {
+      paddleRef.current.x = Math.max(0, paddleRef.current.x - paddleSpeed);
+    }
+    if (keysRef.current["ArrowRight"] || keysRef.current["d"]) {
+      paddleRef.current.x = Math.min(CANVAS_WIDTH - paddleRef.current.width, paddleRef.current.x + paddleSpeed);
+    }
+
     const ball = ballRef.current;
     const paddle = paddleRef.current;
 
@@ -272,11 +281,11 @@ function AstroBreakoutBoard({
     ) {
       // Hit paddle
       ball.dy = -Math.abs(ball.dy); // Ensure it goes up
-      
+
       // Add "english" (spin) based on where it hit the paddle
       const hitPoint = ball.x - (paddle.x + paddle.width / 2);
       ball.dx = hitPoint * 0.15; // Normalize speed
-      
+
       // Ensure minimum vertical speed
       // Keep total velocity somewhat constant? For now, just simplistic physics
     }
@@ -296,7 +305,7 @@ function AstroBreakoutBoard({
     bricksRef.current.forEach(brick => {
       if (!brick.active) return;
       activeBricks++;
-      
+
       if (
         ball.x > brick.x &&
         ball.x < brick.x + brick.width &&
@@ -395,7 +404,7 @@ function AstroBreakoutBoard({
         ref={canvasRef}
         className="block w-full h-full touch-none"
       />
-      
+
       {/* Overlays */}
       <GameStartOverlay
         isPlaying={gameState === "PLAYING"}
@@ -477,9 +486,9 @@ export default function AstroBreakoutGame({
         </h2>
         <div className="prose prose-slate dark:prose-invert max-w-none mt-4">
           <p>
-            The original Breakout game was influenced by Pong. It was designed by Nolan Bushnell and Steve Bristow, 
-            and famously, the prototype was built by Steve Wozniak (co-founder of Apple) with help from Steve Jobs. 
-            Released in 1976, it became an instant classic and spawned countless clones and variations, establishing 
+            The original Breakout game was influenced by Pong. It was designed by Nolan Bushnell and Steve Bristow,
+            and famously, the prototype was built by Steve Wozniak (co-founder of Apple) with help from Steve Jobs.
+            Released in 1976, it became an instant classic and spawned countless clones and variations, establishing
             the "brick breaker" genre.
           </p>
         </div>
