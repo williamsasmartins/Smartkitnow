@@ -47,11 +47,19 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
   const containerClasses = "w-full px-4 md:px-8 lg:px-10";
 
   // Build BreadcrumbList JSON-LD
-  const origin = "https://www.smartkitnow.com";
+  // Use calcLink logic (or explicitly check urlStyle) to determine the correct path structure
   const catSlug = entry.category;
   const subSlug = entry.subcategory;
   const catName = FRIENDLY_TITLES[catSlug] || catSlug;
   const subName = (subSlug && SUBCATEGORY_TITLES[catSlug]?.[subSlug]) || subSlug;
+
+  const origin = "https://www.smartkitnow.com";
+
+  // Decide actual link structure based on entry options
+  // (Logic matched with src/data/calculatorRegistry.ts -> calcLink)
+  const isFlat = entry.urlStyle === "flat";
+  // If explicitly flat, OR if there's no subcategory (common default)
+  const useNested = !isFlat && subSlug && subSlug !== "general";
 
   const itemListElement = [
     {
@@ -68,30 +76,34 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
     }
   ];
 
-  let canonicalPath = `/${catSlug}`;
+  let calculatedPath = "";
 
-  if (subSlug) {
+  if (useNested) {
+    // breadcrumb for subcategory
     itemListElement.push({
       "@type": "ListItem",
       "position": 3,
-      "name": subName || subSlug,
+      "name": subName || "",
       "item": `${origin}/${catSlug}/${subSlug}`
     });
+    // breadcrumb for item
     itemListElement.push({
       "@type": "ListItem",
       "position": 4,
       "name": entry.title,
       "item": `${origin}/${catSlug}/${subSlug}/${entry.slug}`
     });
-    canonicalPath += `/${subSlug}/${entry.slug}`;
+    calculatedPath = `/${catSlug}/${subSlug}/${entry.slug}`;
   } else {
+    // Flat or no-sub
+    // item is directly under category
     itemListElement.push({
       "@type": "ListItem",
       "position": 3,
       "name": entry.title,
       "item": `${origin}/${catSlug}/${entry.slug}`
     });
-    canonicalPath += `/${entry.slug}`;
+    calculatedPath = `/${catSlug}/${entry.slug}`;
   }
 
   const breadcrumbJsonLd = {
@@ -105,7 +117,7 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
       <SEOHead
         title={`${entry.title} - Smart Kit Now`}
         description={entry.description || `Use our ${entry.title} to calculate results quickly and easily.`}
-        canonical={`${origin}${canonicalPath}`}
+        canonical={`${origin}${calculatedPath}`}
       />
       <JsonLd data={breadcrumbJsonLd} />
       {/* max-w-none permite que o CalculatorVerticalLayout controle a largura interna */}
