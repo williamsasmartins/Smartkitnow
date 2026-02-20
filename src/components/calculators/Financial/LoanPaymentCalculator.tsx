@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from "react";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -441,6 +442,66 @@ export default function LoanPaymentCalculator() {
                 </Card>
               )}
 
+              {/* ==================== VISUALIZATION CHART ==================== */}
+              <Card className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-md overflow-hidden">
+                <CardHeader className="pb-2 border-b border-slate-100 dark:border-slate-900">
+                  <CardTitle className="text-base font-semibold flex items-center gap-2 text-slate-900 dark:text-slate-100">
+                    <TrendingUp className="h-5 w-5 text-indigo-500" />
+                    Principal vs. Interest Breakdown
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="h-[300px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={[
+                            { name: "Principal", value: parseFloat(inputs.principal) || 0, fill: "#3b82f6" },
+                            { name: "Interest", value: results.totalInterest, fill: "#f43f5e" },
+                          ]}
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={60}
+                          outerRadius={80}
+                          paddingAngle={5}
+                          dataKey="value"
+                        >
+                          <Cell key="principal" fill="#3b82f6" />
+                          <Cell key="interest" fill="#f43f5e" />
+                        </Pie>
+                        <Tooltip
+                          formatter={(value: number) => `$${formatNumber(value)}`}
+                          contentStyle={{
+                            backgroundColor: "rgba(255, 255, 255, 0.95)",
+                            borderRadius: "8px",
+                            boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                            border: "1px solid #e2e8f0",
+                            color: "#1e293b",
+                          }}
+                          itemStyle={{ color: "#1e293b" }}
+                        />
+                        <Legend
+                          verticalAlign="bottom"
+                          height={36}
+                          iconType="circle"
+                          formatter={(value: string) => (
+                            <span className="text-slate-700 dark:text-slate-300 font-medium ml-1">
+                              {value}
+                            </span>
+                          )}
+                        />
+                      </PieChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className="mt-4 text-center text-sm text-slate-600 dark:text-slate-400">
+                    <p>
+                      The <span className="text-indigo-500 font-bold">Principal</span> is what you borrowed.
+                      The <span className="text-rose-500 font-bold">Interest</span> is the cost of borrowing.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
               {/* ==================== AMORTIZATION TABLE ==================== */}
               {displaySchedule.length > 0 && (
                 <Card className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-md">
@@ -662,7 +723,7 @@ export default function LoanPaymentCalculator() {
                   <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
                     {faq.question}
                   </h3>
-                  <div 
+                  <div
                     className="text-slate-700 dark:text-slate-300 leading-relaxed"
                     dangerouslySetInnerHTML={{ __html: faq.answer }}
                   />
