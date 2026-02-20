@@ -9,6 +9,8 @@ import AsteroidDriftGame from "../components/games/AsteroidDriftGame";
 import PinballNeonGame from "../components/games/PinballNeonGame";
 import BubbleShooterGame from "../components/games/BubbleShooterGame";
 import BrickDashGame from "../components/games/BrickDashGame";
+import SudokuZenGame from "../components/games/SudokuZenGame";
+import WordleUnlimitedGame from "../components/games/WordleUnlimitedGame";
 // import CrossyStreetGame from "../components/games/CrossyStreetGame"; 
 
 export type GameCategory =
@@ -143,6 +145,8 @@ const RAW_GAMES: Omit<GameEntry, "component">[] = [
 export const GAME_REGISTRY: GameEntry[] = RAW_GAMES.map(game => {
     // SPECIAL MAPPING FOR REAL GAMES
     if (game.slug === "tic-tac-toe-prime") return { ...game, component: TicTacToePrime }; // Uses standard layout
+    if (game.slug === "sudoku-zen") return { ...game, component: SudokuZenGame };
+    if (game.slug === "wordle-unlimited") return { ...game, component: WordleUnlimitedGame };
 
     // Full-page games (Self-contained layout)
     if (game.slug === "neon-snake") return { ...game, component: NeonSnakeGame, useCustomLayout: true };
