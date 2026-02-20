@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { getCategoryIcon } from "@/lib/navigation";
 import { GlowCard } from "@/components/ui/spotlight-card";
-import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft, QrCode, Moon } from "lucide-react";
+import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft, QrCode, Moon, PieChart } from "lucide-react";
 
 const FeaturedCalculatorsSection = lazy(() => import("@/components/home/FeaturedCalculatorsSection"));
 const AboutSection = lazy(() => import("@/components/home/AboutSection"));
@@ -1360,15 +1360,6 @@ const Index = () => {
       path: "/funny",
       description: "Lighthearted tools for fun estimations, playful math, and humorous calculations to share with friends."
     },
-    // New squares
-    {
-      key: "games",
-      name: "Free Games",
-      icon: Video,
-      color: "text-blue-600",
-      path: "/games",
-      description: "Play curated arcade, puzzle, word, board and more. Free."
-    },
     {
       key: "qr",
       name: "Free QR Code Generator",
@@ -1391,13 +1382,6 @@ const Index = () => {
       icon: QrCode,
       path: "/everyday-life/qr-code-generator",
       ctaLabel: "Generate QR Code"
-    },
-    {
-      name: "Free Games",
-      description: "Play curated arcade, puzzle, word, and board games",
-      icon: Video,
-      path: "/games",
-      ctaLabel: "Acessar Jogos"
     },
     {
       name: "BMI Calculator",
@@ -1555,30 +1539,30 @@ const Index = () => {
               </CardContent>
             </GlowCard>
 
-            {/* Spotlight 3: Game */}
+            {/* Spotlight 3: Budget Planner */}
             <GlowCard
               className="cursor-pointer group relative overflow-hidden rounded-xl border border-purple-100 dark:border-purple-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl"
               glowColor="purple"
-              onClick={() => navigate('/games/tic-tac-toe-prime')}
+              onClick={() => navigate('/financial/mortgage-amortization')}
             >
               <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Smile className="w-24 h-24 text-purple-500" />
+                <PieChart className="w-24 h-24 text-purple-500" />
               </div>
               <CardHeader>
                 <div className="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center mb-4 text-purple-600 dark:text-purple-400">
-                  <Star className="w-6 h-6" />
+                  <Calculator className="w-6 h-6" />
                 </div>
                 <div className="inline-flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-purple-700 bg-purple-100 rounded-full">Play Now</span>
+                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-purple-700 bg-purple-100 rounded-full">Popular</span>
                 </div>
-                <CardTitle className="text-xl">Tic-Tac-Toe Prime</CardTitle>
+                <CardTitle className="text-xl">Monthly Budget Planner</CardTitle>
                 <CardDescription className="line-clamp-2">
-                  Challenge our smart AI in this reimagined classic. Can you win?
+                  Master your finances. Visualize income vs. expenses with our new interactive allocation chart.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="mt-4 flex items-center text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:underline">
-                  Play Game <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
+                  Plan Budget <TrendingUp className="w-4 h-4 ml-1" />
                 </div>
               </CardContent>
             </GlowCard>
