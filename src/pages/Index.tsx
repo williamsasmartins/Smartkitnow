@@ -1497,6 +1497,93 @@ const Index = () => {
             </p>
           </div>
 
+          {/* SPOTLIGHT SECTION - TRENDING & NEW */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            {/* Spotlight 1: Auto Loan */}
+            <GlowCard
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-blue-100 dark:border-blue-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl"
+              glowColor="blue"
+              onClick={() => navigate('/financial/auto-loan')}
+            >
+              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Car className="w-24 h-24 text-blue-500" />
+              </div>
+              <CardHeader>
+                <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                  <DollarSign className="w-6 h-6" />
+                </div>
+                <div className="inline-flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-100 rounded-full">New Charts</span>
+                </div>
+                <CardTitle className="text-xl">Auto Loan Calculator</CardTitle>
+                <CardDescription className="line-clamp-2">
+                  Visualize your monthly payments and interest costs with our new interactive breakdown charts.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="mt-4 flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:underline">
+                  Calculate Now <TrendingUp className="w-4 h-4 ml-1" />
+                </div>
+              </CardContent>
+            </GlowCard>
+
+            {/* Spotlight 2: Investment */}
+            <GlowCard
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-emerald-100 dark:border-emerald-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl"
+              glowColor="green"
+              onClick={() => navigate('/financial/future-value')}
+            >
+              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                <TrendingUp className="w-24 h-24 text-emerald-500" />
+              </div>
+              <CardHeader>
+                <div className="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center mb-4 text-emerald-600 dark:text-emerald-400">
+                  <TrendingUp className="w-6 h-6" />
+                </div>
+                <div className="inline-flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 rounded-full">Updated</span>
+                </div>
+                <CardTitle className="text-xl">Investment Growth</CardTitle>
+                <CardDescription className="line-clamp-2">
+                  Project your future wealth with our advanced compound interest visualizer.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="mt-4 flex items-center text-sm font-medium text-emerald-600 dark:text-emerald-400 group-hover:underline">
+                  Start Investing <TrendingUp className="w-4 h-4 ml-1" />
+                </div>
+              </CardContent>
+            </GlowCard>
+
+            {/* Spotlight 3: Game */}
+            <GlowCard
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-purple-100 dark:border-purple-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl"
+              glowColor="purple"
+              onClick={() => navigate('/games/tic-tac-toe-prime')}
+            >
+              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Smile className="w-24 h-24 text-purple-500" />
+              </div>
+              <CardHeader>
+                <div className="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center mb-4 text-purple-600 dark:text-purple-400">
+                  <Star className="w-6 h-6" />
+                </div>
+                <div className="inline-flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-purple-700 bg-purple-100 rounded-full">Play Now</span>
+                </div>
+                <CardTitle className="text-xl">Tic-Tac-Toe Prime</CardTitle>
+                <CardDescription className="line-clamp-2">
+                  Challenge our smart AI in this reimagined classic. Can you win?
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="mt-4 flex items-center text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:underline">
+                  Play Game <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
+                </div>
+              </CardContent>
+            </GlowCard>
+          </div>
+
           {/* Categories Grid */}
           <div className="grid grid-cols-1 min-[425px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
             {calculatorCategories.map((category, index) => {
