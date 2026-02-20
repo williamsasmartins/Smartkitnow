@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
@@ -20,6 +20,7 @@ import {
   Info,
   HelpCircle,
   BookOpen,
+  Share2,
 } from "lucide-react";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
@@ -32,18 +33,34 @@ interface AmortizationRow {
   balance: number;
 }
 
+import { useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
+
 export default function LoanPaymentCalculator() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [inputs, setInputs] = useState({
-    principal: "25000",
-    interestRate: "6.5",
-    termMonths: "60",
-    startDate: "",
+    principal: searchParams.get("principal") || "25000",
+    interestRate: searchParams.get("rate") || "6.5",
+    termMonths: searchParams.get("months") || "60",
+    startDate: searchParams.get("date") || "",
   });
 
   const [showFullSchedule, setShowFullSchedule] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
 
+  // Auto-calculate on mount if params exist
+  useEffect(() => {
+    if (searchParams.size > 0) {
+      // Small delay to ensure render
+      setTimeout(() => {
+        resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 500);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const results = useMemo(() => {
+    // ... existing calculation logic ...
     const principal = parseFloat(inputs.principal) || 0;
     const annualRate = parseFloat(inputs.interestRate) || 0;
     const termMonths = parseFloat(inputs.termMonths) || 0;
@@ -145,7 +162,25 @@ export default function LoanPaymentCalculator() {
       termMonths: "",
       startDate: "",
     });
+    setSearchParams({}); // Clear URL params
     setShowFullSchedule(false);
+  };
+
+  const handleShare = () => {
+    const params = new URLSearchParams();
+    params.set("principal", inputs.principal);
+    params.set("rate", inputs.interestRate);
+    params.set("months", inputs.termMonths);
+    if (inputs.startDate) params.set("date", inputs.startDate);
+
+    const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params.toString()}`;
+
+    // Update URL without reloading
+    window.history.replaceState({}, "", newUrl);
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(newUrl);
+    toast.success("Link copied to clipboard!");
   };
 
   const formatCurrency = (value: number) => {
@@ -363,6 +398,14 @@ export default function LoanPaymentCalculator() {
               className="flex-1 h-11 text-base font-medium"
             >
               Reset
+            </Button>
+            <Button
+              variant="outline"
+              onClick={handleShare}
+              className="h-11 px-4 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 hover:bg-emerald-50 dark:hover:bg-emerald-950"
+              title="Share this result"
+            >
+              <Share2 className="h-4 w-4" />
             </Button>
           </div>
 

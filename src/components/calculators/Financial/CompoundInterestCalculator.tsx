@@ -1,24 +1,37 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
 import CalculatorVerticalLayout from "@/components/templates/CalculatorVerticalLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle, TrendingUp } from "lucide-react";
+import { Calculator, DollarSign, Calendar, Percent, HelpCircle, BookOpen, Info, CheckCircle, TrendingUp, Share2 } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from "recharts";
 import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 export default function CompoundInterestCalculator() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   // STATE
   const [inputs, setInputs] = useState({
-    principal: "",
-    rate: "",
-    time: "",
-    compoundingFrequency: "yearly"
+    principal: searchParams.get("principal") || "",
+    rate: searchParams.get("rate") || "",
+    time: searchParams.get("time") || "",
+    compoundingFrequency: searchParams.get("frequency") || "yearly"
   });
   const [showFullTable, setShowFullTable] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  // Auto-calculate on mount if params exist
+  useEffect(() => {
+    if (searchParams.size > 0 && inputs.principal && inputs.rate && inputs.time) {
+      setTimeout(() => {
+        resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 500);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // FAQ DATA
   const faqs = [
@@ -136,6 +149,24 @@ export default function CompoundInterestCalculator() {
 
   const handleReset = () => {
     setInputs({ principal: "", rate: "", time: "", compoundingFrequency: "yearly" });
+    setSearchParams({});
+  };
+
+  const handleShare = () => {
+    const params = new URLSearchParams();
+    if (inputs.principal) params.set("principal", inputs.principal);
+    if (inputs.rate) params.set("rate", inputs.rate);
+    if (inputs.time) params.set("time", inputs.time);
+    params.set("frequency", inputs.compoundingFrequency);
+
+    const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params.toString()}`;
+
+    // Update URL without reloading
+    window.history.replaceState({}, "", newUrl);
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(newUrl);
+    toast.success("Link copied to clipboard!");
   };
 
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -221,6 +252,14 @@ export default function CompoundInterestCalculator() {
           className="border-gray-300 dark:border-gray-600"
         >
           Reset
+        </Button>
+        <Button
+          onClick={handleShare}
+          variant="outline"
+          className="border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950 px-3"
+          title="Share result"
+        >
+          <Share2 className="h-4 w-4" />
         </Button>
       </div>
 
