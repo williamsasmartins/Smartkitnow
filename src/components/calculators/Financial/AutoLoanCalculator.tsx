@@ -31,8 +31,6 @@ export default function AutoLoanCalculator() {
       }, 500);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  const [showFullTable, setShowFullTable] = useState(false);
-  const resultsRef = useRef<HTMLDivElement>(null);
 
   // HELPER FUNCTION (MANDATORY)
   const formatCurrency = (value: number): string => {
