@@ -5,6 +5,8 @@ import CalculatorVerticalLayout from '@/components/templates/CalculatorVerticalL
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
+import { cityMapping } from 'city-timezones';
+
 // Generate a robust list of timezones/cities
 const getAllTimezones = () => {
   try {
@@ -31,7 +33,7 @@ const formatCityName = (tz: string) => {
 const ALL_TIMEZONES = getAllTimezones();
 
 const INITIAL_QUICK_CITIES = [
-  { name: 'Local', tz: Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC' },
+  { name: 'Local Time', tz: Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC' },
   { name: 'New York', tz: 'America/New_York' },
   { name: 'London', tz: 'Europe/London' },
   { name: 'Tokyo', tz: 'Asia/Tokyo' },
@@ -54,10 +56,35 @@ export default function WorldClockCalculator() {
   const filteredTimezones = useMemo(() => {
     if (!searchQuery) return [];
     const lowerQ = searchQuery.toLowerCase();
-    return ALL_TIMEZONES.filter(tz =>
-      tz.toLowerCase().includes(lowerQ) ||
-      formatCityName(tz).toLowerCase().includes(lowerQ)
-    ).slice(0, 30); // max 30 results for performance
+
+    const resultsMap = new Map<string, { name: string, tz: string }>();
+
+    // 1. Search Standard IANA Timezones (e.g. America/Los_Angeles)
+    ALL_TIMEZONES.forEach(tz => {
+      if (tz.toLowerCase().includes(lowerQ) || formatCityName(tz).toLowerCase().includes(lowerQ)) {
+        // Use ID as key to prevent duplicates
+        resultsMap.set(tz, { name: formatCityName(tz), tz });
+      }
+    });
+
+    // 2. Search City Database for missing locations (e.g., Santos, Vancouver, etc.)
+    for (const c of cityMapping) {
+      if (resultsMap.size >= 30) break; // Performance limit
+      if (
+        c.city.toLowerCase().includes(lowerQ) ||
+        (c.admin_name && c.admin_name.toLowerCase().includes(lowerQ)) ||
+        c.country.toLowerCase().includes(lowerQ)
+      ) {
+        // If we found a city exact match (like "Santos"), overwrite the display name
+        // so the user knows their city was directly matched to its parent zone.
+        const idKey = `${c.city}-${c.timezone}`;
+        if (!resultsMap.has(idKey)) {
+          resultsMap.set(idKey, { name: `${c.city}, ${c.country}`, tz: c.timezone });
+        }
+      }
+    }
+
+    return Array.from(resultsMap.values()).slice(0, 30);
   }, [searchQuery]);
 
   // Format time HH:mm:ss for selected timezone
@@ -141,17 +168,17 @@ export default function WorldClockCalculator() {
                     {filteredTimezones.length === 0 ? (
                       <div className="p-3 text-sm text-slate-500 text-center">No timezones found.</div>
                     ) : (
-                      filteredTimezones.map(tz => (
+                      filteredTimezones.map((tzItem) => (
                         <button
-                          key={tz}
+                          key={tzItem.tz + tzItem.name}
                           className="text-left px-3 py-2 text-sm rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors w-full"
                           onClick={() => {
-                            setSelectedCity({ name: formatCityName(tz), tz });
+                            setSelectedCity({ name: tzItem.name, tz: tzItem.tz });
                             setSearchQuery('');
                           }}
                         >
-                          <div className="font-semibold text-slate-800 dark:text-slate-200">{formatCityName(tz)}</div>
-                          <div className="text-xs text-slate-500">{tz}</div>
+                          <div className="font-semibold text-slate-800 dark:text-slate-200">{tzItem.name}</div>
+                          <div className="text-xs text-slate-500">{tzItem.tz}</div>
                         </button>
                       ))
                     )}
