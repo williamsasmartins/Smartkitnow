@@ -1515,10 +1515,10 @@ const Index = () => {
           </div>
 
           {/* SPOTLIGHT SECTION - TRENDING & NEW */}
-          <div className="flex flex-wrap justify-center gap-6 mb-16 max-w-7xl px-4 mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 max-w-7xl px-4 mx-auto">
             {/* Spotlight 1: Auto Loan */}
             <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-blue-100 dark:border-blue-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[280px] xl:w-[300px]"
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-blue-100 dark:border-blue-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full h-full flex flex-col"
               glowColor="blue"
               onClick={() => navigate('/financial/auto-loan')}
             >
@@ -1537,7 +1537,7 @@ const Index = () => {
                   Visualize your monthly payments and interest costs with our new interactive breakdown charts.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex justify-center pb-6">
+              <CardContent className="mt-auto flex justify-center pb-6">
                 <div className="flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:underline">
                   Calculate Now <TrendingUp className="w-4 h-4 ml-1" />
                 </div>
@@ -1546,7 +1546,7 @@ const Index = () => {
 
             {/* Spotlight 2: Investment */}
             <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-emerald-100 dark:border-emerald-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[280px] xl:w-[300px]"
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-emerald-100 dark:border-emerald-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full h-full flex flex-col"
               glowColor="green"
               onClick={() => navigate('/financial/future-value')}
             >
@@ -1565,7 +1565,7 @@ const Index = () => {
                   Project your future wealth with our advanced compound interest visualizer.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex justify-center pb-6">
+              <CardContent className="mt-auto flex justify-center pb-6">
                 <div className="flex items-center text-sm font-medium text-emerald-600 dark:text-emerald-400 group-hover:underline">
                   Start Investing <TrendingUp className="w-4 h-4 ml-1" />
                 </div>
@@ -1574,7 +1574,7 @@ const Index = () => {
 
             {/* Spotlight 3: Neon Snake */}
             <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-green-100 dark:border-green-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[280px] xl:w-[300px]"
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-green-100 dark:border-green-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full h-full flex flex-col"
               glowColor="green"
               onClick={() => navigate('/games/neon-snake')}
             >
@@ -1593,7 +1593,7 @@ const Index = () => {
                   Classic snake action reimagined with neon glow graphics and smooth controls.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex justify-center pb-6">
+              <CardContent className="mt-auto flex justify-center pb-6">
                 <div className="flex items-center text-sm font-medium text-green-600 dark:text-green-400 group-hover:underline">
                   Play Now <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
                 </div>
@@ -1602,7 +1602,7 @@ const Index = () => {
 
             {/* Spotlight 4: World Time */}
             <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-indigo-100 dark:border-indigo-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[280px] xl:w-[300px]"
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-indigo-100 dark:border-indigo-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full h-full flex flex-col"
               glowColor="blue"
               onClick={() => navigate('/time/world-clock')}
             >
@@ -1621,7 +1621,7 @@ const Index = () => {
                   Track real-time digital clocks across popular cities and global timezones.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex justify-center pb-6">
+              <CardContent className="mt-auto flex justify-center pb-6">
                 <div className="flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400 group-hover:underline">
                   View Time <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
                 </div>

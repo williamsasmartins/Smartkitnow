@@ -80,7 +80,7 @@ export default function WorldClockCalculator() {
 
   const widget = (
     <div className="flex flex-col gap-6">
-      <Card className="w-full bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-md rounded-2xl overflow-hidden transition-all duration-300">
+      <Card className="w-full bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-md rounded-2xl transition-all duration-300 relative z-0">
         <CardContent className="p-6 sm:p-8 flex flex-col items-center text-center">
           <div className="flex items-center justify-center gap-2 mb-4 text-indigo-600 dark:text-indigo-400">
             <Globe2 className="w-6 h-6" />
