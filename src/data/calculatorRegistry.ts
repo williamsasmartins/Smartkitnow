@@ -149,7 +149,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/EverydayLife/WordCounterCalculator"),
     urlStyle: "flat"
   },
-
+  {
+    slug: "world-clock",
+    title: "Real-Time World Clock",
+    category: "time",
+    subcategory: "general",
+    description: "A dynamic digital clock displaying time and date worldwide. Choose local, popular cities, or search globally.",
+    loader: () => import("@/components/calculators/Time/WorldClockCalculator"),
+    urlStyle: "flat"
+  },
 
 
 
