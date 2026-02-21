@@ -248,6 +248,7 @@ interface CalculatorVerticalLayoutProps {
   hideLegalDisclaimer?: boolean; // Nova prop opcional
   jsonLd?: object | object[] | null | undefined;
   canonical?: string;
+  contentMaxWidth?: string; // e.g. 'max-w-5xl' or 'max-w-full'
   children?: ReactNode;
 }
 
@@ -269,6 +270,7 @@ export default function CalculatorVerticalLayout({
   hideLegalDisclaimer = false, // Padrão é false (mostrar)
   jsonLd,
   canonical,
+  contentMaxWidth = "max-w-3xl",
   children,
 }: CalculatorVerticalLayoutProps) {
   const location = useLocation();
@@ -300,8 +302,8 @@ export default function CalculatorVerticalLayout({
 
         {/* LAYOUT WITH SIDEBAR + CONTENT */}
         <div className="relative xl:flex xl:justify-center xl:gap-12">
-          {/* CENTERED CONTENT (Max 768px) */}
-          <div className="w-full max-w-3xl mx-auto xl:mx-0 px-4 sm:px-6 min-w-0">
+          {/* CENTERED CONTENT (Dynamic Max Width) */}
+          <div className={`w-full ${contentMaxWidth} mx-auto xl:mx-0 px-4 sm:px-6 min-w-0`}>
             {/* TITLE SECTION */}
             <header className="mb-8">
               <div className="mb-6">

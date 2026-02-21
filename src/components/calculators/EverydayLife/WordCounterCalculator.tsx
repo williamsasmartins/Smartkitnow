@@ -673,6 +673,8 @@ const WordCounterCalculator = () => {
                 { title: 'QR Code Generator', url: '/everyday/qr-code-generator', icon: '📱' },
                 { title: 'Password Generator', url: '/everyday/password-generator', icon: '🔑' }
             ]}
+            contentMaxWidth="max-w-5xl"
+            showSidebar={false}
         />
     );
 };
