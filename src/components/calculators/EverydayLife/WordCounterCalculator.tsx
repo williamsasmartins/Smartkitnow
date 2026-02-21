@@ -499,22 +499,24 @@ const WordCounterCalculator = () => {
                         </CardHeader>
                         <CardContent className="p-6">
                             {/* Primary Stats */}
-                            <div className="grid grid-cols-2 gap-4 mb-6">
-                                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm relative overflow-hidden group">
-                                    <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-1">
-                                        <Type className="w-4 h-4 text-blue-500" />
-                                        <span className="text-xs font-semibold uppercase">{t('wordCount')}</span>
+                            <div className="flex flex-col gap-4 mb-6">
+                                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 sm:p-5 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col items-center justify-center text-center">
+                                    <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
+                                        <Type className="w-5 h-5 text-blue-500" />
+                                        <span className="text-sm font-bold uppercase tracking-widest">{t('wordCount')}</span>
                                     </div>
-                                    <div className={`text-3xl font-bold ${goalWords && stats.words >= goalWords ? 'text-green-600 dark:text-green-400' : 'text-slate-800 dark:text-slate-100'}`}>
+                                    <div className={`text-4xl sm:text-5xl font-extrabold truncate w-full ${goalWords && stats.words >= goalWords ? 'text-green-600 dark:text-green-400' : 'text-slate-800 dark:text-slate-100'}`}>
                                         {stats.words.toLocaleString()}
                                     </div>
                                 </div>
-                                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
-                                    <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-1">
-                                        <Hash className="w-4 h-4 text-purple-500" />
-                                        <span className="text-xs font-semibold uppercase">{t('charCount')}</span>
+                                <div className="bg-slate-50 dark:bg-slate-900/50 p-4 sm:p-5 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col items-center justify-center text-center">
+                                    <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
+                                        <Hash className="w-5 h-5 text-purple-500" />
+                                        <span className="text-sm font-bold uppercase tracking-widest">{t('charCount')}</span>
                                     </div>
-                                    <div className="text-3xl font-bold text-slate-800 dark:text-slate-100">{stats.chars.toLocaleString()}</div>
+                                    <div className="text-4xl sm:text-5xl font-extrabold text-slate-800 dark:text-slate-100 truncate w-full">
+                                        {stats.chars.toLocaleString()}
+                                    </div>
                                 </div>
                             </div>
 
