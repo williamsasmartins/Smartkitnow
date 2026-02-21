@@ -138,6 +138,24 @@ export default function EverydayCategory() {
               </div>
             </header>
 
+            {/* Featured Word Counter Card */}
+            <section className="mb-12">
+              <Link to="/word-counter" className="group block p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 border-2 border-indigo-100 dark:border-slate-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="inline-grid place-items-center h-14 w-14 rounded-xl bg-white dark:bg-slate-950 shadow-sm border border-indigo-100 dark:border-slate-700">
+                    <EmojiIcon symbol="📝" size={28} />
+                  </span>
+                  <div>
+                    <h2 className="text-xl sm:text-2xl font-bold text-indigo-700 dark:text-indigo-400 group-hover:text-indigo-800 dark:group-hover:text-indigo-300 transition-colors">Word Counter Utility</h2>
+                    <p className="text-sm font-medium text-indigo-500/80 dark:text-indigo-400/80 mt-1 uppercase tracking-wider">Free Online Tool</p>
+                  </div>
+                </div>
+                <p className="text-slate-700 dark:text-slate-300 text-base leading-relaxed font-medium">
+                  A fast, minimal, and clean tool to count words, characters, sentences, and paragraphs in real-time. Optimize your content for SEO and readability effortlessly.
+                </p>
+              </Link>
+            </section>
+
             <Section
               emoji="🏠"
               title={`Home & Maintenance (${homeMaintenance.length})`}
