@@ -753,7 +753,7 @@ const QRCodeGenerator = () => {
           "@type": "WebPage",
           name: "Free QR Code Generator",
           description: "Create free QR codes for URLs, text and vCard. Download PNG/SVG, choose ECC, margins, size and brand colors. Private, client‑side generator.",
-          url: "https://www.smartkitnow.com/everyday-life/qr-code-generator"
+          url: "https://www.smartkitnow.com/everyday/qr-code-generator"
         },
         {
           "@context": "https://schema.org",
@@ -761,7 +761,7 @@ const QRCodeGenerator = () => {
           itemListElement: [
             { "@type": "ListItem", position: 1, name: "Home", item: "https://www.smartkitnow.com/" },
             { "@type": "ListItem", position: 2, name: "Everyday Life", item: "https://www.smartkitnow.com/everyday" },
-            { "@type": "ListItem", position: 3, name: "Free QR Code Generator", item: "https://www.smartkitnow.com/everyday-life/qr-code-generator" }
+            { "@type": "ListItem", position: 3, name: "Free QR Code Generator", item: "https://www.smartkitnow.com/everyday/qr-code-generator" }
           ]
         }
       ].filter(Boolean)}

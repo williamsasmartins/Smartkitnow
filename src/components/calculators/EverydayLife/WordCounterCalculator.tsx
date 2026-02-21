@@ -660,8 +660,8 @@ const WordCounterCalculator = () => {
                 { id: 'faq', label: 'FAQs' },
             ]}
             relatedCalculators={[
-                { title: 'QR Code Generator', url: '/everyday-life/qr-code-generator', icon: '📱' },
-                { title: 'Password Generator', url: '/everyday-life/password-generator', icon: '🔑' }
+                { title: 'QR Code Generator', url: '/everyday/qr-code-generator', icon: '📱' },
+                { title: 'Password Generator', url: '/everyday/password-generator', icon: '🔑' }
             ]}
         />
     );
