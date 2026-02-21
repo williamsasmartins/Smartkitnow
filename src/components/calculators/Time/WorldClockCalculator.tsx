@@ -25,6 +25,11 @@ const getAllTimezones = () => {
   ];
 };
 
+const normalizeString = (str: string) => {
+  if (!str) return '';
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+};
+
 const formatCityName = (tz: string) => {
   const parts = tz.split('/');
   return parts[parts.length - 1].replace(/_/g, ' ');
@@ -54,14 +59,14 @@ export default function WorldClockCalculator() {
   }, []);
 
   const filteredTimezones = useMemo(() => {
-    if (!searchQuery) return [];
-    const lowerQ = searchQuery.toLowerCase();
+    // Normalize search query for diacritics (e.g., "são" -> "sao")
+    const lowerQ = normalizeString(searchQuery);
 
     const resultsMap = new Map<string, { name: string, tz: string }>();
 
     // 1. Search Standard IANA Timezones (e.g. America/Los_Angeles)
     ALL_TIMEZONES.forEach(tz => {
-      if (tz.toLowerCase().includes(lowerQ) || formatCityName(tz).toLowerCase().includes(lowerQ)) {
+      if (normalizeString(tz).includes(lowerQ) || normalizeString(formatCityName(tz)).includes(lowerQ)) {
         // Use ID as key to prevent duplicates
         resultsMap.set(tz, { name: formatCityName(tz), tz });
       }
@@ -71,9 +76,9 @@ export default function WorldClockCalculator() {
     for (const c of cityMapping) {
       if (resultsMap.size >= 30) break; // Performance limit
       if (
-        c.city.toLowerCase().includes(lowerQ) ||
-        (c.admin_name && c.admin_name.toLowerCase().includes(lowerQ)) ||
-        c.country.toLowerCase().includes(lowerQ)
+        normalizeString(c.city).includes(lowerQ) ||
+        (c.admin_name && normalizeString(c.admin_name).includes(lowerQ)) ||
+        (c.country && normalizeString(c.country).includes(lowerQ))
       ) {
         // If we found a city exact match (like "Santos"), overwrite the display name
         // so the user knows their city was directly matched to its parent zone.
@@ -129,7 +134,8 @@ export default function WorldClockCalculator() {
           </div>
 
           <div className="w-full max-w-sm mb-6 flex items-center justify-center gap-2 px-4 py-2 border rounded-full bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-300 font-medium">
-            <MapPin className="w-4 h-4 text-indigo-500/80" /> Selected: {selectedCity.name} ({selectedCity.tz})
+            <MapPin className="w-4 h-4 text-indigo-500/80" />
+            Selected: {selectedCity.tz === (Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC') ? 'Local System Time' : `${selectedCity.name}`}
           </div>
 
           {/* Timezone Switcher Quick Actions */}
@@ -162,7 +168,7 @@ export default function WorldClockCalculator() {
               />
             </div>
             {searchQuery.length > 0 && (
-              <Card className="absolute z-10 w-full mt-2 shadow-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-xl overflow-hidden text-left">
+              <div className="w-full mt-3 shadow-sm border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-xl overflow-hidden text-left relative z-10">
                 <ScrollArea className="max-h-64">
                   <div className="p-2 flex flex-col">
                     {filteredTimezones.length === 0 ? (
@@ -184,7 +190,7 @@ export default function WorldClockCalculator() {
                     )}
                   </div>
                 </ScrollArea>
-              </Card>
+              </div>
             )}
           </div>
 
