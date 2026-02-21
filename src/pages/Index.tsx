@@ -1498,6 +1498,10 @@ const Index = () => {
             </p>
           </div>
 
+          <Suspense fallback={<div className="h-[300px] w-full" />}>
+            <TimeCard />
+          </Suspense>
+
           {/* SPOTLIGHT SECTION - TRENDING & NEW */}
           <div className="flex flex-wrap justify-center gap-6 mb-16 max-w-5xl mx-auto">
             {/* Spotlight 1: Auto Loan */}
