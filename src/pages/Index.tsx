@@ -12,7 +12,6 @@ import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, D
 
 const FeaturedCalculatorsSection = lazy(() => import("@/components/home/FeaturedCalculatorsSection"));
 const AboutSection = lazy(() => import("@/components/home/AboutSection"));
-const TimeCard = lazy(() => import("@/components/home/TimeCard"));
 const EmpowermentSection = lazy(() => import("@/components/home/EmpowermentSection"));
 const CommitmentSection = lazy(() => import("@/components/home/CommitmentSection"));
 
@@ -1497,10 +1496,6 @@ const Index = () => {
               Explore our comprehensive collection of calculators organized by category
             </p>
           </div>
-
-          <Suspense fallback={<div className="h-[300px] w-full" />}>
-            <TimeCard />
-          </Suspense>
 
           {/* SPOTLIGHT SECTION - TRENDING & NEW */}
           <div className="flex flex-wrap justify-center gap-6 mb-16 max-w-5xl mx-auto">
