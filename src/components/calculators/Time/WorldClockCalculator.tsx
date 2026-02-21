@@ -39,7 +39,6 @@ const INITIAL_QUICK_CITIES = [
 ];
 
 export default function WorldClockCalculator() {
-  const { t } = useTranslation();
   const [now, setNow] = useState(new Date());
   const [selectedCity, setSelectedCity] = useState(INITIAL_QUICK_CITIES[0]);
   const [searchQuery, setSearchQuery] = useState('');
