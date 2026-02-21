@@ -13,6 +13,14 @@ const GRAVITY = 0.2;
 const FRICTION = 0.99;
 const BOUNCE_DAMPING = 0.7;
 
+const PINBALL_WALLS = [
+  { x1: 0, y1: 450, x2: 115, y2: 560 }, // Left slingshot
+  { x1: 360, y1: 450, x2: 245, y2: 560 }, // Right slingshot
+  { x1: 0, y1: 150, x2: 100, y2: 0 }, // Top left curve
+  { x1: 360, y1: 150, x2: 260, y2: 0 }, // Top right curve
+  { x1: 360, y1: 0, x2: 360, y2: 600 } // Shooter lane inner wall
+];
+
 interface Ball {
   x: number;
   y: number;
@@ -66,8 +74,8 @@ function PinballBoard({
   const physicsRef = useRef({
     ball: { x: 380, y: 500, vx: 0, vy: 0, radius: 8 } as Ball,
     flippers: [
-      { x: 130, y: 550, length: 60, angle: 30 * Math.PI / 180, restAngle: 30 * Math.PI / 180, activeAngle: -30 * Math.PI / 180, side: 'left', active: false },
-      { x: 270, y: 550, length: 60, angle: 150 * Math.PI / 180, restAngle: 150 * Math.PI / 180, activeAngle: 210 * Math.PI / 180, side: 'right', active: false }
+      { x: 115, y: 560, length: 60, angle: 30 * Math.PI / 180, restAngle: 30 * Math.PI / 180, activeAngle: -35 * Math.PI / 180, side: 'left', active: false },
+      { x: 245, y: 560, length: 60, angle: 150 * Math.PI / 180, restAngle: 150 * Math.PI / 180, activeAngle: 215 * Math.PI / 180, side: 'right', active: false }
     ] as Flipper[],
     bumpers: [
       { x: 200, y: 150, radius: 25, score: 100, color: "#ff00ff" },
@@ -182,26 +190,39 @@ function PinballBoard({
       ball.x += ball.vx;
       ball.y += ball.vy;
 
-      // Wall Collisions
-      if (ball.x < ball.radius) {
-        ball.x = ball.radius;
-        ball.vx = -ball.vx * BOUNCE_DAMPING;
-      }
+      // Outer boundaries
+      if (ball.x < ball.radius) { ball.x = ball.radius; ball.vx = Math.abs(ball.vx) * BOUNCE_DAMPING; }
+      if (ball.x > CANVAS_WIDTH - ball.radius) { ball.x = CANVAS_WIDTH - ball.radius; ball.vx = -Math.abs(ball.vx) * BOUNCE_DAMPING; }
+      if (ball.y < ball.radius) { ball.y = ball.radius; ball.vy = Math.abs(ball.vy) * BOUNCE_DAMPING; }
 
-      // Right Wall (Complex)
-      if (ball.x > CANVAS_WIDTH - 40 - ball.radius && ball.y < 400) {
-        ball.x = CANVAS_WIDTH - 40 - ball.radius;
-        ball.vx = -ball.vx * BOUNCE_DAMPING;
-      } else if (ball.x > CANVAS_WIDTH - ball.radius) {
-        ball.x = CANVAS_WIDTH - ball.radius;
-        ball.vx = -ball.vx * BOUNCE_DAMPING;
-      }
+      // Internal sloped walls & shooter lane wall
+      PINBALL_WALLS.forEach(w => {
+        const lineLenSq = (w.x2 - w.x1) ** 2 + (w.y2 - w.y1) ** 2;
+        if (lineLenSq === 0) return;
+        const dot = ((ball.x - w.x1) * (w.x2 - w.x1) + (ball.y - w.y1) * (w.y2 - w.y1)) / lineLenSq;
+        let closestX, closestY;
+        if (dot < 0) { closestX = w.x1; closestY = w.y1; }
+        else if (dot > 1) { closestX = w.x2; closestY = w.y2; }
+        else { closestX = w.x1 + dot * (w.x2 - w.x1); closestY = w.y1 + dot * (w.y2 - w.y1); }
 
-      // Top Wall
-      if (ball.y < ball.radius) {
-        ball.y = ball.radius;
-        ball.vy = -ball.vy * BOUNCE_DAMPING;
-      }
+        const distX = ball.x - closestX;
+        const distY = ball.y - closestY;
+        const distance = Math.sqrt(distX ** 2 + distY ** 2);
+
+        if (distance < ball.radius) {
+          if (distance === 0) return;
+          const normalX = distX / distance;
+          const normalY = distY / distance;
+          const dotVel = ball.vx * normalX + ball.vy * normalY;
+
+          if (dotVel < 0) {
+            ball.vx -= (1 + BOUNCE_DAMPING) * dotVel * normalX;
+            ball.vy -= (1 + BOUNCE_DAMPING) * dotVel * normalY;
+            ball.x += normalX * (ball.radius - distance);
+            ball.y += normalY * (ball.radius - distance);
+          }
+        }
+      });
 
       // Bottom / Game Over
       if (ball.y > CANVAS_HEIGHT + 50) {
@@ -303,12 +324,19 @@ function PinballBoard({
     ctx.fillStyle = isDark ? "#111" : "#222";
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-    // Lane
-    ctx.strokeStyle = "#444";
-    ctx.beginPath();
-    ctx.moveTo(CANVAS_WIDTH - 40, 200);
-    ctx.lineTo(CANVAS_WIDTH - 40, CANVAS_HEIGHT);
-    ctx.stroke();
+    // Walls
+    ctx.strokeStyle = isDark ? "#8b5cf6" : "#a855f7"; // Neon purple walls
+    ctx.lineWidth = 4;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = ctx.strokeStyle;
+
+    PINBALL_WALLS.forEach(w => {
+      ctx.beginPath();
+      ctx.moveTo(w.x1, w.y1);
+      ctx.lineTo(w.x2, w.y2);
+      ctx.stroke();
+    });
+    ctx.shadowBlur = 0;
 
     // Bumpers
     state.bumpers.forEach(bumper => {
@@ -410,7 +438,7 @@ function PinballBoard({
       </div>
 
       {/* Game Board */}
-      <div className={`relative w-full bg-black rounded-lg overflow-hidden shadow-2xl border-4 border-gray-800 ${isFullscreen ? "h-full max-h-[80vh] w-auto aspect-[2/3]" : "aspect-[2/3]"
+      <div className={`relative bg-black rounded-lg overflow-hidden shadow-2xl border-4 border-gray-800 aspect-[2/3] ${isFullscreen ? "h-full max-h-[80vh] w-auto" : "h-[65vh] max-h-[600px] max-w-full w-auto mx-auto"
         }`}>
         <canvas
           ref={canvasRef}
