@@ -86,12 +86,17 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/everyday-life/qr-code-generator</loc>
+    <loc>https://www.smartkitnow.com/everyday/qr-code-generator</loc>
     <lastmod>2026-02-21</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.smartkitnow.com/everyday-life/word-counter</loc>
+    <loc>https://www.smartkitnow.com/everyday/word-counter</loc>
+    <lastmod>2026-02-21</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.smartkitnow.com/time/world-clock</loc>
     <lastmod>2026-02-21</lastmod>
     <priority>0.5</priority>
   </url>
