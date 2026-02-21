@@ -12,6 +12,7 @@ import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, D
 
 const FeaturedCalculatorsSection = lazy(() => import("@/components/home/FeaturedCalculatorsSection"));
 const AboutSection = lazy(() => import("@/components/home/AboutSection"));
+const TimeCard = lazy(() => import("@/components/home/TimeCard"));
 const EmpowermentSection = lazy(() => import("@/components/home/EmpowermentSection"));
 const CommitmentSection = lazy(() => import("@/components/home/CommitmentSection"));
 
