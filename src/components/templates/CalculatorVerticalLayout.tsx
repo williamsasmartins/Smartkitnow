@@ -294,7 +294,7 @@ export default function CalculatorVerticalLayout({
       ) : null}
 
       {/* MAIN CONTAINER (Max 1200px, Centered) */}
-      <div className="mx-auto pb-10 pt-32 lg:pt-40" style={{ maxWidth: 1200 }}>
+      <div className="mx-auto pb-10" style={{ maxWidth: 1200 }}>
         {/* TOP BANNER AD */}
         {showTopBanner && (
           <AdUnit slot={SLOT_TOP_BANNER} type="top-banner" className="mb-8" />

@@ -1498,10 +1498,10 @@ const Index = () => {
           </div>
 
           {/* SPOTLIGHT SECTION - TRENDING & NEW */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          <div className="flex flex-wrap justify-center gap-6 mb-16 max-w-5xl mx-auto">
             {/* Spotlight 1: Auto Loan */}
             <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-blue-100 dark:border-blue-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl"
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-blue-100 dark:border-blue-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[300px]"
               glowColor="blue"
               onClick={() => navigate('/financial/auto-loan')}
             >
@@ -1529,7 +1529,7 @@ const Index = () => {
 
             {/* Spotlight 2: Investment */}
             <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-emerald-100 dark:border-emerald-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl"
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-emerald-100 dark:border-emerald-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[300px]"
               glowColor="green"
               onClick={() => navigate('/financial/future-value')}
             >
@@ -1557,7 +1557,7 @@ const Index = () => {
 
             {/* Spotlight 3: Neon Snake */}
             <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-green-100 dark:border-green-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl"
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-green-100 dark:border-green-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[300px]"
               glowColor="green"
               onClick={() => navigate('/games/neon-snake')}
             >
@@ -1583,7 +1583,6 @@ const Index = () => {
               </CardContent>
             </GlowCard>
           </div>
-
           {/* Categories Grid */}
           <div className="grid grid-cols-1 min-[425px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
             {calculatorCategories.map((category, index) => {

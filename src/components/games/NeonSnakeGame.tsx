@@ -718,14 +718,14 @@ function NeonSnakeBoard({ title }: { title: string }) {
           ref={boardWrapRef}
           className={[
             "w-full aspect-square flex items-center justify-center mx-auto",
-            inBigMode ? "max-w-none h-full" : "max-w-[min(90vw,65vh)]",
+            inBigMode ? "max-w-none h-full" : "max-w-full sm:max-w-[min(90vw,65vh)]",
           ].join(" ")}
         >
           <Card
             className="relative bg-slate-100 dark:bg-slate-950 border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden select-none"
             style={{ touchAction: "none" }}
           >
-            <canvas ref={canvasRef} className="block mx-auto" onPointerDown={onPointerDown} onPointerUp={onPointerUp} />
+            <canvas ref={canvasRef} className="block mx-auto max-w-full" onPointerDown={onPointerDown} onPointerUp={onPointerUp} />
           </Card>
         </div>
       </div>
