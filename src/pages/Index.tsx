@@ -8,13 +8,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { getCategoryIcon } from "@/lib/navigation";
 import { GlowCard } from "@/components/ui/spotlight-card";
-import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft, QrCode, Moon, PieChart } from "lucide-react";
+import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft, QrCode, Moon, PieChart, Globe2 } from "lucide-react";
 
 const FeaturedCalculatorsSection = lazy(() => import("@/components/home/FeaturedCalculatorsSection"));
 const AboutSection = lazy(() => import("@/components/home/AboutSection"));
 const EmpowermentSection = lazy(() => import("@/components/home/EmpowermentSection"));
 const CommitmentSection = lazy(() => import("@/components/home/CommitmentSection"));
-const WorldClockCard = lazy(() => import("@/components/calculators/WorldClockCard").then(m => ({ default: m.WorldClockCard })));
 
 const Index = () => {
   const navigate = useNavigate();
@@ -1378,6 +1377,23 @@ const Index = () => {
       path: "/everyday-life/qr-code-generator",
       description: "Generate QR codes for URLs and text in PNG/SVG."
     },
+    // Adding requested single utility cards
+    {
+      key: "word",
+      name: "Word Counter",
+      icon: BookOpen,
+      color: "text-indigo-500",
+      path: "/word-counter",
+      description: "Count words, track speed, proofread, and format texts."
+    },
+    {
+      key: "worldclock",
+      name: "World Clock",
+      icon: Globe2,
+      color: "text-blue-500",
+      path: "/time/world-clock",
+      description: "Real-time world clock and timezone converter."
+    },
     // Restored categories
     { ...categories.automotive, key: "automotive" },
     { ...categories.construction, key: "construction" },
@@ -1498,18 +1514,11 @@ const Index = () => {
             </p>
           </div>
 
-          {/* WORLD CLOCK */}
-          <div className="max-w-5xl mx-auto px-4 mb-20">
-            <Suspense fallback={<div className="h-64 rounded-2xl bg-slate-100 dark:bg-slate-800 animate-pulse" />}>
-              <WorldClockCard />
-            </Suspense>
-          </div>
-
           {/* SPOTLIGHT SECTION - TRENDING & NEW */}
-          <div className="flex flex-wrap justify-center gap-6 mb-16 max-w-5xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-6 mb-16 max-w-7xl px-4 mx-auto">
             {/* Spotlight 1: Auto Loan */}
             <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-blue-100 dark:border-blue-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[300px]"
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-blue-100 dark:border-blue-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[280px] xl:w-[300px]"
               glowColor="blue"
               onClick={() => navigate('/financial/auto-loan')}
             >
@@ -1537,7 +1546,7 @@ const Index = () => {
 
             {/* Spotlight 2: Investment */}
             <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-emerald-100 dark:border-emerald-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[300px]"
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-emerald-100 dark:border-emerald-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[280px] xl:w-[300px]"
               glowColor="green"
               onClick={() => navigate('/financial/future-value')}
             >
@@ -1565,7 +1574,7 @@ const Index = () => {
 
             {/* Spotlight 3: Neon Snake */}
             <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-green-100 dark:border-green-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[300px]"
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-green-100 dark:border-green-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[280px] xl:w-[300px]"
               glowColor="green"
               onClick={() => navigate('/games/neon-snake')}
             >
@@ -1587,6 +1596,34 @@ const Index = () => {
               <CardContent className="flex justify-center pb-6">
                 <div className="flex items-center text-sm font-medium text-green-600 dark:text-green-400 group-hover:underline">
                   Play Now <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
+                </div>
+              </CardContent>
+            </GlowCard>
+
+            {/* Spotlight 4: World Time */}
+            <GlowCard
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-indigo-100 dark:border-indigo-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full sm:w-[320px] md:w-[280px] xl:w-[300px]"
+              glowColor="blue"
+              onClick={() => navigate('/time/world-clock')}
+            >
+              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Globe2 className="w-24 h-24 text-indigo-500" />
+              </div>
+              <CardHeader className="flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center mb-4 text-indigo-600 dark:text-indigo-400">
+                  <Globe2 className="w-6 h-6" />
+                </div>
+                <div className="inline-flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-100 rounded-full">New App</span>
+                </div>
+                <CardTitle className="text-xl">World Clock</CardTitle>
+                <CardDescription className="line-clamp-2">
+                  Track real-time digital clocks across popular cities and global timezones.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex justify-center pb-6">
+                <div className="flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400 group-hover:underline">
+                  View Time <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
                 </div>
               </CardContent>
             </GlowCard>
