@@ -6874,6 +6874,10 @@ export function calcLink(entry: CalculatorEntry): string {
   const slug = normalize(entry.slug);
   const sub = normalize(entry.subcategory);
 
+  if (slug === "word-counter") {
+    return `/${slug}`;
+  }
+
   // Flat style: /category/slug
   if (entry.urlStyle === "flat") {
     return `/${cat}/${slug}`;
