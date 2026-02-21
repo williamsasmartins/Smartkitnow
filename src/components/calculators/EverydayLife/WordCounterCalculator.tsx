@@ -653,15 +653,14 @@ const WordCounterCalculator = () => {
                     applicationCategory: "Utility",
                     operatingSystem: "All",
                     description: "Count words, track speed, proofread, set goals and format texts.",
-                    url: "https://www.smartkitnow.com/everyday/word-counter"
+                    url: "https://www.smartkitnow.com/word-counter"
                 },
                 {
                     "@context": "https://schema.org",
                     "@type": "BreadcrumbList",
                     itemListElement: [
                         { "@type": "ListItem", position: 1, name: "Home", item: "https://www.smartkitnow.com/" },
-                        { "@type": "ListItem", position: 2, name: "Everyday Life", item: "https://www.smartkitnow.com/everyday" },
-                        { "@type": "ListItem", position: 3, name: "Word Counter Utility", item: "https://www.smartkitnow.com/everyday/word-counter" }
+                        { "@type": "ListItem", position: 2, name: "Word Counter Utility", item: "https://www.smartkitnow.com/word-counter" }
                     ]
                 }
             ].filter(Boolean)}
