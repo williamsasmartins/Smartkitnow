@@ -140,6 +140,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/EverydayLife/QrCodeGeneratorCalculator"),
     urlStyle: "flat"
   },
+  {
+    slug: "word-counter",
+    title: "Word Counter Utility",
+    category: "everyday-life",
+    subcategory: "general",
+    description: "A fast, minimal, and clean tool to count words, characters, sentences, and paragraphs in real-time. Optimize your content for SEO and readability effortlessly.",
+    loader: () => import("@/components/calculators/EverydayLife/WordCounterCalculator"),
+    urlStyle: "flat"
+  },
 
 
 
