@@ -140,7 +140,7 @@ export default function EverydayCategory() {
 
             {/* Featured Word Counter Card */}
             <section className="mb-12">
-              <Link to="/word-counter" className="group block p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 border-2 border-indigo-100 dark:border-slate-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+              <Link to="/everyday/word-counter" className="group block p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 border-2 border-indigo-100 dark:border-slate-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
                 <div className="flex items-center gap-4 mb-4">
                   <span className="inline-grid place-items-center h-14 w-14 rounded-xl bg-white dark:bg-slate-950 shadow-sm border border-indigo-100 dark:border-slate-700">
                     <EmojiIcon symbol="📝" size={28} />
