@@ -14,6 +14,7 @@ const FeaturedCalculatorsSection = lazy(() => import("@/components/home/Featured
 const AboutSection = lazy(() => import("@/components/home/AboutSection"));
 const EmpowermentSection = lazy(() => import("@/components/home/EmpowermentSection"));
 const CommitmentSection = lazy(() => import("@/components/home/CommitmentSection"));
+const WorldClockCard = lazy(() => import("@/components/calculators/WorldClockCard").then(m => ({ default: m.WorldClockCard })));
 
 const Index = () => {
   const navigate = useNavigate();
@@ -1495,6 +1496,13 @@ const Index = () => {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Explore our comprehensive collection of calculators organized by category
             </p>
+          </div>
+
+          {/* WORLD CLOCK */}
+          <div className="max-w-5xl mx-auto px-4 mb-20">
+            <Suspense fallback={<div className="h-64 rounded-2xl bg-slate-100 dark:bg-slate-800 animate-pulse" />}>
+              <WorldClockCard />
+            </Suspense>
           </div>
 
           {/* SPOTLIGHT SECTION - TRENDING & NEW */}
