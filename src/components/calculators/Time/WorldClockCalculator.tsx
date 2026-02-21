@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Clock, Calendar, Globe2, Search, MapPin } from 'lucide-react';
 import CalculatorVerticalLayout from '@/components/templates/CalculatorVerticalLayout';
-import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
@@ -114,8 +113,8 @@ export default function WorldClockCalculator() {
                 key={city.name}
                 onClick={() => setSelectedCity(city)}
                 className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 border-2 ${selectedCity.tz === city.tz
-                    ? 'bg-indigo-100 border-indigo-200 text-indigo-800 dark:bg-indigo-900 dark:border-indigo-800 dark:text-indigo-200 shadow-sm scale-105'
-                    : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 hover:scale-105'
+                  ? 'bg-indigo-100 border-indigo-200 text-indigo-800 dark:bg-indigo-900 dark:border-indigo-800 dark:text-indigo-200 shadow-sm scale-105'
+                  : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 hover:scale-105'
                   }`}
                 aria-label={`Switch to ${city.name} timezone`}
               >
