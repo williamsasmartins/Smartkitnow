@@ -77,7 +77,7 @@ export default function WorldClockCalculator() {
       if (resultsMap.size >= 30) break; // Performance limit
       if (
         normalizeString(c.city).includes(lowerQ) ||
-        (c.admin_name && normalizeString(c.admin_name).includes(lowerQ)) ||
+        ((c as any).admin_name && normalizeString((c as any).admin_name).includes(lowerQ)) ||
         (c.country && normalizeString(c.country).includes(lowerQ))
       ) {
         // If we found a city exact match (like "Santos"), overwrite the display name

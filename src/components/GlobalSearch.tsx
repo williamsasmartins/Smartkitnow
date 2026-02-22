@@ -57,18 +57,18 @@ export function GlobalSearch({
     // 1. Build the master list of all searchable items
     const searchItems = [
         // --- Static Pages ---
-        { title: "Home", href: "/", category: "Pages", icon: Home },
-        { title: "Search Page", href: "/search", category: "Pages", icon: Search },
-        { title: "About Us", href: "/about", category: "Pages", icon: FileText },
-        { title: "Contact", href: "/contact", category: "Pages", icon: FileText },
-        { title: "Privacy Policy", href: "/privacy", category: "Pages", icon: FileText },
-        { title: "Terms of Service", href: "/terms", category: "Pages", icon: FileText },
+        { title: "Home", href: "/", category: "Pages", icon: Home, keywords: [] },
+        { title: "Search Page", href: "/search", category: "Pages", icon: Search, keywords: [] },
+        { title: "About Us", href: "/about", category: "Pages", icon: FileText, keywords: [] },
+        { title: "Contact", href: "/contact", category: "Pages", icon: FileText, keywords: [] },
+        { title: "Privacy Policy", href: "/privacy", category: "Pages", icon: FileText, keywords: [] },
+        { title: "Terms of Service", href: "/terms", category: "Pages", icon: FileText, keywords: [] },
 
         // --- Categories ---
-        { title: "Financial Tools", href: "/financial", category: "Categories", icon: LayoutGrid },
-        { title: "Health Calculators", href: "/health", category: "Categories", icon: LayoutGrid },
-        { title: "Cooking", href: "/cooking", category: "Categories", icon: LayoutGrid },
-        { title: "Math Solvers", href: "/math", category: "Categories", icon: LayoutGrid },
+        { title: "Financial Tools", href: "/financial", category: "Categories", icon: LayoutGrid, keywords: [] },
+        { title: "Health Calculators", href: "/health", category: "Categories", icon: LayoutGrid, keywords: [] },
+        { title: "Cooking", href: "/cooking", category: "Categories", icon: LayoutGrid, keywords: [] },
+        { title: "Math Solvers", href: "/math", category: "Categories", icon: LayoutGrid, keywords: [] },
 
         // --- Calculators (Dynamic) ---
         ...calculatorRegistry.map(calc => ({
