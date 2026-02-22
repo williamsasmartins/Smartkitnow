@@ -100,9 +100,19 @@
   box-shadow: 0 10px 25px rgba(0, 0, 255, 0.08);
 }
 
+.dark .hover\:shadow-soft:hover {
+  /* Sombra branca no tema escuro */
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.08);
+}
+
 /* Hover azul para shadow-md mantendo a geometria do Tailwind */
 .hover\:shadow-md:hover {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 255, 0.1), 0 2px 4px -2px rgba(0, 0, 255, 0.1);
+}
+
+.dark .hover\:shadow-md:hover {
+  /* Sombra branca no tema escuro */
+  box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -2px rgba(255, 255, 255, 0.1);
 }
 
 /* Utilitário para truncar texto em 3 linhas (fallback ao plugin @tailwindcss/line-clamp) */
