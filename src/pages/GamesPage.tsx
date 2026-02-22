@@ -15,7 +15,7 @@ export default function GamesPage() {
                 <meta name="description" content="Play 70+ free online games including Arcade, Puzzle, Board, Card, and Strategy games. No download required. Play now on Smart Kit Now." />
             </Helmet>
 
-            <div className="container mx-auto px-4 py-8 max-w-7xl">
+            <main className="container mx-auto px-4 pt-48 sm:pt-20 pb-8 max-w-7xl">
                 {/* HERO SECTION */}
                 <section className="text-center mb-12 py-12 bg-slate-900 rounded-3xl relative overflow-hidden text-white">
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20" />
@@ -27,14 +27,14 @@ export default function GamesPage() {
                             Dive into our collection of 70+ addicting browser games. <br />
                             Free to play. No install needed.
                         </p>
-                        <div className="flex gap-4 justify-center">
-                            <Badge variant="secondary" className="px-4 py-2 text-md flex gap-2">
+                        <div className="flex flex-wrap gap-2 md:gap-4 justify-center">
+                            <Badge variant="secondary" className="px-4 py-2 text-sm md:text-md flex items-center gap-2">
                                 <Gamepad2 className="w-4 h-4" /> 70+ Games
                             </Badge>
-                            <Badge variant="secondary" className="px-4 py-2 text-md flex gap-2">
+                            <Badge variant="secondary" className="px-4 py-2 text-sm md:text-md flex items-center gap-2">
                                 <Trophy className="w-4 h-4" /> Leaderboards
                             </Badge>
-                            <Badge variant="secondary" className="px-4 py-2 text-md flex gap-2">
+                            <Badge variant="secondary" className="px-4 py-2 text-sm md:text-md flex items-center gap-2">
                                 <Flame className="w-4 h-4" /> New Weekly
                             </Badge>
                         </div>
@@ -85,7 +85,7 @@ export default function GamesPage() {
                         );
                     })}
                 </div>
-            </div>
+            </main>
         </>
     );
 }
