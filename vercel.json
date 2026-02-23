@@ -2,6 +2,8 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "framework": "vite",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "devCommand": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
