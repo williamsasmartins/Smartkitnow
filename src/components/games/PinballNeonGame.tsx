@@ -416,7 +416,17 @@ function PinballBoard({
 
 
   return (
-    <div
+    <div className="flex flex-col gap-4 w-full max-w-[800px] mx-auto z-10">
+      <GameStartOverlay
+                isPlaying={gameState === "PLAYING"}
+                isGameOver={gameState === "GAME_OVER"}
+                score={score}
+                highScore={highScore}
+                onStart={initGame}
+                onRestart={initGame}
+                gameName="Neon Pinball"
+              />
+      <div
       ref={containerRef}
       className={`flex flex-col items-center w-full max-w-md mx-auto ${isFullscreen ? "fixed inset-0 z-50 bg-slate-50 dark:bg-slate-950 max-w-none justify-center p-4" : ""
         }`}
@@ -490,21 +500,14 @@ function PinballBoard({
           </Button>
         )}
 
-        <GameStartOverlay
-          isPlaying={gameState === "PLAYING"}
-          isGameOver={gameState === "GAME_OVER"}
-          score={score}
-          highScore={highScore}
-          onStart={initGame}
-          onRestart={initGame}
-          gameName="Neon Pinball"
-        />
+        
       </div>
 
       {/* Controls Help */}
       <div className="mt-2 text-xs text-gray-500 text-center">
         Desktop: Arrows to flip, Space to launch • Mobile: Tap sides to flip
       </div>
+    </div>
     </div>
   );
 }

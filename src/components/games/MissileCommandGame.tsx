@@ -476,7 +476,17 @@ function MissileCommandBoard({
   };
 
   return (
-    <div
+    <div className="flex flex-col gap-4 w-full max-w-[800px] mx-auto z-10">
+      <GameStartOverlay
+              isPlaying={gameState === "PLAYING"}
+              isGameOver={gameState === "GAME_OVER"}
+              score={score}
+              highScore={highScore}
+              onStart={initGame}
+              onRestart={initGame}
+              gameName={title}
+            />
+      <div
       ref={containerRef}
       className={`relative w-full max-w-[800px] mx-auto bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none ${
         isFullscreen ? "flex items-center justify-center h-screen max-w-none rounded-none border-0" : "aspect-[4/3]"
@@ -514,15 +524,8 @@ function MissileCommandBoard({
       )}
       
       {/* Overlays */}
-      <GameStartOverlay
-        isPlaying={gameState === "PLAYING"}
-        isGameOver={gameState === "GAME_OVER"}
-        score={score}
-        highScore={highScore}
-        onStart={initGame}
-        onRestart={initGame}
-        gameName={title}
-      />
+      
+    </div>
     </div>
   );
 }

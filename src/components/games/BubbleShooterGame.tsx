@@ -587,7 +587,17 @@ function BubbleShooterBoard({
   };
 
   return (
-    <div
+    <div className="flex flex-col gap-4 w-full max-w-[800px] mx-auto z-10">
+      <GameStartOverlay
+              isPlaying={gameState === "PLAYING"}
+              isGameOver={gameState === "GAME_OVER"}
+              score={score}
+              highScore={highScore}
+              onStart={initGame}
+              onRestart={initGame}
+              gameName={title}
+            />
+      <div
       ref={containerRef}
       className="relative w-full max-w-[600px] mx-auto aspect-square bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none"
       tabIndex={0}
@@ -614,15 +624,8 @@ function BubbleShooterBoard({
       />
       
       {/* Overlays */}
-      <GameStartOverlay
-        isPlaying={gameState === "PLAYING"}
-        isGameOver={gameState === "GAME_OVER"}
-        score={score}
-        highScore={highScore}
-        onStart={initGame}
-        onRestart={initGame}
-        gameName={title}
-      />
+      
+    </div>
     </div>
   );
 }
