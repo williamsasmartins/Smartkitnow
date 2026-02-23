@@ -69,7 +69,7 @@ function CrossyStreetBoard({
   useEffect(() => {
     const saved = localStorage.getItem("crossy-street-highscore");
     if (saved) setHighScore(parseInt(saved, 10));
-    
+
     // Generate initial level for background
     generateLevel("medium");
     // Force a draw
@@ -89,15 +89,15 @@ function CrossyStreetBoard({
     const handleResize = () => {
       if (containerRef.current && canvasRef.current) {
         if (document.fullscreenElement && containerRef.current === document.fullscreenElement) {
-           canvasRef.current.style.width = "100%";
-           canvasRef.current.style.height = "100%";
-           return;
+          canvasRef.current.style.width = "100%";
+          canvasRef.current.style.height = "100%";
+          return;
         }
 
         const { clientWidth } = containerRef.current;
         const width = Math.min(clientWidth, 600);
         const height = width; // Square
-        
+
         canvasRef.current.style.width = `${width}px`;
         canvasRef.current.style.height = `${height}px`;
       }
@@ -156,7 +156,7 @@ function CrossyStreetBoard({
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (gameState !== "PLAYING") return;
-      
+
       const p = playerRef.current;
       switch (e.key) {
         case "ArrowUp":
@@ -198,14 +198,14 @@ function CrossyStreetBoard({
 
     const handleTouchEnd = (e: TouchEvent) => {
       if (gameState !== "PLAYING") return;
-      
+
       const endX = e.changedTouches[0].clientX;
       const endY = e.changedTouches[0].clientY;
       const diffX = endX - startX;
       const diffY = endY - startY;
 
       const p = playerRef.current;
-      
+
       if (Math.abs(diffX) > Math.abs(diffY)) {
         // Horizontal
         if (Math.abs(diffX) > 30) { // Threshold
@@ -216,14 +216,14 @@ function CrossyStreetBoard({
         // Vertical
         if (Math.abs(diffY) > 30) {
           if (diffY < 0) {
-             p.y--;
-             setScore(s => Math.max(s, 14 - p.y));
+            p.y--;
+            setScore(s => Math.max(s, 14 - p.y));
           }
           else if (diffY > 0 && p.y < ROWS - 1) p.y++;
         } else {
           // Tap = Forward
-           p.y--;
-           setScore(s => Math.max(s, 14 - p.y));
+          p.y--;
+          setScore(s => Math.max(s, 14 - p.y));
         }
       }
     };
@@ -251,18 +251,18 @@ function CrossyStreetBoard({
   const generateLevel = (diff: Difficulty) => {
     const lanes: Lane[] = [];
     const baseSpeed = INITIAL_SPEED_MAP[diff];
-    
+
     for (let i = 0; i < ROWS; i++) {
       // Bottom lanes are safe
       if (i >= 13) {
         lanes.push({ type: "safe", y: i, speed: 0, direction: 1, objects: [], color: "" });
         continue;
       }
-      
+
       let type: LaneType = "safe";
       let speed = 0;
       const objects: GameObject[] = [];
-      
+
       // Fixed layout pattern
       if ((i >= 9 && i <= 12) || (i >= 0 && i <= 2)) {
         type = "road";
@@ -271,21 +271,21 @@ function CrossyStreetBoard({
         type = "water";
         speed = (baseSpeed + Math.random() * 1.5) * (i % 2 === 0 ? 1 : 1.2);
       }
-      
+
       const direction = i % 2 === 0 ? 1 : -1;
-      
+
       if (type === "road") {
         const numCars = 2 + Math.floor(Math.random() * 2);
         for (let j = 0; j < numCars; j++) {
-           objects.push({ x: j * 200 + Math.random() * 50, width: 40, type: "car" });
+          objects.push({ x: j * 200 + Math.random() * 50, width: 40, type: "car" });
         }
       } else if (type === "water") {
         const numLogs = 2 + Math.floor(Math.random() * 2);
         for (let j = 0; j < numLogs; j++) {
-           objects.push({ x: j * 220 + Math.random() * 50, width: 80 + Math.random() * 40, type: "log" });
+          objects.push({ x: j * 220 + Math.random() * 50, width: 80 + Math.random() * 40, type: "log" });
         }
       }
-      
+
       lanes.push({
         type,
         y: i,
@@ -300,7 +300,7 @@ function CrossyStreetBoard({
 
   const update = () => {
     const player = playerRef.current;
-    
+
     // Check Win (Top reached)
     if (player.y < 0) {
       setScore(s => s + 50); // Bonus
@@ -311,10 +311,10 @@ function CrossyStreetBoard({
     // Move Objects
     lanesRef.current.forEach(lane => {
       if (lane.speed === 0) return;
-      
+
       lane.objects.forEach(obj => {
         obj.x += lane.speed * lane.direction;
-        
+
         // Wrap
         if (lane.direction === 1 && obj.x > CANVAS_WIDTH) obj.x = -obj.width;
         if (lane.direction === -1 && obj.x < -obj.width) obj.x = CANVAS_WIDTH;
@@ -348,7 +348,7 @@ function CrossyStreetBoard({
             playerRect.x + playerRect.w / 2 < obj.x + obj.width
           );
         });
-        
+
         if (onLog) {
           // Move player with log
           player.x += (currentLane.speed * currentLane.direction) / GRID_SIZE;
@@ -390,7 +390,7 @@ function CrossyStreetBoard({
       lanesRef.current.forEach(lane => {
         ctx.fillStyle = lane.type === "safe" ? colors.safe : lane.type === "road" ? colors.road : colors.water;
         ctx.fillRect(0, lane.y * GRID_SIZE, CANVAS_WIDTH, GRID_SIZE);
-        
+
         // Draw Objects
         lane.objects.forEach(obj => {
           ctx.fillStyle = obj.type === "car" ? colors.car : colors.log;
@@ -405,77 +405,76 @@ function CrossyStreetBoard({
 
     // Draw Player
     if (gameState !== "MENU") {
-        ctx.fillStyle = colors.player;
-        ctx.shadowColor = colors.player;
-        ctx.shadowBlur = 10;
-        const px = playerRef.current.x * GRID_SIZE;
-        const py = playerRef.current.y * GRID_SIZE;
-        ctx.fillRect(px + 5, py + 5, GRID_SIZE - 10, GRID_SIZE - 10);
-        ctx.shadowBlur = 0;
+      ctx.fillStyle = colors.player;
+      ctx.shadowColor = colors.player;
+      ctx.shadowBlur = 10;
+      const px = playerRef.current.x * GRID_SIZE;
+      const py = playerRef.current.y * GRID_SIZE;
+      ctx.fillRect(px + 5, py + 5, GRID_SIZE - 10, GRID_SIZE - 10);
+      ctx.shadowBlur = 0;
     }
 
     // Draw UI
     if (gameState === "PLAYING") {
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 20px Arial";
-        ctx.strokeStyle = "#000000";
-        ctx.lineWidth = 3;
-        ctx.strokeText(`Score: ${score}`, 20, 30);
-        ctx.fillText(`Score: ${score}`, 20, 30);
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 20px Arial";
+      ctx.strokeStyle = "#000000";
+      ctx.lineWidth = 3;
+      ctx.strokeText(`Score: ${score}`, 20, 30);
+      ctx.fillText(`Score: ${score}`, 20, 30);
     }
   };
 
   return (
     <div className="flex flex-col gap-4 w-full max-w-[800px] mx-auto z-10">
       <GameStartOverlay
-              isPlaying={gameState === "PLAYING"}
-              isGameOver={gameState === "GAME_OVER"}
-              score={score}
-              highScore={highScore}
-              onStart={initGame}
-              onRestart={initGame}
-              gameName={title}
-            />
-      <div
-      ref={containerRef}
-      className={`relative w-full max-w-[600px] mx-auto bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none ${
-        isFullscreen ? "flex items-center justify-center h-screen max-w-none rounded-none border-0" : "aspect-square"
-      }`}
-      tabIndex={0}
-    >
-      <canvas
-        ref={canvasRef}
-        width={CANVAS_WIDTH}
-        height={CANVAS_HEIGHT}
-        className="block w-full h-full touch-none"
+        isPlaying={gameState === "PLAYING"}
+        isGameOver={gameState === "GAME_OVER"}
+        score={score}
+        highScore={highScore}
+        onStart={initGame}
+        onRestart={initGame}
+        gameName={title}
       />
-      
-      {/* Fullscreen Toggle */}
-      {!isFullscreen && (
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute top-2 right-2 z-10 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-          onClick={toggleFullscreen}
-        >
-          <Maximize2 className="w-6 h-6" />
-        </Button>
-      )}
+      <div
+        ref={containerRef}
+        className={`relative w-full max-w-[600px] mx-auto bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none ${isFullscreen ? "flex items-center justify-center h-screen max-w-none rounded-none border-0" : "aspect-square"
+          }`}
+        tabIndex={0}
+      >
+        <canvas
+          ref={canvasRef}
+          width={CANVAS_WIDTH}
+          height={CANVAS_HEIGHT}
+          className={`block touch-none ${isFullscreen ? "w-full h-full object-contain" : "w-full h-full"}`}
+        />
 
-      {isFullscreen && (
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute top-4 right-4 z-10 text-white/50 hover:text-white hover:bg-white/10"
-          onClick={toggleFullscreen}
-        >
-          <Minimize2 className="w-8 h-8" />
-        </Button>
-      )}
-      
-      {/* Overlays */}
-      
-    </div>
+        {/* Fullscreen Toggle */}
+        {!isFullscreen && (
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-2 right-2 z-10 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+            onClick={toggleFullscreen}
+          >
+            <Maximize2 className="w-6 h-6" />
+          </Button>
+        )}
+
+        {isFullscreen && (
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-4 right-4 z-10 text-white/50 hover:text-white hover:bg-white/10"
+            onClick={toggleFullscreen}
+          >
+            <Minimize2 className="w-8 h-8" />
+          </Button>
+        )}
+
+        {/* Overlays */}
+
+      </div>
     </div>
   );
 }
@@ -510,7 +509,7 @@ export default function CrossyStreetGame({
         </h2>
         <div className="prose prose-slate dark:prose-invert max-w-none mt-4">
           <p>
-            <strong>Crossy Street</strong> is an endless hopper game. 
+            <strong>Crossy Street</strong> is an endless hopper game.
             The goal is simple: get as far as you can across busy roads and treacherous rivers.
           </p>
           <ul className="list-disc pl-6 space-y-2">

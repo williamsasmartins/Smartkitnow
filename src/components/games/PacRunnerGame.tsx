@@ -230,7 +230,7 @@ export default function PacRunnerGame({
                     SCORE: {score}
                 </div>
 
-                <canvas ref={canvasRef} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} className="w-full h-full object-fill pointer-events-none" />
+                <canvas ref={canvasRef} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} className={`w-full h-full pointer-events-none ${isFullscreen ? "object-contain" : "object-fill"}`} />
 
                 {!isFullscreen && (
                     <Button variant="ghost" size="icon" className="absolute top-4 right-4 z-10 text-white/50 hover:text-white pointer-events-auto" onClick={toggleFullscreen}>
