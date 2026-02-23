@@ -202,12 +202,24 @@ export default function PacRunnerGame({
     }, [update, draw]);
 
     return (
-        <div className="w-full flex justify-center items-center py-10 px-4 bg-slate-900 min-h-screen relative" ref={containerRef}>
+        <div className="w-full flex flex-col justify-center items-center py-10 px-4 bg-slate-900 min-h-screen relative" ref={containerRef}>
             {isFullscreen && (
                 <Button variant="ghost" size="icon" className="absolute top-4 right-4 z-50 text-white/50 hover:text-white" onClick={toggleFullscreen}>
                     <Minimize2 className="w-8 h-8" />
                 </Button>
             )}
+
+            <div className="w-full max-w-[800px] mx-auto z-10 flex flex-col gap-4 mb-4">
+                <GameStartOverlay
+                    isPlaying={gameState === "PLAYING"}
+                    isGameOver={gameState === "GAME_OVER"}
+                    score={score}
+                    highScore={0}
+                    onStart={initGame}
+                    onRestart={initGame}
+                    gameName="Pac-Runner"
+                />
+            </div>
 
             <div
                 className={`relative bg-black rounded-lg shadow-2xl overflow-hidden touch-none ${isFullscreen ? 'w-full h-full max-w-[1200px] aspect-[2/1]' : 'w-full max-w-[800px] aspect-[2/1]'}`}
@@ -225,16 +237,6 @@ export default function PacRunnerGame({
                         <Maximize2 className="w-6 h-6" />
                     </Button>
                 )}
-
-                <GameStartOverlay
-                    isPlaying={gameState === "PLAYING"}
-                    isGameOver={gameState === "GAME_OVER"}
-                    score={score}
-                    highScore={0}
-                    onStart={initGame}
-                    onRestart={initGame}
-                    gameName="Pac-Runner"
-                />
             </div>
         </div>
     );

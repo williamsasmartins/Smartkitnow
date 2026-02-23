@@ -71,7 +71,7 @@ export default function BrickDashGame({
   const initGame = (diff: Difficulty) => {
     setDifficulty(diff);
     const settings = DIFFICULTY_SETTINGS[diff];
-    
+
     gameLoopRef.current = {
       playerX: CANVAS_WIDTH / 2 - PLAYER_SIZE / 2,
       obstacles: [],
@@ -82,7 +82,7 @@ export default function BrickDashGame({
       keys: { left: false, right: false },
       touchX: null,
     };
-    
+
     setScore(0);
     setIsPaused(false);
     setGameState("PLAYING");
@@ -101,7 +101,7 @@ export default function BrickDashGame({
       setIsFullscreen(false);
     }
   };
-  
+
   // Listen for fullscreen change
   useEffect(() => {
     const handleFSChange = () => {
@@ -115,9 +115,9 @@ export default function BrickDashGame({
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current && canvasRef.current) {
-         // In fullscreen, we might want to scale up differently
-         // For now, let's keep the aspect ratio logic simple or rely on CSS object-contain
-         // The CSS class `object-contain` on the canvas handles the visual scaling nicely.
+        // In fullscreen, we might want to scale up differently
+        // For now, let's keep the aspect ratio logic simple or rely on CSS object-contain
+        // The CSS class `object-contain` on the canvas handles the visual scaling nicely.
       }
     };
     window.addEventListener("resize", handleResize);
@@ -127,8 +127,8 @@ export default function BrickDashGame({
   // Game Loop
   const update = useCallback((time: number) => {
     if (gameState !== "PLAYING" || isPaused) {
-       requestRef.current = requestAnimationFrame(update);
-       return;
+      requestRef.current = requestAnimationFrame(update);
+      return;
     }
 
     const state = gameLoopRef.current;
@@ -166,7 +166,7 @@ export default function BrickDashGame({
     if (state.keys.right && state.playerX < CANVAS_WIDTH - PLAYER_SIZE) {
       state.playerX += moveSpeed;
     }
-    
+
     // Touch movement
     if (state.touchX !== null) {
       const targetX = state.touchX - PLAYER_SIZE / 2;
@@ -183,7 +183,7 @@ export default function BrickDashGame({
     if (time - state.lastSpawnTime > state.spawnRate) {
       const gapWidth = PLAYER_SIZE * 3; // Slightly wider gap
       const gapX = Math.random() * (CANVAS_WIDTH - gapWidth);
-      
+
       if (gapX > 0) {
         state.obstacles.push({
           x: 0,
@@ -206,7 +206,7 @@ export default function BrickDashGame({
       }
 
       state.lastSpawnTime = time;
-      
+
       // Progressive Difficulty
       // Cap speed at 12
       if (state.speed < 12) state.speed += 0.05;
@@ -245,9 +245,9 @@ export default function BrickDashGame({
     // Score based on time/survival
     state.score += 1;
     if (state.score % 10 === 0) {
-       setScore(Math.floor(state.score / 10));
+      setScore(Math.floor(state.score / 10));
     }
-    
+
     if (hit) {
       setGameState("GAME_OVER");
       if (Math.floor(state.score / 10) > highScore) {
@@ -313,7 +313,7 @@ export default function BrickDashGame({
     const scaleX = CANVAS_WIDTH / rect.width;
     gameLoopRef.current.touchX = (touch.clientX - rect.left) * scaleX;
   };
-  
+
   const handleTouchEnd = () => {
     gameLoopRef.current.touchX = null;
   };
@@ -386,22 +386,8 @@ export default function BrickDashGame({
             </div>
           </div>
 
-          {/* Canvas Container */}
-          <div 
-            ref={containerRef}
-            className="relative w-full aspect-[4/5] bg-black rounded-lg overflow-hidden shadow-2xl border-4 border-gray-800 group"
-          >
-             <canvas
-              ref={canvasRef}
-              width={CANVAS_WIDTH}
-              height={CANVAS_HEIGHT}
-              className="w-full h-full object-contain cursor-crosshair touch-none"
-              onTouchStart={handleTouch}
-              onTouchMove={handleTouch}
-              onTouchEnd={handleTouchEnd}
-            />
-            
-            {/* Start/Game Over Overlay */}
+          {/* Start/Game Over Overlay */}
+          <div className="w-full mb-4">
             <GameStartOverlay
               isPlaying={gameState === "PLAYING"}
               isGameOver={gameState === "GAME_OVER"}
@@ -411,13 +397,29 @@ export default function BrickDashGame({
               onRestart={initGame}
               gameName="Brick Dash"
             />
-            
+          </div>
+
+          {/* Canvas Container */}
+          <div
+            ref={containerRef}
+            className="relative w-full aspect-[4/5] bg-black rounded-lg overflow-hidden shadow-2xl border-4 border-gray-800 group"
+          >
+            <canvas
+              ref={canvasRef}
+              width={CANVAS_WIDTH}
+              height={CANVAS_HEIGHT}
+              className="w-full h-full object-contain cursor-crosshair touch-none"
+              onTouchStart={handleTouch}
+              onTouchMove={handleTouch}
+              onTouchEnd={handleTouchEnd}
+            />
+
             {/* Pause Overlay */}
             {isPaused && gameState === "PLAYING" && (
               <div className="absolute inset-0 bg-black/60 flex items-center justify-center backdrop-blur-sm z-20">
                 <div className="text-center text-white">
                   <h2 className="text-3xl font-bold mb-4 neon-text">PAUSED</h2>
-                  <Button 
+                  <Button
                     onClick={() => setIsPaused(false)}
                     className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-bold shadow-[0_0_15px_rgba(34,197,94,0.5)] transition-all hover:scale-105"
                   >
@@ -441,14 +443,14 @@ export default function BrickDashGame({
 
           {/* Controls */}
           <div className="w-full mt-4 grid grid-cols-2 gap-2">
-             <Button
+            <Button
               variant={gameState === "PLAYING" && !isPaused ? "secondary" : "default"}
               onClick={() => {
                 if (gameState === "MENU" || gameState === "GAME_OVER") {
-                    // Trigger default start
-                    initGame(difficulty); 
+                  // Trigger default start
+                  initGame(difficulty);
                 } else {
-                    setIsPaused(!isPaused);
+                  setIsPaused(!isPaused);
                 }
               }}
               className="w-full"
@@ -460,11 +462,11 @@ export default function BrickDashGame({
               <RotateCcw className="mr-2 h-4 w-4" /> Reset
             </Button>
           </div>
-          
-           {/* Mobile Controls Hint */}
-           <div className="mt-2 text-xs text-gray-500 text-center">
-             Touch and drag to move • Keyboard arrows supported
-           </div>
+
+          {/* Mobile Controls Hint */}
+          <div className="mt-2 text-xs text-gray-500 text-center">
+            Touch and drag to move • Keyboard arrows supported
+          </div>
         </div>
       }
       editorial={editorialContent}
