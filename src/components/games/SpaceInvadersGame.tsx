@@ -477,7 +477,9 @@ function SpaceInvadersBoard({
 
         <canvas
           ref={canvasRef}
-          className="block w-full h-full touch-none"
+          width={CANVAS_WIDTH}
+          height={CANVAS_HEIGHT}
+          className={`block touch-none ${isFullscreen ? "w-full h-full object-contain" : "w-full h-full"}`}
         />
       </div>
     </div>
