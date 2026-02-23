@@ -398,49 +398,74 @@ function SpaceInvadersBoard({
 
     // Colors
     const colors = {
-      bg: isDark ? "#0f172a" : "#f8fafc",
-      text: isDark ? "#f8fafc" : "#0f172a",
-      player: isDark ? "#22c55e" : "#16a34a",
-      alien: isDark ? "#a855f7" : "#9333ea",
-      projectilePlayer: isDark ? "#38bdf8" : "#0284c7",
-      projectileAlien: isDark ? "#ef4444" : "#dc2626",
+      bg: isDark ? "#050B14" : "#1e293b", // Deep space black
+      text: "#f8fafc",
+      player: isDark ? "#22c55e" : "#10b981", // Neon green
+      alien: isDark ? "#a855f7" : "#8b5cf6", // Neon purple
+      projectilePlayer: isDark ? "#38bdf8" : "#0ea5e9", // Neon blue
+      projectileAlien: isDark ? "#ef4444" : "#ec4899", // Neon red/pink
     };
 
     // Clear
     ctx.fillStyle = colors.bg;
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
+    // Draw Stars
+    ctx.fillStyle = "#ffffff";
+    for (let i = 0; i < 40; i++) {
+      const x = (Math.sin(i * 123) * 0.5 + 0.5) * CANVAS_WIDTH;
+      const y = (Math.cos(i * 321) * 0.5 + 0.5) * CANVAS_HEIGHT;
+      const radius = (Math.sin(i * 99) * 0.5 + 0.5) * 1.5;
+      const alpha = Math.abs(Math.sin((Date.now() / 1500) + i));
+      ctx.globalAlpha = alpha * 0.6;
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1.0;
+
     // Draw Player
     ctx.fillStyle = colors.player;
-    ctx.shadowBlur = 10;
+    ctx.shadowBlur = 15;
     ctx.shadowColor = colors.player;
-    // Simple ship shape
+    // Cool spaceship shape
     ctx.beginPath();
     ctx.moveTo(playerRef.current.x + PLAYER_WIDTH / 2, playerRef.current.y);
     ctx.lineTo(playerRef.current.x + PLAYER_WIDTH, playerRef.current.y + PLAYER_HEIGHT);
+    ctx.lineTo(playerRef.current.x + PLAYER_WIDTH / 2, playerRef.current.y + PLAYER_HEIGHT - 5);
     ctx.lineTo(playerRef.current.x, playerRef.current.y + PLAYER_HEIGHT);
     ctx.fill();
     ctx.shadowBlur = 0;
 
     // Draw Aliens
     ctx.fillStyle = colors.alien;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = colors.alien;
     aliensRef.current.forEach(a => {
       if (a.active) {
-        ctx.fillRect(a.x, a.y, a.width, a.height);
+        ctx.beginPath();
+        ctx.roundRect(a.x, a.y, a.width, a.height, 4);
+        ctx.fill();
       }
     });
+    ctx.shadowBlur = 0;
 
     // Draw Projectiles
     projectilesRef.current.forEach(p => {
       ctx.fillStyle = p.fromPlayer ? colors.projectilePlayer : colors.projectileAlien;
-      ctx.fillRect(p.x, p.y, p.width, p.height);
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = p.fromPlayer ? colors.projectilePlayer : colors.projectileAlien;
+      ctx.beginPath();
+      ctx.roundRect(p.x, p.y, p.width, p.height, 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
     });
 
     // Draw UI
     ctx.fillStyle = colors.text;
-    ctx.font = "20px Arial";
+    ctx.font = "bold 20px monospace";
     ctx.fillText(`Score: ${score}`, 20, 30);
-    ctx.fillText(`Lives: ${lives}`, CANVAS_WIDTH - 100, 30);
+    ctx.fillText(`Lives: ${lives}`, CANVAS_WIDTH - 120, 30);
   };
 
   return (

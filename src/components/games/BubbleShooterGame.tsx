@@ -72,7 +72,7 @@ function BubbleShooterBoard({
   const animationFrameRef = useRef<number | null>(null);
 
   // --- Effects ---
-  
+
   const toggleFullscreen = () => {
     if (!containerRef.current) return;
 
@@ -117,7 +117,7 @@ function BubbleShooterBoard({
         const { clientWidth } = containerRef.current;
         const width = Math.min(clientWidth, 600);
         const height = width;
-        
+
         canvasRef.current.style.width = `${width}px`;
         canvasRef.current.style.height = `${height}px`;
         canvasRef.current.width = CANVAS_WIDTH;
@@ -159,21 +159,21 @@ function BubbleShooterBoard({
 
     const handleInput = (clientX: number, clientY: number) => {
       if (gameState !== "PLAYING") return;
-      
+
       const rect = canvas.getBoundingClientRect();
       const scaleX = CANVAS_WIDTH / rect.width;
       const scaleY = CANVAS_HEIGHT / rect.height;
       const x = (clientX - rect.left) * scaleX;
       const y = (clientY - rect.top) * scaleY;
-      
+
       // Calculate angle from shooter (bottom center) to mouse
       const shooterX = CANVAS_WIDTH / 2;
       const shooterY = CANVAS_HEIGHT - 30;
-      
+
       const dx = x - shooterX;
       const dy = y - shooterY;
       angleRef.current = Math.atan2(dy, dx);
-      
+
       // Clamp angle (don't shoot down or too flat)
       if (angleRef.current > -0.2) angleRef.current = -0.2;
       if (angleRef.current < -Math.PI + 0.2) angleRef.current = -Math.PI + 0.2;
@@ -188,18 +188,18 @@ function BubbleShooterBoard({
     const onMouseMove = (e: MouseEvent) => {
       handleInput(e.clientX, e.clientY);
     };
-    
+
     const onTouchMove = (e: TouchEvent) => {
       e.preventDefault();
       handleInput(e.touches[0].clientX, e.touches[0].clientY);
     };
-    
+
     const onMouseDown = (e: MouseEvent) => {
-       handleClick();
+      handleClick();
     };
 
     const onTouchEnd = (e: TouchEvent) => {
-       handleClick();
+      handleClick();
     };
 
     canvas.addEventListener("mousemove", onMouseMove);
@@ -223,15 +223,15 @@ function BubbleShooterBoard({
     setScore(0);
     setGameState("PLAYING");
     shotsFiredRef.current = 0;
-    
+
     // Init Grid
     // Staggered grid
     // Even rows (0, 2...): offset 0
     // Odd rows (1, 3...): offset BUBBLE_RADIUS
-    
+
     const newGrid: (Bubble | null)[][] = [];
-    const rows = DIFFICULTY_SETTINGS[diff].rows; 
-    
+    const rows = DIFFICULTY_SETTINGS[diff].rows;
+
     for (let r = 0; r < ROWS; r++) {
       const row: (Bubble | null)[] = [];
       for (let c = 0; c < COLS; c++) {
@@ -253,12 +253,12 @@ function BubbleShooterBoard({
     gridRef.current = newGrid;
     pickNextColors();
   };
-  
+
   const getBubbleX = (r: number, c: number) => {
     const offset = (r % 2) * BUBBLE_RADIUS;
     return c * (BUBBLE_RADIUS * 2) + BUBBLE_RADIUS + offset;
   };
-  
+
   const getBubbleY = (r: number) => {
     return r * (BUBBLE_RADIUS * 2 * 0.866) + BUBBLE_RADIUS; // hex height
   };
@@ -279,7 +279,7 @@ function BubbleShooterBoard({
     };
     pickNextColors();
     shotsFiredRef.current++;
-    
+
     // Add row periodically?
     // Every 5-10 shots based on difficulty
     const threshold = difficulty === "easy" ? 10 : difficulty === "medium" ? 8 : 6;
@@ -287,7 +287,7 @@ function BubbleShooterBoard({
       addRow();
     }
   };
-  
+
   const addRow = () => {
     // Shift down
     // If any bubble hits bottom, game over
@@ -301,9 +301,9 @@ function BubbleShooterBoard({
         if (r > 0) {
           const prev = gridRef.current[r - 1][c];
           if (prev) {
-             gridRef.current[r][c] = { ...prev, r, y: getBubbleY(r) };
+            gridRef.current[r][c] = { ...prev, r, y: getBubbleY(r) };
           } else {
-             gridRef.current[r][c] = null;
+            gridRef.current[r][c] = null;
           }
         }
       }
@@ -324,22 +324,22 @@ function BubbleShooterBoard({
   const update = () => {
     const p = projectileRef.current;
     if (!p || !p.active) return;
-    
+
     p.x += p.dx;
     p.y += p.dy;
-    
+
     // Wall bounce
     if (p.x < BUBBLE_RADIUS || p.x > CANVAS_WIDTH - BUBBLE_RADIUS) {
       p.dx = -p.dx;
       p.x = Math.max(BUBBLE_RADIUS, Math.min(CANVAS_WIDTH - BUBBLE_RADIUS, p.x));
     }
-    
+
     // Ceiling snap
     if (p.y < BUBBLE_RADIUS) {
       snapBubble(p);
       return;
     }
-    
+
     // Grid collision
     let collided = false;
     if (gridRef.current.length > 0) {
@@ -358,24 +358,24 @@ function BubbleShooterBoard({
         if (collided) break;
       }
     }
-    
+
     if (collided) {
       snapBubble(p);
     }
   };
-  
+
   const snapBubble = (p: Projectile) => {
     p.active = false;
     projectileRef.current = null;
-    
+
     // Find nearest grid slot
     // This logic is complex for hex grids.
     // Simplified: Iterate all empty slots and find closest center
-    
+
     let closestDist = Infinity;
     let targetR = -1;
     let targetC = -1;
-    
+
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
         if (!gridRef.current[r][c]) {
@@ -390,7 +390,7 @@ function BubbleShooterBoard({
         }
       }
     }
-    
+
     if (targetR !== -1) {
       // Place bubble
       const newBubble: Bubble = {
@@ -402,7 +402,7 @@ function BubbleShooterBoard({
         active: true
       };
       gridRef.current[targetR][targetC] = newBubble;
-      
+
       // Check matches
       const matches = findMatches(targetR, targetC, p.color);
       if (matches.length >= 3) {
@@ -410,31 +410,31 @@ function BubbleShooterBoard({
           gridRef.current[m.r][m.c] = null;
           setScore(s => s + 10);
         });
-        
+
         // Check floating clusters
         removeFloating();
       }
-      
+
       // Check Game Over (Bottom reached)
       if (targetR >= ROWS - 1) {
         setGameState("GAME_OVER");
       }
     }
   };
-  
+
   const findMatches = (r: number, c: number, color: string) => {
     const visited = new Set<string>();
-    const matches: {r: number, c: number}[] = [];
-    const queue = [{r, c}];
-    
+    const matches: { r: number, c: number }[] = [];
+    const queue = [{ r, c }];
+
     while (queue.length > 0) {
-      const {r: cr, c: cc} = queue.pop()!;
+      const { r: cr, c: cc } = queue.pop()!;
       const key = `${cr},${cc}`;
-      
+
       if (visited.has(key)) continue;
       visited.add(key);
-      matches.push({r: cr, c: cc});
-      
+      matches.push({ r: cr, c: cc });
+
       const neighbors = getNeighbors(cr, cc);
       neighbors.forEach(n => {
         const nb = gridRef.current[n.r][n.c];
@@ -443,47 +443,47 @@ function BubbleShooterBoard({
         }
       });
     }
-    
+
     return matches;
   };
-  
+
   const getNeighbors = (r: number, c: number) => {
-    const offsets = (r % 2 === 0) 
+    const offsets = (r % 2 === 0)
       ? [[-1, -1], [-1, 0], [0, -1], [0, 1], [1, -1], [1, 0]]
       : [[-1, 0], [-1, 1], [0, -1], [0, 1], [1, 0], [1, 1]];
-      
-    const neighbors: {r: number, c: number}[] = [];
+
+    const neighbors: { r: number, c: number }[] = [];
     offsets.forEach(([dr, dc]) => {
       const nr = r + dr;
       const nc = c + dc;
       if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS) {
-        neighbors.push({r: nr, c: nc});
+        neighbors.push({ r: nr, c: nc });
       }
     });
     return neighbors;
   };
-  
+
   const removeFloating = () => {
     // Safety check
     if (!gridRef.current || gridRef.current.length === 0) return;
 
     // BFS from top row to mark connected bubbles
     const visited = new Set<string>();
-    const queue: {r: number, c: number}[] = [];
-    
+    const queue: { r: number, c: number }[] = [];
+
     // Add all top row bubbles
     for (let c = 0; c < COLS; c++) {
       if (gridRef.current[0] && gridRef.current[0][c]) {
-        queue.push({r: 0, c});
+        queue.push({ r: 0, c });
       }
     }
-    
+
     while (queue.length > 0) {
-      const {r, c} = queue.pop()!;
+      const { r, c } = queue.pop()!;
       const key = `${r},${c}`;
       if (visited.has(key)) continue;
       visited.add(key);
-      
+
       const neighbors = getNeighbors(r, c);
       neighbors.forEach(n => {
         if (gridRef.current[n.r] && gridRef.current[n.r][n.c]) {
@@ -491,7 +491,7 @@ function BubbleShooterBoard({
         }
       });
     }
-    
+
     // Remove anything not visited
     for (let r = 0; r < ROWS; r++) {
       if (!gridRef.current[r]) continue;
@@ -535,16 +535,16 @@ function BubbleShooterBoard({
         }
       }
     }
-    
+
     // Draw Projectile
     if (projectileRef.current && projectileRef.current.active) {
       drawBubble(ctx, projectileRef.current.x, projectileRef.current.y, projectileRef.current.color);
     }
-    
+
     // Draw Shooter
     const shooterX = CANVAS_WIDTH / 2;
     const shooterY = CANVAS_HEIGHT - 30;
-    
+
     // Aim line
     ctx.strokeStyle = colors.line;
     ctx.setLineDash([5, 5]);
@@ -556,10 +556,10 @@ function BubbleShooterBoard({
     );
     ctx.stroke();
     ctx.setLineDash([]);
-    
+
     // Current Bubble
     drawBubble(ctx, shooterX, shooterY, currentBubbleColorRef.current);
-    
+
     // Next Bubble Preview
     drawBubble(ctx, shooterX + 60, shooterY, nextBubbleColorRef.current, 10);
     ctx.fillStyle = colors.text;
@@ -572,13 +572,13 @@ function BubbleShooterBoard({
     ctx.fillText(`Score: ${score}`, 20, 30);
     ctx.fillText(`High Score: ${highScore}`, CANVAS_WIDTH - 150, 30);
   };
-  
+
   const drawBubble = (ctx: CanvasRenderingContext2D, x: number, y: number, color: string, radius = BUBBLE_RADIUS) => {
     ctx.beginPath();
     ctx.arc(x, y, radius - 1, 0, Math.PI * 2);
     ctx.fillStyle = color;
     ctx.fill();
-    
+
     // Shine
     ctx.beginPath();
     ctx.arc(x - radius * 0.3, y - radius * 0.3, radius * 0.2, 0, Math.PI * 2);
@@ -589,43 +589,45 @@ function BubbleShooterBoard({
   return (
     <div className="flex flex-col gap-4 w-full max-w-[800px] mx-auto z-10">
       <GameStartOverlay
-              isPlaying={gameState === "PLAYING"}
-              isGameOver={gameState === "GAME_OVER"}
-              score={score}
-              highScore={highScore}
-              onStart={initGame}
-              onRestart={initGame}
-              gameName={title}
-            />
-      <div
-      ref={containerRef}
-      className="relative w-full max-w-[600px] mx-auto aspect-square bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none"
-      tabIndex={0}
-    >
-      {/* Fullscreen Button */}
-      <div className="absolute top-4 right-4 z-20">
-        <Button
-          variant="secondary"
-          size="icon"
-          className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-800"
-          onClick={toggleFullscreen}
-        >
-          {isFullscreen ? (
-            <Minimize2 className="h-5 w-5" />
-          ) : (
-            <Maximize2 className="h-5 w-5" />
-          )}
-        </Button>
-      </div>
-
-      <canvas
-        ref={canvasRef}
-        className="block w-full h-full touch-none cursor-crosshair"
+        isPlaying={gameState === "PLAYING"}
+        isGameOver={gameState === "GAME_OVER"}
+        score={score}
+        highScore={highScore}
+        onStart={initGame}
+        onRestart={initGame}
+        gameName={title}
       />
-      
-      {/* Overlays */}
-      
-    </div>
+      <div
+        ref={containerRef}
+        className="relative w-full max-w-[600px] mx-auto aspect-square bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none"
+        tabIndex={0}
+      >
+        {/* Fullscreen Button */}
+        <div className="absolute top-4 right-4 z-20">
+          <Button
+            variant="secondary"
+            size="icon"
+            className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-800"
+            onClick={toggleFullscreen}
+          >
+            {isFullscreen ? (
+              <Minimize2 className="h-5 w-5" />
+            ) : (
+              <Maximize2 className="h-5 w-5" />
+            )}
+          </Button>
+        </div>
+
+        <canvas
+          ref={canvasRef}
+          width={CANVAS_WIDTH}
+          height={CANVAS_HEIGHT}
+          className={`block touch-none cursor-crosshair ${isFullscreen ? "w-full h-full object-contain" : "w-full h-full"}`}
+        />
+
+        {/* Overlays */}
+
+      </div>
     </div>
   );
 }

@@ -333,10 +333,10 @@ function AstroBreakoutBoard({
 
     // Colors
     const colors = {
-      bg: isDark ? "#0f172a" : "#f8fafc",
-      text: isDark ? "#f8fafc" : "#0f172a",
-      paddle: isDark ? "#38bdf8" : "#0284c7",
-      ball: isDark ? "#f472b6" : "#db2777",
+      bg: isDark ? "#050B14" : "#1e293b", // Deeper space background
+      text: "#f8fafc",
+      paddle: isDark ? "#38bdf8" : "#0ea5e9",
+      ball: isDark ? "#f472b6" : "#ec4899",
       grid: isDark ? "#1e293b" : "#e2e8f0",
     };
 
@@ -344,13 +344,30 @@ function AstroBreakoutBoard({
     ctx.fillStyle = colors.bg;
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
+    // Draw Stars
+    ctx.fillStyle = "#ffffff";
+    for (let i = 0; i < 30; i++) {
+      const x = (Math.sin(i * 123) * 0.5 + 0.5) * CANVAS_WIDTH;
+      const y = (Math.cos(i * 321) * 0.5 + 0.5) * CANVAS_HEIGHT;
+      const radius = (Math.sin(i * 99) * 0.5 + 0.5) * 1.5;
+      const alpha = Math.abs(Math.sin((Date.now() / 1000) + i));
+      ctx.globalAlpha = alpha * 0.6;
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1.0;
+
     // Draw Bricks
     bricksRef.current.forEach(brick => {
       if (brick.active) {
         ctx.fillStyle = brick.color;
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 12;
         ctx.shadowColor = brick.color;
-        ctx.fillRect(brick.x, brick.y, brick.width, brick.height);
+
+        ctx.beginPath();
+        ctx.roundRect(brick.x, brick.y, brick.width, brick.height, 4);
+        ctx.fill();
         ctx.shadowBlur = 0;
       }
     });
@@ -359,18 +376,23 @@ function AstroBreakoutBoard({
     ctx.fillStyle = colors.paddle;
     ctx.shadowBlur = 15;
     ctx.shadowColor = colors.paddle;
-    ctx.fillRect(paddleRef.current.x, CANVAS_HEIGHT - paddleRef.current.height - 10, paddleRef.current.width, paddleRef.current.height);
+    ctx.beginPath();
+    ctx.roundRect(paddleRef.current.x, CANVAS_HEIGHT - paddleRef.current.height - 10, paddleRef.current.width, paddleRef.current.height, 8);
+    ctx.fill();
     ctx.shadowBlur = 0;
 
     // Draw Ball
     ctx.fillStyle = colors.ball;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = colors.ball;
     ctx.beginPath();
     ctx.arc(ballRef.current.x, ballRef.current.y, ballRef.current.radius, 0, Math.PI * 2);
     ctx.fill();
+    ctx.shadowBlur = 0;
 
     // Draw Score & Lives (In-game UI)
     ctx.fillStyle = colors.text;
-    ctx.font = "20px Arial";
+    ctx.font = "bold 20px monospace";
     ctx.fillText(`Score: ${score}`, 20, 30);
     ctx.fillText(`Lives: ${lives}`, CANVAS_WIDTH - 100, 30);
     ctx.fillText(`High Score: ${highScore}`, CANVAS_WIDTH / 2 - 60, 30);
@@ -381,43 +403,45 @@ function AstroBreakoutBoard({
   return (
     <div className="flex flex-col gap-4 w-full max-w-[800px] mx-auto z-10">
       <GameStartOverlay
-              isPlaying={gameState === "PLAYING"}
-              isGameOver={gameState === "GAME_OVER"}
-              score={score}
-              highScore={highScore}
-              onStart={initGame}
-              onRestart={initGame}
-              gameName={title}
-            />
-      <div
-      ref={containerRef}
-      className="relative w-full max-w-[800px] mx-auto aspect-[4/3] bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none"
-      tabIndex={0}
-    >
-      {/* Fullscreen Button */}
-      <div className="absolute top-4 right-4 z-20">
-        <Button
-          variant="secondary"
-          size="icon"
-          className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-800"
-          onClick={toggleFullscreen}
-        >
-          {isFullscreen ? (
-            <Minimize2 className="h-5 w-5" />
-          ) : (
-            <Maximize2 className="h-5 w-5" />
-          )}
-        </Button>
-      </div>
-
-      <canvas
-        ref={canvasRef}
-        className="block w-full h-full touch-none"
+        isPlaying={gameState === "PLAYING"}
+        isGameOver={gameState === "GAME_OVER"}
+        score={score}
+        highScore={highScore}
+        onStart={initGame}
+        onRestart={initGame}
+        gameName={title}
       />
+      <div
+        ref={containerRef}
+        className="relative w-full max-w-[800px] mx-auto aspect-[4/3] bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none"
+        tabIndex={0}
+      >
+        {/* Fullscreen Button */}
+        <div className="absolute top-4 right-4 z-20">
+          <Button
+            variant="secondary"
+            size="icon"
+            className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-800"
+            onClick={toggleFullscreen}
+          >
+            {isFullscreen ? (
+              <Minimize2 className="h-5 w-5" />
+            ) : (
+              <Maximize2 className="h-5 w-5" />
+            )}
+          </Button>
+        </div>
 
-      {/* Overlays */}
-      
-    </div>
+        <canvas
+          ref={canvasRef}
+          width={CANVAS_WIDTH}
+          height={CANVAS_HEIGHT}
+          className={`block touch-none ${isFullscreen ? "w-full h-full object-contain" : "w-full h-full"}`}
+        />
+
+        {/* Overlays */}
+
+      </div>
     </div>
   );
 }

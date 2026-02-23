@@ -494,83 +494,85 @@ function AsteroidDriftBoard({
   return (
     <div className="flex flex-col gap-4 w-full max-w-[800px] mx-auto z-10">
       <GameStartOverlay
-              isPlaying={gameState === "PLAYING"}
-              isGameOver={gameState === "GAME_OVER"}
-              score={score}
-              highScore={highScore}
-              onStart={initGame}
-              onRestart={initGame}
-              gameName={title}
-            />
-      <div
-      ref={containerRef}
-      className="relative w-full max-w-[800px] mx-auto aspect-[4/3] bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none"
-      tabIndex={0}
-    >
-      {/* Fullscreen Button */}
-      <div className="absolute top-4 right-4 z-20">
-        <Button
-          variant="secondary"
-          size="icon"
-          className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-800"
-          onClick={toggleFullscreen}
-        >
-          {isFullscreen ? (
-            <Minimize2 className="h-5 w-5" />
-          ) : (
-            <Maximize2 className="h-5 w-5" />
-          )}
-        </Button>
-      </div>
-
-      <canvas
-        ref={canvasRef}
-        className="block w-full h-full touch-none"
+        isPlaying={gameState === "PLAYING"}
+        isGameOver={gameState === "GAME_OVER"}
+        score={score}
+        highScore={highScore}
+        onStart={initGame}
+        onRestart={initGame}
+        gameName={title}
       />
-
-      {/* Mobile On-Screen Controls */}
-      {gameState === "PLAYING" && (
-        <div className="absolute inset-x-0 bottom-4 z-10 flex justify-between px-4 sm:hidden select-none touch-none">
-          <div className="flex gap-2">
-            <button
-              className="w-14 h-14 rounded-full bg-slate-800/60 flex items-center justify-center border border-slate-600/50 backdrop-blur active:bg-slate-700/80"
-              onPointerDown={(e) => { e.preventDefault(); shipRef.current.rotatingLeft = true; }}
-              onPointerUp={(e) => { e.preventDefault(); shipRef.current.rotatingLeft = false; }}
-              onPointerLeave={(e) => { e.preventDefault(); shipRef.current.rotatingLeft = false; }}
-            >
-              <RotateCcw className="text-white w-6 h-6" />
-            </button>
-            <button
-              className="w-14 h-14 rounded-full bg-slate-800/60 flex items-center justify-center border border-slate-600/50 backdrop-blur active:bg-slate-700/80"
-              onPointerDown={(e) => { e.preventDefault(); shipRef.current.rotatingRight = true; }}
-              onPointerUp={(e) => { e.preventDefault(); shipRef.current.rotatingRight = false; }}
-              onPointerLeave={(e) => { e.preventDefault(); shipRef.current.rotatingRight = false; }}
-            >
-              <RotateCw className="text-white w-6 h-6" />
-            </button>
-          </div>
-          <div className="flex gap-2">
-            <button
-              className="w-14 h-14 rounded-full bg-slate-800/60 flex items-center justify-center border border-slate-600/50 backdrop-blur active:bg-slate-700/80"
-              onPointerDown={(e) => { e.preventDefault(); shipRef.current.thrusting = true; }}
-              onPointerUp={(e) => { e.preventDefault(); shipRef.current.thrusting = false; }}
-              onPointerLeave={(e) => { e.preventDefault(); shipRef.current.thrusting = false; }}
-            >
-              <ArrowUp className="text-white w-6 h-6" />
-            </button>
-            <button
-              className="w-14 h-14 rounded-full bg-red-600/60 flex items-center justify-center border border-red-500/50 backdrop-blur active:bg-red-700/80"
-              onPointerDown={(e) => { e.preventDefault(); fireBullet(); }}
-            >
-              <Crosshair className="text-white w-6 h-6" />
-            </button>
-          </div>
+      <div
+        ref={containerRef}
+        className="relative w-full max-w-[800px] mx-auto aspect-[4/3] bg-slate-50 dark:bg-slate-950 rounded-xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 focus:outline-none"
+        tabIndex={0}
+      >
+        {/* Fullscreen Button */}
+        <div className="absolute top-4 right-4 z-20">
+          <Button
+            variant="secondary"
+            size="icon"
+            className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-800"
+            onClick={toggleFullscreen}
+          >
+            {isFullscreen ? (
+              <Minimize2 className="h-5 w-5" />
+            ) : (
+              <Maximize2 className="h-5 w-5" />
+            )}
+          </Button>
         </div>
-      )}
 
-      {/* Overlays */}
-      
-    </div>
+        <canvas
+          ref={canvasRef}
+          width={CANVAS_WIDTH}
+          height={CANVAS_HEIGHT}
+          className={`block touch-none ${isFullscreen ? "w-full h-full object-contain" : "w-full h-full"}`}
+        />
+
+        {/* Mobile On-Screen Controls */}
+        {gameState === "PLAYING" && (
+          <div className="absolute inset-x-0 bottom-4 z-10 flex justify-between px-4 sm:hidden select-none touch-none">
+            <div className="flex gap-2">
+              <button
+                className="w-14 h-14 rounded-full bg-slate-800/60 flex items-center justify-center border border-slate-600/50 backdrop-blur active:bg-slate-700/80"
+                onPointerDown={(e) => { e.preventDefault(); shipRef.current.rotatingLeft = true; }}
+                onPointerUp={(e) => { e.preventDefault(); shipRef.current.rotatingLeft = false; }}
+                onPointerLeave={(e) => { e.preventDefault(); shipRef.current.rotatingLeft = false; }}
+              >
+                <RotateCcw className="text-white w-6 h-6" />
+              </button>
+              <button
+                className="w-14 h-14 rounded-full bg-slate-800/60 flex items-center justify-center border border-slate-600/50 backdrop-blur active:bg-slate-700/80"
+                onPointerDown={(e) => { e.preventDefault(); shipRef.current.rotatingRight = true; }}
+                onPointerUp={(e) => { e.preventDefault(); shipRef.current.rotatingRight = false; }}
+                onPointerLeave={(e) => { e.preventDefault(); shipRef.current.rotatingRight = false; }}
+              >
+                <RotateCw className="text-white w-6 h-6" />
+              </button>
+            </div>
+            <div className="flex gap-2">
+              <button
+                className="w-14 h-14 rounded-full bg-slate-800/60 flex items-center justify-center border border-slate-600/50 backdrop-blur active:bg-slate-700/80"
+                onPointerDown={(e) => { e.preventDefault(); shipRef.current.thrusting = true; }}
+                onPointerUp={(e) => { e.preventDefault(); shipRef.current.thrusting = false; }}
+                onPointerLeave={(e) => { e.preventDefault(); shipRef.current.thrusting = false; }}
+              >
+                <ArrowUp className="text-white w-6 h-6" />
+              </button>
+              <button
+                className="w-14 h-14 rounded-full bg-red-600/60 flex items-center justify-center border border-red-500/50 backdrop-blur active:bg-red-700/80"
+                onPointerDown={(e) => { e.preventDefault(); fireBullet(); }}
+              >
+                <Crosshair className="text-white w-6 h-6" />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Overlays */}
+
+      </div>
     </div>
   );
 }
