@@ -54,7 +54,7 @@ https://smartkitnow.com/*        https://www.smartkitnow.com/:splat  301!
 # Financial (canônicos atuais)
 /financial/roi                              /financial/roi-return-on-investment 301
 /financial/return-on-investment             /financial/roi-return-on-investment 301
-/financial/compound-interest                /financial/compound-interest 301
+/financial/compound-interest                /financial/compound-interest-calculator 301
 /financial/mortgage                         /financial/mortgage-amortization 301
 /financial/home-loan                        /financial/mortgage-amortization 301
 /financial/loan                             /financial/loan-payment 301
@@ -123,7 +123,11 @@ https://smartkitnow.com/*        https://www.smartkitnow.com/:splat  301!
 /sv/*  410!
 /es/*  410!
 /fr/*  410!
-/*   /index.html   200
 # Health aliases
-/health/tdee                                /health/tdee-calculator 301
-/health/total-daily-energy-expenditure      /health/tdee-calculator 301
+/health/tdee                                /health/tdee-daily-energy-expenditure 301
+/health/total-daily-energy-expenditure      /health/tdee-daily-energy-expenditure 301
+
+# ================================
+# 5) SPA fallback (deve ser a ÚLTIMA linha)
+# ================================
+/*   /index.html   200

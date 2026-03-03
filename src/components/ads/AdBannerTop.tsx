@@ -1,23 +1,13 @@
-import React, { useEffect } from "react";
+import AdUnit from "@/components/AdUnit";
+
+const ENV: any = (typeof import.meta !== "undefined" && (import.meta as any).env) || {};
+const SLOT_TOP_BANNER =
+  ENV.VITE_ADSENSE_SLOT_TOP_BANNER ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER ?? "pending";
 
 /**
- * Placeholder for Google AdSense top banner.
- * Replace the div with your <ins class="adsbygoogle"> and push script when you add your client/slot.
+ * Top banner ad for category pages.
+ * Delegates to AdUnit which handles dev/prod toggling and responsive sizes.
  */
 export default function AdBannerTop() {
-  useEffect(() => {
-    // If using AdSense, uncomment after adding global script in index.html
-    // // @ts-ignore
-    // window.adsbygoogle = window.adsbygoogle || [];
-    // // @ts-ignore
-    // window.adsbygoogle.push({});
-  }, []);
-
-  return (
-    <div className="w-full flex items-center justify-center py-3">
-      <div className="w-full max-w-[970px] h-[90px] border rounded-md bg-muted/40 text-muted-foreground grid place-items-center">
-        <span className="text-xs">Top Banner Ad (970×90 / 728×90 / 320×100)</span>
-      </div>
-    </div>
-  );
+  return <AdUnit slot={SLOT_TOP_BANNER} type="top-banner" className="w-full py-3" />;
 }

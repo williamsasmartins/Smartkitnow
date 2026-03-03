@@ -1,25 +1,18 @@
-import React, { useEffect } from "react";
+import AdUnit from "@/components/AdUnit";
 
+const ENV: any = (typeof import.meta !== "undefined" && (import.meta as any).env) || {};
+const SLOT_SIDEBAR =
+  ENV.VITE_ADSENSE_SLOT_SIDEBAR ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR ?? "pending";
 
+/**
+ * Sidebar ad for category pages.
+ * Delegates to AdUnit which handles dev/prod toggling and responsive sizes.
+ */
 export default function AdSidebarRight({ topOffset = 0 }: { topOffset?: number }) {
-  useEffect(() => {
-    // // @ts-ignore
-    // window.adsbygoogle = window.adsbygoogle || [];
-    // // @ts-ignore
-    // window.adsbygoogle.push({});
-  }, []);
-
   return (
     <aside className="hidden lg:block lg:w-[320px]">
       <div className="sticky space-y-4" style={{ top: topOffset }}>
-        <div className="w-[300px] h-[600px] border rounded-md bg-muted/40 text-muted-foreground grid place-items-center">
-          <span className="text-xs">Sidebar Ad (300×600)</span>
-        </div>
-        <div className="w-[300px] h-[250px] border rounded-md bg-muted/40 text-muted-foreground grid place-items-center">
-          <span className="text-xs">Sidebar Ad (300×250)</span>
-        </div>
-
-
+        <AdUnit slot={SLOT_SIDEBAR} type="sidebar" />
       </div>
     </aside>
   );

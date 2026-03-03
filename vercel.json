@@ -54,6 +54,56 @@
   ],
   "redirects": [
     {
+      "source": "/pets/cat-stress-score-playtime-offset",
+      "destination": "/pets/cat-stress-score-playtime-offset-planner",
+      "permanent": true
+    },
+    {
+      "source": "/de/:path*",
+      "destination": "/404",
+      "permanent": false
+    },
+    {
+      "source": "/es/:path*",
+      "destination": "/404",
+      "permanent": false
+    },
+    {
+      "source": "/fr/:path*",
+      "destination": "/404",
+      "permanent": false
+    },
+    {
+      "source": "/nl/:path*",
+      "destination": "/404",
+      "permanent": false
+    },
+    {
+      "source": "/pt/:path*",
+      "destination": "/404",
+      "permanent": false
+    },
+    {
+      "source": "/pt-pt/:path*",
+      "destination": "/404",
+      "permanent": false
+    },
+    {
+      "source": "/it/:path*",
+      "destination": "/404",
+      "permanent": false
+    },
+    {
+      "source": "/pl/:path*",
+      "destination": "/404",
+      "permanent": false
+    },
+    {
+      "source": "/sv/:path*",
+      "destination": "/404",
+      "permanent": false
+    },
+    {
       "source": "/construction/wall-ceiling-calculators/drywall-estimator",
       "destination": "/construction/wall-ceiling-calculators/drywall-area-sheets",
       "permanent": true

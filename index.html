@@ -67,17 +67,16 @@
     })();
   </script>
 
-  <!-- Google AdSense -->
+  <!-- Google AdSense (main thread — Partytown is incompatible with AdSense DOM APIs) -->
   <script nonce="SKN_NONCE">
     (function () {
       const host = location.hostname;
       const isLocal = host === 'localhost' || host === '127.0.0.1';
-      // Read client from meta tag to avoid hardcoding in source
       var meta = document.querySelector('meta[name="google-adsense-account"]');
       var client = meta ? meta.getAttribute('content') : '';
       if (!isLocal && client && client.startsWith('ca-pub-')) {
         const s = document.createElement('script');
-        s.type = 'text/partytown'; // Use Partytown for AdSense
+        s.async = true;
         s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + client;
         s.crossOrigin = 'anonymous';
         document.head.appendChild(s);

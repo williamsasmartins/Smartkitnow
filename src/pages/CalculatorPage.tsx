@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { getEntry, FRIENDLY_TITLES, SUBCATEGORY_TITLES } from "@/data/calculatorRegistry";
 import JsonLd from "@/components/seo/JsonLd";
 import SEOHead from "@/components/SEOHead";
@@ -30,13 +30,9 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
   const entry = calcSlug ? getEntry(calcSlug) : null;
 
   if (!entry) {
-    return (
-      <div className="mx-auto max-w-3xl px-4 lg:px-6 py-10">
-        <SEOHead title="Calculator Not Found - Smart Kit Now" robots="noindex, nofollow" />
-        <h1 className="text-2xl font-bold text-[#5c82ee]">Calculator not found</h1>
-        <p className="mt-2 text-muted-foreground">We couldn't find this calculator. Please use the site menu.</p>
-      </div>
-    );
+    // Redirect to the real 404 page instead of rendering a soft 404
+    // This prevents Google from seeing a 200 page with thin content (Soft 404)
+    return <Navigate to="/404" replace />;
   }
 
   const LazyCalc = createLazyFromLoader(entry.loader, entry.namedExport);
