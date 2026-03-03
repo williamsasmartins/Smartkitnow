@@ -68,7 +68,7 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 w-full bg-background/95 backdrop-blur-md z-[10000] border-b border-border/50">
+    <header className="fixed top-0 w-full bg-background/95 backdrop-blur-md z-[10000] border-b border-border/50">
       <div className="container mx-auto px-4 py-2 max-w-7xl grid grid-cols-1 sm:grid-cols-3 items-center gap-3">
         <div
           className="flex items-center cursor-pointer hover:opacity-80 transition-opacity justify-self-start"

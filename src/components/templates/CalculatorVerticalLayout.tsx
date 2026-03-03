@@ -299,7 +299,7 @@ export default function CalculatorVerticalLayout({
   }, []);
 
   return (
-    <div className="skn-vertical-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
+    <div className="skn-vertical-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors pt-40 sm:pt-32">
       {/* STICKY BACK TO CALCULATOR — aparece ao rolar além do widget */}
       {showStickyBack && (
         <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50">
@@ -307,7 +307,7 @@ export default function CalculatorVerticalLayout({
             onClick={() => widgetRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })}
             className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-sm font-semibold rounded-full shadow-xl shadow-indigo-500/40 transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6" /></svg>
             Back to Calculator
           </button>
         </div>
