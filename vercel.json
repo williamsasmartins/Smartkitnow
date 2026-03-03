@@ -60,48 +60,48 @@
     },
     {
       "source": "/de/:path*",
-      "destination": "/404",
-      "permanent": false
+      "destination": "/",
+      "permanent": true
     },
     {
       "source": "/es/:path*",
-      "destination": "/404",
-      "permanent": false
+      "destination": "/",
+      "permanent": true
     },
     {
       "source": "/fr/:path*",
-      "destination": "/404",
-      "permanent": false
+      "destination": "/",
+      "permanent": true
     },
     {
       "source": "/nl/:path*",
-      "destination": "/404",
-      "permanent": false
+      "destination": "/",
+      "permanent": true
     },
     {
       "source": "/pt/:path*",
-      "destination": "/404",
-      "permanent": false
+      "destination": "/",
+      "permanent": true
     },
     {
       "source": "/pt-pt/:path*",
-      "destination": "/404",
-      "permanent": false
+      "destination": "/",
+      "permanent": true
     },
     {
       "source": "/it/:path*",
-      "destination": "/404",
-      "permanent": false
+      "destination": "/",
+      "permanent": true
     },
     {
       "source": "/pl/:path*",
-      "destination": "/404",
-      "permanent": false
+      "destination": "/",
+      "permanent": true
     },
     {
       "source": "/sv/:path*",
-      "destination": "/404",
-      "permanent": false
+      "destination": "/",
+      "permanent": true
     },
     {
       "source": "/construction/wall-ceiling-calculators/drywall-estimator",

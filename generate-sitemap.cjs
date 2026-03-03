@@ -5,6 +5,8 @@ const path = require('path');
 // 1. Configuração Básica
 const BASE_URL = "https://www.smartkitnow.com";
 const TODAY = new Date().toISOString().split('T')[0];
+// Data de referência para páginas estáticas — atualizar ao fazer mudanças significativas de conteúdo
+const STATIC_DATE = "2026-02-26";
 
 // 2. Lista COMPLETA baseada no que você me mandou (Limpa e Padronizada)
 // Note que removi as subcategorias para resolver o problema de URL duplicada no Google
@@ -12,9 +14,9 @@ const pages = [
     // --- PÁGINAS FIXAS ---
     { url: "", priority: "1.0", changefreq: "daily" }, // Home
     { url: "search", priority: "0.8", changefreq: "weekly" },
-    { url: "privacy-policy", priority: "0.5", changefreq: "yearly" },
-    { url: "terms-of-use", priority: "0.5", changefreq: "yearly" },
-    { url: "about-us", priority: "0.5", changefreq: "yearly" },
+    { url: "privacy", priority: "0.5", changefreq: "yearly" },
+    { url: "terms", priority: "0.5", changefreq: "yearly" },
+    { url: "about", priority: "0.5", changefreq: "yearly" },
     { url: "contact", priority: "0.5", changefreq: "yearly" },
 
     // --- FERRAMENTAS RECORRENTES (Alto Engajamento) ---
@@ -487,11 +489,13 @@ const generateXml = () => {
         // Garante que não haja barra dupla
         const safePath = page.url ? `/${page.url}` : '';
         const fullUrl = `${BASE_URL}${safePath}`;
+        // Páginas dinâmicas (daily) usam a data de hoje; estáticas usam STATIC_DATE
+        const lastmod = page.changefreq === 'daily' ? TODAY : STATIC_DATE;
 
         xml += `
   <url>
     <loc>${fullUrl}</loc>
-    <lastmod>${TODAY}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${page.changefreq || 'monthly'}</changefreq>
     <priority>${page.priority || '0.7'}</priority>
   </url>`;
