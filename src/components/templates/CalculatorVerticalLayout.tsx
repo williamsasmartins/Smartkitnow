@@ -1,4 +1,4 @@
-import React, { ReactNode, useMemo } from "react";
+import React, { ReactNode, useMemo, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AdUnit from "../AdUnit";
 import ShareThisPageBox from "../ShareThisPageBox";
@@ -15,6 +15,8 @@ const ENV: any = (typeof import.meta !== 'undefined' && (import.meta as any).env
 const SLOT_TOP_BANNER = ENV.VITE_ADSENSE_SLOT_TOP_BANNER ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER ?? "pending";
 const SLOT_SIDEBAR = ENV.VITE_ADSENSE_SLOT_SIDEBAR ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR ?? "pending";
 const SLOT_BOTTOM_BANNER = ENV.VITE_ADSENSE_SLOT_BOTTOM_BANNER ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_BOTTOM_BANNER ?? "pending";
+// In-article slot: usa slot próprio se configurado, caso contrário cai no top banner
+const SLOT_IN_ARTICLE = ENV.VITE_ADSENSE_SLOT_IN_ARTICLE ?? ENV.NEXT_PUBLIC_ADSENSE_SLOT_IN_ARTICLE ?? SLOT_TOP_BANNER;
 
 // ================================================================
 // "ON THIS PAGE" NAVIGATION - FINTECH STYLE
@@ -245,6 +247,7 @@ interface CalculatorVerticalLayoutProps {
   showTopBanner?: boolean;
   showSidebar?: boolean;
   showBottomBanner?: boolean;
+  showMidAd?: boolean;
   hideLegalDisclaimer?: boolean; // Nova prop opcional
   jsonLd?: object | object[] | null | undefined;
   canonical?: string;
@@ -267,7 +270,8 @@ export default function CalculatorVerticalLayout({
   showTopBanner = true,
   showSidebar = true,
   showBottomBanner = true,
-  hideLegalDisclaimer = false, // Padrão é false (mostrar)
+  showMidAd = true,
+  hideLegalDisclaimer = false,
   jsonLd,
   canonical,
   contentMaxWidth = "max-w-3xl",
@@ -279,8 +283,35 @@ export default function CalculatorVerticalLayout({
     return description;
   }, [description]);
 
+  // Sticky "Back to Calculator" button — aparece quando o widget sai da viewport
+  const widgetRef = useRef<HTMLDivElement>(null);
+  const [showStickyBack, setShowStickyBack] = useState(false);
+
+  useEffect(() => {
+    const el = widgetRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowStickyBack(!entry.isIntersecting),
+      { threshold: 0, rootMargin: "-80px 0px 0px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="skn-vertical-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors">
+      {/* STICKY BACK TO CALCULATOR — aparece ao rolar além do widget */}
+      {showStickyBack && (
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50">
+          <button
+            onClick={() => widgetRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })}
+            className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-sm font-semibold rounded-full shadow-xl shadow-indigo-500/40 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+            Back to Calculator
+          </button>
+        </div>
+      )}
       <SEOHead
         title={title}
         description={resolvedDescription}
@@ -332,9 +363,9 @@ export default function CalculatorVerticalLayout({
 
             {/* CALCULATOR WIDGET or Children */}
             {children ? (
-              <div className="mb-10">{children}</div>
+              <div ref={widgetRef} className="mb-10">{children}</div>
             ) : (
-              <section className="mb-10 rounded-2xl overflow-hidden border-2 border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 shadow-2xl shadow-indigo-500/10 transition-all duration-200">
+              <section ref={widgetRef} className="mb-10 rounded-2xl overflow-hidden border-2 border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 shadow-2xl shadow-indigo-500/10 transition-all duration-200">
                 <div className="p-4 md:p-8">{widget}</div>
               </section>
             )}
@@ -356,6 +387,11 @@ export default function CalculatorVerticalLayout({
                 steps={example.steps ?? []}
                 result={example.result}
               />
+            )}
+
+            {/* IN-ARTICLE MID AD — entre fórmula/exemplo e editorial */}
+            {showMidAd && !children && (
+              <AdUnit slot={SLOT_IN_ARTICLE} type="in-content" className="my-8" />
             )}
 
             {/* EDITORIAL CONTENT (hidden if children provided) */}

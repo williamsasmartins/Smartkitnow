@@ -80,6 +80,16 @@
         s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + client;
         s.crossOrigin = 'anonymous';
         document.head.appendChild(s);
+        // Habilitar Auto Ads + Anchor overlay (sticky bottom — especialmente mobile)
+        s.addEventListener('load', function() {
+          try {
+            (window.adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: client,
+              enable_page_level_ads: true,
+              overlays: { bottom: true }
+            });
+          } catch(e) {}
+        });
       }
     })();
   </script>
