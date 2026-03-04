@@ -57,7 +57,10 @@ function GameUI() {
   const [player, setPlayer] = useState<PlayerState>({ x: 1.5, y: 1.5, angle: 0 });
   const [won, setWon] = useState(false);
   const [elapsed, setElapsed] = useState(0);
-  const [bestTime, setBestTime] = useState<number | null>(null);
+  const [bestTime, setBestTime] = useState<number | null>(() => {
+    const s = localStorage.getItem("hs_maze-runner-3d");
+    return s ? parseInt(s) : null;
+  });
   const startTimeRef = useRef<number>(Date.now());
   const playerRef = useRef<PlayerState>({ x: 1.5, y: 1.5, angle: 0 });
   const mazeRef = useRef<MazeCell[][]>(maze);
@@ -220,7 +223,11 @@ function GameUI() {
       wonRef.current = true;
       setWon(true);
       const t = Math.floor((Date.now() - startTimeRef.current) / 1000);
-      setBestTime(prev => prev === null || t < prev ? t : prev);
+      setBestTime(prev => {
+        const best = prev === null || t < prev ? t : prev;
+        try { localStorage.setItem("hs_maze-runner-3d", String(best)); } catch {}
+        return best;
+      });
     }
   }, []);
 

@@ -11,6 +11,7 @@ const BEAT_MS = (60 / BPM) * 1000;
 const MAX_HEALTH = 100;
 const BLOCK_SPAWN_Z = 0.01;
 const BLOCK_HIT_Z = 0.85;
+const HS_KEY = "hs_beat-saber-web";
 
 type BlockType = "red" | "blue";
 type Dir = "left" | "right";
@@ -77,15 +78,27 @@ function GameUI() {
     score: 0,
     combo: 0,
     maxCombo: 0,
+    bestScore: 0,
     difficulty: "normal" as "easy" | "normal" | "hard",
     blockSpeed: 0.0012,
+    baseBlockSpeed: 0.0012,
     idCounter: 0,
     beatCount: 0,
     lastBeatTime: 0,
+    gameStartTime: 0,
     particles: [] as { x: number; y: number; vx: number; vy: number; life: number; color: string }[],
   });
   const animRef = useRef<number>(0);
-  const [uiState, setUiState] = useState({ score: 0, combo: 0, health: MAX_HEALTH, phase: "menu" as string });
+  const [uiState, setUiState] = useState({ score: 0, combo: 0, health: MAX_HEALTH, phase: "menu" as string, bestScore: 0 });
+
+  // Load best score from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem(HS_KEY);
+    if (saved) {
+      const parsed = parseInt(saved, 10);
+      if (!isNaN(parsed)) stateRef.current.bestScore = parsed;
+    }
+  }, []);
 
   const difficultySettings = {
     easy: { blockSpeed: 0.0008, spawnRate: 2 },
@@ -105,60 +118,13 @@ function GameUI() {
     s.maxCombo = 0;
     s.difficulty = diff;
     s.blockSpeed = difficultySettings[diff].blockSpeed;
+    s.baseBlockSpeed = difficultySettings[diff].blockSpeed;
     s.beatCount = 0;
     s.lastBeatTime = performance.now();
+    s.gameStartTime = performance.now();
     s.particles = [];
     s.slash = null;
     s.slashStart = null;
-  }, []);
-
-  // Mouse/touch slash detection
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const getPos = (e: MouseEvent | Touch): { x: number; y: number } => {
-      const rect = canvas.getBoundingClientRect();
-      return {
-        x: ((e as any).clientX - rect.left) * (W / rect.width),
-        y: ((e as any).clientY - rect.top) * (H / rect.height),
-      };
-    };
-
-    const onDown = (e: MouseEvent) => {
-      stateRef.current.slashStart = getPos(e);
-    };
-    const onUp = (e: MouseEvent) => {
-      const s = stateRef.current;
-      if (!s.slashStart || s.phase !== "playing") { s.slashStart = null; return; }
-      const end = getPos(e);
-      processSlash(s.slashStart, end);
-      s.slashStart = null;
-    };
-    const onTouchStart = (e: TouchEvent) => {
-      e.preventDefault();
-      const pos = getPos(e.touches[0]);
-      stateRef.current.slashStart = pos;
-    };
-    const onTouchEnd = (e: TouchEvent) => {
-      e.preventDefault();
-      const s = stateRef.current;
-      if (!s.slashStart || s.phase !== "playing") { s.slashStart = null; return; }
-      const pos = getPos(e.changedTouches[0]);
-      processSlash(s.slashStart, pos);
-      s.slashStart = null;
-    };
-
-    canvas.addEventListener("mousedown", onDown);
-    canvas.addEventListener("mouseup", onUp);
-    canvas.addEventListener("touchstart", onTouchStart, { passive: false });
-    canvas.addEventListener("touchend", onTouchEnd, { passive: false });
-    return () => {
-      canvas.removeEventListener("mousedown", onDown);
-      canvas.removeEventListener("mouseup", onUp);
-      canvas.removeEventListener("touchstart", onTouchStart);
-      canvas.removeEventListener("touchend", onTouchEnd);
-    };
   }, []);
 
   const processSlash = useCallback((start: { x: number; y: number }, end: { x: number; y: number }) => {
@@ -221,6 +187,11 @@ function GameUI() {
       const s = stateRef.current;
 
       if (s.phase === "playing") {
+        // Difficulty ramp: increase speed every 15 seconds, up to 2x base speed
+        const elapsed = (timestamp - s.gameStartTime) / 1000;
+        const rampFactor = Math.min(2.0, 1 + elapsed / 90);
+        s.blockSpeed = s.baseBlockSpeed * rampFactor;
+
         // Beat scheduling
         if (timestamp - s.lastBeatTime >= BEAT_MS / 2) {
           s.lastBeatTime = timestamp;
@@ -228,7 +199,9 @@ function GameUI() {
           if (audioRef.current) playBeat(audioRef.current, audioRef.current.currentTime, s.beatCount);
 
           const diff = difficultySettings[s.difficulty];
-          if (s.beatCount % diff.spawnRate < 1) {
+          // Spawn rate also increases with ramp: at 2x ramp, spawn ~1.5x more blocks
+          const effectiveRate = Math.max(1, diff.spawnRate / rampFactor);
+          if (s.beatCount % Math.round(effectiveRate) === 0) {
             const lane = Math.floor(Math.random() * LANE_COUNT);
             const type: BlockType = Math.random() < 0.5 ? "red" : "blue";
             s.blocks.push({
@@ -263,7 +236,14 @@ function GameUI() {
         // Slash fade
         if (s.slash) { s.slash.life -= 0.08; if (s.slash.life <= 0) s.slash = null; }
 
-        if (s.health <= 0) s.phase = "gameover";
+        if (s.health <= 0) {
+          s.phase = "gameover";
+          // Persist best score
+          if (s.score > s.bestScore) {
+            s.bestScore = s.score;
+            localStorage.setItem(HS_KEY, String(s.score));
+          }
+        }
       }
 
       // ─── Draw ───────────────────────────────────────────────────────
@@ -350,29 +330,45 @@ function GameUI() {
         ctx.lineCap = "butt";
       }
 
-      // HUD
-      ctx.fillStyle = "rgba(0,0,0,0.5)";
-      ctx.fillRect(0, 0, W, 50);
+      // HUD background
+      ctx.fillStyle = "rgba(0,0,0,0.55)";
+      ctx.fillRect(0, 0, W, 56);
 
       // Health bar
       ctx.fillStyle = "#333";
-      ctx.fillRect(10, 10, 200, 18);
+      ctx.fillRect(10, 10, 180, 16);
       const hColor = s.health > 60 ? "#2ecc71" : s.health > 30 ? "#f39c12" : "#e74c3c";
       ctx.fillStyle = hColor;
-      ctx.fillRect(10, 10, 200 * (s.health / MAX_HEALTH), 18);
+      ctx.fillRect(10, 10, 180 * (s.health / MAX_HEALTH), 16);
       ctx.strokeStyle = "#fff";
       ctx.lineWidth = 1;
-      ctx.strokeRect(10, 10, 200, 18);
+      ctx.strokeRect(10, 10, 180, 16);
       ctx.fillStyle = "#fff";
-      ctx.font = "12px sans-serif";
-      ctx.fillText("HP", 14, 24);
+      ctx.font = "11px sans-serif";
+      ctx.fillText("HP", 14, 23);
 
+      // Best score label
+      ctx.fillStyle = "#f1c40f";
+      ctx.font = "11px sans-serif";
+      ctx.fillText(`BEST: ${s.bestScore}`, 10, 44);
+
+      // Score (top right)
       ctx.fillStyle = "#fff";
-      ctx.font = "bold 18px sans-serif";
+      ctx.font = "bold 20px sans-serif";
       ctx.textAlign = "right";
-      ctx.fillText(`${s.score}`, W - 10, 28);
-      ctx.font = "13px sans-serif";
-      ctx.fillText(`×${s.combo} combo`, W - 10, 44);
+      ctx.fillText(`${s.score}`, W - 10, 26);
+
+      // Combo multiplier (prominent, color-coded)
+      if (s.combo >= 2) {
+        const comboColor = s.combo >= 20 ? "#e74c3c" : s.combo >= 10 ? "#e67e22" : s.combo >= 5 ? "#f1c40f" : "#2ecc71";
+        ctx.fillStyle = comboColor;
+        ctx.font = `bold ${s.combo >= 10 ? 16 : 14}px sans-serif`;
+        ctx.fillText(`×${s.combo} COMBO`, W - 10, 46);
+      } else {
+        ctx.fillStyle = "#aaa";
+        ctx.font = "13px sans-serif";
+        ctx.fillText(`×1`, W - 10, 46);
+      }
       ctx.textAlign = "left";
 
       // Red/Blue legend
@@ -384,49 +380,83 @@ function GameUI() {
 
       // Overlays
       if (s.phase === "menu") {
-        ctx.fillStyle = "rgba(0,0,0,0.8)";
+        ctx.fillStyle = "rgba(0,0,0,0.82)";
         ctx.fillRect(0, 0, W, H);
         ctx.fillStyle = "#e74c3c";
         ctx.font = "bold 44px sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText("BEAT SABER", W / 2, 140);
+        ctx.fillText("BEAT SABER", W / 2, 110);
         ctx.fillStyle = "#3498db";
-        ctx.fillText("WEB", W / 2, 185);
-        ctx.fillStyle = "#fff";
-        ctx.font = "15px sans-serif";
-        ctx.fillText("Swipe/drag to slash approaching blocks", W / 2, 235);
-        ctx.fillText("← swipe left for RED blocks", W / 2, 260);
-        ctx.fillText("→ swipe right for BLUE blocks", W / 2, 285);
+        ctx.fillText("WEB", W / 2, 155);
 
-        const difficulties: Array<"easy" | "normal" | "hard"> = ["easy", "normal", "hard"];
-        const colors = ["#2ecc71", "#f39c12", "#e74c3c"];
-        difficulties.forEach((d, i) => {
-          ctx.fillStyle = colors[i];
-          ctx.font = "bold 20px sans-serif";
-          ctx.fillText(`[${d.toUpperCase()}]`, W / 2, 340 + i * 40);
-        });
-        ctx.fillStyle = "#aaa";
+        // Best score on menu
+        if (s.bestScore > 0) {
+          ctx.fillStyle = "#f1c40f";
+          ctx.font = "bold 16px sans-serif";
+          ctx.fillText(`Best Score: ${s.bestScore}`, W / 2, 185);
+        }
+
+        ctx.fillStyle = "#ccc";
         ctx.font = "14px sans-serif";
-        ctx.fillText("Click a difficulty to start", W / 2, 470);
+        ctx.fillText("Swipe/drag to slash approaching blocks", W / 2, 220);
+        ctx.fillStyle = "#e74c3c";
+        ctx.fillText("← swipe LEFT for RED blocks", W / 2, 242);
+        ctx.fillStyle = "#3498db";
+        ctx.fillText("→ swipe RIGHT for BLUE blocks", W / 2, 264);
+
+        // Difficulty buttons — drawn as clickable rects
+        // Y ranges: Easy 318-358, Normal 358-398, Hard 398-438
+        const difficulties: Array<"easy" | "normal" | "hard"> = ["easy", "normal", "hard"];
+        const btnColors = ["#2ecc71", "#f39c12", "#e74c3c"];
+        difficulties.forEach((d, i) => {
+          const btnY = 318 + i * 40;
+          const btnH = 36;
+          ctx.fillStyle = btnColors[i] + "33"; // semi-transparent bg
+          ctx.beginPath();
+          ctx.roundRect(W / 2 - 90, btnY, 180, btnH, 8);
+          ctx.fill();
+          ctx.strokeStyle = btnColors[i];
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.roundRect(W / 2 - 90, btnY, 180, btnH, 8);
+          ctx.stroke();
+          ctx.fillStyle = btnColors[i];
+          ctx.font = "bold 18px sans-serif";
+          ctx.fillText(d.toUpperCase(), W / 2, btnY + 24);
+        });
+
+        ctx.fillStyle = "#888";
+        ctx.font = "13px sans-serif";
+        ctx.fillText("Tap / click a difficulty to start", W / 2, 462);
         ctx.textAlign = "left";
       } else if (s.phase === "gameover") {
-        ctx.fillStyle = "rgba(0,0,0,0.75)";
+        ctx.fillStyle = "rgba(0,0,0,0.78)";
         ctx.fillRect(0, 0, W, H);
         ctx.fillStyle = "#e74c3c";
         ctx.font = "bold 48px sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText("GAME OVER", W / 2, H / 2 - 40);
+        ctx.fillText("GAME OVER", W / 2, H / 2 - 60);
         ctx.fillStyle = "#fff";
         ctx.font = "22px sans-serif";
-        ctx.fillText(`Score: ${s.score}`, W / 2, H / 2 + 5);
-        ctx.fillText(`Max Combo: ×${s.maxCombo}`, W / 2, H / 2 + 35);
+        ctx.fillText(`Score: ${s.score}`, W / 2, H / 2 - 15);
+        ctx.fillText(`Max Combo: ×${s.maxCombo}`, W / 2, H / 2 + 18);
+        // Best score line
+        if (s.score >= s.bestScore && s.score > 0) {
+          ctx.fillStyle = "#f1c40f";
+          ctx.font = "bold 18px sans-serif";
+          ctx.fillText("NEW BEST!", W / 2, H / 2 + 48);
+        } else if (s.bestScore > 0) {
+          ctx.fillStyle = "#f1c40f";
+          ctx.font = "16px sans-serif";
+          ctx.fillText(`Best: ${s.bestScore}`, W / 2, H / 2 + 48);
+        }
         ctx.fillStyle = "#2ecc71";
         ctx.font = "18px sans-serif";
-        ctx.fillText("Click to restart", W / 2, H / 2 + 75);
+        ctx.fillText("Tap / click to restart", W / 2, H / 2 + 85);
         ctx.textAlign = "left";
       }
 
-      setUiState({ score: s.score, combo: s.combo, health: s.health, phase: s.phase });
+      setUiState({ score: s.score, combo: s.combo, health: s.health, phase: s.phase, bestScore: s.bestScore });
       animRef.current = requestAnimationFrame(loop);
     };
 
@@ -434,19 +464,82 @@ function GameUI() {
     return () => cancelAnimationFrame(animRef.current);
   }, [processSlash]);
 
+  const handleMenuClick = useCallback((y: number) => {
+    if (y >= 318 && y < 358) startGame("easy");
+    else if (y >= 358 && y < 398) startGame("normal");
+    else if (y >= 398 && y < 438) startGame("hard");
+    // No fallback — only clicking a button starts the game
+  }, [startGame]);
+
+  // Mouse/touch slash detection
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const getPos = (e: MouseEvent | Touch): { x: number; y: number } => {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: ((e as any).clientX - rect.left) * (W / rect.width),
+        y: ((e as any).clientY - rect.top) * (H / rect.height),
+      };
+    };
+
+    const onDown = (e: MouseEvent) => {
+      stateRef.current.slashStart = getPos(e);
+    };
+    const onUp = (e: MouseEvent) => {
+      const s = stateRef.current;
+      if (!s.slashStart || s.phase !== "playing") { s.slashStart = null; return; }
+      const end = getPos(e);
+      processSlash(s.slashStart, end);
+      s.slashStart = null;
+    };
+    const onTouchStart = (e: TouchEvent) => {
+      e.preventDefault();
+      const pos = getPos(e.touches[0]);
+      stateRef.current.slashStart = pos;
+    };
+    const onTouchEnd = (e: TouchEvent) => {
+      e.preventDefault();
+      const s = stateRef.current;
+      const pos = getPos(e.changedTouches[0]);
+      if (s.phase === "menu") {
+        handleMenuClick(pos.y);
+        s.slashStart = null;
+        return;
+      }
+      if (s.phase === "gameover") {
+        startGame(s.difficulty);
+        s.slashStart = null;
+        return;
+      }
+      if (!s.slashStart) { s.slashStart = null; return; }
+      processSlash(s.slashStart, pos);
+      s.slashStart = null;
+    };
+
+    canvas.addEventListener("mousedown", onDown);
+    canvas.addEventListener("mouseup", onUp);
+    canvas.addEventListener("touchstart", onTouchStart, { passive: false });
+    canvas.addEventListener("touchend", onTouchEnd, { passive: false });
+    return () => {
+      canvas.removeEventListener("mousedown", onDown);
+      canvas.removeEventListener("mouseup", onUp);
+      canvas.removeEventListener("touchstart", onTouchStart);
+      canvas.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [processSlash, startGame, handleMenuClick]);
+
   const handleClick = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
     const s = stateRef.current;
     if (s.phase === "menu") {
       const rect = (e.target as HTMLCanvasElement).getBoundingClientRect();
       const y = (e.clientY - rect.top) * (H / rect.height);
-      if (y >= 310 && y < 360) startGame("easy");
-      else if (y >= 350 && y < 395) startGame("normal");
-      else if (y >= 390 && y < 435) startGame("hard");
-      else startGame("normal");
+      handleMenuClick(y);
     } else if (s.phase === "gameover") {
       startGame(s.difficulty);
     }
-  }, [startGame]);
+  }, [startGame, handleMenuClick]);
 
   return (
     <div className="flex flex-col items-center gap-3 select-none">

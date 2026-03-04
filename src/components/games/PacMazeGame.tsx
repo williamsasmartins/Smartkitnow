@@ -97,6 +97,8 @@ function GameUI() {
   });
   const animRef = useRef<number>(0);
   const [uiState, setUiState] = useState({ score: 0, lives: 3, phase: "menu" as string });
+  const [highScore, setHighScore] = useState(() => parseInt(localStorage.getItem("hs_pac-maze") || "0"));
+  const highScoreRef = useRef(parseInt(localStorage.getItem("hs_pac-maze") || "0"));
 
   const resetPositions = useCallback(() => {
     const s = stateRef.current;
@@ -296,7 +298,14 @@ function GameUI() {
               s.score += 200;
             } else {
               s.lives--;
-              if (s.lives <= 0) { s.phase = "gameover"; }
+              if (s.lives <= 0) {
+                s.phase = "gameover";
+                if (s.score > highScoreRef.current) {
+                  highScoreRef.current = s.score;
+                  try { localStorage.setItem("hs_pac-maze", String(s.score)); } catch {}
+                  setHighScore(s.score);
+                }
+              }
               else { resetPositions(); }
             }
           }
@@ -338,7 +347,6 @@ function GameUI() {
       }
 
       // Draw power pellets (blinking)
-      const s = stateRef.current;
       if (Math.floor(Date.now() / 300) % 2 === 0) {
         for (let r = 0; r < ROWS; r++) {
           for (let c = 0; c < COLS; c++) {
@@ -476,6 +484,10 @@ function GameUI() {
 
   return (
     <div className="flex flex-col items-center gap-3 select-none">
+      <div className="flex gap-6 text-sm font-mono">
+        <span className="text-yellow-400">Score: {uiState.score}</span>
+        {highScore > 0 && <span className="text-purple-400">Best: {highScore}</span>}
+      </div>
       <canvas
         ref={canvasRef}
         width={W}

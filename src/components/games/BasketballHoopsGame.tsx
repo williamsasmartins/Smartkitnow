@@ -29,7 +29,7 @@ function GameUI() {
   const [timeLeft, setTimeLeft] = useState(60);
   const [gameActive, setGameActive] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [highScore, setHighScore] = useState(0);
+  const [highScore, setHighScore] = useState(() => parseInt(localStorage.getItem("hs_basketball-hoops") || "0"));
 
   const scoreRef = useRef(0);
   const timeRef = useRef(60);
@@ -268,7 +268,11 @@ function GameUI() {
         gameActiveRef.current = false;
         setGameOver(true);
         setGameActive(false);
-        setHighScore(prev => Math.max(prev, scoreRef.current));
+        setHighScore(prev => {
+          const ns = Math.max(prev, scoreRef.current);
+          if (scoreRef.current > prev) try { localStorage.setItem("hs_basketball-hoops", String(ns)); } catch {}
+          return ns;
+        });
       }
     }, 1000);
     return () => clearInterval(interval);

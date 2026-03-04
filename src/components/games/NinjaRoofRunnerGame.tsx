@@ -71,6 +71,8 @@ function GameUI() {
   const [lives, setLives] = useState(3);
   const [stars, setStars] = useState(0);
   const [gameState, setGameState] = useState<"idle" | "playing" | "dead" | "over">("idle");
+  const [highScore, setHighScore] = useState(() => parseInt(localStorage.getItem("hs_ninja-roof-runner") || "0"));
+  const highScoreRef = useRef(parseInt(localStorage.getItem("hs_ninja-roof-runner") || "0"));
   const livesRef = useRef(3);
   const starsCountRef = useRef(0);
   const gameStateRef = useRef<"idle" | "playing" | "dead" | "over">("idle");
@@ -464,6 +466,12 @@ function GameUI() {
             if (newLives <= 0) {
               gameStateRef.current = "over";
               setGameState("over");
+              const sc = Math.floor(distanceRef.current);
+              if (sc > highScoreRef.current) {
+                highScoreRef.current = sc;
+                try { localStorage.setItem("hs_ninja-roof-runner", String(sc)); } catch {}
+                setHighScore(sc);
+              }
             }
           }
         }
@@ -495,6 +503,12 @@ function GameUI() {
       if (newLives <= 0) {
         gameStateRef.current = "over";
         setGameState("over");
+        const sc = Math.floor(distanceRef.current);
+        if (sc > highScoreRef.current) {
+          highScoreRef.current = sc;
+          try { localStorage.setItem("hs_ninja-roof-runner", String(sc)); } catch {}
+          setHighScore(sc);
+        }
       } else {
         ninja.y = GROUND_Y - NINJA_H - 20;
         ninja.vy = 0;
@@ -583,6 +597,9 @@ function GameUI() {
 
   return (
     <div className="flex flex-col items-center gap-2 select-none">
+      {highScore > 0 && (
+        <div className="text-sm font-mono text-purple-400">Best: {highScore}m</div>
+      )}
       <canvas
         ref={canvasRef}
         width={W}

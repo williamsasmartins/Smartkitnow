@@ -76,9 +76,24 @@ function GameUI() {
     particles: [] as { x: number; y: number; vx: number; vy: number; life: number; color: string }[],
     frameCount: 0,
     touchStartX: 0,
+    lives: 3,
+    nextNoteColor: NOTE_COLORS[0],
   });
   const animRef = useRef<number>(0);
   const [uiState, setUiState] = useState({ score: 0, phase: "menu" as string });
+  const bestScoreRef = useRef<number>(0);
+
+  // Load best score from localStorage on mount
+  useEffect(() => {
+    try {
+      const stored = parseInt(localStorage.getItem("hs_music-racer") ?? "0", 10);
+      if (!isNaN(stored) && stored > 0) {
+        bestScoreRef.current = stored;
+      }
+    } catch {
+      // localStorage unavailable; ignore
+    }
+  }, []);
 
   const startGame = useCallback(() => {
     if (!audioCtxRef.current) {
@@ -97,6 +112,8 @@ function GameUI() {
     s.particles = [];
     s.lastBeatTime = performance.now();
     s.nextNoteSchedule = 0;
+    s.lives = 3;
+    s.nextNoteColor = NOTE_COLORS[Math.floor(Math.random() * NOTE_COLORS.length)];
   }, []);
 
   useEffect(() => {
@@ -155,11 +172,14 @@ function GameUI() {
           }
           if (s.beatCount % 1 === 0) {
             const lane = Math.floor(Math.random() * LANE_COUNT);
+            const spawnColor = s.nextNoteColor;
+            // Precompute the next note color so the preview is always one ahead
+            s.nextNoteColor = NOTE_COLORS[Math.floor(Math.random() * NOTE_COLORS.length)];
             s.notes.push({
               id: s.noteIdCounter++,
               lane,
               y: -NOTE_R,
-              color: NOTE_COLORS[lane],
+              color: spawnColor,
               hit: false,
               miss: false,
             });
@@ -193,8 +213,30 @@ function GameUI() {
           }
         });
 
+        // Detect missed notes (passed below car zone without being hit)
+        s.notes.forEach((n) => {
+          if (!n.hit && !n.miss && n.y > H - 80 + CAR_H / 2 + NOTE_R) {
+            n.miss = true;
+            s.lives = Math.max(0, s.lives - 1);
+          }
+        });
+
         // Remove off-screen notes
         s.notes = s.notes.filter((n) => n.y < H + NOTE_R);
+
+        // Gameover when all lives lost
+        if (s.lives <= 0 && s.phase === "playing") {
+          s.phase = "gameover";
+          // Persist high score
+          if (s.score > bestScoreRef.current) {
+            bestScoreRef.current = s.score;
+            try {
+              localStorage.setItem("hs_music-racer", String(s.score));
+            } catch {
+              // localStorage unavailable; ignore
+            }
+          }
+        }
 
         // Update particles
         s.particles.forEach((p) => {
@@ -281,32 +323,100 @@ function GameUI() {
       ctx.arc(carX + CAR_W - 8, carY + 4, 4, 0, Math.PI * 2);
       ctx.fill();
 
-      // HUD
-      ctx.fillStyle = "rgba(0,0,0,0.5)";
-      ctx.fillRect(0, 0, W, 44);
-      ctx.fillStyle = "#fff";
-      ctx.font = "bold 20px sans-serif";
-      ctx.textAlign = "left";
+      // HUD background – taller to fit two rows
+      ctx.fillStyle = "rgba(0,0,0,0.6)";
+      ctx.fillRect(0, 0, W, 56);
+
+      // Row 1: Score (left) | Lives hearts (center) | Best (right)
+      ctx.font = "bold 18px sans-serif";
       ctx.textBaseline = "alphabetic";
-      ctx.fillText(`Score: ${stateRef.current.score}`, 12, 30);
+
+      // Score
+      ctx.fillStyle = "#fff";
+      ctx.textAlign = "left";
+      ctx.fillText(`Score: ${s.score}`, 12, 24);
+
+      // Lives as heart symbols
+      const hearts = "♥".repeat(s.lives) + "♡".repeat(Math.max(0, 3 - s.lives));
+      ctx.fillStyle = s.lives === 1 ? "#ff2222" : "#e74c3c";
+      ctx.textAlign = "center";
+      ctx.fillText(hearts, W / 2, 24);
+
+      // Best score
+      ctx.fillStyle = "#f1c40f";
       ctx.textAlign = "right";
-      ctx.fillText(`Speed: ${stateRef.current.noteSpeed.toFixed(1)}x`, W - 12, 30);
+      ctx.fillText(`Best: ${bestScoreRef.current}`, W - 12, 24);
+
+      // Row 2: Speed (left) | Next note preview (right)
+      ctx.font = "14px sans-serif";
+      ctx.fillStyle = "rgba(255,255,255,0.7)";
+      ctx.textAlign = "left";
+      ctx.fillText(`Speed: ${s.noteSpeed.toFixed(1)}x`, 12, 46);
+
+      // Next note color preview
+      ctx.textAlign = "right";
+      ctx.fillStyle = "rgba(255,255,255,0.7)";
+      ctx.fillText("Next:", W - 38, 46);
+      ctx.beginPath();
+      ctx.arc(W - 18, 41, 10, 0, Math.PI * 2);
+      ctx.fillStyle = s.nextNoteColor;
+      ctx.fill();
+      ctx.strokeStyle = "rgba(255,255,255,0.6)";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.fillStyle = "white";
+      ctx.font = "bold 11px sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("♪", W - 18, 41);
 
       // Overlays
       if (s.phase === "menu") {
         ctx.fillStyle = "rgba(0,0,0,0.75)";
         ctx.fillRect(0, 0, W, H);
+        ctx.textBaseline = "alphabetic";
         ctx.fillStyle = "#f39c12";
         ctx.font = "bold 42px sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText("MUSIC RACER", W / 2, H / 2 - 60);
+        ctx.fillText("MUSIC RACER", W / 2, H / 2 - 80);
         ctx.fillStyle = "#fff";
         ctx.font = "18px sans-serif";
-        ctx.fillText("Dodge into music notes!", W / 2, H / 2 - 20);
-        ctx.fillText("← → Arrow keys or Swipe", W / 2, H / 2 + 20);
+        ctx.fillText("Drive into falling music notes!", W / 2, H / 2 - 36);
+        ctx.fillText("← → Arrow keys  |  Swipe on mobile", W / 2, H / 2 - 8);
+        // Best score on menu
+        if (bestScoreRef.current > 0) {
+          ctx.fillStyle = "#f1c40f";
+          ctx.font = "bold 20px sans-serif";
+          ctx.fillText(`Best Score: ${bestScoreRef.current}`, W / 2, H / 2 + 28);
+        }
         ctx.fillStyle = "#2ecc71";
+        ctx.font = "bold 24px sans-serif";
+        ctx.fillText("Click / Tap to Start", W / 2, H / 2 + 80);
+        ctx.textAlign = "left";
+      }
+
+      if (s.phase === "gameover") {
+        ctx.fillStyle = "rgba(0,0,0,0.78)";
+        ctx.fillRect(0, 0, W, H);
+        ctx.textBaseline = "alphabetic";
+        ctx.fillStyle = "#e74c3c";
+        ctx.font = "bold 46px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("GAME OVER", W / 2, H / 2 - 80);
+        ctx.fillStyle = "#fff";
+        ctx.font = "bold 28px sans-serif";
+        ctx.fillText(`Score: ${s.score}`, W / 2, H / 2 - 30);
+        ctx.fillStyle = "#f1c40f";
         ctx.font = "bold 22px sans-serif";
-        ctx.fillText("Click / Tap to Start", W / 2, H / 2 + 70);
+        ctx.fillText(`Best: ${bestScoreRef.current}`, W / 2, H / 2 + 10);
+        if (s.score >= bestScoreRef.current && s.score > 0) {
+          ctx.fillStyle = "#2ecc71";
+          ctx.font = "bold 18px sans-serif";
+          ctx.fillText("NEW BEST SCORE!", W / 2, H / 2 + 40);
+        }
+        ctx.fillStyle = "#2ecc71";
+        ctx.font = "bold 24px sans-serif";
+        ctx.fillText("Click / Tap to Retry", W / 2, H / 2 + 90);
         ctx.textAlign = "left";
       }
 

@@ -54,6 +54,7 @@ function GameUI() {
   const [balls, setBalls] = useState(3);
   const [gameOver, setGameOver] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
+  const [highScore, setHighScore] = useState(() => parseInt(localStorage.getItem("hs_pinball-classic") || "0"));
 
   const scoreRef = useRef(0);
   const ballsRef = useRef(3);
@@ -353,6 +354,11 @@ function GameUI() {
       if (remaining <= 0) {
         gameOverRef.current = true;
         setGameOver(true);
+        setHighScore(hs => {
+          const ns = scoreRef.current > hs ? scoreRef.current : hs;
+          if (scoreRef.current > hs) try { localStorage.setItem("hs_pinball-classic", String(ns)); } catch {}
+          return ns;
+        });
       } else {
         resetBall();
       }
@@ -419,6 +425,11 @@ function GameUI() {
 
   return (
     <div className="flex flex-col items-center gap-2 select-none">
+      <div className="flex gap-6 text-sm font-mono">
+        <span className="text-yellow-400">Score: {score}</span>
+        <span className="text-purple-400">Best: {highScore}</span>
+        <span className="text-red-400">{"🔮".repeat(Math.max(0, balls))}</span>
+      </div>
       <canvas
         ref={canvasRef}
         width={W}

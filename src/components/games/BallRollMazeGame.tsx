@@ -181,6 +181,8 @@ function GameUI() {
   });
   const animRef = useRef<number>(0);
   const [uiState, setUiState] = useState({ level: 1, lives: 3, phase: "menu" as string });
+  const [bestLevel, setBestLevel] = useState(() => parseInt(localStorage.getItem("hs_ball-roll-maze") || "0"));
+  const bestLevelRef = useRef(parseInt(localStorage.getItem("hs_ball-roll-maze") || "0"));
 
   const loadLevel = useCallback((lvlIdx: number) => {
     const lv = LEVELS[lvlIdx];
@@ -292,9 +294,19 @@ function GameUI() {
         if (s.bx > ex.x && s.bx < ex.x + ex.w && s.by > ex.y && s.by < ex.y + ex.h) {
           if (s.level >= LEVELS.length - 1) {
             s.phase = "win";
+            if (LEVELS.length > bestLevelRef.current) {
+              bestLevelRef.current = LEVELS.length;
+              try { localStorage.setItem("hs_ball-roll-maze", String(LEVELS.length)); } catch {}
+              setBestLevel(LEVELS.length);
+            }
           } else {
             s.level++;
             loadLevel(s.level);
+            if (s.level + 1 > bestLevelRef.current) {
+              bestLevelRef.current = s.level + 1;
+              try { localStorage.setItem("hs_ball-roll-maze", String(s.level + 1)); } catch {}
+              setBestLevel(s.level + 1);
+            }
           }
         }
       }
@@ -441,6 +453,9 @@ function GameUI() {
 
   return (
     <div className="flex flex-col items-center gap-3 select-none">
+      {bestLevel > 0 && (
+        <div className="text-sm font-mono text-purple-400">Best: Level {bestLevel}/{LEVELS.length}</div>
+      )}
       <canvas
         ref={canvasRef}
         width={W}

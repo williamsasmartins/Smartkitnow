@@ -76,6 +76,7 @@ function GameUI() {
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
   const [gameState, setGameState] = useState<"idle" | "playing" | "won" | "lost">("idle");
+  const [highScore, setHighScore] = useState(() => parseInt(localStorage.getItem("hs_breakout-retro") || "0"));
   const [activeEffects, setActiveEffects] = useState<Set<PowerUpType>>(new Set());
 
   const scoreRef = useRef(0);
@@ -407,6 +408,11 @@ function GameUI() {
         if (remaining <= 0) {
           gameStateRef.current = "lost";
           setGameState("lost");
+          setHighScore(hs => {
+            const ns = scoreRef.current > hs ? scoreRef.current : hs;
+            if (scoreRef.current > hs) try { localStorage.setItem("hs_breakout-retro", String(ns)); } catch {}
+            return ns;
+          });
         } else {
           resetRound();
         }
@@ -451,6 +457,11 @@ function GameUI() {
 
   return (
     <div className="flex flex-col items-center gap-2 select-none">
+      <div className="flex gap-6 text-sm font-mono">
+        <span className="text-yellow-400">Score: {score}</span>
+        <span className="text-purple-400">Best: {highScore}</span>
+        <span className="text-red-400">{"❤️".repeat(Math.max(0, lives))}</span>
+      </div>
       <div className="flex gap-4 text-xs text-gray-400">
         {["wide", "multi", "slow", "laser"].map(eff => (
           <span key={eff} className={`px-2 py-0.5 rounded font-bold ${activeEffects.has(eff as PowerUpType) ? "bg-blue-600 text-white" : "bg-gray-800 text-gray-500"}`}>

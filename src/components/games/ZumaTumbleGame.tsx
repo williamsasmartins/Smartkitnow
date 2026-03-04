@@ -55,6 +55,8 @@ interface FlyingMarble {
   color: string;
 }
 
+const HS_KEY = "hs_zuma-tumble";
+
 // ─── Game UI ─────────────────────────────────────────────────────────────────
 function GameUI() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -66,13 +68,14 @@ function GameUI() {
     angle: 0,
     lives: 3,
     score: 0,
+    highScore: parseInt(localStorage.getItem(HS_KEY) || "0"),
     phase: "playing" as "playing" | "gameover" | "win",
     idCounter: 0,
     speed: BASE_SPEED,
     frame: 0,
   });
   const animRef = useRef<number>(0);
-  const [display, setDisplay] = useState({ lives: 3, score: 0, phase: "playing" as string, currentColor: COLORS[0], nextColor: COLORS[1] });
+  const [display, setDisplay] = useState({ lives: 3, score: 0, highScore: parseInt(localStorage.getItem(HS_KEY) || "0"), phase: "playing" as string, currentColor: COLORS[0], nextColor: COLORS[1] });
 
   const initChain = useCallback(() => {
     const s = stateRef.current;
@@ -93,6 +96,7 @@ function GameUI() {
     s.phase = "playing";
     s.speed = BASE_SPEED;
     s.frame = 0;
+    s.highScore = parseInt(localStorage.getItem(HS_KEY) || "0");
   }, []);
 
   useEffect(() => {
@@ -197,6 +201,10 @@ function GameUI() {
           s.lives--;
           if (s.lives <= 0) {
             s.phase = "gameover";
+            if (s.score > s.highScore) {
+              s.highScore = s.score;
+              try { localStorage.setItem(HS_KEY, String(s.score)); } catch {}
+            }
           } else {
             // Remove last marble
             const idx = s.marbles.indexOf(alive[alive.length - 1]);
@@ -213,6 +221,10 @@ function GameUI() {
         // Win check
         if (s.marbles.filter((m) => !m.popping).length === 0) {
           s.phase = "win";
+          if (s.score > s.highScore) {
+            s.highScore = s.score;
+            try { localStorage.setItem(HS_KEY, String(s.score)); } catch {}
+          }
         }
 
         // Update flying marble
@@ -341,6 +353,7 @@ function GameUI() {
       ctx.fillStyle = "rgba(255,255,255,0.9)";
       ctx.font = "bold 18px sans-serif";
       ctx.fillText(`Score: ${s.score}`, 10, 28);
+      ctx.fillText(`Best: ${s.highScore}`, 10, 52);
       for (let i = 0; i < s.lives; i++) {
         ctx.beginPath();
         ctx.arc(W - 20 - i * 28, 20, 10, 0, Math.PI * 2);
@@ -363,7 +376,7 @@ function GameUI() {
         ctx.textAlign = "left";
       }
 
-      setDisplay({ lives: s.lives, score: s.score, phase: s.phase, currentColor: s.currentColor, nextColor: s.nextColor });
+      setDisplay({ lives: s.lives, score: s.score, highScore: s.highScore, phase: s.phase, currentColor: s.currentColor, nextColor: s.nextColor });
       animRef.current = requestAnimationFrame(loop);
     };
 
@@ -379,9 +392,10 @@ function GameUI() {
 
   return (
     <div className="flex flex-col items-center gap-3 select-none">
-      <div className="flex gap-6 text-white text-sm font-semibold bg-gray-900 px-4 py-2 rounded-lg">
-        <span>Score: {display.score}</span>
-        <span>Lives: {"♥".repeat(display.lives)}</span>
+      <div className="flex gap-6 text-white text-sm font-semibold bg-gray-900 px-4 py-2 rounded-lg flex-wrap justify-center">
+        <span className="text-yellow-300">Score: {display.score}</span>
+        <span className="text-purple-300">Best: {display.highScore}</span>
+        <span className="text-red-400">{"♥".repeat(Math.max(0, display.lives))}</span>
       </div>
       <canvas
         ref={canvasRef}

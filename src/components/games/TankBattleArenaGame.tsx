@@ -43,6 +43,7 @@ export default function TankBattleArenaGame({
     const [gameState, setGameState] = useState<GameState>("MENU");
     const [score, setScore] = useState(0);
     const [wave, setWave] = useState(1);
+    const [highScore, setHighScore] = useState(() => parseInt(localStorage.getItem("hs_tank-battle-arena") || "0"));
 
     // Refs
     const playerRef = useRef<Tank>({ x: 400, y: 300, angle: 0, hp: 3, active: true, color: "#22c55e", cooldown: 0 });
@@ -287,6 +288,16 @@ export default function TankBattleArenaGame({
                 if (p.hp <= 0) {
                     p.active = false;
                     setGameState("GAME_OVER");
+                    setScore(s => {
+                        setHighScore(hs => {
+                            if (s > hs) {
+                                localStorage.setItem("hs_tank-battle-arena", String(s));
+                                return s;
+                            }
+                            return hs;
+                        });
+                        return s;
+                    });
                 }
             }
         });
@@ -397,7 +408,7 @@ export default function TankBattleArenaGame({
                     isPlaying={gameState === "PLAYING"}
                     isGameOver={gameState === "GAME_OVER"}
                     score={score}
-                    highScore={0}
+                    highScore={highScore}
                     onStart={initGame}
                     onRestart={initGame}
                     gameName="Tank Battle Arena"

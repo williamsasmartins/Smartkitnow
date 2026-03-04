@@ -77,6 +77,8 @@ function GameUI() {
   const [turn, setTurn] = useState<"player" | "ai">("player");
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState("");
+  const [wins, setWins] = useState(() => parseInt(localStorage.getItem("hs_8-ball-pool-lite") || "0"));
+  const winsRef = useRef(parseInt(localStorage.getItem("hs_8-ball-pool-lite") || "0"));
   const turnRef = useRef<"player" | "ai">("player");
   const movingRef = useRef(false);
   const aiTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -280,11 +282,25 @@ function GameUI() {
               if (allDown) {
                 gameOverRef.current = true;
                 setGameOver(true);
-                setWinner(pocketing === "player" ? "You Win!" : "AI Wins!");
+                if (pocketing === "player") {
+                  winsRef.current++;
+                  try { localStorage.setItem("hs_8-ball-pool-lite", String(winsRef.current)); } catch {}
+                  setWins(winsRef.current);
+                  setWinner("You Win!");
+                } else {
+                  setWinner("AI Wins!");
+                }
               } else {
                 gameOverRef.current = true;
                 setGameOver(true);
-                setWinner(pocketing === "player" ? "AI Wins! (8-ball early)" : "You Win! (AI 8-ball early)");
+                if (pocketing === "ai") {
+                  winsRef.current++;
+                  try { localStorage.setItem("hs_8-ball-pool-lite", String(winsRef.current)); } catch {}
+                  setWins(winsRef.current);
+                  setWinner("You Win! (AI 8-ball early)");
+                } else {
+                  setWinner("AI Wins! (8-ball early)");
+                }
               }
             } else {
               const newScores = { ...scoresRef.current };
@@ -397,6 +413,7 @@ function GameUI() {
           {turn === "player" ? "YOUR TURN" : "AI TURN"}
         </span>
         <span>AI: <span className="text-red-400 font-bold">{scores.ai}</span></span>
+        <span>Wins: <span className="text-purple-400 font-bold">{wins}</span></span>
       </div>
       <div className="relative">
         <canvas

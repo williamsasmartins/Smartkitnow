@@ -85,6 +85,8 @@ function GameUI() {
   const stateRef = useRef<GameState>(initState());
   const animRef = useRef<number>(0);
   const [uiState, setUiState] = useState({ playerScore: 0, aiScore: 0, playerSets: 0, aiSets: 0, phase: "menu" as string });
+  const winsRef = useRef(parseInt(localStorage.getItem("hs_table-tennis-pro") || "0"));
+  const [wins, setWins] = useState(winsRef.current);
 
   const startGame = useCallback(() => {
     const s = initState();
@@ -131,6 +133,11 @@ function GameUI() {
       s.playerScore = 0; s.aiScore = 0;
       if (s.playerSets >= SETS_TO_WIN || s.aiSets >= SETS_TO_WIN) {
         s.phase = "gameover";
+        if (s.playerSets >= SETS_TO_WIN) {
+          winsRef.current++;
+          try { localStorage.setItem("hs_table-tennis-pro", String(winsRef.current)); } catch {}
+          setWins(winsRef.current);
+        }
       } else {
         s.phase = "setover";
       }
@@ -483,6 +490,7 @@ function GameUI() {
       <div className="flex gap-6 text-sm font-bold">
         <span className="text-blue-400">YOU: {uiState.playerScore} (Sets: {uiState.playerSets})</span>
         <span className="text-red-400">AI: {uiState.aiScore} (Sets: {uiState.aiSets})</span>
+        <span className="text-purple-400">Wins: {wins}</span>
       </div>
       <canvas
         ref={canvasRef}

@@ -34,6 +34,7 @@ function GameUI() {
   const [arrows, setArrows] = useState<Arrow[]>([]);
   const [arrowsLeft, setArrowsLeft] = useState(10);
   const [totalScore, setTotalScore] = useState(0);
+  const [highScore, setHighScore] = useState(() => parseInt(localStorage.getItem("hs_archery-master") || "0"));
   const [level, setLevel] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [isSteadying, setIsSteadying] = useState(false);
@@ -235,6 +236,11 @@ function GameUI() {
     if (remaining <= 0) {
       gameOverRef.current = true;
       setGameOver(true);
+      setHighScore(hs => {
+        const ns = totalScoreRef.current > hs ? totalScoreRef.current : hs;
+        if (totalScoreRef.current > hs) try { localStorage.setItem("hs_archery-master", String(ns)); } catch {}
+        return ns;
+      });
     }
   }, [initWind]);
 
@@ -307,6 +313,7 @@ function GameUI() {
     <div className="flex flex-col items-center gap-2 select-none">
       <div className="flex gap-3 flex-wrap justify-center text-sm font-mono bg-gray-900 text-white px-3 py-1 rounded-full">
         <span>Score: <span className="text-yellow-400 font-bold">{totalScore}</span>/<span className="text-gray-400">{maxScore}</span></span>
+        <span>Best: <span className="text-purple-400 font-bold">{highScore}</span></span>
         <span>Arrows: <span className="text-green-400 font-bold">{arrowsLeft}</span></span>
         {lastShot !== null && <span>Last: <span className={`font-bold ${lastShot === 10 ? "text-yellow-400" : lastShot >= 7 ? "text-green-400" : lastShot >= 4 ? "text-blue-400" : "text-gray-400"}`}>{lastShot === 0 ? "MISS" : `+${lastShot}`}</span></span>}
       </div>

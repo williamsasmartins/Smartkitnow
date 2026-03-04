@@ -375,6 +375,8 @@ export default function TempleEscapeGame() {
   const [display, setDisplay] = useState<{ phase: GamePhase; score: number; lives: number }>({
     phase: "READY", score: 0, lives: 3,
   });
+  const [highScore, setHighScore] = useState(() => parseInt(localStorage.getItem("hs_temple-escape") || "0"));
+  const highScoreRef = useRef(parseInt(localStorage.getItem("hs_temple-escape") || "0"));
 
   const doJump = useCallback(() => {
     const s = stateRef.current;
@@ -556,6 +558,12 @@ export default function TempleEscapeGame() {
         setTimeout(() => {
           stateRef.current = { ...stateRef.current, phase: "GAME_OVER" };
           setDisplay((d) => ({ ...d, phase: "GAME_OVER" }));
+          const sc = stateRef.current.score;
+          if (sc > highScoreRef.current) {
+            highScoreRef.current = sc;
+            try { localStorage.setItem("hs_temple-escape", String(sc)); } catch {}
+            setHighScore(sc);
+          }
         }, 900);
       }
 
@@ -665,6 +673,9 @@ export default function TempleEscapeGame() {
 
   const widget = (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+      {highScore > 0 && (
+        <div className="text-sm font-mono text-purple-400">Best: {Math.floor(highScore / 10)}m</div>
+      )}
       <div
         style={{
           width: "100%",

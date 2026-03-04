@@ -16,6 +16,25 @@ const MAX_POWER_MS = 600;
 const KICKS_PER_ROUND = 5;
 const BALL_START_X = W / 2;
 const BALL_START_Y = H - 80;
+const HS_KEY = "hs_penalty-shootout";
+
+function loadBestScore(): number {
+  try {
+    const val = localStorage.getItem(HS_KEY);
+    return val !== null ? parseInt(val, 10) : 0;
+  } catch {
+    return 0;
+  }
+}
+
+function saveBestScore(score: number): void {
+  try {
+    const prev = loadBestScore();
+    if (score > prev) localStorage.setItem(HS_KEY, String(score));
+  } catch {
+    // storage unavailable — ignore
+  }
+}
 
 type Phase = "menu" | "player_aim" | "charging" | "ball_flying" | "result" | "ai_turn" | "gameover";
 
@@ -73,6 +92,7 @@ function GameUI() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stateRef = useRef<GameState>(initState());
   const animRef = useRef<number>(0);
+  const bestScoreRef = useRef<number>(loadBestScore());
   const [uiScore, setUiScore] = useState({ player: 0, ai: 0, phase: "menu" as string });
 
   const startGame = useCallback(() => {
@@ -93,25 +113,37 @@ function GameUI() {
 
   const shootAI = useCallback(() => {
     const s = stateRef.current;
-    // AI picks a random spot in the goal
-    const tx = GOAL_LEFT + 20 + Math.random() * (GOAL_W - 40);
+    // AI favours the corners — pick a random corner-weighted target
+    const sideRoll = Math.random();
+    let tx: number;
+    if (sideRoll < 0.4) {
+      // left corner
+      tx = GOAL_LEFT + 15 + Math.random() * 50;
+    } else if (sideRoll < 0.8) {
+      // right corner
+      tx = GOAL_RIGHT - 65 + Math.random() * 50;
+    } else {
+      // centre
+      tx = GOAL_LEFT + 60 + Math.random() * (GOAL_W - 120);
+    }
     const ty = GOAL_TOP + 10 + Math.random() * (GOAL_H - 20);
     s.targetX = tx; s.targetY = ty;
     s.ballX = W / 2; s.ballY = BALL_START_Y;
     s.ballScale = 1;
 
-    // GK dives: with 40% chance block, else dive opposite
-    const blockChance = 0.4;
-    if (Math.random() < blockChance) {
-      s.gkTargetX = tx; // save
-    } else {
-      s.gkTargetX = tx < W / 2 ? GOAL_RIGHT - GK_W / 2 : GOAL_LEFT + GK_W / 2;
-    }
+    // Player-as-GK dives purely to the correct side with reaction error
+    // The GK AI is computed the same way the player GK works: position-reactive
+    const reactionError = (Math.random() - 0.5) * 80;
+    s.gkTargetX = Math.max(
+      GOAL_LEFT + GK_W / 2,
+      Math.min(GOAL_RIGHT - GK_W / 2, tx + reactionError),
+    );
+
     const dx = tx - BALL_START_X;
     const dy = ty - BALL_START_Y;
     const dist = Math.sqrt(dx * dx + dy * dy);
-    s.ballVX = dx / dist * 12;
-    s.ballVY = dy / dist * 12;
+    s.ballVX = (dx / dist) * 12;
+    s.ballVY = (dy / dist) * 12;
     s.phase = "ball_flying";
   }, []);
 
@@ -139,68 +171,113 @@ function GameUI() {
       }
     };
 
-    const handleMouseUp = (e: MouseEvent) => {
+    const handleMouseUp = (_e: MouseEvent) => {
       const s = stateRef.current;
       if (s.phase !== "charging") return;
       const power = Math.min(1, (performance.now() - s.chargeStart) / MAX_POWER_MS);
       s.power = power;
       s.targetX = s.aimX;
       s.targetY = s.aimY;
-      // GK dives based on target position with some AI imperfection
-      const gkBias = (Math.random() - 0.5) * 100;
-      s.gkTargetX = Math.max(GOAL_LEFT + GK_W / 2, Math.min(GOAL_RIGHT - GK_W / 2, s.targetX + gkBias));
+      // GK reacts to shot direction with positional awareness + imperfection
+      const shotSide = s.targetX - W / 2;
+      const reactionNoise = (Math.random() - 0.5) * 90;
+      const predictedX = W / 2 + shotSide * 0.85 + reactionNoise;
+      s.gkTargetX = Math.max(
+        GOAL_LEFT + GK_W / 2,
+        Math.min(GOAL_RIGHT - GK_W / 2, predictedX),
+      );
       const dx = s.targetX - BALL_START_X;
       const dy = s.targetY - BALL_START_Y;
       const dist = Math.sqrt(dx * dx + dy * dy);
       const spd = 8 + power * 8;
-      s.ballVX = dx / dist * spd;
-      s.ballVY = dy / dist * spd;
+      s.ballVX = (dx / dist) * spd;
+      s.ballVY = (dy / dist) * spd;
       s.phase = "ball_flying";
     };
 
-    const handleTouch = (e: TouchEvent) => {
-      e.preventDefault();
-      const s = stateRef.current;
+    const getTouchPos = (e: TouchEvent): { mx: number; my: number } => {
       const rect = canvas.getBoundingClientRect();
       const t = e.touches[0] || e.changedTouches[0];
-      const mx = (t.clientX - rect.left) * (W / rect.width);
-      const my = (t.clientY - rect.top) * (H / rect.height);
-      s.aimX = Math.max(GOAL_LEFT + 5, Math.min(GOAL_RIGHT - 5, mx));
-      s.aimY = Math.max(GOAL_TOP + 5, Math.min(GOAL_BOTTOM - 5, my));
-      if (s.phase === "player_aim") {
-        s.phase = "charging";
-        s.chargeStart = performance.now();
-      }
+      return {
+        mx: (t.clientX - rect.left) * (W / rect.width),
+        my: (t.clientY - rect.top) * (H / rect.height),
+      };
     };
 
-    const handleTouchEnd = () => {
+    const clampAim = (mx: number, my: number) => ({
+      ax: Math.max(GOAL_LEFT + 5, Math.min(GOAL_RIGHT - 5, mx)),
+      ay: Math.max(GOAL_TOP + 5, Math.min(GOAL_BOTTOM - 5, my)),
+    });
+
+    const handleTouchStart = (e: TouchEvent) => {
+      e.preventDefault();
+      const s = stateRef.current;
+      if (s.phase === "menu" || s.phase === "gameover") {
+        startGame();
+        return;
+      }
+      if (s.phase !== "player_aim") return;
+      const { mx, my } = getTouchPos(e);
+      const { ax, ay } = clampAim(mx, my);
+      s.aimX = ax;
+      s.aimY = ay;
+      s.phase = "charging";
+      s.chargeStart = performance.now();
+      s.power = 0;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
       const s = stateRef.current;
       if (s.phase !== "charging") return;
+      const { mx, my } = getTouchPos(e);
+      const { ax, ay } = clampAim(mx, my);
+      s.aimX = ax;
+      s.aimY = ay;
+    };
+
+    const fireShot = (s: GameState) => {
       const power = Math.min(1, (performance.now() - s.chargeStart) / MAX_POWER_MS);
       s.power = power;
       s.targetX = s.aimX;
       s.targetY = s.aimY;
-      const gkBias = (Math.random() - 0.5) * 100;
-      s.gkTargetX = Math.max(GOAL_LEFT + GK_W / 2, Math.min(GOAL_RIGHT - GK_W / 2, s.targetX + gkBias));
+      // GK reacts to shot direction with positional awareness + imperfection
+      // Keeper dives toward the shot side; corners beat a slow keeper
+      const shotSide = s.targetX - W / 2; // negative = left, positive = right
+      const reactionNoise = (Math.random() - 0.5) * 90;
+      const predictedX = W / 2 + shotSide * 0.85 + reactionNoise;
+      s.gkTargetX = Math.max(
+        GOAL_LEFT + GK_W / 2,
+        Math.min(GOAL_RIGHT - GK_W / 2, predictedX),
+      );
       const dx = s.targetX - BALL_START_X;
       const dy = s.targetY - BALL_START_Y;
       const dist = Math.sqrt(dx * dx + dy * dy);
       const spd = 8 + power * 8;
-      s.ballVX = dx / dist * spd;
-      s.ballVY = dy / dist * spd;
+      s.ballVX = (dx / dist) * spd;
+      s.ballVY = (dy / dist) * spd;
       s.phase = "ball_flying";
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      e.preventDefault();
+      const s = stateRef.current;
+      if (s.phase !== "charging") return;
+      fireShot(s);
     };
 
     canvas.addEventListener("mousemove", handleMouseMove);
     canvas.addEventListener("mousedown", handleMouseDown);
     canvas.addEventListener("mouseup", handleMouseUp);
-    canvas.addEventListener("touchstart", handleTouch, { passive: false });
+    canvas.addEventListener("touchstart", handleTouchStart, { passive: false });
+    canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
     canvas.addEventListener("touchend", handleTouchEnd, { passive: false });
     return () => {
       canvas.removeEventListener("mousemove", handleMouseMove);
       canvas.removeEventListener("mousedown", handleMouseDown);
       canvas.removeEventListener("mouseup", handleMouseUp);
-      canvas.removeEventListener("touchstart", handleTouch);
+      canvas.removeEventListener("touchstart", handleTouchStart);
+      canvas.removeEventListener("touchmove", handleTouchMove);
       canvas.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);
@@ -255,6 +332,8 @@ function GameUI() {
         if (s.resultTimer <= 0) {
           s.roundKick++;
           if (s.roundKick >= KICKS_PER_ROUND * 2) {
+            saveBestScore(s.playerScore);
+            bestScoreRef.current = loadBestScore();
             s.phase = "gameover";
           } else if (s.roundKick % 2 === 0) {
             // Player's turn again
@@ -426,23 +505,17 @@ function GameUI() {
       ctx.font = "bold 20px sans-serif";
       ctx.textAlign = "center";
       ctx.fillText(`YOU ${s.playerScore}  —  ${s.aiScore} AI`, W / 2, 32);
+      // Best score HUD (top-right)
+      const bestNow = bestScoreRef.current;
+      if (bestNow > 0) {
+        ctx.fillStyle = "#ffd700";
+        ctx.font = "12px sans-serif";
+        ctx.textAlign = "right";
+        ctx.fillText(`Best: ${bestNow}`, W - 8, 18);
+        ctx.textAlign = "left";
+      }
 
       // Kick indicators
-      const kicksForKick = (kicks: boolean[], total: number) => {
-        for (let i = 0; i < total; i++) {
-          ctx.beginPath();
-          ctx.arc(0, 0, 7, 0, Math.PI * 2);
-          if (i < kicks.length) {
-            ctx.fillStyle = kicks[i] ? "#2ecc71" : "#e74c3c";
-          } else {
-            ctx.fillStyle = "rgba(255,255,255,0.2)";
-          }
-          ctx.fill();
-          ctx.strokeStyle = "rgba(255,255,255,0.5)";
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-      };
       ctx.save();
       ctx.translate(W / 2 - 120, H - 24);
       for (let i = 0; i < KICKS_PER_ROUND; i++) {
@@ -490,15 +563,22 @@ function GameUI() {
         ctx.fillStyle = "#2ecc71";
         ctx.font = "bold 46px sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText("PENALTY", W / 2, H / 2 - 70);
-        ctx.fillText("SHOOTOUT", W / 2, H / 2 - 20);
+        ctx.fillText("PENALTY", W / 2, H / 2 - 80);
+        ctx.fillText("SHOOTOUT", W / 2, H / 2 - 30);
         ctx.fillStyle = "#fff";
         ctx.font = "17px sans-serif";
-        ctx.fillText("5 kicks each. Best of 5 wins!", W / 2, H / 2 + 30);
-        ctx.fillText("Hold mouse/touch inside goal to power up kick.", W / 2, H / 2 + 60);
+        ctx.fillText("5 kicks each. Best of 5 wins!", W / 2, H / 2 + 22);
+        ctx.fillText("Aim in goal → Hold to charge → Release to shoot", W / 2, H / 2 + 48);
+        // Best score badge
+        const best = bestScoreRef.current;
+        if (best > 0) {
+          ctx.fillStyle = "#ffd700";
+          ctx.font = "bold 18px sans-serif";
+          ctx.fillText(`Best Score: ${best} / ${KICKS_PER_ROUND}`, W / 2, H / 2 + 82);
+        }
         ctx.fillStyle = "#ffd700";
         ctx.font = "bold 22px sans-serif";
-        ctx.fillText("Click / Tap to Start", W / 2, H / 2 + 110);
+        ctx.fillText("Click / Tap to Start", W / 2, H / 2 + 118);
         ctx.textAlign = "left";
       } else if (s.phase === "gameover") {
         ctx.fillStyle = "rgba(0,0,0,0.8)";
@@ -507,13 +587,21 @@ function GameUI() {
         ctx.fillStyle = s.playerScore > s.aiScore ? "#2ecc71" : s.playerScore === s.aiScore ? "#f39c12" : "#e74c3c";
         ctx.font = "bold 54px sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText(winner, W / 2, H / 2 - 30);
+        ctx.shadowColor = "#000";
+        ctx.shadowBlur = 12;
+        ctx.fillText(winner, W / 2, H / 2 - 40);
+        ctx.shadowBlur = 0;
         ctx.fillStyle = "#fff";
         ctx.font = "26px sans-serif";
-        ctx.fillText(`${s.playerScore} — ${s.aiScore}`, W / 2, H / 2 + 25);
+        ctx.fillText(`${s.playerScore} — ${s.aiScore}`, W / 2, H / 2 + 15);
+        // Best score display
+        const best = bestScoreRef.current;
+        ctx.fillStyle = "#ffd700";
+        ctx.font = "bold 18px sans-serif";
+        ctx.fillText(`Best Score: ${best} / ${KICKS_PER_ROUND}`, W / 2, H / 2 + 50);
         ctx.fillStyle = "#aaa";
         ctx.font = "18px sans-serif";
-        ctx.fillText("Click to play again", W / 2, H / 2 + 70);
+        ctx.fillText("Click / Tap to play again", W / 2, H / 2 + 85);
         ctx.textAlign = "left";
       }
 
