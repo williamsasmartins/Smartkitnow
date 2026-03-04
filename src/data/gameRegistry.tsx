@@ -60,6 +60,21 @@ import SolitaireKlondikeGame from "../components/games/SolitaireKlondikeGame";
 import UnoFriendsGame from "../components/games/UnoFriendsGame";
 import JewelHunterGame from "../components/games/JewelHunterGame";
 import FruitSplashGame from "../components/games/FruitSplashGame";
+import ZumaTumbleGame from "../components/games/ZumaTumbleGame";
+import MusicRacerGame from "../components/games/MusicRacerGame";
+import BeatSaberWebGame from "../components/games/BeatSaberWebGame";
+import PacMazeGame from "../components/games/PacMazeGame";
+import BallRollMazeGame from "../components/games/BallRollMazeGame";
+import ScaryMazeGame from "../components/games/ScaryMazeGame";
+import PenaltyShootoutGame from "../components/games/PenaltyShootoutGame";
+import TableTennisProGame from "../components/games/TableTennisProGame";
+import MazeRunner3DGame from "../components/games/MazeRunner3DGame";
+import EightBallPoolGame from "../components/games/EightBallPoolGame";
+import ArcheryMasterGame from "../components/games/ArcheryMasterGame";
+import MinesweeperXPGame from "../components/games/MinesweeperXPGame";
+import PinballClassicGame from "../components/games/PinballClassicGame";
+import BreakoutRetroGame from "../components/games/BreakoutRetroGame";
+import NinjaRoofRunnerGame from "../components/games/NinjaRoofRunnerGame";
 
 export type GameCategory =
     | "arcade"
@@ -205,7 +220,7 @@ export const GAME_REGISTRY: GameEntry[] = RAW_GAMES.map(game => {
     if (game.slug === "cyber-pinball") return { ...game, component: PinballNeonGame, useCustomLayout: true };
     if (game.slug === "bubble-shooter-pop") return { ...game, component: BubbleShooterGame, useCustomLayout: true };
     if (game.slug === "brick-dash") return { ...game, component: BrickDashGame, useCustomLayout: true };
-    if (game.slug === "ninja-roof-runner") return { ...game, component: BrickDashGame, useCustomLayout: true };
+    if (game.slug === "ninja-roof-runner") return { ...game, component: NinjaRoofRunnerGame, useCustomLayout: true };
     if (game.slug === "tank-battle-arena") return { ...game, component: TankBattleArenaGame, useCustomLayout: true };
     if (game.slug === "pac-runner") return { ...game, component: PacRunnerGame, useCustomLayout: true };
 
@@ -255,6 +270,20 @@ export const GAME_REGISTRY: GameEntry[] = RAW_GAMES.map(game => {
     if (game.slug === "uno-friends") return { ...game, component: UnoFriendsGame, useCustomLayout: true };
     if (game.slug === "jewel-hunter") return { ...game, component: JewelHunterGame, useCustomLayout: true };
     if (game.slug === "fruit-splash") return { ...game, component: FruitSplashGame, useCustomLayout: true };
+    if (game.slug === "zuma-tumble") return { ...game, component: ZumaTumbleGame, useCustomLayout: true };
+    if (game.slug === "music-racer") return { ...game, component: MusicRacerGame, useCustomLayout: true };
+    if (game.slug === "beat-saber-web") return { ...game, component: BeatSaberWebGame, useCustomLayout: true };
+    if (game.slug === "pac-maze") return { ...game, component: PacMazeGame, useCustomLayout: true };
+    if (game.slug === "ball-roll-maze") return { ...game, component: BallRollMazeGame, useCustomLayout: true };
+    if (game.slug === "scary-maze") return { ...game, component: ScaryMazeGame, useCustomLayout: true };
+    if (game.slug === "penalty-shootout") return { ...game, component: PenaltyShootoutGame, useCustomLayout: true };
+    if (game.slug === "table-tennis-pro") return { ...game, component: TableTennisProGame, useCustomLayout: true };
+    if (game.slug === "maze-runner-3d") return { ...game, component: MazeRunner3DGame, useCustomLayout: true };
+    if (game.slug === "8-ball-pool-lite") return { ...game, component: EightBallPoolGame, useCustomLayout: true };
+    if (game.slug === "archery-master") return { ...game, component: ArcheryMasterGame, useCustomLayout: true };
+    if (game.slug === "minesweeper-xp") return { ...game, component: MinesweeperXPGame, useCustomLayout: true };
+    if (game.slug === "pinball-classic") return { ...game, component: PinballClassicGame, useCustomLayout: true };
+    if (game.slug === "breakout-retro") return { ...game, component: BreakoutRetroGame, useCustomLayout: true };
 
     // DEFAULT FALLBACK FOR ALL OTHER GAMES
     return {
