@@ -39,6 +39,27 @@ import DifferencesFinderGame from "../components/games/DifferencesFinderGame";
 import RubiksCube3x3Game from "../components/games/RubiksCube3x3Game";
 import ChessMasterAIGame from "../components/games/ChessMasterAIGame";
 import CrosswordDailyGame from "../components/games/CrosswordDailyGame";
+import CosmicDashGame from "../components/games/CosmicDashGame";
+import TempleEscapeGame from "../components/games/TempleEscapeGame";
+import HexaPuzzleGame from "../components/games/HexaPuzzleGame";
+import SpeedCuberTimerGame from "../components/games/SpeedCuberTimerGame";
+import CubeSolverAIGame from "../components/games/CubeSolverAIGame";
+import ScrabbleSoloGame from "../components/games/ScrabbleSoloGame";
+import MathBlasterGame from "../components/games/MathBlasterGame";
+import BackgammonLiveGame from "../components/games/BackgammonLiveGame";
+import BaccaratRoyaleGame from "../components/games/BaccaratRoyaleGame";
+import SpiderSolitaireGame from "../components/games/SpiderSolitaireGame";
+import CandyBurstGame from "../components/games/CandyBurstGame";
+import DrumKitProGame from "../components/games/DrumKitProGame";
+import BasketballHoopsGame from "../components/games/BasketballHoopsGame";
+import PipeConnectGame from "../components/games/PipeConnectGame";
+import FractionPizzaGame from "../components/games/FractionPizzaGame";
+import CheckersOnlineGame from "../components/games/CheckersOnlineGame";
+import LudoPartyGame from "../components/games/LudoPartyGame";
+import SolitaireKlondikeGame from "../components/games/SolitaireKlondikeGame";
+import UnoFriendsGame from "../components/games/UnoFriendsGame";
+import JewelHunterGame from "../components/games/JewelHunterGame";
+import FruitSplashGame from "../components/games/FruitSplashGame";
 
 export type GameCategory =
     | "arcade"
@@ -213,6 +234,27 @@ export const GAME_REGISTRY: GameEntry[] = RAW_GAMES.map(game => {
     if (game.slug === "rubiks-cube-3x3") return { ...game, component: RubiksCube3x3Game, useCustomLayout: true };
     if (game.slug === "chess-master-ai") return { ...game, component: ChessMasterAIGame, useCustomLayout: true };
     if (game.slug === "crossword-daily") return { ...game, component: CrosswordDailyGame, useCustomLayout: true };
+    if (game.slug === "cosmic-dash") return { ...game, component: CosmicDashGame, useCustomLayout: true };
+    if (game.slug === "temple-escape") return { ...game, component: TempleEscapeGame, useCustomLayout: true };
+    if (game.slug === "hexa-puzzle") return { ...game, component: HexaPuzzleGame, useCustomLayout: true };
+    if (game.slug === "speed-cuber-timer") return { ...game, component: SpeedCuberTimerGame, useCustomLayout: true };
+    if (game.slug === "cube-solver-ai") return { ...game, component: CubeSolverAIGame, useCustomLayout: true };
+    if (game.slug === "scrabble-solo") return { ...game, component: ScrabbleSoloGame, useCustomLayout: true };
+    if (game.slug === "math-blaster") return { ...game, component: MathBlasterGame, useCustomLayout: true };
+    if (game.slug === "backgammon-live") return { ...game, component: BackgammonLiveGame, useCustomLayout: true };
+    if (game.slug === "baccarat-royale") return { ...game, component: BaccaratRoyaleGame, useCustomLayout: true };
+    if (game.slug === "spider-solitaire") return { ...game, component: SpiderSolitaireGame, useCustomLayout: true };
+    if (game.slug === "candy-crush-clone") return { ...game, component: CandyBurstGame, useCustomLayout: true };
+    if (game.slug === "drum-kit-pro") return { ...game, component: DrumKitProGame, useCustomLayout: true };
+    if (game.slug === "basketball-hoops") return { ...game, component: BasketballHoopsGame, useCustomLayout: true };
+    if (game.slug === "pipe-connect") return { ...game, component: PipeConnectGame, useCustomLayout: true };
+    if (game.slug === "fraction-pizza") return { ...game, component: FractionPizzaGame, useCustomLayout: true };
+    if (game.slug === "checkers-online") return { ...game, component: CheckersOnlineGame, useCustomLayout: true };
+    if (game.slug === "ludo-party") return { ...game, component: LudoPartyGame, useCustomLayout: true };
+    if (game.slug === "solitaire-klondike") return { ...game, component: SolitaireKlondikeGame, useCustomLayout: true };
+    if (game.slug === "uno-friends") return { ...game, component: UnoFriendsGame, useCustomLayout: true };
+    if (game.slug === "jewel-hunter") return { ...game, component: JewelHunterGame, useCustomLayout: true };
+    if (game.slug === "fruit-splash") return { ...game, component: FruitSplashGame, useCustomLayout: true };
 
     // DEFAULT FALLBACK FOR ALL OTHER GAMES
     return {
