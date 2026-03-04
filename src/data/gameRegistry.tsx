@@ -196,6 +196,7 @@ export const GAME_REGISTRY: GameEntry[] = RAW_GAMES.map(game => {
     if (game.slug === "piano-tiles-speed") return { ...game, component: PianoTilesGame, useCustomLayout: true };
     if (game.slug === "word-search-pro") return { ...game, component: WordSearchProGame, useCustomLayout: true };
     if (game.slug === "24-game") return { ...game, component: TwentyFourGame, useCustomLayout: true };
+    if (game.slug === "geometry-dash-lite") return { ...game, component: GeometryDashGame, useCustomLayout: true };
 
     // DEFAULT FALLBACK FOR ALL OTHER GAMES
     return {
