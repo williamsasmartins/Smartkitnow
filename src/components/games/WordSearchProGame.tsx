@@ -21,7 +21,7 @@ interface CellState {
   highlight: string | null; // color if found
 }
 
-interface SelectionState {
+type SelectionState = {
   startRow: number;
   startCol: number;
   endRow: number;
