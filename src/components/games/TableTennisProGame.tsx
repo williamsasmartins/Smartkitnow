@@ -436,7 +436,6 @@ function GameUI() {
       }
 
       // Overlays
-      const s = stateRef.current;
       if (s.phase === "menu") {
         ctx.fillStyle = "rgba(0,0,0,0.82)";
         ctx.fillRect(0, 0, W, H);
