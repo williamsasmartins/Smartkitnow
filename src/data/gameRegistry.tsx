@@ -31,6 +31,14 @@ import PianoTilesGame from "../components/games/PianoTilesGame";
 import WordSearchProGame from "../components/games/WordSearchProGame";
 import TwentyFourGame from "../components/games/TwentyFourGame";
 import GeometryDashGame from "../components/games/GeometryDashGame";
+import SubwaySurferLiteGame from "../components/games/SubwaySurferLiteGame";
+import JigsawExplorerGame from "../components/games/JigsawExplorerGame";
+import TangramMasterGame from "../components/games/TangramMasterGame";
+import BlockPuzzleJewelGame from "../components/games/BlockPuzzleJewelGame";
+import DifferencesFinderGame from "../components/games/DifferencesFinderGame";
+import RubiksCube3x3Game from "../components/games/RubiksCube3x3Game";
+import ChessMasterAIGame from "../components/games/ChessMasterAIGame";
+import CrosswordDailyGame from "../components/games/CrosswordDailyGame";
 
 export type GameCategory =
     | "arcade"
@@ -197,6 +205,14 @@ export const GAME_REGISTRY: GameEntry[] = RAW_GAMES.map(game => {
     if (game.slug === "word-search-pro") return { ...game, component: WordSearchProGame, useCustomLayout: true };
     if (game.slug === "24-game") return { ...game, component: TwentyFourGame, useCustomLayout: true };
     if (game.slug === "geometry-dash-lite") return { ...game, component: GeometryDashGame, useCustomLayout: true };
+    if (game.slug === "subway-surfer-lite") return { ...game, component: SubwaySurferLiteGame, useCustomLayout: true };
+    if (game.slug === "jigsaw-explorer") return { ...game, component: JigsawExplorerGame, useCustomLayout: true };
+    if (game.slug === "tangram-master") return { ...game, component: TangramMasterGame, useCustomLayout: true };
+    if (game.slug === "block-puzzle-jewel") return { ...game, component: BlockPuzzleJewelGame, useCustomLayout: true };
+    if (game.slug === "differences-finder") return { ...game, component: DifferencesFinderGame, useCustomLayout: true };
+    if (game.slug === "rubiks-cube-3x3") return { ...game, component: RubiksCube3x3Game, useCustomLayout: true };
+    if (game.slug === "chess-master-ai") return { ...game, component: ChessMasterAIGame, useCustomLayout: true };
+    if (game.slug === "crossword-daily") return { ...game, component: CrosswordDailyGame, useCustomLayout: true };
 
     // DEFAULT FALLBACK FOR ALL OTHER GAMES
     return {
