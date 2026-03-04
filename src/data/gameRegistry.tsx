@@ -14,13 +14,23 @@ import WordleUnlimitedGame from "../components/games/WordleUnlimitedGame";
 import TankBattleArenaGame from "../components/games/TankBattleArenaGame";
 import PacRunnerGame from "../components/games/PacRunnerGame";
 // import CrossyStreetGame from "../components/games/CrossyStreetGame";
-// --- Batch 1: New games ---
+// --- New fully-implemented games ---
 import TetrisBlocksGame from "../components/games/TetrisBlocksGame";
 import Connect4ProGame from "../components/games/Connect4ProGame";
 import MinesweeperProGame from "../components/games/MinesweeperProGame";
 import HangmanExtremeGame from "../components/games/HangmanExtremeGame";
 import TypingRacerGame from "../components/games/TypingRacerGame";
 import DinoRunGame from "../components/games/DinoRunGame";
+import Game2048Classic from "../components/games/Game2048Classic";
+import SimonSaysGame from "../components/games/SimonSaysGame";
+import SnakeClassicGame from "../components/games/SnakeClassicGame";
+import MemoryMatchGame from "../components/games/MemoryMatchGame";
+import WaterSortGame from "../components/games/WaterSortGame";
+import MentalMathGymGame from "../components/games/MentalMathGymGame";
+import PianoTilesGame from "../components/games/PianoTilesGame";
+import WordSearchProGame from "../components/games/WordSearchProGame";
+import TwentyFourGame from "../components/games/TwentyFourGame";
+import GeometryDashGame from "../components/games/GeometryDashGame";
 
 export type GameCategory =
     | "arcade"
@@ -170,13 +180,22 @@ export const GAME_REGISTRY: GameEntry[] = RAW_GAMES.map(game => {
     if (game.slug === "tank-battle-arena") return { ...game, component: TankBattleArenaGame, useCustomLayout: true };
     if (game.slug === "pac-runner") return { ...game, component: PacRunnerGame, useCustomLayout: true };
 
-    // --- Batch 1: New fully-implemented games (CalculatorVerticalLayout, self-contained) ---
+    // --- New fully-implemented games (all use CalculatorVerticalLayout internally) ---
     if (game.slug === "tetris-blocks") return { ...game, component: TetrisBlocksGame, useCustomLayout: true };
     if (game.slug === "connect-4-pro") return { ...game, component: Connect4ProGame, useCustomLayout: true };
     if (game.slug === "minesweeper-pro") return { ...game, component: MinesweeperProGame, useCustomLayout: true };
     if (game.slug === "hangman-extreme") return { ...game, component: HangmanExtremeGame, useCustomLayout: true };
     if (game.slug === "typing-racer") return { ...game, component: TypingRacerGame, useCustomLayout: true };
     if (game.slug === "dino-run-3d") return { ...game, component: DinoRunGame, useCustomLayout: true };
+    if (game.slug === "2048-classic") return { ...game, component: Game2048Classic, useCustomLayout: true };
+    if (game.slug === "simon-says") return { ...game, component: SimonSaysGame, useCustomLayout: true };
+    if (game.slug === "snake-classic") return { ...game, component: SnakeClassicGame, useCustomLayout: true };
+    if (game.slug === "memory-match-cards") return { ...game, component: MemoryMatchGame, useCustomLayout: true };
+    if (game.slug === "water-sort") return { ...game, component: WaterSortGame, useCustomLayout: true };
+    if (game.slug === "mental-math-gym") return { ...game, component: MentalMathGymGame, useCustomLayout: true };
+    if (game.slug === "piano-tiles-speed") return { ...game, component: PianoTilesGame, useCustomLayout: true };
+    if (game.slug === "word-search-pro") return { ...game, component: WordSearchProGame, useCustomLayout: true };
+    if (game.slug === "24-game") return { ...game, component: TwentyFourGame, useCustomLayout: true };
 
     // DEFAULT FALLBACK FOR ALL OTHER GAMES
     return {
