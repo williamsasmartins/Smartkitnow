@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { useSearchParams, useNavigate, Link } from "react-router-dom";
-import { REGISTRY } from "@/data/calculatorRegistry";
+import { calculatorRegistry } from "@/data/calculatorRegistry";
 import { GAMES } from "@/data/gamesRegistry";
 import { getCategoryMeta, getDisplaySubcategory } from "@/data/categoryMeta";
 import AdBannerTop from "@/components/ads/AdBannerTop";
@@ -34,7 +34,7 @@ export default function Search() {
     if (!q) return [];
     const needle = q.toLowerCase();
 
-    const calcMatches: SearchResult[] = REGISTRY.filter((e) => {
+    const calcMatches: SearchResult[] = calculatorRegistry.filter((e) => {
       const displayCat = getCategoryMeta(e.category)?.display || "";
       const displaySub = e.subcategory ? getDisplaySubcategory(e.category, e.subcategory) : "";
 
