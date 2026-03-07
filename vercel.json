@@ -54,6 +54,546 @@
   ],
   "redirects": [
     {
+      "source": "/pets/cat-bcs-helper/",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/pets/cat-bcs-helper",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/culinary/italian/calzone/",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/culinary/italian/calzone",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/culinary/chicken-cacciatore/",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/culinary/chicken-cacciatore",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/pets/reptile-uvb-distance/",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/pets/reptile-uvb-distance",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/pets/cat-phosphorus-per-meal/",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/pets/cat-phosphorus-per-meal",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/everyday-life/utilities/qr-code-generator/",
+      "destination": "/everyday",
+      "permanent": true
+    },
+    {
+      "source": "/everyday-life/utilities/qr-code-generator",
+      "destination": "/everyday",
+      "permanent": true
+    },
+    {
+      "source": "/financial/savings-rate-tracker/",
+      "destination": "/financial",
+      "permanent": true
+    },
+    {
+      "source": "/financial/savings-rate-tracker",
+      "destination": "/financial",
+      "permanent": true
+    },
+    {
+      "source": "/pets/cat-stress-score-playtime-offset/",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/math/shapes-area-volume-pack/",
+      "destination": "/math",
+      "permanent": true
+    },
+    {
+      "source": "/math/shapes-area-volume-pack",
+      "destination": "/math",
+      "permanent": true
+    },
+    {
+      "source": "/tv/lb-cc-converter/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/tv/lb-cc-converter",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/smart-tips/commute-cost-time/",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/smart-tips/commute-cost-time",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/culinary/italian/arugula-and-parmesan-salad/",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/culinary/italian/arugula-and-parmesan-salad",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/culinary/mexican/queso-fundido/",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/culinary/mexican/queso-fundido",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/video/animation-render-duration-estimator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/animation-render-duration-estimator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/speaker-crossover-calculator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/speaker-crossover-calculator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/pt/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/math/lcm-calculator/",
+      "destination": "/math",
+      "permanent": true
+    },
+    {
+      "source": "/math/lcm-calculator",
+      "destination": "/math",
+      "permanent": true
+    },
+    {
+      "source": "/video/h264-h265-target-bitrate-helper-resolution-fps/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/h264-h265-target-bitrate-helper-resolution-fps",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/render-time-per-frame-calculator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/render-time-per-frame-calculator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/pets/dog-calorie-needs-rer-mer/",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/pets/dog-calorie-needs-rer-mer",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/smart-tips/planning/commute-cost-time/",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/smart-tips/planning/commute-cost-time",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/financial/income-budget-expenses/savings-rate-tracker/",
+      "destination": "/financial",
+      "permanent": true
+    },
+    {
+      "source": "/financial/income-budget-expenses/savings-rate-tracker",
+      "destination": "/financial",
+      "permanent": true
+    },
+    {
+      "source": "/time/calendar-extras/day-of-week-for-date/",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/time/calendar-extras/day-of-week-for-date",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/video/youtube-twitch-recommended-bitrate-checker/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/youtube-twitch-recommended-bitrate-checker",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/vbr-cbr-size-estimator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/vbr-cbr-size-estimator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/video-data-rate-calculator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/video-data-rate-calculator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/camera-bitrate-record-time-converter/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/camera-bitrate-record-time-converter",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/audio-file-size-estimator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/audio-file-size-estimator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/time/epoch-unix-time-converter/",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/time/epoch-unix-time-converter",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/video/anamorphic-lens-calculator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/anamorphic-lens-calculator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/it/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/video/audio-bitrate-channels-impact-file-size/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/audio-bitrate-channels-impact-file-size",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/live-streaming-bitrate-calculator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/live-streaming-bitrate-calculator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/slow-mo-speed-ramp-time-calculator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/slow-mo-speed-ramp-time-calculator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/amplifier-power-required-calculator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/amplifier-power-required-calculator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/recording-time-card-ssd-capacity/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/recording-time-card-ssd-capacity",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/tv/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/screen-size-from-diagonal-ar/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/screen-size-from-diagonal-ar",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/aspect-ratio-letterbox-pillarbox/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/aspect-ratio-letterbox-pillarbox",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/cooking/",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/cooking",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/video/video-compression-size-estimator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/video-compression-size-estimator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/sports/vo2max-estimator-cooper-rockport/",
+      "destination": "/sports",
+      "permanent": true
+    },
+    {
+      "source": "/sports/vo2max-estimator-cooper-rockport",
+      "destination": "/sports",
+      "permanent": true
+    },
+    {
+      "source": "/pets/cat-prednisolone-dose/",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/pets/cat-prednisolone-dose",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/time/dst-change-checker/",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/time/dst-change-checker",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/pl/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/video/video-export-time-estimator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/video-export-time-estimator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/gpu-render-performance-calculator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/gpu-render-performance-calculator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/surveillance-nvr-video-storage-planner/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/surveillance-nvr-video-storage-planner",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/culinary/potato-gnocchi-with-tomato-sauce/",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/culinary/potato-gnocchi-with-tomato-sauce",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/time/day-of-week-for-date/",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/time/day-of-week-for-date",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/video/resolution-aspect-ratio-pixels/aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/resolution-aspect-ratio-pixels/aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/audio-processing-engineering/decibel-power-ratio-calculator/",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/audio-processing-engineering/decibel-power-ratio-calculator",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/es/acerca-de/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/es/acerca-de",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/datenschutz/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/datenschutz",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/everyday/beverage-mix-planner/",
+      "destination": "/everyday",
+      "permanent": true
+    },
+    {
+      "source": "/everyday/beverage-mix-planner",
+      "destination": "/everyday",
+      "permanent": true
+    },
+    {
+      "source": "/culinary/italian/tiramisu/",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/culinary/italian/tiramisu",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
       "source": "/home",
       "destination": "/",
       "permanent": true
