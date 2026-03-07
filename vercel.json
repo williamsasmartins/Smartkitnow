@@ -54,6 +54,36 @@
   ],
   "redirects": [
     {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/culinary/(.*)",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/everyday/(.*)",
+      "destination": "/everyday",
+      "permanent": true
+    },
+    {
+      "source": "/pets/(.*)",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/smart-tips/(.*)",
+      "destination": "/smart-tips",
+      "permanent": true
+    },
+    {
+      "source": "/tv/(.*)",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
       "source": "/pets/cat-stress-score-playtime-offset",
       "destination": "/pets/cat-stress-score-playtime-offset-planner",
       "permanent": true
