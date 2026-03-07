@@ -59,8 +59,18 @@
       "permanent": true
     },
     {
+      "source": "/culinary",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
       "source": "/culinary/(.*)",
       "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/everyday",
+      "destination": "/everyday",
       "permanent": true
     },
     {
@@ -69,13 +79,28 @@
       "permanent": true
     },
     {
+      "source": "/pets",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
       "source": "/pets/(.*)",
       "destination": "/pets",
       "permanent": true
     },
     {
+      "source": "/smart-tips",
+      "destination": "/smart-tips",
+      "permanent": true
+    },
+    {
       "source": "/smart-tips/(.*)",
       "destination": "/smart-tips",
+      "permanent": true
+    },
+    {
+      "source": "/tv",
+      "destination": "/video",
       "permanent": true
     },
     {
@@ -89,7 +114,17 @@
       "permanent": true
     },
     {
+      "source": "/de",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/de/(.*)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/es",
       "destination": "/",
       "permanent": true
     },
@@ -99,7 +134,17 @@
       "permanent": true
     },
     {
+      "source": "/fr",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/fr/(.*)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/nl",
       "destination": "/",
       "permanent": true
     },
@@ -109,7 +154,17 @@
       "permanent": true
     },
     {
+      "source": "/pt",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/pt/(.*)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-pt",
       "destination": "/",
       "permanent": true
     },
@@ -119,12 +174,27 @@
       "permanent": true
     },
     {
+      "source": "/it",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/it/(.*)",
       "destination": "/",
       "permanent": true
     },
     {
+      "source": "/pl",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/pl/(.*)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/sv",
       "destination": "/",
       "permanent": true
     },
