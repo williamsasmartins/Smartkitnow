@@ -1,0 +1,5 @@
+﻿Self-redirects: 4
+{"idx":76,"source":"/cooking","destination":"/cooking","reason":"source===destination"}
+{"idx":111,"source":"/everyday","destination":"/everyday","reason":"source===destination"}
+{"idx":113,"source":"/pets","destination":"/pets","reason":"source===destination"}
+{"idx":115,"source":"/smart-tips","destination":"/smart-tips","reason":"source===destination"}
