@@ -1,0 +1,27 @@
+﻿commit 631f224383a64385cacfb84de8af4813f91574d1
+Author: Williams Martins <williamsasmartins@gmail.com>
+Date:   Sat Mar 7 15:15:29 2026 -0800
+
+    fdgdd
+
+diff --git a/src/pages/Search.tsx b/src/pages/Search.tsx
+index 5cee1f2f..4f1901b8 100644
+--- a/src/pages/Search.tsx
++++ b/src/pages/Search.tsx
+@@ -1,6 +1,6 @@
+ import React, { useMemo, useState, useEffect } from "react";
+ import { useSearchParams, useNavigate, Link } from "react-router-dom";
+-import { REGISTRY } from "@/data/calculatorRegistry";
++import { calculatorRegistry } from "@/data/calculatorRegistry";
+ import { GAMES } from "@/data/gamesRegistry";
+ import { getCategoryMeta, getDisplaySubcategory } from "@/data/categoryMeta";
+ import AdBannerTop from "@/components/ads/AdBannerTop";
+@@ -34,7 +34,7 @@ export default function Search() {
+     if (!q) return [];
+     const needle = q.toLowerCase();
+ 
+-    const calcMatches: SearchResult[] = REGISTRY.filter((e) => {
++    const calcMatches: SearchResult[] = calculatorRegistry.filter((e) => {
+       const displayCat = getCategoryMeta(e.category)?.display || "";
+       const displaySub = e.subcategory ? getDisplaySubcategory(e.category, e.subcategory) : "";
+ 
