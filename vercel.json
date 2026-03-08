@@ -44,8 +44,8 @@
   ],
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
     },
     {
       "source": "/:path*",
@@ -874,8 +874,8 @@
       "permanent": true
     },
     {
-      "source": "/(?<category>[^/]+)/(?<subcategory>[^/]+)/calculator/(?<slug>[^/]+)",
-      "destination": "/$category/$subcategory/$slug",
+      "source": "/:category/:subcategory/calculator/:slug",
+      "destination": "/:category/:subcategory/:slug",
       "permanent": true
     },
     {
