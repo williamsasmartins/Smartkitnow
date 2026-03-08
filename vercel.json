@@ -48,7 +48,7 @@
       "destination": "/api/$1"
     },
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "destination": "/"
     }
   ],
@@ -434,11 +434,6 @@
       "permanent": true
     },
     {
-      "source": "/cooking",
-      "destination": "/cooking",
-      "permanent": true
-    },
-    {
       "source": "/video/video-compression-size-estimator/",
       "destination": "/video",
       "permanent": true
@@ -604,37 +599,22 @@
       "permanent": true
     },
     {
-      "source": "/culinary/(.*)",
+      "source": "/culinary/:path*",
       "destination": "/cooking",
       "permanent": true
     },
     {
-      "source": "/everyday",
+      "source": "/everyday/:path*",
       "destination": "/everyday",
       "permanent": true
     },
     {
-      "source": "/everyday/(.*)",
-      "destination": "/everyday",
-      "permanent": true
-    },
-    {
-      "source": "/pets",
+      "source": "/pets/:path*",
       "destination": "/pets",
       "permanent": true
     },
     {
-      "source": "/pets/(.*)",
-      "destination": "/pets",
-      "permanent": true
-    },
-    {
-      "source": "/smart-tips",
-      "destination": "/smart-tips",
-      "permanent": true
-    },
-    {
-      "source": "/smart-tips/(.*)",
+      "source": "/smart-tips/:path*",
       "destination": "/smart-tips",
       "permanent": true
     },
@@ -644,7 +624,7 @@
       "permanent": true
     },
     {
-      "source": "/tv/(.*)",
+      "source": "/tv/:path*",
       "destination": "/video",
       "permanent": true
     },
@@ -659,7 +639,7 @@
       "permanent": true
     },
     {
-      "source": "/de/(.*)",
+      "source": "/de/:path*",
       "destination": "/",
       "permanent": true
     },
@@ -669,7 +649,7 @@
       "permanent": true
     },
     {
-      "source": "/es/(.*)",
+      "source": "/es/:path*",
       "destination": "/",
       "permanent": true
     },
@@ -679,7 +659,7 @@
       "permanent": true
     },
     {
-      "source": "/fr/(.*)",
+      "source": "/fr/:path*",
       "destination": "/",
       "permanent": true
     },
@@ -689,7 +669,7 @@
       "permanent": true
     },
     {
-      "source": "/nl/(.*)",
+      "source": "/nl/:path*",
       "destination": "/",
       "permanent": true
     },
@@ -699,7 +679,7 @@
       "permanent": true
     },
     {
-      "source": "/pt/(.*)",
+      "source": "/pt/:path*",
       "destination": "/",
       "permanent": true
     },
@@ -709,7 +689,7 @@
       "permanent": true
     },
     {
-      "source": "/pt-pt/(.*)",
+      "source": "/pt-pt/:path*",
       "destination": "/",
       "permanent": true
     },
@@ -719,7 +699,7 @@
       "permanent": true
     },
     {
-      "source": "/it/(.*)",
+      "source": "/it/:path*",
       "destination": "/",
       "permanent": true
     },
@@ -729,7 +709,7 @@
       "permanent": true
     },
     {
-      "source": "/pl/(.*)",
+      "source": "/pl/:path*",
       "destination": "/",
       "permanent": true
     },
@@ -739,7 +719,7 @@
       "permanent": true
     },
     {
-      "source": "/sv/(.*)",
+      "source": "/sv/:path*",
       "destination": "/",
       "permanent": true
     },

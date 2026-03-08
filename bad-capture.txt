@@ -1,0 +1,15 @@
+﻿Bad capture groups: 14
+{"idx":110,"source":"/culinary/(.*)","destination":"/cooking","reason":"capture group unused"}
+{"idx":112,"source":"/everyday/(.*)","destination":"/everyday","reason":"capture group unused"}
+{"idx":114,"source":"/pets/(.*)","destination":"/pets","reason":"capture group unused"}
+{"idx":116,"source":"/smart-tips/(.*)","destination":"/smart-tips","reason":"capture group unused"}
+{"idx":118,"source":"/tv/(.*)","destination":"/video","reason":"capture group unused"}
+{"idx":121,"source":"/de/(.*)","destination":"/","reason":"capture group unused"}
+{"idx":123,"source":"/es/(.*)","destination":"/","reason":"capture group unused"}
+{"idx":125,"source":"/fr/(.*)","destination":"/","reason":"capture group unused"}
+{"idx":127,"source":"/nl/(.*)","destination":"/","reason":"capture group unused"}
+{"idx":129,"source":"/pt/(.*)","destination":"/","reason":"capture group unused"}
+{"idx":131,"source":"/pt-pt/(.*)","destination":"/","reason":"capture group unused"}
+{"idx":133,"source":"/it/(.*)","destination":"/","reason":"capture group unused"}
+{"idx":135,"source":"/pl/(.*)","destination":"/","reason":"capture group unused"}
+{"idx":137,"source":"/sv/(.*)","destination":"/","reason":"capture group unused"}
