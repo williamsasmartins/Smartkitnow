@@ -1,0 +1,61 @@
+﻿
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\calculators\EverydayLife\WordCounterCalculator.tsx
+  373:23  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\ArcheryMasterGame.tsx
+  241:110  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\BallRollMazeGame.tsx
+  299:95  error  Empty block statement  no-empty
+  307:93  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\BasketballHoopsGame.tsx
+  273:111  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\BreakoutRetroGame.tsx
+  413:109  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\CandyBurstGame.tsx
+  203:66  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\EightBallPoolGame.tsx
+  287:103  error  Empty block statement  no-empty
+  298:103  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\Game2048Classic.tsx
+  230:77  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\MazeRunner3DGame.tsx
+  228:80  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\MemoryMatchGame.tsx
+  221:86  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\NinjaRoofRunnerGame.tsx
+  472:89  error  Empty block statement  no-empty
+  509:83  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\PacMazeGame.tsx
+  305:87  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\PinballClassicGame.tsx
+  359:108  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\SimonSaysGame.tsx
+  156:76  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\SnakeClassicGame.tsx
+  189:73  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\TableTennisProGame.tsx
+  138:95  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\TempleEscapeGame.tsx
+  564:81  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\ZumaTumbleGame.tsx
+  206:76  error  Empty block statement  no-empty
+  226:74  error  Empty block statement  no-empty
+
+Γ£û 22 problems (22 errors, 0 warnings)
+
