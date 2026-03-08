@@ -1,0 +1,135 @@
+﻿
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\playwright-mcp\packages\extension\src\background.ts
+  62:9   error  Unexpected lexical declaration in case block                                                                no-case-declarations
+  62:40  error  Optional chain expressions can return undefined by design - using a non-null assertion is unsafe and wrong  @typescript-eslint/no-non-null-asserted-optional-chain
+  63:9   error  Unexpected lexical declaration in case block                                                                no-case-declarations
+  63:46  error  Optional chain expressions can return undefined by design - using a non-null assertion is unsafe and wrong  @typescript-eslint/no-non-null-asserted-optional-chain
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\playwright-mcp\packages\extension\src\ui\authToken.tsx
+  22:41  error  The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
+- If that's what you want, disable this lint rule with an inline comment or configure the 'allowObjectTypes' rule option.
+- If you want a type meaning "any object", you probably want `object` instead.
+- If you want a type meaning "any value", you probably want `unknown` instead  @typescript-eslint/no-empty-object-type
+  22:48  error  Unexpected empty object pattern                                                                                                                                                                                                                                                                                                                                                            no-empty-pattern
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\playwright-mcp\packages\extension\tests\extension.spec.ts
+   49:27  error  Unexpected empty object pattern                                                                                                                                                                                                                           no-empty-pattern
+   60:11  error  React Hook "use" is called in function "pathToExtension" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"          react-hooks/rules-of-hooks
+   70:11  error  React Hook "use" is called in function "browserWithExtension" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"     react-hooks/rules-of-hooks
+   99:37  error  Unexpected empty object pattern                                                                                                                                                                                                                           no-empty-pattern
+  100:11  error  React Hook "use" cannot be called in an async function                                                                                                                                                                                                    react-hooks/rules-of-hooks
+  106:35  error  Unexpected empty object pattern                                                                                                                                                                                                                           no-empty-pattern
+  107:11  error  React Hook "use" is called in function "overrideProtocolVersion" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"  react-hooks/rules-of-hooks
+  114:11  error  React Hook "use" is called in function "cli" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"                      react-hooks/rules-of-hooks
+  197:11  error  React Hook "use" is called in function "pathToExtension" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"          react-hooks/rules-of-hooks
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\playwright-mcp\packages\playwright-mcp\tests\click.spec.ts
+  36:49  error  Unnecessary escape character: \"  no-useless-escape
+  36:57  error  Unnecessary escape character: \"  no-useless-escape
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\playwright-mcp\packages\playwright-mcp\tests\fixtures.ts
+   73:11  error  React Hook "use" is called in function "client" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"       react-hooks/rules-of-hooks
+   80:11  error  React Hook "use" is called in function "startClient" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"  react-hooks/rules-of-hooks
+  122:22  error  Unexpected empty object pattern                                                                                                                                                                                                               no-empty-pattern
+  124:11  error  React Hook "use" is called in function "wsEndpoint" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"   react-hooks/rules-of-hooks
+  133:11  error  React Hook "use" is called in function "cdpServer" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"    react-hooks/rules-of-hooks
+  152:11  error  React Hook "use" is called in function "mcpHeadless" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"  react-hooks/rules-of-hooks
+  159:27  error  Unexpected empty object pattern                                                                                                                                                                                                               no-empty-pattern
+  176:11  error  React Hook "use" is called in function "server" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"       react-hooks/rules-of-hooks
+  181:11  error  React Hook "use" is called in function "httpsServer" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"  react-hooks/rules-of-hooks
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\playwright-mcp\packages\playwright-mcp\tests\library.spec.ts
+  20:156  error  Unexpected empty object pattern  no-empty-pattern
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\calculators\EverydayLife\WordCounterCalculator.tsx
+  241:13  error  'next' is never reassigned. Use 'const' instead  prefer-const
+  373:23  error  Empty block statement                            no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\ArcheryMasterGame.tsx
+  241:110  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\BaccaratRoyaleGame.tsx
+  362:9  error  'deck' is never reassigned. Use 'const' instead  prefer-const
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\BackgammonLiveGame.tsx
+  520:11  error  'movesLeft' is never reassigned. Use 'const' instead  prefer-const
+  521:11  error  'board' is never reassigned. Use 'const' instead      prefer-const
+  522:11  error  'barW' is never reassigned. Use 'const' instead       prefer-const
+  522:31  error  'barR' is never reassigned. Use 'const' instead       prefer-const
+  523:11  error  'bornW' is never reassigned. Use 'const' instead      prefer-const
+  523:37  error  'bornR' is never reassigned. Use 'const' instead      prefer-const
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\BallRollMazeGame.tsx
+  299:95  error  Empty block statement  no-empty
+  307:93  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\BasketballHoopsGame.tsx
+  273:111  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\BreakoutRetroGame.tsx
+  413:109  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\CandyBurstGame.tsx
+  203:66  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\EightBallPoolGame.tsx
+  287:103  error  Empty block statement  no-empty
+  298:103  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\Game2048Classic.tsx
+  230:77  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\GeometryDashGame.tsx
+  86:5  error  '_nextId' is never reassigned. Use 'const' instead  prefer-const
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\MazeRunner3DGame.tsx
+  228:80  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\MemoryMatchGame.tsx
+  221:86  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\NinjaRoofRunnerGame.tsx
+  472:89  error  Empty block statement  no-empty
+  509:83  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\PacMazeGame.tsx
+  305:87  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\PinballClassicGame.tsx
+  359:108  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\SimonSaysGame.tsx
+  134:9   error  'speed' is never reassigned. Use 'const' instead  prefer-const
+  156:76  error  Empty block statement                             no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\SnakeClassicGame.tsx
+  189:73  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\SudokuZenGame.tsx
+  24:9   error  'startRow' is never reassigned. Use 'const' instead  prefer-const
+  24:37  error  'startCol' is never reassigned. Use 'const' instead  prefer-const
+  35:9   error  'board' is never reassigned. Use 'const' instead     prefer-const
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\TableTennisProGame.tsx
+  138:95  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\TempleEscapeGame.tsx
+  520:11  error  'newScore' is never reassigned. Use 'const' instead  prefer-const
+  564:81  error  Empty block statement                                no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\UnoFriendsGame.tsx
+  90:9  error  'next' is never reassigned. Use 'const' instead  prefer-const
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\WaterSortGame.tsx
+  58:7  error  'iterations' is never reassigned. Use 'const' instead  prefer-const
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\ZumaTumbleGame.tsx
+  206:76  error  Empty block statement  no-empty
+  226:74  error  Empty block statement  no-empty
+
+C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\board\TicTacToePrime.tsx
+  73:30  error  'i' is never reassigned. Use 'const' instead  prefer-const
+
+Γ£û 66 problems (66 errors, 0 warnings)
+  14 errors and 0 warnings potentially fixable with the `--fix` option.
+
