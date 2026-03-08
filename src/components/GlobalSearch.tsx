@@ -106,7 +106,7 @@ export function GlobalSearch({
                         <CommandItem
                             key={item.href}
                             onSelect={() => runCommand(() => navigate(item.href))}
-                            value={item.title}
+                            value={[item.title, ...item.keywords].join(" ").toLowerCase()}
                         >
                             <item.icon className="mr-2 h-4 w-4" />
                             <span>{item.title}</span>
@@ -121,7 +121,7 @@ export function GlobalSearch({
                         <CommandItem
                             key={item.href}
                             onSelect={() => runCommand(() => navigate(item.href))}
-                            value={item.title}
+                            value={[item.title, ...item.keywords].join(" ").toLowerCase()}
                         >
                             <item.icon className="mr-2 h-4 w-4" />
                             <span>{item.title}</span>
@@ -136,8 +136,7 @@ export function GlobalSearch({
                         <CommandItem
                             key={item.href}
                             onSelect={() => runCommand(() => navigate(item.href))}
-                            value={item.title}
-                            keywords={item.keywords}
+                            value={[item.title, ...item.keywords].join(" ").toLowerCase()}
                         >
                             <item.icon className="mr-2 h-4 w-4" />
                             <span>{item.title}</span>
@@ -152,8 +151,7 @@ export function GlobalSearch({
                         <CommandItem
                             key={item.href}
                             onSelect={() => runCommand(() => navigate(item.href))}
-                            value={item.title}
-                            keywords={item.keywords}
+                            value={[item.title, ...item.keywords].join(" ").toLowerCase()}
                         >
                             <item.icon className="mr-2 h-4 w-4" />
                             <span>{item.title}</span>
