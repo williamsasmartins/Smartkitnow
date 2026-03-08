@@ -87,7 +87,7 @@ function UnoGame() {
   const top = game.discard[game.discard.length-1];
 
   const applyEffect = useCallback((card: UnoCard, color: UnoColor, state: ReturnType<typeof initGame>): ReturnType<typeof initGame> => {
-    let next = { ...state };
+    const next = { ...state };
     const numPlayers = next.players.length;
     const nextIdx = (next.current + next.direction + numPlayers) % numPlayers;
     if (card.value === "Skip") {

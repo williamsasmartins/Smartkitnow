@@ -238,7 +238,7 @@ const WordCounterCalculator = () => {
     const handleCaseCycle = () => {
         if (!text) return;
         const cases = ['lower', 'upper', 'sentence', 'title'];
-        let next = text === text.toLowerCase() ? 'upper' : text === text.toUpperCase() ? 'title' : 'lower';
+        const next = text === text.toLowerCase() ? 'upper' : text === text.toUpperCase() ? 'title' : 'lower';
 
         if (next === 'upper') setText(text.toUpperCase());
         else if (next === 'lower') setText(text.toLowerCase());

@@ -55,7 +55,7 @@ function generatePuzzle(config: GameConfig): Tube[] {
   // Shuffle by performing random valid reverse-pours many times
   // to reach a scrambled-but-solvable state
   const totalTubes = tubes.length;
-  let iterations = colors * tubeCapacity * 8;
+  const iterations = colors * tubeCapacity * 8;
 
   for (let attempt = 0; attempt < iterations; attempt++) {
     // Pick a random non-empty source

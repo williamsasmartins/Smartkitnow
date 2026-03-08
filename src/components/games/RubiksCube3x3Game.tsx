@@ -70,7 +70,7 @@ function applyMove(state: CubeState, move: string): CubeState {
     case "R2": return moveR(moveR(s, 1), 1);
     default: return s;
   }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   void U; void D; void F; void B; void L; void R;
 }
 

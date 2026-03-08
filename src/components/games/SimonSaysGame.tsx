@@ -131,7 +131,7 @@ function SimonBoard() {
     setScore(0);
     setGameState("WATCHING");
 
-    let speed = DIFFICULTY_SPEEDS[difficulty];
+    const speed = DIFFICULTY_SPEEDS[difficulty];
     setTimeout(() => playSequence(newSeq, speed), 500);
   };
 

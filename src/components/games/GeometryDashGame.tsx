@@ -83,7 +83,7 @@ function aabbOverlap(
 
 // ─── Generate obstacles from level position ───────────────────────────────────
 
-let _nextId = OBSTACLE_ID_START;
+const _nextId = OBSTACLE_ID_START;
 
 function generateObstaclesForWindow(
   cameraX: number,

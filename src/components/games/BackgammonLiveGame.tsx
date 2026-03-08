@@ -517,10 +517,10 @@ function BackgammonBoard() {
     clearAiTimer();
     aiTimerRef.current = setTimeout(() => {
       const dice = rollDice();
-      let movesLeft = [...dice];
-      let board = gs.board;
-      let barW = gs.barWhite, barR = gs.barRed;
-      let bornW = gs.borneOffWhite, bornR = gs.borneOffRed;
+      const movesLeft = [...dice];
+      const board = gs.board;
+      const barW = gs.barWhite, barR = gs.barRed;
+      const bornW = gs.borneOffWhite, bornR = gs.borneOffRed;
 
       const doNextMove = (ml: number[], b: Board, bw: number, br: number, bnW: number, bnR: number) => {
         if (ml.length === 0 || !hasAnyMove(b, "red", ml, bw, br)) {

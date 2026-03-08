@@ -517,7 +517,7 @@ export default function TempleEscapeGame() {
       const curY = duckingNow ? s.playerY + DUCK_Y_OFFSET : s.playerY;
       let newLives = s.lives;
       let newInvincible = Math.max(0, s.invincible - 1);
-      let newScore = s.score + 1;
+      const newScore = s.score + 1;
 
       if (newInvincible === 0) {
         for (const obs of newObstacles) {

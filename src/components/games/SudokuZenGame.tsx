@@ -21,7 +21,7 @@ function isValid(board: number[][], row: number, col: number, num: number) {
     for (let x = 0; x < GRID_SIZE; x++) {
         if (board[x][col] === num) return false;
     }
-    let startRow = row - (row % 3), startCol = col - (col % 3);
+    const startRow = row - (row % 3), startCol = col - (col % 3);
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
             if (board[i + startRow][j + startCol] === num) return false;
@@ -32,7 +32,7 @@ function isValid(board: number[][], row: number, col: number, num: number) {
 
 // Very basic Sudoku generator
 function generateSudoku(emptyCount: number) {
-    let board = generateEmptyBoard();
+    const board = generateEmptyBoard();
 
     function fillDiagonal() {
         for (let i = 0; i < 9; i = i + 3) fillBox(i, i);

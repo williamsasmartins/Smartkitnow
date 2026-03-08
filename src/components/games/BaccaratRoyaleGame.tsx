@@ -359,7 +359,7 @@ function BaccaratRoyale() {
     setAnimateCards([]);
 
     // Rebuild shoe if low
-    let deck = game.deck.length < 20 ? shuffle(buildShoe()) : [...game.deck];
+    const deck = game.deck.length < 20 ? shuffle(buildShoe()) : [...game.deck];
 
     const roundData = computeRound(deck, game.bets);
     const payout = computePayout(game.bets, roundData.winner);

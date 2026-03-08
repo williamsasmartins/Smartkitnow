@@ -70,7 +70,7 @@ export default function TicTacToePrime() {
 
                 // Check for win or block
                 for (const player of ["O", "X"] as Player[]) {
-                    for (let i of availableMoves) {
+                    for (const i of availableMoves) {
                         const testBoard = [...board];
                         testBoard[i] = player;
                         const res = checkWinner(testBoard);
