@@ -1,0 +1,105 @@
+﻿F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\playwright-mcp\packages\extension\src\background.ts
+  Unexpected lexical declaration in case block.
+  Optional chain expressions can return undefined by design - using a non-null assertion is unsafe and wrong.
+  Unexpected lexical declaration in case block.
+  Optional chain expressions can return undefined by design - using a non-null assertion is unsafe and wrong.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\playwright-mcp\packages\extension\src\ui\authToken.tsx
+  The `{}` ("empty object") type allows any non-nullish value, including literals like `0` and `""`.
+- If that's what you want, disable this lint rule with an inline comment or configure the 'allowObjectTypes' rule option.
+- If you want a type meaning "any object", you probably want `object` instead.
+- If you want a type meaning "any value", you probably want `unknown` instead.
+  Unexpected empty object pattern.
+  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\playwright-mcp\packages\extension\tests\extension.spec.ts
+  Unexpected empty object pattern.
+  React Hook "use" is called in function "pathToExtension" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".
+  React Hook "use" is called in function "browserWithExtension" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".
+  Unexpected empty object pattern.
+  React Hook "use" cannot be called in an async function.
+  Unexpected empty object pattern.
+  React Hook "use" is called in function "overrideProtocolVersion" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".
+  React Hook "use" is called in function "cli" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".
+  React Hook "use" is called in function "pathToExtension" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\playwright-mcp\packages\playwright-mcp\tests\click.spec.ts
+  Unnecessary escape character: \".
+  Unnecessary escape character: \".
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\playwright-mcp\packages\playwright-mcp\tests\fixtures.ts
+  React Hook "use" is called in function "client" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".
+  React Hook "use" is called in function "startClient" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".
+  Unexpected empty object pattern.
+  React Hook "use" is called in function "wsEndpoint" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".
+  React Hook "use" is called in function "cdpServer" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".
+  React Hook "use" is called in function "mcpHeadless" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".
+  Unexpected empty object pattern.
+  React Hook "use" is called in function "server" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".
+  React Hook "use" is called in function "httpsServer" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\playwright-mcp\packages\playwright-mcp\tests\library.spec.ts
+  Unexpected empty object pattern.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\calculators\EverydayLife\WordCounterCalculator.tsx
+  'next' is never reassigned. Use 'const' instead.
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\ArcheryMasterGame.tsx
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\BaccaratRoyaleGame.tsx
+  'deck' is never reassigned. Use 'const' instead.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\BackgammonLiveGame.tsx
+  'movesLeft' is never reassigned. Use 'const' instead.
+  'board' is never reassigned. Use 'const' instead.
+  'barW' is never reassigned. Use 'const' instead.
+  'barR' is never reassigned. Use 'const' instead.
+  'bornW' is never reassigned. Use 'const' instead.
+  'bornR' is never reassigned. Use 'const' instead.
+  React Hook useEffect has missing dependencies: 'clearAiTimer', 'gs.barRed', 'gs.barWhite', 'gs.board', 'gs.borneOffRed', and 'gs.borneOffWhite'. Either include them or remove the dependency array.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\BallRollMazeGame.tsx
+  Empty block statement.
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\BasketballHoopsGame.tsx
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\BreakoutRetroGame.tsx
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\CandyBurstGame.tsx
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\EightBallPoolGame.tsx
+  Empty block statement.
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\Game2048Classic.tsx
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\GeometryDashGame.tsx
+  '_nextId' is never reassigned. Use 'const' instead.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\MazeRunner3DGame.tsx
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\MemoryMatchGame.tsx
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\NinjaRoofRunnerGame.tsx
+  Empty block statement.
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\PacMazeGame.tsx
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\PinballClassicGame.tsx
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\SimonSaysGame.tsx
+  'speed' is never reassigned. Use 'const' instead.
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\SnakeClassicGame.tsx
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\SudokuZenGame.tsx
+  'startRow' is never reassigned. Use 'const' instead.
+  'startCol' is never reassigned. Use 'const' instead.
+  'board' is never reassigned. Use 'const' instead.
+  React Hook useEffect has a missing dependency: 'handleNumberInput'. Either include it or remove the dependency array.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\TableTennisProGame.tsx
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\TempleEscapeGame.tsx
+  'newScore' is never reassigned. Use 'const' instead.
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\UnoFriendsGame.tsx
+  'next' is never reassigned. Use 'const' instead.
+  React Hook useEffect has a missing dependency: 'game'. Either include it or remove the dependency array. Mutable values like 'game.current' aren't valid dependencies because mutating them doesn't re-render the component.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\WaterSortGame.tsx
+  'iterations' is never reassigned. Use 'const' instead.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\ZumaTumbleGame.tsx
+  Empty block statement.
+  Empty block statement.
+F: C:\Users\Williams Martins\OneDrive\Documentos\WBSmartKitNow\smartkit-onepage-wonder\src\components\games\board\TicTacToePrime.tsx
+  'i' is never reassigned. Use 'const' instead.
+  React Hook useEffect has a missing dependency: 'makeMove'. Either include it or remove the dependency array.
