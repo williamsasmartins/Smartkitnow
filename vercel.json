@@ -1173,6 +1173,36 @@
       "source": "/comments/:path*",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/category/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/math/percentages",
+      "destination": "/math",
+      "permanent": true
+    },
+    {
+      "source": "/math/statistics-probability",
+      "destination": "/math",
+      "permanent": true
+    },
+    {
+      "source": "/math/geometry-trig",
+      "destination": "/math",
+      "permanent": true
+    },
+    {
+      "source": "/math/fractions",
+      "destination": "/math",
+      "permanent": true
+    },
+    {
+      "source": "/financial/discount-final-price",
+      "destination": "/financial",
+      "permanent": true
     }
   ]
 }
