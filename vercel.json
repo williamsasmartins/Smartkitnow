@@ -1203,6 +1203,41 @@
       "source": "/financial/discount-final-price",
       "destination": "/financial",
       "permanent": true
+    },
+    {
+      "source": "/financial/mortgage-and-home-loan-calculators",
+      "destination": "/financial",
+      "permanent": true
+    },
+    {
+      "source": "/health/fitness-calculators",
+      "destination": "/health",
+      "permanent": true
+    },
+    {
+      "source": "/health/calories-to-kilograms-calculator",
+      "destination": "/health/calories-to-kilograms",
+      "permanent": true
+    },
+    {
+      "source": "/time/military-time",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/conversion/cooking-baking",
+      "destination": "/conversion",
+      "permanent": true
+    },
+    {
+      "source": "/conversion/common",
+      "destination": "/conversion",
+      "permanent": true
+    },
+    {
+      "source": "/pets/dogs",
+      "destination": "/pets",
+      "permanent": true
     }
   ]
 }
