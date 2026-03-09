@@ -1023,6 +1023,156 @@
       "source": "/pets/small-mammals/:path*",
       "destination": "/pets",
       "permanent": true
+    },
+    {
+      "source": "/financial/mortgage-and-home-loan-calculators/:path*",
+      "destination": "/financial",
+      "permanent": true
+    },
+    {
+      "source": "/financial/personal-finance-calculators/:path*",
+      "destination": "/financial",
+      "permanent": true
+    },
+    {
+      "source": "/financial/investments-savings/:path*",
+      "destination": "/financial",
+      "permanent": true
+    },
+    {
+      "source": "/financial/currency-tax/:path*",
+      "destination": "/financial",
+      "permanent": true
+    },
+    {
+      "source": "/financial/interest-and-loan-calculators/:path*",
+      "destination": "/financial",
+      "permanent": true
+    },
+    {
+      "source": "/financial/mortgage-calculator",
+      "destination": "/financial/mortgage-amortization",
+      "permanent": true
+    },
+    {
+      "source": "/financial/compound-interest-calculator",
+      "destination": "/financial/compound-interest",
+      "permanent": true
+    },
+    {
+      "source": "/financial/loan-calculator",
+      "destination": "/financial",
+      "permanent": true
+    },
+    {
+      "source": "/health/fitness-calculators/:path*",
+      "destination": "/health",
+      "permanent": true
+    },
+    {
+      "source": "/health/diet-nutrition-calculators/:path*",
+      "destination": "/health",
+      "permanent": true
+    },
+    {
+      "source": "/health/calories-conversion/:path*",
+      "destination": "/health",
+      "permanent": true
+    },
+    {
+      "source": "/math/percent-calculators/:path*",
+      "destination": "/math",
+      "permanent": true
+    },
+    {
+      "source": "/math/fractions/:path*",
+      "destination": "/math",
+      "permanent": true
+    },
+    {
+      "source": "/math/everyday-math/:path*",
+      "destination": "/math",
+      "permanent": true
+    },
+    {
+      "source": "/time/converter/:path*",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/time/calendar-extras/:path*",
+      "destination": "/time",
+      "permanent": true
+    },
+    {
+      "source": "/construction/concrete-masonry-calculators/:path*",
+      "destination": "/construction",
+      "permanent": true
+    },
+    {
+      "source": "/construction/wall-ceiling-calculators/:path*",
+      "destination": "/construction",
+      "permanent": true
+    },
+    {
+      "source": "/video/resolution-aspect-ratio-pixels/:path*",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/conversion/angle/:path*",
+      "destination": "/conversion",
+      "permanent": true
+    },
+    {
+      "source": "/pets/general/:path*",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/pets/reptiles/:path*",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/pets/fish/:path*",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/everyday/events/:path*",
+      "destination": "/everyday",
+      "permanent": true
+    },
+    {
+      "source": "/everyday/garden/:path*",
+      "destination": "/everyday",
+      "permanent": true
+    },
+    {
+      "source": "/cooking/cooking-baking-calculators",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/sports/~partytown/:path*",
+      "destination": "/sports",
+      "permanent": true
+    },
+    {
+      "source": "/feed",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/feed/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/comments/:path*",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
