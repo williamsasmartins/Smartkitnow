@@ -968,6 +968,61 @@
       "source": "/pets/cats/weight-loss-planner",
       "destination": "/pets/cat-weight-loss-planner",
       "permanent": true
+    },
+    {
+      "source": "/recipes",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/recipes/:path*",
+      "destination": "/cooking",
+      "permanent": true
+    },
+    {
+      "source": "/discover",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/discover/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/video/time-fps-timecode/:path*",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/video/audio-processing-engineering/:path*",
+      "destination": "/video",
+      "permanent": true
+    },
+    {
+      "source": "/sports/running-cycling-triathlon-performance/:path*",
+      "destination": "/sports",
+      "permanent": true
+    },
+    {
+      "source": "/financial/loans-mortgages-payments/:path*",
+      "destination": "/financial",
+      "permanent": true
+    },
+    {
+      "source": "/financial/income-budget-expenses/:path*",
+      "destination": "/financial",
+      "permanent": true
+    },
+    {
+      "source": "/pets/dog-nutrition-weight/:path*",
+      "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/pets/small-mammals/:path*",
+      "destination": "/pets",
+      "permanent": true
     }
   ]
 }
