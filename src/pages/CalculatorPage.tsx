@@ -111,6 +111,7 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
   return (
     <div className={containerClasses}>
       <SEOHead
+        slug={entry.slug}
         title={`${entry.title} - Smart Kit Now`}
         description={entry.description || `Use our ${entry.title} to calculate results quickly and easily.`}
         canonical={`${origin}${calculatedPath}`}
