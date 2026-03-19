@@ -7,7 +7,6 @@ import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import BackToTopButton from "@/components/BackToTopButton";
-import LegacyRedirect from "@/components/LegacyRedirects";
 import { REGISTRY, calcLink } from "@/data/calculatorRegistry";
 
 // Lazy Imports - Categories

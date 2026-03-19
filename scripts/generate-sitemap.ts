@@ -23,7 +23,8 @@ function xmlEscape(s: string): string {
 }
 
 function toUrl(loc: string, priority = "0.5") {
-  const full = `${ORIGIN}${loc}`;
+  const cleanLoc = loc.replace(/\/+$/, "");
+  const full = `${ORIGIN}${cleanLoc}`;
   return `  <url>\n    <loc>${xmlEscape(full)}</loc>\n    <lastmod>${today()}</lastmod>\n    <priority>${priority}</priority>\n  </url>`;
 }
 
