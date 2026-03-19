@@ -1,0 +1,98 @@
+{
+  "templates": {
+    "sports": {
+      "title": "[Tool] Calculator 2026 | Free [Sport] Stats Tool",
+      "meta_description": "Calculate [metric] instantly with our free [tool] calculator. Accurate results for [sport] fans. Try now!",
+      "schema_category": "SportsApplication"
+    },
+    "financial": {
+      "title": "[Tool] Calculator | Free [Finance] Estimator 2026",
+      "meta_description": "Free [tool] calculator - get instant results for [purpose]. Plan your finances with accurate calculations.",
+      "schema_category": "FinanceApplication"
+    },
+    "health": {
+      "title": "[Tool] Calculator | Accurate Health Metric Tool 2026",
+      "meta_description": "Calculate your [metric] accurately with our free tool. Science-based formula for reliable health tracking.",
+      "schema_category": "HealthApplication"
+    },
+    "video": {
+      "title": "[Tool] Calculator | Free Video Production Tool",
+      "meta_description": "Professional [tool] calculator for video editors. Convert [input] to [output] instantly. Free online tool.",
+      "schema_category": "MultimediaApplication"
+    },
+    "pets": {
+      "title": "[Animal] [Tool] Calculator | Vet-Approved Guide 2026",
+      "meta_description": "Calculate [metric] for your [animal] safely. Vet-recommended formulas for pet health and nutrition.",
+      "schema_category": "LifestyleApplication"
+    },
+    "automotive": {
+      "title": "[Tool] Calculator | Free Auto Estimator 2026",
+      "meta_description": "Calculate [metric] for your vehicle instantly. Free automotive calculator for drivers and enthusiasts.",
+      "schema_category": "UtilityApplication"
+    },
+    "construction": {
+      "title": "[Tool] Calculator | DIY Project Estimator 2026",
+      "meta_description": "Calculate [material] needs for your project. Free construction calculator for contractors and DIYers.",
+      "schema_category": "UtilityApplication"
+    },
+    "conversion": {
+      "title": "[Unit] Converter | Free Online Calculator 2026",
+      "meta_description": "Convert [from] to [to] instantly. Free unit conversion calculator with accurate results.",
+      "schema_category": "UtilityApplication"
+    },
+    "math": {
+      "title": "[Tool] Calculator | Free Math Solver 2026",
+      "meta_description": "Solve [problem] problems instantly. Free math calculator for students and professionals.",
+      "schema_category": "EducationalApplication"
+    },
+    "science": {
+      "title": "[Tool] Calculator | Free Science Tool 2026",
+      "meta_description": "Calculate [metric] with scientific precision. Free physics and chemistry calculator.",
+      "schema_category": "EducationalApplication"
+    },
+    "electrical": {
+      "title": "[Tool] Calculator | Electrical Estimator 2026",
+      "meta_description": "Calculate [metric] for electrical projects. Free calculator for electricians and engineers.",
+      "schema_category": "UtilityApplication"
+    },
+    "cooking": {
+      "title": "[Tool] Calculator | Recipe Converter Tool 2026",
+      "meta_description": "Convert [from] to [to] for recipes. Free cooking calculator for home chefs.",
+      "schema_category": "LifestyleApplication"
+    },
+    "time": {
+      "title": "[Tool] Calculator | Free Time Tool 2026",
+      "meta_description": "Calculate [metric] instantly. Free time and date calculator for planning.",
+      "schema_category": "UtilityApplication"
+    },
+    "everyday": {
+      "title": "[Tool] Calculator | Daily Life Helper 2026",
+      "meta_description": "Calculate [metric] for everyday needs. Free practical calculator for daily life.",
+      "schema_category": "UtilityApplication"
+    },
+    "funny": {
+      "title": "[Tool] Calculator | Fun Online Tool",
+      "meta_description": "The fun [tool] calculator everyone's talking about. Try it now and share with friends!",
+      "schema_category": "EntertainmentApplication"
+    }
+  },
+  "power_words": [
+    "Free",
+    "Instant",
+    "Accurate",
+    "2026",
+    "Easy",
+    "Quick",
+    "Professional",
+    "Trusted",
+    "Simple",
+    "Fast"
+  ],
+  "cta_phrases": [
+    "Calculate now",
+    "Try free",
+    "Get instant results",
+    "Start calculating",
+    "Try it now"
+  ]
+}

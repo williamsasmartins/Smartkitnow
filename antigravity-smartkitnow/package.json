@@ -1,0 +1,15 @@
+{
+  "name": "smartkitnow-seo-tools",
+  "version": "1.0.0",
+  "description": "SEO implementation tools for SmartKitNow.com",
+  "scripts": {
+    "seo:implement": "node implement-seo.js",
+    "seo:update-pages": "node auto-update-pages.js",
+    "seo:update-pages:dry": "node auto-update-pages.js --dry-run",
+    "seo:all": "npm run seo:implement && npm run seo:update-pages",
+    "seo:validate": "node validate-seo.js"
+  },
+  "keywords": ["seo", "smartkitnow", "optimization"],
+  "author": "SmartKitNow",
+  "license": "MIT"
+}

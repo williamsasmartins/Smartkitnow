@@ -1,0 +1,114 @@
+{
+  "webApplication": {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "{{calculator_name}}",
+    "description": "{{description}}",
+    "url": "{{url}}",
+    "applicationCategory": "{{category}}Application",
+    "operatingSystem": "Web",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "{{rating_count}}"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "SmartKitNow",
+      "url": "https://www.smartkitnow.com"
+    }
+  },
+  "faqPage": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the {{calculator_name}} work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{how_it_works_answer}}"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this {{calculator_name}} free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our {{calculator_name}} is completely free to use with no registration required. You can use it unlimited times."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate is this calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{accuracy_answer}}"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this calculator on my phone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our calculator is fully responsive and works on all devices including smartphones, tablets, and desktop computers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "{{custom_question}}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{custom_answer}}"
+        }
+      }
+    ]
+  },
+  "breadcrumb": {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.smartkitnow.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{category_name}}",
+        "item": "https://www.smartkitnow.com/{{category_slug}}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{calculator_name}}",
+        "item": "{{url}}"
+      }
+    ]
+  },
+  "categoryMappings": {
+    "sports": "SportsApplication",
+    "financial": "FinanceApplication",
+    "health": "HealthApplication",
+    "video": "MultimediaApplication",
+    "pets": "LifestyleApplication",
+    "automotive": "UtilityApplication",
+    "construction": "UtilityApplication",
+    "conversion": "UtilityApplication",
+    "math": "EducationalApplication",
+    "science": "EducationalApplication",
+    "electrical": "UtilityApplication",
+    "cooking": "LifestyleApplication",
+    "time": "UtilityApplication",
+    "everyday": "UtilityApplication",
+    "funny": "EntertainmentApplication"
+  }
+}
