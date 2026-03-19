@@ -1,16 +1,8 @@
 # SmartKitNow Robots.txt
-# Gerado automaticamente
-
 User-agent: *
 Allow: /
 
-# Sitemaps
 Sitemap: https://www.smartkitnow.com/sitemap.xml
 
-# Crawl-delay (opcional)
-Crawl-delay: 1
-
-# Bloquear páginas não importantes
 Disallow: /api/
 Disallow: /_next/
-Disallow: /admin/

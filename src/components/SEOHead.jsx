@@ -1,7 +1,5 @@
-
 // components/SEOHead.jsx
 // Gerado automaticamente pelo script de implementação SEO
-// Uso: <SEOHead slug="dog-calorie-calculator" />
 
 import Head from 'next/head';
 import seoConfig from '@/config/seo.json';
@@ -11,7 +9,7 @@ export default function SEOHead({ slug, customTitle, customDescription }) {
   
   const title = customTitle || seo.title || 'SmartKitNow - Free Online Calculators';
   const description = customDescription || seo.description || 'Free online calculators for every need.';
-  const schema = seo.schema || null;
+  const schemas = seo.schema || {};
   
   return (
     <Head>
@@ -31,18 +29,25 @@ export default function SEOHead({ slug, customTitle, customDescription }) {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       
-      {/* Schema.org JSON-LD */}
-      {schema && (
+      {/* Schema.org JSON-LD - WebApplication */}
+      {schemas.webApp && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.webApp) }}
+        />
+      )}
+      
+      {/* Schema.org JSON-LD - FAQ */}
+      {schemas.faq && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.faq) }}
         />
       )}
     </Head>
   );
 }
 
-// Hook para usar em qualquer componente
 export function useSEO(slug) {
   return seoConfig[slug] || null;
 }
