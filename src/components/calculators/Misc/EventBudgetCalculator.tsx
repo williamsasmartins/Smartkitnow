@@ -366,12 +366,12 @@ export default function EventBudgetCalculator() {
         result: "Total Budget = 3000 + (150 × 30) + 1200 + 800 + 500 = $10,000",
       }}
       relatedCalculators={[
-        { title: "Water Heater Recovery Time Estimator", url: "/everyday-life/water-heater-recovery-time", icon: "💧" },
-        { title: "Home Renovation Cost Estimator", url: "/everyday-life/home-renovation-cost-estimator", icon: "🏠" },
-        { title: "Cleaning Dilution Ratio Calculator", url: "/everyday-life/cleaning-dilution-ratio", icon: "🏠" },
-        { title: "Plant Spacing Calculator", url: "/everyday-life/plant-spacing-calculator", icon: "🌿" },
-        { title: "Rainwater Barrel Days of Supply", url: "/everyday-life/rainwater-barrel-days-supply", icon: "💧" },
-        { title: "Grass Seed Quantity Calculator", url: "/everyday-life/grass-seed-quantity", icon: "💡" },
+        { title: "Water Heater Recovery Time Estimator", url: "/everyday/water-heater-recovery-time", icon: "💧" },
+        { title: "Home Renovation Cost Estimator", url: "/everyday/home-renovation-cost-estimator", icon: "🏠" },
+        { title: "Cleaning Dilution Ratio Calculator", url: "/everyday/cleaning-dilution-ratio", icon: "🏠" },
+        { title: "Plant Spacing Calculator", url: "/everyday/plant-spacing-calculator", icon: "🌿" },
+        { title: "Rainwater Barrel Days of Supply", url: "/everyday/rainwater-barrel-days-supply", icon: "💧" },
+        { title: "Grass Seed Quantity Calculator", url: "/everyday/grass-seed-quantity", icon: "💡" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },

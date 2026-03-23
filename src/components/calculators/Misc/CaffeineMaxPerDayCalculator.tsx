@@ -469,12 +469,12 @@ export default function CaffeineMaxPerDayCalculator() {
         result: "The user can safely consume up to 280 mg caffeine per day and has about 10 mg remaining after current intake.",
       }}
       relatedCalculators={[
-        { title: "Grass Seed Quantity Calculator", url: "/everyday-life/grass-seed-quantity", icon: "💡" },
-        { title: "Event Budget Calculator", url: "/everyday-life/event-budget-calculator", icon: "💡" },
-        { title: "Light Bulb Cost per Year Calculator", url: "/everyday-life/light-bulb-cost-per-year", icon: "🏠" },
-        { title: "Life Expectancy Calculator", url: "/everyday-life/life-expectancy", icon: "💡" },
-        { title: "Square Footage Calculator", url: "/everyday-life/square-footage-calculator", icon: "💡" },
-        { title: "Buffet Serving Pan Capacity & Count", url: "/everyday-life/buffet-pan-capacity-count", icon: "💡" },
+        { title: "Grass Seed Quantity Calculator", url: "/everyday/grass-seed-quantity", icon: "💡" },
+        { title: "Event Budget Calculator", url: "/everyday/event-budget-calculator", icon: "💡" },
+        { title: "Light Bulb Cost per Year Calculator", url: "/everyday/light-bulb-cost-per-year", icon: "🏠" },
+        { title: "Life Expectancy Calculator", url: "/everyday/life-expectancy", icon: "💡" },
+        { title: "Square Footage Calculator", url: "/everyday/square-footage-calculator", icon: "💡" },
+        { title: "Buffet Serving Pan Capacity & Count", url: "/everyday/buffet-pan-capacity-count", icon: "💡" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },

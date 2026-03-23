@@ -378,12 +378,12 @@ export default function PlantingCalendarFrostDateCalculator() {
         result: "The gardener should plant warm-season vegetables around April 15 to avoid frost damage and ensure optimal growth.",
       }}
       relatedCalculators={[
-        { title: "Life Expectancy Calculator", url: "/everyday-life/life-expectancy", icon: "💡" },
-        { title: "Room Air Changes per Hour (ACH) Calculator", url: "/everyday-life/room-air-changes-ach", icon: "💡" },
-        { title: "Propane Tank Burn Time Estimator", url: "/everyday-life/propane-tank-burn-time", icon: "💡" },
-        { title: "Basal Metabolic Rate (BMR) Calculator", url: "/everyday-life/bmr-calculator", icon: "💡" },
-        { title: "Hydration Reminder Interval Planner", url: "/everyday-life/hydration-reminder-interval", icon: "💡" },
-        { title: "Home Renovation Cost Estimator", url: "/everyday-life/home-renovation-cost-estimator", icon: "🏠" },
+        { title: "Life Expectancy Calculator", url: "/everyday/life-expectancy", icon: "💡" },
+        { title: "Room Air Changes per Hour (ACH) Calculator", url: "/everyday/room-air-changes-ach", icon: "💡" },
+        { title: "Propane Tank Burn Time Estimator", url: "/everyday/propane-tank-burn-time", icon: "💡" },
+        { title: "Basal Metabolic Rate (BMR) Calculator", url: "/everyday/bmr-calculator", icon: "💡" },
+        { title: "Hydration Reminder Interval Planner", url: "/everyday/hydration-reminder-interval", icon: "💡" },
+        { title: "Home Renovation Cost Estimator", url: "/everyday/home-renovation-cost-estimator", icon: "🏠" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },

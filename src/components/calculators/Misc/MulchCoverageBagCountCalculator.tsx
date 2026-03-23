@@ -509,32 +509,32 @@ export default function MulchCoverageBagCountCalculator() {
       relatedCalculators={[
         {
           title: "Screen Time Budget / Pomodoro Planner",
-          url: "/everyday-life/screen-time-pomodoro-planner",
+          url: "/everyday/screen-time-pomodoro-planner",
           icon: "💡",
         },
         {
           title: "Coffee Urn Yield & Strength Calculator",
-          url: "/everyday-life/coffee-urn-yield-strength",
+          url: "/everyday/coffee-urn-yield-strength",
           icon: "💡",
         },
         {
           title: "Cleaning Dilution Ratio Calculator",
-          url: "/everyday-life/cleaning-dilution-ratio",
+          url: "/everyday/cleaning-dilution-ratio",
           icon: "🏠",
         },
         {
           title: "Rainwater Barrel Days of Supply",
-          url: "/everyday-life/rainwater-barrel-days-supply",
+          url: "/everyday/rainwater-barrel-days-supply",
           icon: "💧",
         },
         {
           title: "Laundry Detergent Dosage by Load Size",
-          url: "/everyday-life/laundry-detergent-dosage",
+          url: "/everyday/laundry-detergent-dosage",
           icon: "💡",
         },
         {
           title: "Basal Metabolic Rate (BMR) Calculator",
-          url: "/everyday-life/bmr-calculator",
+          url: "/everyday/bmr-calculator",
           icon: "💡",
         },
       ]}

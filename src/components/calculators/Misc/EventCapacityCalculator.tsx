@@ -358,12 +358,12 @@ export default function EventCapacityCalculator() {
           "The calculator estimates a maximum safe capacity of approximately 90 guests, accounting for the mixed standing and seated layout and safety margin.",
       }}
       relatedCalculators={[
-        { title: "Body Mass Index (BMI) Calculator", url: "/everyday-life/bmi-calculator", icon: "Heart" },
-        { title: "Cleaning Dilution Ratio Calculator", url: "/everyday-life/cleaning-dilution-ratio", icon: "Home" },
-        { title: "Water Heater Recovery Time Estimator", url: "/everyday-life/water-heater-recovery-time", icon: "Droplets" },
-        { title: "Light Bulb Cost per Year Calculator", url: "/everyday-life/light-bulb-cost-per-year", icon: "Home" },
-        { title: "Ice Quantity for Beverages Calculator", url: "/everyday-life/ice-quantity-beverages", icon: "Zap" },
-        { title: "Sleep Debt & Ideal Bedtime Planner", url: "/everyday-life/sleep-debt-ideal-bedtime", icon: "Zap" },
+        { title: "Body Mass Index (BMI) Calculator", url: "/everyday/bmi-calculator", icon: "Heart" },
+        { title: "Cleaning Dilution Ratio Calculator", url: "/everyday/cleaning-dilution-ratio", icon: "Home" },
+        { title: "Water Heater Recovery Time Estimator", url: "/everyday/water-heater-recovery-time", icon: "Droplets" },
+        { title: "Light Bulb Cost per Year Calculator", url: "/everyday/light-bulb-cost-per-year", icon: "Home" },
+        { title: "Ice Quantity for Beverages Calculator", url: "/everyday/ice-quantity-beverages", icon: "Zap" },
+        { title: "Sleep Debt & Ideal Bedtime Planner", url: "/everyday/sleep-debt-ideal-bedtime", icon: "Zap" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },

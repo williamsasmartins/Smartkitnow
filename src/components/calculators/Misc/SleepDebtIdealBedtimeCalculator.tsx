@@ -398,12 +398,12 @@ export default function SleepDebtIdealBedtimeCalculator() {
         result: "Ideal Bedtime: 11:00 PM; Sleep Debt: 1 hour 30 minutes",
       }}
       relatedCalculators={[
-        { title: "Wine/Beer/Soft Drink Mix Estimator", url: "/everyday-life/beverage-mix-estimator", icon: "🎉" },
-        { title: "Leftovers Cooling & Reheat Time", url: "/everyday-life/leftovers-cooling-reheat-time", icon: "💡" },
-        { title: "MyPlate Daily Calorie/Nutrient Planner", url: "/everyday-life/myplate-daily-calorie-nutrient", icon: "❤️" },
-        { title: "Caffeine Max per Day Calculator", url: "/everyday-life/caffeine-max-per-day", icon: "💡" },
-        { title: "Square Footage Calculator", url: "/everyday-life/square-footage-calculator", icon: "💡" },
-        { title: "Party Food & Drinks Planner", url: "/everyday-life/party-food-drinks-planner", icon: "🎉" },
+        { title: "Wine/Beer/Soft Drink Mix Estimator", url: "/everyday/beverage-mix-estimator", icon: "🎉" },
+        { title: "Leftovers Cooling & Reheat Time", url: "/everyday/leftovers-cooling-reheat-time", icon: "💡" },
+        { title: "MyPlate Daily Calorie/Nutrient Planner", url: "/everyday/myplate-daily-calorie-nutrient", icon: "❤️" },
+        { title: "Caffeine Max per Day Calculator", url: "/everyday/caffeine-max-per-day", icon: "💡" },
+        { title: "Square Footage Calculator", url: "/everyday/square-footage-calculator", icon: "💡" },
+        { title: "Party Food & Drinks Planner", url: "/everyday/party-food-drinks-planner", icon: "🎉" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },

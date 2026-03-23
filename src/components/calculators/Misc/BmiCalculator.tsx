@@ -405,12 +405,12 @@ export default function BmiCalculator() {
           "The person’s BMI is approximately 22.9, indicating a healthy weight status.",
       }}
       relatedCalculators={[
-        { title: "Steps → Distance Converter", url: "/everyday-life/steps-to-distance-converter", icon: "💡" },
-        { title: "Wine/Beer/Soft Drink Mix Estimator", url: "/everyday-life/beverage-mix-estimator", icon: "🎉" },
-        { title: "Event Capacity Calculator", url: "/everyday-life/event-capacity-calculator", icon: "💡" },
-        { title: "Garden Soil/Compost Volume Calculator", url: "/everyday-life/garden-soil-compost-volume", icon: "🌿" },
-        { title: "Event Budget Calculator", url: "/everyday-life/event-budget-calculator", icon: "💡" },
-        { title: "Rainwater Barrel Days of Supply", url: "/everyday-life/rainwater-barrel-days-supply", icon: "💧" },
+        { title: "Steps → Distance Converter", url: "/everyday/steps-to-distance-converter", icon: "💡" },
+        { title: "Wine/Beer/Soft Drink Mix Estimator", url: "/everyday/beverage-mix-estimator", icon: "🎉" },
+        { title: "Event Capacity Calculator", url: "/everyday/event-capacity-calculator", icon: "💡" },
+        { title: "Garden Soil/Compost Volume Calculator", url: "/everyday/garden-soil-compost-volume", icon: "🌿" },
+        { title: "Event Budget Calculator", url: "/everyday/event-budget-calculator", icon: "💡" },
+        { title: "Rainwater Barrel Days of Supply", url: "/everyday/rainwater-barrel-days-supply", icon: "💧" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },

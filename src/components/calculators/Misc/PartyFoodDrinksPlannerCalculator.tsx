@@ -448,12 +448,12 @@ export default function PartyFoodDrinksPlannerCalculator() {
           "The planner estimates approximately 31.5 kg of food, 6.0 liters of drinks, and 8 pizzas needed to satisfy your guests.",
       }}
       relatedCalculators={[
-        { title: "Square Footage Calculator", url: "/everyday-life/square-footage-calculator", icon: "💡" },
-        { title: "Event Capacity Calculator", url: "/everyday-life/event-capacity-calculator", icon: "💡" },
-        { title: "MyPlate Daily Calorie/Nutrient Planner", url: "/everyday-life/myplate-daily-calorie-nutrient", icon: "❤️" },
-        { title: "Garden Soil/Compost Volume Calculator", url: "/everyday-life/garden-soil-compost-volume", icon: "🌿" },
-        { title: "Plant Spacing Calculator", url: "/everyday-life/plant-spacing-calculator", icon: "🌿" },
-        { title: "Basal Metabolic Rate (BMR) Calculator", url: "/everyday-life/bmr-calculator", icon: "💡" },
+        { title: "Square Footage Calculator", url: "/everyday/square-footage-calculator", icon: "💡" },
+        { title: "Event Capacity Calculator", url: "/everyday/event-capacity-calculator", icon: "💡" },
+        { title: "MyPlate Daily Calorie/Nutrient Planner", url: "/everyday/myplate-daily-calorie-nutrient", icon: "❤️" },
+        { title: "Garden Soil/Compost Volume Calculator", url: "/everyday/garden-soil-compost-volume", icon: "🌿" },
+        { title: "Plant Spacing Calculator", url: "/everyday/plant-spacing-calculator", icon: "🌿" },
+        { title: "Basal Metabolic Rate (BMR) Calculator", url: "/everyday/bmr-calculator", icon: "💡" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },

@@ -415,12 +415,12 @@ export default function HomePaintTouchUpCalculator() {
         result: "Estimated paint needed is approximately 0.015 gallons or about 2 ounces.",
       }}
       relatedCalculators={[
-        { title: "Grass Seed Quantity Calculator", url: "/everyday-life/grass-seed-quantity", icon: "💡" },
-        { title: "Party Food & Drinks Planner", url: "/everyday-life/party-food-drinks-planner", icon: "🎉" },
-        { title: "Fertilizer Application Calculator", url: "/everyday-life/fertilizer-application-calculator", icon: "💡" },
-        { title: "Propane Tank Burn Time Estimator", url: "/everyday-life/propane-tank-burn-time", icon: "💡" },
-        { title: "Body Mass Index (BMI) Calculator", url: "/everyday-life/bmi-calculator", icon: "❤️" },
-        { title: "Caffeine Max per Day Calculator", url: "/everyday-life/caffeine-max-per-day", icon: "💡" },
+        { title: "Grass Seed Quantity Calculator", url: "/everyday/grass-seed-quantity", icon: "💡" },
+        { title: "Party Food & Drinks Planner", url: "/everyday/party-food-drinks-planner", icon: "🎉" },
+        { title: "Fertilizer Application Calculator", url: "/everyday/fertilizer-application-calculator", icon: "💡" },
+        { title: "Propane Tank Burn Time Estimator", url: "/everyday/propane-tank-burn-time", icon: "💡" },
+        { title: "Body Mass Index (BMI) Calculator", url: "/everyday/bmi-calculator", icon: "❤️" },
+        { title: "Caffeine Max per Day Calculator", url: "/everyday/caffeine-max-per-day", icon: "💡" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },

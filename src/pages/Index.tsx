@@ -1374,7 +1374,7 @@ const Index = () => {
       name: "Free QR Code Generator",
       icon: QrCode,
       color: "text-blue-600",
-      path: "/everyday-life/qr-code-generator",
+      path: "/everyday/qr-code-generator",
       description: "Generate QR codes for URLs and text in PNG/SVG."
     },
     // Adding requested single utility cards
@@ -1406,7 +1406,7 @@ const Index = () => {
       name: "Free QR Code Generator",
       description: "Generate QR Codes for URLs and text",
       icon: QrCode,
-      path: "/everyday-life/qr-code-generator",
+      path: "/everyday/qr-code-generator",
       ctaLabel: "Generate QR Code"
     },
     {

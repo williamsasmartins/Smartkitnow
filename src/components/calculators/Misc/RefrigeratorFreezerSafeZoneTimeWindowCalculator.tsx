@@ -412,12 +412,12 @@ export default function RefrigeratorFreezerSafeZoneTimeWindowCalculator() {
           "The calculator indicates that food is likely safe since 30 hours is less than the adjusted safe time of 48 hours for a full freezer at room temperature.",
       }}
       relatedCalculators={[
-        { title: "Life Expectancy Calculator", url: "/everyday-life/life-expectancy", icon: "💡" },
-        { title: "Water Heater Recovery Time Estimator", url: "/everyday-life/water-heater-recovery-time", icon: "💧" },
-        { title: "Lawn Mowing Time & Fuel Planner", url: "/everyday-life/lawn-mowing-time-fuel", icon: "💡" },
-        { title: "Garden Soil/Compost Volume Calculator", url: "/everyday-life/garden-soil-compost-volume", icon: "🌿" },
-        { title: "Cleaning Dilution Ratio Calculator", url: "/everyday-life/cleaning-dilution-ratio", icon: "🏠" },
-        { title: "Fertilizer Application Calculator", url: "/everyday-life/fertilizer-application-calculator", icon: "💡" },
+        { title: "Life Expectancy Calculator", url: "/everyday/life-expectancy", icon: "💡" },
+        { title: "Water Heater Recovery Time Estimator", url: "/everyday/water-heater-recovery-time", icon: "💧" },
+        { title: "Lawn Mowing Time & Fuel Planner", url: "/everyday/lawn-mowing-time-fuel", icon: "💡" },
+        { title: "Garden Soil/Compost Volume Calculator", url: "/everyday/garden-soil-compost-volume", icon: "🌿" },
+        { title: "Cleaning Dilution Ratio Calculator", url: "/everyday/cleaning-dilution-ratio", icon: "🏠" },
+        { title: "Fertilizer Application Calculator", url: "/everyday/fertilizer-application-calculator", icon: "💡" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },

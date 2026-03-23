@@ -395,12 +395,12 @@ export default function LaundryDetergentDosageCalculator() {
         result: "Recommended detergent dosage: 24 ml",
       }}
       relatedCalculators={[
-        { title: "Life Expectancy Calculator", url: "/everyday-life/life-expectancy", icon: "💡" },
-        { title: "Wine/Beer/Soft Drink Mix Estimator", url: "/everyday-life/beverage-mix-estimator", icon: "🎉" },
-        { title: "Square Footage Calculator", url: "/everyday-life/square-footage-calculator", icon: "💡" },
-        { title: "Steps → Distance Converter", url: "/everyday-life/steps-to-distance-converter", icon: "💡" },
-        { title: "Event Budget Calculator", url: "/everyday-life/event-budget-calculator", icon: "💡" },
-        { title: "Leftovers Cooling & Reheat Time", url: "/everyday-life/leftovers-cooling-reheat-time", icon: "💡" },
+        { title: "Life Expectancy Calculator", url: "/everyday/life-expectancy", icon: "💡" },
+        { title: "Wine/Beer/Soft Drink Mix Estimator", url: "/everyday/beverage-mix-estimator", icon: "🎉" },
+        { title: "Square Footage Calculator", url: "/everyday/square-footage-calculator", icon: "💡" },
+        { title: "Steps → Distance Converter", url: "/everyday/steps-to-distance-converter", icon: "💡" },
+        { title: "Event Budget Calculator", url: "/everyday/event-budget-calculator", icon: "💡" },
+        { title: "Leftovers Cooling & Reheat Time", url: "/everyday/leftovers-cooling-reheat-time", icon: "💡" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },

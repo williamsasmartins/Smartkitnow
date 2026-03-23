@@ -29,10 +29,11 @@ const COLS: Array<{ title: string; links: { label: string; to: string }[] }> = [
       { label: "Construction", to: "/construction" },
       { label: "Electrical", to: "/electrical" },
       { label: "Automotive", to: "/automotive" },
-      { label: "Everyday Life", to: "/everyday-life" },
+      { label: "Everyday Life", to: "/everyday" },
       { label: "Sports", to: "/sports" },
       { label: "Funny Calculators", to: "/funny" },
       { label: "TV Tools", to: "/tv" },
+      { label: "Smart Tips", to: "/smart-tips" },
     ],
   },
   {

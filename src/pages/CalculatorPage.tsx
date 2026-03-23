@@ -3,6 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { getEntry, FRIENDLY_TITLES, SUBCATEGORY_TITLES } from "@/data/calculatorRegistry";
 import JsonLd from "@/components/seo/JsonLd";
 import SEOHead from "@/components/SEOHead";
+import NotFound from "./NotFound";
 
 function createLazyFromLoader(loader: () => Promise<any>, namedExport?: string) {
   const Lazy = React.lazy(async () => {
@@ -30,9 +31,9 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
   const entry = calcSlug ? getEntry(calcSlug) : null;
 
   if (!entry) {
-    // Redirect to the real 404 page instead of rendering a soft 404
-    // This prevents Google from seeing a 200 page with thin content (Soft 404)
-    return <Navigate to="/404" replace />;
+    // Render NotFound inline to prevent client-side redirect loops
+    // and better SEO handling for missing entries natively.
+    return <NotFound />;
   }
 
   const LazyCalc = createLazyFromLoader(entry.loader, entry.namedExport);

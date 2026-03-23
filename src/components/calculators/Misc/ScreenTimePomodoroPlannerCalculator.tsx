@@ -432,12 +432,12 @@ export default function ScreenTimePomodoroPlannerCalculator() {
         result: "You can plan 12 focused Pomodoro intervals within your 6-hour screen time budget, balancing productivity and rest effectively.",
       }}
       relatedCalculators={[
-        { title: "Hydration Reminder Interval Planner", url: "/everyday-life/hydration-reminder-interval", icon: "💡" },
-        { title: "Mulch Coverage & Bag Count Calculator", url: "/everyday-life/mulch-coverage-bag-count", icon: "💡" },
-        { title: "Propane Tank Burn Time Estimator", url: "/everyday-life/propane-tank-burn-time", icon: "💡" },
-        { title: "Event Budget Calculator", url: "/everyday-life/event-budget-calculator", icon: "💡" },
-        { title: "Coffee Urn Yield & Strength Calculator", url: "/everyday-life/coffee-urn-yield-strength", icon: "💡" },
-        { title: "Rainwater Barrel Days of Supply", url: "/everyday-life/rainwater-barrel-days-supply", icon: "💧" },
+        { title: "Hydration Reminder Interval Planner", url: "/everyday/hydration-reminder-interval", icon: "💡" },
+        { title: "Mulch Coverage & Bag Count Calculator", url: "/everyday/mulch-coverage-bag-count", icon: "💡" },
+        { title: "Propane Tank Burn Time Estimator", url: "/everyday/propane-tank-burn-time", icon: "💡" },
+        { title: "Event Budget Calculator", url: "/everyday/event-budget-calculator", icon: "💡" },
+        { title: "Coffee Urn Yield & Strength Calculator", url: "/everyday/coffee-urn-yield-strength", icon: "💡" },
+        { title: "Rainwater Barrel Days of Supply", url: "/everyday/rainwater-barrel-days-supply", icon: "💧" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },

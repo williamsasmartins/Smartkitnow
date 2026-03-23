@@ -560,12 +560,12 @@ export default function BodyFatPercentageCalculator() {
           "John's estimated body fat percentage is approximately 16.5%, which falls into the 'Fitness' category for males.",
       }}
       relatedCalculators={[
-        { title: "Body Mass Index (BMI) Calculator", url: "/everyday-life/bmi-calculator", icon: "Heart" },
-        { title: "Light Bulb Cost per Year Calculator", url: "/everyday-life/light-bulb-cost-per-year", icon: "Home" },
-        { title: "MyPlate Daily Calorie/Nutrient Planner", url: "/everyday-life/myplate-daily-calorie-nutrient", icon: "Heart" },
-        { title: "Laundry Detergent Dosage by Load Size", url: "/everyday-life/laundry-detergent-dosage", icon: "DollarSign" },
-        { title: "Lawn Mowing Time & Fuel Planner", url: "/everyday-life/lawn-mowing-time-fuel", icon: "DollarSign" },
-        { title: "Propane Tank Burn Time Estimator", url: "/everyday-life/propane-tank-burn-time", icon: "DollarSign" },
+        { title: "Body Mass Index (BMI) Calculator", url: "/everyday/bmi-calculator", icon: "Heart" },
+        { title: "Light Bulb Cost per Year Calculator", url: "/everyday/light-bulb-cost-per-year", icon: "Home" },
+        { title: "MyPlate Daily Calorie/Nutrient Planner", url: "/everyday/myplate-daily-calorie-nutrient", icon: "Heart" },
+        { title: "Laundry Detergent Dosage by Load Size", url: "/everyday/laundry-detergent-dosage", icon: "DollarSign" },
+        { title: "Lawn Mowing Time & Fuel Planner", url: "/everyday/lawn-mowing-time-fuel", icon: "DollarSign" },
+        { title: "Propane Tank Burn Time Estimator", url: "/everyday/propane-tank-burn-time", icon: "DollarSign" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },

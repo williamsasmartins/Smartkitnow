@@ -37,7 +37,7 @@ export function Header() {
     { key: "math", label: "Math", to: "/math" },
     { key: "pets", label: "Pet Care", to: "/pets" },
     { key: "games", label: "Free Games", to: "/games" },
-    { key: "qr-code", label: "Free QR Code Generator", to: "/everyday-life/qr-code-generator" },
+    { key: "qr-code", label: "Free QR Code Generator", to: "/everyday/qr-code-generator" },
     { key: "sports", label: "Sports", to: "/sports" },
   ];
 

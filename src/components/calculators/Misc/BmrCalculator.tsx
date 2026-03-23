@@ -425,32 +425,32 @@ export default function BmrCalculator() {
       relatedCalculators={[
         {
           title: "Refrigerator/Freezer Safe Zone Time Window",
-          url: "/everyday-life/refrigerator-freezer-safe-zone-time-window",
+          url: "/everyday/refrigerator-freezer-safe-zone-time-window",
           icon: "💡",
         },
         {
           title: "Room Air Changes per Hour (ACH) Calculator",
-          url: "/everyday-life/room-air-changes-ach",
+          url: "/everyday/room-air-changes-ach",
           icon: "💡",
         },
         {
           title: "Coffee Urn Yield & Strength Calculator",
-          url: "/everyday-life/coffee-urn-yield-strength",
+          url: "/everyday/coffee-urn-yield-strength",
           icon: "💡",
         },
         {
           title: "Buffet Serving Pan Capacity & Count",
-          url: "/everyday-life/buffet-pan-capacity-count",
+          url: "/everyday/buffet-pan-capacity-count",
           icon: "💡",
         },
         {
           title: "Cleaning Dilution Ratio Calculator",
-          url: "/everyday-life/cleaning-dilution-ratio",
+          url: "/everyday/cleaning-dilution-ratio",
           icon: "🏠",
         },
         {
           title: "Hydration Reminder Interval Planner",
-          url: "/everyday-life/hydration-reminder-interval",
+          url: "/everyday/hydration-reminder-interval",
           icon: "💡",
         },
       ]}

@@ -468,32 +468,32 @@ export default function GardenSoilCompostVolumeCalculator() {
       relatedCalculators={[
         {
           title: "Wine/Beer/Soft Drink Mix Estimator",
-          url: "/everyday-life/beverage-mix-estimator",
+          url: "/everyday/beverage-mix-estimator",
           icon: "🎉",
         },
         {
           title: "Light Bulb Cost per Year Calculator",
-          url: "/everyday-life/light-bulb-cost-per-year",
+          url: "/everyday/light-bulb-cost-per-year",
           icon: "🏠",
         },
         {
           title: "Rainwater Barrel Days of Supply",
-          url: "/everyday-life/rainwater-barrel-days-supply",
+          url: "/everyday/rainwater-barrel-days-supply",
           icon: "💧",
         },
         {
           title: "Cleaning Dilution Ratio Calculator",
-          url: "/everyday-life/cleaning-dilution-ratio",
+          url: "/everyday/cleaning-dilution-ratio",
           icon: "🏠",
         },
         {
           title: "Basal Metabolic Rate (BMR) Calculator",
-          url: "/everyday-life/bmr-calculator",
+          url: "/everyday/bmr-calculator",
           icon: "💡",
         },
         {
           title: "Planting Calendar & Frost Date Finder",
-          url: "/everyday-life/planting-calendar-frost-date",
+          url: "/everyday/planting-calendar-frost-date",
           icon: "🌿",
         },
       ]}

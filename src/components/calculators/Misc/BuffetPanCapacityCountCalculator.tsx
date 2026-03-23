@@ -308,12 +308,12 @@ export default function BuffetPanCapacityCountCalculator() {
         result: "You will need 8 half size pans to adequately serve 120 guests with 1.5 servings each.",
       }}
       relatedCalculators={[
-        { title: "Event Capacity Calculator", url: "/everyday-life/event-capacity-calculator", icon: "💡" },
-        { title: "Party Food & Drinks Planner", url: "/everyday-life/party-food-drinks-planner", icon: "🎉" },
-        { title: "Caffeine Max per Day Calculator", url: "/everyday-life/caffeine-max-per-day", icon: "💡" },
-        { title: "Screen Time Budget / Pomodoro Planner", url: "/everyday-life/screen-time-pomodoro-planner", icon: "💡" },
-        { title: "Mulch Coverage & Bag Count Calculator", url: "/everyday-life/mulch-coverage-bag-count", icon: "💡" },
-        { title: "Home Renovation Cost Estimator", url: "/everyday-life/home-renovation-cost-estimator", icon: "🏠" },
+        { title: "Event Capacity Calculator", url: "/everyday/event-capacity-calculator", icon: "💡" },
+        { title: "Party Food & Drinks Planner", url: "/everyday/party-food-drinks-planner", icon: "🎉" },
+        { title: "Caffeine Max per Day Calculator", url: "/everyday/caffeine-max-per-day", icon: "💡" },
+        { title: "Screen Time Budget / Pomodoro Planner", url: "/everyday/screen-time-pomodoro-planner", icon: "💡" },
+        { title: "Mulch Coverage & Bag Count Calculator", url: "/everyday/mulch-coverage-bag-count", icon: "💡" },
+        { title: "Home Renovation Cost Estimator", url: "/everyday/home-renovation-cost-estimator", icon: "🏠" },
       ]}
       onThisPage={[
         { id: "what-is", label: "Understanding" },
