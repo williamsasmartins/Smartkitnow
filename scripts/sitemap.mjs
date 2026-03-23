@@ -7,25 +7,37 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, "..");
 
-// Origem canônica do site (sem crases)
+// Site canonical origin (no trailing slash)
 const ORIGIN = "https://www.smartkitnow.com";
 
-// Import dinâmico do registry TS via parse simples
+// Import dynamic registry TS via simple text parse
 const registryPath = path.join(ROOT, "src", "data", "calculatorRegistry.ts");
-const cuisinesPath = path.join(ROOT, "src", "data", "recipes", "cuisines.ts");
 
-// Carrega arquivo como texto e extrai o array REGISTRY
+// Load file as text and extract the calculatorRegistry array
 const src = fs.readFileSync(registryPath, "utf-8");
-const match = src.match(/export\s+const\s+REGISTRY[\s\S]*?=\s*\[([\s\S]*?)\];/);
-if (!match) {
-  console.error("❌ Não foi possível localizar REGISTRY em src/data/calculatorRegistry.ts");
-  process.exit(1);
+const match = src.match(/export\s+const\s+calculatorRegistry[:\s\S]*?=\s*\[([​\s\S]*?)\/\/\s*SKN-AUTO-REGISTER/);
+
+// Fallback: try matching REGISTRY export alias
+const matchFallback = src.match(/export\s+const\s+calculatorRegistry[^\[]*\[([​\s\S]*?)\];/);
+
+let arrText;
+if (match) {
+  arrText = "[" + match[1] + "]";
+} else if (matchFallback) {
+  arrText = "[" + matchFallback[1] + "]";
+} else {
+  // Last resort: try REGISTRY const
+  const matchRegistry = src.match(/export\s+const\s+REGISTRY[\s\S]*?=\s*\[([​\s\S]*?)\];/);
+  if (!matchRegistry) {
+    console.error("❌ Cannot locate calculatorRegistry or REGISTRY in src/data/calculatorRegistry.ts");
+    process.exit(1);
+  }
+  arrText = "[" + matchRegistry[1] + "]";
 }
 
-// Transforma em JSON válido (sem eval)
-let arrText = "[" + match[1] + "]";
+// Transform to valid JSON (no eval)
 arrText = arrText
-  .replace(/loader:\s*\(\)\s*=>\s*import\(([^)]+)\)/g, "loader: null")
+  .replace(/loader:\s*\(\)\s*=>\s*import\([^)]+\)/g, "loader: null")
   .replace(/\/\/.*$/gm, "")
   .replace(/\/\*[\s\S]*?\*\//g, "")
   .replace(/(\w+):/g, '"$1":')
@@ -36,24 +48,65 @@ let REGISTRY = [];
 try {
   REGISTRY = JSON.parse(arrText);
 } catch (e) {
-  console.error("❌ Falha ao parsear REGISTRY:", e.message);
-  process.exit(1);
+  console.error("❌ Failed to parse registry:", e.message);
+  // Attempt to use grep-based fallback
+  console.log("⚠️  Attempting grep-based fallback…");
+  // Extract slug + category pairs via regex
+  const entryPattern = /\{\s*slug:\s*["']([^"']+)["'][\s\S]*?category:\s*["']([^"']+)["'][^}]*\}/g;
+  let m;
+  while ((m = entryPattern.exec(src)) !== null) {
+    REGISTRY.push({ slug: m[1], category: m[2] });
+  }
+  if (REGISTRY.length === 0) {
+    console.error("❌ Fallback also failed. Exiting.");
+    process.exit(1);
+  }
+  console.log(`✅ Fallback extracted ${REGISTRY.length} entries`);
 }
 
-// URLs estáticas
+// =============================================================
+// STATIC URLs — must match actual live routes in App.tsx
+// =============================================================
 const STATIC_URLS = [
-  "/", "/about", "/contact", "/privacy", "/terms",
-  "/pets", "/health", "/financial", "/cooking", "/math",
-  "/conversion", "/science", "/time", "/tv", "/smart-tips", "/recipes",
+  // Core pages
+  { path: "/",              priority: "1.00" },
+  { path: "/about",         priority: "0.40" },
+  { path: "/contact",       priority: "0.40" },
+  { path: "/privacy",       priority: "0.30" },
+  { path: "/terms",         priority: "0.30" },
+  { path: "/cookies",       priority: "0.20" },
+  { path: "/cookie-settings", priority: "0.20" },
+  { path: "/search",        priority: "0.60" },
+
+  // Category hub pages — high signal for crawlers
+  { path: "/everyday",      priority: "0.80" },
+  { path: "/financial",     priority: "0.85" },
+  { path: "/health",        priority: "0.80" },
+  { path: "/cooking",       priority: "0.75" },
+  { path: "/pets",          priority: "0.80" },
+  { path: "/math",          priority: "0.70" },
+  { path: "/conversion",    priority: "0.70" },
+  { path: "/science",       priority: "0.70" },
+  { path: "/time",          priority: "0.70" },
+  { path: "/sports",        priority: "0.70" },
+  { path: "/funny",         priority: "0.65" },
+  { path: "/automotive",    priority: "0.70" },
+  { path: "/construction",  priority: "0.70" },
+  { path: "/electrical",    priority: "0.70" },
+  { path: "/daily-quotes",  priority: "0.60" },
+  { path: "/games",         priority: "0.55" },
 ];
 
 const TODAY = new Date().toISOString().slice(0, 10);
 const fmtPriority = (n) => Number(n).toFixed(2);
 
 function priorityForCategory(cat) {
-  if (cat === "pets") return fmtPriority(0.85);
-  if (["health", "financial", "cooking", "math"].includes(cat)) return fmtPriority(0.60);
-  return fmtPriority(0.50);
+  if (cat === "financial") return fmtPriority(0.75);
+  if (cat === "health")    return fmtPriority(0.70);
+  if (cat === "pets")      return fmtPriority(0.75);
+  if (["cooking", "math", "conversion", "science", "sports", "everyday", "automotive", "construction", "electrical"].includes(cat))
+    return fmtPriority(0.65);
+  return fmtPriority(0.55);
 }
 
 function urlTag(loc, priority = "0.50", lastmod = TODAY) {
@@ -66,67 +119,47 @@ function urlTag(loc, priority = "0.50", lastmod = TODAY) {
   ].join("\n");
 }
 
-// Heurística para pular “Coming Soon”
-const isComingSoon = (entry) => /coming soon/i.test(entry.title || "") || /placeholder/i.test(entry.description || "");
+// Heuristic to skip "Coming Soon"
+const isComingSoon = (entry) =>
+  /coming soon/i.test(entry.title || "") ||
+  /placeholder/i.test(entry.description || "");
 
-// Rota canônica consistente com o site: /:category/:subcategory/:slug (removendo undefined)
+// Canonical path — consistent with calcLink() in calculatorRegistry.ts
+// All entries use urlStyle: "flat" → /{category}/{slug}
 function canonicalPath(e) {
-  return `/${e.category}/${e.slug}`;
+  const cat = (e.category || "").trim().toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "");
+  const slug = (e.slug || "").trim().toLowerCase();
+  return `/${cat}/${slug}`;
 }
 
-// Monta XML
+// Build XML
 const parts = [];
 parts.push(`<?xml version="1.0" encoding="UTF-8"?>`);
 parts.push(`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`);
 
-// Estáticos
-for (const p of STATIC_URLS) {
-  parts.push(urlTag(p, p === "/" ? fmtPriority(1.00) : fmtPriority(0.40)));
+// Static pages
+for (const s of STATIC_URLS) {
+  parts.push(urlTag(s.path, s.priority));
 }
 
-// Registry (filtrando coming soon)
+// Registry entries (excluding coming soon)
+const seenPaths = new Set();
 for (const e of REGISTRY) {
   if (!e || !e.slug || !e.category) continue;
   if (isComingSoon(e)) continue;
   const loc = canonicalPath(e);
-  const prio = e.category === "pets" ? fmtPriority(0.85) : priorityForCategory(e.category);
+  // Deduplicate — some entries share the same component but have different slugs (aliases)
+  if (seenPaths.has(loc)) continue;
+  seenPaths.add(loc);
+  const prio = priorityForCategory(e.category);
   parts.push(urlTag(loc, prio));
-}
-
-try {
-  const cuisinesSrc = fs.readFileSync(cuisinesPath, "utf-8");
-  const m = cuisinesSrc.match(/key:\s*"mexican"[\s\S]*?recipes:\s*R\(\[([\s\S]*?)\]\)/);
-  if (m) {
-    parts.push(urlTag("/recipes/mexican", fmtPriority(0.45)));
-    const titles = m[1]
-      .split("\n")
-      .map((l) => l.trim())
-      .filter(Boolean)
-      .map((l) => l.replace(/,$/, ""))
-      .filter((l) => l.startsWith('"') && l.endsWith('"'))
-      .map((l) => l.slice(1, -1));
-
-    const slugify = (title) =>
-      title
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^a-zA-Z0-9\s-]/g, "")
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, "-");
-
-    for (const title of titles) {
-      parts.push(urlTag(`/recipes/mexican/${slugify(title)}`, fmtPriority(0.35)));
-    }
-  }
-} catch {
 }
 
 parts.push(`</urlset>`);
 const xml = parts.join("\n");
 
-// Grava em public/sitemap.xml
+// Write to public/sitemap.xml
 const outDir = path.join(ROOT, "public");
 if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, "sitemap.xml"), xml, "utf-8");
-console.log("✅ sitemap.xml gerado via JS em /public/sitemap.xml");
+console.log(`✅ sitemap.xml generated → public/sitemap.xml  (${REGISTRY.length} registry entries, ${STATIC_URLS.length} static URLs)`);

@@ -1,8 +1,30 @@
 # SmartKitNow Robots.txt
+# https://www.smartkitnow.com/robots.txt
+
 User-agent: *
+Allow: /
+Disallow: /api/
+
+# AI crawlers — allowed for brand visibility in AI-powered search
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://www.smartkitnow.com/sitemap.xml
-
-Disallow: /api/
-Disallow: /_next/
