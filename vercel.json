@@ -44,6 +44,1590 @@
   ],
   "rewrites": [
     {
+      "source": "/financial/income-budget-expenses/net-income-after-tax/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/income-budget-expenses/net-income-after-tax",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/dog-nutrition-weight/dog-calorie-needs-rer-mer/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/dog-nutrition-weight/dog-calorie-needs-rer-mer",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cats/cat-harness-size/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cats/cat-harness-size",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/income-budget-expenses/expense-splitter-shared-bills/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/income-budget-expenses/expense-splitter-shared-bills",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/investments-savings/roi-return-on-investment/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/investments-savings/roi-return-on-investment",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/small-mammals/guinea-pig-vitamin-c-intake/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/small-mammals/guinea-pig-vitamin-c-intake",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/smart-tips/wellbeing/caffeine-max-per-day/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/smart-tips/wellbeing/caffeine-max-per-day",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/everyday/home/water-heater-recovery-time/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/everyday/home/water-heater-recovery-time",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cats/prednisolone-dose-cats/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cats/prednisolone-dose-cats",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cats/cat-activity-calorie-adjuster/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cats/cat-activity-calorie-adjuster",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cats/cat-litter-output-tracker/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cats/cat-litter-output-tracker",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/currency-tax/vat-gst/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/currency-tax/vat-gst",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/smart-tips/wellbeing/sleep-debt-ideal-bedtime/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/smart-tips/wellbeing/sleep-debt-ideal-bedtime",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cats/cat-enrichment-planner/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cats/cat-enrichment-planner",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/loans-mortgages-payments/refinance-savings/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/loans-mortgages-payments/refinance-savings",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/loans-mortgages-payments/car-loan-affordability/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/loans-mortgages-payments/car-loan-affordability",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/loans-mortgages-payments/loan-payment/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/loans-mortgages-payments/loan-payment",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/loans-mortgages-payments/heloc-payment-estimator/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/loans-mortgages-payments/heloc-payment-estimator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cats/cat-meloxicam-dose/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cats/cat-meloxicam-dose",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/video/audio-processing-engineering/dbu-dbv-conversion-calculator/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/video/audio-processing-engineering/dbu-dbv-conversion-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/discover/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/discover",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/bbq-smoking/texas-style-brisket/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/bbq-smoking/texas-style-brisket",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/texas-style-brisket/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/texas-style-brisket",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/brazilian-picanha-top-sirloin-cap/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/brazilian-picanha-top-sirloin-cap",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/pasta-and-bean-soup-pasta-e-fagioli/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/pasta-and-bean-soup-pasta-e-fagioli",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/pasta-and-bean-soup-pasta-e-fagioli/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/pasta-and-bean-soup-pasta-e-fagioli",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/tomato-and-basil-bruschetta/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/tomato-and-basil-bruschetta",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/marinated-artichokes/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/marinated-artichokes",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tomato-and-basil-bruschetta/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tomato-and-basil-bruschetta",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/marinated-artichokes/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/marinated-artichokes",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/italian-bread-salad-panzanella/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/italian-bread-salad-panzanella",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian-bread-salad-panzanella/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian-bread-salad-panzanella",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/antipasto-platter-cured-meats-cheese-olives/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/antipasto-platter-cured-meats-cheese-olives",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/antipasto-platter-cured-meats-cheese-olives/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/antipasto-platter-cured-meats-cheese-olives",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/caprese-salad/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/caprese-salad",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/caprese-salad/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/caprese-salad",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/stuffed-zucchini-blossoms/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/stuffed-zucchini-blossoms",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/stuffed-zucchini-blossoms/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/stuffed-zucchini-blossoms",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/garlic-and-herb-crostini/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/garlic-and-herb-crostini",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/garlic-and-herb-crostini/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/garlic-and-herb-crostini",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/tuscan-bread-and-vegetable-soup-ribollita/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/tuscan-bread-and-vegetable-soup-ribollita",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tuscan-bread-and-vegetable-soup-ribollita/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tuscan-bread-and-vegetable-soup-ribollita",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/fried-rice-balls-arancini/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/fried-rice-balls-arancini",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/prosciutto-and-melon/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/prosciutto-and-melon",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/baked-stuffed-mushrooms/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/baked-stuffed-mushrooms",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/fried-rice-balls-arancini/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/fried-rice-balls-arancini",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/prosciutto-and-melon/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/prosciutto-and-melon",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/minestrone-soup/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/italian/minestrone-soup",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/baked-stuffed-mushrooms/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/baked-stuffed-mushrooms",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/minestrone-soup/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/minestrone-soup",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian/ciabatta/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian/ciabatta",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/bbq-smoking/baby-back-ribs/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/bbq-smoking/baby-back-ribs",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/baby-back-ribs/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/baby-back-ribs",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian/spaghetti-with-clams/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian/spaghetti-with-clams",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cat-water-intake/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pets/cat-water-intake",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian/focaccia/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian/focaccia",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/chicken-enchiladas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/chicken-enchiladas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chicken-enchiladas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chicken-enchiladas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/tortillas-de-harina/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/tortillas-de-harina",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/barbacoa-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/barbacoa-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tortillas-de-harina/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tortillas-de-harina",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/barbacoa-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/barbacoa-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/nachos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/nachos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/nachos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/nachos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/shrimp-cocktail-mexican-style/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/shrimp-cocktail-mexican-style",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/shrimp-cocktail-mexican-style/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/shrimp-cocktail-mexican-style",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/albondigas-soup/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/albondigas-soup",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/margarita/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/margarita",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/albondigas-soup/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/albondigas-soup",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/margarita/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/margarita",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tortillas-de-maiz/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tortillas-de-maiz",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/menudo/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/menudo",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/menudo/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/menudo",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/flan/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/flan",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/carnitas-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/carnitas-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/pork-carnitas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/pork-carnitas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/tlayudas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/tlayudas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/pork-carnitas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/pork-carnitas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tlayudas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tlayudas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/black-bean-dip/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/black-bean-dip",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/black-bean-dip/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/black-bean-dip",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/flautas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/flautas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/flautas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/flautas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/chicken-tortilla-soup/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/chicken-tortilla-soup",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chicken-tortilla-soup/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chicken-tortilla-soup",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/breakfast-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/breakfast-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/baja-fish-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/baja-fish-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/breakfast-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/breakfast-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/baja-fish-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/baja-fish-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/frijoles-charros/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/frijoles-charros",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/frijoles-charros/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/frijoles-charros",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/shrimp-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/shrimp-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/shrimp-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/shrimp-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/taquitos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/taquitos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/gorditas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/gorditas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/taquitos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/taquitos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/gorditas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/gorditas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/tamales/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/tamales",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tamales/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tamales",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/roasted-tomato-salsa/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/roasted-tomato-salsa",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/roasted-tomato-salsa/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/roasted-tomato-salsa",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/chiles-rellenos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/chiles-rellenos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chiles-rellenos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chiles-rellenos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/salsa-verde/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/salsa-verde",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/salsa-verde/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/salsa-verde",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/migas-mexican-style/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/migas-mexican-style",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/migas-mexican-style/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/migas-mexican-style",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/fish-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/fish-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/fish-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/fish-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/enchiladas-verdes/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/enchiladas-verdes",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/huevos-rancheros/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/huevos-rancheros",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/enchiladas-verdes/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/enchiladas-verdes",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/huevos-rancheros/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/huevos-rancheros",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/enchiladas-rojas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/enchiladas-rojas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/guacamole/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/guacamole",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/guacamole/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/guacamole",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/queso-fundido/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/queso-fundido",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/chicken-tinga/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/chicken-tinga",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chicken-tinga/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chicken-tinga",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/elote/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/elote",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/chiles-en-nogada/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/chiles-en-nogada",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chiles-en-nogada/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chiles-en-nogada",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/elote/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/elote",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/enchiladas-suizas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/enchiladas-suizas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/horchata/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/horchata",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/horchata/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/horchata",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/quesadillas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/quesadillas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/birria/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/birria",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/quesadillas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/quesadillas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/birria/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/birria",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/sopa-de-lima/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/sopa-de-lima",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/carne-asada-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/carne-asada-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/sopa-de-lima/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/sopa-de-lima",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/carne-asada/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/carne-asada",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/carne-asada/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/carne-asada",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/pastel-tres-leches/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/pastel-tres-leches",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/pastel-tres-leches/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/pastel-tres-leches",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/arroz-mexicano/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/arroz-mexicano",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/arroz-mexicano/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/arroz-mexicano",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/salsa-roja/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/salsa-roja",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/salsa-roja/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/salsa-roja",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/huevos-mexicanos-con-salsa/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/huevos-mexicanos-con-salsa",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/chicken-tinga-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/chicken-tinga-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chicken-tinga-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chicken-tinga-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/frijoles-refritos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/frijoles-refritos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/frijoles-refritos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/frijoles-refritos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/cochinita-pibil/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/cochinita-pibil",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/cochinita-pibil/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/cochinita-pibil",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/pico-de-gallo/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/pico-de-gallo",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/sopes/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/sopes",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/sopes/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/sopes",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/esquites/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/esquites",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/esquites/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/esquites",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/churros/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/churros",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/churros/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/churros",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/agua-de-jamaica/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/agua-de-jamaica",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/agua-de-jamaica/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/agua-de-jamaica",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mole-poblano/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mole-poblano",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tacos-al-pastor/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tacos-al-pastor",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/pozole/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/pozole",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/huaraches/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/huaraches",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/huaraches/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/huaraches",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chilaquiles/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chilaquiles",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/tostadas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/tostadas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tostadas/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/tostadas",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/birria-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/mexican/birria-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/birria-tacos/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/birria-tacos",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/mexican/pozole/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/mexican/pozole",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chicken-and-okra-stew-frango-com-quiabo/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chicken-and-okra-stew-frango-com-quiabo",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/coastal-fish-stew/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/coastal-fish-stew",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/creamy-shrimp-peanut-stew-vatapa/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/creamy-shrimp-peanut-stew-vatapa",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/video/time-fps-timecode/timecode-to-frames-calculator/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/video/time-fps-timecode/timecode-to-frames-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/sports/running-cycling-triathlon-performance/pool-length-time-converter/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/sports/running-cycling-triathlon-performance/pool-length-time-converter",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/brazilian-black-beans/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/brazilian-black-beans",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chicken-and-corn-stew/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/recipes/chicken-and-corn-stew",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/tv/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/tv",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/video/camera-bitrate-record-time-converter/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/video/camera-bitrate-record-time-converter",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian-style-roast-pork-porchetta/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian-style-roast-pork-porchetta",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/shrimp-cocktail-mexican-style/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/shrimp-cocktail-mexican-style",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian/chicken-saltimbocca/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian/chicken-saltimbocca",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/breadsticks-grissini/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/breadsticks-grissini",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/polenta-with-meat-ragu/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/polenta-with-meat-ragu",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/panna-cotta/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/panna-cotta",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/affogato/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/affogato",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/salsa-roja/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/salsa-roja",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/elote/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/elote",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian/garlic-and-olive-oil-pasta-aglio-e-olio/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian/garlic-and-olive-oil-pasta-aglio-e-olio",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/video/resolution-aspect-ratio-pixels/aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/video/resolution-aspect-ratio-pixels/aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/mexican/pico-de-gallo/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/mexican/pico-de-gallo",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian/tuscan-steak-florentine-style/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/italian/tuscan-steak-florentine-style",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/home/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/home",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/video/speaker-crossover-calculator/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/video/speaker-crossover-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pl/strona-glowna-2/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pl/strona-glowna-2",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/savings-rate-tracker/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/financial/savings-rate-tracker",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/potato-gnocchi-with-tomato-sauce/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/culinary/potato-gnocchi-with-tomato-sauce",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pt/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/pt",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/time/day-of-week-for-date/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/time/day-of-week-for-date",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/nl/:path*",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/nl",
+      "destination": "/api/404"
+    },
+    {
       "source": "/:path*",
       "destination": "/"
     }
@@ -110,16 +1694,6 @@
       "permanent": true
     },
     {
-      "source": "/financial/savings-rate-tracker/",
-      "destination": "/financial",
-      "permanent": true
-    },
-    {
-      "source": "/financial/savings-rate-tracker",
-      "destination": "/financial",
-      "permanent": true
-    },
-    {
       "source": "/pets/cat-stress-score-playtime-offset/",
       "destination": "/time",
       "permanent": true
@@ -182,26 +1756,6 @@
     {
       "source": "/video/animation-render-duration-estimator",
       "destination": "/video",
-      "permanent": true
-    },
-    {
-      "source": "/video/speaker-crossover-calculator/",
-      "destination": "/video",
-      "permanent": true
-    },
-    {
-      "source": "/video/speaker-crossover-calculator",
-      "destination": "/video",
-      "permanent": true
-    },
-    {
-      "source": "/pt/",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/home/",
-      "destination": "/",
       "permanent": true
     },
     {
@@ -305,16 +1859,6 @@
       "permanent": true
     },
     {
-      "source": "/video/camera-bitrate-record-time-converter/",
-      "destination": "/video",
-      "permanent": true
-    },
-    {
-      "source": "/video/camera-bitrate-record-time-converter",
-      "destination": "/video",
-      "permanent": true
-    },
-    {
       "source": "/video/audio-file-size-estimator/",
       "destination": "/video",
       "permanent": true
@@ -396,11 +1940,6 @@
     },
     {
       "source": "/video/recording-time-card-ssd-capacity",
-      "destination": "/video",
-      "permanent": true
-    },
-    {
-      "source": "/tv/",
       "destination": "/video",
       "permanent": true
     },
@@ -505,36 +2044,6 @@
       "permanent": true
     },
     {
-      "source": "/culinary/potato-gnocchi-with-tomato-sauce/",
-      "destination": "/cooking",
-      "permanent": true
-    },
-    {
-      "source": "/culinary/potato-gnocchi-with-tomato-sauce",
-      "destination": "/cooking",
-      "permanent": true
-    },
-    {
-      "source": "/time/day-of-week-for-date/",
-      "destination": "/time",
-      "permanent": true
-    },
-    {
-      "source": "/time/day-of-week-for-date",
-      "destination": "/time",
-      "permanent": true
-    },
-    {
-      "source": "/video/resolution-aspect-ratio-pixels/aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper/",
-      "destination": "/video",
-      "permanent": true
-    },
-    {
-      "source": "/video/resolution-aspect-ratio-pixels/aspect-ratio-16-9-to-9-16-1-1-crop-safe-area-helper",
-      "destination": "/video",
-      "permanent": true
-    },
-    {
       "source": "/video/audio-processing-engineering/decibel-power-ratio-calculator/",
       "destination": "/video",
       "permanent": true
@@ -585,11 +2094,6 @@
       "permanent": true
     },
     {
-      "source": "/home",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/culinary",
       "destination": "/cooking",
       "permanent": true
@@ -612,11 +2116,6 @@
     {
       "source": "/smart-tips/:path*",
       "destination": "/smart-tips",
-      "permanent": true
-    },
-    {
-      "source": "/tv",
-      "destination": "/video",
       "permanent": true
     },
     {
@@ -660,17 +2159,7 @@
       "permanent": true
     },
     {
-      "source": "/nl",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/nl/:path*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/pt",
       "destination": "/",
       "permanent": true
     },
@@ -935,11 +2424,6 @@
       "permanent": true
     },
     {
-      "source": "/pets/cat-water-intake",
-      "destination": "/pets/cat-daily-water-intake-checker",
-      "permanent": true
-    },
-    {
       "source": "/pets/dog-caffeine-toxicity-calculator",
       "destination": "/pets/pet-care-calculators/dog-caffeine-toxicity-calculator",
       "permanent": true
@@ -977,11 +2461,6 @@
     {
       "source": "/recipes/:path*",
       "destination": "/cooking",
-      "permanent": true
-    },
-    {
-      "source": "/discover",
-      "destination": "/",
       "permanent": true
     },
     {
