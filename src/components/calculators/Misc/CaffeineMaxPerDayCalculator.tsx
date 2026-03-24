@@ -148,19 +148,54 @@ export default function CaffeineMaxPerDayCalculator() {
 
   const faqs = [
     {
-      question: "What is the safe daily caffeine limit?",
+      question: "What is the safe daily caffeine limit for adults?",
       answer:
-        "For most healthy adults, up to 400 mg of caffeine per day is considered safe, which is roughly equivalent to four 8-ounce cups of brewed coffee. However, individual tolerance varies, and certain groups such as pregnant women and adolescents should consume less.",
+        "For most healthy adults, up to 400 mg of caffeine per day is considered safe by the FDA — roughly four 8-ounce cups of brewed coffee. Individual tolerance varies based on body weight, genetics, and health status. Sensitive individuals may experience side effects at much lower doses.",
     },
     {
-      question: "How does body weight affect caffeine tolerance?",
+      question: "How much caffeine is in a cup of coffee?",
       answer:
-        "Caffeine metabolism and tolerance are influenced by body weight, with recommendations often given in mg per kilogram of body weight. This calculator uses 4 mg/kg as a general guideline for adults to estimate a safe maximum daily intake.",
+        "An 8-oz cup of brewed coffee contains approximately 80–100 mg of caffeine (average 95 mg). Espresso has about 63 mg per 1-oz shot. Instant coffee typically has 30–90 mg per cup. Cold brew can contain 150–200 mg depending on brew strength and cup size.",
     },
     {
-      question: "Can caffeine cause health problems?",
+      question: "How long does caffeine stay in your system?",
       answer:
-        "Excessive caffeine intake can lead to side effects such as insomnia, nervousness, increased heart rate, and digestive issues. People with heart conditions or pregnant individuals should limit their intake to reduce risks.",
+        "Caffeine has a half-life of about 5–6 hours in most adults, meaning half of it is still in your system 5–6 hours after consumption. It can take up to 10 hours to fully clear. Consuming caffeine after 2–3 PM can disrupt sleep in people sensitive to it.",
+    },
+    {
+      question: "What happens if you drink too much caffeine?",
+      answer:
+        "Excessive caffeine (above 400–600 mg/day) commonly causes jitteriness, rapid heartbeat, anxiety, headaches, and insomnia. Very high doses (above 1,200 mg) can cause seizures or cardiac arrhythmia. Chronic overconsumption can lead to dependence and withdrawal symptoms like fatigue and headaches when stopping.",
+    },
+    {
+      question: "Is 400 mg of caffeine too much?",
+      answer:
+        "400 mg is the upper safe limit recommended by the FDA for healthy adults. Whether it's too much depends on your body weight, tolerance, and health conditions. A 60 kg person's limit is about 240 mg (4 mg/kg), so 400 mg would exceed their threshold. Use this calculator to find your personal limit.",
+    },
+    {
+      question: "Can caffeine cause anxiety?",
+      answer:
+        "Yes. Caffeine stimulates the central nervous system and can trigger or worsen anxiety, especially in people with anxiety disorders or low tolerance. Doses above 200 mg can cause palpitations and nervousness in sensitive individuals. Switching to lower-caffeine options like green tea may help.",
+    },
+    {
+      question: "How much caffeine is safe during pregnancy?",
+      answer:
+        "The American College of Obstetricians and Gynecologists (ACOG) recommends limiting caffeine to under 200 mg per day during pregnancy — about one 12-oz cup of coffee. Higher intake is associated with increased risk of low birth weight and pregnancy loss.",
+    },
+    {
+      question: "What time should I stop drinking coffee to sleep well?",
+      answer:
+        "Most sleep experts recommend stopping caffeine intake at least 6 hours before bedtime. For a 10 PM bedtime, stop by 4 PM. People with slower caffeine metabolism (certain genetic variants) may need to cut off even earlier, around 2 PM.",
+    },
+    {
+      question: "How much caffeine does tea have compared to coffee?",
+      answer:
+        "Black tea has 40–70 mg per 8-oz cup, compared to coffee's 80–100 mg. Green tea has 20–45 mg. White tea has 15–30 mg. Herbal teas are typically caffeine-free. Matcha is surprisingly high at 70–140 mg per cup depending on preparation.",
+    },
+    {
+      question: "Can you build a tolerance to caffeine?",
+      answer:
+        "Yes. Regular caffeine use leads to tolerance, where the same dose produces less effect over time. This typically develops within 1–4 days of consistent use. Tolerance resets after 1–2 weeks of abstinence. Cycling caffeine (e.g., only on weekdays) helps preserve its effectiveness.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -341,32 +376,79 @@ export default function CaffeineMaxPerDayCalculator() {
     <div className="space-y-12">
       <section id="what-is" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Understanding Caffeine Max per Day Calculator
+          What Is a Safe Daily Caffeine Limit?
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Caffeine is a widely consumed stimulant found in coffee, tea, sodas, energy drinks, and chocolate. While moderate caffeine consumption can enhance alertness and cognitive function, excessive intake may lead to adverse health effects such as insomnia, increased heart rate, anxiety, and digestive discomfort. This calculator estimates your maximum safe daily caffeine intake based on your body weight and personal health factors, aligning with recommendations from leading health authorities. By inputting your weight, age, pregnancy status, and health conditions, you receive a personalized caffeine limit to help you enjoy your favorite beverages safely.
+          Caffeine is the world's most widely consumed psychoactive substance, found naturally in coffee beans, tea leaves, cacao, and guarana. The FDA recommends a maximum of <strong>400 mg per day</strong> for healthy adults — roughly four 8-oz cups of brewed coffee. However, that's a general ceiling, not a target. Your personal safe limit depends on body weight, age, medications, and health conditions.
         </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          This calculator uses the <strong>4 mg per kg of body weight</strong> guideline — the same benchmark used by sports nutrition researchers and the European Food Safety Authority (EFSA). A 70 kg (154 lb) adult has a daily limit of roughly 280 mg. A 50 kg person's limit drops to 200 mg. Enter your details above to get your personal number.
+        </p>
+      </section>
+
+      <section id="caffeine-table" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Caffeine Content by Beverage</h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Knowing how much caffeine is in each drink helps you track intake accurately. Amounts vary by brand, brew strength, and serving size.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm text-left">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Beverage</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Serving Size</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Caffeine (mg)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+              {[
+                ["Brewed Coffee", "8 oz (240 ml)", "80–100 mg"],
+                ["Espresso", "1 oz (30 ml) shot", "60–65 mg"],
+                ["Cold Brew Coffee", "8 oz (240 ml)", "150–200 mg"],
+                ["Instant Coffee", "8 oz (240 ml)", "30–90 mg"],
+                ["Black Tea", "8 oz (240 ml)", "40–70 mg"],
+                ["Green Tea", "8 oz (240 ml)", "20–45 mg"],
+                ["Matcha (prepared)", "8 oz (240 ml)", "70–140 mg"],
+                ["Cola Soda", "12 oz (355 ml)", "34–46 mg"],
+                ["Energy Drink (Red Bull)", "8.4 oz (250 ml)", "80 mg"],
+                ["Energy Drink (Monster)", "16 oz (473 ml)", "160 mg"],
+                ["Dark Chocolate", "1 oz (28 g)", "12–25 mg"],
+                ["Decaf Coffee", "8 oz (240 ml)", "2–15 mg"],
+              ].map(([bev, size, mg]) => (
+                <tr key={bev} className="bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800">
+                  <td className="px-4 py-2 text-slate-700 dark:text-slate-300 font-medium">{bev}</td>
+                  <td className="px-4 py-2 text-slate-600 dark:text-slate-400">{size}</td>
+                  <td className="px-4 py-2 text-blue-700 dark:text-blue-400 font-semibold">{mg}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section id="how-to" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately calculate your maximum recommended caffeine intake, follow these steps carefully. First, enter your current body weight and select the appropriate unit (kilograms or pounds). Next, provide your age, as caffeine tolerance varies between adults and minors. Indicate if you are pregnant or have any heart-related health conditions, as these factors influence safe caffeine limits. Finally, input the number of servings you consume daily from various caffeine sources to understand your current intake and remaining safe allowance.
+        <ol className="list-decimal pl-5 space-y-3 text-slate-700 dark:text-slate-300">
+          <li><strong>Enter your body weight</strong> in kg or lbs. This is the primary factor in your caffeine limit.</li>
+          <li><strong>Add your age</strong> (optional). Under 18? The limit drops to 2.5 mg/kg following AAP guidelines.</li>
+          <li><strong>Select pregnancy status.</strong> Pregnant? The ACOG recommends staying under 200 mg/day regardless of weight.</li>
+          <li><strong>Note any heart conditions.</strong> Heart issues trigger a 25% reduction in your calculated limit.</li>
+          <li><strong>Log your daily beverages</strong> using the serving counters. The calculator totals your intake and shows remaining safe allowance.</li>
+        </ol>
+        <p className="mt-4 text-slate-600 dark:text-slate-400 text-sm">
+          Example: A 75 kg healthy adult who drank 2 coffees (190 mg) and 1 energy drink (80 mg) has consumed 270 mg out of a 300 mg limit — leaving 30 mg of safe headroom.
         </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>Step 1: Enter your body weight and select the unit (kg or lbs).</li>
-          <li>Step 2: Provide your age to adjust recommendations for minors.</li>
-          <li>Step 3: Indicate pregnancy status and any heart conditions.</li>
-          <li>Step 4: Input your daily caffeine consumption from coffee, tea, soda, energy drinks, espresso, and chocolate.</li>
-          <li>Step 5: Click "Calculate" to see your personalized maximum caffeine intake and remaining safe allowance.</li>
-        </ul>
       </section>
 
       <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          While caffeine can be part of a healthy lifestyle, it is essential to consume it responsibly. Always listen to your body's signals; symptoms like jitteriness, rapid heartbeat, or insomnia may indicate excessive intake. Pregnant individuals should strictly limit caffeine to 200 mg per day to avoid risks to fetal development. Adolescents and people with heart conditions should consult healthcare providers for personalized advice. Remember that caffeine content varies widely between products, so always check labels and consider the cumulative effect of all sources throughout your day.
-        </p>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Tips for Managing Caffeine Intake</h2>
+        <ul className="list-disc pl-5 space-y-3 text-slate-700 dark:text-slate-300">
+          <li><strong>Stop caffeine 6+ hours before bed.</strong> Caffeine's half-life is 5–6 hours. A 4 PM coffee is half-strength at 10 PM.</li>
+          <li><strong>Track hidden sources.</strong> Pre-workout supplements, some pain relievers (Excedrin = 65 mg/tablet), and protein bars contain caffeine.</li>
+          <li><strong>Don't use caffeine to mask fatigue.</strong> It blocks adenosine receptors but doesn't replenish energy — only sleep does.</li>
+          <li><strong>Cycle your intake.</strong> Tolerance builds in 1–4 days. Taking 1–2 caffeine-free days per week maintains sensitivity.</li>
+          <li><strong>Stay hydrated.</strong> Caffeine has a mild diuretic effect. Drink an extra glass of water for every 2 cups of coffee.</li>
+        </ul>
       </section>
 
       <section id="faq" className="scroll-mt-32">
@@ -477,9 +559,10 @@ export default function CaffeineMaxPerDayCalculator() {
         { title: "Buffet Serving Pan Capacity & Count", url: "/everyday/buffet-pan-capacity-count", icon: "💡" },
       ]}
       onThisPage={[
-        { id: "what-is", label: "Understanding" },
+        { id: "what-is", label: "Safe Daily Limit" },
+        { id: "caffeine-table", label: "Caffeine by Beverage" },
         { id: "how-to", label: "How to Use" },
-        { id: "tips", label: "Pro Tips" },
+        { id: "tips", label: "Tips" },
         { id: "faq", label: "FAQ" },
         { id: "references", label: "References" },
       ]}

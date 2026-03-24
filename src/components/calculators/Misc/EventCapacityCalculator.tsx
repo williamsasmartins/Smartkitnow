@@ -93,19 +93,49 @@ export default function EventCapacityCalculator() {
 
   const faqs = [
     {
-      question: "What is the recommended space per person for different event layouts?",
+      question: "How many square feet do you need per person at an event?",
       answer:
-        "The space per person varies by event type: standing events typically require about 5 sq ft per person, theater seating about 7 sq ft, banquet seating about 12 sq ft, and classroom setups about 15 sq ft. These values account for seating, tables, and circulation space to ensure comfort and safety.",
+        "Standard space requirements by layout: Standing/cocktail = 5–6 sq ft per person. Theater rows = 7–8 sq ft. Banquet (tables + chairs) = 10–12 sq ft. Classroom (tables + chairs, one side) = 15–18 sq ft. Reception with dance floor = 8–10 sq ft. These include circulation space but not stage, bar, or buffet areas.",
     },
     {
-      question: "Why is there a 10% safety margin applied in the calculation?",
+      question: "What is the legal occupancy limit for events?",
       answer:
-        "The 10% safety margin accounts for aisles, emergency exits, and general comfort, ensuring that the venue does not become overcrowded. This margin aligns with fire safety codes and best practices recommended by safety authorities.",
+        "Legal occupancy limits are set by local fire marshals and building codes, typically based on the International Fire Code (IFC). They vary by venue type, construction, and exit capacity. A venue's posted occupancy limit is the absolute maximum — your comfortable capacity should be 75–90% of that to ensure guest comfort and emergency egress.",
+    },
+    {
+      question: "How do I calculate venue capacity for a banquet?",
+      answer:
+        "For banquet seating, plan for 10–12 sq ft per guest. A 1,000 sq ft room can seat about 80–100 guests banquet-style. Subtract space for head tables, buffet lines, DJ/band area, and dance floor before calculating. A 5×5 ft table seats 4–6; a 60-inch round table seats 8–10.",
+    },
+    {
+      question: "How much space does a cocktail/standing event need per person?",
+      answer:
+        "Standing cocktail events need the least space — about 5–6 sq ft per person. A 500 sq ft room can hold roughly 75–90 standing guests. However, add space for bar stations (50–80 sq ft each), passed appetizer circulation paths, and a 10% safety buffer.",
+    },
+    {
+      question: "How does a stage or dance floor affect capacity?",
+      answer:
+        "Subtract non-guest-use areas from your total before calculating. A 12×12 ft stage takes 144 sq ft. A dance floor for 100 guests needs about 300–400 sq ft (3–4 sq ft per person dancing). A full DJ setup with equipment takes 100–150 sq ft. Always deduct these before applying your sq ft per person factor.",
+    },
+    {
+      question: "What is the difference between theater and classroom seating capacity?",
+      answer:
+        "Theater seating (rows of chairs, no tables) requires 7–8 sq ft per person and maximizes capacity. Classroom seating (tables + chairs, facing forward) requires 15–18 sq ft per person — roughly half the capacity of theater for the same room. Classroom is used for workshops, training, and seminars where participants need writing surfaces.",
+    },
+    {
+      question: "How do ADA requirements affect event capacity?",
+      answer:
+        "The Americans with Disabilities Act (ADA) requires accessible pathways of at least 36 inches wide, wheelchair spaces integrated into seating (not isolated), and accessible routes to all amenity areas. This typically reduces usable event space by 5–10%. ADA-compliant venues will have these requirements built into their posted capacity, but outdoor or temporary venues may not.",
     },
     {
       question: "Can this calculator be used for outdoor venues?",
       answer:
-        "Yes, but outdoor venues often have different spacing requirements due to open air and layout flexibility. It's recommended to consult local regulations and consider additional space for pathways and amenities when planning outdoor events.",
+        "Yes. Enter only the designated event area in sq ft, excluding parking, landscaping, and staging areas. Outdoor events typically use 20–30% more space per person than indoor events for the same layout, as open areas feel less crowded and guests spread out more. Check local permit requirements for outdoor gatherings — many jurisdictions require permits above 50–100 attendees.",
+    },
+    {
+      question: "What are typical venue sizes and their capacities?",
+      answer:
+        "Small meeting room (400 sq ft): 25–40 standing, 20–30 theater, 15 banquet. Mid-size ballroom (2,000 sq ft): 250–330 standing, 200 theater, 130–165 banquet. Large banquet hall (5,000 sq ft): 600–800 standing, 500 theater, 350–450 banquet. Convention hall (20,000 sq ft): 2,500–4,000 standing, 2,000 theater, 1,400–1,800 banquet.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -224,31 +254,73 @@ export default function EventCapacityCalculator() {
   const editorial = (
     <div className="space-y-12">
       <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Understanding Event Capacity Calculator</h2>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Calculate Event Capacity</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Event Capacity Calculator is a professional tool designed to help event planners, venue managers, and safety officers determine the maximum number of guests that can safely occupy a given space. It takes into account the total venue area and the seating or standing layout to estimate capacity while incorporating safety margins recommended by fire codes and industry best practices. By understanding the spatial requirements of different event setups—such as standing receptions, theater-style seating, banquet dinners, or classroom arrangements—users can optimize guest comfort and comply with safety regulations. This calculator also allows for adjustments based on the percentage of standing guests, which typically require less space than seated attendees.
+          Event capacity is calculated by dividing the <strong>usable floor area</strong> (in square feet) by the <strong>space required per person</strong> for your chosen layout, then applying a 10% safety buffer. The formula is:
         </p>
+        <p className="bg-slate-100 dark:bg-slate-800 rounded-lg px-4 py-3 font-mono text-sm mb-4">
+          Capacity = (Usable Area ÷ Sq Ft Per Person) × 0.90
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+          <strong>Usable area</strong> excludes kitchens, storage, bathrooms, stages, bars, and DJ booths. Only count the floor space where guests will actually stand or sit.
+        </p>
+      </section>
+
+      <section id="layout-table" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Space Requirements by Layout Type</h2>
+        <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm text-left">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Layout</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Sq Ft / Person</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">1,000 sq ft Room</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Best For</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+              {[
+                ["Standing / Cocktail", "5–6 sq ft", "~150–180 guests", "Receptions, networking"],
+                ["Theater (rows)", "7–8 sq ft", "~112–128 guests", "Presentations, ceremonies"],
+                ["Banquet (round tables)", "10–12 sq ft", "~75–90 guests", "Dinners, galas"],
+                ["Classroom (tables)", "15–18 sq ft", "~50–60 guests", "Training, workshops"],
+                ["Reception + Dance Floor", "8–10 sq ft", "~90–112 guests", "Weddings, parties"],
+              ].map(([layout, sqft, count, use]) => (
+                <tr key={layout} className="bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800">
+                  <td className="px-4 py-2 font-medium text-slate-700 dark:text-slate-300">{layout}</td>
+                  <td className="px-4 py-2 text-blue-700 dark:text-blue-400 font-semibold">{sqft}</td>
+                  <td className="px-4 py-2 text-slate-600 dark:text-slate-400">{count}</td>
+                  <td className="px-4 py-2 text-slate-600 dark:text-slate-400">{use}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 mt-2">Estimates include a 10% safety buffer. Deduct non-guest areas before calculating.</p>
       </section>
 
       <section id="how-to" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using the Event Capacity Calculator is straightforward and intuitive. Begin by entering the total usable area of your venue in square feet, which should exclude non-guest spaces such as kitchens or storage rooms. Next, select the seating layout that best matches your event setup, as each layout type has different space requirements per person. Optionally, if your event includes a mix of standing and seated guests, specify the percentage of standing attendees to get a more accurate capacity estimate. Finally, click the calculate button to see the maximum safe capacity, which includes a safety margin to ensure compliance with safety standards.
+        <ol className="list-decimal pl-5 space-y-3 text-slate-700 dark:text-slate-300">
+          <li><strong>Measure your usable floor area.</strong> Exclude stage, bar, buffet, kitchen, and any non-guest areas from your total square footage.</li>
+          <li><strong>Select your layout</strong> — standing, theater, banquet, or classroom.</li>
+          <li><strong>Adjust for standing guests</strong> if you have a mixed seated/standing event (e.g., a seated dinner with a cocktail hour).</li>
+          <li><strong>Click Calculate</strong> to get your maximum safe capacity with 10% safety buffer.</li>
+        </ol>
+        <p className="mt-4 text-slate-600 dark:text-slate-400 text-sm">
+          Example: A 2,500 sq ft ballroom with a 200 sq ft bar and 150 sq ft DJ booth has 2,150 sq ft usable. At banquet layout (11 sq ft/person × 0.9 buffer): capacity = ~175 guests.
         </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>Step 1: Measure and enter the total usable venue area in square feet.</li>
-          <li>Step 2: Select the seating or standing layout that matches your event.</li>
-          <li>Step 3: (Optional) Enter the percentage of guests who will be standing if applicable.</li>
-          <li>Step 4: Click "Calculate" to view the maximum safe guest capacity.</li>
-          <li>Step 5: Use the results to plan your event ensuring comfort and safety.</li>
-        </ul>
       </section>
 
       <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Professional Tips & Safety</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          When planning an event, always consider local fire codes and occupancy regulations, which may impose stricter limits than the calculator’s estimates. It is advisable to leave additional space for emergency exits, aisles, and accessibility requirements beyond the calculated capacity. For mixed-use venues or events with dynamic layouts, conduct a physical walkthrough to verify that the space can accommodate the estimated number of guests comfortably. Additionally, consider the nature of your event—high-energy events may require more space per person to prevent crowding and ensure safety. Finally, always communicate capacity limits clearly to staff and attendees to avoid overcrowding and maintain compliance.
-        </p>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Event Planning Safety Tips</h2>
+        <ul className="list-disc pl-5 space-y-3 text-slate-700 dark:text-slate-300">
+          <li><strong>Always check posted legal occupancy.</strong> Your venue’s fire marshal certificate has a hard cap — never exceed it regardless of layout calculations.</li>
+          <li><strong>Keep 36-inch aisles clear for ADA compliance</strong> and emergency egress. This is a legal requirement, not a suggestion.</li>
+          <li><strong>Reduce capacity 20–30% for high-energy events</strong> (concerts, dance parties) where guests move around more than seated events.</li>
+          <li><strong>Add 15–20% buffer for vendor staff.</strong> Caterers, AV technicians, security, and servers occupy guest space but aren’t counted as guests.</li>
+          <li><strong>Use a venue floor plan tool</strong> (AllSeated, Social Tables) to visualize table and chair placement before confirming capacity.</li>
+        </ul>
       </section>
 
       <section id="faq" className="scroll-mt-32">
@@ -366,9 +438,10 @@ export default function EventCapacityCalculator() {
         { title: "Sleep Debt & Ideal Bedtime Planner", url: "/everyday/sleep-debt-ideal-bedtime", icon: "Zap" },
       ]}
       onThisPage={[
-        { id: "what-is", label: "Understanding" },
+        { id: "what-is", label: "How to Calculate" },
+        { id: "layout-table", label: "Space by Layout" },
         { id: "how-to", label: "How to Use" },
-        { id: "tips", label: "Pro Tips" },
+        { id: "tips", label: "Safety Tips" },
         { id: "faq", label: "FAQ" },
         { id: "references", label: "References" },
       ]}

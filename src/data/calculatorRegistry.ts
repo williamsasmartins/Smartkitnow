@@ -11,6 +11,8 @@ export interface CalculatorEntry {
   category: string;
   subcategory?: string;
   description?: string;
+  seoTitle?: string;
+  seoDescription?: string;
   aliases?: string[];
   loader: () => Promise<{ default: React.ComponentType<any> }>;
   namedExport?: string;
@@ -924,6 +926,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "pets",
     subcategory: "dogs-nutrition-weight",
     description: "Calculate your dog's **Resting Energy Requirement (RER)** and **Maintenance Energy Requirement (MER)** to determine daily calorie needs.",
+    seoTitle: "Dog Calorie Calculator — Daily RER & MER by Weight & Activity",
+    seoDescription: "Calculate your dog's exact daily calorie needs using the RER and MER method. Enter breed, weight, and activity level for accurate feeding recommendations from vets.",
     loader: () => import("@/components/calculators/Pets/DogCalorieNeedsRerMerCalculator"),
     urlStyle: "flat"
   },
@@ -3984,6 +3988,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "health-wellness-sleep",
     description: "Monitor your caffeine intake. Calculate your daily limit based on body weight to enjoy coffee safely without the jitters.",
+    seoTitle: "Daily Caffeine Limit Calculator — Safe Dose by Body Weight",
+    seoDescription: "Find your safe daily caffeine limit based on body weight. Track coffee, tea, energy drinks, and supplements to avoid jitters, anxiety, and sleep disruption.",
     loader: () => import("@/components/calculators/Misc/CaffeineMaxPerDayCalculator"),
     urlStyle: "flat"
   },
@@ -4102,6 +4108,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "everyday",
     subcategory: "events-party-culinary",
     description: "Calculate venue capacity. Determine how many guests can safely fit in a room based on square footage and seating layout.",
+    seoTitle: "Event Capacity Calculator — Max Guests by Room Size & Layout",
+    seoDescription: "Calculate safe event capacity from room square footage. Get instant guest counts for standing, seated, cocktail, banquet, and classroom layouts. Fire code and ADA guidance included.",
     loader: () => import("@/components/calculators/Misc/EventCapacityCalculator"),
     urlStyle: "flat"
   },
@@ -4303,6 +4311,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "sports",
     subcategory: "running-cycling-triathlon-performance",
     description: "Convert swim times between pool lengths. Switch between Short Course Yards, Short Course Meters, and Long Course Meters accurately.",
+    seoTitle: "Swim Time Converter — SCY, SCM & LCM Pool Lengths",
+    seoDescription: "Convert swim times between Short Course Yards (SCY), Short Course Meters (SCM), and Long Course Meters (LCM). Essential for competitive swimmers comparing performance across pool sizes.",
     loader: () => import("@/components/calculators/Sports/PoolLengthTimeConverterCalculator"),
     urlStyle: "flat"
   },
@@ -6669,6 +6679,8 @@ export const calculatorRegistry: CalculatorEntry[] = [
     category: "video",
     subcategory: "video-rendering-export",
     description: "Estimate average time per frame based on test renders.",
+    seoTitle: "Render Time Per Frame Calculator — 3D & Animation Job Estimates",
+    seoDescription: "Estimate total render time from a single test frame. Calculate render job duration for 3D animations, VFX sequences, and video exports by frame count and render speed.",
     loader: () => import("@/components/calculators/Video/RenderTimePerFrameCalculator"),
     urlStyle: "flat"
   },

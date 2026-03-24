@@ -97,29 +97,54 @@ export default function RenderTimePerFrameCalculator() {
 
   const faqs = [
     {
-      question: "What is the 180-degree shutter rule and why is it important?",
+      question: "What does 'render time per frame' mean?",
       answer:
-        "The 180-degree shutter rule is a fundamental guideline in cinematography that sets the shutter speed to be double the frame rate, resulting in natural motion blur. For example, at 24 FPS, the shutter speed is typically 1/48th of a second. This rule helps achieve a cinematic look and smooth motion perception. Understanding this rule is essential when calculating render times per frame to maintain visual consistency and quality.",
+        "Render time per frame is the average time your system takes to process and output one frame of a 3D animation, VFX composite, or video effect. If a single frame takes 5 minutes to render and you have 1,440 frames (1 minute at 24fps), your total render time is 120 hours. Knowing this metric lets you plan render farm usage, deadlines, and hardware upgrades.",
+    },
+    {
+      question: "How do I calculate total render time from render time per frame?",
+      answer:
+        "Multiply render time per frame by the total frame count. Total frames = duration in seconds × FPS. Example: a 2-minute animation at 24 FPS = 2,880 frames. If each frame takes 3 minutes to render, total time = 2,880 × 3 = 8,640 minutes = 6 days. Distributing across 8 machines reduces that to 18 hours.",
     },
     {
       question: "How do I correctly format the timecode input?",
       answer:
-        "The timecode must be entered in the format HH:MM:SS:FF, where HH is hours (00-23), MM is minutes (00-59), SS is seconds (00-59), and FF is frames (00 to FPS-1). For example, '01:23:45:12' represents 1 hour, 23 minutes, 45 seconds, and 12 frames. Ensuring the correct format is crucial for accurate calculations.",
+        "Enter timecode in HH:MM:SS:FF format — hours, minutes, seconds, and frames. For example, 00:02:30:12 means 2 minutes, 30 seconds, and 12 frames into a 24fps timeline. The FF (frames) value must be less than your FPS — so at 24fps, valid frame values are 00–23.",
     },
     {
-      question: "Can I use non-integer FPS values?",
+      question: "What FPS should I use — 23.976, 24, or 29.97?",
       answer:
-        "While this calculator accepts decimal FPS values, such as 23.976 or 29.97, it is important to note that frame counts and timecode frames must align with the FPS standard used. Non-integer FPS values are common in broadcast and film, and the calculator handles them appropriately, but always verify your source footage's FPS for accuracy.",
+        "24 fps is the cinema standard for feature films. 23.976 (often called '23.98') is used for broadcast-safe delivery in NTSC markets (US, Japan). 29.97 is standard for US broadcast TV. 25 fps is the PAL/European broadcast standard. 30 fps is increasingly used for YouTube and online content. Match the FPS to your delivery specification.",
     },
     {
-      question: "What does 'Render Time Per Frame' mean in post-production?",
+      question: "Why is GPU rendering faster than CPU rendering?",
       answer:
-        "'Render Time Per Frame' refers to the average time it takes to render a single frame of video during post-production. It is a critical metric for estimating total render times and optimizing workflows. This calculator helps estimate this value based on timecode duration and frame rate, aiding in planning and resource allocation.",
+        "GPUs have thousands of smaller cores optimized for parallel computation — ideal for rendering many pixels simultaneously. A high-end GPU like an RTX 4090 can render Blender Cycles frames 10–20x faster than a multi-core CPU for the same scene. However, complex scenes with high memory demands may exceed GPU VRAM, forcing CPU fallback.",
     },
     {
-      question: "Why is the frame number in the timecode limited by the FPS?",
+      question: "What is the 180-degree shutter rule?",
       answer:
-        "The frame number (FF) in the timecode must be less than the FPS because it represents the frame count within one second. For example, at 30 FPS, valid frame numbers range from 00 to 29. Exceeding this range would be invalid and cause errors in frame calculations. This ensures timecode accurately reflects the video timeline.",
+        "The 180-degree shutter rule states that shutter speed should be double the frame rate for natural-looking motion blur. At 24fps, use a shutter speed of 1/48s. At 30fps, use 1/60s. This produces the cinematic motion blur that audiences expect. When rendering 3D, you set motion blur samples rather than a physical shutter, but the 180° principle still guides blur intensity.",
+    },
+    {
+      question: "How can I speed up long render times?",
+      answer:
+        "Key strategies: (1) Use GPU rendering in Blender Cycles, Redshift, or OctaneRender. (2) Reduce samples — the difference between 512 and 1024 samples is often invisible but doubles render time. (3) Use denoising (AI denoising like OptiX can cut samples by 4–8x). (4) Render in smaller crop regions first for tests. (5) Use distributed/cloud rendering via services like Render Street or RebusFarm.",
+    },
+    {
+      question: "What is cloud rendering and when should I use it?",
+      answer:
+        "Cloud rendering lets you offload frames to remote render farms instead of waiting on your local machine. Services like AWS Thinkbox Deadline, Render Street, and RebusFarm charge per GHz-hour or per frame. It's cost-effective for deadlines — a 100-hour local render might cost $50–200 on a cloud farm and finish in 2–4 hours with hundreds of nodes.",
+    },
+    {
+      question: "Can I use non-integer FPS values like 23.976 or 29.97?",
+      answer:
+        "Yes. This calculator handles fractional frame rates. 23.976 and 29.97 are 'drop-frame-adjacent' rates used for NTSC broadcast compatibility. When entering timecode at 29.97, note that drop-frame timecode (using semicolons: 00;01;00;00) vs non-drop (colons) can create small discrepancies — this calculator uses non-drop math.",
+    },
+    {
+      question: "What software uses this kind of render time estimation?",
+      answer:
+        "Blender, Cinema 4D, Maya, 3ds Max, Houdini, and After Effects all display render time per frame during test renders. Most render managers (Deadline, Royal Render, Qube) use per-frame timing to estimate queue completion. After Effects' 'remaining time' estimate is essentially this calculation running live.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);

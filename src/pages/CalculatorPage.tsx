@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getEntry, FRIENDLY_TITLES, SUBCATEGORY_TITLES } from "@/data/calculatorRegistry";
 import JsonLd from "@/components/seo/JsonLd";
 import SEOHead from "@/components/SEOHead";
@@ -22,12 +22,6 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
   const { calculator, slug } = useParams();
 
   const calcSlug = (activeSlug ?? calculator ?? slug ?? "").toLowerCase();
-
-  // --- A MUDANÇA MÁGICA ---
-  // Antes: Só era "Wide" se fosse financeiro.
-  // Agora: É SEMPRE "Wide". Isso garante o fundo azul em tela cheia para TODOS.
-  const isWide = true;
-  // ------------------------
 
   const entry = calcSlug ? getEntry(calcSlug) : null;
 
@@ -110,15 +104,37 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
     "itemListElement": itemListElement
   };
 
+  const seoTitle = entry.seoTitle
+    ? `${entry.seoTitle} | Smart Kit Now`
+    : `${entry.title} — Free Online Calculator | Smart Kit Now`;
+
+  const seoDescription = entry.seoDescription || entry.description
+    || `Use our free ${entry.title} online. Fast, accurate, and mobile-friendly.`;
+
+  const softwareAppJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": entry.title,
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "url": `${origin}${calculatedPath}`
+  };
+
   return (
     <div className={containerClasses}>
       <SEOHead
         slug={entry.slug}
-        title={`${entry.title} - Smart Kit Now`}
-        description={entry.description || `Use our ${entry.title} to calculate results quickly and easily.`}
+        title={seoTitle}
+        description={seoDescription}
         canonical={`${origin}${calculatedPath}`}
       />
       <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={softwareAppJsonLd} />
       {/* max-w-none permite que o CalculatorVerticalLayout controle a largura interna */}
       <div className="max-w-none">
         <Suspense fallback={<div className="py-10 text-muted-foreground text-center">Loading Calculator...</div>}>
@@ -126,6 +142,11 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
             <LazyCalc />
           </main>
         </Suspense>
+        <RelatedCalculators
+          currentSlug={entry.slug}
+          category={entry.category}
+          subcategory={entry.subcategory}
+        />
       </div>
     </div>
   );

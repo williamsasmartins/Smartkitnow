@@ -97,22 +97,42 @@ export default function PoolLengthTimeConverterCalculator() {
     {
       question: "Why do swim times differ between SCY, SCM, and LCM pools?",
       answer:
-        "Swim times differ between Short Course Yards (SCY), Short Course Meters (SCM), and Long Course Meters (LCM) pools primarily due to the pool length and number of turns. SCY pools are 25 yards long, SCM pools are 25 meters, and LCM pools are 50 meters. More turns in shorter pools allow swimmers to push off the wall more frequently, which generally results in faster times. Therefore, times in SCY pools are usually faster than SCM and LCM pools for the same distance.",
+        "Swim times differ because shorter pools (25y or 25m) allow more turns. Each wall push-off generates speed that carries swimmers further than continuous swimming. SCY pools have the most turns per 100 yards, producing the fastest splits. LCM (50m Olympic pools) have the fewest turns, meaning swimmers must sustain speed through open-water stroke — typically resulting in times 3–6% slower than SCY equivalents.",
     },
     {
-      question: "How accurate are the conversion factors used in this calculator?",
+      question: "How much slower is LCM compared to SCY?",
       answer:
-        "The conversion factors used are based on widely accepted standards from USA Swimming and international swimming organizations. They provide a close approximation of equivalent times between pool lengths but are not exact due to individual swimmer technique, turn efficiency, and other variables. These factors are best used for estimating and comparing performances rather than official record conversions.",
+        "On average, LCM times are 3–7% slower than SCY times for the same event. A 100 free in 50.00 SCY typically converts to around 54–56 seconds LCM. The difference is larger for shorter events (more turns per distance) and smaller for longer events like the 1500m. Sprint events like the 50m free see the biggest percentage difference.",
     },
     {
-      question: "Can I convert times for any swimming event using this calculator?",
+      question: "What is the SCY to SCM conversion factor?",
       answer:
-        "This calculator is designed for standard pool lengths and typical swim events. While it works well for most freestyle, backstroke, breaststroke, and butterfly events, some specialized events or distances may have slightly different conversion nuances. For official conversions, always refer to governing body guidelines or official conversion charts.",
+        "The standard SCY to SCM conversion multiplier is approximately 1.1 (adding ~10%). To convert SCM to SCY, multiply by ~0.91. These are approximations — individual turn efficiency, stroke rate, and race tactics all affect real-world differences. USA Swimming's official equivalency calculator uses slightly more granular factors by event.",
     },
     {
-      question: "What is the best way to input my swim time for accurate conversion?",
+      question: "How accurate are the conversion factors?",
       answer:
-        "Input your swim time in the format mm:ss.xx (minutes:seconds.hundredths) or ss.xx (seconds.hundredths) for best accuracy. For example, '1:23.45' for one minute, twenty-three seconds, and forty-five hundredths, or '83.45' seconds. Avoid ambiguous formats to ensure the calculator parses your time correctly.",
+        "These factors are based on empirical data from thousands of competitive swims and are widely used by coaches and organizations like USA Swimming. They give reliable estimates (within 1–2%) for most swimmers and distances. However, strong turners may outperform the conversion in short course, while weak turners may underperform it.",
+    },
+    {
+      question: "Can I use this for any stroke — freestyle, backstroke, breaststroke, butterfly?",
+      answer:
+        "Yes. The conversion factors work for all four strokes and individual medley. However, breaststroke and butterfly — which benefit more from underwater pull-outs after turns — tend to show larger differences between short and long course than freestyle and backstroke. The factors used here are best-fit averages across strokes.",
+    },
+    {
+      question: "What is a Short Course Yards (SCY) pool?",
+      answer:
+        "A Short Course Yards pool is 25 yards (22.86 meters) long. It is the standard for high school and college swimming in the United States. NCAA championships, high school state championships, and most US club meets are held in SCY pools.",
+    },
+    {
+      question: "What is a Long Course Meters (LCM) pool?",
+      answer:
+        "A Long Course Meters pool is 50 meters long and is the Olympic standard. World Championships, the Olympics, and most international competitions use LCM. In the US, LCM season typically runs from May to August (summer). Times in LCM are used for Olympic qualification standards.",
+    },
+    {
+      question: "How do I enter my swim time in the correct format?",
+      answer:
+        "Enter time as mm:ss.xx or ss.xx — for example, 1:23.45 for 1 minute 23.45 seconds, or 55.78 for 55.78 seconds. For times under a minute, both formats work. For times over a minute, use the colon format. The calculator parses both automatically.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
@@ -237,53 +257,71 @@ export default function PoolLengthTimeConverterCalculator() {
           Understanding Pool Length Time Converter (SCY/SCM/LCM)
         </h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Swimming competitions are held in pools of varying lengths, primarily Short Course Yards (SCY), Short Course Meters (SCM), and Long Course Meters (LCM). Each pool length affects swim times differently due to the number of turns and push-offs a swimmer can perform. SCY pools, commonly used in the United States, are 25 yards long, while SCM pools are 25 meters, and LCM pools are 50 meters long, the Olympic standard.
+          Competitive swimming uses three primary pool formats: <strong>Short Course Yards (SCY)</strong> at 25 yards, <strong>Short Course Meters (SCM)</strong> at 25 meters, and <strong>Long Course Meters (LCM)</strong> at 50 meters. Each format produces different times because the number of wall push-offs (turns) per race differs significantly.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Because turns provide an opportunity for swimmers to gain speed by pushing off the wall, times in shorter pools (SCY and SCM) are generally faster than in LCM pools. This discrepancy makes direct comparison of swim times across different pool lengths challenging. Coaches, athletes, and analysts often need to convert times to a common pool length to evaluate performance accurately.
+          A 100-yard SCY race has 3 turns; a 100m LCM race has only 1. Each turn adds roughly 0.5–1.5 seconds of advantage through underwater dolphin kicks and streamline glides. This is why SCY times are fastest, SCM slightly slower, and LCM slowest for equivalent distances.
         </p>
+      </section>
+
+      <section id="conversion-table" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">SCY / SCM / LCM Conversion Reference Table</h2>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Pool Length Time Converter uses established conversion factors to estimate equivalent swim times between SCY, SCM, and LCM pools. These factors are derived from empirical data and swimming performance research, providing a reliable tool for comparing times across different pool formats. Understanding these conversions helps swimmers set realistic goals and track progress effectively.
+          Use these approximate conversion factors to estimate equivalent times between pool formats. Multiply your time (in seconds) by the factor.
         </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          While conversion factors provide useful estimates, individual swimmer characteristics such as turn efficiency, stroke technique, and pacing strategy can influence actual performance differences between pool lengths. Therefore, these conversions should be used as guidelines rather than absolute measures.
-        </p>
+        <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm text-left">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Convert From</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Convert To</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Multiply By</th>
+                <th className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Example (1:00.00)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+              {[
+                ["SCY", "SCM", "× 1.11", "1:06.60"],
+                ["SCY", "LCM", "× 1.14", "1:08.40"],
+                ["SCM", "SCY", "× 0.90", "0:54.00"],
+                ["SCM", "LCM", "× 1.03", "1:01.80"],
+                ["LCM", "SCY", "× 0.88", "0:52.80"],
+                ["LCM", "SCM", "× 0.97", "0:58.20"],
+              ].map(([from, to, factor, ex]) => (
+                <tr key={`${from}-${to}`} className="bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800">
+                  <td className="px-4 py-2 font-medium text-slate-700 dark:text-slate-300">{from}</td>
+                  <td className="px-4 py-2 text-slate-700 dark:text-slate-300">{to}</td>
+                  <td className="px-4 py-2 text-blue-700 dark:text-blue-400 font-semibold">{factor}</td>
+                  <td className="px-4 py-2 text-slate-600 dark:text-slate-400">{ex}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 mt-2">Factors are approximate averages. Actual differences vary by event, stroke, and swimmer turn efficiency.</p>
       </section>
 
       <section id="how-to" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator allows you to convert swim times between Short Course Yards (SCY), Short Course Meters (SCM), and Long Course Meters (LCM) pools quickly and accurately. To use it, you need to input your swim time and specify the pool length you swam in and the pool length you want to convert to.
+        <ol className="list-decimal pl-5 space-y-3 text-slate-700 dark:text-slate-300">
+          <li><strong>Enter your swim time</strong> in mm:ss.xx format (e.g., 1:23.45) or ss.xx (e.g., 55.78 for under a minute).</li>
+          <li><strong>Select the pool you swam in</strong> — SCY, SCM, or LCM.</li>
+          <li><strong>Select the pool you want to convert to.</strong></li>
+          <li><strong>Click Calculate</strong> to see the estimated equivalent time and the conversion factor used.</li>
+        </ol>
+        <p className="mt-4 text-slate-600 dark:text-slate-400 text-sm">
+          Example: A 1:45.00 SCY 200-yard backstroke converts to approximately 1:57.00 LCM 200m — helpful for setting Olympic Trials qualification goals.
         </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The time input accepts formats such as minutes and seconds with hundredths (e.g., 1:23.45) or just seconds with hundredths (e.g., 83.45). Ensure your input is clear and correctly formatted to avoid errors. Select the pool length you swam in under "From Pool Length" and the pool length you want to convert to under "To Pool Length."
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          After entering your data, click the "Calculate" button to see the converted time. The result will display the estimated equivalent time in the target pool length, along with the conversion factor used. If you want to start over, use the "Reset" button to clear all inputs.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>Step 1: Enter your swim time in the format mm:ss.xx or ss.xx.</li>
-          <li>Step 2: Select the pool length you swam in (SCY, SCM, or LCM).</li>
-          <li>Step 3: Select the pool length you want to convert your time to.</li>
-          <li>Step 4: Click "Calculate" to view the converted time.</li>
-          <li>Step 5: Use "Reset" to clear inputs and perform another conversion.</li>
-        </ul>
       </section>
 
       <section id="tips" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Training Tips &amp; Strategy</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          When training across different pool lengths, it’s important to understand how your pacing and turns affect your overall swim time. Short course pools (SCY and SCM) require more turns, so practicing efficient turns and underwater kicks can significantly improve your times. Focus on maximizing your push-offs and streamline position to gain speed.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          For long course meters (LCM) training, endurance and maintaining consistent stroke technique over longer distances without turns are critical. Incorporate sets that simulate race pace and build aerobic capacity to sustain speed in the longer pool format.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Use the conversion calculator to set realistic goals when transitioning between pool lengths. For example, if you have a target time in an LCM pool, convert it to SCM or SCY to tailor your training sets accordingly. This approach helps maintain motivation and track progress effectively.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Lastly, remember that individual differences in turn technique and stroke efficiency mean that conversion times are estimates. Regularly test yourself in the target pool length to adjust your training and expectations based on actual performance.
-        </p>
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Training Tips for Cross-Format Swimmers</h2>
+        <ul className="list-disc pl-5 space-y-3 text-slate-700 dark:text-slate-300">
+          <li><strong>Improve your turns for short course gains.</strong> A 0.3-second improvement in turn time translates directly to your SCY time. Work on breakout distance and underwater dolphin kicks.</li>
+          <li><strong>Build LCM endurance separately.</strong> LCM races stress aerobic capacity more. Add longer unbroken swims (200m+) to your training blocks before long course season.</li>
+          <li><strong>Use conversions to set season goals.</strong> If your SCY 100 free is 48.5, a converted LCM goal of ~55 seconds is realistic for an equivalent level of fitness.</li>
+          <li><strong>Don’t panic about "slow" LCM times.</strong> Almost every swimmer is slower in LCM. The gap closes as you build open-water stroke efficiency.</li>
+        </ul>
       </section>
 
       <section id="faq" className="scroll-mt-32">
@@ -370,7 +408,8 @@ export default function PoolLengthTimeConverterCalculator() {
         { title: "Calorie Deficit / Surplus Calculator", url: "/sports/calorie-deficit-surplus", icon: "🔥" },
       ]}
       onThisPage={[
-        { id: "what-is", label: "Understanding" },
+        { id: "what-is", label: "SCY vs SCM vs LCM" },
+        { id: "conversion-table", label: "Conversion Table" },
         { id: "how-to", label: "How to Use" },
         { id: "tips", label: "Training Tips" },
         { id: "faq", label: "FAQ" },

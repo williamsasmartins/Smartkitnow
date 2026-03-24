@@ -646,18 +646,28 @@ export default function DogCalorieNeedsRerMerCalculator() {
         <div className="space-y-6">
           <div>
             <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
-              Is this calculator a substitute for a veterinary nutrition
-              consult?
+              What is the RER formula for dogs?
             </h3>
             <p className="text-slate-700 dark:text-slate-300">
-              No. This calculator is an{" "}
-              <strong>educational planning tool</strong>, not a medical device.
-              It cannot evaluate your dog&apos;s medical history, lab work,
-              medications or specific dietary needs. Use it to better understand
-              how calorie recommendations are estimated, then discuss the
-              results with your veterinarian, especially if your dog has chronic
-              disease, is underweight or overweight, or takes long-term
-              medications.
+              The Resting Energy Requirement (RER) formula is{" "}
+              <strong>RER = 70 × (body weight in kg)^0.75</strong>. For example,
+              a 10 kg dog has RER = 70 × 10^0.75 = 70 × 5.62 = 393 kcal/day.
+              This represents the calories needed just to maintain basic organ
+              function at rest. MER multiplies RER by an activity factor (1.2–2.5)
+              for real-world daily needs.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
+              How many calories does a dog need per day?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300">
+              Daily calorie needs vary widely by weight and activity. Approximate
+              MER ranges: a 5 kg (11 lb) small dog needs 280–400 kcal/day; a
+              20 kg (44 lb) medium dog needs 800–1,100 kcal/day; a 40 kg (88 lb)
+              large dog needs 1,400–1,800 kcal/day. Active, working, and
+              lactating dogs may need 2–3x these amounts.
             </p>
           </div>
 
@@ -666,12 +676,25 @@ export default function DogCalorieNeedsRerMerCalculator() {
               Should I use current weight or ideal weight?
             </h3>
             <p className="text-slate-700 dark:text-slate-300">
-              For most healthy dogs, starting with the{" "}
-              <strong>current weight</strong> is reasonable. If your dog is
-              clearly overweight, many vets prefer using an{" "}
-              <strong>estimated ideal weight</strong> to avoid oversupplying
-              calories. If you are not sure what the ideal weight should be,
-              ask your vet to examine your dog and give you a target range.
+              For most healthy dogs, use <strong>current weight</strong>. If
+              your dog is visibly overweight (BCS 7–9/9), use an{" "}
+              <strong>estimated ideal weight</strong> to avoid over-feeding. A
+              general guideline: subtract 15–20% from current weight as a
+              starting ideal weight target, then adjust based on vet guidance.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
+              How many calories are in dog food?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300">
+              Caloric density varies significantly: dry kibble typically has{" "}
+              <strong>300–450 kcal per cup</strong> (check label for your brand).
+              Wet/canned food has 80–170 kcal per 3.5 oz (100g) serving. Raw
+              diets vary widely (150–250+ kcal per 100g). Always check the
+              Metabolizable Energy (ME) on the label, usually listed as
+              "kcal/kg" or "kcal/cup."
             </p>
           </div>
 
@@ -679,17 +702,51 @@ export default function DogCalorieNeedsRerMerCalculator() {
             <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
               How fast should my dog lose or gain weight?
             </h3>
-            <p className="text-slate-700 dark:text-slate-300 mb-2">
-              In general, safe weight change is{" "}
-              <strong>no more than 1–2% of body weight per week</strong>. Faster
-              loss may put stress on organs and increase the risk of
-              nutritional deficiencies. If your dog is severely obese,
-              underweight, or has another illness, a custom medical plan is
-              essential.
-            </p>
             <p className="text-slate-700 dark:text-slate-300">
-              Always schedule regular weigh-ins and body condition score checks
-              with your veterinary team while adjusting calories.
+              Safe weight loss is <strong>1–2% of body weight per week</strong>{" "}
+              — about 0.2–0.4 kg/week for a 20 kg dog. Faster loss risks muscle
+              wasting and nutritional deficiencies. Weight gain for underweight
+              dogs should be similarly gradual. Always schedule monthly
+              weigh-ins while adjusting calories.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
+              How many calories should a puppy eat per day?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300">
+              Puppies need significantly more calories than adults — typically
+              2–3x the adult RER, using a MER factor of 2.0–3.0 depending on
+              age and breed size. Large breed puppies need careful calorie
+              control to avoid too-rapid growth, which can cause joint problems.
+              Use puppy-specific formulas and follow your vet&apos;s feeding schedule.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
+              How many calories do treats count for?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300">
+              Treats should make up <strong>no more than 10% of daily calories</strong>.
+              For a 20 kg dog needing 900 kcal/day, that&apos;s only 90 kcal in
+              treats — roughly 3–5 medium commercial treats. Many owners
+              significantly underestimate treat calories. High-calorie training
+              treats (15–25 kcal each) can add 100–200 kcal daily without realizing.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
+              Is this calculator a substitute for a veterinary nutrition consult?
+            </h3>
+            <p className="text-slate-700 dark:text-slate-300">
+              No. This is an <strong>educational planning tool</strong>, not a
+              medical device. It cannot evaluate your dog&apos;s medical history,
+              lab work, medications or specific dietary needs. Discuss results
+              with your veterinarian, especially if your dog has chronic disease,
+              is significantly over/underweight, or takes long-term medications.
             </p>
           </div>
 
@@ -698,13 +755,12 @@ export default function DogCalorieNeedsRerMerCalculator() {
               Does the type of food matter, or just calories?
             </h3>
             <p className="text-slate-700 dark:text-slate-300">
-              Calories are only part of the story. Dogs also need appropriate
-              <strong> protein, fat, vitamins, minerals and fiber</strong>.
-              Premium commercial diets are formulated to be balanced when fed at
-              the recommended amount. If you use home-cooked food, raw diets or
-              heavy use of treats and table scraps, it becomes much harder to
-              keep the overall diet complete. Work with a veterinary nutrition
-              specialist before making major changes.
+              Calories are only part of the picture. Dogs also need appropriate{" "}
+              <strong>protein, fat, vitamins, minerals and fiber</strong>.
+              Premium commercial diets are formulated to be balanced at
+              recommended amounts. Home-cooked food, raw diets, or heavy treat
+              use make it harder to maintain a complete diet. Work with a
+              veterinary nutrition specialist before major dietary changes.
             </p>
           </div>
         </div>
