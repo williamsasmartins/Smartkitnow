@@ -222,9 +222,11 @@ export default function Breadcrumbs() {
       <nav
         aria-label="Breadcrumb"
         className="w-full bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-700"
+        style={{ display: "block", minHeight: "36px" }}
       >
         <ol
           className="flex flex-wrap items-center gap-1 text-sm text-slate-500 dark:text-slate-400 max-w-[1440px] mx-auto px-4 md:px-8 lg:px-10 py-2"
+          style={{ display: "flex", minHeight: "36px" }}
           itemScope
           itemType="https://schema.org/BreadcrumbList"
         >
