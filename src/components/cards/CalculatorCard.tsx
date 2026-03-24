@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { getCategoryMeta, getDisplaySubcategory } from "@/data/categoryMeta";
+import { getEntry, calcLink } from "@/data/calculatorRegistry";
 import EmojiIcon from "@/components/ui/EmojiIcon";
 
 type Props = {
@@ -33,7 +34,8 @@ export default function CalculatorCard({
   const text = description?.trim() || autoDescription;
   const shouldClamp = text.length > 140; // simples: se maior, mostra READ MORE
 
-  const href = `/${category}/${subcategory}/${slug}`;
+  const entry = getEntry(slug);
+  const href = entry ? calcLink(entry) : `/${category}/${subcategory}/${slug}`;
 
   return (
     <article className="border rounded-xl p-4 bg-card hover:shadow-md transition-shadow duration-300">

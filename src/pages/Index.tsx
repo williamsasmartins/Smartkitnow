@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense } from "react";
 import logoImage from "@/assets/logo-skn.png";
 import JsonLd from "@/components/seo/JsonLd";
 import SEOHead from "@/components/SEOHead";
@@ -17,13 +17,6 @@ const CommitmentSection = lazy(() => import("@/components/home/CommitmentSection
 
 const Index = () => {
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    const q = searchQuery.trim();
-    if (q) navigate(`/search?q=${encodeURIComponent(q)}`);
-  };
 
   // Categories with detailed automotive and construction structures
   const categories = {
@@ -1526,27 +1519,6 @@ const Index = () => {
               Explore our comprehensive collection of calculators organized by category
             </p>
 
-            {/* Hero search bar */}
-            <form
-              onSubmit={handleSearch}
-              className="mt-6 flex items-center gap-2 max-w-xl mx-auto"
-              role="search"
-            >
-              <input
-                type="search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="What do you want to calculate?"
-                aria-label="Search calculators"
-                className="flex-1 rounded-full border border-border bg-background px-5 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/50 placeholder:text-muted-foreground"
-              />
-              <button
-                type="submit"
-                className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm"
-              >
-                Search
-              </button>
-            </form>
           </div>
 
           {/* SPOTLIGHT SECTION - TRENDING & NEW */}
