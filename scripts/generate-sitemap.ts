@@ -1,10 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 
-// Adjust imports for TS
-import { REGISTRY, calcLink } from "../src/data/calculatorRegistry.ts";
-import { GAMES } from "../src/data/gamesRegistry.ts";
-import { smartTipsCategories } from "../src/data/smartTipsData.ts";
+import { REGISTRY, calcLink } from "../src/data/calculatorRegistry";
+// Use gameSlugs.ts (pure TS, no React/JSX) which mirrors RAW_GAMES from gameRegistry.tsx.
+// gameRegistry.tsx cannot be imported here because it contains React component imports.
+import { GAME_SLUGS } from "../src/data/gameSlugs";
+import { smartTipsCategories } from "../src/data/smartTipsData";
 
 const ORIGIN = "https://www.smartkitnow.com";
 
@@ -69,9 +70,9 @@ function main() {
     count++;
   }
 
-  // Games
-  for (const g of GAMES) {
-    parts.push(toUrl(`/games/${g.slug}`, priorityForCategory("games")));
+  // Games — sourced from gameSlugs.ts (mirrors gameRegistry.tsx RAW_GAMES, no JSX deps)
+  for (const slug of GAME_SLUGS) {
+    parts.push(toUrl(`/games/${slug}`, priorityForCategory("games")));
     count++;
   }
 

@@ -26,13 +26,12 @@ const COLS: Array<{ title: string; links: { label: string; to: string }[] }> = [
   {
     title: "Resources",
     links: [
-      { label: "Construction", to: "/construction" },
-      { label: "Electrical", to: "/electrical" },
       { label: "Automotive", to: "/automotive" },
       { label: "Everyday Life", to: "/everyday" },
       { label: "Sports", to: "/sports" },
       { label: "Funny Calculators", to: "/funny" },
-      { label: "TV Tools", to: "/tv" },
+      { label: "Games Zone", to: "/games" },
+      { label: "Daily Quotes", to: "/daily-quotes" },
       { label: "Smart Tips", to: "/smart-tips" },
     ],
   },
