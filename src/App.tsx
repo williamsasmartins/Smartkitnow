@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import BackToTopButton from "@/components/BackToTopButton";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { REGISTRY, calcLink } from "@/data/calculatorRegistry";
 
 // Lazy Imports - Categories
@@ -58,6 +59,7 @@ export default function App() {
       <Header />
       <main className="flex-1 w-full max-w-[1440px] mx-auto">
         <ScrollToTop />
+        <Breadcrumbs />
         <AppErrorBoundary>
           <Suspense
             fallback={
