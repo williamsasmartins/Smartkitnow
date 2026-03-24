@@ -1,4 +1,5 @@
 import { chromium } from 'playwright';
+import * as fs from 'fs';
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage();
@@ -6,12 +7,12 @@ import { chromium } from 'playwright';
   await page.waitForTimeout(2000);
   
   const nav = await page.$('nav[aria-label="Breadcrumb"]');
+  let result = {};
   if (nav) {
-    const box = await nav.boundingBox();
-    console.log('Nav box:', box);
+    result.box = await nav.boundingBox();
     
     // Check computed styles
-    const styles = await page.evaluate(el => {
+    result.styles = await page.evaluate(el => {
       const computed = window.getComputedStyle(el);
       return {
         display: computed.display,
@@ -24,29 +25,26 @@ import { chromium } from 'playwright';
         top: computed.top
       };
     }, nav);
-    console.log('Nav styles:', styles);
     
-    const isVisible = await nav.isVisible();
-    console.log('Is vis:', isVisible);
+    result.isVisible = await nav.isVisible();
     
     // Let's get the parent styles
-    const pstyles = await page.evaluate(el => {
+    result.pstyles = await page.evaluate(el => {
       const p = el.parentElement;
       const c = window.getComputedStyle(p);
       return { tag: p.tagName, display: c.display, height: c.height };
     }, nav);
-    console.log('Parent styles:', pstyles);
 
     // Get the header styles as well
     const header = await page.$('header');
     if (header) {
-      const hBox = await header.boundingBox();
-      console.log('Header box:', hBox);
+      result.hBox = await header.boundingBox();
     }
 
   } else {
-    console.log('Nav not found');
+    result.error = 'Nav not found';
   }
   
+  fs.writeFileSync('result.json', JSON.stringify(result, null, 2), 'utf-8');
   await browser.close();
 })();

@@ -1,0 +1,30 @@
+{
+  "box": {
+    "x": 0,
+    "y": 0,
+    "width": 1280,
+    "height": 37
+  },
+  "styles": {
+    "display": "block",
+    "visibility": "visible",
+    "opacity": "1",
+    "height": "37px",
+    "position": "static",
+    "zIndex": "auto",
+    "marginTop": "0px",
+    "top": "auto"
+  },
+  "isVisible": true,
+  "pstyles": {
+    "tag": "MAIN",
+    "display": "block",
+    "height": "3725px"
+  },
+  "hBox": {
+    "x": 0,
+    "y": 0,
+    "width": 1280,
+    "height": 85
+  }
+}
