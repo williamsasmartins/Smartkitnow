@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { CalculatorLayout } from "@/components/calculators/shared/CalculatorLayout";
+import CalculatorLayout from "@/components/layouts/CalculatorLayout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -23,10 +23,11 @@ export default function MarketingROI() {
   };
 
   return (
-    <CalculatorLayout
-      title="Marketing ROI Calculator"
-      description="Calculate the return on investment for your marketing campaigns."
-    >
+    <CalculatorLayout>
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold tracking-tight">Marketing ROI Calculator</h1>
+        <p className="text-muted-foreground mt-2">Calculate the return on investment for your marketing campaigns.</p>
+      </div>
       <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">

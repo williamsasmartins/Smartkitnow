@@ -151,15 +151,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/EverydayLife/WordCounterCalculator"),
     urlStyle: "flat"
   },
-  {
-    slug: "lorem-ipsum-generator",
-    title: "Lorem Ipsum Generator",
-    category: "everyday",
-    subcategory: "general",
-    description: "Generate custom Lorem Ipsum placeholder text for your designs, mockups, or websites easily.",
-    loader: () => import("@/components/calculators/EverydayLife/LoremIpsumGeneratorCalculator"),
-    urlStyle: "flat"
-  },
+
   {
     slug: "world-clock",
     title: "Real-Time World Clock",

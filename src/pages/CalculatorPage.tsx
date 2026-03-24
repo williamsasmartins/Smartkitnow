@@ -126,11 +126,6 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
             <LazyCalc />
           </main>
         </Suspense>
-        <RelatedCalculators
-          currentSlug={entry.slug}
-          category={entry.category}
-          subcategory={entry.subcategory}
-        />
       </div>
     </div>
   );

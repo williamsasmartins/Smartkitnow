@@ -6,6 +6,7 @@ import SuggestionBox from "../SuggestionBox";
 import LegalDisclaimer from "../LegalDisclaimer";
 import { getEntry } from "@/data/calculatorRegistry";
 import SEOHead from "@/components/SEOHead";
+import RelatedCalculatorsComponent from "../RelatedCalculators";
 
 // ================================================================
 // AD SLOTS CONFIGURATION
@@ -283,6 +284,10 @@ export default function CalculatorVerticalLayout({
     return description;
   }, [description]);
 
+  const paths = location.pathname.split("/").filter(Boolean);
+  const slug = paths.pop();
+  const entry = slug ? getEntry(slug) : null;
+
   // Sticky "Back to Calculator" button — aparece quando o widget sai da viewport
   const widgetRef = useRef<HTMLDivElement>(null);
   const [showStickyBack, setShowStickyBack] = useState(false);
@@ -406,9 +411,18 @@ export default function CalculatorVerticalLayout({
               </article>
             )}
 
-            {/* RELATED CALCULATORS */}
+            {/* RELATED CALCULATORS (MANUAL - LEGACY) */}
             {relatedCalculators && relatedCalculators.length > 0 && (
               <RelatedCalculators calculators={relatedCalculators} />
+            )}
+
+            {/* RELATED CALCULATORS (AUTOMATIC) */}
+            {(!relatedCalculators || relatedCalculators.length === 0) && entry && (
+              <RelatedCalculatorsComponent 
+                currentSlug={entry.slug} 
+                category={entry.category} 
+                subcategory={entry.subcategory} 
+              />
             )}
 
             {/* BOTTOM BANNER AD */}
