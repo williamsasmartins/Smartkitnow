@@ -34,6 +34,7 @@ export const FRIENDLY_TITLES: Record<string, string> = {
   automotive: "Automotive Calculators",
   construction: "Construction Calculators",
   electrical: "Electrical Calculators",
+  marketing: "Marketing Calculators",
 
   "daily-quotes": "Daily Quotes",
 };
