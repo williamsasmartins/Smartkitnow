@@ -98,6 +98,7 @@ export function categoryIcon(category?: string): string {
     automotive: "🚗",
     construction: "🏗️",
     electrical: "⚡",
+    marketing: "📈",
 
     "daily-quotes": "✨",
   };
