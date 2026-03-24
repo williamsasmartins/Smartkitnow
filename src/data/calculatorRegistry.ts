@@ -152,6 +152,15 @@ export const calculatorRegistry: CalculatorEntry[] = [
     urlStyle: "flat"
   },
   {
+    slug: "lorem-ipsum-generator",
+    title: "Lorem Ipsum Generator",
+    category: "everyday",
+    subcategory: "general",
+    description: "Generate custom Lorem Ipsum placeholder text for your designs, mockups, or websites easily.",
+    loader: () => import("@/components/calculators/EverydayLife/LoremIpsumGeneratorCalculator"),
+    urlStyle: "flat"
+  },
+  {
     slug: "world-clock",
     title: "Real-Time World Clock",
     category: "time",
@@ -160,10 +169,51 @@ export const calculatorRegistry: CalculatorEntry[] = [
     loader: () => import("@/components/calculators/Time/WorldClockCalculator"),
     urlStyle: "flat"
   },
-
-
-
-
+  {
+    slug: "calorie-calculator",
+    title: "Calorie Calculator",
+    category: "health",
+    subcategory: "general",
+    description: "Determine your daily calorie needs for weight loss, maintenance, or weight gain based on your activity level and goals.",
+    loader: () => import("@/components/calculators/Health/DailyCalorieNeedsGoalCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "bmi-calculator",
+    title: "BMI Calculator",
+    category: "health",
+    subcategory: "general",
+    description: "Calculate your Body Mass Index (BMI) and find out if you're at a healthy weight.",
+    loader: () => import("@/components/calculators/Health/BmiBodyMassIndexCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "bmr-calculator",
+    title: "BMR Calculator",
+    category: "health",
+    subcategory: "general",
+    description: "Calculate your Basal Metabolic Rate (BMR) to understand how many calories your body burns at rest.",
+    loader: () => import("@/components/calculators/Health/BmrMifflinStJeorCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "body-fat-calculator",
+    title: "Body Fat Calculator",
+    category: "health",
+    subcategory: "general",
+    description: "Estimate your body fat percentage using the U.S. Navy Method.",
+    loader: () => import("@/components/calculators/Health/BodyFatUsNavy3SitesCalculator"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "ideal-weight-calculator",
+    title: "Ideal Weight Calculator",
+    category: "health",
+    subcategory: "general",
+    description: "Find your ideal body weight range based on various scientific formulas.",
+    loader: () => import("@/components/calculators/Health/IdealWeightRangeHamwiDevineMillerCalculator"),
+    urlStyle: "flat"
+  },
   {
     slug: "loan-payment",
     title: "Loan Payment Calculator (Principal, Rate, Term)",
