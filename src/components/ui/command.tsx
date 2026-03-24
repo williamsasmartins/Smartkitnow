@@ -12,6 +12,11 @@ const Command = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <CommandPrimitive
     ref={ref}
+    filter={(value, search) => {
+      const v = value.toLowerCase();
+      const searchWords = search.toLowerCase().split(/\s+/).filter(Boolean);
+      return searchWords.every(word => v.includes(word)) ? 1 : 0;
+    }}
     className={cn(
       "flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground",
       className,
