@@ -4,6 +4,7 @@ import { getEntry, FRIENDLY_TITLES, SUBCATEGORY_TITLES } from "@/data/calculator
 import JsonLd from "@/components/seo/JsonLd";
 import SEOHead from "@/components/SEOHead";
 import NotFound from "./NotFound";
+import RelatedCalculators from "@/components/RelatedCalculators";
 
 function createLazyFromLoader(loader: () => Promise<any>, namedExport?: string) {
   const Lazy = React.lazy(async () => {
@@ -125,6 +126,11 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
             <LazyCalc />
           </main>
         </Suspense>
+        <RelatedCalculators
+          currentSlug={entry.slug}
+          category={entry.category}
+          subcategory={entry.subcategory}
+        />
       </div>
     </div>
   );

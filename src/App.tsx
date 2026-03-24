@@ -1,6 +1,12 @@
 // src/App.tsx
 import { Suspense, lazy } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useParams } from "react-router-dom";
+
+/** Redirects /everyday-life/:slug → /everyday/:slug preserving the slug */
+function RedirectEverydayLife() {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={`/everyday/${slug}`} replace />;
+}
 import ScrollToTop from "@/components/ScrollToTop";
 import AppErrorBoundary from "@/components/AppErrorBoundary";
 import { Header } from "@/components/Header";
@@ -129,6 +135,10 @@ export default function App() {
               {/* Decommissioned Routes */}
               <Route path="/recipes" element={<Navigate to="/" replace />} />
               <Route path="/recipes/*" element={<Navigate to="/" replace />} />
+
+              {/* Legacy URL: /everyday-life/* → /everyday/* */}
+              <Route path="/everyday-life" element={<Navigate to="/everyday" replace />} />
+              <Route path="/everyday-life/:slug" element={<RedirectEverydayLife />} />
 
               {/* 404 */}
               <Route path="*" element={<NotFound />} />

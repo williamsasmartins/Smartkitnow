@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import logoImage from "@/assets/logo-skn.png";
 import JsonLd from "@/components/seo/JsonLd";
 import SEOHead from "@/components/SEOHead";
@@ -17,6 +17,13 @@ const CommitmentSection = lazy(() => import("@/components/home/CommitmentSection
 
 const Index = () => {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const q = searchQuery.trim();
+    if (q) navigate(`/search?q=${encodeURIComponent(q)}`);
+  };
 
   // Categories with detailed automotive and construction structures
   const categories = {
@@ -1420,37 +1427,43 @@ const Index = () => {
       name: "BMI Calculator",
       description: "Calculate your Body Mass Index",
       icon: Heart,
-      path: "/health/bmi-body-mass-index"
+      path: "/health/bmi-body-mass-index",
+      ctaLabel: "Check My BMI"
     },
     {
       name: "Loan Calculator",
       description: "Calculate monthly payments",
       icon: DollarSign,
-      path: "/financial/loan-payment"
+      path: "/financial/loan-payment",
+      ctaLabel: "Calculate My Payment"
     },
     {
       name: "Tip Calculator",
       description: "Calculate tips and split bills",
       icon: Calculator,
-      path: "/financial/tip-split-bill"
+      path: "/financial/tip-split-bill",
+      ctaLabel: "Split the Bill"
     },
     {
       name: "Unit Converter",
       description: "Convert between units",
       icon: RotateCcw,
-      path: "/conversion"
+      path: "/conversion",
+      ctaLabel: "Convert Units"
     },
     {
       name: "Calorie Calculator",
       description: "Calculate daily calories",
       icon: ChefHat,
-      path: "/health/daily-calorie-needs-goal"
+      path: "/health/daily-calorie-needs-goal",
+      ctaLabel: "Find My Calories"
     },
     {
       name: "Grade Calculator",
       description: "Calculate your GPA",
       icon: Star,
-      path: "/math/gpa-calculator"
+      path: "/math/gpa-calculator",
+      ctaLabel: "Calculate My GPA"
     },
     {
       name: "Dream Interpreter",
@@ -1512,6 +1525,28 @@ const Index = () => {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Explore our comprehensive collection of calculators organized by category
             </p>
+
+            {/* Hero search bar */}
+            <form
+              onSubmit={handleSearch}
+              className="mt-6 flex items-center gap-2 max-w-xl mx-auto"
+              role="search"
+            >
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="What do you want to calculate?"
+                aria-label="Search calculators"
+                className="flex-1 rounded-full border border-border bg-background px-5 py-3 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/50 placeholder:text-muted-foreground"
+              />
+              <button
+                type="submit"
+                className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm"
+              >
+                Search
+              </button>
+            </form>
           </div>
 
           {/* SPOTLIGHT SECTION - TRENDING & NEW */}
