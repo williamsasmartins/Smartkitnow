@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
     Calculator,
@@ -7,9 +7,7 @@ import {
     Home,
     LayoutGrid,
     Search,
-    Settings,
-    Wrench,
-    BookOpen
+
 } from "lucide-react";
 
 import {
@@ -21,7 +19,7 @@ import {
     CommandList,
     CommandSeparator,
 } from "@/components/ui/command";
-import { calculatorRegistry } from "@/data/calculatorRegistry";
+import { calculatorRegistry, calcLink } from "@/data/calculatorRegistry";
 import { GAMES } from "@/data/gamesRegistry";
 import { DialogProps } from "@radix-ui/react-dialog";
 
@@ -73,7 +71,7 @@ export function GlobalSearch({
         // --- Calculators (Dynamic) ---
         ...calculatorRegistry.map(calc => ({
             title: calc.title,
-            href: `/${calc.category}/${calc.slug}`,
+            href: calcLink(calc),
             category: "Calculators",
             icon: Calculator,
             keywords: [calc.category, calc.subcategory || "", ...(calc.description?.split(" ") || [])]
