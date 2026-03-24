@@ -32,6 +32,7 @@ const EverydayCategory = lazy(() => import("@/pages/categories/EverydayCategory"
 const SportsCategory = lazy(() => import("@/pages/categories/SportsCategory"));
 const FunnyCategory = lazy(() => import("@/pages/categories/FunnyCategory"));
 const VideoCategory = lazy(() => import("@/pages/categories/VideoCategory"));
+const MarketingCategory = lazy(() => import("@/pages/categories/MarketingCategory"));
 
 // Lazy Imports - Games
 const GamesPage = lazy(() => import("@/pages/GamesPage"));
@@ -128,6 +129,7 @@ export default function App() {
               <Route path="/sports" element={<SportsCategory />} />
               <Route path="/funny" element={<FunnyCategory />} />
               <Route path="/video" element={<VideoCategory />} />
+              <Route path="/marketing" element={<MarketingCategory />} />
 
               {/* Generic category index fallback */}
               <Route path="/:category" element={<CategoryIndex />} />

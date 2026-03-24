@@ -1359,6 +1359,13 @@ const Index = () => {
       color: "text-pink-500",
       path: "/funny",
       description: "Lighthearted tools for fun estimations, playful math, and humorous calculations to share with friends."
+    }, {
+      key: "marketing",
+      name: "Marketing Calculators",
+      icon: TrendingUp,
+      color: "text-emerald-500",
+      path: "/marketing",
+      description: "Essential calculators for digital marketers, including CPM, ROAS, ROI, and conversion rates to optimize campaigns."
     },
     // New squares
     {

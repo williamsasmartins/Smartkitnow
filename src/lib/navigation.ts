@@ -17,6 +17,7 @@ export const CATEGORY_ICON_EMOJI: Record<string, string> = {
   construction: "🏗️",
   electrical: "⚡",
   video: "📺",
+  marketing: "📈",
   games: "🎮",
   "free-games": "🎮",
   qr: "🔳",

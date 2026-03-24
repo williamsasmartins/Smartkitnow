@@ -28,6 +28,7 @@ export const CATEGORIES: Record<string, CategoryMeta> = {
   "automotive": { key: "automotive", path: "automotive", display: "Automotive Calculators", icon: "Car", emoji: "🚗" },
   "construction": { key: "construction", path: "construction", display: "Construction Calculators", icon: "Hammer", emoji: "🏗️" },
   "electrical": { key: "electrical", path: "electrical", display: "Electrical Calculators", icon: "Plug", emoji: "⚡" },
+  "marketing": { key: "marketing", path: "marketing", display: "Marketing Calculators", icon: "TrendingUp", emoji: "📈" },
 };
 
 // Optional: subcategory display normalization for sections where you want short keys in routes
