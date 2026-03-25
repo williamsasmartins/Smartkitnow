@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Option B — Bright Utility</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Space Grotesk"', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Space Grotesk', sans-serif; background: #f8fafc; }
+
+    .hero-bg {
+      background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 50%, #f0fdf4 100%);
+    }
+
+    .search-box:focus-within {
+      border-color: #0d9488;
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+    }
+
+    /* Carousel */
+    .carousel-track {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 4px;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .carousel-card {
+      scroll-snap-align: start;
+      flex: 0 0 260px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.45s ease forwards; }
+    .fade-1 { animation-delay: 0.05s; opacity: 0; }
+    .fade-2 { animation-delay: 0.15s; opacity: 0; }
+    .fade-3 { animation-delay: 0.25s; opacity: 0; }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <!-- HEADER — glass morphism lite -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-lg bg-teal-600 flex items-center justify-center text-white font-bold text-sm">S</div>
+        <span class="font-semibold text-slate-900 text-sm">Smart Kit Now</span>
+      </div>
+      <nav class="hidden sm:flex items-center gap-5 text-sm text-slate-500">
+        <a href="#" class="hover:text-teal-600 transition-colors">Financial</a>
+        <a href="#" class="hover:text-teal-600 transition-colors">Health</a>
+        <a href="#" class="hover:text-teal-600 transition-colors">Math</a>
+        <a href="#" class="hover:text-teal-600 transition-colors">More</a>
+      </nav>
+      <button class="text-sm px-3 py-1.5 rounded-lg bg-teal-600 text-white font-semibold hover:bg-teal-700 transition-colors flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Search
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-bg pt-14 pb-14 relative overflow-hidden">
+    <!-- Decorative circles -->
+    <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-teal-100/60 blur-3xl pointer-events-none"></div>
+    <div class="absolute top-32 -left-16 w-64 h-64 rounded-full bg-emerald-100/40 blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-3xl mx-auto px-4 pt-12 pb-4 text-center">
+      <!-- Label -->
+      <div class="fade-up fade-1 inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-700">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <span class="text-xs font-semibold">720+ Free Tools</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="fade-up fade-2 text-4xl sm:text-5xl font-bold text-slate-900 leading-tight tracking-tight mb-3">
+        The #1 free calculator site.<br/>
+        <span class="text-teal-600">Every question, instantly.</span>
+      </h1>
+
+      <p class="fade-up fade-3 text-slate-500 text-base sm:text-lg max-w-md mx-auto mb-7">
+        Math, money, health, cooking, construction & more.
+      </p>
+
+      <!-- Search -->
+      <div class="search-box flex items-center gap-3 max-w-lg mx-auto bg-white border border-slate-200 rounded-2xl px-5 py-4 shadow-sm cursor-text transition-all duration-200 hover:border-teal-300 hover:shadow-md">
+        <svg class="w-5 h-5 text-teal-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <span class="flex-1 text-left text-slate-400 text-sm sm:text-base">What do you need to calculate?</span>
+        <kbd class="hidden sm:inline-flex items-center px-2 py-1 text-[10px] font-mono border border-slate-200 rounded-md bg-slate-50 text-slate-400">⌘K</kbd>
+      </div>
+
+      <!-- Quick pills -->
+      <div class="flex flex-wrap justify-center gap-2 mt-4">
+        <button class="px-3 py-1.5 text-xs font-medium text-teal-700 bg-teal-50 rounded-full border border-teal-200 hover:bg-teal-100 transition-colors">BMI</button>
+        <button class="px-3 py-1.5 text-xs font-medium text-teal-700 bg-teal-50 rounded-full border border-teal-200 hover:bg-teal-100 transition-colors">Loan</button>
+        <button class="px-3 py-1.5 text-xs font-medium text-teal-700 bg-teal-50 rounded-full border border-teal-200 hover:bg-teal-100 transition-colors">Tip Calculator</button>
+        <button class="px-3 py-1.5 text-xs font-medium text-teal-700 bg-teal-50 rounded-full border border-teal-200 hover:bg-teal-100 transition-colors">Calories</button>
+        <button class="px-3 py-1.5 text-xs font-medium text-teal-700 bg-teal-50 rounded-full border border-teal-200 hover:bg-teal-100 transition-colors">Concrete</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPOTLIGHT CAROUSEL — no orphan issue -->
+  <section class="max-w-6xl mx-auto px-4 py-8">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-base font-bold text-slate-800">Featured Tools</h2>
+      <a href="#" class="text-sm text-teal-600 font-medium hover:text-teal-700 transition-colors">See all →</a>
+    </div>
+
+    <div class="carousel-track">
+      <!-- Card 1 -->
+      <div class="carousel-card bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-11 h-11 rounded-xl bg-teal-50 border border-teal-200 flex items-center justify-center">
+            <svg class="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-teal-700 bg-teal-50 border border-teal-200 rounded-full">New Charts</span>
+        </div>
+        <h3 class="font-semibold text-slate-900 text-sm mb-1.5">Auto Loan Calculator</h3>
+        <p class="text-slate-500 text-xs leading-relaxed mb-4">Monthly payments with full amortization charts and interest breakdown.</p>
+        <!-- mini bar chart -->
+        <div class="flex items-end gap-1 h-10 mb-3">
+          <div class="flex-1 rounded-t bg-teal-100" style="height: 45%"></div>
+          <div class="flex-1 rounded-t bg-teal-200" style="height: 60%"></div>
+          <div class="flex-1 rounded-t bg-teal-300" style="height: 80%"></div>
+          <div class="flex-1 rounded-t bg-teal-400" style="height: 65%"></div>
+          <div class="flex-1 rounded-t bg-teal-500" style="height: 90%"></div>
+          <div class="flex-1 rounded-t bg-teal-600" style="height: 100%"></div>
+        </div>
+        <div class="flex items-center gap-1 text-xs font-semibold text-teal-600 group-hover:text-teal-700 transition-colors">
+          Calculate Now <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="carousel-card bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-11 h-11 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center">
+            <svg class="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+          <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full">Updated</span>
+        </div>
+        <h3 class="font-semibold text-slate-900 text-sm mb-1.5">Investment Growth</h3>
+        <p class="text-slate-500 text-xs leading-relaxed mb-4">Compound interest with monthly contributions and real returns.</p>
+        <div class="h-10 mb-3 flex items-end">
+          <svg viewBox="0 0 100 40" class="w-full h-full">
+            <polyline points="0,35 20,28 40,22 60,15 80,8 100,3" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="0,35 20,28 40,22 60,15 80,8 100,3 100,40 0,40" fill="rgba(16,185,129,0.08)" stroke="none"/>
+          </svg>
+        </div>
+        <div class="flex items-center gap-1 text-xs font-semibold text-emerald-600 group-hover:text-emerald-700 transition-colors">
+          Explore <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="carousel-card bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-11 h-11 rounded-xl bg-violet-50 border border-violet-200 flex items-center justify-center">
+            <svg class="w-5 h-5 text-violet-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/></svg>
+          </div>
+          <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-violet-700 bg-violet-50 border border-violet-200 rounded-full">New Game</span>
+        </div>
+        <h3 class="font-semibold text-slate-900 text-sm mb-1.5">Neon Snake</h3>
+        <p class="text-slate-500 text-xs leading-relaxed mb-4">Classic snake action reimagined with neon glow graphics.</p>
+        <div class="h-10 mb-3 bg-slate-900 rounded-lg flex items-center justify-center">
+          <span class="text-[10px] font-mono text-violet-400">▶ PLAY · HI 2840</span>
+        </div>
+        <div class="flex items-center gap-1 text-xs font-semibold text-violet-600 group-hover:text-violet-700 transition-colors">
+          Play Now <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="carousel-card bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-11 h-11 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center">
+            <svg class="w-5 h-5 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-50 border border-sky-200 rounded-full">New App</span>
+        </div>
+        <h3 class="font-semibold text-slate-900 text-sm mb-1.5">World Clock</h3>
+        <p class="text-slate-500 text-xs leading-relaxed mb-4">Real-time clocks across popular cities and global timezones.</p>
+        <div class="space-y-1 mb-3">
+          <div class="flex justify-between text-[10px] font-mono text-slate-500">
+            <span>🌎 New York</span><span class="text-slate-900 font-semibold">2:30 PM</span>
+          </div>
+          <div class="flex justify-between text-[10px] font-mono text-slate-500">
+            <span>🌍 London</span><span class="text-slate-900 font-semibold">7:30 PM</span>
+          </div>
+          <div class="flex justify-between text-[10px] font-mono text-slate-500">
+            <span>🌏 Tokyo</span><span class="text-slate-900 font-semibold">3:30 AM</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-1 text-xs font-semibold text-sky-600 group-hover:text-sky-700 transition-colors">
+          View Time <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <!-- Hint that there's more -->
+      <div class="carousel-card bg-slate-50 rounded-2xl border border-dashed border-slate-200 p-5 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-teal-50 hover:border-teal-200 transition-all duration-200 group">
+        <div class="w-11 h-11 rounded-xl bg-slate-100 group-hover:bg-teal-100 flex items-center justify-center transition-colors">
+          <svg class="w-5 h-5 text-slate-400 group-hover:text-teal-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+        </div>
+        <span class="text-xs font-semibold text-slate-400 group-hover:text-teal-600 transition-colors text-center">View all featured tools</span>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="flex justify-center gap-1.5 mt-4">
+      <div class="w-5 h-1.5 rounded-full bg-teal-500"></div>
+      <div class="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
+      <div class="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
+      <div class="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES — 2x6 grid, 12 items, no orphans -->
+  <section class="max-w-6xl mx-auto px-4 py-4 pb-16">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-base font-bold text-slate-800">Browse by Category</h2>
+      <button class="text-sm text-teal-600 font-medium hover:text-teal-700 transition-colors">Show all 20 →</button>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
+      <button class="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 hover:border-teal-300 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97] group">
+        <span class="text-2xl">💰</span>
+        <span class="text-xs font-semibold text-slate-800 text-center leading-tight">Financial</span>
+        <span class="text-[10px] text-slate-400 font-mono">156 tools</span>
+      </button>
+      <button class="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 hover:border-teal-300 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]">
+        <span class="text-2xl">❤️</span>
+        <span class="text-xs font-semibold text-slate-800 text-center leading-tight">Health</span>
+        <span class="text-[10px] text-slate-400 font-mono">89 tools</span>
+      </button>
+      <button class="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 hover:border-teal-300 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]">
+        <span class="text-2xl">👨‍🍳</span>
+        <span class="text-xs font-semibold text-slate-800 text-center leading-tight">Cooking</span>
+        <span class="text-[10px] text-slate-400 font-mono">42 tools</span>
+      </button>
+      <button class="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 hover:border-teal-300 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]">
+        <span class="text-2xl">🧮</span>
+        <span class="text-xs font-semibold text-slate-800 text-center leading-tight">Math</span>
+        <span class="text-[10px] text-slate-400 font-mono">67 tools</span>
+      </button>
+      <button class="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 hover:border-teal-300 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]">
+        <span class="text-2xl">🏗️</span>
+        <span class="text-xs font-semibold text-slate-800 text-center leading-tight">Construction</span>
+        <span class="text-[10px] text-slate-400 font-mono">54 tools</span>
+      </button>
+      <button class="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 hover:border-teal-300 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]">
+        <span class="text-2xl">🐕</span>
+        <span class="text-xs font-semibold text-slate-800 text-center leading-tight">Pets</span>
+        <span class="text-[10px] text-slate-400 font-mono">38 tools</span>
+      </button>
+      <button class="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 hover:border-teal-300 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]">
+        <span class="text-2xl">⚗️</span>
+        <span class="text-xs font-semibold text-slate-800 text-center leading-tight">Science</span>
+        <span class="text-[10px] text-slate-400 font-mono">31 tools</span>
+      </button>
+      <button class="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 hover:border-teal-300 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]">
+        <span class="text-2xl">⏱️</span>
+        <span class="text-xs font-semibold text-slate-800 text-center leading-tight">Time & Date</span>
+        <span class="text-[10px] text-slate-400 font-mono">24 tools</span>
+      </button>
+      <button class="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 hover:border-teal-300 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]">
+        <span class="text-2xl">🎬</span>
+        <span class="text-xs font-semibold text-slate-800 text-center leading-tight">Video</span>
+        <span class="text-[10px] text-slate-400 font-mono">48 tools</span>
+      </button>
+      <button class="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 hover:border-teal-300 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]">
+        <span class="text-2xl">⚡</span>
+        <span class="text-xs font-semibold text-slate-800 text-center leading-tight">Electrical</span>
+        <span class="text-[10px] text-slate-400 font-mono">43 tools</span>
+      </button>
+      <button class="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 hover:border-teal-300 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]">
+        <span class="text-2xl">🚗</span>
+        <span class="text-xs font-semibold text-slate-800 text-center leading-tight">Automotive</span>
+        <span class="text-[10px] text-slate-400 font-mono">61 tools</span>
+      </button>
+      <button class="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 hover:border-teal-300 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]">
+        <span class="text-2xl">🔩</span>
+        <span class="text-xs font-semibold text-slate-800 text-center leading-tight">More…</span>
+        <span class="text-[10px] text-slate-400 font-mono">+8 categories</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- LABEL -->
+  <div class="fixed bottom-4 right-4 bg-teal-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+    Option B — Bright Utility
+  </div>
+</body>
+</html>
