@@ -368,7 +368,7 @@ export default function CalculatorVerticalLayout({
                   </li>
                 </ol>
               </nav>
-              <h1 className="skn-page-title text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight tracking-tight">
+              <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight tracking-tight">
                 {title}
               </h1>
               {resolvedDescription && (
@@ -387,7 +387,7 @@ export default function CalculatorVerticalLayout({
             {children ? (
               <div ref={widgetRef} className="mb-10">{children}</div>
             ) : (
-              <section ref={widgetRef} className="skn-widget-box mb-10 transition-all duration-200">
+              <section ref={widgetRef} className="mb-10 rounded-2xl overflow-hidden border-2 border-indigo-200 dark:border-indigo-800 bg-white dark:bg-slate-900 shadow-2xl shadow-indigo-500/10 transition-all duration-200">
                 <div className="p-4 md:p-8">{widget}</div>
               </section>
             )}

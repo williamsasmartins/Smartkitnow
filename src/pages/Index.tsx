@@ -8,8 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { getCategoryIcon } from "@/lib/navigation";
 import { GlowCard } from "@/components/ui/spotlight-card";
-import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft, QrCode, Moon, PieChart, Globe2, Search } from "lucide-react";
-import { GlobalSearch } from "@/components/GlobalSearch";
+import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft, QrCode, Moon, PieChart, Globe2 } from "lucide-react";
 
 const FeaturedCalculatorsSection = lazy(() => import("@/components/home/FeaturedCalculatorsSection"));
 const AboutSection = lazy(() => import("@/components/home/AboutSection"));
@@ -19,7 +18,6 @@ const CommitmentSection = lazy(() => import("@/components/home/CommitmentSection
 const Index = () => {
   const navigate = useNavigate();
   const [showAllCategories, setShowAllCategories] = useState(false);
-  const [openSearch, setOpenSearch] = useState(false);
 
   // Categories with detailed automotive and construction structures
   const categories = {
@@ -1477,7 +1475,7 @@ const Index = () => {
     }
   ];
   return (
-    <div className="min-h-screen skn-home-page font-sans selection:bg-teal-100 selection:text-teal-900 dark:selection:bg-teal-900/40 dark:selection:text-teal-100">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans selection:bg-indigo-100 selection:text-indigo-900">
       <SEOHead
         title="Smart Kit Now - Your Ultimate Smart Tools Collection"
         description="Discover powerful smart tools and utilities designed to enhance your productivity and streamline your workflow. Your ultimate collection awaits."
@@ -1503,191 +1501,147 @@ const Index = () => {
           "query-input": "required name=q"
         }
       }} />
-      {/* Main Content Area */}
-      <GlobalSearch open={openSearch} onOpenChange={setOpenSearch} />
-      <main className="pt-16 sm:pt-28">
-
-        {/* ── HERO SECTION ──────────────────────────────────── */}
-        <section className="skn-hero-dots relative overflow-hidden">
-          <div className="container mx-auto px-4 pt-10 sm:pt-14 pb-10 text-center relative z-10 max-w-4xl">
-
-            {/* Logo — small, above headline */}
-            <div className="flex justify-center mb-6">
+      {/* Main Content Area - Add top padding to account for fixed header */}
+      <main className="pt-48 sm:pt-20">
+        {/* Categories Section */}
+        <section className="container mx-auto px-4 py-8 md:py-12 cv-auto">
+          <div className="text-center mb-12">
+            <h2 className="mb-4 py-[10px] skn-home-title flex justify-center items-center">
               <picture>
                 <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
                 <img
                   src={logoImage}
-                  alt="Smart Kit Now"
+                  alt="Smart Kit Now Logo"
                   width={1000}
                   height={300}
                   decoding="async"
-                  // @ts-expect-error fetchpriority
+                  // @ts-expect-error fetchpriority is not yet in React types
                   fetchpriority="high"
-                  sizes="(max-width: 640px) 140px, 180px"
-                  className="h-10 sm:h-12 w-auto block opacity-90"
-                  style={{ height: "2.75rem", width: "auto", aspectRatio: "1000/300" }}
+                  sizes="(max-width: 768px) 100vw, 266px"
+                  className="h-20 w-auto block"
+                  style={{ height: "5rem", width: "auto", aspectRatio: "1000/300" }}
                 />
               </picture>
-            </div>
-
-            {/* Eyebrow badge */}
-            <div className="flex justify-center mb-5">
-              <span className="skn-eyebrow">
-                <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80 animate-pulse" />
-                720+ Free Calculators
-              </span>
-            </div>
-
-            {/* Display headline — Lora serif */}
-            <h1 className="skn-display text-[2.6rem] sm:text-[3.75rem] font-bold tracking-tight text-slate-900 dark:text-white leading-[1.08] mb-5">
-              Every tool
-              <br />
-              <em className="not-italic text-teal-600 dark:text-teal-400">you need.</em>
-            </h1>
-
-            {/* Subtext */}
-            <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-8 leading-relaxed">
-              Fast, accurate, and free calculators for health, finance, science, and everyday life.
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Explore our comprehensive collection of calculators organized by category
             </p>
 
-            {/* Search CTA */}
-            <div className="flex justify-center">
-              <button
-                className="skn-hero-search"
-                onClick={() => setOpenSearch(true)}
-                aria-label="Search calculators"
-              >
-                <Search className="w-4 h-4 text-teal-500 shrink-0" />
-                <span className="flex-1 text-left">Search 720+ calculators…</span>
-                <kbd className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-mono border border-border rounded bg-muted text-muted-foreground">
-                  ⌘K
-                </kbd>
-              </button>
-            </div>
           </div>
-        </section>
 
-        {/* Categories Section */}
-        <section className="container mx-auto px-4 py-8 md:py-10 cv-auto">
-
-          {/* SPOTLIGHT SECTION — Featured tools */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14 max-w-7xl px-4 mx-auto">
-
+          {/* SPOTLIGHT SECTION - TRENDING & NEW */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 max-w-7xl px-4 mx-auto">
             {/* Spotlight 1: Auto Loan */}
-            <div
-              className="skn-spotlight-accent group relative overflow-hidden rounded-2xl border border-border bg-background hover:-translate-y-1 transition-all duration-200 hover:shadow-lg cursor-pointer flex flex-col"
+            <GlowCard
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-blue-100 dark:border-blue-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full h-full flex flex-col"
+              glowColor="blue"
               onClick={() => navigate('/financial/auto-loan')}
-              role="button" tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && navigate('/financial/auto-loan')}
             >
-              <div className="absolute top-3 right-3 opacity-[0.07] group-hover:opacity-[0.11] transition-opacity pointer-events-none select-none">
-                <Car className="w-20 h-20" />
+              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Car className="w-24 h-24 text-blue-500" />
               </div>
-              <div className="p-5 flex flex-col gap-3 flex-1">
-                <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-xl bg-teal-50 dark:bg-teal-950/60 flex items-center justify-center text-teal-600 dark:text-teal-400 border border-teal-100 dark:border-teal-800">
-                    <DollarSign className="w-5 h-5" />
-                  </div>
-                  <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 rounded-full">New Charts</span>
+              <CardHeader className="flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                  <DollarSign className="w-6 h-6" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-base text-foreground mb-1">Auto Loan Calculator</h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                    Visualize monthly payments and interest costs with interactive breakdown charts.
-                  </p>
+                <div className="inline-flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-100 rounded-full">New Charts</span>
                 </div>
-                <div className="mt-auto flex items-center gap-1 text-xs font-medium text-teal-600 dark:text-teal-400 group-hover:underline pt-1">
-                  Calculate Now <TrendingUp className="w-3.5 h-3.5" />
+                <CardTitle className="text-xl">Auto Loan Calculator</CardTitle>
+                <CardDescription className="line-clamp-2 text-left">
+                  Visualize your monthly payments and interest costs with our new interactive breakdown charts.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto flex justify-center pb-6">
+                <div className="flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:underline">
+                  Calculate Now <TrendingUp className="w-4 h-4 ml-1" />
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </GlowCard>
 
-            {/* Spotlight 2: Investment Growth */}
-            <div
-              className="skn-spotlight-accent group relative overflow-hidden rounded-2xl border border-border bg-background hover:-translate-y-1 transition-all duration-200 hover:shadow-lg cursor-pointer flex flex-col"
+            {/* Spotlight 2: Investment */}
+            <GlowCard
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-emerald-100 dark:border-emerald-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full h-full flex flex-col"
+              glowColor="green"
               onClick={() => navigate('/financial/future-value')}
-              role="button" tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && navigate('/financial/future-value')}
             >
-              <div className="absolute top-3 right-3 opacity-[0.07] group-hover:opacity-[0.11] transition-opacity pointer-events-none select-none">
-                <TrendingUp className="w-20 h-20" />
+              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                <TrendingUp className="w-24 h-24 text-emerald-500" />
               </div>
-              <div className="p-5 flex flex-col gap-3 flex-1">
-                <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800">
-                    <TrendingUp className="w-5 h-5" />
-                  </div>
-                  <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 rounded-full">Updated</span>
+              <CardHeader className="flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center mb-4 text-emerald-600 dark:text-emerald-400">
+                  <TrendingUp className="w-6 h-6" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-base text-foreground mb-1">Investment Growth</h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                    Project your future wealth with our advanced compound interest visualizer.
-                  </p>
+                <div className="inline-flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 rounded-full">Updated</span>
                 </div>
-                <div className="mt-auto flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400 group-hover:underline pt-1">
-                  Start Investing <TrendingUp className="w-3.5 h-3.5" />
+                <CardTitle className="text-xl">Investment Growth</CardTitle>
+                <CardDescription className="line-clamp-2 text-left">
+                  Project your future wealth with our advanced compound interest visualizer.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto flex justify-center pb-6">
+                <div className="flex items-center text-sm font-medium text-emerald-600 dark:text-emerald-400 group-hover:underline">
+                  Start Investing <TrendingUp className="w-4 h-4 ml-1" />
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </GlowCard>
 
             {/* Spotlight 3: Neon Snake */}
-            <div
-              className="skn-spotlight-accent group relative overflow-hidden rounded-2xl border border-border bg-background hover:-translate-y-1 transition-all duration-200 hover:shadow-lg cursor-pointer flex flex-col"
+            <GlowCard
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-green-100 dark:border-green-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full h-full flex flex-col"
+              glowColor="green"
               onClick={() => navigate('/games/neon-snake')}
-              role="button" tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && navigate('/games/neon-snake')}
             >
-              <div className="absolute top-3 right-3 opacity-[0.07] group-hover:opacity-[0.11] transition-opacity pointer-events-none select-none">
-                <Smile className="w-20 h-20" />
+              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Smile className="w-24 h-24 text-green-500" />
               </div>
-              <div className="p-5 flex flex-col gap-3 flex-1">
-                <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-xl bg-violet-50 dark:bg-violet-950/60 flex items-center justify-center text-violet-600 dark:text-violet-400 border border-violet-100 dark:border-violet-800">
-                    <Video className="w-5 h-5" />
-                  </div>
-                  <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-violet-700 dark:text-violet-300 bg-violet-50 dark:bg-violet-950/60 border border-violet-200 dark:border-violet-800 rounded-full">New Game</span>
+              <CardHeader className="flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/50 flex items-center justify-center mb-4 text-green-600 dark:text-green-400">
+                  <Video className="w-6 h-6" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-base text-foreground mb-1">Neon Snake</h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                    Classic snake action reimagined with neon glow graphics and smooth controls.
-                  </p>
+                <div className="inline-flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-green-700 bg-green-100 rounded-full">New Game</span>
                 </div>
-                <div className="mt-auto flex items-center gap-1 text-xs font-medium text-violet-600 dark:text-violet-400 group-hover:underline pt-1">
-                  Play Now <ArrowLeft className="w-3.5 h-3.5 rotate-180" />
+                <CardTitle className="text-xl">Neon Snake</CardTitle>
+                <CardDescription className="line-clamp-2 text-left">
+                  Classic snake action reimagined with neon glow graphics and smooth controls.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto flex justify-center pb-6">
+                <div className="flex items-center text-sm font-medium text-green-600 dark:text-green-400 group-hover:underline">
+                  Play Now <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </GlowCard>
 
-            {/* Spotlight 4: World Clock */}
-            <div
-              className="skn-spotlight-accent group relative overflow-hidden rounded-2xl border border-border bg-background hover:-translate-y-1 transition-all duration-200 hover:shadow-lg cursor-pointer flex flex-col"
+            {/* Spotlight 4: World Time */}
+            <GlowCard
+              className="cursor-pointer group relative overflow-hidden rounded-xl border border-indigo-100 dark:border-indigo-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full h-full flex flex-col"
+              glowColor="blue"
               onClick={() => navigate('/time/world-clock')}
-              role="button" tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && navigate('/time/world-clock')}
             >
-              <div className="absolute top-3 right-3 opacity-[0.07] group-hover:opacity-[0.11] transition-opacity pointer-events-none select-none">
-                <Globe2 className="w-20 h-20" />
+              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Globe2 className="w-24 h-24 text-indigo-500" />
               </div>
-              <div className="p-5 flex flex-col gap-3 flex-1">
-                <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-xl bg-sky-50 dark:bg-sky-950/60 flex items-center justify-center text-sky-600 dark:text-sky-400 border border-sky-100 dark:border-sky-800">
-                    <Globe2 className="w-5 h-5" />
-                  </div>
-                  <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-sky-700 dark:text-sky-300 bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 rounded-full">New App</span>
+              <CardHeader className="flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center mb-4 text-indigo-600 dark:text-indigo-400">
+                  <Globe2 className="w-6 h-6" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-base text-foreground mb-1">World Clock</h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                    Track real-time digital clocks across popular cities and global timezones.
-                  </p>
+                <div className="inline-flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-100 rounded-full">New App</span>
                 </div>
-                <div className="mt-auto flex items-center gap-1 text-xs font-medium text-sky-600 dark:text-sky-400 group-hover:underline pt-1">
+                <CardTitle className="text-xl">World Clock</CardTitle>
+                <CardDescription className="line-clamp-2 text-left">
+                  Track real-time digital clocks across popular cities and global timezones.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto flex justify-center pb-6">
+                <div className="flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400 group-hover:underline">
                   View Time <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </GlowCard>
           </div>
           {/* Categories Grid */}
           <div className="grid grid-cols-1 min-[425px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-4">
