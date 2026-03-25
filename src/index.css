@@ -84,7 +84,125 @@
   }
 }
 
-/* Utilidades opcionais suas */
+/* ================================================================
+   DESIGN SYSTEM — "THE REFERENCE" AESTHETIC
+   ================================================================ */
+
+/* Display font (Lora serif) — for hero headlines */
+.skn-display {
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+}
+
+/* Homepage — warm teal radial gradient background */
+.skn-home-page {
+  background:
+    radial-gradient(ellipse 130% 55% at 50% -8%,
+      hsl(175 60% 92% / 0.55) 0%,
+      transparent 65%),
+    hsl(var(--background));
+}
+.dark .skn-home-page {
+  background:
+    radial-gradient(ellipse 130% 55% at 50% -8%,
+      hsl(175 60% 8% / 0.75) 0%,
+      transparent 65%),
+    hsl(var(--background));
+}
+
+/* Hero dot grid overlay */
+.skn-hero-dots {
+  position: relative;
+}
+.skn-hero-dots::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, hsl(var(--foreground) / 0.045) 1px, transparent 1px);
+  background-size: 26px 26px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Eyebrow pill badge */
+.skn-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--primary));
+  background: hsl(var(--primary) / 0.08);
+  border: 1px solid hsl(var(--primary) / 0.28);
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+}
+
+/* Hero search button */
+.skn-hero-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 380px;
+  padding: 13px 18px;
+  background: hsl(var(--background));
+  border: 1.5px solid hsl(var(--border));
+  border-radius: 14px;
+  box-shadow: 0 4px 24px hsl(var(--foreground) / 0.05), 0 1px 3px hsl(var(--foreground) / 0.04);
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.skn-hero-search:hover {
+  border-color: hsl(var(--primary) / 0.55);
+  box-shadow: 0 4px 24px hsl(var(--primary) / 0.12);
+}
+
+/* Spotlight card top-border accent reveal on hover */
+.skn-spotlight-accent {
+  position: relative;
+}
+.skn-spotlight-accent::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(175 70% 60%));
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.skn-spotlight-accent:hover::before {
+  opacity: 1;
+}
+
+/* Calculator widget — clean teal border */
+.skn-widget-box {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid hsl(var(--primary) / 0.22);
+  background: hsl(var(--background));
+  box-shadow:
+    0 1px 3px hsl(var(--foreground) / 0.04),
+    0 6px 24px hsl(var(--primary) / 0.06);
+  transition: box-shadow 0.2s;
+}
+.dark .skn-widget-box {
+  border-color: hsl(var(--primary) / 0.3);
+  box-shadow: 0 6px 32px hsl(var(--primary) / 0.12);
+}
+
+/* Calculator page title — left teal accent bar */
+.skn-page-title {
+  border-left: 3px solid hsl(var(--primary));
+  padding-left: 1rem;
+}
+
+/* Utilities opcionais suas */
 /* Desktop category nav: gradient fade on right to hint at scrollable content */
 .skn-cat-menu {
   scrollbar-width: none; /* Firefox */
