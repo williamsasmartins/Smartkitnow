@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import logoImage from "@/assets/logo-skn.png";
 import JsonLd from "@/components/seo/JsonLd";
 import SEOHead from "@/components/SEOHead";
@@ -17,6 +17,7 @@ const CommitmentSection = lazy(() => import("@/components/home/CommitmentSection
 
 const Index = () => {
   const navigate = useNavigate();
+  const [showAllCategories, setShowAllCategories] = useState(false);
 
   // Categories with detailed automotive and construction structures
   const categories = {
@@ -1547,7 +1548,7 @@ const Index = () => {
                   <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-100 rounded-full">New Charts</span>
                 </div>
                 <CardTitle className="text-xl">Auto Loan Calculator</CardTitle>
-                <CardDescription className="line-clamp-2">
+                <CardDescription className="line-clamp-2 text-left">
                   Visualize your monthly payments and interest costs with our new interactive breakdown charts.
                 </CardDescription>
               </CardHeader>
@@ -1575,7 +1576,7 @@ const Index = () => {
                   <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 rounded-full">Updated</span>
                 </div>
                 <CardTitle className="text-xl">Investment Growth</CardTitle>
-                <CardDescription className="line-clamp-2">
+                <CardDescription className="line-clamp-2 text-left">
                   Project your future wealth with our advanced compound interest visualizer.
                 </CardDescription>
               </CardHeader>
@@ -1603,7 +1604,7 @@ const Index = () => {
                   <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-green-700 bg-green-100 rounded-full">New Game</span>
                 </div>
                 <CardTitle className="text-xl">Neon Snake</CardTitle>
-                <CardDescription className="line-clamp-2">
+                <CardDescription className="line-clamp-2 text-left">
                   Classic snake action reimagined with neon glow graphics and smooth controls.
                 </CardDescription>
               </CardHeader>
@@ -1631,7 +1632,7 @@ const Index = () => {
                   <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-100 rounded-full">New App</span>
                 </div>
                 <CardTitle className="text-xl">World Clock</CardTitle>
-                <CardDescription className="line-clamp-2">
+                <CardDescription className="line-clamp-2 text-left">
                   Track real-time digital clocks across popular cities and global timezones.
                 </CardDescription>
               </CardHeader>
@@ -1643,8 +1644,8 @@ const Index = () => {
             </GlowCard>
           </div>
           {/* Categories Grid */}
-          <div className="grid grid-cols-1 min-[425px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
-            {calculatorCategories.map((category, index) => {
+          <div className="grid grid-cols-1 min-[425px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-4">
+            {calculatorCategories.slice(0, 8).map((category, index) => {
               const IconComponent = category.icon;
               const isAutomotive = category.name === "Automotive Calculators";
               const isConstruction = category.name === "Construction Calculators";
@@ -1694,6 +1695,61 @@ const Index = () => {
                 </CardContent>
               </GlowCard>;
             })}
+          </div>
+
+          {/* Collapsible extra categories */}
+          {showAllCategories && (
+            <div className="grid grid-cols-1 min-[425px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-4">
+              {calculatorCategories.slice(8).map((category, index) => {
+                const isFinancial = category.name === "Financial Calculators";
+                const isHealth = category.name === "Health & Fitness Calculators";
+                const isPets = category.name === "Pet Care Calculators";
+                const isConversion = category.name === "Conversion Calculators";
+                const isElectrical = category.name === "Electrical Calculators";
+                const isConstruction = category.name === "Construction Calculators";
+                const isCooking = category.name === "Cooking Calculators";
+                const isMath = category.name === "Math & Algebra Calculators";
+                const isScience = category.name === "Science Calculators";
+                const isTime = category.name === "Time & Date Calculators";
+                const handleClick = () => {
+                  if ((category as any).path) { navigate((category as any).path); return; }
+                  if (isFinancial) navigate('/financial');
+                  else if (isHealth) navigate('/health');
+                  else if (isCooking) navigate('/cooking');
+                  else if (isConversion) navigate('/conversion');
+                  else if (isElectrical) navigate('/electrical');
+                  else if (isMath) navigate('/math');
+                  else if (isPets) navigate('/pets');
+                  else if (isScience) navigate('/science');
+                  else if (isTime) navigate('/time');
+                  else if (isConstruction) navigate('/construction');
+                };
+                return (
+                  <GlowCard key={index} className="skn-card group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={handleClick} customSize glowColor={isFinancial ? 'green' : isHealth ? 'red' : isPets ? 'orange' : isConversion ? 'blue' : isElectrical ? 'orange' : isConstruction ? 'orange' : isCooking ? 'orange' : isMath ? 'purple' : isScience ? 'blue' : isTime ? 'blue' : 'blue'}>
+                    <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
+                      <span className="text-[20px] leading-none select-none">{getCategoryIcon((category as any).key)}</span>
+                      <h3 className="skn-home-title text-[14px] md:text-[15px] font-semibold tracking-[-0.01em]">
+                        {(category as any).title ?? category.name}
+                      </h3>
+                    </CardContent>
+                  </GlowCard>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Browse All / Show Less toggle */}
+          <div className="text-center mb-6">
+            <button
+              onClick={() => setShowAllCategories((v) => !v)}
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary hover:bg-muted rounded-lg transition-colors border border-border"
+            >
+              {showAllCategories ? (
+                <>Show Less <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg></>
+              ) : (
+                <>Browse All {calculatorCategories.length} Categories <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg></>
+              )}
+            </button>
           </div>
 
           {/* Discover More Button */}

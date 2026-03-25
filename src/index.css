@@ -14,10 +14,9 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Azul mais escuro para melhor contraste no tema claro (WCAG AA Compliant) */
-    /* Was: 217 91% 60% (#3c83f6) -> New: 221.2 83.2% 53.3% (#2563eb) */
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
+    /* Teal — diferencia do azul padrão shadcn, mantém WCAG AA (4.5:1+) */
+    --primary: 175 84% 32%; /* teal-600 #0d9488 */
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -35,7 +34,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 175 84% 32%;
 
     --radius: 0.75rem;
   }
@@ -51,10 +50,9 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    /* Mantém contraste adequado também no tema escuro */
-    --primary: 217 91% 60%;
-    /* ~ Tailwind blue-600 (#2563eb) */
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Teal no dark mode — mais luminoso para contraste sobre fundo escuro */
+    --primary: 172 66% 50%; /* teal-400 #2dd4bf */
+    --primary-foreground: 172 84% 10%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -87,6 +85,27 @@
 }
 
 /* Utilidades opcionais suas */
+/* Desktop category nav: gradient fade on right to hint at scrollable content */
+.skn-cat-menu {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.skn-cat-menu::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Wrapper in Header adds relative positioning; pseudo-element creates the fade */
+nav:has(.skn-cat-menu)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, hsl(var(--background) / 0.95));
+}
+
 .bg-gradient-soft {
   @apply bg-gradient-to-b from-muted/40 to-background;
 }
@@ -133,20 +152,29 @@
 }
 
 :root {
-  --header-height: 140px;
-  /* Base value */
+  --header-height: 110px; /* desktop: top row + category nav */
 }
 
-/* Adjust for mobile if the header is taller due to wrapping */
 @media (max-width: 639px) {
   :root {
-    --header-height: 180px;
-    /* Improved estimate for mobile layout */
+    --header-height: 56px; /* mobile: single compact row */
   }
 }
 
 .skn-offset-header {
   padding-top: var(--header-height);
+}
+
+/* Accessibility: respect user's motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Tipografia global para páginas de categoria */

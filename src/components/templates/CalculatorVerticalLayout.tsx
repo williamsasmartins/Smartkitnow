@@ -1,5 +1,5 @@
 import React, { ReactNode, useMemo, useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import AdUnit from "../AdUnit";
 import ShareThisPageBox from "../ShareThisPageBox";
 import SuggestionBox from "../SuggestionBox";
@@ -7,6 +7,7 @@ import LegalDisclaimer from "../LegalDisclaimer";
 import { getEntry } from "@/data/calculatorRegistry";
 import SEOHead from "@/components/SEOHead";
 import RelatedCalculatorsComponent from "../RelatedCalculators";
+import { CATEGORIES } from "@/data/categoryMeta";
 
 // ================================================================
 // AD SLOTS CONFIGURATION
@@ -279,7 +280,6 @@ export default function CalculatorVerticalLayout({
   children,
 }: CalculatorVerticalLayoutProps) {
   const location = useLocation();
-  const navigate = useNavigate();
   const resolvedDescription = useMemo(() => {
     return description;
   }, [description]);
@@ -304,10 +304,11 @@ export default function CalculatorVerticalLayout({
   }, []);
 
   return (
-    <div className="skn-vertical-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors pt-40 sm:pt-32">
+    <div className="skn-vertical-layout min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors pt-16 sm:pt-28">
       {/* STICKY BACK TO CALCULATOR — aparece ao rolar além do widget */}
+      {/* bottom-20 on mobile to clear the AdSense anchor ad (~60px); bottom-5 on desktop */}
       {showStickyBack && (
-        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50">
+        <div className="fixed bottom-20 sm:bottom-5 left-1/2 -translate-x-1/2 z-50">
           <button
             onClick={() => widgetRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })}
             className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-sm font-semibold rounded-full shadow-xl shadow-indigo-500/40 transition-colors"
@@ -342,15 +343,31 @@ export default function CalculatorVerticalLayout({
           <div className={`w-full ${contentMaxWidth} mx-auto xl:mx-0 px-4 sm:px-6 min-w-0`}>
             {/* TITLE SECTION */}
             <header className="mb-8">
-              <div className="mb-6">
-                <button
-                  onClick={() => navigate("/")}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></svg>
-                  Back to Home
-                </button>
-              </div>
+              {/* BREADCRUMBS */}
+              <nav aria-label="Breadcrumb" className="mb-4">
+                <ol className="flex items-center flex-wrap gap-x-1.5 gap-y-1 text-xs text-muted-foreground">
+                  <li>
+                    <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+                  </li>
+                  {entry?.category && (() => {
+                    const catMeta = CATEGORIES[entry.category];
+                    const catPath = catMeta?.path ?? entry.category;
+                    const catLabel = catMeta?.display ?? entry.category.replace(/-/g, " ").replace(/\b\w/g, s => s.toUpperCase());
+                    return (
+                      <>
+                        <li aria-hidden>/</li>
+                        <li>
+                          <Link to={`/${catPath}`} className="hover:text-primary transition-colors">{catLabel}</Link>
+                        </li>
+                      </>
+                    );
+                  })()}
+                  <li aria-hidden>/</li>
+                  <li className="text-foreground font-medium truncate max-w-[200px]" aria-current="page">
+                    {title}
+                  </li>
+                </ol>
+              </nav>
               <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight tracking-tight">
                 {title}
               </h1>
