@@ -310,6 +310,26 @@ body,
   }
 }
 
+/* === SKN: Featured Tools Carousel === */
+.skn-carousel {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 4px;
+}
+.skn-carousel::-webkit-scrollbar { display: none; }
+.skn-carousel-card {
+  scroll-snap-align: start;
+  flex: 0 0 260px;
+  min-width: 0;
+}
+@media (min-width: 640px) {
+  .skn-carousel-card { flex: 0 0 280px; }
+}
+
 /* === SKN: Scroll + Right Rail control (desktop) === */
 :root {
   /* Altura (top) em que o sidebar ad começa a "grudar" (ajuste fino aqui) */

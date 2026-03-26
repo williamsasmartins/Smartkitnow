@@ -4,11 +4,10 @@ import logoImage from "@/assets/logo-skn.png";
 import JsonLd from "@/components/seo/JsonLd";
 import SEOHead from "@/components/SEOHead";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getCategoryIcon } from "@/lib/navigation";
-import { GlowCard } from "@/components/ui/spotlight-card";
-import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft, QrCode, Moon, PieChart, Globe2 } from "lucide-react";
+import { GlobalSearch } from "@/components/GlobalSearch";
+import { Car, HardHat, RotateCcw, ChefHat, Zap, DollarSign, Heart, Calculator, Dog, Atom, Clock, Video, BookOpen, Lightbulb, Quote, Home, Dumbbell, Smile, Star, TrendingUp, ArrowLeft, QrCode, Moon, Globe2, Search } from "lucide-react";
 
 const FeaturedCalculatorsSection = lazy(() => import("@/components/home/FeaturedCalculatorsSection"));
 const AboutSection = lazy(() => import("@/components/home/AboutSection"));
@@ -18,6 +17,7 @@ const CommitmentSection = lazy(() => import("@/components/home/CommitmentSection
 const Index = () => {
   const navigate = useNavigate();
   const [showAllCategories, setShowAllCategories] = useState(false);
+  const [openSearch, setOpenSearch] = useState(false);
 
   // Categories with detailed automotive and construction structures
   const categories = {
@@ -1475,7 +1475,8 @@ const Index = () => {
     }
   ];
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans selection:bg-indigo-100 selection:text-indigo-900">
+    <div className="min-h-screen bg-background font-sans selection:bg-teal-100 selection:text-teal-900">
+      <GlobalSearch open={openSearch} onOpenChange={setOpenSearch} />
       <SEOHead
         title="Smart Kit Now - Your Ultimate Smart Tools Collection"
         description="Discover powerful smart tools and utilities designed to enhance your productivity and streamline your workflow. Your ultimate collection awaits."
@@ -1501,12 +1502,17 @@ const Index = () => {
           "query-input": "required name=q"
         }
       }} />
-      {/* Main Content Area - Add top padding to account for fixed header */}
-      <main className="pt-48 sm:pt-20">
-        {/* Categories Section */}
-        <section className="container mx-auto px-4 py-8 md:py-12 cv-auto">
-          <div className="text-center mb-12">
-            <h2 className="mb-4 py-[10px] skn-home-title flex justify-center items-center">
+      {/* Main Content Area */}
+      <main className="pt-16 sm:pt-28">
+
+        {/* ── HERO ── */}
+        <section className="relative overflow-hidden bg-gradient-to-b from-teal-50 via-white to-white dark:from-teal-950/25 dark:via-background dark:to-background">
+          <div className="absolute inset-0 pointer-events-none select-none" aria-hidden>
+            <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[360px] rounded-full bg-teal-200/30 dark:bg-teal-500/8 blur-3xl" />
+          </div>
+          <div className="relative container mx-auto px-4 pt-10 sm:pt-14 pb-12 text-center max-w-3xl">
+            {/* Logo */}
+            <div className="flex justify-center mb-5">
               <picture>
                 <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
                 <img
@@ -1518,221 +1524,256 @@ const Index = () => {
                   // @ts-expect-error fetchpriority is not yet in React types
                   fetchpriority="high"
                   sizes="(max-width: 768px) 100vw, 266px"
-                  className="h-20 w-auto block"
-                  style={{ height: "5rem", width: "auto", aspectRatio: "1000/300" }}
+                  className="h-16 sm:h-20 w-auto block"
+                  style={{ height: undefined, width: "auto", aspectRatio: "1000/300" }}
                 />
               </picture>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Explore our comprehensive collection of calculators organized by category
+            </div>
+
+            {/* Counter label */}
+            <p className="text-xs font-mono tracking-[0.18em] uppercase text-teal-600 dark:text-teal-400 mb-3">
+              720+ Free Calculators
             </p>
 
+            {/* Headline */}
+            <h1 className="text-3xl sm:text-5xl font-bold text-foreground tracking-tight leading-tight mb-3">
+              Every answer,{" "}
+              <span className="text-teal-600 dark:text-teal-400">instantly.</span>
+            </h1>
+
+            <p className="text-muted-foreground text-base sm:text-lg max-w-md mx-auto mb-7 leading-relaxed">
+              Math, money, health, cooking, construction &amp; more — all free.
+            </p>
+
+            {/* Search CTA */}
+            <button
+              className="mx-auto flex items-center gap-3 w-full max-w-md bg-background border border-border rounded-2xl px-5 py-3.5 text-left shadow-sm hover:border-teal-400 hover:shadow-md transition-all duration-200 cursor-text"
+              onClick={() => setOpenSearch(true)}
+              aria-label="Search calculators"
+            >
+              <Search className="w-5 h-5 text-teal-500 shrink-0" />
+              <span className="flex-1 text-muted-foreground text-sm sm:text-base">What do you need to calculate?</span>
+              <kbd className="hidden sm:inline-flex items-center px-2 py-1 text-[10px] font-mono border border-border rounded-md bg-muted text-muted-foreground">⌘K</kbd>
+            </button>
+
+            {/* Popular quick-link pills */}
+            <div className="flex flex-wrap justify-center gap-2 mt-4">
+              {["BMI", "Loan", "Tip Calculator", "Calories", "Concrete", "Unit Converter"].map((label) => (
+                <button
+                  key={label}
+                  onClick={() => setOpenSearch(true)}
+                  className="px-3 py-1.5 text-xs font-medium text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/50 rounded-full border border-teal-200 dark:border-teal-800 hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors"
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
           </div>
+        </section>
 
-          {/* SPOTLIGHT SECTION - TRENDING & NEW */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 max-w-7xl px-4 mx-auto">
-            {/* Spotlight 1: Auto Loan */}
-            <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-blue-100 dark:border-blue-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full h-full flex flex-col"
-              glowColor="blue"
-              onClick={() => navigate('/financial/auto-loan')}
-            >
-              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Car className="w-24 h-24 text-blue-500" />
-              </div>
-              <CardHeader className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
-                  <DollarSign className="w-6 h-6" />
-                </div>
-                <div className="inline-flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-100 rounded-full">New Charts</span>
-                </div>
-                <CardTitle className="text-xl">Auto Loan Calculator</CardTitle>
-                <CardDescription className="line-clamp-2 text-left">
-                  Visualize your monthly payments and interest costs with our new interactive breakdown charts.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="mt-auto flex justify-center pb-6">
-                <div className="flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:underline">
-                  Calculate Now <TrendingUp className="w-4 h-4 ml-1" />
-                </div>
-              </CardContent>
-            </GlowCard>
+        {/* ── MAIN SECTIONS ── */}
+        <section className="container mx-auto px-4 py-8 md:py-10 cv-auto">
 
-            {/* Spotlight 2: Investment */}
-            <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-emerald-100 dark:border-emerald-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full h-full flex flex-col"
-              glowColor="green"
-              onClick={() => navigate('/financial/future-value')}
-            >
-              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                <TrendingUp className="w-24 h-24 text-emerald-500" />
+          {/* ── SPOTLIGHT CAROUSEL ── */}
+          <div className="mb-12">
+            <div className="flex items-center justify-between mb-5">
+              <h2 className="text-base font-bold text-foreground">Featured Tools</h2>
+              <button onClick={() => navigate('/financial')} className="text-sm text-primary font-medium hover:underline transition-colors">See all →</button>
+            </div>
+            <div className="skn-carousel">
+              {/* Card 1: Auto Loan */}
+              <div
+                className="skn-carousel-card group bg-background border border-border rounded-2xl p-5 cursor-pointer hover:border-teal-300 dark:hover:border-teal-700 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                onClick={() => navigate('/financial/auto-loan')}
+                role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && navigate('/financial/auto-loan')}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-teal-50 dark:bg-teal-950/60 border border-teal-100 dark:border-teal-800 flex items-center justify-center text-teal-600 dark:text-teal-400">
+                    <DollarSign className="w-5 h-5" />
+                  </div>
+                  <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 rounded-full">New Charts</span>
+                </div>
+                <h3 className="font-semibold text-sm text-foreground mb-1.5">Auto Loan Calculator</h3>
+                <p className="text-muted-foreground text-xs leading-relaxed mb-4 line-clamp-2">Monthly payments with full amortization charts and interest breakdown.</p>
+                <div className="flex items-center gap-1 h-10 mb-3">
+                  {[40,55,72,60,85,100,75,90].map((h, i) => (
+                    <div key={i} className="flex-1 rounded-t bg-teal-100 dark:bg-teal-900/40 border-t-2 border-teal-400 dark:border-teal-500" style={{height:`${h}%`}} />
+                  ))}
+                </div>
+                <div className="flex items-center gap-1 text-xs font-semibold text-teal-600 dark:text-teal-400 group-hover:underline">
+                  Calculate Now <ArrowLeft className="w-3 h-3 rotate-180" />
+                </div>
               </div>
-              <CardHeader className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center mb-4 text-emerald-600 dark:text-emerald-400">
-                  <TrendingUp className="w-6 h-6" />
-                </div>
-                <div className="inline-flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 rounded-full">Updated</span>
-                </div>
-                <CardTitle className="text-xl">Investment Growth</CardTitle>
-                <CardDescription className="line-clamp-2 text-left">
-                  Project your future wealth with our advanced compound interest visualizer.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="mt-auto flex justify-center pb-6">
-                <div className="flex items-center text-sm font-medium text-emerald-600 dark:text-emerald-400 group-hover:underline">
-                  Start Investing <TrendingUp className="w-4 h-4 ml-1" />
-                </div>
-              </CardContent>
-            </GlowCard>
 
-            {/* Spotlight 3: Neon Snake */}
-            <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-green-100 dark:border-green-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full h-full flex flex-col"
-              glowColor="green"
-              onClick={() => navigate('/games/neon-snake')}
-            >
-              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Smile className="w-24 h-24 text-green-500" />
+              {/* Card 2: Investment Growth */}
+              <div
+                className="skn-carousel-card group bg-background border border-border rounded-2xl p-5 cursor-pointer hover:border-emerald-300 dark:hover:border-emerald-700 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                onClick={() => navigate('/financial/future-value')}
+                role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && navigate('/financial/future-value')}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-100 dark:border-emerald-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                    <TrendingUp className="w-5 h-5" />
+                  </div>
+                  <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 rounded-full">Updated</span>
+                </div>
+                <h3 className="font-semibold text-sm text-foreground mb-1.5">Investment Growth</h3>
+                <p className="text-muted-foreground text-xs leading-relaxed mb-4 line-clamp-2">Compound interest with monthly contributions and real-return projections.</p>
+                <div className="h-10 mb-3">
+                  <svg viewBox="0 0 100 40" className="w-full h-full">
+                    <polyline points="0,35 20,28 40,22 60,15 80,8 100,3" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-emerald-400 dark:text-emerald-500" />
+                    <polyline points="0,35 20,28 40,22 60,15 80,8 100,3 100,40 0,40" className="text-emerald-100 dark:text-emerald-900/40" fill="currentColor" stroke="none" />
+                  </svg>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400 group-hover:underline">
+                  Start Investing <ArrowLeft className="w-3 h-3 rotate-180" />
+                </div>
               </div>
-              <CardHeader className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/50 flex items-center justify-center mb-4 text-green-600 dark:text-green-400">
-                  <Video className="w-6 h-6" />
-                </div>
-                <div className="inline-flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-green-700 bg-green-100 rounded-full">New Game</span>
-                </div>
-                <CardTitle className="text-xl">Neon Snake</CardTitle>
-                <CardDescription className="line-clamp-2 text-left">
-                  Classic snake action reimagined with neon glow graphics and smooth controls.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="mt-auto flex justify-center pb-6">
-                <div className="flex items-center text-sm font-medium text-green-600 dark:text-green-400 group-hover:underline">
-                  Play Now <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
-                </div>
-              </CardContent>
-            </GlowCard>
 
-            {/* Spotlight 4: World Time */}
-            <GlowCard
-              className="cursor-pointer group relative overflow-hidden rounded-xl border border-indigo-100 dark:border-indigo-900 bg-white dark:bg-slate-900 transition-all hover:-translate-y-1 hover:shadow-xl w-full h-full flex flex-col"
-              glowColor="blue"
-              onClick={() => navigate('/time/world-clock')}
-            >
-              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Globe2 className="w-24 h-24 text-indigo-500" />
+              {/* Card 3: Neon Snake */}
+              <div
+                className="skn-carousel-card group bg-background border border-border rounded-2xl p-5 cursor-pointer hover:border-violet-300 dark:hover:border-violet-700 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                onClick={() => navigate('/games/neon-snake')}
+                role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && navigate('/games/neon-snake')}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-violet-50 dark:bg-violet-950/60 border border-violet-100 dark:border-violet-800 flex items-center justify-center text-violet-600 dark:text-violet-400">
+                    <Video className="w-5 h-5" />
+                  </div>
+                  <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-violet-700 dark:text-violet-300 bg-violet-50 dark:bg-violet-950/60 border border-violet-200 dark:border-violet-800 rounded-full">New Game</span>
+                </div>
+                <h3 className="font-semibold text-sm text-foreground mb-1.5">Neon Snake</h3>
+                <p className="text-muted-foreground text-xs leading-relaxed mb-4 line-clamp-2">Classic snake action reimagined with neon glow graphics and smooth controls.</p>
+                <div className="h-10 mb-3 bg-slate-900 dark:bg-slate-800 rounded-lg flex items-center justify-center">
+                  <span className="text-[10px] font-mono text-violet-400">▶ PLAY · HI 2840</span>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-semibold text-violet-600 dark:text-violet-400 group-hover:underline">
+                  Play Now <ArrowLeft className="w-3 h-3 rotate-180" />
+                </div>
               </div>
-              <CardHeader className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center mb-4 text-indigo-600 dark:text-indigo-400">
-                  <Globe2 className="w-6 h-6" />
+
+              {/* Card 4: World Clock */}
+              <div
+                className="skn-carousel-card group bg-background border border-border rounded-2xl p-5 cursor-pointer hover:border-sky-300 dark:hover:border-sky-700 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                onClick={() => navigate('/time/world-clock')}
+                role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && navigate('/time/world-clock')}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-sky-50 dark:bg-sky-950/60 border border-sky-100 dark:border-sky-800 flex items-center justify-center text-sky-600 dark:text-sky-400">
+                    <Globe2 className="w-5 h-5" />
+                  </div>
+                  <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-sky-700 dark:text-sky-300 bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 rounded-full">New App</span>
                 </div>
-                <div className="inline-flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-100 rounded-full">New App</span>
+                <h3 className="font-semibold text-sm text-foreground mb-1.5">World Clock</h3>
+                <p className="text-muted-foreground text-xs leading-relaxed mb-3 line-clamp-2">Real-time clocks across popular cities and global timezones.</p>
+                <div className="space-y-1 mb-3">
+                  {[["🌎 New York","2:30 PM"],["🌍 London","7:30 PM"],["🌏 Tokyo","3:30 AM"]].map(([city, time]) => (
+                    <div key={city} className="flex justify-between text-[10px] font-mono text-muted-foreground">
+                      <span>{city}</span><span className="text-foreground font-semibold">{time}</span>
+                    </div>
+                  ))}
                 </div>
-                <CardTitle className="text-xl">World Clock</CardTitle>
-                <CardDescription className="line-clamp-2 text-left">
-                  Track real-time digital clocks across popular cities and global timezones.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="mt-auto flex justify-center pb-6">
-                <div className="flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400 group-hover:underline">
-                  View Time <ArrowLeft className="w-4 h-4 ml-1 rotate-180" />
+                <div className="flex items-center gap-1 text-xs font-semibold text-sky-600 dark:text-sky-400 group-hover:underline">
+                  View Time <ArrowLeft className="w-3 h-3 rotate-180" />
                 </div>
-              </CardContent>
-            </GlowCard>
+              </div>
+
+              {/* Card 5: QR Code */}
+              <div
+                className="skn-carousel-card group bg-background border border-border rounded-2xl p-5 cursor-pointer hover:border-teal-300 dark:hover:border-teal-700 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                onClick={() => navigate('/everyday/qr-code-generator')}
+                role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && navigate('/everyday/qr-code-generator')}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-teal-50 dark:bg-teal-950/60 border border-teal-100 dark:border-teal-800 flex items-center justify-center text-teal-600 dark:text-teal-400">
+                    <QrCode className="w-5 h-5" />
+                  </div>
+                  <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 rounded-full">Free Tool</span>
+                </div>
+                <h3 className="font-semibold text-sm text-foreground mb-1.5">QR Code Generator</h3>
+                <p className="text-muted-foreground text-xs leading-relaxed mb-4 line-clamp-2">Generate QR codes for URLs, text, and more in seconds. Free forever.</p>
+                <div className="h-10 mb-3 flex items-center justify-center">
+                  <div className="w-10 h-10 grid grid-cols-3 gap-0.5">
+                    {Array.from({length:9}).map((_,i) => (
+                      <div key={i} className={`rounded-sm ${[0,2,6,8,4].includes(i) ? 'bg-foreground' : 'bg-muted'}`} />
+                    ))}
+                  </div>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-semibold text-teal-600 dark:text-teal-400 group-hover:underline">
+                  Generate QR <ArrowLeft className="w-3 h-3 rotate-180" />
+                </div>
+              </div>
+            </div>
           </div>
-          {/* Categories Grid */}
-          <div className="grid grid-cols-1 min-[425px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-4">
-            {calculatorCategories.slice(0, 8).map((category, index) => {
-              const IconComponent = category.icon;
-              const isAutomotive = category.name === "Automotive Calculators";
-              const isConstruction = category.name === "Construction Calculators";
-              const isConversion = category.name === "Conversion Calculators";
-              const isCooking = category.name === "Cooking Calculators";
-              const isElectrical = category.name === "Electrical Calculators";
-              const isFinancial = category.name === "Financial Calculators";
-              const isHealth = category.name === "Health & Fitness Calculators";
-              const isMath = category.name === "Math & Algebra Calculators";
-              const isPets = category.name === "Pet Care Calculators";
-              const isScience = category.name === "Science Calculators";
-              const isTime = category.name === "Time & Date Calculators";
-
-              const isSmartTips = category.name === "Smart Tips";
-              const handleClick = () => {
-                if (import.meta.env.DEV) {
-                  console.log("Category clicked:", category.name);
-                }
-                // Prefer explicit path if provided on the category object
-                if ((category as any).path) {
-                  navigate((category as any).path);
-                  return;
-                }
-                // Fallbacks for legacy categories without explicit paths
-                if (isAutomotive) navigate('/automotive');
-                if (isConstruction) navigate('/construction');
-                if (isConversion) navigate('/conversion');
-                if (isCooking) navigate('/cooking');
-                if (isElectrical) navigate('/electrical');
-                if (isFinancial) navigate('/financial');
-                if (isHealth) navigate('/health');
-                if (isMath) navigate('/math');
-                if (isPets) navigate('/pets');
-                if (isScience) navigate('/science');
-                if (isTime) navigate('/time');
-
-                if (isSmartTips) navigate('/smart-tips');
-              };
-              return <GlowCard key={index} className="skn-card group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={handleClick} customSize glowColor={isFinancial ? 'green' : isHealth ? 'red' : isPets ? 'orange' : isConversion ? 'blue' : isElectrical ? 'orange' : isConstruction ? 'orange' : isCooking ? 'orange' : isMath ? 'purple' : isScience ? 'blue' : isTime ? 'blue' : 'blue'}>
-                <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
-                  <span className="text-[20px] leading-none select-none">
-                    {getCategoryIcon((category as any).key)}
-                  </span>
-                  <h3 className="skn-home-title text-[14px] md:text-[15px] font-semibold tracking-[-0.01em]">
-                    {(category as any).title ?? category.name}
-                  </h3>
-                </CardContent>
-              </GlowCard>;
-            })}
+          {/* ── CATEGORIES GRID ── */}
+          <div className="mb-4">
+            <div className="flex items-center justify-between mb-5">
+              <h2 className="text-base font-bold text-foreground">Browse by Category</h2>
+            </div>
+            {/* 12 items: fills 2-col(6r), 3-col(4r), 4-col(3r), 6-col(2r) — never orphans */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
+              {calculatorCategories.slice(0, 12).map((category, index) => {
+                const handleClick = () => {
+                  if ((category as any).path) { navigate((category as any).path); return; }
+                  const name = category.name;
+                  if (name === "Automotive Calculators") navigate('/automotive');
+                  else if (name === "Construction Calculators") navigate('/construction');
+                  else if (name === "Conversion Calculators") navigate('/conversion');
+                  else if (name === "Cooking Calculators") navigate('/cooking');
+                  else if (name === "Electrical Calculators") navigate('/electrical');
+                  else if (name === "Financial Calculators") navigate('/financial');
+                  else if (name === "Health & Fitness Calculators") navigate('/health');
+                  else if (name === "Math & Algebra Calculators") navigate('/math');
+                  else if (name === "Pet Care Calculators") navigate('/pets');
+                  else if (name === "Science Calculators") navigate('/science');
+                  else if (name === "Time & Date Calculators") navigate('/time');
+                  else if (name === "Smart Tips") navigate('/smart-tips');
+                };
+                return (
+                  <button
+                    key={index}
+                    onClick={handleClick}
+                    className="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-background border border-border hover:border-teal-300 dark:hover:border-teal-700 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97] text-center"
+                  >
+                    <span className="text-2xl leading-none select-none" aria-hidden>{getCategoryIcon((category as any).key)}</span>
+                    <span className="text-xs font-semibold text-foreground leading-tight">
+                      {(category as any).title ?? category.name}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Collapsible extra categories */}
           {showAllCategories && (
-            <div className="grid grid-cols-1 min-[425px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-4">
-              {calculatorCategories.slice(8).map((category, index) => {
-                const isFinancial = category.name === "Financial Calculators";
-                const isHealth = category.name === "Health & Fitness Calculators";
-                const isPets = category.name === "Pet Care Calculators";
-                const isConversion = category.name === "Conversion Calculators";
-                const isElectrical = category.name === "Electrical Calculators";
-                const isConstruction = category.name === "Construction Calculators";
-                const isCooking = category.name === "Cooking Calculators";
-                const isMath = category.name === "Math & Algebra Calculators";
-                const isScience = category.name === "Science Calculators";
-                const isTime = category.name === "Time & Date Calculators";
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 mb-4">
+              {calculatorCategories.slice(12).map((category, index) => {
                 const handleClick = () => {
                   if ((category as any).path) { navigate((category as any).path); return; }
-                  if (isFinancial) navigate('/financial');
-                  else if (isHealth) navigate('/health');
-                  else if (isCooking) navigate('/cooking');
-                  else if (isConversion) navigate('/conversion');
-                  else if (isElectrical) navigate('/electrical');
-                  else if (isMath) navigate('/math');
-                  else if (isPets) navigate('/pets');
-                  else if (isScience) navigate('/science');
-                  else if (isTime) navigate('/time');
-                  else if (isConstruction) navigate('/construction');
+                  const name = category.name;
+                  if (name === "Financial Calculators") navigate('/financial');
+                  else if (name === "Health & Fitness Calculators") navigate('/health');
+                  else if (name === "Cooking Calculators") navigate('/cooking');
+                  else if (name === "Conversion Calculators") navigate('/conversion');
+                  else if (name === "Electrical Calculators") navigate('/electrical');
+                  else if (name === "Math & Algebra Calculators") navigate('/math');
+                  else if (name === "Pet Care Calculators") navigate('/pets');
+                  else if (name === "Science Calculators") navigate('/science');
+                  else if (name === "Time & Date Calculators") navigate('/time');
+                  else if (name === "Construction Calculators") navigate('/construction');
                 };
                 return (
-                  <GlowCard key={index} className="skn-card group/card hover:shadow-soft transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={handleClick} customSize glowColor={isFinancial ? 'green' : isHealth ? 'red' : isPets ? 'orange' : isConversion ? 'blue' : isElectrical ? 'orange' : isConstruction ? 'orange' : isCooking ? 'orange' : isMath ? 'purple' : isScience ? 'blue' : isTime ? 'blue' : 'blue'}>
-                    <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
-                      <span className="text-[20px] leading-none select-none">{getCategoryIcon((category as any).key)}</span>
-                      <h3 className="skn-home-title text-[14px] md:text-[15px] font-semibold tracking-[-0.01em]">
-                        {(category as any).title ?? category.name}
-                      </h3>
-                    </CardContent>
-                  </GlowCard>
+                  <button
+                    key={index}
+                    onClick={handleClick}
+                    className="flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-background border border-border hover:border-teal-300 dark:hover:border-teal-700 hover:shadow-md hover:shadow-teal-500/8 hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97] text-center"
+                  >
+                    <span className="text-2xl leading-none select-none" aria-hidden>{getCategoryIcon((category as any).key)}</span>
+                    <span className="text-xs font-semibold text-foreground leading-tight">
+                      {(category as any).title ?? category.name}
+                    </span>
+                  </button>
                 );
               })}
             </div>
@@ -1756,7 +1797,7 @@ const Index = () => {
           <div className="text-center">
             <Button
               onClick={() => document.getElementById('featured-calculators')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-[#5c82ee] hover:bg-[#4a6fe0] text-white shadow-soft transition-all duration-300 hover:shadow-glow"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200"
             >
               <TrendingUp className="mr-2 h-4 w-4" />
               Discover More Calculators
