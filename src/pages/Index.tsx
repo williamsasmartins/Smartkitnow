@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { lazy, Suspense, useState } from "react";
-import logoImage from "@/assets/logo-skn.png";
+import logoImage from "@/assets/logo-skn-new.svg";
 import JsonLd from "@/components/seo/JsonLd";
 import SEOHead from "@/components/SEOHead";
 
@@ -1514,7 +1514,7 @@ const Index = () => {
             {/* Logo */}
             <div className="flex justify-center mb-5">
               <picture>
-                <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
+                <source srcSet="/logo-skn-new.svg" type="image/svg+xml" />
                 <img
                   src={logoImage}
                   alt="Smart Kit Now Logo"
@@ -1637,29 +1637,7 @@ const Index = () => {
                 </div>
               </div>
 
-              {/* Card 3: Neon Snake */}
-              <div
-                className="skn-carousel-card group bg-background border border-border rounded-2xl p-5 cursor-pointer hover:border-violet-300 dark:hover:border-violet-700 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
-                onClick={() => navigate('/games/neon-snake')}
-                role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && navigate('/games/neon-snake')}
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-violet-50 dark:bg-violet-950/60 border border-violet-100 dark:border-violet-800 flex items-center justify-center text-violet-600 dark:text-violet-400">
-                    <Video className="w-5 h-5" />
-                  </div>
-                  <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-violet-700 dark:text-violet-300 bg-violet-50 dark:bg-violet-950/60 border border-violet-200 dark:border-violet-800 rounded-full">New Game</span>
-                </div>
-                <h3 className="font-semibold text-sm text-foreground mb-1.5">Neon Snake</h3>
-                <p className="text-muted-foreground text-xs leading-relaxed mb-4 line-clamp-2">Classic snake action reimagined with neon glow graphics and smooth controls.</p>
-                <div className="h-10 mb-3 bg-slate-900 dark:bg-slate-800 rounded-lg flex items-center justify-center">
-                  <span className="text-[10px] font-mono text-violet-400">▶ PLAY · HI 2840</span>
-                </div>
-                <div className="flex items-center gap-1 text-xs font-semibold text-violet-600 dark:text-violet-400 group-hover:underline">
-                  Play Now <ArrowLeft className="w-3 h-3 rotate-180" />
-                </div>
-              </div>
-
-              {/* Card 4: World Clock */}
+              {/* Card 3: World Clock */}
               <div
                 className="skn-carousel-card group bg-background border border-border rounded-2xl p-5 cursor-pointer hover:border-sky-300 dark:hover:border-sky-700 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
                 onClick={() => navigate('/time/world-clock')}
@@ -1685,7 +1663,7 @@ const Index = () => {
                 </div>
               </div>
 
-              {/* Card 5: QR Code */}
+              {/* Card 4: QR Code */}
               <div
                 className="skn-carousel-card group bg-background border border-border rounded-2xl p-5 cursor-pointer hover:border-teal-300 dark:hover:border-teal-700 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
                 onClick={() => navigate('/everyday/qr-code-generator')}

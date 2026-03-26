@@ -1,6 +1,6 @@
 import { ThemeToggle } from "./ThemeToggle";
 import { useNavigate, Link, useSearchParams } from "react-router-dom";
-import logoImage from "@/assets/logo-skn.png";
+import logoImage from "@/assets/logo-skn-new.svg";
 import { getCategoryIcon } from "@/lib/navigation";
 import { Button } from "@/components/ui/button";
 import { GlobalSearch } from "./GlobalSearch";
@@ -85,7 +85,7 @@ export function Header() {
       <div className="flex sm:hidden items-center justify-between px-4 h-14">
         <div onClick={handleHomeClick} className="cursor-pointer hover:opacity-80 transition-opacity">
           <picture>
-            <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
+            <source srcSet="/logo-skn-new.svg" type="image/svg+xml" />
             <img
               src={logoImage}
               alt="Smart Kit Now"
@@ -161,7 +161,7 @@ export function Header() {
           onClick={handleHomeClick}
         >
           <picture>
-            <source srcSet="/logo-smartkitnow.webp" type="image/webp" />
+            <source srcSet="/logo-skn-new.svg" type="image/svg+xml" />
             <img
               src={logoImage}
               alt="Smart Kit Now Logo"
