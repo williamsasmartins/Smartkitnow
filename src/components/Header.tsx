@@ -92,7 +92,7 @@ export function Header() {
               width={1000}
               height={300}
               decoding="async"
-              className="h-8 w-auto block mix-blend-multiply dark:mix-blend-normal dark:brightness-0 dark:invert"
+              className="h-8 w-auto block mix-blend-multiply dark:mix-blend-normal"
               style={{ height: "2rem", width: "auto", aspectRatio: "1000/300" }}
             />
           </picture>
@@ -171,7 +171,7 @@ export function Header() {
               // @ts-expect-error fetchpriority is a new attribute
               fetchpriority="high"
               sizes="(max-width: 640px) 120px, 150px"
-              className="h-9 w-auto block mix-blend-multiply dark:mix-blend-normal dark:brightness-0 dark:invert"
+              className="h-9 w-auto block mix-blend-multiply dark:mix-blend-normal"
               style={{ height: "2.25rem", width: "auto", aspectRatio: "1000/300" }}
             />
           </picture>

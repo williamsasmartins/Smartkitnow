@@ -1524,7 +1524,7 @@ const Index = () => {
                   // @ts-expect-error fetchpriority is not yet in React types
                   fetchpriority="high"
                   sizes="(max-width: 768px) 100vw, 266px"
-                  className="h-16 sm:h-20 w-auto block mix-blend-multiply dark:mix-blend-normal dark:brightness-0 dark:invert"
+                  className="h-16 sm:h-20 w-auto block mix-blend-multiply dark:mix-blend-normal"
                   style={{ height: undefined, width: "auto", aspectRatio: "1000/300" }}
                 />
               </picture>
