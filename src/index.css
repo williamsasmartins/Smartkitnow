@@ -319,6 +319,8 @@ body,
   scrollbar-width: none;
   -ms-overflow-style: none;
   padding-bottom: 4px;
+  /* trailing padding so the last card is fully visible */
+  padding-right: 1.5rem;
 }
 .skn-carousel::-webkit-scrollbar { display: none; }
 .skn-carousel-card {

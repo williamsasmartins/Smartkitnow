@@ -1556,12 +1556,19 @@ const Index = () => {
               <kbd className="hidden sm:inline-flex items-center px-2 py-1 text-[10px] font-mono border border-border rounded-md bg-muted text-muted-foreground">⌘K</kbd>
             </button>
 
-            {/* Popular quick-link pills */}
+            {/* Popular quick-link pills — navigate directly */}
             <div className="flex flex-wrap justify-center gap-2 mt-4">
-              {["BMI", "Loan", "Tip Calculator", "Calories", "Concrete", "Unit Converter"].map((label) => (
+              {[
+                { label: "BMI", path: "/health/bmi-body-mass-index" },
+                { label: "Loan", path: "/financial/loan-payment" },
+                { label: "Tip Calculator", path: "/financial/tip-split-bill" },
+                { label: "Calories", path: "/health/daily-calorie-needs-goal" },
+                { label: "Concrete", path: "/construction/concrete-slab-volume" },
+                { label: "Unit Converter", path: "/conversion" },
+              ].map(({ label, path }) => (
                 <button
                   key={label}
-                  onClick={() => setOpenSearch(true)}
+                  onClick={() => navigate(path)}
                   className="px-3 py-1.5 text-xs font-medium text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/50 rounded-full border border-teal-200 dark:border-teal-800 hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors"
                 >
                   {label}
@@ -1578,7 +1585,7 @@ const Index = () => {
           <div className="mb-12">
             <div className="flex items-center justify-between mb-5">
               <h2 className="text-base font-bold text-foreground">Featured Tools</h2>
-              <button onClick={() => navigate('/financial')} className="text-sm text-primary font-medium hover:underline transition-colors">See all →</button>
+              <button onClick={() => document.getElementById('categories')?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-primary font-medium hover:underline transition-colors">Browse all →</button>
             </div>
             <div className="skn-carousel">
               {/* Card 1: Auto Loan */}
@@ -1706,7 +1713,7 @@ const Index = () => {
             </div>
           </div>
           {/* ── CATEGORIES GRID ── */}
-          <div className="mb-4">
+          <div id="categories" className="mb-4">
             <div className="flex items-center justify-between mb-5">
               <h2 className="text-base font-bold text-foreground">Browse by Category</h2>
             </div>

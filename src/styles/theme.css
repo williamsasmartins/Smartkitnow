@@ -28,13 +28,9 @@
   --skn-bg-light: #f7f9ff;
   --skn-bg-dark:  #0c1324;
 
-  /* Updated to pleasant blue for both modes */
-  --skn-card-light: #f0f9ff; /* Light Blue 50-ish */
-  --skn-card-dark:  #1e293b; /* Slate 800 - Blue-ish Gray */
-
-  /* If user wants more vivid blue for dark mode, maybe #172554 (Blue 950) or #1e3a8a (Blue 900) */
-  /* Let's try a pleasant dark blue that isn't "black" */
-  --skn-card-dark: #112240; 
+  /* Teal-tinted card backgrounds to match the new design system */
+  --skn-card-light: #f0fdfa; /* teal-50 */
+  --skn-card-dark:  #0d2b28; /* dark teal */
 
   --skn-text-main-light: #0b152b;
   --skn-text-main-dark:  #e6ecff;
@@ -42,8 +38,8 @@
   --skn-text-muted-light: #51607a;
   --skn-text-muted-dark:  #a9b7d9;
 
-  /* Updated to match new accessible primary color (#2563eb) */
-  --skn-brand: #2563eb; /* azul dos links/ícones */
+  /* Teal brand to match CSS var(--primary) */
+  --skn-brand: #0d9488; /* teal-600 */
   --skn-link: var(--skn-brand);
 }
 
@@ -86,7 +82,7 @@ html.dark .skn-text-muted {
 }
 
 :root{
-  --skn-home-title: #224691;
+  --skn-home-title: #0d9488; /* teal-600 */
 }
 
 /* Título dos cards da HOME na mesma cor solicitada */
