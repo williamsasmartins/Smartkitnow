@@ -321,6 +321,8 @@ body,
   padding-bottom: 4px;
   /* trailing padding so the last card is fully visible */
   padding-right: 1.5rem;
+  /* center cards when they fit; fall back to start when overflowing (safe = no scroll breakage) */
+  justify-content: safe center;
 }
 .skn-carousel::-webkit-scrollbar { display: none; }
 .skn-carousel-card {
