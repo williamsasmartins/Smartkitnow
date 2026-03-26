@@ -93,11 +93,9 @@ export default function SEOHead({
           {JSON.stringify(schemas.webApp)}
         </script>
       )}
-      {schemas.faq && (
-        <script type="application/ld+json">
-          {JSON.stringify(schemas.faq)}
-        </script>
-      )}
+      {/* schemas.faq omitted: FAQ JSON-LD is emitted by each calculator
+          via useFaqJsonLd → CalculatorVerticalLayout jsonLd prop. Emitting it
+          here too causes duplicate FAQPage errors in Google Search Console. */}
     </Helmet>
   );
 }
