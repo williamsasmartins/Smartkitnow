@@ -135,6 +135,7 @@ export default function App() {
               <Route path="/:category" element={<CategoryIndex />} />
 
               {/* Decommissioned Routes */}
+              <Route path="/home" element={<Navigate to="/" replace />} />
               <Route path="/recipes" element={<Navigate to="/" replace />} />
               <Route path="/recipes/*" element={<Navigate to="/" replace />} />
 
