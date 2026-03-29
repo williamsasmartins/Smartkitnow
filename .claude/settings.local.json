@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls public/*.xml public/sitemap*)"
+      "Bash(ls public/*.xml public/sitemap*)",
+      "Bash(npm run:*)"
     ]
   }
 }
