@@ -3,7 +3,8 @@
     "allow": [
       "Bash(ls public/*.xml public/sitemap*)",
       "Bash(npm run:*)",
-      "Bash(python -c ':*)"
+      "Bash(python -c ':*)",
+      "Bash(cp \"c:/Users/Williams Martins/Downloads/Smart Kit Now.png\" \"c:/Users/Williams Martins/OneDrive/Documentos/WBSmartKitNow/smartkit-onepage-wonder/public/og-image.png\")"
     ]
   }
 }
