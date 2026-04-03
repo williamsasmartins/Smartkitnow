@@ -54,8 +54,10 @@ export default function SEOHead({
   const ogType = og?.type || 'website';
   const ogUrl = og?.url || finalCanonical;
   const ogSiteName = og?.siteName || 'SmartKitNow';
+  const ogImage = og?.image || 'https://www.smartkitnow.com/og-image.png';
 
   const twitterCard = twitter?.card || 'summary_large_image';
+  const twitterImage = twitter?.image || ogImage;
 
   return (
     <Helmet>
@@ -70,13 +72,15 @@ export default function SEOHead({
       <meta property="og:type" content={ogType} />
       {ogUrl && <meta property="og:url" content={ogUrl} />}
       <meta property="og:site_name" content={ogSiteName} />
-      {og?.image && <meta property="og:image" content={og.image} />}
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content={twitterCard} />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
-      {twitter?.image && <meta name="twitter:image" content={twitter.image} />}
+      <meta name="twitter:image" content={twitterImage} />
 
       {/* Extra arbitrary meta tags (keywords, etc.) */}
       {extra?.map((m, i) =>
