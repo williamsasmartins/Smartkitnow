@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { calculatorRegistry } from "@/data/calculatorRegistry";
 import { GAMES } from "@/data/gamesRegistry";
@@ -81,6 +82,9 @@ export default function Search() {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <AdBannerTop />
 
       <main className="mx-auto max-w-7xl px-4 pb-16 lg:pr-[65px]">

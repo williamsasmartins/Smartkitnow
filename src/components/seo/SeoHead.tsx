@@ -7,6 +7,7 @@ export type SeoConfig = {
   canonical?: string;
   ogImage?: string;
   keywords?: string[];
+  robots?: string;
 };
 
 type PropsDirect = SeoConfig;
@@ -32,6 +33,7 @@ export default function SeoHead(props: PropsDirect | PropsConfig) {
         {cfg.title} | {site}
       </title>
       <meta name="description" content={cfg.description} />
+      {cfg.robots && <meta name="robots" content={cfg.robots} />}
       {cfg.keywords?.length ? (
         <meta name="keywords" content={cfg.keywords.join(", ")} />
       ) : null}

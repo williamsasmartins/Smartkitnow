@@ -937,7 +937,7 @@ export const calculatorRegistry: CalculatorEntry[] = [
   {
     slug: "qr-code-generator",
     title: "QR Code Generator",
-    category: "everyday-life",
+    category: "everyday",
     subcategory: "utilities",
     description: "Gere QR Codes gratuitos para URLs e textos. Baixe em PNG ou SVG com tamanho, margem e correção de erro configuráveis.",
     loader: () => import("@/components/calculators/EverydayLife/QrCodeGeneratorCalculator"),

@@ -33,9 +33,10 @@ export default function CookieSettings() {
 
   return (
     <div className="min-h-screen bg-gradient-soft">
-      <SeoHead 
+      <SeoHead
         title="Cookie Settings | Smart Kit Now"
         description="Manage your cookie preferences for Smart Kit Now."
+        robots="noindex, follow"
       />
       <div className="container mx-auto px-4 py-16">
         <div className="mx-auto max-w-2xl">

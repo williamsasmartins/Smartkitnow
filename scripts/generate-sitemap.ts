@@ -10,14 +10,13 @@ import { smartTipsCategories } from "../src/data/smartTipsData";
 const ORIGIN = "https://www.smartkitnow.com";
 
 const STATIC_URLS = [
-  "/", 
-  "/about", 
-  "/contact", 
-  "/privacy", 
-  "/terms", 
-  "/cookies", 
-  "/cookie-settings",
-  "/search",
+  "/",
+  "/about",
+  "/contact",
+  "/privacy",
+  "/terms",
+  "/cookies",
+  // /cookie-settings and /search excluded: utility pages with no indexable content
   // Base Categories
   "/financial", "/health", "/cooking", "/conversion", "/math",
   "/science", "/time", "/pets", "/automotive", "/construction",
@@ -38,10 +37,10 @@ function xmlEscape(s: string): string {
   return s.replace(/[<>&'"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" }[c] as string));
 }
 
-function toUrl(loc: string, priority = "0.5") {
+function toUrl(loc: string, priority = "0.5", changefreq = "monthly") {
   const cleanLoc = loc.replace(/\/+$/, "");
   const full = `${ORIGIN}${cleanLoc}`;
-  return `  <url>\n    <loc>${xmlEscape(full)}</loc>\n    <lastmod>${today()}</lastmod>\n    <priority>${priority}</priority>\n  </url>`;
+  return `  <url>\n    <loc>${xmlEscape(full)}</loc>\n    <lastmod>${today()}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
 }
 
 function priorityForCategory(cat: string): string {
@@ -59,29 +58,33 @@ function main() {
 
   // Static
   for (const p of STATIC_URLS) {
-    parts.push(toUrl(p, p === "/" ? "1.0" : "0.5"));
+    const isHome = p === "/";
+    const isCategory = ["/financial","/health","/cooking","/conversion","/math","/science","/time","/pets","/automotive","/construction","/electrical","/everyday","/sports","/funny","/video","/smart-tips","/games"].includes(p);
+    const priority = isHome ? "1.0" : isCategory ? "0.7" : "0.5";
+    const changefreq = isHome ? "daily" : isCategory ? "weekly" : "monthly";
+    parts.push(toUrl(p, priority, changefreq));
     count++;
   }
 
   // Calculators from registry
   for (const e of REGISTRY) {
     const shortPath = calcLink(e);
-    parts.push(toUrl(shortPath, priorityForCategory(e.category)));
+    parts.push(toUrl(shortPath, priorityForCategory(e.category), "monthly"));
     count++;
   }
 
   // Games — sourced from gameSlugs.ts (mirrors gameRegistry.tsx RAW_GAMES, no JSX deps)
   for (const slug of GAME_SLUGS) {
-    parts.push(toUrl(`/games/${slug}`, priorityForCategory("games")));
+    parts.push(toUrl(`/games/${slug}`, priorityForCategory("games"), "monthly"));
     count++;
   }
 
   // Smart Tips
   for (const cat of smartTipsCategories) {
-    parts.push(toUrl(`/smart-tips/${cat.slug}`, priorityForCategory("smart-tips")));
+    parts.push(toUrl(`/smart-tips/${cat.slug}`, priorityForCategory("smart-tips"), "weekly"));
     count++;
     for (const tip of cat.tips) {
-      parts.push(toUrl(`/smart-tip/${tip.slug}`, "0.4"));
+      parts.push(toUrl(`/smart-tip/${tip.slug}`, "0.4", "monthly"));
       count++;
     }
   }
