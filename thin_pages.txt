@@ -2,7 +2,6 @@ THIN PAGES (under 400 words of visible text) — 46 files
 ======================================================================
   47w  src/components/calculators/DailyQuotes/QuoteCard.tsx
   62w  src/components/calculators/DailyQuotes/QuoteTabs.tsx
- 109w  src/components/calculators/Financial/TipSplitBillCalculator.tsx
  179w  src/components/calculators/Time/WorldClockCalculator.tsx
  229w  src/components/calculators/Marketing/MarketingROI.tsx
  250w  src/components/calculators/DailyQuotes/DailyHoroscopeWidget.tsx
@@ -21,6 +20,7 @@ THIN PAGES (under 400 words of visible text) — 46 files
  310w  src/components/calculators/Marketing/EmailMarketingROI.tsx
  311w  src/components/calculators/Math/QuadraticEquationSolverCalculator.tsx
  318w  src/components/calculators/Math/StandardDeviationVariancePopSampleCalculator.tsx
+ 320w  src/components/calculators/Financial/TipSplitBillCalculator.tsx
  325w  src/components/calculators/Automotive/EvAccelerationTorqueCalculator.tsx
  326w  src/components/calculators/Math/RandomNumberGeneratorRangesCalculator.tsx
  329w  src/components/calculators/Math/ZScorePercentileFinderCalculator.tsx

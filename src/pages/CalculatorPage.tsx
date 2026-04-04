@@ -125,6 +125,34 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
     "url": `${origin}${calculatedPath}`
   };
 
+  const howToJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": `How to Use the ${entry.title}`,
+    "description": seoDescription,
+    "url": `${origin}${calculatedPath}`,
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Enter your values",
+        "text": `Fill in the labeled input fields with your specific data for the ${entry.title}. Each field is clearly labeled to guide you on what information is required.`
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Get your result",
+        "text": "Click the calculate button or watch results update in real time as you type. The main result is displayed prominently in the output section."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Interpret and apply the result",
+        "text": "Read the calculated result alongside the benchmarks and explanations on this page to understand what your number means and what action to take next."
+      }
+    ]
+  };
+
   return (
     <div className={containerClasses}>
       <SEOHead
@@ -135,6 +163,7 @@ export default function CalculatorPage({ activeSlug }: CalculatorPageProps) {
       />
       <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={softwareAppJsonLd} />
+      <JsonLd data={howToJsonLd} />
       {/* max-w-none permite que o CalculatorVerticalLayout controle a largura interna */}
       <div className="max-w-none">
         <Suspense fallback={<div className="py-10 text-muted-foreground text-center">Loading Calculator...</div>}>

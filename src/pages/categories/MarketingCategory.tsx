@@ -9,31 +9,24 @@ import SEOHead from "@/components/SEOHead";
 
 type Item = { name: string; slug: string };
 
-const digitalMarketing: Item[] = [
-  { name: "ROAS (Return on Ad Spend) Calculator", slug: "roas-calculator" },
-  { name: "ROI (Return on Investment) Calculator", slug: "roi-calculator" },
-  { name: "CPM (Cost Per Mille/Thousand) Calculator", slug: "cpm-calculator" },
-  { name: "CPA (Cost Per Acquisition) Calculator", slug: "cpa-calculator" },
-  { name: "CTR (Click-Through Rate) Calculator", slug: "ctr-calculator" },
-  { name: "CPC (Cost Per Click) Calculator", slug: "cpc-calculator" },
+const adPerformance: Item[] = [
+  { name: "ROAS — Return on Ad Spend Calculator", slug: "roas" },
+  { name: "Marketing ROI Calculator", slug: "marketing-roi" },
+  { name: "Conversion Rate Calculator", slug: "conversion-rate" },
+  { name: "Social Media Engagement Rate Calculator", slug: "social-media-engagement-rate" },
 ];
 
 const customerEconomics: Item[] = [
-  { name: "CAC (Customer Acquisition Cost) Calculator", slug: "cac-calculator" },
-  { name: "LTV (Lifetime Value) Calculator", slug: "ltv-calculator" },
-  { name: "LTV to CAC Ratio Calculator", slug: "ltv-to-cac-calculator" },
-  { name: "Churn Rate Calculator", slug: "churn-rate-calculator" },
-  { name: "Retention Rate Calculator", slug: "retention-rate-calculator" },
+  { name: "Customer Acquisition Cost (CAC) Calculator", slug: "customer-acquisition-cost" },
+  { name: "Customer Lifetime Value (CLV) Calculator", slug: "customer-lifetime-value" },
+  { name: "Churn Rate Calculator", slug: "churn-rate" },
 ];
 
-const emailAndContent: Item[] = [
-  { name: "Email Open Rate Calculator", slug: "email-open-rate-calculator" },
-  { name: "Email Conversion Rate Calculator", slug: "email-conversion-rate-calculator" },
-  { name: "Lead Generation Conversion Estimator", slug: "lead-generation-conversion-estimator" },
-  { name: "Content Marketing ROI Calculator", slug: "content-marketing-roi-calculator" },
+const emailMarketing: Item[] = [
+  { name: "Email Marketing ROI Calculator", slug: "email-marketing-roi" },
 ];
 
-const TOTAL = digitalMarketing.length + customerEconomics.length + emailAndContent.length;
+const TOTAL = adPerformance.length + customerEconomics.length + emailMarketing.length;
 
 export default function MarketingCategory() {
   const [descExpanded, setDescExpanded] = useState(false);
@@ -69,21 +62,21 @@ export default function MarketingCategory() {
                 {descExpanded ? (
                   <>
                     <p>
-                      Access {TOTAL} essential marketing calculators designed to help marketers, advertisers, and business owners optimize their campaigns and track performance.
+                      {TOTAL} marketing calculators for advertising performance, customer economics, and email ROI — built for marketers, growth teams, and business owners who make data-driven decisions.
                     </p>
                     <p>
-                      Digital Marketing: Accurately measure your advertising efficiency with tools for ROAS, ROI, CPM, CPA, CTR, and CPC. Make data-driven choices for your ad spend.
+                      <strong>Ad Performance & ROI:</strong> Calculate ROAS to find your breakeven ad spend ratio, measure Marketing ROI across all channels, track conversion rate against industry benchmarks (1–3% e-commerce, 5–10% B2B), and measure social media engagement rate for Instagram, TikTok, LinkedIn, and Facebook.
                     </p>
                     <p>
-                      Customer Economics: Understand the true value of your customers by calculating Customer Acquisition Cost (CAC), Lifetime Value (LTV), LTV:CAC Ratio, Churn Rate, and Retention Rate.
+                      <strong>Customer Economics:</strong> Determine Customer Acquisition Cost (CAC) by channel, estimate Customer Lifetime Value (CLV) using purchase frequency and lifespan, and calculate Churn Rate — the single most important retention metric for subscription businesses.
                     </p>
                     <p>
-                      Email & Content: Evaluate your engagement and conversions using our Email Open Rate, Email Conversion Rate, Lead Generation, and Content Marketing ROI calculators.
+                      <strong>Email Marketing:</strong> Benchmark email campaign ROI against the industry average of 36–42× return per dollar spent and identify whether low performance is a list quality, segmentation, or attribution problem.
                     </p>
                   </>
                 ) : (
                   <p className="line-clamp-3">
-                    {TOTAL} marketing calculators for digital advertising, customer economics, and email/content campaigns: ROAS, ROI, CPM, CPA, CTR, CPC, CAC, LTV, Churn Rate, Retention Rate, Email Open/Conversion Rates, and Lead Generation tools. Optimize your strategies with accurate KPIs and performance metrics.
+                    {TOTAL} marketing calculators covering ROAS, Marketing ROI, Conversion Rate, Social Media Engagement Rate, Customer Acquisition Cost (CAC), Customer Lifetime Value (CLV), Churn Rate, and Email Marketing ROI. Built with benchmarks and editorial context so you can act on the numbers.
                   </p>
                 )}
                 {!descExpanded && (
@@ -101,25 +94,25 @@ export default function MarketingCategory() {
 
             <Section
               emoji="🎯"
-              title={`Digital Marketing & Ads (${digitalMarketing.length})`}
-              description="Calculate Return on Ad Spend (ROAS), Return on Investment (ROI), Cost Per Mille (CPM), and Cost Per Acquisition (CPA)."
-              items={digitalMarketing}
+              title={`Ad Performance & ROI (${adPerformance.length})`}
+              description="Calculate Return on Ad Spend (ROAS), Marketing ROI, conversion rate, and social media engagement to measure campaign efficiency."
+              items={adPerformance}
               base="/marketing"
             />
 
             <Section
               emoji="👥"
               title={`Customer Economics (${customerEconomics.length})`}
-              description="Analyze Customer Acquisition Cost (CAC), Lifetime Value (LTV), LTV to CAC Ratio, and Churn Metrics."
+              description="Analyze Customer Acquisition Cost (CAC), Customer Lifetime Value (CLV), and Churn Rate to evaluate growth sustainability."
               items={customerEconomics}
               base="/marketing"
             />
 
             <Section
               emoji="📧"
-              title={`Email & Content Marketing (${emailAndContent.length})`}
-              description="Measure the performance of your campaigns with Open Rate, Conversion Rate, and overall Content ROI."
-              items={emailAndContent}
+              title={`Email Marketing (${emailMarketing.length})`}
+              description="Benchmark email campaign performance against the industry average of 36–42× ROI."
+              items={emailMarketing}
               base="/marketing"
             />
 

@@ -10,36 +10,28 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 const faqs = [
   {
-    question: "What is an APR calculator and why is it important?",
-    answer: `An APR calculator helps you determine the annual percentage rate of a loan, which includes both the interest rate and any additional fees. This is important because it provides a more comprehensive view of the loan's cost, allowing you to compare different loan offers effectively. For example, two loans with the same interest rate might have different APRs due to varying fees.<br><br>Understanding the APR can prevent costly surprises and help you choose the most cost-effective loan. For more details, see our <a href="/financial/refinance-savings">Refinance Savings Calculator</a>.`
+    question: "What is the difference between APR and interest rate?",
+    answer: `The interest rate is the cost of borrowing the principal — the base percentage the lender charges. APR (Annual Percentage Rate) includes the interest rate <em>plus</em> all mandatory fees (origination fees, mortgage points, closing costs) expressed as a single annual percentage. APR is always equal to or higher than the stated interest rate. For example, a 6.5% mortgage interest rate with 1% origination fee and closing costs might carry a 6.85% APR. Always compare loans using APR, not just the interest rate.`
   },
   {
-    question: "How accurate is this calculator?",
-    answer: `This calculator provides a highly accurate estimate of the APR based on the inputs you provide. However, the accuracy depends on the precision of the data entered. Factors such as unreported fees or changes in loan terms can affect the result. It's always a good idea to consult with a financial advisor for complex financial decisions.<br><br>To ensure accuracy, double-check all inputs and consider potential changes in fees or interest rates.`
+    question: "Why does APR matter more than the interest rate for comparing loans?",
+    answer: `Two lenders can offer the same interest rate but charge very different fees, resulting in dramatically different total loan costs. Comparing only the interest rate is misleading. Federal law (Truth in Lending Act / TILA) requires lenders to disclose APR so borrowers can make accurate comparisons. For short-term loans (under 3 years), the fee impact on APR is amplified — a $500 origination fee on a $10,000 2-year loan raises the effective APR by about 5 percentage points.`
   },
   {
-    question: "What information do I need to use this calculator?",
-    answer: `To use this calculator, you need the loan amount, the interest rate, and any associated fees. The loan amount is the principal you plan to borrow. The interest rate is the percentage charged by the lender for borrowing the principal. Fees can include origination fees, closing costs, and other charges related to the loan.<br><br>You can typically find this information in the loan agreement or by contacting your lender. Accurate data is crucial for precise calculations.`
+    question: "What fees are included in APR vs. excluded?",
+    answer: `<strong>Included in APR:</strong> origination fees, mortgage points, mortgage broker fees, closing costs (for mortgages), prepaid interest. <strong>Not included:</strong> appraisal fees, title insurance, attorney fees, late payment penalties, optional add-ons (GAP insurance, credit life insurance). Always ask your lender for the full fee disclosure (Loan Estimate form for mortgages) to ensure all APR-affecting fees are captured.`
   },
   {
-    question: "Can I use this calculator for different types of loans?",
-    answer: `Yes, this calculator can be used for various types of loans, including mortgages, auto loans, and personal loans. However, it's important to ensure that all relevant fees and terms are included in the calculation for each specific loan type. Some loans may have unique fees or terms that could affect the APR.<br><br>For specialized loan types, such as interest-only loans, consider using a dedicated calculator like our <a href="/financial/interest-only-loan">Interest-Only Loan Calculator</a>.`
+    question: "How does APR differ from APY (Annual Percentage Yield)?",
+    answer: `APR is used for loans (what you pay); APY is used for savings and investments (what you earn). APY accounts for compounding interest within the year — a 6% APR loan compounded monthly has a 6.17% APY equivalent. For credit cards, the Daily Periodic Rate (DPR = APR ÷ 365) applies to your balance each day, so carrying a balance costs more than the stated APR suggests.`
   },
   {
-    question: "What are common mistakes people make with this calculation?",
-    answer: `Common mistakes include not accounting for all fees, using incorrect interest rates, or misunderstanding the loan terms. These errors can lead to inaccurate APR calculations, potentially resulting in poor financial decisions. For example, failing to include closing costs can significantly underestimate the APR.<br><br>To avoid these mistakes, carefully review all loan documents and verify that all data entered into the calculator is correct.`
+    question: "What is a good APR for a personal loan or mortgage in 2024?",
+    answer: `APR benchmarks vary by loan type and creditworthiness. <strong>Mortgage (30-year fixed):</strong> 6.5–7.5% in 2024 for borrowers with 740+ credit scores. <strong>Personal loans:</strong> 8–12% for excellent credit (760+); 15–25% for fair credit (580–669). <strong>Auto loans (new):</strong> 6–9% for prime borrowers. <strong>Credit cards:</strong> 20–25% average APR. If your APR offer is above these ranges, improving your credit score or adding a co-signer before applying can reduce it significantly.`
   },
   {
-    question: "How often should I recalculate?",
-    answer: `Recalculation is necessary whenever there are changes in the loan terms, such as adjustments in interest rates or fees. It's also advisable to recalculate if your financial situation changes, affecting your ability to meet the loan terms. Regular recalculations can help you stay informed about your financial commitments.<br><br>As a best practice, review your loans annually or whenever you consider refinancing or making significant financial decisions.`
-  },
-  {
-    question: "What should I do with these results?",
-    answer: `Use the results to compare different loan offers and make informed decisions about borrowing. A lower APR indicates a cheaper loan in terms of total cost. If the APR seems high, consider negotiating with your lender or exploring other options. The results can also guide you in budgeting and financial planning.<br><br>For further guidance, consult a financial advisor or use our <a href="/financial/heloc-payment-estimator">HELOC Payment Estimator</a> for home equity loans.`
-  },
-  {
-    question: "Are there alternatives to this calculation method?",
-    answer: `Alternatives to the APR calculation include using the nominal interest rate or the effective annual rate (EAR). Each method has its pros and cons. The nominal rate is simpler but less comprehensive, while the EAR accounts for compounding but can be more complex to calculate.<br><br>Choose the method that best suits your needs. For a detailed comparison, consider consulting financial resources or professionals.`
+    question: "Can I negotiate the APR on a loan?",
+    answer: `Yes, especially for personal loans and mortgages. Strategies: (1) Get competing offers from 3+ lenders — use them as leverage. (2) Offer a larger down payment to reduce the lender's risk. (3) Buy down the rate with points (one point = 1% of loan value and typically reduces rate by 0.25%). (4) Improve your credit score before applying — each 20-point increase in FICO score can reduce mortgage APR by 0.1–0.4%. (5) Choose a shorter loan term — lenders typically offer lower rates for 15-year vs. 30-year mortgages.`
   }
 ];
 

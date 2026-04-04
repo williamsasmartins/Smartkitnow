@@ -84,36 +84,28 @@ export default function CreditCardInterestCalculator() {
 
   const faqs = [
     {
-      question: "What is a credit card interest calculator and why is it important?",
-      answer: "A credit card interest calculator estimates the total interest you will pay on your credit card balance over a specified period. This tool is crucial for budgeting and financial planning, as it helps you understand the cost of carrying debt and make informed decisions about repayment strategies. By knowing the interest costs, you can prioritize debt repayment and avoid financial pitfalls. For more tools, explore our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+      question: "How is credit card interest calculated daily vs. monthly?",
+      answer: "Most US credit cards use daily compounding. Your Daily Periodic Rate (DPR) = APR ÷ 365. Each day, your balance is multiplied by (1 + DPR). On a $5,000 balance at 24% APR, the DPR is 0.0657%/day — costing ~$3.29 in interest on day one. Because interest compounds daily, carrying a balance costs slightly more than the stated APR implies. This is why paying the statement balance in full (not just the minimum) on or before the due date eliminates all interest charges."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator provides a reliable estimate based on the inputs you provide. However, actual interest costs may vary due to changes in interest rates, additional fees, or variations in your payment schedule. It's essential to use the most accurate and up-to-date information available. For precise financial planning, consider consulting with a financial advisor, especially for complex scenarios."
+      question: "What is the average credit card APR in 2024?",
+      answer: "The Federal Reserve reported the average credit card interest rate at 21.47% APR as of Q4 2023 — a 20-year high following the 2022–2023 rate hike cycle. Rewards cards and cards targeting lower credit tiers often carry 25–30% APR. Cards for excellent credit (760+ FICO) range from 17–22%. Credit unions typically offer 1–5 percentage points lower than banks. If your current rate is above 24%, a balance transfer to a 0% intro APR card (typically 15–21 months) can save hundreds in interest while you pay down the principal."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you need your current credit card balance, the annual interest rate, and the repayment period in months. You can find this information on your latest credit card statement or by contacting your card issuer. Ensure the accuracy of these inputs for the most reliable results. If you're unsure about any details, reach out to your credit card provider for clarification."
+      question: "How much faster do you pay off debt by paying more than the minimum?",
+      answer: "The minimum payment trap is severe: a $5,000 balance at 22% APR with a 2% minimum payment (~$100/month) takes over 30 years to pay off and costs ~$11,000 in interest. Paying $200/month cuts that to 3 years and ~$1,400 in interest. Paying $300/month: under 2 years, ~$900 in interest. Doubling the minimum payment roughly triples the payoff speed and cuts total interest cost by 80–90%. Use this calculator to find your exact payoff date by entering different payment amounts."
     },
     {
-      question: "Can I use this calculator for specific scenarios like balance transfers?",
-      answer: "Yes, this calculator can be used for scenarios like balance transfers, provided you know the new interest rate and any applicable fees. However, keep in mind that balance transfers often come with promotional rates that may change after a certain period. Always read the terms of the balance transfer offer carefully to understand all conditions and potential costs."
+      question: "Does my credit score affect my credit card APR?",
+      answer: "Yes — significantly. Credit card APRs are tiered by FICO score band. Approximate 2024 ranges: 750–850 (Exceptional): 17–21%; 670–749 (Good): 20–25%; 580–669 (Fair): 24–29%; Below 580: 29%+ or denial. Improving your score from 650 to 720 can reduce your APR by 5–8 percentage points. After 12 consecutive on-time payments, you can request an APR reduction from your issuer — issuers grant these in roughly 1 in 3 cases, often reducing by 1–3 points."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using outdated interest rates, not accounting for additional fees, and underestimating the repayment period. These errors can lead to inaccurate estimates and financial mismanagement. To avoid these mistakes, double-check your inputs and consider potential changes in your financial situation."
+      question: "What is a grace period and how does it prevent interest charges?",
+      answer: "A grace period is the time between your statement closing date and your payment due date (typically 21–25 days). If you pay your full statement balance before the due date each month, no interest is charged on purchases — the grace period applies. If you carry a balance, you lose the grace period and interest accrues on new purchases from the transaction date. Cash advances have no grace period and start accruing interest immediately at a higher cash advance APR."
     },
     {
-      question: "How often should I recalculate?",
-      answer: "Recalculate whenever there are significant changes in your balance, interest rate, or repayment plan. Regular recalculations help you stay informed and adjust your strategy as needed. As a general rule, review your calculations at least quarterly or whenever you receive a new credit card statement."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to plan your repayment strategy. Consider increasing your monthly payments to reduce the total interest paid. If the interest costs are high, explore options like balance transfers or consolidating debt. For more strategies, visit our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include using financial software or consulting with a financial advisor for personalized advice. These methods may offer more detailed insights but can be more complex or costly. Choose the method that best fits your needs and financial situation. For a quick estimate, this calculator is a convenient and effective tool."
+      question: "Should I use a balance transfer or debt consolidation loan to reduce interest?",
+      answer: "A 0% APR balance transfer card works best when: (1) you have good credit (680+) to qualify, (2) you can pay off the balance within the promotional period (12–21 months), and (3) your balance is under $15,000. Watch for: 3–5% balance transfer fee, the go-to rate after the promo period (often 25%+). A <a href='/financial/debt-consolidation'>debt consolidation loan</a> works better for larger balances or longer payoff timelines — a fixed 12% personal loan on a $15,000 balance saves ~$2,000/year vs. carrying it on a 24% card."
     }
   ];
 

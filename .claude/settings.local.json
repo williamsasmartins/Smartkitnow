@@ -14,7 +14,10 @@
       "Bash(xargs -I{} sh -c 'echo \"=== {} ===\" && grep -c \"editorial\\\\|intro\\\\|description\\\\|content\\\\|paragraph\\\\|<p \" {}')",
       "Bash(xargs grep:*)",
       "Bash(npx tsc:*)",
-      "Bash(python3 scripts/audit_content_quality.py)"
+      "Bash(python3 scripts/audit_content_quality.py)",
+      "Bash(python3 -c ':*)",
+      "Bash(node -e ':*)",
+      "Bash(python3 scripts/generate_faq_upgrade_list.py)"
     ]
   }
 }

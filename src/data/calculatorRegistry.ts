@@ -6867,6 +6867,82 @@ export const calculatorRegistry: CalculatorEntry[] = [
   },
 
 
+  // ──────────────────────────────────────────────────────────────────────
+  // MARKETING CALCULATORS
+  // ──────────────────────────────────────────────────────────────────────
+  {
+    slug: "conversion-rate",
+    title: "Conversion Rate Calculator",
+    category: "marketing",
+    subcategory: "general",
+    description: "Calculate the percentage of visitors who completed a desired action. Benchmark against industry averages to identify optimization opportunities.",
+    loader: () => import("@/components/calculators/Marketing/ConversionRate"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "churn-rate",
+    title: "Churn Rate Calculator",
+    category: "marketing",
+    subcategory: "general",
+    description: "Calculate the percentage of customers who stopped using your product during a period. Understand the compounding impact on lifetime value.",
+    loader: () => import("@/components/calculators/Marketing/ChurnRate"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "social-media-engagement-rate",
+    title: "Social Media Engagement Rate Calculator",
+    category: "marketing",
+    subcategory: "general",
+    description: "Calculate the engagement rate of your social media posts. Benchmark against platform averages for Instagram, TikTok, LinkedIn, and Facebook.",
+    loader: () => import("@/components/calculators/Marketing/SocialMediaEngagementRate"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "email-marketing-roi",
+    title: "Email Marketing ROI Calculator",
+    category: "marketing",
+    subcategory: "general",
+    description: "Calculate the return on investment for your email campaigns. Benchmark against the industry average of 36–42× ROI.",
+    loader: () => import("@/components/calculators/Marketing/EmailMarketingROI"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "customer-acquisition-cost",
+    title: "Customer Acquisition Cost (CAC) Calculator",
+    category: "marketing",
+    subcategory: "general",
+    description: "Calculate how much it costs to acquire each new customer. Benchmark CAC against your CLV and industry averages to evaluate growth sustainability.",
+    loader: () => import("@/components/calculators/Marketing/CustomerAcquisitionCost"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "customer-lifetime-value",
+    title: "Customer Lifetime Value (CLV) Calculator",
+    category: "marketing",
+    subcategory: "general",
+    description: "Estimate total revenue per customer over their relationship with your business. Use the CLV:CAC ratio to evaluate whether your growth model is sustainable.",
+    loader: () => import("@/components/calculators/Marketing/CustomerLifetimeValue"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "roas",
+    title: "ROAS Calculator — Return on Ad Spend",
+    category: "marketing",
+    subcategory: "general",
+    description: "Calculate how much revenue you earn per dollar of ad spend. Find your breakeven ROAS based on gross margin and benchmark your campaigns.",
+    loader: () => import("@/components/calculators/Marketing/ROAS"),
+    urlStyle: "flat"
+  },
+  {
+    slug: "marketing-roi",
+    title: "Marketing ROI Calculator",
+    category: "marketing",
+    subcategory: "general",
+    description: "Calculate the return on investment for your marketing campaigns and understand how each dollar of spend generates revenue.",
+    loader: () => import("@/components/calculators/Marketing/MarketingROI"),
+    urlStyle: "flat"
+  },
+
   // SKN-AUTO-REGISTER: do not remove this line
 ];
 
