@@ -92,17 +92,27 @@ export default function GcfGcdCalculator() {
     {
       question: "What is the Greatest Common Factor (GCF) or Greatest Common Divisor (GCD)?",
       answer:
-        "The Greatest Common Factor (GCF), also known as the Greatest Common Divisor (GCD), is the largest positive integer that divides two or more integers without leaving a remainder. It is fundamental in simplifying fractions, finding common denominators, and solving problems involving divisibility.",
+        "The Greatest Common Factor (GCF), also known as the Greatest Common Divisor (GCD), is the largest positive integer that divides two or more integers without leaving a remainder. For example, GCD(48, 18) = 6 because 6 is the largest number that divides both 48 and 18 evenly. It is fundamental in simplifying fractions — to reduce 18/48, divide both by GCD(18, 48) = 6 to get 3/8. GCD is also essential for finding Least Common Multiples and solving problems in number theory.",
     },
     {
       question: "How does the Euclidean algorithm work for finding the GCD?",
       answer:
-        "The Euclidean algorithm finds the GCD by repeatedly replacing the larger number by the remainder of dividing the larger number by the smaller number. This process continues until the remainder is zero. The last non-zero remainder is the GCD. This method is efficient and works for all integers.",
+        "The Euclidean algorithm is based on the principle that GCD(a, b) = GCD(b, a mod b). Starting with two numbers, replace the larger with the remainder of dividing the two, and repeat until the remainder is zero — the last non-zero remainder is the GCD. Example for GCD(48, 18): 48 mod 18 = 12, then 18 mod 12 = 6, then 12 mod 6 = 0. So GCD = 6. This method runs in O(log(min(a, b))) steps — far faster than listing all divisors of both numbers.",
+    },
+    {
+      question: "What is the relationship between GCD and LCM?",
+      answer:
+        "For any two positive integers a and b: GCD(a, b) × LCM(a, b) = a × b. This identity lets you compute the LCM once you have the GCD — no second factorization needed. For 12 and 18: GCD = 6, so LCM = (12 × 18) / 6 = 36. The GCD is always a divisor of both numbers and a divisor of their LCM, while the LCM is always a multiple of both numbers.",
+    },
+    {
+      question: "What are real-world applications of GCD?",
+      answer:
+        "GCD appears in many practical contexts: (1) Simplifying fractions — reduce 56/84 by GCD(56, 84) = 28 to get 2/3. (2) Dividing evenly — if you have 48 apples and 18 oranges to fill identical bags with no leftovers, GCD(48, 18) = 6 bags maximum. (3) Computer science — the RSA encryption algorithm relies on GCD to check coprimality of large primes. (4) Music theory — GCD of two rhythmic patterns determines when they realign. (5) Gear design — GCD of tooth counts determines the synchronization period.",
     },
     {
       question: "Can the GCD be negative or zero?",
       answer:
-        "The GCD is always a non-negative integer. By definition, it is the greatest positive integer dividing the given numbers. If both inputs are zero, the GCD is undefined because every number divides zero, so no greatest divisor exists.",
+        "The GCD is always a positive integer by definition. Negative inputs are handled by taking absolute values first — GCD(−48, 18) = GCD(48, 18) = 6. If one input is zero, GCD(a, 0) = |a| because every integer divides zero. However, GCD(0, 0) is undefined — every nonzero integer divides zero, so there is no largest one. The GCD of any two coprime numbers (sharing no common factor other than 1) is always 1, for example GCD(8, 15) = 1.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);

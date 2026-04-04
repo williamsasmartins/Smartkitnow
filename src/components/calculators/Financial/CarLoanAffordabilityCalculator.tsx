@@ -20,36 +20,28 @@ export default function CarLoanAffordabilityCalculator() {
 
   const faqs = [
     {
-      question: "What is car loan affordability calculator and why is it important?",
-      answer: "A car loan affordability calculator helps you determine the maximum car price you can afford based on your financial situation. It considers your monthly budget, down payment, and loan term to provide a realistic assessment of affordability. This tool is crucial for preventing financial overextension and ensuring that you can comfortably manage your car payments alongside other expenses.<br><br>Using this calculator, you can make informed decisions about car purchases, avoiding common pitfalls like overestimating your financial capacity. For more on financial planning, visit our <a href=\"/financial/financial-planning-guide\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Financial Planning Guide</a>."
+      question: "What is the 20/4/10 rule for buying a car?",
+      answer: "The 20/4/10 rule is the most widely cited car-buying guideline: put at least 20% down, finance for no more than 4 years, and keep total vehicle costs (payment + insurance) under 10% of gross monthly income. Example: if you earn $6,000/month, your car costs should stay under $600/month. The 20% down prevents being immediately 'underwater' on the loan (owing more than the car is worth), since new cars lose 15-25% of value in the first year. The 4-year term minimizes total interest while keeping monthly payments manageable."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The calculator provides a high level of accuracy based on the inputs you provide. However, its accuracy depends on the precision of the data entered, such as your monthly budget and loan term. External factors like interest rate fluctuations and unexpected expenses can also affect the results.<br><br>For the most accurate results, regularly update your inputs to reflect any changes in your financial situation. Consider consulting a financial advisor for personalized advice."
+      question: "How does my credit score affect the car loan APR I'll be offered?",
+      answer: "Credit score is the single biggest factor in your auto loan rate. Typical 2024 new-car loan APR by FICO tier: 750+ (Super Prime) = 5.0-6.5%; 700-749 (Prime) = 6.5-8.5%; 650-699 (Near Prime) = 9-13%; 600-649 (Subprime) = 14-18%; below 600 = 18-25%+. The difference is enormous in dollars: on a $30,000, 60-month loan, 6% APR costs $2,995 in total interest vs. 18% APR costing $9,445 — a $6,450 gap. Improving your score by 50-100 points before applying can save thousands."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you need your monthly budget for car payments, the amount you can afford as a down payment, and the desired loan term in months. These inputs are crucial for calculating the maximum car price you can afford.<br><br>Gather this information from your financial records and ensure it's up-to-date. Accurate data leads to more reliable results, helping you make informed decisions about your car purchase."
+      question: "What is the true cost of extending a loan term from 48 to 72 months?",
+      answer: "Longer loan terms mean lower monthly payments but significantly more total interest. Example on a $25,000 loan at 7% APR: 48-month term = $597/month, $3,660 total interest. 72-month term = $423/month, $5,468 total interest — $1,808 more for the convenience of $174 lower monthly payments. Worse, with a 72-month loan, you are likely 'underwater' (owe more than car value) for the first 3+ years. If you need to sell or the car is totaled, you may owe thousands more than you receive."
     },
     {
-      question: "Can I use this calculator for leasing a car?",
-      answer: "This calculator is primarily designed for car purchases, not leases. Leasing involves different financial considerations, such as residual value and mileage limits, which are not accounted for in this tool. However, you can use it to estimate affordability if you consider the lease payments as part of your monthly budget.<br><br>For a more accurate assessment of lease affordability, consider using a dedicated lease calculator or consult a financial advisor. For more on leasing, visit our <a href=\"/financial/car-leasing-guide\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Car Leasing Guide</a>."
+      question: "How much should I put down on a car, and does it matter?",
+      answer: "A larger down payment reduces your loan principal, which lowers both the monthly payment and total interest paid. It also protects against negative equity (being underwater). For new cars, 20% down is recommended; for used cars, 10% is a common minimum. Concrete example: $5,000 down on a $30,000 car at 7% APR over 60 months saves $665 in interest compared to $1,000 down. Down payments also matter for approval — lenders see them as commitment, and a larger down payment can help borrowers with lower credit scores qualify for better terms."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include underestimating additional costs like insurance and maintenance, overestimating monthly budgets, and choosing loan terms that are too long. These errors can lead to financial strain and difficulty in managing car payments.<br><br>To avoid these pitfalls, ensure your budget is realistic and consider all associated costs. Regularly review your financial situation to ensure your car loan remains affordable. For more tips, see our <a href=\"/financial/common-mistakes-guide\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Common Mistakes Guide</a>."
+      question: "Should I finance through the dealer or get a loan from my bank or credit union?",
+      answer: "Both options have advantages. Dealer financing is convenient and sometimes offers manufacturer incentives (0% or 1.9% APR promotions on new cars). However, dealers mark up the rate they receive from lenders — if the bank approves you at 6%, the dealer may offer 8% and pocket the difference. Bank/credit union pre-approval gives you a firm rate to use as a negotiating baseline. Credit unions typically offer the lowest rates (0.5-2% below banks) because they are non-profit. Best practice: get pre-approved by your credit union before going to the dealer, then let the dealer try to beat it."
     },
     {
-      question: "How often should I recalculate?",
-      answer: "Recalculate whenever there is a significant change in your financial situation, such as a change in income, expenses, or interest rates. Regular recalculations ensure that your car loan remains affordable and aligned with your financial goals.<br><br>As a general rule, review your calculations at least once a year or whenever you plan a major financial decision. For more on financial reviews, visit our <a href=\"/financial/financial-review-guide\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Financial Review Guide</a>."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to guide your car purchase decisions. Compare the maximum car price with the prices of cars you are interested in to ensure they fit within your budget. If the results indicate that a car is unaffordable, consider adjusting your budget, down payment, or loan term.<br><br>If you need further assistance, consult a financial advisor for personalized advice. For more on interpreting results, see our <a href=\"/financial/result-interpretation-guide\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Result Interpretation Guide</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include consulting with a financial advisor or using different financial models that consider additional variables like inflation or opportunity costs. Each method has its pros and cons, and the best choice depends on your specific needs and financial situation.<br><br>For a comprehensive analysis, consider combining multiple methods. For more on alternative methods, visit our <a href=\"/financial/alternative-methods-guide\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Alternative Methods Guide</a>."
+      question: "What costs beyond the monthly payment should I budget for when buying a car?",
+      answer: "The monthly loan payment is only part of the true cost of car ownership. Budget for: (1) Auto insurance — average $1,765/year nationally in 2024, much higher for newer or luxury vehicles; (2) Registration and taxes — typically 2-10% of purchase price at purchase, then annual fees; (3) Maintenance — AAA estimates $0.10/mile for routine maintenance ($1,200/year at 12,000 miles); (4) Fuel — averages $2,000-$3,000/year; (5) Depreciation — a $30,000 new car may be worth $18,000 after 3 years. Total annual cost of ownership for an average new car exceeds $12,000/year including all expenses."
     }
   ];
 

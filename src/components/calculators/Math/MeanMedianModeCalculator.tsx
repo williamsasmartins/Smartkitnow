@@ -105,17 +105,27 @@ export default function MeanMedianModeCalculator() {
     {
       question: "What is the difference between mean, median, and mode?",
       answer:
-        "The mean is the average of all numbers, calculated by summing them and dividing by the count. The median is the middle value when numbers are sorted, providing a measure less affected by outliers. The mode is the most frequently occurring number(s) in the data set, useful for identifying common values.",
+        "All three measure the center of a data set but in different ways. The mean sums all values and divides by count — for [2, 3, 3, 7, 9, 10], mean = 34/6 ≈ 5.67. The median is the middle value of the sorted list — here (3 + 7)/2 = 5, since there are 6 values. The mode is the most frequent value — here 3 (appears twice). When data is symmetric and has no outliers, all three are close. When data is skewed, they diverge significantly.",
+    },
+    {
+      question: "When should I use median instead of mean?",
+      answer:
+        "Use the median when your data is skewed or contains outliers that would distort the mean. Classic examples: (1) Income data — a few billionaires make the mean household income misleadingly high; the median gives a better picture of what a typical household earns. (2) Home prices — one luxury property skews the mean for a neighborhood. (3) Response times — a few slow responses inflate the mean; the median reflects the typical user experience. The U.S. Census Bureau reports median household income precisely for this reason.",
     },
     {
       question: "Can a data set have more than one mode?",
       answer:
-        "Yes, a data set can be multimodal, meaning it has multiple modes if several numbers appear with the same highest frequency. If all numbers appear only once, the data set is said to have no mode.",
+        "Yes. A data set is unimodal if one value appears most frequently, bimodal if two values tie for most frequent, and multimodal if three or more tie. Example: [1, 2, 2, 3, 3, 4] has modes 2 and 3 (bimodal). If all values appear exactly once, there is no mode — no single value stands out. Bimodal distributions are common in real data and often signal two distinct subgroups (e.g., a class with two separate skill clusters).",
+    },
+    {
+      question: "What is the difference between population mean and sample mean?",
+      answer:
+        "The population mean (μ) is the true average of an entire group — all test scores from every student ever, for example. The sample mean (x̄) is the average of a subset drawn from that population, used to estimate μ when measuring everyone is impractical. The formulas are identical (sum ÷ count), but the notation differs. For variance, the population version divides by n and the sample version divides by (n−1) to correct for underestimation bias — this is called Bessel's correction.",
     },
     {
       question: "Why is the median important in statistics?",
       answer:
-        "The median provides a robust measure of central tendency, especially when data contains outliers or is skewed. Unlike the mean, the median is not affected by extremely high or low values, making it a better indicator of the typical value in such cases.",
+        "The median is a robust measure of central tendency because it is not affected by extreme values. Consider salaries [30K, 35K, 40K, 42K, 500K]: mean = 129.4K (misleading), median = 40K (representative). The median is also the 50th percentile — half of data falls below it, half above. In right-skewed distributions (income, home prices, survival times), median > mean signals the skew. In left-skewed distributions (exam scores near a ceiling), mean > median signals skew in the other direction.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);

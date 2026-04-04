@@ -99,17 +99,27 @@ export default function RootRadicalSimplifierCalculator() {
     {
       question: "What does it mean to simplify a square root?",
       answer:
-        "Simplifying a square root means expressing it in the form a√b, where a and b are integers, and b has no perfect square factors other than 1. This makes the radical expression easier to understand and work with in further calculations.",
+        "Simplifying a square root means rewriting √n in the form a√b, where a is the largest integer whose square divides n, and b is what remains after dividing out a². The result b must be square-free (no perfect square factor other than 1). For example: √72 = √(36 × 2) = 6√2. The value is unchanged — 6√2 ≈ 8.485, same as √72 ≈ 8.485 — but the form is simpler and easier to manipulate algebraically.",
+    },
+    {
+      question: "How do you identify whether a square root can be simplified?",
+      answer:
+        "A square root √n can be simplified if n has any perfect square factor greater than 1. Check by testing whether 4, 9, 16, 25, 36, 49, … divides n evenly. For √50: 25 divides 50 (50/25 = 2), so √50 = 5√2. For √30: none of 4, 9, 16, 25 divide 30 evenly, so √30 is already in simplest form. The quickest approach is prime factorization — if any prime appears with exponent ≥ 2 in the factorization, it can be simplified.",
     },
     {
       question: "Can all square roots be simplified?",
       answer:
-        "No, only square roots of numbers that have perfect square factors other than 1 can be simplified. For example, √8 can be simplified to 2√2, but √3 is already in its simplest form.",
+        "No. Only square roots of numbers with a perfect square factor other than 1 can be simplified. Square roots of prime numbers (√2, √3, √5, √7, √11, …) are already in their simplest form. Square roots of numbers where all prime factors appear with odd exponents (e.g., √30 = √(2 × 3 × 5)) cannot be simplified further. Perfect squares (√4 = 2, √9 = 3, √16 = 4, √25 = 5…) simplify completely to integers with no radical sign.",
     },
     {
-      question: "Why is simplifying radicals important in mathematics?",
+      question: "How do simplified radicals appear in geometry and the Pythagorean theorem?",
       answer:
-        "Simplifying radicals helps in solving equations, comparing expressions, and performing arithmetic operations more efficiently. It also provides a clearer understanding of the magnitude of the number represented by the radical.",
+        "Radical simplification is essential when applying the Pythagorean theorem (a² + b² = c²). For a right triangle with legs 3 and 5: c² = 9 + 25 = 34, so c = √34 (already simplified — 34 = 2 × 17, no repeated prime). For legs 4 and 6: c² = 16 + 36 = 52 = 4 × 13, so c = 2√13. In trigonometry, sin(45°) = √2/2 and sin(60°) = √3/2 are standard simplified forms. Leaving answers in simplified radical form preserves exact precision that decimal approximations lose.",
+    },
+    {
+      question: "Why is simplifying radicals important in algebra?",
+      answer:
+        "Simplified radicals are required in standard mathematical form and enable several operations that unsimplified forms make awkward: (1) Adding like radicals — 3√2 + 5√2 = 8√2, but you can only add radicals with the same radicand, so simplification first is essential: √8 + √18 = 2√2 + 3√2 = 5√2. (2) Rationalizing denominators — 1/√2 = √2/2 (multiply by √2/√2). (3) Comparing magnitudes — is √50 or √48 larger? After simplifying to 5√2 vs 4√3, multiply both by √2: 10 vs 4√6 ≈ 9.8, so √50 > √48.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);

@@ -75,19 +75,29 @@ export default function ModuloRemainderCalculator() {
 
   const faqs = [
     {
-      question: "What is the modulo operation?",
+      question: "What is the modulo operation and when is it used?",
       answer:
-        "The modulo operation finds the remainder after division of one number by another. It is widely used in computer science, cryptography, and mathematics to determine cyclic patterns, remainders, and congruences. For example, 17 modulo 5 equals 2 because 17 divided by 5 leaves a remainder of 2.",
+        "The modulo operation (x mod y) returns the remainder after dividing x by y. For example, 17 mod 5 = 2 because 17 = 3 × 5 + 2. It is one of the most widely used operations in computer science and mathematics. Key uses: (1) Checking even/odd — n mod 2 = 0 means even. (2) Wrapping around — clock arithmetic: 14:00 mod 12 = 2 (2 PM). (3) Hashing — assigning keys to buckets: key mod tableSize. (4) Cryptography — RSA and Diffie-Hellman rely entirely on modular exponentiation.",
     },
     {
       question: "How does modulo handle negative numbers?",
       answer:
-        "In this calculator, the modulo result is computed using the formula r = x - y × ⌊x / y⌋, ensuring the remainder is always non-negative when the divisor is positive. This differs from the JavaScript % operator, which can return negative remainders for negative dividends.",
+        "Different languages handle negative modulo differently. Python and this calculator use the floored division definition: r = x − y × ⌊x/y⌋, which always returns a non-negative result when y > 0. Example: −7 mod 3 = −7 − 3 × ⌊−7/3⌋ = −7 − 3 × (−3) = −7 + 9 = 2. In contrast, C, Java, and JavaScript use truncated division where −7 % 3 = −1 (sign follows the dividend). The floored version is mathematically preferred for modular arithmetic.",
+    },
+    {
+      question: "What are real-world applications of modulo in programming?",
+      answer:
+        "Modulo is ubiquitous in software: (1) Pagination — page number = itemIndex mod itemsPerPage. (2) Round-robin scheduling — task mod workerCount assigns tasks to workers evenly. (3) Checksums — ISBN-10 validity: (sum of weighted digits) mod 11 = 0. (4) Color cycling and animations — frame mod totalFrames keeps animations looping. (5) Leap year check — year mod 4 = 0 (with corrections for centuries). (6) Ring buffers — index mod bufferSize wraps around to reuse memory.",
+    },
+    {
+      question: "What is modular arithmetic and why does it matter?",
+      answer:
+        "Modular arithmetic is a system where numbers wrap around after reaching a modulus. The notation a ≡ b (mod m) means a and b have the same remainder when divided by m. For example, 17 ≡ 2 (mod 5) because both leave remainder 2. This is the mathematics of clocks, calendars, and cryptography. RSA encryption protects internet traffic using the fact that x^e mod n is easy to compute but the inverse (finding x from the result) is computationally infeasible for large primes.",
     },
     {
       question: "Why can't the divisor be zero?",
       answer:
-        "Division by zero is undefined in mathematics because it does not produce a meaningful or finite result. Therefore, the modulo operation with a divisor of zero is also undefined and not allowed.",
+        "Division by zero is undefined because there is no number that, when multiplied by zero, gives a nonzero dividend. Dividing 17 by 0 would require a number q where 0 × q = 17 — impossible. The modulo operation r = x − y × ⌊x/y⌋ inherits this restriction: ⌊x/0⌋ is undefined. In limits, x/0 approaches ±∞ depending on the sign of x, but infinity is not a valid finite result for arithmetic. All programming languages and calculators correctly reject division by zero.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);

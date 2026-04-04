@@ -129,25 +129,29 @@ export default function ExponentPowerCalculator() {
 
   const faqs = [
     {
-      question: "What does the exponent represent in this calculator?",
+      question: "What does the exponent represent and what are common patterns?",
       answer:
-        "The exponent indicates how many times the base number is multiplied by itself. For example, an exponent of 3 means the base is multiplied three times (base × base × base). This calculator supports positive, negative, and fractional exponents, allowing you to compute roots and reciprocal powers as well.",
+        "The exponent indicates how many times the base is multiplied by itself. Positive integer exponents are straightforward: 2³ = 2 × 2 × 2 = 8. Fractional exponents are roots: 8^(1/3) = ∛8 = 2, and 25^(0.5) = √25 = 5. Negative exponents are reciprocals: 2⁻³ = 1/8. Exponent 0 always gives 1 for any nonzero base (x⁰ = 1). These patterns appear throughout algebra, compound interest (A = P(1+r)ⁿ), exponential growth, and physics.",
     },
     {
-      question:
-        "How does the calculator handle negative bases with fractional exponents?",
+      question: "How does the calculator handle negative bases with fractional exponents?",
       answer:
-        "When a negative base is raised to a fractional exponent, the result can be a complex number. This calculator uses Euler's formula to compute such results and displays them in the form 'a + bi'. If the exponent is an integer, the result remains a real number.",
+        "Raising a negative number to a fractional exponent produces a complex number. For (−2)^0.5, you are asking for the square root of a negative number — impossible in real numbers but defined as 0 + √2·i in complex numbers. This calculator uses Euler's formula: x^y = e^(y·ln|x|) × (cos(yπ) + i·sin(yπ)). For example, (−8)^(1/3) ≈ 1 + 1.732i. If the exponent is an integer, the result stays real: (−2)³ = −8.",
     },
     {
       question: "Why is 0 raised to the power 0 undefined?",
       answer:
-        "The expression 0^0 is considered indeterminate in mathematics because it can lead to contradictory results depending on the context. This calculator flags 0^0 as undefined to avoid ambiguity and ensure mathematical correctness.",
+        "0^0 is an indeterminate form because two valid limit rules conflict: any nonzero base raised to 0 gives 1 (x⁰ = 1), but 0 raised to any positive power gives 0 (0ˣ = 0). The limit of xˣ as x → 0⁺ equals 1, while the limit of 0ˣ as x → 0⁺ equals 0 — they disagree. In combinatorics, 0^0 = 1 is a useful convention (it counts the one empty product). In analysis, it must be treated carefully based on context. This calculator correctly flags it as indeterminate.",
     },
     {
-      question: "Can I use constants like π and e as inputs?",
+      question: "What is the difference between exponential growth and exponential decay?",
       answer:
-        "Yes, you can input the numerical values of constants such as π (approximately 3.1416) and e (approximately 2.7183) as the base or exponent. The calculator will compute the power accordingly with high precision.",
+        "Both involve a base raised to a variable power, but the base determines direction. When the base > 1, repeated multiplication grows: 2^10 = 1024, 2^20 = 1,048,576 — populations, compound interest, viral spread. When 0 < base < 1, multiplication shrinks: 0.5^10 = 0.000977 — radioactive decay, drug metabolism, cooling. The general form is f(t) = A × bᵗ, where A is the initial value, b is the growth/decay factor, and t is time. Doubling time = ln(2) / ln(b) for growth; half-life = ln(0.5) / ln(b) for decay.",
+    },
+    {
+      question: "How are laws of exponents used to simplify expressions?",
+      answer:
+        "The key exponent laws let you rewrite expressions without evaluating large numbers: (1) Product rule: xᵃ × xᵇ = x^(a+b) — same base, add exponents. (2) Quotient rule: xᵃ / xᵇ = x^(a−b). (3) Power of a power: (xᵃ)ᵇ = x^(ab). (4) Power of a product: (xy)ᵃ = xᵃ × yᵃ. (5) Negative exponent: x⁻ᵃ = 1/xᵃ. Example: simplify (2³ × 2⁵) / 2⁴ = 2^(3+5−4) = 2⁴ = 16. These rules are foundational for algebra, logarithms, and scientific notation.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);

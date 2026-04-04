@@ -31,36 +31,28 @@ export default function StudentLoanRepaymentCalculator() {
   // FAQ STRUCTURED DATA
   const faqs = [
     {
-      question: "What is a student loan repayment calculator and why is it important?",
-      answer: "A student loan repayment calculator is a tool that helps borrowers estimate their monthly payments, total interest, and overall cost of a student loan. It is important because it provides a clear picture of the financial commitment involved in repaying a loan, allowing borrowers to plan and budget effectively. By understanding the repayment terms, borrowers can make informed decisions about their loans and explore options to reduce costs. For more detailed analysis, check out our <a href='/financial/extra-payments-payoff'>Extra Payments & Payoff Time Calculator</a>."
+      question: "What are the federal student loan repayment plan options and how do I choose?",
+      answer: "Federal student loans have several repayment plans: (1) Standard (10 years) — fixed payments, least total interest, $33,000 at 5% = $350/month. (2) Graduated — payments start low, increase every 2 years, more total interest than Standard. (3) Extended (up to 25 years) — lower monthly payments, significantly more interest. (4) Income-Driven Repayment (IDR) plans — payments capped at 5-20% of discretionary income depending on the plan (SAVE, IBR, PAYE, ICR). IDR is best if you have high debt relative to income or plan to pursue Public Service Loan Forgiveness. Standard is best if you can afford the payments and want to minimize total interest paid."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator is designed to provide accurate estimates based on the inputs provided. However, the accuracy depends on the precision of the data entered, such as the interest rate and loan term. It is important to use up-to-date and correct information to ensure reliable results. For complex financial situations, consulting a financial advisor is recommended to complement the calculator's insights."
+      question: "How does the SAVE income-driven repayment plan work, and who benefits most?",
+      answer: "The SAVE (Saving on a Valuable Education) plan, introduced in 2023, is the most generous IDR plan. It caps payments at 5% of discretionary income for undergraduate loans (10% for graduate) and defines discretionary income as income above 225% of the federal poverty guideline. For borrowers earning under ~$32,800 (single, 2024), payments are $0/month — and $0 payments still count toward forgiveness. SAVE also prevents interest from capitalizing as long as you make your required payment. Borrowers with income < $60,000 and balances > $30,000 typically benefit most from SAVE vs. Standard repayment."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you need to know your total loan amount, the annual interest rate, and the repayment term in years. This information is typically available on your loan agreement or from your lender. Accurate data ensures that the calculator provides reliable estimates. Gathering this information beforehand will help you make the most of the calculator and explore different repayment scenarios."
+      question: "What is Public Service Loan Forgiveness (PSLF) and what are the requirements?",
+      answer: "PSLF forgives the remaining balance on Direct federal loans after 120 qualifying payments (10 years) while working full-time for a qualifying employer — government agencies, 501(c)(3) nonprofits, public schools, and public hospitals all qualify. Requirements: (1) Direct Loans only (FFEL and Perkins must be consolidated), (2) enrolled in an IDR or Standard plan, (3) working full-time (30+ hours/week) for a qualifying employer for each of the 120 payments. Payments do not need to be consecutive. Example: $80,000 in loans, earning $50,000 with SAVE plan = ~$167/month for 10 years = ~$20,000 total paid, with $60,000+ forgiven tax-free."
     },
     {
-      question: "Can I use this calculator for refinancing scenarios?",
-      answer: "Yes, this calculator can be used to explore refinancing scenarios by adjusting the interest rate and repayment term. Refinancing can potentially lower your monthly payments or reduce the total interest paid. However, it's important to consider any fees or costs associated with refinancing. For a more detailed analysis, our <a href='/financial/refinance-savings'>Refinance Savings Calculator</a> can help you evaluate the potential savings from refinancing."
+      question: "Should I pay off student loans early or invest the extra money?",
+      answer: "The math favors investing over early payoff when your expected investment return exceeds your loan interest rate. With federal loans at 5-7% and a diversified index fund historically returning 7-10% annually, investing the extra money often comes out ahead over a 10+ year horizon. However, paying down debt is a guaranteed risk-free return equal to your interest rate — no investment guarantees 7%. General guidance: (1) If loan rate < 5%, invest first after building a 3-6 month emergency fund. (2) If loan rate 5-7%, split the difference — do both. (3) If loan rate > 7%, pay aggressively. Also consider: if pursuing PSLF, do NOT pay extra — it reduces your forgiveness benefit."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include entering incorrect interest rates, not accounting for fees, and misunderstanding the repayment term. These errors can lead to inaccurate results and poor financial planning. It's crucial to double-check all inputs and understand the terms of your loan. Always verify your loan details with your lender and consider professional advice for complex financial situations."
+      question: "What happens if I refinance federal student loans into a private loan?",
+      answer: "Refinancing converts your federal loans into a private loan at (hopefully) a lower interest rate. The tradeoff: you permanently lose all federal protections. You lose access to IDR plans, which means no income-based payment caps during financial hardship. You lose PSLF eligibility — this is irreversible and catastrophic if you were on track for forgiveness. You lose federal deferment and forbearance options. Refinancing makes sense only if: (1) you have a stable, high income and will never pursue PSLF, (2) your credit qualifies you for a rate meaningfully lower than your current rate (1.5%+ improvement), and (3) you have an emergency fund to cover payments without income-based repayment options."
     },
     {
-      question: "How often should I recalculate?",
-      answer: "Recalculation is recommended whenever there are changes in interest rates, loan terms, or financial circumstances. Regularly reviewing your repayment plan ensures that you stay on track and can adjust your strategy as needed. Consider recalculating annually or whenever you make significant financial decisions, such as refinancing or making extra payments."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to plan your budget and repayment strategy. Understanding your monthly payment and total interest can help you make informed financial decisions. Consider setting up automatic payments to ensure timely repayments and avoid late fees. If you're exploring different repayment options, our <a href='/financial/heloc-payment-estimator'>HELOC Payment Estimator</a> can provide additional insights."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include using financial software, consulting with a financial advisor, or using spreadsheets to model different scenarios. Each method has its pros and cons, and the best choice depends on your comfort level and financial complexity. For those who prefer a hands-on approach, spreadsheets offer flexibility, while professional advice provides personalized insights."
+      question: "What is the student loan interest tax deduction?",
+      answer: "The student loan interest deduction allows you to deduct up to $2,500 of student loan interest paid annually from your taxable income — it's an above-the-line deduction, so you don't need to itemize. For 2024, the deduction phases out between $75,000-$90,000 MAGI (single filers) and $155,000-$185,000 (married filing jointly). At a 22% tax bracket, deducting $2,500 saves $550/year. Note: you can only deduct interest actually paid — if you are on an IDR plan with $0 payments, you deduct $0 even if interest is accruing. Interest that capitalizes (is added to your principal balance) is not deductible when capitalized, only when paid."
     }
   ];
 

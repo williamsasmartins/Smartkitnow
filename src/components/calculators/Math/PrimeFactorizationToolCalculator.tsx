@@ -106,22 +106,27 @@ export default function PrimeFactorizationToolCalculator() {
     {
       question: "What is prime factorization?",
       answer:
-        "Prime factorization is the process of expressing a composite number as a product of its prime factors. Every integer greater than 1 either is a prime number itself or can be uniquely represented as a product of prime numbers, which are the building blocks of all integers.",
+        "Prime factorization expresses a composite number as a product of its prime factors — the unique set of primes that multiply together to form it. For example, 360 = 2³ × 3² × 5. The Fundamental Theorem of Arithmetic guarantees that this representation is unique for every integer greater than 1 (ignoring order). Prime numbers themselves (2, 3, 5, 7, 11, …) are already their own prime factorization and cannot be broken down further.",
     },
     {
       question: "Why is prime factorization important in mathematics?",
       answer:
-        "Prime factorization is fundamental in number theory and has applications in cryptography, computer science, and solving mathematical problems involving divisibility and greatest common divisors. It helps in understanding the structure of numbers and simplifying fractions.",
+        "Prime factorization is the foundation for many core operations: (1) Finding GCD and LCM — GCD(360, 120) = 2² × 3 × 5 = 120 by taking the minimum exponent of each shared prime. (2) Simplifying fractions — 360/120 = 3 directly from the factorizations. (3) Cryptography — RSA encryption relies on the fact that factoring the product of two very large primes is computationally infeasible, making it secure. (4) Solving Diophantine equations and modular arithmetic problems in number theory.",
+    },
+    {
+      question: "What is the Fundamental Theorem of Arithmetic?",
+      answer:
+        "The Fundamental Theorem of Arithmetic states that every integer greater than 1 has exactly one prime factorization (up to the order of factors). This uniqueness is what makes prime factorization so powerful — 12 is always 2² × 3, never any other combination of primes. The theorem underpins all of number theory and explains why primes are considered the atomic building blocks of the integers.",
+    },
+    {
+      question: "How do you find the GCD and LCM from prime factorizations?",
+      answer:
+        "Once you have the prime factorizations, finding GCD and LCM is straightforward. For GCD, take each prime that appears in BOTH factorizations with the MINIMUM exponent: GCD(360, 84) where 360 = 2³ × 3² × 5 and 84 = 2² × 3 × 7 → GCD = 2² × 3 = 12. For LCM, take each prime that appears in EITHER factorization with the MAXIMUM exponent: LCM = 2³ × 3² × 5 × 7 = 2520. These rules make factorization the most systematic method for GCD/LCM with multiple numbers.",
     },
     {
       question: "Can prime factorization be done for negative numbers or decimals?",
       answer:
-        "Prime factorization is defined only for positive integers greater than 1. Negative numbers and decimals do not have prime factorizations in the traditional sense, as prime numbers are positive integers greater than 1.",
-    },
-    {
-      question: "How does this tool handle very large numbers?",
-      answer:
-        "This tool efficiently factors numbers up to 1,000,000,000. For larger numbers, factorization may take significant time or may not be feasible instantly due to computational complexity.",
+        "Standard prime factorization is defined only for positive integers greater than 1. For negative integers, mathematicians often factor out −1 first: −360 = −1 × 2³ × 3² × 5. For decimals and fractions, factorization extends to rational numbers — for example, 3/4 = 3 × 2⁻², using negative exponents for the denominator's primes. However, this tool focuses on positive integers where the definition is unambiguous and universally agreed upon.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);

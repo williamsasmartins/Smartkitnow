@@ -89,17 +89,27 @@ export default function LcmCalculator() {
     {
       question: "What is the Least Common Multiple (LCM)?",
       answer:
-        "The Least Common Multiple (LCM) of two or more integers is the smallest positive integer that is divisible by all of them. It is widely used in solving problems involving fractions, ratios, and number theory.",
+        "The Least Common Multiple (LCM) of two or more integers is the smallest positive integer that is divisible by all of them without leaving a remainder. For example, LCM(4, 6) = 12 because 12 is the smallest number that both 4 and 6 divide evenly into. LCM is fundamental in adding fractions with different denominators — you need the LCM as the common denominator.",
     },
     {
       question: "How do I calculate the LCM of multiple numbers?",
       answer:
-        "To calculate the LCM of multiple numbers, you can iteratively find the LCM of pairs of numbers using the formula: LCM(a, b) = |a × b| / GCD(a, b), where GCD is the Greatest Common Divisor. Repeat this process for all numbers.",
+        "The most efficient method uses the GCD (Greatest Common Divisor): LCM(a, b) = |a × b| / GCD(a, b). For more than two numbers, apply it iteratively: LCM(a, b, c) = LCM(LCM(a, b), c). Alternatively, use prime factorization: write each number as a product of primes and take the highest power of each prime that appears. For 12 = 2² × 3 and 18 = 2 × 3², LCM = 2² × 3² = 36.",
+    },
+    {
+      question: "What is the relationship between LCM and GCD?",
+      answer:
+        "For any two positive integers a and b: LCM(a, b) × GCD(a, b) = a × b. This identity is useful — if you know the GCD, you can find the LCM without additional computation. For example, GCD(12, 18) = 6, so LCM(12, 18) = (12 × 18) / 6 = 36. The LCM is always a multiple of both numbers, while the GCD is always a factor of both.",
+    },
+    {
+      question: "What are real-world applications of LCM?",
+      answer:
+        "LCM appears in many practical contexts: (1) Adding fractions — to add 1/4 + 1/6, find LCM(4, 6) = 12, then convert both fractions. (2) Scheduling problems — if event A repeats every 4 days and event B every 6 days, they next coincide in LCM(4, 6) = 12 days. (3) Gear ratios — the LCM determines when two meshing gears return to their original position. (4) Music rhythm — LCM helps calculate when two time signatures realign.",
     },
     {
       question: "Can the LCM be zero or negative?",
       answer:
-        "No, the LCM is always a positive integer. If any input number is zero, the LCM is undefined or considered zero in some contexts, but generally, zero is excluded from LCM calculations.",
+        "No. The LCM is always a positive integer for non-zero inputs. If any number is zero, the LCM is undefined (or sometimes treated as 0) because zero has no defined multiples in this context. For negative integers, convention is to take absolute values first — LCM(−4, 6) = LCM(4, 6) = 12. The LCM is always ≥ the largest input number.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);

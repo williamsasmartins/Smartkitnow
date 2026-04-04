@@ -10,36 +10,28 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 const faqs = [
   {
-    question: "What is a loan comparison calculator and why is it important?",
-    answer: `A loan comparison calculator is a tool that allows you to evaluate two or more loan options side-by-side. It helps you understand the differences in monthly payments, total interest costs, and overall loan expenses. This is crucial for making informed financial decisions, as it enables you to choose the loan that best fits your budget and financial goals.<br><br>By using this calculator, you can avoid costly mistakes and ensure that you select the most cost-effective loan option. For more detailed analysis, consider using our <a href="/financial/loan-payment">Loan Payment Calculator</a>.`
+    question: "What should I compare beyond the monthly payment when evaluating two loans?",
+    answer: `Monthly payment is the least important metric when comparing loans — it only tells you cash flow, not true cost. The critical numbers to compare: (1) Total interest paid over the life of each loan — this is the real cost. A 72-month loan at 5% on $20,000 costs $3,200 in interest; a 48-month loan at 6% costs $2,550 — the shorter loan is cheaper despite the higher rate. (2) APR (not just the stated rate) — APR includes origination fees, points, and other charges, making it the true apples-to-apples comparison number. (3) Prepayment penalties — a loan with a lower rate but prepayment penalty can cost more if you plan to pay it off early.`
   },
   {
-    question: "How accurate is this calculator?",
-    answer: `This calculator provides highly accurate estimates based on the data you input. However, the accuracy depends on the precision of the information you provide, such as the interest rate, loan amount, and term. It's important to use the most current and accurate data available to get the best results.<br><br>For complex financial situations, consider consulting with a financial advisor to ensure you're making the best decision. This tool is a great starting point for understanding your options.`
+    question: "What is the difference between APR and interest rate, and which matters for loan comparison?",
+    answer: `The interest rate is the annual cost of borrowing the principal. APR (Annual Percentage Rate) includes the interest rate plus all mandatory fees — origination fees, discount points, broker fees — expressed as a single annual rate. TILA (Truth in Lending Act) requires lenders to disclose APR. For comparison purposes, APR is always the correct metric because it captures the true cost. Example: Loan A = 6.5% rate, no fees vs. Loan B = 6.0% rate, 1% origination fee on a $30,000 loan. Loan B's APR ≈ 6.5% once the $300 fee is factored in — they are actually equivalent despite Loan B's lower stated rate.`
   },
   {
-    question: "What information do I need to use this calculator?",
-    answer: `To use this calculator, you'll need the loan amount, interest rate, and term for each loan option you're considering. The loan amount is the total amount you plan to borrow. The interest rate is the annual percentage rate (APR) charged by the lender. The term is the length of time you have to repay the loan, typically expressed in years.<br><br>You can find this information in your loan documents or by contacting your lender. Ensure the data is accurate to get the most reliable comparison results.`
+    question: "How do I calculate the breakeven point when a lower-rate loan has higher fees?",
+    answer: `The breakeven point is how long you need to keep the loan to recover the extra upfront costs. Formula: Breakeven months = Fees paid ÷ Monthly savings. Example: Loan A = $20,000 at 7.5% for 60 months = $400.76/month. Loan B = $20,000 at 6.5% for 60 months, but with a $500 origination fee = $391.32/month. Monthly savings = $9.44. Breakeven = $500 ÷ $9.44 ≈ 53 months. If you plan to keep the loan for at least 53 months, Loan B wins. If you'll pay it off early, Loan A is better despite the higher rate.`
   },
   {
-    question: "Can I use this calculator for comparing mortgages?",
-    answer: `Yes, this calculator is ideal for comparing different mortgage options. You can input the loan amount, interest rate, and term for each mortgage to see how they compare in terms of monthly payments and total costs. This is particularly useful when deciding between fixed-rate and adjustable-rate mortgages.<br><br>For a more detailed mortgage analysis, consider using our <a href="/financial/mortgage-amortization">Mortgage Payment & Amortization Calculator</a>.`
+    question: "When does a fixed-rate loan make more sense than a variable-rate loan?",
+    answer: `Fixed-rate loans lock your rate for the entire term — predictable and safe. Variable-rate loans (often called adjustable-rate) start lower but can rise with market rates. Fixed-rate is better when: (1) Current rates are historically low and likely to rise, (2) You plan to hold the loan for its full term, (3) You want payment certainty for budgeting. Variable-rate can be better when: (1) You plan to pay off the loan quickly (within the initial fixed-period), (2) Rates are high and expected to fall, (3) The initial rate discount is significant (1.5%+ lower than fixed). For most 5+ year loans, fixed-rate provides more protection against rate volatility.`
   },
   {
-    question: "What are common mistakes people make with this calculation?",
-    answer: `One common mistake is not considering all costs associated with the loan, such as fees and penalties. Another is using outdated or incorrect interest rates, which can lead to inaccurate comparisons. Additionally, some people focus solely on the monthly payment without considering the total cost over the life of the loan.<br><br>To avoid these mistakes, ensure you have accurate data and consider both the monthly payment and total cost. Use our <a href="/financial/extra-payments-payoff">Extra Payments & Payoff Time Calculator</a> for insights on how additional payments can affect your loan.`
+    question: "How much does loan term affect total cost? Is a shorter term always better?",
+    answer: `Shorter terms pay significantly less total interest but require higher monthly payments. On a $25,000 loan at 7% APR: 36-month term = $772/month, $2,779 total interest. 60-month term = $495/month, $4,712 total interest. 84-month term = $376/month, $6,574 total interest. A shorter term is better if: your cash flow can handle the higher payment, and you want to minimize total cost. A longer term is better if: cash flow is tight, or the difference in monthly payment could be invested at a higher return than the loan rate (opportunity cost). If your loan rate is 5% but you can earn 8% investing the difference, the math may favor the longer term.`
   },
   {
-    question: "How often should I recalculate?",
-    answer: `It's a good idea to recalculate whenever there's a significant change in interest rates or your financial situation. Additionally, if you're considering refinancing, use this calculator to compare your current loan with potential new options.<br><br>Regular recalculations ensure you're always aware of the best loan options available to you. For more detailed scenarios, explore our <a href="/financial/refinance-savings">Refinance Savings Calculator</a>.`
-  },
-  {
-    question: "What should I do with these results?",
-    answer: `Use the results to compare your loan options and choose the one that best fits your financial goals. Consider both the monthly payment and total cost to make an informed decision. If you're unsure, consult with a financial advisor to discuss your options.<br><br>For further guidance, check out our <a href="/financial/heloc-payment-estimator">HELOC Payment Estimator</a> to explore how home equity lines of credit might fit into your financial strategy.`
-  },
-  {
-    question: "Are there alternatives to this calculation method?",
-    answer: `While this calculator provides a comprehensive comparison, you can also use spreadsheets or financial software for more detailed analysis. These tools allow for more customization and can handle complex scenarios.<br><br>However, for most users, this calculator offers a quick and easy way to compare loans. For more complex needs, consider consulting with a financial advisor or using advanced financial planning tools.`
+    question: "What is the impact of making extra principal payments, and should I compare loans based on this?",
+    answer: `Extra payments directly reduce the principal, which reduces the interest accruing on every future payment — the effect compounds over time. On a $30,000, 60-month loan at 7% APR: adding just $100/month extra reduces the payoff from 60 to 45 months and saves $1,240 in interest. When comparing two loans, factor in whether you plan to make extra payments: a loan with no prepayment penalty is worth a small rate premium over one that charges 2-3% of remaining balance for early payoff. Always confirm prepayment policy before signing — it can make a lower-rate loan more expensive than it appears.`
   }
 ];
 
