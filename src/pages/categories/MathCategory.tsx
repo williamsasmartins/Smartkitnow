@@ -4,6 +4,7 @@ import AdBannerTop from "../../components/ads/AdBannerTop";
 import AdSidebarRight from "../../components/ads/AdSidebarRight";
 import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
+import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
 
 type Item = { name: string; slug: string };
@@ -151,7 +152,14 @@ export default function MathCategory() {
               emoji="📈"
               title={`Statistics & Probability (${statsProbability.length})`}
               description="Mean/median/mode, standard deviation/variance, z-score/percentile, interpolation/extrapolation, binomial and normal distributions."
-              items={statsProbability}
+                  {/* All math calculators from registry */}
+            <RegistryCategorySection
+              category="math"
+              title="More Math Calculators"
+              className="mt-10"
+            />
+
+                    items={statsProbability}
               base="/math"
             />
 

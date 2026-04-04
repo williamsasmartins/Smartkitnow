@@ -4,6 +4,7 @@ import AdBannerTop from "../../components/ads/AdBannerTop";
 import AdSidebarRight from "../../components/ads/AdSidebarRight";
 import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
+import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
 
 type Item = { name: string; slug: string };
@@ -373,7 +374,14 @@ export default function PetsCategory() {
               emoji="🐹"
               title="Small Mammals — Behavior & Care"
               description="Cage size requirements, daily exercise planning and bedding replacement frequency."
-              items={smallMammalBehaviorCare}
+                         {/* All pets calculators from registry */}
+            <RegistryCategorySection
+              category="pets"
+              title="More Pets Calculators"
+              className="mt-10"
+            />
+
+             items={smallMammalBehaviorCare}
               base="/pets"
             />
 

@@ -72,4 +72,48 @@ export const CROSS_LINKS: Record<string, string[]> = {
   "capital-gains-tax-estimator":      ["crypto-tax-liability-calculator", "tax-bracket-calculator"],
   "crypto-tax-liability-calculator":  ["capital-gains-tax-estimator", "tax-bracket-calculator"],
   "cost-basis-fifo-lifo-calculator":  ["crypto-tax-liability-calculator", "capital-gains-tax-estimator"],
+
+  // ── CONSTRUCTION → FINANCIAL (project budget journey) ────────────────────
+  "roof-shingles-calculator":         ["home-improvement-loan-calculator", "mortgage-amortization"],
+  "concrete-calculator":              ["home-improvement-loan-calculator", "mortgage-amortization"],
+  "flooring-calculator":              ["home-improvement-loan-calculator", "tip-split-bill"],
+  "drywall-calculator":               ["home-improvement-loan-calculator", "mortgage-amortization"],
+  "paint-calculator":                 ["home-improvement-loan-calculator", "tip-split-bill"],
+
+  // ── ELECTRICAL → CONSTRUCTION (home projects) ────────────────────────────
+  "wire-gauge-calculator":            ["drywall-calculator", "concrete-calculator"],
+  "ohms-law-calculator":              ["wire-gauge-calculator", "three-phase-power"],
+  "voltage-drop-calculator":          ["wire-gauge-calculator", "home-improvement-loan-calculator"],
+
+  // ── SCIENCE → HEALTH (biology/body crossover) ────────────────────────────
+  "half-life-calculator":             ["bmr-calculator", "calorie-calculator"],
+  "molar-mass-calculator":            ["protein-intake-by-goal", "calorie-calculator"],
+  "ph-calculator":                    ["water-intake-per-day", "calorie-calculator"],
+
+  // ── SPORTS → HEALTH (fitness journey) ────────────────────────────────────
+  "running-pace-calculator":          ["calorie-calculator", "bmr-calculator"],
+  "calories-burned-calculator":       ["bmi-calculator", "calorie-calculator"],
+  "swimming-pace-calculator":         ["calorie-calculator", "heart-rate-zones"],
+  "cycling-speed-calculator":         ["calorie-calculator", "bmr-calculator"],
+  "one-rep-max-calculator":           ["calorie-calculator", "protein-intake-by-goal"],
+
+  // ── COOKING → HEALTH (nutrition crossover) ────────────────────────────────
+  "recipe-scaler":                    ["calorie-calculator", "macro-split-planner"],
+  "cups-grams-converter":             ["calorie-calculator", "protein-intake-by-goal"],
+  "bakers-percentage":                ["calorie-calculator", "macro-split-planner"],
+
+  // ── AUTOMOTIVE → FINANCIAL (vehicle cost decisions) ───────────────────────
+  "fuel-cost-calculator":             ["car-loan-affordability", "lease-vs-buy-calculator"],
+  "ev-charging-cost":                 ["car-loan-affordability", "lease-vs-buy-calculator"],
+  "tco-total-cost-ownership":         ["car-loan-affordability", "debt-to-income-ratio-calculator"],
+
+  // ── CONVERSION → MATH (academic users) ───────────────────────────────────
+  "unit-converter":                   ["quadratic-equation-solver", "scientific-notation-standard-form"],
+  "temperature-converter":            ["standard-deviation-variance", "percent-error-calculator"],
+  "length-converter":                 ["pythagorean-theorem-solver", "percent-error-calculator"],
+
+  // ── EVERYDAY → FINANCIAL (practical money tools) ─────────────────────────
+  "tip-calculator":                   ["tip-split-bill", "monthly-budget-planner-calculator"],
+  "discount-calculator":              ["percent-of-total", "tax-bracket-calculator"],
+  "sales-tax-calculator":             ["tip-split-bill", "tax-bracket-calculator"],
 };

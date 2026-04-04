@@ -4,6 +4,7 @@ import AdBannerTop from "../../components/ads/AdBannerTop";
 import AdSidebarRight from "../../components/ads/AdSidebarRight";
 import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
+import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
 import SEOHead from "@/components/SEOHead";
 
@@ -184,7 +185,14 @@ export default function EverydayCategory() {
               emoji="🌿"
               title={`Garden & Exterior (${gardenExterior.length})`}
               description="Mulch coverage and bag count, soil/compost volume, lawn mowing time and fuel, hose runtime vs flow rate, rain-barrel days of supply, grass-seed quantity, square footage calculation, planting calendar and frost dates, plant spacing, and fertilizer application."
-              items={gardenExterior}
+                    {/* All everyday calculators from registry */}
+            <RegistryCategorySection
+              category="everyday"
+              title="More Everyday Calculators"
+              className="mt-10"
+            />
+
+                  items={gardenExterior}
               base="/everyday"
             />
 

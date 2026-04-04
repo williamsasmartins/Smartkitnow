@@ -4,6 +4,7 @@ import AdBannerTop from "../../components/ads/AdBannerTop";
 import AdSidebarRight from "../../components/ads/AdSidebarRight";
 import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
+import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
 import SEOHead from "@/components/SEOHead";
 import JsonLd from "@/components/seo/JsonLd";
@@ -218,7 +219,14 @@ export default function VideoCategory() {
               title={`Audio Processing & Engineering (${audioEngineering.length})`}
               description="Amplifier power, dBu↔dBV conversion, SPL at positions, speaker placement, cable length impact, inverse square law, ohm's law (audio), speaker crossover design, dB↔power ratios, audio file size, wavelength↔frequency."
               items={audioEngineering}
-              base="/video"
+              base            {/* All video calculators from registry */}
+            <RegistryCategorySection
+              category="video"
+              title="More Video Calculators"
+              className="mt-10"
+            />
+
+            ="/video"
             />
 
             {/* bottom boxes: Share + Suggest */}

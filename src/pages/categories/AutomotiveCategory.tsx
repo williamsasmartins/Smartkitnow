@@ -5,6 +5,7 @@ import AdSidebarRight from "../../components/ads/AdSidebarRight";
 import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
 import SuggestionBox from "@/components/SuggestionBox";
+import RegistryCategorySection from "@/components/RegistryCategorySection";
 
 // Estrutura espelhada da página FinancialCategory
 
@@ -202,6 +203,13 @@ export default function AutomotiveCategory() {
               description="Estimate horsepower, quarter-mile times, 0-60 acceleration, compression ratio, engine displacement, carburetor sizing, and more."
               items={performanceTuning}
               base="/automotive"
+            />
+
+            {/* All automotive calculators from registry — ensures every tool gets at least one internal link */}
+            <RegistryCategorySection
+              category="automotive"
+              title="More Automotive Calculators"
+              className="mt-10"
             />
 
             {/* Boxes inferiores: Share + Suggest embutido */}

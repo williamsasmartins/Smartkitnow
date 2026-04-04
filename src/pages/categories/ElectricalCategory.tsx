@@ -4,6 +4,7 @@ import AdBannerTop from "../../components/ads/AdBannerTop";
 import AdSidebarRight from "../../components/ads/AdSidebarRight";
 import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
+import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
 
 // Estrutura espelhada da página FinancialCategory
@@ -146,7 +147,14 @@ export default function ElectricalCategory() {
               emoji="☀️"
               title={`Renewable Energy & Battery Systems (${renewableEnergyBattery.length})`}
               description="PV system production estimation, off‑grid system sizing, solar array output and sizing, battery bank sizing, inverter load capacity, EV charging time, battery runtime, and system payback period (ROI)."
-              items={renewableEnergyBattery}
+              item            {/* All electrical calculators from registry */}
+            <RegistryCategorySection
+              category="electrical"
+              title="More Electrical Calculators"
+              className="mt-10"
+            />
+
+            s={renewableEnergyBattery}
               base="/electrical"
             />
 

@@ -4,6 +4,7 @@ import AdBannerTop from "../../components/ads/AdBannerTop";
 import AdSidebarRight from "../../components/ads/AdSidebarRight";
 import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
+import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
 
 type Item = { name: string; slug: string };
@@ -151,7 +152,14 @@ export default function ConversionCategory() {
               emoji="📦"
               title={`Everyday & Mixed (${everydayMixed.length})`}
               description="Cooking measures, fuel economy, currency conversions, BMI/BSA estimators, paper sizes, and shoe sizes."
-              items={everydayMixed}
+                     {/* All conversion calculators from registry */}
+            <RegistryCategorySection
+              category="conversion"
+              title="More Conversion Calculators"
+              className="mt-10"
+            />
+
+                 items={everydayMixed}
               base="/conversion"
             />
 

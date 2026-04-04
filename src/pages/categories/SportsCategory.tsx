@@ -4,6 +4,7 @@ import AdBannerTop from "../../components/ads/AdBannerTop";
 import AdSidebarRight from "../../components/ads/AdSidebarRight";
 import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
+import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
 import SEOHead from "@/components/SEOHead";
 import JsonLd from "@/components/seo/JsonLd";
@@ -199,7 +200,14 @@ export default function SportsCategory() {
               title={`Individual & Game Management (${individualGameMgmt.length})`}
               description="Golf handicap differential/index & course handicap, expected putts, tennis serve speed & ELO progress, rowing split↔pace, climbing grade converter, bracket seeding, bowling score, FINA points, swim performance level."
               items={individualGameMgmt}
-              base="/sports"
+              base=            {/* All sports calculators from registry */}
+            <RegistryCategorySection
+              category="sports"
+              title="More Sports Calculators"
+              className="mt-10"
+            />
+
+            "/sports"
             />
 
             {/* bottom boxes: Share + Suggest */}

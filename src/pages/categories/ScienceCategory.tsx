@@ -4,6 +4,7 @@ import AdBannerTop from "../../components/ads/AdBannerTop";
 import AdSidebarRight from "../../components/ads/AdSidebarRight";
 import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
+import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
 
 type Item = { name: string; slug: string };
@@ -170,7 +171,14 @@ export default function ScienceCategory() {
               emoji="🪐"
               title={`Astronomy & Earth Science (${astronomyEarthScience.length})`}
               description="Escape velocity, orbital period (Kepler), and gravity on other planets."
-              items={astronomyEarthScience}
+                          {/* All science calculators from registry */}
+            <RegistryCategorySection
+              category="science"
+              title="More Science Calculators"
+              className="mt-10"
+            />
+
+            items={astronomyEarthScience}
               base="/science"
             />
 

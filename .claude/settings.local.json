@@ -20,7 +20,8 @@
       "Bash(python3 scripts/generate_faq_upgrade_list.py)",
       "Bash(python3 -c \"import json; data=json.load\\(open\\('vercel.json'\\)\\); print\\('Valid JSON'\\); r=data.get\\('redirects',[]\\); rw=data.get\\('rewrites',[]\\); print\\(f'Redirects: {len\\(r\\)}'\\); print\\(f'Rewrites: {len\\(rw\\)}'\\)\")",
       "Bash(python scripts/audit_content_quality.py)",
-      "Bash(python scripts/generate_faq_upgrade_list.py)"
+      "Bash(python scripts/generate_faq_upgrade_list.py)",
+      "Bash(npx tsx:*)"
     ]
   }
 }

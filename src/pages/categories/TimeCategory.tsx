@@ -4,6 +4,7 @@ import AdBannerTop from "../../components/ads/AdBannerTop";
 import AdSidebarRight from "../../components/ads/AdSidebarRight";
 import EmojiIcon from "../../components/ui/EmojiIcon";
 import ShareThisPageBox from "@/components/ShareThisPageBox";
+import RegistryCategorySection from "@/components/RegistryCategorySection";
 import SuggestionBox from "@/components/SuggestionBox";
 
 // Estrutura idêntica à página FinancialCategory
@@ -143,7 +144,14 @@ export default function TimeCategory() {
               base="/time"
             />
 
-            {/* Boxes inferiores: Share + Suggest embutido */}
+            {/* All time calculators from registry — ensures every tool gets at least one internal link */}
+            <RegistryCategorySection
+              category="time"
+              title="More Time Calculators"
+              className="mt-10"
+            />
+
+                        {/* Boxes inferiores: Share + Suggest embutido */}
             <div className="mt-14 space-y-6">
               <ShareThisPageBox />
               <SuggestionBox />

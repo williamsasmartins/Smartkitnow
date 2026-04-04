@@ -43,10 +43,25 @@ function toUrl(loc: string, priority = "0.5", changefreq = "monthly") {
   return `  <url>\n    <loc>${xmlEscape(full)}</loc>\n    <lastmod>${today()}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
 }
 
+/**
+ * Sitemap priority tiers — based on user intent, traffic potential, and content depth.
+ * Higher priority = Googlebot crawls sooner within its daily crawl budget.
+ *
+ * Tier 1 (0.82): Highest commercial/user-intent value
+ * Tier 2 (0.75): Strong utility, high search volume categories
+ * Tier 3 (0.68): Medium traffic categories with solid content
+ * Tier 4 (0.60): Lower-priority utility or niche categories
+ */
 function priorityForCategory(cat: string): string {
-  if (cat === "pets" || cat === "games") return "0.85";
-  if (["health", "financial", "cooking", "math", "smart-tips"].includes(cat)) return "0.6";
-  return "0.5";
+  // Tier 1 — high commercial intent, proven traffic
+  if (["financial", "health"].includes(cat)) return "0.82";
+  // Tier 2 — strong utility, high search volume
+  if (["automotive", "cooking", "math", "pets", "conversion"].includes(cat)) return "0.75";
+  // Tier 3 — solid content, medium traffic
+  if (["construction", "electrical", "science", "sports", "everyday"].includes(cat)) return "0.68";
+  // Tier 4 — niche or lower-priority
+  if (["video", "funny", "time", "marketing", "games", "smart-tips"].includes(cat)) return "0.60";
+  return "0.60";
 }
 
 function main() {
@@ -57,11 +72,19 @@ function main() {
   let count = 0;
 
   // Static
+  // Category priorities match their calculator priorities + 0.08 (hubs outrank leaf pages)
+  const CATEGORY_PRIORITY: Record<string, string> = {
+    "/financial": "0.90", "/health": "0.90",
+    "/automotive": "0.83", "/cooking": "0.83", "/math": "0.83", "/pets": "0.83", "/conversion": "0.83",
+    "/construction": "0.76", "/electrical": "0.76", "/science": "0.76", "/sports": "0.76", "/everyday": "0.76",
+    "/video": "0.68", "/funny": "0.68", "/time": "0.68", "/marketing": "0.68",
+    "/smart-tips": "0.68", "/games": "0.68",
+  };
   for (const p of STATIC_URLS) {
     const isHome = p === "/";
-    const isCategory = ["/financial","/health","/cooking","/conversion","/math","/science","/time","/pets","/automotive","/construction","/electrical","/everyday","/sports","/funny","/video","/smart-tips","/games"].includes(p);
-    const priority = isHome ? "1.0" : isCategory ? "0.7" : "0.5";
-    const changefreq = isHome ? "daily" : isCategory ? "weekly" : "monthly";
+    const catPriority = CATEGORY_PRIORITY[p];
+    const priority = isHome ? "1.0" : catPriority ?? "0.55";
+    const changefreq = isHome ? "daily" : catPriority ? "weekly" : "monthly";
     parts.push(toUrl(p, priority, changefreq));
     count++;
   }
