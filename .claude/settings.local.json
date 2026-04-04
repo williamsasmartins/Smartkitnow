@@ -21,7 +21,9 @@
       "Bash(python3 -c \"import json; data=json.load\\(open\\('vercel.json'\\)\\); print\\('Valid JSON'\\); r=data.get\\('redirects',[]\\); rw=data.get\\('rewrites',[]\\); print\\(f'Redirects: {len\\(r\\)}'\\); print\\(f'Rewrites: {len\\(rw\\)}'\\)\")",
       "Bash(python scripts/audit_content_quality.py)",
       "Bash(python scripts/generate_faq_upgrade_list.py)",
-      "Bash(npx tsx:*)"
+      "Bash(npx tsx:*)",
+      "Bash(grep -v \"import\\\\|//\")",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('c:/Users/Williams Martins/OneDrive/Documentos/WBSmartKitNow/smartkit-onepage-wonder/vercel.json','utf8'\\)\\); console.log\\('JSON valid'\\)\")"
     ]
   }
 }
