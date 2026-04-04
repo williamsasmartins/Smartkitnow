@@ -1786,16 +1786,6 @@
       "permanent": true
     },
     {
-      "source": "/pets/dog-calorie-needs-rer-mer/",
-      "destination": "/pets",
-      "permanent": true
-    },
-    {
-      "source": "/pets/dog-calorie-needs-rer-mer",
-      "destination": "/pets",
-      "permanent": true
-    },
-    {
       "source": "/smart-tips/planning/commute-cost-time/",
       "destination": "/time",
       "permanent": true
@@ -2371,28 +2361,23 @@
       "permanent": true
     },
     {
-      "source": "/financial/compound-interest",
-      "destination": "/financial/compound-interest-calculator",
-      "permanent": true
-    },
-    {
       "source": "/financial/mortgage",
-      "destination": "/financial/mortgage-calculator",
+      "destination": "/financial/mortgage-amortization",
       "permanent": true
     },
     {
       "source": "/financial/home-loan",
-      "destination": "/financial/mortgage-calculator",
+      "destination": "/financial/mortgage-amortization",
       "permanent": true
     },
     {
       "source": "/financial/loan",
-      "destination": "/financial/loan-calculator",
+      "destination": "/financial",
       "permanent": true
     },
     {
       "source": "/financial/personal-loan",
-      "destination": "/financial/loan-calculator",
+      "destination": "/financial",
       "permanent": true
     },
     {
@@ -2417,7 +2402,7 @@
     },
     {
       "source": "/pets/cats/daily-water-intake",
-      "destination": "/pets/cat-water-intake",
+      "destination": "/pets/cat-daily-water-intake-checker",
       "permanent": true
     },
     {
@@ -2431,18 +2416,8 @@
       "permanent": true
     },
     {
-      "source": "/pets/dog-weight-loss-planner",
-      "destination": "/pets/pet-care-calculators/dog-weight-loss-planner",
-      "permanent": true
-    },
-    {
       "source": "/pets/dogs/weight-loss-planner",
       "destination": "/pets/dog-weight-loss-planner",
-      "permanent": true
-    },
-    {
-      "source": "/pets/cat-weight-loss-planner",
-      "destination": "/pets/pet-care-calculators/cat-weight-loss-planner",
       "permanent": true
     },
     {
@@ -2526,18 +2501,8 @@
       "permanent": true
     },
     {
-      "source": "/financial/mortgage-calculator",
-      "destination": "/financial/mortgage-amortization",
-      "permanent": true
-    },
-    {
       "source": "/financial/compound-interest-calculator",
       "destination": "/financial/compound-interest",
-      "permanent": true
-    },
-    {
-      "source": "/financial/loan-calculator",
-      "destination": "/financial",
       "permanent": true
     },
     {
