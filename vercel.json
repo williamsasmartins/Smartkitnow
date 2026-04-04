@@ -140,6 +140,66 @@
       "destination": "/api/404"
     },
     {
+      "source": "/marketing/roas-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/roi-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/cpm-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/cpa-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/ctr-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/cpc-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/cac-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/ltv-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/ltv-to-cac-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/churn-rate-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/retention-rate-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/email-open-rate-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/email-conversion-rate-calculator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/lead-generation-conversion-estimator",
+      "destination": "/api/404"
+    },
+    {
+      "source": "/marketing/content-marketing-roi-calculator",
+      "destination": "/api/404"
+    },
+    {
       "source": "/:path*",
       "destination": "/"
     }
@@ -521,8 +581,8 @@
       "permanent": true
     },
     {
-      "source": "/smart-tips/:path*",
-      "destination": "/smart-tips",
+      "source": "/tv",
+      "destination": "/video",
       "permanent": true
     },
     {

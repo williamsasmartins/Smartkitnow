@@ -1,9 +1,8 @@
-GENERIC FAQ TEMPLATE DETECTED — 58 files
+GENERIC FAQ TEMPLATE DETECTED — 56 files
 These files share identical boilerplate FAQ questions.
 Google may treat these as duplicate content.
 ======================================================================
 5 markers  src/components/calculators/Financial/AbsencePercentageCalculator.tsx
-5 markers  src/components/calculators/Financial/CreditCardInterestCalculator.tsx
 5 markers  src/components/calculators/Financial/CryptoDcaStrategyCalculator.tsx
 5 markers  src/components/calculators/Financial/CryptoFutureValueCompoundGrowthCalculator.tsx
 5 markers  src/components/calculators/Financial/CryptoProfitLossCalculator.tsx
@@ -35,7 +34,6 @@ Google may treat these as duplicate content.
 5 markers  src/components/calculators/Financial/TransactionFeeDeductionCalculator.tsx
 5 markers  src/components/calculators/Financial/VolatilityRiskAssessmentCalculator.tsx
 5 markers  src/components/calculators/Financial/YieldFarmingApyCalculator.tsx
-4 markers  src/components/calculators/Financial/AprCalculator.tsx
 4 markers  src/components/calculators/Financial/BondYieldCalculator.tsx
 4 markers  src/components/calculators/Financial/CapitalGainsTaxEstimatorCalculator.tsx
 4 markers  src/components/calculators/Financial/CarLoanAffordabilityCalculator.tsx
