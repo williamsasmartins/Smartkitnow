@@ -185,15 +185,15 @@ export default function EverydayCategory() {
               emoji="🌿"
               title={`Garden & Exterior (${gardenExterior.length})`}
               description="Mulch coverage and bag count, soil/compost volume, lawn mowing time and fuel, hose runtime vs flow rate, rain-barrel days of supply, grass-seed quantity, square footage calculation, planting calendar and frost dates, plant spacing, and fertilizer application."
-                    {/* All everyday calculators from registry */}
+              items={gardenExterior}
+              base="/everyday"
+            />
+
+            {/* All everyday calculators from registry */}
             <RegistryCategorySection
               category="everyday"
               title="More Everyday Calculators"
               className="mt-10"
-            />
-
-                  items={gardenExterior}
-              base="/everyday"
             />
 
             <div className="mt-14 space-y-6">

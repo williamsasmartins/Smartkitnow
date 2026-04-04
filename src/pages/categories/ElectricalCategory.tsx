@@ -147,15 +147,15 @@ export default function ElectricalCategory() {
               emoji="☀️"
               title={`Renewable Energy & Battery Systems (${renewableEnergyBattery.length})`}
               description="PV system production estimation, off‑grid system sizing, solar array output and sizing, battery bank sizing, inverter load capacity, EV charging time, battery runtime, and system payback period (ROI)."
-              item            {/* All electrical calculators from registry */}
+              items={renewableEnergyBattery}
+              base="/electrical"
+            />
+
+            {/* All electrical calculators from registry */}
             <RegistryCategorySection
               category="electrical"
               title="More Electrical Calculators"
               className="mt-10"
-            />
-
-            s={renewableEnergyBattery}
-              base="/electrical"
             />
 
             <div className="mt-14 space-y-6">

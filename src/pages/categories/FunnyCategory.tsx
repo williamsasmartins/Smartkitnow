@@ -168,14 +168,14 @@ export default function FunnyCategory() {
               title={`Absurd Travel & Adventure (${absurdTravelAdventure.length})`}
               description="Vacation budget reality check, loop-the-loop speed, rocks to flood a country, penguin slap power, nickels to crush, black hole sun impact, time travel energy, medical tourism savings, crinkle crankle wall brick saver."
               items={absurdTravelAdventure}
-              base            {/* All funny calculators from registry */}
+              base="/funny"
+            />
+
+            {/* All funny calculators from registry */}
             <RegistryCategorySection
               category="funny"
               title="More Funny Calculators"
               className="mt-10"
-            />
-
-            ="/funny"
             />
 
             {/* bottom boxes: Share + Suggest */}

@@ -152,15 +152,15 @@ export default function ConversionCategory() {
               emoji="📦"
               title={`Everyday & Mixed (${everydayMixed.length})`}
               description="Cooking measures, fuel economy, currency conversions, BMI/BSA estimators, paper sizes, and shoe sizes."
-                     {/* All conversion calculators from registry */}
+              items={everydayMixed}
+              base="/conversion"
+            />
+
+            {/* All conversion calculators from registry */}
             <RegistryCategorySection
               category="conversion"
               title="More Conversion Calculators"
               className="mt-10"
-            />
-
-                 items={everydayMixed}
-              base="/conversion"
             />
 
             <div className="mt-14 space-y-6">

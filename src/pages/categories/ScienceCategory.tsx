@@ -171,15 +171,15 @@ export default function ScienceCategory() {
               emoji="🪐"
               title={`Astronomy & Earth Science (${astronomyEarthScience.length})`}
               description="Escape velocity, orbital period (Kepler), and gravity on other planets."
-                          {/* All science calculators from registry */}
+              items={astronomyEarthScience}
+              base="/science"
+            />
+
+            {/* All science calculators from registry */}
             <RegistryCategorySection
               category="science"
               title="More Science Calculators"
               className="mt-10"
-            />
-
-            items={astronomyEarthScience}
-              base="/science"
             />
 
             <div className="mt-14 space-y-6">

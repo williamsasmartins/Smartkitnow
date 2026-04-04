@@ -152,15 +152,15 @@ export default function MathCategory() {
               emoji="📈"
               title={`Statistics & Probability (${statsProbability.length})`}
               description="Mean/median/mode, standard deviation/variance, z-score/percentile, interpolation/extrapolation, binomial and normal distributions."
-                  {/* All math calculators from registry */}
+              items={statsProbability}
+              base="/math"
+            />
+
+            {/* All math calculators from registry */}
             <RegistryCategorySection
               category="math"
               title="More Math Calculators"
               className="mt-10"
-            />
-
-                    items={statsProbability}
-              base="/math"
             />
 
             <div className="mt-14 space-y-6">

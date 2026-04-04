@@ -200,14 +200,14 @@ export default function SportsCategory() {
               title={`Individual & Game Management (${individualGameMgmt.length})`}
               description="Golf handicap differential/index & course handicap, expected putts, tennis serve speed & ELO progress, rowing split↔pace, climbing grade converter, bracket seeding, bowling score, FINA points, swim performance level."
               items={individualGameMgmt}
-              base=            {/* All sports calculators from registry */}
+              base="/sports"
+            />
+
+            {/* All sports calculators from registry */}
             <RegistryCategorySection
               category="sports"
               title="More Sports Calculators"
               className="mt-10"
-            />
-
-            "/sports"
             />
 
             {/* bottom boxes: Share + Suggest */}

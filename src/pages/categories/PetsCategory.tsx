@@ -374,15 +374,15 @@ export default function PetsCategory() {
               emoji="🐹"
               title="Small Mammals — Behavior & Care"
               description="Cage size requirements, daily exercise planning and bedding replacement frequency."
-                         {/* All pets calculators from registry */}
+              items={smallMammalBehaviorCare}
+              base="/pets"
+            />
+
+            {/* All pets calculators from registry */}
             <RegistryCategorySection
               category="pets"
               title="More Pets Calculators"
               className="mt-10"
-            />
-
-             items={smallMammalBehaviorCare}
-              base="/pets"
             />
 
             <div className="mt-14 space-y-6">
