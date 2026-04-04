@@ -1564,14 +1564,6 @@
       "destination": "/api/404"
     },
     {
-      "source": "/home/:path*",
-      "destination": "/api/404"
-    },
-    {
-      "source": "/home",
-      "destination": "/api/404"
-    },
-    {
       "source": "/video/speaker-crossover-calculator/:path*",
       "destination": "/api/404"
     },
@@ -1633,6 +1625,11 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
     {
       "source": "/pets/cat-bcs-helper/",
       "destination": "/pets",
