@@ -352,7 +352,7 @@ Note: c must be greater than the leg to have a real solution.`}
           The theorem identifies Pythagorean triples — integer solutions where all three sides are whole numbers. Common triples: 3-4-5, 5-12-13, 8-15-17, 7-24-25. These appear in puzzle and competition math, and historically served as construction tools when precise measurement was impossible. Any multiple of a triple is also a triple: 6-8-10, 9-12-15, 10-24-26.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The converse of the theorem is equally useful: if a^2 + b^2 = c^2, then the angle opposite side c is exactly 90 degrees. If a^2 + b^2 < c^2, the angle is obtuse. If a^2 + b^2 > c^2, the angle is acute. This converse allows surveyors, machinists, and engineers to verify right angles without measuring them directly — check the squared relationship between the three sides instead.
+          The converse of the theorem is equally useful: if a^2 + b^2 = c^2, then the angle opposite side c is exactly 90 degrees. If a^2 + b^2 &lt; c^2, the angle is obtuse. If a^2 + b^2 &gt; c^2, the angle is acute. This converse allows surveyors, machinists, and engineers to verify right angles without measuring them directly — check the squared relationship between the three sides instead.
         </p>
       </section>
 

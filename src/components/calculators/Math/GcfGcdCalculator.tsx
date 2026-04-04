@@ -250,7 +250,7 @@ export default function GcfGcdCalculator() {
           Cryptography relies on GCD at its foundation. The RSA algorithm determines the public and private keys by requiring that GCD(e, phi(n)) = 1 — that e and phi(n) are coprime. Two numbers are coprime when their GCD equals 1, meaning they share no prime factors. Understanding coprimality lets you see why RSA key generation rejects certain values: if GCD is not 1, the mathematical inverse needed for decryption does not exist.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Euclidean algorithm makes GCD computation fast even for very large numbers. The algorithm repeatedly applies: GCD(a, b) = GCD(b, a mod b) until the remainder is zero. For GCD(1071, 462): GCD(462, 147) -> GCD(147, 21) -> GCD(21, 0) = 21. This takes three steps regardless of how large the numbers are, making it efficient for cryptographic use cases involving hundreds of digits.
+          The Euclidean algorithm makes GCD computation fast even for very large numbers. The algorithm repeatedly applies: GCD(a, b) = GCD(b, a mod b) until the remainder is zero. For GCD(1071, 462): GCD(462, 147) → GCD(147, 21) → GCD(21, 0) = 21. This takes three steps regardless of how large the numbers are, making it efficient for cryptographic use cases involving hundreds of digits.
         </p>
       </section>
 
