@@ -12,7 +12,6 @@ import AppErrorBoundary from "@/components/AppErrorBoundary";
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
-import BackToTopButton from "@/components/BackToTopButton";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { REGISTRY, calcLink } from "@/data/calculatorRegistry";
 
@@ -150,7 +149,6 @@ export default function App() {
         </AppErrorBoundary>
       </main>
       <Footer />
-      <BackToTopButton />
       <CookieConsentBanner />
     </div>
   );
