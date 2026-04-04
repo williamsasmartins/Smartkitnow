@@ -53,7 +53,7 @@ export default function ROAS() {
 
   const editorial = (
     <div className="space-y-8">
-      <section>
+      <section id="what-is">
         <h2 className="text-2xl font-bold mb-3">What Is ROAS?</h2>
         <p className="text-muted-foreground leading-relaxed">
           Return on Ad Spend (ROAS) measures how much revenue you earn for every dollar
@@ -69,7 +69,7 @@ export default function ROAS() {
         </p>
       </section>
 
-      <section>
+      <section id="breakeven">
         <h2 className="text-2xl font-bold mb-3">Minimum Breakeven ROAS by Margin</h2>
         <ul className="space-y-2 text-muted-foreground list-disc ml-6">
           <li><strong>20% gross margin:</strong> Breakeven ROAS = 5× (500%)</li>
@@ -101,6 +101,18 @@ export default function ROAS() {
           spend effectiveness.
         </p>
       </section>
+
+      <section id="faq">
+        <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+        <ul className="space-y-6">
+          {faqs.map((item, i) => (
+            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
+              <h3 className="font-bold text-lg mb-2">{item.question}</h3>
+              <p className="text-muted-foreground leading-relaxed">{item.answer}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 
@@ -125,10 +137,10 @@ export default function ROAS() {
         { id: "faq", label: "FAQ" },
       ]}
       relatedCalculators={[
-        { category: "marketing", subcategory: "marketing", slug: "marketing-roi", name: "Marketing ROI" },
-        { category: "marketing", subcategory: "marketing", slug: "customer-acquisition-cost", name: "Customer Acquisition Cost" },
-        { category: "marketing", subcategory: "marketing", slug: "conversion-rate", name: "Conversion Rate" },
-        { category: "marketing", subcategory: "marketing", slug: "email-marketing-roi", name: "Email Marketing ROI" },
+        { title: "Marketing ROI Calculator", url: "/marketing/marketing-roi", icon: "📈" },
+        { title: "Customer Acquisition Cost", url: "/marketing/customer-acquisition-cost", icon: "💰" },
+        { title: "Conversion Rate Calculator", url: "/marketing/conversion-rate", icon: "🎯" },
+        { title: "Email Marketing ROI", url: "/marketing/email-marketing-roi", icon: "📧" },
       ]}
     >
       <section id="calculator" className="scroll-mt-24">

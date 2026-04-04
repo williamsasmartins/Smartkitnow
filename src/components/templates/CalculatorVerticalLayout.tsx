@@ -415,12 +415,12 @@ export default function CalculatorVerticalLayout({
             )}
 
             {/* IN-ARTICLE MID AD — entre fórmula/exemplo e editorial */}
-            {showMidAd && !children && (
+            {showMidAd && editorial && (
               <AdUnit slot={SLOT_IN_ARTICLE} type="in-content" className="my-8" />
             )}
 
-            {/* EDITORIAL CONTENT (hidden if children provided) */}
-            {!children && (
+            {/* EDITORIAL CONTENT */}
+            {editorial && (
               <article
                 id="content"
                 className="mb-10 prose prose-lg prose-slate max-w-none dark:prose-invert"

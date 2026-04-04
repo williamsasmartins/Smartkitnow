@@ -56,7 +56,7 @@ export default function EmailMarketingROI() {
 
   const editorial = (
     <div className="space-y-8">
-      <section>
+      <section id="why-email">
         <h2 className="text-2xl font-bold mb-3">Why Email Marketing Has the Highest ROI</h2>
         <p className="text-muted-foreground leading-relaxed">
           Email marketing consistently outperforms every other digital channel on ROI
@@ -72,7 +72,7 @@ export default function EmailMarketingROI() {
         </p>
       </section>
 
-      <section>
+      <section id="campaign-types">
         <h2 className="text-2xl font-bold mb-3">High-Impact Email Campaign Types by ROI</h2>
         <ul className="space-y-2 text-muted-foreground list-disc ml-6">
           <li><strong>Abandoned cart sequences:</strong> 5–15% recovery rate, typically 40–100× ROI</li>
@@ -99,6 +99,18 @@ export default function EmailMarketingROI() {
           is usually list quality, segmentation, or deliverability — not email as a channel.
         </p>
       </section>
+
+      <section id="faq">
+        <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+        <ul className="space-y-6">
+          {faqs.map((item, i) => (
+            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
+              <h3 className="font-bold text-lg mb-2">{item.question}</h3>
+              <p className="text-muted-foreground leading-relaxed">{item.answer}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 
@@ -123,10 +135,10 @@ export default function EmailMarketingROI() {
         { id: "faq", label: "FAQ" },
       ]}
       relatedCalculators={[
-        { category: "marketing", subcategory: "marketing", slug: "marketing-roi", name: "Marketing ROI" },
-        { category: "marketing", subcategory: "marketing", slug: "roas", name: "ROAS Calculator" },
-        { category: "marketing", subcategory: "marketing", slug: "conversion-rate", name: "Conversion Rate" },
-        { category: "marketing", subcategory: "marketing", slug: "customer-lifetime-value", name: "Customer Lifetime Value" },
+        { title: "Marketing ROI Calculator", url: "/marketing/marketing-roi", icon: "📈" },
+        { title: "ROAS Calculator", url: "/marketing/roas", icon: "📊" },
+        { title: "Conversion Rate Calculator", url: "/marketing/conversion-rate", icon: "🎯" },
+        { title: "Customer Lifetime Value", url: "/marketing/customer-lifetime-value", icon: "♻️" },
       ]}
     >
       <section id="calculator" className="scroll-mt-24">

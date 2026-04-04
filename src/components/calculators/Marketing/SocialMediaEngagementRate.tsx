@@ -60,7 +60,7 @@ export default function SocialMediaEngagementRate() {
 
   const editorial = (
     <div className="space-y-8">
-      <section>
+      <section id="what-is">
         <h2 className="text-2xl font-bold mb-3">What Is Social Media Engagement Rate?</h2>
         <p className="text-muted-foreground leading-relaxed">
           Engagement rate (ER) measures the percentage of an audience that actively
@@ -77,7 +77,7 @@ export default function SocialMediaEngagementRate() {
         </p>
       </section>
 
-      <section>
+      <section id="benchmarks">
         <h2 className="text-2xl font-bold mb-3">Engagement Rate Benchmarks by Platform (2024)</h2>
         <ul className="space-y-2 text-muted-foreground list-disc ml-6">
           <li><strong>Instagram:</strong> 1–3% average; 5%+ excellent; Reels typically 2× Stories</li>
@@ -111,6 +111,18 @@ export default function SocialMediaEngagementRate() {
           to build a complete picture of social media channel performance.
         </p>
       </section>
+
+      <section id="faq">
+        <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+        <ul className="space-y-6">
+          {faqs.map((item, i) => (
+            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
+              <h3 className="font-bold text-lg mb-2">{item.question}</h3>
+              <p className="text-muted-foreground leading-relaxed">{item.answer}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 
@@ -135,10 +147,10 @@ export default function SocialMediaEngagementRate() {
         { id: "faq", label: "FAQ" },
       ]}
       relatedCalculators={[
-        { category: "marketing", subcategory: "marketing", slug: "conversion-rate", name: "Conversion Rate" },
-        { category: "marketing", subcategory: "marketing", slug: "marketing-roi", name: "Marketing ROI" },
-        { category: "marketing", subcategory: "marketing", slug: "roas", name: "ROAS Calculator" },
-        { category: "marketing", subcategory: "marketing", slug: "customer-acquisition-cost", name: "Customer Acquisition Cost" },
+        { title: "Conversion Rate Calculator", url: "/marketing/conversion-rate", icon: "🎯" },
+        { title: "Marketing ROI Calculator", url: "/marketing/marketing-roi", icon: "📈" },
+        { title: "ROAS Calculator", url: "/marketing/roas", icon: "📊" },
+        { title: "Customer Acquisition Cost", url: "/marketing/customer-acquisition-cost", icon: "💰" },
       ]}
     >
       <section id="calculator" className="scroll-mt-24">

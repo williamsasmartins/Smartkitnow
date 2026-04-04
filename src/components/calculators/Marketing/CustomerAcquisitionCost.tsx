@@ -55,7 +55,7 @@ export default function CustomerAcquisitionCost() {
 
   const editorial = (
     <div className="space-y-8">
-      <section>
+      <section id="what-is">
         <h2 className="text-2xl font-bold mb-3">What Is Customer Acquisition Cost (CAC)?</h2>
         <p className="text-muted-foreground leading-relaxed">
           Customer Acquisition Cost (CAC) is the total cost of convincing a prospect to
@@ -74,7 +74,7 @@ export default function CustomerAcquisitionCost() {
         </p>
       </section>
 
-      <section>
+      <section id="benchmarks">
         <h2 className="text-2xl font-bold mb-3">CAC Benchmarks by Business Type</h2>
         <ul className="space-y-2 text-muted-foreground list-disc ml-6">
           <li><strong>SaaS (self-serve / PLG):</strong> $50–$200</li>
@@ -98,6 +98,18 @@ export default function CustomerAcquisitionCost() {
           sales cycle efficiency through better qualification and CRM automation. Each 10%
           improvement in conversion rate reduces CAC by approximately 10%.
         </p>
+      </section>
+
+      <section id="faq">
+        <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+        <ul className="space-y-6">
+          {faqs.map((item, i) => (
+            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
+              <h3 className="font-bold text-lg mb-2">{item.question}</h3>
+              <p className="text-muted-foreground leading-relaxed">{item.answer}</p>
+            </li>
+          ))}
+        </ul>
       </section>
     </div>
   );
@@ -124,10 +136,10 @@ export default function CustomerAcquisitionCost() {
         { id: "faq", label: "FAQ" },
       ]}
       relatedCalculators={[
-        { category: "marketing", subcategory: "marketing", slug: "customer-lifetime-value", name: "Customer Lifetime Value" },
-        { category: "marketing", subcategory: "marketing", slug: "marketing-roi", name: "Marketing ROI" },
-        { category: "marketing", subcategory: "marketing", slug: "conversion-rate", name: "Conversion Rate" },
-        { category: "marketing", subcategory: "marketing", slug: "churn-rate", name: "Churn Rate" },
+        { title: "Customer Lifetime Value", url: "/marketing/customer-lifetime-value", icon: "♻️" },
+        { title: "Marketing ROI Calculator", url: "/marketing/marketing-roi", icon: "📈" },
+        { title: "Conversion Rate Calculator", url: "/marketing/conversion-rate", icon: "🎯" },
+        { title: "Churn Rate Calculator", url: "/marketing/churn-rate", icon: "📉" },
       ]}
     >
       <section id="calculator" className="scroll-mt-24">
