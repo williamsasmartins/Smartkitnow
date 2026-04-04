@@ -1,4 +1,4 @@
-GENERIC FAQ TEMPLATE DETECTED — 56 files
+GENERIC FAQ TEMPLATE DETECTED — 53 files
 These files share identical boilerplate FAQ questions.
 Google may treat these as duplicate content.
 ======================================================================
@@ -36,7 +36,6 @@ Google may treat these as duplicate content.
 5 markers  src/components/calculators/Financial/YieldFarmingApyCalculator.tsx
 4 markers  src/components/calculators/Financial/BondYieldCalculator.tsx
 4 markers  src/components/calculators/Financial/CapitalGainsTaxEstimatorCalculator.tsx
-4 markers  src/components/calculators/Financial/CarLoanAffordabilityCalculator.tsx
 4 markers  src/components/calculators/Financial/CollegeSavingsCalculator.tsx
 4 markers  src/components/calculators/Financial/CostBasisFifoLifoCalculator.tsx
 4 markers  src/components/calculators/Financial/CryptoTaxLiabilityCalculator.tsx
@@ -49,12 +48,10 @@ Google may treat these as duplicate content.
 4 markers  src/components/calculators/Financial/GpuAsicMiningRoiCalculator.tsx
 4 markers  src/components/calculators/Financial/HourlyToAnnualSalaryCalculator.tsx
 4 markers  src/components/calculators/Financial/InflationAdjustedValueCalculator.tsx
-4 markers  src/components/calculators/Financial/LoanComparisonCalculator.tsx
 4 markers  src/components/calculators/Financial/MiningProfitabilityCalculator.tsx
 4 markers  src/components/calculators/Financial/PoolFeeImpactCalculator.tsx
 4 markers  src/components/calculators/Financial/RuleOf72Calculator.tsx
 4 markers  src/components/calculators/Financial/SalesTaxCalculator.tsx
 4 markers  src/components/calculators/Financial/SocialSecurityBenefitEstimatorCalculator.tsx
 4 markers  src/components/calculators/Financial/StakingRewardsEstimatorCalculator.tsx
-4 markers  src/components/calculators/Financial/StudentLoanRepaymentCalculator.tsx
 4 markers  src/components/calculators/Financial/VatGstCalculator.tsx

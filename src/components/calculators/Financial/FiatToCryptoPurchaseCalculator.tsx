@@ -20,36 +20,24 @@ export default function FiatToCryptoPurchaseCalculator() {
 
   const faqs = [
     {
-      question: "What is fiat to crypto purchase calculator and why is it important?",
-      answer: "The fiat to crypto purchase calculator is a tool designed to help users determine how much cryptocurrency they can buy with a specific amount of fiat currency. It is important because it provides a clear and accurate estimate, taking into account current market prices and transaction fees. This helps users plan their investments and make informed decisions. By using this calculator, you can avoid overpaying for crypto and ensure that your investment aligns with your financial goals. For more tools, visit our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+      question: "What fees are included in a fiat-to-crypto purchase and how do I minimize them?",
+      answer: "A fiat-to-crypto purchase typically includes: (1) Trading fee: 0.1–1.5% of transaction, (2) Spread: hidden markup between buy and sell price, (3) Deposit fee: varies by payment method (ACH: free; credit card: 3–5%; wire: $10–$25 flat). Total effective cost comparison (2024): Coinbase simple: 2.5–3.5% total. Coinbase Advanced: 0.6% taker + minimal spread. Kraken: 0.26% taker. Binance US: 0.1%. PayPal/CashApp: 1.5–2.5% spread (no stated fee but wide spread). To minimize: use ACH/bank transfer (not credit card), use limit orders on advanced trading interfaces, and compare all-in costs including the bid-ask spread, not just stated fees."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator is highly accurate, provided that the input values are current and precise. Factors such as real-time crypto prices and transaction fees are crucial for accuracy. However, market volatility can affect the final results, so it's advisable to verify the inputs before making any financial decisions. For best results, update the inputs regularly and cross-check with other financial tools if needed."
+      question: "How does my choice of fiat currency affect crypto purchase rates outside the US?",
+      answer: "Buying Bitcoin in USD on US exchanges provides the tightest spreads due to highest liquidity. In other currencies, you pay an implicit FX conversion fee. EUR→BTC on a EUR-denominated exchange: tighter spreads than USD→EUR→BTC via conversion. GBP→BTC: good liquidity on Coinbase UK, Kraken. Emerging market currencies (BRL, NGN, ARS): significantly wider spreads (2–5%) and fewer exchange options -- this is why P2P platforms like Paxful historically served these markets. For non-USD purchases, always calculate the all-in rate by comparing your fiat amount to the USD-equivalent value of crypto received."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you need the following information: the total amount of fiat currency you plan to spend, the current market price of the cryptocurrency you wish to purchase, and any transaction fees that may apply. This information can usually be found on the exchange or platform you plan to use for your purchase. Ensure that the data is up-to-date to get the most accurate results. If you're unsure about any values, consult with your financial advisor or the platform's support team."
+      question: "What is the tax basis of crypto purchased with fiat?",
+      answer: "Your cost basis = total fiat amount paid + all fees. If you buy $1,000 of BTC and pay $10 in trading fees, your cost basis is $1,010. This basis determines your capital gain or loss when you later sell or exchange the crypto. Keep records of: purchase date, amount of fiat paid, fees paid, and quantity of crypto received. The IRS requires these records; exchanges are required to report this data via 1099-DA starting 2025. Missing basis information forces you to either prove basis from transaction history or risk the IRS applying $0 basis (maximizing your taxable gain). Purchase confirmations should be saved permanently."
     },
     {
-      question: "Can I use this calculator for [specific scenario]?",
-      answer: "Yes, this calculator can be used for various scenarios involving fiat to crypto purchases. Whether you're investing a small amount or planning a large-scale purchase, the calculator provides the necessary insights. However, for complex scenarios involving multiple currencies or exchanges, additional calculations may be required. For specific advice tailored to your situation, consider consulting with a financial advisor or using specialized financial software."
+      question: "How quickly does a fiat-to-crypto purchase settle and why does timing matter?",
+      answer: "Settlement times by method: ACH bank transfer: 3–5 business days (but many exchanges credit crypto immediately while holding the ACH settlement). Wire transfer: same day if sent before cutoff (typically 2PM local). Debit card: instant. Credit card: instant (but 3–5% fee and possible cash advance classification). The timing matters because crypto price fluctuates while fiat is in transit. Most exchanges lock in the price at order time (not settlement time), so a delayed ACH still gets the price at the moment of purchase. Verify your exchange's policy -- some use settlement price, which means your actual crypto quantity is determined after the ACH clears."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using outdated crypto prices, neglecting to account for transaction fees, and entering incorrect fiat amounts. These errors can lead to inaccurate calculations and potentially costly investment decisions. Always verify your inputs and ensure they reflect the current market conditions. Double-checking your data and using multiple sources for verification can help avoid these pitfalls."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculation should be done whenever there are significant changes in the crypto market, such as price fluctuations or changes in transaction fees. Regular recalculations ensure that your investment strategy remains aligned with current market conditions. Consider setting a schedule for recalculations, such as weekly or monthly, depending on your investment goals and market activity."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to inform your investment decisions. The calculated crypto amount can help you determine whether to proceed with a purchase or adjust your strategy. If the results align with your financial goals, you can proceed confidently. Otherwise, consider revising your inputs or exploring alternative investment options. For further guidance, explore our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a> for additional financial insights."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include using financial software or consulting with a financial advisor for personalized advice. These methods can provide more comprehensive insights, especially for complex investment scenarios. However, they may come with additional costs or require more time. Consider the pros and cons of each alternative and choose the one that best suits your needs and resources."
+      question: "Is there a limit on how much fiat I can convert to crypto in a single purchase?",
+      answer: "Purchase limits vary by exchange, KYC tier, and payment method. Typical 2024 limits: Coinbase basic: $25,000/day ACH. Coinbase verified: $50,000/day. Kraken: $500,000/day (Pro). Wire transfers often have higher limits. Limits exist due to KYC/AML regulations -- any purchase over $10,000 triggers a Currency Transaction Report (CTR) to FinCEN. Structuring transactions (making multiple purchases under $10,000 specifically to avoid CTR filing) is a federal crime under 31 U.S.C. § 5324, regardless of whether the underlying funds are legal. For large purchases ($100K+), contact your exchange's OTC desk for better rates and institutional-level service."
     }
   ];
 

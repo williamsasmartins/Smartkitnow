@@ -20,36 +20,24 @@ export default function InflationAdjustedValueCalculator() {
 
   const faqs = [
     {
-      question: "What is inflation adjusted value calculator and why is it important?",
-      answer: "The Inflation Adjusted Value Calculator helps you understand the real value of money over time by accounting for inflation. It's crucial for financial planning as it provides insights into future purchasing power. For instance, if you're saving for retirement, knowing how inflation will affect your savings helps you set realistic goals. By using this calculator, you can make informed decisions about investments, savings, and expenditures."
+      question: "How accurate are inflation adjustment calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For inflation adjustment, accuracy depends on using current real vs nominal value data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a real vs nominal value professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The calculator provides a high level of accuracy based on the inputs you provide. However, it's important to note that inflation rates can vary due to economic conditions. For the most accurate results, use current and realistic inflation rates. In cases of significant financial decisions, consulting a financial advisor is recommended. Always ensure your input data is accurate and up-to-date to maximize the calculator's effectiveness."
+      question: "What key factors most affect inflation adjustment results?",
+      answer: "The most impactful variables in inflation adjustment calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you'll need the initial amount of money you wish to evaluate, the expected annual inflation rate, and the number of years you want to project into the future. The initial amount is the current value of your savings or investment. The inflation rate should be based on historical data or expert forecasts. The number of years represents your investment or savings horizon. Having accurate and realistic data ensures the most reliable results."
+      question: "When should I recalculate inflation adjustment?",
+      answer: "Recalculate whenever real vs nominal value conditions change significantly: after major real vs nominal value events, when your inputs change (income, rates, holdings), or when real vs nominal value regulations are updated. For time-sensitive real vs nominal value metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for retirement planning?",
-      answer: "Yes, the Inflation Adjusted Value Calculator is ideal for retirement planning. It helps you understand how much your savings will be worth in the future, considering inflation. This insight is crucial for setting realistic retirement goals and ensuring you have enough funds to maintain your desired lifestyle. However, remember to periodically update your calculations with current inflation rates and adjust your savings strategy as needed."
+      question: "How does inflation adjustment relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Inflation adjustment should be evaluated alongside related measures like purchasing power. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your real vs nominal value situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "A common mistake is using outdated or unrealistic inflation rates, which can lead to inaccurate projections. Another error is not adjusting the number of years to reflect changes in financial goals or life circumstances. It's also crucial to consider all sources of income and expenses when planning for the future. To avoid these mistakes, regularly review and update your inputs, and consider consulting with a financial advisor for personalized advice."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's advisable to recalculate your projections annually or whenever there are significant changes in economic conditions or your personal financial situation. Regular recalculations ensure your financial plans remain aligned with current realities and help you make timely adjustments. Keeping your calculations up-to-date is key to effective financial planning and achieving your long-term goals."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to inform your financial planning and decision-making. If the adjusted value indicates a shortfall in your savings, consider increasing your contributions or adjusting your investment strategy. The insights gained can guide you in setting realistic financial goals and timelines."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include using financial advisors or investment software that incorporates more complex models and variables. These tools might offer additional insights, such as risk assessments and portfolio optimization. However, they may require more detailed data and incur additional costs. Consider these options if you need a more comprehensive analysis or if your financial situation involves complex variables."
+      question: "What are the most common mistakes when calculating inflation adjustment?",
+      answer: "The most frequent errors in inflation adjustment calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world real vs nominal value conditions fluctuate. Double-check your inputs against current real vs nominal value data before relying on results for significant financial decisions."
     }
   ];
 
@@ -432,117 +420,19 @@ export default function InflationAdjustedValueCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is inflation adjusted value calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Inflation Adjusted Value Calculator helps you understand the real value of money over time by accounting for inflation. It's crucial for financial planning as it provides insights into future purchasing power. For instance, if you're saving for retirement, knowing how inflation will affect your savings helps you set realistic goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this calculator, you can make informed decisions about investments, savings, and expenditures. For more detailed financial planning, consider using our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
 
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The calculator provides a high level of accuracy based on the inputs you provide. However, it's important to note that inflation rates can vary due to economic conditions. For the most accurate results, use current and realistic inflation rates. In cases of significant financial decisions, consulting a financial advisor is recommended.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Always ensure your input data is accurate and up-to-date to maximize the calculator's effectiveness.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need the initial amount of money you wish to evaluate, the expected annual inflation rate, and the number of years you want to project into the future. The initial amount is the current value of your savings or investment. The inflation rate should be based on historical data or expert forecasts.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              The number of years represents your investment or savings horizon. Having accurate and realistic data ensures the most reliable results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for retirement planning?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the Inflation Adjusted Value Calculator is ideal for retirement planning. It helps you understand how much your savings will be worth in the future, considering inflation. This insight is crucial for setting realistic retirement goals and ensuring you have enough funds to maintain your desired lifestyle.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              However, remember to periodically update your calculations with current inflation rates and adjust your savings strategy as needed.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A common mistake is using outdated or unrealistic inflation rates, which can lead to inaccurate projections. Another error is not adjusting the number of years to reflect changes in financial goals or life circumstances. It's also crucial to consider all sources of income and expenses when planning for the future.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, regularly review and update your inputs, and consider consulting with a financial advisor for personalized advice.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your projections annually or whenever there are significant changes in economic conditions or your personal financial situation. Regular recalculations ensure your financial plans remain aligned with current realities and help you make timely adjustments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Keeping your calculations up-to-date is key to effective financial planning and achieving your long-term goals.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to inform your financial planning and decision-making. If the adjusted value indicates a shortfall in your savings, consider increasing your contributions or adjusting your investment strategy. The insights gained can guide you in setting realistic financial goals and timelines.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more comprehensive planning, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a> to evaluate potential savings from refinancing options.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using financial advisors or investment software that incorporates more complex models and variables. These tools might offer additional insights, such as risk assessments and portfolio optimization. However, they may require more detailed data and incur additional costs.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider these options if you need a more comprehensive analysis or if your financial situation involves complex variables.
-            </p>
-          </div>
         </div>
       </section>
 

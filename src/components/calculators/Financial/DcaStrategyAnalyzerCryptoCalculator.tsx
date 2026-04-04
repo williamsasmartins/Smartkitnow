@@ -30,36 +30,24 @@ export default function DcaStrategyAnalyzerCryptoCalculator() {
 
   const faqs = [
     {
-      question: "What is DCA Strategy Analyzer (Crypto) and why is it important?",
-      answer: "The DCA Strategy Analyzer (Crypto) is a tool designed to help investors evaluate the effectiveness of their Dollar Cost Averaging strategy in the cryptocurrency market. It provides insights into historical performance and potential risk reduction of recurring buys, allowing investors to make informed decisions about their investment plans. By using this analyzer, investors can optimize their DCA strategy, ensuring they are maximizing their investment potential while minimizing risks. For more information, explore our <a href=\"/financial/refinance-savings\">Refinance Savings Calculator</a>."
+      question: "How does DCA performance compare to lump-sum investing in Bitcoin historically?",
+      answer: "Historical BTC data shows DCA underperforms lump-sum in strongly trending bull markets, but outperforms in bear markets and high-volatility periods. In 2020–2021 (strong bull): a $12,000 lump-sum in January 2020 would have grown to ~$65,000 by December 2021. Monthly $1,000 DCA over the same period: ~$52,000 final value. In 2022 bear market: DCA investors who continued monthly purchases during the crash built lower average cost basis and recovered faster. The primary advantage of DCA is not return maximization -- it is behavioral: it removes the need to time entries and prevents large-loss events from a poorly timed lump-sum."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The DCA Strategy Analyzer is designed to provide accurate estimates based on the inputs provided. However, the accuracy of the results depends on the quality of the input data and the assumptions made about market conditions. It's important to note that past performance does not guarantee future results, and users should consider consulting a financial advisor for personalized advice. For best results, ensure your inputs are as accurate and realistic as possible. Regularly update your inputs to reflect any changes in your investment plan or market conditions."
+      question: "What DCA interval minimizes cost basis in a volatile crypto market?",
+      answer: "Shorter intervals (daily) provide marginally better volatility smoothing but face fee drag. Studies on BTC DCA show that weekly intervals achieve 95%+ of the cost-averaging benefit of daily intervals, while incurring 7× fewer trades (and fees). For practical DCA strategy: use weekly purchases if your exchange has low/zero fees (Fidelity, Robinhood, or CEXes with maker rebates). Use monthly if your platform charges per-trade fees. The optimal interval depends on your exchange's fee structure and your asset's volatility profile -- more volatile assets benefit slightly more from higher-frequency DCA."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use the DCA Strategy Analyzer, you need to provide the following information: the amount you plan to invest regularly, the interval at which you will invest, and the total duration of your investment plan. This information helps the calculator estimate the potential outcomes of your DCA strategy. Ensure that the data you provide is accurate and up-to-date. You can find this information in your investment plan or financial records. For more guidance, consider using our <a href=\"/financial/heloc-payment-estimator\">HELOC Payment Estimator</a>."
+      question: "Should I pause DCA during crypto bear markets?",
+      answer: "The historical data strongly supports continuing DCA during bear markets -- this is precisely when DCA builds the lowest-cost lots. Dollar-cost averaging into BTC during the 2022 bear (peak $69K to bottom $15.5K) resulted in some investors accumulating BTC at sub-$20,000 average cost, which was profitable by mid-2023. The psychological challenge: DCA during bear markets feels painful. Pausing is the most common DCA mistake and turns a systematic strategy into market-timing. The only rational reason to pause: you genuinely cannot afford the investment. Set the DCA amount at a level you can sustain for at least 3 years regardless of price action."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, the DCA Strategy Analyzer can be used for various scenarios, including different investment amounts, intervals, and durations. However, it's important to note that the calculator is designed for general use and may not account for specific market conditions or individual circumstances. For personalized advice, consider consulting a financial advisor who can provide guidance based on your unique financial situation and goals."
+      question: "How do I track the performance of a DCA strategy over time?",
+      answer: "Key metrics to track: (1) Average cost basis = Total invested / Total units held. (2) Current value = Units held × Current price. (3) Total gain/loss = Current value − Total invested. (4) CAGR = (Current value / Total invested)^(1/years) − 1 -- annualizes your return for comparison. (5) Payback period: when cumulative gains equal total fees paid. Most crypto exchanges provide a 'cost basis' report. For multi-exchange DCA, use portfolio tracking tools (Delta, CoinStats) that aggregate positions and calculate overall basis. Recalculate average basis after every purchase -- the number changes with every DCA execution."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include providing inaccurate input data, failing to update inputs regularly, and not considering market trends. These errors can lead to misleading results and suboptimal investment decisions. To avoid these mistakes, ensure your inputs are accurate and realistic, and regularly review your investment plan to account for any changes in market conditions or personal circumstances."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's recommended to recalculate your DCA strategy regularly, especially when there are significant changes in market conditions or your personal financial situation. Regular recalculations help ensure your strategy remains aligned with your investment goals and risk tolerance. Consider setting a schedule for recalculations, such as quarterly or annually, to keep your investment plan up-to-date and effective."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results from the DCA Strategy Analyzer to evaluate the effectiveness of your current investment plan. Consider adjusting your investment amount, interval, or duration based on the insights gained from the analysis. If necessary, consult a financial advisor for personalized advice. For further exploration, check out our <a href=\"/financial/loan-payment\">Loan Payment Calculator</a> to understand how regular payments can affect your financial planning."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives to the DCA strategy include lump-sum investing and value averaging. Each method has its pros and cons, and the best choice depends on your financial goals, risk tolerance, and market conditions. Consider exploring different strategies and consulting a financial advisor to determine the most suitable approach for your investment plan."
+      question: "What is value averaging (VA) and how does it differ from DCA?",
+      answer: "Value averaging (VA) adjusts the investment amount each period to maintain a target portfolio growth rate. Instead of investing a fixed $200/month, you invest whatever is needed to reach the target value. If your portfolio grew more than expected (crypto price up), you invest less -- or even sell. If it grew less (price down), you invest more. VA generates better average entry prices than DCA in backtests but requires active calculation and more capital reserves for down periods. DCA is simpler and fully automatable; VA is more efficient but demands discipline to invest large amounts precisely when markets are down and reduces positions when they're up -- contrary to human psychology."
     }
   ];
 

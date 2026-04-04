@@ -20,36 +20,24 @@ export default function HourlyToAnnualSalaryCalculator() {
 
   const faqs = [
     {
-      question: "What is hourly to annual salary calculator and why is it important?",
-      answer: "The Hourly to Annual Salary Calculator is a tool designed to convert your hourly wage into an annual salary equivalent. It's important because it helps you understand your total earnings potential over a year, which is crucial for budgeting, loan applications, and financial planning. By knowing your annual salary, you can better compare job offers and negotiate wages."
+      question: "How accurate are hourly wage conversion calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For hourly wage conversion, accuracy depends on using current overtime data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a overtime professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator is highly accurate, provided you input correct data. Factors like variable work hours or unpaid leave can affect accuracy. It's designed to give a reliable estimate, but for precise financial planning, consider consulting a financial advisor, especially if your work schedule is irregular. Regularly update your inputs to maintain accuracy, especially when your work conditions change."
+      question: "What key factors most affect hourly wage conversion results?",
+      answer: "The most impactful variables in hourly wage conversion calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "You need your hourly wage, the average number of hours you work per week, and the number of weeks you work per year. This information is typically found on your pay stub or employment contract. Ensure your inputs reflect your usual work schedule for the most accurate results. If your hours or weeks vary, use an average to get a reliable estimate."
+      question: "When should I recalculate hourly wage conversion?",
+      answer: "Recalculate whenever overtime conditions change significantly: after major overtime events, when your inputs change (income, rates, holdings), or when overtime regulations are updated. For time-sensitive overtime metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for part-time jobs?",
-      answer: "Yes, this calculator is suitable for part-time jobs. Simply enter your part-time hourly rate, average weekly hours, and weeks worked per year. The calculator will provide an accurate annual salary estimate. However, consider any additional income sources or irregular hours that might affect your total earnings. For part-time workers, it's crucial to account for any fluctuations in hours or additional jobs when planning your finances."
+      question: "How does hourly wage conversion relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Hourly wage conversion should be evaluated alongside related measures like benefits value. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your overtime situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include incorrect hourly rate input, not accounting for unpaid leave, and misestimating weekly hours. These errors can lead to inaccurate annual salary estimates. Always double-check your inputs and consider any variables that might affect your work schedule. To avoid these mistakes, regularly update your inputs and consider consulting a financial advisor for complex scenarios."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculate whenever there's a change in your hourly rate, work hours, or weeks worked per year. Regular recalculations ensure your financial planning remains accurate. It's advisable to update your calculations at least annually or whenever you experience significant changes in your employment status. Keeping your calculations current helps you make informed decisions about spending, saving, and investing."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to plan your budget, set savings goals, and evaluate job offers. Understanding your annual salary helps you allocate funds for expenses, investments, and savings. If your results are lower than expected, consider strategies to increase your income, such as seeking a raise or additional work."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include using monthly or bi-weekly salary calculations, which might be more relevant for salaried employees. These methods consider different pay periods and can provide insights into cash flow management. However, for hourly workers, the hourly to annual conversion remains the most straightforward and accurate method. Choose the method that best suits your employment type and financial goals. For more complex scenarios, consulting with a financial advisor is recommended."
+      question: "What are the most common mistakes when calculating hourly wage conversion?",
+      answer: "The most frequent errors in hourly wage conversion calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world overtime conditions fluctuate. Double-check your inputs against current overtime data before relying on results for significant financial decisions."
     }
   ];
 
@@ -427,117 +415,19 @@ export default function HourlyToAnnualSalaryCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is hourly to annual salary converter and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              An hourly to annual salary converter calculates your yearly earnings based on your hourly wage, weekly hours, and annual work weeks. It's crucial for understanding your total income, aiding in budgeting, financial planning, and salary negotiations. Knowing your annual salary helps you make informed decisions about spending, saving, and investing.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more detailed financial planning, consider using our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
 
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is highly accurate, provided you input correct data. Factors like variable work hours or unpaid leave can affect accuracy. It's designed to give a reliable estimate, but for precise financial planning, consider consulting a financial advisor, especially if your work schedule is irregular. Regularly update your inputs to maintain accuracy, especially when your work conditions change.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Regularly update your inputs to maintain accuracy, especially when your work conditions change.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              You need your hourly wage, the average number of hours you work per week, and the number of weeks you work per year. This information is typically found on your pay stub or employment contract. Ensure your inputs reflect your usual work schedule for the most accurate results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              If your hours or weeks vary, use an average to get a reliable estimate.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for part-time jobs?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator is suitable for part-time jobs. Simply enter your part-time hourly rate, average weekly hours, and weeks worked per year. The calculator will provide an accurate annual salary estimate. However, consider any additional income sources or irregular hours that might affect your total earnings.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For part-time workers, it's crucial to account for any fluctuations in hours or additional jobs when planning your finances.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include incorrect hourly rate input, not accounting for unpaid leave, and misestimating weekly hours. These errors can lead to inaccurate annual salary estimates. Always double-check your inputs and consider any variables that might affect your work schedule.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, regularly update your inputs and consider consulting a financial advisor for complex scenarios.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculate whenever there's a change in your hourly rate, work hours, or weeks worked per year. Regular recalculations ensure your financial planning remains accurate. It's advisable to update your calculations at least annually or whenever you experience significant changes in your employment status.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Keeping your calculations current helps you make informed decisions about spending, saving, and investing.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to plan your budget, set savings goals, and evaluate job offers. Understanding your annual salary helps you allocate funds for expenses, investments, and savings. If your results are lower than expected, consider strategies to increase your income, such as seeking a raise or additional work.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further financial planning, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using monthly or bi-weekly salary calculations, which might be more relevant for salaried employees. These methods consider different pay periods and can provide insights into cash flow management. However, for hourly workers, the hourly to annual conversion remains the most straightforward and accurate method.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Choose the method that best suits your employment type and financial goals. For more complex scenarios, consulting with a financial advisor is recommended.
-            </p>
-          </div>
         </div>
       </section>
 

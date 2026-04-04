@@ -88,36 +88,28 @@ export default function CapitalGainsTaxEstimatorCalculator() {
 
   const faqs = [
     {
-      question: "What is capital gains tax estimator and why is it important?",
-      answer: "The capital gains tax estimator is a tool designed to calculate the tax liability arising from the sale of assets, such as stocks or cryptocurrencies. It distinguishes between short-term and long-term capital gains, applying the appropriate tax rates based on the holding period. This estimator is important because it helps investors understand their potential tax obligations, allowing for better financial planning and decision-making. By using this tool, you can avoid unexpected tax bills and optimize your investment strategy. For more financial tools, check out our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+      question: "What is the difference between short-term and long-term capital gains?",
+      answer: "Short-term capital gains apply to assets held 365 days or fewer and are taxed at your ordinary income rate (10–37% in 2024). Long-term capital gains apply to assets held longer than one year and are taxed at preferential rates: 0% (income ≤ $47,025), 15% ($47,026–$518,900), or 20% (above $518,900) for single filers. Holding an asset just one extra day to cross the one-year threshold can save thousands. For example, a $20,000 gain in the 32% income bracket drops from $6,400 (short-term) to $3,000 (15% long-term)."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator is designed to provide accurate estimates based on the inputs provided. However, its accuracy depends on the accuracy of the input data. Factors such as changes in tax laws or incorrect input values can affect the results. It's always advisable to consult a tax professional for personalized advice, especially for complex situations. Use this calculator as a guide, and ensure your inputs are precise to get the best results."
+      question: "Does the wash-sale rule apply to capital gains calculations?",
+      answer: "The wash-sale rule disallows claiming a loss if you repurchase the same or substantially identical security within 30 days before or after the sale. It does not affect gain calculations -- only losses. If you sell a stock at a loss to offset capital gains (tax-loss harvesting), you must wait 31 days before buying it back. Note: as of 2024, the IRS has not formally applied wash-sale rules to cryptocurrency, though proposed legislation would change this."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you need the purchase price of the asset, the sale price, and the holding period in days. The purchase price is the amount you paid to acquire the asset, while the sale price is the amount you received from selling it. The holding period is the duration for which you held the asset before selling it. Ensure you have accurate records of these values to get precise results. This information is typically available in your transaction records or brokerage statements."
+      question: "How does state capital gains tax work alongside federal tax?",
+      answer: "Most states tax capital gains as ordinary income, with no preferential long-term rate. State rates range from 0% (FL, TX, WA, NV, no state income tax) to 13.3% (California, which has the highest rate and taxes all gains as income). Combined federal + state rates in high-tax states can reach 33% for long-term gains and 50%+ for short-term. California, for instance, applies 13.3% on top of up to 20% federal, plus the 3.8% Net Investment Income Tax (NIIT) for high earners."
     },
     {
-      question: "Can I use this calculator for cryptocurrency transactions?",
-      answer: "Yes, this calculator can be used for cryptocurrency transactions. Cryptocurrencies are treated as property for tax purposes, and capital gains tax applies to their sale. Ensure you have accurate records of your purchase and sale prices, as well as the holding period, to use this calculator effectively. Keep in mind that tax regulations for cryptocurrencies can vary by jurisdiction, so it's important to stay informed about local laws."
+      question: "What is the Net Investment Income Tax (NIIT) and who pays it?",
+      answer: "The NIIT is an additional 3.8% tax on net investment income (including capital gains) for taxpayers whose modified adjusted gross income (MAGI) exceeds $200,000 (single) or $250,000 (married filing jointly). This means high earners pay up to 23.8% on long-term gains (20% + 3.8%) rather than 20%. The NIIT applies to both realized and some unrealized gains in specific circumstances. Use this calculator's results alongside your MAGI to determine whether the NIIT applies."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using incorrect purchase or sale prices, miscalculating the holding period, and not accounting for changes in tax laws. These errors can lead to inaccurate tax estimates and potential compliance issues. To avoid these mistakes, double-check your records and stay updated on tax regulations. Consider consulting a tax professional for complex situations."
+      question: "Can I offset capital gains with capital losses?",
+      answer: "Yes. Capital losses directly offset capital gains dollar-for-dollar. If losses exceed gains, up to $3,000 of excess loss can offset ordinary income per year; remaining losses carry forward indefinitely. Strategy: harvest losses in December to offset gains realized earlier in the year. Example: $15,000 gain + $12,000 loss = $3,000 net gain. Without the loss, you might owe $450 (15% rate); with it, only $450 on $3,000. Carry-forward losses reduce future tax liability even after you stop investing."
     },
     {
-      question: "How often should I recalculate?",
-      answer: "Recalculate your capital gains tax whenever you sell an asset or when there are significant changes in tax laws. Regular recalculations ensure that you have up-to-date estimates and can plan your finances accordingly. It's also a good practice to review your tax situation annually, especially if you have a diverse investment portfolio."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to plan your tax payments and adjust your investment strategy. Understanding your tax liability helps you set aside the necessary funds and avoid surprises at tax time. If your results indicate a high tax liability, consider strategies to minimize it, such as holding assets longer or offsetting gains with losses. For more strategies on managing your finances, explore our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives to this calculation method include using professional tax software or consulting with a tax advisor. These options can provide more personalized advice and handle complex scenarios that a basic calculator might not cover. Consider these alternatives if you have a large or complex portfolio, or if you're unsure about specific tax rules."
+      question: "How are cryptocurrency capital gains taxed in 2024?",
+      answer: "The IRS treats cryptocurrency as property (Notice 2014-21), so the same short-term/long-term rules apply. Every disposal -- sell, swap, or use crypto to purchase goods -- is a taxable event. The cost basis method matters: FIFO, LIFO, and specific identification all produce different gains. The IRS now requires Form 1099-DA from brokers starting in 2025. Unreported crypto gains are the #1 crypto tax mistake; the IRS receives transaction data from major exchanges. Use this calculator to estimate liability, then report on Schedule D and Form 8949."
     }
   ];
 

@@ -30,36 +30,24 @@ export default function CryptoToCryptoExchangeRateCalculator() {
 
   const faqs = [
     {
-      question: "What is crypto to crypto exchange rate calculator and why is it important?",
-      answer: "A crypto to crypto exchange rate calculator is a tool that helps users determine the exchange rate between two different cryptocurrencies. This is important for traders and investors who need to know the value of one cryptocurrency in terms of another to make informed trading decisions. By providing accurate and up-to-date exchange rates, this calculator helps users optimize their trades and avoid financial losses. For more on financial tools, check out our <a href=\"/financial/interest-only-loan\">Interest-Only Loan Calculator</a>."
+      question: "Is converting crypto-to-crypto a taxable event?",
+      answer: "Yes -- the IRS explicitly confirmed in Rev. Rul. 2019-24 that crypto-to-crypto trades are taxable. When you swap BTC for ETH, it is treated as: (1) selling BTC at its current FMV (triggering capital gain/loss), (2) buying ETH at that same FMV (establishing your new cost basis). Example: sold 0.1 BTC (cost basis $3,000) when BTC = $60,000 ($6,000 value). You recognize $3,000 capital gain and receive ETH with $6,000 cost basis. This applies to all exchanges -- DEX swaps on Uniswap, CEX trades on Binance, and bridging between chains (which the IRS has not explicitly ruled on, but most tax professionals treat as taxable)."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The calculator is designed to provide highly accurate results based on the latest exchange rates. However, the accuracy can be affected by market volatility, transaction fees, and the source of the exchange rate data. It's always a good idea to cross-check with multiple sources. For critical transactions, consider consulting with a financial advisor or using professional trading platforms that offer real-time data."
+      question: "How does the exchange rate between two cryptocurrencies differ from fiat exchange rates?",
+      answer: "Crypto-to-crypto rates are derived market rates with no central authority setting them. On DEXes (Uniswap, Curve), rates are set by automated market makers (AMMs) using liquidity pool ratios -- a large trade moves the rate. On CEXes (Binance, Coinbase), rates are determined by the order book. The same BTC/ETH rate may differ by 0.1–0.5% across exchanges at any moment (arbitrage opportunity). Unlike fiat FX markets which trade $7.5 trillion/day with tight spreads, crypto cross-rates have higher slippage on large trades and wider spreads for illiquid pairs. Always use a fresh rate from your execution venue, not a general price aggregator, for tax reporting."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use the calculator, you will need the amount of cryptocurrency you wish to exchange, the current exchange rate between the two cryptocurrencies, and any transaction fees that may apply. This information is typically available on the exchange platform you are using. Ensure that the exchange rate is up-to-date and that you account for all potential fees to get the most accurate results."
+      question: "What is slippage in crypto-to-crypto exchanges and how does it affect my rate?",
+      answer: "Slippage is the difference between your expected rate and your executed rate, caused by insufficient liquidity or price movement between order submission and execution. On DEXes: a $10,000 BTC→ETH swap on a liquid pair might have 0.05% slippage; the same swap on a low-liquidity pair could have 5%+ slippage. On CEXes: market orders suffer slippage based on order book depth; limit orders eliminate slippage but may not execute. Price impact (a specific type of slippage on AMMs) increases proportionally with trade size relative to pool liquidity. For large swaps (>$50,000), always check the price impact percentage before confirming a DEX transaction."
     },
     {
-      question: "Can I use this calculator for [specific scenario]?",
-      answer: "Yes, this calculator can be used for a variety of scenarios, including trading between major cryptocurrencies like Bitcoin and Ethereum, as well as less common altcoins. However, ensure that you have accurate exchange rate data and consider any specific conditions that might apply to your scenario. If you're dealing with highly volatile or illiquid cryptocurrencies, additional caution is advised."
+      question: "How do gas fees affect the true cost of crypto-to-crypto exchanges?",
+      answer: "Gas fees are paid in the native token of the blockchain (ETH on Ethereum, BNB on BSC, SOL on Solana) and add directly to your cost basis for the received token. On Ethereum: during peak congestion, a single swap can cost $20–$200 in gas. Example: swap $500 worth of USDC to ETH, pay $50 gas. True cost basis of ETH received = $550. DEX aggregators (1inch, Paraswap) find the lowest slippage route but cannot reduce base gas fees. For small swaps below $1,000, gas fees can represent 5–20% of transaction value on Ethereum mainnet -- use L2 networks (Arbitrum, Base) or CEXes for small trades where gas optimization matters."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using outdated exchange rates, not accounting for transaction fees, and underestimating the impact of market volatility. These errors can lead to inaccurate calculations and potential financial losses. To avoid these mistakes, always verify your data and consider using multiple sources for exchange rates and fees."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculation is recommended whenever there is a significant change in the exchange rate or if you are planning a new transaction. In volatile markets, frequent recalculations can help you stay on top of price movements. Set alerts for major market changes and review your calculations regularly to ensure accuracy."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to make informed trading decisions. The net exchange value can help you determine if a trade is profitable after accounting for fees. If the results are not favorable, consider adjusting your strategy or waiting for better market conditions. For more financial planning tools, visit our <a href=\"/financial/refinance-savings\">Refinance Savings Calculator</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include using professional trading platforms that offer integrated calculators and real-time data. These platforms often provide additional features such as charting tools and market analysis. While these alternatives can be more expensive, they offer a comprehensive solution for active traders."
+      question: "What is the best way to get the most accurate exchange rate for a crypto swap?",
+      answer: "For execution purposes: use a DEX aggregator (1inch, Jupiter on Solana) which queries multiple liquidity sources simultaneously -- typically beats single-DEX rates by 0.1–0.5% on large trades. For reference/tax reporting: use the exact executed price from your trade confirmation, not a spot price from CoinGecko at the time -- the IRS requires the actual transaction rate, not an approximated FMV. For fiat conversion (to calculate USD value): use the exchange's USD price at the exact timestamp of the trade. Crypto tax software like Koinly pulls historical price data at the exact transaction timestamp, which is essential for compliance. Approximating rates by date (not time) can create material errors on high-volatility days."
     }
   ];
 

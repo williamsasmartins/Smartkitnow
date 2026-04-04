@@ -76,36 +76,24 @@ export default function CryptoRoiCalculator() {
 
   const faqs = [
     {
-      question: "What is ROI (Return on Investment) calculator and why is it important?",
-      answer: "The ROI Calculator is a financial tool that measures the profitability of an investment relative to its cost. It is crucial for investors as it provides a clear percentage that indicates how well an investment has performed. By calculating ROI, investors can compare the efficiency of different investments and make informed decisions about where to allocate their resources. Understanding ROI helps in setting realistic financial goals and assessing the success of investment strategies."
+      question: "What is the difference between ROI, CAGR, and IRR for crypto investments?",
+      answer: "ROI = (Gain / Cost) × 100 -- simple total return, ignores time. CAGR (Compound Annual Growth Rate) = (Final Value / Initial Value)^(1/years) − 1 -- annualizes ROI for fair time-period comparison. IRR (Internal Rate of Return) accounts for multiple cash flows at different times -- useful for DCA strategies where you invest at different prices. Example: $1,000 → $4,000 in 3 years. ROI = 300%. CAGR = 58.7% per year. Use CAGR to compare across investments. Use IRR for DCA. Simple ROI overvalues longer-held investments when comparing to alternatives."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The accuracy of the ROI Calculator depends on the precision of the input data. It provides a reliable estimate based on the values entered, but external factors such as market volatility and unexpected costs can affect the actual ROI. It is advisable to use the calculator as a guide and consult financial professionals for comprehensive analysis. For best results, ensure that all inputs are accurate and up-to-date. Regularly revisiting and updating your calculations can help maintain accuracy over time."
+      question: "How do I calculate ROI when I've made multiple crypto purchases at different prices?",
+      answer: "Calculate weighted average cost basis, then compare to current value. Example: bought 0.1 BTC at $30,000 ($3,000) + 0.05 BTC at $50,000 ($2,500) = 0.15 BTC at average $36,667. If BTC is now $70,000: value = $10,500. Total invested = $5,500. ROI = ($10,500 − $5,500) / $5,500 × 100 = 90.9%. For tax reporting, weighted average is acceptable for stocks but not crypto -- the IRS requires lot-level tracking. For management/decision-making, weighted average cost basis gives the clearest picture of overall position performance."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use the ROI Calculator, you need the initial investment amount, the final value of the investment, and the time period over which the investment was held. This information can typically be found in your investment account statements or transaction records. Ensure that the data reflects any additional contributions or withdrawals made during the investment period. Gathering accurate data is crucial for precise calculations. Double-check your figures and consider any fees or taxes that might affect the final value."
+      question: "Should I include transaction fees in crypto ROI calculations?",
+      answer: "Yes -- always include fees in the cost basis for accurate ROI. If you paid $5,000 for ETH plus $50 in exchange fees, your true cost basis is $5,050. Excluding fees overstates ROI, especially for active traders. On a position with 10% gain ($500 on $5,000), ignoring $100 total fees (entry + exit) inflates ROI from 8% true return to 10% nominal. For high-frequency traders, fee drag can consume 2–5% of capital annually. Include: exchange trading fees, gas fees for on-chain transactions, withdrawal fees, and any conversion costs when moving between exchanges."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, the ROI Calculator can be used for a variety of scenarios, including evaluating the performance of individual stocks, mutual funds, real estate, and cryptocurrencies. However, it is important to consider the unique characteristics of each asset class, such as volatility and liquidity, which can impact the ROI. For complex investment scenarios, it may be beneficial to consult with a financial advisor to ensure a comprehensive analysis. The calculator is a useful starting point for assessing investment performance."
+      question: "How do I calculate the break-even price needed to recover my investment?",
+      answer: "Break-even price = Total cost (including fees) / Units held. Example: bought 2 ETH at $1,600 = $3,200, paid $16 in fees = $3,216 total cost. Break-even per ETH = $3,216 / 2 = $1,608. To calculate break-even including sell-side fees: Break-even = Total cost / (Units × (1 − sell fee rate)). With 0.1% sell fee: $3,216 / (2 × 0.999) = $1,609.61. This matters most for low-margin trades. For a tax-included break-even (accounting for capital gains), the math is more complex and depends on your marginal rate and holding period."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using inaccurate or outdated data, neglecting to account for fees and taxes, and misunderstanding the impact of market volatility. These errors can lead to misleading ROI calculations and potentially poor investment decisions. To avoid these pitfalls, ensure that your data is current and comprehensive. Consider all relevant costs and market conditions when interpreting your results. Regularly updating your calculations can help maintain accuracy."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It is advisable to recalculate your ROI whenever there are significant changes in your investment, such as additional contributions, withdrawals, or changes in market conditions. Regular recalculations can help you stay informed about your investment performance and make timely adjustments to your strategy. Establishing a regular schedule for reviewing your investments, such as quarterly or annually, can also be beneficial. This practice ensures that you remain proactive in managing your portfolio."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Once you have your ROI results, use them to evaluate the effectiveness of your investment strategy. If your ROI is below your expectations, consider adjusting your asset allocation or exploring new investment opportunities. Conversely, a high ROI may indicate that your strategy is working well. For further guidance on interpreting your results, consider consulting a financial advisor. They can provide personalized advice based on your financial goals and risk tolerance. For more tools to assist in financial planning, visit our Refinance Savings Calculator."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "While the ROI formula is a widely used metric, there are alternative methods for evaluating investment performance. These include metrics such as the Internal Rate of Return (IRR), Net Present Value (NPV), and the Sharpe Ratio. Each method offers a different perspective on investment performance and may be more suitable for specific scenarios. Consider using these alternatives in conjunction with ROI to gain a comprehensive understanding of your investments. Each metric provides unique insights that can enhance your decision-making process."
+      question: "How do taxes affect my real crypto ROI?",
+      answer: "After-tax ROI = Pre-tax gain × (1 − effective tax rate) / Investment. For a $10,000 gain on $5,000 invested (200% pre-tax ROI) held under one year (short-term): at 32% marginal rate, after-tax gain = $6,800, after-tax ROI = 136%. For long-term (held 1+ year) at 15% rate: after-tax gain = $8,500, after-tax ROI = 170%. State taxes add 0–13.3%. The difference between short-term and long-term treatment on a large gain can easily exceed $5,000 in taxes. On investments above $518,900 income, the additional 3.8% NIIT brings long-term rate to 23.8% federal."
     }
   ];
 

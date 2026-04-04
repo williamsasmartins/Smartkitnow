@@ -20,36 +20,24 @@ export default function SipMonthlyInvestmentPlannerCalculator() {
 
   const faqs = [
     {
-      question: "What is SIP/Monthly Investment Planner and why is it important?",
-      answer: "The SIP/Monthly Investment Planner is a tool that helps investors calculate the future value of their monthly investments in mutual funds or stocks. It is important because it provides insights into how investments can grow over time, allowing individuals to plan their financial goals effectively. By understanding the potential returns, investors can make informed decisions and optimize their investment strategies. This planner is particularly useful for long-term financial planning, helping users set realistic expectations and adjust their investments as needed. For more tools, check out our <a href=\"/financial/interest-only-loan\" class=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+      question: "What is a SIP and how does it work in the Indian market context?",
+      answer: "A Systematic Investment Plan (SIP) allows investing a fixed amount in mutual funds at regular intervals (typically monthly). In India, SIPs are the dominant retail investment vehicle: ₹19,000+ crore invested monthly via SIP as of 2024 (AMFI data). The NAV-based purchase means each SIP installment buys more units when markets fall and fewer when they rise -- the rupee-cost averaging effect. Minimum SIPs start at ₹500/month. SIP with step-up (increasing annual contribution by 10–15% matching salary growth) dramatically accelerates wealth accumulation. A ₹10,000/month SIP for 20 years at 12% CAGR = ₹99.9 lakh ($120K). A step-up SIP starting at ₹10,000 with 10% annual increase = ₹1.6 crore over the same period."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The calculator is designed to provide accurate estimates based on the inputs provided. However, actual investment returns can vary due to market fluctuations, changes in interest rates, and other economic factors. It's important to use this tool as a guide rather than a guaranteed prediction of future returns. For precise financial planning, consider consulting with a financial advisor who can provide personalized advice based on your unique circumstances."
+      question: "What CAGR should I use for Indian equity mutual fund SIP projections?",
+      answer: "Historical CAGR for Indian equity categories (15-year, as of 2024): Nifty 50 Index: ~12–13%. Large-cap funds: 12–14%. Mid-cap funds: 15–18%. Small-cap funds: 16–20%. Flexi-cap/multi-cap: 13–16%. Use 12% for conservative large-cap projections, 15% for balanced flexi-cap assumptions, 18% for aggressive mid/small-cap modeling. Important caveat: historical 15-year returns include the post-2009 bull market; future returns may be lower as India's market matures. The SEBI-mandated disclaimer 'past returns are not indicative of future performance' applies. Model at three rates (10%, 12%, 15%) to show the range. Inflation in India averages 5–6%, so real returns are approximately 6–9%."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you need to know your monthly investment amount, the expected annual interest rate, and the investment duration in years. These inputs will allow the calculator to estimate the future value of your investments. You can typically find interest rate information from your investment provider or financial institution. Ensure that the data you enter is as accurate as possible to get reliable results. Regularly updating these inputs can help you track your investment progress and make necessary adjustments."
+      question: "How does the SIP corpus change if I pause or stop contributions mid-way?",
+      answer: "Pausing SIP mid-way has a significant impact because compound growth is most powerful in the final years. Example: SIP of ₹10,000/month for 20 years at 12% CAGR = ₹99.9 lakh. If you stop after 10 years and let ₹23.2 lakh compound for 10 more years: ₹72 lakh (no new contributions). Versus continuing for all 20 years: ₹99.9 lakh. The last 10 years of contributions (₹12 lakh invested) generated ₹27.9 lakh of additional corpus. Stopping SIP reduces corpus by 28%. For temporary financial stress, most AMCs allow SIP pause for 1–3 months without penalty -- preferable to permanent stoppage. Resuming at a higher amount after a pause partially compensates for missed growth."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, this calculator can be used for various scenarios, such as planning for retirement, saving for a child's education, or building a wealth portfolio. However, it's important to consider the specific details of each scenario, such as risk tolerance and investment goals, which may require additional analysis beyond what the calculator provides. For tailored advice, consider consulting with a financial advisor who can help align your investment strategy with your personal goals and circumstances."
+      question: "What is the tax treatment of SIP mutual fund redemptions in India?",
+      answer: "Each SIP installment starts its own holding period. For equity mutual funds: holding period ≥ 12 months = Long-Term Capital Gains (LTCG) at 12.5% (above ₹1.25 lakh LTCG per year, effective July 2024 Budget). Holding period < 12 months = Short-Term Capital Gains (STCG) at 20%. If you start monthly SIPs, after 12 months, the 1st installment qualifies for LTCG. The 13th installment becomes LTCG one month later, and so on. For debt mutual funds (post-April 2023): gains taxed at your slab rate regardless of holding period. For ELSS funds (tax-saving): 3-year lock-in per installment, LTCG applies, Section 80C deduction available (up to ₹1.5 lakh total)."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include entering incorrect data, such as unrealistic interest rates or investment periods, which can skew the results. Additionally, failing to account for inflation or market volatility can lead to overestimating future returns. It's crucial to use realistic assumptions and regularly update your inputs to reflect current market conditions. Avoid these errors by double-checking your data and considering a range of scenarios to understand potential outcomes better."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's advisable to recalculate your investment projections at least annually or whenever there are significant changes in your financial situation, such as a change in income, interest rates, or investment goals. Regular recalculations help ensure that your investment strategy remains aligned with your financial objectives. Keeping track of market trends and economic indicators can also inform your recalculations, allowing you to make timely adjustments to your investment plan."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to assess whether your current investment strategy aligns with your financial goals. If the projected returns fall short of your expectations, consider adjusting your investment amount, duration, or portfolio composition. The results can also guide discussions with financial advisors, helping you refine your investment approach. For further analysis, explore our <a href=\"/financial/refinance-savings\" class=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a> to evaluate potential savings from refinancing options."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives to this calculation method include using financial software or consulting with financial advisors who can provide more personalized projections. These alternatives may offer additional features, such as risk analysis and scenario planning, which can enhance your investment strategy. Consider these options if you require more comprehensive planning tools or if your investment needs are complex and require expert guidance."
+      question: "How does SIP compare to PPF or FD for long-term wealth creation in India?",
+      answer: "Public Provident Fund (PPF): 7.1% guaranteed, tax-free, Section 80C benefit, 15-year lock-in, ₹1.5 lakh/year maximum. Fixed Deposit (FD): 6.5–7.5% (2024), fully taxable at slab rate, flexible tenure. Equity SIP (large-cap): ~12% historical CAGR, LTCG at 12.5% above ₹1.25 lakh. Example comparison on ₹10,000/month for 20 years: PPF (7.1% tax-free): ~₹54 lakh. FD (7% post-30% tax = 4.9% net): ~₹41 lakh. Equity SIP (12% CAGR, LTCG): ~₹85 lakh after tax. The equity SIP outperforms PPF by 57% over 20 years despite higher taxation, due to the higher pre-tax return. For risk-averse investors: PPF for guaranteed floor + SIP for growth outperformance is the optimal hybrid."
     }
   ];
 

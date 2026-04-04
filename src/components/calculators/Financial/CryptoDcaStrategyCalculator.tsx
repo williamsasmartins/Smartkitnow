@@ -82,36 +82,24 @@ export default function CryptoDcaStrategyCalculator() {
 
   const faqs = [
     {
-      question: "What is crypto DCA strategy calculator and why is it important?",
-      answer: "The Crypto DCA Strategy Calculator is a tool that helps investors plan and analyze the potential outcomes of a dollar-cost averaging strategy in the cryptocurrency market. This approach involves investing a fixed amount at regular intervals, which can help reduce the impact of market volatility and avoid the pitfalls of market timing. By using this calculator, investors can gain insights into how their investments might grow over time, making it an essential tool for long-term financial planning. Understanding the potential returns and risks associated with a DCA strategy can help investors make informed decisions and optimize their investment approach."
+      question: "Does dollar-cost averaging actually outperform lump-sum investing in crypto?",
+      answer: "Academic research consistently shows lump-sum investing outperforms DCA about 66% of the time in traditional markets over 10-year periods (Vanguard, 2012). In crypto, where volatility is extreme, DCA shows stronger relative performance because large price swings punish perfectly-timed lump sums. However, DCA's primary benefit isn't return maximization -- it's behavioral: removing timing pressure reduces panic selling and improves long-term hold rates. If you cannot predict market bottoms (and no one reliably can), a weekly or monthly DCA schedule removes that variable entirely."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The accuracy of the Crypto DCA Strategy Calculator depends on the assumptions and inputs provided by the user, such as the growth rate and investment frequency. While the calculator uses historical data and standard financial formulas to estimate potential outcomes, it's important to remember that past performance is not indicative of future results. Market conditions can change, affecting the accuracy of projections. For the most accurate results, regularly update your inputs and assumptions to reflect current market conditions. Consider consulting a financial advisor for personalized advice."
+      question: "How does exchange trading fee frequency affect DCA returns?",
+      answer: "Fees compound against you with every DCA purchase. At 0.1% per trade (Coinbase Advanced): 52 weekly purchases at $100 = $5,200 invested, $5.20 in fees (0.1% total cost). At 1.49% (Coinbase standard): same schedule costs $77.48 in fees -- nearly 1.5% of principal before any market movement. Always use limit orders or a low-fee platform for DCA. Multiply your intended DCA frequency by fee rate to understand annualized drag. A 0.5% fee on weekly buys is a 26% annual fee drag on new capital."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use the Crypto DCA Strategy Calculator, you need to provide the following information: the amount you plan to invest at each interval, the frequency of your investments (e.g., monthly, quarterly), and the duration of your investment plan in years. Additionally, an estimated annual growth rate for your investments can help project potential returns. This information can typically be found in your financial plan or investment strategy documents. Ensure that the data you enter is accurate and reflects your current financial situation and market expectations. This will help you obtain realistic projections and make informed investment decisions."
+      question: "How should I set my DCA interval -- daily, weekly, or monthly?",
+      answer: "Shorter intervals reduce timing risk more but increase fee drag. For most crypto investors: weekly DCA offers the best balance of volatility smoothing and fee efficiency. Monthly is better if your exchange charges flat fees (e.g., $2.99 per trade regardless of size). Daily is only worth it if fees are zero and you have evidence that daily volatility is meaningful. Practically: match your DCA interval to your income cycle -- weekly for weekly paychecks, monthly for monthly salary. Consistency matters more than the exact interval."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, the Crypto DCA Strategy Calculator can be used for various scenarios, such as planning regular investments in different cryptocurrencies or adjusting your strategy based on market conditions. However, it's important to consider the limitations of the calculator, such as the assumptions made about growth rates and market volatility. For more complex scenarios, you may need to adjust the inputs or consult with a financial advisor to ensure that your strategy aligns with your goals."
+      question: "What is the tax treatment of DCA purchases -- do I track each lot separately?",
+      answer: "Yes. Each DCA purchase creates a separate tax lot with its own cost basis and holding period. When you sell, you choose which lots to sell using FIFO (default), LIFO, or specific identification. Specific identification lets you sell high-cost-basis lots first to minimize gains. For 50 weekly DCA purchases, that is 50 separate tax lots to track. Most crypto tax software (Koinly, CoinTracker) handles this automatically. Failing to track lot-level basis is the most common DCA tax error -- the IRS will default to 0 cost basis if records are missing."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using unrealistic growth rate assumptions, failing to account for transaction fees, and not updating inputs to reflect changes in market conditions. These errors can lead to inaccurate projections and misguided investment decisions. It's important to regularly review and adjust your strategy based on current data and market trends. To avoid these mistakes, ensure that your inputs are realistic and based on thorough research. Consider consulting a financial advisor for additional guidance and support."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's advisable to recalculate your investment projections whenever there are significant changes in market conditions, your financial situation, or your investment goals. Regular recalculation, such as quarterly or annually, can help ensure that your strategy remains aligned with your objectives and market realities. Establishing a regular schedule for reviewing and updating your investment strategy can help you stay on track and make informed decisions."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results from the Crypto DCA Strategy Calculator to evaluate your current investment strategy and make adjustments as needed. The projections can help you identify whether your strategy is on track to meet your financial goals or if changes are necessary. Consider consulting with a financial advisor to interpret the results and develop a comprehensive investment plan."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives to the DCA strategy include lump-sum investing, where you invest a large amount at once, or tactical asset allocation, where you adjust your investments based on market conditions. Each method has its pros and cons, and the best approach depends on your financial goals, risk tolerance, and market outlook. Consider experimenting with different strategies or consulting a financial advisor to determine the best approach for your situation."
+      question: "Should I DCA into a single crypto or spread across multiple assets?",
+      answer: "Single-asset DCA (typically BTC or ETH) provides the most concentrated exposure and clearest tracking. Multi-asset DCA increases complexity proportionally -- each asset has its own lot tracking, different liquidity, and correlated or uncorrelated risk. Research shows Bitcoin and Ethereum had 0.85+ correlation during bear markets (2022), meaning diversification benefits within crypto are limited. If your goal is crypto exposure with managed risk, DCA into BTC/ETH first, then consider diversification once your position exceeds $10,000. Avoid DCA into low-cap coins -- illiquidity and project failure risk outweigh DCA's volatility-smoothing benefit."
     }
   ];
 

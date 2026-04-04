@@ -88,36 +88,24 @@ export default function RefinanceSavingsCalculator() {
 
   const faqs = [
     {
-      question: "What is the Refinance Savings Calculator and why is it important?",
-      answer: "The Refinance Savings Calculator is a financial tool designed to help you determine if refinancing your loan is a beneficial decision. It calculates potential monthly and total savings by comparing your current loan terms with new loan offers. This calculator is important because it provides a clear picture of the financial impact of refinancing, allowing you to make informed decisions about your mortgage or loan. By understanding the potential savings, you can optimize your financial strategy and potentially save thousands of dollars over the life of your loan. For more insights into mortgage payments, check out our <a href=\"/financial/mortgage-amortization\" class=\"text-blue-600 dark:text-blue-400 hover:underline\">Mortgage Payment & Amortization Calculator</a>."
+      question: "How do I calculate the break-even point for a mortgage refinance?",
+      answer: "Break-even months = Closing costs ÷ Monthly payment savings. Example: current payment $2,100 (6.5% rate), new payment $1,950 (5.8% rate), closing costs $4,500. Monthly savings = $150. Break-even = $4,500 / $150 = 30 months (2.5 years). If you plan to stay in the home more than 30 months, the refinance makes financial sense. Complication: if you reset to a new 30-year term, you extend your payoff date and pay more total interest even at a lower rate. Example: 8 years into a 30-year mortgage, refinancing to a new 30-year adds 8 years of payments. Calculate total interest remaining under both scenarios, not just monthly payment."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator provides a high level of accuracy based on the inputs you provide. However, it's important to note that actual savings can vary due to factors such as closing costs, prepayment penalties, and fluctuating interest rates. While the calculator offers a reliable estimate, it should be used as a guide rather than a definitive answer. For a comprehensive analysis, consider consulting with a financial advisor who can take all variables into account."
+      question: "What are the typical closing costs for a mortgage refinance?",
+      answer: "2024 average refinance closing costs: $2,000–$5,000 (0.5–2% of loan amount). Major components: origination/lender fee ($500–$1,500), appraisal ($300–$600), title search and insurance ($500–$1,500), recording fees ($25–$250), prepaid interest (daily rate × days until first payment), escrow setup (property taxes + insurance months). Some lenders offer 'no-closing-cost' refinances -- they add the costs to the loan balance or increase the interest rate by 0.125–0.25%. No-closing-cost makes sense if you plan to refinance or sell again within 3–4 years (before the rate penalty costs you more than the avoided fees). Always compare the APR, not just the rate, for the true cost comparison."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use the Refinance Savings Calculator effectively, you will need the following information: your current loan amount, current interest rate, remaining loan term, new interest rate, and new loan term. Additionally, knowing any closing costs associated with the new loan will help improve the accuracy of the calculation. Having this information on hand ensures that the calculator can provide the most precise estimate of your potential savings."
+      question: "When does it make sense to refinance even if the interest rate difference is small?",
+      answer: "The 1% rule (only refinance if rate drops 1%+) is outdated. The actual threshold depends on loan balance and remaining term. A 0.5% rate drop on a $500,000 balance = $2,500/year in interest savings -- a meaningful amount even with $5,000 in closing costs (2-year payback). A 0.5% drop on a $100,000 balance = $500/year -- 10-year payback with $5,000 in costs (not worth it). Also consider: removing PMI via refinance (if equity crossed 20%), switching ARM to fixed-rate (risk management, not savings), or cash-out refinance for home improvements that add value. Refinancing from a 30-year to a 15-year at the same rate increases payment but dramatically reduces total interest."
     },
     {
-      question: "Can I use this calculator for any type of loan?",
-      answer: "Yes, the Refinance Savings Calculator is versatile and can be used for various types of loans, including mortgages, auto loans, and personal loans. The core principle of refinancing remains the same across different loan types: replacing an existing loan with a new one that has better terms. However, be sure to adjust the inputs according to the specific loan type you are analyzing to ensure relevant results."
+      question: "How does refinancing affect the total amount of interest paid over the life of the loan?",
+      answer: "Monthly payment savings often obscure total interest cost increases when the term resets. Example: $350,000 mortgage at 7%, 20 years remaining, payment $2,716/month. Total remaining interest = $302,640. Refinance to 5.5%, new 30-year, payment $1,988/month. Total interest on new loan = $365,680. Despite $728/month savings, you will pay $63,040 more total interest -- and extend your mortgage by 10 years. Solution: refinance to a 20-year term at 5.5% (payment $2,399/month, $276,000 total interest). You save $26,640 total AND $317/month. For accurate refinance analysis, always calculate (payment × remaining months − remaining balance) for both scenarios."
     },
     {
-      question: "What are common mistakes people make when refinancing?",
-      answer: "Common mistakes when refinancing include focusing solely on the interest rate without considering closing costs, extending the loan term which may increase total interest paid, and not shopping around for the best offers. It's also easy to overlook the break-even point, which is the time it takes for the monthly savings to offset the cost of refinancing. To avoid these pitfalls, use our calculator to see the full financial picture and consider all costs involved."
-    },
-    {
-      question: "How often should I consider refinancing?",
-      answer: "You should consider refinancing whenever interest rates drop significantly, your credit score improves, or your financial situation changes. It's generally recommended to review your loan terms annually to see if better options are available. However, frequent refinancing can lead to higher costs due to closing fees, so it's important to weigh the benefits against the costs each time."
-    },
-    {
-      question: "What should I do with the results from this calculator?",
-      answer: "Once you have the results from the Refinance Savings Calculator, use them to compare different loan offers and determine if refinancing aligns with your financial goals. If the calculator shows significant savings, you might proceed with applying for a new loan. Conversely, if the savings are minimal or negative, it may be better to stick with your current loan. Use the data to negotiate better terms with lenders and make a confident financial decision."
-    },
-    {
-      question: "Are there alternatives to refinancing?",
-      answer: "Yes, there are alternatives to refinancing, such as making extra payments on your current loan to pay it off faster and reduce total interest. You might also consider loan modification if you're struggling with payments. Each option has its pros and cons, so it's worth exploring all possibilities. Our <a href=\"/financial/extra-payments-payoff\" class=\"text-blue-600 dark:text-blue-400 hover:underline\">Extra Payments & Payoff Time Calculator</a> can help you analyze the impact of making additional payments."
+      question: "Is a cash-out refinance a good idea and what should the funds be used for?",
+      answer: "A cash-out refinance replaces your mortgage with a larger loan, extracting equity as cash. You can borrow up to 80% LTV (loan-to-value) in most cases. 2024 rate context: cash-out refinance rates are 6.5–7.5%; credit card rates are 20–24%. The math for debt consolidation: borrowing at 7% to eliminate 22% credit card debt is mathematically compelling. Good uses: high-interest debt payoff, home improvements that increase value (kitchen/bath renovations typically return 60–80%), education, or investing when return exceeds mortgage rate. Bad uses: depreciating assets (cars, vacations), consumer goods. Risk: you are converting unsecured debt to secured debt -- credit card default is bad; mortgage default is foreclosure. Only do this if you address the spending habits that created the high-interest debt."
     }
   ];
 

@@ -23,36 +23,24 @@ export default function HashRateToEarningsCalculator() {
 
   const faqs = [
     {
-      question: "What is Hash Rate To Earnings Calculator and why is it important?",
-      answer: "The Hash Rate To Earnings Calculator is a tool used by cryptocurrency miners to estimate their potential earnings based on their mining hardware's hash rate. It is important because it helps miners understand the profitability of their operations by factoring in variables such as network difficulty, block rewards, and electricity costs. By using this calculator, miners can make informed decisions about hardware investments and operational strategies."
+      question: "How accurate are hash rate calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For hash rate, accuracy depends on using current mining earnings data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a mining earnings professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The accuracy of the Hash Rate To Earnings Calculator depends on the precision of the input data, such as hash rate, power consumption, and electricity costs. While it provides a good estimate of potential earnings, it cannot predict future changes in network difficulty or cryptocurrency prices. Therefore, the results should be viewed as an approximation rather than a guaranteed outcome. For the most accurate projections, update your inputs regularly to reflect current market conditions."
+      question: "What key factors most affect hash rate results?",
+      answer: "The most impactful variables in hash rate calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use the Hash Rate To Earnings Calculator, you need to know your mining hardware's hash rate (e.g., TH/s or MH/s), power consumption in watts, and your electricity cost per kWh. Additionally, knowing the current network difficulty and block reward for the specific cryptocurrency you are mining is helpful. This information allows the calculator to compute your estimated daily, weekly, and monthly earnings."
+      question: "When should I recalculate hash rate?",
+      answer: "Recalculate whenever mining earnings conditions change significantly: after major mining earnings events, when your inputs change (income, rates, holdings), or when mining earnings regulations are updated. For time-sensitive mining earnings metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, the Hash Rate To Earnings Calculator is designed to handle various mining scenarios. whether you are a hobbyist miner with a single GPU or a large-scale operation with multiple ASICs, this calculator can be adjusted to fit your specific setup. You can input different hash rates and power costs to see how they affect your potential earnings, helping you optimize your mining strategy."
+      question: "How does hash rate relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Hash rate should be evaluated alongside related measures like network difficulty. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your mining earnings situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include underestimating electricity costs, ignoring pool fees, and failing to account for hardware depreciation. These oversights can lead to overly optimistic earnings projections. To avoid these pitfalls, ensure that you include all associated costs in your calculation and consider the long-term viability of your mining equipment."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It is advisable to recalculate your earnings frequently, as cryptocurrency markets are highly volatile. Changes in network difficulty, coin price, and electricity rates can significantly impact profitability. A weekly or even daily check can help you stay on top of your mining performance and make necessary adjustments to your operations."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results from the Hash Rate To Earnings Calculator to evaluate the profitability of your mining activities. If the calculator shows a negative return, you may need to reconsider your hardware choices or electricity provider. Conversely, positive results can confirm the viability of your mining setup and help you plan for future expansion or upgrades."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives to using a dedicated Hash Rate To Earnings Calculator include manual calculations using mining formulas or using comprehensive mining management software that offers real-time profitability tracking. While manual calculations can be educational, they are time-consuming and prone to error. Dedicated software provides a more automated and accurate solution for serious miners."
+      question: "What are the most common mistakes when calculating hash rate?",
+      answer: "The most frequent errors in hash rate calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world mining earnings conditions fluctuate. Double-check your inputs against current mining earnings data before relying on results for significant financial decisions."
     }
   ];
 
@@ -438,117 +426,19 @@ export default function HashRateToEarningsCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is hash rate to earnings converter and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The hash rate to earnings converter is a tool that estimates potential earnings from cryptocurrency mining based on hash rate, power consumption, and electricity costs. It is crucial for miners to understand their potential earnings to make informed decisions about their operations and investments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this tool, miners can plan their operations more effectively and optimize their setups for maximum profitability. For more financial tools, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
 
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The accuracy of this calculator depends on the accuracy of the input values. Factors such as fluctuating electricity costs and changes in hash rate can affect the results. It is recommended to regularly update the input values to reflect the latest conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For precise financial planning, consider consulting with a professional to account for all variables and market conditions.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need to know your mining hardware's hash rate, power consumption, and the electricity cost in your area. The hash rate is typically provided by the hardware manufacturer, while power consumption can be measured using a wattmeter. Electricity costs can be found on your utility bill.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Gathering accurate data ensures the most reliable results, helping you make informed decisions about your mining operations.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for [specific scenario]?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is designed for general cryptocurrency mining scenarios. If you have a unique setup or are mining a specific cryptocurrency with different parameters, you may need to adjust the input values or consult additional resources.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For specific scenarios, consider consulting with a mining expert to tailor the calculations to your needs.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated electricity cost values, not accounting for changes in hash rate, and failing to consider hardware efficiency. These errors can lead to inaccurate earnings projections.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, regularly update your input values and monitor your mining setup for any changes.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It is recommended to recalculate your earnings whenever there is a change in your hash rate, power consumption, or electricity cost. Regular recalculations ensure that your earnings projections remain accurate and reflect the latest conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Setting a monthly schedule for recalculations can help you stay on top of any changes and adjust your operations accordingly.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to make informed decisions about your mining operations. Consider whether your current setup is profitable and explore ways to optimize your hardware and reduce costs. If your earnings are lower than expected, investigate potential issues with your setup.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more financial planning tools, visit our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While this calculator provides a comprehensive estimate, there are alternative methods such as using mining profitability calculators specific to certain cryptocurrencies. These tools may offer additional insights based on current market data and network conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider using multiple tools to cross-verify your results and gain a more detailed understanding of your mining profitability.
-            </p>
-          </div>
         </div>
       </section>
 

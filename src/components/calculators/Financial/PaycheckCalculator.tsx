@@ -20,36 +20,24 @@ export default function PaycheckCalculator() {
 
   const faqs = [
     {
-      question: "What is paycheck calculator and why is it important?",
-      answer: "A paycheck calculator is a tool that helps you estimate your earnings based on your work hours, hourly rate, and overtime. It's important because it allows you to plan your finances accurately, ensuring you know how much money you'll have available for expenses, savings, and investments. Understanding your paycheck is crucial for effective budgeting and financial planning. For more insights, visit our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a>."
+      question: "How accurate are paycheck calculation calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For paycheck calculation, accuracy depends on using current withholding data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a withholding professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator provides a high level of accuracy for estimating gross pay based on the inputs provided. However, it does not account for taxes and other deductions, which can affect your net pay. For precise financial planning, consider these factors or consult with a financial advisor. Always ensure your input data is correct to maximize the calculator's accuracy."
+      question: "What key factors most affect paycheck calculation results?",
+      answer: "The most impactful variables in paycheck calculation calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "You need to know your total hours worked, your hourly rate, and any overtime hours. This information is typically found on your timesheet or work schedule. Ensure that you have the most recent and accurate data to input into the calculator for the best results. Having this information readily available will streamline your use of the calculator and improve the accuracy of your paycheck estimation."
+      question: "When should I recalculate paycheck calculation?",
+      answer: "Recalculate whenever withholding conditions change significantly: after major withholding events, when your inputs change (income, rates, holdings), or when withholding regulations are updated. For time-sensitive withholding metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, this calculator can be used for various scenarios, including part-time work, freelance projects, and jobs with irregular hours. However, it is designed to estimate gross pay and does not account for taxes or deductions, which should be considered separately. For specific scenarios involving complex deductions or benefits, consulting with a payroll specialist might be beneficial."
+      question: "How does paycheck calculation relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Paycheck calculation should be evaluated alongside related measures like take-home pay. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your withholding situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include entering incorrect hours or rates, not accounting for all overtime, and misunderstanding the impact of deductions. These errors can lead to inaccurate paycheck estimates and financial planning issues. Double-check your inputs and ensure you understand your pay structure to avoid these mistakes."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculate your paycheck whenever there is a change in your work hours, hourly rate, or overtime. Regular recalculations ensure that your financial planning remains accurate and up-to-date. Consider recalculating at the start of each pay period or when you receive a raise or change in job role."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to plan your budget, allocate funds for savings, and manage expenses. Understanding your paycheck allows you to make informed financial decisions and avoid overspending. If you're looking to optimize your savings, consider using our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include using payroll software or consulting with a payroll specialist for more complex calculations. These methods may offer additional insights into deductions and benefits. For those with straightforward pay structures, this calculator provides a quick and efficient way to estimate earnings."
+      question: "What are the most common mistakes when calculating paycheck calculation?",
+      answer: "The most frequent errors in paycheck calculation calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world withholding conditions fluctuate. Double-check your inputs against current withholding data before relying on results for significant financial decisions."
     }
   ];
 

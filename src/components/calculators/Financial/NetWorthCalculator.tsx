@@ -19,36 +19,24 @@ export default function NetWorthCalculator() {
 
   const faqs = [
     {
-      question: "What is net worth and why is it important?",
-      answer: "Net worth is the total value of your assets minus your liabilities. It's a key indicator of your financial health, providing a snapshot of your wealth at a specific point in time. Tracking net worth helps you measure progress toward financial goals, assess your ability to weather financial setbacks, and make informed investment decisions. For more insights, check our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+      question: "How accurate are net worth calculation calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For net worth calculation, accuracy depends on using current assets vs liabilities data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a assets vs liabilities professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator provides a precise calculation based on the inputs you provide. However, the accuracy depends entirely on the completeness and accuracy of the data you enter. Ensure you include all assets and liabilities and use current market values for assets like real estate and investments. For complex financial portfolios, consider consulting a financial advisor."
+      question: "What key factors most affect net worth calculation results?",
+      answer: "The most impactful variables in net worth calculation calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use the net worth calculator, gather details about your assets, including cash, investments, real estate, and personal property. Also, list all liabilities such as mortgages, loans, and credit card debts. Accurate and up-to-date information will ensure the most reliable results. Check financial statements, bank accounts, and loan documents to compile this data. For guidance on managing liabilities, see our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a>."
+      question: "When should I recalculate net worth calculation?",
+      answer: "Recalculate whenever assets vs liabilities conditions change significantly: after major assets vs liabilities events, when your inputs change (income, rates, holdings), or when assets vs liabilities regulations are updated. For time-sensitive assets vs liabilities metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, the calculator can be used for various scenarios, such as planning for retirement, assessing the impact of a major purchase, or evaluating the effect of debt repayment strategies. However, for complex financial situations, consider consulting a financial advisor for personalized advice. The calculator provides a general overview, but specific scenarios may require additional considerations or calculations."
+      question: "How does net worth calculation relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Net worth calculation should be evaluated alongside related measures like wealth tracking. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your assets vs liabilities situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include omitting certain assets or liabilities, using outdated valuations, and not accounting for all debts. These errors can lead to inaccurate net worth calculations, affecting financial planning and decision-making. To avoid these mistakes, regularly update your financial information and ensure all relevant data is included in the calculation."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's advisable to recalculate your net worth at least annually, or more frequently if there are significant changes in your financial situation. Major life events, such as buying a home, changing jobs, or receiving an inheritance, warrant a recalculation. Regular recalculations help you stay informed about your financial health and make timely adjustments to your financial strategies."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use your net worth calculation to inform financial decisions, set goals, and track progress. If your net worth is lower than desired, consider strategies to increase assets or reduce liabilities. For high net worth, explore investment opportunities to grow your wealth further. Consider consulting a financial advisor to develop a comprehensive financial plan. For additional resources, see our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives to the basic net worth calculation include more detailed financial analyses, such as cash flow statements and balance sheets. These methods provide a more comprehensive view of financial health, considering income, expenses, and liquidity. For complex financial situations, consider using these alternatives alongside the net worth calculation to gain deeper insights into your financial position."
+      question: "What are the most common mistakes when calculating net worth calculation?",
+      answer: "The most frequent errors in net worth calculation calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world assets vs liabilities conditions fluctuate. Double-check your inputs against current assets vs liabilities data before relying on results for significant financial decisions."
     }
   ];
 

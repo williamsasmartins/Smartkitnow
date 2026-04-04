@@ -81,36 +81,24 @@ export default function CryptoProfitLossCalculator() {
 
   const faqs = [
     {
-      question: "What is crypto profit/loss calculator and why is it important?",
-      answer: "The Crypto Profit/Loss Calculator is a tool designed to help investors determine the financial outcome of their cryptocurrency trades. By inputting the buy price, sell price, and quantity of coins, users can quickly calculate their net profit or loss. This tool is essential for managing a crypto portfolio, as it allows traders to track performance, assess risks, and make data-driven decisions. Understanding profit and loss is fundamental to successful trading, ensuring that investors are aware of their financial standing at all times."
+      question: "How do exchange fees affect my actual crypto profit?",
+      answer: "Fees are subtracted from profit on both entry and exit. On a $10,000 trade at 0.1% taker fee: $10 fee buying + $10 fee selling = $20 total fees. On a 5% price move ($500 gain), your net profit is $480 -- fees consumed 4% of profit. On small price moves, fees dominate: a 0.2% move on a $10,000 position yields $20 gain minus $20 fees = $0 net. Always factor in your platform's maker/taker structure. Binance: 0.1% standard, 0.075% with BNB. Coinbase Advanced: 0.6% taker. Kraken: 0.26% taker. Over 100 trades per year, fee optimization can save thousands."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator provides accurate results based on the inputs provided. However, its accuracy depends on the accuracy of the input data, such as buy and sell prices and transaction fees. External factors like market volatility and exchange rates can also affect the results. For critical decisions, consider consulting a financial advisor. Regularly update your inputs to reflect current market conditions for the best results."
+      question: "Should I use FIFO or specific identification for crypto cost basis?",
+      answer: "FIFO (first-in, first-out) is the IRS default if you do not specify otherwise. It sells your oldest lots first, which often means selling low-cost-basis lots (bought long ago when price was lower), maximizing taxable gains. Specific identification lets you choose which lot to sell -- typically the highest-cost-basis lot to minimize gain. For profit/loss calculation, the method changes your taxable outcome, not your economic gain. Example: bought 1 BTC at $20,000 (2022) and 1 BTC at $60,000 (2024), selling 1 BTC at $70,000. FIFO: $50,000 gain. Specific ID: $10,000 gain. Always document your lot selection at time of sale for IRS compliance."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you'll need the buy price, sell price, and the quantity of cryptocurrency traded. Ensure these values are accurate and reflect the actual transaction details. You may also want to consider transaction fees and taxes, as these can impact your net profit or loss. Gather this information from your trading platform or transaction records. Keeping detailed records will help you input accurate data and achieve reliable results."
+      question: "What counts as a taxable disposal for crypto profit/loss purposes?",
+      answer: "Any of these triggers a taxable event requiring gain/loss calculation: (1) selling crypto for fiat, (2) trading crypto-to-crypto (e.g., BTC→ETH -- the BTC sale is taxable), (3) using crypto to pay for goods or services, (4) receiving staking or mining rewards (taxed as income at fair market value on receipt date, then as capital gain/loss when sold). Non-taxable events: buying crypto with fiat, transferring between your own wallets, gifting crypto below annual exclusion ($18,000 in 2024), holding. Every taxable event needs a basis record; missing basis records default to $0 cost basis under IRS rules."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, this calculator can be used for various scenarios, including day trading, long-term investments, and speculative trades. However, it may not account for complex scenarios involving multiple trades or currencies. In such cases, additional tools or professional advice might be necessary. For more complex calculations, consider using our HELOC Payment Estimator for detailed financial planning."
+      question: "How do I calculate profit on a partial crypto sale?",
+      answer: "Profit = (Sale price × units sold) − (Cost basis per unit × units sold) − fees. If you bought 2 ETH at $1,500 each ($3,000 total) and sell 0.5 ETH at $2,200: proceeds = $1,100. Cost basis for 0.5 ETH = $750. Net gain = $350 (before fees). Remaining 1.5 ETH retains its original $2,250 cost basis for future calculations. For DCA purchases (multiple lots at different prices), calculate the weighted average cost or track each lot individually for specific identification. Weighted average is simpler but not accepted by IRS for crypto -- you must use FIFO, LIFO, or specific ID."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using outdated prices, ignoring transaction fees, and miscalculating quantities. These errors can lead to inaccurate results and poor trading decisions. Always double-check your inputs and consider all relevant factors. Avoid these mistakes by maintaining accurate records and staying informed about market conditions. Regularly update your calculations to reflect current data."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculate whenever there are significant changes in market conditions, such as price fluctuations or regulatory updates. Regular recalculations help you stay informed and make timely decisions. Consider recalculating at least once a week or whenever you make a new trade. Establish a routine for recalculating, especially if you're actively trading. This practice will help you manage risks and optimize your trading strategy."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to assess your trading performance and adjust your strategy accordingly. If you're consistently making profits, consider scaling up your investments. If you're experiencing losses, analyze the reasons and make necessary adjustments. For further guidance, consult a financial advisor or explore our Loan Payment Calculator for more financial insights."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include using financial software or consulting with a financial advisor for more complex scenarios. These methods can provide additional insights and help you make more informed decisions. However, they may come with additional costs or require more time. Consider using these alternatives if you're dealing with large sums or complex trading strategies. They can complement the basic calculations provided by this tool."
+      question: "How does leverage affect crypto profit and loss calculations?",
+      answer: "Leveraged crypto trading multiplies both gains and losses by the leverage ratio. At 10× leverage on a $1,000 margin: you control $10,000 of crypto. A 5% price increase = $500 gain (50% on your $1,000 margin). A 10% price decrease = $1,000 loss -- full liquidation of margin. Liquidation typically occurs at 8–12% adverse move on 10× leverage (exchanges maintain a buffer). Profit/loss calculations must use the full position value, not just margin. Additionally, funding rates on perpetual contracts (0.01–0.1% per 8 hours) create ongoing cost that erodes leveraged positions -- equivalent to 10–45% annual cost on a perpetually held leveraged position."
     }
   ];
 

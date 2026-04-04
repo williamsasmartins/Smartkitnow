@@ -19,36 +19,24 @@ export default function RuleOf72Calculator() {
 
   const faqs = [
     {
-      question: "What is the Rule of 72?",
-      answer: "The Rule of 72 is a simple way to determine how long an investment will take to double given a fixed annual rate of interest. By dividing 72 by the annual rate of return, investors can get a rough estimate of how many years it will take for the initial investment to duplicate itself."
+      question: "How accurate are Rule of 72 calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For Rule of 72, accuracy depends on using current compound interest data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a compound interest professional."
     },
     {
-      question: "How accurate is the Rule of 72?",
-      answer: "The Rule of 72 provides a reasonably accurate estimate for interest rates between 6% and 10%. However, as the rate of return increases or decreases significantly from this range, the accuracy of the rule diminishes. For very high or very low rates, other formulas like the Rule of 69.3 or 69 may be more precise."
+      question: "What key factors most affect Rule of 72 results?",
+      answer: "The most impactful variables in Rule of 72 calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "Can I use the Rule of 72 for debt?",
-      answer: "Yes, the Rule of 72 can also be applied to debt. If you have a credit card balance or a loan with a fixed interest rate, you can use the rule to estimate how long it will take for your debt to double if you don't make any payments."
+      question: "When should I recalculate Rule of 72?",
+      answer: "Recalculate whenever compound interest conditions change significantly: after major compound interest events, when your inputs change (income, rates, holdings), or when compound interest regulations are updated. For time-sensitive compound interest metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "The Rule of 72 Calculator is versatile and can be used for various scenarios, including retirement planning, saving for a major purchase, or evaluating investment opportunities. However, it is important to remember that this calculator provides an approximation and may not account for all factors affecting your investment. For scenarios involving complex financial products or significant market volatility, consider using a more detailed financial model or consulting with a financial advisor. For more insights, check out our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a>."
+      question: "How does Rule of 72 relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Rule of 72 should be evaluated alongside related measures like doubling time. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your compound interest situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using unrealistic interest rates, failing to account for taxes and fees, and ignoring the impact of inflation. These errors can lead to inaccurate results and poor investment decisions. It's important to use realistic figures and consider all relevant factors when using the Rule of 72 Calculator. To avoid these mistakes, regularly update your interest rate to reflect current market conditions and consult with a financial advisor if needed. For more tips, explore our <a href=\"/financial/extra-payments-payoff\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Extra Payments & Payoff Time Calculator</a>."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's advisable to recalculate whenever there are significant changes in market conditions, interest rates, or your financial goals. Regular recalculations ensure that your investment strategy remains aligned with your objectives and market realities. Consider setting a schedule for periodic reviews, such as quarterly or annually, to keep your financial plan up to date. For more guidance, check out our <a href=\"/financial/loan-payment\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Loan Payment Calculator</a>."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to inform your investment strategy and financial planning. The estimated time to double your investment can help you set realistic financial goals and timelines. Consider adjusting your investment strategy based on the results to optimize growth. If you're unsure how to interpret the results, consider consulting with a financial advisor for personalized advice. For more detailed planning, explore our <a href=\"/financial/mortgage-amortization\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Mortgage Payment & Amortization Calculator</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Yes, there are alternative methods for estimating investment growth, such as using detailed financial models or software tools that account for a wider range of variables. These alternatives can provide more precise results, especially for complex financial scenarios. However, the Rule of 72 remains a popular choice for quick and easy estimates. Consider using it alongside other methods for a comprehensive understanding of your investment's potential. For more insights, check out our <a href=\"/financial/loan-payment\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Loan Payment Calculator</a>."
+      question: "What are the most common mistakes when calculating Rule of 72?",
+      answer: "The most frequent errors in Rule of 72 calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world compound interest conditions fluctuate. Double-check your inputs against current compound interest data before relying on results for significant financial decisions."
     }
   ];
 

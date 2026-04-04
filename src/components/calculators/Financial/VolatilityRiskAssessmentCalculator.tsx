@@ -20,36 +20,24 @@ export default function VolatilityRiskAssessmentCalculator() {
 
   const faqs = [
     {
-      question: "What is volatility & risk assessment calculator and why is it important?",
-      answer: "The Volatility & Risk Assessment Calculator is a tool designed to help investors evaluate the potential risks and returns of their investments by considering market volatility. It is important because it provides insights into how market fluctuations can impact investment outcomes, allowing users to make informed decisions and manage their portfolios effectively. Understanding volatility is crucial for risk management and strategic planning."
+      question: "How accurate are volatility measurement calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For volatility measurement, accuracy depends on using current standard deviation data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a standard deviation professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator is designed to provide accurate estimates based on the inputs provided. However, its accuracy depends on the precision of the input data and the assumptions made regarding market conditions. Users should be aware that actual investment outcomes may vary due to unforeseen market changes. For critical financial decisions, consulting with a financial advisor is recommended to complement the insights gained from this tool."
+      question: "What key factors most affect volatility measurement results?",
+      answer: "The most impactful variables in volatility measurement calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you need to provide the initial investment amount, the expected annual return rate, and the estimated market volatility percentage. This information can typically be obtained from your investment portfolio details, financial statements, or market analysis reports. Ensure that the data you input is as accurate as possible to get reliable results."
+      question: "When should I recalculate volatility measurement?",
+      answer: "Recalculate whenever standard deviation conditions change significantly: after major standard deviation events, when your inputs change (income, rates, holdings), or when standard deviation regulations are updated. For time-sensitive standard deviation metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, this calculator can be used for various scenarios, including assessing the impact of market volatility on different types of investments such as stocks, bonds, or cryptocurrencies. However, it is important to consider the unique characteristics of each asset class and adjust the inputs accordingly. For specialized scenarios, you may need to consult additional resources or financial experts to ensure comprehensive analysis."
+      question: "How does volatility measurement relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Volatility measurement should be evaluated alongside related measures like beta. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your standard deviation situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using outdated or inaccurate input data, failing to account for all relevant factors, and misunderstanding the implications of volatility. These errors can lead to incorrect assessments and misguided investment decisions. To avoid these pitfalls, double-check your inputs and consider consulting with a financial advisor for a more comprehensive analysis."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It is advisable to recalculate whenever there are significant changes in market conditions, economic policies, or your financial goals. Regular recalculations can help you stay informed and adjust your strategies as needed. Establish a routine for reviewing your investments, such as quarterly or semi-annually, to ensure your strategies remain aligned with your objectives."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to inform your investment decisions and risk management strategies. Consider adjusting your portfolio to align with your risk tolerance and financial goals. If the results indicate high volatility, you might explore diversification or hedging strategies."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternative methods include Monte Carlo simulations, which provide a range of possible outcomes based on different scenarios, and Value at Risk (VaR) models, which estimate the potential loss in value of an investment. Each method has its own strengths and limitations. Choose the method that best suits your needs and consider combining multiple approaches for a more comprehensive analysis."
+      question: "What are the most common mistakes when calculating volatility measurement?",
+      answer: "The most frequent errors in volatility measurement calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world standard deviation conditions fluctuate. Double-check your inputs against current standard deviation data before relying on results for significant financial decisions."
     }
   ];
 

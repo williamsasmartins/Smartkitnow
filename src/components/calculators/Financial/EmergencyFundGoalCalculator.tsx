@@ -21,36 +21,24 @@ export default function EmergencyFundGoalCalculator() {
   // FAQ DATA
   const faqs = [
     {
-      question: "What is an emergency fund goal calculator and why is it important?",
-      answer: "An emergency fund goal calculator helps you determine the amount of savings needed to cover your expenses during unforeseen circumstances. It's important because it provides a financial safety net, ensuring you can maintain your lifestyle without incurring debt during emergencies. This tool is crucial for financial planning, helping you prepare for unexpected events like job loss or medical emergencies. For more on financial preparedness, explore our <a href='/financial/extra-payments-payoff' class='text-blue-600 dark:text-blue-400 hover:underline'>Extra Payments & Payoff Time Calculator</a>."
+      question: "How accurate are emergency fund calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For emergency fund, accuracy depends on using current liquid savings data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a liquid savings professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The calculator provides a reliable estimate based on the inputs you provide. However, its accuracy depends on the accuracy of your input data. Factors like fluctuating expenses or income changes can affect the results. It's advisable to regularly update your inputs to reflect your current financial situation for the most accurate results. For precise financial planning, consider consulting a financial advisor."
+      question: "What key factors most affect emergency fund results?",
+      answer: "The most impactful variables in emergency fund calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you'll need to know your average monthly expenses, the number of months you want your emergency fund to cover, and any additional buffer you wish to include. Monthly expenses should encompass all necessary costs such as rent, utilities, groceries, and transportation. The months to cover depend on your comfort level and financial stability. Gathering accurate data from your bank statements or budgeting apps can help ensure precise calculations."
+      question: "When should I recalculate emergency fund?",
+      answer: "Recalculate whenever liquid savings conditions change significantly: after major liquid savings events, when your inputs change (income, rates, holdings), or when liquid savings regulations are updated. For time-sensitive liquid savings metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, this calculator can be adapted for various scenarios, such as planning for a job transition, preparing for a new family member, or adjusting for seasonal income changes. However, it's essential to tailor the inputs to match the specific scenario you're planning for. Consider the unique expenses and timeframes associated with each situation. For more tailored financial planning, consult with a financial advisor who can provide personalized advice."
+      question: "How does emergency fund relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Emergency fund should be evaluated alongside related measures like financial buffer. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your liquid savings situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include underestimating monthly expenses, not accounting for irregular costs, and failing to update the fund as financial circumstances change. Additionally, some people forget to include a buffer for unexpected expenses, which can lead to insufficient savings during emergencies. To avoid these errors, regularly review and adjust your emergency fund based on current financial data and future projections."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's advisable to recalculate your emergency fund at least once a year or whenever significant life changes occur, such as a new job, marriage, or the birth of a child. Regular recalculations ensure your fund remains aligned with your current financial needs and goals. Keeping your fund updated helps maintain financial security and preparedness for unexpected events."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to set up or adjust your emergency fund. Transfer the calculated amount into a separate, easily accessible savings account dedicated to emergencies. This separation helps prevent the temptation to use the funds for non-emergencies. Regularly review your fund to ensure it remains adequate for your needs. For more on managing savings, explore our <a href='/financial/refinance-savings' class='text-blue-600 dark:text-blue-400 hover:underline'>Refinance Savings Calculator</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include using a percentage of your income as a savings target or setting a fixed amount based on past emergency experiences. Each method has its pros and cons, and the best choice depends on your financial situation and risk tolerance. Consider consulting with a financial advisor to explore different strategies and find the one that best suits your needs."
+      question: "What are the most common mistakes when calculating emergency fund?",
+      answer: "The most frequent errors in emergency fund calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world liquid savings conditions fluctuate. Double-check your inputs against current liquid savings data before relying on results for significant financial decisions."
     }
   ];
 

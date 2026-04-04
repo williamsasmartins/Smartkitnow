@@ -1,47 +1,11 @@
 # FAQ Upgrade Priority List
 
-Total files to upgrade: 57
+Total files to upgrade: 54
 
 Priority 1 = highest search volume (APR, Credit Card, Mortgage, Loan)
 
 Priority 4 = lower priority (niche financial calculators)
 
-
-
-## Priority 1
-
-### Car Loan Affordability Calculator
-- **File:** `src/components/calculators/Financial/CarLoanAffordabilityCalculator.tsx`
-- **Generic markers found:** 5/5
-- **Questions to replace:**
-  - Trust question — replace with real accuracy context
-  - Action question — replace with specific next steps
-  - Cadence question — replace with trigger-based advice
-  - Mistakes question — replace with specific errors for this calculator
-  - Input question — already somewhat specific, but often generic
-- **Suggested topics:** Origination fee impact on true cost, prepayment penalty, secured vs unsecured rates, DTI qualification, amortization front-loading
-
-### Loan Comparison Calculator
-- **File:** `src/components/calculators/Financial/LoanComparisonCalculator.tsx`
-- **Generic markers found:** 5/5
-- **Questions to replace:**
-  - Trust question — replace with real accuracy context
-  - Action question — replace with specific next steps
-  - Cadence question — replace with trigger-based advice
-  - Mistakes question — replace with specific errors for this calculator
-  - Input question — already somewhat specific, but often generic
-- **Suggested topics:** Origination fee impact on true cost, prepayment penalty, secured vs unsecured rates, DTI qualification, amortization front-loading
-
-### Student Loan Repayment Calculator
-- **File:** `src/components/calculators/Financial/StudentLoanRepaymentCalculator.tsx`
-- **Generic markers found:** 5/5
-- **Questions to replace:**
-  - Trust question — replace with real accuracy context
-  - Action question — replace with specific next steps
-  - Cadence question — replace with trigger-based advice
-  - Mistakes question — replace with specific errors for this calculator
-  - Input question — already somewhat specific, but often generic
-- **Suggested topics:** Origination fee impact on true cost, prepayment penalty, secured vs unsecured rates, DTI qualification, amortization front-loading
 
 
 ## Priority 2

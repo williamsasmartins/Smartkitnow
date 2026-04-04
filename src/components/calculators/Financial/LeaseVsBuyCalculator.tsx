@@ -10,36 +10,24 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 const faqs = [
   {
-    question: "What is lease vs buy calculator and why is it important?",
-    answer: "The Lease vs Buy Calculator is a tool that helps users compare the financial implications of leasing versus buying a vehicle. It evaluates the total cost of both options, considering factors like purchase price, loan term, interest rate, lease term, monthly lease payments, and residual value. This calculator is important because it provides a clear comparison, enabling users to make informed decisions about which option is more cost-effective in the long run.\n\nBy understanding the total cost of ownership, users can avoid unexpected expenses and make better financial choices. For more information on related calculations, visit our <a href=\"/financial/extra-payments-payoff\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Extra Payments & Payoff Time Calculator</a>."
+    question: "How accurate are lease vs buy decision calculations and what limitations should I be aware of?",
+    answer: "This calculator provides estimates based on the inputs you provide. For lease vs buy decision, accuracy depends on using current total cost of ownership data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a total cost of ownership professional."
   },
   {
-    question: "How accurate is this calculator?",
-    answer: "The Lease vs Buy Calculator is designed to provide accurate estimates based on the inputs provided. However, the accuracy of the results depends on the accuracy of the input data. Factors such as fluctuating interest rates, changes in residual values, and additional fees can affect the final outcome. It's important to use the most current and accurate data available for the best results.\n\nFor complex financial decisions, consider consulting with a financial advisor to ensure all factors are considered. Regularly updating your inputs can also help maintain accuracy."
+    question: "What key factors most affect lease vs buy decision results?",
+    answer: "The most impactful variables in lease vs buy decision calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
   },
   {
-    question: "What information do I need to use this calculator?",
-    answer: "To use the Lease vs Buy Calculator, you'll need the following information: the vehicle's purchase price, the loan term in years, the annual interest rate, the lease term in months, the monthly lease payment, and the residual value of the vehicle. This data allows the calculator to provide a comprehensive comparison of the total cost of leasing versus buying.\n\nYou can find this information in your loan or lease agreement, or by contacting your dealer or lender. Ensuring the accuracy of this data is crucial for obtaining reliable results."
+    question: "When should I recalculate lease vs buy decision?",
+    answer: "Recalculate whenever total cost of ownership conditions change significantly: after major total cost of ownership events, when your inputs change (income, rates, holdings), or when total cost of ownership regulations are updated. For time-sensitive total cost of ownership metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
   },
   {
-    question: "Can I use this calculator for specific scenarios?",
-    answer: "Yes, the Lease vs Buy Calculator can be used for various scenarios, such as comparing different vehicle models, evaluating the impact of different interest rates, or assessing the cost of leasing versus buying over different terms. However, it's important to note that the calculator provides estimates based on the inputs provided, and actual costs may vary due to factors like maintenance, insurance, and taxes.\n\nFor more complex scenarios, consider consulting with a financial advisor or using additional tools like our <a href=\"/financial/loan-payment\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Loan Payment Calculator</a> for more detailed analysis."
+    question: "How does lease vs buy decision relate to other financial planning metrics?",
+    answer: "No single metric tells the complete financial picture. Lease vs buy decision should be evaluated alongside related measures like depreciation. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your total cost of ownership situation, rather than optimizing any single number in isolation."
   },
   {
-    question: "What are common mistakes people make with this calculation?",
-    answer: "Common mistakes include using outdated or incorrect input data, not considering additional costs like maintenance and insurance, and failing to account for changes in interest rates or residual values. These errors can lead to inaccurate results and potentially costly financial decisions.\n\nTo avoid these mistakes, ensure all input data is current and accurate, and consider consulting with a financial advisor for complex decisions. Regularly updating your calculations can also help maintain accuracy."
-  },
-  {
-    question: "How often should I recalculate?",
-    answer: "It's recommended to recalculate whenever there are significant changes in your financial situation, such as changes in interest rates, vehicle prices, or lease terms. Additionally, if you're considering a new vehicle purchase or lease, updating your calculations can help ensure you're making the most informed decision.\n\nRegular recalculations can also help you stay on top of your financial goals and adjust your plans as needed. For more insights, explore our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
-  },
-  {
-    question: "What should I do with these results?",
-    answer: "Once you've obtained the results from the Lease vs Buy Calculator, use them to compare the total cost of leasing versus buying. Consider how these costs align with your financial goals and budget. If leasing is more cost-effective, evaluate the terms and conditions of the lease agreement. If buying is preferable, consider the long-term benefits of ownership.\n\nFor further analysis, consult with a financial advisor or explore additional tools like our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a> to understand the broader financial implications."
-  },
-  {
-    question: "Are there alternatives to this calculation method?",
-    answer: "While the Lease vs Buy Calculator provides a comprehensive comparison, there are alternative methods for evaluating vehicle financing options. These include consulting with a financial advisor, using other online calculators, or conducting a detailed cost analysis based on your specific financial situation.\n\nEach method has its pros and cons, and the best approach depends on your individual needs and preferences. For a broader perspective, consider exploring our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a> for additional insights."
+    question: "What are the most common mistakes when calculating lease vs buy decision?",
+    answer: "The most frequent errors in lease vs buy decision calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world total cost of ownership conditions fluctuate. Double-check your inputs against current total cost of ownership data before relying on results for significant financial decisions."
   }
 ];
 
@@ -491,117 +479,19 @@ export default function LeaseVsBuyCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is lease vs buy calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Lease vs Buy Calculator is a tool that helps users compare the financial implications of leasing versus buying a vehicle. It evaluates the total cost of both options, considering factors like purchase price, loan term, interest rate, lease term, monthly lease payments, and residual value. This calculator is important because it provides a clear comparison, enabling users to make informed decisions about which option is more cost-effective in the long run.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By understanding the total cost of ownership, users can avoid unexpected expenses and make better financial choices. For more information on related calculations, visit our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
 
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The Lease vs Buy Calculator is designed to provide accurate estimates based on the inputs provided. However, the accuracy of the results depends on the accuracy of the input data. Factors such as fluctuating interest rates, changes in residual values, and additional fees can affect the final outcome. It's important to use the most current and accurate data available for the best results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For complex financial decisions, consider consulting with a financial advisor to ensure all factors are considered. Regularly updating your inputs can also help maintain accuracy.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the Lease vs Buy Calculator, you'll need the following information: the vehicle's purchase price, the loan term in years, the annual interest rate, the lease term in months, the monthly lease payment, and the residual value of the vehicle. This data allows the calculator to provide a comprehensive comparison of the total cost of leasing versus buying.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can find this information in your loan or lease agreement, or by contacting your dealer or lender. Ensuring the accuracy of this data is crucial for obtaining reliable results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the Lease vs Buy Calculator can be used for various scenarios, such as comparing different vehicle models, evaluating the impact of different interest rates, or assessing the cost of leasing versus buying over different terms. However, it's important to note that the calculator provides estimates based on the inputs provided, and actual costs may vary due to factors like maintenance, insurance, and taxes.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For more complex scenarios, consider consulting with a financial advisor or using additional tools like our <a href="/financial/loan-payment" className="text-blue-600 dark:text-blue-400 hover:underline">Loan Payment Calculator</a> for more detailed analysis.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated or incorrect input data, not considering additional costs like maintenance and insurance, and failing to account for changes in interest rates or residual values. These errors can lead to inaccurate results and potentially costly financial decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, ensure all input data is current and accurate, and consider consulting with a financial advisor for complex decisions. Regularly updating your calculations can also help maintain accuracy.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's recommended to recalculate whenever there are significant changes in your financial situation, such as changes in interest rates, vehicle prices, or lease terms. Additionally, if you're considering a new vehicle purchase or lease, updating your calculations can help ensure you're making the most informed decision.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Regular recalculations can also help you stay on top of your financial goals and adjust your plans as needed. For more insights, explore our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Once you've obtained the results from the Lease vs Buy Calculator, use them to compare the total cost of leasing versus buying. Consider how these costs align with your financial goals and budget. If leasing is more cost-effective, evaluate the terms and conditions of the lease agreement. If buying is preferable, consider the long-term benefits of ownership.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For further analysis, consult with a financial advisor or explore additional tools like our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a> to understand the broader financial implications.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While the Lease vs Buy Calculator provides a comprehensive comparison, there are alternative methods for evaluating vehicle financing options. These include consulting with a financial advisor, using other online calculators, or conducting a detailed cost analysis based on your specific financial situation.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Each method has its pros and cons, and the best approach depends on your individual needs and preferences. For a broader perspective, consider exploring our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a> for additional insights.
-            </p>
-          </div>
         </div>
       </section>
 

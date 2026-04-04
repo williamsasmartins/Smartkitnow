@@ -31,36 +31,24 @@ export default function DebtConsolidationCalculator() {
   // FAQ STRUCTURED DATA
   const faqs = [
     {
-      question: "What is a debt consolidation calculator and why is it important?",
-      answer: "A debt consolidation calculator is a tool that helps you evaluate the potential benefits of consolidating your debts into a single loan. It calculates your new monthly payment, total interest, and overall savings compared to your current debt situation. This calculator is important because it provides a clear picture of your financial options, helping you make informed decisions about managing your debts. By understanding the potential savings and costs, you can determine whether consolidation is the right choice for your financial situation. For more tools, visit our <a href='/financial/heloc-payment-estimator'>HELOC Payment Estimator</a>."
+      question: "When does debt consolidation actually save money vs. just extending your payment period?",
+      answer: "Consolidation saves money when: new interest rate is meaningfully lower than weighted average rate of existing debts, and you do not extend the term significantly. Formula: savings = (old monthly interest) − (new monthly interest) × months. Example: $20,000 across three credit cards at 24% average ($400/month interest), consolidated to a personal loan at 12% ($200/month interest) = $200/month savings. If the loan term is the same 5 years: total interest savings ≈ $12,000. But if consolidation extends payoff from 3 years to 7 years at the lower rate, you may pay more total interest despite the lower rate. Always calculate total interest cost (monthly payment × months − principal), not just the monthly payment reduction."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator is designed to provide accurate estimates based on the information you input. However, the accuracy depends on the precision of your data and assumptions about interest rates and loan terms. It's important to use realistic figures and consider consulting a financial advisor for personalized advice. Always double-check your inputs and consider potential changes in economic conditions that might affect your results."
+      question: "What are the different types of debt consolidation and when should I use each?",
+      answer: "Balance transfer card (0% APR intro period, 12–21 months): best for credit card debt under $15,000 you can pay off within the intro period. Transfer fee: 3–5%. Risk: revert to 20%+ APR if not paid off. Personal consolidation loan (7–36% APR, 2–7 years): best for larger balances needing structured repayment. Requires good credit (660+) for rates that beat credit cards. Home equity loan/HELOC (6–9% APR, 2024): best rate, but your home is collateral -- default = foreclosure. Debt management plan (DMP) via nonprofit credit counseling: reduces interest rates to 6–9% through creditor agreements; no new credit during payoff. 401k loan: 'repay yourself' but loses compound growth and has tax consequences on default."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you'll need to know your total debt amount, the interest rate you expect for the consolidated loan, and the loan term in years. Additionally, gather information about any fees or charges associated with the loan. This data will help you get the most accurate results. Ensure that the information is up-to-date and reflects your current financial situation. Accurate inputs lead to more reliable estimates."
+      question: "How does debt consolidation affect your credit score?",
+      answer: "Short-term effects: applying for a new loan/card creates a hard inquiry (−5 to −10 points, recovers in 12 months). Closing old accounts reduces average account age and available credit (may lower score temporarily). Long-term effects: lower credit utilization (if cards are paid off and kept open) improves score significantly (utilization is 30% of score). Consistent on-time payments on the new loan build positive history. Net result: most borrowers see a slight dip for 3–6 months, then score improvement over 12–24 months as utilization drops. Key rule: do not close the paid-off credit cards -- keep them open (with $0 balance) to maintain credit limit and age."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, this calculator can be used for various scenarios, such as consolidating credit card debts, personal loans, or medical bills. However, it's important to adjust the inputs to reflect the specific terms and conditions of your situation. Consider any unique factors, such as variable interest rates or special fees, that might affect the outcome. If your scenario involves complex financial products, consulting a financial advisor might provide additional insights."
+      question: "What is the difference between debt consolidation and debt settlement?",
+      answer: "Debt consolidation: takes existing debts and combines them into one new debt, usually at better terms. You repay 100% of what you owe. Credit impact: neutral to positive. Debt settlement: negotiates with creditors to accept less than the full balance (typically 40–60 cents on the dollar). You stop paying while funds accumulate in an escrow account, then lenders settle. Credit impact: severe (accounts marked 'settled for less than full amount' stay 7 years). Tax impact: forgiven debt over $600 is taxable income (IRS Form 1099-C). Debt settlement firms charge 15–25% of enrolled debt as fees. Settlement is a last resort before bankruptcy -- it severely damages credit and has tax consequences consolidation does not."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include underestimating the total debt amount, overlooking additional fees, and using incorrect interest rates. These errors can lead to inaccurate results and misguided financial decisions. Always verify your data and consider potential changes in economic conditions. Double-check your inputs and consult with a financial advisor if you're unsure about any aspect of the calculation."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculate whenever there are significant changes in your financial situation, such as a change in income, interest rates, or loan terms. Regular recalculations help you stay informed and adjust your strategy as needed. Consider setting a schedule to review your finances quarterly or annually. Staying proactive with your calculations ensures you make the most of your financial opportunities."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to evaluate your debt consolidation options and make informed decisions. Consider how the new loan terms compare to your current situation and whether the potential savings justify the consolidation. If the results are favorable, proceed with applying for a consolidation loan. If you're uncertain about the results, consult a financial advisor for personalized advice. For more guidance, check out our <a href='/financial/refinance-savings'>Refinance Savings Calculator</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives to debt consolidation include debt management plans, balance transfer credit cards, and negotiating directly with creditors for better terms. Each method has its pros and cons, depending on your financial situation and goals. For instance, balance transfer cards may offer 0% interest for a limited time but often come with fees. Evaluate each option carefully and consider consulting a financial advisor to determine the best approach for your needs."
+      question: "How do I calculate whether consolidating my debts will actually lower my monthly payment and total interest?",
+      answer: "Step 1: Calculate your current monthly payment and total remaining interest. For each debt: remaining interest = (monthly payment × remaining months) − remaining balance. Sum across all debts. Step 2: Calculate the consolidation loan total interest = (monthly payment × term months) − loan principal. Step 3: Compare. Example: two cards totaling $15,000 at average 22% APR, paying $500/month: payoff in 39 months, total interest $4,464. Consolidation loan: $15,000 at 12% for 36 months, payment $498/month, total interest $2,928. Savings: $1,536. Always include the origination fee (typically 1–8%) in the consolidation loan cost: $15,000 loan with 3% fee = $450 added cost, net savings = $1,086. Still worth it -- but always check the math."
     }
   ];
 

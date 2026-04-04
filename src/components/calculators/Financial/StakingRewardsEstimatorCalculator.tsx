@@ -20,36 +20,24 @@ export default function StakingRewardsEstimatorCalculator() {
 
   const faqs = [
     {
-      question: "What is staking rewards estimator and why is it important?",
-      answer: "A staking rewards estimator is a tool designed to calculate the potential earnings from staking cryptocurrencies. It helps investors understand how much they can earn based on their staked amount, interest rate, and lock-up duration. This is crucial for financial planning, as it allows users to make informed decisions about their investments. By using this estimator, you can project your future earnings and adjust your staking strategy accordingly. For more financial tools, explore our Refinance Savings Calculator."
+      question: "How accurate are staking rewards calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For staking rewards, accuracy depends on using current APY vs APR data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a APY vs APR professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The accuracy of this calculator depends on the precision of the input data. It uses standard financial formulas to provide reliable estimates, but external factors like market volatility and network performance can affect actual results. Users should consider these variables and consult financial advisors for critical decisions. For best results, ensure your input data is up-to-date and reflective of current market conditions."
+      question: "What key factors most affect staking rewards results?",
+      answer: "The most impactful variables in staking rewards calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you need to know the amount of cryptocurrency you plan to stake, the annual interest rate offered by the staking platform, and the lock-up duration. This information is typically available on the platform's website or through their customer support. Ensure that the data you gather is accurate and reflects the latest rates and terms to get the most precise estimate of your potential rewards."
+      question: "When should I recalculate staking rewards?",
+      answer: "Recalculate whenever APY vs APR conditions change significantly: after major APY vs APR events, when your inputs change (income, rates, holdings), or when APY vs APR regulations are updated. For time-sensitive APY vs APR metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for [specific scenario]?",
-      answer: "This calculator is versatile and can be used for various staking scenarios, including different cryptocurrencies and platforms. However, it's important to note that the calculator assumes a constant interest rate and does not account for potential changes in network conditions or platform policies. For scenarios involving variable rates or additional fees, you may need to adjust the inputs or consult additional resources for a more comprehensive analysis."
+      question: "How does staking rewards relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Staking rewards should be evaluated alongside related measures like validator risk. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your APY vs APR situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using outdated interest rates, not accounting for platform fees, and misunderstanding the lock-up duration. These errors can lead to inaccurate projections and potentially affect financial planning. To avoid these pitfalls, double-check your inputs and stay informed about any changes in staking terms or market conditions."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's advisable to recalculate your staking rewards whenever there are significant changes in interest rates, staking terms, or your financial situation. Regular recalculations can help you stay on track with your investment goals and adjust your strategy as needed. A monthly review is generally recommended, but you may need to do it more frequently if you're actively managing a large portfolio."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Once you have your estimated rewards, use the results to inform your investment decisions. Consider whether the projected earnings align with your financial goals and risk tolerance. If necessary, adjust your staking amount or duration to optimize returns. For further guidance, consult a financial advisor or explore our HELOC Payment Estimator for additional insights."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "While this calculator uses a standard compound interest formula, alternative methods include using platform-specific calculators or consulting with financial experts. These alternatives may offer more tailored insights based on unique platform features or market conditions. Consider these options if you require more detailed analysis or if you're dealing with complex staking scenarios."
+      question: "What are the most common mistakes when calculating staking rewards?",
+      answer: "The most frequent errors in staking rewards calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world APY vs APR conditions fluctuate. Double-check your inputs against current APY vs APR data before relying on results for significant financial decisions."
     }
   ];
 

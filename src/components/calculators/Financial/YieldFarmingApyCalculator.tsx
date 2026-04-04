@@ -20,36 +20,24 @@ export default function YieldFarmingApyCalculator() {
 
   const faqs = [
     {
-      question: "What is yield farming apy calculator and why is it important?",
-      answer: "The Yield Farming APY Calculator is a tool designed to estimate the annual percentage yield (APY) from yield farming activities. It helps investors understand potential returns based on their initial investment, interest rates, and compounding frequency. This calculator is crucial for making informed decisions in the volatile world of decentralized finance. By using this calculator, investors can plan their strategies more effectively, ensuring they maximize returns while managing risks."
+      question: "How accurate are yield farming APY calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For yield farming APY, accuracy depends on using current DeFi risk data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a DeFi risk professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The calculator provides a high level of accuracy based on the inputs provided. However, the accuracy can be affected by factors such as market volatility, platform fees, and changes in interest rates. It's important to regularly update your inputs to reflect current conditions. For critical financial decisions, consulting with a financial advisor is recommended to complement the insights gained from the calculator."
+      question: "What key factors most affect yield farming APY results?",
+      answer: "The most impactful variables in yield farming APY calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use the Yield Farming APY Calculator, you need to know your initial investment amount, the expected daily interest rate, and the compounding frequency. This information is typically available from the yield farming platform or project you are investing in. Ensure that you gather accurate data to input into the calculator for the most reliable results. Double-check your sources and consider any fees that may apply."
+      question: "When should I recalculate yield farming APY?",
+      answer: "Recalculate whenever DeFi risk conditions change significantly: after major DeFi risk events, when your inputs change (income, rates, holdings), or when DeFi risk regulations are updated. For time-sensitive DeFi risk metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "This calculator is versatile and can be used for various yield farming scenarios, including different cryptocurrencies and platforms. However, it may not account for specific conditions such as lock-up periods or unique platform rules. For scenarios with unique conditions, consider consulting the platform's documentation or support for more tailored advice. The calculator provides a general estimate based on standard inputs."
+      question: "How does yield farming APY relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Yield farming apy should be evaluated alongside related measures like impermanent loss. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your DeFi risk situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include entering incorrect interest rates, not accounting for platform fees, and failing to update inputs as market conditions change. These errors can lead to inaccurate estimates and misguided investment decisions. To avoid these mistakes, double-check all inputs and regularly review your investment strategy. Stay informed about market trends and platform updates to ensure your calculations remain relevant."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's advisable to recalculate your yield farming returns whenever there are significant changes in market conditions, interest rates, or platform fees. Regular recalculations ensure that your investment strategy remains aligned with current realities. A monthly review is a good practice, but more frequent updates may be necessary in volatile markets. Use the calculator as a dynamic tool to guide your investment decisions."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results from the Yield Farming APY Calculator to inform your investment strategy. The estimated returns can help you decide whether to continue with your current strategy, adjust your investment, or explore new opportunities. If the results indicate potential issues, such as low returns or high risk, consider seeking advice from a financial advisor."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives to this calculation method include using platform-specific calculators or consulting with financial advisors who specialize in cryptocurrency investments. These alternatives may offer more tailored insights based on specific platform rules and conditions. While the Yield Farming APY Calculator provides a general estimate, these alternatives can complement your analysis by offering additional perspectives and expert advice."
+      question: "What are the most common mistakes when calculating yield farming APY?",
+      answer: "The most frequent errors in yield farming APY calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world DeFi risk conditions fluctuate. Double-check your inputs against current DeFi risk data before relying on results for significant financial decisions."
     }
   ];
 

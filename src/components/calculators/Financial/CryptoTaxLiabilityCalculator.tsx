@@ -20,36 +20,24 @@ export default function CryptoTaxLiabilityCalculator() {
 
   const faqs = [
     {
-      question: "What is crypto tax liability calculator and why is it important?",
-      answer: "The crypto tax liability calculator is a tool designed to estimate your potential tax obligations from cryptocurrency transactions. It's important because it helps you understand your financial responsibilities and prepare for tax season. By using this calculator, you can avoid unexpected liabilities and ensure compliance with tax regulations. Understanding your tax liability is crucial for effective financial planning. It allows you to set aside funds for taxes and avoid penalties. For more tools, visit our Refinance Savings Calculator."
+      question: "Which crypto transactions are taxable events in 2024?",
+      answer: "Taxable: selling crypto for USD, trading crypto-to-crypto, paying for goods/services with crypto, receiving staking rewards (taxed as ordinary income at receipt), receiving mining income, receiving airdrops (taxed as income when you gain dominion and control). Not taxable: buying crypto with fiat, holding, transferring between your own wallets, gifting below the annual exclusion ($18,000 in 2024). The IRS added a crypto question to the top of Form 1040 in 2019 -- answering 'no' when you had taxable transactions is a perjury risk. Over 8,000 cryptocurrency enforcement cases were opened by IRS CI in 2023."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator provides estimates based on the information you input. While it uses standard formulas, the accuracy depends on the accuracy of your data. Factors such as market volatility and tax law changes can affect the results. It's always advisable to consult with a tax professional for precise calculations. To improve accuracy, ensure your inputs are current and reflect your actual financial situation. Regularly update your calculations to account for any changes."
+      question: "How do I calculate crypto tax liability for staking rewards?",
+      answer: "Staking rewards are taxed as ordinary income at their fair market value (FMV) on the date received. Example: received 0.5 ETH as staking reward when ETH = $2,000/ETH. Taxable income = $1,000 (ordinary income at your marginal rate). Your new cost basis for this 0.5 ETH is $1,000. When you later sell it at $3,000, you recognize an additional $500 capital gain (($3,000 − $1,000) × 0.5 ETH). This double taxation -- income at receipt + capital gain at sale -- is why staking has complex tax treatment. The IRS confirmed this position in Rev. Rul. 2023-14."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you'll need to provide your total crypto gains, the applicable tax rate, and any additional income. Crypto gains refer to the profit from your cryptocurrency transactions. The tax rate is the percentage of tax that applies to your income bracket. Other income includes any additional earnings subject to taxation. Ensure you have accurate records of your transactions and consult with a tax advisor if you're unsure about your tax rate. Keeping detailed records will help you input the correct data and achieve accurate results."
+      question: "What crypto tax forms does the IRS require?",
+      answer: "Form 8949 (Sales and Other Dispositions of Capital Assets): reports every individual disposal with cost basis, proceeds, and gain/loss. Schedule D: summarizes all capital gains/losses from Form 8949. Schedule 1 (Additional Income): reports staking, mining, and airdrop income. Starting 2025, exchanges issue Form 1099-DA (Digital Asset Proceeds) -- similar to a 1099-B for stocks. Before 2025, most exchanges issued 1099-Misc or nothing. Missing a Form 8949 entry for each disposal is an audit risk; the IRS cross-references exchange 1099 data. Crypto tax software (Koinly, TaxBit, CoinTracker) generates compliant Form 8949 exports automatically."
     },
     {
-      question: "Can I use this calculator for [specific scenario]?",
-      answer: "Yes, this calculator can be used for various scenarios involving cryptocurrency transactions. Whether you're calculating taxes for a single transaction or multiple trades, the calculator can provide estimates. However, it's important to note that complex scenarios, such as those involving international transactions or multiple currencies, may require additional considerations. For complex situations, consulting with a tax professional is recommended. They can provide tailored advice and ensure compliance with all applicable regulations."
+      question: "How does the IRS detect unreported cryptocurrency income?",
+      answer: "The IRS receives data from major US exchanges via John Doe summonses and voluntary reporting. Coinbase was required to report user data for accounts with $20,000+ in transactions (2016). Kraken, Poloniex, and others faced similar summonses. Starting 2025, all US exchanges must issue 1099-DA for every customer. Additionally, the IRS uses blockchain analytics firms (Chainalysis, CipherTrace) to trace on-chain activity to real identities via exchange-linked wallet addresses. Virtual currency is included on FBAR if foreign exchange holdings exceed $10,000. The IRS crypto unit audited over 1,000 cases in 2023 with an 89% success rate."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include inputting incorrect data, such as outdated crypto gains or tax rates. Failing to account for all transactions can also lead to inaccurate results. Additionally, not considering changes in tax laws or market conditions can affect your calculations. To avoid these errors, double-check your inputs and stay informed about any changes in tax regulations. Regularly update your calculations and consult with a tax advisor if needed."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's advisable to recalculate your tax liability regularly, especially if you frequently trade cryptocurrencies. Market conditions and tax laws can change, affecting your liability. Recalculating quarterly or after significant transactions can help you stay on top of your financial obligations. Having a regular schedule for recalculations ensures that you're prepared for tax season and can make informed financial decisions throughout the year."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to plan for your tax payments and set aside the necessary funds. Understanding your tax liability helps you avoid surprises during tax season and ensures compliance with tax regulations. If your liability is significant, consider consulting with a tax advisor for personalized advice. For more financial planning tools, explore our HELOC Payment Estimator."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Yes, there are alternative methods for calculating crypto tax liability, such as using specialized tax software or consulting with a tax professional. These alternatives can provide more detailed insights and accommodate complex scenarios. While this calculator offers a convenient estimation, exploring other methods can enhance accuracy and provide a comprehensive view of your tax obligations."
+      question: "Can I deduct crypto losses against other income?",
+      answer: "Crypto losses follow standard capital loss rules: they first offset capital gains (net against gains dollar-for-dollar). If net capital losses remain, up to $3,000 can offset ordinary income per year ($1,500 for married filing separately). Excess losses carry forward indefinitely. Example: $30,000 crypto loss, $20,000 capital gain from stocks. Net loss = $10,000. Use $3,000 against ordinary income this year; carry $7,000 forward. Note: unlike stocks, the wash-sale rule does not currently apply to crypto (as of 2024) -- you can sell at a loss and immediately repurchase the same crypto. This enables aggressive tax-loss harvesting strategies that are unavailable in traditional markets."
     }
   ];
 

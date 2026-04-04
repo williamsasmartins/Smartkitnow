@@ -80,36 +80,24 @@ export default function DebtToIncomeRatioCalculator() {
 
   const faqs = [
     {
-      question: "What is a debt-to-income ratio calculator and why is it important?",
-      answer: "A debt-to-income (DTI) ratio calculator measures the percentage of your gross monthly income that goes towards paying your monthly debt payments. It is a key indicator of your financial health and is widely used by lenders to assess your creditworthiness. A lower DTI ratio indicates a good balance between debt and income, making it easier to qualify for loans and credit cards. Understanding your DTI ratio helps you manage your finances better and plan for future financial goals. For more financial tools, visit our <a href=\"/financial/loan-payment\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Loan Payment Calculator</a>."
+      question: "What is the maximum debt-to-income ratio to qualify for a mortgage?",
+      answer: "Conventional mortgage (Fannie Mae/Freddie Mac): maximum DTI typically 45% (back-end), though 50% is allowed with compensating factors (high credit score, large down payment, significant reserves). FHA loans: 43% DTI limit, but some lenders allow up to 50% with compensating factors. VA loans: no strict DTI cap, but 41% is the guideline; exceeding requires residual income analysis. Jumbo loans (over conforming limit $766,550 in 2024): typically 43–45% maximum, stricter requirements. A front-end DTI (housing expenses only) under 28% is preferred. With DTI of 45%+ and only 3% down, you are at maximum risk tolerance for lenders -- any income disruption creates default risk."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator provides a highly accurate estimate of your DTI ratio based on the inputs you provide. However, the accuracy depends on the accuracy of the data entered. Ensure that all income and debt figures are current and correct to obtain the most reliable results. For complex financial situations, consider consulting a financial advisor for personalized advice."
+      question: "What is included in debt-to-income calculations for mortgage underwriting?",
+      answer: "Included (back-end DTI): proposed housing payment (PITI: principal, interest, taxes, insurance + HOA), car loans, student loans (even in deferment -- lender uses 0.5–1% of balance as payment), credit card minimum payments, personal loans, child support, alimony. Not included: utilities, phone, subscriptions, food, transportation costs (other than car payment). Student loans in deferment are particularly impactful: a $50,000 balance uses $500/month as assumed payment even if you currently pay $0. This reduces buying power by approximately $85,000 in mortgage amount. Income counts: verified W-2 income, 2-year self-employment average (Schedule C), documented investment/rental income, child support received."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you'll need to provide your gross monthly income and total monthly debt payments. Gross monthly income includes all sources of income before taxes and deductions, such as salary, bonuses, and rental income. Total monthly debt payments should cover all recurring obligations like loans, credit card payments, and other liabilities. Ensure that the figures are accurate and up-to-date to get the most reliable results."
+      question: "How do I reduce my DTI quickly before applying for a mortgage?",
+      answer: "Most effective short-term strategies: (1) Pay off the highest-minimum-payment debt first (credit cards, personal loans -- car loans are harder). A $5,000 credit card with $100/month minimum, if paid off, improves DTI by $100/month -- equivalent to eliminating $12,000–$15,000 in mortgage payment capacity. (2) Increase documented income: if you have side income, ensure it's 2-year documented and tax-filed. (3) Add a co-borrower with income and no debt. (4) Request a credit limit increase (reduces utilization AND DTI if you don't carry more balance). What doesn't work: lowering 401k contributions (after-tax income doesn't change DTI calculation). Time to impact: lenders require 30 days of updated statements; plan 60–90 days ahead."
     },
     {
-      question: "Can I use this calculator for mortgage applications?",
-      answer: "Yes, this calculator is particularly useful for mortgage applications. Lenders often use the DTI ratio to assess your ability to manage monthly payments and repay loans. A lower DTI ratio increases your chances of mortgage approval and may help you secure better interest rates. Ensure that all income and debt figures are accurate to get the most reliable results. For more mortgage-related calculations, explore our <a href=\"/financial/mortgage-amortization\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Mortgage Payment & Amortization Calculator</a>."
+      question: "What is the difference between front-end and back-end debt-to-income ratio?",
+      answer: "Front-end DTI (housing ratio) = (proposed housing costs) / (gross monthly income). Includes only: principal, interest, property taxes, homeowners insurance, PMI (if applicable), HOA fees. Target: below 28%. Example: $2,000 housing payment on $7,000/month gross income = 28.6% front-end DTI. Back-end DTI (total debt ratio) = (all monthly debt obligations including housing) / (gross monthly income). Includes housing + all other debt minimums. Target: below 36% (conservative), 43% (standard), 45% (maximum for most conventional). Lenders primarily use back-end DTI for qualification. Front-end DTI matters for jumbo/portfolio loans and some government programs. Rule of thumb: keep back-end DTI under 36% for financial stability; above 40% and you have little buffer for financial shocks."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include underestimating debt payments, overestimating income, and not accounting for all sources of income and debt. These errors can lead to inaccurate DTI ratios and misinformed financial decisions. To avoid these mistakes, ensure that all figures are accurate and up-to-date. Regularly review and update your financial information to maintain a reliable DTI ratio."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's advisable to recalculate your DTI ratio whenever there are significant changes in your income or debt levels. This includes changes in employment, salary adjustments, taking on new debt, or paying off existing debt. Regular recalculations help you stay informed about your financial health and make timely adjustments to your financial strategies."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to assess your financial health and make informed decisions about future financial commitments. A low DTI ratio suggests financial stability, while a high ratio may indicate the need for debt reduction or income enhancement strategies. For personalized advice, consider consulting a financial advisor. Explore our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a> for more strategies."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "While the DTI ratio is a standard measure of financial health, other metrics like the credit score and net worth can provide additional insights. Each method has its pros and cons, and the choice depends on your specific financial goals and circumstances. For a comprehensive financial assessment, consider using multiple metrics in conjunction with the DTI ratio."
+      question: "How does student loan debt affect buying a home with high DTI?",
+      answer: "Student loans cause disproportionate DTI impact because lenders use the payment even during deferment or income-driven repayment. Fannie Mae rule (conventional): uses the actual IDR payment if $0, uses $0 -- a favorable change from 2021. Freddie Mac: uses 0.5% of loan balance OR actual payment, whichever is greater. FHA: uses 1% of balance OR actual payment OR fully amortized payment over remaining term -- the most punitive. Example: $80,000 in student loans. Fannie Mae: may use $0 (if IDR payment is $0). Freddie Mac: $400/month. FHA: $800/month. This $800/month FHA payment reduces mortgage qualification by approximately $110,000 in home buying power. For first-time buyers with student loans, a conventional Fannie Mae loan often allows the highest DTI and most generous student loan treatment."
     }
   ];
 

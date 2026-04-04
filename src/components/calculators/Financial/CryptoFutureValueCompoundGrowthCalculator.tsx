@@ -87,36 +87,24 @@ export default function CryptoFutureValueCompoundGrowthCalculator() {
 
   const faqs = [
     {
-      question: "What is future value & compound growth estimator and why is it important?",
-      answer: "The Future Value & Compound Growth Estimator is a tool that calculates the potential future value of an investment based on compound interest. It is crucial for investors looking to understand how their investments might grow over time, allowing them to make informed decisions about their financial strategies. By projecting future values, investors can plan for long-term goals such as retirement or major purchases. This estimator is particularly useful in volatile markets, where understanding potential outcomes can guide investment choices."
+      question: "What growth rate should I use for crypto future value projections?",
+      answer: "Bitcoin's compound annual growth rate (CAGR) from 2012–2024 was approximately 140%. From 2017–2024 (post-mainstream adoption): approximately 30% CAGR. From 2020–2024: approximately 25%. Use 15–25% for conservative long-term BTC projections, 5–10% for extremely conservative scenarios. Never project altcoin growth from past performance -- selection bias (you only see coins that survived) makes historical altcoin returns misleading. For financial planning, stress-test with 0% growth and negative scenarios alongside optimistic projections."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator provides a high level of accuracy based on the inputs provided, using a standard compound interest formula. However, the accuracy depends on the precision of the input values, such as the interest rate and investment duration. External factors like market changes and economic conditions can also affect the actual outcomes, so it's advisable to use this tool as a guide rather than a guarantee. For the best results, regularly update your inputs to reflect current market conditions and consult with financial advisors for personalized advice."
+      question: "How does the compound growth formula apply to volatile assets like crypto?",
+      answer: "The compound growth formula (FV = PV × (1 + r)^n) assumes a smooth, consistent growth rate -- which crypto never has. In reality, a 25% CAGR might be delivered as: +300%, -70%, +100%, -65%, +200%. The terminal value matches the formula, but the path matters for investors who sell during drawdowns. The geometric mean return is always lower than the arithmetic mean for volatile assets. A 50% gain followed by 50% loss = -25% net, not 0%. This calculator gives your expected terminal value; your actual outcome depends heavily on whether you hold through volatility."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you need the initial investment amount, the expected annual interest rate, and the number of years you plan to hold the investment. The initial investment is the starting amount you plan to invest. The annual interest rate should reflect realistic market conditions and can often be found in investment prospectuses or financial news. The investment duration is the period over which you expect to hold the investment. Ensure that these inputs are as accurate as possible to obtain reliable results."
+      question: "What is the difference between nominal and inflation-adjusted crypto returns?",
+      answer: "Nominal returns are raw percentage gains in USD. Real (inflation-adjusted) returns subtract the purchasing power impact of inflation. With 3% annual inflation, a 25% nominal return is a 21.4% real return. For large crypto gains, this distinction matters less (25% nominal vs 21.4% real), but for conservative scenarios (8% nominal), a 3% inflation rate drops real return to 4.9% -- nearly halved. Always compare crypto returns to inflation-adjusted alternatives: the S&P 500 has returned approximately 7% real (10% nominal - 3% inflation) over the long term. Use the real return when evaluating whether crypto outperforms a traditional portfolio."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, this calculator can be used for a variety of scenarios, including retirement planning, education savings, and long-term investment strategies. It is versatile and can accommodate different interest rates and investment durations. However, it may not account for specific factors such as taxes, fees, or inflation, which can affect the actual outcomes. For scenarios involving complex financial products or significant market volatility, consider consulting with a financial advisor to complement the insights provided by this tool."
+      question: "How does compounding frequency affect future value for crypto holdings?",
+      answer: "Compounding frequency only matters if you are reinvesting returns (e.g., staking rewards). For simple price appreciation, holding $1,000 in BTC compounds once -- when you sell. For staking: daily compounding at 5% APY yields 5.13% effective APY (APY = (1 + 0.05/365)^365 − 1). Monthly compounding at 5% APY yields 5.12% effective APY. The difference between daily and monthly compounding is negligible below 20% APY. Above 20% (common in early DeFi), daily compounding adds meaningful return -- a 50% APY daily-compounded becomes 64.9% effective APY."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using unrealistic interest rates, not accounting for fees or taxes, and ignoring inflation. These errors can lead to overestimating the future value of investments. Additionally, failing to update inputs regularly to reflect changes in market conditions or personal financial situations can result in inaccurate projections. To avoid these mistakes, ensure that your inputs are realistic and regularly reviewed. Consider external factors that might impact your investment and adjust your calculations accordingly."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculation should be done regularly, especially when there are significant changes in market conditions, interest rates, or personal financial goals. At a minimum, consider recalculating annually to ensure your projections remain accurate and relevant. Additionally, recalculate whenever you make changes to your investment strategy or when significant life events occur. Keeping your calculations up-to-date helps you stay informed and make timely adjustments to your investment plan, maximizing your financial outcomes."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to inform your investment strategy and financial planning. The projected future value can help you assess whether your current investment approach aligns with your long-term goals. If the results indicate that your investments may not meet your objectives, consider adjusting your strategy by increasing your investment amount, seeking higher interest rates, or extending your investment duration. For personalized advice, consult with a financial advisor who can provide tailored recommendations based on your unique financial situation."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives to the compound interest calculation include using simple interest formulas or financial modeling software for more complex scenarios. Simple interest calculations may be appropriate for short-term investments or loans, where interest is not compounded. Financial modeling software can provide more detailed projections by incorporating variables such as taxes, fees, and inflation. Each method has its pros and cons, and the choice depends on the complexity of your financial situation and your specific needs."
+      question: "Why do future value projections for crypto feel unrealistic at long time horizons?",
+      answer: "At high growth rates, the math produces astronomical numbers that reveal a real constraint: market cap ceilings. Bitcoin cannot sustain 100% annual growth for 20 years -- that would produce a market cap larger than global GDP. At 25% CAGR for 20 years, $10,000 becomes $867,000. At 10% for 20 years: $67,275. Use the calculator to understand scenarios rather than predictions. The most useful exercise is running multiple rates (5%, 10%, 20%) to understand the range of outcomes and to compare whether crypto projections beat index fund equivalents (7% real) by a meaningful enough margin to justify the risk."
     }
   ];
 

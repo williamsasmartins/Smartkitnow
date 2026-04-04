@@ -20,36 +20,24 @@ export default function VatGstCalculator() {
 
   const faqs = [
     {
-      question: "What is a VAT/GST calculator and why is it important?",
-      answer: "A VAT/GST calculator is a tool that helps determine the amount of value-added tax or goods and services tax applicable to a purchase. This is crucial for businesses to set accurate prices and for consumers to understand the total cost of goods or services. By calculating the tax component, users can ensure compliance with tax regulations and avoid financial discrepancies. For businesses, using a VAT/GST calculator can streamline accounting processes and improve financial accuracy. Consumers benefit by gaining transparency into the tax portion of their purchases."
+      question: "How accurate are VAT/GST calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For VAT/GST, accuracy depends on using current value-added tax data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a value-added tax professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator is designed to provide highly accurate results based on the input data. However, its accuracy depends on the correctness of the data entered, such as the net amount and the applicable tax rate. Users should ensure they input the correct figures to achieve precise calculations. In cases of complex transactions, consulting a tax professional is recommended. For best results, double-check your inputs and stay informed about current tax rates. Regular updates to the calculator ensure it remains a reliable tool for financial planning."
+      question: "What key factors most affect VAT/GST results?",
+      answer: "The most impactful variables in VAT/GST calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you need the net amount of the goods or services and the applicable tax rate. The net amount is the price before tax, and the tax rate is the percentage applied to this amount. Ensure you have the correct tax rate for your region or transaction type, as this can vary significantly. Additionally, decide whether the tax is included in the net amount or added on top. This affects the calculation and the final gross amount. Gathering accurate data is crucial for precise results."
+      question: "When should I recalculate VAT/GST?",
+      answer: "Recalculate whenever value-added tax conditions change significantly: after major value-added tax events, when your inputs change (income, rates, holdings), or when value-added tax regulations are updated. For time-sensitive value-added tax metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for international transactions?",
-      answer: "Yes, this calculator can be used for international transactions, provided you have the correct tax rate for the country or region involved. It's essential to be aware of currency exchange rates, as they can affect the final tax amount when converted to your local currency. Ensure you use the most current rates for accurate calculations. For international business operations, maintaining a database of tax rates for different regions can streamline the process. Consider consulting with a tax professional for complex transactions involving multiple jurisdictions."
+      question: "How does VAT/GST relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Vat/gst should be evaluated alongside related measures like cross-border tax. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your value-added tax situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using incorrect tax rates, not accounting for exemptions or reduced rates, and misunderstanding whether the tax is included in the net amount. These errors can lead to financial discrepancies and compliance issues. It's crucial to verify all inputs and understand the tax regulations applicable to your transaction. To avoid these mistakes, regularly update your knowledge of tax rates and regulations, and use reliable sources for your data."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculation should be done whenever there is a change in the tax rate, the net amount, or if there are regulatory updates. For businesses, recalculating regularly ensures compliance and accurate financial reporting. Consumers should recalculate when making significant purchases or when tax rates change. Establishing a routine for checking tax updates and recalculating as needed can prevent financial errors and ensure accurate budgeting and pricing."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to inform pricing strategies, budget planning, and financial reporting. For businesses, the gross amount can guide pricing decisions, while the tax amount helps in preparing accurate tax filings. Consumers can use the net and gross amounts to understand the true cost of purchases. If the results indicate discrepancies or unexpected values, consider consulting a financial advisor."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include using accounting software with built-in tax calculation features or consulting with a tax professional for complex transactions. These methods can provide additional insights and ensure compliance with the latest regulations. While this calculator is a convenient tool for quick calculations, more comprehensive solutions may be necessary for businesses with complex financial needs. Evaluate your specific requirements to determine the best approach."
+      question: "What are the most common mistakes when calculating VAT/GST?",
+      answer: "The most frequent errors in VAT/GST calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world value-added tax conditions fluctuate. Double-check your inputs against current value-added tax data before relying on results for significant financial decisions."
     }
   ];
 

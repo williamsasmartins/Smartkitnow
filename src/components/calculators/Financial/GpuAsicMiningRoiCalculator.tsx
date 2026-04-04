@@ -20,36 +20,24 @@ export default function GpuAsicMiningRoiCalculator() {
 
   const faqs = [
     {
-      question: "What is GPU/ASIC Mining ROI Calculator and why is it important?",
-      answer: "The GPU/ASIC Mining ROI Calculator is a tool designed to help miners estimate the time required to recoup their investment in mining hardware. It calculates the return on investment based on current profitability metrics, providing insights into the financial viability of mining operations. Understanding ROI is crucial for making informed decisions about hardware purchases and operational strategies."
+      question: "How accurate are GPU/ASIC mining ROI calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For GPU/ASIC mining ROI, accuracy depends on using current hardware depreciation data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a hardware depreciation professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The accuracy of this calculator depends on the precision of the input data. Factors such as fluctuating cryptocurrency prices, network difficulty, and electricity costs can affect the results. It's important to regularly update your calculations to reflect current conditions. For best results, ensure that your input data is accurate and up-to-date. Consider consulting professionals for complex scenarios."
+      question: "What key factors most affect GPU/ASIC mining ROI results?",
+      answer: "The most impactful variables in GPU/ASIC mining ROI calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you need to provide the cost of your mining hardware, the daily profit from mining activities, and the daily electricity cost. These inputs are essential for calculating the ROI and understanding the financial viability of your mining operations. Accurate data is crucial for reliable results. Gather information from reliable sources and update regularly to reflect current market conditions."
+      question: "When should I recalculate GPU/ASIC mining ROI?",
+      answer: "Recalculate whenever hardware depreciation conditions change significantly: after major hardware depreciation events, when your inputs change (income, rates, holdings), or when hardware depreciation regulations are updated. For time-sensitive hardware depreciation metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for different mining scenarios?",
-      answer: "This calculator is versatile and can be used for various scenarios involving GPU or ASIC mining. Whether you're a small-scale miner or operating a large mining farm, the calculator can provide valuable insights into your ROI. For specific scenarios, ensure that your input data accurately reflects your operational conditions. Adjust the inputs as necessary to explore different outcomes and strategies."
+      question: "How does GPU/ASIC mining ROI relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Gpu/asic mining roi should be evaluated alongside related measures like mining efficiency. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your hardware depreciation situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using outdated or inaccurate input data, neglecting to account for fluctuations in cryptocurrency prices, and underestimating electricity costs. These errors can lead to incorrect ROI estimates and poor decision-making. To avoid these mistakes, regularly update your input data and consider all relevant factors. Stay informed about market trends and adjust your calculations accordingly."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculation is necessary whenever there are significant changes in market conditions, such as fluctuations in cryptocurrency prices or electricity rates. Regular updates ensure that your ROI estimates remain accurate and relevant. As a best practice, consider recalculating at least once a month or whenever you make significant changes to your mining operations."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to make informed decisions about your mining operations. If the ROI is favorable, consider scaling up your operations or reinvesting profits into more efficient hardware. If the ROI is unfavorable, explore ways to optimize your setup or reduce costs."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "While this calculator provides a straightforward method for estimating ROI, alternative approaches include more complex financial models or consulting with financial advisors. These alternatives can offer deeper insights but may require more detailed data and analysis. Consider using alternatives if you require a more comprehensive analysis or are dealing with large-scale mining operations."
+      question: "What are the most common mistakes when calculating GPU/ASIC mining ROI?",
+      answer: "The most frequent errors in GPU/ASIC mining ROI calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world hardware depreciation conditions fluctuate. Double-check your inputs against current hardware depreciation data before relying on results for significant financial decisions."
     }
   ];
 
@@ -428,117 +416,19 @@ export default function GpuAsicMiningRoiCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is gpu/asic mining roi calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The GPU/ASIC Mining ROI Calculator is a tool designed to help miners estimate the time required to recoup their investment in mining hardware. It calculates the return on investment based on current profitability metrics, providing insights into the financial viability of mining operations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Understanding ROI is crucial for making informed decisions about hardware purchases and operational strategies. For more financial tools, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
 
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The accuracy of this calculator depends on the precision of the input data. Factors such as fluctuating cryptocurrency prices, network difficulty, and electricity costs can affect the results. It's important to regularly update your calculations to reflect current conditions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For best results, ensure that your input data is accurate and up-to-date. Consider consulting professionals for complex scenarios.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you need to provide the cost of your mining hardware, the daily profit from mining activities, and the daily electricity cost. These inputs are essential for calculating the ROI and understanding the financial viability of your mining operations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Accurate data is crucial for reliable results. Gather information from reliable sources and update regularly to reflect current market conditions.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for [specific scenario]?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator is versatile and can be used for various scenarios involving GPU or ASIC mining. Whether you're a small-scale miner or operating a large mining farm, the calculator can provide valuable insights into your ROI.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For specific scenarios, ensure that your input data accurately reflects your operational conditions. Adjust the inputs as necessary to explore different outcomes and strategies.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated or inaccurate input data, neglecting to account for fluctuations in cryptocurrency prices, and underestimating electricity costs. These errors can lead to incorrect ROI estimates and poor decision-making.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these mistakes, regularly update your input data and consider all relevant factors. Stay informed about market trends and adjust your calculations accordingly.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculation is necessary whenever there are significant changes in market conditions, such as fluctuations in cryptocurrency prices or electricity rates. Regular updates ensure that your ROI estimates remain accurate and relevant.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              As a best practice, consider recalculating at least once a month or whenever you make significant changes to your mining operations.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to make informed decisions about your mining operations. If the ROI is favorable, consider scaling up your operations or reinvesting profits into more efficient hardware. If the ROI is unfavorable, explore ways to optimize your setup or reduce costs.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For additional financial planning tools, check out our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              While this calculator provides a straightforward method for estimating ROI, alternative approaches include more complex financial models or consulting with financial advisors. These alternatives can offer deeper insights but may require more detailed data and analysis.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider using alternatives if you require a more comprehensive analysis or are dealing with large-scale mining operations.
-            </p>
-          </div>
         </div>
       </section>
 

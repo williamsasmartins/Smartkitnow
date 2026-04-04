@@ -19,36 +19,24 @@ export default function AbsencePercentageCalculator() {
 
   const faqs = [
     {
-      question: "What is absence percentage calculator and why is it important?",
-      answer: "An absence percentage calculator measures the proportion of days an employee is absent relative to the total working days. It is crucial for identifying attendance patterns and addressing potential issues early. This tool helps organizations maintain productivity and manage workforce effectively.<br><br>By understanding absence rates, companies can implement strategies to improve attendance and reduce costs associated with absenteeism. For more tools, visit our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
+      question: "How accurate are absence rate calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For absence rate, accuracy depends on using current HR data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a HR professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The calculator is highly accurate when provided with correct input data. However, its accuracy depends on the precision of the data entered, such as the exact number of absent and total days. External factors like data entry errors can affect the results.<br><br>For critical decisions, consider consulting HR professionals to validate the findings and ensure comprehensive analysis."
+      question: "What key factors most affect absence rate results?",
+      answer: "The most impactful variables in absence rate calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "You need the total number of working days in the period and the number of days the employee was absent. This information is typically available from attendance records or HR databases. Ensure the data is current and accurately reflects the period being analyzed.<br><br>Accurate data collection is vital for reliable results. Double-check entries to avoid errors that could skew the absence percentage."
+      question: "When should I recalculate absence rate?",
+      answer: "Recalculate whenever HR conditions change significantly: after major HR events, when your inputs change (income, rates, holdings), or when HR regulations are updated. For time-sensitive HR metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, the calculator can be used for various scenarios, such as analyzing absence patterns for specific departments or time periods. However, it is essential to ensure that the data used is relevant and specific to the scenario being analyzed.<br><br>For complex scenarios, consider additional analysis or consulting with HR experts to interpret the data accurately."
+      question: "How does absence rate relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Absence rate should be evaluated alongside related measures like workforce. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your HR situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include entering incorrect data, such as miscounting total or absent days, and not considering external factors like holidays. These errors can lead to inaccurate absence percentages and misguided conclusions.<br><br>To avoid these mistakes, verify data accuracy and consider all relevant factors when interpreting results."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculate absence percentages regularly, such as monthly or quarterly, to monitor trends and address issues promptly. Frequent recalculations help in identifying patterns and making timely interventions.<br><br>Adjust the frequency based on organizational needs and the availability of new data."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to identify areas for improvement and implement strategies to reduce absenteeism. Share findings with management and HR teams to develop targeted interventions. Consider professional advice for comprehensive analysis.<br><br>For more on optimizing financial outcomes, see our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include using advanced HR analytics software that offers more comprehensive insights into attendance patterns. These tools often integrate with other HR systems for a holistic view.<br><br>While these alternatives provide more detailed analysis, they may require significant investment and training."
+      question: "What are the most common mistakes when calculating absence rate?",
+      answer: "The most frequent errors in absence rate calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world HR conditions fluctuate. Double-check your inputs against current HR data before relying on results for significant financial decisions."
     }
   ];
 

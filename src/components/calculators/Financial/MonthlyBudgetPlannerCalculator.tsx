@@ -20,36 +20,24 @@ export default function MonthlyBudgetPlannerCalculator() {
 
   const faqs = [
     {
-      question: "What is Monthly Budget Planner Calculator and why is it important?",
-      answer: "The Monthly Budget Planner Calculator is a financial tool designed to help individuals and families manage their finances by tracking income and expenses. It allows users to create a comprehensive budget, ensuring that spending aligns with financial goals. This calculator is important because it promotes financial discipline, helps identify areas for potential savings, and facilitates better financial decision-making. By providing a clear overview of financial health, it empowers users to take control of their money and plan for the future."
+      question: "What is the 50/30/20 budget rule and is it still realistic in 2024?",
+      answer: "The 50/30/20 rule: 50% of after-tax income to needs (housing, food, utilities, transportation, insurance), 30% to wants (dining, entertainment, travel, subscriptions), 20% to savings/debt repayment. In 2024, housing costs in major metros have made 50% for needs nearly impossible for median earners: median rent in NYC, SF, LA, Boston, Seattle exceeds 40% of median income alone. Modified approaches for high-cost areas: 60/20/20 (bump needs to 60%, sacrifice wants) or 70/10/20 (increase needs, cut wants drastically). For high-income earners: reverse the ratios -- prioritize savings first (30%+) and fit lifestyle into the remainder. The rule is a starting framework, not a mandate."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The accuracy of the Monthly Budget Planner Calculator depends on the precision of the data entered. Users must provide accurate income and expense figures to obtain reliable results. While the calculator offers a detailed analysis, it is essential to regularly update the information to reflect changes in financial circumstances. For complex financial situations, consulting a financial advisor is recommended to ensure the budget plan is robust and effective."
+      question: "What budgeting method works best for variable income (freelancers, gig workers)?",
+      answer: "Fixed expenses budgeting: base all recurring bills on your lowest-income month; allocate variable income only after fixed obligations. Zero-based budgeting works well -- every dollar is assigned a role before the month starts. Percentage-based budgeting: pre-commit fixed percentages to taxes, savings, and living costs; scale all categories proportionally with income. Envelope/category system: at month start, physically or digitally allocate income to categories and stop spending when envelope is empty. Income smoothing strategy: calculate annual income, divide by 12 for 'monthly salary' -- transfer variable income to savings account, pay yourself a consistent 'salary'. This requires 3–6 months of income in reserve to buffer low-income months."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use the Monthly Budget Planner Calculator effectively, you need detailed information about your monthly income sources and all expenses. This includes fixed costs like rent or mortgage, utilities, and insurance, as well as variable expenses such as groceries, entertainment, and transportation. having recent bank statements and bills on hand can help ensure that the data entered is accurate and comprehensive."
+      question: "How do I find money to save in a tight budget when expenses equal income?",
+      answer: "Audit subscriptions first: the average American has 12 paid subscriptions, often forgetting 4–5 of them (West Monroe, 2022). Canceling unused subscriptions can free $50–$200/month immediately. Insurance audit: getting competing quotes every 2 years typically saves $400–$800/year on auto + home. Cell phone: switching to an MVNO (Mint Mobile, Visible) from carrier plans saves $50–$100/month. Grocery: meal planning + buying store brands saves 20–40% vs. buying convenience foods. Refinancing high-APR debt: trading 22% credit card for a 10% personal loan saves the interest differential. If expenses genuinely equal income after audit: address the income side -- even $200/month in side income changes the math more than micro-optimizations."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, the Monthly Budget Planner Calculator is versatile and can be adapted for various scenarios, such as planning for a major purchase, saving for a vacation, or managing debt repayment. By adjusting the income and expense inputs, users can simulate different financial situations and see how changes impact their overall budget. This flexibility makes it a valuable tool for both short-term and long-term financial planning."
+      question: "How should I prioritize paying off debt vs. saving in my budget?",
+      answer: "The hierarchy by guaranteed return vs. cost: (1) Employer 401k match first -- this is a 50–100% immediate return on investment, always prioritize. (2) High-interest debt (above 7%) -- paying off a 22% APR card is a guaranteed 22% return, better than most investments. (3) Emergency fund (3–6 months of expenses) -- prevents debt spiral from unexpected costs. (4) Mid-rate debt (5–7%) -- a coin-flip between payoff and investing in index funds (historically ~7% return). (5) Low-rate debt (under 4%, like federal student loans or mortgages) -- invest over prepaying; historical index fund returns exceed the interest rate. 2024 note: HYSAs pay 4.5–5.0%, so money sitting in a HYSA may outperform paying off 4–5% debt."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include underestimating variable expenses, forgetting to account for irregular or annual costs, and not updating the budget regularly. These errors can lead to an unrealistic budget that is difficult to stick to. To avoid these pitfalls, users should be thorough in their expense tracking and review their budget frequently to ensure it remains relevant and achievable."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It is advisable to recalculate your budget monthly or whenever there is a significant change in income or expenses. Regular reviews help track progress towards financial goals and allow for adjustments to be made as needed. This proactive approach ensures that the budget remains a useful tool for financial management and adapts to evolving life circumstances."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "The results from the Monthly Budget Planner Calculator should be used to inform financial decisions and adjust spending habits. If the calculator shows a surplus, consider allocating funds to savings or investments. If there is a deficit, look for areas to cut costs or increase income. The insights gained should serve as a roadmap for achieving financial stability and growth."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "While the Monthly Budget Planner Calculator is a powerful tool, alternatives include the 50/30/20 rule, zero-based budgeting, and envelope budgeting. Each method offers a different approach to managing finances, and the best choice depends on individual preferences and financial goals. Exploring different methods can help users find the budgeting style that works best for them."
+      question: "What are the most impactful budget categories to reduce for maximum savings increase?",
+      answer: "Pareto analysis of typical US household spending: housing (33%), transportation (16%), food (12%), healthcare (8%), personal insurance/pensions (12%), other (19%). The biggest savings come from the biggest categories: Housing: every $200 reduction in rent/mortgage saves $72,000+ over 30 years (at 7% invested). Transportation: car downsizing from $600/month to $250/month = $4,200/year = $172,000 over 30 years invested. Food: average food budget $7,700/year; reducing by 30% ($2,300) saves $2,300. Incremental reductions in smaller categories (coffee, streaming) create behavior change habits but have limited dollar impact. Prioritize high-dollar category optimization even if emotionally harder."
     }
   ];
 
@@ -432,117 +420,19 @@ export default function MonthlyBudgetPlannerCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is a monthly budget planner and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A monthly budget planner is a tool that helps you track your income and expenses over a month. It provides a clear picture of your financial situation, allowing you to make informed decisions about spending and saving. By using a budget planner, you can identify areas where you can cut back on expenses and allocate more funds towards savings or debt repayment.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Budgeting is crucial for financial stability and achieving your financial goals. It helps prevent overspending and ensures that you have enough funds to cover essential expenses. For more insights, explore our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
 
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              This calculator provides a high level of accuracy based on the data you input. However, its accuracy depends on the precision of the information you provide. Factors such as unexpected expenses or changes in income can affect the results. It's important to regularly update your inputs to maintain accuracy.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For the most accurate results, ensure that all income and expenses are accounted for. Regularly review and adjust your budget to reflect any changes in your financial situation.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use this calculator, you'll need to gather information about your monthly income, including salary, bonuses, and any additional sources of revenue. You'll also need to list all your monthly expenses, such as rent, utilities, groceries, and other regular payments. Finally, if you have a specific savings goal, include that as well.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Having accurate and up-to-date information is crucial for obtaining reliable results. Consider using financial statements or budgeting apps to track your income and expenses effectively.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, this calculator is versatile and can be used for various scenarios, such as planning for a vacation, saving for a down payment on a house, or managing monthly expenses. However, it's important to tailor the inputs to your specific situation to get the most accurate results.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For scenarios with irregular income or expenses, consider adjusting the inputs to reflect average values over a period. This approach provides a more realistic view of your financial situation.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include underestimating expenses, overestimating income, and failing to account for irregular expenses. These errors can lead to inaccurate results and potential financial shortfalls. It's important to be realistic and thorough when entering data into the calculator.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Regularly reviewing and adjusting your budget helps prevent these mistakes. Consider setting aside a contingency fund for unexpected expenses to ensure your budget remains balanced.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's advisable to recalculate your budget monthly or whenever there are significant changes in your financial situation, such as a change in income or unexpected expenses. Regular recalculations ensure that your budget remains accurate and aligned with your financial goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Establishing a routine for reviewing your budget, such as at the end of each month, helps maintain financial discipline and ensures you stay on track with your goals.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to make informed decisions about your spending and saving habits. If your net income is lower than expected, consider cutting back on discretionary expenses or finding ways to increase your income. If you're on track to meet your savings goal, continue with your current budget and look for opportunities to optimize further.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Consider consulting a financial advisor for personalized advice, especially if you're planning significant financial changes. For more tools, check out our <a href="/financial/refinance-savings" className="text-blue-600 dark:text-blue-400 hover:underline">Refinance Savings Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to this method include zero-based budgeting, where every dollar is assigned a specific purpose, and envelope budgeting, which involves allocating cash for different spending categories. Each method has its pros and cons, and the best choice depends on your financial habits and goals.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Experiment with different budgeting methods to find the one that works best for you. Consider combining elements from multiple methods to create a personalized budgeting strategy that suits your needs.
-            </p>
-          </div>
         </div>
       </section>
 

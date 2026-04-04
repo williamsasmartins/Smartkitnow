@@ -20,36 +20,24 @@ export default function IrrNpvCalculator() {
 
   const faqs = [
     {
-      question: "What is IRR NPV Calculator and why is it important?",
-      answer: "The IRR NPV Calculator is a financial tool used to evaluate the profitability of investments by calculating the Internal Rate of Return (IRR) and Net Present Value (NPV). These metrics help investors determine the potential return and present value of future cash flows, making it easier to compare different investment opportunities. Understanding IRR and NPV is crucial for making informed investment decisions. These calculations provide insights into the viability and profitability of projects, helping investors allocate resources effectively."
+      question: "How accurate are IRR/NPV calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For IRR/NPV, accuracy depends on using current capital budgeting data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a capital budgeting professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The accuracy of the IRR NPV Calculator depends on the quality of the input data. Accurate cash flow projections and a realistic discount rate are essential for reliable results. While the calculator provides a solid estimate, users should consider consulting financial professionals for complex scenarios. For best results, regularly update your data and recalibrate your calculations to reflect current market conditions. This ensures that your financial analysis remains relevant and accurate."
+      question: "What key factors most affect IRR/NPV results?",
+      answer: "The most impactful variables in IRR/NPV calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use the IRR NPV Calculator, you need detailed cash flow projections, including initial investments and expected returns over time. Additionally, a realistic discount rate is required to calculate the present value of future cash flows. This information is typically found in financial statements or project proposals. Ensure that your data is accurate and up-to-date for the most reliable results. Consider consulting with financial advisors to verify your inputs and assumptions."
+      question: "When should I recalculate IRR/NPV?",
+      answer: "Recalculate whenever capital budgeting conditions change significantly: after major capital budgeting events, when your inputs change (income, rates, holdings), or when capital budgeting regulations are updated. For time-sensitive capital budgeting metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, the IRR NPV Calculator is versatile and can be used for a wide range of investment scenarios, including real estate, business projects, and personal investments. However, it is important to tailor your inputs to the specific context of each scenario for accurate results. For scenarios with unique cash flow patterns or risk profiles, consider consulting financial experts to ensure your analysis aligns with industry standards and best practices."
+      question: "How does IRR/NPV relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Irr/npv should be evaluated alongside related measures like project valuation. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your capital budgeting situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using inaccurate cash flow projections, selecting an inappropriate discount rate, and failing to account for all relevant costs. These errors can lead to misleading IRR and NPV results, potentially resulting in poor investment decisions. To avoid these pitfalls, double-check your data inputs and assumptions. Consider using sensitivity analysis to assess how changes in key variables affect your results."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculation should occur whenever there are significant changes in cash flow projections, discount rates, or economic conditions. Regular updates ensure that your financial analysis remains accurate and relevant. As a best practice, review your calculations quarterly or whenever new financial data becomes available. This proactive approach helps in making timely and informed investment decisions."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the IRR and NPV results to evaluate the profitability and viability of investment opportunities. A positive NPV indicates a potentially profitable investment, while a negative NPV suggests reconsideration. The IRR provides insight into the expected rate of return, helping you compare different projects. For comprehensive financial planning, consider consulting with a financial advisor to interpret the results and develop a strategic investment plan."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives to IRR and NPV calculations include the Payback Period, Profitability Index, and Modified Internal Rate of Return (MIRR). Each method offers unique insights into investment performance and may be more suitable depending on the specific context and objectives. Consider using multiple methods to gain a comprehensive understanding of an investment's potential. This holistic approach ensures that you make well-informed financial decisions."
+      question: "What are the most common mistakes when calculating IRR/NPV?",
+      answer: "The most frequent errors in IRR/NPV calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world capital budgeting conditions fluctuate. Double-check your inputs against current capital budgeting data before relying on results for significant financial decisions."
     }
   ];
 
@@ -439,93 +427,19 @@ export default function IrrNpvCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is IRR NPV Calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The IRR NPV Calculator is a financial tool used to evaluate the profitability of investments by calculating the Internal Rate of Return (IRR) and Net Present Value (NPV). These metrics help investors determine the potential return and present value of future cash flows, making it easier to compare different investment opportunities. Understanding IRR and NPV is crucial for making informed investment decisions. These calculations provide insights into the viability and profitability of projects, helping investors allocate resources effectively. For more on financial planning, visit our <a href="/financial/interest-only-loan" className="text-blue-600 dark:text-blue-400 hover:underline">Interest-Only Loan Calculator</a>.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
 
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The accuracy of the IRR NPV Calculator depends on the quality of the input data. Accurate cash flow projections and a realistic discount rate are essential for reliable results. While the calculator provides a solid estimate, users should consider consulting financial professionals for complex scenarios. For best results, regularly update your data and recalibrate your calculations to reflect current market conditions. This ensures that your financial analysis remains relevant and accurate.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the IRR NPV Calculator, you need detailed cash flow projections, including initial investments and expected returns over time. Additionally, a realistic discount rate is required to calculate the present value of future cash flows. This information is typically found in financial statements or project proposals. Ensure that your data is accurate and up-to-date for the most reliable results. Consider consulting with financial advisors to verify your inputs and assumptions.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for specific scenarios?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the IRR NPV Calculator is versatile and can be used for a wide range of investment scenarios, including real estate, business projects, and personal investments. However, it is important to tailor your inputs to the specific context of each scenario for accurate results.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using inaccurate cash flow projections, selecting an inappropriate discount rate, and failing to account for all relevant costs. These errors can lead to misleading IRR and NPV results, potentially resulting in poor investment decisions. To avoid these pitfalls, double-check your data inputs and assumptions. Consider using sensitivity analysis to assess how changes in key variables affect your results.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Recalculation should occur whenever there are significant changes in cash flow projections, discount rates, or economic conditions. Regular updates ensure that your financial analysis remains accurate and relevant.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the IRR and NPV results to evaluate the profitability and viability of investment opportunities. A positive NPV indicates a potentially profitable investment, while a negative NPV suggests reconsideration. The IRR provides insight into the expected rate of return, helping you compare different projects.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives to IRR and NPV calculations include the Payback Period, Profitability Index, and Modified Internal Rate of Return (MIRR). Each method offers unique insights into investment performance and may be more suitable depending on the specific context and objectives.
-            </p>
-          </div>
         </div>
       </section>
 

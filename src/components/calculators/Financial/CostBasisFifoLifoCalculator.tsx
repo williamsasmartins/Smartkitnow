@@ -30,36 +30,24 @@ export default function CostBasisFifoLifoCalculator() {
 
   const faqs = [
     {
-      question: "What is cost basis calculator (fifo/lifo) and why is it important?",
-      answer: "A cost basis calculator using FIFO or LIFO methods helps investors determine the cost basis of their assets, which is crucial for calculating capital gains or losses. This calculation is important for accurate tax reporting and financial planning, ensuring investors pay the correct amount of taxes on their investments. Understanding your cost basis also aids in making informed investment decisions, as it provides clarity on the profitability of your assets. For more insights, check our <a href=\"/financial/refinance-savings\">Refinance Savings Calculator</a>."
+      question: "How accurate are cost basis calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For cost basis, accuracy depends on using current FIFO/LIFO data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a FIFO/LIFO professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator is designed to provide accurate results based on the inputs provided. However, its accuracy depends on the precision of the data entered, such as purchase prices and quantities. External factors like transaction fees and market conditions can also affect the results. For best results, ensure all data is current and double-check entries for errors. Consulting a financial advisor can provide additional assurance."
+      question: "What key factors most affect cost basis results?",
+      answer: "The most impactful variables in cost basis calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you need the purchase price of the asset, the quantity purchased, and the method (FIFO or LIFO) you wish to apply. The purchase price should include any transaction fees to ensure an accurate cost basis calculation. You can find this information in your transaction statements or brokerage account records. Keeping detailed records of all transactions helps in maintaining accuracy."
+      question: "When should I recalculate cost basis?",
+      answer: "Recalculate whenever FIFO/LIFO conditions change significantly: after major FIFO/LIFO events, when your inputs change (income, rates, holdings), or when FIFO/LIFO regulations are updated. For time-sensitive FIFO/LIFO metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for [specific scenario]?",
-      answer: "This calculator is versatile and can be used for various scenarios, including stocks, bonds, and cryptocurrencies. However, it is essential to ensure that the method chosen (FIFO or LIFO) aligns with your specific investment strategy and regulatory requirements. For complex scenarios involving multiple transactions or asset types, consulting a financial advisor may provide additional clarity and ensure compliance with tax regulations."
+      question: "How does cost basis relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Cost basis should be evaluated alongside related measures like capital gains. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your FIFO/LIFO situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include incorrect data entry, such as wrong purchase prices or quantities, and failing to include transaction fees. Another frequent error is selecting the wrong method (FIFO or LIFO) for the intended investment strategy, which can lead to inaccurate tax reporting. To avoid these mistakes, double-check all inputs and ensure they reflect your current holdings. Regularly update your records and consult with a financial advisor if needed."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculation should occur after each transaction to ensure your records remain accurate. Additionally, consider recalculating at the end of each fiscal year or before filing taxes to verify your cost basis aligns with your financial statements. Regular updates help in maintaining compliance and optimizing your investment strategy. Set reminders to review your portfolio periodically."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to inform your investment decisions and tax reporting. Understanding your cost basis helps in evaluating the profitability of your assets and planning future trades. It also ensures you report accurate figures to tax authorities, avoiding potential penalties. If you're unsure about interpreting the results, consider seeking advice from a financial advisor. For more tools, visit our <a href=\"/financial/heloc-payment-estimator\">HELOC Payment Estimator</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives to FIFO and LIFO include the Average Cost Method, which calculates the cost basis by averaging the purchase prices of all units. This method can simplify calculations but may not always align with tax regulations or investment strategies. Choosing the right method depends on your specific financial goals and regulatory requirements. Consult with a tax professional to determine the best approach for your situation."
+      question: "What are the most common mistakes when calculating cost basis?",
+      answer: "The most frequent errors in cost basis calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world FIFO/LIFO conditions fluctuate. Double-check your inputs against current FIFO/LIFO data before relying on results for significant financial decisions."
     }
   ];
 

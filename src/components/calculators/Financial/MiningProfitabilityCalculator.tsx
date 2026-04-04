@@ -10,36 +10,24 @@ import useFaqJsonLd from "@/hooks/useFaqJsonLd";
 
 const faqs = [
   {
-    question: "What is mining profitability calculator and why is it important?",
-    answer: "A mining profitability calculator is a tool that helps miners estimate their potential earnings by considering factors like hashrate, power consumption, and electricity costs. It's important because it allows miners to assess whether their operations are financially viable and make informed decisions about hardware investments and energy usage.\n\nBy using this calculator, miners can avoid costly mistakes and optimize their operations for better profitability. For more financial tools, explore our <a href=\"/financial/heloc-payment-estimator\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">HELOC Payment Estimator</a>."
+    question: "How accurate are mining profitability calculations and what limitations should I be aware of?",
+    answer: "This calculator provides estimates based on the inputs you provide. For mining profitability, accuracy depends on using current hash rate data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a hash rate professional."
   },
   {
-    question: "How accurate is this calculator?",
-    answer: "The accuracy of the mining profitability calculator depends on the accuracy of the input data. Factors such as fluctuating electricity rates and cryptocurrency market values can affect the results. It's important to regularly update the inputs to reflect current conditions for the most accurate estimates.\n\nFor precise calculations, consider consulting with financial experts or using additional resources to validate your data."
+    question: "What key factors most affect mining profitability results?",
+    answer: "The most impactful variables in mining profitability calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
   },
   {
-    question: "What information do I need to use this calculator?",
-    answer: "To use the mining profitability calculator, you'll need to know your mining hardware's hashrate, power consumption, and the electricity cost in your area. These inputs are essential for calculating your potential earnings and expenses.\n\nYou can find this information in your hardware specifications and your electricity bill. Ensure that the data is up-to-date for the most accurate results."
+    question: "When should I recalculate mining profitability?",
+    answer: "Recalculate whenever hash rate conditions change significantly: after major hash rate events, when your inputs change (income, rates, holdings), or when hash rate regulations are updated. For time-sensitive hash rate metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
   },
   {
-    question: "Can I use this calculator for different cryptocurrencies?",
-    answer: "Yes, the calculator can be used for different cryptocurrencies by adjusting the reward per hash based on the specific cryptocurrency's market value. However, you should be aware that each cryptocurrency may have different difficulty levels and rewards, which can affect profitability.\n\nIt's advisable to research the specific cryptocurrency you're interested in mining to ensure accurate calculations."
+    question: "How does mining profitability relate to other financial planning metrics?",
+    answer: "No single metric tells the complete financial picture. Mining profitability should be evaluated alongside related measures like electricity cost. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your hash rate situation, rather than optimizing any single number in isolation."
   },
   {
-    question: "What are common mistakes people make with this calculation?",
-    answer: "Common mistakes include using outdated electricity rates, not accounting for hardware depreciation, and ignoring market volatility. These errors can lead to inaccurate profitability estimates and poor financial decisions.\n\nTo avoid these pitfalls, regularly update your inputs and consider all relevant factors when calculating profitability."
-  },
-  {
-    question: "How often should I recalculate?",
-    answer: "It's recommended to recalculate your mining profitability whenever there are significant changes in electricity rates, cryptocurrency market values, or hardware performance. Regular recalculations help ensure that your operations remain profitable and allow you to make timely adjustments.\n\nA monthly review is a good practice, but more frequent updates may be necessary in volatile markets."
-  },
-  {
-    question: "What should I do with these results?",
-    answer: "Use the results to make informed decisions about your mining operations. If the profitability is low, consider optimizing your setup or exploring alternative cryptocurrencies. If the results are favorable, you might decide to scale up your operations.\n\nAlways consider consulting with financial advisors for personalized advice. For more financial insights, see our <a href=\"/financial/extra-payments-payoff\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Extra Payments & Payoff Time Calculator</a>."
-  },
-  {
-    question: "Are there alternatives to this calculation method?",
-    answer: "Alternatives include using more complex financial models that account for additional variables such as hardware depreciation and tax implications. These models can provide a more comprehensive view of profitability but may require more detailed data and expertise.\n\nFor most users, the standard calculator provides a sufficient estimate, but exploring alternatives can be beneficial for large-scale operations."
+    question: "What are the most common mistakes when calculating mining profitability?",
+    answer: "The most frequent errors in mining profitability calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world hash rate conditions fluctuate. Double-check your inputs against current hash rate data before relying on results for significant financial decisions."
   }
 ];
 
@@ -433,117 +421,19 @@ export default function MiningProfitabilityCalculator() {
         </h2>
         
         <div className="space-y-8">
-          {/* QUESTION 1 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What is mining profitability calculator and why is it important?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              A mining profitability calculator is a tool that helps miners estimate their potential earnings by considering factors like hashrate, power consumption, and electricity costs. It's important because it allows miners to assess whether their operations are financially viable and make informed decisions about hardware investments and energy usage.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              By using this calculator, miners can avoid costly mistakes and optimize their operations for better profitability. For more financial tools, explore our <a href="/financial/heloc-payment-estimator" className="text-blue-600 dark:text-blue-400 hover:underline">HELOC Payment Estimator</a>.
-            </p>
-          </div>
+          {faqs.map((faq, index) => (
+            <div key={index}>
+              <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
+                {faq.question}
+              </h3>
+              <div
+                className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
+            </div>
+          ))}
 
-          {/* QUESTION 2 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How accurate is this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              The accuracy of the mining profitability calculator depends on the accuracy of the input data. Factors such as fluctuating electricity rates and cryptocurrency market values can affect the results. It's important to regularly update the inputs to reflect current conditions for the most accurate estimates.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For precise calculations, consider consulting with financial experts or using additional resources to validate your data.
-            </p>
-          </div>
-
-          {/* QUESTION 3 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What information do I need to use this calculator?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              To use the mining profitability calculator, you'll need to know your mining hardware's hashrate, power consumption, and the electricity cost in your area. These inputs are essential for calculating your potential earnings and expenses.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              You can find this information in your hardware specifications and your electricity bill. Ensure that the data is up-to-date for the most accurate results.
-            </p>
-          </div>
-
-          {/* QUESTION 4 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Can I use this calculator for different cryptocurrencies?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Yes, the calculator can be used for different cryptocurrencies by adjusting the reward per hash based on the specific cryptocurrency's market value. However, you should be aware that each cryptocurrency may have different difficulty levels and rewards, which can affect profitability.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              It's advisable to research the specific cryptocurrency you're interested in mining to ensure accurate calculations.
-            </p>
-          </div>
-
-          {/* QUESTION 5 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What are common mistakes people make with this calculation?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Common mistakes include using outdated electricity rates, not accounting for hardware depreciation, and ignoring market volatility. These errors can lead to inaccurate profitability estimates and poor financial decisions.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              To avoid these pitfalls, regularly update your inputs and consider all relevant factors when calculating profitability.
-            </p>
-          </div>
-
-          {/* QUESTION 6 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              How often should I recalculate?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              It's recommended to recalculate your mining profitability whenever there are significant changes in electricity rates, cryptocurrency market values, or hardware performance. Regular recalculations help ensure that your operations remain profitable and allow you to make timely adjustments.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              A monthly review is a good practice, but more frequent updates may be necessary in volatile markets.
-            </p>
-          </div>
-
-          {/* QUESTION 7 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              What should I do with these results?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Use the results to make informed decisions about your mining operations. If the profitability is low, consider optimizing your setup or exploring alternative cryptocurrencies. If the results are favorable, you might decide to scale up your operations.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              Always consider consulting with financial advisors for personalized advice. For more financial insights, see our <a href="/financial/extra-payments-payoff" className="text-blue-600 dark:text-blue-400 hover:underline">Extra Payments & Payoff Time Calculator</a>.
-            </p>
-          </div>
-
-          {/* QUESTION 8 */}
-          <div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-slate-100 flex items-start gap-2">
-              <HelpCircle className="h-6 w-6 text-blue-500 mt-0.5 shrink-0"/>
-              Are there alternatives to this calculation method?
-            </h3>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8 mb-3">
-              Alternatives include using more complex financial models that account for additional variables such as hardware depreciation and tax implications. These models can provide a more comprehensive view of profitability but may require more detailed data and expertise.
-            </p>
-            <p className="text-slate-700 dark:text-slate-300 leading-relaxed pl-8">
-              For most users, the standard calculator provides a sufficient estimate, but exploring alternatives can be beneficial for large-scale operations.
-            </p>
-          </div>
         </div>
       </section>
 

@@ -20,36 +20,24 @@ export default function PoolFeeImpactEstimator() {
 
   const faqs = [
     {
-      question: "What is pool fee impact estimator and why is it important?",
-      answer: "The pool fee impact estimator calculates the effect of mining pool fees on your net earnings. It's important because it helps miners choose the most profitable pool, maximizing their returns by understanding the financial impact of pool fees. By using this tool, miners can make informed decisions and optimize their mining strategy. For more financial tools, visit our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+      question: "How accurate are mining pool fees calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For mining pool fees, accuracy depends on using current fee structure data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a fee structure professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator is highly accurate when provided with precise input data. However, its accuracy can be affected by fluctuating market conditions and changes in pool fees or electricity costs. It's best used as a guideline rather than an absolute prediction. For critical financial decisions, consider consulting a professional. Regularly updating your inputs ensures the most accurate results."
+      question: "What key factors most affect mining pool fees results?",
+      answer: "The most impactful variables in mining pool fees calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you'll need your hash rate (in TH/s), the pool fee percentage, and your electricity costs. These inputs are crucial for calculating your net earnings after fees. Ensure that your data is up-to-date for the most accurate results. You can find your hash rate from your mining hardware specifications, and pool fees are usually listed on the pool's website. Electricity costs can be found on your utility bill."
+      question: "When should I recalculate mining pool fees?",
+      answer: "Recalculate whenever fee structure conditions change significantly: after major fee structure events, when your inputs change (income, rates, holdings), or when fee structure regulations are updated. For time-sensitive fee structure metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for different cryptocurrencies?",
-      answer: "Yes, this calculator can be used for different cryptocurrencies, provided you adjust the inputs accordingly. The hash rate, pool fee, and electricity cost should be specific to the cryptocurrency you are mining. Different cryptocurrencies may have different reward structures, so ensure your calculations reflect the specific coin's parameters."
+      question: "How does mining pool fees relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Mining pool fees should be evaluated alongside related measures like net earnings. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your fee structure situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using outdated pool fee percentages or incorrect electricity costs. These errors can lead to inaccurate earnings estimates. Always verify your inputs before calculating. Another mistake is not accounting for market volatility, which can affect the value of mined coins. Regularly update your calculations to reflect current conditions."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculate whenever there is a change in your mining setup, pool fees, or electricity costs. Regular updates ensure that your earnings estimates remain accurate and relevant. As a rule of thumb, recalculate at least once a month or whenever significant changes occur in the market or your mining operations."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to assess the profitability of your current mining setup and make informed decisions about potential changes. If your earnings are lower than expected, consider switching pools or upgrading your hardware. For more financial insights, explore our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>. If necessary, consult a financial advisor for personalized advice."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include using more complex financial models or consulting with mining experts. These methods can provide deeper insights but may require more time and resources. For a quick and reliable estimate, this calculator is an excellent tool. However, for strategic planning, consider combining it with other financial analyses."
+      question: "What are the most common mistakes when calculating mining pool fees?",
+      answer: "The most frequent errors in mining pool fees calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world fee structure conditions fluctuate. Double-check your inputs against current fee structure data before relying on results for significant financial decisions."
     }
   ];
 

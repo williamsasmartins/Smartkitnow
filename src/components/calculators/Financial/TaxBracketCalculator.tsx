@@ -20,36 +20,24 @@ export default function TaxBracketCalculator() {
 
   const faqs = [
     {
-      question: "What is a tax bracket calculator and why is it important?",
-      answer: "A tax bracket calculator is a tool that helps you estimate your federal tax obligations based on your income, filing status, and deductions. It is important because it provides a clear picture of your tax liabilities, allowing you to plan your finances effectively. By understanding your tax bracket, you can make informed decisions about spending, saving, and investing. Additionally, knowing your tax bracket helps you anticipate changes in your tax situation due to income fluctuations or life events. For more insights, explore our Interest-Only Loan Calculator."
+      question: "Does entering a higher tax bracket mean all my income gets taxed at the higher rate?",
+      answer: "No -- this is one of the most common tax misconceptions. The US uses a marginal tax system where only the income within each bracket is taxed at that bracket's rate. Example for 2024 (single filer): the first $11,600 is taxed at 10%, the next $35,550 at 12%, income from $47,150 to $100,525 at 22%. If you earn $50,000, you do not owe 22% × $50,000 = $11,000. You owe: (11,600 × 10%) + (35,550 × 12%) + (2,850 × 22%) = $1,160 + $4,266 + $627 = $6,053. Effective rate = 12.1%. Moving from the 22% to the 24% bracket by earning an extra $100 means only that $100 is taxed at 24% -- you keep $76 of it."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The calculator is designed to be highly accurate, using the latest federal tax brackets and rates. However, its accuracy depends on the accuracy of the data you input. Factors such as incorrect income figures or missed deductions can affect the results. It's always advisable to double-check your inputs and consult a tax professional for complex situations. For best results, ensure your financial records are up-to-date and complete. This will help you get the most accurate estimate of your tax obligations."
+      question: "What are the 2024 federal income tax brackets and standard deductions?",
+      answer: "2024 brackets (single filer): 10% (up to $11,600), 12% ($11,601–$47,150), 22% ($47,151–$100,525), 24% ($100,526–$191,950), 32% ($191,951–$243,725), 35% ($243,726–$609,350), 37% (above $609,350). Standard deduction: $14,600 (single), $29,200 (married filing jointly), $21,900 (head of household). Taxable income = gross income − above-the-line deductions − standard or itemized deduction. For a single filer with $80,000 gross income and no above-the-line adjustments: taxable income = $80,000 − $14,600 = $65,400. Tax = $1,160 + $4,266 + $4,026 = $9,452. Effective rate = 11.8%."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use the Tax Bracket Calculator, you'll need your annual income, filing status, and any deductions you qualify for. Your income can typically be found on your pay stubs or tax returns. Filing status options include single, married filing jointly, married filing separately, and head of household. Deductions may include mortgage interest, student loan interest, and charitable contributions. Gathering this information beforehand ensures that you can input accurate data, leading to a more reliable estimate of your tax obligations."
+      question: "What is bracket creep and how do inflation adjustments prevent it?",
+      answer: "Bracket creep occurs when inflation pushes wages into higher tax brackets without any real income increase. Example: in a non-indexed system, a $50,000 salary with 5% inflation becomes $52,500 -- but the worker's real purchasing power is unchanged, yet they now owe more tax. The IRS adjusts tax brackets annually for inflation (using Chained CPI). For 2024, brackets were adjusted up ~5.4% from 2023. Without indexing, a middle-class taxpayer would face a permanent, silent tax increase every year inflation exceeds 0%. Bracket indexing is one reason why real tax burdens haven't automatically grown despite rising nominal wages. States vary -- some index brackets, others (like California) do not, leading to progressive bracket creep at the state level."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, the calculator can be used for various scenarios, such as estimating taxes for different filing statuses or income levels. However, it is primarily designed for federal tax calculations. For state-specific taxes, you may need additional tools or resources. The calculator is also useful for planning around life events, such as marriage or retirement, which can impact your tax situation. If you have a complex tax situation, such as self-employment income or multiple deductions, consulting a tax professional is recommended to ensure comprehensive tax planning."
+      question: "How do tax brackets affect the decision to take a bonus or extra income at year-end?",
+      answer: "Marginal rate analysis should drive timing decisions for discretionary income. If you are in the 22% bracket in December and your bonus would push income into the 24% bracket, only the amount in the new bracket is taxed at 24% -- the 'penalty' for crossing is just the 2% difference on the incremental income ($100 bonus crossing into 24% costs an extra $2, not $24). The real timing decision: if you can defer income to next year (self-employed, deferred compensation), ask whether next year's rate will be lower. Alternatively, accelerating deductions (charitable contributions, 401k contributions before year-end) reduces current-year taxable income. Marginal rate, not bracket, is what drives every year-end tax optimization."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include entering incorrect income figures, selecting the wrong filing status, and overlooking eligible deductions. These errors can lead to inaccurate tax estimates, potentially resulting in underpayment or overpayment of taxes. It's important to review your inputs carefully and ensure all information is accurate and complete. Additionally, failing to update calculations after significant life changes, such as a change in income or marital status, can lead to outdated results. Regularly reviewing and updating your calculations is essential for accurate tax planning."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's advisable to recalculate your taxes whenever there is a significant change in your financial situation, such as a change in income, filing status, or deductions. Additionally, recalculating annually is a good practice to ensure your tax planning is up-to-date with the latest tax laws and rates. Regular recalculations help you stay informed about your tax obligations and avoid surprises during tax season. Keeping track of these changes ensures you remain compliant and can take advantage of any new tax benefits."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Once you have your tax estimates, use them to plan your finances effectively. This might include setting aside funds for tax payments, adjusting your withholding, or exploring tax-saving strategies. Understanding your tax obligations can also inform decisions about spending, saving, and investing. If your results indicate a significant tax liability, consider consulting a tax professional for personalized advice. They can help you explore options for reducing your tax burden and optimizing your financial strategy. For more detailed planning, explore our Refinance Savings Calculator."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives to this calculator include tax software programs and professional tax preparation services. These options may offer additional features, such as state tax calculations or personalized tax advice. However, they may also come with higher costs or require more detailed input. Consider your specific needs and budget when choosing an alternative method. For straightforward federal tax calculations, this calculator provides a convenient and cost-effective solution. For more complex tax situations, professional assistance may be beneficial."
+      question: "How do capital gains and qualified dividends interact with the regular tax brackets?",
+      answer: "Long-term capital gains (LTCG) and qualified dividends have their own rate schedule that overlays the regular brackets. The LTCG rates (0%, 15%, 20%) apply at specific income thresholds, not the same thresholds as ordinary income. For 2024 (single): 0% LTCG on taxable income up to $47,025 -- even if your ordinary income bracket is 22%, gains below this threshold face no federal tax. 15% LTCG from $47,026–$518,900. 20% above $518,900. Strategy: a retired person with $40,000 in qualified dividends and Social Security may owe $0 federal tax on those dividends. Non-qualified dividends are taxed as ordinary income at marginal rates. Understanding this overlay is essential for tax-efficient portfolio withdrawals."
     }
   ];
 

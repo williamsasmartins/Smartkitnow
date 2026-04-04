@@ -20,36 +20,24 @@ export default function NetIncomeAfterTaxCalculator() {
 
   const faqs = [
     {
-      question: "What is net income after tax calculator and why is it important?",
-      answer: "The net income after tax calculator helps you determine your actual take-home pay after accounting for taxes and deductions. It's crucial for budgeting, saving, and financial planning, ensuring you have a clear understanding of your disposable income. By knowing your net income, you can make informed decisions about spending, saving, and investing. For more insights, visit our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+      question: "What is the difference between gross income, adjusted gross income (AGI), and taxable income?",
+      answer: "Gross income: all income before any deductions (wages, self-employment, dividends, etc.). Adjusted Gross Income (AGI): gross income minus above-the-line deductions (401k contributions, student loan interest, HSA contributions, self-employment tax deduction). Taxable income: AGI minus either the standard deduction ($14,600 single, $29,200 married in 2024) or itemized deductions, whichever is larger. Net income after tax is applied to taxable income through the progressive bracket system. AGI is the threshold used for many phase-outs (Roth IRA eligibility, student loan deduction, Child Tax Credit) -- reducing AGI through pre-tax contributions is often more valuable than post-tax deductions."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator provides a high level of accuracy by using standard formulas and current tax rates. However, the accuracy depends on the accuracy of the input data, such as income, tax rates, and deductions. For precise results, ensure all inputs are up-to-date and reflect your current financial situation."
+      question: "How do pre-tax contributions (401k, HSA, FSA) reduce net income after tax?",
+      answer: "Pre-tax contributions reduce AGI dollar-for-dollar, lowering both federal and state income taxes. At 22% marginal rate: $23,000 401k contribution saves $5,060 in federal taxes + state tax savings. HSA contribution ($4,150 individual, $8,300 family in 2024): saves at your marginal rate with zero tax ever on qualified withdrawals -- triple tax advantage. FSA ($3,200 in 2024 for healthcare): saves taxes but use-it-or-lose-it. Example: $80,000 salary. No contributions: ~$17,000 federal tax. Max 401k: taxable income drops to $57,000, federal tax ~$9,500 -- $7,500 saved. Your take-home decreases by only $15,500 (not $23,000) because taxes fund the rest."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you need your gross income, applicable tax rate, and any deductions you qualify for. Gross income includes all earnings before taxes, while deductions reduce your taxable income. Ensure you have accurate and up-to-date information for each input to get the most reliable results."
+      question: "What is marginal vs effective tax rate and why does the difference matter?",
+      answer: "Marginal rate: the rate on your last dollar of income (determines the value of deductions). Effective rate: your total tax divided by total income -- your actual average burden. Example: $80,000 income (single filer, 2024). Tax owed: 10% on first $11,600 ($1,160) + 12% on $11,601–$47,150 ($4,266) + 22% on $47,151–$80,000 ($7,227) = $12,653 total. Effective rate: $12,653 / $80,000 = 15.8%. Marginal rate: 22%. A $10,000 deduction saves 22% = $2,200 -- use marginal rate for deduction value. The effective rate is what you actually pay. Many people mistakenly believe their entire income is taxed at their marginal rate -- this is wrong, and leads to poor tax planning decisions."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, this calculator can be used for various scenarios, such as estimating net income for a new job offer or planning for retirement. However, it may not account for complex tax situations or unique deductions. For complex scenarios, consider consulting a financial advisor or tax professional."
+      question: "How does FICA tax (Social Security and Medicare) affect net income?",
+      answer: "FICA taxes reduce every paycheck separately from income tax. Social Security: 6.2% on wages up to $168,600 (2024 wage base). Medicare: 1.45% on all wages, plus Additional Medicare Tax of 0.9% on wages above $200,000 (single). Total FICA: 7.65% on most wages (your employer pays a matching 7.65%). Self-employed: 15.3% self-employment tax (both sides), but deduct half as an above-the-line deduction. At $80,000 salary: FICA = $6,120. Combined with federal income tax of $12,653 = $18,773 total federal burden. FICA is not progressive above the Social Security wage base -- earning $300,000 means you stop paying the 6.2% after $168,600, reducing your effective FICA rate."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using outdated tax rates, neglecting to include all deductions, and misreporting gross income. These errors can lead to inaccurate net income calculations. Double-check all inputs for accuracy and consult tax guidelines to avoid these pitfalls."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "Recalculate whenever there are changes in your income, tax rates, or deductions. Regular updates ensure your financial plans remain accurate and relevant. A good practice is to update your calculations annually or whenever significant financial changes occur."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to inform your budgeting, savings, and investment strategies. Understanding your net income helps you allocate resources effectively and plan for future financial goals. If needed, consult a financial advisor for personalized advice. For more tools, check our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives include manual calculations using tax tables or consulting with a tax professional. Each method has its pros and cons, with manual calculations being more time-consuming but potentially more tailored to specific situations. Consider your needs and resources when choosing a method. For complex financial situations, professional advice may be beneficial."
+      question: "What state income tax differences should I consider when calculating net take-home pay?",
+      answer: "Nine states have no income tax: Alaska, Florida, Nevada, New Hampshire (dividends/interest only), South Dakota, Tennessee (dividends/interest only), Texas, Washington, Wyoming. California has the highest marginal rate: 13.3% (over $1M income). On $80,000 income: California adds ~$5,000–$6,000 in state tax; Texas adds $0. Moving from California to Texas effectively provides a 7–8% gross pay raise. States also vary on what they tax: New Hampshire taxes only investment income. Some states exempt pension/retirement income entirely. When comparing job offers or considering relocation, always compare total after-tax income including state tax, as a $5,000 salary difference may be irrelevant when offset by state tax differences."
     }
   ];
 

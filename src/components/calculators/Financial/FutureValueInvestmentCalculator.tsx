@@ -35,36 +35,24 @@ export default function FutureValueInvestmentCalculator() {
 
   const faqs = [
     {
-      question: "What is the future value of investment calculator and why is it important?",
-      answer: "The future value of investment calculator is a tool that estimates the growth of your investments over time, considering factors like initial principal, interest rate, and contributions. It's important because it helps you understand the potential outcomes of your investment strategies, allowing you to make informed financial decisions. By projecting future value, you can set realistic financial goals and adjust your strategies to achieve them. For more insights, explore our <a href=\"/financial/extra-payments-payoff\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Extra Payments & Payoff Time Calculator</a>."
+      question: "What is the difference between future value with and without additional contributions?",
+      answer: "Future value without contributions (FV = PV × (1+r)^n) shows only compound growth on an initial lump sum. Future value with periodic contributions (FV = PV×(1+r)^n + PMT × ((1+r)^n − 1)/r) adds the compounding effect of regular deposits. Example: $10,000 invested at 7% for 30 years = $76,123 (no contributions). Add $200/month: total invested $72,000 extra, but final value = $265,903 -- contributions grew by 3.7× due to compounding. This illustrates why early, consistent contributions matter more than any single lump-sum deposit -- the monthly habit creates most of the terminal value in long-horizon scenarios."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "This calculator provides accurate estimates based on the inputs you provide. However, it's important to note that actual investment performance can vary due to market conditions and other factors. For precise financial planning, consider consulting with a financial advisor. To enhance accuracy, use realistic inputs and update them regularly to reflect changes in your financial situation or market conditions."
+      question: "How do I account for inflation when interpreting future value results?",
+      answer: "Divide the nominal future value by (1 + inflation rate)^years to get real (purchasing-power-adjusted) value. With 3% inflation for 30 years: divide by 2.427. A $265,000 nominal value has purchasing power of $109,193 in today's dollars. Rule of thumb: at 3% inflation, purchasing power halves every 24 years. For retirement planning: your real return = ((1 + nominal rate) / (1 + inflation rate)) − 1. A 7% nominal return with 3% inflation = 3.88% real return. Always show clients both nominal and real projections -- most people significantly overestimate the purchasing power of large future-value numbers."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use this calculator, you'll need your initial investment amount, expected annual interest rate, investment duration in years, and any regular monthly contributions. Accurate data ensures reliable projections, so gather information from your financial statements or consult with your financial advisor. If you're unsure about the interest rate, consider using historical averages or consult with a financial expert to determine a realistic estimate."
+      question: "What investment return rate should I use for a 30-year projection?",
+      answer: "Historical annualized returns (inflation-adjusted): S&P 500: ~7% real (10% nominal − 3% inflation). US bonds: ~1–2% real. Global diversified equity: ~5–6% real. Bitcoin (2015–2024): ~30% nominal (but with extreme volatility and selection bias for survival). Conservative planning assumption: 5–6% nominal for a balanced portfolio, 7–8% for equity-heavy. Never use past crypto returns as a projection rate -- the growth rate was front-loaded in early adoption and is not replicable. Run sensitivity analysis: calculate at 4%, 6%, and 8% to show the outcome range rather than picking one number as 'the answer'."
     },
     {
-      question: "Can I use this calculator for retirement planning?",
-      answer: "Yes, this calculator is a valuable tool for retirement planning. By estimating the future value of your investments, you can determine if your current savings strategy will meet your retirement goals. Adjusting your contributions or investment duration can help you achieve the desired retirement fund. For more comprehensive retirement planning, consider using our <a href=\"/financial/related-calculator-7\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">related retirement calculator</a> to explore additional strategies and scenarios."
+      question: "How does compounding frequency affect future value in practice?",
+      answer: "More frequent compounding increases future value, but the effect is small in most practical scenarios. $10,000 at 7% for 30 years: annual compounding = $76,123. Monthly compounding = $81,165. Daily compounding = $81,645. The difference between monthly and daily is only $480 over 30 years -- negligible. The difference between annual and monthly is $5,042 -- more meaningful. In practice, most mutual funds and ETFs compound daily (dividends reinvested at NAV). The formula assumes consistent returns; actual returns vary annually, which makes compounding frequency less important than the average rate achieved."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "Common mistakes include using unrealistic interest rates, neglecting to account for inflation, and not updating inputs regularly. These errors can lead to inaccurate projections and misguided financial decisions. It's crucial to use realistic figures and review your inputs periodically. Avoid these pitfalls by consulting with financial experts and using historical data to inform your inputs. For more tips, explore our <a href=\"/financial/related-calculator-8\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">related calculator</a>."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's advisable to recalculate your investment's future value at least annually or whenever there are significant changes in your financial situation or market conditions. Regular recalculations ensure your projections remain accurate and aligned with your financial goals. Consider setting a reminder to review your investment strategy and update your inputs regularly. This proactive approach helps you stay on track to achieve your financial objectives."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results to assess whether your current investment strategy aligns with your financial goals. If the projected future value falls short, consider increasing your contributions or extending the investment duration. Alternatively, explore higher-yielding investment options. For personalized advice, consult with a financial advisor who can help you interpret the results and make informed decisions. For more guidance, visit our <a href=\"/financial/related-calculator-9\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">related calculator</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "Alternatives to this calculation method include using financial software or consulting with a financial advisor for personalized projections. These alternatives may offer more detailed analysis and consider additional factors like taxes and fees. While this calculator provides a solid estimate, exploring alternative methods can enhance your financial planning and provide a more comprehensive understanding of your investment's potential."
+      question: "What is the Rule of 72 and how does it apply to future value calculations?",
+      answer: "The Rule of 72 is a shortcut: divide 72 by the annual return rate to estimate years to double. At 7%: 72/7 ≈ 10.3 years to double. At 10%: 72/10 = 7.2 years. At 4%: 72/4 = 18 years. It is surprisingly accurate for rates between 4% and 20% (error within 2%). For triple-doubling: multiply by 3 (at 7%, ~31 years to 8× your money = 3 doublings). Use this to sanity-check future value calculations: if your calculator shows your money doubling in 5 years at 7%, that is wrong (should be ~10 years). The Rule of 72 also works for inflation: at 3% inflation, purchasing power halves in 72/3 = 24 years."
     }
   ];
 

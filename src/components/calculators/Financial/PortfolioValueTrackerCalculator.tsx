@@ -82,36 +82,24 @@ export default function PortfolioValueTrackerCalculator() {
 
   const faqs = [
     {
-      question: "What is portfolio value tracker and why is it important?",
-      answer: "A portfolio value tracker is a tool that helps investors monitor the total value of their investment portfolio. It provides insights into gains and losses, enabling users to make informed decisions about their investments. This tool is crucial for maintaining a clear understanding of your financial position and ensuring that your investment strategy aligns with your financial goals. By regularly tracking your portfolio's value, you can identify trends and adjust your strategy as needed. This proactive approach helps you capitalize on opportunities and mitigate risks. For more information, check out our <a href=\"/financial/interest-only-loan\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Interest-Only Loan Calculator</a>."
+      question: "How accurate are portfolio tracking calculations and what limitations should I be aware of?",
+      answer: "This calculator provides estimates based on the inputs you provide. For portfolio tracking, accuracy depends on using current asset allocation data -- rates, prices, and regulatory thresholds change frequently. The results are most reliable for planning purposes and comparative analysis. For financial decisions involving significant amounts, verify results against official sources or consult a asset allocation professional."
     },
     {
-      question: "How accurate is this calculator?",
-      answer: "The Portfolio Value Tracker is designed to provide accurate and reliable results. However, its accuracy depends on the quality of the input data. Factors such as market volatility and changes in asset prices can affect the results. It's important to regularly update your data and consult with financial professionals if needed. To ensure the best results, double-check your inputs and consider using additional financial tools for comprehensive analysis."
+      question: "What key factors most affect portfolio tracking results?",
+      answer: "The most impactful variables in portfolio tracking calculations are typically the primary rate or percentage input and the time horizon. Small changes in these variables compound significantly over longer periods. For example, a 1% difference in return rate over 20 years can change outcomes by 20–30%. Always run the calculation at multiple input values to understand your sensitivity to each variable."
     },
     {
-      question: "What information do I need to use this calculator?",
-      answer: "To use the Portfolio Value Tracker, you'll need information about your initial investment, the current value of your assets, and any additional investments made. This data provides a comprehensive view of your portfolio's performance, allowing for accurate calculations. Ensure that the data you enter is up-to-date and reflects the latest market conditions. This will help you obtain the most accurate results and make informed decisions about your investments."
+      question: "When should I recalculate portfolio tracking?",
+      answer: "Recalculate whenever asset allocation conditions change significantly: after major asset allocation events, when your inputs change (income, rates, holdings), or when asset allocation regulations are updated. For time-sensitive asset allocation metrics, recalculate monthly. For long-term planning tools, a quarterly review is typically sufficient. Set a calendar reminder to revisit projections annually at minimum."
     },
     {
-      question: "Can I use this calculator for specific scenarios?",
-      answer: "Yes, the Portfolio Value Tracker can be used for a variety of scenarios, including tracking the performance of individual assets or entire portfolios. It is versatile and can accommodate different investment strategies and objectives. However, it's important to understand the limitations of the tool and consider consulting with financial professionals for complex scenarios. They can provide tailored advice and insights to help you achieve your financial goals."
+      question: "How does portfolio tracking relate to other financial planning metrics?",
+      answer: "No single metric tells the complete financial picture. Portfolio tracking should be evaluated alongside related measures like rebalancing. These metrics interact: improving one often affects another. Build a dashboard of 3–5 key metrics that together reflect the health of your asset allocation situation, rather than optimizing any single number in isolation."
     },
     {
-      question: "What are common mistakes people make with this calculation?",
-      answer: "One common mistake is entering inaccurate or outdated data, which can lead to misleading results. It's crucial to ensure that your inputs reflect the latest market conditions and accurately represent your investments. Another mistake is failing to consider the impact of external factors, such as market volatility and economic indicators. By staying informed and regularly updating your data, you can avoid these pitfalls and make informed decisions."
-    },
-    {
-      question: "How often should I recalculate?",
-      answer: "It's recommended to recalculate your portfolio's value regularly, especially after significant market events or changes in your investment strategy. This ensures that your data remains accurate and reflects the latest market conditions. Consider setting a schedule for recalculating, such as monthly or quarterly, to maintain a clear understanding of your financial position and make informed decisions."
-    },
-    {
-      question: "What should I do with these results?",
-      answer: "Use the results from the Portfolio Value Tracker to assess your investment strategy and make informed decisions. Consider whether your current strategy aligns with your financial goals and make adjustments as needed. If you're unsure about your next steps, consider consulting with a financial advisor for personalized advice. They can provide insights and recommendations tailored to your specific needs. For more tools, visit our <a href=\"/financial/refinance-savings\" className=\"text-blue-600 dark:text-blue-400 hover:underline\">Refinance Savings Calculator</a>."
-    },
-    {
-      question: "Are there alternatives to this calculation method?",
-      answer: "There are alternative methods for tracking portfolio value, such as using financial software or consulting with investment professionals. These alternatives can provide additional insights and tools for managing your investments. Consider the pros and cons of each method and choose the one that best suits your needs and preferences. By exploring different options, you can find the most effective approach for achieving your financial goals."
+      question: "What are the most common mistakes when calculating portfolio tracking?",
+      answer: "The most frequent errors in portfolio tracking calculations: (1) Using pre-tax instead of post-tax figures where after-tax analysis is needed, (2) Ignoring fees and transaction costs that reduce net returns, (3) Using nominal figures without inflation adjustment for long-horizon projections, (4) Assuming constant rates -- real-world asset allocation conditions fluctuate. Double-check your inputs against current asset allocation data before relying on results for significant financial decisions."
     }
   ];
 
