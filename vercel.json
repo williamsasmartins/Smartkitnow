@@ -521,16 +521,6 @@
       "permanent": true
     },
     {
-      "source": "/everyday/:path*",
-      "destination": "/everyday",
-      "permanent": true
-    },
-    {
-      "source": "/pets/:path*",
-      "destination": "/pets",
-      "permanent": true
-    },
-    {
       "source": "/smart-tips/:path*",
       "destination": "/smart-tips",
       "permanent": true
@@ -757,12 +747,12 @@
     },
     {
       "source": "/pets/dog-caffeine-toxicity-calculator",
-      "destination": "/pets/pet-care-calculators/dog-caffeine-toxicity-calculator",
+      "destination": "/pets/dog-caffeine-toxicity",
       "permanent": true
     },
     {
       "source": "/pets/dogs/dog-caffeine-toxicity-calculator",
-      "destination": "/pets/pet-care-calculators/dog-caffeine-toxicity-calculator",
+      "destination": "/pets/dog-caffeine-toxicity",
       "permanent": true
     },
     {
@@ -1013,6 +1003,16 @@
     {
       "source": "/pets/dogs",
       "destination": "/pets",
+      "permanent": true
+    },
+    {
+      "source": "/pets/cat-shedding-combing-planner",
+      "destination": "/pets/cat-shedding-combing-time-planner",
+      "permanent": true
+    },
+    {
+      "source": "/pets/guinea-pig-vitamin-c-intake",
+      "destination": "/pets/guinea-pig-vitamin-c-requirement",
       "permanent": true
     }
   ]
