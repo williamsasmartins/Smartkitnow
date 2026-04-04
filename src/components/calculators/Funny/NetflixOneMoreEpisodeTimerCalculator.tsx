@@ -182,6 +182,22 @@ export default function NetflixOneMoreEpisodeTimerCalculator() {
         </p>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          The Psychology of Binge-Watching and Time Awareness
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Streaming platforms are engineered for continued viewing. Netflix auto-plays the next episode after a 5-second countdown, removing the conscious decision to continue. Each episode ends on an unresolved narrative tension specifically designed to create forward momentum. The result: what viewers intend as a single episode often becomes three or four. Research at the University of Texas at Austin found that binge-watching correlates with higher levels of loneliness and depression, and is often associated with using television to escape negative emotions rather than as active entertainment.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The sunk cost fallacy amplifies binge-watching. Having already watched seven episodes of a mediocre series, viewers continue because stopping feels like wasting the previous investment. The rational approach recognizes that past time is already spent regardless of future choices. This calculator makes the sunk cost explicit by showing the total time committed and the precise end-time of additional episodes, which helps break the automatic continuation pattern by making the cost concrete and visible.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Sleep researchers identify late-night streaming as a significant contributor to sleep debt. Blue light from screens suppresses melatonin production, and psychological arousal from compelling content delays sleep onset even after screens are turned off. The American Academy of Sleep Medicine recommends stopping screen use 30-60 minutes before target sleep time. Using the end-time calculation from this calculator to know the exact clock time three more episodes will finish enables concrete bedtime planning rather than vague intentions that dissolve in the moment.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <ul className="list-disc list-inside space-y-3 text-slate-700 dark:text-slate-300">

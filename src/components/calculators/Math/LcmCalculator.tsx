@@ -211,6 +211,22 @@ LCM(a, b, c, ...) = LCM(LCM(a, b), c, ...)`}
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Real-World Uses of the Least Common Multiple
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The most familiar use of LCM is adding fractions with unlike denominators. To compute 1/4 + 1/6, you need the smallest number both 4 and 6 divide into — LCM(4,6) = 12. Convert both fractions to twelfths (3/12 + 2/12) and add directly: 5/12. Without LCM, fraction addition requires more steps and is prone to error. The same principle extends to rational expressions in algebra.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Scheduling problems are the second major application. If a train departs every 15 minutes and a bus departs every 20 minutes, they next leave simultaneously after LCM(15, 20) = 60 minutes. This logic applies to factory machine cycles, supply chain restocking intervals, and software cron job alignment. Any time two periodic events must synchronize, the LCM gives the first future coincidence.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          In music theory, LCM determines rhythmic alignment. A polyrhythm of 3-against-4 repeats every LCM(3,4) = 12 beats. Composers use this to plan where independent rhythmic patterns resolve back to a shared downbeat. Digital signal processing applies the same principle when resampling audio: converting between 44.1 kHz and 48 kHz requires the LCM of the two sample rates to find the ideal interpolation window.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">FAQ</h2>
         <ul className="space-y-6">

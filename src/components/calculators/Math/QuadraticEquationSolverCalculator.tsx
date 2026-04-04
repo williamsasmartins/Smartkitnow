@@ -230,6 +230,25 @@ Where:
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          When You Encounter Quadratic Equations in the Real World
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Quadratic equations model any situation where a rate of change is itself changing — where the relationship between variables is curved rather than linear. Projectile motion is the classic example: the height of a thrown ball follows h = -16t^2 + v0*t + h0. Setting h = 0 and solving finds when the ball hits the ground. The two roots of the quadratic correspond to the two times the ball was at ground level — launch and landing.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          In business, quadratic equations model profit and revenue. If a company sells x units at price (50 - 0.5x), revenue R = 50x - 0.5x^2. To find the price that maximizes revenue, set dR/dx = 0 (giving x = 50) or complete the square on the quadratic. The vertex of the parabola is the revenue-maximizing quantity. This same structure appears in optimal lot-size inventory models and auction theory.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Engineering and physics use quadratic equations for stress analysis, electrical circuit design, and optics. The focal length formula for a lens, the resonant frequency of an LC circuit, and the elastic deformation of a beam under load all produce quadratic relationships. Structural engineers solve quadratic equations when calculating the dimensions of beams that must support a given load without exceeding material stress limits.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The discriminant (b^2 - 4ac) tells you the nature of the solutions before solving. Positive discriminant: two distinct real roots (the parabola crosses the x-axis twice). Zero discriminant: exactly one real root (the parabola just touches the axis). Negative discriminant: two complex conjugate roots (the parabola never crosses the axis). Checking the discriminant first saves time when you only need to know whether real solutions exist.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">FAQ</h2>
         <ul className="space-y-6">

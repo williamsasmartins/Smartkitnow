@@ -287,6 +287,25 @@ Where:
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Standard Deviation in Data Analysis and Decision-Making
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Standard deviation quantifies how spread out a set of values is around their mean. A low standard deviation means values cluster tightly; a high one means they are scattered widely. This single number summarizes variability in a way that raw lists cannot. Two investments can have the same average return but dramatically different standard deviations — one consistent and predictable, one volatile and risky. Standard deviation is the primary measure of investment risk in modern portfolio theory.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The choice between population and sample standard deviation matters for statistical validity. Use population standard deviation (divide by N) when you have complete data — all exam scores in a class, all products from a production run. Use sample standard deviation (divide by N-1, Bessel's correction) when your data is a subset of a larger population — survey responses from 500 people representing all voters. The N-1 correction removes bias from the estimate of the true population variance.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          In manufacturing, the standard deviation of product dimensions determines process capability. A process producing bolts with a 10mm target diameter and standard deviation of 0.1mm is much more consistent than one with 0.5mm standard deviation. The Cp and Cpk indices used in Six Sigma are calculated as (specification range) / (6 x standard deviation). A Cpk above 1.33 indicates the process consistently stays within tolerances.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Normal distribution probabilities are expressed in standard deviations. In a normal distribution, 68.3% of values fall within 1 standard deviation of the mean, 95.4% within 2, and 99.7% within 3. This 68-95-99.7 rule lets you immediately estimate the probability of an observation falling in any range once you know the mean and standard deviation. IQ scores, heights, and measurement errors all approximate normal distributions.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           FAQ

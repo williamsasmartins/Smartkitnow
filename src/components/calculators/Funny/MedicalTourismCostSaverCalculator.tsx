@@ -269,6 +269,22 @@ export default function MedicalTourismCostSaverCalculator() {
         </p>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Medical Tourism: Savings, Risks, and Planning Considerations
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Medical tourism has grown to a $44 billion industry (Patients Beyond Borders, 2023), with an estimated 14-16 million patients traveling internationally each year. The primary driver is cost: procedures that cost $30,000-$50,000 in the United States often cost $5,000-$15,000 in Mexico, Thailand, India, or Costa Rica, even after travel and accommodation. The most common procedures sought internationally are hip and knee replacement, dental restoration, cardiac procedures, cosmetic surgery, and fertility treatments.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The savings calculation must account for all costs: procedure fee, pre-operative testing, accommodation for 2-3 weeks post-surgery, flights, travel insurance, and follow-up care at home. A $35,000 US knee replacement done in Costa Rica for $12,000 plus $3,000 in travel expenses produces approximately $20,000 in net savings. However, complications requiring additional treatment abroad or at home can eliminate these savings quickly, which is why reputable medical tourism requires both facility accreditation through the Joint Commission International (JCI) and comprehensive travel medical insurance with emergency evacuation coverage.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Insurance and legal considerations are critical. Most US health insurance plans do not cover procedures performed abroad. Legal recourse for malpractice is limited compared to domestic standards. The FDA does not regulate drugs, devices, or procedures performed outside the United States. These factors explain why medical tourism is most economically justified for elective procedures at established medical tourism destinations with verifiable JCI-accredited facilities, rather than for complex procedures where intensive post-operative monitoring significantly reduces risk.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           Frequently Asked Questions

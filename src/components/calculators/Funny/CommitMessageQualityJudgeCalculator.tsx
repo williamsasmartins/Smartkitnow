@@ -281,6 +281,22 @@ export default function CommitMessageQualityJudgeCalculator() {
         </p>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Why Good Commit Messages Are Developer Infrastructure
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          A git commit message is the primary communication tool in a codebase over time. Code tells you what was done; the commit message tells you why. Future maintainers, including your own future self, spend more time reading git history than writing new code. A message like 'fix bug' forces the next developer to diff the commit to understand context. A message like 'Fix null pointer when user has no billing address (closes #4521)' is searchable, navigable, and self-explanatory without opening the diff.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The Conventional Commits specification (conventionalcommits.org) is the most widely adopted format: type(scope): description, with types including feat, fix, docs, style, refactor, test, and chore. This structure enables automated tooling: semantic-release can automatically increment version numbers (feat = minor bump, fix = patch bump) and generate CHANGELOG.md entries from commit history. Many teams enforce conventional commits via git hooks or CI checks, making message format a pipeline requirement rather than a suggestion.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Bad commit hygiene compounds over time. A repository with descriptive commits is like a well-indexed book; one with 'asdf' and 'WIP' messages is like a book with blank chapter titles. Code review is faster when commits are atomic (one logical change per commit) and well-described. Using git bisect to find which commit introduced a bug is only effective when commits are atomic and descriptive. Rebasing and cherry-picking across branches is safer when each commit represents a single, complete unit of change.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           FAQ

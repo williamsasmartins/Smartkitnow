@@ -299,6 +299,25 @@ Antilogarithm (base e):
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Logarithms in Science, Engineering, and Finance
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Logarithms compress wide-ranging scales to human-readable numbers. The pH scale measures hydrogen ion concentration, which spans 14 powers of ten: pH = -log10([H+]). A pH of 3 (vinegar) has 10,000 times more H+ ions than pH 7 (water). Decibels measure sound intensity: dB = 10 x log10(I/I0). A 30 dB increase represents a 1000-fold increase in intensity. Richter scale earthquakes: magnitude 7 releases about 31.6 times more energy than magnitude 6, because 10^(1.5) = 31.6.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The natural logarithm (base e, where e = 2.71828) is the mathematician's preferred tool because it is the unique function where d/dx ln(x) = 1/x. Compound interest and continuous growth use the natural log: if an investment grows at rate r for time t, its value is P x e^(rt). To find how long it takes to double at 7% continuous growth: ln(2) / 0.07 = 9.9 years. This is the continuous version of the Rule of 72.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Common logarithm (base 10) makes multiplication easier by transforming it into addition: log(a x b) = log(a) + log(b). Before calculators, engineers used slide rules and log tables for this reason. Today, log base 10 is standard in signal-to-noise ratio calculations, computer science bit complexity (log2 for binary trees), and chemistry equilibrium constants. The antilog (10^x or e^x) reverses the operation, converting back from log-space to the original scale.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Information theory uses logarithm base 2 to measure information in bits. The Shannon entropy H = -sum(p x log2(p)) quantifies uncertainty in a probability distribution. A fair coin toss has entropy H = 1 bit. A loaded coin (90% heads) has H = 0.47 bits — less uncertainty, less information content. Data compression algorithms exploit this: highly predictable sequences compress more because their entropy is low.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           FAQ

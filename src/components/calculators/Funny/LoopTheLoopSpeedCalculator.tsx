@@ -142,6 +142,22 @@ export default function LoopTheLoopSpeedCalculator() {
         </p>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Circular Motion and the Physics of Loop-the-Loop
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The loop-the-loop demonstrates centripetal acceleration and Newton's second law. At the top of the loop, gravity must provide at least the centripetal force needed to maintain circular motion: v^2/r >= g. This gives the minimum speed at the loop top: v_min = sqrt(g x r). For a loop with 5-meter radius, minimum speed = sqrt(9.81 x 5) = 7.0 m/s (about 25 km/h). Below this speed, the normal force from the track would need to be negative to maintain the circular path, which is impossible: the rider would fall away from the track.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Real roller coasters apply this physics with safety factors. A loop with 10-meter radius requires minimum speed of sqrt(9.81 x 10) = 9.9 m/s at the top. Designers add 1.3-1.5x safety margins, increasing the required entry speed. Crucially, the minimum-speed relationship scales as sqrt(r): doubling the loop radius increases required speed by only 41%, not 100%. This is why modern coasters use larger teardrop-shaped loops rather than smaller circles: the larger radius requires proportionally less speed while providing a more comfortable rider experience.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The g-force at the bottom of the loop is the sum of weight support and centripetal force: g_experienced = v^2/(g x r) + 1. A roller coaster moving at 20 m/s through a 10-meter loop bottom experiences 5.1g. At the top: g_experienced = v^2/(g x r) - 1 (centripetal and weight forces partially cancel). This difference between top and bottom g-forces motivates the clothoid (Euler spiral) loop design used in modern coasters. By continuously varying the loop radius, the clothoid keeps g-forces more uniform throughout, reducing physical stress on riders while allowing higher overall speeds.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <dl className="space-y-6">

@@ -254,6 +254,25 @@ where:
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Random Numbers in Simulation, Cryptography, and Sampling
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Random number generation has fundamentally different requirements depending on the application. For simulations and games, pseudo-random number generators (PRNGs) are sufficient — they produce statistically random-looking sequences from a deterministic seed. For cryptography and security, cryptographically secure pseudo-random number generators (CSPRNGs) are required — they must be computationally infeasible to predict, even knowing previous outputs. Using a PRNG for key generation is a critical security vulnerability.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Monte Carlo simulations use thousands or millions of random samples to estimate complex probabilities. To estimate the probability of a portfolio losing more than 10% in a month: sample random monthly returns from the historical distribution, compute portfolio value under each, count outcomes below -10%. With 100,000 trials, you estimate the probability to within +/- 0.1 percentage points. Monte Carlo is used in risk management, options pricing (Black-Scholes assumes normally distributed returns), and physics simulations.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Statistical sampling uses random number generators to select representative samples from populations. A simple random sample assigns every population member a number, then selects those matching a random draw. Stratified sampling divides the population into groups and randomly samples from each. Cluster sampling randomly selects groups and samples all members of chosen groups. Each design balances cost, feasibility, and statistical efficiency differently.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Game design and procedural generation use controlled randomness to create varied, replayable experiences. A seeded random number generator produces the same level layout every time when given the same seed — useful for sharing 'seeds' that reproduce specific game worlds. Adjusting the distribution (uniform vs. weighted vs. normal) shapes the player experience: weighted random makes rare items appropriately uncommon without making them impossible.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           FAQ

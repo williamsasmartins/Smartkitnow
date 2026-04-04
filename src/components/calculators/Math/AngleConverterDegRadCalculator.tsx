@@ -226,6 +226,25 @@ degrees = radians × (180 / π)`}
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          When to Use Degrees vs Radians — and How to Convert
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Degrees and radians both measure the same thing — rotation angle — but suit different contexts. Degrees are intuitive for humans: a right angle is 90 degrees, a full rotation is 360. Radians are natural for mathematics and physics: a full rotation is 2*pi radians, and the radian measure of an arc equals the arc length divided by the radius. When you integrate or differentiate trigonometric functions, radian measure makes the derivatives clean: d/dx sin(x) = cos(x) only when x is in radians.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Engineering and programming almost exclusively use radians. Every math library — Python's math module, JavaScript's Math object, C's math.h — assumes radian input for sin(), cos(), and tan(). Passing degrees without converting is a common bug that produces wrong results that look plausible. For example, sin(90) in a radian-based function returns 0.894 (sin of 90 radians), not 1.0 (sin of 90 degrees). Always convert to radians before passing angle values to code.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The conversion formulas are simple: radians = degrees x pi/180; degrees = radians x 180/pi. Key reference points to memorize: 0 degrees = 0 rad, 30 degrees = pi/6 rad, 45 degrees = pi/4 rad, 60 degrees = pi/3 rad, 90 degrees = pi/2 rad, 180 degrees = pi rad, 360 degrees = 2*pi rad. These six values cover the majority of angles encountered in trigonometry and physics problems.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Navigation and geodesy use degrees with decimal minutes or DMS (degrees, minutes, seconds) notation. GPS coordinates are expressed in decimal degrees: 40.7128 degrees N, 74.0060 degrees W for New York City. Converting between DMS and decimal degrees requires dividing minutes by 60 and seconds by 3600, then summing. This is distinct from the degree-to-radian conversion but often encountered alongside it in geospatial calculations.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">FAQ</h2>
         <ul className="space-y-6">

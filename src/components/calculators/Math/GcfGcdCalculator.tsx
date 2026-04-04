@@ -235,6 +235,25 @@ export default function GcfGcdCalculator() {
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Practical Applications of the Greatest Common Divisor
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The GCD is the fundamental tool for simplifying fractions to lowest terms. To reduce 48/72, find GCD(48, 72) = 24, then divide both numerator and denominator: 2/3. This step is required in every arithmetic and algebra class, and the GCD calculator automates the Euclidean algorithm so you can verify your work or handle large numbers instantly.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          In practical terms, GCD solves equal-distribution problems. If you have 48 apples and 72 oranges and want to pack identical bags with no fruit left over, GCD(48, 72) = 24 means you can pack 24 bags with 2 apples and 3 oranges each. The same logic applies to cutting material into equal strips, dividing pixels evenly in graphic design, or allocating computing resources in equal blocks.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Cryptography relies on GCD at its foundation. The RSA algorithm determines the public and private keys by requiring that GCD(e, phi(n)) = 1 — that e and phi(n) are coprime. Two numbers are coprime when their GCD equals 1, meaning they share no prime factors. Understanding coprimality lets you see why RSA key generation rejects certain values: if GCD is not 1, the mathematical inverse needed for decryption does not exist.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The Euclidean algorithm makes GCD computation fast even for very large numbers. The algorithm repeatedly applies: GCD(a, b) = GCD(b, a mod b) until the remainder is zero. For GCD(1071, 462): GCD(462, 147) -> GCD(147, 21) -> GCD(21, 0) = 21. This takes three steps regardless of how large the numbers are, making it efficient for cryptographic use cases involving hundreds of digits.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">FAQ</h2>
         <ul className="space-y-6">

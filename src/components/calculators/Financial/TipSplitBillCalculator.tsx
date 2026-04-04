@@ -213,6 +213,22 @@ export default function TipSplitBillCalculator() {
         </Card>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Tip Etiquette, Customs, and the Math Behind Splitting Bills
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Tipping norms vary significantly by country and service type. In the United States, 18-20% is standard for restaurant service, 20-25% for excellent service. Bartenders typically receive $1-2 per drink or 15-20% of the tab. Hotel housekeeping: $2-5 per night. In Japan, tipping is not practiced and offering a tip can be considered rude. In the UK, 10-12.5% is common but not mandatory. Australia has minimal tipping culture. Understanding local conventions prevents both undertipping service workers who depend on tips and creating awkwardness in cultures where it is unnecessary.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The pre-tax vs post-tax tipping question is a minor practical consideration. Technically, tips should be calculated on the pre-tax food and beverage total since the tax is a government charge, not compensation for service. In practice, the difference on a typical restaurant check is under $1. Tipping 18% on a post-tax total at an 8% sales tax rate is equivalent to tipping about 19.4% on the pre-tax total. Most people use the post-tax total for simplicity without meaningful financial impact.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Splitting bills equally works well when everyone ordered similar items. Proportional splitting is fairer when orders vary widely, but requires more tracking. Modern payment apps such as Venmo, Splitwise, and Square Cash handle itemized proportional splits. For groups of 4-6, a hybrid approach works: split shared items (appetizers, wine) equally, then each person pays for their individual items. The social consideration: avoid letting one person consistently under-order while benefiting from others covering shared costs, which creates friction over repeated group meals.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-24" aria-label="FAQ" />
     </CalculatorVerticalLayout>
   );

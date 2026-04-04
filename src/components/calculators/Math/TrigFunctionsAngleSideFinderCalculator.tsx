@@ -467,6 +467,25 @@ Radians = (Degrees × π) / 180`}
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Trigonometry in Navigation, Architecture, and Physics
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The six trigonometric functions (sine, cosine, tangent, and their reciprocals) define the relationships between sides and angles in right triangles. These relationships extend to any triangle (via the law of sines and cosines) and to circular motion (via the unit circle definition). Every wave — sound, light, electrical — is modeled as a combination of sine and cosine functions, making trigonometry the mathematical foundation of signal processing and physics.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Surveying uses trigonometry to calculate distances and elevations without direct measurement. The angle of elevation to the top of a building, measured from a known distance, determines the building's height via tangent: height = distance x tan(angle). GPS trilateration combines distance measurements from multiple satellites using the 3D distance formula, which derives from the Pythagorean theorem and trigonometry.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Architecture uses trigonometry to calculate roof pitches, structural loads, and sight lines. A roof with a 30-degree pitch: the run is the horizontal distance, the rise is the height, and rise = run x tan(30) = run x 0.577. Rafter length = run / cos(30) = run / 0.866. These calculations determine material quantities (roof sheathing, rafters) and load distribution on walls. Steeper pitches carry more wind load and require heavier framing.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Electrical engineering uses trigonometry constantly for AC circuit analysis. Voltage and current in AC circuits are sinusoidal: V(t) = V_max x sin(omega*t + phi). The phase angle phi determines whether voltage leads or lags current, which defines the power factor. Reactive power (which does no useful work) is calculated as P x tan(phase angle). Correcting power factor to near zero phase angle maximizes the efficiency of industrial electrical systems.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           FAQ

@@ -294,6 +294,25 @@ xʸ = e^{y \\cdot (\\ln|x| + i\\pi)} = e^{y \\cdot \\ln|x|} \\cdot (\\cos(y\\pi)
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Exponents in Growth, Science, and Computing
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Exponential growth describes any quantity that increases by a constant multiplicative factor per time unit. Compound interest follows A = P x (1+r)^n: a 7% annual return on $10,000 grows to $19,672 in 10 years. Population growth, viral spread, and radioactive decay all follow the same exponential pattern with different bases. The defining property: growth accelerates over time because each step multiplies the current value, not the original. This is why early exponential growth looks slow and then becomes sudden.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The laws of exponents govern all power manipulation: a^m x a^n = a^(m+n), a^m / a^n = a^(m-n), (a^m)^n = a^(mn), a^0 = 1, a^(-n) = 1/a^n. These rules handle every exponent operation. The most common error is treating (a+b)^2 as a^2 + b^2 instead of a^2 + 2ab + b^2. The rule (a^m)^n = a^(mn) applies only to products, not sums. Recognizing this prevents algebraic mistakes that cascade through multi-step problems in physics and engineering.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Computer science uses powers of 2 for every memory and data size standard. 1 kilobyte = 2^10 = 1,024 bytes. 1 megabyte = 2^20 = 1,048,576 bytes. 1 gigabyte = 2^30 bytes. A 32-bit integer stores values from 0 to 2^32 - 1 = 4,294,967,295. Choosing between int8, int16, int32, and int64 data types is a direct choice between these powers of 2. Integer overflow bugs occur when a computation exceeds the maximum value a type can hold, a problem diagnosed immediately by knowing the relevant power of 2.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Fractional exponents unify roots and powers: a^(1/2) = sqrt(a), a^(1/3) = cube root of a, a^(m/n) = nth root of a^m. Physics equations from orbital mechanics (period proportional to radius^(3/2)) to fluid dynamics (flow rate proportional to pressure^(1/2)) use fractional exponents. The exponential function base e (where e = 2.71828) is uniquely self-differentiating: d/dx e^x = e^x. This makes it the natural base for continuous growth and decay, differential equations, and Fourier analysis.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           FAQ

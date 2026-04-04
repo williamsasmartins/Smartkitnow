@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { REGISTRY, calcLink, categoryIcon, type CalculatorEntry } from "@/data/calculatorRegistry";
+import { CROSS_LINKS } from "@/data/crossLinks";
 
 interface RelatedCalculatorsProps {
   currentSlug: string;
@@ -11,8 +12,12 @@ interface RelatedCalculatorsProps {
 }
 
 /**
- * Shows related calculators from the same category/subcategory.
- * Priority: same subcategory first, then same category, capped at maxItems.
+ * Shows related calculators.
+ * Priority order:
+ *   1. Cross-category links from CROSS_LINKS table (max 2)
+ *   2. Same subcategory
+ *   3. Same category (fills remaining slots)
+ * Total capped at maxItems.
  */
 export default function RelatedCalculators({
   currentSlug,
@@ -57,22 +62,34 @@ function buildRelated(
   subcategory: string | undefined,
   maxItems: number
 ): CalculatorEntry[] {
-  const others = REGISTRY.filter((e) => e.slug !== currentSlug && e.category === category);
-
-  // Same subcategory first (most relevant)
-  const sameSub = subcategory
-    ? others.filter((e) => e.subcategory === subcategory)
-    : [];
-
-  // Fill remaining slots with rest of same category
-  const rest = others.filter((e) => e.subcategory !== subcategory);
-
-  // Merge without duplicates, capped at maxItems
+  const slugSet = new Set<string>();
   const merged: CalculatorEntry[] = [];
-  for (const entry of [...sameSub, ...rest]) {
-    if (merged.length >= maxItems) break;
+
+  const addEntry = (entry: CalculatorEntry) => {
+    if (merged.length >= maxItems) return;
+    if (slugSet.has(entry.slug)) return;
+    slugSet.add(entry.slug);
     merged.push(entry);
+  };
+
+  // 1. Cross-category links (up to 2 slots)
+  const crossSlugs = CROSS_LINKS[currentSlug] ?? [];
+  for (const slug of crossSlugs.slice(0, 2)) {
+    const entry = REGISTRY.find((e) => e.slug === slug);
+    if (entry) addEntry(entry);
   }
+
+  // 2. Same subcategory
+  const sameSub = REGISTRY.filter(
+    (e) => e.slug !== currentSlug && e.category === category && e.subcategory === subcategory
+  );
+  for (const entry of sameSub) addEntry(entry);
+
+  // 3. Same category (fill remaining slots)
+  const sameCategory = REGISTRY.filter(
+    (e) => e.slug !== currentSlug && e.category === category && e.subcategory !== subcategory
+  );
+  for (const entry of sameCategory) addEntry(entry);
 
   return merged;
 }

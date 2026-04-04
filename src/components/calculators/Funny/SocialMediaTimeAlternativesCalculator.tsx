@@ -141,6 +141,22 @@ export default function SocialMediaTimeAlternativesCalculator() {
         </p>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Understanding Your Relationship With Social Media Time
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Average daily social media usage worldwide is 2 hours 27 minutes (DataReportal, 2024). Over a year, this totals approximately 37 days spent on social platforms. The opportunity cost is substantial: that same time could yield 18 books read, 1,000 hours of skill practice, or a meaningful second language acquisition (research estimates 500-1000 hours to conversational fluency). The calculator translates abstract daily minutes into annual equivalents that make the trade-off concrete.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Passive consumption vs active creation is the key distinction in social media use. Research by the Oxford Internet Institute found that passive scrolling correlates with reduced well-being, while active use (posting, messaging, creating) shows neutral or positive correlation. The same platform can serve either mode — the behavior pattern matters more than the platform. Digital wellness frameworks like the 'JOMO' (Joy of Missing Out) movement advocate intentional, time-bounded social media use rather than total abstinence.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Screen time reduction experiments show a consistent pattern: the first three days feel difficult, days 4-7 show productivity gains, and by day 14, most participants report improved sleep and reduced anxiety (University of Bath study, 2019). The alternative-activity framing used by this calculator is more effective than willpower-based restriction. Replacing scroll time with a specific activity (reading, walking, learning) activates implementation intentions that are more reliably followed than vague 'use less' goals.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <dl className="space-y-6">

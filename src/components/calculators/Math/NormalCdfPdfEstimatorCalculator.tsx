@@ -313,6 +313,25 @@ where:
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Normal Distribution in Science, Finance, and Quality Control
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The normal distribution (bell curve) is central to statistics because the Central Limit Theorem guarantees that the means of sufficiently large samples from any distribution converge to a normal distribution. This means you can use normal distribution tools for analyzing sample means even when the underlying data is not normally distributed — heights, income distributions, and stock returns all violate normality, but their sample means do not.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The PDF (probability density function) tells you the relative likelihood of a specific value, while the CDF (cumulative distribution function) gives the probability of observing a value at or below a threshold. For the standard normal: PDF peaks at x=0 with value 0.399. CDF(0) = 0.5 (50% of values below the mean). CDF(1.96) = 0.975 (97.5% below, meaning only 2.5% above — the basis of the 95% confidence interval which uses +/-1.96 sigma).
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Manufacturing process control uses normal distribution to establish control limits. A control chart plots sample means over time, with upper and lower control limits set at mean +/- 3 standard deviations. Under normal operation, 99.73% of sample means should fall within these limits. A point outside the limits signals a process shift with only 0.27% false positive rate. This is the statistical basis of Shewhart control charts used in Six Sigma.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Value at Risk (VaR) in finance uses the normal distribution to estimate maximum expected loss. If a portfolio has daily returns with mean 0.05% and standard deviation 1.2%, the 1% VaR (worst expected day 1 in 100) is mean + z(0.01) x SD = 0.05% + (-2.326 x 1.2%) = -2.74%. This means there is a 1% chance of losing more than 2.74% in a single day. Banks are required by regulation to hold capital against their VaR.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           FAQ

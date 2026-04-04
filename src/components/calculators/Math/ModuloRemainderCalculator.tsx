@@ -215,6 +215,25 @@ where:
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Where Modulo Arithmetic Appears in Practice
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The modulo operation (a mod n) returns the remainder after dividing a by n. This seemingly simple operation is one of the most used in computer programming. Checking if a number is even: n mod 2 = 0. Wrapping an array index: index = (current + 1) mod length. Generating a cyclical sequence: values cycle through 0, 1, 2, ... n-1 endlessly. Any algorithm that needs to restart at zero after reaching a limit uses modulo.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Calendar calculations rely on modulo. The day of the week follows a mod-7 cycle: if today is Wednesday (day 3), what day is it 100 days from now? (3 + 100) mod 7 = 5 = Friday. This is the same arithmetic behind Zeller's congruence, the formula used to determine day-of-week for any date in history. Leap year detection uses modulo: a year is a leap year if (year mod 4 = 0) and (year mod 100 != 0 or year mod 400 = 0).
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Cryptography uses modular arithmetic as its core operation. The RSA algorithm encrypts a message M as C = M^e mod n and decrypts as M = C^d mod n. The security depends on the difficulty of computing discrete logarithms in modular arithmetic without knowing the private exponent d. Even simple Caesar ciphers use modulo: shift each letter by k positions, with wrap-around handled by (letter + k) mod 26.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Hash functions and checksums use modulo to fit values into fixed ranges. A hash table with 16 buckets assigns each key to bucket = hash(key) mod 16. Credit card validation (Luhn algorithm) repeatedly applies modulo 10. ISBN-10 validation uses modulo 11. Anywhere a large number must map to a bounded range, modulo is the mechanism.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">FAQ</h2>
         <ul className="space-y-6">

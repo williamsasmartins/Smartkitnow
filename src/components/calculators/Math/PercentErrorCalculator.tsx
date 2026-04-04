@@ -199,6 +199,25 @@ export default function PercentErrorCalculator() {
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Using Percent Error in Lab Work and Quality Control
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Percent error measures the accuracy of a measurement or estimate relative to the true (or accepted) value. The formula: percent error = |measured - accepted| / |accepted| x 100. A chemistry student measures the density of copper as 8.5 g/cm^3; the accepted value is 8.96 g/cm^3. Percent error = |8.5 - 8.96| / 8.96 x 100 = 5.1%. This tells the student their measurement is off by 5.1%, which may indicate a systematic error in their procedure.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Distinguishing percent error from percent difference is important. Percent error compares to a known true value. Percent difference compares two measured values with no agreed truth: |A - B| / ((A+B)/2) x 100. Use percent error when verifying against a standard (calibration, textbook value); use percent difference when comparing two experimental measurements. Using percent error when no true value exists produces a meaningless result.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Acceptable percent error thresholds vary by field and context. Introductory chemistry labs typically accept 5-10% percent error as passing. Analytical chemistry requires 1-2%. Pharmaceutical manufacturing requires <1% for drug potency measurements, with regulatory consequences for exceedances. Engineering tolerances depend on safety criticality: structural loads allow 5-10% while aerospace components may require <0.1%. Always interpret percent error relative to the precision requirements of your specific application.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Systematic errors produce consistent percent error in one direction; random errors average out over many trials. If all your measurements are consistently low by 5%, you likely have a calibration issue or procedural bias. If your measurements scatter around the true value, random error dominates. Calculating percent error for multiple trials and analyzing whether it is consistently positive or negative diagnoses which type of error is present.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <ul className="space-y-6">

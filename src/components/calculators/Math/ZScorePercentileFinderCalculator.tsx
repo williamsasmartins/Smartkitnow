@@ -356,6 +356,25 @@ Where:
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Z-Scores in Standardized Testing, Finance, and Research
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          A z-score transforms a raw value into a universal, unitless measure of how many standard deviations it sits above or below the mean. This standardization makes values from different distributions directly comparable. A student scoring 85 on a math test (mean 70, SD 10) has z = (85-70)/10 = 1.5. A student scoring 92 on an English test (mean 80, SD 6) has z = (92-80)/6 = 2.0. Despite the different scales, the English score is more exceptional relative to its distribution.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Standardized tests like the SAT, ACT, and GRE report scores that are essentially scaled z-scores. The SAT scales raw scores to a 400-1600 range calibrated so that the mean and standard deviation are known target values. Percentile rankings — a score at the 90th percentile means 90% of test-takers scored lower — are read directly from the z-score using the standard normal distribution table.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          In finance, z-scores appear in anomaly detection and the Altman Z-Score model for bankruptcy prediction. The Altman Z-Score uses five financial ratios, converted to a combined z-score; below 1.81 signals high bankruptcy risk, above 2.99 signals financial health. Statistical process control in manufacturing uses z-scores to flag measurements that deviate more than 3 standard deviations from the process mean — the basis of Six Sigma quality control.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Medical research uses z-scores to compare patient measurements to population norms. A child's height z-score compares their height to all children of the same age and sex. A z-score below -2 indicates the child is in the bottom 2.3% of their peer group, which may trigger clinical evaluation. Bone density T-scores (a type of z-score relative to young adult norms) diagnose osteopenia and osteoporosis using the same principle.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">FAQ</h2>
         <ul className="space-y-6">

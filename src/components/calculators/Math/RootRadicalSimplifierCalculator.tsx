@@ -248,6 +248,25 @@ Example:
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Simplifying Radicals in Algebra and Geometry
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Radical simplification is essential before combining radical expressions. Two radical terms can be added only when they share the same radicand: 3*sqrt(5) + 2*sqrt(5) = 5*sqrt(5). But 3*sqrt(5) + 2*sqrt(3) cannot be simplified further. Simplifying each radical first reveals whether they share a common radicand. For example, sqrt(75) + sqrt(48) = 5*sqrt(3) + 4*sqrt(3) = 9*sqrt(3). The simplification step was the key that made addition possible.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The Pythagorean theorem produces radicals naturally. The hypotenuse of a right triangle with legs 3 and 7 is sqrt(9+49) = sqrt(58). This does not simplify because 58 = 2 x 29 has no perfect square factor. Compare to legs 4 and 6: sqrt(16+36) = sqrt(52) = sqrt(4x13) = 2*sqrt(13). Recognizing whether a radical simplifies avoids leaving unnecessarily complex expressions in engineering and physics calculations involving distances, forces, and waveforms.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Rationalizing the denominator is the companion operation to simplification. When a radical appears in the denominator (1/sqrt(3)), multiply by sqrt(3)/sqrt(3) to get sqrt(3)/3. This is required when polynomial long division, partial fractions, and standard-form root expressions need a rational denominator. The process uses the identity sqrt(a) x sqrt(a) = a. In calculus, simplified radicals appear in derivatives: d/dx sqrt(x) = 1/(2*sqrt(x)), and in integrals using trigonometric substitution where sqrt(a^2 - x^2) factors after setting x = a*sin(theta).
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          In algebra, fractional exponents and radicals are interchangeable: a^(1/2) = sqrt(a), a^(1/3) = cube root of a, and a^(m/n) = nth root of a^m. Exponential rules apply to all radical expressions through this equivalence: sqrt(a) x sqrt(b) = sqrt(ab) follows from a^(1/2) x b^(1/2) = (ab)^(1/2). Negative fractional exponents such as a^(-1/2) = 1/sqrt(a) appear frequently in physics formulas including inverse-square laws, pendulum periods, and wave speed equations.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           FAQ

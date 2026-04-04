@@ -231,6 +231,22 @@ This expresses n as a unique product of prime powers.`}
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          When Prime Factorization Is the Right Tool
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Prime factorization decomposes any composite number into its prime building blocks. This is more than an academic exercise: once you have the prime factorization of two numbers, you can compute their GCD and LCM immediately without any further division. GCD is the product of shared prime factors at their minimum exponents; LCM is the product of all prime factors at their maximum exponents. For 360 = 2^3 x 3^2 x 5 and 84 = 2^2 x 3 x 7: GCD = 2^2 x 3 = 12, LCM = 2^3 x 3^2 x 5 x 7 = 2520.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Cryptography depends on the difficulty of prime factorization for large numbers. The RSA algorithm encodes messages using the product of two large primes (n = p x q). Decoding requires knowing p and q individually. While multiplying two 1024-bit primes takes a computer microseconds, factoring their product would take longer than the current age of the universe with classical computers. This asymmetry is what makes RSA secure.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Number theory puzzles and competitive math problems frequently require prime factorization as the first step. Finding the number of divisors, the sum of divisors, or whether a number is a perfect square all follow directly from the prime factorization. A number has (e1+1)(e2+1)... divisors where e1, e2... are the exponents in its factorization. For 360 = 2^3 x 3^2 x 5^1: divisors = (3+1)(2+1)(1+1) = 24.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">FAQ</h2>
         <ul className="space-y-6">

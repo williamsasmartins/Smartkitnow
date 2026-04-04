@@ -341,6 +341,25 @@ Note: Factorial of 0 is defined as 1.`}
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Permutations and Combinations in Everyday Counting Problems
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The core distinction: use permutations (nPr) when order matters, combinations (nCr) when it does not. Choosing the order of runners finishing a race is a permutation — first, second, third are distinct positions. Selecting members for a committee is a combination — the group is the same regardless of the order members were chosen. Confusing the two produces answers that are off by a factor of r! (r factorial), which for r=5 is 120.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Password and lock combination security is built on permutation counting. A 4-digit PIN from digits 0-9 has 10^4 = 10,000 possible values (with repetition allowed). Without repetition, it is P(10,4) = 10x9x8x7 = 5,040. A 6-character password using 26 letters + 10 digits = 36 characters has 36^6 = 2,176,782,336 possible combinations with repetition. Each added character multiplies the search space, explaining why longer passwords are exponentially harder to crack.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Probability calculations depend on combinations for the denominator. The probability of being dealt a royal flush in poker is C(5,5) / C(52,5) = 1 / 2,598,960. The probability of matching 5 of 6 lottery numbers is [C(6,5) x C(44,1)] / C(50,6). Any probability problem asking 'what fraction of possible selections have property X' requires counting the numerator (favorable selections using combinations) and the denominator (all possible selections).
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Network design and algorithm analysis use combinations to count connections. A fully connected network of 10 nodes requires C(10,2) = 45 direct links — each pair of nodes connected once. For 100 nodes: C(100,2) = 4,950 links. This quadratic growth explains why fully-meshed network topologies are impractical at scale and why hub-and-spoke or hierarchical designs are preferred in real infrastructure.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           FAQ

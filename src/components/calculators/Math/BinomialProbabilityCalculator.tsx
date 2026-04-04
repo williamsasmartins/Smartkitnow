@@ -269,6 +269,25 @@ where:
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Binomial Probability in Quality Control and Statistics
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The binomial probability model applies when you have a fixed number of independent trials, each with exactly two outcomes (success or failure) and a constant success probability. Coin flipping is the textbook example, but real applications are everywhere: manufacturing defect rates, clinical trial response rates, A/B test conversion rates, and survey response patterns all follow binomial distributions when each unit is independent.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Quality control uses binomial probability to set acceptance sampling rules. If a production line has a 2% defect rate (p=0.02) and you sample 50 units, the probability of finding zero defects is (1-0.02)^50 = 0.364. The probability of finding 3 or more defects is 1 minus the cumulative probability of 0, 1, or 2 defects. Acceptance sampling plans specify a rejection threshold — typically the number of defects where the probability of seeing that many from acceptable-quality production falls below 5%.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          A/B testing in web analytics applies binomial testing. Button A converts 5.2% of visitors (control); Button B converts 6.1% (variant). With 1,000 visitors each, is this difference statistically significant? The null hypothesis is that both buttons have the same true conversion rate. The binomial test (or its normal approximation for large samples) calculates the probability of observing this size difference by chance. If p-value < 0.05, the difference is significant.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The normal approximation to the binomial is accurate when np >= 10 and n(1-p) >= 10. For n=1000 and p=0.05: np=50 and n(1-p)=950 — both well above 10, so use the normal approximation with mean = np = 50 and standard deviation = sqrt(np(1-p)) = sqrt(47.5) = 6.89. This simplifies probability calculations for large samples where computing exact binomial probabilities is computationally intensive.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           FAQ

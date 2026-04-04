@@ -230,6 +230,25 @@ Range: R = v₀ * cosθ * t`}
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Projectile Motion in Sports, Engineering, and Ballistics
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Projectile motion assumes constant gravitational acceleration (g = 9.81 m/s^2 downward) and neglects air resistance. Under these conditions, horizontal and vertical motion are independent: horizontal velocity is constant; vertical velocity changes at rate g. The two equations of motion are: x(t) = v0*cos(theta)*t and y(t) = v0*sin(theta)*t - (1/2)*g*t^2. From these, range, time of flight, and maximum height all derive algebraically.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Sports science uses projectile motion to optimize throwing, kicking, and launching. The maximum range for a projectile launched from ground level is achieved at 45 degrees, where sin(90) = 1 in the range formula R = v0^2*sin(2*theta)/g. In practice, athletes aim slightly below 45 degrees because a flatter trajectory clears obstacles more easily and because air drag affects high-angle launches more. The optimal angle for a soccer free kick (accounting for drag) is closer to 30-35 degrees.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Artillery and ballistics extend projectile motion to account for air resistance, wind, Earth's rotation (Coriolis effect), and altitude variations in g. For short-range fire, the simple projectile equations provide adequate accuracy. For long-range artillery (20+ km), all corrections become significant — Coriolis deflects trajectories measurably, and the curvature of the Earth must be accounted for. Modern fire control systems solve the full differential equations numerically rather than using the simplified analytical formulas.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Forensic reconstruction of accidents and crimes uses projectile motion in reverse: given the landing point and launch height, determine the initial velocity or launch angle. Blood spatter analysis applies the same equations. A bullet's ricochet path, a vehicle's trajectory after a crash, or a falling object's origin can all be reverse-engineered from the impact point and projectile equations.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         <ul className="space-y-6">

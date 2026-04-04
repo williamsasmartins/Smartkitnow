@@ -209,6 +209,25 @@ export default function WorldClockCalculator() {
           <li><strong>Day Wrapping:</strong> Easily account for the International Date Line. If it is tomorrow in Japan relative to your current time, the timezone calendar will reflect that correctly.</li>
         </ul>
       </section>
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Why World Clock Tools Matter for Modern Teams
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Remote and distributed work has made time zone awareness a daily requirement. When a team spans New York, London, and Singapore, every meeting request requires mental arithmetic: adding five hours here, subtracting eight there, and then remembering which cities are currently observing daylight saving time. A world clock removes this friction entirely, showing the correct local time in any city the moment you look.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Business travelers, international traders, and customer support teams are the heaviest users. A financial analyst timing a trade execution needs exact market hours — the New York Stock Exchange opens at 9:30 AM EST, while the London Stock Exchange opens at 8:00 AM GMT. Knowing the live time difference prevents costly errors. Similarly, a support team handling tickets from three continents needs to know which regional office is currently staffed.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          UTC (Coordinated Universal Time) is the global reference standard. Every time zone is expressed as UTC+N or UTC-N. New York is UTC-5 (UTC-4 during EDT), London is UTC+0 (UTC+1 during BST), Tokyo is UTC+9 year-round. When scheduling across zones, convert all times to UTC first, then back to each local time — this eliminates daylight saving confusion because UTC never changes.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Daylight saving time (DST) is the most common source of world clock errors. The United States and Europe transition on different dates: the US shifts in early March and November, while most of Europe transitions in late March and October. This creates a two-week window each spring and fall when the US-Europe time difference is off by one hour from its usual value. Always verify DST status rather than relying on a fixed offset.
+        </p>
+      </section>
+
     </div>
   );
 

@@ -258,6 +258,22 @@ For parallelograms, height is the perpendicular height, not the side length.`}
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Rectangle and Parallelogram Area in Construction and Design
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The rectangle is the most common shape in construction and interior design. Flooring, ceiling tiles, wall panels, and roofing materials are all purchased by area. A room that is 14 feet wide and 18 feet long requires 252 square feet of flooring, plus a 10 percent waste factor for cuts around obstacles brings the order to 277 square feet. Material costs multiply directly with area, so accurate measurement is financially significant.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The parallelogram formula (Area = base x height, where height is perpendicular to the base, not the slant side) is a common source of error. A parallelogram with base 10m and slant side 8m at 60 degrees has height = 8 x sin(60) = 6.93m, not 8m. Area = 10 x 6.93 = 69.3 m^2, not 80 m^2. Using the slant length instead of the perpendicular height overstates the area by 15 percent. In land surveying, this error scales to significant acreage discrepancies.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Composite shapes require decomposing the overall shape into rectangles and parallelograms (and sometimes triangles), computing each area, and summing. An L-shaped floor plan is two rectangles. A room with a bay window is a rectangle plus a smaller attached rectangle. Architects and contractors perform this decomposition routinely when estimating material quantities. CAD software automates it, but understanding the underlying method catches software errors.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           FAQ

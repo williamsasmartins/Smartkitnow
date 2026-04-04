@@ -155,6 +155,25 @@ export default function EvAccelerationTorqueCalculator() {
         </div>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Why EV Torque and Acceleration Feel Different From ICE Vehicles
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Electric motors produce maximum torque from zero RPM — a fundamental physical difference from internal combustion engines (ICE), which must build RPM to reach their torque peak. A gasoline engine might peak at 300 lb-ft at 4,000 RPM; an electric motor produces 300 lb-ft the instant current flows. This is why EVs feel so responsive from a stop: the full torque is available immediately, with no clutch, no gear shift, and no RPM buildup required.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The 0-60 mph time is the standard performance benchmark, but EV acceleration is most dramatically felt in the 0-30 mph range. At city driving speeds, EVs consistently outperform much more powerful ICE vehicles because they deliver full torque before the gasoline engine has even finished gear changes. The Tesla Model S Plaid (1020 hp) hits 60 mph in 2.1 seconds, but its 0-30 mph time of ~0.9 seconds is what drivers notice most.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Torque vs power are related but different: Power (watts or horsepower) = Torque x Angular Velocity. At low RPM, an EV has high torque but moderate power because RPM is low. At high speed (high RPM), the EV enters a power-limited region where the controller reduces torque to maintain constant power output. This is the 'torque curve' plateau visible in EV spec sheets: constant torque from 0 to ~4,000 RPM, then declining torque above that to maintain constant peak power.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Regenerative braking uses the electric motor as a generator during deceleration, converting kinetic energy back to battery energy. In one-pedal driving modes, lifting the accelerator applies strong regenerative braking — up to 0.2g in some vehicles. This regen torque is applied by the same motor and follows the same physics as acceleration torque, but in reverse. Understanding regenerative braking torque helps predict stopping distances and energy recovery on downhill routes.
+        </p>
+      </section>
+
       <section id="faq">
         <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently asked questions</h2>
         <div className="space-y-6">

@@ -401,6 +401,25 @@ Cone:
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Choosing the Right Shape Formula for Your Project
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Area and volume calculations appear across construction, manufacturing, cooking, and everyday planning. Painting a room requires the wall area in square feet; tiling a floor requires the floor area; filling a garden bed with soil requires the volume in cubic feet. Each shape has its own formula, and using the wrong one — treating a trapezoid as a rectangle, for instance — can produce estimates off by 20 percent or more.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          For 3D packaging and shipping, volume calculations determine whether an item fits inside a box and how many units fit on a pallet. A box with dimensions 12 in x 8 in x 6 in has a volume of 576 cubic inches, equivalent to 0.33 cubic feet. Carriers charge by dimensional weight (volume divided by a factor, typically 139 for inches), so accurately computing volume directly affects shipping cost estimates.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Architectural and landscape design uses irregular shapes constantly. A garden shaped like two merged rectangles, an L-shaped room, or a circular lawn center all require decomposing the shape into standard forms, calculating each area, and summing (or subtracting) the results. The shapes calculator handles the individual standard forms so you can focus on the decomposition step rather than the arithmetic.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          In academic settings, students encounter area and volume in geometry, physics, and chemistry. Calculating the cross-sectional area of a pipe (circle formula: pi x r^2) is prerequisite knowledge for fluid dynamics. The volume of a cylinder (pi x r^2 x h) appears in problems involving density, concentration, and pressure. Having a reliable calculator to verify manual work prevents compounding errors in multi-step problems.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">FAQ</h2>
         <ul className="space-y-6">

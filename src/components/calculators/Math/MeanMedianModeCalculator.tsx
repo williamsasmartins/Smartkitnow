@@ -231,6 +231,25 @@ Mode:
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Choosing Mean, Median, or Mode for Your Data
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The mean, median, and mode each answer a different question about the center of a dataset. Mean answers: what is the average value? Median answers: what value splits the distribution in half? Mode answers: what value appears most frequently? For symmetric, bell-shaped distributions, all three are approximately equal. When distributions are skewed or contain outliers, they diverge significantly, and the choice of which to report changes the interpretation of the data.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Income and wealth data are the canonical case where median beats mean. US median household income in 2023 was approximately $77,000; mean household income was approximately $101,000. The gap arises because a small number of extremely high earners pull the mean upward without moving the median. When describing the typical household, economists use the median. Real estate listings report median home prices rather than mean prices for the same reason: one $10 million sale in a neighborhood would distort the mean for all other buyers.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Mode is most useful for categorical data and inventory decisions. A shoe store asking which size to reorder uses mode: the most frequently purchased size, not the average (which might be 9.37, a size that does not exist). In quality control, mode identifies the most common defect type. For survey responses on a 1-5 scale, the mode is often more informative than the mean: if most respondents answer 5 and a few answer 1, a mean of 4.1 obscures the bimodal distribution that the mode makes immediately visible.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Sample size affects the reliability of all three measures. With small samples (under 20), all three are sensitive to individual values. The standard error of the mean decreases as 1/sqrt(n), meaning quadrupling sample size halves measurement uncertainty. The median requires at least 20-30 data points to be stable. When reporting any central tendency measure, include both sample size and a measure of spread (standard deviation for normally distributed data, interquartile range for skewed data) to give the measure proper context.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">FAQ</h2>
         <ul className="space-y-6">

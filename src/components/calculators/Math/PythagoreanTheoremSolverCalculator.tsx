@@ -337,6 +337,25 @@ Note: c must be greater than the leg to have a real solution.`}
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          The Pythagorean Theorem Beyond Right Triangles
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The Pythagorean theorem (a^2 + b^2 = c^2) applies directly to any right triangle: given two sides, it finds the third. In construction, the 3-4-5 right triangle is a standard check for squareness: if a corner measures exactly 3 feet on one side, 4 feet on another, and the diagonal is 5 feet, the corner is a perfect right angle. Builders and framers use this daily to square up walls, foundations, and decks before fastening.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          In 2D and 3D coordinate geometry, the Pythagorean theorem extends to the distance formula. The distance between two points (x1,y1) and (x2,y2) is sqrt((x2-x1)^2 + (y2-y1)^2) — the hypotenuse of the right triangle formed by horizontal and vertical displacement. In 3D: distance = sqrt((x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2). Every GPS routing algorithm, physics simulation, and 3D game engine uses this formula countless times per second.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The theorem identifies Pythagorean triples — integer solutions where all three sides are whole numbers. Common triples: 3-4-5, 5-12-13, 8-15-17, 7-24-25. These appear in puzzle and competition math, and historically served as construction tools when precise measurement was impossible. Any multiple of a triple is also a triple: 6-8-10, 9-12-15, 10-24-26.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The converse of the theorem is equally useful: if a^2 + b^2 = c^2, then the angle opposite side c is exactly 90 degrees. If a^2 + b^2 < c^2, the angle is obtuse. If a^2 + b^2 > c^2, the angle is acute. This converse allows surveyors, machinists, and engineers to verify right angles without measuring them directly — check the squared relationship between the three sides instead.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           FAQ

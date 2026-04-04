@@ -390,6 +390,22 @@ Factorization:
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Why Factoring Polynomials Is a Foundational Algebra Skill
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Factoring a polynomial means rewriting it as a product of simpler polynomials, just as factoring an integer means rewriting it as a product of primes. The quadratic x^2 - 5x + 6 factors into (x-2)(x-3), revealing the roots x=2 and x=3 directly. This is faster than applying the quadratic formula for simple cases and is the prerequisite skill for partial fraction decomposition, which appears in calculus integration.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Solving polynomial equations — the core use of factoring — determines equilibrium points in economics, roots of characteristic equations in differential equations, and zeros of transfer functions in control engineering. A cubic polynomial modeling supply and demand has up to three equilibrium prices; factoring identifies all of them. In electrical engineering, the natural frequencies of a circuit are the roots of a polynomial derived from the circuit's differential equation.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Polynomial factoring techniques follow a hierarchy: first remove common factors (GCF), then check for difference of squares (a^2 - b^2 = (a+b)(a-b)), then perfect square trinomials (a^2 + 2ab + b^2 = (a+b)^2), then trial factoring for quadratics, then the rational roots theorem for higher-degree polynomials. Recognizing which technique applies reduces time significantly. The rational roots theorem states that any rational root of a polynomial with integer coefficients must be a factor of the constant term divided by a factor of the leading coefficient.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
           FAQ

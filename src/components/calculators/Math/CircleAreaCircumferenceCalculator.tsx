@@ -326,6 +326,22 @@ Where π (pi) ≈ ${Math.PI.toFixed(4)}`}
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Circle Calculations in Design, Engineering, and Everyday Life
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The circle is nature's most efficient shape: for a given perimeter, a circle encloses the maximum area. This is why bubbles, cross-sections of pipes, and cell membranes are circular. In engineering, pipes and cables have circular cross-sections because the circular shape distributes internal pressure uniformly — no stress concentrations at corners. The area of a pipe cross-section (pi x r^2) determines its flow capacity for water, gas, or electrical current.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          In construction, circular calculations arise in every trade. A concrete column 18 inches in diameter has a cross-sectional area of pi x 9^2 = 254.5 square inches. Cutting a circular hole in drywall, computing how much paint covers a circular feature wall, calculating the area of a round dining table to determine tablecloth size — all require pi x r^2. The circumference (2 x pi x r) gives the perimeter of a circular garden bed, the fencing length for a circular enclosure, or the wheel rotation distance.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Pi (pi = 3.14159...) is irrational and transcendental, meaning it cannot be expressed as a fraction and is not the root of any polynomial with rational coefficients. For practical calculations, pi = 3.14159 provides accuracy to within 0.00001 percent, more than sufficient for any real-world measurement. The approximation 22/7 = 3.14286 is accurate to 0.04 percent — useful for quick mental estimates when a calculator is unavailable.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">FAQ</h2>
         <ul className="space-y-6">

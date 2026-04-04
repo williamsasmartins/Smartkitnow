@@ -1,48 +1,13 @@
-THIN PAGES (under 400 words of visible text) — 46 files
+THIN PAGES (under 400 words of visible text) — 11 files
 ======================================================================
   47w  src/components/calculators/DailyQuotes/QuoteCard.tsx
   62w  src/components/calculators/DailyQuotes/QuoteTabs.tsx
- 179w  src/components/calculators/Time/WorldClockCalculator.tsx
  250w  src/components/calculators/DailyQuotes/DailyHoroscopeWidget.tsx
  250w  src/components/calculators/Marketing/MarketingROI.tsx
- 260w  src/components/calculators/Math/LcmCalculator.tsx
- 265w  src/components/calculators/Math/PrimeFactorizationToolCalculator.tsx
  273w  src/components/calculators/Marketing/CustomerAcquisitionCost.tsx
- 279w  src/components/calculators/Math/RootRadicalSimplifierCalculator.tsx
- 287w  src/components/calculators/Math/GcfGcdCalculator.tsx
- 299w  src/components/calculators/Math/ShapesAreaVolumePackCalculator.tsx
- 305w  src/components/calculators/Math/ModuloRemainderCalculator.tsx
- 311w  src/components/calculators/Math/QuadraticEquationSolverCalculator.tsx
  317w  src/components/calculators/Marketing/ROAS.tsx
- 317w  src/components/calculators/Math/ExponentPowerCalculator.tsx
- 318w  src/components/calculators/Math/StandardDeviationVariancePopSampleCalculator.tsx
- 320w  src/components/calculators/Financial/TipSplitBillCalculator.tsx
  321w  src/components/calculators/Marketing/ConversionRate.tsx
- 324w  src/components/calculators/Math/MeanMedianModeCalculator.tsx
- 325w  src/components/calculators/Automotive/EvAccelerationTorqueCalculator.tsx
  326w  src/components/calculators/Marketing/ChurnRate.tsx
- 326w  src/components/calculators/Math/RandomNumberGeneratorRangesCalculator.tsx
- 329w  src/components/calculators/Math/ZScorePercentileFinderCalculator.tsx
  331w  src/components/calculators/Marketing/EmailMarketingROI.tsx
- 337w  src/components/calculators/Math/PermutationsCombinationsNprNcrCalculator.tsx
- 341w  src/components/calculators/Math/AngleConverterDegRadCalculator.tsx
- 341w  src/components/calculators/Math/PolynomialFactorizationHelperCalculator.tsx
- 346w  src/components/calculators/Math/LogAntilogBase10ECalculator.tsx
- 346w  src/components/calculators/Math/RectangleParallelogramAreaCalculator.tsx
- 349w  src/components/calculators/Math/ScientificNotationStandardFormCalculator.tsx
- 355w  src/components/calculators/Math/LinearInterpolationExtrapolationCalculator.tsx
- 356w  src/components/calculators/Math/CircleAreaCircumferenceCalculator.tsx
  362w  src/components/calculators/Marketing/CustomerLifetimeValue.tsx
- 367w  src/components/calculators/Math/PercentErrorCalculator.tsx
- 368w  src/components/calculators/Math/PythagoreanTheoremSolverCalculator.tsx
- 370w  src/components/calculators/Math/BinomialProbabilityCalculator.tsx
- 372w  src/components/calculators/Math/NormalCdfPdfEstimatorCalculator.tsx
- 375w  src/components/calculators/Science/ProjectileMotionCalculator.tsx
- 377w  src/components/calculators/Funny/MeetingsWastedTimeCounterCalculator.tsx
- 380w  src/components/calculators/Funny/SocialMediaTimeAlternativesCalculator.tsx
  380w  src/components/calculators/Marketing/SocialMediaEngagementRate.tsx
- 383w  src/components/calculators/Funny/NetflixOneMoreEpisodeTimerCalculator.tsx
- 384w  src/components/calculators/Funny/CommitMessageQualityJudgeCalculator.tsx
- 386w  src/components/calculators/Funny/MedicalTourismCostSaverCalculator.tsx
- 387w  src/components/calculators/Math/TrigFunctionsAngleSideFinderCalculator.tsx
- 390w  src/components/calculators/Funny/LoopTheLoopSpeedCalculator.tsx

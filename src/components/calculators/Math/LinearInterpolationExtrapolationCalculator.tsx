@@ -265,6 +265,25 @@ where:
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Interpolation and Extrapolation in Data Analysis and Engineering
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Interpolation estimates a value between two known data points. If a temperature sensor reads 20 degrees at 0 minutes and 30 degrees at 10 minutes, linear interpolation estimates the temperature at 6 minutes as 20 + (6/10) x (30-20) = 26 degrees. This is the foundational method used in lookup tables, sensor calibration, and graphics rendering. Bilinear interpolation extends it to 2D; trilinear to 3D — both using the same proportional logic.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Extrapolation extends a trend beyond the observed data range. The same formula works: if two data points define a slope, project forward along that slope. Extrapolation is inherently less reliable than interpolation because trends often change outside the observed range. Climate projections, population growth models, and stock price forecasts all extrapolate from historical data, which is why uncertainty bands grow wider the further from the known data you project.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Engineering lookup tables use linear interpolation constantly. Steam tables in thermodynamics give properties at standard pressures and temperatures; for a non-standard condition, you interpolate. Structural load tables in civil engineering give permissible loads for standard beam sizes and spans; for intermediate spans, interpolate. Aircraft performance charts are interpolated for actual gross weight, altitude, and temperature conditions.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          The interpolation formula y = y1 + ((x - x1) / (x2 - x1)) x (y2 - y1) can be rearranged to check if a value is feasible (is the target x between x1 and x2?) and to understand sensitivity (a 1 unit change in x produces (y2-y1)/(x2-x1) units change in y — the slope). This slope insight is useful for sensitivity analysis and for checking whether linear interpolation is reasonable or whether the relationship is too nonlinear for accuracy.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">FAQ</h2>
         <ul className="space-y-6">

@@ -269,6 +269,25 @@ Scientific Notation to Standard Form:
         </pre>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          Scientific Notation in Physics, Chemistry, and Engineering
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Scientific notation exists because numbers in science span extreme ranges. The mass of a proton is 0.00000000000000000000000000167 kg (1.67 x 10^-27 kg). The distance from Earth to the Andromeda galaxy is 24,000,000,000,000,000,000,000 meters (2.4 x 10^22 m). Writing these in standard form is error-prone; scientific notation compresses them to a mantissa and exponent that are easy to compare and manipulate.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Multiplication and division in scientific notation require working with exponents. (3 x 10^8) x (2 x 10^5) = 6 x 10^13. (4.5 x 10^9) / (1.5 x 10^3) = 3 x 10^6. Addition and subtraction require matching exponents first: (3 x 10^6) + (2 x 10^5) = (3 x 10^6) + (0.2 x 10^6) = 3.2 x 10^6. Mismatching exponents in addition is the most common scientific notation arithmetic error.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Engineering prefixes are shorthand for powers of ten: milli (10^-3), micro (10^-6), nano (10^-9), kilo (10^3), mega (10^6), giga (10^9). A 5 GHz processor runs at 5 x 10^9 cycles per second. A 100 nm semiconductor node has features 100 x 10^-9 = 10^-7 meters wide. Converting between unit prefixes — from MHz to GHz, from nm to mm — is the practical application of scientific notation arithmetic that engineers perform daily.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Significant figures interact with scientific notation to communicate measurement precision. The value 1.23 x 10^4 has three significant figures; 1.230 x 10^4 has four. Trailing zeros after the decimal point are significant; trailing zeros before the decimal in standard form may or may not be. Scientific notation removes this ambiguity completely. In any reported measurement, the number of digits in the mantissa equals the number of significant figures.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">FAQ</h2>
         <ul className="space-y-6">

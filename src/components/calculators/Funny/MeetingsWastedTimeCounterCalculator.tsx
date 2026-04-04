@@ -202,6 +202,22 @@ export default function MeetingsWastedTimeCounterCalculator() {
         </p>
       </section>
 
+
+      <section id="use-cases" className="scroll-mt-32">
+        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
+          The Real Cost of Unproductive Meetings
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          A study by MIT Sloan and Harvard Business Review found that executives spend an average of 23 hours per week in meetings, up from less than 10 hours in the 1960s. Of these meetings, 71% are considered unproductive by the attendees themselves (Harvard Business Review, 2017). The cost is not just time: interrupted deep work takes an average of 23 minutes to restart, so a 30-minute meeting inserted into a work block costs not 30 minutes but potentially 53+ minutes of lost productivity.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Meeting cost calculators help organizations quantify what was previously invisible. A 60-minute status meeting with 8 employees averaging $80,000/year in salary costs approximately $192 in direct payroll (8 x $80K / 2080 hours x 1 hour). Add fully-loaded cost (benefits, overhead: typically 1.25-1.5x salary) and the true cost reaches $240-$288 per meeting. An organization running 10 such meetings per week spends $125,000-$150,000 annually on a single meeting type.
+        </p>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+          Research-backed improvements: Amazon's famous 'two-pizza rule' limits meeting size to what two pizzas can feed (5-8 people), which cuts irrelevant attendees. Jeff Bezos instituted silent 6-page memo reading periods at meeting starts instead of slide presentations, improving the quality of decision-making. Google's Project Aristotle found that psychological safety (not attendee seniority) was the primary predictor of effective team meetings. Cal Newport's 'deep work' framework recommends batching all meetings into designated blocks to protect uninterrupted focus time.
+        </p>
+      </section>
+
       <section id="faq" className="scroll-mt-32">
         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         {faqs.map(({ question, answer }, i) => (
