@@ -284,7 +284,7 @@ where:
           A/B testing in web analytics applies binomial testing. Button A converts 5.2% of visitors (control); Button B converts 6.1% (variant). With 1,000 visitors each, is this difference statistically significant? The null hypothesis is that both buttons have the same true conversion rate. The binomial test (or its normal approximation for large samples) calculates the probability of observing this size difference by chance. If p-value &lt; 0.05, the difference is significant.
         </p>
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The normal approximation to the binomial is accurate when np >= 10 and n(1-p) >= 10. For n=1000 and p=0.05: np=50 and n(1-p)=950 — both well above 10, so use the normal approximation with mean = np = 50 and standard deviation = sqrt(np(1-p)) = sqrt(47.5) = 6.89. This simplifies probability calculations for large samples where computing exact binomial probabilities is computationally intensive.
+          The normal approximation to the binomial is accurate when np &gt;= 10 and n(1-p) &gt;= 10. For n=1000 and p=0.05: np=50 and n(1-p)=950 — both well above 10, so use the normal approximation with mean = np = 50 and standard deviation = sqrt(np(1-p)) = sqrt(47.5) = 6.89. This simplifies probability calculations for large samples where computing exact binomial probabilities is computationally intensive.
         </p>
       </section>
 
