@@ -7,7 +7,8 @@
       "Bash(cp \"c:/Users/Williams Martins/Downloads/Smart Kit Now.png\" \"c:/Users/Williams Martins/OneDrive/Documentos/WBSmartKitNow/smartkit-onepage-wonder/public/og-image.png\")",
       "Bash(ls *.js *.ts)",
       "Bash(ls generate-sitemap* sitemap*)",
-      "Read(//c/Users/Williams Artins/OneDrive/Documentos/WBSmartKitNow/**)"
+      "Read(//c/Users/Williams Artins/OneDrive/Documentos/WBSmartKitNow/**)",
+      "Bash(python3 scripts/fix_seo_titles.py)"
     ]
   }
 }
