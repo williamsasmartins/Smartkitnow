@@ -529,7 +529,7 @@ export default function YieldFarmingApyCalculator() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Gas costs fluctuate with network congestion. L2 solutions make daily reinvestment viable for smaller positions ($5K-50K), while mainnet ETH farming remains economical only for positions >$100K reinvesting monthly.</p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Gas costs fluctuate with network congestion. L2 solutions make daily reinvestment viable for smaller positions ($5K-50K), while mainnet ETH farming remains economical only for positions &gt;$100K reinvesting monthly.</p>
       </section>
 
       {/* TIPS */}

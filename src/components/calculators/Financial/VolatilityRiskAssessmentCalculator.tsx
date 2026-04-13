@@ -45,7 +45,7 @@ export default function VolatilityRiskAssessmentCalculator() {
     },
     {
       question: "What does a Beta coefficient tell me about my investment's risk?",
-      answer: "Beta measures an asset's sensitivity to market movements, where Beta = 1.0 means the asset moves with the market, Beta > 1.0 means it's more volatile than the market, and Beta < 1.0 means it's less volatile. A tech stock with Beta of 1.5 is 50% more volatile than the S&P 500, while a utility stock with Beta of 0.7 is 30% less volatile. The calculator uses Beta to assess systematic risk—the unavoidable risk tied to overall market movements. This helps distinguish between volatility you can reduce through diversification versus volatility inherent to market exposure.",
+      answer: "Beta measures an asset's sensitivity to market movements, where Beta = 1.0 means the asset moves with the market, Beta &gt; 1.0 means it's more volatile than the market, and Beta < 1.0 means it's less volatile. A tech stock with Beta of 1.5 is 50% more volatile than the S&P 500, while a utility stock with Beta of 0.7 is 30% less volatile. The calculator uses Beta to assess systematic risk—the unavoidable risk tied to overall market movements. This helps distinguish between volatility you can reduce through diversification versus volatility inherent to market exposure.",
     },
     {
       question: "How often should I recalculate my portfolio's volatility using this tool?",
@@ -554,7 +554,7 @@ export default function VolatilityRiskAssessmentCalculator() {
           </div>
           <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
             <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does a Beta coefficient tell me about my investment's risk?</h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Beta measures an asset's sensitivity to market movements, where Beta = 1.0 means the asset moves with the market, Beta > 1.0 means it's more volatile than the market, and Beta < 1.0 means it's less volatile. A tech stock with Beta of 1.5 is 50% more volatile than the S&P 500, while a utility stock with Beta of 0.7 is 30% less volatile. The calculator uses Beta to assess systematic risk—the unavoidable risk tied to overall market movements. This helps distinguish between volatility you can reduce through diversification versus volatility inherent to market exposure.</p>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Beta measures an asset's sensitivity to market movements, where Beta = 1.0 means the asset moves with the market, Beta &gt; 1.0 means it's more volatile than the market, and Beta &lt; 1.0 means it's less volatile. A tech stock with Beta of 1.5 is 50% more volatile than the S&P 500, while a utility stock with Beta of 0.7 is 30% less volatile. The calculator uses Beta to assess systematic risk—the unavoidable risk tied to overall market movements. This helps distinguish between volatility you can reduce through diversification versus volatility inherent to market exposure.</p>
           </div>
           <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
             <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my portfolio's volatility using this tool?</h3>

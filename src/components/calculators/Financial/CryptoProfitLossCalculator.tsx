@@ -361,7 +361,7 @@ export default function CryptoProfitLossCalculator() {
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5 BTC</td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$150</td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$6,850</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Short-term (if held <1 year)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Short-term (if held &lt;1 year)</td>
                 </tr>
                 <tr className="bg-slate-50 dark:bg-slate-800/50">
                   <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Solana</td>
@@ -375,7 +375,7 @@ export default function CryptoProfitLossCalculator() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Tax classification assumes long-term holding for assets held 365+ days; short-term for holdings <365 days. Tax rates vary by income bracket and filing status. Consult a tax professional for your specific situation.</p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Tax classification assumes long-term holding for assets held 365+ days; short-term for holdings &lt;365 days. Tax rates vary by income bracket and filing status. Consult a tax professional for your specific situation.</p>
       </section>
 
       {/* TABLE: Typical Exchange Fees and Gas Costs (2024-2025) */}
@@ -457,7 +457,7 @@ export default function CryptoProfitLossCalculator() {
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Over $518,900</td>
                 </tr>
                 <tr className="bg-slate-50 dark:bg-slate-800/50">
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Short-term (<1 year)</td>
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Short-term (&lt;1 year)</td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Taxed as ordinary income—up to 37%</td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Taxed as ordinary income—up to 37%</td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Taxed as ordinary income—up to 37%</td>

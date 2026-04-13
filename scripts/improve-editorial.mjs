@@ -211,7 +211,8 @@ Rules:
 - Every table must have REAL data (actual rates, actual benchmarks, actual limits for 2024-2025)
 - Every reference URL must be a REAL URL that exists on an authoritative site
 - Tips and mistakes must be specific to this calculator, not generic financial advice
-- Answers should be 2-4 sentences with specific numbers where applicable`;
+- Answers should be 2-4 sentences with specific numbers where applicable
+- CRITICAL: In all text values, never use raw < or > as comparison operators. Use &lt; and &gt; instead. Example: "held &lt;1 year", "Beta &gt; 1.0", "&lt;$50M daily volume"`;
 }
 
 // ─── JSX GENERATION ──────────────────────────────────────────────────────────

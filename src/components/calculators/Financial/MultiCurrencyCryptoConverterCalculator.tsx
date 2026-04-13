@@ -472,7 +472,7 @@ export default function MultiCurrencyCryptoConverterCalculator() {
                 </tr>
                 <tr className="bg-white dark:bg-slate-900">
                   <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Low-cap Altcoin/USD</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low (<$50M daily)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low (&lt;$50M daily)</td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-400">±2% - 10%+</td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-400">DEX with custom slippage, specific exchange</td>
                 </tr>

@@ -400,7 +400,7 @@ export default function CryptoTaxLiabilityCalculator() {
                   <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Staking rewards converted immediately</td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,000 (fair market value)</td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$1,200</td>
-                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">< 1 year</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt; 1 year</td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32% (ordinary income + NIIT)</td>
                   <td className="px-4 py-3 text-slate-600 dark:text-slate-400">$384</td>
                 </tr>

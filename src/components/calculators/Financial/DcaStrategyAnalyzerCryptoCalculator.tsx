@@ -486,7 +486,7 @@ export default function DcaStrategyAnalyzerCryptoCalculator() {
         <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
         <ul className="list-disc pl-5 space-y-2">
           <li className="text-sm text-slate-700 dark:text-slate-300">Set up automatic recurring purchases on your exchange (Coinbase, Kraken, or Gemini all support this) to eliminate emotion and ensure consistency—missing even a few months of DCA disrupts your cost-averaging strategy and reduces compound wealth growth.</li>
-          <li className="text-sm text-slate-700 dark:text-slate-300">Choose a low-fee exchange tier or platform (target <0.25% trading fees) because fees compound across 12–60+ transactions; paying 0.50% instead of 0.10% costs you an extra $40–$100+ annually on a $10,000/year DCA plan.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Choose a low-fee exchange tier or platform (target &lt;0.25% trading fees) because fees compound across 12–60+ transactions; paying 0.50% instead of 0.10% costs you an extra $40–$100+ annually on a $10,000/year DCA plan.</li>
           <li className="text-sm text-slate-700 dark:text-slate-300">Reinvest any staking rewards (Ethereum 2.0 yields ~3–4% annually) into additional DCA purchases to compound your position and accelerate wealth accumulation beyond your base monthly investment.</li>
           <li className="text-sm text-slate-700 dark:text-slate-300">Review your DCA analyzer results quarterly and rebalance your monthly investment amount if your income changes; a 20–30% income increase should trigger a proportional boost to your crypto allocation to capitalize on your improved financial capacity.</li>
         </ul>
