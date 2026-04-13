@@ -386,8 +386,8 @@ export default function BrickCalculator() {
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
           Brick dimensions are not universal. Using the wrong size in your calculation can throw your estimate off by 10–20%. Below are the most common work-size dimensions (the actual brick, before mortar joints are added). Always confirm with your supplier, as manufacturers sometimes deviate slightly.
         </p>
-        <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
-          <table className="w-full text-sm">
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
             <thead className="bg-slate-100 dark:bg-slate-800">
               <tr>
                 <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Country / Standard</th>
@@ -427,8 +427,8 @@ export default function BrickCalculator() {
         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
           The thickness you enter into the calculator determines how many bricks go through the wall's depth. Different construction types require different thicknesses — choosing the wrong one is the single biggest cause of under-ordering.
         </p>
-        <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
-          <table className="w-full text-sm">
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
             <thead className="bg-slate-100 dark:bg-slate-800">
               <tr>
                 <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Wall Type</th>
@@ -518,8 +518,8 @@ export default function BrickCalculator() {
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
           <Info className="w-6 h-6 text-blue-500" /> Recommended Waste Margins
         </h2>
-        <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
-          <table className="w-full text-sm">
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
             <thead className="bg-slate-100 dark:bg-slate-800">
               <tr>
                 <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200">Project Type</th>
