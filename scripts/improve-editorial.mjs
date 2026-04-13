@@ -80,6 +80,9 @@ function findEditorialBounds(content) {
 
   let depth = 0;
   let i = start + "const editorial = ".length;
+  // Only track double-quoted strings and template literals.
+  // Single quotes are NOT tracked because JSX text content freely contains
+  // apostrophes (e.g. "you're", "it's") that are not string delimiters.
   let inString = false;
   let stringChar = "";
 
@@ -87,7 +90,7 @@ function findEditorialBounds(content) {
     const ch = content[i];
     const prev = i > 0 ? content[i - 1] : "";
 
-    if (!inString && (ch === '"' || ch === "'" || ch === "`")) {
+    if (!inString && (ch === '"' || ch === "`")) {
       inString = true;
       stringChar = ch;
     } else if (inString && ch === stringChar && prev !== "\\") {
