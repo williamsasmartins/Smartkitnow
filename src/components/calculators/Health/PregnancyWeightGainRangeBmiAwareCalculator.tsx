@@ -110,22 +110,42 @@ export default function PregnancyWeightGainRangeBmiAwareCalculator() {
 
   // 3. FAQS
   const faqs = [
-    { 
-      question: "Why does BMI matter for pregnancy weight gain?", 
-      answer: "Your pre-pregnancy BMI helps determine how much weight is safe to gain. Those starting at a lower weight often need to gain more to support the baby, while those starting at a higher weight are advised to gain less to reduce risks like gestational diabetes and preeclampsia." 
+    {
+      question: "How much weight should I gain during pregnancy?",
+      answer: "The recommended weight gain depends on your pre-pregnancy BMI. Women with a normal BMI (18.5–24.9) should gain 25–35 pounds, underweight women (BMI &lt;18.5) should gain 28–40 pounds, overweight women (BMI 25–29.9) should gain 15–25 pounds, and obese women (BMI &gt;30) should gain 11–20 pounds according to the Institute of Medicine guidelines.",
     },
-    { 
-      question: "When should I start gaining weight?", 
-      answer: "Most women gain very little (2-4 lbs or 1-2 kg) in the first trimester. The majority of weight gain happens steadily during the second and third trimesters as the baby grows rapidly." 
+    {
+      question: "When does most pregnancy weight gain occur?",
+      answer: "Most weight gain happens during the second and third trimesters. You should gain approximately 1–2 pounds per week during the second trimester and about 1 pound per week during the third trimester, with minimal weight gain (2–5 pounds total) expected during the first trimester.",
     },
-    { 
-      question: "Does this calculator support twins?", 
-      answer: "Yes. Select 'Twins' in the options. Twin pregnancies require higher weight gain to support the development of two babies, and the recommended ranges are adjusted accordingly." 
+    {
+      question: "Can I use this calculator if I'm carrying twins or multiples?",
+      answer: "This calculator is designed for singleton pregnancies. Women carrying twins should aim for 35–45 pounds of weight gain if they have a normal BMI, while those with triplets or higher multiples should consult their healthcare provider for personalized recommendations, as guidelines are less standardized for these pregnancies.",
     },
-    { 
-      question: "What if I gain more or less than recommended?", 
-      answer: "These ranges are guidelines. Every pregnancy is unique. If your weight gain tracks slightly outside these numbers but your doctor says the baby is healthy, do not worry. Always consult your healthcare provider." 
+    {
+      question: "What if I'm already overweight or obese before pregnancy?",
+      answer: "If your pre-pregnancy BMI is 25 or higher, the calculator will recommend lower weight gain targets—typically 15–25 pounds for overweight women and 11–20 pounds for obese women. This reduced gain can help reduce risks of gestational diabetes and complications while still supporting fetal development.",
     },
+    {
+      question: "Is it normal to gain weight unevenly during pregnancy?",
+      answer: "Yes, weight gain is rarely linear throughout pregnancy. Some women gain more in early months, while others gain steadily or experience plateaus. As long as your total gain by delivery falls within the recommended range for your BMI category, uneven monthly gain is generally not a concern, though consistent tracking helps identify any unusual patterns.",
+    },
+    {
+      question: "What comprises the recommended pregnancy weight gain?",
+      answer: "The 25–35 pounds recommended for normal-weight women breaks down as: baby (7–8 pounds), placenta (1–1.5 pounds), amniotic fluid (2–3 pounds), increased blood volume (3–4 pounds), breast tissue (1–3 pounds), and maternal fat and muscle reserves (5–10 pounds).",
+    },
+    {
+      question: "How does gestational diabetes affect weight gain recommendations?",
+      answer: "Women diagnosed with gestational diabetes should follow the same IOM weight gain guidelines based on their pre-pregnancy BMI, but may need more frequent monitoring and dietary adjustments to manage blood sugar levels. Your healthcare provider may recommend slower, more controlled weight gain and increased physical activity to help manage the condition.",
+    },
+    {
+      question: "What should I do if I'm gaining too much weight during pregnancy?",
+      answer: "If you're gaining significantly more than recommended, discuss it with your healthcare provider before making dietary changes. They can rule out water retention, assess eating habits, and provide guidance on safe nutrition and exercise during pregnancy, as severe calorie restriction is not recommended during this time.",
+    },
+    {
+      question: "How much weight do you typically lose immediately after delivery?",
+      answer: "Most women lose 10–13 pounds immediately after delivery, including the baby (7–8 pounds), placenta (1–1.5 pounds), and amniotic fluid (2–3 pounds). The remaining weight is typically lost gradually over 6–12 months through breastfeeding, reduced calorie intake, and post-pregnancy exercise.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -244,70 +264,293 @@ export default function PregnancyWeightGainRangeBmiAwareCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* WHAT IS SECTION */}
-      <section id="what-is" className="scroll-mt-32">
-         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">What is the Recommended Pregnancy Weight Gain?</h2>
-         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-            Healthy weight gain during pregnancy is crucial for the development of your baby and your own health. The recommended amount of weight you should gain depends largely on your <strong>pre-pregnancy Body Mass Index (BMI)</strong>. This ensures the baby gets enough nutrients without placing unnecessary stress on your body.
-         </p>
-         <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-            These guidelines, established by the Institute of Medicine (IOM), are designed to optimize outcomes for both mother and child. Gaining within these ranges helps reduce risks such as low birth weight, preterm birth, or complications related to excessive weight gain like gestational diabetes and postpartum weight retention.
-         </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Pregnancy Weight Gain Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Pregnancy Weight Gain Calculator helps expectant mothers determine the appropriate amount of weight to gain based on their pre-pregnancy body mass index (BMI) and current pregnancy stage. Healthy weight gain during pregnancy is essential for supporting fetal development, maternal health, and successful delivery outcomes. Using evidence-based guidelines from the Institute of Medicine, this calculator provides personalized recommendations to help you monitor your progress throughout your nine months.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you'll need to input your pre-pregnancy weight, your current height, and how many weeks pregnant you are. The calculator automatically computes your BMI and determines which weight gain category you fall into—underweight, normal weight, overweight, or obese. It then calculates your target total weight gain range and compares it against your current weight to show whether you're on track, ahead, or behind the recommended progression.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Once you receive your results, compare your current weight gain to the recommended range for your BMI category. If you're within the target range, you're progressing well; if you're gaining too quickly or slowly, discuss the results with your healthcare provider. Remember that weight gain isn't linear—some weeks you'll gain more than others, and that's normal as long as your total gain over several weeks aligns with the trimester-specific targets.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-            To get your personalized range, you need to input your weight <em>before</em> you became pregnant (or your weight at the very beginning of pregnancy) and your height.
-         </p>
-         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-            <li><strong>Unit System:</strong> Choose "Imperial" for pounds/feet or "Metric" for kg/cm.</li>
-            <li><strong>Pre-pregnancy Weight:</strong> Enter your weight before conception. Do not enter your current pregnancy weight.</li>
-            <li><strong>Pregnancy Type:</strong> Select "Twins" if you are carrying multiples, as the nutritional needs and recommended gain are significantly higher.</li>
-         </ul>
+      {/* TABLE: Recommended Total Pregnancy Weight Gain by Pre-Pregnancy BMI */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Total Pregnancy Weight Gain by Pre-Pregnancy BMI</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">The Institute of Medicine provides evidence-based weight gain targets based on BMI category before pregnancy.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BMI Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BMI Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recommended Weight Gain (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weekly Gain 2nd & 3rd Trimester (lbs)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Underweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;18.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28–40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–1.3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Normal weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18.5–24.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25–35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8–1</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Overweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25–29.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5–0.7</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Obese (Class I–III)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11–20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4–0.6</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Recommendations are from the Institute of Medicine (2009). First trimester gain is typically 2–5 pounds regardless of BMI category.</p>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-         <ul className="space-y-6">
-            {faqs.map((item, i) => (
-              <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-                <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-              </li>
-            ))}
-         </ul>
+      {/* TABLE: Pregnancy Weight Gain Distribution by Component */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Pregnancy Weight Gain Distribution by Component</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the typical breakdown of the 30-pound average weight gain for a normal-weight pregnant woman.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Component</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Percentage of Total Gain</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Baby</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7–8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23–27%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Placenta</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–5%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Amniotic fluid</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7–10%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Increased blood volume</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10–13%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Breast tissue expansion</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–10%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Uterine growth</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–2.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7–8%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Maternal fat and muscle reserves</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17–33%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">The maternal fat and muscle reserves represent the weight retained after delivery, which is typically lost over 6–12 months postpartum.</p>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Trusted References</h2>
-         <ul className="space-y-4">
-           <li className="block">
-             <a href="https://www.ncbi.nlm.nih.gov/books/NBK32813/" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-               1. Institute of Medicine (IOM) Guidelines
-             </a>
-             <p className="text-slate-500 text-sm mt-1">Weight Gain During Pregnancy: Reexamining the Guidelines (2009). The gold standard for prenatal weight recommendations.</p>
-           </li>
-           <li className="block">
-             <a href="https://www.cdc.gov/reproductivehealth/maternalinfanthealth/pregnancy-weight-gain.htm" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-               2. Centers for Disease Control and Prevention (CDC)
-             </a>
-             <p className="text-slate-500 text-sm mt-1">Weight Gain During Pregnancy. Official health guidelines and trackers.</p>
-           </li>
-           <li className="block">
-             <a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2013/01/weight-gain-during-pregnancy" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-               3. American College of Obstetricians and Gynecologists (ACOG)
-             </a>
-             <p className="text-slate-500 text-sm mt-1">Committee Opinion on weight gain recommendations for obstetricians.</p>
-           </li>
-           <li className="block">
-             <a href="https://www.canada.ca/en/public-health/services/pregnancy/healthy-weight-gain-pregnancy.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-               4. Health Canada: Healthy Weight Gain
-             </a>
-             <p className="text-slate-500 text-sm mt-1">Canadian guidelines for prenatal nutrition and weight management.</p>
-           </li>
-         </ul>
+      {/* TABLE: Expected Monthly Weight Gain During Pregnancy */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Expected Monthly Weight Gain During Pregnancy</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This chart shows typical cumulative weight gain milestones throughout a singleton pregnancy for a normal-weight woman.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Trimester</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Month</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cumulative Gain (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Expected Monthly Rate (lbs)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">First</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">First</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">First</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1–2</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Second</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2–3</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Second</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8–13</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Second</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13–18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–5</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Third</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18–23</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–5</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Third</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">23–28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–5</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Third</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28–35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3–5</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Weight gain varies significantly between individuals; this represents typical patterns and should not be used to diagnose complications. Discuss irregular patterns with your healthcare provider.</p>
       </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your weight consistently by weighing yourself at the same time each week, ideally in the morning before eating, to minimize fluctuations from food and water intake that can skew your pregnancy weight gain calculator results.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Focus on nutrient density rather than calorie counting—eat whole grains, lean proteins, fruits, vegetables, and dairy to ensure you're gaining weight with foods that nourish both you and your baby, which the calculator assumes you're doing when comparing against guidelines.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Adjust your expectations if you have morning sickness in the first trimester, as many women lose a few pounds initially; the calculator accounts for this with lower first-trimester targets, so don't panic if your early gain is minimal.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for water retention and natural weight fluctuations by looking at weekly or bi-weekly trends rather than day-to-day changes; the calculator works best when you input weights measured over several days to average out temporary variations.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using pre-pregnancy weight from memory instead of medical records</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many women don't remember their exact pre-pregnancy weight, which leads to inaccurate BMI calculations and incorrect weight gain targets. Always verify your pre-pregnancy weight from your doctor's records or health insurance paperwork to ensure the calculator provides accurate recommendations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Comparing your gain to other pregnant women instead of your BMI category</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A woman with a normal BMI should gain 25–35 pounds, while an overweight woman should gain only 15–25 pounds—comparing your progress to a friend's can lead to unnecessary stress or unhealthy eating habits. Your calculator results are personalized to your body composition, so follow your own targets, not someone else's.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring first-trimester weight loss or plateau</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many women lose 2–5 pounds in the first trimester due to morning sickness or dietary changes, which is normal and accounts for why first-trimester targets are lower. Don't assume something is wrong if you haven't gained much by week 12; the calculator expects this pattern.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming steady weekly gain means healthy pregnancy</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Weight gain during pregnancy is not linear—some weeks you'll gain 2 pounds, others you might gain nothing or lose a pound temporarily due to water retention, activity level, or hormonal changes. The calculator evaluates your progress over weeks and months, not individual weeks, so focus on longer-term trends instead.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much weight should I gain during pregnancy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The recommended weight gain depends on your pre-pregnancy BMI. Women with a normal BMI (18.5–24.9) should gain 25–35 pounds, underweight women (BMI &lt;18.5) should gain 28–40 pounds, overweight women (BMI 25–29.9) should gain 15–25 pounds, and obese women (BMI &gt;30) should gain 11–20 pounds according to the Institute of Medicine guidelines.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">When does most pregnancy weight gain occur?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most weight gain happens during the second and third trimesters. You should gain approximately 1–2 pounds per week during the second trimester and about 1 pound per week during the third trimester, with minimal weight gain (2–5 pounds total) expected during the first trimester.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator if I'm carrying twins or multiples?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator is designed for singleton pregnancies. Women carrying twins should aim for 35–45 pounds of weight gain if they have a normal BMI, while those with triplets or higher multiples should consult their healthcare provider for personalized recommendations, as guidelines are less standardized for these pregnancies.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if I'm already overweight or obese before pregnancy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If your pre-pregnancy BMI is 25 or higher, the calculator will recommend lower weight gain targets—typically 15–25 pounds for overweight women and 11–20 pounds for obese women. This reduced gain can help reduce risks of gestational diabetes and complications while still supporting fetal development.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is it normal to gain weight unevenly during pregnancy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, weight gain is rarely linear throughout pregnancy. Some women gain more in early months, while others gain steadily or experience plateaus. As long as your total gain by delivery falls within the recommended range for your BMI category, uneven monthly gain is generally not a concern, though consistent tracking helps identify any unusual patterns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What comprises the recommended pregnancy weight gain?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The 25–35 pounds recommended for normal-weight women breaks down as: baby (7–8 pounds), placenta (1–1.5 pounds), amniotic fluid (2–3 pounds), increased blood volume (3–4 pounds), breast tissue (1–3 pounds), and maternal fat and muscle reserves (5–10 pounds).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does gestational diabetes affect weight gain recommendations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Women diagnosed with gestational diabetes should follow the same IOM weight gain guidelines based on their pre-pregnancy BMI, but may need more frequent monitoring and dietary adjustments to manage blood sugar levels. Your healthcare provider may recommend slower, more controlled weight gain and increased physical activity to help manage the condition.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if I'm gaining too much weight during pregnancy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If you're gaining significantly more than recommended, discuss it with your healthcare provider before making dietary changes. They can rule out water retention, assess eating habits, and provide guidance on safe nutrition and exercise during pregnancy, as severe calorie restriction is not recommended during this time.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much weight do you typically lose immediately after delivery?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most women lose 10–13 pounds immediately after delivery, including the baby (7–8 pounds), placenta (1–1.5 pounds), and amniotic fluid (2–3 pounds). The remaining weight is typically lost gradually over 6–12 months through breastfeeding, reduced calorie intake, and post-pregnancy exercise.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://www.cdc.gov/pregnancy/healthy-weight/index.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Weight Gain During Pregnancy</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The CDC provides evidence-based recommendations for healthy pregnancy weight gain and explains how excessive or insufficient gain affects maternal and fetal health outcomes.</p>
+          </li>
+          <li>
+            <a href="https://www.acog.org/womens-health/faqs/nutrition-during-pregnancy" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Nutrition During Pregnancy</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The American College of Obstetricians and Gynecologists offers clinical guidance on recommended weight gain ranges based on BMI and discusses nutritional needs during each trimester.</p>
+          </li>
+          <li>
+            <a href="https://www.nap.edu/catalog/12584/weight-gain-during-pregnancy-reexamining-the-guidelines" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Institute of Medicine Weight Gain Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">This National Academies Press resource details the 2009 Institute of Medicine recommendations that serve as the gold standard for pregnancy weight gain targets across different BMI categories.</p>
+          </li>
+          <li>
+            <a href="https://www.acog.org/-/media/project/acog/acogorg/clinical/files/committee-opinion/articles/2013/01/weight-gain-during-pregnancy.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Gestational Weight Gain and Pregnancy Outcomes</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ACOG's Committee Opinion examines the relationship between gestational weight gain and maternal–fetal complications, including gestational diabetes and preeclampsia risk reduction through appropriate weight management.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

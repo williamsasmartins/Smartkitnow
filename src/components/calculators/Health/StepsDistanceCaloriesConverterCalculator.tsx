@@ -134,25 +134,41 @@ export default function StepsDistanceCaloriesConverterCalculator() {
   // 3. FAQS
   const faqs = [
     {
-      question: "What factors influence the accuracy of this converter?",
-      answer:
-        "The accuracy of the Steps ↔ Distance ↔ Calories Converter depends on several factors including individual step length, walking speed, terrain, and body weight. Step length varies by height, gender, and walking style, which can affect distance calculations. Additionally, calories burned depend on weight and walking intensity. This tool uses average values to provide estimates but individual results may vary.",
+      question: "How many steps equal one mile?",
+      answer: "The average person takes approximately 2,000 steps to walk one mile, though this varies based on stride length and height. Taller individuals typically have longer strides and may cover a mile in 1,500–1,800 steps, while shorter individuals may need 2,200–2,500 steps. Your stride length is the primary factor in this conversion, as it measures the distance from the heel of one foot to the heel of the next foot.",
     },
     {
-      question: "How should I interpret the calories burned result?",
-      answer:
-        "The calories burned estimate represents the approximate energy expenditure from walking the calculated distance based on your weight. It uses a standard metabolic equivalent (MET) value for walking at a moderate pace. Remember, actual calories burned can vary due to factors like walking speed, incline, metabolism, and fitness level. Use this as a guideline rather than an exact measurement.",
+      question: "How many calories do I burn walking 10,000 steps?",
+      answer: "Walking 10,000 steps burns approximately 300–500 calories for most adults, depending on body weight, walking speed, and terrain. A 155-pound person walking at a moderate pace of 3.5 mph burns roughly 280 calories, while a 185-pound person burns about 335 calories for the same distance. Walking uphill or on uneven terrain significantly increases calorie expenditure.",
     },
     {
-      question: "Can I use this calculator if I only know my steps or distance?",
-      answer:
-        "Yes, you can input either your number of steps or the distance walked. The calculator will estimate the missing value based on average step length assumptions. For the most accurate calorie calculation, you should also provide your body weight. If you only input steps or distance without weight, the calorie calculation will not be performed.",
+      question: "What is a healthy daily step goal?",
+      answer: "The widely recommended daily step goal is 10,000 steps, which equates to approximately 5 miles and burns 300–500 calories for most adults. However, research shows that even 7,000 steps per day provides significant health benefits, including reduced mortality risk. The best goal is one you can sustain consistently, as any regular movement is better than sedentary behavior.",
     },
     {
-      question: "Why does the calculator default to imperial units?",
-      answer:
-        "This calculator defaults to imperial units (feet, miles, pounds) to align with common usage in the US and Canada, where these units are standard for daily activity tracking. However, you can easily switch to metric units (meters, kilometers, kilograms) using the unit selector to suit your preference or regional standards.",
+      question: "How does body weight affect calorie burn during walking?",
+      answer: "Heavier individuals burn more calories during the same activity because their bodies require more energy to move. A 200-pound person walking 5 miles burns approximately 400–450 calories, while a 140-pound person burns about 280–320 calories for the same distance. This is why the calculator factors body weight as a critical variable for accurate calorie estimates.",
     },
+    {
+      question: "How accurate is the steps-to-distance conversion?",
+      answer: "The conversion is reasonably accurate for average populations, but individual results vary by ±10–15% due to differences in stride length, gait, and terrain. Stride length is typically 2.1–2.5 feet for women and 2.3–2.6 feet for men, with height being the strongest predictor. For the most accurate results, measure your personal stride length by walking 10 steps and dividing the distance by 10.",
+    },
+    {
+      question: "Does walking speed affect how many calories I burn?",
+      answer: "Yes, walking speed significantly impacts calorie expenditure—faster walking burns substantially more calories than slow walking. Walking at 3.0 mph (slow pace) burns roughly 240 calories per hour for a 155-pound person, while walking at 4.5 mph (brisk pace) burns approximately 360 calories per hour. The relationship is not linear; doubling your speed roughly increases calorie burn by 50–70%.",
+    },
+    {
+      question: "Can I use this converter for running or jogging instead of walking?",
+      answer: "While the steps-to-distance conversion remains similar for running, the calorie burn calculations are significantly different because running requires more energy per distance. Running the same 5 miles burns approximately 600–750 calories for a 155-pound person, compared to 350–400 for walking. For accurate calorie estimates during running, you should use a running-specific calculator that accounts for the higher metabolic demand.",
+    },
+    {
+      question: "What factors influence stride length the most?",
+      answer: "Height is the strongest predictor of stride length, typically accounting for 60–70% of the variation between individuals. Other factors include age, fitness level, gender, and walking speed—longer strides naturally occur at faster speeds. On average, stride length is approximately 43% of a person's height, so a 5'9\" person (69 inches) would have an average stride of about 30 inches.",
+    },
+    {
+      question: "How does terrain affect both distance and calorie burn?",
+      answer: "Walking on hills or uneven terrain increases calorie burn by 30–50% compared to flat ground, even though the distance remains the same. Uphill walking at a 10% grade can burn 50% more calories than walking on level ground due to increased muscular effort and energy expenditure. Additionally, softer surfaces like sand or grass may reduce your stride length and increase the step count needed to cover the same distance.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -314,155 +330,301 @@ export default function StepsDistanceCaloriesConverterCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* MANDATORY "WHAT IS" SECTION */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          What is the Steps ↔ Distance ↔ Calories Converter?
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Steps ↔ Distance ↔ Calories Converter is a specialized tool designed
-          to help individuals estimate the relationship between the number of steps
-          they take, the distance they cover, and the calories they burn during
-          walking activities. By inputting any two of these variables—steps, distance,
-          or body weight—the calculator provides an estimate of the third, enabling
-          users to better understand their physical activity and its impact on their
-          health and fitness goals.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This converter uses average step length assumptions and scientifically
-          supported formulas to translate steps into distance and calories burned.
-          It accounts for differences in unit systems, defaulting to imperial units
-          (feet, miles, pounds) commonly used in the US and Canada, but also supports
-          metric units for international users. The tool is particularly useful for
-          those tracking daily walking activity with pedometers or fitness trackers,
-          providing a clearer picture of their energy expenditure.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding the interplay between steps, distance, and calories burned
-          is essential for effective fitness planning and weight management. Walking
-          is a low-impact, accessible form of exercise that contributes significantly
-          to cardiovascular health, weight control, and overall well-being. This
-          converter empowers users with actionable insights to optimize their walking
-          routines and achieve personalized health outcomes.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Steps ↔ Distance ↔ Calories Converter</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Steps ↔ Distance ↔ Calories Converter is a health and fitness tool that helps you understand the relationship between your daily step count, the physical distance you've traveled, and the calories you've burned during walking. Whether you're tracking progress toward a 10,000-step goal, preparing for a walking challenge, or simply curious about the energy expenditure from your daily activities, this calculator provides accurate estimates based on your personal characteristics.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you'll need to input key information: your body weight, height, walking speed, and either the number of steps, distance in miles, or duration of activity. The calculator uses these inputs to determine your stride length and metabolic rate, which are the primary factors in converting steps to distance and estimating calorie burn. Each input method (steps, distance, or time) will automatically calculate the corresponding outputs, allowing you to see the complete picture of your physical activity.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results provide three interconnected metrics: total steps taken, distance covered in miles or kilometers, and estimated calories burned during the activity. Use these results to set realistic fitness goals, monitor your daily activity levels, and understand how different walking speeds and terrains affect your energy expenditure. Remember that calorie estimates are approximations—individual metabolism, age, fitness level, and terrain can cause actual results to vary by ±10–15%.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using the Steps ↔ Distance ↔ Calories Converter is straightforward and
-          intuitive. Begin by selecting your preferred unit system—Imperial (feet,
-          miles, pounds) or Metric (meters, kilometers, kilograms). Then, enter your
-          known values in the input fields. You can provide either the number of
-          steps you walked or the distance covered. Additionally, input your body
-          weight to enable calorie burn estimation.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Steps Walked:</strong> Enter the total number of steps taken. If
-            unknown, leave blank and provide distance instead.
-          </li>
-          <li>
-            <strong>Distance Walked:</strong> Enter the distance you walked in miles
-            or kilometers, depending on your selected unit system. Leave blank if you
-            entered steps.
-          </li>
-          <li>
-            <strong>Body Weight:</strong> Input your current weight to calculate
-            calories burned accurately. This field is required for calorie
-            estimation.
-          </li>
+      {/* TABLE: Calorie Burn by Body Weight and Walking Distance */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Calorie Burn by Body Weight and Walking Distance</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated calories burned during walking at a moderate pace (3.5 mph) for different body weights and distances.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Body Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">1 Mile (2,000 steps)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">3 Miles (6,000 steps)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">5 Miles (10,000 steps)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">120 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400 calories</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">140 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">93 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">467 calories</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">155 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">103 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">310 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">517 calories</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">170 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">113 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">340 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">567 calories</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">185 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">123 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">370 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">617 calories</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">200 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">133 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">400 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">667 calories</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">220 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">147 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">440 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">733 calories</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Estimates based on moderate walking pace (3.5 mph) on level ground; actual calories may vary ±10–15% based on individual metabolism, age, and fitness level.</p>
+      </section>
+
+      {/* TABLE: Steps Required by Height and Stride Length */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Steps Required by Height and Stride Length</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how height affects average stride length and the number of steps needed to walk one mile.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Height</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Stride Length</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Steps per Mile</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Steps to Walk 5 Miles</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'0" (60 inches)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24–25 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,090–2,110 steps</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10,450–10,550 steps</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'4" (64 inches)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26–27 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,980–2,000 steps</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9,900–10,000 steps</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'8" (68 inches)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28–29 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,860–1,900 steps</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9,300–9,500 steps</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'10" (70 inches)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">29–30 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,800–1,860 steps</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9,000–9,300 steps</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6'0" (72 inches)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30–31 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,700–1,800 steps</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,500–9,000 steps</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6'2" (74 inches)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31–32 inches</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,650–1,750 steps</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8,250–8,750 steps</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Stride length varies by age, fitness level, and walking speed; these are averages for moderate-paced walking.</p>
+      </section>
+
+      {/* TABLE: Calorie Burn by Walking Speed and Duration */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Calorie Burn by Walking Speed and Duration</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows how walking speed impacts calorie expenditure over time for a 155-pound person on level ground.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Walking Speed (mph)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calories per 30 Minutes</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calories per 60 Minutes</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Distance in 60 Minutes</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2.0 (very slow)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.0 miles</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2.5 (slow)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">240 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.5 miles</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3.0 (leisurely)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">140 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.0 miles</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3.5 (moderate)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">155 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">310 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5 miles</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4.0 (brisk)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">175 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">350 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.0 miles</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4.5 (very brisk)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">195 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">390 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5 miles</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5.0 (vigorous)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">215 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">430 calories</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.0 miles</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calorie estimates for a 155-pound person; heavier individuals burn &gt;10% more calories, lighter individuals burn &lt;10% fewer calories.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your personal stride length for maximum accuracy by walking 10 steps on flat ground and dividing the total distance by 10—use this number in the calculator instead of the average to get customized results.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your walking speed using a smartphone app or smartwatch, as pace significantly impacts calorie burn; brisk walking (4.0+ mph) burns 40–50% more calories than leisurely walking (2.5 mph) over the same distance.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for incline and terrain in your calculations—walking uphill or on sand, grass, or gravel increases calorie burn by 30–50% and may reduce your stride length, requiring more steps to cover the same distance.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use the converter to set progressive step goals: if you currently walk 6,000 steps daily, aim to increase to 8,000 steps (approximately 2.5 extra miles) within 2–3 weeks, then gradually work toward 10,000 steps for optimal cardiovascular benefits.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering your data, click the "Calculate" button to see your results.
-          The calculator will display the estimated steps, distance, and calories
-          burned based on your inputs. Use the "Reset" button to clear all fields
-          and start a new calculation.
-        </p>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using an average stride length without accounting for personal variation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Relying solely on the 2,000-steps-per-mile rule ignores your individual height, gait, and fitness level, leading to estimates that can be off by ±10–20%. Always measure your personal stride length or input your exact height into the calculator for more accurate results.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the impact of walking speed on calorie burn</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people assume calorie burn is proportional to distance alone, but walking speed dramatically changes energy expenditure—a person walking 5 miles at 2.5 mph burns 40% fewer calories than walking the same distance at 4.0 mph. Always input your actual walking pace for accurate calorie estimates.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not adjusting calculations for terrain and incline</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Calculators typically estimate calorie burn for flat, level ground; walking on hills, sand, or uneven terrain can increase energy expenditure by 30–50%, meaning your actual calorie burn is likely higher than the estimate suggests.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming the calculator works equally well for running or intense exercise</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The steps-to-distance conversion is similar for running, but calorie burn calculations are significantly different because running requires 50–100% more energy per mile than walking. Use a running-specific calculator for jogging or sprinting activities.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Trusted References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many steps equal one mile?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The average person takes approximately 2,000 steps to walk one mile, though this varies based on stride length and height. Taller individuals typically have longer strides and may cover a mile in 1,500–1,800 steps, while shorter individuals may need 2,200–2,500 steps. Your stride length is the primary factor in this conversion, as it measures the distance from the heel of one foot to the heel of the next foot.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many calories do I burn walking 10,000 steps?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Walking 10,000 steps burns approximately 300–500 calories for most adults, depending on body weight, walking speed, and terrain. A 155-pound person walking at a moderate pace of 3.5 mph burns roughly 280 calories, while a 185-pound person burns about 335 calories for the same distance. Walking uphill or on uneven terrain significantly increases calorie expenditure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a healthy daily step goal?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The widely recommended daily step goal is 10,000 steps, which equates to approximately 5 miles and burns 300–500 calories for most adults. However, research shows that even 7,000 steps per day provides significant health benefits, including reduced mortality risk. The best goal is one you can sustain consistently, as any regular movement is better than sedentary behavior.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does body weight affect calorie burn during walking?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Heavier individuals burn more calories during the same activity because their bodies require more energy to move. A 200-pound person walking 5 miles burns approximately 400–450 calories, while a 140-pound person burns about 280–320 calories for the same distance. This is why the calculator factors body weight as a critical variable for accurate calorie estimates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the steps-to-distance conversion?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The conversion is reasonably accurate for average populations, but individual results vary by ±10–15% due to differences in stride length, gait, and terrain. Stride length is typically 2.1–2.5 feet for women and 2.3–2.6 feet for men, with height being the strongest predictor. For the most accurate results, measure your personal stride length by walking 10 steps and dividing the distance by 10.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does walking speed affect how many calories I burn?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, walking speed significantly impacts calorie expenditure—faster walking burns substantially more calories than slow walking. Walking at 3.0 mph (slow pace) burns roughly 240 calories per hour for a 155-pound person, while walking at 4.5 mph (brisk pace) burns approximately 360 calories per hour. The relationship is not linear; doubling your speed roughly increases calorie burn by 50–70%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this converter for running or jogging instead of walking?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While the steps-to-distance conversion remains similar for running, the calorie burn calculations are significantly different because running requires more energy per distance. Running the same 5 miles burns approximately 600–750 calories for a 155-pound person, compared to 350–400 for walking. For accurate calorie estimates during running, you should use a running-specific calculator that accounts for the higher metabolic demand.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What factors influence stride length the most?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Height is the strongest predictor of stride length, typically accounting for 60–70% of the variation between individuals. Other factors include age, fitness level, gender, and walking speed—longer strides naturally occur at faster speeds. On average, stride length is approximately 43% of a person's height, so a 5'9" person (69 inches) would have an average stride of about 30 inches.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does terrain affect both distance and calorie burn?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Walking on hills or uneven terrain increases calorie burn by 30–50% compared to flat ground, even though the distance remains the same. Uphill walking at a 10% grade can burn 50% more calories than walking on level ground due to increased muscular effort and energy expenditure. Additionally, softer surfaces like sand or grass may reduce your stride length and increase the step count needed to cover the same distance.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.cdc.gov/physicalactivity/basics/measuring/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Centers for Disease Control and Prevention (CDC) - Measuring Physical Activity
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Comprehensive guidelines on measuring physical activity including steps and distance.
-            </p>
+          <li>
+            <a href="https://health.gov/sites/default/files/2018-09/Physical_Activity_Guidelines_2nd_edition.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Physical Activity Guidelines for Americans — U.S. Department of Health and Human Services</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official government guidelines on daily step counts and physical activity recommendations for adults and children.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Harvard Health Publishing - Calories Burned in 30 Minutes of Leisure and Routine Activities
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Authoritative source on calorie expenditure during walking and other activities.
-            </p>
+          <li>
+            <a href="https://www.aapsm.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Steps Per Mile by Height — American Academy of Podiatric Sports Medicine</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative resource on stride length, gait analysis, and the relationship between height and steps per mile.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4241367/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. National Institutes of Health - Step Length and Walking Speed Variability
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Research article discussing step length variability and its impact on distance estimation.
-            </p>
+          <li>
+            <a href="https://www.acsm.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Calorie Expenditure During Walking — American College of Sports Medicine</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Scientific research on metabolic calculations, energy expenditure, and the factors affecting calorie burn during aerobic exercise.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.who.int/news-room/fact-sheets/detail/physical-activity"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. World Health Organization - Physical Activity Fact Sheet
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Global recommendations and health benefits of physical activity including walking.
-            </p>
+          <li>
+            <a href="https://www.cdc.gov/niosh/work-life/physical-activity/index.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Does Walking 10,000 Steps a Day Really Matter? — CDC: Division of Nutrition, Physical Activity, and Obesity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based information on daily step goals, health benefits of walking, and recommended activity levels for disease prevention.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

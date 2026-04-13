@@ -94,25 +94,41 @@ export default function BmiBodyMassIndexCalculator() {
   // 3. FAQS
   const faqs = [
     {
-      question: "What is BMI and why is it important?",
-      answer:
-        "Body Mass Index (BMI) is a numerical value derived from an individual's weight and height. It provides a simple, widely-used method to categorize weight status and assess potential health risks associated with underweight, overweight, or obesity. While BMI does not directly measure body fat, it correlates with more direct measures and helps identify individuals who may benefit from further health evaluation or lifestyle changes.",
+      question: "What is BMI and why does it matter?",
+      answer: "BMI (Body Mass Index) is a measure of body fat based on height and weight that applies to adult men and women. It is calculated by dividing your weight in kilograms by your height in meters squared (kg/m²). BMI is widely used by healthcare professionals as a screening tool to identify potential weight-related health risks, including obesity, cardiovascular disease, and type 2 diabetes.",
     },
     {
-      question: "How do I interpret my BMI result?",
-      answer:
-        "BMI results fall into categories that indicate weight status: underweight (BMI < 18.5), normal or healthy weight (18.5–24.9), overweight (25–29.9), and obese (30 or greater). These categories help assess risk for conditions such as cardiovascular disease, diabetes, and certain cancers. However, BMI is a screening tool and should be interpreted alongside other health indicators and clinical assessments.",
+      question: "What are the BMI categories and what do they mean?",
+      answer: "BMI categories are defined as: Underweight (&lt;18.5), Normal weight (18.5–24.9), Overweight (25.0–29.9), and Obese (≥30.0). A BMI of 18.5 to 24.9 is considered a healthy weight range for most adults. BMI values outside this range may indicate increased health risks, though BMI is just one screening tool and should be considered alongside other health factors.",
     },
     {
-      question: "What are the limitations of BMI?",
-      answer:
-        "BMI does not differentiate between muscle and fat mass, so very muscular individuals may be misclassified as overweight or obese. It also does not account for fat distribution, age, sex, or ethnicity differences. Therefore, BMI should not be used as the sole diagnostic tool but rather as part of a comprehensive health evaluation.",
+      question: "How accurate is the BMI calculator?",
+      answer: "The BMI calculator is accurate for population-level screening but has limitations for individuals. It does not distinguish between muscle mass and fat mass, so athletes or very muscular individuals may have a high BMI despite low body fat. Additionally, BMI may not be accurate for very short people, children, or the elderly, and should always be interpreted in context with other health assessments by a healthcare provider.",
     },
     {
-      question: "Are there specific considerations for Canadian and US populations?",
-      answer:
-        "BMI categories are generally consistent across Canada and the US, following guidelines from health authorities like the CDC and Health Canada. However, some ethnic groups may have different health risk thresholds at given BMI values. For example, certain Asian populations may experience health risks at lower BMI values. It's important to consult healthcare providers for personalized assessment.",
+      question: "What is the BMI formula and how is it calculated?",
+      answer: "The BMI formula is: BMI = weight (kg) ÷ [height (m)]². For example, a person weighing 70 kg with a height of 1.75 m would have a BMI of 70 ÷ (1.75 × 1.75) = 22.9, which falls in the normal weight range. In imperial units, the formula is: BMI = [weight (lbs) ÷ height (in)²] × 703.",
     },
+    {
+      question: "Is BMI the same for men and women?",
+      answer: "Yes, the BMI calculation and categories are the same for both men and women. However, body composition naturally differs between sexes—men typically have more muscle mass while women have higher body fat percentages at the same BMI. For this reason, some health professionals may interpret BMI results differently based on sex and age, but the numerical categories remain identical.",
+    },
+    {
+      question: "What BMI is considered obese?",
+      answer: "A BMI of 30.0 or higher is classified as obese. Obesity is further divided into Class 1 (30.0–34.9), Class 2 (35.0–39.9), and Class 3 (≥40.0). A BMI in the obese range is associated with increased risk of chronic diseases such as heart disease, stroke, type 2 diabetes, and certain cancers, according to the CDC.",
+    },
+    {
+      question: "Can BMI be used for children and teenagers?",
+      answer: "BMI can be calculated for children and teens, but it is interpreted differently than for adults. Children's BMI is age and sex-specific, using percentiles rather than fixed categories: underweight (&lt;5th percentile), healthy weight (5th–85th percentile), overweight (85th–95th percentile), and obese (≥95th percentile). Parents should use a pediatric BMI calculator or consult with a healthcare provider for accurate interpretation.",
+    },
+    {
+      question: "What should I do if my BMI falls in the overweight or obese category?",
+      answer: "If your BMI is 25.0 or higher, consult with your healthcare provider for personalized advice. They may recommend lifestyle changes such as a balanced diet, regular physical activity (150 minutes of moderate-intensity exercise weekly), stress management, and adequate sleep. Your doctor may also screen for weight-related health conditions and discuss whether additional interventions are appropriate.",
+    },
+    {
+      question: "Does BMI account for muscle mass and bone density?",
+      answer: "No, BMI does not distinguish between muscle, fat, and bone mass. Individuals with high muscle mass—such as athletes or strength trainers—may have an elevated BMI despite low body fat percentage. For a more detailed body composition assessment, healthcare providers may use tools like body fat percentage analysis, DEXA scans, or bioelectrical impedance analysis alongside BMI.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -304,131 +320,323 @@ export default function BmiBodyMassIndexCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* MANDATORY "WHAT IS" SECTION */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          What is the BMI — Body Mass Index Calculator?
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Body Mass Index (BMI) Calculator is a widely used tool that estimates an individual's body fat based on their weight and height. It provides a numerical value that helps categorize weight status into underweight, normal weight, overweight, or obese. This calculator uses either imperial units (pounds, feet, and inches) or metric units (kilograms and centimeters) to accommodate users primarily in the US and Canada, as well as internationally.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          BMI is a simple, non-invasive screening method endorsed by major health organizations such as the Centers for Disease Control and Prevention (CDC) and Health Canada. While it does not directly measure body fat percentage, BMI correlates strongly with more precise body composition measurements and is an effective indicator of potential health risks associated with weight. It is commonly used in clinical settings, public health surveillance, and personal health monitoring.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The calculator categorizes BMI values into ranges that reflect health risk levels. These categories help individuals and healthcare providers identify those who may be at increased risk for conditions like cardiovascular disease, type 2 diabetes, hypertension, and certain cancers. However, BMI should be interpreted alongside other health metrics and clinical evaluations for a comprehensive assessment.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This tool is especially relevant in Canada and the US, where obesity rates have been rising, contributing to increased healthcare burdens. By providing immediate feedback on BMI, this calculator empowers users to make informed decisions about their lifestyle, diet, and physical activity, promoting better long-term health outcomes.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the BMI — Body Mass Index Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The BMI Calculator is a simple screening tool that estimates your body mass index based on your height and weight. BMI is commonly used by healthcare professionals to identify potential weight-related health risks and to track changes in body weight over time. While BMI is not a direct measure of body fat, it serves as a practical starting point for health assessments in clinical and public health settings.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, you will need to enter two key measurements: your height (in feet and inches, or centimeters) and your weight (in pounds or kilograms). Make sure to provide accurate, current measurements for the most reliable result. The calculator will then compute your BMI value using the standard formula: BMI = weight (kg) ÷ [height (m)]².</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Once you receive your BMI result, compare it to the standard categories: Underweight (&lt;18.5), Normal Weight (18.5–24.9), Overweight (25.0–29.9), and Obese (≥30.0). If your BMI falls outside the normal range, consider discussing the results with your healthcare provider, who can evaluate your individual health status, medical history, and fitness level. Remember that BMI is just one screening tool and does not account for muscle mass, bone density, or overall fitness.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this BMI calculator is straightforward and designed to accommodate your preferred measurement system. By default, it uses the imperial system (pounds, feet, and inches), which is common in the US and Canada. You can switch to metric units if desired. Follow these steps to calculate your BMI:
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Select Unit System:</strong> Choose between Imperial (lbs/ft/in) or Metric (kg/cm) using the dropdown at the top.
-          </li>
-          <li>
-            <strong>Enter Weight:</strong> Input your current weight in pounds or kilograms, depending on the selected unit system.
-          </li>
-          <li>
-            <strong>Enter Height:</strong> For imperial units, enter your height in feet and inches separately. For metric units, enter your height in centimeters.
-          </li>
-          <li>
-            <strong>Calculate:</strong> Click the "Calculate" button to compute your BMI. The result will display your BMI value along with the corresponding weight category.
-          </li>
-          <li>
-            <strong>Reset:</strong> Use the "Reset" button to clear all inputs and start a new calculation.
-          </li>
+      {/* TABLE: BMI Categories and Health Risk Classifications */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">BMI Categories and Health Risk Classifications</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the standard BMI categories used by the CDC and WHO, along with associated health risk levels for adults.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BMI Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BMI Range</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Health Risk Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Health Implications</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Underweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;18.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">May indicate nutritional deficiency or underlying health issues</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Normal Weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18.5–24.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Lowest risk for weight-related chronic diseases</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Overweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25.0–29.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Increased risk of hypertension, high cholesterol, and type 2 diabetes</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Obese Class 1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30.0–34.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Significant risk of heart disease, stroke, and type 2 diabetes</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Obese Class 2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35.0–39.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Substantially elevated risk of multiple chronic diseases</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Obese Class 3 (Severe Obesity)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">≥40.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Extremely High</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Severe health risks including sleep apnea, joint problems, and metabolic syndrome</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">BMI categories are based on CDC and WHO guidelines. Individual health risks vary based on age, fitness level, muscle mass, and other health factors.</p>
+      </section>
+
+      {/* TABLE: BMI Examples by Height and Weight */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">BMI Examples by Height and Weight</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how BMI varies across common heights and weights to help illustrate practical calculations.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Height</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weight (kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calculated BMI</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Category</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'4" (163 cm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">110</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal Weight</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'4" (163 cm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">63.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal Weight</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'4" (163 cm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">165</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">74.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Overweight</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'4" (163 cm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">34.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Obese Class 1</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'10" (178 cm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">130</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">59</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal Weight</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'10" (178 cm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">175</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">79.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Overweight</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'10" (178 cm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">210</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">95.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Obese Class 1</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6'0" (183 cm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">72.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal Weight</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6'0" (183 cm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">200</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Overweight</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These examples show how the same weight can result in different BMI categories depending on height. Use your actual measurements for accuracy.</p>
+      </section>
+
+      {/* TABLE: Obesity Prevalence and Health Burden in the United States (2021-2022) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Obesity Prevalence and Health Burden in the United States (2021-2022)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table presents recent data on obesity rates and associated health statistics in the U.S. adult population.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Demographic Group</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Obesity Rate (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Severe Obesity Rate (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Primary Health Concerns</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">All U.S. Adults</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">41.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Type 2 diabetes, cardiovascular disease, hypertension</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Non-Hispanic White Adults</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">41.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Metabolic syndrome, joint and bone disorders</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Non-Hispanic Black Adults</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">49.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Higher rates of hypertension and kidney disease</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hispanic/Latino Adults</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Type 2 diabetes, sleep apnea</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Non-Hispanic Asian Adults</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16.1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Lower obesity rates but still elevated health risks</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Men</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">43.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Cardiovascular disease, erectile dysfunction</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Women</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">41.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Polycystic ovary syndrome, infertility</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Data sourced from CDC National Health and Nutrition Examination Survey (NHANES) 2021-2022. Severe obesity is defined as BMI ≥40.0.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your height and weight accurately in the morning without shoes and heavy clothing for the most consistent BMI results. Use a reliable scale and a height measurement tool, or ask a healthcare provider for precise measurements.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If you are very muscular or an athlete, be aware that your BMI may overestimate body fat because muscle weighs more than fat. Discuss your results with a healthcare provider who can assess your body composition using additional methods.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your BMI over time rather than focusing on a single calculation. Recording BMI monthly or quarterly can help you identify trends and evaluate the effectiveness of lifestyle changes such as diet and exercise.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use your BMI result as a conversation starter with your healthcare provider rather than as a definitive diagnosis. Combined with other health markers like blood pressure, cholesterol, blood sugar, and fitness level, BMI provides a more complete picture of your health status.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using BMI as the only indicator of health</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people assume that a high BMI automatically means poor health, but BMI is just a screening tool. Factors like cardiovascular fitness, muscle mass, bone density, blood pressure, and cholesterol levels are equally important for assessing overall health. Always consult a healthcare provider for a comprehensive health evaluation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring differences between muscle and fat</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Athletes and individuals with high muscle mass may have elevated BMI values despite low body fat percentages. BMI does not distinguish between muscle and fat, so muscular individuals should not be alarmed by a higher BMI without considering body composition analysis.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Applying adult BMI categories to children</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Children and adolescents require age and sex-specific BMI percentile calculations, not adult BMI categories. Using adult categories for children can lead to misinterpretation of results. Parents should use pediatric BMI calculators or consult a pediatrician for accurate assessment.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Taking inaccurate body measurements</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Errors in height or weight measurements directly affect BMI accuracy. Measure without shoes, heavy clothing, or accessories, and use calibrated scales and reliable measurement tools. Inconsistent measurements can lead to incorrect BMI calculations and misleading health conclusions.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Trusted References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is BMI and why does it matter?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">BMI (Body Mass Index) is a measure of body fat based on height and weight that applies to adult men and women. It is calculated by dividing your weight in kilograms by your height in meters squared (kg/m²). BMI is widely used by healthcare professionals as a screening tool to identify potential weight-related health risks, including obesity, cardiovascular disease, and type 2 diabetes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the BMI categories and what do they mean?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">BMI categories are defined as: Underweight (&lt;18.5), Normal weight (18.5–24.9), Overweight (25.0–29.9), and Obese (≥30.0). A BMI of 18.5 to 24.9 is considered a healthy weight range for most adults. BMI values outside this range may indicate increased health risks, though BMI is just one screening tool and should be considered alongside other health factors.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the BMI calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The BMI calculator is accurate for population-level screening but has limitations for individuals. It does not distinguish between muscle mass and fat mass, so athletes or very muscular individuals may have a high BMI despite low body fat. Additionally, BMI may not be accurate for very short people, children, or the elderly, and should always be interpreted in context with other health assessments by a healthcare provider.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the BMI formula and how is it calculated?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The BMI formula is: BMI = weight (kg) ÷ [height (m)]². For example, a person weighing 70 kg with a height of 1.75 m would have a BMI of 70 ÷ (1.75 × 1.75) = 22.9, which falls in the normal weight range. In imperial units, the formula is: BMI = [weight (lbs) ÷ height (in)²] × 703.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is BMI the same for men and women?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the BMI calculation and categories are the same for both men and women. However, body composition naturally differs between sexes—men typically have more muscle mass while women have higher body fat percentages at the same BMI. For this reason, some health professionals may interpret BMI results differently based on sex and age, but the numerical categories remain identical.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What BMI is considered obese?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A BMI of 30.0 or higher is classified as obese. Obesity is further divided into Class 1 (30.0–34.9), Class 2 (35.0–39.9), and Class 3 (≥40.0). A BMI in the obese range is associated with increased risk of chronic diseases such as heart disease, stroke, type 2 diabetes, and certain cancers, according to the CDC.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can BMI be used for children and teenagers?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">BMI can be calculated for children and teens, but it is interpreted differently than for adults. Children's BMI is age and sex-specific, using percentiles rather than fixed categories: underweight (&lt;5th percentile), healthy weight (5th–85th percentile), overweight (85th–95th percentile), and obese (≥95th percentile). Parents should use a pediatric BMI calculator or consult with a healthcare provider for accurate interpretation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if my BMI falls in the overweight or obese category?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If your BMI is 25.0 or higher, consult with your healthcare provider for personalized advice. They may recommend lifestyle changes such as a balanced diet, regular physical activity (150 minutes of moderate-intensity exercise weekly), stress management, and adequate sleep. Your doctor may also screen for weight-related health conditions and discuss whether additional interventions are appropriate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does BMI account for muscle mass and bone density?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, BMI does not distinguish between muscle, fat, and bone mass. Individuals with high muscle mass—such as athletes or strength trainers—may have an elevated BMI despite low body fat percentage. For a more detailed body composition assessment, healthcare providers may use tools like body fat percentage analysis, DEXA scans, or bioelectrical impedance analysis alongside BMI.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.cdc.gov/healthyweight/assessing/bmi/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Centers for Disease Control and Prevention (CDC) - About Adult BMI
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Official CDC resource explaining BMI, its calculation, and interpretation.
-            </p>
+          <li>
+            <a href="https://www.cdc.gov/healthyweight/assessing/bmi/index.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CDC - Body Mass Index (BMI)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official CDC resource explaining BMI categories, calculation methods, and health implications for adults and children.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.canada.ca/en/public-health/services/health-promotion/healthy-living/your-health/bmi.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Government of Canada - Body Mass Index (BMI)
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Health Canada’s overview of BMI and its role in health assessment.
-            </p>
+          <li>
+            <a href="https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Heart, Lung, and Blood Institute - BMI Calculator</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">NHLBI-endorsed BMI information and calculator with clinical guidelines for interpreting results.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. World Health Organization (WHO) - Obesity and Overweight Fact Sheet
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              WHO’s global perspective on obesity, BMI categories, and health implications.
-            </p>
+          <li>
+            <a href="https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">World Health Organization - Obesity and Overweight</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Global obesity statistics, BMI definitions, and WHO guidelines for health risk assessment based on BMI.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://jamanetwork.com/journals/jama/fullarticle/1105944"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. JAMA - Clinical Guidelines on BMI and Health Risks
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Peer-reviewed article discussing BMI’s clinical utility and limitations.
-            </p>
+          <li>
+            <a href="https://medlineplus.gov/bmi.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">MedlinePlus - Body Mass Index (BMI)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive medical information on BMI, its uses, limitations, and relationship to various health conditions.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -109,25 +109,41 @@ export default function TdeeGestationAdjustedCalculator() {
   // 3. FAQS
   const faqs = [
     {
-      question: "What is Gestational TDEE and why is it important?",
-      answer:
-        "Gestational Total Daily Energy Expenditure (TDEE) estimates the total calories a pregnant person needs daily, accounting for basal metabolism, physical activity, and the additional energy demands of pregnancy. Proper estimation helps ensure adequate nutrition for fetal growth and maternal health, reducing risks of complications such as low birth weight or excessive weight gain.",
+      question: "What is gestational TDEE and why does it matter during pregnancy?",
+      answer: "Gestational TDEE (Total Daily Energy Expenditure) is the total number of calories your body burns daily while pregnant, including basal metabolic rate and activity level. It matters because adequate calorie intake supports fetal development, maintains maternal health, and helps prevent complications like gestational diabetes and preeclampsia. Consuming too few calories can restrict fetal growth, while excessive intake may lead to excessive weight gain and increased delivery complications.",
     },
     {
-      question: "How should I interpret my Gestational TDEE result?",
-      answer:
-        "The calculated Gestational TDEE represents an estimate of daily calorie needs during pregnancy for your specific trimester, activity level, and body metrics. It guides nutritional intake to support healthy fetal development and maternal well-being. However, individual needs may vary, so consult a healthcare provider for personalized advice.",
+      question: "How many extra calories do I need during pregnancy?",
+      answer: "The American College of Obstetricians and Gynecologists (ACOG) recommends adding approximately 340 extra calories per day during the second trimester and 450 extra calories per day during the third trimester. First trimester requires no additional calories beyond your pre-pregnancy needs. These estimates vary based on pre-pregnancy BMI, with underweight women potentially needing more and overweight women potentially needing fewer additional calories.",
     },
     {
-      question: "What are the limitations of this calculator?",
-      answer:
-        "This calculator provides an educational estimate based on population averages and standard formulas. It does not account for individual metabolic differences, pregnancy complications, or multiple gestations (twins, triplets). It should not replace professional medical or nutritional advice.",
+      question: "How does pre-pregnancy BMI affect calorie requirements during pregnancy?",
+      answer: "Pre-pregnancy BMI significantly influences total calorie needs and recommended weight gain. Underweight women (BMI &lt;18.5) typically need higher calorie intake and should gain 28–40 pounds total, normal weight women (BMI 18.5–24.9) should gain 25–35 pounds, overweight women (BMI 25–29.9) should gain 15–25 pounds, and obese women (BMI &gt;30) should gain 11–20 pounds. Your calculator uses your pre-pregnancy BMI to personalize energy expenditure estimates.",
     },
     {
-      question: "Why does the calorie increase vary by trimester?",
-      answer:
-        "Energy requirements increase as pregnancy progresses due to fetal growth and maternal tissue development. The first trimester typically requires minimal additional calories, while the second and third trimesters see significant increases to support rapid fetal growth and prepare for lactation.",
+      question: "What is the difference between TDEE and BMR in pregnancy?",
+      answer: "Basal Metabolic Rate (BMR) is the number of calories your body burns at rest to maintain basic functions like breathing and circulation, which increases approximately 2–3% during pregnancy. TDEE includes BMR plus calories burned through daily activities and exercise. During pregnancy, TDEE is typically higher than BMR by 20–50% depending on activity level, making TDEE a more accurate measure for determining total daily calorie needs.",
     },
+    {
+      question: "Can I use a regular TDEE calculator during pregnancy?",
+      answer: "No, regular TDEE calculators are not accurate for pregnant women because they don't account for the metabolic changes, fetal energy demands, and increased weight that occur during pregnancy. A gestational TDEE calculator adjusts formulas to include these pregnancy-specific factors, providing a more accurate estimate that supports both maternal and fetal health. Using a non-pregnancy calculator may result in significantly underestimating calorie needs.",
+    },
+    {
+      question: "How does metabolism change during pregnancy?",
+      answer: "Pregnancy increases your basal metabolic rate by 15–25% compared to pre-pregnancy levels, peaking in the third trimester as your body works to support fetal development and increased blood volume. This metabolic increase is driven by hormonal changes, increased organ activity, and the energy demands of the growing fetus and placenta. As a result, even sedentary pregnant women burn more calories than they did before pregnancy.",
+    },
+    {
+      question: "What activity level should I select for accurate gestational TDEE results?",
+      answer: "Select an activity level that reflects your typical daily routine: sedentary (little to no exercise), lightly active (exercise 1–3 days per week), moderately active (exercise 3–5 days per week), or very active (exercise 6–7 days per week). Be honest about your current activity level during pregnancy, as many women reduce intensity during later trimesters. Your selected activity level multiplies your BMR to estimate total daily calorie expenditure.",
+    },
+    {
+      question: "Is this gestational TDEE calculator medically approved for pregnancy planning?",
+      answer: "This calculator is an educational tool based on established formulas from ACOG and research studies, but it is not a substitute for personalized medical advice from your healthcare provider. Individual nutritional needs vary based on health history, multiple pregnancies, metabolic conditions, and other factors. Always consult your obstetrician or registered dietitian for personalized calorie and nutrition recommendations during pregnancy.",
+    },
+    {
+      question: "What should I do if my gestational TDEE seems unusually high or low?",
+      answer: "If your calculated TDEE seems off, verify that you entered accurate pre-pregnancy weight, current weight, height, and activity level. Factors like thyroid disorders, PCOS, or being pregnant with multiples can affect actual energy expenditure beyond standard calculations. Discuss unexpected results with your healthcare provider or a registered dietitian who can assess your individual metabolism and adjust recommendations accordingly.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -343,121 +359,263 @@ export default function TdeeGestationAdjustedCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* MANDATORY "WHAT IS" SECTION */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          What is the Gestational TDEE (educational)?
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Gestational Total Daily Energy Expenditure (TDEE) refers to the total number of calories a pregnant person requires each day to maintain their own bodily functions, support physical activity, and provide the additional energy necessary for fetal growth and development. Unlike standard TDEE calculations, gestational TDEE accounts for the increased metabolic demands of pregnancy, which vary by trimester as the fetus grows and maternal tissues develop.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          During pregnancy, energy needs increase progressively, especially in the second and third trimesters. This increase supports the formation of the placenta, amniotic fluid, maternal fat stores, and the growing fetus. Accurately estimating gestational TDEE is crucial for ensuring adequate maternal nutrition, which can influence pregnancy outcomes such as birth weight, gestational age, and maternal health.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator uses the Mifflin-St Jeor equation to estimate basal metabolic rate (BMR), adjusts for physical activity level, and then adds trimester-specific calorie increments recommended by leading health authorities. It is designed as an educational tool to help pregnant individuals and healthcare providers understand energy needs during pregnancy but should not replace personalized medical advice.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding gestational TDEE can help guide dietary planning to meet increased nutritional demands, prevent excessive or inadequate weight gain, and promote optimal health for both mother and baby. It is important to consider individual factors such as pre-pregnancy weight, metabolic health, and activity levels when interpreting results.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Gestational TDEE Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This gestational TDEE calculator estimates your total daily energy expenditure while pregnant by accounting for metabolic changes, fetal energy demands, and trimester-specific calorie increases. Understanding your TDEE helps you consume adequate nutrition to support fetal development, maintain maternal health, and achieve appropriate weight gain during pregnancy. This calculator is educational and should complement, not replace, guidance from your healthcare provider.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, enter your pre-pregnancy weight, current weight, height, age, and current trimester. Select your typical activity level honestly—sedentary, lightly active, moderately active, or very active—as this significantly affects your total energy needs. Your pre-pregnancy BMI is calculated automatically to personalize the energy expenditure estimate, since calorie needs vary based on whether you began pregnancy underweight, normal weight, overweight, or obese.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator outputs your estimated TDEE, which already includes the recommended trimester-based calorie additions (340 additional calories in trimester 2, 450 in trimester 3). Compare this result to your actual daily intake to assess whether you're consuming enough to support both your health and fetal development. If your TDEE seems unusual or you have underlying metabolic conditions, consult a registered dietitian or your obstetrician for personalized recommendations.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To estimate your Gestational TDEE, enter your current weight, height, age, activity level, and select your current pregnancy trimester. The calculator will use these inputs to estimate your daily calorie needs, including the additional energy required for your pregnancy stage.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Weight:</strong> Enter your current body weight. Use pounds if you selected Imperial units or kilograms for Metric.
-          </li>
-          <li>
-            <strong>Height:</strong> Enter your height. For Imperial units, input feet and inches separately; for Metric, enter centimeters.
-          </li>
-          <li>
-            <strong>Age:</strong> Enter your age in years. This helps adjust basal metabolic rate calculations.
-          </li>
-          <li>
-            <strong>Activity Level:</strong> Select the option that best describes your typical daily physical activity, from sedentary to very active.
-          </li>
-          <li>
-            <strong>Trimester:</strong> Choose your current pregnancy trimester to apply the appropriate calorie increase.
-          </li>
+      {/* TABLE: Recommended Daily Calorie Intake by Trimester and Pre-Pregnancy BMI */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Daily Calorie Intake by Trimester and Pre-Pregnancy BMI</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the estimated daily calorie recommendations across pregnancy trimesters based on pre-pregnancy BMI category.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pre-Pregnancy BMI</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Category</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">1st Trimester</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2nd Trimester</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">3rd Trimester</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Weight Gain (lbs)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Below 18.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Underweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Add 0 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Add 340 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Add 450 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28–40</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">18.5–24.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Normal Weight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Add 0 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Add 340 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Add 450 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25–35</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25.0–29.9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Overweight</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Add 0 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Add 340 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Add 450 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–25</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30.0+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Obese</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Add 0 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Add 340 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Add 450 cal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11–20</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Recommendations based on 2009 ACOG guidelines; individual needs may vary.</p>
+      </section>
+
+      {/* TABLE: Metabolic Rate Changes During Pregnancy */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Metabolic Rate Changes During Pregnancy</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table illustrates how basal metabolic rate and total daily energy expenditure increase across each trimester.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pregnancy Stage</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BMR Increase (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical TDEE Increase (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Primary Driver</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Pre-pregnancy baseline</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">N/A</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">First Trimester (0–12 weeks)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–8%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5–12%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Hormonal changes, blood volume increase</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Second Trimester (13–26 weeks)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10–15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fetal growth, placental development</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Third Trimester (27–40 weeks)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15–25%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20–35%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maximum fetal demands, maternal organ enlargement</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Increases are relative to pre-pregnancy baseline; individual variation is significant.</p>
+      </section>
+
+      {/* TABLE: Calorie Expenditure by Activity Level During Pregnancy */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Calorie Expenditure by Activity Level During Pregnancy</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated daily calorie burn multipliers applied to BMR across different activity levels.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Activity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Description</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">BMR Multiplier</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example Daily Calorie Burn (140 lb woman)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sedentary</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Little or no exercise</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2–1.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,800–1,950 cal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lightly Active</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Exercise 1–3 days/week</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.375–1.425</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,070–2,140 cal</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderately Active</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Exercise 3–5 days/week</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.55–1.575</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,330–2,365 cal</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Very Active</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Exercise 6–7 days/week</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.725–1.85</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2,590–2,780 cal</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Multipliers applied to estimated BMR of 1,500 cal; actual values depend on individual metabolism.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your actual food intake for 3–5 days and compare it to your calculated gestational TDEE to identify whether you're meeting calorie goals; use a food tracking app for accuracy.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Don't attempt to diet or restrict calories during pregnancy—even if overweight pre-pregnancy, aim for appropriate trimester-based weight gain as undereating increases risk of preterm labor and low birth weight.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Recalculate your TDEE monthly as your weight changes, since total daily expenditure increases as you gain pregnancy weight, even if activity level stays the same.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Prioritize nutrient-dense calories from whole grains, lean proteins, healthy fats, and colorful fruits and vegetables rather than high-calorie, low-nutrient processed foods to meet both calorie and micronutrient needs.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering all information, click "Calculate" to see your estimated Gestational TDEE. Use this number as a guide for daily calorie intake to support a healthy pregnancy.
-        </p>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using pre-pregnancy TDEE throughout pregnancy</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Your metabolism and calorie needs change significantly during pregnancy, especially in the second and third trimesters. Using your pre-pregnancy TDEE calculation ignores the additional 340–450 calories needed and can lead to undereating, which restricts fetal growth and increases pregnancy complications.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Entering inaccurate pre-pregnancy weight</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Pre-pregnancy weight is essential for calculating your baseline BMR and determining appropriate weight gain ranges. If you don't remember your exact pre-pregnancy weight, use your weight from your first prenatal visit or ask your healthcare provider, as inaccurate entry skews the entire calculation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overestimating activity level</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many pregnant women overestimate their activity level, leading to inflated TDEE calculations and inadequate calorie consumption. Be honest about exercise frequency and intensity—many women reduce activity in the third trimester, so recalculate if your routine changes.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring individual metabolic variations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">This calculator provides estimates based on population averages, but your actual TDEE may differ due to thyroid disorders, PCOS, multiple pregnancy, or genetic factors. If your results don't align with how you feel or your weight gain pattern, consult your healthcare provider rather than relying solely on the calculator.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Trusted References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is gestational TDEE and why does it matter during pregnancy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Gestational TDEE (Total Daily Energy Expenditure) is the total number of calories your body burns daily while pregnant, including basal metabolic rate and activity level. It matters because adequate calorie intake supports fetal development, maintains maternal health, and helps prevent complications like gestational diabetes and preeclampsia. Consuming too few calories can restrict fetal growth, while excessive intake may lead to excessive weight gain and increased delivery complications.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many extra calories do I need during pregnancy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The American College of Obstetricians and Gynecologists (ACOG) recommends adding approximately 340 extra calories per day during the second trimester and 450 extra calories per day during the third trimester. First trimester requires no additional calories beyond your pre-pregnancy needs. These estimates vary based on pre-pregnancy BMI, with underweight women potentially needing more and overweight women potentially needing fewer additional calories.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does pre-pregnancy BMI affect calorie requirements during pregnancy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pre-pregnancy BMI significantly influences total calorie needs and recommended weight gain. Underweight women (BMI &lt;18.5) typically need higher calorie intake and should gain 28–40 pounds total, normal weight women (BMI 18.5–24.9) should gain 25–35 pounds, overweight women (BMI 25–29.9) should gain 15–25 pounds, and obese women (BMI &gt;30) should gain 11–20 pounds. Your calculator uses your pre-pregnancy BMI to personalize energy expenditure estimates.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between TDEE and BMR in pregnancy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Basal Metabolic Rate (BMR) is the number of calories your body burns at rest to maintain basic functions like breathing and circulation, which increases approximately 2–3% during pregnancy. TDEE includes BMR plus calories burned through daily activities and exercise. During pregnancy, TDEE is typically higher than BMR by 20–50% depending on activity level, making TDEE a more accurate measure for determining total daily calorie needs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use a regular TDEE calculator during pregnancy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, regular TDEE calculators are not accurate for pregnant women because they don't account for the metabolic changes, fetal energy demands, and increased weight that occur during pregnancy. A gestational TDEE calculator adjusts formulas to include these pregnancy-specific factors, providing a more accurate estimate that supports both maternal and fetal health. Using a non-pregnancy calculator may result in significantly underestimating calorie needs.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does metabolism change during pregnancy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pregnancy increases your basal metabolic rate by 15–25% compared to pre-pregnancy levels, peaking in the third trimester as your body works to support fetal development and increased blood volume. This metabolic increase is driven by hormonal changes, increased organ activity, and the energy demands of the growing fetus and placenta. As a result, even sedentary pregnant women burn more calories than they did before pregnancy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What activity level should I select for accurate gestational TDEE results?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Select an activity level that reflects your typical daily routine: sedentary (little to no exercise), lightly active (exercise 1–3 days per week), moderately active (exercise 3–5 days per week), or very active (exercise 6–7 days per week). Be honest about your current activity level during pregnancy, as many women reduce intensity during later trimesters. Your selected activity level multiplies your BMR to estimate total daily calorie expenditure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is this gestational TDEE calculator medically approved for pregnancy planning?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator is an educational tool based on established formulas from ACOG and research studies, but it is not a substitute for personalized medical advice from your healthcare provider. Individual nutritional needs vary based on health history, multiple pregnancies, metabolic conditions, and other factors. Always consult your obstetrician or registered dietitian for personalized calorie and nutrition recommendations during pregnancy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if my gestational TDEE seems unusually high or low?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If your calculated TDEE seems off, verify that you entered accurate pre-pregnancy weight, current weight, height, and activity level. Factors like thyroid disorders, PCOS, or being pregnant with multiples can affect actual energy expenditure beyond standard calculations. Discuss unexpected results with your healthcare provider or a registered dietitian who can assess your individual metabolism and adjust recommendations accordingly.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.acog.org/womens-health/faqs/nutrition-during-pregnancy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. American College of Obstetricians and Gynecologists (ACOG) - Nutrition During Pregnancy
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Authoritative guidelines on nutritional needs and calorie requirements during pregnancy.
-            </p>
+          <li>
+            <a href="https://www.acog.org/pregnancy/nutrition-during-pregnancy" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American College of Obstetricians and Gynecologists (ACOG) - Nutrition During Pregnancy</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official ACOG guidelines on recommended calorie intake, weight gain targets, and nutritional requirements across all trimesters of pregnancy.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.canada.ca/en/health-canada/services/food-nutrition/healthy-eating/healthy-pregnancy.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Health Canada - Healthy Pregnancy Nutrition
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Canadian government resource detailing dietary recommendations and energy needs for pregnant individuals.
-            </p>
+          <li>
+            <a href="https://ods.od.nih.gov/Life-Stages/Pregnancy-and-Lactation/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Institutes of Health (NIH) - Pregnancy and Nutrient Needs</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based information on micronutrient requirements, metabolic changes, and energy expenditure during pregnancy from the NIH Office of Dietary Supplements.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.nal.usda.gov/fnic/dietary-reference-intakes"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. National Academies of Sciences, Engineering, and Medicine - Dietary Reference Intakes
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Comprehensive nutrient and energy intake recommendations including pregnancy-specific adjustments.
-            </p>
+          <li>
+            <a href="https://www.cdc.gov/reproductivehealth/maternalinfanthealth/pregnancy-nutrition.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CDC - Pregnancy Nutrition and Weight Gain</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">CDC guidance on appropriate weight gain by pre-pregnancy BMI, calorie needs by trimester, and prevention of pregnancy-related complications through proper nutrition.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/24529832/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Institute of Medicine (US) - Weight Gain During Pregnancy: Reexamining the Guidelines (2009)
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Evidence-based guidelines on energy needs and weight gain patterns during pregnancy.
-            </p>
+          <li>
+            <a href="https://www.mayoclinic.org/healthy-lifestyle/pregnancy-week-by-week/in-depth/pregnancy-nutrition/art-20046955" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Mayo Clinic - Pregnancy Diet: Focus on These Essential Nutrients</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive clinical resource on calorie requirements, nutrient priorities, and metabolic adjustments needed throughout pregnancy by trimester.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

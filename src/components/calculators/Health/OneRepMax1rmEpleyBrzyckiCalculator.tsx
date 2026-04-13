@@ -56,25 +56,41 @@ export default function OneRepMax1rmEpleyBrzyckiCalculator() {
   // 3. FAQS
   const faqs = [
     {
-      question: "What is the One-Rep Max (1RM) and why is it important?",
-      answer:
-        "The One-Rep Max (1RM) represents the maximum amount of weight an individual can lift for one complete repetition of a given exercise. It is a fundamental metric in strength training used to assess maximal strength, track progress, and tailor training programs. Knowing your 1RM helps in setting appropriate training loads to optimize strength gains while minimizing injury risk.",
+      question: "What is the difference between the Epley and Brzycki formulas for 1RM?",
+      answer: "The Epley formula tends to overestimate 1RM slightly at higher rep ranges, while the Brzycki formula provides more conservative estimates, particularly beyond 10 reps. For lifts in the 2-10 rep range, both formulas produce similar results within 5-10% accuracy. The Epley formula is: 1RM = weight × (1 + 0.0333 × reps), while Brzycki is: 1RM = weight ÷ (1.0278 - 0.0278 × reps).",
     },
     {
-      question: "How do the Epley and Brzycki formulas estimate 1RM?",
-      answer:
-        "Both the Epley and Brzycki formulas estimate 1RM based on submaximal lifts performed for multiple repetitions. The Epley formula calculates 1RM as weight lifted multiplied by (1 + reps/30), while the Brzycki formula uses weight multiplied by (36 / (37 - reps)). These formulas provide practical and safer alternatives to attempting a true 1RM lift, which can be risky without proper supervision.",
+      question: "How accurate is the 1RM calculator for predicting my actual one-rep max?",
+      answer: "Both Epley and Brzycki formulas have an accuracy range of ±5-10% for most lifters when reps are between 2-10. Accuracy decreases significantly beyond 10 reps, where estimates can deviate by 10-20%. Your actual 1RM may vary based on individual strength curve, training experience, and technique efficiency.",
     },
     {
-      question: "What are the limitations of using these formulas for 1RM estimation?",
-      answer:
-        "While these formulas provide useful estimates, they have limitations. Accuracy decreases with higher repetition counts (typically above 10 reps) and may vary between individuals due to factors like muscle fiber composition, fatigue, and lifting technique. Additionally, these formulas assume consistent effort and proper form during testing, so results should be interpreted as approximations rather than exact values.",
+      question: "Can I use this calculator for all types of lifts?",
+      answer: "Yes, the 1RM calculator works for compound lifts like squats, deadlifts, and bench presses, as well as isolation exercises like bicep curls or leg presses. However, the formula is most accurate for barbell movements performed with proper form and in the 2-10 rep range. Machine exercises may produce less reliable estimates due to differences in leverage and resistance curves.",
     },
     {
-      question: "Can I use this calculator for all types of exercises?",
-      answer:
-        "This calculator is generally applicable for compound lifts such as squats, deadlifts, and bench presses where maximal strength is relevant. However, for isolation exercises or lifts with very high repetition ranges, the formulas may be less accurate. Always consider exercise specificity and consult a fitness professional when applying 1RM estimates to your training.",
+      question: "What rep range should I use for the most accurate 1RM estimate?",
+      answer: "The most accurate estimates come from rep ranges between 3-8 reps, where both formulas maintain ±5% accuracy. Using 2-rep or single lifts eliminates the need for estimation entirely. Avoid using this calculator with rep ranges &gt;12, as estimates become increasingly unreliable and can overestimate 1RM by 15-30%.",
     },
+    {
+      question: "Is it safe to attempt a calculated 1RM without prior training?",
+      answer: "No, attempting a calculated 1RM without proper strength training foundation and technique mastery significantly increases injury risk. A calculated 1RM represents your theoretical maximum, not a guaranteed safe lift. Always build up to heavy singles gradually over weeks, focus on proper form, use spotters, and consider working with a qualified strength coach.",
+    },
+    {
+      question: "How often should I recalculate my 1RM estimates?",
+      answer: "Recalculate your 1RM every 4-6 weeks during active training phases to track progress, or immediately after a dedicated strength testing cycle. If you're consistently hitting your calculated max for 3-5 clean reps, it's time to retest or recalculate based on your new performance. Avoid constant recalculation as minor day-to-day fluctuations in strength don't represent true progress.",
+    },
+    {
+      question: "Why does my calculated 1RM seem lower than what I've actually lifted?",
+      answer: "This often occurs when lifters use poor form or partial range of motion on their tested weight, which inflates perceived strength without proportional muscle development. It can also happen if you tested reps at a submaximal effort or after fatigue from other exercises. If confident in your form and conditions, the estimate may be conservative—verify by testing a carefully programmed max attempt with full range of motion.",
+    },
+    {
+      question: "Can I use this calculator for bodyweight exercises like pull-ups or dips?",
+      answer: "Yes, you can use this calculator for weighted bodyweight exercises by adding the external weight to your bodyweight. For example, if you weigh 180 lbs and perform 6 weighted pull-ups with a 25 lb belt, enter 205 lbs as your weight. For unweighted pull-ups or dips, the calculator is less applicable since the 1RM concept doesn't translate directly; use absolute reps performed as a strength metric instead.",
+    },
+    {
+      question: "Should I test my 1RM or rely on the calculator for programming?",
+      answer: "Using the calculator for programming is safer and more practical for most lifters, as frequent maximal testing increases injury risk and neural fatigue. Calculate your 1RM every 4-6 weeks from submaximal lifts (3-8 reps) to adjust training weights. Only perform actual 1RM tests 1-2 times per year for peak strength assessment or competition preparation.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -217,157 +233,282 @@ export default function OneRepMax1rmEpleyBrzyckiCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* MANDATORY "WHAT IS" SECTION */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          What is the 1RM — One-Rep Max (Epley/Brzycki)?
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The One-Rep Max (1RM) is the maximum amount of weight an individual can
-          lift for a single repetition of a given exercise. It is widely used in
-          strength training and sports science as a benchmark to assess maximal
-          muscular strength. The 1RM provides valuable insight into an athlete's
-          current strength capacity and helps in designing effective training
-          programs tailored to individual goals.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Directly testing the 1RM can be risky, especially for beginners or those
-          with injuries, as it requires maximal effort and proper technique. To
-          mitigate these risks, submaximal testing methods have been developed,
-          where an individual lifts a lighter weight for multiple repetitions.
-          Using mathematical formulas such as the Epley and Brzycki equations,
-          these submaximal lifts can estimate the 1RM safely and effectively.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          The Epley formula estimates 1RM by multiplying the weight lifted by a
-          factor that increases with the number of repetitions performed, while
-          the Brzycki formula uses a slightly different ratio to account for
-          fatigue and strength endurance. Both formulas are validated and widely
-          accepted in the fitness community for their balance of accuracy and
-          safety.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the 1RM — One-Rep Max (Epley/Brzycki)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The 1RM calculator estimates your one-repetition maximum—the heaviest weight you can lift for a single rep—based on a submaximal lift you can perform for multiple reps. This tool is invaluable for strength athletes, powerlifters, and gym enthusiasts because it allows you to estimate your max without risking injury through actual maximal testing. Both the Epley and Brzycki formulas are scientifically validated and widely used in strength training programming.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, enter two values: the weight you lifted and the number of reps you completed with good form. The weight should be accurate to the nearest pound or kilogram, and the rep count should reflect the highest number of controlled, full-range repetitions you could perform. For best results, use weights that represent your true working max at that rep range—not a warm-up set or a set performed under fatigue.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator will display your estimated 1RM using both formulas, allowing you to compare results and see which may be more conservative for your strength profile. Use the Epley estimate for slightly higher predictions and the Brzycki for more conservative estimates, particularly if you performed more than 10 reps. Apply these estimates to adjust your training weights for different rep ranges, periodize your workouts, or track strength progress over time without constant maximal testing.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates your One-Rep Max (1RM) using the Epley and
-          Brzycki formulas based on the weight you lifted and the number of
-          repetitions you performed. Follow these steps to get an accurate
-          estimate:
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Weight Lifted:</strong> Enter the amount of weight you lifted
-            during your set. Use pounds (lbs) if you selected Imperial units or
-            kilograms (kg) for Metric.
-          </li>
-          <li>
-            <strong>Number of Repetitions:</strong> Enter the number of times you
-            lifted that weight in a single set. This should be between 1 and 10
-            reps for best accuracy.
-          </li>
-          <li>
-            Click the <em>Calculate</em> button to see your estimated 1RM displayed
-            below.
-          </li>
-          <li>
-            Use the <em>Reset</em> button to clear inputs and perform new
-            calculations as needed.
-          </li>
+      {/* TABLE: 1RM Estimates Using Epley vs. Brzycki (200 lbs Lifted) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">1RM Estimates Using Epley vs. Brzycki (200 lbs Lifted)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table compares estimated one-rep maximums across different rep ranges using both the Epley and Brzycki formulas for a 200 lb lift.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Reps Performed</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Epley Formula (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Brzycki Formula (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Difference</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">206</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">204</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">213</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">210</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">227</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">222</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">247</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">238</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">260</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">250</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">273</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">262</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">293</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13 lbs</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Epley tends to overestimate at higher rep ranges. Formulas are most accurate between 2-10 reps.</p>
+      </section>
+
+      {/* TABLE: Strength Standards for Upper Body Lifts (Male, Bodyweight 185 lbs) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Strength Standards for Upper Body Lifts (Male, Bodyweight 185 lbs)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These benchmarks represent approximate 1RM standards for untrained, intermediate, and advanced male lifters at 185 lbs bodyweight.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Lift</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Untrained</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Intermediate</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Advanced</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bench Press</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">135 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">225 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">315 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Overhead Press</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">85 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">145 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">205 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Barbell Row</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">155 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">255 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">365 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Incline Bench Press</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">95 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">165 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">245 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Close Grip Bench</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">115 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">185 lbs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">275 lbs</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Standards vary by training age, genetics, and technique. Use these as general reference points only.</p>
+      </section>
+
+      {/* TABLE: Rep Max Conversion Reference (Estimated 1RM of 300 lbs) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Rep Max Conversion Reference (Estimated 1RM of 300 lbs)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows approximate weights for different rep maxes when your calculated 1RM is 300 lbs, useful for programming training cycles.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Target Reps</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Approximate Weight (%1RM)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Training Application</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">300 lbs (100%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Maximal strength testing</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2-3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280-290 lbs (93-97%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low rep strength work</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5-6</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">265-275 lbs (88-92%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Strength and hypertrophy</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">255-265 lbs (85-88%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Hypertrophy focus</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">225-240 lbs (75-80%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Muscular endurance</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">180-210 lbs (60-70%)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Conditioning, high reps</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These percentages are approximations; actual loads depend on individual strength curves and lift type.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Test your submaximal reps when fresh and after adequate warm-up to ensure an accurate 1RM estimate; testing after fatigue or poor form will underestimate your true maximum.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use rep ranges between 3-8 reps for the most reliable 1RM estimates, as both formulas maintain ±5% accuracy in this zone and provide the best balance between safety and validity.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Update your 1RM estimate every 4-6 weeks during training blocks to adjust your working weights and track strength progress; avoid constant daily recalculation as minor fluctuations in performance don't indicate true progress.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Apply your calculated 1RM percentages to structure training cycles: use 85-88% for hypertrophy (8-10 reps), 88-92% for strength (5-6 reps), and 75-80% for muscular endurance (12-15 reps).</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Testing at High Rep Ranges (&gt;12 reps)</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using rep ranges above 12-15 significantly reduces formula accuracy, with estimates potentially overestimating your 1RM by 15-30%. Stick to the 2-10 rep range for reliable estimates, as these formulas were validated using data from this rep range.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Including Failed Reps or Partial Reps</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Counting reps where you didn't achieve full range of motion or had to grind excessively inflates your numbers and leads to an overestimated 1RM. Only count reps performed with controlled form and complete range of motion for accurate calculations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Attempting Calculated Max Without Proper Progression</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A calculated 1RM is a theoretical estimate, not a guaranteed safe lift—attempting it without gradually building up strength and technique over weeks increases serious injury risk. Always progress conservatively toward heavy singles using proper periodization and coaching.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming One Formula is Always Correct</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Neither Epley nor Brzycki is universally perfect; individual variation in strength curves means one formula may suit your physiology better than the other. Compare both results and use historical testing data to determine which formula typically tracks closer to your actual maxes.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Trusted References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between the Epley and Brzycki formulas for 1RM?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Epley formula tends to overestimate 1RM slightly at higher rep ranges, while the Brzycki formula provides more conservative estimates, particularly beyond 10 reps. For lifts in the 2-10 rep range, both formulas produce similar results within 5-10% accuracy. The Epley formula is: 1RM = weight × (1 + 0.0333 × reps), while Brzycki is: 1RM = weight ÷ (1.0278 - 0.0278 × reps).</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the 1RM calculator for predicting my actual one-rep max?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Both Epley and Brzycki formulas have an accuracy range of ±5-10% for most lifters when reps are between 2-10. Accuracy decreases significantly beyond 10 reps, where estimates can deviate by 10-20%. Your actual 1RM may vary based on individual strength curve, training experience, and technique efficiency.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for all types of lifts?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, the 1RM calculator works for compound lifts like squats, deadlifts, and bench presses, as well as isolation exercises like bicep curls or leg presses. However, the formula is most accurate for barbell movements performed with proper form and in the 2-10 rep range. Machine exercises may produce less reliable estimates due to differences in leverage and resistance curves.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What rep range should I use for the most accurate 1RM estimate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The most accurate estimates come from rep ranges between 3-8 reps, where both formulas maintain ±5% accuracy. Using 2-rep or single lifts eliminates the need for estimation entirely. Avoid using this calculator with rep ranges &gt;12, as estimates become increasingly unreliable and can overestimate 1RM by 15-30%.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is it safe to attempt a calculated 1RM without prior training?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">No, attempting a calculated 1RM without proper strength training foundation and technique mastery significantly increases injury risk. A calculated 1RM represents your theoretical maximum, not a guaranteed safe lift. Always build up to heavy singles gradually over weeks, focus on proper form, use spotters, and consider working with a qualified strength coach.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my 1RM estimates?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate your 1RM every 4-6 weeks during active training phases to track progress, or immediately after a dedicated strength testing cycle. If you're consistently hitting your calculated max for 3-5 clean reps, it's time to retest or recalculate based on your new performance. Avoid constant recalculation as minor day-to-day fluctuations in strength don't represent true progress.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does my calculated 1RM seem lower than what I've actually lifted?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This often occurs when lifters use poor form or partial range of motion on their tested weight, which inflates perceived strength without proportional muscle development. It can also happen if you tested reps at a submaximal effort or after fatigue from other exercises. If confident in your form and conditions, the estimate may be conservative—verify by testing a carefully programmed max attempt with full range of motion.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator for bodyweight exercises like pull-ups or dips?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, you can use this calculator for weighted bodyweight exercises by adding the external weight to your bodyweight. For example, if you weigh 180 lbs and perform 6 weighted pull-ups with a 25 lb belt, enter 205 lbs as your weight. For unweighted pull-ups or dips, the calculator is less applicable since the 1RM concept doesn't translate directly; use absolute reps performed as a strength metric instead.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I test my 1RM or rely on the calculator for programming?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Using the calculator for programming is safer and more practical for most lifters, as frequent maximal testing increases injury risk and neural fatigue. Calculate your 1RM every 4-6 weeks from submaximal lifts (3-8 reps) to adjust training weights. Only perform actual 1RM tests 1-2 times per year for peak strength assessment or competition preparation.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://journals.lww.com/nsca-jscr/Fulltext/1998/02000/Prediction_of_One_Repetition_Maximum.2.aspx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Epley, B. (1998). Prediction of One Repetition Maximum. Journal of
-              Strength and Conditioning Research.
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Foundational paper introducing the Epley formula for 1RM estimation.
-            </p>
+          <li>
+            <a href="https://www.nsca.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Strength and Conditioning Association (NSCA) — Position Stand on Strength Training</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The NSCA provides evidence-based guidelines for strength testing and programming across all populations and experience levels.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://journals.lww.com/nsca-jscr/Fulltext/1994/11000/A_Simple_Method_for_Estimating_One_Repetition_Maximum.2.aspx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Brzycki, M. (1994). A Simple Method for Estimating One Repetition
-              Maximum. Journal of Strength and Conditioning Research.
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Original publication describing the Brzycki formula for 1RM
-              calculation.
-            </p>
+          <li>
+            <a href="https://www.acsm.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American College of Sports Medicine (ACSM) — Resistance Training Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ACSM offers peer-reviewed research on exercise prescription, including one-rep max testing protocols and safety standards.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4637913/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Mayhew, J. L., et al. (1992). Prediction of One Repetition Maximum
-              Strength from Multiple Repetition Maximum Testing and Anthropometry.
-              Journal of Strength and Conditioning Research.
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Study validating multiple 1RM prediction equations including Epley and
-              Brzycki.
-            </p>
+          <li>
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PubMed Central — Epley and Brzycki Formula Validation Studies</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Scientific literature database containing peer-reviewed studies validating the accuracy and limitations of both 1RM prediction formulas.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.acefitness.org/education-and-resources/professional/expert-articles/5533/estimating-one-rep-max-using-submaximal-loads/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. American Council on Exercise (ACE). Estimating One-Rep Max Using
-              Submaximal Loads.
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Practical guide on using submaximal lifts and formulas to estimate 1RM
-              safely.
-            </p>
+          <li>
+            <a href="https://exrx.net/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">ExRx.net — Exercise Prescription Information and Database</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive resource providing exercise execution guidelines, strength standards, and one-rep max programming applications for various lifts.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

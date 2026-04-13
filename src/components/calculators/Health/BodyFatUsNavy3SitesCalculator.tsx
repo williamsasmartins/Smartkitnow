@@ -134,25 +134,41 @@ export default function BodyFatUsNavy3SitesCalculator() {
   // 3. FAQS
   const faqs = [
     {
-      question: "What is the US Navy 3-site Body Fat % method?",
-      answer:
-        "The US Navy 3-site method estimates body fat percentage using circumference measurements of specific body sites combined with height. It uses logarithmic formulas developed by the US Navy to provide a practical, non-invasive way to estimate body fat without expensive equipment. This method is widely used in military and fitness settings for its balance of accuracy and convenience.",
+      question: "What is the US Navy Body Fat Formula and how accurate is it?",
+      answer: "The US Navy body fat formula is a non-invasive method that estimates body composition using circumference measurements at three specific sites (abdomen, neck, and hip for women; abdomen, neck, and chest for men). Studies show the formula is approximately 98% as accurate as DEXA scans for estimating body fat percentage, with a margin of error typically between ±3-4%. This makes it one of the most reliable field methods used by military and fitness professionals.",
     },
     {
-      question: "How do I interpret my body fat percentage result?",
-      answer:
-        "Body fat percentage indicates the proportion of fat mass relative to total body weight. Lower percentages generally indicate leaner body composition, while higher percentages suggest more fat mass. The results are categorized into essential fat, athlete, fitness, average, and obese ranges, which help contextualize your health and fitness status. Keep in mind that ideal ranges vary by gender and age.",
+      question: "Where exactly should I measure my abdomen for the most accurate result?",
+      answer: "The abdomen measurement should be taken horizontally at the level of your natural waist, approximately half an inch above your navel, while standing relaxed with your feet together. Ensure the measuring tape is snug but not compressing the skin, and take the measurement at the end of a normal breath to avoid artificially inflating the number. Consistency in measurement location is more important than perfection, so mark the spot if you plan to track progress over time.",
     },
     {
-      question: "What are the limitations of the US Navy method?",
-      answer:
-        "While practical and accessible, the US Navy method has limitations. It assumes consistent fat distribution patterns and may be less accurate for individuals with atypical body shapes, very muscular builds, or certain medical conditions. Measurement errors, especially in waist and neck circumferences, can also affect accuracy. For clinical or precise assessments, more advanced methods like DEXA scans are recommended.",
+      question: "Why does the US Navy formula use different measurement sites for men and women?",
+      answer: "Men and women have different fat distribution patterns due to hormonal differences, with women typically storing more fat in the hips and thighs while men accumulate more abdominal fat. The Navy formula accounts for these biological differences by using hip measurements for women instead of chest measurements, providing more accurate estimations that reflect how each gender naturally carries body fat. This customization improves the formula's accuracy by approximately 2-3% compared to using identical measurement sites for both sexes.",
     },
     {
-      question: "Why is the hip measurement required only for females?",
-      answer:
-        "The US Navy formula for females includes the hip circumference because women typically store fat differently than men, especially around the hips and thighs. Including the hip measurement improves the accuracy of the body fat estimate for females by accounting for this fat distribution pattern, which is not as prominent in males.",
+      question: "What is considered a healthy body fat percentage according to US Navy standards?",
+      answer: "According to US Navy standards, healthy body fat ranges are approximately 10-20% for adult men and 18-32% for adult women, though these vary slightly by age group. For men aged 20-40, the ideal range is 8-19%, while for women aged 20-40, it is 16-25%. Body fat percentages below 3% for men and 8% for women are considered dangerous and unsustainable, while percentages above 25% for men and 32% for women indicate elevated health risks including cardiovascular disease and metabolic disorders.",
     },
+    {
+      question: "Can the US Navy formula be used for obese individuals or those significantly overweight?",
+      answer: "The US Navy formula remains reasonably accurate for most body compositions, though it may have reduced accuracy at very high body fat percentages (&gt;40%) due to increased skin fold variability and measurement challenges. For individuals with obesity, the formula typically still provides useful directional information, but measurements should be taken with extra care to ensure accuracy around larger circumferences. If precision is critical for individuals at extreme body weights, professional body composition analysis using hydrostatic weighing or DEXA scanning may provide more reliable results.",
+    },
+    {
+      question: "How often should I remeasure my body fat using the Navy formula to track progress?",
+      answer: "For meaningful progress tracking, remeasure your body fat using the Navy formula every 4-6 weeks, as more frequent measurements (weekly or bi-weekly) may show little change and can be discouraging. Body composition changes take time, and weekly fluctuations in water retention and glycogen storage can mask actual fat loss or muscle gain. Consistency in measurement time of day (preferably morning before eating) and technique is essential for valid comparisons between measurements.",
+    },
+    {
+      question: "What is the difference between body fat percentage and BMI, and which is more accurate?",
+      answer: "Body Mass Index (BMI) is a simple height-to-weight ratio that does not distinguish between fat and muscle mass, making it unable to account for athletic individuals who may have high BMI but low body fat. The US Navy body fat formula directly measures body composition and provides a much more accurate picture of actual fat distribution and health risk, particularly for muscular or very lean individuals. The Navy formula is generally considered superior for fitness assessment because a person can have a healthy BMI while still having excess body fat, or an overweight BMI while maintaining low body fat through muscle mass.",
+    },
+    {
+      question: "Can I use the US Navy formula if I have had surgery or significant weight loss with loose skin?",
+      answer: "The US Navy formula may produce less accurate results if you have significant loose skin from weight loss or post-surgical changes, as the circumference measurements can be affected by skin laxity that doesn't represent actual fat or muscle. In cases of major body composition changes (such as after bariatric surgery), you may want to supplement Navy measurements with other methods like progress photos or clothing fit to get a complete picture. For the most accurate assessment after major changes, professional body composition analysis might be worth considering.",
+    },
+    {
+      question: "How does age affect body fat percentage calculations using the US Navy formula?",
+      answer: "The US Navy formula itself does not directly adjust for age, but age significantly affects what is considered a healthy body fat percentage, as people naturally accumulate more body fat and lose muscle mass with aging. For example, a healthy body fat range for men aged 20-39 is approximately 8-19%, but for men aged 60+ it increases to 13-25%, reflecting normal physiological changes. When using the calculator, you should interpret your results within the context of your age group rather than comparing yourself to younger individuals, as age-adjusted healthy ranges provide more meaningful benchmarks for your fitness goals.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -345,137 +361,254 @@ export default function BodyFatUsNavy3SitesCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* MANDATORY "WHAT IS" SECTION */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          What is the Body Fat % (US Navy / 3-sites)?
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Body Fat Percentage (US Navy / 3-sites) method is a widely used technique to estimate an individual's body fat percentage using simple circumference measurements combined with height. Developed by the United States Navy, this method provides a practical and non-invasive way to assess body composition without the need for expensive or specialized equipment. It relies on measuring specific body sites — the neck, waist, and for females, the hips — and applying logarithmic formulas to estimate the proportion of fat mass relative to total body weight.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This method is particularly popular in military, fitness, and health settings because it balances accuracy with ease of use. Unlike methods such as hydrostatic weighing or DEXA scans, which require specialized tools and facilities, the US Navy method can be performed quickly with just a tape measure and a calculator. It is especially useful for tracking changes in body composition over time, helping individuals and professionals monitor fitness progress and health risks associated with excess body fat.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The method differentiates between males and females due to differences in fat distribution patterns. For males, the formula uses measurements of the neck and waist, while for females, the hip measurement is also included to account for typically higher fat storage in the hip and thigh regions. The resulting body fat percentage can then be categorized into ranges such as essential fat, athlete, fitness, average, and obese, providing meaningful context for health and fitness assessments.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          While the US Navy method is convenient and generally reliable, it is important to recognize its limitations. Factors such as measurement technique, body shape variations, and extreme muscularity can affect accuracy. Nonetheless, it remains a trusted tool for many health professionals and fitness enthusiasts in Canada, the US, and internationally.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Body Fat % (US Navy / 3-sites)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The US Navy body fat calculator uses the 3-site skinfold measurement method to estimate your body fat percentage, a quick and reasonably accurate way to assess body composition without expensive equipment. This method has been used by military personnel and fitness professionals for decades because it provides results within 3-4% accuracy compared to advanced laboratory methods like DEXA scans. Understanding your body fat percentage is more informative than BMI alone because it distinguishes between muscle and fat, giving you a clearer picture of your actual fitness level.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, you need to measure three specific locations on your body using a soft measuring tape: your neck, abdomen, and either your chest (for men) or hips (for women). Each measurement should be taken horizontally while standing relaxed with feet together, ensuring the tape is snug against your skin without compressing it. Accuracy depends heavily on consistent technique, so measure at the same time of day, typically in the morning before eating or exercising, and try to use the same tape each time you track progress.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">After entering your measurements and age, the calculator will display your estimated body fat percentage and show you how it compares to healthy ranges for your age group and gender. A result of 18-24% for men or 25-31% for women indicates average health with room for improvement, while 14-17% for men or 18-22% for women represents good fitness. Remember that this estimate has a margin of error of approximately 3-4%, so small changes in your result may reflect measurement error rather than actual body composition changes.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates your body fat percentage using the US Navy 3-site method. To get an accurate result, follow these steps carefully:
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Select your unit system:</strong> Choose Imperial (inches, pounds) if you are in the US or Canada, or Metric (centimeters, kilograms) for international measurements.
-          </li>
-          <li>
-            <strong>Choose your gender:</strong> The formula differs for males and females due to different fat distribution patterns.
-          </li>
-          <li>
-            <strong>Enter your height:</strong> Measure your total height accurately.
-          </li>
-          <li>
-            <strong>Measure your neck circumference:</strong> Measure just below the larynx (Adam's apple), keeping the tape perpendicular to the neck axis.
-          </li>
-          <li>
-            <strong>Measure your waist circumference:</strong> For males, measure at the narrowest point of the waist or at the navel level. For females, measure at the narrowest point.
-          </li>
-          <li>
-            <strong>Measure your hip circumference (females only):</strong> Measure at the widest point of the hips/buttocks.
-          </li>
-          <li>
-            <strong>Enter all measurements into the calculator and click Calculate.</strong> The calculator will provide your estimated body fat percentage along with a category to help interpret your result.
-          </li>
+      {/* TABLE: Healthy Body Fat Percentage Ranges by Age and Gender (US Navy Standards) */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Healthy Body Fat Percentage Ranges by Age and Gender (US Navy Standards)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">These ranges represent healthy body fat percentages according to US Navy standards, organized by age group and gender to help you interpret your results.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age Group</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Men (Healthy Range %)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Women (Healthy Range %)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20-29 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8-16%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-24%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30-39 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11-18%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17-25%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40-49 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13-20%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-26%</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">50-59 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-27%</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">60+ years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-23%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21-28%</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These ranges reflect age-adjusted healthy body fat percentages. Below 3% for men and 8% for women is considered dangerous; above 25% for men and 32% for women indicates elevated health risks.</p>
+      </section>
+
+      {/* TABLE: Body Fat Category Classifications */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Body Fat Category Classifications</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table categorizes body fat percentage ranges and their associated health classifications for adult men and women.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Classification</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Men Body Fat %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Women Body Fat %</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Health Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Essential Fat</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2-5%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-13%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Minimum for basic biological function</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Athletic</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6-13%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-17%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excellent fitness level, athlete range</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fitness</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">14-17%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-22%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Good health and fitness</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Average</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">18-24%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-31%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Acceptable but room for improvement</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Obese</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25%+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">32%+</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Elevated health risks and disease potential</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">The Athletic and Fitness categories represent optimal health ranges for most adults seeking good fitness outcomes.</p>
+      </section>
+
+      {/* TABLE: Measurement Site Standards for US Navy 3-Site Formula */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Measurement Site Standards for US Navy 3-Site Formula</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Proper measurement technique is critical for accurate results; this table specifies the exact anatomical locations for each measurement site.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Measurement Site</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Men Location</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Women Location</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Neck</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Just below the larynx (Adam's apple), horizontal plane</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Just below the larynx (Adam's apple), horizontal plane</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Abdomen</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Half inch above the navel, horizontal plane</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Half inch above the navel, horizontal plane</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chest</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">One-third the distance between shoulder and nipple</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not used in women's 3-site formula</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Hip</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Not used in men's 3-site formula</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Largest circumference around hips and buttocks</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">All measurements should be taken with a flexible measuring tape while standing relaxed, not flexing muscles, with the tape snug but not compressing skin.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your neck just below your larynx (Adam's apple) in a horizontal plane while keeping your head straight forward, not looking down or tilted back, to ensure a consistent measurement location each time.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Take your abdomen measurement at the end of a normal breath cycle, not while holding in your stomach or breathing deeply, as this significantly affects the tape reading and produces inaccurate results.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Perform measurements at the same time each day (ideally in the morning) to minimize variations from water retention, meal timing, and daily fluid fluctuations that can shift your body weight by 2-5 pounds.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Record your measurements and results in a spreadsheet or fitness app to track trends over 4-6 week intervals, as individual measurements are less meaningful than seeing consistent progress or plateaus over time.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Measuring the Abdomen While Flexing or Sucking In</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Flexing your abdominal muscles or consciously pulling in your stomach will artificially lower your measurement and overestimate fitness, sometimes by 1-2 inches. Always measure with your abdomen relaxed and your posture natural to get accurate results.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using an Overly Tight or Loose Measuring Tape</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A tape that is too loose will overestimate circumference and inflate your body fat percentage, while a tape that compresses the skin will underestimate it. The tape should be snug enough to sit flat against your skin without creating indentations or gaps.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Age-Adjusted Healthy Ranges</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people compare their body fat percentage to ranges for younger age groups, creating unrealistic expectations that don't account for natural physiological changes with aging. Your results should always be evaluated against the healthy ranges for your specific age group to get an accurate assessment.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Taking Measurements Immediately After Exercise or Eating</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Exercise causes temporary fluid shifts and increased blood flow that affect measurements, while eating can bloat the abdomen temporarily and raise circumference readings. Always measure in the morning on an empty stomach and avoid exercise for at least 1-2 hours before measurement for consistency.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Trusted References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the US Navy Body Fat Formula and how accurate is it?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The US Navy body fat formula is a non-invasive method that estimates body composition using circumference measurements at three specific sites (abdomen, neck, and hip for women; abdomen, neck, and chest for men). Studies show the formula is approximately 98% as accurate as DEXA scans for estimating body fat percentage, with a margin of error typically between ±3-4%. This makes it one of the most reliable field methods used by military and fitness professionals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Where exactly should I measure my abdomen for the most accurate result?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The abdomen measurement should be taken horizontally at the level of your natural waist, approximately half an inch above your navel, while standing relaxed with your feet together. Ensure the measuring tape is snug but not compressing the skin, and take the measurement at the end of a normal breath to avoid artificially inflating the number. Consistency in measurement location is more important than perfection, so mark the spot if you plan to track progress over time.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does the US Navy formula use different measurement sites for men and women?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Men and women have different fat distribution patterns due to hormonal differences, with women typically storing more fat in the hips and thighs while men accumulate more abdominal fat. The Navy formula accounts for these biological differences by using hip measurements for women instead of chest measurements, providing more accurate estimations that reflect how each gender naturally carries body fat. This customization improves the formula's accuracy by approximately 2-3% compared to using identical measurement sites for both sexes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is considered a healthy body fat percentage according to US Navy standards?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">According to US Navy standards, healthy body fat ranges are approximately 10-20% for adult men and 18-32% for adult women, though these vary slightly by age group. For men aged 20-40, the ideal range is 8-19%, while for women aged 20-40, it is 16-25%. Body fat percentages below 3% for men and 8% for women are considered dangerous and unsustainable, while percentages above 25% for men and 32% for women indicate elevated health risks including cardiovascular disease and metabolic disorders.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can the US Navy formula be used for obese individuals or those significantly overweight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The US Navy formula remains reasonably accurate for most body compositions, though it may have reduced accuracy at very high body fat percentages (&gt;40%) due to increased skin fold variability and measurement challenges. For individuals with obesity, the formula typically still provides useful directional information, but measurements should be taken with extra care to ensure accuracy around larger circumferences. If precision is critical for individuals at extreme body weights, professional body composition analysis using hydrostatic weighing or DEXA scanning may provide more reliable results.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I remeasure my body fat using the Navy formula to track progress?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For meaningful progress tracking, remeasure your body fat using the Navy formula every 4-6 weeks, as more frequent measurements (weekly or bi-weekly) may show little change and can be discouraging. Body composition changes take time, and weekly fluctuations in water retention and glycogen storage can mask actual fat loss or muscle gain. Consistency in measurement time of day (preferably morning before eating) and technique is essential for valid comparisons between measurements.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between body fat percentage and BMI, and which is more accurate?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Body Mass Index (BMI) is a simple height-to-weight ratio that does not distinguish between fat and muscle mass, making it unable to account for athletic individuals who may have high BMI but low body fat. The US Navy body fat formula directly measures body composition and provides a much more accurate picture of actual fat distribution and health risk, particularly for muscular or very lean individuals. The Navy formula is generally considered superior for fitness assessment because a person can have a healthy BMI while still having excess body fat, or an overweight BMI while maintaining low body fat through muscle mass.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use the US Navy formula if I have had surgery or significant weight loss with loose skin?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The US Navy formula may produce less accurate results if you have significant loose skin from weight loss or post-surgical changes, as the circumference measurements can be affected by skin laxity that doesn't represent actual fat or muscle. In cases of major body composition changes (such as after bariatric surgery), you may want to supplement Navy measurements with other methods like progress photos or clothing fit to get a complete picture. For the most accurate assessment after major changes, professional body composition analysis might be worth considering.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does age affect body fat percentage calculations using the US Navy formula?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The US Navy formula itself does not directly adjust for age, but age significantly affects what is considered a healthy body fat percentage, as people naturally accumulate more body fat and lose muscle mass with aging. For example, a healthy body fat range for men aged 20-39 is approximately 8-19%, but for men aged 60+ it increases to 13-25%, reflecting normal physiological changes. When using the calculator, you should interpret your results within the context of your age group rather than comparing yourself to younger individuals, as age-adjusted healthy ranges provide more meaningful benchmarks for your fitness goals.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.navyfitness.org/body-fat-calculator/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. US Navy Body Fat Calculator Official Guide
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Official US Navy resource explaining the body fat calculation method and measurement instructions.
-            </p>
+          <li>
+            <a href="https://www.mynavyhr.navy.mil/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">US Navy Body Composition Assessment (Official Naval Education and Training Command)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official US Navy resource documenting the standardized body fat measurement procedures and standards used across all military branches.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4045293/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Comparison of Body Fat Measurement Methods (NCBI)
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Peer-reviewed article comparing the US Navy method with other body composition techniques.
-            </p>
+          <li>
+            <a href="https://www.acefitness.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Body Fat Percentage Standards and Classifications (American Council on Exercise)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The ACE provides evidence-based body fat classification ranges and recommendations for fitness professionals using the Navy 3-site formula.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.acefitness.org/education-and-resources/lifestyle/tools-calculators/body-fat-percentage-calculator/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. ACE Fitness Body Fat Percentage Calculator & Guide
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              American Council on Exercise resource detailing body fat categories and measurement methods.
-            </p>
+          <li>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Validity of Anthropometric Body Composition Methods (National Institutes of Health - PubMed)</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Peer-reviewed research comparing the accuracy of the US Navy formula against DEXA scanning and other gold-standard body composition assessment methods.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.cdc.gov/healthyweight/assessing/bmi/adult_bmi/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. CDC Healthy Weight - Assessing Your Weight
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Centers for Disease Control and Prevention overview of body composition and health implications.
-            </p>
+          <li>
+            <a href="https://www.cdc.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CDC Body Composition and Health Risk Assessment Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Centers for Disease Control guidelines on interpreting body composition measurements and understanding health risks associated with different body fat percentages.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

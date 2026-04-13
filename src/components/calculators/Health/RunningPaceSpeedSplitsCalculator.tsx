@@ -125,25 +125,41 @@ export default function RunningPaceSpeedSplitsCalculator() {
   // 3. FAQS
   const faqs = [
     {
-      question: "What is running pace and why is it important?",
-      answer:
-        "Running pace refers to the amount of time it takes to cover a specific distance, typically expressed as minutes per mile or kilometer. It is a critical metric for runners to monitor their performance, set goals, and tailor training plans. Understanding your pace helps in pacing yourself during races to avoid burnout and achieve optimal performance.",
+      question: "What is the difference between pace and speed when running?",
+      answer: "Pace is the amount of time it takes to cover a specific distance (typically expressed in minutes per mile or kilometer), while speed is the distance covered in a set amount of time (typically expressed in miles per hour or kilometers per hour). For example, a runner with a pace of 8:00 minutes per mile is traveling at a speed of 7.5 mph. This calculator converts between these two metrics instantly so you can track your performance in whichever unit you prefer.",
     },
     {
-      question: "How do I interpret the speed and pace values?",
-      answer:
-        "Speed is the distance covered per unit time, usually miles per hour (mph) or kilometers per hour (kph), while pace is the inverse, indicating how long it takes to cover a unit distance. A faster pace corresponds to a higher speed. For example, a pace of 8 minutes per mile equates to 7.5 mph. Both metrics provide insights into your running efficiency and endurance.",
+      question: "How do I calculate my running splits?",
+      answer: "A split is your time for a specific segment of a run, such as each mile or kilometer. To calculate splits, divide your total running time by the number of segments completed. For instance, if you ran 5 miles in 42 minutes and 30 seconds, your average split per mile would be 8:30. This calculator automatically computes splits for any distance and time combination, helping you analyze pace consistency throughout your workout.",
     },
     {
-      question: "What are split times and how can they help my training?",
-      answer:
-        "Split times break down your total run into smaller segments, such as each mile or kilometer, allowing you to analyze consistency and endurance throughout the run. Monitoring splits helps identify if you start too fast or slow down towards the end, enabling adjustments in pacing strategy for better race outcomes.",
+      question: "What is a good 5K running pace for beginners?",
+      answer: "A good 5K pace for beginning runners typically ranges from 11:00 to 13:00 minutes per mile, which translates to speeds between 4.6 and 5.5 mph. As fitness improves, many runners aim to break 10:00 minutes per mile (6.0 mph). Using the calculator, you can track your 5K splits over time and monitor your progress toward more competitive paces, which generally start around 8:00 minutes per mile for recreational runners.",
     },
     {
-      question: "Are there limitations to using this calculator?",
-      answer:
-        "While this calculator provides accurate pace, speed, and split estimates based on input distance and time, it assumes a constant pace throughout the run. Real-world factors such as terrain, weather, fatigue, and elevation changes can affect actual performance. Always use these calculations as guidelines rather than absolute values.",
+      question: "How can I use this calculator to improve my marathon training?",
+      answer: "For marathon training, use this calculator to establish your target goal pace based on your fitness level and desired finish time. If you want to complete a marathon (26.2 miles) in 4 hours, you need an average pace of 9:05 minutes per mile. Calculate splits for each training run to ensure you're staying on target, and use the speed conversion feature to monitor whether you're hitting your aerobic training zones at the correct intensities.",
     },
+    {
+      question: "What does negative split mean in running?",
+      answer: "A negative split occurs when you run the second half of a race faster than the first half, which is a sign of good pacing strategy and remaining energy reserve. For example, if you run the first 13.1 miles of a marathon at 9:30 minutes per mile and the final 13.1 miles at 8:45 minutes per mile, you've achieved a negative split. This calculator helps you analyze your splits segment by segment to identify whether you're front-loading your effort or maintaining consistent, smart pacing.",
+    },
+    {
+      question: "How do I convert my running pace to speed for fitness tracking apps?",
+      answer: "Most fitness apps allow you to input either pace (min/mile) or speed (mph), but not all accept both formats. This calculator instantly converts between the two: a pace of 7:30 per mile equals 8.0 mph, while 6:00 per mile equals 10.0 mph. Simply enter your known metric and the calculator will provide the equivalent in the other unit, which you can then log into your fitness tracking app or smartwatch.",
+    },
+    {
+      question: "What is the average running pace for a half marathon?",
+      answer: "The average half marathon pace for recreational runners typically falls between 9:00 and 11:00 minutes per mile (5.5 to 6.7 mph), with a typical finish time around 2 hours. Competitive runners often aim for paces between 7:00 and 8:30 minutes per mile. Using this calculator, you can establish your target half marathon pace based on your current fitness level, then use it to calculate your projected finish time and monitor your training splits to ensure consistent pacing.",
+    },
+    {
+      question: "How should I pace my 10K race differently than a 5K?",
+      answer: "A 10K requires a more conservative pace than a 5K because fatigue accumulates over the longer distance. If you can run a 5K at 8:00 minutes per mile, a sustainable 10K pace might be closer to 8:30-8:45 minutes per mile. This calculator allows you to input various paces and distances to find the right balance between speed and endurance for your training plan.",
+    },
+    {
+      question: "Can this calculator help me set realistic running goals?",
+      answer: "Yes, this calculator is an excellent tool for goal-setting by helping you understand the relationship between pace, speed, distance, and time. If you aim to run a 10K in under 50 minutes, the calculator shows you need an average pace of 8:02 minutes per mile (7.45 mph). By calculating splits and testing different paces, you can set incremental goals that are challenging but achievable based on your current fitness level.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -331,128 +347,280 @@ export default function RunningPaceSpeedSplitsCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* MANDATORY "WHAT IS" SECTION */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          What is the Running Pace, Speed & Split Calculator?
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Running Pace, Speed & Split Calculator is a specialized tool designed to help runners accurately determine their running pace, speed, and split times based on the distance covered and the total time taken. Pace is typically expressed as the time it takes to run one mile or kilometer, while speed is the distance covered per hour. Splits break down the run into smaller segments, allowing runners to analyze their consistency and endurance throughout their workout or race.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator supports both imperial units (miles, feet) and metric units (kilometers, meters), defaulting to imperial for users in the US and Canada. By inputting your total distance and time, you can instantly see your average pace and speed, as well as optional split times for any segment length you choose. This information is invaluable for training optimization, race planning, and performance tracking.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Understanding your pace and speed helps prevent common running mistakes such as starting too fast or too slow, which can lead to fatigue or suboptimal race results. Additionally, analyzing splits can reveal patterns in your running form and endurance, guiding adjustments in training intensity and recovery strategies. This calculator empowers runners of all levels to make data-driven decisions for improved performance.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Whether you are a beginner aiming to complete your first 5K or an experienced marathoner targeting a personal best, this calculator provides precise and actionable insights. It bridges the gap between raw data and meaningful interpretation, making it an essential companion for anyone serious about running.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Running Pace, Speed & Split Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Running Pace, Speed & Split Calculator is an essential tool for runners of all levels who want to understand their performance metrics and set realistic training goals. Whether you're preparing for your first 5K or training for a marathon, this calculator instantly converts between pace and speed, calculates projected finish times, and breaks down your performance into meaningful segments. By having these metrics at your fingertips, you can make informed decisions about your training intensity, adjust your goals based on actual data, and track improvements over time.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your known metric: either your running pace (minutes and seconds per mile or kilometer), your speed (miles or kilometers per hour), or your total time and distance covered. The calculator will automatically convert between pace and speed formats and can compute your splits for any segment distance you specify. Understanding these inputs helps you communicate your performance clearly with coaches, compare yourself against benchmarks, and identify whether you're training in the correct aerobic or anaerobic zones for your fitness goals.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The results reveal not just your overall performance but also provide actionable insights for training adjustments. If the calculator shows you're running a 9:30 pace for a 10K but your goal is 8:30, you have a clear target improvement of one minute per mile. Use the split functionality to analyze whether your pace was consistent throughout your run, which indicates sustainable effort, or whether you faded in the final miles, suggesting you need to build endurance or adjust your starting pace strategy.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this calculator is straightforward and intuitive. Begin by selecting your preferred unit system—Imperial for miles or Metric for kilometers. Then, enter the total distance you ran or plan to run, followed by the total time taken, broken down into hours, minutes, and seconds. Optionally, you can specify a split distance to calculate average split times for segments of your run.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Distance:</strong> Enter the total distance of your run in miles or kilometers, depending on your selected unit system. This value must be greater than zero.
-          </li>
-          <li>
-            <strong>Time:</strong> Input the total time taken to complete the distance, using hours, minutes, and seconds fields. At least one of these fields must be greater than zero.
-          </li>
-          <li>
-            <strong>Split Distance (Optional):</strong> Specify a smaller segment distance (e.g., 1 mile or 1 km) to calculate average split times. This helps analyze pacing consistency.
-          </li>
-          <li>
-            <strong>Calculate:</strong> Click the calculate button to see your average pace, speed, and splits (if provided). Use the reset button to clear all inputs and start fresh.
-          </li>
+      {/* TABLE: Common Running Pace Benchmarks by Distance */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Common Running Pace Benchmarks by Distance</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows typical pace ranges for recreational and competitive runners across common race distances in 2024-2025.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Distance</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Recreational Pace (min/mile)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Competitive Pace (min/mile)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Elite Pace (min/mile)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5K (3.1 miles)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10:30–12:30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7:00–8:30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4:45–5:30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10K (6.2 miles)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11:00–13:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7:45–9:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5:00–5:45</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Half Marathon (13.1 miles)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11:30–13:30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8:30–10:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5:15–6:00</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Marathon (26.2 miles)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12:00–14:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9:00–11:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5:30–6:30</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Pace ranges vary by age, gender, and training experience. Use this calculator to find your personal baseline and track improvements.</p>
+      </section>
+
+      {/* TABLE: Pace to Speed Conversion Chart */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Pace to Speed Conversion Chart</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Quick reference for converting between minutes per mile (pace) and miles per hour (speed).</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Pace (min/mile)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Speed (mph)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Speed (km/h)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16.1</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.57</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">13.8</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.1</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">9:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.67</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.7</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.7</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">11:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.8</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">12:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.0</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">13:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.62</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.4</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Use this conversion table to quickly reference pace and speed equivalents without calculating, or verify calculator outputs.</p>
+      </section>
+
+      {/* TABLE: Target Finish Times Based on Goal Pace */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Target Finish Times Based on Goal Pace</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows projected finish times for various distances when running at consistent target paces.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Goal Pace (min/mile)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">5K Time</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">10K Time</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Half Marathon Time</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Marathon Time</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">7:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21:42</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">43:24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:31:42</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3:03:24</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">8:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24:52</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">49:44</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:44:52</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3:29:44</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">9:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">27:54</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">55:48</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:57:54</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3:55:48</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">10:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:02:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2:11:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4:22:00</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">11:00</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">34:06</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1:08:12</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2:24:06</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4:48:12</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These are theoretical times assuming consistent pace throughout; actual performance may vary due to terrain, weather, and fatigue factors.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your splits during every training run using this calculator — consistent negative splits (faster second half) or even splits indicate good pacing strategy, while positive splits may signal insufficient aerobic fitness or improper warm-up.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use this calculator to establish your aerobic base pace, which should typically be 1.5 to 2 minutes per mile slower than your 5K race pace; training exclusively at fast paces leads to burnout and injury, so verify your easy-run paces fall in the correct zone.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Calculate different race scenarios before committing to a goal time — if your 10K splits suggest you're averaging 9:15 per mile, a marathon at 9:00 per mile may be unrealistic; use the calculator to set conservative goals that motivate rather than discourage.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Convert your pace to speed when analyzing heart rate zones, as many fitness trackers and coaching plans reference zones by mph or km/h rather than min/mile, ensuring you're training at the intended physiological intensity for each workout.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing pace with speed</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many runners think pace and speed are interchangeable, but they're inverse metrics—a slower pace (higher number) equals lower speed, and vice versa. Entering pace when the calculator expects speed, or vice versa, will produce completely inaccurate results; always verify which metric the input field requires before entering your data.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring splits during training</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using only your overall finish time ignores critical information about pacing consistency. A runner who completes 5 miles in 40 minutes appears to average 8:00 per mile, but splits might reveal they ran the first 3 miles at 7:30 and the final 2 miles at 9:00, indicating a lack of endurance; the calculator's split feature exposes this hidden fatigue.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Setting goals based on one good run</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">A single fast run doesn't reflect your sustainable capability—conditions like downhill terrain, favorable weather, or adrenaline can produce artificially fast paces. Calculate your pace over multiple runs and use the average to set realistic training goals; chasing one exceptional performance often leads to overtraining and injury.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for distance measurement errors</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">GPS watches and running apps can have accuracy variances of 5-10%, meaning a 5K might actually be 4.95 or 5.1 miles; if your calculated pace seems off, verify your route distance using this calculator with multiple distance measurements to identify systematic GPS drift in your device.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Trusted References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between pace and speed when running?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pace is the amount of time it takes to cover a specific distance (typically expressed in minutes per mile or kilometer), while speed is the distance covered in a set amount of time (typically expressed in miles per hour or kilometers per hour). For example, a runner with a pace of 8:00 minutes per mile is traveling at a speed of 7.5 mph. This calculator converts between these two metrics instantly so you can track your performance in whichever unit you prefer.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my running splits?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A split is your time for a specific segment of a run, such as each mile or kilometer. To calculate splits, divide your total running time by the number of segments completed. For instance, if you ran 5 miles in 42 minutes and 30 seconds, your average split per mile would be 8:30. This calculator automatically computes splits for any distance and time combination, helping you analyze pace consistency throughout your workout.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a good 5K running pace for beginners?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A good 5K pace for beginning runners typically ranges from 11:00 to 13:00 minutes per mile, which translates to speeds between 4.6 and 5.5 mph. As fitness improves, many runners aim to break 10:00 minutes per mile (6.0 mph). Using the calculator, you can track your 5K splits over time and monitor your progress toward more competitive paces, which generally start around 8:00 minutes per mile for recreational runners.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How can I use this calculator to improve my marathon training?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For marathon training, use this calculator to establish your target goal pace based on your fitness level and desired finish time. If you want to complete a marathon (26.2 miles) in 4 hours, you need an average pace of 9:05 minutes per mile. Calculate splits for each training run to ensure you're staying on target, and use the speed conversion feature to monitor whether you're hitting your aerobic training zones at the correct intensities.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does negative split mean in running?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A negative split occurs when you run the second half of a race faster than the first half, which is a sign of good pacing strategy and remaining energy reserve. For example, if you run the first 13.1 miles of a marathon at 9:30 minutes per mile and the final 13.1 miles at 8:45 minutes per mile, you've achieved a negative split. This calculator helps you analyze your splits segment by segment to identify whether you're front-loading your effort or maintaining consistent, smart pacing.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I convert my running pace to speed for fitness tracking apps?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most fitness apps allow you to input either pace (min/mile) or speed (mph), but not all accept both formats. This calculator instantly converts between the two: a pace of 7:30 per mile equals 8.0 mph, while 6:00 per mile equals 10.0 mph. Simply enter your known metric and the calculator will provide the equivalent in the other unit, which you can then log into your fitness tracking app or smartwatch.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the average running pace for a half marathon?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The average half marathon pace for recreational runners typically falls between 9:00 and 11:00 minutes per mile (5.5 to 6.7 mph), with a typical finish time around 2 hours. Competitive runners often aim for paces between 7:00 and 8:30 minutes per mile. Using this calculator, you can establish your target half marathon pace based on your current fitness level, then use it to calculate your projected finish time and monitor your training splits to ensure consistent pacing.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I pace my 10K race differently than a 5K?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A 10K requires a more conservative pace than a 5K because fatigue accumulates over the longer distance. If you can run a 5K at 8:00 minutes per mile, a sustainable 10K pace might be closer to 8:30-8:45 minutes per mile. This calculator allows you to input various paces and distances to find the right balance between speed and endurance for your training plan.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can this calculator help me set realistic running goals?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator is an excellent tool for goal-setting by helping you understand the relationship between pace, speed, distance, and time. If you aim to run a 10K in under 50 minutes, the calculator shows you need an average pace of 8:02 minutes per mile (7.45 mph). By calculating splits and testing different paces, you can set incremental goals that are challenging but achievable based on your current fitness level.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.runnersworld.com/uk/training/pace-speed/a776282/running-pace-calculator/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Runner's World - Running Pace Calculator
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Comprehensive guide on running pace, speed, and training strategies.
-            </p>
+          <li>
+            <a href="https://www.acsm.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American College of Sports Medicine - Running Training Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Provides evidence-based recommendations for running pace zones and training intensities based on fitness level and age.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.active.com/running/articles/how-to-calculate-your-running-pace"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Active.com - How to Calculate Your Running Pace
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Detailed explanation of pace calculation and its importance for runners.
-            </p>
+          <li>
+            <a href="https://www.runnersworld.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Runner's World Training Plans and Pace Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Offers comprehensive pace benchmarks, training strategies, and expert advice on setting realistic running goals for various distances.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6019055/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. National Institutes of Health - Running Economy and Performance
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Scientific study on factors affecting running pace and endurance.
-            </p>
+          <li>
+            <a href="https://www.usatf.org" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USA Track & Field - Race Standards and Records</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official source for competitive running standards, qualifying paces, and performance benchmarks across all race distances.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.runnersconnect.net/running-splits-explained/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. RunnersConnect - Understanding Running Splits
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Educational resource on how to use splits to improve race performance.
-            </p>
+          <li>
+            <a href="https://www.nih.gov" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Institutes of Health - Exercise Physiology and Running Performance</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Scientific research on the physiological factors that influence running pace, aerobic capacity, and sustainable effort levels.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

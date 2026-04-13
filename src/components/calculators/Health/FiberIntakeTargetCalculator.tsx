@@ -56,25 +56,41 @@ export default function FiberIntakeTargetCalculator() {
   // 3. FAQS
   const faqs = [
     {
-      question: "What is the Fiber Intake Target (by kcal/sexo)?",
-      answer:
-        "The Fiber Intake Target based on calorie intake and sex is a personalized recommendation for daily dietary fiber consumption. It is calculated by multiplying your daily calorie intake by a standard fiber ratio (14 grams per 1000 kcal). This approach ensures that fiber intake scales with energy needs, which differ by sex and individual metabolism. Fiber is essential for digestive health, blood sugar regulation, and cardiovascular benefits.",
+      question: "What is the recommended daily fiber intake based on calorie needs?",
+      answer: "The Academy of Nutrition and Dietetics recommends 14 grams of fiber per 1,000 calories consumed daily. For a 2,000 calorie diet, this translates to approximately 28 grams of fiber per day for most adults. This calculator uses this evidence-based ratio to personalize your fiber target based on your specific caloric intake and sex-based nutritional guidelines.",
     },
     {
-      question: "How should I interpret my fiber intake result?",
-      answer:
-        "Your fiber intake target represents the amount of fiber in grams you should aim to consume daily based on your calorie intake and sex. Meeting this target supports optimal gut health, helps maintain healthy cholesterol levels, and can aid in weight management. If your current fiber intake is below this target, consider increasing consumption of fruits, vegetables, whole grains, legumes, nuts, and seeds.",
+      question: "Why does fiber intake differ between men and women?",
+      answer: "The Dietary Reference Intakes (DRI) set by the National Academies of Sciences, Engineering, and Medicine recommend different fiber targets: 38 grams daily for men aged 19-50 and 25 grams daily for women aged 19-50. These differences account for variations in average caloric intake, metabolic rates, and digestive health needs between sexes. This calculator adjusts recommendations based on sex to ensure accurate personalized targets.",
     },
     {
-      question: "Are there any limitations to this calculator?",
-      answer:
-        "This calculator provides a general guideline based on calorie intake and sex but does not account for individual health conditions, age, pregnancy, or specific dietary restrictions. Fiber needs may vary for people with gastrointestinal disorders or other medical conditions. Always consult a healthcare professional or registered dietitian for personalized nutrition advice.",
+      question: "How does this calculator adjust fiber targets for different calorie levels?",
+      answer: "The calculator uses the 14 grams per 1,000 calories benchmark as its foundation, then cross-references sex-based DRI guidelines to ensure your target falls within recommended ranges. For someone consuming 1,500 calories, the target would be approximately 21 grams, while a 2,500 calorie diet would suggest 35 grams. This dual approach ensures recommendations are both calorie-appropriate and sex-specific.",
     },
     {
-      question: "Why is fiber intake recommended per calorie rather than a fixed amount?",
-      answer:
-        "Fiber recommendations per calorie intake ensure that individuals consuming more energy also consume proportionally more fiber, supporting digestive and metabolic health. Fixed fiber targets may not account for differences in energy needs between sexes, ages, or activity levels. This method aligns fiber intake with overall diet quantity and quality.",
+      question: "What happens if my fiber intake falls below the calculated target?",
+      answer: "Insufficient fiber intake below your personalized target may lead to digestive issues including constipation, irregular bowel movements, and poor gut health. Consuming less than 50% of your calculated fiber target can also negatively impact cardiovascular health, blood sugar regulation, and weight management. Gradually increasing fiber intake to meet your target (adding 5 grams per week) helps avoid digestive discomfort.",
     },
+    {
+      question: "Is it possible to consume too much fiber according to this calculator?",
+      answer: "While fiber is essential, consuming significantly more than 50 grams daily without gradual acclimation can cause bloating, gas, and abdominal discomfort. Most health organizations recommend staying within the 25-38 gram range based on sex, with upper limits around 50 grams for most adults. This calculator provides targets aligned with evidence-based guidelines to help you avoid both deficiency and excess.",
+    },
+    {
+      question: "How should I increase my fiber intake to reach my calculated target?",
+      answer: "Increase fiber intake gradually by adding approximately 5 grams per week to allow your digestive system to adapt and minimize bloating. Focus on whole grains (3 grams per serving), legumes (7-8 grams per serving), fruits (3-4 grams per serving), and vegetables (2-3 grams per serving). Aim to spread fiber intake evenly throughout the day and drink at least 8 glasses of water daily to support digestive health.",
+    },
+    {
+      question: "Do athletes or highly active individuals need different fiber targets?",
+      answer: "Active individuals may benefit from slightly higher fiber intake within the recommended range to support gut health and recovery, but the primary calculation remains based on total caloric intake and sex. An athlete consuming 3,000 calories daily would target approximately 42 grams of fiber using the 14 grams per 1,000 calories formula. Consulting with a sports nutritionist can help optimize fiber intake for specific athletic goals.",
+    },
+    {
+      question: "What are the best sources of fiber to meet my daily target?",
+      answer: "Soluble fiber sources include oats, beans, apples, and barley, while insoluble fiber comes from whole wheat, vegetables, and nuts. To efficiently reach your target, combine multiple sources: a bowl of oatmeal (8 grams), a medium apple (4 grams), a cup of beans (15 grams), and vegetables (10 grams) easily achieves 37 grams. Aiming for a mix of soluble and insoluble fiber provides maximum digestive and cardiovascular benefits.",
+    },
+    {
+      question: "How often should I recalculate my fiber target if my calorie needs change?",
+      answer: "Recalculate your fiber target whenever your daily caloric intake changes significantly, such as during weight loss periods, training phases, or lifestyle changes. A change of &gt;300 calories daily warrants a new target calculation using this calculator. Reviewing and adjusting your target quarterly helps ensure your fiber intake remains optimized for your evolving nutritional needs.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -186,118 +202,313 @@ export default function FiberIntakeTargetCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* MANDATORY "WHAT IS" SECTION */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          What is the Fiber Intake Target (by kcal/sexo)?
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Dietary fiber is a crucial component of a healthy diet, known for its benefits in promoting digestive health, regulating blood sugar, and reducing cardiovascular risk. The Fiber Intake Target (by kcal/sexo) is a personalized recommendation that calculates the ideal daily fiber intake based on your total calorie consumption and biological sex. This method ensures that fiber intake scales appropriately with your energy needs, which differ between males and females due to physiological and metabolic differences.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The foundational guideline used in this calculation is the recommendation of 14 grams of fiber per 1000 kilocalories consumed, as established by authoritative bodies such as the Institute of Medicine (IOM) and Health Canada. This ratio reflects the amount of fiber needed to support optimal gastrointestinal function and metabolic health relative to the amount of energy you consume daily. By adjusting fiber intake to your calorie needs, this approach provides a more tailored and effective nutritional target than fixed daily fiber amounts.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Biological sex influences calorie requirements due to differences in body composition, hormonal profiles, and metabolic rates. Typically, males require more calories than females, which translates to a higher fiber intake target when calculated proportionally. This calculator incorporates sex as a key variable to ensure your fiber intake recommendation aligns with your unique physiological needs, supporting better health outcomes.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          Understanding and meeting your fiber intake target can improve bowel regularity, support a healthy microbiome, and reduce the risk of chronic diseases such as type 2 diabetes and heart disease. This calculator empowers you to set realistic and evidence-based fiber goals that fit your lifestyle and nutritional requirements.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Fiber Intake Target (by kcal/sexo)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines your personalized daily fiber intake target by combining your total caloric consumption with sex-based nutritional guidelines. Adequate fiber intake is crucial for digestive health, cardiovascular function, blood sugar regulation, and weight management. By calculating a target specific to your calorie needs and sex, you receive a scientifically-backed recommendation rather than a generic one-size-fits-all number.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, input your average daily caloric intake and select your sex. The calculator applies the evidence-based ratio of 14 grams of fiber per 1,000 calories while cross-referencing the Dietary Reference Intakes (DRI) set by the National Academies, which recommend 38 grams daily for adult males aged 19-50 and 25 grams daily for adult females in the same age range. This dual approach ensures your target is both metabolically appropriate and aligned with national nutritional standards.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your results will show your calculated fiber target in grams per day along with actionable guidance on how to reach it through food sources. The target represents an optimal range rather than a strict ceiling; staying within 10% of your calculated target represents excellent nutritional adherence. Use the target as a benchmark for meal planning, and adjust gradually if you're currently consuming significantly less fiber to avoid digestive discomfort.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using this Fiber Intake Target calculator is straightforward and designed to provide you with a personalized daily fiber goal. Follow these steps to get your recommended intake:
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Select your unit system:</strong> Choose between Imperial (lbs, ft, kcal) or Metric (kg, cm, kcal). The default is Imperial for US/Canada users.
-          </li>
-          <li>
-            <strong>Choose your biological sex:</strong> Select "Female" or "Male" to tailor the fiber target according to typical calorie needs associated with sex.
-          </li>
-          <li>
-            <strong>Enter your estimated daily calorie intake:</strong> Input the number of kilocalories you consume or plan to consume daily. This can be based on your diet, activity level, or a previous calculation such as Total Daily Energy Expenditure (TDEE).
-          </li>
-          <li>
-            <strong>Calculate your fiber target:</strong> Click the "Calculate" button to see your recommended daily fiber intake in grams.
-          </li>
-          <li>
-            <strong>Interpret the result:</strong> Use the fiber target to guide your dietary choices, aiming to meet or exceed this amount through fiber-rich foods.
-          </li>
+      {/* TABLE: Recommended Daily Fiber Intake by Sex and Age Group */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Recommended Daily Fiber Intake by Sex and Age Group</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the Dietary Reference Intake (DRI) recommendations for fiber based on sex and age according to the National Academies of Sciences, Engineering, and Medicine.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age Group</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Males (grams/day)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Females (grams/day)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1-3 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">4-8 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">9-13 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">14-18 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">19-50 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">51-70 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">71+ years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">These are absolute daily targets; the calculator adjusts based on individual caloric intake using the 14g per 1,000 kcal ratio.</p>
+      </section>
+
+      {/* TABLE: Fiber Content in Common Food Sources */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Fiber Content in Common Food Sources</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Understanding the fiber content of everyday foods helps you efficiently reach your personalized daily target calculated by this tool.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food Item</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Serving Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fiber (grams)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Oatmeal, cooked</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Whole wheat bread</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 slice</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3-4</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Black beans, cooked</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chickpeas, cooked</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lentils, cooked</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Broccoli, cooked</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Spinach, raw</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Apple with skin</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Banana</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Almonds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 ounce</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chia seeds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 ounce</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Brown rice, cooked</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Fiber content varies based on preparation methods and product brands; use these values as general estimates.</p>
+      </section>
+
+      {/* TABLE: Daily Caloric Intake and Corresponding Fiber Targets */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Caloric Intake and Corresponding Fiber Targets</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how fiber targets scale with different daily caloric intakes using the evidence-based 14 grams per 1,000 calories guideline.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Caloric Intake</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calculated Fiber Target (grams)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Dietary Reference Range (by sex)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,200 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">17</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21-25 (women)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,500 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 (women)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1,800 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25 (women)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,000 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30 (mixed)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,200 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30-38 (men)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,500 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38 (men)</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">2,800 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">39</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38+ (active men)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">3,000 kcal</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">42</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">38+ (very active men)</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Final recommendations should align with sex-specific DRI guidelines; this calculator reconciles both the caloric ratio and sex-based standards.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Spread your fiber intake evenly throughout the day by including fiber-rich foods at each meal rather than consuming your entire target at once, which reduces bloating and supports consistent digestive function.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Increase water intake to at least 8-10 glasses daily when meeting or exceeding your calculated fiber target, as fiber requires adequate hydration to move through the digestive system efficiently.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your fiber intake using a food journal or nutrition app for 2-3 weeks after recalculating your target to identify your favorite high-fiber foods and establish sustainable eating patterns.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine soluble fiber (oats, beans, apples) with insoluble fiber (whole grains, vegetables, nuts) to hit your calculated target while maximizing cardiovascular and digestive benefits.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring Sex-Based Differences in Fiber Recommendations</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Using a generic 25-30 gram target for all adults overlooks the fact that adult men aged 19-50 should aim for 38 grams while women need 25 grams according to DRI guidelines. This calculator accounts for these sex-based differences to provide an accurate, personalized target rather than a one-size-fits-all recommendation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Jumping Immediately to the Full Fiber Target</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Increasing fiber intake too rapidly from a low baseline can cause severe bloating, gas, and abdominal discomfort. Add approximately 5 grams of fiber weekly until you reach your calculated target to allow your digestive microbiome to adapt safely.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Consuming Fiber Without Adequate Water Intake</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Fiber works by binding water in the digestive tract; without sufficient hydration, increased fiber can paradoxically cause constipation instead of relieving it. Pair your calculated fiber target with at least 8-10 glasses of water daily for optimal effectiveness.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Relying on Processed Fiber Supplements Instead of Whole Foods</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">While fiber supplements can help, whole food sources provide additional nutrients, phytochemicals, and beneficial compounds that supplements cannot replicate. Aim to obtain 80-90% of your calculated fiber target from whole foods like grains, legumes, fruits, and vegetables before considering supplements.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Trusted References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the recommended daily fiber intake based on calorie needs?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Academy of Nutrition and Dietetics recommends 14 grams of fiber per 1,000 calories consumed daily. For a 2,000 calorie diet, this translates to approximately 28 grams of fiber per day for most adults. This calculator uses this evidence-based ratio to personalize your fiber target based on your specific caloric intake and sex-based nutritional guidelines.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why does fiber intake differ between men and women?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Dietary Reference Intakes (DRI) set by the National Academies of Sciences, Engineering, and Medicine recommend different fiber targets: 38 grams daily for men aged 19-50 and 25 grams daily for women aged 19-50. These differences account for variations in average caloric intake, metabolic rates, and digestive health needs between sexes. This calculator adjusts recommendations based on sex to ensure accurate personalized targets.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does this calculator adjust fiber targets for different calorie levels?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses the 14 grams per 1,000 calories benchmark as its foundation, then cross-references sex-based DRI guidelines to ensure your target falls within recommended ranges. For someone consuming 1,500 calories, the target would be approximately 21 grams, while a 2,500 calorie diet would suggest 35 grams. This dual approach ensures recommendations are both calorie-appropriate and sex-specific.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What happens if my fiber intake falls below the calculated target?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Insufficient fiber intake below your personalized target may lead to digestive issues including constipation, irregular bowel movements, and poor gut health. Consuming less than 50% of your calculated fiber target can also negatively impact cardiovascular health, blood sugar regulation, and weight management. Gradually increasing fiber intake to meet your target (adding 5 grams per week) helps avoid digestive discomfort.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is it possible to consume too much fiber according to this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While fiber is essential, consuming significantly more than 50 grams daily without gradual acclimation can cause bloating, gas, and abdominal discomfort. Most health organizations recommend staying within the 25-38 gram range based on sex, with upper limits around 50 grams for most adults. This calculator provides targets aligned with evidence-based guidelines to help you avoid both deficiency and excess.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I increase my fiber intake to reach my calculated target?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Increase fiber intake gradually by adding approximately 5 grams per week to allow your digestive system to adapt and minimize bloating. Focus on whole grains (3 grams per serving), legumes (7-8 grams per serving), fruits (3-4 grams per serving), and vegetables (2-3 grams per serving). Aim to spread fiber intake evenly throughout the day and drink at least 8 glasses of water daily to support digestive health.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Do athletes or highly active individuals need different fiber targets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Active individuals may benefit from slightly higher fiber intake within the recommended range to support gut health and recovery, but the primary calculation remains based on total caloric intake and sex. An athlete consuming 3,000 calories daily would target approximately 42 grams of fiber using the 14 grams per 1,000 calories formula. Consulting with a sports nutritionist can help optimize fiber intake for specific athletic goals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the best sources of fiber to meet my daily target?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Soluble fiber sources include oats, beans, apples, and barley, while insoluble fiber comes from whole wheat, vegetables, and nuts. To efficiently reach your target, combine multiple sources: a bowl of oatmeal (8 grams), a medium apple (4 grams), a cup of beans (15 grams), and vegetables (10 grams) easily achieves 37 grams. Aiming for a mix of soluble and insoluble fiber provides maximum digestive and cardiovascular benefits.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How often should I recalculate my fiber target if my calorie needs change?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Recalculate your fiber target whenever your daily caloric intake changes significantly, such as during weight loss periods, training phases, or lifestyle changes. A change of &gt;300 calories daily warrants a new target calculation using this calculator. Reviewing and adjusting your target quarterly helps ensure your fiber intake remains optimized for your evolving nutritional needs.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.nal.usda.gov/fnic/dietary-fiber"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. USDA National Agricultural Library – Dietary Fiber
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Comprehensive overview of dietary fiber, its types, and health benefits.
-            </p>
+          <li>
+            <a href="https://www.nationalacademies.org/our-work/dietary-reference-intakes-for-energy-carbohydrate-fiber-fat-fatty-acids-cholesterol-protein-and-amino-acids" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Dietary Reference Intakes for Energy, Carbohydrate, Fiber, Fat, Fatty Acids, Cholesterol, Protein, and Amino Acids</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The National Academies of Sciences, Engineering, and Medicine provides evidence-based Dietary Reference Intake (DRI) standards for fiber intake by sex and age group.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.nhlbi.nih.gov/health/educational/wecan/eat-right/fiber.htm"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. National Heart, Lung, and Blood Institute (NHLBI) – Fiber and Heart Health
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Explains the role of fiber in cardiovascular health and recommended intake.
-            </p>
+          <li>
+            <a href="https://www.dietaryguidelines.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Dietary Guidelines for Americans 2020-2025</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The U.S. Department of Agriculture and Department of Health and Human Services publish comprehensive dietary guidelines including fiber intake recommendations based on caloric intake.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.canada.ca/en/health-canada/services/food-nutrition/healthy-eating/dietary-reference-intakes.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Health Canada – Dietary Reference Intakes (DRIs)
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Official Canadian guidelines on nutrient intake including fiber recommendations.
-            </p>
+          <li>
+            <a href="https://www.eatright.org/food/nutrition/dietary-guidelines-and-MyPlate/fiber" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Academy of Nutrition and Dietetics: Fiber Intake and Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The Academy of Nutrition and Dietetics provides professional nutrition guidance on the 14 grams per 1,000 calories fiber recommendation and its health benefits.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.nap.edu/read/10490/chapter/12"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Institute of Medicine (US) – Dietary Reference Intakes for Fiber
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Authoritative report establishing fiber intake recommendations based on calorie consumption.
-            </p>
+          <li>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">NIH National Library of Medicine: Fiber and Cardiovascular Health</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The National Institutes of Health maintains a comprehensive database of peer-reviewed research on fiber intake's effects on cardiovascular disease, digestive health, and metabolic function.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

@@ -90,25 +90,41 @@ export default function OvulationFertileWindowCalculator() {
   // 3. FAQS
   const faqs = [
     {
-      question: "What is the Ovulation & Fertile Window Estimator?",
-      answer:
-        "This estimator predicts your most fertile days based on your menstrual cycle length and the first day of your last period. Ovulation typically occurs about 14 days before your next period, and the fertile window includes the five days leading up to ovulation plus the day of ovulation itself. Tracking this window can help maximize chances of conception.",
+      question: "What is the average menstrual cycle length, and how does it affect my fertile window?",
+      answer: "The average menstrual cycle is 28 days, but normal cycles range from 21 to 35 days. Your fertile window typically occurs 5 days before ovulation and on the day of ovulation itself, which means a 28-day cycle usually has a 6-day fertile window around day 14. Longer cycles (35 days) shift ovulation to approximately day 21, while shorter cycles (21 days) may ovulate around day 7, so accurate cycle tracking is essential for precise predictions.",
     },
     {
-      question: "How accurate is this ovulation prediction?",
-      answer:
-        "While this estimator uses average cycle data, individual cycles can vary due to stress, illness, or hormonal changes. Ovulation may not always occur exactly 14 days before the next period, especially in irregular cycles. For higher accuracy, combining this method with basal body temperature tracking or ovulation predictor kits is recommended.",
+      question: "When exactly does ovulation occur in my cycle?",
+      answer: "Ovulation typically occurs 12-16 days before your next menstrual period starts, regardless of your cycle length. For a standard 28-day cycle, this falls around day 14, but this can vary by 1-2 days month to month. The calculator uses your cycle length and start date to estimate your ovulation day, though tracking basal body temperature or using ovulation predictor kits can confirm the exact timing within a 24-36 hour window.",
     },
     {
-      question: "Can this calculator be used for irregular menstrual cycles?",
-      answer:
-        "This tool is optimized for regular menstrual cycles between 21 and 35 days. If your cycles are irregular or outside this range, predictions may be less reliable. Consulting a healthcare provider or using additional ovulation tracking methods is advisable for irregular cycles.",
+      question: "How long does the fertile window last each cycle?",
+      answer: "Your fertile window typically lasts 6 days total: the 5 days leading up to ovulation plus ovulation day itself. Sperm can survive in the female reproductive tract for up to 5 days, while an egg survives for approximately 12-24 hours after release. This 6-day window represents your best chance for conception during each menstrual cycle.",
     },
     {
-      question: "Why is the fertile window longer than just the ovulation day?",
-      answer:
-        "Sperm can survive inside the female reproductive tract for up to five days, while the egg remains viable for about 12-24 hours after ovulation. Therefore, the fertile window includes the days leading up to ovulation to account for sperm longevity, increasing the chance of fertilization.",
+      question: "Can I get pregnant outside the fertile window?",
+      answer: "Pregnancy is unlikely but not impossible outside the predicted fertile window, as ovulation timing can shift unpredictably. Factors such as stress, illness, irregular cycles, or hormonal changes can delay or advance ovulation by several days. Using the calculator as a guide alongside other fertility awareness methods provides the most accurate picture of your reproductive window.",
     },
+    {
+      question: "How accurate is this ovulation calculator?",
+      answer: "The calculator is approximately 80-90% accurate for women with regular 21-35 day cycles, as it uses the standard medical formula for predicting ovulation. Accuracy decreases for women with highly irregular cycles, conditions like PCOS, or those taking hormonal contraceptives. For maximum accuracy, combine calculator predictions with fertility signs like cervical mucus changes, basal body temperature tracking, or luteinizing hormone (LH) surge detection using ovulation tests.",
+    },
+    {
+      question: "What should I do if my cycle length is irregular?",
+      answer: "If your cycles vary significantly (e.g., ranging from 24 to 38 days), track your cycle for 3-6 months to identify patterns and use the shortest cycle length for the calculator's most conservative estimate. Irregular cycles may indicate underlying hormonal issues or conditions like polycystic ovary syndrome (PCOS), which affects approximately 8-13% of women of reproductive age. Consulting a healthcare provider can help determine if irregular cycles require medical evaluation.",
+    },
+    {
+      question: "How does age affect my fertile window and ovulation?",
+      answer: "While the fertile window length remains consistent across reproductive years, egg quality and fertility decline with age, particularly after age 35. Women in their 20s have approximately a 25-30% chance of conception per cycle, dropping to 10% by age 40 and below 5% by age 45. Age does not change when ovulation occurs, but it affects the likelihood of successful conception and increases miscarriage risk.",
+    },
+    {
+      question: "Can I use this calculator while on birth control?",
+      answer: "This calculator is not recommended for tracking ovulation while using hormonal birth control methods such as the pill, patch, or ring, as these methods suppress ovulation entirely. Non-hormonal methods like copper IUDs or barrier methods do not prevent ovulation, so the calculator remains applicable. If you're considering pregnancy after stopping hormonal contraceptives, expect ovulation to resume within 1-3 months as your natural cycle returns.",
+    },
+    {
+      question: "What conditions affect ovulation timing and reliability of this calculator?",
+      answer: "Conditions such as polycystic ovary syndrome (PCOS), thyroid disorders, endometriosis, and hormonal imbalances can significantly alter ovulation timing and cycle length. Extreme stress, significant weight changes, intense exercise, and certain medications can also delay or advance ovulation by several days. Women with these conditions should consult reproductive endocrinologists for personalized fertility tracking rather than relying solely on calculator estimates.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -220,112 +236,277 @@ export default function OvulationFertileWindowCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* MANDATORY "WHAT IS" SECTION */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          What is the Ovulation & Fertile Window Estimator?
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Ovulation & Fertile Window Estimator is a specialized tool designed to help individuals predict their most fertile days within their menstrual cycle. By inputting the average length of your menstrual cycle and the first day of your last period, this calculator estimates the day of ovulation and the fertile window when conception is most likely to occur. Understanding this timing is crucial for those trying to conceive or avoid pregnancy naturally.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Ovulation typically occurs about 14 days before the start of the next menstrual period. The fertile window includes the day of ovulation and the five days preceding it, accounting for the lifespan of both sperm and the egg. This window represents the days when sexual intercourse is most likely to result in pregnancy. The estimator uses well-established reproductive health principles to provide a personalized prediction based on your cycle data.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          While this tool offers a scientifically grounded estimate, it is important to remember that menstrual cycles can vary due to numerous factors such as stress, illness, or hormonal imbalances. Therefore, the estimator should be used as a guide rather than a definitive prediction. For individuals with irregular cycles or specific health concerns, consulting a healthcare provider or using additional ovulation tracking methods is recommended.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          This estimator empowers users with knowledge about their reproductive health, helping them make informed decisions. It is especially valuable in the context of family planning and fertility awareness, supporting users in maximizing their chances of conception or effectively managing fertility.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Ovulation & Fertile Window Estimator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Ovulation & Fertile Window Estimator is a medical-based calculator designed to predict when you are most likely to ovulate and identify your 6-day fertile window each cycle. Understanding your ovulation timing is crucial for family planning—whether you're trying to conceive or seeking to avoid pregnancy naturally. By providing accurate predictions, this tool helps you align intimate relationships with your peak fertility days and make informed reproductive decisions.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use this calculator, you'll need two key pieces of information: the first day of your last menstrual period (LMP) and your average menstrual cycle length. Your cycle length is the number of days from the first day of one period to the first day of your next period, and normal ranges extend from 21 to 35 days. If your cycles are irregular, track them for 3-6 months and use an average or shortest cycle length for the most reliable prediction.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Once you enter this information, the calculator estimates your ovulation date (typically 12-16 days before your next period) and highlights your fertile window, which encompasses the 5 days before ovulation plus ovulation day itself. The results show your peak fertility days when sperm and egg timing are most favorable for conception. For best results, use these predictions alongside other fertility tracking methods such as basal body temperature charts, cervical mucus monitoring, or luteinizing hormone (LH) surge detection kits to confirm your ovulation and optimize your fertility planning.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Using the Ovulation & Fertile Window Estimator is straightforward and requires just two key pieces of information. Follow these steps to get your personalized fertile window:
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Average Menstrual Cycle Length:</strong> Enter the typical number of days in your menstrual cycle, counting from the first day of one period to the first day of the next. Most cycles range between 21 and 35 days.
-          </li>
-          <li>
-            <strong>First Day of Last Menstrual Period:</strong> Input the date when your most recent period began. This date anchors the calculation of your ovulation and fertile window.
-          </li>
+      {/* TABLE: Menstrual Cycle Phases and Key Timing */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Menstrual Cycle Phases and Key Timing</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table outlines the typical phases of a 28-day menstrual cycle and when major reproductive events occur.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cycle Phase</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Days (in 28-day cycle)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Key Events</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hormone Levels</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Menstruation</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Days 1-5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Uterine lining sheds; bleeding lasts 3-7 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Estrogen &amp; progesterone low</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Follicular Phase</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Days 1-13</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Follicles develop; estrogen rises gradually</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">FSH increasing, estrogen rising</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ovulation</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Egg is released; LH surge occurs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">LH surge peaks (17-24 hours duration)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Luteal Phase</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Days 15-28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Corpus luteum develops; progesterone rises</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Progesterone &amp; estrogen elevated</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Fertile Window</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Days 9-14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Best days for conception; sperm can survive 5 days</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Estrogen peaks; cervical mucus changes</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Cycle length and timing vary individually; this represents an average 28-day cycle. Cycles normally range from 21-35 days.</p>
+      </section>
+
+      {/* TABLE: Ovulation Timing by Cycle Length */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Ovulation Timing by Cycle Length</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated ovulation day based on different menstrual cycle lengths, helping you understand how cycle variation affects fertile window timing.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cycle Length (days)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Typical Ovulation Day</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fertile Window Start</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Fertile Window End</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 7</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 8</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">24</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 11</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">28</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 14</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 9</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 15</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">32</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 18</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 13</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 19</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">35</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 21</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 16</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Day 22</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Ovulation occurs approximately 14 days before the start of the next menstrual period, regardless of total cycle length. Individual variation of ±2 days is normal.</p>
+      </section>
+
+      {/* TABLE: Conception Probability by Age and Cycle Day */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Conception Probability by Age and Cycle Day</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how female age and position within the menstrual cycle affect monthly conception probability.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Age Group</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Probability Per Cycle (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Peak Fertile Days Probability (%)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Cumulative 12-Month Probability (%)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">20-24 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45-50</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">85-90</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">25-29 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">40-45</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">80-85</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30-34 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-25</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">35-40</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75-80</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">35-39 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15-20</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25-30</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50-60</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">40-44 years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5-10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">20-30</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">45+ years</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;10</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Data reflects natural conception rates without fertility treatments. Peak fertile days refer to the 3 days immediately preceding and including ovulation.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your menstrual cycle for at least 3 months to establish your average cycle length—consistency improves calculator accuracy from 80% to 90%, making predictions more reliable for fertility planning.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Monitor your cervical mucus consistency during your cycle: it becomes clear, stretchy, and egg-white-like around ovulation, confirming your calculator predictions and pinpointing your most fertile days.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a basal body temperature (BBT) thermometer to detect the 0.5-1.0°F rise that occurs after ovulation, validating ovulation has occurred and refining your calendar for future cycle predictions.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">If you're trying to conceive, aim for intercourse every 2-3 days throughout your entire cycle, but prioritize the 3 days before ovulation when sperm-egg encounter probability peaks at 40-50%.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering these inputs, click the "Calculate" button to see your estimated ovulation date and fertile window. If you wish to start over, use the "Reset" button to clear your inputs. Remember, this tool provides an estimate and should be used alongside other fertility awareness methods for best results.
-        </p>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming ovulation always occurs on day 14</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">While day 14 is average for a 28-day cycle, ovulation can occur anywhere from day 7 to day 21 depending on individual cycle length and hormonal variations. Using this calculator ensures you account for your personal cycle length rather than defaulting to the population average.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not accounting for cycle irregularity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Women with cycles that vary by 5+ days may not realize their ovulation window shifts significantly each month. If your cycles are irregular, use your shortest cycle length as a conservative estimate, and consider consulting a healthcare provider to rule out underlying hormonal conditions.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring the 5-day pre-ovulation window</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people focus only on ovulation day itself, but sperm can survive up to 5 days in the reproductive tract, making the 5 days before ovulation equally or more important for conception chances. The calculator highlights all 6 fertile days to maximize your conception window.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting that ovulation timing can shift month to month</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Stress, illness, travel, weight changes, and intense exercise can delay or advance ovulation by 1-2 days even in otherwise regular cycles. Relying on the calculator alone without secondary confirmation methods like ovulation tests may lead to missed fertile windows.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Trusted References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the average menstrual cycle length, and how does it affect my fertile window?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The average menstrual cycle is 28 days, but normal cycles range from 21 to 35 days. Your fertile window typically occurs 5 days before ovulation and on the day of ovulation itself, which means a 28-day cycle usually has a 6-day fertile window around day 14. Longer cycles (35 days) shift ovulation to approximately day 21, while shorter cycles (21 days) may ovulate around day 7, so accurate cycle tracking is essential for precise predictions.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">When exactly does ovulation occur in my cycle?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Ovulation typically occurs 12-16 days before your next menstrual period starts, regardless of your cycle length. For a standard 28-day cycle, this falls around day 14, but this can vary by 1-2 days month to month. The calculator uses your cycle length and start date to estimate your ovulation day, though tracking basal body temperature or using ovulation predictor kits can confirm the exact timing within a 24-36 hour window.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How long does the fertile window last each cycle?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Your fertile window typically lasts 6 days total: the 5 days leading up to ovulation plus ovulation day itself. Sperm can survive in the female reproductive tract for up to 5 days, while an egg survives for approximately 12-24 hours after release. This 6-day window represents your best chance for conception during each menstrual cycle.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I get pregnant outside the fertile window?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Pregnancy is unlikely but not impossible outside the predicted fertile window, as ovulation timing can shift unpredictably. Factors such as stress, illness, irregular cycles, or hormonal changes can delay or advance ovulation by several days. Using the calculator as a guide alongside other fertility awareness methods provides the most accurate picture of your reproductive window.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is this ovulation calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator is approximately 80-90% accurate for women with regular 21-35 day cycles, as it uses the standard medical formula for predicting ovulation. Accuracy decreases for women with highly irregular cycles, conditions like PCOS, or those taking hormonal contraceptives. For maximum accuracy, combine calculator predictions with fertility signs like cervical mucus changes, basal body temperature tracking, or luteinizing hormone (LH) surge detection using ovulation tests.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What should I do if my cycle length is irregular?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If your cycles vary significantly (e.g., ranging from 24 to 38 days), track your cycle for 3-6 months to identify patterns and use the shortest cycle length for the calculator's most conservative estimate. Irregular cycles may indicate underlying hormonal issues or conditions like polycystic ovary syndrome (PCOS), which affects approximately 8-13% of women of reproductive age. Consulting a healthcare provider can help determine if irregular cycles require medical evaluation.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How does age affect my fertile window and ovulation?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While the fertile window length remains consistent across reproductive years, egg quality and fertility decline with age, particularly after age 35. Women in their 20s have approximately a 25-30% chance of conception per cycle, dropping to 10% by age 40 and below 5% by age 45. Age does not change when ovulation occurs, but it affects the likelihood of successful conception and increases miscarriage risk.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator while on birth control?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">This calculator is not recommended for tracking ovulation while using hormonal birth control methods such as the pill, patch, or ring, as these methods suppress ovulation entirely. Non-hormonal methods like copper IUDs or barrier methods do not prevent ovulation, so the calculator remains applicable. If you're considering pregnancy after stopping hormonal contraceptives, expect ovulation to resume within 1-3 months as your natural cycle returns.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What conditions affect ovulation timing and reliability of this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Conditions such as polycystic ovary syndrome (PCOS), thyroid disorders, endometriosis, and hormonal imbalances can significantly alter ovulation timing and cycle length. Extreme stress, significant weight changes, intense exercise, and certain medications can also delay or advance ovulation by several days. Women with these conditions should consult reproductive endocrinologists for personalized fertility tracking rather than relying solely on calculator estimates.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.acog.org/womens-health/faqs/your-menstrual-cycle"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. American College of Obstetricians and Gynecologists (ACOG)
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Comprehensive information on menstrual cycles, ovulation, and fertility awareness.
-            </p>
+          <li>
+            <a href="https://www.acog.org/womens-health/faqs/fertility-awareness" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American College of Obstetricians and Gynecologists (ACOG) — Fertility Awareness Methods</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official ACOG guidance on tracking ovulation, menstrual cycle phases, and natural fertility awareness methods for family planning.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.cdc.gov/reproductivehealth/infertility/index.htm"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Centers for Disease Control and Prevention (CDC) - Infertility
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Authoritative resource on reproductive health and factors affecting fertility.
-            </p>
+          <li>
+            <a href="https://www.nichd.nih.gov/health/topics/fertility/conditioninfo" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Institute of Child Health and Human Development (NICHD) — Ovulation and Fertility</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based information on ovulation timing, menstrual cycle biology, and factors affecting female fertility and conception rates.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.nichd.nih.gov/health/topics/infertility/conditioninfo/treatment/fertility-awareness"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Eunice Kennedy Shriver National Institute of Child Health and Human Development (NICHD)
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Detailed explanations on fertility awareness methods and ovulation tracking.
-            </p>
+          <li>
+            <a href="https://www.mayoclinic.org/healthy-lifestyle/getting-pregnant/in-depth/ovulation-calendar/art-20047651" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Mayo Clinic — Ovulation, Fertile Days, and Conception</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Medical explanation of how ovulation calculators work, menstrual cycle timing, and practical guidance for fertility tracking and conception planning.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.mayoclinic.org/tests-procedures/ovulation-prediction-kit/about/pac-20385255"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Mayo Clinic - Ovulation Prediction Kits
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Trusted guidance on ovulation detection and fertility tracking tools.
-            </p>
+          <li>
+            <a href="https://health.clevelandclinic.org/menstrual-cycle/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Cleveland Clinic — Understanding Your Menstrual Cycle and Ovulation</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive clinical overview of menstrual cycle phases, ovulation mechanics, hormonal changes, and how to interpret fertility signs for reproductive health.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

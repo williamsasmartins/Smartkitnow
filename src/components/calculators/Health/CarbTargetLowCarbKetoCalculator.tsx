@@ -142,25 +142,41 @@ export default function CarbTargetLowCarbKetoCalculator() {
   // 3. FAQS
   const faqs = [
     {
-      question: "What is the Carb Target and why is it important?",
-      answer:
-        "The Carb Target represents the recommended daily intake of carbohydrates tailored to your personal goals, activity level, and body metrics. Carbohydrates are a primary energy source, and adjusting your intake can influence weight management, metabolic health, and athletic performance. Setting an appropriate carb target helps optimize energy levels while supporting your dietary preferences, such as ketogenic or low-carb diets.",
+      question: "What is a good daily carb target for weight loss?",
+      answer: "A good daily carb target for weight loss typically ranges from 100–150g per day for moderate low-carb dieting, or 50–100g per day for stricter low-carb approaches. Most people see consistent results at 20–50% of total daily calories from carbs, which translates to roughly 100–200g depending on a 2,000 calorie diet. Your individual target depends on activity level, metabolic rate, and dietary preferences.",
     },
     {
-      question: "How do low-carb and ketogenic ranges differ in carbohydrate intake?",
-      answer:
-        "Ketogenic diets typically restrict carbohydrate intake to about 5-10% of daily calories (roughly 20-50 grams per day) to induce ketosis, a metabolic state where the body burns fat for fuel. Low-carb diets are less restrictive, allowing 10-25% of calories from carbs (approximately 50-130 grams daily), focusing on reducing carb intake without necessarily inducing ketosis. Both approaches aim to improve metabolic health but differ in strictness and physiological effects.",
+      question: "What is the difference between low-carb and keto carb targets?",
+      answer: "Low-carb diets typically allow 50–150g of carbs per day (5–25% of total calories), while ketogenic (keto) diets restrict carbs to 20–50g daily (typically &lt;5% of calories) to maintain ketosis. Keto aims to shift your body into fat-burning mode by depleting glycogen stores, whereas low-carb simply reduces carb intake while maintaining moderate protein and fat. Keto requires stricter tracking and may cause temporary side effects like 'keto flu,' while low-carb is often more sustainable for long-term adherence.",
     },
     {
-      question: "Can I use this calculator if I don’t know my exact activity level?",
-      answer:
-        "Yes, you can select the activity level that best matches your typical daily routine. If unsure, 'sedentary' or 'light' activity levels are safe defaults. Activity level influences your total energy expenditure and thus your carbohydrate needs. For more precise results, consider tracking your physical activity or consulting with a healthcare professional.",
+      question: "How do I calculate my personal carb target based on my goals?",
+      answer: "Start by determining your total daily calorie needs using your age, sex, weight, height, and activity level. Then decide your target carb percentage: 45–65% for standard diets, 25–45% for low-carb, or &lt;5% for keto. Multiply your daily calories by your target percentage and divide by 4 (since carbs contain 4 calories per gram). For example, a 2,000 calorie diet at 30% carbs = 2,000 × 0.30 ÷ 4 = 150g of carbs daily.",
     },
     {
-      question: "Are there limitations to this calculator’s recommendations?",
-      answer:
-        "This calculator provides estimates based on general population data and simplified formulas. It does not account for individual factors such as age, gender, metabolic conditions, or specific health goals beyond weight management and diet type. For personalized nutrition advice, especially if you have medical conditions or special dietary needs, consult a registered dietitian or healthcare provider.",
+      question: "Can I do keto if I exercise regularly?",
+      answer: "Yes, but you may need to adjust your carb target or timing to support performance. Athletes often use cyclical keto (higher carbs on training days) or targeted keto (carbs around workouts), which allows 50–100g of carbs on exercise days while staying in ketosis on rest days. Standard strict keto (&lt;20g carbs) may reduce high-intensity performance, so monitoring your energy and recovery is important. Consult a sports nutritionist if pursuing competitive athletics on a ketogenic diet.",
     },
+    {
+      question: "What are net carbs versus total carbs on a keto diet?",
+      answer: "Net carbs are calculated by subtracting fiber and sugar alcohols from total carbs, since these don't significantly impact blood sugar or ketosis. Most keto enthusiasts track net carbs and target 20–50g daily, while total carb intake may be slightly higher due to fiber content. For example, a food with 10g total carbs, 5g fiber, and 2g sugar alcohol would have 3g net carbs. Some people count total carbs instead for stricter adherence, especially when starting keto.",
+    },
+    {
+      question: "How many carbs should I eat if I'm sedentary versus very active?",
+      answer: "Sedentary individuals typically need fewer carbs—often 100–150g daily for weight loss or maintenance. Active or athletic individuals may require 150–300g+ daily to fuel workouts and support recovery, depending on exercise intensity and duration. A sedentary person on a 2,000 calorie diet at 40% carbs needs ~200g, while an athlete burning 3,000+ calories may need 225–375g at the same percentage. Your carb target should scale with your energy expenditure.",
+    },
+    {
+      question: "Is 50g of carbs per day enough to stay in ketosis?",
+      answer: "For most people, 50g of carbs per day is sufficient to maintain ketosis, though the exact threshold varies by individual metabolism, exercise, and insulin sensitivity. The standard keto guideline is to keep net carbs under 20–50g daily, with 50g being a more liberal upper limit. If you're not seeing results at 50g, dropping to 30–40g or even 20g may push you deeper into ketosis. Testing with blood or urine ketone meters can help confirm whether you're in ketosis at your current intake.",
+    },
+    {
+      question: "How do macronutrient ratios differ between low-carb and keto diets?",
+      answer: "Low-carb diets typically use a 40% protein / 30% fat / 30% carb ratio, allowing more flexibility in food choices. Keto diets aim for roughly 70–75% fat / 20–25% protein / 5% carbs (or &lt;50g net carbs) to maintain ketosis. The higher fat ratio in keto is essential for sustained energy and satiety when carbs are severely restricted. Both approaches emphasize whole foods, healthy fats, and adequate protein to preserve muscle mass.",
+    },
+    {
+      question: "Should I adjust my carb target if I have insulin resistance or diabetes?",
+      answer: "Yes—if you have insulin resistance or type 2 diabetes, a lower carb target (50–100g daily) or keto approach (&lt;50g daily) may improve blood sugar control and insulin sensitivity. Work with your doctor or a registered dietitian to determine a safe carb target and monitor blood glucose levels closely, especially if taking medication. Some individuals see dramatic improvements in HbA1c and medication requirements within weeks of reducing carbs, while others need gradual transitions. Never adjust medication doses without medical supervision.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -353,118 +369,307 @@ export default function CarbTargetLowCarbKetoCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* MANDATORY "WHAT IS" SECTION */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          What is the Carb Target (incl. low-carb/keto ranges)?
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The carbohydrate target is a personalized daily goal for carbohydrate intake designed to align with your health objectives, lifestyle, and metabolic needs. Carbohydrates are one of the three macronutrients that provide energy, and their intake significantly influences blood sugar levels, insulin response, and overall energy metabolism. Setting a carb target helps individuals manage weight, optimize athletic performance, or achieve specific metabolic states such as ketosis.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Low-carbohydrate and ketogenic diets have gained popularity for their potential benefits in weight management, diabetes control, and neurological health. A ketogenic diet typically restricts carbohydrate intake to about 20-50 grams per day, inducing a metabolic state called ketosis where the body burns fat for fuel instead of glucose. Low-carb diets are less restrictive, allowing a broader range of carbohydrate intake, generally between 50 and 130 grams daily, focusing on reducing refined carbs and sugars.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator estimates your ideal carbohydrate intake range based on your weight, height, activity level, and dietary goals. It uses established nutritional science principles to provide ranges suitable for maintenance, weight loss, low-carb, and ketogenic diets. Understanding these ranges empowers you to make informed dietary choices tailored to your unique physiology and lifestyle.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          It is important to remember that carbohydrate needs vary widely among individuals depending on factors such as age, gender, metabolic health, and physical activity. Therefore, this tool serves as a starting point for personalized nutrition planning and should be complemented with professional guidance when necessary.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Carb Target (incl. low-carb/keto ranges) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator helps you determine your optimal daily carbohydrate intake based on your dietary goals—whether you're aiming for a standard balanced diet, a low-carb approach, or a strict ketogenic protocol. Carb targets are essential for managing energy levels, supporting metabolic health, and achieving weight loss or fitness goals. By personalizing your carb intake, you can improve adherence, sustain long-term results, and avoid the common pitfall of generic one-size-fits-all recommendations.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your age, sex, current weight, height, and daily activity level (sedentary, lightly active, moderately active, or very active). Then select your primary goal—weight loss, maintenance, or muscle gain—and choose your preferred diet type (standard, low-carb, or keto). The calculator will estimate your total daily energy expenditure (TDEE) and compute your recommended carb range based on evidence-based percentages for each diet approach.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your results will show daily carb targets in grams, along with context for low-carb (25–45% of calories) and ketogenic (&lt;5% of calories) ranges. Use the lower end of your range if you're struggling to lose weight or want stricter ketosis, and the higher end if you're very active or prefer more food flexibility. Track your actual intake for 2–3 weeks, monitor your energy and hunger levels, and adjust up or down by 10–20g as needed to find your personal sweet spot.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately estimate your daily carbohydrate target, follow these steps carefully. The calculator requires your body measurements, activity level, and dietary goal to provide a tailored carb intake range. This ensures the recommendations align with your energy expenditure and metabolic objectives.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Weight:</strong> Enter your current body weight in pounds (lbs) if using the imperial system or kilograms (kg) for metric. Accurate weight input is essential for estimating energy needs.
-          </li>
-          <li>
-            <strong>Height:</strong> Provide your height in feet and inches (imperial) or centimeters (metric). Height helps estimate basal metabolic rate (BMR), a key factor in calculating energy requirements.
-          </li>
-          <li>
-            <strong>Activity Level:</strong> Select the option that best describes your typical daily physical activity. This adjusts your total daily energy expenditure (TDEE), influencing your carbohydrate needs.
-          </li>
-          <li>
-            <strong>Dietary Goal:</strong> Choose your nutrition goal: maintenance, weight loss, low-carb, or ketogenic. This determines the carbohydrate percentage range used in calculations.
-          </li>
+      {/* TABLE: Daily Carb Targets by Diet Type and Calorie Level */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Carb Targets by Diet Type and Calorie Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows recommended daily carb targets (in grams) across different diet approaches and total daily calorie intakes.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Diet Type</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2,000 Calories</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">2,500 Calories</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">3,000 Calories</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Standard (45–65% carbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">225–325g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">281–406g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">338–488g</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Low-Carb (25–45% carbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">125–225g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">156–281g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">188–338g</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Very Low-Carb (20–25% carbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100–125g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">125–156g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150–188g</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ketogenic (&lt;5% carbs)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;25g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;31g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&lt;38g</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Figures represent net carbs. Actual targets vary based on activity level, metabolism, and individual goals.</p>
+      </section>
+
+      {/* TABLE: Carb Content of Common Foods for Low-Carb and Keto Diets */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Carb Content of Common Foods for Low-Carb and Keto Diets</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Use this reference to understand net carb counts for foods typically included in low-carb and ketogenic meal plans.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food Item</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Serving Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Net Carbs (g)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Category</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chicken breast (cooked)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Protein</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Salmon fillet (cooked)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Protein</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Eggs</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Protein</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Broccoli (cooked)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vegetable</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Spinach (raw)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.9g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vegetable</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cauliflower (cooked)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vegetable</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Bell pepper (raw)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.9g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Vegetable</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Blueberries</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">½ cup</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fruit</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Almonds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 oz (23 nuts)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.1g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Nut</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Olive oil</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 tbsp</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fat</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cheddar cheese</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 oz</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.4g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Dairy</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Whole wheat bread</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 slice</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Grain</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Net carbs calculated as total carbs minus fiber. Values are approximate and may vary by brand and preparation.</p>
+      </section>
+
+      {/* TABLE: Ketosis Targets and Blood/Urine Ketone Levels */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Ketosis Targets and Blood/Urine Ketone Levels</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the typical ketone ranges used to confirm nutritional ketosis and their corresponding blood glucose levels.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Ketone Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Blood Ketones (mmol/L)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Urine Ketones</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Nutritional State</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Trace ketosis</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.5–1.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Early ketosis, mild carb restriction</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Light ketosis</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.0–1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Low-carb diet or light exercise fasting</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderate ketosis</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.5–3.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Typical ketogenic diet (20–50g carbs)</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Deep ketosis</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;3.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Very large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Strict keto (&lt;20g carbs) or prolonged fasting</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Ketoacidosis (dangerous)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">&gt;10</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Excessive</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Rare in healthy individuals; medical concern</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Blood ketone testing (via meter) is more accurate than urine strips. Nutritional ketosis (&lt;6.0 mmol/L) is distinct from dangerous diabetic ketoacidosis.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track net carbs if you're on keto by subtracting grams of fiber and sugar alcohols from total carbs—this accounts for carbs your body can't easily digest and don't spike blood sugar.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Time your higher-carb meals around your workouts (within 30–60 minutes post-exercise) to replenish glycogen and support muscle recovery, even on a low-carb diet.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use a food scale or app like MyFitnessPal for the first 2–3 weeks to build awareness of portion sizes and hidden carbs in sauces, dressings, and processed foods.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Stay hydrated and maintain electrolyte balance (sodium, potassium, magnesium) during the first 1–2 weeks of carb restriction, as lower insulin levels increase water and mineral excretion.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          After entering all inputs, click "Calculate" to view your personalized carbohydrate intake range. Use this information to guide meal planning and monitor your dietary adherence. Remember to consult healthcare professionals for tailored advice.
-        </p>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing total carbs with net carbs</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people starting keto count total carbs instead of net carbs, severely underestimating their actual intake and stalling results. Always subtract fiber and sugar alcohols when tracking on a ketogenic diet to avoid this common miscalculation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Eating too little carbs if very active</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Athletes and highly active individuals who adopt strict keto (&lt;20g carbs daily) often experience fatigue, poor performance, and injury risk. Cyclical or targeted keto with 50–100g carbs on training days better supports athletic performance while maintaining ketosis on rest days.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not adjusting for hormonal cycles</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Women's carb tolerance and energy needs fluctuate throughout the menstrual cycle; many feel better with slightly higher carbs (110–130g) in the luteal phase. Ignoring these patterns can lead to excessive hunger, fatigue, and unnecessary dietary frustration.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overestimating carb content of whole foods</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Whole vegetables like broccoli and cauliflower have far fewer net carbs than grains, yet people often avoid them unnecessarily on low-carb diets. Including non-starchy vegetables ensures you get fiber, micronutrients, and satiety without derailing your carb target.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Trusted References</h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is a good daily carb target for weight loss?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">A good daily carb target for weight loss typically ranges from 100–150g per day for moderate low-carb dieting, or 50–100g per day for stricter low-carb approaches. Most people see consistent results at 20–50% of total daily calories from carbs, which translates to roughly 100–200g depending on a 2,000 calorie diet. Your individual target depends on activity level, metabolic rate, and dietary preferences.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between low-carb and keto carb targets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Low-carb diets typically allow 50–150g of carbs per day (5–25% of total calories), while ketogenic (keto) diets restrict carbs to 20–50g daily (typically &lt;5% of calories) to maintain ketosis. Keto aims to shift your body into fat-burning mode by depleting glycogen stores, whereas low-carb simply reduces carb intake while maintaining moderate protein and fat. Keto requires stricter tracking and may cause temporary side effects like 'keto flu,' while low-carb is often more sustainable for long-term adherence.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate my personal carb target based on my goals?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Start by determining your total daily calorie needs using your age, sex, weight, height, and activity level. Then decide your target carb percentage: 45–65% for standard diets, 25–45% for low-carb, or &lt;5% for keto. Multiply your daily calories by your target percentage and divide by 4 (since carbs contain 4 calories per gram). For example, a 2,000 calorie diet at 30% carbs = 2,000 × 0.30 ÷ 4 = 150g of carbs daily.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I do keto if I exercise regularly?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, but you may need to adjust your carb target or timing to support performance. Athletes often use cyclical keto (higher carbs on training days) or targeted keto (carbs around workouts), which allows 50–100g of carbs on exercise days while staying in ketosis on rest days. Standard strict keto (&lt;20g carbs) may reduce high-intensity performance, so monitoring your energy and recovery is important. Consult a sports nutritionist if pursuing competitive athletics on a ketogenic diet.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are net carbs versus total carbs on a keto diet?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Net carbs are calculated by subtracting fiber and sugar alcohols from total carbs, since these don't significantly impact blood sugar or ketosis. Most keto enthusiasts track net carbs and target 20–50g daily, while total carb intake may be slightly higher due to fiber content. For example, a food with 10g total carbs, 5g fiber, and 2g sugar alcohol would have 3g net carbs. Some people count total carbs instead for stricter adherence, especially when starting keto.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many carbs should I eat if I'm sedentary versus very active?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Sedentary individuals typically need fewer carbs—often 100–150g daily for weight loss or maintenance. Active or athletic individuals may require 150–300g+ daily to fuel workouts and support recovery, depending on exercise intensity and duration. A sedentary person on a 2,000 calorie diet at 40% carbs needs ~200g, while an athlete burning 3,000+ calories may need 225–375g at the same percentage. Your carb target should scale with your energy expenditure.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is 50g of carbs per day enough to stay in ketosis?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For most people, 50g of carbs per day is sufficient to maintain ketosis, though the exact threshold varies by individual metabolism, exercise, and insulin sensitivity. The standard keto guideline is to keep net carbs under 20–50g daily, with 50g being a more liberal upper limit. If you're not seeing results at 50g, dropping to 30–40g or even 20g may push you deeper into ketosis. Testing with blood or urine ketone meters can help confirm whether you're in ketosis at your current intake.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do macronutrient ratios differ between low-carb and keto diets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Low-carb diets typically use a 40% protein / 30% fat / 30% carb ratio, allowing more flexibility in food choices. Keto diets aim for roughly 70–75% fat / 20–25% protein / 5% carbs (or &lt;50g net carbs) to maintain ketosis. The higher fat ratio in keto is essential for sustained energy and satiety when carbs are severely restricted. Both approaches emphasize whole foods, healthy fats, and adequate protein to preserve muscle mass.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust my carb target if I have insulin resistance or diabetes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes—if you have insulin resistance or type 2 diabetes, a lower carb target (50–100g daily) or keto approach (&lt;50g daily) may improve blood sugar control and insulin sensitivity. Work with your doctor or a registered dietitian to determine a safe carb target and monitor blood glucose levels closely, especially if taking medication. Some individuals see dramatic improvements in HbA1c and medication requirements within weeks of reducing carbs, while others need gradual transitions. Never adjust medication doses without medical supervision.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2716748/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. Feinman RD et al. Dietary carbohydrate restriction as the first approach in diabetes management: Critical review and evidence base. (2015)
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              A comprehensive review supporting low-carb diets for diabetes and metabolic health.
-            </p>
+          <li>
+            <a href="https://www.dietaryguidelines.gov" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Dietary Guidelines for Americans 2020–2025</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official U.S. government dietary recommendations including carbohydrate intake ranges for different age groups and activity levels.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ketogenic-diet-resource.com/ketogenic-diet.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. The Charlie Foundation. Ketogenic Diet Overview.
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Authoritative resource on ketogenic diet principles and clinical applications.
-            </p>
+          <li>
+            <a href="https://www.nccih.nih.gov/health/ketogenic-diet" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Institutes of Health: Ketogenic Diet Overview</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based overview of ketogenic diets, their effects on metabolism, and considerations for medical safety and effectiveness.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.nhlbi.nih.gov/health/educational/lose_wt/eat/calories.htm"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. National Heart, Lung, and Blood Institute. Calculate Your Calorie Needs.
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Official guidelines on estimating calorie needs based on activity and body metrics.
-            </p>
+          <li>
+            <a href="https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/sugar/added-sugars" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Heart Association: Carbohydrates</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authoritative guidance on carbohydrate quality, fiber intake, and cardiovascular health in the context of low-carb and standard diets.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.healthline.com/nutrition/how-many-carbs-per-day"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Healthline. How Many Carbs Per Day? A Guide to Carb Intake.
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Practical advice on carbohydrate intake ranges for different diet goals.
-            </p>
+          <li>
+            <a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/low-carb-diet/art-20045831" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Mayo Clinic: Low-Carb Diet: Can It Help You Lose Weight?</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive medical perspective on low-carbohydrate diets, their safety, effectiveness, and individual considerations for implementation.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

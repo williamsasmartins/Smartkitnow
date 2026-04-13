@@ -75,22 +75,42 @@ export default function ProteinIntakeByGoalCalculator() {
 
   // 3. FAQS
   const faqs = [
-    { 
-      question: "Why do I need more protein when cutting?", 
-      answer: "When you are in a calorie deficit to lose fat, your body may break down muscle tissue for energy. Eating higher protein (1.8-2.4g/kg) signals your body to preserve muscle mass while burning fat stores instead." 
+    {
+      question: "How much protein do I need daily based on my body weight?",
+      answer: "The general recommendation is 0.8 grams of protein per kilogram of body weight (or 0.36 grams per pound) for sedentary adults. However, athletes and those engaged in strength training typically need 1.6–2.2 grams per kilogram of body weight daily. For example, a 70 kg (154 lb) sedentary person needs about 56 grams of protein daily, while an athlete of the same weight would need 112–154 grams.",
     },
-    { 
-      question: "Is there a limit to how much protein I can absorb?", 
-      answer: "While the '30g per meal' limit is a myth, total daily intake matters most. However, spreading your protein across 3-5 meals (e.g., 30-50g per meal) optimizes muscle protein synthesis better than eating it all at once." 
+    {
+      question: "Does my activity level affect my protein requirements?",
+      answer: "Yes, activity level significantly impacts protein needs. Sedentary individuals require 0.8 g/kg, while endurance athletes need 1.2–1.4 g/kg and strength-training athletes need 1.6–2.2 g/kg of body weight daily. Someone doing moderate cardio 3–4 times weekly should aim for approximately 1.1–1.3 g/kg, whereas competitive powerlifters may require up to 2.2 g/kg.",
     },
-    { 
-      question: "Does activity level affect my protein needs?", 
-      answer: "Yes. Sedentary individuals need less protein (approx. 0.8g/kg) to prevent deficiency. Athletes and active people need significantly more to repair tissue damaged during exercise and support recovery." 
+    {
+      question: "What is the maximum safe amount of protein I can consume daily?",
+      answer: "There is no established upper limit for protein intake in healthy individuals with normal kidney function. However, most research suggests that intakes above 2.2 grams per kilogram of body weight provide no additional muscle-building benefits. A 80 kg person consuming 176 grams daily would be at the upper practical limit for muscle synthesis optimization.",
     },
-    { 
-      question: "Should I count plant-based protein?", 
-      answer: "Yes, all protein counts. However, plant sources are often 'incomplete' (missing some amino acids). If you are vegan, aim for the higher end of the recommended range and eat a variety of sources." 
+    {
+      question: "How do I calculate protein needs if I'm trying to lose weight?",
+      answer: "During weight loss, protein intake becomes even more critical to preserve muscle mass. Most experts recommend 1.6–2.2 grams per kilogram of ideal body weight (or 0.73–1.0 grams per pound) during calorie restriction. For a 90 kg person in a caloric deficit, consuming 144–198 grams of protein daily helps maintain lean muscle while losing fat.",
     },
+    {
+      question: "Should I adjust protein intake based on age?",
+      answer: "Adults over 65 years old may benefit from slightly higher protein intake—approximately 1.0–1.2 grams per kilogram of body weight—to combat age-related muscle loss (sarcopenia). A 75-year-old weighing 70 kg would ideally consume 70–84 grams of protein daily compared to the standard 56 grams for younger sedentary adults.",
+    },
+    {
+      question: "What are the best sources of protein for meeting daily targets?",
+      answer: "Complete protein sources include chicken breast (31g per 100g), Greek yogurt (10g per 100g), eggs (13g per 100g), and salmon (25g per 100g). Plant-based options include lentils (9g per 100g cooked), tofu (15g per 100g), and chickpeas (19g per 100g cooked). Combining sources ensures you meet daily targets—for example, a 2,000-calorie diet might include 120–150g of protein distributed across 4–5 meals.",
+    },
+    {
+      question: "How accurate is the protein calculator for different body compositions?",
+      answer: "The calculator uses body weight as its primary input, but lean muscle mass is more relevant than total body weight for protein calculations. Two 80 kg individuals with different body fat percentages may have different protein needs—someone at 15% body fat may need less than someone at 10% body fat. Consider using lean body weight (total weight minus fat mass) for more personalized results if you know your body composition.",
+    },
+    {
+      question: "Can I consume all my daily protein in one or two meals?",
+      answer: "While technically possible, research suggests distributing protein across 4–5 meals (25–40g per meal) optimizes muscle protein synthesis throughout the day. Consuming all 150g of protein in a single meal is less effective than consuming 30–40g at breakfast, lunch, dinner, and two snacks. Most studies show maximum protein synthesis occurs with doses of 20–40 grams per meal for most individuals.",
+    },
+    {
+      question: "Does the calculator account for protein from all sources including supplements?",
+      answer: "The calculator provides total daily protein recommendations, which can be met through whole foods, supplements, or a combination of both. A 100g daily target could come from 80g of food-based protein and 20g from a protein shake, or any split that totals 100g. Ensure you log all protein sources—food, powder, and fortified products—to accurately track intake against your calculated goal.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -184,70 +204,331 @@ export default function ProteinIntakeByGoalCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* WHAT IS SECTION */}
-      <section id="what-is" className="scroll-mt-32">
-         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">What is Optimal Protein Intake?</h2>
-         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-            Protein is a macronutrient essential for building muscle tissue, repairing cells, and regulating hormones. Unlike fat and carbohydrates, the body does not store protein for later use, meaning you must consume it consistently throughout the day to support bodily functions.
-         </p>
-         <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-            Your "optimal" intake depends heavily on your goals. The standard Recommended Dietary Allowance (RDA) is merely the minimum to prevent deficiency (0.8g/kg). However, for active individuals, athletes, or those seeking weight management, scientific guidelines suggest significantly higher intakes to optimize muscle protein synthesis and satiety.
-         </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Protein Intake Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Protein Intake Calculator determines your personalized daily protein requirements based on your body weight, activity level, and fitness goals. Adequate protein is essential for muscle repair and growth, immune function, and overall health. Whether you're an athlete, someone managing weight loss, or maintaining general wellness, this calculator provides science-backed recommendations tailored to your lifestyle.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, input your current body weight (in pounds or kilograms), select your activity level (from sedentary to competitive athlete), and specify your primary goal (muscle gain, weight loss, or general maintenance). These inputs determine your recommended daily protein intake using established nutritional guidelines from organizations like the National Institutes of Health and the International Society of Sports Nutrition.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">Your results show your daily protein goal in grams and provide context on how your recommendation compares to standard guidelines. Use this number as your target intake across all meals and snacks throughout the day. To meet your goal, track your protein consumption using food labels and nutrition databases, aiming to distribute intake evenly across 4–5 meals for optimal muscle protein synthesis.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use This Calculator</h2>
-         <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-            To get a personalized recommendation, simply enter your current weight and select your primary fitness goal. The calculator adjusts the math based on whether you want to burn fat, build muscle, or just stay healthy.
-         </p>
-         <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-            <li><strong>Maintain:</strong> Calculates protein based on general health and moderate activity guidelines (1.2-1.6g/kg).</li>
-            <li><strong>Fat Loss (Cut):</strong> Uses a higher multiplier (1.8-2.4g/kg) to protect muscle mass while you are in a calorie deficit.</li>
-            <li><strong>Build Muscle (Bulk):</strong> Targets the optimal range for hypertrophy (1.6-2.2g/kg) to support tissue growth.</li>
-         </ul>
+      {/* TABLE: Daily Protein Requirements by Activity Level */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Protein Requirements by Activity Level</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows recommended daily protein intake in grams per kilogram of body weight based on different activity levels and fitness goals.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Activity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Protein (g/kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example: 70 kg Person</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example: 85 kg Person</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sedentary (little to no exercise)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">0.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">56g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">68g</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lightly active (1-3 days/week moderate exercise)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.1–1.3</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">77–91g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">94–110g</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Moderately active (3-5 days/week)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.3–1.5</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">91–105g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">110–128g</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Endurance athlete (5-7 days/week cardio)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.2–1.4</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">84–98g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">102–119g</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Strength/resistance training (3-5 days/week)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.6–1.8</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">112–126g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">136–153g</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Competitive athlete/bodybuilder</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1.8–2.2</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">126–154g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">153–187g</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Requirements may vary based on age, genetics, and individual recovery capacity. Consult a registered dietitian for personalized recommendations.</p>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-         <ul className="space-y-6">
-            {faqs.map((item, i) => (
-              <li key={i} className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0">
-                <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">{item.question}</h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{item.answer}</p>
-              </li>
-            ))}
-         </ul>
+      {/* TABLE: Protein Content in Common Foods */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Protein Content in Common Foods</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table lists the protein content per 100g serving of frequently consumed protein sources to help you meet your daily targets.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Food Source</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Serving Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Protein (grams)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Calories</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chicken breast (cooked, skinless)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">31g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">165</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Salmon (cooked)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">25g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">208</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Egg (large, whole)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1 egg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">72</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Greek yogurt (plain, non-fat)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">59</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cottage cheese (2% fat)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">72</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lean ground beef (90/10)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">155</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tuna (canned in water, drained)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">26g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">116</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Lentils (cooked)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">116</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tofu (firm)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">15g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">76</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Chickpeas (cooked)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">19g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">269</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Almonds</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">28g (23 nuts)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">164</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Whey protein powder</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">30g scoop</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">24g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values are approximate and may vary by brand, preparation method, and specific cut of meat. All cooked weights are without added oils unless specified.</p>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-         <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">Trusted References</h2>
-         <ul className="space-y-4">
-           <li className="block">
-             <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5852756/" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-               1. International Society of Sports Nutrition (ISSN)
-             </a>
-             <p className="text-slate-500 text-sm mt-1">Position Stand: Protein and Exercise. Guidelines for optimal intake for active individuals.</p>
-           </li>
-           <li className="block">
-             <a href="https://www.acsm.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-               2. American College of Sports Medicine (ACSM)
-             </a>
-             <p className="text-slate-500 text-sm mt-1">Nutrition and Athletic Performance guidelines regarding macronutrient distribution.</p>
-           </li>
-           <li className="block">
-             <a href="https://examine.com/guides/protein-intake/" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-               3. Examine.com: Optimal Protein Intake
-             </a>
-             <p className="text-slate-500 text-sm mt-1">Evidence-based analysis of protein requirements for different goals.</p>
-           </li>
-           <li className="block">
-             <a href="https://jissn.biomedcentral.com/articles/10.1186/s12970-017-0177-8" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold hover:underline text-lg">
-               4. Jager et al. (2017)
-             </a>
-             <p className="text-slate-500 text-sm mt-1">International Society of Sports Nutrition Position Stand: protein and exercise.</p>
-           </li>
-         </ul>
+      {/* TABLE: Weekly Protein Intake Goals for Different Scenarios */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Weekly Protein Intake Goals for Different Scenarios</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows realistic weekly protein consumption targets for common fitness and health scenarios.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Scenario</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Body Weight</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Daily Protein Goal</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Weekly Total</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Sedentary office worker</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">70 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">56g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">392g</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Casual fitness enthusiast</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">75 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">98g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">686g</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Marathon training runner</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">68 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">82–95g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">574–665g</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Strength training 4x/week</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">82 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">131–148g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">917–1,036g</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Weight loss (moderate deficit)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">90 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">144–198g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,008–1,386g</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Female athlete (soccer, 3x/week)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">84–96g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">588–672g</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Male bodybuilder (5-6x/week)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">95 kg</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">152–209g</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">1,064–1,463g</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Weekly totals assume consistent daily intake. Adjust based on rest days and training intensity variations.</p>
       </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Spread your protein intake evenly across 4–5 meals rather than consuming it all at once—research shows 25–40g per meal optimizes muscle protein synthesis better than single large doses.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine incomplete plant-based proteins (beans with rice, or hummus with whole grain bread) to create complete amino acid profiles equivalent to animal-based sources.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Track your actual intake for 3–5 days using a food logging app to verify you're meeting your calculated target—many people unknowingly undershoot their goals by 15–25%.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Increase protein intake gradually by 10–15g per week if currently consuming less than your target, allowing your digestive system to adapt and minimizing bloating or discomfort.</li>
+        </ul>
+      </section>
+
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using total body weight instead of lean mass</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">If you have high body fat, calculating protein needs based on total weight overestimates requirements. Someone at 100 kg with 35% body fat has only 65 kg of lean mass and should base calculations on approximately 65 kg, not 100 kg.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Not adjusting for age-related changes</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Adults over 65 need 1.0–1.2 g/kg to combat sarcopenia (muscle loss), but many people continue using the 0.8 g/kg standard for sedentary adults, resulting in insufficient intake for aging muscle preservation.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Assuming more protein is always better</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Consuming protein beyond 2.2 g/kg provides no additional muscle-building benefit and may unnecessarily stress kidneys and increase overall calorie intake, potentially hindering fat loss goals.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Forgetting to account for protein in beverages and fortified foods</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people overlook protein from milk, protein-enriched products, and supplements when logging intake, leading to underestimation of actual consumption and potential overcounting from whole foods.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much protein do I need daily based on my body weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The general recommendation is 0.8 grams of protein per kilogram of body weight (or 0.36 grams per pound) for sedentary adults. However, athletes and those engaged in strength training typically need 1.6–2.2 grams per kilogram of body weight daily. For example, a 70 kg (154 lb) sedentary person needs about 56 grams of protein daily, while an athlete of the same weight would need 112–154 grams.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does my activity level affect my protein requirements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, activity level significantly impacts protein needs. Sedentary individuals require 0.8 g/kg, while endurance athletes need 1.2–1.4 g/kg and strength-training athletes need 1.6–2.2 g/kg of body weight daily. Someone doing moderate cardio 3–4 times weekly should aim for approximately 1.1–1.3 g/kg, whereas competitive powerlifters may require up to 2.2 g/kg.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the maximum safe amount of protein I can consume daily?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">There is no established upper limit for protein intake in healthy individuals with normal kidney function. However, most research suggests that intakes above 2.2 grams per kilogram of body weight provide no additional muscle-building benefits. A 80 kg person consuming 176 grams daily would be at the upper practical limit for muscle synthesis optimization.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do I calculate protein needs if I'm trying to lose weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">During weight loss, protein intake becomes even more critical to preserve muscle mass. Most experts recommend 1.6–2.2 grams per kilogram of ideal body weight (or 0.73–1.0 grams per pound) during calorie restriction. For a 90 kg person in a caloric deficit, consuming 144–198 grams of protein daily helps maintain lean muscle while losing fat.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I adjust protein intake based on age?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Adults over 65 years old may benefit from slightly higher protein intake—approximately 1.0–1.2 grams per kilogram of body weight—to combat age-related muscle loss (sarcopenia). A 75-year-old weighing 70 kg would ideally consume 70–84 grams of protein daily compared to the standard 56 grams for younger sedentary adults.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What are the best sources of protein for meeting daily targets?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Complete protein sources include chicken breast (31g per 100g), Greek yogurt (10g per 100g), eggs (13g per 100g), and salmon (25g per 100g). Plant-based options include lentils (9g per 100g cooked), tofu (15g per 100g), and chickpeas (19g per 100g cooked). Combining sources ensures you meet daily targets—for example, a 2,000-calorie diet might include 120–150g of protein distributed across 4–5 meals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the protein calculator for different body compositions?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator uses body weight as its primary input, but lean muscle mass is more relevant than total body weight for protein calculations. Two 80 kg individuals with different body fat percentages may have different protein needs—someone at 15% body fat may need less than someone at 10% body fat. Consider using lean body weight (total weight minus fat mass) for more personalized results if you know your body composition.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I consume all my daily protein in one or two meals?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">While technically possible, research suggests distributing protein across 4–5 meals (25–40g per meal) optimizes muscle protein synthesis throughout the day. Consuming all 150g of protein in a single meal is less effective than consuming 30–40g at breakfast, lunch, dinner, and two snacks. Most studies show maximum protein synthesis occurs with doses of 20–40 grams per meal for most individuals.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does the calculator account for protein from all sources including supplements?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The calculator provides total daily protein recommendations, which can be met through whole foods, supplements, or a combination of both. A 100g daily target could come from 80g of food-based protein and 20g from a protein shake, or any split that totals 100g. Ensure you log all protein sources—food, powder, and fortified products—to accurately track intake against your calculated goal.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
+        <ul className="space-y-4">
+          <li>
+            <a href="https://ods.od.nih.gov/Health_Information/Dietary_Reference_Intakes.aspx" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Institutes of Health (NIH) — Dietary Reference Intakes</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official U.S. government guidelines for recommended dietary protein intake based on age, sex, and life stage.</p>
+          </li>
+          <li>
+            <a href="https://jissn.biomedcentral.com/articles/10.1186/s12970-017-0177-8" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">International Society of Sports Nutrition (ISSN) — Position Stand on Protein</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Evidence-based recommendations for protein intake in athletes and active individuals engaged in resistance training.</p>
+          </li>
+          <li>
+            <a href="https://fdc.nal.usda.gov/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">USDA FoodData Central — Nutritional Information Database</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Comprehensive U.S. government database of protein content and complete nutritional profiles for thousands of foods.</p>
+          </li>
+          <li>
+            <a href="https://www.acsm.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American College of Sports Medicine (ACSM) — Sports Nutrition Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional organization providing evidence-based nutritional recommendations for athletic performance and recovery.</p>
+          </li>
+        </ul>
+      </section>
+
     </div>
   );
 

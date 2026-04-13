@@ -129,25 +129,41 @@ export default function IdealWeightRangeHamwiDevineMillerCalculator() {
   // 3. FAQS
   const faqs = [
     {
-      question: "What is the Ideal Weight Range (Hamwi/Devine/Miller) method?",
-      answer:
-        "The Ideal Weight Range calculated by Hamwi, Devine, and Miller formulas provides estimates of healthy body weight based on height and gender. These formulas were developed to help clinicians and individuals set realistic weight goals by considering physiological differences between males and females. Each formula uses a slightly different approach and constants, but all aim to approximate an ideal or healthy weight range rather than a strict target.",
+      question: "What is the Hamwi formula and how does it calculate ideal weight?",
+      answer: "The Hamwi formula, developed in 1964, calculates ideal body weight based on height and sex. For men, it uses 106 pounds for the first 5 feet of height, plus 6 pounds for each additional inch. For women, it starts at 100 pounds for 5 feet, plus 5 pounds per additional inch. This method remains widely used by healthcare providers because it accounts for the relationship between height and proportional weight distribution.",
     },
     {
-      question: "How should I interpret the results from these formulas?",
-      answer:
-        "The results represent estimated ideal weights for your height and gender. They are guidelines rather than absolute values. Differences between formulas reflect variations in population samples and assumptions. Use these results as a starting point for healthy weight goals, but consider other factors such as body composition, muscle mass, and overall health. Always consult healthcare professionals for personalized advice.",
+      question: "How do the Devine and Miller formulas differ from Hamwi?",
+      answer: "The Devine formula (1974) uses slightly adjusted coefficients: 50 kg for the first 5 feet plus 2.3 kg per inch for men, and 45.5 kg plus 2.3 kg per inch for women. The Miller formula (1983) further refined these calculations with 56.2 pounds plus 1.41 pounds per inch for men and 53.1 pounds plus 1.36 pounds per inch for women. All three methods produce similar results, with typical differences of 5-10 pounds between formulas for the same individual.",
     },
     {
-      question: "What are the limitations of the Hamwi, Devine, and Miller formulas?",
-      answer:
-        "These formulas do not account for body composition, ethnicity, age, or muscle mass, which can significantly affect healthy weight. They are less accurate for individuals under 5 feet tall or over 8 feet tall, and for children or elderly populations. Additionally, they do not replace clinical assessments or more comprehensive evaluations like BMI, body fat percentage, or metabolic health markers.",
+      question: "Why would I use this calculator instead of BMI?",
+      answer: "These formulas provide actual weight targets rather than a weight range category like BMI does. While BMI (body mass index) only tells you if you're underweight, normal, overweight, or obese, the Hamwi/Devine/Miller methods give specific ideal weight ranges accounting for body frame and muscle mass. This approach is particularly useful for fitness professionals and healthcare providers who need precise weight goals for individual patients.",
     },
     {
-      question: "Can these formulas be used for all populations?",
-      answer:
-        "While widely used in North America and internationally, these formulas were primarily developed based on adult Caucasian populations and may not be fully accurate for all ethnic groups or age ranges. They are best used as general guidelines and should be supplemented with other health assessments tailored to individual circumstances.",
+      question: "What does 'frame size' mean in ideal weight calculations?",
+      answer: "Frame size refers to the skeletal structure and bone density of an individual, typically classified as small, medium, or large. Someone with a large frame may naturally weigh 10-15% more than the base ideal weight calculation, while a small frame might weigh 10-15% less. Frame size can be estimated by measuring wrist circumference or by assessing overall bone structure, making it important for personalizing ideal weight ranges.",
     },
+    {
+      question: "Is a 5'10\" male with ideal weight of 178 pounds healthy?",
+      answer: "Using the Hamwi formula, a 5'10\" male would have an ideal weight of approximately 178 pounds (106 + 60 pounds for 10 additional inches). If he has a medium frame, 178 pounds would be right on target. However, this should be combined with other health markers like BMI (approximately 25.5), body composition analysis, and cardiovascular fitness to determine overall health status.",
+    },
+    {
+      question: "Can these formulas be used for children and teenagers?",
+      answer: "These formulas were developed and validated for adults and are not reliable for children and adolescents whose growth patterns differ significantly. Children's ideal weight depends heavily on age, developmental stage, and puberty timing, making traditional growth charts and pediatric BMI percentiles more appropriate. Healthcare providers should use age-specific growth references when assessing weight in individuals under 18 years old.",
+    },
+    {
+      question: "How much variation is normal between the three formulas?",
+      answer: "For a 6-foot tall adult, the three formulas typically produce results within a 10-15 pound range of each other, which is clinically insignificant. For example, a 6' male might have ideal weights of 178 pounds (Hamwi), 180 pounds (Devine), or 177 pounds (Miller). Most healthcare providers choose one formula and stick with it for consistency, as all three are evidence-based and acceptable for clinical use.",
+    },
+    {
+      question: "Should I use metric or imperial measurements in this calculator?",
+      answer: "Most ideal weight calculators accept both systems, though the original formulas were developed in pounds and inches. If entering height in centimeters and weight in kilograms, ensure the calculator clearly specifies which formula variant is being used, as the conversion between systems must be precise. Using consistent units throughout (either metric or imperial) reduces calculation errors and ensures accuracy.",
+    },
+    {
+      question: "What if my actual weight is significantly higher than the calculated ideal weight?",
+      answer: "If your weight exceeds the ideal range by &gt;20%, consulting with a healthcare provider or registered dietitian is advisable to develop a sustainable weight management plan. The ideal weight range should be achieved gradually through balanced nutrition and regular physical activity, not crash dieting. Consider that muscle mass, bone density, and body composition all affect whether reaching the exact ideal weight is appropriate for your individual health profile.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -362,176 +378,290 @@ export default function IdealWeightRangeHamwiDevineMillerCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* MANDATORY "WHAT IS" SECTION */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          What is the Ideal Weight Range (Hamwi/Devine/Miller)?
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Ideal Weight Range calculated by the Hamwi, Devine, and Miller
-          formulas represents clinically developed estimates of a healthy body
-          weight based on an individual's height and gender. These formulas
-          were originally designed to assist healthcare professionals in
-          determining appropriate weight targets for patients, particularly in
-          contexts such as dosing medications or assessing nutritional status.
-          Unlike body mass index (BMI), which considers weight relative to
-          height squared, these formulas provide a more direct weight estimate
-          tailored to height increments.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Each formula uses a slightly different approach and constants derived
-          from population studies. The Hamwi formula, developed in the 1960s,
-          is one of the earliest and most widely used, providing a simple
-          calculation based on height over 5 feet. The Devine formula, created
-          in 1974, was initially intended for calculating drug dosages in
-          obese patients and uses metric units with a slightly different
-          baseline. The Miller formula, introduced later, offers an
-          alternative with adjusted constants to better fit certain
-          populations. Together, these formulas offer a range of estimates to
-          help individuals and clinicians set realistic and healthy weight
-          goals.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          It is important to note that these formulas provide guidelines rather
-          than absolute targets. They do not account for variations in muscle
-          mass, bone density, age, ethnicity, or overall body composition.
-          Therefore, while useful as a starting point, they should be
-          considered alongside other health indicators and professional
-          medical advice to determine an individual's optimal weight range.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          In clinical practice, these formulas are often used in conjunction
-          with other assessments such as BMI, waist circumference, and body fat
-          percentage measurements to provide a comprehensive picture of health
-          and nutritional status. They remain valuable tools in both
-          healthcare and personal wellness contexts for setting achievable and
-          healthy weight goals.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Ideal Weight Range (Hamwi/Devine/Miller)</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">This calculator determines your ideal weight range using one or more of three evidence-based formulas: Hamwi (1964), Devine (1974), and Miller (1983). These methods are widely used by healthcare providers, dietitians, and fitness professionals to set personalized weight goals based on height and sex. Unlike BMI, which only provides categorical classifications, these formulas generate specific target weights that account for how weight naturally scales with height.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you'll need to input your height (in feet and inches, or centimeters) and select your biological sex. You can optionally specify your frame size (small, medium, or large), which adjusts the result by 10-15% to account for skeletal structure and bone density differences. Frame size is typically estimated by measuring wrist circumference or assessing overall build, and this personalization makes the results more clinically relevant.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator displays your ideal weight range, usually within a 5-10 pound band around the calculated value. This range accounts for natural variation and the fact that reaching an exact number is less important than achieving a healthy weight for your body. Use these results alongside other health indicators—such as body composition, fitness level, and bloodwork—to determine if your current weight is appropriate and what a realistic, sustainable goal should be.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This calculator allows you to estimate your ideal weight range using
-          three well-known formulas: Hamwi, Devine, and Miller. To use it
-          effectively, follow these steps:
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Select your preferred unit system:</strong> Choose between
-            Imperial (pounds, feet, inches) commonly used in the US and Canada,
-            or Metric (kilograms, centimeters) used internationally.
-          </li>
-          <li>
-            <strong>Enter your gender:</strong> Select male or female, as the
-            formulas use different constants based on gender.
-          </li>
-          <li>
-            <strong>Input your height:</strong> Provide your height in feet and
-            inches if using Imperial units, or centimeters if using Metric.
-            Ensure the values are within reasonable ranges for accuracy.
-          </li>
-          <li>
-            <strong>Calculate:</strong> Click the calculate button to see your
-            ideal weight estimates according to each formula.
-          </li>
+      {/* TABLE: Ideal Weight Ranges by Height (Men) Using Three Formulas */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Ideal Weight Ranges by Height (Men) Using Three Formulas</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows calculated ideal weights for men at various heights using Hamwi, Devine, and Miller formulas.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Height</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hamwi (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Devine (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Miller (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Range</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'6"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">148</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">147</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">146</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">146-148</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'8"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">160</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">159</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">158</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">158-160</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'10"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">172</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">172</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">170</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">170-172</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6'0"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">184</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">184</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">182</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">182-184</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6'2"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">196</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">196</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">194</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">194-196</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">6'4"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">208</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">208</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">206</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">206-208</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values assume medium frame size. Adjust ±10-15% for small or large frames respectively.</p>
+      </section>
+
+      {/* TABLE: Ideal Weight Ranges by Height (Women) Using Three Formulas */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Ideal Weight Ranges by Height (Women) Using Three Formulas</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows calculated ideal weights for women at various heights using Hamwi, Devine, and Miller formulas.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Height</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Hamwi (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Devine (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Miller (lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Average Range</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'0"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">101</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">100-101</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'2"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">110</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">110</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">111</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">110-111</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'4"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">121</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">120-121</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'6"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">130</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">130</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">131</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">130-131</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'8"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">140</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">141</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">140-141</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">5'10"</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">151</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">150-151</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Values assume medium frame size. Adjust ±10-15% for small or large frames respectively.</p>
+      </section>
+
+      {/* TABLE: Frame Size Adjustment Factors */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Frame Size Adjustment Factors</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">Frame size significantly impacts ideal weight calculations and should be applied as a percentage adjustment to base formula results.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Frame Size</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Adjustment</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Example (5'10" Male at 172 lbs)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Adjusted Weight Range</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Small</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">-10% to -15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">172 × 0.85 to 0.90</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">146-155 lbs</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Medium</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">No adjustment</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">172 × 1.0</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">172 lbs</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Large</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">+10% to +15%</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">172 × 1.10 to 1.15</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">189-198 lbs</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Wrist circumference &lt;6.5 inches typically indicates small frame; 6.5-7.5 inches medium; &gt;7.5 inches large.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Measure your height accurately in the morning before eating or drinking, as height can vary by up to half an inch throughout the day due to spinal compression.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Estimate frame size by measuring your wrist circumference with a soft tape measure; divide height in inches by wrist circumference to get a frame index (smaller ratios indicate larger frames).</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Remember that the ideal weight range assumes average muscle mass and body composition; athletes with high muscle mass may healthily exceed the calculated range by 10-20 pounds.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use these formulas as a starting point, not a rigid target; sustainable weight changes of 1-2 pounds per week are more achievable and maintainable than rapid weight loss to reach an exact number.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine ideal weight calculations with waist circumference measurements (&lt;40 inches for men, &lt;35 inches for women) to assess health more comprehensively than weight alone.</li>
         </ul>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
-          The results will display your ideal weight in pounds or kilograms,
-          depending on your selected unit system. Use these values as a guide to
-          understand healthy weight ranges for your height and gender. Remember
-          to consider other health factors and consult healthcare professionals
-          for personalized advice.
-        </p>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Treating the ideal weight as an exact target rather than a range</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculated weight should be viewed as a range (typically ±5 pounds), not a specific number to hit exactly. Fixating on reaching a precise weight can lead to unsustainable practices and unnecessary stress; focus instead on feeling healthy and maintaining that range long-term.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring frame size adjustments</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Applying the raw formula result without adjusting for frame size (±10-15%) can lead to unrealistic goals for individuals with naturally larger or smaller skeletal structures. A large-framed person following a small-frame target weight may damage their health, while small-framed individuals might retain unnecessary weight.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using these formulas for children, adolescents, or pregnant women</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">These formulas were developed and validated only for non-pregnant adults; applying them to children, teenagers, or pregnant women produces meaningless results. Pediatric growth charts and pregnancy-specific weight guidelines should be used instead for these populations.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Failing to account for muscle mass and body composition</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Two people at the same height and weight can have dramatically different body compositions; someone with high muscle mass may be at a healthy weight while appearing heavier than the formula suggests. Combine these calculations with body composition analysis (via DEXA, bioelectrical impedance, or measurements) for a complete picture.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Mixing formulas or switching between them frequently</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The three formulas produce slightly different results (typically 5-15 pound differences), causing confusion if you switch between them. Choose one formula and use it consistently to track progress and set realistic milestones rather than comparing results across different methods.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Trusted References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the Hamwi formula and how does it calculate ideal weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Hamwi formula, developed in 1964, calculates ideal body weight based on height and sex. For men, it uses 106 pounds for the first 5 feet of height, plus 6 pounds for each additional inch. For women, it starts at 100 pounds for 5 feet, plus 5 pounds per additional inch. This method remains widely used by healthcare providers because it accounts for the relationship between height and proportional weight distribution.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How do the Devine and Miller formulas differ from Hamwi?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">The Devine formula (1974) uses slightly adjusted coefficients: 50 kg for the first 5 feet plus 2.3 kg per inch for men, and 45.5 kg plus 2.3 kg per inch for women. The Miller formula (1983) further refined these calculations with 56.2 pounds plus 1.41 pounds per inch for men and 53.1 pounds plus 1.36 pounds per inch for women. All three methods produce similar results, with typical differences of 5-10 pounds between formulas for the same individual.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Why would I use this calculator instead of BMI?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">These formulas provide actual weight targets rather than a weight range category like BMI does. While BMI (body mass index) only tells you if you're underweight, normal, overweight, or obese, the Hamwi/Devine/Miller methods give specific ideal weight ranges accounting for body frame and muscle mass. This approach is particularly useful for fitness professionals and healthcare providers who need precise weight goals for individual patients.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What does 'frame size' mean in ideal weight calculations?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Frame size refers to the skeletal structure and bone density of an individual, typically classified as small, medium, or large. Someone with a large frame may naturally weigh 10-15% more than the base ideal weight calculation, while a small frame might weigh 10-15% less. Frame size can be estimated by measuring wrist circumference or by assessing overall bone structure, making it important for personalizing ideal weight ranges.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Is a 5'10" male with ideal weight of 178 pounds healthy?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Using the Hamwi formula, a 5'10" male would have an ideal weight of approximately 178 pounds (106 + 60 pounds for 10 additional inches). If he has a medium frame, 178 pounds would be right on target. However, this should be combined with other health markers like BMI (approximately 25.5), body composition analysis, and cardiovascular fitness to determine overall health status.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can these formulas be used for children and teenagers?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">These formulas were developed and validated for adults and are not reliable for children and adolescents whose growth patterns differ significantly. Children's ideal weight depends heavily on age, developmental stage, and puberty timing, making traditional growth charts and pediatric BMI percentiles more appropriate. Healthcare providers should use age-specific growth references when assessing weight in individuals under 18 years old.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How much variation is normal between the three formulas?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">For a 6-foot tall adult, the three formulas typically produce results within a 10-15 pound range of each other, which is clinically insignificant. For example, a 6' male might have ideal weights of 178 pounds (Hamwi), 180 pounds (Devine), or 177 pounds (Miller). Most healthcare providers choose one formula and stick with it for consistency, as all three are evidence-based and acceptable for clinical use.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Should I use metric or imperial measurements in this calculator?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Most ideal weight calculators accept both systems, though the original formulas were developed in pounds and inches. If entering height in centimeters and weight in kilograms, ensure the calculator clearly specifies which formula variant is being used, as the conversion between systems must be precise. Using consistent units throughout (either metric or imperial) reduces calculation errors and ensures accuracy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What if my actual weight is significantly higher than the calculated ideal weight?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">If your weight exceeds the ideal range by &gt;20%, consulting with a healthcare provider or registered dietitian is advisable to develop a sustainable weight management plan. The ideal weight range should be achieved gradually through balanced nutrition and regular physical activity, not crash dieting. Consider that muscle mass, bone density, and body composition all affect whether reaching the exact ideal weight is appropriate for your individual health profile.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4997403/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. National Center for Biotechnology Information (NCBI) - Ideal
-              Body Weight Formulas
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Comprehensive review of ideal body weight formulas including
-              Hamwi, Devine, and Miller.
-            </p>
+          <li>
+            <a href="https://www.cdc.gov/growthcharts/index.html" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CDC Growth Charts and BMI Reference Standards</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The CDC provides evidence-based growth and weight references used by healthcare providers to assess healthy weight ranges across age groups.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4997403/#:~:text=The%20Hamwi%20formula%20was%20developed%20in%201969%20to%20estimate,for%20drug%20dosing%20in%20obese%20patients."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Devine Formula Origin and Usage - NCBI
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Details on the development and clinical application of the Devine
-              formula.
-            </p>
+          <li>
+            <a href="https://www.nhlbi.nih.gov/health/educational/lose_wt/risk.htm" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">National Heart, Lung, and Blood Institute (NHLBI) Obesity Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">NHLBI offers evidence-based clinical guidelines on weight assessment, including formulas and methods for determining ideal weight ranges.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/books/NBK279396/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. Miller Formula and Clinical Applications - NCBI Bookshelf
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Overview of the Miller formula and its use in clinical nutrition.
-            </p>
+          <li>
+            <a href="https://www.eatright.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Dietetic Association Position on Weight Management</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">The Academy of Nutrition and Dietetics provides professional standards and evidence-based recommendations for weight assessment and management practices.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.cdc.gov/healthyweight/assessing/bmi/adult_bmi/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Centers for Disease Control and Prevention (CDC) - Healthy
-              Weight Assessment
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Guidelines on healthy weight assessment and the role of BMI and
-              other measures.
-            </p>
+          <li>
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">PubMed Central: Comparison of Weight Prediction Formulas</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">PubMed Central hosts peer-reviewed research comparing the accuracy and clinical utility of Hamwi, Devine, Miller, and other ideal weight formulas.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 

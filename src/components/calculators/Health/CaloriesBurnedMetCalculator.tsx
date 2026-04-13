@@ -107,25 +107,41 @@ export default function CaloriesBurnedMetCalculator() {
   // 3. FAQS
   const faqs = [
     {
-      question: "What is the Calories Burned by Activity (MET-based) calculation?",
-      answer:
-        "The Calories Burned by Activity calculator estimates the energy expenditure during physical activities using the Metabolic Equivalent of Task (MET) values. MET is a standardized unit that represents the energy cost of physical activities as multiples of resting metabolic rate. By inputting your weight, activity type, and duration, this calculator provides an estimate of calories burned, helping you understand your exercise impact.",
+      question: "What is MET and how does it relate to calories burned?",
+      answer: "MET stands for Metabolic Equivalent of Task, a unit that measures the intensity of physical activity relative to resting metabolism. One MET equals the energy expended sitting at rest, approximately 1 calorie per kilogram of body weight per hour. The calculator multiplies your body weight, activity duration, and the activity's MET value to determine total calories burned with scientific accuracy.",
     },
     {
-      question: "How should I interpret the calorie burn results?",
-      answer:
-        "The calorie burn result represents the approximate number of kilocalories (kcal) your body expends during the selected activity and duration. Higher values indicate greater energy expenditure. This information can guide weight management, fitness planning, and nutritional needs. Remember, individual variations exist based on metabolism, fitness level, and exercise intensity.",
+      question: "How many calories does a 150-pound person burn running at 6 mph for 30 minutes?",
+      answer: "Running at 6 mph has a MET value of approximately 9.8. For a 150-pound (68 kg) person exercising for 30 minutes, the calculation is: 68 kg × 9.8 MET × 0.5 hours = 333 calories burned. This makes running one of the most effective calorie-burning activities compared to walking or cycling at moderate intensity.",
     },
     {
-      question: "What are the limitations of using MET values for calorie estimation?",
-      answer:
-        "While MET values provide a useful standardized approach, they are averages and may not capture individual differences such as age, sex, fitness level, or exercise intensity variations. Additionally, MET tables often represent typical activity intensities, so actual energy expenditure may differ. For precise measurements, specialized equipment like indirect calorimetry is required.",
+      question: "Does body weight affect how many calories I burn during exercise?",
+      answer: "Yes, body weight directly affects calorie expenditure—heavier individuals burn more calories performing the same activity. A 200-pound person running at 6 mph for 30 minutes burns approximately 445 calories, while a 130-pound person burns approximately 290 calories. This is because larger bodies require more energy to move and maintain functions during exercise.",
     },
     {
-      question: "Can I use this calculator for all types of physical activities?",
-      answer:
-        "This calculator includes common activities with established MET values. For activities not listed, you can find MET values from trusted sources like the Compendium of Physical Activities. Always choose the closest matching activity to get a reasonable estimate. For highly variable or mixed activities, consider using a fitness tracker or professional assessment.",
+      question: "What activities have the highest MET values for calorie burning?",
+      answer: "High-intensity activities burn the most calories per hour: sprinting (&gt;20 MET), jumping rope (11-16 MET), vigorous cycling (14-16 MET), and competitive sports like basketball (8-10 MET). In comparison, casual walking at 2 mph burns only 2.8 MET, making high-intensity activities 5-7 times more efficient for calorie burning in shorter timeframes.",
     },
+    {
+      question: "How accurate is the MET-based calorie calculation method?",
+      answer: "MET-based calculations are considered reliable for estimating average calorie burn with a typical accuracy range of ±10-20%, according to exercise physiology research. Individual variations due to fitness level, age, metabolism, and environmental factors mean actual calorie burn may differ, but MET remains the most standardized method used by fitness professionals and health organizations.",
+    },
+    {
+      question: "Can I use this calculator to track daily calorie deficit for weight loss?",
+      answer: "Yes, this calculator helps estimate exercise-related calorie burn, which you can subtract from daily intake to calculate deficit. However, weight loss requires combining exercise calories with dietary tracking—a 500-calorie daily deficit typically results in 1 pound of weight loss per week. Remember that the calculator estimates calories burned during activity only, not resting metabolic rate.",
+    },
+    {
+      question: "Does intensity level change the MET value for the same activity?",
+      answer: "Absolutely—the same activity at different intensities has significantly different MET values. Cycling at 10-12 mph is 6 MET, while cycling at 16-19 mph is 12 MET. This means doubling your effort intensity can double calorie burn, which is why the calculator requires you to specify intensity levels for accurate results.",
+    },
+    {
+      question: "What is the difference between light, moderate, and vigorous activity intensity?",
+      answer: "Light activity (&lt;3 MET) includes walking slowly or casual stretching; moderate activity (3-6 MET) includes brisk walking or recreational cycling; vigorous activity (&gt;6 MET) includes running, competitive sports, or high-intensity interval training. The intensity directly impacts how many calories you burn—vigorous activity burns 2-4 times more calories than light activity in the same duration.",
+    },
+    {
+      question: "How should I adjust calculator results if I have above-average or below-average fitness?",
+      answer: "MET values assume average fitness levels; highly trained athletes may burn fewer calories due to greater efficiency, while deconditioned individuals may burn slightly more due to less efficient movement. If you're significantly more or less fit than average, expect 10-15% variation from calculated results. Tracking your actual heart rate and weight changes over time provides personalized calibration of estimates.",
+    }
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
 
@@ -351,131 +367,349 @@ export default function CaloriesBurnedMetCalculator() {
 
   const editorial = (
     <div className="space-y-12">
-      {/* MANDATORY "WHAT IS" SECTION */}
-      <section id="what-is" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          What is the Calories Burned by Activity (MET-based)?
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          The Calories Burned by Activity calculator uses the Metabolic Equivalent of Task (MET) system to estimate the energy expenditure during various physical activities. MET values represent the ratio of the work metabolic rate to the resting metabolic rate. One MET is defined as the energy cost of sitting quietly, equivalent to approximately 1 kcal/kg/hour. By multiplying the MET value of an activity by your body weight and the duration of the activity, you can estimate the total calories burned.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          This method is widely used in exercise physiology and public health to quantify physical activity intensity and energy expenditure. It provides a standardized way to compare different activities and their impact on calorie burn. The MET values used in this calculator are derived from the Compendium of Physical Activities, a comprehensive resource developed by researchers to classify activities by their energy cost.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          Understanding calories burned during exercise is essential for weight management, fitness planning, and overall health. This calculator helps individuals estimate how much energy they expend during common activities such as running, cycling, swimming, and more. It is especially useful for tailoring exercise routines to meet specific goals, whether for weight loss, maintenance, or performance enhancement.
-        </p>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-          While the MET-based calculation provides a good estimate, it is important to recognize that individual factors such as age, sex, fitness level, and exercise intensity can influence actual calorie burn. Therefore, results should be interpreted as approximate values rather than exact measurements.
-        </p>
+
+      {/* GUIDE */}
+      <section id="guide" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">How to Use the Calories Burned by Activity (MET-based) Calculator</h2>
+        <div className="space-y-3">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The Calories Burned by Activity calculator uses the Metabolic Equivalent of Task (MET) method to estimate how many calories your body expends during physical activity. This evidence-based approach is used by fitness professionals, personal trainers, and health researchers worldwide because it accounts for both activity type and intensity. Understanding your calorie burn helps with weight management, fitness planning, and evaluating whether your exercise routine aligns with your health goals.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">To use the calculator, you'll need three key inputs: your body weight (in pounds or kilograms), the type and intensity of activity you performed, and the duration of exercise in minutes or hours. The calculator's database includes MET values for hundreds of activities ranging from casual leisure activities like watching television (1 MET) to intense training like sprinting (&gt;20 MET). Accuracy improves when you select the most specific activity match and intensity level that reflects your actual workout.</p>
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">The calculator displays your estimated total calories burned and often breaks this into calories per hour or minute for comparison purposes. Remember that this number represents calories expended specifically during the activity—your body also burns calories at rest through basal metabolic rate (BMR). For weight management, combine this activity calorie estimate with your total daily food intake to determine your caloric deficit or surplus, keeping in mind that a 3,500-calorie deficit typically equals one pound of weight loss.</p>
+        </div>
       </section>
 
-      <section id="how-to-use" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          How to Use This Calculator
-        </h2>
-        <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-          To accurately estimate the calories you burn during physical activity using this calculator, follow these steps carefully. The calculator defaults to the Imperial system (lbs, feet, inches) but can be switched to Metric units (kg, cm) as needed.
-        </p>
-        <ul className="list-disc pl-5 space-y-2 text-slate-700 dark:text-slate-300">
-          <li>
-            <strong>Input Your Weight:</strong> Enter your body weight in pounds (lbs) if using Imperial units or kilograms (kg) if using Metric. This is a critical factor as calorie burn is directly proportional to body mass.
-          </li>
-          <li>
-            <strong>Select Your Activity:</strong> Choose the physical activity you performed from the dropdown list. Each activity has an associated MET value representing its intensity.
-          </li>
-          <li>
-            <strong>Enter Duration:</strong> Specify the total time you spent performing the activity in minutes. The calculator converts this to hours for the calculation.
-          </li>
-          <li>
-            <strong>Optional Height Input:</strong> While height is not used in the calorie calculation, you can enter it for additional context or future reference.
-          </li>
-          <li>
-            <strong>Calculate:</strong> Click the Calculate button to see your estimated calories burned. Use the Reset button to clear inputs and start a new calculation.
-          </li>
+      {/* TABLE: MET Values for Common Activities */}
+      <section id="table-1" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">MET Values for Common Activities</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows the metabolic equivalent (MET) values for popular physical activities at various intensity levels.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Activity</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Intensity Level</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">MET Value</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Walking</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2 mph (slow)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">2.8</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Walking</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5 mph (moderate)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">3.5</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Walking</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">4.5 mph (brisk)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5.0</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Jogging</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">5 mph</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.3</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Running</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6 mph</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">9.8</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Running</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8 mph</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.8</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cycling</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10-12 mph (leisure)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">6.0</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cycling</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">16-19 mph (vigorous)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">12.0</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Swimming</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate pace</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.0</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Swimming</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Fast pace</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.0</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Basketball</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Recreational</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">8.0</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Tennis</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Competitive</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">10.0</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Jumping Rope</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate pace</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">11.0</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Elliptical Machine</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate effort</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.0</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Stationary Bike</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Moderate intensity</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">7.0</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">MET values are approximations based on standardized exercise physiology data. Actual values may vary by 10-20% depending on individual fitness level and technique.</p>
+      </section>
+
+      {/* TABLE: Estimated Calories Burned by Weight and Activity (30-minute duration) */}
+      <section id="table-2" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Estimated Calories Burned by Weight and Activity (30-minute duration)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table shows estimated calories burned during 30 minutes of selected activities for different body weights.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Activity (MET)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">130 lbs (59 kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">155 lbs (70 kg)</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">185 lbs (84 kg)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Walking 3.5 mph (3.5 MET)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">103</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">123</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">147</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Brisk Walking 4.5 mph (5.0 MET)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">147</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">175</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">210</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Jogging 5 mph (8.3 MET)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">245</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">291</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">349</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Running 6 mph (9.8 MET)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">290</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">345</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">414</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Running 8 mph (11.8 MET)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">348</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">413</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">496</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cycling 12 mph (6.0 MET)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">177</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">210</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">252</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Cycling 18 mph (12.0 MET)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">354</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">420</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">504</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Swimming moderate (8.0 MET)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">236</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">336</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Basketball (8.0 MET)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">236</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">280</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">336</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Jump Rope (11.0 MET)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">324</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">385</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">462</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Calorie estimates are based on standard MET calculations and assume consistent effort throughout the duration. Individual results may vary based on age, metabolism, fitness level, and environmental factors.</p>
+      </section>
+
+      {/* TABLE: Daily Calorie Burn Scenarios (160-lb person) */}
+      <section id="table-3" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-3 text-slate-900 dark:text-slate-100">Daily Calorie Burn Scenarios (160-lb person)</h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">This table demonstrates how different exercise combinations accumulate daily calorie burn for a 160-pound individual.</p>
+        <div className="not-prose overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+          <table className="w-full text-sm border-collapse">
+            <thead className="bg-slate-100 dark:bg-slate-800">
+              <tr>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Exercise Routine</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Duration</th>
+                <th className="text-left px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">Total Calories Burned</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30-min morning jog (5 mph) + 20-min evening walk (3.5 mph)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">50 min total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">340</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">45-min cycling session (12 mph) + 15-min stretch (1 MET)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60 min total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">327</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">1-hour moderate swimming</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">560</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">30-min running (6 mph) + 30-min brisk walking (4.5 mph)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60 min total</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">405</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Basketball game (recreational, continuous)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">60 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">560</td>
+                </tr>
+                <tr className="bg-slate-50 dark:bg-slate-800/50">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">45-min vigorous cycling (18 mph)</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">45 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">630</td>
+                </tr>
+                <tr className="bg-white dark:bg-slate-900">
+                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-200 whitespace-nowrap">Daily walk (3.5 mph) + office desk work</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">Walking 30 min</td>
+                  <td className="px-4 py-3 text-slate-600 dark:text-slate-400">175</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">Totals are based on a 160-pound (73 kg) individual and rounded to nearest 5 calories. Actual burn depends on exact intensity, fitness level, and personal metabolism.</p>
+      </section>
+
+      {/* TIPS */}
+      <section id="tips" className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-xl border border-blue-100 dark:border-blue-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-blue-900 dark:text-blue-100">Pro Tips</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li className="text-sm text-slate-700 dark:text-slate-300">Log both duration and intensity accurately—a 30-minute 'run' at 5 mph burns significantly fewer calories than a 30-minute run at 8 mph, so selecting the correct intensity level is crucial for realistic estimates.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Use this calculator weekly to track how your calorie burn changes as your fitness improves; the same activity becomes easier (lower perceived exertion) as cardiovascular fitness increases, but MET values may remain constant in standard calculations.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Combine calories burned from multiple activities to get your total exercise calorie expenditure for the day, then compare against your dietary intake to assess whether you're achieving your weight management or fitness goals.</li>
+          <li className="text-sm text-slate-700 dark:text-slate-300">Account for weather and environmental factors when estimating intensity—running uphill, in heat, or on uneven terrain increases actual calorie burn beyond standard MET values by 10-30%, so consider upgrading to the next intensity level under challenging conditions.</li>
         </ul>
       </section>
 
-      <section id="faq" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Frequently Asked Questions
-        </h2>
-        <ul className="space-y-6">
-          {faqs.map((item, i) => (
-            <li
-              key={i}
-              className="border-b border-slate-200 dark:border-slate-800 pb-4 last:border-0"
-            >
-              <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 mb-2">
-                {item.question}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
+      {/* MISTAKES */}
+      <section id="mistakes" className="bg-amber-50 dark:bg-amber-950/30 p-6 rounded-xl border border-amber-200 dark:border-amber-900 scroll-mt-24">
+        <h2 className="text-xl font-bold mb-4 text-amber-900 dark:text-amber-100">Common Mistakes to Avoid</h2>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Confusing total calorie burn with net calorie burn</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">The calculator shows gross calories burned during activity, not net calories (activity calories minus resting calories). If your body burns 300 calories running and would have burned 50 calories resting during that 30 minutes, your net burn is only 250 calories, not 300.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Using inaccurate body weight</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Since calorie burn is directly proportional to body weight, entering incorrect weight significantly skews results. A 20-pound difference in weight changes calorie estimates by approximately 25-30%, so weigh yourself on a reliable scale when using this calculator.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Overestimating activity intensity</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Many people select higher intensity levels than they actually achieve—for example, rating their pace as 'brisk' walking when it's actually casual. Be honest about intensity to avoid overestimating calorie burn by 30-50%.</p>
+          </div>
+          <div>
+            <p className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Ignoring individual metabolic variation</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">MET values are population averages; your personal calorie burn can vary 10-20% from estimates depending on age, fitness level, metabolism, and muscle mass. Highly trained athletes may burn fewer calories due to greater movement efficiency, while deconditioned individuals may burn more.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="references" className="scroll-mt-32">
-        <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-slate-100">
-          Trusted References
-        </h2>
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-6 text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is MET and how does it relate to calories burned?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">MET stands for Metabolic Equivalent of Task, a unit that measures the intensity of physical activity relative to resting metabolism. One MET equals the energy expended sitting at rest, approximately 1 calorie per kilogram of body weight per hour. The calculator multiplies your body weight, activity duration, and the activity's MET value to determine total calories burned with scientific accuracy.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How many calories does a 150-pound person burn running at 6 mph for 30 minutes?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Running at 6 mph has a MET value of approximately 9.8. For a 150-pound (68 kg) person exercising for 30 minutes, the calculation is: 68 kg × 9.8 MET × 0.5 hours = 333 calories burned. This makes running one of the most effective calorie-burning activities compared to walking or cycling at moderate intensity.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does body weight affect how many calories I burn during exercise?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, body weight directly affects calorie expenditure—heavier individuals burn more calories performing the same activity. A 200-pound person running at 6 mph for 30 minutes burns approximately 445 calories, while a 130-pound person burns approximately 290 calories. This is because larger bodies require more energy to move and maintain functions during exercise.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What activities have the highest MET values for calorie burning?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">High-intensity activities burn the most calories per hour: sprinting (&gt;20 MET), jumping rope (11-16 MET), vigorous cycling (14-16 MET), and competitive sports like basketball (8-10 MET). In comparison, casual walking at 2 mph burns only 2.8 MET, making high-intensity activities 5-7 times more efficient for calorie burning in shorter timeframes.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How accurate is the MET-based calorie calculation method?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">MET-based calculations are considered reliable for estimating average calorie burn with a typical accuracy range of ±10-20%, according to exercise physiology research. Individual variations due to fitness level, age, metabolism, and environmental factors mean actual calorie burn may differ, but MET remains the most standardized method used by fitness professionals and health organizations.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Can I use this calculator to track daily calorie deficit for weight loss?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Yes, this calculator helps estimate exercise-related calorie burn, which you can subtract from daily intake to calculate deficit. However, weight loss requires combining exercise calories with dietary tracking—a 500-calorie daily deficit typically results in 1 pound of weight loss per week. Remember that the calculator estimates calories burned during activity only, not resting metabolic rate.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">Does intensity level change the MET value for the same activity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Absolutely—the same activity at different intensities has significantly different MET values. Cycling at 10-12 mph is 6 MET, while cycling at 16-19 mph is 12 MET. This means doubling your effort intensity can double calorie burn, which is why the calculator requires you to specify intensity levels for accurate results.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">What is the difference between light, moderate, and vigorous activity intensity?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">Light activity (&lt;3 MET) includes walking slowly or casual stretching; moderate activity (3-6 MET) includes brisk walking or recreational cycling; vigorous activity (&gt;6 MET) includes running, competitive sports, or high-intensity interval training. The intensity directly impacts how many calories you burn—vigorous activity burns 2-4 times more calories than light activity in the same duration.</p>
+          </div>
+          <div className="border-b border-slate-200 dark:border-slate-800 pb-5 last:border-0">
+            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 mb-2">How should I adjust calculator results if I have above-average or below-average fitness?</h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">MET values assume average fitness levels; highly trained athletes may burn fewer calories due to greater efficiency, while deconditioned individuals may burn slightly more due to less efficient movement. If you're significantly more or less fit than average, expect 10-15% variation from calculated results. Tracking your actual heart rate and weight changes over time provides personalized calibration of estimates.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCES */}
+      <section id="references" className="scroll-mt-24">
+        <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-slate-100">References &amp; Resources</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-4">Last updated: April 2026</p>
         <ul className="space-y-4">
-          <li className="block">
-            <a
-              href="https://sites.google.com/site/compendiumofphysicalactivities/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              1. The Compendium of Physical Activities
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              A comprehensive resource providing MET values for hundreds of physical activities. Widely used in research and clinical settings.
-            </p>
+          <li>
+            <a href="https://sites.google.com/site/compendiumofphysicalactivities/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Compendium of Physical Activities</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">A comprehensive database of MET values for over 800 physical activities used as the gold standard reference for exercise intensity measurement.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.cdc.gov/physicalactivity/basics/measuring/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              2. Centers for Disease Control and Prevention (CDC) - Measuring Physical Activity
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Official guidance on measuring physical activity and understanding energy expenditure for health promotion.
-            </p>
+          <li>
+            <a href="https://www.heart.org/en/healthy-living/fitness" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American Heart Association - Physical Activity</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Official guidance on physical activity recommendations and exercise intensity levels from the leading cardiovascular health organization.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.heart.org/en/healthy-living/fitness/fitness-basics/target-heart-rates"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              3. American Heart Association - Fitness Basics
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Educational content on exercise intensity, calorie burn, and heart health.
-            </p>
+          <li>
+            <a href="https://www.cdc.gov/physicalactivity/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">CDC Physical Activity Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Government health authority standards for moderate and vigorous physical activity and their metabolic equivalents for public health.</p>
           </li>
-          <li className="block">
-            <a
-              href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4241367/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold hover:underline text-lg"
-            >
-              4. Ainsworth BE et al., 2011 - 2011 Compendium of Physical Activities
-            </a>
-            <p className="text-slate-500 text-sm mt-1">
-              Peer-reviewed article updating MET values and methodology for physical activity classification.
-            </p>
+          <li>
+            <a href="https://www.acsm.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">American College of Sports Medicine Exercise Testing Guidelines</a>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Professional organization standards for measuring exercise intensity, MET calculations, and fitness assessment methodologies.</p>
           </li>
         </ul>
       </section>
+
     </div>
   );
 
