@@ -130,34 +130,54 @@ export default function BrickCalculator() {
   // --- 1. FAQ GENERATION ---
   const faqs = [
     {
-      question: "What is a brick calculator and how does it work?",
+      question: "How many bricks do I need per square meter?",
       answer:
-        "A brick calculator is a tool used to estimate the number of bricks required for a construction project based on the dimensions of the wall or structure. It calculates the volume of the wall and divides it by the volume of a single brick (including mortar gaps) to determine the quantity needed. It also factors in a waste margin to account for breakage and cuts.",
+        "The number of bricks per m² depends on the brick size and laying pattern. With standard UK bricks (215 × 102.5 × 65 mm including a 10 mm mortar joint) in stretcher bond, you need approximately 60 bricks per m² of wall face. English bond uses around 90 bricks/m² because every other course lays bricks across the full wall width. Flemish bond also uses around 80–90 bricks/m². For US modular bricks (203 × 102 × 67 mm nominal) in running bond, expect roughly 67 bricks/m².",
+    },
+    {
+      question: "How do I subtract windows and doors from my brick count?",
+      answer:
+        "Measure the width and height of each opening (window or door) in meters, multiply to get the area (m²), then multiply by your bricks-per-m² figure. Subtract that number from your gross brick count. For example, a 1.2 m × 1.0 m window in stretcher bond removes 1.2 × 1.0 × 60 = 72 bricks. Do this for every opening before adding the waste margin, since waste applies only to the bricks you actually lay.",
+    },
+    {
+      question: "What waste percentage should I use?",
+      answer:
+        "Use 5% for experienced professionals on straightforward rectangular walls, 10% for most DIY projects and standard residential builds, and 15% for complex shapes, diagonal cuts, herringbone patterns, or historic brick replacements where matching color lot is critical. Never use 0% — even perfect cuts produce breakage. Leftover bricks can be useful for future repairs, so erring slightly high is safer than running short mid-project.",
+    },
+    {
+      question: "What is the standard brick size in different countries?",
+      answer:
+        "Brick dimensions vary by region. UK standard: 215 × 102.5 × 65 mm (work size), giving a nominal 225 × 112.5 × 75 mm with 10 mm mortar joints. US modular: 194 × 92 × 57 mm work size, nominal 203 × 102 × 67 mm. Australian standard: 230 × 110 × 76 mm. European DIN 105: 240 × 115 × 71 mm. Always confirm the exact dimensions with your supplier, as even small differences change your total by 5–15%.",
+    },
+    {
+      question: "How do I calculate bricks for a cavity wall?",
+      answer:
+        "A cavity wall consists of two parallel single-leaf walls (called skins) separated by a gap of 50–100 mm. Calculate each skin independently using its face dimensions, then add them together. The outer skin is typically 102.5 mm thick (one brick laid on its side — stretcher position). The inner skin is usually blockwork rather than brick, but if both are brick, double your total. Add the cavity insulation separately — bricks do not fill the cavity.",
+    },
+    {
+      question: "How much mortar do I need for my brick project?",
+      answer:
+        "As a rule of thumb, one 25 kg bag of pre-mixed mortar covers approximately 40–50 standard bricks when using a 10 mm joint. For 1,000 bricks you will need roughly 20–25 bags. A more precise method: calculate your mortar volume as approximately 20–25% of your total wall volume (the rest is solid brick). For sand and cement mixes, a 1:6 mix uses about 0.3 m³ of sand and 50 kg of cement per 1,000 bricks.",
+    },
+    {
+      question: "What is the difference between stretcher bond, English bond, and Flemish bond?",
+      answer:
+        "Stretcher bond (running bond) lays bricks with only their long face (stretcher) visible — all joints are staggered by half a brick. It is the most common pattern for modern single-skin walls and uses the fewest bricks. English bond alternates full courses of stretchers with full courses of headers (bricks laid end-on), creating a very strong structural wall — used for load-bearing and retaining walls. Flemish bond alternates a stretcher and a header within every single course, giving a decorative herringbone-like appearance from the front and also excellent strength. Herringbone and basket-weave patterns are mainly used for paving and require 15–20% more bricks than stretcher bond.",
+    },
+    {
+      question: "Can I use this calculator for garden walls, fireplaces, and retaining walls?",
+      answer:
+        "Yes, with adjustments. For garden walls, calculate the face area as normal and use single-skin thickness (102.5 mm) for low walls under 600 mm, and double-skin (215 mm) for taller walls for structural safety. For fireplaces, break the structure into rectangular sections (back wall, side walls, hearth) and sum them. For retaining walls, use the full volume method since the exposed face area does not equal the structural volume — these walls are often thicker at the base, so calculate each section at its average thickness.",
     },
     {
       question: "Why is it important to include a waste margin in brick calculations?",
       answer:
-        "Including a waste margin is crucial because during construction, bricks can break, be cut to size, or become unusable. A typical waste margin ranges from 5% to 15%, ensuring you have enough bricks to complete the project without delays or additional orders. Underestimating waste can lead to costly project interruptions.",
-    },
-    {
-      question: "How do different brick sizes affect the calculation?",
-      answer:
-        "Brick sizes vary by type and region, affecting how many bricks fit into a given volume. Larger bricks cover more area and reduce the total number needed, while smaller bricks increase quantity. This calculator allows selection between standard and large bricks to provide accurate estimates based on the chosen size.",
-    },
-    {
-      question: "Can I use this calculator for both metric and imperial units?",
-      answer:
-        "Yes, the calculator supports both metric (meters) and imperial (feet) units. Simply select your preferred unit system, and the inputs and calculations will adjust accordingly. This flexibility helps accommodate different regional measurement standards.",
-    },
-    {
-      question: "How do I measure the thickness of a brick wall for this calculator?",
-      answer:
-        "The thickness of a brick wall is typically the width of the bricks laid side by side, including mortar joints. For a single brick wall, this is usually the width of one brick (about 102.5mm for standard bricks). For double or cavity walls, measure the combined thickness. Accurate thickness measurement ensures precise material estimation.",
+        "Bricks break during cutting, handling, and transport. Cuts around corners, window reveals, and door frames always produce offcuts that cannot be reused. Ordering exactly the right number means you will almost certainly run short, forcing a second order — and a second delivery means a different manufacturing batch, which can have a slightly different color. Professional bricklayers order 5% extra as standard; DIYers should order 10%. If your project uses special or reclaimed bricks, order 15% because finding matching stock later can be very difficult.",
     },
     {
       question: "What factors can cause discrepancies between calculated and actual brick quantities?",
       answer:
-        "Discrepancies can arise from inaccurate measurements, variations in brick size, mortar thickness, construction techniques, and unexpected waste. Additionally, architectural features like openings, arches, or decorative patterns can affect quantities. Always consult with a professional and consider ordering extra bricks as a buffer.",
+        "The most common causes are: (1) mortar joint thickness varying from the assumed 10 mm — thicker joints use fewer bricks, thinner joints use more; (2) irregular wall shapes with angles or curves that require more cuts; (3) brick size variation within a batch, especially with handmade or reclaimed bricks; (4) openings measured from the wrong reference point (finished opening vs. structural opening); and (5) corners — every external corner requires half-bricks to maintain the bond pattern, which increases offcut waste.",
     },
   ];
   const faqJsonLd = useFaqJsonLd(faqs);
